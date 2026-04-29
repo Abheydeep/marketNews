@@ -155,6 +155,10 @@ async function expectDailyContent(page) {
   await expectOne(page.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
   await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
   await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
+  await expectOne(page.getByRole("heading", { name: "Latest Market Dashboard" }), "market dashboard heading");
+  await expectOne(page.getByText("Quick snapshot only:", { exact: false }), "market dashboard scope note");
+  const dashboardSymbols = await page.evaluate(() => window.__MARKET_DASHBOARD_SYMBOLS__ ?? []);
+  assert.deepEqual(dashboardSymbols, ["SPX", "NDX", "HSI", "NIFTY", "BANKNIFTY", "BRENT"]);
   const setupCard = page.locator(".setup-card");
   await expectOne(setupCard, "algorithmic setup card");
   await expectOne(

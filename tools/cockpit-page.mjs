@@ -726,6 +726,13 @@ export function cockpitPage(digest, initialTab = "public-view") {
       max-height: 400px;
     }
 
+    .chart-note {
+      margin: 0 0 16px;
+      color: #78716c;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
     .scanner-height {
       height: 260px;
     }
@@ -1742,6 +1749,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
         <section class="panel market-chart-panel">
           <h2>Latest Market Dashboard</h2>
+          <p class="chart-note">Quick snapshot only: US risk appetite, Asia lead, Indian open, and the key macro hedge. Open the Real Quote Board for every tracked market.</p>
           <div class="chart-container">
             <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
           </div>
@@ -1960,9 +1968,18 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const canvas = document.getElementById('overnightChart');
       if (!canvas) return;
       const source = window.__PUBLISHED_QUOTES__ ?? digest.marketSnapshots;
-      const data = source
-        .map((item) => ({ label: compactMarketLabel(item), value: Number(item.changePercent) }));
+      const data = dashboardQuotes(source)
+        .map((item) => ({ label: compactMarketLabel(item), value: Number(item.changePercent), symbol: item.symbol }));
+      window.__MARKET_DASHBOARD_SYMBOLS__ = data.map((item) => item.symbol);
+      canvas.dataset.dashboardSymbols = window.__MARKET_DASHBOARD_SYMBOLS__.join(',');
       drawBarChart(canvas, data);
+    }
+
+    function dashboardQuotes(quotes) {
+      const priority = ['SPX', 'NDX', 'HSI', 'NIFTY', 'BANKNIFTY', 'BRENT'];
+      return priority
+        .map((symbol) => quotes.find((quote) => quote.symbol === symbol))
+        .filter(Boolean);
     }
 
     function initLiveIndexBoard() {
