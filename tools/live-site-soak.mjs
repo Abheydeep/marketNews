@@ -147,10 +147,16 @@ async function expectDailyContent(page) {
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
   await expectOne(page.getByText("Wed, 29 Apr, 2026", { exact: true }), "daily date");
   await expectOne(page.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
+  await expectOne(page.getByRole("heading", { name: "1. What Changed Overnight" }), "changed overnight heading");
+  await expectOne(page.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
+  await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
+  await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
   await expectOne(page.getByRole("heading", { name: "Asia Watch" }), "asia watch heading");
   await expectOne(page.locator('button[data-symbol="NIKKEI"]'), "Nikkei index tile");
   await expectOne(page.locator('button[data-symbol="HSI"]'), "Hang Seng index tile");
   await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
+  await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
+  await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
 }
 
 async function expectOne(locator, label) {

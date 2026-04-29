@@ -259,6 +259,97 @@ export function cockpitPage(digest, initialTab = "public-view") {
       font-weight: 850;
     }
 
+    .brief-lead {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 18px;
+    }
+
+    .brief-section {
+      margin-top: 24px;
+    }
+
+    .brief-section h3 {
+      margin: 0 0 12px;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .source-extract-list {
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .source-extract-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
+      gap: 18px;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 0;
+    }
+
+    .source-extract-meta span {
+      display: block;
+      color: #111827;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .source-extract-meta small {
+      display: block;
+      margin-top: 6px;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .source-extract-copy h4 {
+      margin: 0 0 7px;
+      color: #111827;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .source-extract-copy p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .source-extract-copy p + p {
+      margin-top: 8px;
+    }
+
+    .source-extract-copy .why-line {
+      color: #64748b;
+    }
+
+    .brief-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .brief-list li + li {
+      margin-top: 10px;
+    }
+
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
     .section-kicker {
       display: flex;
       align-items: end;
@@ -1446,6 +1537,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .setup-levels,
       .summary-strip,
       .briefing-grid,
+      .source-extract-row,
+      .watch-grid,
       .arch-grid {
         grid-template-columns: 1fr;
       }
@@ -1576,10 +1669,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
         <section class="sources-section">
           <div class="section-kicker">
-            <h2>Macro Incremental Sources</h2>
+            <h2>Source Notes & Attribution</h2>
           </div>
           <div class="news-card-list">
-            ${digest.news.slice(0, 4).map((item) => `
+            ${digest.news.map((item) => `
               <article class="info-card source-card">
                 <div class="source-card-header">
                   <span class="news-badge ${newsToneClass(item.sentimentScore)}">${escapeHtml(newsBadgeLabel(item))}</span>
@@ -2477,31 +2570,135 @@ function executiveSummaryHtml(digest) {
   const asiaLine = formatSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
+  const pressureStory = strongestStory(digest.news, "negative");
+  const supportStory = strongestStory(digest.news, "positive");
   const primaryTheme = digest.themes[0];
-  const secondaryTheme = digest.themes[1];
   const setup = niftySetup(digest);
   const setupText = setup
-    ? `The Nifty scanner is tracking ${setup.direction.toLowerCase()} acceptance near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
+    ? `Nifty has a scanner-approved ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
     : "The scanner has not accepted a 1:2 risk-reward setup yet, so the first hour should define the actionable levels.";
+  const bottomLine = [
+    `Overnight financial news points to a ${digest.sentimentLabel.toLowerCase()} but selective Indian open.`,
+    pressureStory ? `The main pressure point is ${pressureStory.takeaway || pressureStory.summary}` : primaryTheme?.summary,
+    supportStory ? `The offset is ${supportStory.takeaway || supportStory.summary}` : "",
+    "This is a source-led brief, not just an index-move recap."
+  ].filter(Boolean).join(" ");
 
-  const paragraphs = [
-    {
-      label: "Global Markets & Overnight Pulse",
-      text: `The ${formatScheduledRun(digest)} digest is ${digest.sentimentLabel.toLowerCase()}. US overnight cues: ${usLine || "awaiting quote refresh"}. Asia watch: ${asiaLine || "awaiting quote refresh"}. Macro hedges: ${macroLine || "awaiting quote refresh"}.`
-    },
-    {
-      label: "India Read-Through",
-      text: `${indiaLine ? `Domestic dashboard: ${indiaLine}. ` : ""}${primaryTheme?.summary ?? "The market narrative is still forming from overnight cues."}${secondaryTheme ? ` ${secondaryTheme.summary}` : ""}`
-    },
-    {
-      label: "Domestic Setup & Risk Discipline",
-      text: `${setupText} This is educational market research for content planning, not investment advice.`
-    }
-  ];
+  return `
+    <p class="brief-lead"><strong>Bottom line:</strong> ${escapeHtml(bottomLine)}</p>
 
-  return paragraphs
-    .map((paragraph) => `<p><strong>${escapeHtml(paragraph.label)}:</strong> ${escapeHtml(paragraph.text)}</p>`)
+    <div class="brief-section">
+      <h3>1. What Changed Overnight</h3>
+      <ul class="brief-list">
+        <li><strong>US risk appetite:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. The news stack links US technology softness and firmer yields to a lower-quality risk backdrop.</li>
+        <li><strong>Asia read:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Mixed regional breadth means the Indian open should be treated as level-driven rather than purely directional.</li>
+        <li><strong>Macro hedges:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar remain the two variables most likely to shape inflation, rupee, and foreign-flow expectations.</li>
+        <li><strong>Domestic context:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Banks are the key stabilizer; broad-market conviction still needs breadth confirmation.</li>
+      </ul>
+    </div>
+
+    <div class="brief-section">
+      <h3>2. Source Extraction</h3>
+      <div class="source-extract-list">
+        ${sourceExtractionRows(digest.news)}
+      </div>
+    </div>
+
+    <div class="brief-section">
+      <h3>3. India Read-Through</h3>
+      <ul class="brief-list">
+        ${indiaReadThroughItems(digest, setupText)}
+      </ul>
+    </div>
+
+    <div class="brief-section">
+      <h3>4. What To Watch Next</h3>
+      <ul class="watch-grid">
+        ${watchItemsHtml(digest.news, setup)}
+      </ul>
+    </div>
+  `;
+}
+
+function sourceExtractionRows(articles) {
+  return articles
+    .map((article) => `
+      <div class="source-extract-row">
+        <div class="source-extract-meta">
+          <span>${escapeHtml(article.sourceName)}</span>
+          <small>${escapeHtml(categoryLabel(article.category))} - ${escapeHtml(article.entityName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</small>
+        </div>
+        <div class="source-extract-copy">
+          <h4>${escapeHtml(article.headline)}</h4>
+          <p>${escapeHtml(article.takeaway || article.summary)}</p>
+          <p class="why-line"><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
+          <p class="why-line"><strong>India impact:</strong> ${escapeHtml(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
+        </div>
+      </div>
+    `)
     .join("");
+}
+
+function indiaReadThroughItems(digest, setupText) {
+  const macro = firstByCategory(digest.news, "macro_negative");
+  const globalRisk = firstByCategory(digest.news, "global_risk");
+  const sectorSupport = firstByCategory(digest.news, "sector_positive");
+  const neutral = firstByCategory(digest.news, "neutral_volatile");
+  return [
+    `<li><strong>Macro pressure:</strong> ${escapeHtml(macro?.indiaImpact || "Crude, dollar, and yields remain the first pressure points for the index.")}</li>`,
+    `<li><strong>Risk appetite:</strong> ${escapeHtml(globalRisk?.indiaImpact || "US risk appetite needs confirmation before chasing a gap move.")}</li>`,
+    `<li><strong>Domestic cushion:</strong> ${escapeHtml(sectorSupport?.indiaImpact || "Banks and defensives are the first areas to check for institutional support.")}</li>`,
+    `<li><strong>Opening behavior:</strong> ${escapeHtml(neutral?.indiaImpact || "Mixed Asia argues for waiting on the first-hour range.")}</li>`,
+    `<li><strong>Trading discipline:</strong> ${escapeHtml(setupText)} This is educational market research for content planning, not investment advice.</li>`
+  ].join("");
+}
+
+function watchItemsHtml(articles, setup) {
+  const items = articles
+    .map((article) => article.watchFor)
+    .filter(Boolean)
+    .slice(0, 7);
+  if (setup) {
+    items.push(`Nifty acceptance near ${formatNumber(setup.entry)} and invalidation near ${formatNumber(setup.stopLoss)}.`);
+  }
+  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function strongestStory(articles, direction) {
+  const sorted = articles
+    .slice()
+    .filter((article) => direction === "positive" ? Number(article.sentimentScore) > 0 : Number(article.sentimentScore) < 0)
+    .sort((left, right) =>
+      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
+      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
+    );
+  return sorted[0];
+}
+
+function firstByCategory(articles, category) {
+  return articles
+    .filter((article) => article.category === category)
+    .sort((left, right) =>
+      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
+      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
+    )[0];
+}
+
+function categoryLabel(category) {
+  return String(category || "market")
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function formatArticleTime(value) {
+  if (!value) return "Source time";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Source time";
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(date);
 }
 
 function regionalBreadthHtml(digest) {
