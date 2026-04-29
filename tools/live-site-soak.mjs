@@ -150,6 +150,14 @@ async function expectDailyContent(page) {
   await expectOne(page.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
   await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
   await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
+  const setupCard = page.locator(".setup-card");
+  await expectOne(setupCard, "algorithmic setup card");
+  await expectOne(
+    setupCard.getByText("No active 1:2 risk-reward setup has passed live quote validation.", { exact: false }),
+    "live-validated no setup notice"
+  );
+  assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "stale Nifty entry should not be visible");
+  assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "stale Nifty target should not be visible");
   await expectOne(page.locator("#quoteBoardToggle"), "quote board toggle");
   await expectOne(page.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(page.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");

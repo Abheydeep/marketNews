@@ -43,7 +43,8 @@ export async function buildDigest(date = todayIso(), options = {}) {
     category: article.category
   }));
   const themes = clusterThemes(date, articles);
-  const tradeSetups = scanPriceSeries(date, priceSeriesSeed);
+  const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
+  const tradeSetups = reconcileTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment);
@@ -93,6 +94,41 @@ export function scanPriceSeries(date, priceSeriesSeed) {
     const setup = evaluateSeries(date, series.symbol, series.bars);
     return setup ? [setup] : [];
   });
+}
+
+export function reconcileTradeSetupsWithMarketSnapshots(setups, marketSnapshots) {
+  const snapshotsBySymbol = new Map(marketSnapshots.map((snapshot) => [snapshot.symbol, snapshot]));
+  return setups.filter((setup) => setupIsStillActive(setup, snapshotsBySymbol.get(setup.symbol)));
+}
+
+function setupIsStillActive(setup, snapshot) {
+  if (!snapshot || snapshot.dataQuality !== "live" || !Number.isFinite(Number(snapshot.closeValue))) {
+    return true;
+  }
+
+  const current = Number(snapshot.closeValue);
+  if (setup.direction === "BULLISH") {
+    if (current <= setup.stopLoss || current >= setup.target) {
+      return false;
+    }
+    if (current > setup.entry) {
+      return bullishRiskReward(current, setup.stopLoss, setup.target) >= 2;
+    }
+    return true;
+  }
+
+  if (setup.direction === "BEARISH") {
+    if (current >= setup.stopLoss || current <= setup.target) {
+      return false;
+    }
+    if (current < setup.entry) {
+      const risk = setup.stopLoss - current;
+      const reward = current - setup.target;
+      return risk > 0 && reward / risk >= 2;
+    }
+  }
+
+  return true;
 }
 
 export function evaluateSeries(date, symbol, bars) {
@@ -241,7 +277,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     .map((theme) => `- ${theme.title}: ${theme.summary}`)
     .join("\n");
   const setupLines = setups.length === 0
-    ? "- No 1:2 RR setup passed all filters."
+    ? "- No active 1:2 RR setup passed all scanner and live-quote filters."
     : setups
       .map((setup) =>
         `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`
@@ -269,7 +305,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     .map((theme) => `Theme: ${theme.title}. ${theme.summary}`)
     .join("\n\n");
   const setupsText = setups.length === 0
-    ? "No trade setup qualifies under the 1:2 risk-reward framework yet."
+    ? "No trade setup qualifies under the 1:2 risk-reward framework after live quote validation."
     : setups
       .map((setup) =>
         `${setup.symbol}: watch ${setup.entry} as entry, ${setup.stopLoss} as invalidation, and ${setup.target} as target. ${setup.confidenceReason}`

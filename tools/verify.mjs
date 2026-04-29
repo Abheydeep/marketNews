@@ -11,6 +11,7 @@ import {
   labelFromScore,
   loadSeeds,
   newsArticleJsonLd,
+  reconcileTradeSetupsWithMarketSnapshots,
   scanPriceSeries,
   weightedSentiment
 } from "./core.mjs";
@@ -61,6 +62,24 @@ await test("technical scanner emits only qualifying Nifty and Bank Nifty setups"
   assert.ok(setups.every((setup) => setup.riskReward >= 2));
   assert.ok(setups.every((setup) => setup.entry > setup.stopLoss));
   assert.ok(setups.every((setup) => setup.target > setup.entry));
+});
+
+await test("live quote reconciliation removes stale completed setups", async () => {
+  const { priceSeries } = await loadSeeds();
+  const setups = scanPriceSeries("2026-04-29", priceSeries);
+  const reconciled = reconcileTradeSetupsWithMarketSnapshots(setups, [
+    {
+      symbol: "NIFTY",
+      closeValue: 24177.65,
+      dataQuality: "live"
+    },
+    {
+      symbol: "BANKNIFTY",
+      closeValue: 55403.6,
+      dataQuality: "live"
+    }
+  ]);
+  assert.deepEqual(reconciled, []);
 });
 
 await test("scanner rejects low-volume candidates", async () => {

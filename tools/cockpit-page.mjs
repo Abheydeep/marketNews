@@ -2390,7 +2390,34 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const canvas = document.getElementById('scannerChart');
       if (!canvas) return;
       const setup = window.__DIGEST__.tradeSetups.find((item) => item.symbol === 'NIFTY') ?? window.__DIGEST__.tradeSetups[0];
+      if (!setup) {
+        drawEmptyScannerChart(canvas);
+        return;
+      }
       drawLineChart(canvas, setup);
+    }
+
+    function drawEmptyScannerChart(canvas) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      for (let i = 1; i <= 4; i += 1) {
+        const y = (height / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(24, y);
+        ctx.lineTo(width - 24, y);
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#111827';
+      ctx.textAlign = 'center';
+      ctx.font = 'bold 16px Arial';
+      ctx.fillText('No active scanner setup', width / 2, height / 2 - 8);
+      ctx.fillStyle = '#64748b';
+      ctx.font = '13px Arial';
+      ctx.fillText('Live quote validation removed stale 1:2 levels.', width / 2, height / 2 + 18);
     }
 
     function scaleCanvas(canvas) {
@@ -2934,7 +2961,7 @@ function algorithmicSetupHtml(digest) {
           <h2>Nifty 50 Algorithmic Setup</h2>
           <span class="setup-badge">No setup yet</span>
         </div>
-        <p class="strategy-note">No 1:2 risk-reward setup has passed the scanner. Let the opening range define the next valid level.</p>
+        <p class="strategy-note">No active 1:2 risk-reward setup has passed live quote validation. Let the opening range define the next valid level.</p>
       </section>
     `;
   }
