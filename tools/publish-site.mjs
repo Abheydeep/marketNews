@@ -40,6 +40,7 @@ for (const digest of digests) {
 const latest = digests[0];
 await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
 await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(latest, null, 2)}\n`, "utf8");
+await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests }, null, 2)}\n`, "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [

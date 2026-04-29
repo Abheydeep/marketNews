@@ -216,13 +216,18 @@ await test("static publisher emits archive root and dated daily pages", async ()
   assert.ok(publisher.includes("slugForDigest"));
   assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
   assert.ok(publisher.includes("Root index.html is the digest archive"));
+  assert.ok(publisher.includes("archive.json"));
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
-  assert.ok(workflow.includes("contents: write"));
-  assert.ok(workflow.includes("Persist daily archive"));
-  assert.ok(workflow.includes("[skip ci]"));
+  assert.ok(workflow.includes("cancel-in-progress: true"));
+  assert.ok(workflow.includes("Import previous deployed archive"));
+  assert.ok(workflow.includes("tools/import-archive.mjs"));
+
+  const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
+  assert.ok(importer.includes("archive.digests"));
+  assert.ok(importer.includes('"archive", "daily"'));
 });
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {

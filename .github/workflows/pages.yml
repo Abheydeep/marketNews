@@ -11,13 +11,13 @@ on:
     - cron: "*/15 3-21 * * 1-5"
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: github-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -43,17 +43,17 @@ jobs:
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
           npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 08:30 --market-data live
-          npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
 
-      - name: Persist daily archive
+      - name: Import previous deployed archive
         run: |
-          if [ -n "$(git status --short archive/daily)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add archive/daily
-            git commit -m "Archive daily market digest [skip ci]"
-            git push
+          if curl -fsSL https://abheydeep.github.io/marketNews/archive.json -o /tmp/market-narrative-archive.json; then
+            node tools/import-archive.mjs /tmp/market-narrative-archive.json
           fi
+
+      - name: Publish static archive site
+        run: |
+          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
+          npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
