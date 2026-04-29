@@ -3,43 +3,113 @@ export const LIVE_MARKET_SYMBOLS = [
     symbol: "SPX",
     name: "S&P 500",
     yahooSymbol: "^GSPC",
-    tradingViewSymbol: "SP:SPX"
+    tradingViewSymbol: "SP:SPX",
+    marketRegion: "US Overnight",
+    session: "us"
   },
   {
     symbol: "NDX",
     name: "Nasdaq 100",
     yahooSymbol: "^NDX",
-    tradingViewSymbol: "NASDAQ:NDX"
+    tradingViewSymbol: "NASDAQ:NDX",
+    marketRegion: "US Overnight",
+    session: "us"
   },
   {
     symbol: "DJI",
     name: "Dow Jones",
     yahooSymbol: "^DJI",
-    tradingViewSymbol: "DJ:DJI"
+    tradingViewSymbol: "DJ:DJI",
+    marketRegion: "US Overnight",
+    session: "us"
   },
   {
     symbol: "NIFTY",
     name: "Nifty 50",
     yahooSymbol: "^NSEI",
-    tradingViewSymbol: "NSE:NIFTY"
+    tradingViewSymbol: "NSE:NIFTY",
+    marketRegion: "India Open",
+    session: "india"
   },
   {
     symbol: "BANKNIFTY",
     name: "Bank Nifty",
     yahooSymbol: "^NSEBANK",
-    tradingViewSymbol: "NSE:BANKNIFTY"
+    tradingViewSymbol: "NSE:BANKNIFTY",
+    marketRegion: "India Open",
+    session: "india"
+  },
+  {
+    symbol: "NIKKEI",
+    name: "Nikkei 225",
+    yahooSymbol: "^N225",
+    tradingViewSymbol: "TVC:NI225",
+    marketRegion: "Asia Watch",
+    session: "tokyo"
+  },
+  {
+    symbol: "HSI",
+    name: "Hang Seng",
+    yahooSymbol: "^HSI",
+    tradingViewSymbol: "TVC:HSI",
+    marketRegion: "Asia Watch",
+    session: "hongkong"
+  },
+  {
+    symbol: "SHCOMP",
+    name: "Shanghai Composite",
+    yahooSymbol: "000001.SS",
+    tradingViewSymbol: "SSE:000001",
+    marketRegion: "Asia Watch",
+    session: "shanghai"
+  },
+  {
+    symbol: "KOSPI",
+    name: "KOSPI",
+    yahooSymbol: "^KS11",
+    tradingViewSymbol: "KRX:KOSPI",
+    marketRegion: "Asia Watch",
+    session: "seoul"
+  },
+  {
+    symbol: "TAIEX",
+    name: "Taiwan Weighted",
+    yahooSymbol: "^TWII",
+    tradingViewSymbol: "TWSE:TAIEX",
+    marketRegion: "Asia Watch",
+    session: "taipei"
+  },
+  {
+    symbol: "STI",
+    name: "Straits Times",
+    yahooSymbol: "^STI",
+    tradingViewSymbol: "TVC:STI",
+    marketRegion: "Asia Watch",
+    session: "singapore"
+  },
+  {
+    symbol: "ASX200",
+    name: "ASX 200",
+    yahooSymbol: "^AXJO",
+    tradingViewSymbol: "ASX:XJO",
+    marketRegion: "Asia Watch",
+    session: "sydney"
   },
   {
     symbol: "DXY",
     name: "US Dollar Index",
     yahooSymbol: "DX-Y.NYB",
-    tradingViewSymbol: "TVC:DXY"
+    tradingViewSymbol: "TVC:DXY",
+    marketRegion: "Macro Hedges",
+    session: "macro"
   },
   {
     symbol: "BRENT",
     name: "Brent Crude",
     yahooSymbol: "BZ=F",
-    tradingViewSymbol: "TVC:UKOIL"
+    tradingViewSymbol: "TVC:UKOIL",
+    marketRegion: "Macro Hedges",
+    session: "macro"
   }
 ];
 
@@ -115,6 +185,8 @@ export function normalizeYahooChartResult(definition, payload) {
     source: "Yahoo Finance chart API",
     yahooSymbol: definition.yahooSymbol,
     tradingViewSymbol: definition.tradingViewSymbol,
+    marketRegion: definition.marketRegion,
+    session: definition.session,
     dataQuality: "live"
   };
 }

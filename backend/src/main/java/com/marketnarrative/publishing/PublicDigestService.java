@@ -72,7 +72,10 @@ public class PublicDigestService {
                     snapshot.getName(),
                     snapshot.getCloseValue(),
                     snapshot.getChangePercent(),
-                    snapshot.getSource()
+                    snapshot.getSource(),
+                    snapshot.getMarketRegion(),
+                    snapshot.getSession(),
+                    snapshot.getTradingViewSymbol()
                 ))
                 .toList(),
             marketNewsRepository.findByPublishedAtBetweenOrderByPublishedAtDesc(start, end).stream()

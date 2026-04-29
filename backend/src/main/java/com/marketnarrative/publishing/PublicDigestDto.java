@@ -29,7 +29,10 @@ public record PublicDigestDto(
         String name,
         double closeValue,
         double changePercent,
-        String source
+        String source,
+        String marketRegion,
+        String session,
+        String tradingViewSymbol
     ) implements Serializable {
     }
 

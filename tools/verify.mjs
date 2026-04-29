@@ -14,17 +14,34 @@ import {
   scanPriceSeries,
   weightedSentiment
 } from "./core.mjs";
-import { normalizeYahooChartResult } from "./market-data.mjs";
+import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
 
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();
-  assert.equal(seeds.marketSnapshots.length, 5);
+  assert.ok(seeds.marketSnapshots.length >= 14);
   assert.equal(seeds.news.length, 4);
   assert.equal(seeds.priceSeries.length, 2);
   assert.equal(seeds.creator.referenceImageId, "creator-ref-001");
+  assert.ok(seeds.news.every((article) => !article.sourceUrl.includes("example.com")));
+  for (const symbol of ["SPX", "NDX", "DJI", "NIFTY", "BANKNIFTY", "NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200", "DXY", "BRENT"]) {
+    const snapshot = seeds.marketSnapshots.find((item) => item.symbol === symbol);
+    assert.ok(snapshot, `missing seed snapshot ${symbol}`);
+    assert.ok(snapshot.marketRegion, `${symbol} missing marketRegion`);
+    assert.ok(snapshot.tradingViewSymbol, `${symbol} missing TradingView symbol`);
+  }
+});
+
+await test("live symbol registry includes important Asian markets", () => {
+  for (const symbol of ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"]) {
+    const definition = LIVE_MARKET_SYMBOLS.find((item) => item.symbol === symbol);
+    assert.ok(definition, `missing live symbol ${symbol}`);
+    assert.equal(definition.marketRegion, "Asia Watch");
+    assert.ok(definition.yahooSymbol, `${symbol} missing Yahoo symbol`);
+    assert.ok(definition.tradingViewSymbol, `${symbol} missing TradingView symbol`);
+  }
 });
 
 await test("risk-reward math enforces 1:2+ setups", () => {
@@ -104,6 +121,41 @@ await test("Yahoo market data normalization calculates previous-close change", (
   assert.equal(snapshot.changePercent, -0.164);
   assert.equal(snapshot.dataQuality, "live");
   assert.equal(snapshot.tradingViewSymbol, "SP:SPX");
+  assert.equal(snapshot.marketRegion, undefined);
+});
+
+await test("Yahoo market data normalization preserves region metadata", () => {
+  const snapshot = normalizeYahooChartResult(
+    {
+      symbol: "NIKKEI",
+      name: "Nikkei 225",
+      yahooSymbol: "^N225",
+      tradingViewSymbol: "TVC:NI225",
+      marketRegion: "Asia Watch",
+      session: "tokyo"
+    },
+    {
+      chart: {
+        result: [
+          {
+            meta: {
+              currency: "JPY",
+              symbol: "^N225",
+              regularMarketPrice: 38105.2,
+              chartPreviousClose: 37911.44,
+              regularMarketTime: 1777478873,
+              exchangeTimezoneName: "Asia/Tokyo"
+            },
+            indicators: { quote: [{ close: [38105.2] }] }
+          }
+        ]
+      }
+    }
+  );
+  assert.equal(snapshot.symbol, "NIKKEI");
+  assert.equal(snapshot.marketRegion, "Asia Watch");
+  assert.equal(snapshot.session, "tokyo");
+  assert.equal(snapshot.changePercent, 0.511);
 });
 
 await test("non-live market data modes preserve the digest contract without network", async () => {
@@ -142,6 +194,20 @@ await test("database schema includes all planned persistence tables", async () =
   ]) {
     assert.ok(schema.includes(`CREATE TABLE ${table}`), `missing ${table}`);
   }
+  assert.ok(schema.includes("market_region VARCHAR"), "market_snapshots missing market_region");
+  assert.ok(schema.includes("trading_view_symbol VARCHAR"), "market_snapshots missing TradingView chart symbol");
+});
+
+await test("backend market snapshot contract carries quote regions and chart symbols", async () => {
+  const entity = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "marketdata", "MarketSnapshot.java"), "utf8");
+  const dto = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestDto.java"), "utf8");
+  const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestService.java"), "utf8");
+  for (const token of ["marketRegion", "session", "tradingViewSymbol"]) {
+    assert.ok(entity.includes(token), `entity missing ${token}`);
+    assert.ok(dto.includes(token), `DTO missing ${token}`);
+  }
+  assert.ok(service.includes("getMarketRegion()"));
+  assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
@@ -202,7 +268,11 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Engine Architecture"));
   assert.ok(publicHtml.body.includes("Executive Summary: The Morning Narrative"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
+  assert.ok(publicHtml.body.includes("Asia Watch"));
+  assert.ok(publicHtml.body.includes("Nikkei 225"));
+  assert.ok(publicHtml.body.includes("Hang Seng"));
   assert.ok(publicHtml.body.includes("Macro Incremental Sources"));
+  assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));
   assert.ok(publicHtml.body.includes("sentiment-pin"));
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
   assert.ok(publicHtml.body.includes("Nifty 50 Algorithmic Setup"));
@@ -213,11 +283,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Real Quote Board"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
+  assert.ok(publicHtml.body.includes("Open Full Chart"));
+  assert.ok(publicHtml.body.includes("chartFallback"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
   assert.ok(publicHtml.body.includes("tradingViewChart"));
   assert.ok(!publicHtml.body.includes("tickLiveQuotes"));
   assert.ok(!publicHtml.body.includes("Math.random"));
   assert.ok(!publicHtml.body.includes("mock quote source"));
+  assert.ok(!publicHtml.body.includes("example.com"));
   assert.ok(publicHtml.body.includes("overnightChart"));
   assert.ok(publicHtml.body.includes("teleprompterContainer"));
   assert.ok(publicHtml.body.includes("generateAssetBtn"));

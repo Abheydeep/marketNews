@@ -681,6 +681,78 @@ export function cockpitPage(digest, initialTab = "public-view") {
       font-weight: 800;
     }
 
+    .regional-breadth {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .breadth-card {
+      border: 1px solid rgba(229, 231, 235, 0.72);
+      border-radius: 12px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.03);
+    }
+
+    .breadth-card span {
+      display: block;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .breadth-card strong {
+      display: block;
+      margin-top: 5px;
+      color: #111827;
+      font-size: 19px;
+      line-height: 1.15;
+    }
+
+    .breadth-card small {
+      display: block;
+      margin-top: 6px;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .quote-region {
+      margin-top: 18px;
+    }
+
+    .quote-region:first-child {
+      margin-top: 0;
+    }
+
+    .quote-region-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .quote-region-head h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .quote-region-head span {
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
     .index-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -790,8 +862,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .chart-modal-header {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
       align-items: start;
       gap: 20px;
       margin-bottom: 16px;
@@ -822,6 +894,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .modal-chart-container {
+      position: relative;
       height: min(560px, 72vh);
       border-radius: 10px;
       background: #fafaf9;
@@ -832,6 +905,49 @@ export function cockpitPage(digest, initialTab = "public-view") {
     .tradingview-widget-container__widget {
       width: 100%;
       height: 100%;
+    }
+
+    .chart-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      color: #334155;
+      z-index: 2;
+    }
+
+    .chart-fallback.visible {
+      display: flex;
+    }
+
+    .chart-fallback h3 {
+      margin: 0 0 8px;
+      color: #111827;
+      font-size: 20px;
+    }
+
+    .chart-fallback p {
+      margin: 0 0 16px;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .chart-fallback a,
+    .chart-link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: #111827;
+      color: #fff;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .metric {
@@ -1323,9 +1439,26 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
       .briefing-topline,
       .section-kicker,
-      .setup-card-header {
+      .setup-card-header,
+      .quote-region-head {
         align-items: start;
         flex-direction: column;
+      }
+
+      .chart-modal-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+
+      .chart-link-btn {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: max-content;
+      }
+
+      .icon-btn {
+        grid-column: 2;
+        grid-row: 1;
       }
 
       .briefing-date {
@@ -1411,11 +1544,14 @@ export function cockpitPage(digest, initialTab = "public-view") {
               </div>
             </div>
           </div>
-          <div id="indexBoard" class="index-grid" aria-label="Clickable live index quotes"></div>
           <div class="live-board-header">
             <h3>Real Quote Board</h3>
             <span id="liveClock" class="live-clock">Preparing quotes...</span>
           </div>
+          <div class="regional-breadth">
+            ${regionalBreadthHtml(digest)}
+          </div>
+          <div id="indexBoard" aria-label="Clickable live index quotes"></div>
         </section>
 
         ${algorithmicSetupHtml(digest)}
@@ -1457,12 +1593,20 @@ export function cockpitPage(digest, initialTab = "public-view") {
         <div class="chart-modal-header">
           <div>
             <h2 id="indexChartTitle">Index Chart</h2>
-            <p id="indexChartMeta">Click an index tile to inspect its intraday movement.</p>
+            <p id="indexChartMeta">Real market chart with the latest published snapshot.</p>
           </div>
+          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noreferrer">Open Full Chart</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
           <div id="tradingViewChart" class="tradingview-widget-container" aria-label="Selected real market chart"></div>
+          <div id="chartFallback" class="chart-fallback" aria-hidden="true">
+            <div>
+              <h3>Chart Preview Is Loading</h3>
+              <p>If the embedded widget is blocked by the browser, use the full chart link for the live TradingView view.</p>
+              <a id="fallbackChartLink" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noreferrer">Open Full Chart</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1642,23 +1786,58 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function renderIndexBoard() {
       const board = document.getElementById('indexBoard');
       if (!board || !window.__PUBLISHED_QUOTES__) return;
-      board.innerHTML = window.__PUBLISHED_QUOTES__.map((quote) => {
-        const status = marketStatusFor(quote.symbol);
-        const direction = quote.changePercent >= 0 ? 'up' : 'down';
-        const quality = quote.dataQuality === 'live' ? 'Real' : 'Fallback';
-        const statusClass = status.open && quote.dataQuality === 'live' ? 'status live' : 'status';
-        const quoteTime = formatQuoteTime(quote.dataTimestamp);
-        return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
-          '<div class="symbol-row"><span class="symbol">' + quote.symbol + '</span><span class="' + statusClass + '">' + quality + '</span></div>' +
-          '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
-          '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
-          '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
-          '<div class="name">' + status.label + (quoteTime ? ' - ' + quoteTime : '') + '</div>' +
-        '</button>';
+      const grouped = groupQuotesByRegion(window.__PUBLISHED_QUOTES__);
+      board.innerHTML = regionOrder().filter((region) => grouped.has(region)).map((region) => {
+        const quotes = grouped.get(region);
+        return '<section class="quote-region">' +
+          '<div class="quote-region-head"><h3>' + escapeClientHtml(region) + '</h3><span>' + regionSummary(quotes) + '</span></div>' +
+          '<div class="index-grid">' + quotes.map((quote) => quoteTileHtml(quote)).join('') + '</div>' +
+        '</section>';
       }).join('');
       board.querySelectorAll('.index-tile').forEach((tile) => {
         tile.addEventListener('click', () => openIndexChart(tile.dataset.symbol));
       });
+    }
+
+    function quoteTileHtml(quote) {
+      const status = marketStatusFor(quote);
+      const direction = quote.changePercent >= 0 ? 'up' : 'down';
+      const quality = quote.dataQuality === 'live' ? 'Real' : 'Fallback';
+      const statusClass = status.open && quote.dataQuality === 'live' ? 'status live' : 'status';
+      const quoteTime = formatQuoteTime(quote.dataTimestamp);
+      return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
+        '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + quality + '</span></div>' +
+        '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
+        '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
+        '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
+        '<div class="name">' + displayStatusLabel(quote, status) + (quoteTime ? ' - ' + quoteTime : '') + '</div>' +
+      '</button>';
+    }
+
+    function displayStatusLabel(quote, status) {
+      if (quote.dataQuality !== 'live' && status.open) {
+        return 'Session open';
+      }
+      return status.label;
+    }
+
+    function groupQuotesByRegion(quotes) {
+      const grouped = new Map();
+      for (const quote of quotes) {
+        const region = quote.marketRegion || regionForSymbol(quote.symbol);
+        grouped.set(region, [...(grouped.get(region) || []), quote]);
+      }
+      return grouped;
+    }
+
+    function regionOrder() {
+      return ['US Overnight', 'Asia Watch', 'India Open', 'Macro Hedges', 'Other Markets'];
+    }
+
+    function regionSummary(quotes) {
+      const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
+      const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
+      return positives + '/' + quotes.length + ' higher - avg ' + formatClientChange(average);
     }
 
     async function refreshPublishedDigest() {
@@ -1704,12 +1883,13 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const meta = document.getElementById('indexChartMeta');
       const quote = window.__PUBLISHED_QUOTES__.find((item) => item.symbol === symbol);
       if (!modal || !quote) return;
-      const status = marketStatusFor(symbol);
+      const status = marketStatusFor(quote);
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = quote.name + ' (' + quote.symbol + ')';
       meta.textContent = status.open
         ? 'Real TradingView chart. The quote board updates when the scheduled publisher refreshes digest.json.'
         : 'Market closed. Opening the latest real TradingView chart for review.';
+      setChartLinks(quote);
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
       loadTradingViewChart(quote);
@@ -1725,17 +1905,27 @@ export function cockpitPage(digest, initialTab = "public-view") {
       if (container) {
         container.innerHTML = '';
       }
+      const fallback = document.getElementById('chartFallback');
+      if (fallback) {
+        fallback.classList.remove('visible');
+        fallback.setAttribute('aria-hidden', 'true');
+      }
     }
 
     function loadTradingViewChart(quote) {
       const container = document.getElementById('tradingViewChart');
       if (!container) return;
+      const fallback = document.getElementById('chartFallback');
+      if (fallback) {
+        fallback.classList.remove('visible');
+        fallback.setAttribute('aria-hidden', 'true');
+      }
       container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
       script.async = true;
-      script.text = JSON.stringify({
+      script.innerHTML = JSON.stringify({
         autosize: true,
         symbol: quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol),
         interval: '5',
@@ -1750,14 +1940,40 @@ export function cockpitPage(digest, initialTab = "public-view") {
         calendar: false,
         support_host: 'https://www.tradingview.com'
       });
+      script.onerror = () => showChartFallback();
       container.appendChild(script);
+      setTimeout(() => {
+        if (!container.querySelector('iframe')) {
+          showChartFallback();
+        }
+      }, 3500);
+    }
+
+    function setChartLinks(quote) {
+      const url = tradingViewUrl(quote);
+      const open = document.getElementById('openFullChart');
+      const fallback = document.getElementById('fallbackChartLink');
+      if (open) open.href = url;
+      if (fallback) fallback.href = url;
+    }
+
+    function tradingViewUrl(quote) {
+      const symbol = quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol);
+      return 'https://www.tradingview.com/chart/?symbol=' + encodeURIComponent(symbol);
+    }
+
+    function showChartFallback() {
+      const fallback = document.getElementById('chartFallback');
+      if (!fallback) return;
+      fallback.classList.add('visible');
+      fallback.setAttribute('aria-hidden', 'false');
     }
 
     function updateLiveClock(note) {
       const clock = document.getElementById('liveClock');
       if (!clock) return;
       const quotes = window.__PUBLISHED_QUOTES__ ?? [];
-      const openCount = quotes.filter((quote) => marketStatusFor(quote.symbol).open).length;
+      const openCount = quotes.filter((quote) => marketStatusFor(quote).open).length;
       const latest = latestQuoteTime(quotes);
       const time = new Intl.DateTimeFormat('en-IN', {
         timeZone: 'Asia/Kolkata',
@@ -1767,7 +1983,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       }).format(new Date());
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'Fallback quotes';
       clock.textContent = (note ? note + ' - ' : '') +
-        (openCount > 0 ? 'Market open' : 'Markets closed') +
+        'Active sessions ' + openCount + '/' + quotes.length +
         ' - ' + mode +
         (latest ? ' - latest ' + latest : '') +
         ' - checked IST ' + time;
@@ -1806,20 +2022,80 @@ export function cockpitPage(digest, initialTab = "public-view") {
         DJI: 'DJ:DJI',
         NIFTY: 'NSE:NIFTY',
         BANKNIFTY: 'NSE:BANKNIFTY',
+        GIFTNIFTY: 'NSEIX:NIFTY1!',
+        NIKKEI: 'TVC:NI225',
+        HSI: 'TVC:HSI',
+        SHCOMP: 'SSE:000001',
+        KOSPI: 'KRX:KOSPI',
+        TAIEX: 'TWSE:TAIEX',
+        STI: 'TVC:STI',
+        ASX200: 'ASX:XJO',
         DXY: 'TVC:DXY',
         BRENT: 'TVC:UKOIL'
       }[symbol] ?? 'SP:SPX';
     }
 
-    function marketStatusFor(symbol) {
+    function regionForSymbol(symbol) {
+      if (symbol === 'SPX' || symbol === 'NDX' || symbol === 'DJI') return 'US Overnight';
+      if (symbol === 'NIFTY' || symbol === 'BANKNIFTY' || symbol === 'GIFTNIFTY') return 'India Open';
+      if (symbol === 'DXY' || symbol === 'BRENT') return 'Macro Hedges';
+      if (['NIKKEI', 'HSI', 'SHCOMP', 'KOSPI', 'TAIEX', 'STI', 'ASX200'].includes(symbol)) return 'Asia Watch';
+      return 'Other Markets';
+    }
+
+    function marketStatusFor(quoteOrSymbol) {
+      const quote = typeof quoteOrSymbol === 'string' ? { symbol: quoteOrSymbol } : quoteOrSymbol;
+      const symbol = quote.symbol;
+      const session = quote.session || sessionForSymbol(symbol);
       const now = new Date();
-      if (symbol === 'SPX' || symbol === 'NDX') {
+      if (session === 'us') {
         return marketWindow(now, 'America/New_York', 9, 30, 16, 0, 'US close 4:00 PM ET');
       }
-      if (symbol === 'GIFTNIFTY') {
+      if (session === 'india') {
         return marketWindow(now, 'Asia/Kolkata', 9, 15, 15, 30, 'India close 3:30 PM IST');
       }
+      if (session === 'tokyo') {
+        return marketWindow(now, 'Asia/Tokyo', 9, 0, 15, 30, 'Tokyo close 3:30 PM JST');
+      }
+      if (session === 'hongkong') {
+        return marketWindow(now, 'Asia/Hong_Kong', 9, 30, 16, 0, 'Hong Kong close 4:00 PM HKT');
+      }
+      if (session === 'shanghai') {
+        return marketWindow(now, 'Asia/Shanghai', 9, 30, 15, 0, 'Shanghai close 3:00 PM CST');
+      }
+      if (session === 'seoul') {
+        return marketWindow(now, 'Asia/Seoul', 9, 0, 15, 30, 'Seoul close 3:30 PM KST');
+      }
+      if (session === 'taipei') {
+        return marketWindow(now, 'Asia/Taipei', 9, 0, 13, 30, 'Taiwan close 1:30 PM CST');
+      }
+      if (session === 'singapore') {
+        return marketWindow(now, 'Asia/Singapore', 9, 0, 17, 0, 'Singapore close 5:00 PM SGT');
+      }
+      if (session === 'sydney') {
+        return marketWindow(now, 'Australia/Sydney', 10, 0, 16, 0, 'Sydney close 4:00 PM AEDT');
+      }
       return marketWindow(now, 'UTC', 0, 0, 23, 30, 'global close window');
+    }
+
+    function sessionForSymbol(symbol) {
+      return {
+        SPX: 'us',
+        NDX: 'us',
+        DJI: 'us',
+        NIFTY: 'india',
+        BANKNIFTY: 'india',
+        GIFTNIFTY: 'india',
+        NIKKEI: 'tokyo',
+        HSI: 'hongkong',
+        SHCOMP: 'shanghai',
+        KOSPI: 'seoul',
+        TAIEX: 'taipei',
+        STI: 'singapore',
+        ASX200: 'sydney',
+        DXY: 'macro',
+        BRENT: 'macro'
+      }[symbol] || 'macro';
     }
 
     function marketWindow(date, timeZone, openHour, openMinute, closeHour, closeMinute, closeLabel) {
@@ -1900,7 +2176,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
       const slot = chartW / data.length;
       data.forEach((item, index) => {
-        const barW = Math.min(70, slot * 0.56);
+        const barW = Math.max(12, Math.min(70, slot * 0.56));
         const x = pad.left + slot * index + (slot - barW) / 2;
         const y = pad.top + ((max - item.value) / (max - min)) * chartH;
         const barTop = Math.min(y, zeroY);
@@ -1910,11 +2186,17 @@ export function cockpitPage(digest, initialTab = "public-view") {
         ctx.fill();
 
         ctx.fillStyle = '#57534e';
-        ctx.font = '12px Arial';
+        ctx.font = data.length > 9 ? '10px Arial' : '12px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText(item.label, x + barW / 2, height - 22);
+        ctx.save();
+        ctx.translate(x + barW / 2, height - 20);
+        if (data.length > 9) {
+          ctx.rotate(-Math.PI / 5);
+        }
+        ctx.fillText(item.label, 0, 0);
+        ctx.restore();
         ctx.fillStyle = item.value >= 0 ? '#047857' : '#b91c1c';
-        ctx.font = 'bold 12px Arial';
+        ctx.font = data.length > 9 ? 'bold 10px Arial' : 'bold 12px Arial';
         ctx.fillText((item.value >= 0 ? '+' : '') + item.value.toFixed(2) + '%', x + barW / 2, barTop - 8);
       });
     }
@@ -2071,10 +2353,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
 }
 
 function executiveSummaryHtml(digest) {
-  const marketLine = digest.marketSnapshots
-    .slice(0, 6)
-    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
-    .join(", ");
+  const usLine = formatSnapshotLine(snapshotsForRegion(digest, "US Overnight"));
+  const asiaLine = formatSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
+  const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
+  const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
   const primaryTheme = digest.themes[0];
   const secondaryTheme = digest.themes[1];
   const setup = niftySetup(digest);
@@ -2085,11 +2367,11 @@ function executiveSummaryHtml(digest) {
   const paragraphs = [
     {
       label: "Global Markets & Overnight Pulse",
-      text: `The ${formatScheduledRun(digest)} digest is ${digest.sentimentLabel.toLowerCase()}, with ${marketLine}. These live snapshots are pulled into the published briefing instead of being browser-generated.`
+      text: `The ${formatScheduledRun(digest)} digest is ${digest.sentimentLabel.toLowerCase()}. US overnight cues: ${usLine || "awaiting quote refresh"}. Asia watch: ${asiaLine || "awaiting quote refresh"}. Macro hedges: ${macroLine || "awaiting quote refresh"}.`
     },
     {
-      label: "Narrative Drivers",
-      text: `${primaryTheme?.summary ?? "The market narrative is still forming from overnight cues."}${secondaryTheme ? ` ${secondaryTheme.summary}` : ""}`
+      label: "India Read-Through",
+      text: `${indiaLine ? `Domestic dashboard: ${indiaLine}. ` : ""}${primaryTheme?.summary ?? "The market narrative is still forming from overnight cues."}${secondaryTheme ? ` ${secondaryTheme.summary}` : ""}`
     },
     {
       label: "Domestic Setup & Risk Discipline",
@@ -2100,6 +2382,48 @@ function executiveSummaryHtml(digest) {
   return paragraphs
     .map((paragraph) => `<p><strong>${escapeHtml(paragraph.label)}:</strong> ${escapeHtml(paragraph.text)}</p>`)
     .join("");
+}
+
+function regionalBreadthHtml(digest) {
+  return ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]
+    .map((region) => {
+      const snapshots = snapshotsForRegion(digest, region);
+      if (!snapshots.length) {
+        return "";
+      }
+      const positives = snapshots.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
+      const average = snapshots.reduce((sum, snapshot) => sum + Number(snapshot.changePercent || 0), 0) / snapshots.length;
+      const strongest = snapshots
+        .slice()
+        .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
+      return `
+        <div class="breadth-card">
+          <span>${escapeHtml(region)}</span>
+          <strong>${positives}/${snapshots.length} higher - ${formatChange(average)} avg</strong>
+          <small>Largest move: ${escapeHtml(strongest.name)} ${formatChange(strongest.changePercent)}</small>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function snapshotsForRegion(digest, region) {
+  return digest.marketSnapshots.filter((snapshot) => (snapshot.marketRegion || regionForSnapshot(snapshot)) === region);
+}
+
+function regionForSnapshot(snapshot) {
+  if (["SPX", "NDX", "DJI"].includes(snapshot.symbol)) return "US Overnight";
+  if (["NIFTY", "BANKNIFTY", "GIFTNIFTY"].includes(snapshot.symbol)) return "India Open";
+  if (["DXY", "BRENT"].includes(snapshot.symbol)) return "Macro Hedges";
+  if (["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"].includes(snapshot.symbol)) return "Asia Watch";
+  return "Other Markets";
+}
+
+function formatSnapshotLine(snapshots) {
+  return snapshots
+    .slice(0, 7)
+    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .join(", ");
 }
 
 function algorithmicSetupHtml(digest) {
@@ -2210,7 +2534,10 @@ function marketSetupCopy(digest) {
 function publicSummaryLead(digest) {
   const worstTheme = digest.themes[0]?.title ?? "mixed global cues";
   const setupSymbols = digest.tradeSetups.map((setup) => setup.symbol).join(" and ");
-  return `The 8:30 AM IST digest is ${digest.sentimentLabel.toLowerCase()} after ${worstTheme.toLowerCase()}. Global cues are uneven, but the scanner still found ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
+  const asia = snapshotsForRegion(digest, "Asia Watch");
+  const asiaHigher = asia.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
+  const asiaRead = asia.length ? ` Asian markets show ${asiaHigher} of ${asia.length} tracked indices higher.` : "";
+  return `The 8:30 AM IST digest is ${digest.sentimentLabel.toLowerCase()} after ${worstTheme.toLowerCase()}.${asiaRead} The scanner found ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
 }
 
 function sentimentPinPosition(score) {
@@ -2235,11 +2562,12 @@ function newsBadgeLabel(item) {
 
 function formatDigestDate(date) {
   return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
     weekday: "short",
     day: "2-digit",
     month: "short",
     year: "numeric"
-  }).format(new Date(`${date}T00:00:00+05:30`));
+  }).format(new Date(`${date}T12:00:00+05:30`));
 }
 
 function niftySetup(digest) {

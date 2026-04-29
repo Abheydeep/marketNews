@@ -13,26 +13,28 @@ export const mockDigest: PublicDigest = {
     "[OPENING]\nGood morning. The overnight setup is cautious, with global pressure visible before the Indian open.\n\n[GLOBAL CUES]\nS&P 500 closed -0.82%. Nasdaq 100 closed -1.21%. Brent Crude closed +1.64%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Energy prices moved higher overnight as traders priced fresh supply risk.\n\n[VALIDATED SETUPS]\nNIFTY and BANKNIFTY are valid only if price respects the listed invalidation levels.\n\n[RISK DISCLAIMER]\nThis is educational analysis for content planning.",
   publishedAt: null,
   marketSnapshots: [
-    { symbol: "BRENT", name: "Brent Crude", closeValue: 91.42, changePercent: 1.64, source: "MarketAux Mock" },
-    { symbol: "DXY", name: "US Dollar Index", closeValue: 106.18, changePercent: 0.34, source: "MarketAux Mock" },
-    { symbol: "GIFTNIFTY", name: "GIFT Nifty", closeValue: 22480.5, changePercent: -0.38, source: "Exchange Mock" },
-    { symbol: "NDX", name: "Nasdaq 100", closeValue: 17718.11, changePercent: -1.21, source: "Yahoo Finance Mock" },
-    { symbol: "SPX", name: "S&P 500", closeValue: 5069.53, changePercent: -0.82, source: "Alpha Vantage Mock" }
+    { symbol: "SPX", name: "S&P 500", closeValue: 5069.53, changePercent: -0.82, source: "Alpha Vantage Mock", marketRegion: "US Overnight", session: "us", tradingViewSymbol: "SP:SPX" },
+    { symbol: "NDX", name: "Nasdaq 100", closeValue: 17718.11, changePercent: -1.21, source: "Yahoo Finance Mock", marketRegion: "US Overnight", session: "us", tradingViewSymbol: "NASDAQ:NDX" },
+    { symbol: "NIKKEI", name: "Nikkei 225", closeValue: 38105.2, changePercent: 0.51, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", session: "tokyo", tradingViewSymbol: "TVC:NI225" },
+    { symbol: "HSI", name: "Hang Seng", closeValue: 17763.03, changePercent: -0.34, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", session: "hongkong", tradingViewSymbol: "TVC:HSI" },
+    { symbol: "GIFTNIFTY", name: "GIFT Nifty", closeValue: 22480.5, changePercent: -0.38, source: "Exchange Mock", marketRegion: "India Open", session: "india", tradingViewSymbol: "NSEIX:NIFTY1!" },
+    { symbol: "DXY", name: "US Dollar Index", closeValue: 106.18, changePercent: 0.34, source: "MarketAux Mock", marketRegion: "Macro Hedges", session: "macro", tradingViewSymbol: "TVC:DXY" },
+    { symbol: "BRENT", name: "Brent Crude", closeValue: 91.42, changePercent: 1.64, source: "MarketAux Mock", marketRegion: "Macro Hedges", session: "macro", tradingViewSymbol: "TVC:UKOIL" }
   ],
   news: [
     {
       headline: "Brent crude extends gains as supply risk returns to focus",
       summary: "Energy prices moved higher overnight as traders priced fresh supply risk.",
-      sourceName: "Global Macro Wire",
-      sourceUrl: "https://example.com/brent-supply-risk",
+      sourceName: "Reuters Markets",
+      sourceUrl: "https://www.reuters.com/markets/commodities/",
       sentimentScore: -0.76,
       entityName: "NIFTY"
     },
     {
       headline: "Private banks show relative strength as credit growth stays firm",
       summary: "Domestic banking indicators remained resilient.",
-      sourceName: "Banking Desk",
-      sourceUrl: "https://example.com/private-bank-strength",
+      sourceName: "NSE India Data",
+      sourceUrl: "https://www.nseindia.com/market-data/live-market-indices",
       sentimentScore: 0.31,
       entityName: "BANKNIFTY"
     }

@@ -35,6 +35,12 @@ public class MarketSnapshot {
     @Column(nullable = false)
     private String source;
 
+    private String marketRegion;
+
+    private String session;
+
+    private String tradingViewSymbol;
+
     @Column(nullable = false)
     private OffsetDateTime capturedAt;
 
@@ -48,6 +54,9 @@ public class MarketSnapshot {
         double closeValue,
         double changePercent,
         String source,
+        String marketRegion,
+        String session,
+        String tradingViewSymbol,
         OffsetDateTime capturedAt
     ) {
         this.tradingDate = tradingDate;
@@ -56,6 +65,9 @@ public class MarketSnapshot {
         this.closeValue = closeValue;
         this.changePercent = changePercent;
         this.source = source;
+        this.marketRegion = marketRegion;
+        this.session = session;
+        this.tradingViewSymbol = tradingViewSymbol;
         this.capturedAt = capturedAt;
     }
 
@@ -85,5 +97,17 @@ public class MarketSnapshot {
 
     public String getSource() {
         return source;
+    }
+
+    public String getMarketRegion() {
+        return marketRegion;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public String getTradingViewSymbol() {
+        return tradingViewSymbol;
     }
 }

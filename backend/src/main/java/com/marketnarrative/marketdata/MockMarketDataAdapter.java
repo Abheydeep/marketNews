@@ -37,6 +37,9 @@ public class MockMarketDataAdapter implements MarketDataAdapter {
                     seed.closeValue(),
                     seed.changePercent(),
                     seed.source(),
+                    seed.marketRegion(),
+                    seed.session(),
+                    seed.tradingViewSymbol(),
                     capturedAt
                 ))
                 .toList();
@@ -50,7 +53,10 @@ public class MockMarketDataAdapter implements MarketDataAdapter {
         String name,
         double closeValue,
         double changePercent,
-        String source
+        String source,
+        String marketRegion,
+        String session,
+        String tradingViewSymbol
     ) {
     }
 }

@@ -7,6 +7,9 @@ export type MarketSnapshot = {
   closeValue: number;
   changePercent: number;
   source: string;
+  marketRegion?: string;
+  session?: string;
+  tradingViewSymbol?: string;
 };
 
 export type NewsCard = {
