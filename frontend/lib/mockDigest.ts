@@ -15,8 +15,11 @@ export const mockDigest: PublicDigest = {
   marketSnapshots: [
     { symbol: "SPX", name: "S&P 500", closeValue: 5069.53, changePercent: -0.82, source: "Alpha Vantage Mock", marketRegion: "US Overnight", session: "us", tradingViewSymbol: "SP:SPX" },
     { symbol: "NDX", name: "Nasdaq 100", closeValue: 17718.11, changePercent: -1.21, source: "Yahoo Finance Mock", marketRegion: "US Overnight", session: "us", tradingViewSymbol: "NASDAQ:NDX" },
-    { symbol: "NIKKEI", name: "Nikkei 225", closeValue: 38105.2, changePercent: 0.51, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", session: "tokyo", tradingViewSymbol: "TVC:NI225" },
-    { symbol: "HSI", name: "Hang Seng", closeValue: 17763.03, changePercent: -0.34, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", session: "hongkong", tradingViewSymbol: "TVC:HSI" },
+    { symbol: "NIKKEI", name: "Nikkei 225", closeValue: 38105.2, changePercent: 0.51, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", country: "Japan", session: "tokyo", tradingViewSymbol: "TVC:NI225" },
+    { symbol: "HSI", name: "Hang Seng", closeValue: 17763.03, changePercent: -0.34, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", country: "Hong Kong", session: "hongkong", tradingViewSymbol: "TVC:HSI" },
+    { symbol: "SHCOMP", name: "Shanghai Composite", closeValue: 3048.23, changePercent: 0.12, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", country: "Mainland China", session: "shanghai", tradingViewSymbol: "SSE:000001" },
+    { symbol: "KOSPI", name: "KOSPI", closeValue: 2692.06, changePercent: -0.27, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", country: "South Korea", session: "seoul", tradingViewSymbol: "KRX:KOSPI" },
+    { symbol: "TAIEX", name: "Taiwan Weighted", closeValue: 20328.64, changePercent: 0.44, source: "Yahoo Finance Mock", marketRegion: "Asia Watch", country: "Taiwan", session: "taipei", tradingViewSymbol: "TWSE:TAIEX" },
     { symbol: "GIFTNIFTY", name: "GIFT Nifty", closeValue: 22480.5, changePercent: -0.38, source: "Exchange Mock", marketRegion: "India Open", session: "india", tradingViewSymbol: "NSEIX:NIFTY1!" },
     { symbol: "DXY", name: "US Dollar Index", closeValue: 106.18, changePercent: 0.34, source: "MarketAux Mock", marketRegion: "Macro Hedges", session: "macro", tradingViewSymbol: "TVC:DXY" },
     { symbol: "BRENT", name: "Brent Crude", closeValue: 91.42, changePercent: 1.64, source: "MarketAux Mock", marketRegion: "Macro Hedges", session: "macro", tradingViewSymbol: "TVC:UKOIL" }

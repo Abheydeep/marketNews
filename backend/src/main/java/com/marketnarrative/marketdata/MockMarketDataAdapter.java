@@ -38,6 +38,7 @@ public class MockMarketDataAdapter implements MarketDataAdapter {
                     seed.changePercent(),
                     seed.source(),
                     seed.marketRegion(),
+                    seed.country(),
                     seed.session(),
                     seed.tradingViewSymbol(),
                     capturedAt
@@ -55,6 +56,7 @@ public class MockMarketDataAdapter implements MarketDataAdapter {
         double changePercent,
         String source,
         String marketRegion,
+        String country,
         String session,
         String tradingViewSymbol
     ) {

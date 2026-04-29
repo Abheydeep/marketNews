@@ -45,6 +45,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^N225",
     tradingViewSymbol: "TVC:NI225",
     marketRegion: "Asia Watch",
+    country: "Japan",
     session: "tokyo"
   },
   {
@@ -53,6 +54,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^HSI",
     tradingViewSymbol: "TVC:HSI",
     marketRegion: "Asia Watch",
+    country: "Hong Kong",
     session: "hongkong"
   },
   {
@@ -61,6 +63,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "000001.SS",
     tradingViewSymbol: "SSE:000001",
     marketRegion: "Asia Watch",
+    country: "Mainland China",
     session: "shanghai"
   },
   {
@@ -69,6 +72,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^KS11",
     tradingViewSymbol: "KRX:KOSPI",
     marketRegion: "Asia Watch",
+    country: "South Korea",
     session: "seoul"
   },
   {
@@ -77,6 +81,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^TWII",
     tradingViewSymbol: "TWSE:TAIEX",
     marketRegion: "Asia Watch",
+    country: "Taiwan",
     session: "taipei"
   },
   {
@@ -85,6 +90,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^STI",
     tradingViewSymbol: "TVC:STI",
     marketRegion: "Asia Watch",
+    country: "Singapore",
     session: "singapore"
   },
   {
@@ -93,6 +99,7 @@ export const LIVE_MARKET_SYMBOLS = [
     yahooSymbol: "^AXJO",
     tradingViewSymbol: "ASX:XJO",
     marketRegion: "Asia Watch",
+    country: "Australia",
     session: "sydney"
   },
   {
@@ -186,6 +193,7 @@ export function normalizeYahooChartResult(definition, payload) {
     yahooSymbol: definition.yahooSymbol,
     tradingViewSymbol: definition.tradingViewSymbol,
     marketRegion: definition.marketRegion,
+    country: definition.country,
     session: definition.session,
     dataQuality: "live",
     chartPoints: buildChartPoints(result)

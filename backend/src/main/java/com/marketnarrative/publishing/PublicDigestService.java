@@ -74,6 +74,7 @@ public class PublicDigestService {
                     snapshot.getChangePercent(),
                     snapshot.getSource(),
                     snapshot.getMarketRegion(),
+                    snapshot.getCountry(),
                     snapshot.getSession(),
                     snapshot.getTradingViewSymbol()
                 ))

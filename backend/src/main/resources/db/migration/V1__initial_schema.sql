@@ -16,6 +16,7 @@ CREATE TABLE market_snapshots (
     change_percent NUMERIC(8, 3) NOT NULL,
     source VARCHAR(128) NOT NULL,
     market_region VARCHAR(64),
+    country VARCHAR(128),
     session VARCHAR(64),
     trading_view_symbol VARCHAR(128),
     captured_at TIMESTAMPTZ NOT NULL

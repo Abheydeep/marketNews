@@ -1897,7 +1897,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       if (!board || !window.__PUBLISHED_QUOTES__) return;
       const grouped = groupQuotesByRegion(window.__PUBLISHED_QUOTES__);
       board.innerHTML = regionOrder().filter((region) => grouped.has(region)).map((region) => {
-        const quotes = grouped.get(region);
+        const quotes = displayQuotesForRegion(region, grouped.get(region));
         return '<section class="quote-region">' +
           '<div class="quote-region-head"><h3>' + escapeClientHtml(region) + '</h3><span>' + regionSummary(quotes) + '</span></div>' +
           '<div class="index-grid">' + quotes.map((quote) => quoteTileHtml(quote)).join('') + '</div>' +
@@ -1916,7 +1916,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const quoteTime = formatQuoteTime(quote.dataTimestamp);
       return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
         '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + quality + '</span></div>' +
-        '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
+        '<div class="name">' + escapeClientHtml(marketDisplayName(quote)) + '</div>' +
         '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
         '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
         '<div class="name">' + displayStatusLabel(quote, status) + (quoteTime ? ' - ' + quoteTime : '') + '</div>' +
@@ -1943,10 +1943,44 @@ export function cockpitPage(digest, initialTab = "public-view") {
       return ['US Overnight', 'Asia Watch', 'India Open', 'Macro Hedges', 'Other Markets'];
     }
 
+    function displayQuotesForRegion(region, quotes) {
+      if (region !== 'Asia Watch') return quotes;
+      return quotes
+        .filter((quote) => asiaTopSymbols().includes(quote.symbol))
+        .sort((left, right) => asiaTopSymbols().indexOf(left.symbol) - asiaTopSymbols().indexOf(right.symbol));
+    }
+
+    function asiaTopSymbols() {
+      return ['NIKKEI', 'HSI', 'SHCOMP', 'KOSPI', 'TAIEX'];
+    }
+
+    function marketDisplayName(quote) {
+      if (regionForSymbol(quote.symbol) !== 'Asia Watch') return quote.name;
+      const country = countryForQuote(quote);
+      return country ? country + ' - ' + quote.name : quote.name;
+    }
+
+    function countryForQuote(quote) {
+      return quote.country || countryForSymbol(quote.symbol);
+    }
+
+    function countryForSymbol(symbol) {
+      return {
+        NIKKEI: 'Japan',
+        HSI: 'Hong Kong',
+        SHCOMP: 'Mainland China',
+        KOSPI: 'South Korea',
+        TAIEX: 'Taiwan',
+        STI: 'Singapore',
+        ASX200: 'Australia'
+      }[symbol] || '';
+    }
+
     function regionSummary(quotes) {
       const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
       const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
-      return positives + ' of ' + quotes.length + ' indices higher; average move ' + formatClientChange(average);
+      const unit = quotes.some((quote) => regionForSymbol(quote.symbol) === 'Asia Watch') ? 'country markets' : 'indices';
+      return positives + ' of ' + quotes.length + ' ' + unit + ' are higher; average move is ' + formatClientChange(average);
     }
 
     async function refreshPublishedDigest() {
@@ -2001,7 +2035,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       if (!modal || !quote) return;
       const status = marketStatusFor(quote);
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
-      title.textContent = quote.name + ' (' + quote.symbol + ')';
+      title.textContent = marketDisplayName(quote) + ' (' + quote.symbol + ')';
       meta.textContent = status.open
         ? 'Real Yahoo Finance price series from the latest published digest. The board refreshes every scheduled publish.'
         : 'Market closed. Showing the latest published Yahoo Finance price series for review.';
@@ -2567,7 +2601,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
 function executiveSummaryHtml(digest) {
   const usLine = formatSnapshotLine(snapshotsForRegion(digest, "US Overnight"));
-  const asiaLine = formatSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
+  const asiaLine = formatAsiaSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
   const pressureStory = strongestStory(digest.news, "negative");
@@ -2704,7 +2738,7 @@ function formatArticleTime(value) {
 function regionalBreadthHtml(digest) {
   return ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]
     .map((region) => {
-      const snapshots = snapshotsForRegion(digest, region);
+      const snapshots = displaySnapshotsForRegion(region, snapshotsForRegion(digest, region));
       if (!snapshots.length) {
         return "";
       }
@@ -2713,11 +2747,13 @@ function regionalBreadthHtml(digest) {
       const strongest = snapshots
         .slice()
         .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
+      const label = region === "Asia Watch" ? "Asia Watch (top 5 country markets)" : region;
+      const unit = region === "Asia Watch" ? "country markets" : "indices";
       return `
         <div class="breadth-card">
-          <span>${escapeHtml(region)}</span>
-          <strong>${positives} of ${snapshots.length} indices higher; average move ${formatChange(average)}</strong>
-          <small>Largest move: ${escapeHtml(strongest.name)} ${formatChange(strongest.changePercent)}</small>
+          <span>${escapeHtml(label)}</span>
+          <strong>${positives} of ${snapshots.length} ${unit} are higher; average move is ${formatChange(average)}</strong>
+          <small>Largest move: ${escapeHtml(marketDisplayNameForSnapshot(strongest))} ${formatChange(strongest.changePercent)}</small>
         </div>
       `;
     })
@@ -2726,6 +2762,21 @@ function regionalBreadthHtml(digest) {
 
 function snapshotsForRegion(digest, region) {
   return digest.marketSnapshots.filter((snapshot) => (snapshot.marketRegion || regionForSnapshot(snapshot)) === region);
+}
+
+function displaySnapshotsForRegion(region, snapshots) {
+  if (region !== "Asia Watch") {
+    return snapshots;
+  }
+
+  const topSymbols = topAsiaSymbols();
+  return snapshots
+    .filter((snapshot) => topSymbols.includes(snapshot.symbol))
+    .sort((left, right) => topSymbols.indexOf(left.symbol) - topSymbols.indexOf(right.symbol));
+}
+
+function topAsiaSymbols() {
+  return ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX"];
 }
 
 function regionForSnapshot(snapshot) {
@@ -2741,6 +2792,33 @@ function formatSnapshotLine(snapshots) {
     .slice(0, 7)
     .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
     .join(", ");
+}
+
+function formatAsiaSnapshotLine(snapshots) {
+  return displaySnapshotsForRegion("Asia Watch", snapshots)
+    .map((snapshot) => `${marketDisplayNameForSnapshot(snapshot)} ${formatChange(snapshot.changePercent)}`)
+    .join(", ");
+}
+
+function marketDisplayNameForSnapshot(snapshot) {
+  const region = snapshot.marketRegion || regionForSnapshot(snapshot);
+  if (region !== "Asia Watch") {
+    return snapshot.name;
+  }
+  const country = countryForSnapshot(snapshot);
+  return country ? `${country} - ${snapshot.name}` : snapshot.name;
+}
+
+function countryForSnapshot(snapshot) {
+  return snapshot.country || {
+    NIKKEI: "Japan",
+    HSI: "Hong Kong",
+    SHCOMP: "Mainland China",
+    KOSPI: "South Korea",
+    TAIEX: "Taiwan",
+    STI: "Singapore",
+    ASX200: "Australia"
+  }[snapshot.symbol] || "";
 }
 
 function algorithmicSetupHtml(digest) {

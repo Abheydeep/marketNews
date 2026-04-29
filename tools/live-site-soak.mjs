@@ -15,8 +15,6 @@ const expectedChartSymbols = [
   "SHCOMP",
   "KOSPI",
   "TAIEX",
-  "STI",
-  "ASX200",
   "NIFTY",
   "BANKNIFTY",
   "DXY",
@@ -152,8 +150,16 @@ async function expectDailyContent(page) {
   await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
   await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
   await expectOne(page.getByRole("heading", { name: "Asia Watch" }), "asia watch heading");
-  await expectOne(page.locator('button[data-symbol="NIKKEI"]'), "Nikkei index tile");
-  await expectOne(page.locator('button[data-symbol="HSI"]'), "Hang Seng index tile");
+  await expectOne(page.locator('button[data-symbol="NIKKEI"]').getByText("Japan - Nikkei 225", { exact: true }), "Japan Nikkei country label");
+  await expectOne(page.locator('button[data-symbol="HSI"]').getByText("Hong Kong - Hang Seng", { exact: true }), "Hong Kong Hang Seng country label");
+  await expectOne(page.locator('button[data-symbol="SHCOMP"]').getByText("Mainland China - Shanghai Composite", { exact: true }), "China Shanghai country label");
+  await expectOne(page.locator('button[data-symbol="KOSPI"]').getByText("South Korea - KOSPI", { exact: true }), "South Korea KOSPI country label");
+  await expectOne(page.locator('button[data-symbol="TAIEX"]').getByText("Taiwan - Taiwan Weighted", { exact: true }), "Taiwan Weighted country label");
+  assert.equal(await page.locator('button[data-symbol="STI"]').count(), 0, "STI should not be visible in top-five Asia Watch");
+  assert.equal(await page.locator('button[data-symbol="ASX200"]').count(), 0, "ASX200 should not be visible in top-five Asia Watch");
+  const asiaBreadth = page.locator(".breadth-card").filter({ hasText: "Asia Watch (top 5 country markets)" });
+  await expectOne(asiaBreadth, "top-five Asia breadth card");
+  await expectOne(asiaBreadth.getByText(/\d of 5 country markets are higher; average move is/), "readable Asia breadth sentence");
   await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
   await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
   await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");

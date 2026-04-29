@@ -66,6 +66,7 @@
     "changePercent": 0.51,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Japan",
     "session": "tokyo",
     "tradingViewSymbol": "TVC:NI225"
   },
@@ -76,6 +77,7 @@
     "changePercent": -0.34,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Hong Kong",
     "session": "hongkong",
     "tradingViewSymbol": "TVC:HSI"
   },
@@ -86,6 +88,7 @@
     "changePercent": 0.12,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Mainland China",
     "session": "shanghai",
     "tradingViewSymbol": "SSE:000001"
   },
@@ -96,6 +99,7 @@
     "changePercent": -0.27,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "South Korea",
     "session": "seoul",
     "tradingViewSymbol": "KRX:KOSPI"
   },
@@ -106,6 +110,7 @@
     "changePercent": 0.44,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Taiwan",
     "session": "taipei",
     "tradingViewSymbol": "TWSE:TAIEX"
   },
@@ -116,6 +121,7 @@
     "changePercent": -0.16,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Singapore",
     "session": "singapore",
     "tradingViewSymbol": "TVC:STI"
   },
@@ -126,6 +132,7 @@
     "changePercent": 0.23,
     "source": "Yahoo Finance Mock",
     "marketRegion": "Asia Watch",
+    "country": "Australia",
     "session": "sydney",
     "tradingViewSymbol": "ASX:XJO"
   },

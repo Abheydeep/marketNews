@@ -32,6 +32,9 @@ await test("seed files are valid and complete", async () => {
     assert.ok(snapshot, `missing seed snapshot ${symbol}`);
     assert.ok(snapshot.marketRegion, `${symbol} missing marketRegion`);
     assert.ok(snapshot.tradingViewSymbol, `${symbol} missing TradingView symbol`);
+    if (snapshot.marketRegion === "Asia Watch") {
+      assert.ok(snapshot.country, `${symbol} missing country`);
+    }
   }
 });
 
@@ -40,6 +43,7 @@ await test("live symbol registry includes important Asian markets", () => {
     const definition = LIVE_MARKET_SYMBOLS.find((item) => item.symbol === symbol);
     assert.ok(definition, `missing live symbol ${symbol}`);
     assert.equal(definition.marketRegion, "Asia Watch");
+    assert.ok(definition.country, `${symbol} missing country`);
     assert.ok(definition.yahooSymbol, `${symbol} missing Yahoo symbol`);
     assert.ok(definition.tradingViewSymbol, `${symbol} missing TradingView symbol`);
   }
@@ -136,6 +140,7 @@ await test("Yahoo market data normalization preserves region metadata", () => {
       yahooSymbol: "^N225",
       tradingViewSymbol: "TVC:NI225",
       marketRegion: "Asia Watch",
+      country: "Japan",
       session: "tokyo"
     },
     {
@@ -159,6 +164,7 @@ await test("Yahoo market data normalization preserves region metadata", () => {
   );
   assert.equal(snapshot.symbol, "NIKKEI");
   assert.equal(snapshot.marketRegion, "Asia Watch");
+  assert.equal(snapshot.country, "Japan");
   assert.equal(snapshot.session, "tokyo");
   assert.equal(snapshot.changePercent, 0.511);
   assert.equal(snapshot.chartPoints.length, 3);
@@ -201,18 +207,20 @@ await test("database schema includes all planned persistence tables", async () =
     assert.ok(schema.includes(`CREATE TABLE ${table}`), `missing ${table}`);
   }
   assert.ok(schema.includes("market_region VARCHAR"), "market_snapshots missing market_region");
+  assert.ok(schema.includes("country VARCHAR"), "market_snapshots missing country");
   assert.ok(schema.includes("trading_view_symbol VARCHAR"), "market_snapshots missing TradingView chart symbol");
 });
 
-await test("backend market snapshot contract carries quote regions and chart symbols", async () => {
+await test("backend market snapshot contract carries quote regions, countries, and chart symbols", async () => {
   const entity = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "marketdata", "MarketSnapshot.java"), "utf8");
   const dto = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestDto.java"), "utf8");
   const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestService.java"), "utf8");
-  for (const token of ["marketRegion", "session", "tradingViewSymbol"]) {
+  for (const token of ["marketRegion", "country", "session", "tradingViewSymbol"]) {
     assert.ok(entity.includes(token), `entity missing ${token}`);
     assert.ok(dto.includes(token), `DTO missing ${token}`);
   }
   assert.ok(service.includes("getMarketRegion()"));
+  assert.ok(service.includes("getCountry()"));
   assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
@@ -301,8 +309,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("India impact"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
   assert.ok(publicHtml.body.includes("Asia Watch"));
-  assert.ok(publicHtml.body.includes("Nikkei 225"));
-  assert.ok(publicHtml.body.includes("Hang Seng"));
+  assert.ok(publicHtml.body.includes("Asia Watch (top 5 country markets)"));
+  assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
+  assert.ok(publicHtml.body.includes("Hong Kong - Hang Seng"));
+  assert.ok(publicHtml.body.includes("Mainland China - Shanghai Composite"));
+  assert.ok(publicHtml.body.includes("South Korea - KOSPI"));
+  assert.ok(publicHtml.body.includes("Taiwan - Taiwan Weighted"));
+  assert.ok(publicHtml.body.includes("country markets are higher; average move is"));
   assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
   assert.ok(publicHtml.body.includes("Economic Times Markets"));

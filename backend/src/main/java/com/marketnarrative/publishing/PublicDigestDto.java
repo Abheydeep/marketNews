@@ -31,6 +31,7 @@ public record PublicDigestDto(
         double changePercent,
         String source,
         String marketRegion,
+        String country,
         String session,
         String tradingViewSymbol
     ) implements Serializable {

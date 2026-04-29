@@ -8,6 +8,7 @@ export type MarketSnapshot = {
   changePercent: number;
   source: string;
   marketRegion?: string;
+  country?: string;
   session?: string;
   tradingViewSymbol?: string;
 };

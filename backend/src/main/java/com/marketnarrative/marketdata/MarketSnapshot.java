@@ -37,6 +37,8 @@ public class MarketSnapshot {
 
     private String marketRegion;
 
+    private String country;
+
     private String session;
 
     private String tradingViewSymbol;
@@ -55,6 +57,7 @@ public class MarketSnapshot {
         double changePercent,
         String source,
         String marketRegion,
+        String country,
         String session,
         String tradingViewSymbol,
         OffsetDateTime capturedAt
@@ -66,6 +69,7 @@ public class MarketSnapshot {
         this.changePercent = changePercent;
         this.source = source;
         this.marketRegion = marketRegion;
+        this.country = country;
         this.session = session;
         this.tradingViewSymbol = tradingViewSymbol;
         this.capturedAt = capturedAt;
@@ -101,6 +105,10 @@ public class MarketSnapshot {
 
     public String getMarketRegion() {
         return marketRegion;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public String getSession() {

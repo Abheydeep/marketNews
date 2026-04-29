@@ -85,6 +85,7 @@ function archivePage(digests) {
       const slug = slugForDigest(digest);
       const topAsia = digest.marketSnapshots
         .filter((snapshot) => (snapshot.marketRegion ?? "") === "Asia Watch")
+        .filter((snapshot) => topAsiaSymbols().includes(snapshot.symbol))
         .slice()
         .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
       const sourceCount = new Set(digest.news.map((item) => item.sourceName)).size;
@@ -100,7 +101,7 @@ function archivePage(digests) {
             <span>${digest.tradeSetups.length} setups</span>
             <span>${sourceCount} sources</span>
           </div>
-          ${topAsia ? `<div class="asia-note">Asia watch: ${escapeHtml(topAsia.name)} ${formatChange(topAsia.changePercent)}</div>` : ""}
+          ${topAsia ? `<div class="asia-note">Asia watch: ${escapeHtml(marketDisplayNameForSnapshot(topAsia))} ${formatChange(topAsia.changePercent)}</div>` : ""}
           <a class="open-link" href="./${slug}/">Open daily briefing</a>
         </article>
       `;
@@ -404,6 +405,27 @@ function formatDigestDate(date) {
 
 function formatChange(changePercent) {
   return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+}
+
+function topAsiaSymbols() {
+  return ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX"];
+}
+
+function marketDisplayNameForSnapshot(snapshot) {
+  const country = countryForSymbol(snapshot.symbol);
+  return country ? `${country} - ${snapshot.name}` : snapshot.name;
+}
+
+function countryForSymbol(symbol) {
+  return {
+    NIKKEI: "Japan",
+    HSI: "Hong Kong",
+    SHCOMP: "Mainland China",
+    KOSPI: "South Korea",
+    TAIEX: "Taiwan",
+    STI: "Singapore",
+    ASX200: "Australia"
+  }[symbol] || "";
 }
 
 function sentimentColor(label) {
