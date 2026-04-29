@@ -10,11 +10,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
   <script type="application/ld+json">${JSON.stringify(newsArticleJsonLd(digest))}</script>
   <style>
     :root {
-      --paper: #fcfbf9;
-      --ink: #2c2925;
+      --paper: #f4f5f7;
+      --ink: #111827;
       --slate: #0f172a;
-      --stone: #78716c;
-      --line: #e7e5e4;
+      --stone: #6b7280;
+      --line: #e5e7eb;
       --panel: #ffffff;
       --blue: #2563eb;
       --green: #059669;
@@ -45,7 +45,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(252, 251, 249, 0.9);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
@@ -65,11 +65,28 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-size: 20px;
       font-weight: 800;
       letter-spacing: 0;
       color: var(--slate);
       white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: #030712;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(17, 24, 39, 0.12);
     }
 
     .tabs {
@@ -163,6 +180,363 @@ export function cockpitPage(digest, initialTab = "public-view") {
       color: var(--slate);
       font-size: 18px;
       line-height: 1.25;
+    }
+
+    .briefing-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .briefing-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .briefing-date {
+      text-align: right;
+      color: #111827;
+    }
+
+    .briefing-date span {
+      display: block;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .briefing-date strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 14px;
+    }
+
+    .info-card {
+      border: 1px solid rgba(229, 231, 235, 0.72);
+      border-radius: 16px;
+      background: #fff;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.035);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(209, 213, 219, 0.9);
+      box-shadow: 0 8px 30px rgba(17, 24, 39, 0.065);
+    }
+
+    .executive-card {
+      margin-bottom: 30px;
+      border-left: 4px solid #111827;
+    }
+
+    .executive-card h2 {
+      margin: 0 0 18px;
+      color: #111827;
+      font-size: 28px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .executive-card p {
+      margin: 0;
+      color: #374151;
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .executive-card p + p {
+      margin-top: 16px;
+    }
+
+    .executive-card strong {
+      color: #111827;
+      font-weight: 850;
+    }
+
+    .section-kicker {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 0 16px;
+    }
+
+    .section-kicker h2 {
+      margin: 0;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .sentiment-meter {
+      width: min(220px, 44vw);
+    }
+
+    .sentiment-scale {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: #9ca3af;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sentiment-bar {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+    }
+
+    .sentiment-pin {
+      position: absolute;
+      top: -4px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #111827;
+      border-radius: 50%;
+      background: #fff;
+      transform: translateX(-50%);
+    }
+
+    .pulse-section,
+    .sources-section,
+    .market-chart-panel {
+      margin-top: 30px;
+    }
+
+    .setup-card {
+      position: relative;
+      margin-top: 30px;
+      overflow: hidden;
+      border: 0;
+      background: #111827;
+      color: #fff;
+    }
+
+    .setup-card::after {
+      content: "";
+      position: absolute;
+      top: -48px;
+      right: -42px;
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.24);
+      filter: blur(34px);
+      pointer-events: none;
+    }
+
+    .setup-card-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .setup-card h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .setup-badge {
+      border: 1px solid #374151;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.82);
+      padding: 6px 10px;
+      color: #d1d5db;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .setup-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.55fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .strategy-label {
+      margin: 0 0 5px;
+      color: #9ca3af;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .strategy-bias {
+      margin: 0;
+      color: #fca5a5;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .strategy-note {
+      margin: 12px 0 0;
+      color: #9ca3af;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .setup-levels {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid #374151;
+      border-radius: 14px;
+      background: rgba(31, 41, 55, 0.58);
+      padding: 16px;
+    }
+
+    .setup-level {
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .setup-level + .setup-level {
+      border-left: 1px solid #374151;
+    }
+
+    .setup-level span {
+      display: block;
+      margin-bottom: 6px;
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .setup-level strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .setup-level.stop span,
+    .setup-level.stop strong {
+      color: #fca5a5;
+    }
+
+    .setup-level.target span,
+    .setup-level.target strong {
+      color: #86efac;
+    }
+
+    .setup-level small {
+      display: block;
+      margin-top: 5px;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .news-card-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .source-card {
+      cursor: pointer;
+    }
+
+    .source-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .news-badge {
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .news-badge.negative {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .news-badge.positive {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .news-badge.neutral {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .source-name {
+      color: #9ca3af;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .source-card h3 {
+      margin: 0 0 8px;
+      color: #111827;
+      font-size: 19px;
+      line-height: 1.35;
+      transition: color 160ms ease;
+    }
+
+    .source-card:hover h3 {
+      color: #2563eb;
+    }
+
+    .source-card p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .source-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .public-footer {
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .public-footer p {
+      margin: 0;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.6;
     }
 
     .briefing-card {
@@ -309,19 +683,20 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     .index-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
     }
 
     .index-tile {
-      min-height: 112px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
+      min-height: 128px;
+      border: 1px solid rgba(229, 231, 235, 0.72);
+      border-radius: 16px;
       background: #fff;
-      padding: 12px;
+      padding: 16px;
       text-align: left;
       cursor: pointer;
       transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.035);
     }
 
     .index-tile:hover {
@@ -372,7 +747,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
     .index-tile .price {
       margin-top: 10px;
       color: var(--slate);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 900;
       line-height: 1.1;
     }
@@ -938,11 +1313,40 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .grid-main,
       .grid-two,
       .grid-three,
+      .setup-grid,
+      .setup-levels,
       .summary-strip,
       .briefing-grid,
-      .index-grid,
       .arch-grid {
         grid-template-columns: 1fr;
+      }
+
+      .briefing-topline,
+      .section-kicker,
+      .setup-card-header {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .briefing-date {
+        text-align: left;
+      }
+
+      .live-board-header {
+        align-items: start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .live-board-header h3 {
+        letter-spacing: 0.03em;
+      }
+
+      .setup-level + .setup-level {
+        border-left: 0;
+        border-top: 1px solid #374151;
+        padding-top: 14px;
+        margin-top: 14px;
       }
 
       .studio-header {
@@ -961,7 +1365,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <div class="brand">&#9650; Market Narrative Engine</div>
+        <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           <button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>
@@ -973,115 +1377,78 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
   <main class="shell">
     <section id="public-view" class="tab-content">
-      <header class="page-header">
-        <p class="eyebrow">Daily Pre-Market Summary</p>
-        <div class="run-meta">Scheduled run: ${escapeHtml(formatScheduledRun(digest))}</div>
-        <h1>${escapeHtml(digest.title)}</h1>
-        <p>${escapeHtml(publicSummaryLead(digest))}</p>
-        <div class="summary-strip">
-          <div class="summary-chip">
-            <span>Market Mood</span>
-            <strong>${escapeHtml(digest.sentimentLabel)} (${digest.overallSentiment})</strong>
-          </div>
-          <div class="summary-chip">
-            <span>Primary Cue</span>
-            <strong>${escapeHtml(digest.themes[0]?.title ?? "Opening Levels")}</strong>
-          </div>
-          <div class="summary-chip">
-            <span>Scanner Output</span>
-            <strong>${digest.tradeSetups.length} validated 1:2 RR setups</strong>
-          </div>
-        </div>
-      </header>
-
-      <section class="briefing-card">
-        <h2>Generated 8:30 AM Brief</h2>
-        <div class="briefing-grid">
-          <div class="briefing-block">
-            <h3>Global Cues</h3>
-            <ul>
-              ${digest.marketSnapshots.map((snapshot) => `
-                <li>${escapeHtml(snapshot.name)}: ${formatChange(snapshot.changePercent)}</li>
-              `).join("")}
-            </ul>
-          </div>
-          <div class="briefing-block">
-            <h3>Narrative Themes</h3>
-            <ul>
-              ${digest.themes.map((theme) => `
-                <li><strong>${escapeHtml(theme.title)}:</strong> ${escapeHtml(theme.summary)}</li>
-              `).join("")}
-            </ul>
-          </div>
-          <div class="briefing-block">
-            <h3>Validated Setups</h3>
-            <ul>
-              ${digest.tradeSetups.map((setup) => `
-                <li>${escapeHtml(setup.symbol)} ${escapeHtml(setup.direction)}: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)} (RR ${setup.riskReward})</li>
-              `).join("")}
-            </ul>
-          </div>
-          <div class="briefing-block">
-            <h3>Risk Note</h3>
-            <ul>
-              <li>This is educational market research for content planning, not investment advice.</li>
-              <li>No automated order execution is enabled.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <div class="grid-main">
-        <div class="stack">
-          <section class="panel">
-            <h2>&#128202; Latest Market Dashboard</h2>
-            <div class="chart-container">
-              <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
+      <div class="briefing-shell">
+        <header class="page-header">
+          <div class="briefing-topline">
+            <div>
+              <p class="eyebrow">Daily Pre-Market Summary</p>
+              <div class="run-meta">Scheduled run: ${escapeHtml(formatScheduledRun(digest))}</div>
             </div>
-            <div class="live-board-header">
-              <h3>Real Quote Board</h3>
-              <span id="liveClock" class="live-clock">Preparing quotes...</span>
+            <div class="briefing-date">
+              <span>Daily Briefing</span>
+              <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
-            <div id="indexBoard" class="index-grid" aria-label="Clickable live index quotes"></div>
-          </section>
+          </div>
+          <h1>${escapeHtml(digest.title)}</h1>
+          <p>${escapeHtml(publicSummaryLead(digest))}</p>
+        </header>
 
-          <section class="panel">
-            <h2>&#128200; Nifty 50 Scanner Setup</h2>
-            <div class="grid-three">
-              <div class="metric">
-                <span class="label">Invalidation</span>
-                <strong>${formatNumber(niftySetup(digest)?.stopLoss ?? 0)}</strong>
+        <section class="info-card executive-card">
+          <h2>Executive Summary: The Morning Narrative</h2>
+          ${executiveSummaryHtml(digest)}
+        </section>
+
+        <section class="pulse-section">
+          <div class="section-kicker">
+            <h2>The Overnight Pulse</h2>
+            <div class="sentiment-meter" aria-label="Daily sentiment meter">
+              <div class="sentiment-scale">
+                <span>Bearish</span>
+                <span>Bullish</span>
               </div>
-              <div class="metric">
-                <span class="label">Target</span>
-                <strong>${formatNumber(niftySetup(digest)?.target ?? 0)}</strong>
-              </div>
-              <div class="metric blue">
-                <span class="label">Risk Reward</span>
-                <strong>${niftySetup(digest)?.riskReward ?? "N/A"}R</strong>
+              <div class="sentiment-bar">
+                <div class="sentiment-pin" style="left: ${sentimentPinPosition(digest.overallSentiment)}%"></div>
               </div>
             </div>
-            <p>
-              ${escapeHtml(marketSetupCopy(digest))}
-            </p>
-          </section>
-        </div>
+          </div>
+          <div id="indexBoard" class="index-grid" aria-label="Clickable live index quotes"></div>
+          <div class="live-board-header">
+            <h3>Real Quote Board</h3>
+            <span id="liveClock" class="live-clock">Preparing quotes...</span>
+          </div>
+        </section>
 
-        <aside class="stack">
-          <section class="panel">
-            <h2>&#128240; News Driving This 8:30 Brief</h2>
-            <ul class="news-list">
-              ${digest.news.slice(0, 4).map((item) => `
-                <li>
-                  <p>${escapeHtml(item.headline)}</p>
-                  <small>${escapeHtml(item.entityName)} impact: ${formatSignedScore(item.sentimentScore)} sentiment</small>
-                  <p class="news-summary">${escapeHtml(item.summary)}</p>
-                  <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Source: ${escapeHtml(item.sourceName)} &#8599;</a>
-                </li>
-              `).join("")}
-            </ul>
-          </section>
-        </aside>
+        ${algorithmicSetupHtml(digest)}
+
+        <section class="panel market-chart-panel">
+          <h2>Latest Market Dashboard</h2>
+          <div class="chart-container">
+            <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
+          </div>
+        </section>
+
+        <section class="sources-section">
+          <div class="section-kicker">
+            <h2>Macro Incremental Sources</h2>
+          </div>
+          <div class="news-card-list">
+            ${digest.news.slice(0, 4).map((item) => `
+              <article class="info-card source-card">
+                <div class="source-card-header">
+                  <span class="news-badge ${newsToneClass(item.sentimentScore)}">${escapeHtml(newsBadgeLabel(item))}</span>
+                  <span class="source-name">Source: ${escapeHtml(item.sourceName)}</span>
+                </div>
+                <h3>${escapeHtml(item.headline)}</h3>
+                <p>${escapeHtml(item.summary)}</p>
+                <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+
+        <footer class="public-footer">
+          <p>Data generated by the Agentic RAG pipeline. Sources are retained for attribution. Educational market research only, not investment advice.</p>
+        </footer>
       </div>
     </section>
 
@@ -1286,7 +1653,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
           '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
           '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
           '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
-          '<div class="name">' + status.label + (quoteTime ? ' · ' + quoteTime : '') + '</div>' +
+          '<div class="name">' + status.label + (quoteTime ? ' - ' + quoteTime : '') + '</div>' +
         '</button>';
       }).join('');
       board.querySelectorAll('.index-tile').forEach((tile) => {
@@ -1399,11 +1766,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
         second: '2-digit'
       }).format(new Date());
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'Fallback quotes';
-      clock.textContent = (note ? note + ' · ' : '') +
+      clock.textContent = (note ? note + ' - ' : '') +
         (openCount > 0 ? 'Market open' : 'Markets closed') +
-        ' · ' + mode +
-        (latest ? ' · latest ' + latest : '') +
-        ' · checked IST ' + time;
+        ' - ' + mode +
+        (latest ? ' - latest ' + latest : '') +
+        ' - checked IST ' + time;
     }
 
     function compactMarketLabel(item) {
@@ -1703,6 +2070,91 @@ export function cockpitPage(digest, initialTab = "public-view") {
 </html>`;
 }
 
+function executiveSummaryHtml(digest) {
+  const marketLine = digest.marketSnapshots
+    .slice(0, 6)
+    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .join(", ");
+  const primaryTheme = digest.themes[0];
+  const secondaryTheme = digest.themes[1];
+  const setup = niftySetup(digest);
+  const setupText = setup
+    ? `The Nifty scanner is tracking ${setup.direction.toLowerCase()} acceptance near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
+    : "The scanner has not accepted a 1:2 risk-reward setup yet, so the first hour should define the actionable levels.";
+
+  const paragraphs = [
+    {
+      label: "Global Markets & Overnight Pulse",
+      text: `The ${formatScheduledRun(digest)} digest is ${digest.sentimentLabel.toLowerCase()}, with ${marketLine}. These live snapshots are pulled into the published briefing instead of being browser-generated.`
+    },
+    {
+      label: "Narrative Drivers",
+      text: `${primaryTheme?.summary ?? "The market narrative is still forming from overnight cues."}${secondaryTheme ? ` ${secondaryTheme.summary}` : ""}`
+    },
+    {
+      label: "Domestic Setup & Risk Discipline",
+      text: `${setupText} This is educational market research for content planning, not investment advice.`
+    }
+  ];
+
+  return paragraphs
+    .map((paragraph) => `<p><strong>${escapeHtml(paragraph.label)}:</strong> ${escapeHtml(paragraph.text)}</p>`)
+    .join("");
+}
+
+function algorithmicSetupHtml(digest) {
+  const setup = niftySetup(digest);
+  if (!setup) {
+    return `
+      <section class="info-card setup-card">
+        <div class="setup-card-header">
+          <h2>Nifty 50 Algorithmic Setup</h2>
+          <span class="setup-badge">No setup yet</span>
+        </div>
+        <p class="strategy-note">No 1:2 risk-reward setup has passed the scanner. Let the opening range define the next valid level.</p>
+      </section>
+    `;
+  }
+
+  const bullish = setup.direction === "BULLISH";
+  const risk = bullish ? setup.entry - setup.stopLoss : setup.stopLoss - setup.entry;
+  const reward = bullish ? setup.target - setup.entry : setup.entry - setup.target;
+  const bias = bullish ? "Buy on Pullback (Bullish)" : "Sell on Rally (Bearish)";
+  const biasColor = bullish ? "#86efac" : "#fca5a5";
+
+  return `
+    <section class="info-card setup-card">
+      <div class="setup-card-header">
+        <h2>Nifty 50 Algorithmic Setup</h2>
+        <span class="setup-badge">1:2 R:R Validated</span>
+      </div>
+      <div class="setup-grid">
+        <div>
+          <p class="strategy-label">Strategy Bias</p>
+          <p class="strategy-bias" style="color: ${biasColor}">${escapeHtml(bias)}</p>
+          <p class="strategy-note">${escapeHtml(setup.confidenceReason)}</p>
+        </div>
+        <div class="setup-levels">
+          <div class="setup-level">
+            <span>Entry Zone</span>
+            <strong>${formatNumber(setup.entry)}</strong>
+          </div>
+          <div class="setup-level stop">
+            <span>Stop Loss</span>
+            <strong>${formatNumber(setup.stopLoss)}</strong>
+            <small>Risk: ${formatNumber(Math.abs(risk))} pts</small>
+          </div>
+          <div class="setup-level target">
+            <span>Target</span>
+            <strong>${formatNumber(setup.target)}</strong>
+            <small>Reward: ${formatNumber(Math.abs(reward))} pts</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function scannerCells(digest) {
   const setup = digest.tradeSetups.find((item) => item.symbol === "NIFTY") ?? digest.tradeSetups[0];
   if (!setup) {
@@ -1759,6 +2211,35 @@ function publicSummaryLead(digest) {
   const worstTheme = digest.themes[0]?.title ?? "mixed global cues";
   const setupSymbols = digest.tradeSetups.map((setup) => setup.symbol).join(" and ");
   return `The 8:30 AM IST digest is ${digest.sentimentLabel.toLowerCase()} after ${worstTheme.toLowerCase()}. Global cues are uneven, but the scanner still found ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
+}
+
+function sentimentPinPosition(score) {
+  return Math.max(5, Math.min(95, 50 + Number(score) * 45)).toFixed(1);
+}
+
+function newsToneClass(score) {
+  if (score <= -0.2) {
+    return "negative";
+  }
+  if (score >= 0.2) {
+    return "positive";
+  }
+  return "neutral";
+}
+
+function newsBadgeLabel(item) {
+  return (item.category ?? item.entityName ?? "Market")
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function formatDigestDate(date) {
+  return new Intl.DateTimeFormat("en-IN", {
+    weekday: "short",
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  }).format(new Date(`${date}T00:00:00+05:30`));
 }
 
 function niftySetup(digest) {
