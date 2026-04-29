@@ -585,19 +585,6 @@ export function cockpitPage(digest, initialTab = "public-view") {
       margin-top: 8px;
     }
 
-    .run-meta {
-      display: inline-flex;
-      margin-bottom: 14px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-      padding: 7px 10px;
-      color: #57534e;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
     .grid-main {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
@@ -1541,7 +1528,6 @@ export function cockpitPage(digest, initialTab = "public-view") {
           <div class="briefing-topline">
             <div>
               <p class="eyebrow">Daily Pre-Market Summary</p>
-              <div class="run-meta">Scheduled run: ${escapeHtml(formatScheduledRun(digest))}</div>
             </div>
             <div class="briefing-date">
               <span>Daily Briefing</span>
