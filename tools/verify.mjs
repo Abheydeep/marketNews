@@ -328,6 +328,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
   assert.ok(publicHtml.body.includes("Stop Loss"));
   assert.ok(publicHtml.body.includes("Real Quote Board"));
+  assert.ok(publicHtml.body.includes('id="quoteBoardToggle"'));
+  assert.ok(publicHtml.body.includes('aria-expanded="false"'));
+  assert.ok(publicHtml.body.includes('id="quoteBoardBody" class="quote-board-body" hidden'));
+  assert.ok(publicHtml.body.includes("bindQuoteBoardToggle"));
+  assert.ok(publicHtml.body.includes("window.__QUOTE_BOARD_EXPANDED__"));
+  assert.ok(!publicHtml.body.includes("live-board-header"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
   assert.ok(publicHtml.body.includes("Open Yahoo Chart"));

@@ -736,15 +736,35 @@ export function cockpitPage(digest, initialTab = "public-view") {
       height: 100%;
     }
 
-    .live-board-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin: 18px 0 12px;
+    .quote-board-card {
+      overflow: hidden;
+      margin: 18px 0 0;
+      border: 1px solid rgba(229, 231, 235, 0.72);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.035);
     }
 
-    .live-board-header h3 {
+    .quote-board-toggle {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      border: 0;
+      background: #fff;
+      padding: 18px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .quote-board-toggle:hover {
+      background: #f8fafc;
+    }
+
+    .quote-board-title strong {
+      display: block;
       margin: 0;
       color: #334155;
       font-size: 15px;
@@ -752,11 +772,54 @@ export function cockpitPage(digest, initialTab = "public-view") {
       text-transform: uppercase;
     }
 
+    .quote-board-title small {
+      display: block;
+      margin-top: 5px;
+      color: #78716c;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
     .live-clock {
       color: #78716c;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 12px;
       font-weight: 800;
+      text-align: right;
+    }
+
+    .quote-board-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: #111827;
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .quote-board-chev {
+      display: inline-block;
+      font-size: 10px;
+      line-height: 1;
+      transition: transform 150ms ease;
+    }
+
+    .quote-board-toggle.open .quote-board-chev {
+      transform: rotate(180deg);
+    }
+
+    .quote-board-body {
+      border-top: 1px solid #e5e7eb;
+      padding: 0 18px 18px;
+    }
+
+    .quote-board-body[hidden] {
+      display: none;
     }
 
     .regional-breadth {
@@ -1571,14 +1634,18 @@ export function cockpitPage(digest, initialTab = "public-view") {
         text-align: left;
       }
 
-      .live-board-header {
+      .quote-board-toggle {
+        grid-template-columns: 1fr;
         align-items: start;
-        flex-direction: column;
-        gap: 6px;
+        gap: 10px;
       }
 
-      .live-board-header h3 {
-        letter-spacing: 0.03em;
+      .live-clock {
+        text-align: left;
+      }
+
+      .quote-board-action {
+        justify-self: start;
       }
 
       .setup-level + .setup-level {
@@ -1648,14 +1715,22 @@ export function cockpitPage(digest, initialTab = "public-view") {
               </div>
             </div>
           </div>
-          <div class="live-board-header">
-            <h3>Real Quote Board</h3>
-            <span id="liveClock" class="live-clock">Preparing quotes...</span>
+          <div class="quote-board-card">
+            <button id="quoteBoardToggle" class="quote-board-toggle" type="button" aria-expanded="false" aria-controls="quoteBoardBody">
+              <span class="quote-board-title">
+                <strong>Real Quote Board</strong>
+                <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
+              </span>
+              <span id="liveClock" class="live-clock">Preparing quotes...</span>
+              <span class="quote-board-action"><span id="quoteBoardState">Expand</span><span class="quote-board-chev">&#9662;</span></span>
+            </button>
+            <div id="quoteBoardBody" class="quote-board-body" hidden>
+              <div class="regional-breadth">
+                ${regionalBreadthHtml(digest)}
+              </div>
+              <div id="indexBoard" aria-label="Clickable live index quotes"></div>
+            </div>
           </div>
-          <div class="regional-breadth">
-            ${regionalBreadthHtml(digest)}
-          </div>
-          <div id="indexBoard" aria-label="Clickable live index quotes"></div>
         </section>
 
         ${algorithmicSetupHtml(digest)}
@@ -1871,6 +1946,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       drawScannerChart();
       bindTeleprompter();
       bindAssetGeneration();
+      bindQuoteBoardToggle();
       initLiveIndexBoard();
     });
 
@@ -1886,6 +1962,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     function initLiveIndexBoard() {
       window.__PUBLISHED_QUOTES__ = window.__DIGEST__.marketSnapshots;
+      window.__QUOTE_BOARD_EXPANDED__ = false;
       renderIndexBoard();
       updateLiveClock();
       bindIndexModal();
@@ -1895,6 +1972,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function renderIndexBoard() {
       const board = document.getElementById('indexBoard');
       if (!board || !window.__PUBLISHED_QUOTES__) return;
+      if (!window.__QUOTE_BOARD_EXPANDED__) {
+        board.innerHTML = '';
+        return;
+      }
       const grouped = groupQuotesByRegion(window.__PUBLISHED_QUOTES__);
       board.innerHTML = regionOrder().filter((region) => grouped.has(region)).map((region) => {
         const quotes = displayQuotesForRegion(region, grouped.get(region));
@@ -1905,6 +1986,29 @@ export function cockpitPage(digest, initialTab = "public-view") {
       }).join('');
       board.querySelectorAll('.index-tile').forEach((tile) => {
         tile.addEventListener('click', () => openIndexChart(tile.dataset.symbol));
+      });
+    }
+
+    function bindQuoteBoardToggle() {
+      const toggle = document.getElementById('quoteBoardToggle');
+      const body = document.getElementById('quoteBoardBody');
+      const state = document.getElementById('quoteBoardState');
+      if (!toggle || !body) return;
+
+      function setExpanded(expanded) {
+        window.__QUOTE_BOARD_EXPANDED__ = expanded;
+        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        toggle.classList.toggle('open', expanded);
+        body.hidden = !expanded;
+        if (state) {
+          state.textContent = expanded ? 'Collapse' : 'Expand';
+        }
+        renderIndexBoard();
+      }
+
+      setExpanded(false);
+      toggle.addEventListener('click', () => {
+        setExpanded(toggle.getAttribute('aria-expanded') !== 'true');
       });
     }
 

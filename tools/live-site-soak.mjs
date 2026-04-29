@@ -82,6 +82,7 @@ async function runCycle(page, cycle) {
 
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectDailyContent(page);
+  await expandQuoteBoard(page);
 
   const verifiedCharts = [];
   for (const symbol of expectedChartSymbols) {
@@ -149,6 +150,28 @@ async function expectDailyContent(page) {
   await expectOne(page.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
   await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
   await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
+  await expectOne(page.locator("#quoteBoardToggle"), "quote board toggle");
+  await expectOne(page.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
+  await expectOne(page.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
+  for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
+    assert.equal(await page.getByRole("heading", { name: region }).count(), 0, `${region} quote group should not render while collapsed`);
+  }
+  assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
+  await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
+  await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
+  await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
+}
+
+async function expandQuoteBoard(page) {
+  const toggle = page.locator("#quoteBoardToggle");
+  await expectOne(toggle, "quote board toggle before expansion");
+  await toggle.click();
+  await page.locator("#quoteBoardBody").waitFor({ state: "visible", timeout: 15_000 });
+  await expectOne(page.locator('#quoteBoardToggle[aria-expanded="true"]'), "expanded quote board toggle");
+  assert.equal(await page.locator("#quoteBoardBody[hidden]").count(), 0, "expanded quote board body should not be hidden");
+  for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
+    await expectOne(page.getByRole("heading", { name: region }), `${region} quote group after expansion`);
+  }
   await expectOne(page.getByRole("heading", { name: "Asia Watch" }), "asia watch heading");
   await expectOne(page.locator('button[data-symbol="NIKKEI"]').getByText("Japan - Nikkei 225", { exact: true }), "Japan Nikkei country label");
   await expectOne(page.locator('button[data-symbol="HSI"]').getByText("Hong Kong - Hang Seng", { exact: true }), "Hong Kong Hang Seng country label");
@@ -160,9 +183,6 @@ async function expectDailyContent(page) {
   const asiaBreadth = page.locator(".breadth-card").filter({ hasText: "Asia Watch (top 5 country markets)" });
   await expectOne(asiaBreadth, "top-five Asia breadth card");
   await expectOne(asiaBreadth.getByText(/\d of 5 country markets are higher; average move is/), "readable Asia breadth sentence");
-  await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
-  await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
-  await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
 }
 
 async function expectOne(locator, label) {
