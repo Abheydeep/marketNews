@@ -1,5 +1,6 @@
 package com.marketnarrative.config;
 
+import com.marketnarrative.identity.Auth0JwtAuthenticationConverter;
 import com.marketnarrative.identity.JwtAuthenticationFilter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,6 +47,11 @@ public class SecurityConfig {
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    Auth0JwtAuthenticationConverter auth0JwtAuthenticationConverter() {
+        return new Auth0JwtAuthenticationConverter();
     }
 
     @Bean

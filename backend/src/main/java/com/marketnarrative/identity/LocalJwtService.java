@@ -40,6 +40,16 @@ public class LocalJwtService {
         List<String> permissions = user.getRole() == UserRole.ADMIN
             ? List.of("admin:read", "admin:write")
             : List.of("public:read");
+        if (user.getRole() == UserRole.ADMIN) {
+            permissions = List.of(
+                "admin:read",
+                "admin:write",
+                "create:script",
+                "edit:script",
+                "generate:assets",
+                "publish:digest"
+            );
+        }
 
         Map<String, Object> header = Map.of("alg", "HS256", "typ", "JWT");
         Map<String, Object> payload = new LinkedHashMap<>();

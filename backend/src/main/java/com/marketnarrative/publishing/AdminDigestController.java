@@ -33,6 +33,7 @@ public class AdminDigestController {
     private final DailyScriptRepository dailyScriptRepository;
     private final AssetPromptService assetPromptService;
     private final AssetGenerationRepository assetGenerationRepository;
+    private final PublicDigestCachePublisher publicDigestCachePublisher;
     private final String digestZone;
 
     public AdminDigestController(
@@ -41,6 +42,7 @@ public class AdminDigestController {
         DailyScriptRepository dailyScriptRepository,
         AssetPromptService assetPromptService,
         AssetGenerationRepository assetGenerationRepository,
+        PublicDigestCachePublisher publicDigestCachePublisher,
         @Value("${app.digest.zone}") String digestZone
     ) {
         this.digestOrchestrator = digestOrchestrator;
@@ -48,11 +50,12 @@ public class AdminDigestController {
         this.dailyScriptRepository = dailyScriptRepository;
         this.assetPromptService = assetPromptService;
         this.assetGenerationRepository = assetGenerationRepository;
+        this.publicDigestCachePublisher = publicDigestCachePublisher;
         this.digestZone = digestZone;
     }
 
     @PostMapping("/digest/run")
-    @PreAuthorize("hasAuthority('admin:write')")
+    @PreAuthorize("hasAuthority('create:script')")
     public DigestRunResult runDigest(
         @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
     ) {
@@ -65,7 +68,7 @@ public class AdminDigestController {
     }
 
     @PutMapping("/scripts/{id}")
-    @PreAuthorize("hasAuthority('admin:write')")
+    @PreAuthorize("hasAuthority('edit:script')")
     @CacheEvict(cacheNames = "publicDigest", allEntries = true)
     public DailyScript updateScript(@PathVariable Long id, @Valid @RequestBody UpdateScriptRequest request) {
         DailyScript script = dailyScriptRepository.findById(id)
@@ -75,7 +78,7 @@ public class AdminDigestController {
     }
 
     @PostMapping("/scripts/{id}/regenerate")
-    @PreAuthorize("hasAuthority('admin:write')")
+    @PreAuthorize("hasAuthority('create:script')")
     @CacheEvict(cacheNames = "publicDigest", allEntries = true)
     public DailyScript regenerateScript(@PathVariable Long id) {
         DailyScript script = dailyScriptRepository.findById(id)
@@ -86,7 +89,7 @@ public class AdminDigestController {
     }
 
     @PostMapping("/assets/generate")
-    @PreAuthorize("hasAuthority('admin:write')")
+    @PreAuthorize("hasAuthority('generate:assets')")
     @CacheEvict(cacheNames = "publicDigest", allEntries = true)
     public AssetGeneration generateAsset(
         @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
@@ -98,13 +101,15 @@ public class AdminDigestController {
     }
 
     @PostMapping("/digest/{date}/publish")
-    @PreAuthorize("hasAuthority('admin:write')")
-    @CacheEvict(cacheNames = "publicDigest", allEntries = true)
+    @PreAuthorize("hasAuthority('publish:digest')")
+    @CacheEvict(cacheNames = "publicDigest", allEntries = true, beforeInvocation = true)
     public DailyScript publish(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         DailyScript script = dailyScriptRepository.findByDigestDate(date)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Digest not generated"));
         script.publish();
-        return dailyScriptRepository.save(script);
+        DailyScript saved = dailyScriptRepository.save(script);
+        publicDigestCachePublisher.publish(date, publicDigestService.getDigest(date));
+        return saved;
     }
 
     public record UpdateScriptRequest(

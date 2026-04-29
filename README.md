@@ -5,7 +5,11 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 ## Monorepo Layout
 
 - `backend/` - Java 17 Spring Boot modular monolith.
-- `frontend/` - Next.js public portal and admin studio.
+- `apps/public-portal/` - public Next.js SEO portal.
+- `apps/admin-studio/` - private React SPA command center.
+- `packages/ui/` - shared market design system.
+- `packages/api-client/` - typed API client and permission contracts.
+- `frontend/` - earlier combined Next.js prototype retained for reference.
 - `infra/` - Docker Compose for PostgreSQL and Redis.
 - `docs/` - Architecture notes, production roadmap, and resume framing.
 
@@ -117,6 +121,10 @@ The public quote board uses the generated `digest.json`; when hosted on GitHub P
 This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 15 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.
 
 See `docs/github-pages.md`.
+
+## Advanced Architecture Track
+
+The repo now includes the production architecture path described in `docs/advanced-architecture.md`: split public/admin frontend deployments, shared workspace packages, Auth0-style permission claims, agentic RAG extension points, Redis digest publication, and PostgreSQL monthly partitioning guidance.
 
 ## Run Infrastructure
 

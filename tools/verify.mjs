@@ -144,6 +144,39 @@ await test("database schema includes all planned persistence tables", async () =
   }
 });
 
+await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
+  const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
+  assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
+
+  const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
+  const adminPackage = JSON.parse(await readFile(join(rootDir, "apps", "admin-studio", "package.json"), "utf8"));
+  const uiPackage = JSON.parse(await readFile(join(rootDir, "packages", "ui", "package.json"), "utf8"));
+  const apiPackage = JSON.parse(await readFile(join(rootDir, "packages", "api-client", "package.json"), "utf8"));
+
+  assert.equal(publicPackage.name, "@market-narrative/public-portal");
+  assert.equal(adminPackage.name, "@market-narrative/admin-studio");
+  assert.equal(uiPackage.name, "@market-narrative/ui");
+  assert.equal(apiPackage.name, "@market-narrative/api-client");
+  assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
+  assert.ok(adminPackage.dependencies["@market-narrative/api-client"]);
+});
+
+await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {
+  const auth0Converter = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "identity", "Auth0JwtAuthenticationConverter.java"), "utf8");
+  const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "AdminDigestController.java"), "utf8");
+  const ragPipeline = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "ai", "MarketNarrativeRagPipeline.java"), "utf8");
+  const cachePublisher = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestCachePublisher.java"), "utf8");
+  const partitionPlan = await readFile(join(rootDir, "docs", "postgresql-partitioning.md"), "utf8");
+
+  assert.ok(auth0Converter.includes("permissions"));
+  for (const permission of ["create:script", "edit:script", "generate:assets", "publish:digest"]) {
+    assert.ok(adminController.includes(permission), `missing permission ${permission}`);
+  }
+  assert.ok(ragPipeline.includes("List<RagAgent>"));
+  assert.ok(cachePublisher.includes("opsForZSet"));
+  assert.ok(partitionPlan.includes("PARTITION BY RANGE (published_at)"));
+});
+
 await test("demo app serves public and admin flows without external packages", async () => {
   const app = await createDemoApp("2026-04-29");
   const digest = await app.request("GET", "/api/public/digest/today");

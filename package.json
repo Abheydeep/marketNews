@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "frontend"
+  ],
   "scripts": {
     "test": "node tools/verify.mjs",
     "demo": "node tools/demo-server.mjs",
     "daily:generate": "node tools/generate-daily-summary.mjs",
-    "site:publish": "node tools/publish-site.mjs"
+    "site:publish": "node tools/publish-site.mjs",
+    "public:dev": "npm --workspace @market-narrative/public-portal run dev",
+    "admin:dev": "npm --workspace @market-narrative/admin-studio run dev"
   }
 }
