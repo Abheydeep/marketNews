@@ -210,6 +210,21 @@ await test("backend market snapshot contract carries quote regions and chart sym
   assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
+await test("static publisher emits archive root and dated daily pages", async () => {
+  const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
+  assert.ok(publisher.includes("archivePage(digests)"));
+  assert.ok(publisher.includes("slugForDigest"));
+  assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
+  assert.ok(publisher.includes("Root index.html is the digest archive"));
+  assert.ok(publisher.includes("join(siteDir, slug"));
+  assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
+
+  const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
+  assert.ok(workflow.includes("contents: write"));
+  assert.ok(workflow.includes("Persist daily archive"));
+  assert.ok(workflow.includes("[skip ci]"));
+});
+
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);

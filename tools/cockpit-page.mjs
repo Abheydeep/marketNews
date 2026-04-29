@@ -1498,7 +1498,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
+        <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive"><span class="brand-mark">M</span><span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           <button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>

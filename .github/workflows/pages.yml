@@ -11,7 +11,7 @@ on:
     - cron: "*/15 3-21 * * 1-5"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -44,6 +44,16 @@ jobs:
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
           npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 08:30 --market-data live
           npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
+
+      - name: Persist daily archive
+        run: |
+          if [ -n "$(git status --short archive/daily)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add archive/daily
+            git commit -m "Archive daily market digest [skip ci]"
+            git push
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
