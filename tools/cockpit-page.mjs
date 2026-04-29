@@ -447,10 +447,16 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .modal-chart-container {
-      height: 390px;
+      height: min(560px, 72vh);
       border-radius: 10px;
       background: #fafaf9;
-      padding: 10px;
+      overflow: hidden;
+    }
+
+    .tradingview-widget-container,
+    .tradingview-widget-container__widget {
+      width: 100%;
+      height: 100%;
     }
 
     .metric {
@@ -1028,12 +1034,12 @@ export function cockpitPage(digest, initialTab = "public-view") {
       <div class="grid-main">
         <div class="stack">
           <section class="panel">
-            <h2>&#128202; Overnight Global Indices</h2>
+            <h2>&#128202; Latest Market Dashboard</h2>
             <div class="chart-container">
               <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
             </div>
             <div class="live-board-header">
-              <h3>Live Index Board</h3>
+              <h3>Real Quote Board</h3>
               <span id="liveClock" class="live-clock">Preparing quotes...</span>
             </div>
             <div id="indexBoard" class="index-grid" aria-label="Clickable live index quotes"></div>
@@ -1089,7 +1095,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
-          <canvas id="indexDetailChart" aria-label="Selected index chart"></canvas>
+          <div id="tradingViewChart" class="tradingview-widget-container" aria-label="Selected real market chart"></div>
         </div>
       </div>
     </div>
@@ -1252,85 +1258,60 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const digest = window.__DIGEST__;
       const canvas = document.getElementById('overnightChart');
       if (!canvas) return;
-      const source = window.__LIVE_QUOTES__ ?? digest.marketSnapshots;
+      const source = window.__PUBLISHED_QUOTES__ ?? digest.marketSnapshots;
       const data = source
-        .filter((item) => ['SPX', 'NDX', 'GIFTNIFTY', 'DXY', 'BRENT'].includes(item.symbol))
-        .map((item) => ({ label: item.name.replace('US Dollar Index', 'DXY'), value: item.changePercent }));
+        .map((item) => ({ label: compactMarketLabel(item), value: Number(item.changePercent) }));
       drawBarChart(canvas, data);
     }
 
     function initLiveIndexBoard() {
-      window.__LIVE_QUOTES__ = window.__DIGEST__.marketSnapshots.map((snapshot, index) => {
-        const history = buildInitialHistory(snapshot.closeValue, index);
-        return {
-          symbol: snapshot.symbol,
-          name: snapshot.name,
-          value: snapshot.closeValue,
-          baseValue: snapshot.closeValue / (1 + snapshot.changePercent / 100),
-          changePercent: snapshot.changePercent,
-          source: snapshot.source,
-          history
-        };
-      });
+      window.__PUBLISHED_QUOTES__ = window.__DIGEST__.marketSnapshots;
       renderIndexBoard();
       updateLiveClock();
-      setInterval(() => {
-        tickLiveQuotes();
-        renderIndexBoard();
-        drawOvernightChart();
-        updateOpenModalChart();
-        updateLiveClock();
-      }, 5000);
       bindIndexModal();
-    }
-
-    function buildInitialHistory(value, seed) {
-      const points = [];
-      for (let i = 0; i < 18; i += 1) {
-        const wave = Math.sin((i + seed) / 2.2) * value * 0.0018;
-        const drift = (i - 9) * value * 0.00008;
-        points.push(Number((value + wave + drift).toFixed(2)));
-      }
-      points.push(Number(value.toFixed(2)));
-      return points;
-    }
-
-    function tickLiveQuotes() {
-      window.__LIVE_QUOTES__ = window.__LIVE_QUOTES__.map((quote) => {
-        const status = marketStatusFor(quote.symbol);
-        if (!status.open) {
-          return quote;
-        }
-        const volatility = quote.symbol === 'BRENT' || quote.symbol === 'DXY' ? 0.0009 : 0.0014;
-        const impulse = (Math.random() - 0.48) * quote.value * volatility;
-        const value = Math.max(0.01, quote.value + impulse);
-        const changePercent = ((value - quote.baseValue) / quote.baseValue) * 100;
-        return {
-          ...quote,
-          value: Number(value.toFixed(2)),
-          changePercent: Number(changePercent.toFixed(3)),
-          history: [...quote.history.slice(-47), Number(value.toFixed(2))]
-        };
-      });
+      setInterval(refreshPublishedDigest, 60_000);
     }
 
     function renderIndexBoard() {
       const board = document.getElementById('indexBoard');
-      if (!board || !window.__LIVE_QUOTES__) return;
-      board.innerHTML = window.__LIVE_QUOTES__.map((quote) => {
+      if (!board || !window.__PUBLISHED_QUOTES__) return;
+      board.innerHTML = window.__PUBLISHED_QUOTES__.map((quote) => {
         const status = marketStatusFor(quote.symbol);
         const direction = quote.changePercent >= 0 ? 'up' : 'down';
-        const statusClass = status.open ? 'status live' : 'status';
+        const quality = quote.dataQuality === 'live' ? 'Real' : 'Fallback';
+        const statusClass = status.open && quote.dataQuality === 'live' ? 'status live' : 'status';
+        const quoteTime = formatQuoteTime(quote.dataTimestamp);
         return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
-          '<div class="symbol-row"><span class="symbol">' + quote.symbol + '</span><span class="' + statusClass + '">' + status.label + '</span></div>' +
+          '<div class="symbol-row"><span class="symbol">' + quote.symbol + '</span><span class="' + statusClass + '">' + quality + '</span></div>' +
           '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
-          '<div class="price">' + formatClientNumber(quote.value) + '</div>' +
+          '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
           '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
+          '<div class="name">' + status.label + (quoteTime ? ' · ' + quoteTime : '') + '</div>' +
         '</button>';
       }).join('');
       board.querySelectorAll('.index-tile').forEach((tile) => {
         tile.addEventListener('click', () => openIndexChart(tile.dataset.symbol));
       });
+    }
+
+    async function refreshPublishedDigest() {
+      try {
+        const response = await fetch('digest.json?ts=' + Date.now(), { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error('digest.json returned HTTP ' + response.status);
+        }
+        const digest = await response.json();
+        if (!Array.isArray(digest.marketSnapshots)) {
+          throw new Error('digest.json did not include market snapshots');
+        }
+        window.__DIGEST__ = { ...window.__DIGEST__, ...digest };
+        window.__PUBLISHED_QUOTES__ = digest.marketSnapshots;
+        renderIndexBoard();
+        drawOvernightChart();
+        updateLiveClock();
+      } catch (error) {
+        updateLiveClock('Waiting for next published quote file');
+      }
     }
 
     function bindIndexModal() {
@@ -1354,17 +1335,17 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const modal = document.getElementById('indexChartModal');
       const title = document.getElementById('indexChartTitle');
       const meta = document.getElementById('indexChartMeta');
-      const quote = window.__LIVE_QUOTES__.find((item) => item.symbol === symbol);
+      const quote = window.__PUBLISHED_QUOTES__.find((item) => item.symbol === symbol);
       if (!modal || !quote) return;
       const status = marketStatusFor(symbol);
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = quote.name + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Live browser updates every 5 seconds until ' + status.closeLabel + '.'
-        : 'Market closed. Chart is frozen at the latest generated value.';
+        ? 'Real TradingView chart. The quote board updates when the scheduled publisher refreshes digest.json.'
+        : 'Market closed. Opening the latest real TradingView chart for review.';
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
-      drawIndexDetailChart(quote);
+      loadTradingViewChart(quote);
     }
 
     function closeIndexChart() {
@@ -1373,80 +1354,94 @@ export function cockpitPage(digest, initialTab = "public-view") {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       window.__ACTIVE_INDEX_SYMBOL__ = null;
-    }
-
-    function updateOpenModalChart() {
-      if (!window.__ACTIVE_INDEX_SYMBOL__) return;
-      const quote = window.__LIVE_QUOTES__.find((item) => item.symbol === window.__ACTIVE_INDEX_SYMBOL__);
-      if (quote) {
-        drawIndexDetailChart(quote);
+      const container = document.getElementById('tradingViewChart');
+      if (container) {
+        container.innerHTML = '';
       }
     }
 
-    function drawIndexDetailChart(quote) {
-      const canvas = document.getElementById('indexDetailChart');
-      if (!canvas) return;
-      const { ctx, width, height } = scaleCanvas(canvas);
-      ctx.clearRect(0, 0, width, height);
-      const pad = { top: 24, right: 24, bottom: 42, left: 64 };
-      const values = quote.history;
-      const min = Math.min(...values) * 0.998;
-      const max = Math.max(...values) * 1.002;
-      const chartW = width - pad.left - pad.right;
-      const chartH = height - pad.top - pad.bottom;
-      const xFor = (index) => pad.left + (chartW / Math.max(1, values.length - 1)) * index;
-      const yFor = (value) => pad.top + ((max - value) / Math.max(0.0001, max - min)) * chartH;
-
-      ctx.strokeStyle = '#e7e5e4';
-      ctx.lineWidth = 1;
-      for (let i = 0; i <= 4; i += 1) {
-        const y = pad.top + (chartH / 4) * i;
-        ctx.beginPath();
-        ctx.moveTo(pad.left, y);
-        ctx.lineTo(width - pad.right, y);
-        ctx.stroke();
-      }
-
-      ctx.beginPath();
-      values.forEach((value, index) => {
-        const x = xFor(index);
-        const y = yFor(value);
-        if (index === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+    function loadTradingViewChart(quote) {
+      const container = document.getElementById('tradingViewChart');
+      if (!container) return;
+      container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      script.async = true;
+      script.text = JSON.stringify({
+        autosize: true,
+        symbol: quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol),
+        interval: '5',
+        timezone: 'exchange',
+        theme: 'light',
+        style: '1',
+        locale: 'en',
+        allow_symbol_change: true,
+        withdateranges: true,
+        details: true,
+        hide_side_toolbar: false,
+        calendar: false,
+        support_host: 'https://www.tradingview.com'
       });
-      ctx.strokeStyle = quote.changePercent >= 0 ? '#059669' : '#dc2626';
-      ctx.lineWidth = 3;
-      ctx.stroke();
-
-      const lastX = xFor(values.length - 1);
-      const lastY = yFor(values[values.length - 1]);
-      ctx.fillStyle = quote.changePercent >= 0 ? '#059669' : '#dc2626';
-      ctx.beginPath();
-      ctx.arc(lastX, lastY, 5, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#334155';
-      ctx.font = 'bold 18px Arial';
-      ctx.textAlign = 'left';
-      ctx.fillText(formatClientNumber(quote.value) + '  ' + formatClientChange(quote.changePercent), pad.left, 22);
-      ctx.font = '12px Arial';
-      ctx.fillStyle = '#78716c';
-      ctx.fillText('Intraday browser chart. Replace the mock quote source with a real API for production.', pad.left, height - 14);
+      container.appendChild(script);
     }
 
-    function updateLiveClock() {
+    function updateLiveClock(note) {
       const clock = document.getElementById('liveClock');
       if (!clock) return;
-      const openCount = (window.__LIVE_QUOTES__ ?? []).filter((quote) => marketStatusFor(quote.symbol).open).length;
+      const quotes = window.__PUBLISHED_QUOTES__ ?? [];
+      const openCount = quotes.filter((quote) => marketStatusFor(quote.symbol).open).length;
+      const latest = latestQuoteTime(quotes);
       const time = new Intl.DateTimeFormat('en-IN', {
         timeZone: 'Asia/Kolkata',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
       }).format(new Date());
-      clock.textContent = openCount > 0
-        ? 'Updating live · IST ' + time
-        : 'Markets closed · frozen · IST ' + time;
+      const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'Fallback quotes';
+      clock.textContent = (note ? note + ' · ' : '') +
+        (openCount > 0 ? 'Market open' : 'Markets closed') +
+        ' · ' + mode +
+        (latest ? ' · latest ' + latest : '') +
+        ' · checked IST ' + time;
+    }
+
+    function compactMarketLabel(item) {
+      return String(item.name)
+        .replace('US Dollar Index', 'DXY')
+        .replace('Nasdaq 100', 'Nasdaq')
+        .replace('Dow Jones', 'Dow');
+    }
+
+    function latestQuoteTime(quotes) {
+      const timestamps = quotes
+        .map((quote) => Date.parse(quote.dataTimestamp))
+        .filter((value) => Number.isFinite(value));
+      if (!timestamps.length) return '';
+      return formatQuoteTime(new Date(Math.max(...timestamps)).toISOString());
+    }
+
+    function formatQuoteTime(value) {
+      if (!value) return '';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return '';
+      return new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+    }
+
+    function fallbackTradingViewSymbol(symbol) {
+      return {
+        SPX: 'SP:SPX',
+        NDX: 'NASDAQ:NDX',
+        DJI: 'DJ:DJI',
+        NIFTY: 'NSE:NIFTY',
+        BANKNIFTY: 'NSE:BANKNIFTY',
+        DXY: 'TVC:DXY',
+        BRENT: 'TVC:UKOIL'
+      }[symbol] ?? 'SP:SPX';
     }
 
     function marketStatusFor(symbol) {

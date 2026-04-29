@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
@@ -15,13 +16,15 @@ export async function loadSeeds() {
   return { marketSnapshots, news, priceSeries, creator };
 }
 
-export async function buildDigest(date = todayIso()) {
+export async function buildDigest(date = todayIso(), options = {}) {
   const started = performance.now();
-  const [marketSnapshots, news, priceSeriesSeed] = await Promise.all([
+  const [seedMarketSnapshots, news, priceSeriesSeed] = await Promise.all([
     delayedRead("market-snapshots.json", 35),
     delayedRead("news.json", 55),
     delayedRead("price-bars.json", 45)
   ]);
+  const marketDataMode = options.marketDataMode ?? process.env.MARKET_DATA_MODE ?? "mock";
+  const { marketSnapshots, marketDataError } = await resolveMarketSnapshots(seedMarketSnapshots, marketDataMode);
 
   const articles = news.map((article) => ({
     publishedAt: `${date}T${article.publishedTime}+05:30`,
@@ -57,8 +60,28 @@ export async function buildDigest(date = todayIso()) {
     themes,
     tradeSetups,
     asset,
+    marketDataMode,
+    marketDataError,
     durationMillis: Math.round(performance.now() - started)
   };
+}
+
+async function resolveMarketSnapshots(seedMarketSnapshots, marketDataMode) {
+  if (marketDataMode !== "live") {
+    return { marketSnapshots: seedMarketSnapshots, marketDataError: null };
+  }
+
+  try {
+    return {
+      marketSnapshots: await fetchLiveMarketSnapshots(),
+      marketDataError: null
+    };
+  } catch (error) {
+    return {
+      marketSnapshots: markSnapshotsAsFallback(seedMarketSnapshots, error.message),
+      marketDataError: error.message
+    };
+  }
 }
 
 export function scanPriceSeries(date, priceSeriesSeed) {

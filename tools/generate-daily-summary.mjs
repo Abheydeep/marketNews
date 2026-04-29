@@ -7,13 +7,14 @@ import { cockpitPage } from "./cockpit-page.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "08:30";
+const marketDataMode = readArg("--market-data") ?? process.env.MARKET_DATA_MODE ?? "mock";
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const digest = {
-  ...(await buildDigest(date)),
+  ...(await buildDigest(date, { marketDataMode })),
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
-  runMode: "manual-simulated-schedule"
+  runMode: marketDataMode === "live" ? "scheduled-live-market-data" : "manual-mock-schedule"
 };
 
 await mkdir(outputDir, { recursive: true });
@@ -27,6 +28,10 @@ await writeFile(htmlPath, cockpitPage(digest, "public-view"), "utf8");
 process.stdout.write(`Daily pre-market summary generated for ${date}\n`);
 process.stdout.write(`Scheduled-for timestamp: ${digest.scheduledFor}\n`);
 process.stdout.write(`Generated-at timestamp: ${digest.generatedAt}\n`);
+process.stdout.write(`Market-data mode: ${digest.marketDataMode}\n`);
+if (digest.marketDataError) {
+  process.stdout.write(`Market-data fallback: ${digest.marketDataError}\n`);
+}
 process.stdout.write(`JSON: ${jsonPath}\n`);
 process.stdout.write(`HTML: ${htmlPath}\n`);
 

@@ -12,7 +12,7 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 ## MVP Workflow
 
 1. Admin triggers the digest run from Studio Mode.
-2. Backend concurrently loads mock market snapshots, news articles, and Nifty price bars.
+2. Backend concurrently loads market snapshots, news articles, and Nifty price bars.
 3. News is clustered into market narrative themes.
 4. Technical scanner validates only 1:2+ risk-reward setups.
 5. Script generator builds a deterministic teleprompter script.
@@ -104,11 +104,17 @@ After generating the daily summary, prepare a deployable static site:
 npm run site:publish -- --date 2026-04-29 --scheduled-time 08:30
 ```
 
-This creates `out/site/index.html` and `out/site/digest.json`. See `docs/hosting.md` for hosting options and what is needed for automatic daily or live data updates.
+This creates `out/site/index.html` and `out/site/digest.json`. Use live Yahoo Finance market snapshots during generation with:
+
+```bash
+npm run daily:generate -- --market-data live
+```
+
+The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a real TradingView chart instead of a generated canvas chart.
 
 ## GitHub Pages
 
-This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every weekday at 08:30 IST.
+This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 15 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.
 
 See `docs/github-pages.md`.
 

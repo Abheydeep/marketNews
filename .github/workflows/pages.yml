@@ -6,8 +6,9 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    # 08:30 IST, Monday-Friday.
-    - cron: "0 3 * * 1-5"
+    # Refresh every 15 minutes across Indian and US market windows on weekdays.
+    # 03:00 UTC includes the 08:30 IST pre-market publish.
+    - cron: "*/15 3-21 * * 1-5"
 
 permissions:
   contents: read
@@ -33,10 +34,15 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Test generator
+        run: npm test
+
       - name: Generate daily 8:30 IST summary
+        env:
+          MARKET_DATA_MODE: live
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 08:30
+          npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 08:30 --market-data live
           npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
 
       - name: Upload Pages artifact

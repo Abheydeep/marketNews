@@ -8,6 +8,12 @@ The current ready-to-host output is a static website.
 npm run daily:generate -- --date 2026-04-29 --scheduled-time 08:30
 ```
 
+For hosted market snapshots from Yahoo Finance, run:
+
+```bash
+npm run daily:generate -- --date 2026-04-29 --scheduled-time 08:30 --market-data live
+```
+
 ## Prepare Static Site Folder
 
 ```bash
@@ -29,20 +35,21 @@ Upload `out/site/` to any static host:
 
 ## Will It Change Automatically?
 
-Not yet. The current implementation uses mock seed data, then exports a static HTML page.
+On GitHub Pages, yes, within the limits of a static host. The workflow republishes `out/site` every 15 minutes across weekday Indian and US market windows. The page also checks `digest.json` every minute, so visitors see the newest published quote file without a manual refresh.
+
+The quote snapshots are fetched server-side by GitHub Actions from Yahoo Finance's chart endpoint. The browser does not fake ticks. Clicking an index opens a real TradingView chart.
 
 To make it change daily:
 
-1. Replace mock adapters with real market/news APIs.
-2. Run `npm run daily:generate` every weekday at 8:30 AM IST.
+1. Run `npm run daily:generate -- --market-data live` every weekday at 8:30 AM IST.
 3. Run `npm run site:publish` after generation.
 4. Deploy the updated `out/site/` folder to the host.
 
-To make it change intraday as indices/stocks move:
+To make it tick-by-tick as indices/stocks move:
 
-1. Add a live data feed such as Kite Connect, Yahoo Finance polling, or another licensed data provider.
+1. Add an always-on backend with a licensed live data feed such as Kite Connect or another market data provider.
 2. Store fresh quotes in the backend.
 3. Re-render or hydrate the frontend from an API.
 4. Use WebSockets or periodic refresh for live updates.
 
-For the resume MVP, daily 8:30 regeneration is the clean first production milestone. Live market updates should be phase two because they require API credentials, rate-limit handling, and market-data licensing decisions.
+For the resume MVP, the GitHub Pages version is near-real-time through scheduled republishes. True tick-by-tick updates should be phase two because they require API credentials, rate-limit handling, and market-data licensing decisions.

@@ -7,8 +7,8 @@ This repo is configured to publish the Market Narrative static site through GitH
 The workflow in `.github/workflows/pages.yml`:
 
 1. Runs on every push to `main`.
-2. Runs every weekday at 08:30 IST.
-3. Generates the daily summary.
+2. Runs every 15 minutes across weekday Indian and US market windows, including 08:30 IST.
+3. Fetches live Yahoo Finance market snapshots, generates the daily summary, and runs tests.
 4. Publishes `out/site` to GitHub Pages.
 
 ## First-Time GitHub Setup
@@ -28,4 +28,6 @@ https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 
 ## Data Behavior
 
-The hosted page updates when the GitHub Action runs. Right now the generator uses mock seed data. To make the hosted page track real market movement, replace the mock adapters with real APIs and keep the same scheduled workflow.
+The hosted page updates when the GitHub Action runs. The workflow uses `--market-data live`, so index values are server-side snapshots from Yahoo Finance rather than browser-generated ticks. The page checks `digest.json` every minute and updates when GitHub Pages has a newer published file.
+
+Clicking an index opens a TradingView chart, so the detailed chart is real market data rather than a local canvas mock.

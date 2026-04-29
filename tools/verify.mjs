@@ -14,6 +14,7 @@ import {
   scanPriceSeries,
   weightedSentiment
 } from "./core.mjs";
+import { normalizeYahooChartResult } from "./market-data.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
@@ -69,6 +70,46 @@ await test("full digest contains public SEO and studio contracts", async () => {
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
+});
+
+await test("Yahoo market data normalization calculates previous-close change", () => {
+  const snapshot = normalizeYahooChartResult(
+    {
+      symbol: "SPX",
+      name: "S&P 500",
+      yahooSymbol: "^GSPC",
+      tradingViewSymbol: "SP:SPX"
+    },
+    {
+      chart: {
+        result: [
+          {
+            meta: {
+              currency: "USD",
+              symbol: "^GSPC",
+              regularMarketPrice: 7127.1,
+              chartPreviousClose: 7138.8,
+              regularMarketTime: 1777478873,
+              exchangeTimezoneName: "America/New_York"
+            },
+            indicators: { quote: [{ close: [7127.1] }] }
+          }
+        ]
+      }
+    }
+  );
+  assert.equal(snapshot.symbol, "SPX");
+  assert.equal(snapshot.closeValue, 7127.1);
+  assert.equal(snapshot.previousClose, 7138.8);
+  assert.equal(snapshot.changePercent, -0.164);
+  assert.equal(snapshot.dataQuality, "live");
+  assert.equal(snapshot.tradingViewSymbol, "SP:SPX");
+});
+
+await test("non-live market data modes preserve the digest contract without network", async () => {
+  const digest = await buildDigest("2026-04-29", { marketDataMode: "live-offline-test" });
+  assert.equal(digest.marketDataMode, "live-offline-test");
+  assert.ok(digest.marketSnapshots.every((snapshot) => snapshot.closeValue));
 });
 
 await test("backend source exposes required MVP API endpoints", async () => {
@@ -133,10 +174,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
   assert.ok(publicHtml.body.includes("Invalidation"));
-  assert.ok(publicHtml.body.includes("Live Index Board"));
+  assert.ok(publicHtml.body.includes("Real Quote Board"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
-  assert.ok(publicHtml.body.includes("tickLiveQuotes"));
+  assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
+  assert.ok(publicHtml.body.includes("tradingViewChart"));
+  assert.ok(!publicHtml.body.includes("tickLiveQuotes"));
+  assert.ok(!publicHtml.body.includes("Math.random"));
+  assert.ok(!publicHtml.body.includes("mock quote source"));
   assert.ok(publicHtml.body.includes("overnightChart"));
   assert.ok(publicHtml.body.includes("teleprompterContainer"));
   assert.ok(publicHtml.body.includes("generateAssetBtn"));
