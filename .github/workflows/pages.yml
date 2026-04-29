@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Generate daily 8:30 IST summary
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
