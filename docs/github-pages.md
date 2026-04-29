@@ -30,4 +30,4 @@ https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 
 The hosted page updates when the GitHub Action runs. The workflow uses `--market-data live`, so index values are server-side snapshots from Yahoo Finance rather than browser-generated ticks. The page checks `digest.json` every minute and updates when GitHub Pages has a newer published file.
 
-Clicking an index opens a TradingView chart, so the detailed chart is real market data rather than a local canvas mock.
+Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during the scheduled generation. The modal also links to the matching Yahoo Finance chart for the external full view.

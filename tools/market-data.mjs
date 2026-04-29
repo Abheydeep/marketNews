@@ -187,8 +187,41 @@ export function normalizeYahooChartResult(definition, payload) {
     tradingViewSymbol: definition.tradingViewSymbol,
     marketRegion: definition.marketRegion,
     session: definition.session,
-    dataQuality: "live"
+    dataQuality: "live",
+    chartPoints: buildChartPoints(result)
   };
+}
+
+function buildChartPoints(result) {
+  const timestamps = result?.timestamp ?? [];
+  const closes = result?.indicators?.quote?.[0]?.close ?? [];
+  const points = [];
+
+  for (let index = 0; index < Math.min(timestamps.length, closes.length); index += 1) {
+    const timestamp = Number(timestamps[index]);
+    const close = Number(closes[index]);
+    if (Number.isFinite(timestamp) && Number.isFinite(close) && close > 0) {
+      points.push({
+        time: new Date(timestamp * 1000).toISOString(),
+        close: round(close, 2)
+      });
+    }
+  }
+
+  return thinChartPoints(points, 180);
+}
+
+function thinChartPoints(points, maxPoints) {
+  if (points.length <= maxPoints) {
+    return points;
+  }
+
+  const thinned = [];
+  const step = (points.length - 1) / (maxPoints - 1);
+  for (let index = 0; index < maxPoints; index += 1) {
+    thinned.push(points[Math.round(index * step)]);
+  }
+  return thinned;
 }
 
 export function markSnapshotsAsFallback(seedSnapshots, reason) {

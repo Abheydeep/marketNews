@@ -898,13 +898,40 @@ export function cockpitPage(digest, initialTab = "public-view") {
       height: min(560px, 72vh);
       border-radius: 10px;
       background: #fafaf9;
+      border: 1px solid #e5e7eb;
       overflow: hidden;
     }
 
-    .tradingview-widget-container,
-    .tradingview-widget-container__widget {
+    .market-chart-preview {
+      display: flex;
+      flex-direction: column;
       width: 100%;
       height: 100%;
+      padding: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .market-chart-canvas {
+      width: 100%;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .market-chart-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 14px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .market-chart-caption strong {
+      color: #111827;
+      font-size: 13px;
     }
 
     .chart-fallback {
@@ -937,7 +964,6 @@ export function cockpitPage(digest, initialTab = "public-view") {
       line-height: 1.55;
     }
 
-    .chart-fallback a,
     .chart-link-btn {
       display: inline-flex;
       align-items: center;
@@ -1595,16 +1621,21 @@ export function cockpitPage(digest, initialTab = "public-view") {
             <h2 id="indexChartTitle">Index Chart</h2>
             <p id="indexChartMeta">Real market chart with the latest published snapshot.</p>
           </div>
-          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noreferrer">Open Full Chart</a>
+          <a id="openFullChart" class="chart-link-btn" href="https://finance.yahoo.com/markets/" target="_blank" rel="noreferrer">Open Yahoo Chart</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
-          <div id="tradingViewChart" class="tradingview-widget-container" aria-label="Selected real market chart"></div>
+          <div id="marketChartPreview" class="market-chart-preview" aria-label="Selected market chart preview">
+            <canvas id="marketChartCanvas" class="market-chart-canvas" aria-label="Yahoo Finance intraday price chart"></canvas>
+            <div class="market-chart-caption">
+              <strong id="marketChartSource">Yahoo Finance price series</strong>
+              <span id="marketChartRange">Waiting for chart data</span>
+            </div>
+          </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
-              <h3>Chart Preview Is Loading</h3>
-              <p>If the embedded widget is blocked by the browser, use the full chart link for the live TradingView view.</p>
-              <a id="fallbackChartLink" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noreferrer">Open Full Chart</a>
+              <h3>Chart Data Is Not Available</h3>
+              <p>This briefing has the latest quote, but the intraday series was not published for this symbol. Use the full chart link for the external view.</p>
             </div>
           </div>
         </div>
@@ -1854,6 +1885,13 @@ export function cockpitPage(digest, initialTab = "public-view") {
         window.__PUBLISHED_QUOTES__ = digest.marketSnapshots;
         renderIndexBoard();
         drawOvernightChart();
+        if (window.__ACTIVE_INDEX_SYMBOL__) {
+          const activeQuote = window.__PUBLISHED_QUOTES__.find((item) => item.symbol === window.__ACTIVE_INDEX_SYMBOL__);
+          if (activeQuote) {
+            drawIndexChartPreview(activeQuote);
+            setChartLinks(activeQuote);
+          }
+        }
         updateLiveClock();
       } catch (error) {
         updateLiveClock('Waiting for next published quote file');
@@ -1887,12 +1925,12 @@ export function cockpitPage(digest, initialTab = "public-view") {
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = quote.name + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Real TradingView chart. The quote board updates when the scheduled publisher refreshes digest.json.'
-        : 'Market closed. Opening the latest real TradingView chart for review.';
+        ? 'Real Yahoo Finance price series from the latest published digest. The board refreshes every scheduled publish.'
+        : 'Market closed. Showing the latest published Yahoo Finance price series for review.';
       setChartLinks(quote);
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
-      loadTradingViewChart(quote);
+      drawIndexChartPreview(quote);
     }
 
     function closeIndexChart() {
@@ -1901,9 +1939,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       window.__ACTIVE_INDEX_SYMBOL__ = null;
-      const container = document.getElementById('tradingViewChart');
-      if (container) {
-        container.innerHTML = '';
+      const canvas = document.getElementById('marketChartCanvas');
+      if (canvas) {
+        canvas.dataset.renderState = 'idle';
       }
       const fallback = document.getElementById('chartFallback');
       if (fallback) {
@@ -1912,49 +1950,46 @@ export function cockpitPage(digest, initialTab = "public-view") {
       }
     }
 
-    function loadTradingViewChart(quote) {
-      const container = document.getElementById('tradingViewChart');
-      if (!container) return;
+    function drawIndexChartPreview(quote) {
+      const canvas = document.getElementById('marketChartCanvas');
+      const source = document.getElementById('marketChartSource');
+      const range = document.getElementById('marketChartRange');
+      if (!canvas) return;
       const fallback = document.getElementById('chartFallback');
       if (fallback) {
         fallback.classList.remove('visible');
         fallback.setAttribute('aria-hidden', 'true');
       }
-      container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-      script.async = true;
-      script.innerHTML = JSON.stringify({
-        autosize: true,
-        symbol: quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol),
-        interval: '5',
-        timezone: 'exchange',
-        theme: 'light',
-        style: '1',
-        locale: 'en',
-        allow_symbol_change: true,
-        withdateranges: true,
-        details: true,
-        hide_side_toolbar: false,
-        calendar: false,
-        support_host: 'https://www.tradingview.com'
-      });
-      script.onerror = () => showChartFallback();
-      container.appendChild(script);
-      setTimeout(() => {
-        if (!container.querySelector('iframe')) {
-          showChartFallback();
-        }
-      }, 3500);
+      const points = Array.isArray(quote.chartPoints)
+        ? quote.chartPoints.filter((point) => Number.isFinite(Number(point.close)))
+        : [];
+      if (points.length < 2) {
+        canvas.dataset.renderState = 'missing-data';
+        showChartFallback();
+        if (range) range.textContent = 'No intraday series in this digest';
+        return;
+      }
+      if (source) {
+        source.textContent = (quote.source || 'Yahoo Finance chart API') + ' - ' + (quote.dataQuality === 'live' ? 'live capture' : 'fallback capture');
+      }
+      if (range) {
+        range.textContent = formatQuoteTime(points[0].time) + ' to ' + formatQuoteTime(points.at(-1).time) + ' IST';
+      }
+      drawMarketSeriesChart(canvas, quote, points);
+      canvas.dataset.renderState = 'rendered';
     }
 
     function setChartLinks(quote) {
-      const url = tradingViewUrl(quote);
+      const url = yahooFinanceChartUrl(quote);
       const open = document.getElementById('openFullChart');
-      const fallback = document.getElementById('fallbackChartLink');
       if (open) open.href = url;
-      if (fallback) fallback.href = url;
+    }
+
+    function yahooFinanceChartUrl(quote) {
+      if (quote.yahooSymbol) {
+        return 'https://finance.yahoo.com/quote/' + encodeURIComponent(quote.yahooSymbol) + '/chart/';
+      }
+      return tradingViewUrl(quote);
     }
 
     function tradingViewUrl(quote) {
@@ -2119,6 +2154,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
       return Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 });
     }
 
+    function formatCompactNumber(value) {
+      return Number(value).toLocaleString('en-IN', { maximumFractionDigits: Math.abs(Number(value)) >= 1000 ? 0 : 2 });
+    }
+
     function formatClientChange(value) {
       return (value >= 0 ? '+' : '') + Number(value).toFixed(2) + '%';
     }
@@ -2199,6 +2238,102 @@ export function cockpitPage(digest, initialTab = "public-view") {
         ctx.font = data.length > 9 ? 'bold 10px Arial' : 'bold 12px Arial';
         ctx.fillText((item.value >= 0 ? '+' : '') + item.value.toFixed(2) + '%', x + barW / 2, barTop - 8);
       });
+    }
+
+    function drawMarketSeriesChart(canvas, quote, points) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+
+      const pad = { top: 28, right: 28, bottom: 46, left: 70 };
+      const chartW = Math.max(1, width - pad.left - pad.right);
+      const chartH = Math.max(1, height - pad.top - pad.bottom);
+      const values = points.map((point) => Number(point.close));
+      const previous = Number(quote.previousClose);
+      const allValues = Number.isFinite(previous) ? [...values, previous] : values;
+      let min = Math.min(...allValues);
+      let max = Math.max(...allValues);
+      const spread = Math.max(max - min, Math.abs(max) * 0.002, 1);
+      min -= spread * 0.18;
+      max += spread * 0.18;
+      const xFor = (index) => pad.left + (chartW / Math.max(1, points.length - 1)) * index;
+      const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
+      const lineColor = Number(quote.changePercent) >= 0 ? '#059669' : '#dc2626';
+
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      ctx.font = '11px Arial';
+      ctx.fillStyle = '#64748b';
+      ctx.textAlign = 'right';
+      for (let i = 0; i <= 4; i += 1) {
+        const value = min + ((max - min) / 4) * i;
+        const y = yFor(value);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        ctx.fillText(formatCompactNumber(value), pad.left - 10, y + 4);
+      }
+
+      if (Number.isFinite(previous)) {
+        const y = yFor(previous);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#64748b';
+        ctx.textAlign = 'left';
+        ctx.fillText('Prev close ' + formatCompactNumber(previous), pad.left + 8, y - 7);
+      }
+
+      const gradient = ctx.createLinearGradient(0, pad.top, 0, height - pad.bottom);
+      gradient.addColorStop(0, Number(quote.changePercent) >= 0 ? 'rgba(5, 150, 105, 0.22)' : 'rgba(220, 38, 38, 0.20)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.beginPath();
+      points.forEach((point, index) => {
+        const x = xFor(index);
+        const y = yFor(Number(point.close));
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.lineTo(xFor(points.length - 1), height - pad.bottom);
+      ctx.lineTo(xFor(0), height - pad.bottom);
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.beginPath();
+      points.forEach((point, index) => {
+        const x = xFor(index);
+        const y = yFor(Number(point.close));
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 3;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      const first = points[0];
+      const last = points.at(-1);
+      ctx.fillStyle = '#475569';
+      ctx.textAlign = 'left';
+      ctx.font = '12px Arial';
+      ctx.fillText(formatQuoteTime(first.time) || 'Start', pad.left, height - 16);
+      ctx.textAlign = 'right';
+      ctx.fillText(formatQuoteTime(last.time) || 'Latest', width - pad.right, height - 16);
+
+      ctx.fillStyle = '#111827';
+      ctx.textAlign = 'left';
+      ctx.font = 'bold 18px Arial';
+      ctx.fillText(formatClientNumber(quote.closeValue) + ' (' + formatClientChange(quote.changePercent) + ')', pad.left, 20);
+      ctx.fillStyle = '#64748b';
+      ctx.textAlign = 'right';
+      ctx.font = '12px Arial';
+      ctx.fillText(points.length + ' captured points', width - pad.right, 20);
     }
 
     function drawLineChart(canvas, setup) {

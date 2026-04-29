@@ -114,7 +114,7 @@ This creates `out/site/index.html` and `out/site/digest.json`. Use live Yahoo Fi
 npm run daily:generate -- --market-data live
 ```
 
-The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a real TradingView chart instead of a generated canvas chart.
+The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
 
 ## GitHub Pages
 

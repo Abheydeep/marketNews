@@ -109,7 +109,8 @@ await test("Yahoo market data normalization calculates previous-close change", (
               regularMarketTime: 1777478873,
               exchangeTimezoneName: "America/New_York"
             },
-            indicators: { quote: [{ close: [7127.1] }] }
+            timestamp: [1777478753, 1777478813, 1777478873],
+            indicators: { quote: [{ close: [7118.4, 7122.8, 7127.1] }] }
           }
         ]
       }
@@ -122,6 +123,8 @@ await test("Yahoo market data normalization calculates previous-close change", (
   assert.equal(snapshot.dataQuality, "live");
   assert.equal(snapshot.tradingViewSymbol, "SP:SPX");
   assert.equal(snapshot.marketRegion, undefined);
+  assert.equal(snapshot.chartPoints.length, 3);
+  assert.equal(snapshot.chartPoints.at(-1).close, 7127.1);
 });
 
 await test("Yahoo market data normalization preserves region metadata", () => {
@@ -146,7 +149,8 @@ await test("Yahoo market data normalization preserves region metadata", () => {
               regularMarketTime: 1777478873,
               exchangeTimezoneName: "Asia/Tokyo"
             },
-            indicators: { quote: [{ close: [38105.2] }] }
+            timestamp: [1777478753, 1777478813, 1777478873],
+            indicators: { quote: [{ close: [37984.4, 38011.7, 38105.2] }] }
           }
         ]
       }
@@ -156,6 +160,7 @@ await test("Yahoo market data normalization preserves region metadata", () => {
   assert.equal(snapshot.marketRegion, "Asia Watch");
   assert.equal(snapshot.session, "tokyo");
   assert.equal(snapshot.changePercent, 0.511);
+  assert.equal(snapshot.chartPoints.length, 3);
 });
 
 await test("non-live market data modes preserve the digest contract without network", async () => {
@@ -303,10 +308,11 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Real Quote Board"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
-  assert.ok(publicHtml.body.includes("Open Full Chart"));
+  assert.ok(publicHtml.body.includes("Open Yahoo Chart"));
   assert.ok(publicHtml.body.includes("chartFallback"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
-  assert.ok(publicHtml.body.includes("tradingViewChart"));
+  assert.ok(publicHtml.body.includes("marketChartCanvas"));
+  assert.ok(publicHtml.body.includes("drawMarketSeriesChart"));
   assert.ok(!publicHtml.body.includes("tickLiveQuotes"));
   assert.ok(!publicHtml.body.includes("Math.random"));
   assert.ok(!publicHtml.body.includes("mock quote source"));

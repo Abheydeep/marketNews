@@ -6,6 +6,22 @@ const { chromium } = require("playwright");
 
 const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
+const expectedChartSymbols = [
+  "SPX",
+  "NDX",
+  "DJI",
+  "NIKKEI",
+  "HSI",
+  "SHCOMP",
+  "KOSPI",
+  "TAIEX",
+  "STI",
+  "ASX200",
+  "NIFTY",
+  "BANKNIFTY",
+  "DXY",
+  "BRENT"
+];
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
@@ -32,8 +48,9 @@ try {
       [
         `cycle=${result.cycle}`,
         `daily=${result.dailyUrl}`,
-        `chartTitle="${result.chartTitle}"`,
-        `chartLink=${result.chartHref}`,
+        `charts=${result.verifiedCharts}`,
+        `sampleChart="${result.chartTitle}"`,
+        `sampleLink=${result.chartHref}`,
         `admin=${result.adminReady}`
       ].join(" | ")
     );
@@ -59,28 +76,19 @@ async function runCycle(page, cycle) {
   );
 
   await Promise.all([
-    page.waitForURL(/\/marketNews\/29apr2026\/?/, { timeout: 30_000 }),
+    page.waitForURL(/\/(?:marketNews\/)?29apr2026\/?/, { timeout: 30_000, waitUntil: "domcontentloaded" }),
     openDailyLink.click()
   ]);
-  assert.ok(page.url().includes("/marketNews/29apr2026/"), `archive card opened unexpected URL: ${page.url()}`);
+  assert.ok(/\/(?:marketNews\/)?29apr2026\/?/.test(page.url()), `archive card opened unexpected URL: ${page.url()}`);
   await expectDailyContent(page);
 
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectDailyContent(page);
 
-  const nikkeiTile = page.locator('button[data-symbol="NIKKEI"]');
-  await expectOne(nikkeiTile, "Nikkei index tile");
-  await nikkeiTile.click();
-  await page.locator("#indexChartModal.open").waitFor({ state: "visible", timeout: 15_000 });
-  const chartTitle = await page.locator("#indexChartTitle").innerText({ timeout: 10_000 });
-  const chartHref = await page.locator("#openFullChart").getAttribute("href", { timeout: 10_000 });
-  assert.ok(chartTitle.includes("Nikkei 225"), `chart title should identify Nikkei 225, got ${chartTitle}`);
-  assert.ok(chartHref?.includes("TVC%3ANI225"), `Nikkei chart link should use TradingView NI225, got ${chartHref}`);
-
-  const closeChart = page.getByRole("button", { name: "Close index chart" });
-  await expectOne(closeChart, "chart close button");
-  await closeChart.click();
-  await page.locator("#indexChartModal.open").waitFor({ state: "hidden", timeout: 15_000 });
+  const verifiedCharts = [];
+  for (const symbol of expectedChartSymbols) {
+    verifiedCharts.push(await verifyIndexChart(page, symbol));
+  }
 
   const adminTab = page.getByRole("button", { name: "Studio Command (Admin)" });
   await expectOne(adminTab, "studio command tab");
@@ -91,10 +99,48 @@ async function runCycle(page, cycle) {
   return {
     cycle,
     dailyUrl: page.url(),
-    chartTitle,
-    chartHref,
+    chartTitle: verifiedCharts[0].title,
+    chartHref: verifiedCharts[0].href,
+    verifiedCharts: verifiedCharts.length,
     adminReady: true
   };
+}
+
+async function verifyIndexChart(page, symbol) {
+  const tile = page.locator(`button[data-symbol="${symbol}"]`);
+  await expectOne(tile, `${symbol} index tile`);
+  await tile.click();
+  await page.locator("#indexChartModal.open").waitFor({ state: "visible", timeout: 15_000 });
+
+  const title = await page.locator("#indexChartTitle").innerText({ timeout: 10_000 });
+  const href = await page.locator("#openFullChart").getAttribute("href", { timeout: 10_000 });
+  const renderState = await page.locator("#marketChartCanvas").getAttribute("data-render-state", { timeout: 10_000 });
+  assert.ok(title.includes(symbol), `${symbol} chart title should include symbol, got ${title}`);
+  assert.ok(href?.startsWith("https://finance.yahoo.com/quote/"), `${symbol} chart link should use Yahoo Finance, got ${href}`);
+  assert.equal(renderState, "rendered", `${symbol} chart canvas should render from published series`);
+  assert.equal(await page.locator("#chartFallback.visible").count(), 0, `${symbol} chart fallback should not be visible`);
+
+  const pixelStats = await page.locator("#marketChartCanvas").evaluate((canvas) => {
+    const context = canvas.getContext("2d");
+    const { width, height } = canvas;
+    const sample = context.getImageData(0, 0, width, height).data;
+    let nonBlank = 0;
+    for (let index = 0; index < sample.length; index += 16) {
+      if (sample[index] < 245 || sample[index + 1] < 245 || sample[index + 2] < 245) {
+        nonBlank += 1;
+      }
+    }
+    return { width, height, nonBlank };
+  });
+  assert.ok(pixelStats.width > 200 && pixelStats.height > 160, `${symbol} chart canvas should have real dimensions`);
+  assert.ok(pixelStats.nonBlank > 100, `${symbol} chart canvas appears blank`);
+
+  const closeChart = page.getByRole("button", { name: "Close index chart" });
+  await expectOne(closeChart, "chart close button");
+  await closeChart.click();
+  await page.locator("#indexChartModal.open").waitFor({ state: "hidden", timeout: 15_000 });
+
+  return { symbol, title, href };
 }
 
 async function expectDailyContent(page) {

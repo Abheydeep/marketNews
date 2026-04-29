@@ -37,7 +37,7 @@ Upload `out/site/` to any static host:
 
 On GitHub Pages, yes, within the limits of a static host. The workflow republishes `out/site` every 15 minutes across weekday Indian and US market windows. The page also checks `digest.json` every minute, so visitors see the newest published quote file without a manual refresh.
 
-The quote snapshots are fetched server-side by GitHub Actions from Yahoo Finance's chart endpoint. The browser does not fake ticks. Clicking an index opens a real TradingView chart.
+The quote snapshots and chart series are fetched server-side by GitHub Actions from Yahoo Finance's chart endpoint. The browser does not fake ticks. Clicking an index opens a first-party canvas preview from the captured Yahoo series and links to the external Yahoo Finance chart.
 
 To make it change daily:
 
