@@ -1946,7 +1946,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function regionSummary(quotes) {
       const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
       const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
-      return positives + '/' + quotes.length + ' higher - avg ' + formatClientChange(average);
+      return positives + ' of ' + quotes.length + ' indices higher; average move ' + formatClientChange(average);
     }
 
     async function refreshPublishedDigest() {
@@ -2716,7 +2716,7 @@ function regionalBreadthHtml(digest) {
       return `
         <div class="breadth-card">
           <span>${escapeHtml(region)}</span>
-          <strong>${positives}/${snapshots.length} higher - ${formatChange(average)} avg</strong>
+          <strong>${positives} of ${snapshots.length} indices higher; average move ${formatChange(average)}</strong>
           <small>Largest move: ${escapeHtml(strongest.name)} ${formatChange(strongest.changePercent)}</small>
         </div>
       `;
