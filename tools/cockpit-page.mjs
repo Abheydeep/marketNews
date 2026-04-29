@@ -1267,6 +1267,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
       white-space: nowrap;
     }
 
+    .valid-badge.idle {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
     .muted-copy {
       margin: 0 0 16px;
       color: #78716c;
@@ -1808,9 +1813,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
         <section class="panel">
           <div class="panel-title-row">
             <h2>&#128187; Technical Setup Scanner</h2>
-            <span class="valid-badge">1:2 R:R Validated</span>
+            ${scannerBadgeHtml(digest)}
           </div>
-          <p class="muted-copy">Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.</p>
+          <p class="muted-copy">${scannerPanelCopy(digest)}</p>
           <div class="chart-container scanner-height">
             <canvas id="scannerChart" aria-label="Technical scanner setup chart"></canvas>
           </div>
@@ -3003,6 +3008,22 @@ function algorithmicSetupHtml(digest) {
       </div>
     </section>
   `;
+}
+
+function scannerBadgeHtml(digest) {
+  const setup = niftySetup(digest) ?? digest.tradeSetups[0];
+  if (!setup) {
+    return '<span class="valid-badge idle">No active setup</span>';
+  }
+  return '<span class="valid-badge">1:2 R:R Validated</span>';
+}
+
+function scannerPanelCopy(digest) {
+  const setup = niftySetup(digest) ?? digest.tradeSetups[0];
+  if (!setup) {
+    return "No active 1:2 risk-reward setup is available after live quote validation. The scanner is waiting for fresh levels.";
+  }
+  return "Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.";
 }
 
 function scannerCells(digest) {

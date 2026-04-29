@@ -93,6 +93,11 @@ async function runCycle(page, cycle) {
   await expectOne(adminTab, "studio command tab");
   await adminTab.click();
   await expectOne(page.getByRole("heading", { name: "Studio Command Center" }), "studio command heading");
+  await expectOne(page.getByText("No active setup", { exact: true }), "studio scanner no-active badge");
+  await expectOne(
+    page.getByText("No active 1:2 risk-reward setup is available after live quote validation.", { exact: false }),
+    "studio scanner no-active copy"
+  );
   await expectOne(page.getByRole("button", { name: "Generate Daily Thumbnail" }), "generate thumbnail button");
 
   return {
