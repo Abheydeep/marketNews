@@ -1,0 +1,50 @@
+[
+  {
+    "publishedTime": "06:45:00",
+    "sourceId": "global-macro-wire",
+    "sourceName": "Global Macro Wire",
+    "headline": "Brent crude extends gains as supply risk returns to focus",
+    "summary": "Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.",
+    "sourceUrl": "https://example.com/brent-supply-risk",
+    "sentimentScore": -0.76,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.78,
+    "category": "macro_negative"
+  },
+  {
+    "publishedTime": "07:05:00",
+    "sourceId": "us-market-close",
+    "sourceName": "US Market Close",
+    "headline": "Nasdaq slips as yields firm before key inflation print",
+    "summary": "US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.",
+    "sourceUrl": "https://example.com/nasdaq-yields",
+    "sentimentScore": -0.58,
+    "entityName": "NIFTYIT",
+    "entityMatchScore": 0.84,
+    "category": "global_risk"
+  },
+  {
+    "publishedTime": "07:20:00",
+    "sourceId": "banking-desk",
+    "sourceName": "Banking Desk",
+    "headline": "Private banks show relative strength as credit growth stays firm",
+    "summary": "Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.",
+    "sourceUrl": "https://example.com/private-bank-strength",
+    "sentimentScore": 0.31,
+    "entityName": "BANKNIFTY",
+    "entityMatchScore": 0.91,
+    "category": "sector_positive"
+  },
+  {
+    "publishedTime": "07:35:00",
+    "sourceId": "asia-open-monitor",
+    "sourceName": "Asia Open Monitor",
+    "headline": "Asian futures mixed as traders wait for central bank commentary",
+    "summary": "Regional futures traded without clear direction, pointing to a volatile but selective start for Indian equities.",
+    "sourceUrl": "https://example.com/asia-futures-mixed",
+    "sentimentScore": -0.08,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.66,
+    "category": "neutral_volatile"
+  }
+]

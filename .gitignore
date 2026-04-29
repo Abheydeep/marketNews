@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.next/
+dist/
+build/
+target/
+.idea/
+.vscode/
+*.log
+*.iml
+.env
+.env.local
+out/

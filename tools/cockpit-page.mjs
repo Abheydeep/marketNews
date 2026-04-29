@@ -1,0 +1,1374 @@
+import { newsArticleJsonLd } from "./core.mjs";
+
+export function cockpitPage(digest, initialTab = "public-view") {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Narrative | Pre-Market Intelligence & Studio Engine</title>
+  <script type="application/ld+json">${JSON.stringify(newsArticleJsonLd(digest))}</script>
+  <style>
+    :root {
+      --paper: #fcfbf9;
+      --ink: #2c2925;
+      --slate: #0f172a;
+      --stone: #78716c;
+      --line: #e7e5e4;
+      --panel: #ffffff;
+      --blue: #2563eb;
+      --green: #059669;
+      --red: #dc2626;
+      --gold: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, textarea, input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(252, 251, 249, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 64px;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 28px;
+      align-items: stretch;
+      min-height: 64px;
+    }
+
+    .tab-btn {
+      border: 0;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: var(--stone);
+      padding: 0 1px;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      border-bottom-color: var(--slate);
+      color: var(--slate);
+      font-weight: 800;
+    }
+
+    main.shell {
+      padding-top: 32px;
+      padding-bottom: 64px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .page-header {
+      margin-bottom: 38px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--stone);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .page-header h1 {
+      margin: 0 0 16px;
+      color: var(--slate);
+      font-size: 38px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .page-header p {
+      max-width: 930px;
+      margin: 0;
+      color: #57534e;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .summary-chip {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 14px;
+    }
+
+    .summary-chip span {
+      display: block;
+      color: var(--stone);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .summary-chip strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--slate);
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .briefing-card {
+      margin-bottom: 32px;
+      border: 1px solid #f2f0ed;
+      border-radius: 12px;
+      background: #fff;
+      padding: 22px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 20px 45px rgba(15, 23, 42, 0.04);
+    }
+
+    .briefing-card h2 {
+      margin: 0 0 14px;
+      color: #1e293b;
+      font-size: 20px;
+    }
+
+    .briefing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .briefing-block {
+      border-radius: 10px;
+      background: #fafaf9;
+      padding: 16px;
+    }
+
+    .briefing-block h3 {
+      margin: 0 0 10px;
+      color: #334155;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .briefing-block ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #57534e;
+      line-height: 1.55;
+    }
+
+    .briefing-block li + li {
+      margin-top: 8px;
+    }
+
+    .run-meta {
+      display: inline-flex;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      padding: 7px 10px;
+      color: #57534e;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .grid-main {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+      gap: 32px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 32px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid #f2f0ed;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 20px 45px rgba(15, 23, 42, 0.04);
+    }
+
+    .panel h2 {
+      margin: 0 0 18px;
+      color: #1e293b;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .panel p {
+      color: #57534e;
+      line-height: 1.65;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      max-height: 400px;
+    }
+
+    .scanner-height {
+      height: 260px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .metric {
+      padding: 16px;
+      border-radius: 10px;
+      background: #fafaf9;
+      text-align: center;
+    }
+
+    .metric.blue {
+      background: #eff6ff;
+    }
+
+    .metric .label {
+      display: block;
+      color: #78716c;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric.blue .label {
+      color: #2563eb;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      color: #1e293b;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .metric.blue strong {
+      color: #1e40af;
+      font-size: 22px;
+    }
+
+    .news-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .news-list li {
+      padding-bottom: 18px;
+      border-bottom: 1px solid #f2f0ed;
+    }
+
+    .news-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .news-list p {
+      margin: 0;
+      color: #1e293b;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .news-list small {
+      display: inline-block;
+      margin-top: 7px;
+      border-radius: 999px;
+      background: #f5f5f4;
+      padding: 5px 8px;
+      color: #57534e;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .news-list .news-summary {
+      margin-top: 8px;
+      color: #57534e;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .news-list a {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .studio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 38px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .studio-header h1 {
+      margin: 0 0 8px;
+      color: var(--slate);
+      font-size: 32px;
+      line-height: 1.15;
+    }
+
+    .studio-header p {
+      margin: 0;
+      max-width: 760px;
+      color: #57534e;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .status-pill {
+      background: #f5f5f4;
+      border-radius: 6px;
+      padding: 8px 11px;
+      color: #57534e;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .status-pill strong {
+      color: var(--green);
+    }
+
+    .panel-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .panel-title-row h2 {
+      margin: 0;
+    }
+
+    .valid-badge {
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .muted-copy {
+      margin: 0 0 16px;
+      color: #78716c;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .rr-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .rr-cell {
+      border-radius: 8px;
+      background: #fafaf9;
+      padding: 10px;
+    }
+
+    .rr-cell span {
+      display: block;
+      color: #a8a29e;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .rr-cell strong {
+      display: block;
+      margin-top: 4px;
+      color: #1e293b;
+    }
+
+    .rr-cell.stop {
+      background: #fef2f2;
+    }
+
+    .rr-cell.stop span,
+    .rr-cell.stop strong {
+      color: #b91c1c;
+    }
+
+    .rr-cell.target {
+      background: #ecfdf5;
+    }
+
+    .rr-cell.target span,
+    .rr-cell.target strong {
+      color: #047857;
+    }
+
+    .asset-panel {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .prompt-box {
+      margin-bottom: 16px;
+      border-radius: 8px;
+      background: #fafaf9;
+      padding: 12px;
+      color: #57534e;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      padding: 11px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .primary-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .primary-btn.done {
+      background: var(--green);
+    }
+
+    .loader-track {
+      height: 4px;
+      margin: 16px 0;
+      border-radius: 999px;
+      background: #e7e5e4;
+      overflow: hidden;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 4px;
+      background: var(--blue);
+      transition: width 2s ease-in-out;
+    }
+
+    .asset-output {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 210px;
+      flex: 1;
+      overflow: hidden;
+      border: 2px dashed #d6d3d1;
+      border-radius: 10px;
+      background: #f5f5f4;
+      color: #a8a29e;
+      font-weight: 700;
+    }
+
+    #aiCanvas {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 900ms ease;
+    }
+
+    #aiCanvas.visible {
+      opacity: 1;
+    }
+
+    .teleprompter-shell {
+      margin-top: 32px;
+    }
+
+    .teleprompter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .teleprompter-header h2 {
+      margin: 0;
+      color: #1e293b;
+      font-size: 20px;
+    }
+
+    .dark-btn {
+      border: 0;
+      border-radius: 8px;
+      background: #292524;
+      color: #fff;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .dark-btn.playing {
+      background: var(--red);
+    }
+
+    .teleprompter-view {
+      position: relative;
+      height: 400px;
+      overflow-y: auto;
+      border-radius: 10px;
+      background-color: #111827;
+      color: #f3f4f6;
+      padding: 32px;
+      font-size: 24px;
+      line-height: 1.8;
+      font-weight: 700;
+      scroll-behavior: smooth;
+    }
+
+    .read-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 34px;
+      border-top: 2px solid rgba(239, 68, 68, 0.3);
+      border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.1);
+      pointer-events: none;
+    }
+
+    .read-line span {
+      margin-left: 10px;
+      color: rgba(239, 68, 68, 0.65);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .teleprompter-text {
+      transform: translateY(100%);
+      animation: scrollText 20s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .teleprompter-view.playing .teleprompter-text {
+      animation-play-state: running;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-150%); }
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px;
+    }
+
+    .section-title {
+      margin: 0 0 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      color: #1e293b;
+      font-size: 25px;
+    }
+
+    .tech-block {
+      margin-bottom: 24px;
+    }
+
+    .tech-block h3 {
+      margin: 0 0 6px;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    .tech-block p {
+      margin: 0 0 10px;
+      color: #57534e;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 6px 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+    }
+
+    .chip.blue {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .chip.stone {
+      background: #f5f5f4;
+      color: #44403c;
+    }
+
+    .milestones {
+      display: grid;
+      gap: 16px;
+    }
+
+    .milestone {
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      background: #fff;
+      padding: 16px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    .milestone.indigo {
+      border-left-color: #6366f1;
+    }
+
+    .milestone.todo {
+      border-left-color: #d6d3d1;
+      opacity: 0.76;
+    }
+
+    .milestone h3 {
+      margin: 0;
+      color: #1e293b;
+      font-size: 18px;
+    }
+
+    .milestone p {
+      margin: 6px 0 0;
+      color: #57534e;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner {
+        align-items: start;
+        flex-direction: column;
+        padding: 14px 0 0;
+      }
+
+      .tabs {
+        width: 100%;
+        min-height: 48px;
+        gap: 16px;
+        overflow-x: auto;
+      }
+
+      .tab-btn {
+        white-space: nowrap;
+      }
+
+      .grid-main,
+      .grid-two,
+      .grid-three,
+      .summary-strip,
+      .briefing-grid,
+      .arch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .studio-header {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .teleprompter-view {
+        height: 360px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell">
+      <div class="nav-inner">
+        <div class="brand">&#9650; Market Narrative Engine</div>
+        <div class="tabs">
+          <button class="tab-btn" data-target="public-view">Public Briefing</button>
+          <button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>
+          <button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section id="public-view" class="tab-content">
+      <header class="page-header">
+        <p class="eyebrow">Daily Pre-Market Summary</p>
+        <div class="run-meta">Scheduled run: ${escapeHtml(formatScheduledRun(digest))}</div>
+        <h1>${escapeHtml(digest.title)}</h1>
+        <p>${escapeHtml(publicSummaryLead(digest))}</p>
+        <div class="summary-strip">
+          <div class="summary-chip">
+            <span>Market Mood</span>
+            <strong>${escapeHtml(digest.sentimentLabel)} (${digest.overallSentiment})</strong>
+          </div>
+          <div class="summary-chip">
+            <span>Primary Cue</span>
+            <strong>${escapeHtml(digest.themes[0]?.title ?? "Opening Levels")}</strong>
+          </div>
+          <div class="summary-chip">
+            <span>Scanner Output</span>
+            <strong>${digest.tradeSetups.length} validated 1:2 RR setups</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="briefing-card">
+        <h2>Generated 8:30 AM Brief</h2>
+        <div class="briefing-grid">
+          <div class="briefing-block">
+            <h3>Global Cues</h3>
+            <ul>
+              ${digest.marketSnapshots.map((snapshot) => `
+                <li>${escapeHtml(snapshot.name)}: ${formatChange(snapshot.changePercent)}</li>
+              `).join("")}
+            </ul>
+          </div>
+          <div class="briefing-block">
+            <h3>Narrative Themes</h3>
+            <ul>
+              ${digest.themes.map((theme) => `
+                <li><strong>${escapeHtml(theme.title)}:</strong> ${escapeHtml(theme.summary)}</li>
+              `).join("")}
+            </ul>
+          </div>
+          <div class="briefing-block">
+            <h3>Validated Setups</h3>
+            <ul>
+              ${digest.tradeSetups.map((setup) => `
+                <li>${escapeHtml(setup.symbol)} ${escapeHtml(setup.direction)}: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)} (RR ${setup.riskReward})</li>
+              `).join("")}
+            </ul>
+          </div>
+          <div class="briefing-block">
+            <h3>Risk Note</h3>
+            <ul>
+              <li>This is educational market research for content planning, not investment advice.</li>
+              <li>No automated order execution is enabled.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid-main">
+        <div class="stack">
+          <section class="panel">
+            <h2>&#128202; Overnight Global Indices</h2>
+            <div class="chart-container">
+              <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>&#128200; Nifty 50 Scanner Setup</h2>
+            <div class="grid-three">
+              <div class="metric">
+                <span class="label">Invalidation</span>
+                <strong>${formatNumber(niftySetup(digest)?.stopLoss ?? 0)}</strong>
+              </div>
+              <div class="metric">
+                <span class="label">Target</span>
+                <strong>${formatNumber(niftySetup(digest)?.target ?? 0)}</strong>
+              </div>
+              <div class="metric blue">
+                <span class="label">Risk Reward</span>
+                <strong>${niftySetup(digest)?.riskReward ?? "N/A"}R</strong>
+              </div>
+            </div>
+            <p>
+              ${escapeHtml(marketSetupCopy(digest))}
+            </p>
+          </section>
+        </div>
+
+        <aside class="stack">
+          <section class="panel">
+            <h2>&#128240; News Driving This 8:30 Brief</h2>
+            <ul class="news-list">
+              ${digest.news.slice(0, 4).map((item) => `
+                <li>
+                  <p>${escapeHtml(item.headline)}</p>
+                  <small>${escapeHtml(item.entityName)} impact: ${formatSignedScore(item.sentimentScore)} sentiment</small>
+                  <p class="news-summary">${escapeHtml(item.summary)}</p>
+                  <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Source: ${escapeHtml(item.sourceName)} &#8599;</a>
+                </li>
+              `).join("")}
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <section id="studio-view" class="tab-content hidden">
+      <header class="studio-header">
+        <div>
+          <h1>Studio Command Center</h1>
+          <p>Admin restricted view. Automates research, scripting, and visual asset generation for daily videos based on algorithmic 1:2 Risk-Reward filtering.</p>
+        </div>
+        <div class="status-pill">Status: <strong>&#9679; APIs Connected</strong></div>
+      </header>
+
+      <div class="grid-two">
+        <section class="panel">
+          <div class="panel-title-row">
+            <h2>&#128187; Technical Setup Scanner</h2>
+            <span class="valid-badge">1:2 R:R Validated</span>
+          </div>
+          <p class="muted-copy">Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.</p>
+          <div class="chart-container scanner-height">
+            <canvas id="scannerChart" aria-label="Technical scanner setup chart"></canvas>
+          </div>
+          ${scannerCells(digest)}
+        </section>
+
+        <section class="panel asset-panel">
+          <h2>&#127912; AI Asset Pipeline</h2>
+          <p class="muted-copy">Identity-locked image generation based on overnight sentiment score (${escapeHtml(digest.sentimentLabel)} = sentiment-aware palette).</p>
+          <div class="prompt-box">Prompt: ${escapeHtml(digest.asset.positivePrompt)}</div>
+          <button id="generateAssetBtn" class="primary-btn">Generate Daily Thumbnail</button>
+          <div class="loader-track">
+            <div id="assetLoader" class="loader-bar"></div>
+          </div>
+          <div id="assetOutput" class="asset-output">
+            <span id="assetPlaceholderText">Awaiting Generation...</span>
+            <canvas id="aiCanvas" aria-label="Generated thumbnail preview"></canvas>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel teleprompter-shell">
+        <div class="teleprompter-header">
+          <h2>&#128249; Teleprompter UI (Studio Mode)</h2>
+          <button id="togglePrompterBtn" class="dark-btn">&#9654; Play Script</button>
+        </div>
+        <p class="muted-copy">Clean formatting, pacing-optimized, derived from scanner and digest data.</p>
+        <div id="teleprompterContainer" class="teleprompter-view">
+          <div class="read-line"><span>Read Here</span></div>
+          <div class="teleprompter-text">${teleprompterHtml(digest)}</div>
+        </div>
+      </section>
+    </section>
+
+    <section id="architecture-view" class="tab-content hidden">
+      <header class="page-header">
+        <h1>Engine Architecture & Roadmap</h1>
+        <p>Technical breakdown of the backend infrastructure built to support the high-concurrency demands of the Morning Prep window.</p>
+      </header>
+
+      <div class="arch-grid">
+        <section>
+          <h2 class="section-title">Tech Stack Overview</h2>
+          <div class="tech-block">
+            <h3>&#9881; Backend Engine</h3>
+            <p>Java with Spring Boot structured as a modular monolith that can split into microservices.</p>
+            <div class="chips">
+              <span class="chip">Java 17</span>
+              <span class="chip">Spring Boot</span>
+              <span class="chip">Maven</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Redis</span>
+            </div>
+          </div>
+          <div class="tech-block">
+            <h3>&#128241; Frontend Command Center</h3>
+            <p>High-contrast, responsive UI tailored for rapid market data consumption and creator workflow.</p>
+            <div class="chips">
+              <span class="chip blue">Next.js</span>
+              <span class="chip blue">React</span>
+              <span class="chip blue">Tailwind CSS</span>
+              <span class="chip blue">Canvas Charts</span>
+            </div>
+          </div>
+          <div class="tech-block">
+            <h3>&#129302; Integrations</h3>
+            <p>Multithreaded data fetching across financial APIs with adapter boundaries for later production services.</p>
+            <div class="chips">
+              <span class="chip stone">Alpha Vantage API</span>
+              <span class="chip stone">MarketAux</span>
+              <span class="chip stone">OpenAI / LLM</span>
+              <span class="chip stone">Stable Diffusion</span>
+              <span class="chip stone">ControlNet</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Execution Milestones</h2>
+          <div class="milestones">
+            <article class="milestone">
+              <h3>Phase 1: The Data Pipeline</h3>
+              <p>Set up Spring Boot backend, Maven configuration, and multithreaded adapter calls to pull overnight market data quickly.</p>
+            </article>
+            <article class="milestone indigo">
+              <h3>Phase 2: The Scanner</h3>
+              <p>Implement algorithmic logic to calculate and validate strict 1:2 risk-reward swing setups on index data.</p>
+            </article>
+            <article class="milestone todo">
+              <h3>Phase 3: The Teleprompter</h3>
+              <p>Format aggregated data into a readable daily script with pacing and studio controls.</p>
+            </article>
+            <article class="milestone todo">
+              <h3>Phase 4: The Visuals</h3>
+              <p>Integrate identity-locked AI image generation for automated sentiment-based thumbnails.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.__DIGEST__ = ${JSON.stringify(digest)};
+    window.__INITIAL_TAB__ = ${JSON.stringify(initialTab)};
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      function activate(target) {
+        tabs.forEach((tab) => {
+          const active = tab.dataset.target === target;
+          tab.classList.toggle('active', active);
+        });
+        contents.forEach((content) => {
+          content.classList.toggle('hidden', content.id !== target);
+        });
+        if (target === 'studio-view') {
+          drawScannerChart();
+        }
+        if (target === 'public-view') {
+          drawOvernightChart();
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activate(tab.dataset.target));
+      });
+
+      activate(window.__INITIAL_TAB__);
+      drawOvernightChart();
+      drawScannerChart();
+      bindTeleprompter();
+      bindAssetGeneration();
+    });
+
+    function drawOvernightChart() {
+      const digest = window.__DIGEST__;
+      const canvas = document.getElementById('overnightChart');
+      if (!canvas) return;
+      const data = digest.marketSnapshots
+        .filter((item) => ['SPX', 'NDX', 'GIFTNIFTY', 'DXY', 'BRENT'].includes(item.symbol))
+        .map((item) => ({ label: item.name.replace('US Dollar Index', 'DXY'), value: item.changePercent }));
+      drawBarChart(canvas, data);
+    }
+
+    function drawScannerChart() {
+      const canvas = document.getElementById('scannerChart');
+      if (!canvas) return;
+      const setup = window.__DIGEST__.tradeSetups.find((item) => item.symbol === 'NIFTY') ?? window.__DIGEST__.tradeSetups[0];
+      drawLineChart(canvas, setup);
+    }
+
+    function scaleCanvas(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.floor(rect.width * ratio));
+      canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    function drawBarChart(canvas, data) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+      const pad = { top: 24, right: 18, bottom: 54, left: 54 };
+      const chartW = width - pad.left - pad.right;
+      const chartH = height - pad.top - pad.bottom;
+      const min = Math.min(-1.5, ...data.map((item) => item.value));
+      const max = Math.max(1.8, ...data.map((item) => item.value));
+      const zeroY = pad.top + (max / (max - min)) * chartH;
+
+      ctx.strokeStyle = '#f5f5f4';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + (chartH / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#d6d3d1';
+      ctx.beginPath();
+      ctx.moveTo(pad.left, zeroY);
+      ctx.lineTo(width - pad.right, zeroY);
+      ctx.stroke();
+
+      const slot = chartW / data.length;
+      data.forEach((item, index) => {
+        const barW = Math.min(70, slot * 0.56);
+        const x = pad.left + slot * index + (slot - barW) / 2;
+        const y = pad.top + ((max - item.value) / (max - min)) * chartH;
+        const barTop = Math.min(y, zeroY);
+        const barH = Math.max(4, Math.abs(zeroY - y));
+        ctx.fillStyle = item.value >= 0 ? 'rgba(16, 185, 129, 0.86)' : 'rgba(239, 68, 68, 0.86)';
+        roundRect(ctx, x, barTop, barW, barH, 5);
+        ctx.fill();
+
+        ctx.fillStyle = '#57534e';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(item.label, x + barW / 2, height - 22);
+        ctx.fillStyle = item.value >= 0 ? '#047857' : '#b91c1c';
+        ctx.font = 'bold 12px Arial';
+        ctx.fillText((item.value >= 0 ? '+' : '') + item.value.toFixed(2) + '%', x + barW / 2, barTop - 8);
+      });
+    }
+
+    function drawLineChart(canvas, setup) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+      const pad = { top: 20, right: 18, bottom: 42, left: 54 };
+      const labels = ['9:15', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '15:30'];
+      const price = [
+        setup.stopLoss + 20,
+        setup.entry - 42,
+        setup.entry - 75,
+        setup.entry + 10,
+        setup.entry - 24,
+        setup.entry + 70,
+        setup.entry + 38,
+        setup.entry
+      ];
+      const allValues = [...price, setup.target, setup.stopLoss];
+      const min = Math.min(...allValues) - 45;
+      const max = Math.max(...allValues) + 45;
+      const chartW = width - pad.left - pad.right;
+      const chartH = height - pad.top - pad.bottom;
+      const xFor = (index) => pad.left + (chartW / (labels.length - 1)) * index;
+      const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
+
+      ctx.strokeStyle = '#f5f5f4';
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + (chartH / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+      }
+
+      drawDashedLine(ctx, pad.left, yFor(setup.target), width - pad.right, yFor(setup.target), '#10b981');
+      drawDashedLine(ctx, pad.left, yFor(setup.stopLoss), width - pad.right, yFor(setup.stopLoss), '#ef4444');
+
+      ctx.beginPath();
+      price.forEach((value, index) => {
+        const x = xFor(index);
+        const y = yFor(value);
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#57534e';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      labels.forEach((label, index) => ctx.fillText(label, xFor(index), height - 16));
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#10b981';
+      ctx.font = 'bold 12px Arial';
+      ctx.fillText('Target ' + setup.target, width - pad.right, yFor(setup.target) - 8);
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText('Stop ' + setup.stopLoss, width - pad.right, yFor(setup.stopLoss) - 8);
+    }
+
+    function drawDashedLine(ctx, x1, y1, x2, y2, color) {
+      ctx.save();
+      ctx.setLineDash([6, 6]);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.arcTo(x + width, y, x + width, y + height, radius);
+      ctx.arcTo(x + width, y + height, x, y + height, radius);
+      ctx.arcTo(x, y + height, x, y, radius);
+      ctx.arcTo(x, y, x + width, y, radius);
+      ctx.closePath();
+    }
+
+    function bindTeleprompter() {
+      const button = document.getElementById('togglePrompterBtn');
+      const container = document.getElementById('teleprompterContainer');
+      if (!button || !container) return;
+      let playing = false;
+      button.addEventListener('click', () => {
+        playing = !playing;
+        container.classList.toggle('playing', playing);
+        button.classList.toggle('playing', playing);
+        button.innerHTML = playing ? '&#10074;&#10074; Pause Script' : '&#9654; Play Script';
+      });
+    }
+
+    function bindAssetGeneration() {
+      const button = document.getElementById('generateAssetBtn');
+      const loader = document.getElementById('assetLoader');
+      const canvas = document.getElementById('aiCanvas');
+      const placeholder = document.getElementById('assetPlaceholderText');
+      if (!button || !loader || !canvas || !placeholder) return;
+
+      button.addEventListener('click', () => {
+        button.disabled = true;
+        button.textContent = 'Processing via Pipeline...';
+        loader.style.width = '100%';
+
+        setTimeout(() => {
+          const { ctx, width, height } = scaleCanvas(canvas);
+          const gradient = ctx.createLinearGradient(0, 0, width, height);
+          gradient.addColorStop(0, window.__DIGEST__.sentimentLabel === 'BULLISH' ? '#064e3b' : '#7f1d1d');
+          gradient.addColorStop(1, '#020617');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, width, height);
+
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(0, height * 0.85);
+          ctx.lineTo(width * 0.3, height * 0.55);
+          ctx.lineTo(width * 0.6, height * 0.72);
+          ctx.lineTo(width, height * 0.25);
+          ctx.stroke();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 24px Arial';
+          ctx.fillText('MARKET OPEN', 22, 42);
+          ctx.fillStyle = '#fbbf24';
+          ctx.font = '16px Arial';
+          ctx.fillText('1:2 RR SETUP READY', 22, 68);
+
+          canvas.classList.add('visible');
+          placeholder.classList.add('hidden');
+          button.textContent = 'Asset Generated';
+          button.classList.add('done');
+          setTimeout(() => {
+            loader.style.transition = 'none';
+            loader.style.width = '0%';
+          }, 500);
+        }, 850);
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      drawOvernightChart();
+      drawScannerChart();
+    });
+  </script>
+</body>
+</html>`;
+}
+
+function scannerCells(digest) {
+  const setup = digest.tradeSetups.find((item) => item.symbol === "NIFTY") ?? digest.tradeSetups[0];
+  if (!setup) {
+    return `
+      <div class="rr-grid">
+        <div class="rr-cell"><span>Entry</span><strong>N/A</strong></div>
+        <div class="rr-cell stop"><span>Stop Loss</span><strong>N/A</strong></div>
+        <div class="rr-cell target"><span>Target</span><strong>N/A</strong></div>
+      </div>
+    `;
+  }
+  return `
+    <div class="rr-grid">
+      <div class="rr-cell"><span>Entry</span><strong>${formatNumber(setup.entry)}</strong></div>
+      <div class="rr-cell stop"><span>Stop Loss</span><strong>${formatNumber(setup.stopLoss)}</strong></div>
+      <div class="rr-cell target"><span>Target</span><strong>${formatNumber(setup.target)}</strong></div>
+    </div>
+  `;
+}
+
+function teleprompterHtml(digest) {
+  const lines = digest.teleprompterScript
+    .replaceAll("[OPENING]", "")
+    .replaceAll("[GLOBAL CUES]", "")
+    .replaceAll("[NARRATIVE THEMES]", "")
+    .replaceAll("[NIFTY AND BANK NIFTY VIEW]", "")
+    .replaceAll("[VALIDATED SETUPS]", "")
+    .replaceAll("[RISK DISCLAIMER]", "")
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .slice(0, 14);
+  return lines.map((line) => `${escapeHtml(line)}<br><br>`).join("");
+}
+
+function headlineSentiment(label) {
+  return {
+    BULLISH: "Cautious Bullish",
+    BEARISH: "Risk-Off",
+    VOLATILE: "Mixed",
+    NEUTRAL: "Balanced"
+  }[label] ?? label;
+}
+
+function marketSetupCopy(digest) {
+  const setup = niftySetup(digest);
+  if (!setup) {
+    return "No 1:2 risk-reward setup has passed the scanner yet. Let the first hour define direction before taking a view.";
+  }
+  return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the scanner confirms ${setup.riskReward}R.`;
+}
+
+function publicSummaryLead(digest) {
+  const worstTheme = digest.themes[0]?.title ?? "mixed global cues";
+  const setupSymbols = digest.tradeSetups.map((setup) => setup.symbol).join(" and ");
+  return `The 8:30 AM IST digest is ${digest.sentimentLabel.toLowerCase()} after ${worstTheme.toLowerCase()}. Global cues are uneven, but the scanner still found ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
+}
+
+function niftySetup(digest) {
+  return digest.tradeSetups.find((item) => item.symbol === "NIFTY") ?? digest.tradeSetups[0] ?? null;
+}
+
+function formatChange(changePercent) {
+  return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+}
+
+function formatSignedScore(score) {
+  return `${score >= 0 ? "+" : ""}${Number(score).toFixed(2)}`;
+}
+
+function formatScheduledRun(digest) {
+  if (!digest.scheduledFor) {
+    return `${digest.digestDate} 08:30 IST`;
+  }
+  return digest.scheduledFor.replace("T", " ").replace(":00+05:30", " IST");
+}
+
+function formatNumber(value) {
+  return Number(value).toLocaleString("en-IN", {
+    maximumFractionDigits: Number.isInteger(Number(value)) ? 0 : 2
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}

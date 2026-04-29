@@ -1,0 +1,12 @@
+{
+  "name": "market-narrative-storyboard-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tools/verify.mjs",
+    "demo": "node tools/demo-server.mjs",
+    "daily:generate": "node tools/generate-daily-summary.mjs",
+    "site:publish": "node tools/publish-site.mjs"
+  }
+}

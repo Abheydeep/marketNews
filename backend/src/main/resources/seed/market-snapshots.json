@@ -1,0 +1,37 @@
+[
+  {
+    "symbol": "SPX",
+    "name": "S&P 500",
+    "closeValue": 5069.53,
+    "changePercent": -0.82,
+    "source": "Alpha Vantage Mock"
+  },
+  {
+    "symbol": "NDX",
+    "name": "Nasdaq 100",
+    "closeValue": 17718.11,
+    "changePercent": -1.21,
+    "source": "Yahoo Finance Mock"
+  },
+  {
+    "symbol": "DXY",
+    "name": "US Dollar Index",
+    "closeValue": 106.18,
+    "changePercent": 0.34,
+    "source": "MarketAux Mock"
+  },
+  {
+    "symbol": "BRENT",
+    "name": "Brent Crude",
+    "closeValue": 91.42,
+    "changePercent": 1.64,
+    "source": "MarketAux Mock"
+  },
+  {
+    "symbol": "GIFTNIFTY",
+    "name": "GIFT Nifty",
+    "closeValue": 22480.50,
+    "changePercent": -0.38,
+    "source": "Exchange Mock"
+  }
+]
