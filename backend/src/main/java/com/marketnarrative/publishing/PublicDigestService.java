@@ -86,7 +86,13 @@ public class PublicDigestService {
                     article.getSourceName(),
                     article.getSourceUrl(),
                     article.getSentimentScore(),
-                    article.getEntityName()
+                    article.getEntityName(),
+                    new PublicDigestDto.NewsThumbnailView(
+                        article.getThumbnailLabel(),
+                        article.getThumbnailTheme(),
+                        article.getThumbnailAccent(),
+                        article.getThumbnailAlt()
+                    )
                 ))
                 .toList(),
             narrativeThemeRepository.findByDigestDateOrderBySentimentScoreAsc(digestDate).stream()

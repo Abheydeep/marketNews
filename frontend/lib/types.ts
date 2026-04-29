@@ -20,6 +20,12 @@ export type NewsCard = {
   sourceUrl: string;
   sentimentScore: number;
   entityName: string;
+  thumbnail?: {
+    label: string;
+    theme: string;
+    accent: string;
+    alt: string;
+  };
 };
 
 export type Theme = {

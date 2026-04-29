@@ -37,6 +37,10 @@ public class MockNewsDataAdapter implements NewsDataAdapter {
                     seed.sourceName(),
                     seed.headline(),
                     seed.summary(),
+                    seed.thumbnail() == null ? null : seed.thumbnail().label(),
+                    seed.thumbnail() == null ? null : seed.thumbnail().theme(),
+                    seed.thumbnail() == null ? null : seed.thumbnail().accent(),
+                    seed.thumbnail() == null ? null : seed.thumbnail().alt(),
                     seed.sourceUrl(),
                     seed.sentimentScore(),
                     seed.entityName(),
@@ -55,11 +59,20 @@ public class MockNewsDataAdapter implements NewsDataAdapter {
         String sourceName,
         String headline,
         String summary,
+        ThumbnailSeed thumbnail,
         String sourceUrl,
         double sentimentScore,
         String entityName,
         double entityMatchScore,
         String category
+    ) {
+    }
+
+    record ThumbnailSeed(
+        String label,
+        String theme,
+        String accent,
+        String alt
     ) {
     }
 }

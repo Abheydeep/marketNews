@@ -31,6 +31,14 @@ public class MarketNews {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String summary;
 
+    private String thumbnailLabel;
+
+    private String thumbnailTheme;
+
+    private String thumbnailAccent;
+
+    private String thumbnailAlt;
+
     @Column(nullable = false, columnDefinition = "TEXT")
     private String sourceUrl;
 
@@ -61,11 +69,49 @@ public class MarketNews {
         double entityMatchScore,
         String category
     ) {
+        this(
+            publishedAt,
+            sourceId,
+            sourceName,
+            headline,
+            summary,
+            null,
+            null,
+            null,
+            null,
+            sourceUrl,
+            sentimentScore,
+            entityName,
+            entityMatchScore,
+            category
+        );
+    }
+
+    public MarketNews(
+        OffsetDateTime publishedAt,
+        String sourceId,
+        String sourceName,
+        String headline,
+        String summary,
+        String thumbnailLabel,
+        String thumbnailTheme,
+        String thumbnailAccent,
+        String thumbnailAlt,
+        String sourceUrl,
+        double sentimentScore,
+        String entityName,
+        double entityMatchScore,
+        String category
+    ) {
         this.publishedAt = publishedAt;
         this.sourceId = sourceId;
         this.sourceName = sourceName;
         this.headline = headline;
         this.summary = summary;
+        this.thumbnailLabel = thumbnailLabel;
+        this.thumbnailTheme = thumbnailTheme;
+        this.thumbnailAccent = thumbnailAccent;
+        this.thumbnailAlt = thumbnailAlt;
         this.sourceUrl = sourceUrl;
         this.sentimentScore = sentimentScore;
         this.entityName = entityName;
@@ -95,6 +141,22 @@ public class MarketNews {
 
     public String getSummary() {
         return summary;
+    }
+
+    public String getThumbnailLabel() {
+        return thumbnailLabel;
+    }
+
+    public String getThumbnailTheme() {
+        return thumbnailTheme;
+    }
+
+    public String getThumbnailAccent() {
+        return thumbnailAccent;
+    }
+
+    public String getThumbnailAlt() {
+        return thumbnailAlt;
     }
 
     public String getSourceUrl() {

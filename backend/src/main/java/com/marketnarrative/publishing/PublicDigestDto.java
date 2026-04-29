@@ -43,7 +43,16 @@ public record PublicDigestDto(
         String sourceName,
         String sourceUrl,
         double sentimentScore,
-        String entityName
+        String entityName,
+        NewsThumbnailView thumbnail
+    ) implements Serializable {
+    }
+
+    public record NewsThumbnailView(
+        String label,
+        String theme,
+        String accent,
+        String alt
     ) implements Serializable {
     }
 

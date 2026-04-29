@@ -23,11 +23,12 @@ const results = [];
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();
   assert.ok(seeds.marketSnapshots.length >= 14);
-  assert.ok(seeds.news.length >= 8);
+  assert.ok(seeds.news.length >= 14);
   assert.equal(seeds.priceSeries.length, 2);
   assert.equal(seeds.creator.referenceImageId, "creator-ref-001");
   assert.ok(seeds.news.every((article) => !article.sourceUrl.includes("example.com")));
   assert.ok(seeds.news.every((article) => article.takeaway && article.whyItMatters && article.indiaImpact && article.watchFor));
+  assert.ok(seeds.news.every((article) => article.thumbnail?.label && article.thumbnail?.theme && article.thumbnail?.accent && article.thumbnail?.alt));
   for (const symbol of ["SPX", "NDX", "DJI", "NIFTY", "BANKNIFTY", "NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200", "DXY", "BRENT"]) {
     const snapshot = seeds.marketSnapshots.find((item) => item.symbol === symbol);
     assert.ok(snapshot, `missing seed snapshot ${symbol}`);
@@ -108,6 +109,8 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.onePageSummary.includes("Educational note"));
   assert.ok(digest.teleprompterScript.includes("[RISK DISCLAIMER]"));
   assert.ok(digest.asset.positivePrompt.includes("identity-locked creator portrait"));
+  assert.ok(digest.news.length >= 14);
+  assert.ok(digest.news.every((article) => article.thumbnail?.alt));
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);

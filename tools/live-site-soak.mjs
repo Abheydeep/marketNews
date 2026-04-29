@@ -171,12 +171,15 @@ async function expectDailyContent(page) {
   await expectOne(page.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(page.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
   for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
-    assert.equal(await page.getByRole("heading", { name: region }).count(), 0, `${region} quote group should not render while collapsed`);
+    assert.equal(await page.locator("#indexBoard .quote-region h3").filter({ hasText: region }).count(), 0, `${region} quote group should not render while collapsed`);
   }
   assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
   await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
   await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
   await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
+  const sourceCards = await page.locator(".source-card").count();
+  assert.ok(sourceCards >= 14, `expected at least 14 source cards, got ${sourceCards}`);
+  assert.equal(await page.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
 }
 
 async function expandQuoteBoard(page) {
@@ -187,9 +190,9 @@ async function expandQuoteBoard(page) {
   await expectOne(page.locator('#quoteBoardToggle[aria-expanded="true"]'), "expanded quote board toggle");
   assert.equal(await page.locator("#quoteBoardBody[hidden]").count(), 0, "expanded quote board body should not be hidden");
   for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
-    await expectOne(page.getByRole("heading", { name: region }), `${region} quote group after expansion`);
+    await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: region }), `${region} quote group after expansion`);
   }
-  await expectOne(page.getByRole("heading", { name: "Asia Watch" }), "asia watch heading");
+  await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "Asia Watch" }), "asia watch heading");
   await expectOne(page.locator('button[data-symbol="NIKKEI"]').getByText("Japan - Nikkei 225", { exact: true }), "Japan Nikkei country label");
   await expectOne(page.locator('button[data-symbol="HSI"]').getByText("Hong Kong - Hang Seng", { exact: true }), "Hong Kong Hang Seng country label");
   await expectOne(page.locator('button[data-symbol="SHCOMP"]').getByText("Mainland China - Shanghai Composite", { exact: true }), "China Shanghai country label");

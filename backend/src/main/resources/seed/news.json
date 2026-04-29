@@ -1,5 +1,49 @@
 [
   {
+    "publishedTime": "06:20:00",
+    "sourceId": "treasury-yield-watch",
+    "sourceName": "Reuters Macro",
+    "headline": "Treasury yields edge higher as traders wait for inflation confirmation",
+    "summary": "US yields stayed firm overnight, keeping the cost-of-capital backdrop tight for emerging-market equities.",
+    "takeaway": "Yields remain the first macro pressure point for risk assets.",
+    "whyItMatters": "When US yields rise, foreign investors usually demand more confirmation before adding exposure to high-beta emerging-market equities.",
+    "indiaImpact": "Rate-sensitive sectors, high-multiple growth names, and foreign-flow dependent large caps need stronger breadth confirmation.",
+    "watchFor": "US 10-year yield direction into the European session and whether Nasdaq futures hold their opening range.",
+    "sourceUrl": "https://www.reuters.com/markets/rates-bonds/",
+    "sentimentScore": -0.62,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.82,
+    "category": "macro_negative",
+    "thumbnail": {
+      "label": "Yields",
+      "theme": "rates",
+      "accent": "#dc2626",
+      "alt": "Treasury yield curve thumbnail for macro pressure"
+    }
+  },
+  {
+    "publishedTime": "06:28:00",
+    "sourceId": "yen-carry-risk",
+    "sourceName": "Bloomberg Asia",
+    "headline": "Yen strength keeps carry-trade risk on Asia watchlists",
+    "summary": "Currency desks monitored yen strength and carry-trade risk, a setup that can quickly tighten regional risk appetite.",
+    "takeaway": "Asia risk can change quickly if yen strength accelerates.",
+    "whyItMatters": "Sharp yen moves can force leveraged positioning to unwind, creating pressure across Asian equities even when local fundamentals are stable.",
+    "indiaImpact": "Indian equities may stay selective if regional risk desks reduce exposure before the US data window.",
+    "watchFor": "USD/JPY stability and whether Hong Kong and Japan breadth diverge after the first hour.",
+    "sourceUrl": "https://www.bloomberg.com/asia",
+    "sentimentScore": -0.41,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.69,
+    "category": "global_risk",
+    "thumbnail": {
+      "label": "FX Risk",
+      "theme": "currency",
+      "accent": "#7c3aed",
+      "alt": "Currency volatility thumbnail for yen carry-trade risk"
+    }
+  },
+  {
     "publishedTime": "06:35:00",
     "sourceId": "global-macro-wire",
     "sourceName": "Reuters Markets",
@@ -13,7 +57,35 @@
     "sentimentScore": -0.76,
     "entityName": "NIFTY",
     "entityMatchScore": 0.78,
-    "category": "macro_negative"
+    "category": "macro_negative",
+    "thumbnail": {
+      "label": "Crude",
+      "theme": "energy",
+      "accent": "#b91c1c",
+      "alt": "Brent crude thumbnail for supply-risk pressure"
+    }
+  },
+  {
+    "publishedTime": "06:42:00",
+    "sourceId": "gold-safe-haven",
+    "sourceName": "Kitco Macro Desk",
+    "headline": "Gold holds firm as investors hedge policy and geopolitical risk",
+    "summary": "Gold remained bid, showing that defensive hedging has not fully left the market despite selective equity strength.",
+    "takeaway": "Safe-haven demand is still visible under the surface.",
+    "whyItMatters": "Gold strength alongside firm yields often signals that investors are hedging event risk rather than embracing broad risk-on exposure.",
+    "indiaImpact": "Jewellery and consumption names may need commodity-cost monitoring, while defensives can outperform if risk appetite fades.",
+    "watchFor": "Gold's reaction to the dollar after the US cash session opens.",
+    "sourceUrl": "https://www.kitco.com/news",
+    "sentimentScore": -0.34,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.57,
+    "category": "neutral_volatile",
+    "thumbnail": {
+      "label": "Gold",
+      "theme": "safehaven",
+      "accent": "#d97706",
+      "alt": "Gold safe-haven thumbnail for macro hedging"
+    }
   },
   {
     "publishedTime": "06:50:00",
@@ -29,7 +101,35 @@
     "sentimentScore": -0.66,
     "entityName": "NIFTY",
     "entityMatchScore": 0.76,
-    "category": "macro_negative"
+    "category": "macro_negative",
+    "thumbnail": {
+      "label": "DXY",
+      "theme": "currency",
+      "accent": "#2563eb",
+      "alt": "Dollar index thumbnail for currency and yield pressure"
+    }
+  },
+  {
+    "publishedTime": "07:00:00",
+    "sourceId": "vix-volatility-check",
+    "sourceName": "Cboe Volatility Desk",
+    "headline": "Volatility gauges stay elevated before the US data window",
+    "summary": "Volatility measures held above recent comfort levels, suggesting traders are still paying for protection.",
+    "takeaway": "The options market is not treating the next session as a clean risk-on setup.",
+    "whyItMatters": "Elevated volatility can make opening gaps less reliable because desks hedge faster and reduce position size.",
+    "indiaImpact": "Index traders should avoid chasing the first candle and wait for acceptance around VWAP or the opening range.",
+    "watchFor": "Whether volatility cools after US economic data or remains sticky into the close.",
+    "sourceUrl": "https://www.cboe.com/tradable_products/vix/",
+    "sentimentScore": -0.46,
+    "entityName": "NIFTY",
+    "entityMatchScore": 0.63,
+    "category": "global_risk",
+    "thumbnail": {
+      "label": "VIX",
+      "theme": "volatility",
+      "accent": "#f97316",
+      "alt": "Volatility gauge thumbnail for options risk"
+    }
   },
   {
     "publishedTime": "07:05:00",
@@ -45,7 +145,35 @@
     "sentimentScore": -0.58,
     "entityName": "NIFTYIT",
     "entityMatchScore": 0.84,
-    "category": "global_risk"
+    "category": "global_risk",
+    "thumbnail": {
+      "label": "Nasdaq",
+      "theme": "tech",
+      "accent": "#4f46e5",
+      "alt": "Nasdaq technology thumbnail for US risk appetite"
+    }
+  },
+  {
+    "publishedTime": "07:12:00",
+    "sourceId": "fed-speak-monitor",
+    "sourceName": "Financial Times Markets",
+    "headline": "Fed commentary keeps rate-cut timing debate unresolved",
+    "summary": "Policy commentary left traders focused on incoming data rather than a clear rate-cut timetable.",
+    "takeaway": "The rate narrative remains data-dependent and fragile.",
+    "whyItMatters": "Unclear policy timing keeps duration-sensitive sectors vulnerable to quick repricing in yields and growth multiples.",
+    "indiaImpact": "IT, internet, and premium valuation pockets need US yield confirmation before broad follow-through.",
+    "watchFor": "Fed speaker tone and the market-implied probability of the next rate cut.",
+    "sourceUrl": "https://www.ft.com/markets",
+    "sentimentScore": -0.33,
+    "entityName": "NIFTYIT",
+    "entityMatchScore": 0.67,
+    "category": "macro_negative",
+    "thumbnail": {
+      "label": "Fed",
+      "theme": "policy",
+      "accent": "#0f766e",
+      "alt": "Federal Reserve policy thumbnail for rate-cut timing"
+    }
   },
   {
     "publishedTime": "07:18:00",
@@ -61,7 +189,13 @@
     "sentimentScore": -0.48,
     "entityName": "NIFTY",
     "entityMatchScore": 0.86,
-    "category": "global_risk"
+    "category": "global_risk",
+    "thumbnail": {
+      "label": "Flows",
+      "theme": "flows",
+      "accent": "#0891b2",
+      "alt": "Foreign flow thumbnail for institutional positioning"
+    }
   },
   {
     "publishedTime": "07:25:00",
@@ -77,7 +211,35 @@
     "sentimentScore": 0.31,
     "entityName": "BANKNIFTY",
     "entityMatchScore": 0.91,
-    "category": "sector_positive"
+    "category": "sector_positive",
+    "thumbnail": {
+      "label": "Banks",
+      "theme": "banking",
+      "accent": "#059669",
+      "alt": "Banking sector thumbnail for Bank Nifty resilience"
+    }
+  },
+  {
+    "publishedTime": "07:32:00",
+    "sourceId": "rbi-liquidity-watch",
+    "sourceName": "RBI Liquidity Monitor",
+    "headline": "Rupee liquidity conditions remain supportive for domestic lenders",
+    "summary": "Domestic liquidity indicators stayed orderly, offering a partial cushion against the tighter global macro backdrop.",
+    "takeaway": "Local liquidity is the main counterweight to global macro pressure.",
+    "whyItMatters": "When domestic liquidity is stable, banks and high-quality financials can absorb some of the pressure from global yields and crude.",
+    "indiaImpact": "Supportive for private banks, select NBFCs, and rate-sensitive domestic cyclicals if breadth confirms.",
+    "watchFor": "Call money rates, bond yields, and Bank Nifty VWAP behavior after 10:00 AM IST.",
+    "sourceUrl": "https://www.rbi.org.in/",
+    "sentimentScore": 0.28,
+    "entityName": "BANKNIFTY",
+    "entityMatchScore": 0.74,
+    "category": "macro_positive",
+    "thumbnail": {
+      "label": "Liquidity",
+      "theme": "liquidity",
+      "accent": "#16a34a",
+      "alt": "RBI liquidity thumbnail for domestic financial conditions"
+    }
   },
   {
     "publishedTime": "07:35:00",
@@ -93,7 +255,13 @@
     "sentimentScore": -0.08,
     "entityName": "NIFTY",
     "entityMatchScore": 0.66,
-    "category": "neutral_volatile"
+    "category": "neutral_volatile",
+    "thumbnail": {
+      "label": "Asia",
+      "theme": "asia",
+      "accent": "#0284c7",
+      "alt": "Asian market breadth thumbnail for regional indices"
+    }
   },
   {
     "publishedTime": "07:45:00",
@@ -109,7 +277,35 @@
     "sentimentScore": 0.15,
     "entityName": "NIFTYMETAL",
     "entityMatchScore": 0.64,
-    "category": "neutral_volatile"
+    "category": "neutral_volatile",
+    "thumbnail": {
+      "label": "China",
+      "theme": "cyclicals",
+      "accent": "#ca8a04",
+      "alt": "China policy thumbnail for Asian cyclicals"
+    }
+  },
+  {
+    "publishedTime": "07:52:00",
+    "sourceId": "semiconductor-supply-chain",
+    "sourceName": "Nikkei Asia Tech",
+    "headline": "Semiconductor supply-chain signals stay firm despite softer US tech tape",
+    "summary": "Asian semiconductor and hardware supply-chain indicators remained stable, limiting the downside read-through from US technology weakness.",
+    "takeaway": "Semiconductor breadth is an offset inside the tech risk story.",
+    "whyItMatters": "If chip-linked Asian names hold up, the Indian IT read-through becomes more selective than broadly bearish.",
+    "indiaImpact": "Large-cap IT may still need confirmation, but ER&D, electronics, and export-linked pockets can show relative resilience.",
+    "watchFor": "Taiwan and Korea semiconductor breadth through the Indian first hour.",
+    "sourceUrl": "https://asia.nikkei.com/Business/Tech",
+    "sentimentScore": 0.18,
+    "entityName": "NIFTYIT",
+    "entityMatchScore": 0.61,
+    "category": "sector_positive",
+    "thumbnail": {
+      "label": "Chips",
+      "theme": "semis",
+      "accent": "#6366f1",
+      "alt": "Semiconductor thumbnail for Asian technology supply chains"
+    }
   },
   {
     "publishedTime": "07:55:00",
@@ -125,6 +321,12 @@
     "sentimentScore": 0.09,
     "entityName": "NIFTY",
     "entityMatchScore": 0.72,
-    "category": "sector_positive"
+    "category": "sector_positive",
+    "thumbnail": {
+      "label": "Defensives",
+      "theme": "defensive",
+      "accent": "#65a30d",
+      "alt": "Defensive sector thumbnail for domestic market leadership"
+    }
   }
 ]

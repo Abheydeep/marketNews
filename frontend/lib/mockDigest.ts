@@ -31,7 +31,13 @@ export const mockDigest: PublicDigest = {
       sourceName: "Reuters Markets",
       sourceUrl: "https://www.reuters.com/markets/commodities/",
       sentimentScore: -0.76,
-      entityName: "NIFTY"
+      entityName: "NIFTY",
+      thumbnail: {
+        label: "Crude",
+        theme: "energy",
+        accent: "#b91c1c",
+        alt: "Brent crude thumbnail for supply-risk pressure"
+      }
     },
     {
       headline: "Private banks show relative strength as credit growth stays firm",
@@ -39,7 +45,13 @@ export const mockDigest: PublicDigest = {
       sourceName: "NSE India Data",
       sourceUrl: "https://www.nseindia.com/market-data/live-market-indices",
       sentimentScore: 0.31,
-      entityName: "BANKNIFTY"
+      entityName: "BANKNIFTY",
+      thumbnail: {
+        label: "Banks",
+        theme: "banking",
+        accent: "#059669",
+        alt: "Banking sector thumbnail for Bank Nifty resilience"
+      }
     }
   ],
   themes: [

@@ -36,6 +36,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     whyItMatters: article.whyItMatters,
     indiaImpact: article.indiaImpact,
     watchFor: article.watchFor,
+    thumbnail: normalizeArticleThumbnail(article),
     sourceUrl: article.sourceUrl,
     sentimentScore: article.sentimentScore,
     entityName: article.entityName,
@@ -352,6 +353,16 @@ export function generateAsset(date, sentimentLabel) {
     referenceImageId: "creator-ref-001",
     controlNetMode: "ControlNet Canny + Depth identity lock",
     assetUrl: `/assets/mock/daily-thumbnail-${date}.webp`
+  };
+}
+
+function normalizeArticleThumbnail(article) {
+  const fallbackLabel = String(article.entityName || "Macro").slice(0, 14);
+  return {
+    label: article.thumbnail?.label || fallbackLabel,
+    theme: article.thumbnail?.theme || article.category || "market",
+    accent: article.thumbnail?.accent || (Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626"),
+    alt: article.thumbnail?.alt || `${article.headline} thumbnail`
   };
 }
 

@@ -5,21 +5,43 @@ export function NewsCards({ news }: { news: NewsCard[] }) {
     <section className="grid gap-3 lg:grid-cols-2">
       {news.map((item) => {
         const isPositive = item.sentimentScore >= 0;
+        const thumbnail = item.thumbnail ?? {
+          label: item.entityName,
+          theme: isPositive ? "support" : "macro",
+          accent: isPositive ? "#059669" : "#dc2626",
+          alt: `${item.headline} thumbnail`
+        };
         return (
           <a
             key={item.headline}
             href={item.sourceUrl}
-            className="rounded border border-line bg-white p-4 shadow-panel transition hover:-translate-y-0.5 hover:border-steel"
+            className="grid gap-4 rounded border border-line bg-white p-4 shadow-panel transition hover:-translate-y-0.5 hover:border-steel sm:grid-cols-[8rem_1fr]"
             target="_blank"
             rel="noreferrer"
           >
-            <div className="flex items-center justify-between gap-4">
-              <span className={`h-3 w-3 rounded-sm ${isPositive ? "bg-moss" : "bg-risk"}`} />
-              <span className="text-xs font-bold uppercase text-steel">{item.entityName}</span>
+            <div
+              aria-label={thumbnail.alt}
+              className="relative min-h-28 overflow-hidden rounded bg-ink text-white"
+              role="img"
+              style={{
+                background: `linear-gradient(135deg, ${thumbnail.accent}, #111827 72%)`
+              }}
+            >
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] bg-[length:22px_22px] opacity-25" />
+              <div className="absolute inset-x-4 bottom-4">
+                <p className="text-[10px] font-black uppercase tracking-widest opacity-75">{thumbnail.theme}</p>
+                <p className="mt-1 text-lg font-black uppercase leading-none">{thumbnail.label}</p>
+              </div>
             </div>
-            <h3 className="mt-3 text-base font-bold leading-snug text-ink">{item.headline}</h3>
-            <p className="mt-2 text-sm leading-6 text-steel">{item.summary}</p>
-            <p className="mt-4 text-xs font-bold text-ink">{item.sourceName}</p>
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <span className={`h-3 w-3 rounded-sm ${isPositive ? "bg-moss" : "bg-risk"}`} />
+                <span className="text-xs font-bold uppercase text-steel">{item.entityName}</span>
+              </div>
+              <h3 className="mt-3 text-base font-bold leading-snug text-ink">{item.headline}</h3>
+              <p className="mt-2 text-sm leading-6 text-steel">{item.summary}</p>
+              <p className="mt-4 text-xs font-bold text-ink">{item.sourceName}</p>
+            </div>
           </a>
         );
       })}

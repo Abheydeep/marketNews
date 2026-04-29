@@ -544,6 +544,72 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     .source-card {
       cursor: pointer;
+      display: grid;
+      grid-template-columns: 168px minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .source-thumb {
+      position: relative;
+      min-height: 142px;
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 22% 20%, color-mix(in srgb, var(--thumb-accent) 34%, white), transparent 28%),
+        linear-gradient(135deg, color-mix(in srgb, var(--thumb-accent) 78%, #111827), #111827 72%);
+      color: #fff;
+      isolation: isolate;
+    }
+
+    .source-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 18px -20px auto 20px;
+      height: 48px;
+      border-bottom: 3px solid rgba(255, 255, 255, 0.72);
+      border-left: 3px solid rgba(255, 255, 255, 0.32);
+      transform: skewY(-14deg);
+      opacity: 0.76;
+    }
+
+    .source-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.18;
+      z-index: -1;
+    }
+
+    .source-thumb span,
+    .source-thumb strong {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+    }
+
+    .source-thumb span {
+      bottom: 44px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.76;
+    }
+
+    .source-thumb strong {
+      bottom: 15px;
+      font-size: 19px;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .source-card-copy {
+      min-width: 0;
     }
 
     .source-card-header {
@@ -1608,6 +1674,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .grid-main,
       .grid-two,
       .grid-three,
+      .source-card,
       .setup-grid,
       .setup-levels,
       .summary-strip,
@@ -1762,13 +1829,16 @@ export function cockpitPage(digest, initialTab = "public-view") {
           <div class="news-card-list">
             ${digest.news.map((item) => `
               <article class="info-card source-card">
-                <div class="source-card-header">
-                  <span class="news-badge ${newsToneClass(item.sentimentScore)}">${escapeHtml(newsBadgeLabel(item))}</span>
-                  <span class="source-name">Source: ${escapeHtml(item.sourceName)}</span>
+                ${articleThumbnailHtml(item)}
+                <div class="source-card-copy">
+                  <div class="source-card-header">
+                    <span class="news-badge ${newsToneClass(item.sentimentScore)}">${escapeHtml(newsBadgeLabel(item))}</span>
+                    <span class="source-name">Source: ${escapeHtml(item.sourceName)}</span>
+                  </div>
+                  <h3>${escapeHtml(item.headline)}</h3>
+                  <p>${escapeHtml(item.summary)}</p>
+                  <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
                 </div>
-                <h3>${escapeHtml(item.headline)}</h3>
-                <p>${escapeHtml(item.summary)}</p>
-                <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
               </article>
             `).join("")}
           </div>
@@ -3041,6 +3111,24 @@ function scannerPanelCopy(digest) {
     return "No active 1:2 risk-reward setup is available after live quote validation. The scanner is waiting for fresh levels.";
   }
   return "Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.";
+}
+
+function articleThumbnailHtml(article) {
+  const thumbnail = article.thumbnail || {};
+  const label = thumbnail.label || article.entityName || "Macro";
+  const theme = thumbnail.theme || categoryLabel(article.category);
+  const alt = thumbnail.alt || `${article.headline} thumbnail`;
+  const accent = safeAccent(thumbnail.accent, Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626");
+  return `
+    <div class="source-thumb" role="img" aria-label="${escapeHtml(alt)}" style="--thumb-accent: ${accent}">
+      <span>${escapeHtml(theme)}</span>
+      <strong>${escapeHtml(label)}</strong>
+    </div>
+  `;
+}
+
+function safeAccent(value, fallback) {
+  return /^#[0-9a-fA-F]{6}$/.test(String(value || "")) ? value : fallback;
 }
 
 function scannerCells(digest) {
