@@ -133,6 +133,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
   assert.ok(publicHtml.body.includes("Invalidation"));
+  assert.ok(publicHtml.body.includes("Live Index Board"));
+  assert.ok(publicHtml.body.includes("indexChartModal"));
+  assert.ok(publicHtml.body.includes("openIndexChart"));
+  assert.ok(publicHtml.body.includes("tickLiveQuotes"));
   assert.ok(publicHtml.body.includes("overnightChart"));
   assert.ok(publicHtml.body.includes("teleprompterContainer"));
   assert.ok(publicHtml.body.includes("generateAssetBtn"));

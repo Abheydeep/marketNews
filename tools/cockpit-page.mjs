@@ -284,6 +284,175 @@ export function cockpitPage(digest, initialTab = "public-view") {
       height: 100%;
     }
 
+    .live-board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 18px 0 12px;
+    }
+
+    .live-board-header h3 {
+      margin: 0;
+      color: #334155;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .live-clock {
+      color: #78716c;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .index-tile {
+      min-height: 112px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .index-tile:hover {
+      transform: translateY(-1px);
+      border-color: #94a3b8;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .index-tile .symbol-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .index-tile .symbol {
+      color: #334155;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .index-tile .status {
+      border-radius: 999px;
+      background: #f5f5f4;
+      padding: 4px 7px;
+      color: #57534e;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .index-tile .status.live {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .index-tile .name {
+      margin-top: 8px;
+      color: #78716c;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .index-tile .price {
+      margin-top: 10px;
+      color: var(--slate);
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .index-tile .change {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .index-tile .change.up {
+      color: #047857;
+    }
+
+    .index-tile .change.down {
+      color: #b91c1c;
+    }
+
+    .chart-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(15, 23, 42, 0.52);
+    }
+
+    .chart-modal.open {
+      display: flex;
+    }
+
+    .chart-modal-panel {
+      width: min(920px, 100%);
+      border-radius: 14px;
+      background: #fff;
+      padding: 22px;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.26);
+    }
+
+    .chart-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .chart-modal-header h2 {
+      margin: 0;
+      color: var(--slate);
+      font-size: 24px;
+    }
+
+    .chart-modal-header p {
+      margin: 6px 0 0;
+      color: #57534e;
+      font-size: 14px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--slate);
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .modal-chart-container {
+      height: 390px;
+      border-radius: 10px;
+      background: #fafaf9;
+      padding: 10px;
+    }
+
     .metric {
       padding: 16px;
       border-radius: 10px;
@@ -765,6 +934,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .grid-three,
       .summary-strip,
       .briefing-grid,
+      .index-grid,
       .arch-grid {
         grid-template-columns: 1fr;
       }
@@ -862,6 +1032,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
             <div class="chart-container">
               <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
             </div>
+            <div class="live-board-header">
+              <h3>Live Index Board</h3>
+              <span id="liveClock" class="live-clock">Preparing quotes...</span>
+            </div>
+            <div id="indexBoard" class="index-grid" aria-label="Clickable live index quotes"></div>
           </section>
 
           <section class="panel">
@@ -903,6 +1078,21 @@ export function cockpitPage(digest, initialTab = "public-view") {
         </aside>
       </div>
     </section>
+
+    <div id="indexChartModal" class="chart-modal" aria-hidden="true">
+      <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="indexChartTitle">
+        <div class="chart-modal-header">
+          <div>
+            <h2 id="indexChartTitle">Index Chart</h2>
+            <p id="indexChartMeta">Click an index tile to inspect its intraday movement.</p>
+          </div>
+          <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
+        </div>
+        <div class="modal-chart-container">
+          <canvas id="indexDetailChart" aria-label="Selected index chart"></canvas>
+        </div>
+      </div>
+    </div>
 
     <section id="studio-view" class="tab-content hidden">
       <header class="studio-header">
@@ -1055,16 +1245,252 @@ export function cockpitPage(digest, initialTab = "public-view") {
       drawScannerChart();
       bindTeleprompter();
       bindAssetGeneration();
+      initLiveIndexBoard();
     });
 
     function drawOvernightChart() {
       const digest = window.__DIGEST__;
       const canvas = document.getElementById('overnightChart');
       if (!canvas) return;
-      const data = digest.marketSnapshots
+      const source = window.__LIVE_QUOTES__ ?? digest.marketSnapshots;
+      const data = source
         .filter((item) => ['SPX', 'NDX', 'GIFTNIFTY', 'DXY', 'BRENT'].includes(item.symbol))
         .map((item) => ({ label: item.name.replace('US Dollar Index', 'DXY'), value: item.changePercent }));
       drawBarChart(canvas, data);
+    }
+
+    function initLiveIndexBoard() {
+      window.__LIVE_QUOTES__ = window.__DIGEST__.marketSnapshots.map((snapshot, index) => {
+        const history = buildInitialHistory(snapshot.closeValue, index);
+        return {
+          symbol: snapshot.symbol,
+          name: snapshot.name,
+          value: snapshot.closeValue,
+          baseValue: snapshot.closeValue / (1 + snapshot.changePercent / 100),
+          changePercent: snapshot.changePercent,
+          source: snapshot.source,
+          history
+        };
+      });
+      renderIndexBoard();
+      updateLiveClock();
+      setInterval(() => {
+        tickLiveQuotes();
+        renderIndexBoard();
+        drawOvernightChart();
+        updateOpenModalChart();
+        updateLiveClock();
+      }, 5000);
+      bindIndexModal();
+    }
+
+    function buildInitialHistory(value, seed) {
+      const points = [];
+      for (let i = 0; i < 18; i += 1) {
+        const wave = Math.sin((i + seed) / 2.2) * value * 0.0018;
+        const drift = (i - 9) * value * 0.00008;
+        points.push(Number((value + wave + drift).toFixed(2)));
+      }
+      points.push(Number(value.toFixed(2)));
+      return points;
+    }
+
+    function tickLiveQuotes() {
+      window.__LIVE_QUOTES__ = window.__LIVE_QUOTES__.map((quote) => {
+        const status = marketStatusFor(quote.symbol);
+        if (!status.open) {
+          return quote;
+        }
+        const volatility = quote.symbol === 'BRENT' || quote.symbol === 'DXY' ? 0.0009 : 0.0014;
+        const impulse = (Math.random() - 0.48) * quote.value * volatility;
+        const value = Math.max(0.01, quote.value + impulse);
+        const changePercent = ((value - quote.baseValue) / quote.baseValue) * 100;
+        return {
+          ...quote,
+          value: Number(value.toFixed(2)),
+          changePercent: Number(changePercent.toFixed(3)),
+          history: [...quote.history.slice(-47), Number(value.toFixed(2))]
+        };
+      });
+    }
+
+    function renderIndexBoard() {
+      const board = document.getElementById('indexBoard');
+      if (!board || !window.__LIVE_QUOTES__) return;
+      board.innerHTML = window.__LIVE_QUOTES__.map((quote) => {
+        const status = marketStatusFor(quote.symbol);
+        const direction = quote.changePercent >= 0 ? 'up' : 'down';
+        const statusClass = status.open ? 'status live' : 'status';
+        return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
+          '<div class="symbol-row"><span class="symbol">' + quote.symbol + '</span><span class="' + statusClass + '">' + status.label + '</span></div>' +
+          '<div class="name">' + escapeClientHtml(quote.name) + '</div>' +
+          '<div class="price">' + formatClientNumber(quote.value) + '</div>' +
+          '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
+        '</button>';
+      }).join('');
+      board.querySelectorAll('.index-tile').forEach((tile) => {
+        tile.addEventListener('click', () => openIndexChart(tile.dataset.symbol));
+      });
+    }
+
+    function bindIndexModal() {
+      const modal = document.getElementById('indexChartModal');
+      const close = document.getElementById('closeIndexChart');
+      if (!modal || !close) return;
+      close.addEventListener('click', closeIndexChart);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeIndexChart();
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeIndexChart();
+        }
+      });
+    }
+
+    function openIndexChart(symbol) {
+      const modal = document.getElementById('indexChartModal');
+      const title = document.getElementById('indexChartTitle');
+      const meta = document.getElementById('indexChartMeta');
+      const quote = window.__LIVE_QUOTES__.find((item) => item.symbol === symbol);
+      if (!modal || !quote) return;
+      const status = marketStatusFor(symbol);
+      window.__ACTIVE_INDEX_SYMBOL__ = symbol;
+      title.textContent = quote.name + ' (' + quote.symbol + ')';
+      meta.textContent = status.open
+        ? 'Live browser updates every 5 seconds until ' + status.closeLabel + '.'
+        : 'Market closed. Chart is frozen at the latest generated value.';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      drawIndexDetailChart(quote);
+    }
+
+    function closeIndexChart() {
+      const modal = document.getElementById('indexChartModal');
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      window.__ACTIVE_INDEX_SYMBOL__ = null;
+    }
+
+    function updateOpenModalChart() {
+      if (!window.__ACTIVE_INDEX_SYMBOL__) return;
+      const quote = window.__LIVE_QUOTES__.find((item) => item.symbol === window.__ACTIVE_INDEX_SYMBOL__);
+      if (quote) {
+        drawIndexDetailChart(quote);
+      }
+    }
+
+    function drawIndexDetailChart(quote) {
+      const canvas = document.getElementById('indexDetailChart');
+      if (!canvas) return;
+      const { ctx, width, height } = scaleCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+      const pad = { top: 24, right: 24, bottom: 42, left: 64 };
+      const values = quote.history;
+      const min = Math.min(...values) * 0.998;
+      const max = Math.max(...values) * 1.002;
+      const chartW = width - pad.left - pad.right;
+      const chartH = height - pad.top - pad.bottom;
+      const xFor = (index) => pad.left + (chartW / Math.max(1, values.length - 1)) * index;
+      const yFor = (value) => pad.top + ((max - value) / Math.max(0.0001, max - min)) * chartH;
+
+      ctx.strokeStyle = '#e7e5e4';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i += 1) {
+        const y = pad.top + (chartH / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      values.forEach((value, index) => {
+        const x = xFor(index);
+        const y = yFor(value);
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = quote.changePercent >= 0 ? '#059669' : '#dc2626';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      const lastX = xFor(values.length - 1);
+      const lastY = yFor(values[values.length - 1]);
+      ctx.fillStyle = quote.changePercent >= 0 ? '#059669' : '#dc2626';
+      ctx.beginPath();
+      ctx.arc(lastX, lastY, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#334155';
+      ctx.font = 'bold 18px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(formatClientNumber(quote.value) + '  ' + formatClientChange(quote.changePercent), pad.left, 22);
+      ctx.font = '12px Arial';
+      ctx.fillStyle = '#78716c';
+      ctx.fillText('Intraday browser chart. Replace the mock quote source with a real API for production.', pad.left, height - 14);
+    }
+
+    function updateLiveClock() {
+      const clock = document.getElementById('liveClock');
+      if (!clock) return;
+      const openCount = (window.__LIVE_QUOTES__ ?? []).filter((quote) => marketStatusFor(quote.symbol).open).length;
+      const time = new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(new Date());
+      clock.textContent = openCount > 0
+        ? 'Updating live · IST ' + time
+        : 'Markets closed · frozen · IST ' + time;
+    }
+
+    function marketStatusFor(symbol) {
+      const now = new Date();
+      if (symbol === 'SPX' || symbol === 'NDX') {
+        return marketWindow(now, 'America/New_York', 9, 30, 16, 0, 'US close 4:00 PM ET');
+      }
+      if (symbol === 'GIFTNIFTY') {
+        return marketWindow(now, 'Asia/Kolkata', 9, 15, 15, 30, 'India close 3:30 PM IST');
+      }
+      return marketWindow(now, 'UTC', 0, 0, 23, 30, 'global close window');
+    }
+
+    function marketWindow(date, timeZone, openHour, openMinute, closeHour, closeMinute, closeLabel) {
+      const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).formatToParts(date).map((part) => [part.type, part.value]));
+      const weekday = parts.weekday;
+      const minutes = Number(parts.hour) * 60 + Number(parts.minute);
+      const open = openHour * 60 + openMinute;
+      const close = closeHour * 60 + closeMinute;
+      const isWeekday = weekday !== 'Sat' && weekday !== 'Sun';
+      const isOpen = isWeekday && minutes >= open && minutes <= close;
+      return { open: isOpen, label: isOpen ? 'Live' : 'Closed', closeLabel };
+    }
+
+    function formatClientNumber(value) {
+      return Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+    }
+
+    function formatClientChange(value) {
+      return (value >= 0 ? '+' : '') + Number(value).toFixed(2) + '%';
+    }
+
+    function escapeClientHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
     }
 
     function drawScannerChart() {
