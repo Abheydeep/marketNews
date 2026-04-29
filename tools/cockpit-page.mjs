@@ -1549,7 +1549,6 @@ export function cockpitPage(digest, initialTab = "public-view") {
             </div>
           </div>
           <h1>${escapeHtml(digest.title)}</h1>
-          <p>${escapeHtml(publicSummaryLead(digest))}</p>
         </header>
 
         <section class="info-card executive-card">
@@ -2664,15 +2663,6 @@ function marketSetupCopy(digest) {
     return "No 1:2 risk-reward setup has passed the scanner yet. Let the first hour define direction before taking a view.";
   }
   return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the scanner confirms ${setup.riskReward}R.`;
-}
-
-function publicSummaryLead(digest) {
-  const worstTheme = digest.themes[0]?.title ?? "mixed global cues";
-  const setupSymbols = digest.tradeSetups.map((setup) => setup.symbol).join(" and ");
-  const asia = snapshotsForRegion(digest, "Asia Watch");
-  const asiaHigher = asia.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
-  const asiaRead = asia.length ? ` Asian markets show ${asiaHigher} of ${asia.length} tracked indices higher.` : "";
-  return `The 8:30 AM IST digest is ${digest.sentimentLabel.toLowerCase()} after ${worstTheme.toLowerCase()}.${asiaRead} The scanner found ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
 }
 
 function sentimentPinPosition(score) {

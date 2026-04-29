@@ -5,19 +5,19 @@
   "status": "DRAFT",
   "overallSentiment": -0.267,
   "sentimentLabel": "BEARISH",
-  "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.244%, Nasdaq 100 +0.181%, Dow Jones -0.651%, Nifty 50 +0.758%, Bank Nifty +0.006%, Nikkei 225 -1.024%, Hang Seng +1.682%, Shanghai Composite +0.518%, KOSPI +0.751%, Taiwan Weighted -0.552%, Straits Times -0.547%, ASX 200 -0.272%, US Dollar Index +0.271%, Brent Crude +6.504%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n- Global Risk-Off Cue: US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n- Volatile Opening Bias: Regional futures traded without clear direction, pointing to a volatile but selective start for Indian equities.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 22705, stop 22180.26, target 23859.42 (RR 2.2)\n- BANKNIFTY BULLISH entry 50960, stop 49292.6, target 54628.28 (RR 2.2)\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
-  "teleprompterScript": "[OPENING]\nGood morning. The overnight setup is cautious, with global pressure visible before the Indian open.\n\n[GLOBAL CUES]\nS&P 500 closed -0.244%. Nasdaq 100 closed +0.181%. Dow Jones closed -0.651%. Nifty 50 closed +0.758%. Bank Nifty closed +0.006%. Nikkei 225 closed -1.024%. Hang Seng closed +1.682%. Shanghai Composite closed +0.518%. KOSPI closed +0.751%. Taiwan Weighted closed -0.552%. Straits Times closed -0.547%. ASX 200 closed -0.272%. US Dollar Index closed +0.271%. Brent Crude closed +6.504%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n\nTheme: Global Risk-Off Cue. US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n\nTheme: Volatile Opening Bias. Regional futures traded without clear direction, pointing to a volatile but selective start for Indian equities.\n\nTheme: Sector-Specific Cushion. Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n\n[NIFTY AND BANK NIFTY VIEW]\nLet price confirm the opening bias. Do not chase the first candle; wait for acceptance around the levels.\n\n[VALIDATED SETUPS]\nNIFTY: watch 22705 as entry, 22180.26 as invalidation, and 23859.42 as target. Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.\n\nBANKNIFTY: watch 50960 as entry, 49292.6 as invalidation, and 54628.28 as target. Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.\n\n[RISK DISCLAIMER]\nThis is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled.",
+  "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.241%, Nasdaq 100 +0.2%, Dow Jones -0.682%, Nifty 50 +0.758%, Bank Nifty +0.006%, Nikkei 225 -1.024%, Hang Seng +1.682%, Shanghai Composite +0.518%, KOSPI +0.751%, Taiwan Weighted -0.552%, Straits Times -0.547%, ASX 200 -0.272%, US Dollar Index +0.274%, Brent Crude +6.734%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n- Global Risk-Off Cue: US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n- Volatile Opening Bias: Regional futures traded without clear direction, pointing to a volatile but selective start for Indian equities.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 22705, stop 22180.26, target 23859.42 (RR 2.2)\n- BANKNIFTY BULLISH entry 50960, stop 49292.6, target 54628.28 (RR 2.2)\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
+  "teleprompterScript": "[OPENING]\nGood morning. The overnight setup is cautious, with global pressure visible before the Indian open.\n\n[GLOBAL CUES]\nS&P 500 closed -0.241%. Nasdaq 100 closed +0.2%. Dow Jones closed -0.682%. Nifty 50 closed +0.758%. Bank Nifty closed +0.006%. Nikkei 225 closed -1.024%. Hang Seng closed +1.682%. Shanghai Composite closed +0.518%. KOSPI closed +0.751%. Taiwan Weighted closed -0.552%. Straits Times closed -0.547%. ASX 200 closed -0.272%. US Dollar Index closed +0.274%. Brent Crude closed +6.734%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n\nTheme: Global Risk-Off Cue. US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n\nTheme: Volatile Opening Bias. Regional futures traded without clear direction, pointing to a volatile but selective start for Indian equities.\n\nTheme: Sector-Specific Cushion. Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n\n[NIFTY AND BANK NIFTY VIEW]\nLet price confirm the opening bias. Do not chase the first candle; wait for acceptance around the levels.\n\n[VALIDATED SETUPS]\nNIFTY: watch 22705 as entry, 22180.26 as invalidation, and 23859.42 as target. Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.\n\nBANKNIFTY: watch 50960 as entry, 49292.6 as invalidation, and 54628.28 as target. Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.\n\n[RISK DISCLAIMER]\nThis is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled.",
   "publishedAt": null,
   "marketSnapshots": [
     {
       "symbol": "SPX",
       "name": "S&P 500",
-      "closeValue": 7121.37,
+      "closeValue": 7121.57,
       "previousClose": 7138.8,
-      "changePercent": -0.244,
+      "changePercent": -0.241,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-04-29T17:20:02.000Z",
+      "dataTimestamp": "2026-04-29T17:23:10.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^GSPC",
       "tradingViewSymbol": "SP:SPX",
@@ -46,8 +46,8 @@
           "close": 7126.72
         },
         {
-          "time": "2026-04-29T13:36:00.000Z",
-          "close": 7128.02
+          "time": "2026-04-29T13:37:00.000Z",
+          "close": 7128.97
         },
         {
           "time": "2026-04-29T13:38:00.000Z",
@@ -74,8 +74,8 @@
           "close": 7123.6
         },
         {
-          "time": "2026-04-29T13:45:00.000Z",
-          "close": 7120.42
+          "time": "2026-04-29T13:46:00.000Z",
+          "close": 7122.88
         },
         {
           "time": "2026-04-29T13:47:00.000Z",
@@ -86,8 +86,8 @@
           "close": 7122.8
         },
         {
-          "time": "2026-04-29T13:49:00.000Z",
-          "close": 7122.91
+          "time": "2026-04-29T13:50:00.000Z",
+          "close": 7127.71
         },
         {
           "time": "2026-04-29T13:51:00.000Z",
@@ -102,8 +102,8 @@
           "close": 7129.74
         },
         {
-          "time": "2026-04-29T13:54:00.000Z",
-          "close": 7130
+          "time": "2026-04-29T13:55:00.000Z",
+          "close": 7130.07
         },
         {
           "time": "2026-04-29T13:56:00.000Z",
@@ -114,8 +114,8 @@
           "close": 7132.58
         },
         {
-          "time": "2026-04-29T13:58:00.000Z",
-          "close": 7129.92
+          "time": "2026-04-29T13:59:00.000Z",
+          "close": 7131.93
         },
         {
           "time": "2026-04-29T14:00:00.000Z",
@@ -126,12 +126,12 @@
           "close": 7126.4
         },
         {
-          "time": "2026-04-29T14:02:00.000Z",
-          "close": 7128.92
-        },
-        {
           "time": "2026-04-29T14:03:00.000Z",
           "close": 7128
+        },
+        {
+          "time": "2026-04-29T14:04:00.000Z",
+          "close": 7130.23
         },
         {
           "time": "2026-04-29T14:05:00.000Z",
@@ -142,8 +142,8 @@
           "close": 7129.84
         },
         {
-          "time": "2026-04-29T14:07:00.000Z",
-          "close": 7129.45
+          "time": "2026-04-29T14:08:00.000Z",
+          "close": 7128.99
         },
         {
           "time": "2026-04-29T14:09:00.000Z",
@@ -154,24 +154,24 @@
           "close": 7131.63
         },
         {
-          "time": "2026-04-29T14:11:00.000Z",
-          "close": 7131.71
-        },
-        {
           "time": "2026-04-29T14:12:00.000Z",
           "close": 7134.16
+        },
+        {
+          "time": "2026-04-29T14:13:00.000Z",
+          "close": 7135.66
         },
         {
           "time": "2026-04-29T14:14:00.000Z",
           "close": 7135.66
         },
         {
-          "time": "2026-04-29T14:15:00.000Z",
-          "close": 7135.55
-        },
-        {
           "time": "2026-04-29T14:16:00.000Z",
           "close": 7135.4
+        },
+        {
+          "time": "2026-04-29T14:17:00.000Z",
+          "close": 7134.97
         },
         {
           "time": "2026-04-29T14:18:00.000Z",
@@ -182,32 +182,28 @@
           "close": 7133.61
         },
         {
-          "time": "2026-04-29T14:20:00.000Z",
-          "close": 7133.68
-        },
-        {
           "time": "2026-04-29T14:21:00.000Z",
           "close": 7134.19
+        },
+        {
+          "time": "2026-04-29T14:22:00.000Z",
+          "close": 7135.96
         },
         {
           "time": "2026-04-29T14:23:00.000Z",
           "close": 7137.01
         },
         {
-          "time": "2026-04-29T14:24:00.000Z",
-          "close": 7137.1
-        },
-        {
           "time": "2026-04-29T14:25:00.000Z",
           "close": 7137.75
         },
         {
-          "time": "2026-04-29T14:27:00.000Z",
-          "close": 7138.29
+          "time": "2026-04-29T14:26:00.000Z",
+          "close": 7137.53
         },
         {
-          "time": "2026-04-29T14:28:00.000Z",
-          "close": 7139.64
+          "time": "2026-04-29T14:27:00.000Z",
+          "close": 7138.29
         },
         {
           "time": "2026-04-29T14:29:00.000Z",
@@ -218,24 +214,24 @@
           "close": 7138.02
         },
         {
-          "time": "2026-04-29T14:32:00.000Z",
-          "close": 7140.45
+          "time": "2026-04-29T14:31:00.000Z",
+          "close": 7139.28
         },
         {
-          "time": "2026-04-29T14:33:00.000Z",
-          "close": 7141.68
+          "time": "2026-04-29T14:32:00.000Z",
+          "close": 7140.45
         },
         {
           "time": "2026-04-29T14:34:00.000Z",
           "close": 7142.46
         },
         {
-          "time": "2026-04-29T14:36:00.000Z",
-          "close": 7143.9
+          "time": "2026-04-29T14:35:00.000Z",
+          "close": 7143.4
         },
         {
-          "time": "2026-04-29T14:37:00.000Z",
-          "close": 7143.11
+          "time": "2026-04-29T14:36:00.000Z",
+          "close": 7143.9
         },
         {
           "time": "2026-04-29T14:38:00.000Z",
@@ -246,8 +242,8 @@
           "close": 7142.34
         },
         {
-          "time": "2026-04-29T14:41:00.000Z",
-          "close": 7140.72
+          "time": "2026-04-29T14:40:00.000Z",
+          "close": 7141.72
         },
         {
           "time": "2026-04-29T14:42:00.000Z",
@@ -258,12 +254,12 @@
           "close": 7140.35
         },
         {
-          "time": "2026-04-29T14:45:00.000Z",
-          "close": 7140.53
+          "time": "2026-04-29T14:44:00.000Z",
+          "close": 7142.31
         },
         {
-          "time": "2026-04-29T14:46:00.000Z",
-          "close": 7140.12
+          "time": "2026-04-29T14:45:00.000Z",
+          "close": 7140.53
         },
         {
           "time": "2026-04-29T14:47:00.000Z",
@@ -274,8 +270,8 @@
           "close": 7140.95
         },
         {
-          "time": "2026-04-29T14:50:00.000Z",
-          "close": 7138.66
+          "time": "2026-04-29T14:49:00.000Z",
+          "close": 7138.4
         },
         {
           "time": "2026-04-29T14:51:00.000Z",
@@ -286,8 +282,8 @@
           "close": 7138.4
         },
         {
-          "time": "2026-04-29T14:54:00.000Z",
-          "close": 7139.44
+          "time": "2026-04-29T14:53:00.000Z",
+          "close": 7139.25
         },
         {
           "time": "2026-04-29T14:55:00.000Z",
@@ -314,8 +310,8 @@
           "close": 7135.81
         },
         {
-          "time": "2026-04-29T15:03:00.000Z",
-          "close": 7133.08
+          "time": "2026-04-29T15:02:00.000Z",
+          "close": 7135.13
         },
         {
           "time": "2026-04-29T15:04:00.000Z",
@@ -382,8 +378,8 @@
           "close": 7131.08
         },
         {
-          "time": "2026-04-29T15:24:00.000Z",
-          "close": 7131.55
+          "time": "2026-04-29T15:25:00.000Z",
+          "close": 7132.45
         },
         {
           "time": "2026-04-29T15:26:00.000Z",
@@ -398,8 +394,8 @@
           "close": 7131.31
         },
         {
-          "time": "2026-04-29T15:29:00.000Z",
-          "close": 7132.57
+          "time": "2026-04-29T15:30:00.000Z",
+          "close": 7133.56
         },
         {
           "time": "2026-04-29T15:31:00.000Z",
@@ -410,8 +406,8 @@
           "close": 7131.33
         },
         {
-          "time": "2026-04-29T15:33:00.000Z",
-          "close": 7131.89
+          "time": "2026-04-29T15:34:00.000Z",
+          "close": 7131.81
         },
         {
           "time": "2026-04-29T15:35:00.000Z",
@@ -422,12 +418,12 @@
           "close": 7132.07
         },
         {
-          "time": "2026-04-29T15:37:00.000Z",
-          "close": 7130.68
-        },
-        {
           "time": "2026-04-29T15:38:00.000Z",
           "close": 7129.93
+        },
+        {
+          "time": "2026-04-29T15:39:00.000Z",
+          "close": 7130.14
         },
         {
           "time": "2026-04-29T15:40:00.000Z",
@@ -438,8 +434,8 @@
           "close": 7127.76
         },
         {
-          "time": "2026-04-29T15:42:00.000Z",
-          "close": 7129.56
+          "time": "2026-04-29T15:43:00.000Z",
+          "close": 7129.62
         },
         {
           "time": "2026-04-29T15:44:00.000Z",
@@ -450,24 +446,24 @@
           "close": 7132.31
         },
         {
-          "time": "2026-04-29T15:46:00.000Z",
-          "close": 7131.8
-        },
-        {
           "time": "2026-04-29T15:47:00.000Z",
           "close": 7131.79
+        },
+        {
+          "time": "2026-04-29T15:48:00.000Z",
+          "close": 7130.98
         },
         {
           "time": "2026-04-29T15:49:00.000Z",
           "close": 7132.02
         },
         {
-          "time": "2026-04-29T15:50:00.000Z",
-          "close": 7133.16
-        },
-        {
           "time": "2026-04-29T15:51:00.000Z",
           "close": 7129.98
+        },
+        {
+          "time": "2026-04-29T15:52:00.000Z",
+          "close": 7127
         },
         {
           "time": "2026-04-29T15:53:00.000Z",
@@ -478,32 +474,28 @@
           "close": 7117.85
         },
         {
-          "time": "2026-04-29T15:55:00.000Z",
-          "close": 7120.87
-        },
-        {
           "time": "2026-04-29T15:56:00.000Z",
           "close": 7119.9
+        },
+        {
+          "time": "2026-04-29T15:57:00.000Z",
+          "close": 7118.98
         },
         {
           "time": "2026-04-29T15:58:00.000Z",
           "close": 7122.88
         },
         {
-          "time": "2026-04-29T15:59:00.000Z",
-          "close": 7123.59
-        },
-        {
           "time": "2026-04-29T16:00:00.000Z",
           "close": 7123.46
         },
         {
-          "time": "2026-04-29T16:02:00.000Z",
-          "close": 7126.1
+          "time": "2026-04-29T16:01:00.000Z",
+          "close": 7126.29
         },
         {
-          "time": "2026-04-29T16:03:00.000Z",
-          "close": 7126.17
+          "time": "2026-04-29T16:02:00.000Z",
+          "close": 7126.1
         },
         {
           "time": "2026-04-29T16:04:00.000Z",
@@ -514,8 +506,8 @@
           "close": 7127.36
         },
         {
-          "time": "2026-04-29T16:07:00.000Z",
-          "close": 7128.63
+          "time": "2026-04-29T16:06:00.000Z",
+          "close": 7127.98
         },
         {
           "time": "2026-04-29T16:08:00.000Z",
@@ -526,12 +518,12 @@
           "close": 7127.68
         },
         {
-          "time": "2026-04-29T16:11:00.000Z",
-          "close": 7128
+          "time": "2026-04-29T16:10:00.000Z",
+          "close": 7129.63
         },
         {
-          "time": "2026-04-29T16:12:00.000Z",
-          "close": 7127.58
+          "time": "2026-04-29T16:11:00.000Z",
+          "close": 7128
         },
         {
           "time": "2026-04-29T16:13:00.000Z",
@@ -542,8 +534,8 @@
           "close": 7125.86
         },
         {
-          "time": "2026-04-29T16:16:00.000Z",
-          "close": 7126.33
+          "time": "2026-04-29T16:15:00.000Z",
+          "close": 7127.21
         },
         {
           "time": "2026-04-29T16:17:00.000Z",
@@ -554,8 +546,8 @@
           "close": 7123.57
         },
         {
-          "time": "2026-04-29T16:20:00.000Z",
-          "close": 7123.68
+          "time": "2026-04-29T16:19:00.000Z",
+          "close": 7121.99
         },
         {
           "time": "2026-04-29T16:21:00.000Z",
@@ -570,8 +562,8 @@
           "close": 7124.52
         },
         {
-          "time": "2026-04-29T16:25:00.000Z",
-          "close": 7123.03
+          "time": "2026-04-29T16:24:00.000Z",
+          "close": 7125.33
         },
         {
           "time": "2026-04-29T16:26:00.000Z",
@@ -582,8 +574,8 @@
           "close": 7122.47
         },
         {
-          "time": "2026-04-29T16:29:00.000Z",
-          "close": 7120.56
+          "time": "2026-04-29T16:28:00.000Z",
+          "close": 7122
         },
         {
           "time": "2026-04-29T16:30:00.000Z",
@@ -610,8 +602,8 @@
           "close": 7113.52
         },
         {
-          "time": "2026-04-29T16:38:00.000Z",
-          "close": 7116.96
+          "time": "2026-04-29T16:37:00.000Z",
+          "close": 7114.2
         },
         {
           "time": "2026-04-29T16:39:00.000Z",
@@ -678,8 +670,8 @@
           "close": 7119.33
         },
         {
-          "time": "2026-04-29T16:59:00.000Z",
-          "close": 7119.54
+          "time": "2026-04-29T17:00:00.000Z",
+          "close": 7119.79
         },
         {
           "time": "2026-04-29T17:01:00.000Z",
@@ -706,8 +698,8 @@
           "close": 7120.49
         },
         {
-          "time": "2026-04-29T17:08:00.000Z",
-          "close": 7119.65
+          "time": "2026-04-29T17:09:00.000Z",
+          "close": 7119.8
         },
         {
           "time": "2026-04-29T17:10:00.000Z",
@@ -718,8 +710,8 @@
           "close": 7119.69
         },
         {
-          "time": "2026-04-29T17:12:00.000Z",
-          "close": 7118.82
+          "time": "2026-04-29T17:13:00.000Z",
+          "close": 7119.05
         },
         {
           "time": "2026-04-29T17:14:00.000Z",
@@ -734,28 +726,36 @@
           "close": 7118.81
         },
         {
-          "time": "2026-04-29T17:17:00.000Z",
-          "close": 7120.88
+          "time": "2026-04-29T17:18:00.000Z",
+          "close": 7119.99
         },
         {
           "time": "2026-04-29T17:19:00.000Z",
           "close": 7119.79
         },
         {
-          "time": "2026-04-29T17:20:02.000Z",
-          "close": 7121.37
+          "time": "2026-04-29T17:20:00.000Z",
+          "close": 7121.87
+        },
+        {
+          "time": "2026-04-29T17:22:00.000Z",
+          "close": 7120.89
+        },
+        {
+          "time": "2026-04-29T17:23:10.000Z",
+          "close": 7121.57
         }
       ]
     },
     {
       "symbol": "NDX",
       "name": "Nasdaq 100",
-      "closeValue": 27077.94,
+      "closeValue": 27082.98,
       "previousClose": 27029.01,
-      "changePercent": 0.181,
+      "changePercent": 0.2,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-04-29T17:20:01.000Z",
+      "dataTimestamp": "2026-04-29T17:23:10.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^NDX",
       "tradingViewSymbol": "NASDAQ:NDX",
@@ -784,8 +784,8 @@
           "close": 27009.6
         },
         {
-          "time": "2026-04-29T13:36:00.000Z",
-          "close": 27040.9
+          "time": "2026-04-29T13:37:00.000Z",
+          "close": 27047.17
         },
         {
           "time": "2026-04-29T13:38:00.000Z",
@@ -812,8 +812,8 @@
           "close": 27056.98
         },
         {
-          "time": "2026-04-29T13:45:00.000Z",
-          "close": 27033.87
+          "time": "2026-04-29T13:46:00.000Z",
+          "close": 27032.72
         },
         {
           "time": "2026-04-29T13:47:00.000Z",
@@ -824,8 +824,8 @@
           "close": 27048.9
         },
         {
-          "time": "2026-04-29T13:49:00.000Z",
-          "close": 27048.75
+          "time": "2026-04-29T13:50:00.000Z",
+          "close": 27085.06
         },
         {
           "time": "2026-04-29T13:51:00.000Z",
@@ -840,8 +840,8 @@
           "close": 27087.42
         },
         {
-          "time": "2026-04-29T13:54:00.000Z",
-          "close": 27095.04
+          "time": "2026-04-29T13:55:00.000Z",
+          "close": 27093.98
         },
         {
           "time": "2026-04-29T13:56:00.000Z",
@@ -852,8 +852,8 @@
           "close": 27099.62
         },
         {
-          "time": "2026-04-29T13:58:00.000Z",
-          "close": 27088.16
+          "time": "2026-04-29T13:59:00.000Z",
+          "close": 27092.03
         },
         {
           "time": "2026-04-29T14:00:00.000Z",
@@ -864,12 +864,12 @@
           "close": 27060.56
         },
         {
-          "time": "2026-04-29T14:02:00.000Z",
-          "close": 27069.61
-        },
-        {
           "time": "2026-04-29T14:03:00.000Z",
           "close": 27062.54
+        },
+        {
+          "time": "2026-04-29T14:04:00.000Z",
+          "close": 27070.44
         },
         {
           "time": "2026-04-29T14:05:00.000Z",
@@ -880,8 +880,8 @@
           "close": 27060.54
         },
         {
-          "time": "2026-04-29T14:07:00.000Z",
-          "close": 27056.03
+          "time": "2026-04-29T14:08:00.000Z",
+          "close": 27050.61
         },
         {
           "time": "2026-04-29T14:09:00.000Z",
@@ -892,24 +892,24 @@
           "close": 27055.71
         },
         {
-          "time": "2026-04-29T14:11:00.000Z",
-          "close": 27063.39
-        },
-        {
           "time": "2026-04-29T14:12:00.000Z",
           "close": 27074.63
+        },
+        {
+          "time": "2026-04-29T14:13:00.000Z",
+          "close": 27074.16
         },
         {
           "time": "2026-04-29T14:14:00.000Z",
           "close": 27083.39
         },
         {
-          "time": "2026-04-29T14:15:00.000Z",
-          "close": 27082.24
-        },
-        {
           "time": "2026-04-29T14:16:00.000Z",
           "close": 27084.42
+        },
+        {
+          "time": "2026-04-29T14:17:00.000Z",
+          "close": 27083.93
         },
         {
           "time": "2026-04-29T14:18:00.000Z",
@@ -920,32 +920,28 @@
           "close": 27093.05
         },
         {
-          "time": "2026-04-29T14:20:00.000Z",
-          "close": 27088.15
-        },
-        {
           "time": "2026-04-29T14:21:00.000Z",
           "close": 27087.32
+        },
+        {
+          "time": "2026-04-29T14:22:00.000Z",
+          "close": 27094.67
         },
         {
           "time": "2026-04-29T14:23:00.000Z",
           "close": 27103.38
         },
         {
-          "time": "2026-04-29T14:24:00.000Z",
-          "close": 27110.33
-        },
-        {
           "time": "2026-04-29T14:25:00.000Z",
           "close": 27115.21
         },
         {
-          "time": "2026-04-29T14:27:00.000Z",
-          "close": 27120.61
+          "time": "2026-04-29T14:26:00.000Z",
+          "close": 27113.99
         },
         {
-          "time": "2026-04-29T14:28:00.000Z",
-          "close": 27135.91
+          "time": "2026-04-29T14:27:00.000Z",
+          "close": 27120.61
         },
         {
           "time": "2026-04-29T14:29:00.000Z",
@@ -956,24 +952,24 @@
           "close": 27128.69
         },
         {
-          "time": "2026-04-29T14:32:00.000Z",
-          "close": 27145.2
+          "time": "2026-04-29T14:31:00.000Z",
+          "close": 27135.63
         },
         {
-          "time": "2026-04-29T14:33:00.000Z",
-          "close": 27150.51
+          "time": "2026-04-29T14:32:00.000Z",
+          "close": 27145.2
         },
         {
           "time": "2026-04-29T14:34:00.000Z",
           "close": 27157.9
         },
         {
-          "time": "2026-04-29T14:36:00.000Z",
-          "close": 27173.72
+          "time": "2026-04-29T14:35:00.000Z",
+          "close": 27163.02
         },
         {
-          "time": "2026-04-29T14:37:00.000Z",
-          "close": 27169.71
+          "time": "2026-04-29T14:36:00.000Z",
+          "close": 27173.72
         },
         {
           "time": "2026-04-29T14:38:00.000Z",
@@ -984,8 +980,8 @@
           "close": 27174.9
         },
         {
-          "time": "2026-04-29T14:41:00.000Z",
-          "close": 27153.83
+          "time": "2026-04-29T14:40:00.000Z",
+          "close": 27169.08
         },
         {
           "time": "2026-04-29T14:42:00.000Z",
@@ -996,12 +992,12 @@
           "close": 27155.19
         },
         {
-          "time": "2026-04-29T14:45:00.000Z",
-          "close": 27169.03
+          "time": "2026-04-29T14:44:00.000Z",
+          "close": 27166.98
         },
         {
-          "time": "2026-04-29T14:46:00.000Z",
-          "close": 27166.59
+          "time": "2026-04-29T14:45:00.000Z",
+          "close": 27169.03
         },
         {
           "time": "2026-04-29T14:47:00.000Z",
@@ -1012,8 +1008,8 @@
           "close": 27167.44
         },
         {
-          "time": "2026-04-29T14:50:00.000Z",
-          "close": 27157.07
+          "time": "2026-04-29T14:49:00.000Z",
+          "close": 27156
         },
         {
           "time": "2026-04-29T14:51:00.000Z",
@@ -1024,8 +1020,8 @@
           "close": 27164.96
         },
         {
-          "time": "2026-04-29T14:54:00.000Z",
-          "close": 27170.33
+          "time": "2026-04-29T14:53:00.000Z",
+          "close": 27169.98
         },
         {
           "time": "2026-04-29T14:55:00.000Z",
@@ -1052,8 +1048,8 @@
           "close": 27157.56
         },
         {
-          "time": "2026-04-29T15:03:00.000Z",
-          "close": 27149.24
+          "time": "2026-04-29T15:02:00.000Z",
+          "close": 27159.86
         },
         {
           "time": "2026-04-29T15:04:00.000Z",
@@ -1120,8 +1116,8 @@
           "close": 27132.72
         },
         {
-          "time": "2026-04-29T15:24:00.000Z",
-          "close": 27133.13
+          "time": "2026-04-29T15:25:00.000Z",
+          "close": 27139.46
         },
         {
           "time": "2026-04-29T15:26:00.000Z",
@@ -1136,8 +1132,8 @@
           "close": 27136.16
         },
         {
-          "time": "2026-04-29T15:29:00.000Z",
-          "close": 27147.23
+          "time": "2026-04-29T15:30:00.000Z",
+          "close": 27157.43
         },
         {
           "time": "2026-04-29T15:31:00.000Z",
@@ -1148,8 +1144,8 @@
           "close": 27148.71
         },
         {
-          "time": "2026-04-29T15:33:00.000Z",
-          "close": 27153.03
+          "time": "2026-04-29T15:34:00.000Z",
+          "close": 27151.76
         },
         {
           "time": "2026-04-29T15:35:00.000Z",
@@ -1160,12 +1156,12 @@
           "close": 27156.75
         },
         {
-          "time": "2026-04-29T15:37:00.000Z",
-          "close": 27150.68
-        },
-        {
           "time": "2026-04-29T15:38:00.000Z",
           "close": 27144.36
+        },
+        {
+          "time": "2026-04-29T15:39:00.000Z",
+          "close": 27146.74
         },
         {
           "time": "2026-04-29T15:40:00.000Z",
@@ -1176,8 +1172,8 @@
           "close": 27140
         },
         {
-          "time": "2026-04-29T15:42:00.000Z",
-          "close": 27147.61
+          "time": "2026-04-29T15:43:00.000Z",
+          "close": 27149.54
         },
         {
           "time": "2026-04-29T15:44:00.000Z",
@@ -1188,24 +1184,24 @@
           "close": 27158.97
         },
         {
-          "time": "2026-04-29T15:46:00.000Z",
-          "close": 27160.66
-        },
-        {
           "time": "2026-04-29T15:47:00.000Z",
           "close": 27160.21
+        },
+        {
+          "time": "2026-04-29T15:48:00.000Z",
+          "close": 27146.19
         },
         {
           "time": "2026-04-29T15:49:00.000Z",
           "close": 27150.67
         },
         {
-          "time": "2026-04-29T15:50:00.000Z",
-          "close": 27151.13
-        },
-        {
           "time": "2026-04-29T15:51:00.000Z",
           "close": 27138.7
+        },
+        {
+          "time": "2026-04-29T15:52:00.000Z",
+          "close": 27125.22
         },
         {
           "time": "2026-04-29T15:53:00.000Z",
@@ -1216,32 +1212,28 @@
           "close": 27080.77
         },
         {
-          "time": "2026-04-29T15:55:00.000Z",
-          "close": 27092.22
-        },
-        {
           "time": "2026-04-29T15:56:00.000Z",
           "close": 27088.14
+        },
+        {
+          "time": "2026-04-29T15:57:00.000Z",
+          "close": 27081.04
         },
         {
           "time": "2026-04-29T15:58:00.000Z",
           "close": 27100.71
         },
         {
-          "time": "2026-04-29T15:59:00.000Z",
-          "close": 27109.26
-        },
-        {
           "time": "2026-04-29T16:00:00.000Z",
           "close": 27101.9
         },
         {
-          "time": "2026-04-29T16:02:00.000Z",
-          "close": 27112.24
+          "time": "2026-04-29T16:01:00.000Z",
+          "close": 27115.53
         },
         {
-          "time": "2026-04-29T16:03:00.000Z",
-          "close": 27113.54
+          "time": "2026-04-29T16:02:00.000Z",
+          "close": 27112.24
         },
         {
           "time": "2026-04-29T16:04:00.000Z",
@@ -1252,8 +1244,8 @@
           "close": 27122.15
         },
         {
-          "time": "2026-04-29T16:07:00.000Z",
-          "close": 27126.78
+          "time": "2026-04-29T16:06:00.000Z",
+          "close": 27124.21
         },
         {
           "time": "2026-04-29T16:08:00.000Z",
@@ -1264,12 +1256,12 @@
           "close": 27122.12
         },
         {
-          "time": "2026-04-29T16:11:00.000Z",
-          "close": 27124.04
+          "time": "2026-04-29T16:10:00.000Z",
+          "close": 27132.15
         },
         {
-          "time": "2026-04-29T16:12:00.000Z",
-          "close": 27122.91
+          "time": "2026-04-29T16:11:00.000Z",
+          "close": 27124.04
         },
         {
           "time": "2026-04-29T16:13:00.000Z",
@@ -1280,8 +1272,8 @@
           "close": 27115.05
         },
         {
-          "time": "2026-04-29T16:16:00.000Z",
-          "close": 27107.28
+          "time": "2026-04-29T16:15:00.000Z",
+          "close": 27116.79
         },
         {
           "time": "2026-04-29T16:17:00.000Z",
@@ -1292,8 +1284,8 @@
           "close": 27090.9
         },
         {
-          "time": "2026-04-29T16:20:00.000Z",
-          "close": 27081.4
+          "time": "2026-04-29T16:19:00.000Z",
+          "close": 27074.69
         },
         {
           "time": "2026-04-29T16:21:00.000Z",
@@ -1308,8 +1300,8 @@
           "close": 27085.77
         },
         {
-          "time": "2026-04-29T16:25:00.000Z",
-          "close": 27076.95
+          "time": "2026-04-29T16:24:00.000Z",
+          "close": 27088.52
         },
         {
           "time": "2026-04-29T16:26:00.000Z",
@@ -1320,8 +1312,8 @@
           "close": 27076.4
         },
         {
-          "time": "2026-04-29T16:29:00.000Z",
-          "close": 27066.07
+          "time": "2026-04-29T16:28:00.000Z",
+          "close": 27075.62
         },
         {
           "time": "2026-04-29T16:30:00.000Z",
@@ -1348,8 +1340,8 @@
           "close": 27025.5
         },
         {
-          "time": "2026-04-29T16:38:00.000Z",
-          "close": 27043.03
+          "time": "2026-04-29T16:37:00.000Z",
+          "close": 27029.58
         },
         {
           "time": "2026-04-29T16:39:00.000Z",
@@ -1416,8 +1408,8 @@
           "close": 27062.47
         },
         {
-          "time": "2026-04-29T16:59:00.000Z",
-          "close": 27063.99
+          "time": "2026-04-29T17:00:00.000Z",
+          "close": 27067.02
         },
         {
           "time": "2026-04-29T17:01:00.000Z",
@@ -1444,8 +1436,8 @@
           "close": 27068.85
         },
         {
-          "time": "2026-04-29T17:08:00.000Z",
-          "close": 27066.52
+          "time": "2026-04-29T17:09:00.000Z",
+          "close": 27069.89
         },
         {
           "time": "2026-04-29T17:10:00.000Z",
@@ -1456,8 +1448,8 @@
           "close": 27076.06
         },
         {
-          "time": "2026-04-29T17:12:00.000Z",
-          "close": 27069.36
+          "time": "2026-04-29T17:13:00.000Z",
+          "close": 27069.35
         },
         {
           "time": "2026-04-29T17:14:00.000Z",
@@ -1472,28 +1464,36 @@
           "close": 27069.46
         },
         {
-          "time": "2026-04-29T17:17:00.000Z",
-          "close": 27081.17
+          "time": "2026-04-29T17:18:00.000Z",
+          "close": 27074.77
         },
         {
           "time": "2026-04-29T17:19:00.000Z",
           "close": 27073.13
         },
         {
-          "time": "2026-04-29T17:20:01.000Z",
-          "close": 27077.94
+          "time": "2026-04-29T17:20:00.000Z",
+          "close": 27082.09
+        },
+        {
+          "time": "2026-04-29T17:22:00.000Z",
+          "close": 27079.31
+        },
+        {
+          "time": "2026-04-29T17:23:10.000Z",
+          "close": 27082.98
         }
       ]
     },
     {
       "symbol": "DJI",
       "name": "Dow Jones",
-      "closeValue": 48822.19,
+      "closeValue": 48806.9,
       "previousClose": 49141.93,
-      "changePercent": -0.651,
+      "changePercent": -0.682,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-04-29T17:20:03.000Z",
+      "dataTimestamp": "2026-04-29T17:23:10.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^DJI",
       "tradingViewSymbol": "DJ:DJI",
@@ -1522,8 +1522,8 @@
           "close": 49030.85
         },
         {
-          "time": "2026-04-29T13:36:00.000Z",
-          "close": 48999.7
+          "time": "2026-04-29T13:37:00.000Z",
+          "close": 48997.46
         },
         {
           "time": "2026-04-29T13:38:00.000Z",
@@ -1550,8 +1550,8 @@
           "close": 48884.53
         },
         {
-          "time": "2026-04-29T13:45:00.000Z",
-          "close": 48869.98
+          "time": "2026-04-29T13:46:00.000Z",
+          "close": 48903.36
         },
         {
           "time": "2026-04-29T13:47:00.000Z",
@@ -1562,8 +1562,8 @@
           "close": 48853.49
         },
         {
-          "time": "2026-04-29T13:49:00.000Z",
-          "close": 48869.41
+          "time": "2026-04-29T13:50:00.000Z",
+          "close": 48876.92
         },
         {
           "time": "2026-04-29T13:51:00.000Z",
@@ -1578,8 +1578,8 @@
           "close": 48912.22
         },
         {
-          "time": "2026-04-29T13:54:00.000Z",
-          "close": 48869.94
+          "time": "2026-04-29T13:55:00.000Z",
+          "close": 48892.9
         },
         {
           "time": "2026-04-29T13:56:00.000Z",
@@ -1590,8 +1590,8 @@
           "close": 48912.19
         },
         {
-          "time": "2026-04-29T13:58:00.000Z",
-          "close": 48878.11
+          "time": "2026-04-29T13:59:00.000Z",
+          "close": 48929.43
         },
         {
           "time": "2026-04-29T14:00:00.000Z",
@@ -1602,12 +1602,12 @@
           "close": 48922.41
         },
         {
-          "time": "2026-04-29T14:02:00.000Z",
-          "close": 48939.54
-        },
-        {
           "time": "2026-04-29T14:03:00.000Z",
           "close": 48934.86
+        },
+        {
+          "time": "2026-04-29T14:04:00.000Z",
+          "close": 48957.84
         },
         {
           "time": "2026-04-29T14:05:00.000Z",
@@ -1618,8 +1618,8 @@
           "close": 48966.84
         },
         {
-          "time": "2026-04-29T14:07:00.000Z",
-          "close": 48961.05
+          "time": "2026-04-29T14:08:00.000Z",
+          "close": 48987.04
         },
         {
           "time": "2026-04-29T14:09:00.000Z",
@@ -1630,24 +1630,24 @@
           "close": 49001.78
         },
         {
-          "time": "2026-04-29T14:11:00.000Z",
-          "close": 48992.32
-        },
-        {
           "time": "2026-04-29T14:12:00.000Z",
           "close": 48999.47
+        },
+        {
+          "time": "2026-04-29T14:13:00.000Z",
+          "close": 49005
         },
         {
           "time": "2026-04-29T14:14:00.000Z",
           "close": 48984.42
         },
         {
-          "time": "2026-04-29T14:15:00.000Z",
-          "close": 48995.53
-        },
-        {
           "time": "2026-04-29T14:16:00.000Z",
           "close": 48989.42
+        },
+        {
+          "time": "2026-04-29T14:17:00.000Z",
+          "close": 48991.66
         },
         {
           "time": "2026-04-29T14:18:00.000Z",
@@ -1658,32 +1658,28 @@
           "close": 48970.62
         },
         {
-          "time": "2026-04-29T14:20:00.000Z",
-          "close": 48983.06
-        },
-        {
           "time": "2026-04-29T14:21:00.000Z",
           "close": 48993.47
+        },
+        {
+          "time": "2026-04-29T14:22:00.000Z",
+          "close": 49008.43
         },
         {
           "time": "2026-04-29T14:23:00.000Z",
           "close": 48999.42
         },
         {
-          "time": "2026-04-29T14:24:00.000Z",
-          "close": 48984.84
-        },
-        {
           "time": "2026-04-29T14:25:00.000Z",
           "close": 48969.89
         },
         {
-          "time": "2026-04-29T14:27:00.000Z",
-          "close": 48972.81
+          "time": "2026-04-29T14:26:00.000Z",
+          "close": 48986.26
         },
         {
-          "time": "2026-04-29T14:28:00.000Z",
-          "close": 48957.06
+          "time": "2026-04-29T14:27:00.000Z",
+          "close": 48972.81
         },
         {
           "time": "2026-04-29T14:29:00.000Z",
@@ -1694,24 +1690,24 @@
           "close": 48960.62
         },
         {
-          "time": "2026-04-29T14:32:00.000Z",
-          "close": 48941.3
+          "time": "2026-04-29T14:31:00.000Z",
+          "close": 48942.74
         },
         {
-          "time": "2026-04-29T14:33:00.000Z",
-          "close": 48948.77
+          "time": "2026-04-29T14:32:00.000Z",
+          "close": 48941.3
         },
         {
           "time": "2026-04-29T14:34:00.000Z",
           "close": 48946.52
         },
         {
-          "time": "2026-04-29T14:36:00.000Z",
-          "close": 48937.88
+          "time": "2026-04-29T14:35:00.000Z",
+          "close": 48946.32
         },
         {
-          "time": "2026-04-29T14:37:00.000Z",
-          "close": 48939.88
+          "time": "2026-04-29T14:36:00.000Z",
+          "close": 48937.88
         },
         {
           "time": "2026-04-29T14:38:00.000Z",
@@ -1722,8 +1718,8 @@
           "close": 48918.74
         },
         {
-          "time": "2026-04-29T14:41:00.000Z",
-          "close": 48945.06
+          "time": "2026-04-29T14:40:00.000Z",
+          "close": 48921.96
         },
         {
           "time": "2026-04-29T14:42:00.000Z",
@@ -1734,12 +1730,12 @@
           "close": 48931.48
         },
         {
-          "time": "2026-04-29T14:45:00.000Z",
-          "close": 48908
+          "time": "2026-04-29T14:44:00.000Z",
+          "close": 48924.14
         },
         {
-          "time": "2026-04-29T14:46:00.000Z",
-          "close": 48904.29
+          "time": "2026-04-29T14:45:00.000Z",
+          "close": 48908
         },
         {
           "time": "2026-04-29T14:47:00.000Z",
@@ -1750,8 +1746,8 @@
           "close": 48899.91
         },
         {
-          "time": "2026-04-29T14:50:00.000Z",
-          "close": 48898.47
+          "time": "2026-04-29T14:49:00.000Z",
+          "close": 48902.73
         },
         {
           "time": "2026-04-29T14:51:00.000Z",
@@ -1762,8 +1758,8 @@
           "close": 48893.72
         },
         {
-          "time": "2026-04-29T14:54:00.000Z",
-          "close": 48913.29
+          "time": "2026-04-29T14:53:00.000Z",
+          "close": 48906.81
         },
         {
           "time": "2026-04-29T14:55:00.000Z",
@@ -1790,8 +1786,8 @@
           "close": 48890.65
         },
         {
-          "time": "2026-04-29T15:03:00.000Z",
-          "close": 48871.99
+          "time": "2026-04-29T15:02:00.000Z",
+          "close": 48871.18
         },
         {
           "time": "2026-04-29T15:04:00.000Z",
@@ -1858,8 +1854,8 @@
           "close": 48862
         },
         {
-          "time": "2026-04-29T15:24:00.000Z",
-          "close": 48876.93
+          "time": "2026-04-29T15:25:00.000Z",
+          "close": 48883.61
         },
         {
           "time": "2026-04-29T15:26:00.000Z",
@@ -1874,8 +1870,8 @@
           "close": 48870.1
         },
         {
-          "time": "2026-04-29T15:29:00.000Z",
-          "close": 48878.55
+          "time": "2026-04-29T15:30:00.000Z",
+          "close": 48860.49
         },
         {
           "time": "2026-04-29T15:31:00.000Z",
@@ -1886,8 +1882,8 @@
           "close": 48841.68
         },
         {
-          "time": "2026-04-29T15:33:00.000Z",
-          "close": 48833.36
+          "time": "2026-04-29T15:34:00.000Z",
+          "close": 48825.98
         },
         {
           "time": "2026-04-29T15:35:00.000Z",
@@ -1898,12 +1894,12 @@
           "close": 48834.28
         },
         {
-          "time": "2026-04-29T15:37:00.000Z",
-          "close": 48821.31
-        },
-        {
           "time": "2026-04-29T15:38:00.000Z",
           "close": 48820.89
+        },
+        {
+          "time": "2026-04-29T15:39:00.000Z",
+          "close": 48810.79
         },
         {
           "time": "2026-04-29T15:40:00.000Z",
@@ -1914,8 +1910,8 @@
           "close": 48809.82
         },
         {
-          "time": "2026-04-29T15:42:00.000Z",
-          "close": 48822.36
+          "time": "2026-04-29T15:43:00.000Z",
+          "close": 48823.31
         },
         {
           "time": "2026-04-29T15:44:00.000Z",
@@ -1926,24 +1922,24 @@
           "close": 48846.28
         },
         {
-          "time": "2026-04-29T15:46:00.000Z",
-          "close": 48835.05
-        },
-        {
           "time": "2026-04-29T15:47:00.000Z",
           "close": 48835.85
+        },
+        {
+          "time": "2026-04-29T15:48:00.000Z",
+          "close": 48845.91
         },
         {
           "time": "2026-04-29T15:49:00.000Z",
           "close": 48854.79
         },
         {
-          "time": "2026-04-29T15:50:00.000Z",
-          "close": 48862.33
-        },
-        {
           "time": "2026-04-29T15:51:00.000Z",
           "close": 48841.78
+        },
+        {
+          "time": "2026-04-29T15:52:00.000Z",
+          "close": 48810.2
         },
         {
           "time": "2026-04-29T15:53:00.000Z",
@@ -1954,32 +1950,28 @@
           "close": 48756.81
         },
         {
-          "time": "2026-04-29T15:55:00.000Z",
-          "close": 48760.96
-        },
-        {
           "time": "2026-04-29T15:56:00.000Z",
           "close": 48767.52
+        },
+        {
+          "time": "2026-04-29T15:57:00.000Z",
+          "close": 48760.65
         },
         {
           "time": "2026-04-29T15:58:00.000Z",
           "close": 48788.76
         },
         {
-          "time": "2026-04-29T15:59:00.000Z",
-          "close": 48790.4
-        },
-        {
           "time": "2026-04-29T16:00:00.000Z",
           "close": 48795.8
         },
         {
-          "time": "2026-04-29T16:02:00.000Z",
-          "close": 48807.19
+          "time": "2026-04-29T16:01:00.000Z",
+          "close": 48809.97
         },
         {
-          "time": "2026-04-29T16:03:00.000Z",
-          "close": 48805.66
+          "time": "2026-04-29T16:02:00.000Z",
+          "close": 48807.19
         },
         {
           "time": "2026-04-29T16:04:00.000Z",
@@ -1990,8 +1982,8 @@
           "close": 48812.17
         },
         {
-          "time": "2026-04-29T16:07:00.000Z",
-          "close": 48826.65
+          "time": "2026-04-29T16:06:00.000Z",
+          "close": 48816.09
         },
         {
           "time": "2026-04-29T16:08:00.000Z",
@@ -2002,12 +1994,12 @@
           "close": 48823.84
         },
         {
-          "time": "2026-04-29T16:11:00.000Z",
-          "close": 48821
+          "time": "2026-04-29T16:10:00.000Z",
+          "close": 48833.69
         },
         {
-          "time": "2026-04-29T16:12:00.000Z",
-          "close": 48824.47
+          "time": "2026-04-29T16:11:00.000Z",
+          "close": 48821
         },
         {
           "time": "2026-04-29T16:13:00.000Z",
@@ -2018,8 +2010,8 @@
           "close": 48816.42
         },
         {
-          "time": "2026-04-29T16:16:00.000Z",
-          "close": 48834.64
+          "time": "2026-04-29T16:15:00.000Z",
+          "close": 48828.53
         },
         {
           "time": "2026-04-29T16:17:00.000Z",
@@ -2030,8 +2022,8 @@
           "close": 48827.32
         },
         {
-          "time": "2026-04-29T16:20:00.000Z",
-          "close": 48836.47
+          "time": "2026-04-29T16:19:00.000Z",
+          "close": 48835.66
         },
         {
           "time": "2026-04-29T16:21:00.000Z",
@@ -2046,8 +2038,8 @@
           "close": 48840.57
         },
         {
-          "time": "2026-04-29T16:25:00.000Z",
-          "close": 48845.27
+          "time": "2026-04-29T16:24:00.000Z",
+          "close": 48848.45
         },
         {
           "time": "2026-04-29T16:26:00.000Z",
@@ -2058,8 +2050,8 @@
           "close": 48853.82
         },
         {
-          "time": "2026-04-29T16:29:00.000Z",
-          "close": 48834.58
+          "time": "2026-04-29T16:28:00.000Z",
+          "close": 48847.2
         },
         {
           "time": "2026-04-29T16:30:00.000Z",
@@ -2086,8 +2078,8 @@
           "close": 48807.7
         },
         {
-          "time": "2026-04-29T16:38:00.000Z",
-          "close": 48816.2
+          "time": "2026-04-29T16:37:00.000Z",
+          "close": 48804.34
         },
         {
           "time": "2026-04-29T16:39:00.000Z",
@@ -2154,8 +2146,8 @@
           "close": 48838.04
         },
         {
-          "time": "2026-04-29T16:59:00.000Z",
-          "close": 48837.19
+          "time": "2026-04-29T17:00:00.000Z",
+          "close": 48827.97
         },
         {
           "time": "2026-04-29T17:01:00.000Z",
@@ -2182,8 +2174,8 @@
           "close": 48819.25
         },
         {
-          "time": "2026-04-29T17:08:00.000Z",
-          "close": 48816.29
+          "time": "2026-04-29T17:09:00.000Z",
+          "close": 48810.11
         },
         {
           "time": "2026-04-29T17:10:00.000Z",
@@ -2194,8 +2186,8 @@
           "close": 48800.41
         },
         {
-          "time": "2026-04-29T17:12:00.000Z",
-          "close": 48794.61
+          "time": "2026-04-29T17:13:00.000Z",
+          "close": 48795.44
         },
         {
           "time": "2026-04-29T17:14:00.000Z",
@@ -2210,16 +2202,24 @@
           "close": 48799.07
         },
         {
-          "time": "2026-04-29T17:17:00.000Z",
-          "close": 48807.04
+          "time": "2026-04-29T17:18:00.000Z",
+          "close": 48806.59
         },
         {
           "time": "2026-04-29T17:19:00.000Z",
           "close": 48808.26
         },
         {
-          "time": "2026-04-29T17:20:03.000Z",
-          "close": 48822.19
+          "time": "2026-04-29T17:20:00.000Z",
+          "close": 48821.31
+        },
+        {
+          "time": "2026-04-29T17:22:00.000Z",
+          "close": 48804.93
+        },
+        {
+          "time": "2026-04-29T17:23:10.000Z",
+          "close": 48806.9
         }
       ]
     },
@@ -8870,10 +8870,10 @@
       "name": "US Dollar Index",
       "closeValue": 98.91,
       "previousClose": 98.64,
-      "changePercent": 0.271,
+      "changePercent": 0.274,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-04-29T17:10:00.000Z",
+      "dataTimestamp": "2026-04-29T17:13:09.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "DX-Y.NYB",
       "tradingViewSymbol": "TVC:DXY",
@@ -8906,7 +8906,7 @@
           "close": 98.67
         },
         {
-          "time": "2026-04-29T04:26:00.000Z",
+          "time": "2026-04-29T04:27:00.000Z",
           "close": 98.68
         },
         {
@@ -8926,15 +8926,15 @@
           "close": 98.67
         },
         {
-          "time": "2026-04-29T04:48:00.000Z",
-          "close": 98.68
+          "time": "2026-04-29T04:49:00.000Z",
+          "close": 98.67
         },
         {
           "time": "2026-04-29T04:53:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T04:57:00.000Z",
+          "time": "2026-04-29T04:58:00.000Z",
           "close": 98.68
         },
         {
@@ -8954,15 +8954,15 @@
           "close": 98.7
         },
         {
-          "time": "2026-04-29T05:19:00.000Z",
-          "close": 98.71
+          "time": "2026-04-29T05:20:00.000Z",
+          "close": 98.7
         },
         {
           "time": "2026-04-29T05:24:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T05:28:00.000Z",
+          "time": "2026-04-29T05:29:00.000Z",
           "close": 98.71
         },
         {
@@ -8974,55 +8974,55 @@
           "close": 98.73
         },
         {
-          "time": "2026-04-29T05:41:00.000Z",
-          "close": 98.73
+          "time": "2026-04-29T05:42:00.000Z",
+          "close": 98.72
         },
         {
           "time": "2026-04-29T05:46:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T05:50:00.000Z",
-          "close": 98.72
+          "time": "2026-04-29T05:51:00.000Z",
+          "close": 98.71
         },
         {
           "time": "2026-04-29T05:55:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T05:59:00.000Z",
-          "close": 98.72
+          "time": "2026-04-29T06:00:00.000Z",
+          "close": 98.71
         },
         {
-          "time": "2026-04-29T06:03:00.000Z",
-          "close": 98.71
+          "time": "2026-04-29T06:04:00.000Z",
+          "close": 98.7
         },
         {
           "time": "2026-04-29T06:08:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T06:12:00.000Z",
-          "close": 98.73
+          "time": "2026-04-29T06:13:00.000Z",
+          "close": 98.74
         },
         {
           "time": "2026-04-29T06:17:00.000Z",
           "close": 98.74
         },
         {
-          "time": "2026-04-29T06:21:00.000Z",
+          "time": "2026-04-29T06:22:00.000Z",
           "close": 98.74
         },
         {
-          "time": "2026-04-29T06:25:00.000Z",
-          "close": 98.73
+          "time": "2026-04-29T06:26:00.000Z",
+          "close": 98.74
         },
         {
-          "time": "2026-04-29T06:30:00.000Z",
-          "close": 98.75
+          "time": "2026-04-29T06:31:00.000Z",
+          "close": 98.74
         },
         {
-          "time": "2026-04-29T06:34:00.000Z",
+          "time": "2026-04-29T06:35:00.000Z",
           "close": 98.75
         },
         {
@@ -9030,27 +9030,27 @@
           "close": 98.71
         },
         {
-          "time": "2026-04-29T06:43:00.000Z",
+          "time": "2026-04-29T06:44:00.000Z",
           "close": 98.72
         },
         {
-          "time": "2026-04-29T06:47:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T06:52:00.000Z",
+          "time": "2026-04-29T06:48:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T06:56:00.000Z",
+          "time": "2026-04-29T06:53:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T07:01:00.000Z",
+          "time": "2026-04-29T06:57:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T07:02:00.000Z",
           "close": 98.72
         },
         {
-          "time": "2026-04-29T07:05:00.000Z",
+          "time": "2026-04-29T07:06:00.000Z",
           "close": 98.7
         },
         {
@@ -9058,459 +9058,455 @@
           "close": 98.68
         },
         {
-          "time": "2026-04-29T07:14:00.000Z",
+          "time": "2026-04-29T07:15:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T07:18:00.000Z",
+          "time": "2026-04-29T07:19:00.000Z",
           "close": 98.69
         },
         {
-          "time": "2026-04-29T07:23:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T07:27:00.000Z",
+          "time": "2026-04-29T07:24:00.000Z",
           "close": 98.69
         },
         {
-          "time": "2026-04-29T07:32:00.000Z",
+          "time": "2026-04-29T07:28:00.000Z",
           "close": 98.69
         },
         {
-          "time": "2026-04-29T07:36:00.000Z",
+          "time": "2026-04-29T07:33:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T07:40:00.000Z",
-          "close": 98.68
-        },
-        {
-          "time": "2026-04-29T07:45:00.000Z",
-          "close": 98.69
-        },
-        {
-          "time": "2026-04-29T07:49:00.000Z",
-          "close": 98.68
-        },
-        {
-          "time": "2026-04-29T07:54:00.000Z",
+          "time": "2026-04-29T07:37:00.000Z",
           "close": 98.67
         },
         {
-          "time": "2026-04-29T07:58:00.000Z",
-          "close": 98.68
-        },
-        {
-          "time": "2026-04-29T08:02:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T08:07:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T08:11:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T08:16:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T08:20:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T08:24:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T08:29:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T08:33:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T08:38:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T08:42:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T08:47:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T08:51:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T08:55:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T09:00:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T09:04:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T09:09:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T09:13:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T09:17:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T09:22:00.000Z",
-          "close": 98.75
-        },
-        {
-          "time": "2026-04-29T09:26:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T09:31:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T09:35:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T09:39:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T09:44:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T09:48:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T09:53:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T09:57:00.000Z",
-          "close": 98.75
-        },
-        {
-          "time": "2026-04-29T10:01:00.000Z",
-          "close": 98.75
-        },
-        {
-          "time": "2026-04-29T10:06:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:10:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:15:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T10:19:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T10:23:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T10:28:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:32:00.000Z",
-          "close": 98.71
-        },
-        {
-          "time": "2026-04-29T10:37:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:41:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:46:00.000Z",
-          "close": 98.72
-        },
-        {
-          "time": "2026-04-29T10:50:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T10:54:00.000Z",
+          "time": "2026-04-29T07:42:00.000Z",
           "close": 98.69
         },
         {
-          "time": "2026-04-29T10:59:00.000Z",
-          "close": 98.68
+          "time": "2026-04-29T07:46:00.000Z",
+          "close": 98.69
         },
         {
-          "time": "2026-04-29T11:03:00.000Z",
-          "close": 98.68
-        },
-        {
-          "time": "2026-04-29T11:08:00.000Z",
+          "time": "2026-04-29T07:50:00.000Z",
           "close": 98.67
         },
         {
-          "time": "2026-04-29T11:12:00.000Z",
-          "close": 98.69
+          "time": "2026-04-29T07:55:00.000Z",
+          "close": 98.67
         },
         {
-          "time": "2026-04-29T11:16:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T11:21:00.000Z",
+          "time": "2026-04-29T07:59:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T11:25:00.000Z",
-          "close": 98.68
-        },
-        {
-          "time": "2026-04-29T11:30:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T11:34:00.000Z",
-          "close": 98.69
-        },
-        {
-          "time": "2026-04-29T11:38:00.000Z",
-          "close": 98.69
-        },
-        {
-          "time": "2026-04-29T11:43:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T11:47:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T11:52:00.000Z",
-          "close": 98.7
-        },
-        {
-          "time": "2026-04-29T11:56:00.000Z",
+          "time": "2026-04-29T08:04:00.000Z",
           "close": 98.72
         },
         {
-          "time": "2026-04-29T12:00:00.000Z",
+          "time": "2026-04-29T08:08:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T08:13:00.000Z",
+          "close": 98.75
+        },
+        {
+          "time": "2026-04-29T08:17:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T08:21:00.000Z",
+          "close": 98.7
+        },
+        {
+          "time": "2026-04-29T08:26:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T08:30:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T08:35:00.000Z",
+          "close": 98.75
+        },
+        {
+          "time": "2026-04-29T08:39:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T08:44:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T08:48:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T08:52:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T08:57:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T09:01:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T09:06:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T09:10:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T09:15:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T09:19:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T09:23:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T09:28:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T09:32:00.000Z",
           "close": 98.71
         },
         {
-          "time": "2026-04-29T12:05:00.000Z",
-          "close": 98.68
+          "time": "2026-04-29T09:37:00.000Z",
+          "close": 98.72
         },
         {
-          "time": "2026-04-29T12:09:00.000Z",
-          "close": 98.68
+          "time": "2026-04-29T09:41:00.000Z",
+          "close": 98.73
         },
         {
-          "time": "2026-04-29T12:14:00.000Z",
+          "time": "2026-04-29T09:46:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T09:50:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T09:54:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T09:59:00.000Z",
+          "close": 98.75
+        },
+        {
+          "time": "2026-04-29T10:03:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:08:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T10:12:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:17:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:21:00.000Z",
+          "close": 98.71
+        },
+        {
+          "time": "2026-04-29T10:25:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:30:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:34:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:39:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:43:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:48:00.000Z",
+          "close": 98.72
+        },
+        {
+          "time": "2026-04-29T10:52:00.000Z",
+          "close": 98.7
+        },
+        {
+          "time": "2026-04-29T10:56:00.000Z",
           "close": 98.69
         },
         {
-          "time": "2026-04-29T12:18:00.000Z",
+          "time": "2026-04-29T11:01:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T12:22:00.000Z",
+          "time": "2026-04-29T11:05:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T12:27:00.000Z",
+          "time": "2026-04-29T11:10:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:14:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:19:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:23:00.000Z",
           "close": 98.68
         },
         {
-          "time": "2026-04-29T12:31:00.000Z",
+          "time": "2026-04-29T11:27:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:32:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:36:00.000Z",
+          "close": 98.68
+        },
+        {
+          "time": "2026-04-29T11:41:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:45:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:50:00.000Z",
           "close": 98.7
         },
         {
-          "time": "2026-04-29T12:36:00.000Z",
+          "time": "2026-04-29T11:54:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T11:58:00.000Z",
+          "close": 98.71
+        },
+        {
+          "time": "2026-04-29T12:03:00.000Z",
           "close": 98.7
         },
         {
-          "time": "2026-04-29T12:40:00.000Z",
-          "close": 98.75
+          "time": "2026-04-29T12:07:00.000Z",
+          "close": 98.68
         },
         {
-          "time": "2026-04-29T12:45:00.000Z",
+          "time": "2026-04-29T12:12:00.000Z",
+          "close": 98.68
+        },
+        {
+          "time": "2026-04-29T12:16:00.000Z",
+          "close": 98.68
+        },
+        {
+          "time": "2026-04-29T12:21:00.000Z",
+          "close": 98.67
+        },
+        {
+          "time": "2026-04-29T12:25:00.000Z",
+          "close": 98.7
+        },
+        {
+          "time": "2026-04-29T12:29:00.000Z",
+          "close": 98.69
+        },
+        {
+          "time": "2026-04-29T12:34:00.000Z",
+          "close": 98.71
+        },
+        {
+          "time": "2026-04-29T12:38:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T12:43:00.000Z",
           "close": 98.73
         },
         {
-          "time": "2026-04-29T12:49:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T12:53:00.000Z",
-          "close": 98.76
-        },
-        {
-          "time": "2026-04-29T12:58:00.000Z",
+          "time": "2026-04-29T12:47:00.000Z",
           "close": 98.75
         },
         {
-          "time": "2026-04-29T13:02:00.000Z",
-          "close": 98.73
-        },
-        {
-          "time": "2026-04-29T13:07:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T13:11:00.000Z",
-          "close": 98.74
-        },
-        {
-          "time": "2026-04-29T13:15:00.000Z",
+          "time": "2026-04-29T12:52:00.000Z",
           "close": 98.76
         },
         {
-          "time": "2026-04-29T13:20:00.000Z",
-          "close": 98.8
+          "time": "2026-04-29T12:56:00.000Z",
+          "close": 98.76
         },
         {
-          "time": "2026-04-29T13:24:00.000Z",
+          "time": "2026-04-29T13:00:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T13:05:00.000Z",
+          "close": 98.73
+        },
+        {
+          "time": "2026-04-29T13:09:00.000Z",
+          "close": 98.74
+        },
+        {
+          "time": "2026-04-29T13:14:00.000Z",
+          "close": 98.75
+        },
+        {
+          "time": "2026-04-29T13:18:00.000Z",
+          "close": 98.77
+        },
+        {
+          "time": "2026-04-29T13:23:00.000Z",
           "close": 98.81
         },
         {
-          "time": "2026-04-29T13:29:00.000Z",
+          "time": "2026-04-29T13:27:00.000Z",
           "close": 98.82
         },
         {
-          "time": "2026-04-29T13:33:00.000Z",
+          "time": "2026-04-29T13:31:00.000Z",
+          "close": 98.83
+        },
+        {
+          "time": "2026-04-29T13:36:00.000Z",
+          "close": 98.88
+        },
+        {
+          "time": "2026-04-29T13:40:00.000Z",
           "close": 98.85
         },
         {
-          "time": "2026-04-29T13:37:00.000Z",
+          "time": "2026-04-29T13:45:00.000Z",
           "close": 98.86
         },
         {
-          "time": "2026-04-29T13:42:00.000Z",
-          "close": 98.84
+          "time": "2026-04-29T13:49:00.000Z",
+          "close": 98.88
         },
         {
-          "time": "2026-04-29T13:46:00.000Z",
-          "close": 98.86
+          "time": "2026-04-29T13:54:00.000Z",
+          "close": 98.88
         },
         {
-          "time": "2026-04-29T13:51:00.000Z",
+          "time": "2026-04-29T13:58:00.000Z",
+          "close": 98.87
+        },
+        {
+          "time": "2026-04-29T14:03:00.000Z",
           "close": 98.89
         },
         {
-          "time": "2026-04-29T13:55:00.000Z",
-          "close": 98.86
-        },
-        {
-          "time": "2026-04-29T13:59:00.000Z",
-          "close": 98.86
-        },
-        {
-          "time": "2026-04-29T14:04:00.000Z",
+          "time": "2026-04-29T14:07:00.000Z",
           "close": 98.89
         },
         {
-          "time": "2026-04-29T14:08:00.000Z",
-          "close": 98.9
+          "time": "2026-04-29T14:11:00.000Z",
+          "close": 98.87
         },
         {
-          "time": "2026-04-29T14:13:00.000Z",
-          "close": 98.86
-        },
-        {
-          "time": "2026-04-29T14:17:00.000Z",
+          "time": "2026-04-29T14:16:00.000Z",
           "close": 98.82
         },
         {
-          "time": "2026-04-29T14:22:00.000Z",
-          "close": 98.83
-        },
-        {
-          "time": "2026-04-29T14:26:00.000Z",
+          "time": "2026-04-29T14:20:00.000Z",
           "close": 98.82
         },
         {
-          "time": "2026-04-29T14:30:00.000Z",
-          "close": 98.83
-        },
-        {
-          "time": "2026-04-29T14:35:00.000Z",
-          "close": 98.81
-        },
-        {
-          "time": "2026-04-29T14:39:00.000Z",
+          "time": "2026-04-29T14:25:00.000Z",
           "close": 98.82
         },
         {
-          "time": "2026-04-29T14:44:00.000Z",
+          "time": "2026-04-29T14:29:00.000Z",
           "close": 98.83
         },
         {
-          "time": "2026-04-29T14:48:00.000Z",
-          "close": 98.83
-        },
-        {
-          "time": "2026-04-29T14:52:00.000Z",
-          "close": 98.79
-        },
-        {
-          "time": "2026-04-29T14:57:00.000Z",
-          "close": 98.76
-        },
-        {
-          "time": "2026-04-29T15:01:00.000Z",
-          "close": 98.76
-        },
-        {
-          "time": "2026-04-29T15:06:00.000Z",
-          "close": 98.75
-        },
-        {
-          "time": "2026-04-29T15:10:00.000Z",
-          "close": 98.79
-        },
-        {
-          "time": "2026-04-29T15:14:00.000Z",
-          "close": 98.81
-        },
-        {
-          "time": "2026-04-29T15:19:00.000Z",
-          "close": 98.79
-        },
-        {
-          "time": "2026-04-29T15:23:00.000Z",
+          "time": "2026-04-29T14:34:00.000Z",
           "close": 98.8
         },
         {
-          "time": "2026-04-29T15:28:00.000Z",
-          "close": 98.83
+          "time": "2026-04-29T14:38:00.000Z",
+          "close": 98.81
         },
         {
-          "time": "2026-04-29T15:32:00.000Z",
+          "time": "2026-04-29T14:42:00.000Z",
+          "close": 98.82
+        },
+        {
+          "time": "2026-04-29T14:47:00.000Z",
+          "close": 98.84
+        },
+        {
+          "time": "2026-04-29T14:51:00.000Z",
+          "close": 98.8
+        },
+        {
+          "time": "2026-04-29T14:56:00.000Z",
+          "close": 98.78
+        },
+        {
+          "time": "2026-04-29T15:00:00.000Z",
+          "close": 98.75
+        },
+        {
+          "time": "2026-04-29T15:05:00.000Z",
+          "close": 98.76
+        },
+        {
+          "time": "2026-04-29T15:09:00.000Z",
+          "close": 98.79
+        },
+        {
+          "time": "2026-04-29T15:13:00.000Z",
+          "close": 98.8
+        },
+        {
+          "time": "2026-04-29T15:18:00.000Z",
+          "close": 98.79
+        },
+        {
+          "time": "2026-04-29T15:22:00.000Z",
+          "close": 98.79
+        },
+        {
+          "time": "2026-04-29T15:27:00.000Z",
+          "close": 98.81
+        },
+        {
+          "time": "2026-04-29T15:31:00.000Z",
           "close": 98.81
         },
         {
@@ -9518,67 +9514,67 @@
           "close": 98.79
         },
         {
-          "time": "2026-04-29T15:41:00.000Z",
-          "close": 98.79
+          "time": "2026-04-29T15:40:00.000Z",
+          "close": 98.77
         },
         {
-          "time": "2026-04-29T15:45:00.000Z",
-          "close": 98.76
+          "time": "2026-04-29T15:44:00.000Z",
+          "close": 98.77
         },
         {
-          "time": "2026-04-29T15:50:00.000Z",
-          "close": 98.74
+          "time": "2026-04-29T15:49:00.000Z",
+          "close": 98.75
         },
         {
-          "time": "2026-04-29T15:54:00.000Z",
-          "close": 98.86
+          "time": "2026-04-29T15:53:00.000Z",
+          "close": 98.85
         },
         {
           "time": "2026-04-29T15:58:00.000Z",
           "close": 98.81
         },
         {
-          "time": "2026-04-29T16:03:00.000Z",
-          "close": 98.79
+          "time": "2026-04-29T16:02:00.000Z",
+          "close": 98.78
         },
         {
           "time": "2026-04-29T16:07:00.000Z",
           "close": 98.79
         },
         {
-          "time": "2026-04-29T16:12:00.000Z",
+          "time": "2026-04-29T16:11:00.000Z",
+          "close": 98.8
+        },
+        {
+          "time": "2026-04-29T16:15:00.000Z",
           "close": 98.81
         },
         {
-          "time": "2026-04-29T16:16:00.000Z",
+          "time": "2026-04-29T16:20:00.000Z",
           "close": 98.83
         },
         {
-          "time": "2026-04-29T16:21:00.000Z",
+          "time": "2026-04-29T16:24:00.000Z",
           "close": 98.82
-        },
-        {
-          "time": "2026-04-29T16:25:00.000Z",
-          "close": 98.8
         },
         {
           "time": "2026-04-29T16:29:00.000Z",
           "close": 98.8
         },
         {
-          "time": "2026-04-29T16:34:00.000Z",
-          "close": 98.83
+          "time": "2026-04-29T16:33:00.000Z",
+          "close": 98.81
         },
         {
           "time": "2026-04-29T16:38:00.000Z",
           "close": 98.83
         },
         {
-          "time": "2026-04-29T16:43:00.000Z",
-          "close": 98.85
+          "time": "2026-04-29T16:42:00.000Z",
+          "close": 98.84
         },
         {
-          "time": "2026-04-29T16:47:00.000Z",
+          "time": "2026-04-29T16:46:00.000Z",
           "close": 98.86
         },
         {
@@ -9586,7 +9582,7 @@
           "close": 98.85
         },
         {
-          "time": "2026-04-29T16:56:00.000Z",
+          "time": "2026-04-29T16:55:00.000Z",
           "close": 98.86
         },
         {
@@ -9594,11 +9590,15 @@
           "close": 98.88
         },
         {
-          "time": "2026-04-29T17:05:00.000Z",
-          "close": 98.89
+          "time": "2026-04-29T17:04:00.000Z",
+          "close": 98.9
         },
         {
           "time": "2026-04-29T17:09:00.000Z",
+          "close": 98.91
+        },
+        {
+          "time": "2026-04-29T17:13:09.000Z",
           "close": 98.91
         }
       ]
@@ -9606,12 +9606,12 @@
     {
       "symbol": "BRENT",
       "name": "Brent Crude",
-      "closeValue": 111.19,
+      "closeValue": 111.43,
       "previousClose": 104.4,
-      "changePercent": 6.504,
+      "changePercent": 6.734,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-04-29T17:10:02.000Z",
+      "dataTimestamp": "2026-04-29T17:13:02.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "BZ=F",
       "tradingViewSymbol": "TVC:UKOIL",
@@ -9636,8 +9636,8 @@
           "close": 104.1
         },
         {
-          "time": "2026-04-29T04:40:00.000Z",
-          "close": 104.03
+          "time": "2026-04-29T04:41:00.000Z",
+          "close": 104.08
         },
         {
           "time": "2026-04-29T04:53:00.000Z",
@@ -9668,12 +9668,12 @@
           "close": 104.47
         },
         {
-          "time": "2026-04-29T05:40:00.000Z",
-          "close": 104.41
+          "time": "2026-04-29T05:44:00.000Z",
+          "close": 104.43
         },
         {
-          "time": "2026-04-29T05:51:00.000Z",
-          "close": 104.68
+          "time": "2026-04-29T05:57:00.000Z",
+          "close": 104.64
         },
         {
           "time": "2026-04-29T06:00:00.000Z",
@@ -9700,16 +9700,16 @@
           "close": 104.91
         },
         {
-          "time": "2026-04-29T06:34:00.000Z",
-          "close": 105.34
+          "time": "2026-04-29T06:35:00.000Z",
+          "close": 105.36
         },
         {
-          "time": "2026-04-29T06:38:00.000Z",
-          "close": 105.22
+          "time": "2026-04-29T06:39:00.000Z",
+          "close": 105.12
         },
         {
-          "time": "2026-04-29T06:42:00.000Z",
-          "close": 105.24
+          "time": "2026-04-29T06:43:00.000Z",
+          "close": 105.26
         },
         {
           "time": "2026-04-29T06:46:00.000Z",
@@ -9732,20 +9732,20 @@
           "close": 105.22
         },
         {
-          "time": "2026-04-29T07:09:00.000Z",
-          "close": 105.32
+          "time": "2026-04-29T07:10:00.000Z",
+          "close": 105.26
         },
         {
-          "time": "2026-04-29T07:13:00.000Z",
-          "close": 105.29
+          "time": "2026-04-29T07:14:00.000Z",
+          "close": 105.34
         },
         {
-          "time": "2026-04-29T07:17:00.000Z",
-          "close": 105.2
+          "time": "2026-04-29T07:18:00.000Z",
+          "close": 105.3
         },
         {
-          "time": "2026-04-29T07:21:00.000Z",
-          "close": 105.25
+          "time": "2026-04-29T07:22:00.000Z",
+          "close": 105.41
         },
         {
           "time": "2026-04-29T07:25:00.000Z",
@@ -9764,24 +9764,24 @@
           "close": 105.9
         },
         {
-          "time": "2026-04-29T07:42:00.000Z",
-          "close": 106.03
+          "time": "2026-04-29T07:43:00.000Z",
+          "close": 106.02
         },
         {
-          "time": "2026-04-29T07:46:00.000Z",
-          "close": 106.29
+          "time": "2026-04-29T07:47:00.000Z",
+          "close": 106.17
         },
         {
-          "time": "2026-04-29T07:50:00.000Z",
-          "close": 106.08
+          "time": "2026-04-29T07:51:00.000Z",
+          "close": 106.22
         },
         {
-          "time": "2026-04-29T07:54:00.000Z",
-          "close": 106.18
-        },
-        {
-          "time": "2026-04-29T07:58:00.000Z",
+          "time": "2026-04-29T07:55:00.000Z",
           "close": 106.1
+        },
+        {
+          "time": "2026-04-29T07:59:00.000Z",
+          "close": 106.08
         },
         {
           "time": "2026-04-29T08:02:00.000Z",
@@ -9792,552 +9792,552 @@
           "close": 106.76
         },
         {
-          "time": "2026-04-29T08:09:00.000Z",
-          "close": 107.01
+          "time": "2026-04-29T08:10:00.000Z",
+          "close": 106.85
         },
         {
-          "time": "2026-04-29T08:13:00.000Z",
-          "close": 107
+          "time": "2026-04-29T08:14:00.000Z",
+          "close": 106.99
         },
         {
-          "time": "2026-04-29T08:17:00.000Z",
-          "close": 107
+          "time": "2026-04-29T08:18:00.000Z",
+          "close": 107.12
         },
         {
-          "time": "2026-04-29T08:21:00.000Z",
-          "close": 107.14
+          "time": "2026-04-29T08:22:00.000Z",
+          "close": 107.21
         },
         {
-          "time": "2026-04-29T08:25:00.000Z",
-          "close": 106.9
+          "time": "2026-04-29T08:26:00.000Z",
+          "close": 107.05
         },
         {
-          "time": "2026-04-29T08:29:00.000Z",
-          "close": 107.3
+          "time": "2026-04-29T08:30:00.000Z",
+          "close": 107.27
         },
         {
-          "time": "2026-04-29T08:33:00.000Z",
-          "close": 107.65
+          "time": "2026-04-29T08:34:00.000Z",
+          "close": 107.77
         },
         {
           "time": "2026-04-29T08:37:00.000Z",
           "close": 107.91
         },
         {
-          "time": "2026-04-29T08:40:00.000Z",
-          "close": 107.69
-        },
-        {
-          "time": "2026-04-29T08:44:00.000Z",
-          "close": 107.49
-        },
-        {
-          "time": "2026-04-29T08:48:00.000Z",
-          "close": 107.75
-        },
-        {
-          "time": "2026-04-29T08:52:00.000Z",
+          "time": "2026-04-29T08:41:00.000Z",
           "close": 107.66
         },
         {
-          "time": "2026-04-29T08:56:00.000Z",
-          "close": 107.51
+          "time": "2026-04-29T08:45:00.000Z",
+          "close": 107.49
         },
         {
-          "time": "2026-04-29T09:01:00.000Z",
-          "close": 107.52
+          "time": "2026-04-29T08:49:00.000Z",
+          "close": 107.68
         },
         {
-          "time": "2026-04-29T09:05:00.000Z",
-          "close": 107.51
-        },
-        {
-          "time": "2026-04-29T09:09:00.000Z",
-          "close": 107.52
-        },
-        {
-          "time": "2026-04-29T09:12:00.000Z",
-          "close": 107.56
-        },
-        {
-          "time": "2026-04-29T09:16:00.000Z",
-          "close": 107.59
-        },
-        {
-          "time": "2026-04-29T09:20:00.000Z",
-          "close": 107.61
-        },
-        {
-          "time": "2026-04-29T09:24:00.000Z",
+          "time": "2026-04-29T08:53:00.000Z",
           "close": 107.58
         },
         {
-          "time": "2026-04-29T09:28:00.000Z",
-          "close": 107.65
+          "time": "2026-04-29T08:57:00.000Z",
+          "close": 107.61
         },
         {
-          "time": "2026-04-29T09:32:00.000Z",
-          "close": 107.59
+          "time": "2026-04-29T09:02:00.000Z",
+          "close": 107.42
         },
         {
-          "time": "2026-04-29T09:36:00.000Z",
-          "close": 107.17
-        },
-        {
-          "time": "2026-04-29T09:40:00.000Z",
-          "close": 107.44
-        },
-        {
-          "time": "2026-04-29T09:43:00.000Z",
-          "close": 107.41
-        },
-        {
-          "time": "2026-04-29T09:48:00.000Z",
-          "close": 107.54
-        },
-        {
-          "time": "2026-04-29T09:52:00.000Z",
-          "close": 107.56
-        },
-        {
-          "time": "2026-04-29T09:57:00.000Z",
-          "close": 107.39
-        },
-        {
-          "time": "2026-04-29T10:01:00.000Z",
-          "close": 107.64
-        },
-        {
-          "time": "2026-04-29T10:06:00.000Z",
-          "close": 107.21
-        },
-        {
-          "time": "2026-04-29T10:10:00.000Z",
-          "close": 107.39
-        },
-        {
-          "time": "2026-04-29T10:13:00.000Z",
-          "close": 107.44
-        },
-        {
-          "time": "2026-04-29T10:17:00.000Z",
-          "close": 107.33
-        },
-        {
-          "time": "2026-04-29T10:21:00.000Z",
-          "close": 107.37
-        },
-        {
-          "time": "2026-04-29T10:27:00.000Z",
-          "close": 107.34
-        },
-        {
-          "time": "2026-04-29T10:31:00.000Z",
-          "close": 107.26
-        },
-        {
-          "time": "2026-04-29T10:35:00.000Z",
-          "close": 107.29
-        },
-        {
-          "time": "2026-04-29T10:40:00.000Z",
-          "close": 107.27
-        },
-        {
-          "time": "2026-04-29T10:44:00.000Z",
-          "close": 107.38
-        },
-        {
-          "time": "2026-04-29T10:47:00.000Z",
-          "close": 107.31
-        },
-        {
-          "time": "2026-04-29T10:51:00.000Z",
-          "close": 107.24
-        },
-        {
-          "time": "2026-04-29T10:56:00.000Z",
-          "close": 107.24
-        },
-        {
-          "time": "2026-04-29T11:00:00.000Z",
-          "close": 107.17
-        },
-        {
-          "time": "2026-04-29T11:04:00.000Z",
-          "close": 107.17
-        },
-        {
-          "time": "2026-04-29T11:08:00.000Z",
-          "close": 107.32
-        },
-        {
-          "time": "2026-04-29T11:13:00.000Z",
-          "close": 107.44
-        },
-        {
-          "time": "2026-04-29T11:17:00.000Z",
-          "close": 107.56
-        },
-        {
-          "time": "2026-04-29T11:20:00.000Z",
-          "close": 107.46
-        },
-        {
-          "time": "2026-04-29T11:24:00.000Z",
-          "close": 107.5
-        },
-        {
-          "time": "2026-04-29T11:28:00.000Z",
-          "close": 107.41
-        },
-        {
-          "time": "2026-04-29T11:33:00.000Z",
-          "close": 107.36
-        },
-        {
-          "time": "2026-04-29T11:38:00.000Z",
-          "close": 107.19
-        },
-        {
-          "time": "2026-04-29T11:42:00.000Z",
-          "close": 107.44
-        },
-        {
-          "time": "2026-04-29T11:46:00.000Z",
+          "time": "2026-04-29T09:06:00.000Z",
           "close": 107.48
         },
         {
-          "time": "2026-04-29T11:50:00.000Z",
-          "close": 107.54
+          "time": "2026-04-29T09:10:00.000Z",
+          "close": 107.68
         },
         {
-          "time": "2026-04-29T11:53:00.000Z",
-          "close": 107.59
+          "time": "2026-04-29T09:13:00.000Z",
+          "close": 107.66
         },
         {
-          "time": "2026-04-29T11:59:00.000Z",
-          "close": 107.64
-        },
-        {
-          "time": "2026-04-29T12:04:00.000Z",
-          "close": 107.53
-        },
-        {
-          "time": "2026-04-29T12:08:00.000Z",
-          "close": 107.54
-        },
-        {
-          "time": "2026-04-29T12:12:00.000Z",
-          "close": 107.39
-        },
-        {
-          "time": "2026-04-29T12:16:00.000Z",
-          "close": 107.32
-        },
-        {
-          "time": "2026-04-29T12:20:00.000Z",
-          "close": 107.55
-        },
-        {
-          "time": "2026-04-29T12:24:00.000Z",
+          "time": "2026-04-29T09:17:00.000Z",
           "close": 107.74
         },
         {
-          "time": "2026-04-29T12:27:00.000Z",
-          "close": 107.57
+          "time": "2026-04-29T09:21:00.000Z",
+          "close": 107.66
         },
         {
-          "time": "2026-04-29T12:31:00.000Z",
-          "close": 108.34
+          "time": "2026-04-29T09:25:00.000Z",
+          "close": 107.67
         },
         {
-          "time": "2026-04-29T12:35:00.000Z",
-          "close": 108.16
+          "time": "2026-04-29T09:29:00.000Z",
+          "close": 107.67
         },
         {
-          "time": "2026-04-29T12:39:00.000Z",
-          "close": 108.29
+          "time": "2026-04-29T09:33:00.000Z",
+          "close": 107.38
         },
         {
-          "time": "2026-04-29T12:43:00.000Z",
-          "close": 108.27
+          "time": "2026-04-29T09:37:00.000Z",
+          "close": 107.18
         },
         {
-          "time": "2026-04-29T12:47:00.000Z",
-          "close": 108.28
+          "time": "2026-04-29T09:41:00.000Z",
+          "close": 107.42
         },
         {
-          "time": "2026-04-29T12:51:00.000Z",
-          "close": 108.27
+          "time": "2026-04-29T09:46:00.000Z",
+          "close": 107.41
         },
         {
-          "time": "2026-04-29T12:54:00.000Z",
-          "close": 108.35
+          "time": "2026-04-29T09:49:00.000Z",
+          "close": 107.54
         },
         {
-          "time": "2026-04-29T12:58:00.000Z",
-          "close": 108.26
+          "time": "2026-04-29T09:53:00.000Z",
+          "close": 107.55
         },
         {
-          "time": "2026-04-29T13:02:00.000Z",
-          "close": 108.05
+          "time": "2026-04-29T09:58:00.000Z",
+          "close": 107.47
         },
         {
-          "time": "2026-04-29T13:06:00.000Z",
+          "time": "2026-04-29T10:02:00.000Z",
+          "close": 107.55
+        },
+        {
+          "time": "2026-04-29T10:07:00.000Z",
+          "close": 107.33
+        },
+        {
+          "time": "2026-04-29T10:11:00.000Z",
+          "close": 107.5
+        },
+        {
+          "time": "2026-04-29T10:15:00.000Z",
+          "close": 107.4
+        },
+        {
+          "time": "2026-04-29T10:19:00.000Z",
+          "close": 107.28
+        },
+        {
+          "time": "2026-04-29T10:23:00.000Z",
+          "close": 107.29
+        },
+        {
+          "time": "2026-04-29T10:28:00.000Z",
+          "close": 107.37
+        },
+        {
+          "time": "2026-04-29T10:32:00.000Z",
+          "close": 107.21
+        },
+        {
+          "time": "2026-04-29T10:36:00.000Z",
+          "close": 107.24
+        },
+        {
+          "time": "2026-04-29T10:41:00.000Z",
+          "close": 107.33
+        },
+        {
+          "time": "2026-04-29T10:45:00.000Z",
+          "close": 107.31
+        },
+        {
+          "time": "2026-04-29T10:49:00.000Z",
+          "close": 107.26
+        },
+        {
+          "time": "2026-04-29T10:53:00.000Z",
+          "close": 107.15
+        },
+        {
+          "time": "2026-04-29T10:58:00.000Z",
+          "close": 107.25
+        },
+        {
+          "time": "2026-04-29T11:02:00.000Z",
+          "close": 107.26
+        },
+        {
+          "time": "2026-04-29T11:05:00.000Z",
+          "close": 107.3
+        },
+        {
+          "time": "2026-04-29T11:10:00.000Z",
+          "close": 107.42
+        },
+        {
+          "time": "2026-04-29T11:14:00.000Z",
+          "close": 107.43
+        },
+        {
+          "time": "2026-04-29T11:18:00.000Z",
+          "close": 107.52
+        },
+        {
+          "time": "2026-04-29T11:22:00.000Z",
+          "close": 107.52
+        },
+        {
+          "time": "2026-04-29T11:26:00.000Z",
+          "close": 107.44
+        },
+        {
+          "time": "2026-04-29T11:31:00.000Z",
+          "close": 107.44
+        },
+        {
+          "time": "2026-04-29T11:36:00.000Z",
+          "close": 107.3
+        },
+        {
+          "time": "2026-04-29T11:39:00.000Z",
+          "close": 107.25
+        },
+        {
+          "time": "2026-04-29T11:43:00.000Z",
+          "close": 107.51
+        },
+        {
+          "time": "2026-04-29T11:47:00.000Z",
+          "close": 107.52
+        },
+        {
+          "time": "2026-04-29T11:51:00.000Z",
+          "close": 107.5
+        },
+        {
+          "time": "2026-04-29T11:55:00.000Z",
+          "close": 107.53
+        },
+        {
+          "time": "2026-04-29T12:02:00.000Z",
+          "close": 107.55
+        },
+        {
+          "time": "2026-04-29T12:06:00.000Z",
+          "close": 107.36
+        },
+        {
+          "time": "2026-04-29T12:10:00.000Z",
+          "close": 107.5
+        },
+        {
+          "time": "2026-04-29T12:14:00.000Z",
+          "close": 107.36
+        },
+        {
+          "time": "2026-04-29T12:17:00.000Z",
+          "close": 107.45
+        },
+        {
+          "time": "2026-04-29T12:21:00.000Z",
+          "close": 107.54
+        },
+        {
+          "time": "2026-04-29T12:25:00.000Z",
+          "close": 107.71
+        },
+        {
+          "time": "2026-04-29T12:29:00.000Z",
+          "close": 107.99
+        },
+        {
+          "time": "2026-04-29T12:33:00.000Z",
+          "close": 108.52
+        },
+        {
+          "time": "2026-04-29T12:37:00.000Z",
+          "close": 108.39
+        },
+        {
+          "time": "2026-04-29T12:41:00.000Z",
+          "close": 108.32
+        },
+        {
+          "time": "2026-04-29T12:45:00.000Z",
+          "close": 108.37
+        },
+        {
+          "time": "2026-04-29T12:49:00.000Z",
+          "close": 108.31
+        },
+        {
+          "time": "2026-04-29T12:52:00.000Z",
+          "close": 108.23
+        },
+        {
+          "time": "2026-04-29T12:56:00.000Z",
+          "close": 108.33
+        },
+        {
+          "time": "2026-04-29T13:00:00.000Z",
           "close": 108.12
         },
         {
-          "time": "2026-04-29T13:10:00.000Z",
-          "close": 108.15
+          "time": "2026-04-29T13:04:00.000Z",
+          "close": 108.1
         },
         {
-          "time": "2026-04-29T13:15:00.000Z",
-          "close": 108.2
+          "time": "2026-04-29T13:08:00.000Z",
+          "close": 108.01
         },
         {
-          "time": "2026-04-29T13:19:00.000Z",
-          "close": 108.64
+          "time": "2026-04-29T13:12:00.000Z",
+          "close": 108.19
         },
         {
-          "time": "2026-04-29T13:23:00.000Z",
-          "close": 109.18
+          "time": "2026-04-29T13:17:00.000Z",
+          "close": 108.25
         },
         {
-          "time": "2026-04-29T13:26:00.000Z",
-          "close": 109.48
+          "time": "2026-04-29T13:21:00.000Z",
+          "close": 108.97
         },
         {
-          "time": "2026-04-29T13:30:00.000Z",
-          "close": 109.38
+          "time": "2026-04-29T13:25:00.000Z",
+          "close": 109.36
         },
         {
-          "time": "2026-04-29T13:34:00.000Z",
-          "close": 109.64
-        },
-        {
-          "time": "2026-04-29T13:38:00.000Z",
-          "close": 109.49
-        },
-        {
-          "time": "2026-04-29T13:42:00.000Z",
-          "close": 109.6
-        },
-        {
-          "time": "2026-04-29T13:46:00.000Z",
-          "close": 109.7
-        },
-        {
-          "time": "2026-04-29T13:50:00.000Z",
-          "close": 109.52
-        },
-        {
-          "time": "2026-04-29T13:54:00.000Z",
-          "close": 109.63
-        },
-        {
-          "time": "2026-04-29T13:57:00.000Z",
-          "close": 109.63
-        },
-        {
-          "time": "2026-04-29T14:01:00.000Z",
-          "close": 109.52
-        },
-        {
-          "time": "2026-04-29T14:05:00.000Z",
-          "close": 109.48
-        },
-        {
-          "time": "2026-04-29T14:09:00.000Z",
+          "time": "2026-04-29T13:28:00.000Z",
           "close": 109.41
         },
         {
-          "time": "2026-04-29T14:13:00.000Z",
-          "close": 109.45
+          "time": "2026-04-29T13:32:00.000Z",
+          "close": 109.6
         },
         {
-          "time": "2026-04-29T14:17:00.000Z",
-          "close": 109.48
+          "time": "2026-04-29T13:36:00.000Z",
+          "close": 109.35
         },
         {
-          "time": "2026-04-29T14:21:00.000Z",
-          "close": 109.49
-        },
-        {
-          "time": "2026-04-29T14:25:00.000Z",
-          "close": 109.42
-        },
-        {
-          "time": "2026-04-29T14:28:00.000Z",
-          "close": 109.3
-        },
-        {
-          "time": "2026-04-29T14:32:00.000Z",
-          "close": 109.55
-        },
-        {
-          "time": "2026-04-29T14:36:00.000Z",
-          "close": 109.27
-        },
-        {
-          "time": "2026-04-29T14:40:00.000Z",
-          "close": 109.46
-        },
-        {
-          "time": "2026-04-29T14:44:00.000Z",
-          "close": 109.59
-        },
-        {
-          "time": "2026-04-29T14:48:00.000Z",
+          "time": "2026-04-29T13:40:00.000Z",
           "close": 109.63
         },
         {
-          "time": "2026-04-29T14:52:00.000Z",
-          "close": 109.7
+          "time": "2026-04-29T13:44:00.000Z",
+          "close": 109.6
         },
         {
-          "time": "2026-04-29T14:55:00.000Z",
+          "time": "2026-04-29T13:48:00.000Z",
           "close": 109.67
         },
         {
-          "time": "2026-04-29T14:59:00.000Z",
-          "close": 109.67
+          "time": "2026-04-29T13:52:00.000Z",
+          "close": 109.94
         },
         {
-          "time": "2026-04-29T15:03:00.000Z",
-          "close": 109.68
+          "time": "2026-04-29T13:56:00.000Z",
+          "close": 109.48
         },
         {
-          "time": "2026-04-29T15:07:00.000Z",
-          "close": 109.75
-        },
-        {
-          "time": "2026-04-29T15:11:00.000Z",
-          "close": 109.8
-        },
-        {
-          "time": "2026-04-29T15:15:00.000Z",
-          "close": 109.72
-        },
-        {
-          "time": "2026-04-29T15:19:00.000Z",
+          "time": "2026-04-29T14:00:00.000Z",
           "close": 109.64
         },
         {
-          "time": "2026-04-29T15:23:00.000Z",
-          "close": 109.73
+          "time": "2026-04-29T14:03:00.000Z",
+          "close": 109.53
         },
         {
-          "time": "2026-04-29T15:26:00.000Z",
-          "close": 109.79
+          "time": "2026-04-29T14:07:00.000Z",
+          "close": 109.49
         },
         {
-          "time": "2026-04-29T15:30:00.000Z",
-          "close": 109.85
+          "time": "2026-04-29T14:11:00.000Z",
+          "close": 109.53
         },
         {
-          "time": "2026-04-29T15:34:00.000Z",
-          "close": 109.85
+          "time": "2026-04-29T14:15:00.000Z",
+          "close": 109.38
         },
         {
-          "time": "2026-04-29T15:38:00.000Z",
-          "close": 109.91
+          "time": "2026-04-29T14:19:00.000Z",
+          "close": 109.36
         },
         {
-          "time": "2026-04-29T15:42:00.000Z",
-          "close": 109.86
+          "time": "2026-04-29T14:23:00.000Z",
+          "close": 109.31
         },
         {
-          "time": "2026-04-29T15:46:00.000Z",
-          "close": 109.89
+          "time": "2026-04-29T14:27:00.000Z",
+          "close": 109.2
         },
         {
-          "time": "2026-04-29T15:50:00.000Z",
+          "time": "2026-04-29T14:31:00.000Z",
+          "close": 109.58
+        },
+        {
+          "time": "2026-04-29T14:35:00.000Z",
+          "close": 109.28
+        },
+        {
+          "time": "2026-04-29T14:38:00.000Z",
+          "close": 109.25
+        },
+        {
+          "time": "2026-04-29T14:42:00.000Z",
+          "close": 109.66
+        },
+        {
+          "time": "2026-04-29T14:46:00.000Z",
+          "close": 109.6
+        },
+        {
+          "time": "2026-04-29T14:50:00.000Z",
           "close": 109.67
         },
         {
-          "time": "2026-04-29T15:54:00.000Z",
-          "close": 110.65
+          "time": "2026-04-29T14:54:00.000Z",
+          "close": 109.59
         },
         {
-          "time": "2026-04-29T15:57:00.000Z",
-          "close": 111.15
+          "time": "2026-04-29T14:58:00.000Z",
+          "close": 109.62
         },
         {
-          "time": "2026-04-29T16:01:00.000Z",
-          "close": 110.43
+          "time": "2026-04-29T15:02:00.000Z",
+          "close": 109.64
         },
         {
-          "time": "2026-04-29T16:05:00.000Z",
-          "close": 110.35
+          "time": "2026-04-29T15:06:00.000Z",
+          "close": 109.76
         },
         {
-          "time": "2026-04-29T16:09:00.000Z",
-          "close": 110.25
+          "time": "2026-04-29T15:10:00.000Z",
+          "close": 109.76
         },
         {
-          "time": "2026-04-29T16:13:00.000Z",
-          "close": 110.45
+          "time": "2026-04-29T15:13:00.000Z",
+          "close": 109.71
         },
         {
-          "time": "2026-04-29T16:17:00.000Z",
-          "close": 110.78
+          "time": "2026-04-29T15:17:00.000Z",
+          "close": 109.44
         },
         {
-          "time": "2026-04-29T16:21:00.000Z",
-          "close": 110.71
+          "time": "2026-04-29T15:21:00.000Z",
+          "close": 109.59
         },
         {
-          "time": "2026-04-29T16:25:00.000Z",
-          "close": 110.78
+          "time": "2026-04-29T15:25:00.000Z",
+          "close": 109.73
         },
         {
-          "time": "2026-04-29T16:28:00.000Z",
-          "close": 110.62
+          "time": "2026-04-29T15:29:00.000Z",
+          "close": 109.93
         },
         {
-          "time": "2026-04-29T16:32:00.000Z",
-          "close": 110.97
+          "time": "2026-04-29T15:33:00.000Z",
+          "close": 109.9
         },
         {
-          "time": "2026-04-29T16:36:00.000Z",
+          "time": "2026-04-29T15:37:00.000Z",
+          "close": 109.96
+        },
+        {
+          "time": "2026-04-29T15:41:00.000Z",
+          "close": 109.96
+        },
+        {
+          "time": "2026-04-29T15:45:00.000Z",
+          "close": 109.81
+        },
+        {
+          "time": "2026-04-29T15:48:00.000Z",
+          "close": 109.84
+        },
+        {
+          "time": "2026-04-29T15:52:00.000Z",
+          "close": 110.1
+        },
+        {
+          "time": "2026-04-29T15:56:00.000Z",
+          "close": 111.09
+        },
+        {
+          "time": "2026-04-29T16:00:00.000Z",
+          "close": 110.88
+        },
+        {
+          "time": "2026-04-29T16:04:00.000Z",
+          "close": 110.4
+        },
+        {
+          "time": "2026-04-29T16:08:00.000Z",
+          "close": 110.31
+        },
+        {
+          "time": "2026-04-29T16:12:00.000Z",
+          "close": 110.41
+        },
+        {
+          "time": "2026-04-29T16:16:00.000Z",
+          "close": 110.63
+        },
+        {
+          "time": "2026-04-29T16:20:00.000Z",
+          "close": 110.74
+        },
+        {
+          "time": "2026-04-29T16:23:00.000Z",
+          "close": 110.72
+        },
+        {
+          "time": "2026-04-29T16:27:00.000Z",
+          "close": 110.56
+        },
+        {
+          "time": "2026-04-29T16:31:00.000Z",
+          "close": 110.96
+        },
+        {
+          "time": "2026-04-29T16:35:00.000Z",
           "close": 111.19
         },
         {
-          "time": "2026-04-29T16:40:00.000Z",
-          "close": 110.9
+          "time": "2026-04-29T16:39:00.000Z",
+          "close": 111.09
         },
         {
-          "time": "2026-04-29T16:44:00.000Z",
-          "close": 110.9
-        },
-        {
-          "time": "2026-04-29T16:48:00.000Z",
-          "close": 110.8
-        },
-        {
-          "time": "2026-04-29T16:52:00.000Z",
-          "close": 110.93
-        },
-        {
-          "time": "2026-04-29T16:56:00.000Z",
-          "close": 110.94
-        },
-        {
-          "time": "2026-04-29T16:59:00.000Z",
+          "time": "2026-04-29T16:43:00.000Z",
           "close": 110.98
         },
         {
-          "time": "2026-04-29T17:03:00.000Z",
-          "close": 111.41
+          "time": "2026-04-29T16:47:00.000Z",
+          "close": 110.82
         },
         {
-          "time": "2026-04-29T17:07:00.000Z",
-          "close": 111.23
+          "time": "2026-04-29T16:51:00.000Z",
+          "close": 110.84
         },
         {
-          "time": "2026-04-29T17:10:02.000Z",
-          "close": 111.19
+          "time": "2026-04-29T16:55:00.000Z",
+          "close": 110.94
+        },
+        {
+          "time": "2026-04-29T16:58:00.000Z",
+          "close": 110.94
+        },
+        {
+          "time": "2026-04-29T17:02:00.000Z",
+          "close": 111.15
+        },
+        {
+          "time": "2026-04-29T17:06:00.000Z",
+          "close": 111.17
+        },
+        {
+          "time": "2026-04-29T17:10:00.000Z",
+          "close": 111.15
+        },
+        {
+          "time": "2026-04-29T17:13:02.000Z",
+          "close": 111.43
         }
       ]
     }
@@ -10461,8 +10461,8 @@
   },
   "marketDataMode": "live",
   "marketDataError": null,
-  "durationMillis": 437,
+  "durationMillis": 779,
   "scheduledFor": "2026-04-29T08:30:00+05:30",
-  "generatedAt": "2026-04-29T17:20:03.914Z",
+  "generatedAt": "2026-04-29T17:23:11.804Z",
   "runMode": "scheduled-live-market-data"
 }

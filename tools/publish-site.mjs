@@ -95,7 +95,6 @@ function archivePage(digests) {
             <strong style="color: ${sentimentColor(digest.sentimentLabel)}">${escapeHtml(digest.sentimentLabel)}</strong>
           </div>
           <h2><a href="./${slug}/">${escapeHtml(digest.title)}</a></h2>
-          <p>${escapeHtml(publicLeadForArchive(digest))}</p>
           <div class="metrics">
             <span>${digest.marketSnapshots.length} markets tracked</span>
             <span>${digest.tradeSetups.length} setups</span>
@@ -377,13 +376,6 @@ function archivePage(digests) {
   </main>
 </body>
 </html>`;
-}
-
-function publicLeadForArchive(digest) {
-  const asia = digest.marketSnapshots.filter((snapshot) => (snapshot.marketRegion ?? "") === "Asia Watch");
-  const asiaHigher = asia.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
-  const setupSymbols = digest.tradeSetups.map((setup) => setup.symbol).join(" and ");
-  return `The ${scheduledLabelForDigest(digest)} IST digest is ${digest.sentimentLabel.toLowerCase()}. Asian markets show ${asiaHigher} of ${asia.length} tracked indices higher, with ${digest.tradeSetups.length} validated setup${digest.tradeSetups.length === 1 ? "" : "s"}${setupSymbols ? ` across ${setupSymbols}` : ""}.`;
 }
 
 function slugForDigest(digest) {
