@@ -162,7 +162,7 @@ async function expectDailyContent(page) {
   await expectOne(publicView.getByText(dailyDateLabel, { exact: true }), "daily date");
   const summaryExpand = publicView.locator("#summaryExpand");
   await expectOne(summaryExpand, "compact expandable summary");
-  await expectOne(publicView.getByText("50-word compact summary", { exact: true }), "compact summary label");
+  await expectOne(publicView.getByText("2 min read", { exact: true }), "compact summary label");
   await expectOne(publicView.locator("#summaryExpand:not([open])"), "collapsed expanded briefing");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
@@ -184,8 +184,8 @@ async function expectDailyContent(page) {
     setupCard.getByText("No clean 1:2 risk-reward setup is active yet.", { exact: false }),
     "public no-setup notice"
   );
-  assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "stale Nifty entry should not be visible");
-  assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "stale Nifty target should not be visible");
+  assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "outdated Nifty entry should not be visible");
+  assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "outdated Nifty target should not be visible");
   await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
   await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");

@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { projectComponentsPage } from "./project-components-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
@@ -17,7 +18,8 @@ const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
-await writeFile(archivedJson, `${JSON.stringify(redactedDigestPayload(sourceDigest), null, 2)}\n`, "utf8");
+const archivedDigest = redactedDigestPayload(sourceDigest);
+await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
 
 const digests = await loadArchivedDigests();
 if (!digests.length) {
@@ -36,8 +38,14 @@ for (const digest of digests) {
     canonicalPath: `/${slug}/`
   };
   await mkdir(digestDir, { recursive: true });
-  await writeFile(join(digestDir, "index.html"), cockpitPage(pageDigest, "public-view", { includeStudio: false }), "utf8");
-  await writeFile(join(digestDir, "digest.json"), `${JSON.stringify(publicDigestPayload(pageDigest), null, 2)}\n`, "utf8");
+  await writeGuardedFile(
+    join(digestDir, "index.html"),
+    cockpitPage(pageDigest, "public-view", { includeStudio: false })
+  );
+  await writeGuardedFile(
+    join(digestDir, "digest.json"),
+    `${JSON.stringify(publicDigestPayload(pageDigest), null, 2)}\n`
+  );
 }
 
 const latest = digests[0];
@@ -45,15 +53,14 @@ const darkPreviewDir = join(siteDir, "dark-preview");
 await mkdir(join(siteDir, "components"), { recursive: true });
 await writeFile(join(siteDir, "components", "index.html"), projectComponentsPage({ digests }), "utf8");
 await mkdir(darkPreviewDir, { recursive: true });
-await writeFile(
+await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
-  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" }),
-  "utf8"
+  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" })
 );
-await writeFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
-await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
-await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
-await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`, "utf8");
+await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
+await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
+await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
+await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -70,6 +77,11 @@ await writeFile(
 process.stdout.write(`Static site ready: ${siteDir}\n`);
 process.stdout.write(`Archive entry point: ${join(siteDir, "index.html")}\n`);
 process.stdout.write(`Latest daily page: ${join(siteDir, slugForDigest(latest), "index.html")}\n`);
+
+async function writeGuardedFile(path, contents) {
+  assertPublicBriefingCopy(path, contents);
+  await writeFile(path, contents, "utf8");
+}
 
 async function loadArchivedDigests() {
   const fileNames = await readdir(archiveDir);

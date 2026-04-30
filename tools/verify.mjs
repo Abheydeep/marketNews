@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { cockpitPage } from "./cockpit-page.mjs";
 import { createDemoApp } from "./demo-app.mjs";
+import { PUBLIC_BRIEFING_EDITORIAL_PROMPT, assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import {
   buildDigest,
   bullishRiskReward,
@@ -147,6 +149,25 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
   assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
+});
+
+await test("public briefing copy follows editorial prompt guardrails", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const publicPayload = publicDigestPayload(digest);
+  const publicHtml = cockpitPage(digest, "public-view", { includeStudio: false });
+
+  assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("financial news article"));
+  assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("Do not mention internal implementation details"));
+  assertPublicBriefingCopy("onePageSummary", digest.onePageSummary);
+  assertPublicBriefingCopy("public digest payload", JSON.stringify(publicPayload));
+  assertPublicBriefingCopy("public page HTML", publicHtml);
+  assert.throws(
+    () => assertPublicBriefingCopy(
+      "bad sample",
+      "The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase."
+    ),
+    /Public editorial guardrail failed/
+  );
 });
 
 await test("Yahoo market data normalization calculates previous-close change", () => {

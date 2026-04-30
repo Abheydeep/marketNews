@@ -3,6 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -23,9 +25,13 @@ const jsonPath = join(outputDir, `${date}-${label}-digest.json`);
 const htmlPath = join(outputDir, `${date}-${label}-summary.html`);
 const studioHtmlPath = join(outputDir, `${date}-${label}-studio.html`);
 const reelScriptPath = join(outputDir, `${date}-${label}-reel-script.md`);
+const publicHtml = cockpitPage(digest, "public-view", { includeStudio: false });
+
+assertPublicBriefingCopy(jsonPath, JSON.stringify(publicDigestPayload(digest)));
+assertPublicBriefingCopy(htmlPath, publicHtml);
 
 await writeFile(jsonPath, `${JSON.stringify(digest, null, 2)}\n`, "utf8");
-await writeFile(htmlPath, cockpitPage(digest, "public-view", { includeStudio: false }), "utf8");
+await writeFile(htmlPath, publicHtml, "utf8");
 await writeFile(studioHtmlPath, cockpitPage(digest, "studio-view", { includeStudio: true }), "utf8");
 await writeFile(reelScriptPath, reelScriptMarkdown(digest), "utf8");
 

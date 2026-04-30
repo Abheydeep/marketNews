@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { join } from "node:path";
+import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 
 const require = createRequire(import.meta.url);
 const { chromium } = loadPlaywright();
@@ -140,6 +141,7 @@ async function runCycle(page, cycle) {
 
 async function verifyArchive(page, rootUrl) {
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  assertPublicBriefingCopy("archive page HTML", await page.content());
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   await expectOne(page.getByRole("link", { name: "Dark preview" }), "dark preview link");
@@ -195,6 +197,7 @@ async function verifyDarkPreview(page, stamp) {
   const preview = { slug: "dark-preview", label: "dark preview" };
   const previewUrl = `${baseUrl}/dark-preview/?fullqa=${stamp}`;
   await page.goto(previewUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  assertPublicBriefingCopy("dark preview HTML", await page.content());
   await expectOne(page.locator("body.glass-v2"), "dark preview glass theme");
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), "dark preview heading");
   await expectOne(page.getByText("Market Mood", { exact: true }), "dark preview market mood rail");
@@ -266,6 +269,7 @@ async function verifyDarkPreviewContrast(page) {
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  assertPublicBriefingCopy(`${daily.slug} HTML`, await page.content());
   assert.equal(await page.locator("body.glass-v2").count(), 0, `${daily.slug} should keep the standard public theme`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
@@ -303,6 +307,7 @@ async function verifyPublicDigestJson(daily, stamp) {
   const response = await fetch(`${baseUrl}/${daily.slug}/digest.json?fullqa=${stamp}`);
   assert.equal(response.ok, true, `${daily.slug} public digest.json should load`);
   const digest = await response.json();
+  assertPublicBriefingCopy(`${daily.slug} digest.json`, JSON.stringify(digest));
   assert.equal(Object.hasOwn(digest, "teleprompterScript"), false, `${daily.slug} public digest.json should redact teleprompterScript`);
   assert.equal(Object.hasOwn(digest, "reelScript"), false, `${daily.slug} public digest.json should redact reelScript`);
   assert.equal(digest.asset?.positivePrompt, undefined, `${daily.slug} public digest.json should redact asset prompts`);

@@ -4388,10 +4388,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ctx.fillStyle = palette.text;
       ctx.textAlign = 'center';
       ctx.font = 'bold 16px Arial';
-      ctx.fillText('No active scanner setup', width / 2, height / 2 - 8);
+      ctx.fillText('No active 1:2 setup', width / 2, height / 2 - 8);
       ctx.fillStyle = palette.muted;
       ctx.font = '13px Arial';
-      ctx.fillText('Live quote validation removed stale 1:2 levels.', width / 2, height / 2 + 18);
+      ctx.fillText('Wait for opening-range confirmation.', width / 2, height / 2 + 18);
     }
 
     function scaleCanvas(canvas) {
@@ -5621,7 +5621,7 @@ function scannerBadgeHtml(digest) {
 function scannerPanelCopy(digest) {
   const setup = niftySetup(digest) ?? digest.tradeSetups[0];
   if (!setup) {
-    return "No active 1:2 risk-reward setup is available after live quote validation. The scanner is waiting for fresh levels.";
+    return "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
   }
   return "Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.";
 }
@@ -5632,7 +5632,7 @@ function studioMetricCards(digest) {
   const thumbnailCount = digest.news.filter((article) => article.thumbnail?.alt).length;
   const sections = parseScriptSections(digest.teleprompterScript);
   const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : "Setup blocked";
-  const setupHint = setup ? "Scanner-approved trade plan is available." : "Live validation removed stale levels.";
+  const setupHint = setup ? "Scanner-approved trade plan is available." : "Waiting for fresh levels.";
   return [
     ["Market Tone", headlineSentiment(digest.sentimentLabel), `Weighted sentiment ${formatSignedScore(digest.overallSentiment)}`],
     ["Sources", `${digest.news.length} articles`, `${sourceCount} publishers; ${thumbnailCount} thumbnails`],
@@ -5661,7 +5661,7 @@ function studioWorkflowHtml(digest) {
   const stages = [
     ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
     ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
-    ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup after live quote validation.", setup ? "ok" : "blocked"],
+    ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup yet.", setup ? "ok" : "blocked"],
     ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} teleprompter sections generated from source-backed facts.`, "ok"],
     ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
     ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
@@ -5680,7 +5680,7 @@ function scannerValidationHtml(digest) {
   if (!setup) {
     return `
       <div class="validation-list">
-        ${validationRow("blocked", "Live validation blocked the trade setup", "The page no longer shows stale Nifty levels when live quotes have crossed target, stop, or invalidated the reward math.")}
+        ${validationRow("blocked", "Setup blocked by current market levels", "The page no longer shows outdated Nifty levels when current prices have crossed target, stop, or invalidated the reward math.")}
         ${validationRow("warn", "Opening range required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
         ${validationRow("ok", "Trade execution disabled", "Studio output remains educational research for video planning; no order placement is connected.")}
       </div>
@@ -5825,7 +5825,7 @@ function parseScriptSections(script) {
 function scannerActivityLine(digest) {
   const setup = niftySetup(digest);
   if (!setup) {
-    return "No active setup after live quote validation; stale levels are hidden from the studio.";
+    return "No active setup yet; outdated levels are hidden from the studio.";
   }
   return `${setup.symbol} ${setup.direction.toLowerCase()} setup remains active at ${setup.riskReward}R.`;
 }

@@ -307,7 +307,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     .map((theme) => `Theme: ${theme.title}. ${theme.summary}`)
     .join("\n\n");
   const setupsText = setups.length === 0
-    ? "No trade setup qualifies under the 1:2 risk-reward framework after live quote validation."
+    ? "No clean 1:2 setup is active yet; wait for the opening range to confirm direction."
     : setups
       .map((setup) =>
         `${setup.symbol}: watch ${setup.entry} as entry, ${setup.stopLoss} as invalidation, and ${setup.target} as target. ${setup.confidenceReason}`
