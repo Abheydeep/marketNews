@@ -170,6 +170,15 @@ async function expectDailyContent(page) {
   const publicView = page.locator("#public-view");
   await expectOne(publicView.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
   await expectOne(publicView.getByText("Wed, 29 Apr, 2026", { exact: true }), "daily date");
+  const summaryExpand = publicView.locator("#summaryExpand");
+  await expectOne(summaryExpand, "compact expandable summary");
+  await expectOne(publicView.getByText("50-word compact summary", { exact: true }), "compact summary label");
+  await expectOne(publicView.locator("#summaryExpand:not([open])"), "collapsed expanded briefing");
+  const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
+  assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
+  await summaryExpand.locator("summary").click();
+  await publicView.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
+  await expectOne(publicView.getByText("Expanded briefing after multi-source extraction", { exact: true }), "expanded briefing label");
   await expectOne(publicView.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
   await expectOne(publicView.getByRole("heading", { name: "1. What Changed Overnight" }), "changed overnight heading");
   await expectOne(publicView.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");

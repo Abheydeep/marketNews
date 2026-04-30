@@ -322,13 +322,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(publicHtml.body.includes("Engine Architecture"));
-  assert.ok(publicHtml.body.includes("Executive Summary: The Morning Narrative"));
+  assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("1. What Changed Overnight"));
   assert.ok(publicHtml.body.includes("2. Source Extraction"));
   assert.ok(publicHtml.body.includes("3. India Read-Through"));
   assert.ok(publicHtml.body.includes("4. What To Watch Next"));
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
+  assert.ok(publicHtml.body.includes("50-word compact summary"));
+  assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
+  assert.ok(publicHtml.body.includes("Expanded briefing after multi-source extraction"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
   assert.ok(publicHtml.body.includes("Asia Watch"));
   assert.ok(publicHtml.body.includes("Asia Watch (top 5 country markets)"));

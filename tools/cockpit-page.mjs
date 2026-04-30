@@ -237,6 +237,139 @@ export function cockpitPage(digest, initialTab = "public-view") {
       border-left: 4px solid #111827;
     }
 
+    .briefing-expand-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .briefing-expand-card summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .briefing-expand-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .briefing-expand-card summary p {
+      margin: 0;
+      color: #111827;
+      font-size: 20px;
+      line-height: 1.45;
+      font-weight: 750;
+    }
+
+    .summary-expand-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: #111827;
+      color: #fff;
+      padding: 11px 14px;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .executive-card .summary-expand-action {
+      color: #fff;
+    }
+
+    .summary-expand-action::after {
+      content: " +";
+      margin-left: 6px;
+      font-size: 14px;
+    }
+
+    .briefing-expand-card[open] .summary-expand-action::after {
+      content: " -";
+    }
+
+    .expanded-briefing-page {
+      border-top: 1px solid #e5e7eb;
+      padding: 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .expanded-briefing-head {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 20px;
+      margin-bottom: 22px;
+    }
+
+    .expanded-briefing-head h2 {
+      margin: 0 0 12px;
+      color: #111827;
+      font-size: 30px;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .expanded-briefing-head p {
+      margin: 0;
+      color: #374151;
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .expanded-briefing-head p + p {
+      margin-top: 13px;
+    }
+
+    .briefing-lens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+
+    .briefing-lens {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 15px;
+    }
+
+    .briefing-lens span {
+      display: block;
+      color: #6b7280;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .briefing-lens strong {
+      display: block;
+      margin-top: 6px;
+      color: #111827;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .briefing-lens p {
+      margin: 8px 0 0;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     .executive-card h2 {
       margin: 0 0 18px;
       color: #111827;
@@ -822,7 +955,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     .quote-board-toggle {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto auto;
+      grid-template-columns: minmax(260px, 1fr) minmax(240px, 0.9fr) auto;
       align-items: center;
       gap: 16px;
       width: 100%;
@@ -857,11 +990,14 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .live-clock {
+      max-width: 520px;
       color: #78716c;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 12px;
       font-weight: 800;
+      line-height: 1.35;
       text-align: right;
+      white-space: normal;
     }
 
     .quote-board-action {
@@ -2178,8 +2314,14 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .workflow-grid,
       .studio-layout,
       .prompt-detail-grid,
-      .script-section-list {
+      .script-section-list,
+      .briefing-expand-card summary,
+      .briefing-lens-grid {
         grid-template-columns: 1fr;
+      }
+
+      .summary-expand-action {
+        width: 100%;
       }
 
       .briefing-topline,
@@ -2282,10 +2424,18 @@ export function cockpitPage(digest, initialTab = "public-view") {
           <h1>${escapeHtml(digest.title)}</h1>
         </header>
 
-        <section class="info-card executive-card">
-          <h2>Executive Summary: The Morning Narrative</h2>
-          ${executiveSummaryHtml(digest)}
-        </section>
+        <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
+          <summary>
+            <div>
+              <span class="summary-label">50-word compact summary</span>
+              <p>${escapeHtml(compactSummaryText(digest))}</p>
+            </div>
+            <strong class="summary-expand-action">Open full source-backed briefing</strong>
+          </summary>
+          <div class="expanded-briefing-page">
+            ${expandedBriefingHtml(digest)}
+          </div>
+        </details>
 
         <section class="pulse-section">
           <div class="section-kicker">
@@ -3539,6 +3689,109 @@ export function cockpitPage(digest, initialTab = "public-view") {
 </html>`;
 }
 
+function compactSummaryText(digest) {
+  const pressureStory = strongestStory(digest.news, "negative");
+  const supportStory = strongestStory(digest.news, "positive");
+  const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
+  const setup = niftySetup(digest);
+  const setupLine = setup
+    ? `Scanner accepts ${setup.symbol} only near ${formatNumber(setup.entry)}.`
+    : "Scanner blocks stale trade levels.";
+  return limitWords([
+    `Risk tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()}.`,
+    `${compactEntityName(pressureStory?.entityName || "Macro")} is the main pressure point; ${compactEntityName(supportStory?.entityName || "domestic breadth")} is the offset.`,
+    asiaLine,
+    setupLine,
+    "Open for the source-backed read."
+  ].filter(Boolean).join(" "), 50);
+}
+
+function compactEntityName(value) {
+  return {
+    NIFTY: "Nifty 50",
+    BANKNIFTY: "Bank Nifty",
+    BRENT: "Brent crude",
+    DXY: "Dollar index",
+    NASDAQ: "Nasdaq",
+    GOLD: "Gold",
+    VIX: "Volatility"
+  }[String(value || "").toUpperCase()] || value;
+}
+
+function compactAsiaLine(snapshots) {
+  const asia = displaySnapshotsForRegion("Asia Watch", snapshots);
+  if (!asia.length) {
+    return "";
+  }
+  const positives = asia.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
+  const strongest = asia
+    .slice()
+    .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
+  return `Asia is mixed across top-five country markets: ${positives} of ${asia.length} are higher, led by ${countryForSnapshot(strongest) || strongest.name} ${formatChange(strongest.changePercent)}.`;
+}
+
+function expandedBriefingHtml(digest) {
+  const lead = expandedLeadParagraphs(digest);
+  return `
+    <div class="expanded-briefing-head">
+      <span class="summary-label">Expanded briefing after multi-source extraction</span>
+      <h2>${escapeHtml(expandedBriefingHeadline(digest))}</h2>
+      ${lead.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+    </div>
+    <div class="briefing-lens-grid">
+      ${briefingLensCards(digest)}
+    </div>
+    ${executiveSummaryHtml(digest)}
+  `;
+}
+
+function expandedBriefingHeadline(digest) {
+  const primaryTheme = digest.themes[0]?.title || "Market Cues";
+  return `${primaryTheme}: ${headlineSentiment(digest.sentimentLabel)} pre-market read for India`;
+}
+
+function expandedLeadParagraphs(digest) {
+  const pressureStory = strongestStory(digest.news, "negative");
+  const supportStory = strongestStory(digest.news, "positive");
+  const macro = firstByCategory(digest.news, "macro_negative");
+  const globalRisk = firstByCategory(digest.news, "global_risk");
+  const setup = niftySetup(digest);
+  const setupLine = setup
+    ? `The scanner still keeps a conditional ${setup.symbol} ${setup.direction.toLowerCase()} setup alive at ${setup.riskReward}R, but only if price accepts near ${formatNumber(setup.entry)} without damaging the stop-to-target structure.`
+    : "The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call.";
+
+  return [
+    [
+      `This briefing is built from ${digest.news.length} source notes, ${digest.themes.length} narrative clusters, and ${digest.marketSnapshots.length} market snapshots.`,
+      pressureStory ? `The heaviest pressure point is ${pressureStory.takeaway || pressureStory.summary}` : "",
+      supportStory ? `The main offset is ${supportStory.takeaway || supportStory.summary}` : ""
+    ].filter(Boolean).join(" "),
+    [
+      macro ? `Macro read-through: ${macro.indiaImpact || macro.whyItMatters}` : "",
+      globalRisk ? `Risk read-through: ${globalRisk.indiaImpact || globalRisk.whyItMatters}` : "",
+      setupLine
+    ].filter(Boolean).join(" ")
+  ];
+}
+
+function briefingLensCards(digest) {
+  const macro = firstByCategory(digest.news, "macro_negative");
+  const globalRisk = firstByCategory(digest.news, "global_risk");
+  const sectorSupport = firstByCategory(digest.news, "sector_positive");
+  const cards = [
+    ["Global pressure", macro?.headline || digest.themes[0]?.title || "Macro watch", macro?.whyItMatters || digest.themes[0]?.summary || "Macro variables remain the first filter for the open."],
+    ["Risk appetite", globalRisk?.headline || "Cross-market confirmation", globalRisk?.indiaImpact || "US and Asian breadth need confirmation before chasing the first move."],
+    ["Domestic cushion", sectorSupport?.headline || "Banks and defensives", sectorSupport?.indiaImpact || "Domestic breadth decides whether weak global cues turn into trend or only a gap reaction."]
+  ];
+  return cards.map(([label, title, detail]) => `
+    <article class="briefing-lens">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(title)}</strong>
+      <p>${escapeHtml(detail)}</p>
+    </article>
+  `).join("");
+}
+
 function executiveSummaryHtml(digest) {
   const usLine = formatSnapshotLine(snapshotsForRegion(digest, "US Overnight"));
   const asiaLine = formatAsiaSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
@@ -4169,6 +4422,18 @@ function formatGeneratedAt(value) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(date);
+}
+
+function limitWords(text, maxWords) {
+  const words = String(text || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ")
+    .filter(Boolean);
+  if (words.length <= maxWords) {
+    return words.join(" ");
+  }
+  return `${words.slice(0, maxWords - 1).join(" ")}...`;
 }
 
 function formatNumber(value) {
