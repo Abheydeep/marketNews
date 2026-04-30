@@ -65,7 +65,7 @@ async function runCycle(page, cycle) {
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
-  const openDailyLink = page.getByRole("link", { name: "Open daily briefing" });
+  const openDailyLink = page.locator('a.open-link[href="./29apr2026/"]');
   await expectOne(openDailyLink, "open daily link");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
