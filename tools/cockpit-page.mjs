@@ -2549,7 +2549,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
           <div class="quote-board-card">
             <button id="quoteBoardToggle" class="quote-board-toggle" type="button" aria-expanded="false" aria-controls="quoteBoardBody">
               <span class="quote-board-title">
-                <strong>Real Quote Board</strong>
+                <strong>Live Quote Board</strong>
                 <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
               </span>
               <span id="liveClock" class="live-clock">Preparing quotes...</span>
@@ -2568,7 +2568,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
         <section class="panel market-chart-panel">
           <h2>Latest Market Dashboard</h2>
-          <p class="chart-note">Quick snapshot only: US risk appetite, Asia lead, Indian open, and the key macro hedge. Open the Real Quote Board for every tracked market.</p>
+          <p class="chart-note">Quick snapshot only: US risk appetite, Asia lead, Indian open, and the key macro hedge. Open the Live Quote Board for every tracked market.</p>
           <div class="chart-container">
             <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
           </div>
@@ -2607,7 +2607,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
         <div class="chart-modal-header">
           <div>
             <h2 id="indexChartTitle">Index Chart</h2>
-            <p id="indexChartMeta">Real market chart with the latest published snapshot.</p>
+            <p id="indexChartMeta">Live market chart with the latest published snapshot.</p>
           </div>
           <a id="openFullChart" class="chart-link-btn" href="https://finance.yahoo.com/markets/" target="_blank" rel="noreferrer">Open Yahoo Chart</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
@@ -3152,7 +3152,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = marketDisplayName(quote) + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Real Yahoo Finance price series from the latest published digest. The board refreshes every scheduled publish.'
+        ? 'Live Yahoo Finance price series from the latest published digest. The board refreshes every scheduled publish.'
         : 'Market closed. Showing the latest published Yahoo Finance price series for review.';
       setChartLinks(quote);
       modal.classList.add('open');
