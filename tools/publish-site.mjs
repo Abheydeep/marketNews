@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { projectComponentsPage } from "./project-components-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -28,6 +29,7 @@ if (!digests.length) {
 await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
 await writeFile(join(siteDir, ".nojekyll"), "", "utf8");
+await writeFile(join(siteDir, "favicon.ico"), "", "utf8");
 
 for (const digest of digests) {
   const slug = slugForDigest(digest);
@@ -48,13 +50,36 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
+const adminDigest = {
+  ...sourceDigest,
+  canonicalPath: "/admin/"
+};
 const darkPreviewDir = join(siteDir, "dark-preview");
+const adminDir = join(siteDir, "admin");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
   cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" })
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
+await mkdir(join(adminDir, "components"), { recursive: true });
+await writeFile(
+  join(adminDir, "index.html"),
+  cockpitPage(adminDigest, "studio-view", {
+    includeStudio: true,
+    theme: "glass-v2",
+    requireAuth: true,
+    componentsHref: "./components/"
+  }),
+  "utf8"
+);
+await writeFile(join(adminDir, "favicon.ico"), "", "utf8");
+await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
+await writeFile(
+  join(adminDir, "components", "index.html"),
+  projectComponentsPage({ digests, publicBaseHref: "../../", requireAuth: true }),
+  "utf8"
+);
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);
@@ -429,6 +454,7 @@ function archivePage(digests) {
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+          <a class="nav-link" href="./admin/">Admin login</a>
         </div>
       </div>
     </div>

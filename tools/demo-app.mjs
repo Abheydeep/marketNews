@@ -17,11 +17,11 @@ export async function createDemoApp(date = todayIso()) {
       }
 
       if (method === "GET" && url.pathname === "/admin") {
-        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", componentsHref: "/admin/components" }));
+        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, componentsHref: "/admin/components" }));
       }
 
       if (method === "GET" && url.pathname === "/admin/components") {
-        return htmlResponse(projectComponentsPage({ digests: [currentDigest], publicBaseHref: "/" }));
+        return htmlResponse(projectComponentsPage({ digests: [currentDigest], publicBaseHref: "/", requireAuth: true }));
       }
 
       if (method === "GET" && url.pathname === "/api/public/digest/today") {

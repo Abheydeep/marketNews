@@ -65,8 +65,8 @@ The no-install demo mirrors the mock workflow used by the Spring/Next implementa
 The demo keeps the public and private surfaces separate:
 
 - Public route `/`: public briefing only.
-- Private route `/admin`: Studio Command with daily reel script, scanner workbench, source QA, AI thumbnail simulation, architecture notes, and animated teleprompter.
-- Private route `/admin/components`: expandable project-components map for understanding the system internals.
+- Auth-gated route `/admin`: Studio Command with daily reel script, scanner workbench, source QA, AI thumbnail simulation, architecture notes, and animated teleprompter.
+- Auth-gated route `/admin/components`: expandable project-components map for understanding the system internals.
 
 ## Daily 8:30 AM Summary
 
@@ -118,7 +118,7 @@ npm run daily:generate -- --market-data live
 
 The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Local dated `file://` previews also check the public GitHub Pages digest first, so a manual reload does not stay pinned to an old generated file. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
 
-The public export does not ship the architecture or project-components documentation; those are admin-only surfaces in the demo app. The public archive and dated briefings use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
+The public export ships `/admin/` and `/admin/components/` behind a client-side login gate so the main website has one coherent admin entry point. This is suitable for the static demo; production hosting should replace it with server-side/Auth0 authentication. The public archive, dated briefings, and admin pages use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
 
 ## GitHub Pages
 

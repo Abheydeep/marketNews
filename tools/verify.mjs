@@ -353,10 +353,12 @@ await test("backend market snapshot contract carries quote regions, countries, a
   assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
-await test("static publisher emits public archive and dated daily pages while keeping components private", async () => {
+await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
-  assert.ok(!publisher.includes("projectComponentsPage"));
+  assert.ok(publisher.includes("projectComponentsPage"));
+  assert.ok(publisher.includes('join(siteDir, "admin")'));
+  assert.ok(publisher.includes('requireAuth: true'));
   assert.ok(!publisher.includes('join(siteDir, "components")'));
   assert.ok(!publisher.includes("Project components"));
   assert.ok(publisher.includes('"dark-preview"'));
@@ -459,6 +461,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes('class="glass-v2"'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
+  assert.ok(publicHtml.body.includes("Admin Login"));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
   assert.ok(!publicHtml.body.includes("Studio Command Center"));
@@ -545,6 +548,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes('id="teleprompterContainer"'));
   assert.ok(!publicHtml.body.includes('id="generateAssetBtn"'));
   const adminHtml = await app.request("GET", "/admin");
+  assert.ok(adminHtml.body.includes("Admin Login"));
+  assert.ok(adminHtml.body.includes("auth-pending"));
+  assert.ok(adminHtml.body.includes("adminLoginForm"));
   assert.ok(adminHtml.body.includes("Studio Command Center"));
   assert.ok(adminHtml.body.includes('"studio-view"'));
   assert.ok(adminHtml.body.includes("Engine Architecture"));
@@ -554,6 +560,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
 
   const componentsHtml = await app.request("GET", "/admin/components");
+  assert.ok(componentsHtml.body.includes("Admin Login"));
+  assert.ok(componentsHtml.body.includes("auth-pending"));
   assert.ok(componentsHtml.body.includes("How the Market Narrative Engine fits together"));
   assert.ok(componentsHtml.body.includes('details class="component"'));
 });

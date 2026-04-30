@@ -3,7 +3,9 @@ import { publicDigestPayload } from "./public-payload.mjs";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
+  const requireAuth = Boolean(options.requireAuth);
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
+  const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
   const safeInitialTab = includeStudio || initialTab === "public-view" ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const studioTabHtml = includeStudio
@@ -12,6 +14,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const adminArchitectureTabHtml = includeStudio
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
           <a class="tab-link" href="${escapeHtml(options.componentsHref ?? "/admin/components")}">Project Components</a>`
+    : "";
+  const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
+    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? (digest.canonicalPath ? "../admin/" : "./admin/"))}">Admin Login</a>`
+    : "";
+  const adminLogoutHtml = requireAuth
+    ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
     : "";
   return `<!DOCTYPE html>
 <html lang="en">
@@ -140,6 +148,104 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .hidden {
       display: none !important;
+    }
+
+    body.admin-auth-required.auth-pending .topbar,
+    body.admin-auth-required.auth-pending main.shell {
+      display: none;
+    }
+
+    body.admin-auth-required.auth-ready #adminAuthGate {
+      display: none;
+    }
+
+    .auth-gate {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .auth-card {
+      width: min(460px, 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.62)),
+        rgba(15, 23, 42, 0.76);
+      color: #f8fafc;
+      padding: 28px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+    }
+
+    .auth-card h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .auth-card p {
+      margin: 12px 0 22px;
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .auth-field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .auth-field span {
+      color: #b8c4d8;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .auth-field input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.62);
+      color: #f8fafc;
+      padding: 13px 14px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .auth-field input:focus {
+      border-color: rgba(103, 232, 249, 0.78);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.12);
+    }
+
+    .auth-submit {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #67e8f9, #60a5fa 48%, #818cf8);
+      color: #020617;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(96, 165, 250, 0.22);
+    }
+
+    .auth-error {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: #fecdd3;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .auth-error[hidden] {
+      display: none;
     }
 
     .page-header {
@@ -2963,6 +3069,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #f8fafc;
     }
 
+    .glass-v2 .admin-logout-btn {
+      color: #fecdd3;
+    }
+
     .mood-rail {
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 0.85fr);
@@ -3445,7 +3555,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
   </style>
 </head>
-<body${themeClass ? ` class="${themeClass}"` : ""}>
+<body${bodyClass ? ` class="${bodyClass}"` : ""}>
+  ${requireAuth ? adminAuthGateHtml() : ""}
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -3454,6 +3565,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
+          ${publicAdminLinkHtml}
+          ${adminLogoutHtml}
         </div>
       </div>
     </div>
@@ -3810,9 +3923,23 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     window.__DIGEST__ = ${JSON.stringify(clientDigest)};
     window.__INITIAL_TAB__ = ${JSON.stringify(safeInitialTab)};
     window.__INCLUDE_STUDIO__ = ${JSON.stringify(includeStudio)};
+    window.__REQUIRE_ADMIN_AUTH__ = ${JSON.stringify(requireAuth)};
+    window.__ADMIN_AUTH_HASH__ = "80b6c184bff356be9b060287583d6c10afe1d425a98410dcd5bfd72e251c40f6";
     window.__PUBLIC_SITE_BASE_URL__ = 'https://abheydeep.github.io/marketNews';
 
     document.addEventListener('DOMContentLoaded', () => {
+      if (window.__REQUIRE_ADMIN_AUTH__) {
+        bindAdminAuth();
+        if (!hasAdminSession()) {
+          showAdminGate();
+          return;
+        }
+        unlockAdminGate();
+      }
+      bootMarketNarrative();
+    });
+
+    function bootMarketNarrative() {
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = document.querySelectorAll('.tab-content');
 
@@ -3850,7 +3977,65 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       bindSourceFilters();
       bindSourceCardClicks();
       initLiveIndexBoard();
-    });
+    }
+
+    function bindAdminAuth() {
+      const form = document.getElementById('adminLoginForm');
+      const logout = document.getElementById('adminLogoutBtn');
+      if (form) {
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const email = document.getElementById('adminEmail')?.value ?? '';
+          const password = document.getElementById('adminPassword')?.value ?? '';
+          const error = document.getElementById('adminAuthError');
+          const hash = await adminCredentialHash(email, password);
+          if (hash === window.__ADMIN_AUTH_HASH__) {
+            try {
+              sessionStorage.setItem('marketNarrativeAdminSession', hash);
+            } catch {
+              // Continue with the in-memory unlock if storage is blocked.
+            }
+            if (error) error.hidden = true;
+            unlockAdminGate();
+            bootMarketNarrative();
+            return;
+          }
+          if (error) error.hidden = false;
+        });
+      }
+      if (logout) {
+        logout.addEventListener('click', () => {
+          sessionStorage.removeItem('marketNarrativeAdminSession');
+          window.location.reload();
+        });
+      }
+    }
+
+    function hasAdminSession() {
+      try {
+        return sessionStorage.getItem('marketNarrativeAdminSession') === window.__ADMIN_AUTH_HASH__;
+      } catch {
+        return false;
+      }
+    }
+
+    function showAdminGate() {
+      document.body.classList.add('auth-pending');
+      document.body.classList.remove('auth-ready');
+      document.getElementById('adminEmail')?.focus();
+    }
+
+    function unlockAdminGate() {
+      document.body.classList.remove('auth-pending');
+      document.body.classList.add('auth-ready');
+    }
+
+    async function adminCredentialHash(email, password) {
+      const identity = String(email || '').trim().toLowerCase() + ':' + String(password || '');
+      const bytes = new TextEncoder().encode(identity);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
 
     function drawOvernightChart() {
       const digest = window.__DIGEST__;
@@ -3876,8 +4061,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       window.__QUOTE_BOARD_EXPANDED__ = false;
       window.__ACTIVE_QUOTE_REGION__ = null;
       renderIndexBoard();
-      updateLiveClock('Refreshing prices after page load');
       bindIndexModal();
+      if (window.__INCLUDE_STUDIO__) {
+        updateLiveClock('Studio snapshot loaded');
+        return;
+      }
+      updateLiveClock('Refreshing prices after page load');
       refreshPublishedDigest('page-load');
       setInterval(() => refreshPublishedDigest('background'), 60_000);
     }
@@ -6084,6 +6273,27 @@ function formatNumber(value) {
   return Number(value).toLocaleString("en-IN", {
     maximumFractionDigits: Number.isInteger(Number(value)) ? 0 : 2
   });
+}
+
+function adminAuthGateHtml() {
+  return `
+  <section id="adminAuthGate" class="auth-gate" aria-label="Admin login">
+    <form id="adminLoginForm" class="auth-card" autocomplete="on">
+      <p class="eyebrow">Private Studio</p>
+      <h1>Admin Login</h1>
+      <p>Sign in to open Studio Command, architecture notes, project components, scripts, scanner tools, and publishing controls.</p>
+      <label class="auth-field">
+        <span>Email</span>
+        <input id="adminEmail" name="email" type="email" autocomplete="username" required>
+      </label>
+      <label class="auth-field">
+        <span>Password</span>
+        <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button class="auth-submit" type="submit">Enter Admin Studio</button>
+      <p id="adminAuthError" class="auth-error" role="alert" hidden>Invalid admin credentials.</p>
+    </form>
+  </section>`;
 }
 
 function escapeHtml(value) {

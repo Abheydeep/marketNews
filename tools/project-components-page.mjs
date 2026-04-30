@@ -1,4 +1,4 @@
-export function projectComponentsPage({ digests = [], publicBaseHref = "../" } = {}) {
+export function projectComponentsPage({ digests = [], publicBaseHref = "../", requireAuth = false } = {}) {
   const latest = digests[0];
   const latestSlug = latest ? slugForDigest(latest) : "";
   const latestDate = latest ? formatDigestDate(latest.digestDate) : "No briefing generated yet";
@@ -607,7 +607,9 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
     }
 
     .nav-link.dark {
-      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      border-color: rgba(103, 232, 249, 0.34);
+      background: rgba(103, 232, 249, 0.14);
+      color: #e0f2fe;
       box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28);
     }
 
@@ -697,6 +699,104 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
       border-color: rgba(255, 255, 255, 0.12);
     }
 
+    body.admin-auth-required.auth-pending .topbar,
+    body.admin-auth-required.auth-pending main.shell {
+      display: none;
+    }
+
+    body.admin-auth-required.auth-ready #adminAuthGate {
+      display: none;
+    }
+
+    .auth-gate {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .auth-card {
+      width: min(460px, 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.62)),
+        rgba(15, 23, 42, 0.76);
+      color: #f8fafc;
+      padding: 28px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+    }
+
+    .auth-card h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .auth-card p {
+      margin: 12px 0 22px;
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .auth-field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .auth-field span {
+      color: #b8c4d8;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .auth-field input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.62);
+      color: #f8fafc;
+      padding: 13px 14px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .auth-field input:focus {
+      border-color: rgba(103, 232, 249, 0.78);
+      box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.12);
+    }
+
+    .auth-submit {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #67e8f9, #60a5fa 48%, #818cf8);
+      color: #020617;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(96, 165, 250, 0.22);
+    }
+
+    .auth-error {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: #fecdd3;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .auth-error[hidden] {
+      display: none;
+    }
+
     @media (max-width: 960px) {
       .hero,
       .map,
@@ -747,7 +847,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
     }
   </style>
 </head>
-<body class="components-dark">
+<body class="components-dark${requireAuth ? " admin-auth-required auth-pending" : ""}">
+  ${requireAuth ? adminAuthGateHtml() : ""}
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -769,7 +870,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
         <div class="legend" aria-label="Component legend">
           <span class="automation">Automation and data flow</span>
           <span class="public">Public GitHub Pages output</span>
-          <span class="private">Private local Studio output</span>
+          <span class="private">Auth-gated Studio output</span>
         </div>
       </div>
       <aside class="hero-card">
@@ -912,7 +1013,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
 
     <section class="section-title">
       <h2>Public vs Private Boundary</h2>
-      <p>This is the most important architecture change: public readers get the briefing, while your creator workflow stays local/private.</p>
+      <p>This is the most important architecture change: public readers get the briefing, while your creator workflow sits behind the admin login.</p>
     </section>
 
     <section class="boundary">
@@ -926,12 +1027,14 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
         </ul>
       </article>
       <article class="boundary-card private">
-        <h3>Private Local Studio</h3>
+        <h3>Auth-Gated Studio</h3>
         <ul>
+          <li><code>/marketNews/admin/</code></li>
+          <li><code>/marketNews/admin/components/</code></li>
           <li><code>out/daily/YYYY-MM-DD-0830-studio.html</code></li>
           <li><code>out/daily/YYYY-MM-DD-0830-reel-script.md</code></li>
           <li>Teleprompter script, daily reel script, AI prompt package, Studio activity buttons</li>
-          <li>Not linked, exported, or stored in public digest archives</li>
+          <li>Not exposed on the public briefing surface; production hosting should replace static auth with server/Auth0 auth</li>
         </ul>
       </article>
     </section>
@@ -945,8 +1048,82 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../" } =
       ${componentDetailsHtml()}
     </section>
   </main>
+  ${requireAuth ? adminAuthScriptHtml() : ""}
 </body>
 </html>`;
+}
+
+function adminAuthGateHtml() {
+  return `
+  <section id="adminAuthGate" class="auth-gate" aria-label="Admin login">
+    <form id="adminLoginForm" class="auth-card" autocomplete="on">
+      <p class="eyebrow">Private Studio</p>
+      <h1>Admin Login</h1>
+      <p>Sign in to open the project component map and internal architecture notes.</p>
+      <label class="auth-field">
+        <span>Email</span>
+        <input id="adminEmail" name="email" type="email" autocomplete="username" required>
+      </label>
+      <label class="auth-field">
+        <span>Password</span>
+        <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button class="auth-submit" type="submit">Open Components</button>
+      <p id="adminAuthError" class="auth-error" role="alert" hidden>Invalid admin credentials.</p>
+    </form>
+  </section>`;
+}
+
+function adminAuthScriptHtml() {
+  return `<script>
+    window.__ADMIN_AUTH_HASH__ = "80b6c184bff356be9b060287583d6c10afe1d425a98410dcd5bfd72e251c40f6";
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('adminLoginForm');
+      if (hasAdminSession()) {
+        unlockAdminGate();
+        return;
+      }
+      document.getElementById('adminEmail')?.focus();
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = document.getElementById('adminEmail')?.value ?? '';
+        const password = document.getElementById('adminPassword')?.value ?? '';
+        const error = document.getElementById('adminAuthError');
+        const hash = await adminCredentialHash(email, password);
+        if (hash === window.__ADMIN_AUTH_HASH__) {
+          try {
+            sessionStorage.setItem('marketNarrativeAdminSession', hash);
+          } catch {
+            // Continue with the in-memory unlock if storage is blocked.
+          }
+          if (error) error.hidden = true;
+          unlockAdminGate();
+          return;
+        }
+        if (error) error.hidden = false;
+      });
+    });
+
+    function hasAdminSession() {
+      try {
+        return sessionStorage.getItem('marketNarrativeAdminSession') === window.__ADMIN_AUTH_HASH__;
+      } catch {
+        return false;
+      }
+    }
+
+    function unlockAdminGate() {
+      document.body.classList.remove('auth-pending');
+      document.body.classList.add('auth-ready');
+    }
+
+    async function adminCredentialHash(email, password) {
+      const identity = String(email || '').trim().toLowerCase() + ':' + String(password || '');
+      const bytes = new TextEncoder().encode(identity);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
+  </script>`;
 }
 
 function componentDetailsHtml() {
@@ -1040,8 +1217,10 @@ function componentDetailsHtml() {
         "Generates a daily 45-60 second reel script with hook, global cues, India open, trade plan, watch next, and close.",
         "Keeps private scripts out of public HTML, public JSON, and public archive files."
       ],
-      rightTitle: "Private local outputs",
+      rightTitle: "Auth-gated outputs",
       right: [
+        "<code>/marketNews/admin/</code>",
+        "<code>/marketNews/admin/components/</code>",
         "<code>out/daily/YYYY-MM-DD-0830-studio.html</code>",
         "<code>out/daily/YYYY-MM-DD-0830-reel-script.md</code>",
         "<code>out/daily/YYYY-MM-DD-0830-digest.json</code>"

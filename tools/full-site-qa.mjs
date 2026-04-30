@@ -51,6 +51,7 @@ try {
       [
         `cycle=${summary.cycle}`,
         `archiveLinks=${summary.archiveLinks}`,
+        `adminChecks=${summary.adminChecks}`,
         `darkPreviewCards=${summary.darkPreviewCards}`,
         `dailyPages=${summary.dailyPages}`,
         `chartButtons=${summary.chartButtons}`,
@@ -108,6 +109,7 @@ async function runCycle(page, cycle) {
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
   const darkPreviewCards = await verifyDarkPreview(page, stamp);
+  const adminChecks = await verifyAdminRoutes(page, stamp);
   let chartButtons = 0;
   let chartExternalLinks = 0;
   let sourceLinks = 0;
@@ -126,6 +128,7 @@ async function runCycle(page, cycle) {
   return {
     cycle,
     archiveLinks,
+    adminChecks,
     darkPreviewCards,
     dailyPages: dailyPages.length,
     chartButtons,
@@ -143,6 +146,7 @@ async function verifyArchive(page, rootUrl) {
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
+  await expectOne(page.getByRole("link", { name: "Admin login" }), "archive admin login link");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
   for (const daily of dailyPages) {
@@ -279,6 +283,49 @@ async function verifyDarkSurfaceContrast(page, label, options = {}) {
   );
 }
 
+async function verifyAdminRoutes(page, stamp) {
+  const adminUrl = `${baseUrl}/admin/?fullqa=${stamp}`;
+  await page.goto(`${baseUrl}/?auth-reset=${stamp}`, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await page.evaluate(() => sessionStorage.removeItem("marketNarrativeAdminSession"));
+  await page.goto(adminUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.auth-pending"), "admin route should start behind login");
+  await expectOne(page.getByRole("heading", { name: "Admin Login" }), "admin login heading");
+  assert.equal(await page.getByRole("heading", { name: "Studio Command Center" }).count(), 0, "studio should not be visible before login");
+  await loginAsAdmin(page, "admin route");
+  await expectOne(page.locator("body.auth-ready"), "admin route unlocks after login");
+  await expectOne(page.getByRole("heading", { name: "Studio Command Center" }), "admin studio heading after login");
+  await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
+  const componentsLink = page.getByRole("link", { name: "Project Components" });
+  await expectOne(componentsLink, "admin project components link");
+  await clickInternalLink(page, componentsLink, await componentsLink.getAttribute("href"), "admin project components");
+  await expectOne(page.locator("body.auth-ready"), "admin components reuses login session");
+  await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "admin components heading");
+  await verifyDarkSurfaceContrast(page, "admin components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
+  const panels = page.locator("details.component");
+  const panelCount = await panels.count();
+  assert.ok(panelCount >= 8, `admin components should render at least 8 expandable panels, got ${panelCount}`);
+  assert.equal(await page.locator("details.component[open]").count(), 0, "admin components should start collapsed");
+  const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Engine" });
+  await expectOne(digestPanel, "admin digest engine expandable panel");
+  await digestPanel.locator("summary").click();
+  await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine opens");
+  await digestPanel.locator("summary").click();
+  await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine collapses");
+  return 2;
+}
+
+async function loginAsAdmin(page, label) {
+  const email = page.locator("#adminEmail");
+  const password = page.locator("#adminPassword");
+  const submit = page.getByRole("button", { name: "Enter Admin Studio" }).or(page.getByRole("button", { name: "Open Components" }));
+  await expectOne(email, `${label} email input`);
+  await expectOne(password, `${label} password input`);
+  await expectOne(submit, `${label} submit button`);
+  await email.fill("admin@marketnarrative.local");
+  await password.fill("market-open");
+  await submit.click();
+}
+
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
@@ -289,6 +336,7 @@ async function verifyDailyPage(page, daily, stamp) {
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
+  await expectOne(page.getByRole("link", { name: "Admin Login" }), `${daily.slug} admin login link`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
   assert.equal(await page.getByRole("button", { name: "Engine Architecture" }).count(), 0, `${daily.slug} should not expose admin architecture`);
   assert.equal(await page.getByText("Real Quote Board", { exact: true }).count(), 0, `${daily.slug} should not show Real Quote Board`);
