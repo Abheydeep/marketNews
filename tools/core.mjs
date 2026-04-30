@@ -49,7 +49,12 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles);
-  const asset = generateAsset(date, sentimentLabel);
+  const asset = generateAsset(date, sentimentLabel, {
+    snapshots: marketSnapshots,
+    themes,
+    setups: tradeSetups,
+    articles
+  });
 
   return {
     scriptId: 1,
@@ -344,55 +349,66 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
 function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, articles }) {
   const pressure = strongestArticle(articles, (article) => Number(article.sentimentScore) < 0) ?? articles[0];
   const support = strongestArticle(articles, (article) => Number(article.sentimentScore) > 0);
-  const usLine = conciseRegionLine(snapshots, "US Overnight");
-  const asiaLine = conciseRegionLine(snapshots, "Asia Watch");
-  const indiaLine = conciseRegionLine(snapshots, "India Open");
-  const macroLine = conciseRegionLine(snapshots, "Macro Hedges");
+  const usLine = speechRegionLine(snapshots, "US Overnight");
+  const asiaLine = speechRegionLine(snapshots, "Asia Watch", { limit: 5, includeCountry: true });
+  const indiaLine = speechRegionLine(snapshots, "India Open");
+  const macroLine = speechRegionLine(snapshots, "Macro Hedges");
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
   const setupLine = setup
-    ? `For trades, I am only interested if ${setup.symbol} accepts near ${formatNumber(setup.entry)}. Stop is ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, so the risk-reward stays above 1:2.`
-    : "For trades, there is no fresh 1:2 setup yet. That means no chasing the first candle; I want the first-hour range to form first.";
+    ? `If ${setup.symbol} accepts near ${formatNumber(setup.entry)}, the plan is clean: invalidation below ${formatNumber(setup.stopLoss)}, target near ${formatNumber(setup.target)}, and no entry unless the reward stays at least twice the risk.`
+    : "No forced trade at the open. Let the first-hour range form, then only take a setup that gives at least twice the reward for the risk.";
   const toneLine = {
-    BULLISH: "The tone is constructive, but I still want confirmation after the open.",
-    BEARISH: "The tone is cautious, so the open is about risk control first.",
-    VOLATILE: "The tone is mixed, so today is a level-by-level market.",
-    NEUTRAL: "The tone is balanced, so the first hour should define direction."
-  }[sentimentLabel] ?? "The tone is mixed, so the first hour matters.";
+    BULLISH: "The setup has a constructive bias, but the first candle still has to prove it.",
+    BEARISH: "This is not a clean risk-on morning; protect capital first and let levels confirm.",
+    VOLATILE: "This is a two-way market; the edge is in waiting for confirmation, not guessing the gap.",
+    NEUTRAL: "The market is balanced enough that the first thirty minutes can change the whole read."
+  }[sentimentLabel] ?? "The first thirty minutes matter more than the headline gap.";
   const pressureLine = pressure
-    ? `${pressure.takeaway || pressure.summary} Source check: ${pressure.sourceName}.`
+    ? `${pressure.takeaway || pressure.summary} That is the pressure point to respect.`
     : themes[0]?.summary || "Global cues are mixed.";
   const supportLine = support
-    ? `The offset is ${support.takeaway || support.summary} Source check: ${support.sourceName}.`
-    : "The offset is selective domestic support, but it needs breadth confirmation.";
+    ? `${support.takeaway || support.summary} That is the counterweight if breadth improves.`
+    : "The counterweight has to come from banks, defensives, or stronger market breadth.";
   const watchLine = pressure?.watchFor || support?.watchFor || "Watch opening breadth, Bank Nifty behavior, and whether Nifty holds the first-hour range.";
+  const firstTheme = themes[0]?.title ? themes[0].title.toLowerCase() : "macro pressure";
+  const sourceLine = [pressure?.sourceName, support?.sourceName].filter(Boolean).join(" and ");
 
   return [
     `[REEL SCRIPT | ${date} | 45-60 sec]`,
     "",
-    "[HOOK]",
-    `Before the market opens, here is the one thing Indian traders need to know: ${toneLine}`,
+    "FORMAT: 9:16 vertical reel. Delivery should be sharp, conversational, and calm. Do not read the bracketed directions out loud.",
     "",
-    "[GLOBAL CUES]",
-    `US setup: ${usLine || "US data is awaiting refresh"}. Asia check: ${asiaLine || "Asia is mixed"}. Macro hedge: ${macroLine || "Dollar and crude need monitoring"}.`,
+    "[0-03s | HOOK]",
+    `ON SCREEN: ${sentimentLabel} pre-market read`,
+    `VOICEOVER: Do not trade the open like a simple green-or-red signal. ${toneLine}`,
     "",
-    "[WHY IT MATTERS]",
-    `${pressureLine} ${supportLine}`,
+    "[03-14s | OVERNIGHT STORY]",
+    `ON SCREEN: US, Asia, crude, banks`,
+    `VOICEOVER: ${usLine || "US cues are mixed."} ${asiaLine || "Asia is selective, not one-way."} ${macroLine || "Crude and the dollar decide whether this pressure spreads."}`,
     "",
-    "[INDIA OPEN]",
-    `For India, ${indiaLine || "Nifty and Bank Nifty need first-hour confirmation"}. If banks support and crude cools, dips can stay selective. If breadth weakens, respect the risk-off signal.`,
+    "[14-28s | WHY INDIA CARES]",
+    `ON SCREEN: ${firstTheme}`,
+    `VOICEOVER: ${pressureLine} ${supportLine} ${sourceLine ? `This read is backed by ${sourceLine}.` : ""}`,
     "",
-    "[TRADE PLAN]",
-    setupLine,
+    "[28-40s | INDIA OPEN]",
+    "ON SCREEN: Nifty + Bank Nifty game plan",
+    `VOICEOVER: ${indiaLine || "Nifty and Bank Nifty need confirmation after the bell."} If banks hold VWAP and breadth improves, dips can stay selective. If breadth breaks, reduce size and wait.`,
     "",
-    "[WATCH NEXT]",
-    watchLine,
+    "[40-52s | TRADE PLAN]",
+    "ON SCREEN: No chase. Only 1:2+ setups.",
+    `VOICEOVER: ${setupLine}`,
     "",
-    "[CLOSE]",
-    "This is for education and market preparation, not investment advice. Save this before the open and trade only your own plan."
+    "[52-58s | WATCH NEXT]",
+    `ON SCREEN: Watch this after 9:15`,
+    `VOICEOVER: The next tell is this: ${watchLine}`,
+    "",
+    "[58-60s | CLOSE]",
+    "ON SCREEN: Save before the open",
+    "VOICEOVER: Save this for the open. This is market education, not investment advice; trade only your own plan."
   ].join("\n");
 }
 
-export function generateAsset(date, sentimentLabel) {
+export function generateAsset(date, sentimentLabel, context = {}) {
   const promptMood = {
     BULLISH: "emerald market screens, rising candles, confident financial presenter",
     BEARISH: "crimson risk dashboard, falling candles, serious financial presenter",
@@ -405,6 +421,7 @@ export function generateAsset(date, sentimentLabel) {
     VOLATILE: "slate blue, gold, neutral grey",
     NEUTRAL: "steel, white, muted green"
   }[sentimentLabel];
+  const videoPackage = generateReelVideoPackage(date, sentimentLabel, context);
 
   return {
     sentimentLabel,
@@ -413,8 +430,77 @@ export function generateAsset(date, sentimentLabel) {
     palette,
     referenceImageId: "creator-ref-001",
     controlNetMode: "ControlNet Canny + Depth identity lock",
-    assetUrl: `/assets/mock/daily-thumbnail-${date}.webp`
+    assetUrl: `/assets/generated/daily-thumbnail-${date}.webp`,
+    reelVideo: videoPackage
   };
+}
+
+function generateReelVideoPackage(date, sentimentLabel, { snapshots = [], themes = [], setups = [], articles = [] } = {}) {
+  const pressure = strongestArticle(articles, (article) => Number(article.sentimentScore) < 0) ?? articles[0];
+  const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
+  const macro = speechRegionLine(snapshots, "Macro Hedges");
+  const india = speechRegionLine(snapshots, "India Open");
+  const setupCaption = setup
+    ? `${setup.symbol}: ${formatNumber(setup.entry)} / ${formatNumber(setup.stopLoss)} / ${formatNumber(setup.target)}`
+    : "No chase: wait for first-hour range";
+  const moodCaption = {
+    BULLISH: "Constructive, but confirm",
+    BEARISH: "Risk control first",
+    VOLATILE: "Levels over prediction",
+    NEUTRAL: "Opening range decides"
+  }[sentimentLabel] ?? "Opening range decides";
+  const scenes = [
+    {
+      time: "0-03s",
+      title: "Hook",
+      caption: moodCaption,
+      visual: "Creator close-up, dark glass trading wall, bold sentiment badge."
+    },
+    {
+      time: "03-14s",
+      title: "Global Cue",
+      caption: macro || pressure?.takeaway || "Macro pressure decides the open",
+      visual: "US futures, Asia map, crude and dollar tiles moving behind the creator."
+    },
+    {
+      time: "14-34s",
+      title: "India Read",
+      caption: india || themes[0]?.title || "Banks and breadth are the tell",
+      visual: "Nifty and Bank Nifty cards, VWAP line, breadth meter."
+    },
+    {
+      time: "34-52s",
+      title: "Trade Plan",
+      caption: setupCaption,
+      visual: "Entry, stop, target cards with 1:2 risk-reward emphasis."
+    },
+    {
+      time: "52-60s",
+      title: "Close",
+      caption: "Save before the open",
+      visual: "Clean closing card with disclaimer microcopy."
+    }
+  ];
+
+  return {
+    durationSeconds: 60,
+    aspectRatio: "9:16",
+    style: "premium dark glassmorphism financial reel",
+    captionStack: scenes.map((scene) => scene.caption),
+    scenes,
+    videoPrompt: [
+      `Create a 60-second vertical financial market reel for ${date}.`,
+      `Mood: ${sentimentLabel}. Style: premium dark glassmorphism, sharp typography, Indian market desk energy.`,
+      `Use an identity-locked Indian financial creator as presenter.`,
+      `Main story: ${trimTerminalPunctuation(pressure?.takeaway || themes[0]?.summary || "opening range confirmation matters")}.`,
+      `Trade framing: ${setupCaption}.`,
+      "No exaggerated profit claims, no guaranteed calls, no investment advice."
+    ].join(" ")
+  };
+}
+
+function trimTerminalPunctuation(value) {
+  return String(value || "").trim().replace(/[.?!]+$/u, "");
 }
 
 function normalizeArticleThumbnail(article) {
@@ -432,7 +518,7 @@ export function newsArticleJsonLd(digest) {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: digest.title,
-    image: `https://marketnarrative.local${digest.asset?.assetUrl ?? "/assets/mock/daily-thumbnail.webp"}`,
+    image: `https://marketnarrative.local${digest.asset?.assetUrl ?? "/assets/generated/daily-thumbnail.webp"}`,
     datePublished: digest.publishedAt ?? `${digest.digestDate}T08:30:00+05:30`,
     author: {
       "@type": "Person",
@@ -499,18 +585,57 @@ function strongestArticle(articles, predicate) {
 }
 
 function conciseRegionLine(snapshots, region) {
-  const selected = snapshots.filter((snapshot) => snapshot.marketRegion === region);
+  return speechRegionLine(snapshots, region, region === "Asia Watch" ? { limit: 5, includeCountry: true } : {});
+}
+
+function speechRegionLine(snapshots, region, options = {}) {
+  const selected = snapshots
+    .filter((snapshot) => snapshot.marketRegion === region)
+    .filter((snapshot) => Number.isFinite(Number(snapshot.changePercent)));
   if (!selected.length) {
     return "";
   }
-  const positives = selected.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
-  const leader = selected
+
+  const display = selected
     .slice()
-    .sort((left, right) => Math.abs(Number(right.changePercent)) - Math.abs(Number(left.changePercent)))[0];
-  const label = region === "Asia Watch"
-    ? `${positives} of ${selected.length} top Asian country markets are higher`
-    : `${positives} of ${selected.length} tracked markets are higher`;
-  return `${label}; lead move is ${leader.name} ${formatChange(leader.changePercent)}`;
+    .sort((left, right) => Math.abs(Number(right.changePercent)) - Math.abs(Number(left.changePercent)))
+    .slice(0, options.limit ?? selected.length);
+  const positives = selected.filter((snapshot) => Number(snapshot.changePercent) > 0.05);
+  const negatives = selected.filter((snapshot) => Number(snapshot.changePercent) < -0.05);
+  const flat = selected.length - positives.length - negatives.length;
+  const leader = display[0];
+  const counter = display.find((snapshot) => Math.sign(Number(snapshot.changePercent)) !== Math.sign(Number(leader.changePercent)));
+  const regionName = {
+    "US Overnight": "US markets",
+    "Asia Watch": "Asia",
+    "India Open": "India",
+    "Macro Hedges": "Macro hedges"
+  }[region] ?? region;
+  const verb = ["US Overnight", "Macro Hedges"].includes(region) ? "are" : "is";
+
+  if (positives.length && !negatives.length) {
+    return `${regionName} ${verb} firm, led by ${speechMove(leader, options)}.`;
+  }
+  if (negatives.length && !positives.length) {
+    return `${regionName} ${verb} under pressure, with ${speechMove(leader, options)}.`;
+  }
+  if (flat === selected.length) {
+    return `${regionName} ${verb} almost flat, with ${display.slice(0, 2).map((item) => speechMove(item, options)).join(" and ")}.`;
+  }
+
+  const counterLine = counter ? `, while ${speechMove(counter, options)}` : "";
+  return `${regionName} ${verb} mixed: ${speechMove(leader, options)}${counterLine}.`;
+}
+
+function speechMove(snapshot, options = {}) {
+  const name = options.includeCountry && snapshot.country
+    ? `${snapshot.country} ${snapshot.name}`
+    : snapshot.name;
+  const change = Number(snapshot.changePercent);
+  if (Math.abs(change) < 0.05) {
+    return `${name} flat at ${formatChange(round(change, 2))}`;
+  }
+  return `${name} ${change > 0 ? "up" : "down"} ${formatAbsChange(change)}`;
 }
 
 function formatNumber(value) {
@@ -521,6 +646,10 @@ function formatNumber(value) {
 
 function formatChange(changePercent) {
   return `${changePercent >= 0 ? "+" : ""}${changePercent}%`;
+}
+
+function formatAbsChange(changePercent) {
+  return `${Math.abs(Number(changePercent)).toFixed(2)}%`;
 }
 
 function round(value, decimals) {

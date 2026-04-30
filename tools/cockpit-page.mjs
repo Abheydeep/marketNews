@@ -2302,6 +2302,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 13px;
       font-weight: 900;
       cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
     }
 
     .studio-action-btn {
@@ -2314,6 +2315,44 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border: 1px solid #d1d5db;
       background: #fff;
       color: #111827;
+    }
+
+    .studio-action-btn:hover,
+    .studio-ghost-btn:hover,
+    .primary-btn:hover,
+    .speed-btn:hover,
+    .dark-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.18);
+    }
+
+    .studio-action-btn:active,
+    .studio-ghost-btn:active,
+    .primary-btn:active,
+    .speed-btn:active,
+    .dark-btn:active {
+      transform: translateY(0);
+    }
+
+    .studio-action-state {
+      margin-top: 12px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.08);
+      padding: 11px 12px;
+      color: #1e3a8a;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .studio-action-state.pulse {
+      animation: studioPulse 520ms ease;
+    }
+
+    @keyframes studioPulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.34); }
+      100% { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0); }
     }
 
     .studio-workflow {
@@ -2794,6 +2833,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: var(--green);
     }
 
+    .primary-btn.video-btn {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    }
+
     .loader-track {
       height: 4px;
       margin: 16px 0;
@@ -2833,6 +2877,92 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     #aiCanvas.visible {
       opacity: 1;
+    }
+
+    .video-kit {
+      margin-top: 18px;
+      border-top: 1px solid #e7e5e4;
+      padding-top: 18px;
+    }
+
+    .video-kit h3 {
+      margin: 0 0 6px;
+      color: #111827;
+      font-size: 16px;
+      font-weight: 950;
+    }
+
+    .video-kit p {
+      margin: 0 0 12px;
+      color: #6b7280;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .scene-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .scene-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 9px;
+      min-height: 96px;
+    }
+
+    .scene-card span {
+      display: block;
+      color: #6b7280;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scene-card strong {
+      display: block;
+      margin: 4px 0;
+      color: #111827;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .scene-card small {
+      display: block;
+      color: #4b5563;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .video-output {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      background: #020617;
+    }
+
+    #reelVideoCanvas {
+      width: min(100%, 260px);
+      max-height: 440px;
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+    }
+
+    .video-status {
+      margin-top: 10px;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .teleprompter-shell {
@@ -3158,7 +3288,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-color: rgba(251, 113, 133, 0.42);
     }
 
-    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone) {
+    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone, .scene-card) {
       border-color: rgba(255, 255, 255, 0.14);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
       box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -3171,15 +3301,15 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
-    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong) {
+    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong, .video-kit h3, .scene-card strong) {
       color: #f8fafc;
     }
 
-    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-ledger-details summary p, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p) {
+    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-ledger-details summary p, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p, .video-kit p, .scene-card small, .video-status) {
       color: #cbd5e1;
     }
 
-    .glass-v2 :is(.eyebrow, .summary-label, .briefing-date span, .briefing-lens span, .source-extract-meta small, .source-stat-strip span, .source-category-label small, .source-category-meta span, .source-name, .source-entity, .metric .label, .summary-chip span, .workflow-step span, .prompt-detail span, .rr-cell span, .strategy-label, .setup-level span, .quote-board-title strong, .breadth-card span, .index-tile .symbol) {
+    .glass-v2 :is(.eyebrow, .summary-label, .briefing-date span, .briefing-lens span, .source-extract-meta small, .source-stat-strip span, .source-category-label small, .source-category-meta span, .source-name, .source-entity, .metric .label, .summary-chip span, .workflow-step span, .prompt-detail span, .rr-cell span, .strategy-label, .setup-level span, .quote-board-title strong, .breadth-card span, .index-tile .symbol, .scene-card span) {
       color: #9fb0c8;
     }
 
@@ -3249,7 +3379,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .glass-v2 .studio-hero,
     .glass-v2 .studio-note,
     .glass-v2 .market-chart-caption,
-    .glass-v2 .news-list li {
+    .glass-v2 .news-list li,
+    .glass-v2 .video-kit {
       border-color: rgba(255, 255, 255, 0.12);
     }
 
@@ -3395,7 +3526,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
     }
 
-    .glass-v2 :is(.modal-chart-container, .chart-fallback, .quote-region-empty, .prompt-box, .asset-output, .loader-track, .theme-bar, .reel-script-box) {
+    .glass-v2 :is(.modal-chart-container, .chart-fallback, .quote-region-empty, .prompt-box, .asset-output, .loader-track, .theme-bar, .reel-script-box, .video-output, .studio-action-state) {
       border-color: rgba(255, 255, 255, 0.14);
       background: rgba(2, 6, 23, 0.48);
       color: #cbd5e1;
@@ -3701,6 +3832,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <button id="regenerateScriptBtn" class="studio-ghost-btn" type="button">Regenerate Script</button>
             <button id="publishDigestBtn" class="studio-ghost-btn" type="button">Publish Digest</button>
           </div>
+          <div id="studioActionState" class="studio-action-state" role="status" aria-live="polite">Ready: choose an action to update the Studio package.</div>
         </aside>
       </header>
 
@@ -3810,6 +3942,22 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <canvas id="aiCanvas" aria-label="Generated thumbnail preview"></canvas>
           </div>
           <p class="asset-caption">Negative prompt: ${escapeHtml(digest.asset.negativePrompt)}</p>
+          <div class="video-kit">
+            <h3>AI Reel Video Generator</h3>
+            <p>Creates a 9:16 reel video package from today&apos;s script: shot timing, caption stack, visual direction, and a generated motion preview.</p>
+            <div class="scene-strip">
+              ${assetVideoScenesHtml(digest.asset.reelVideo)}
+            </div>
+            <div class="prompt-box">Video prompt: ${escapeHtml(digest.asset.reelVideo?.videoPrompt || "Use the daily reel script and market mood to generate a vertical market briefing video.")}</div>
+            <button id="generateReelVideoBtn" class="primary-btn video-btn" type="button">Generate AI Reel Video</button>
+            <div class="loader-track">
+              <div id="videoLoader" class="loader-bar"></div>
+            </div>
+            <div class="video-output">
+              <canvas id="reelVideoCanvas" width="360" height="640" aria-label="Generated AI reel video preview"></canvas>
+            </div>
+            <p id="videoGenerationState" class="video-status">Ready to generate today&apos;s vertical reel preview.</p>
+          </div>
         </section>
       </div>
 
@@ -3970,6 +4118,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         bindTeleprompter();
         bindTeleprompterControls();
         bindAssetGeneration();
+        bindReelVideoGeneration();
         bindStudioActions();
         bindReelScriptCopy();
       }
@@ -5001,6 +5150,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       button.addEventListener('click', () => {
         button.disabled = true;
         button.textContent = 'Processing via Pipeline...';
+        setStudioActionState('Generating thumbnail prompt preview...');
         loader.style.width = '100%';
 
         setTimeout(() => {
@@ -5008,11 +5158,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           canvas.dataset.generated = 'true';
           canvas.classList.add('visible');
           placeholder.classList.add('hidden');
-          button.textContent = 'Asset Generated';
+          button.textContent = 'Regenerate Thumbnail';
+          button.disabled = false;
           button.classList.add('done');
+          setStudioActionState('Thumbnail package ready: identity reference, palette, and prompt are prepared.');
           setTimeout(() => {
             loader.style.transition = 'none';
             loader.style.width = '0%';
+            setTimeout(() => {
+              loader.style.transition = 'width 2s ease-in-out';
+            }, 0);
           }, 500);
         }, 850);
       });
@@ -5080,6 +5235,130 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
     }
 
+    function bindReelVideoGeneration() {
+      const button = document.getElementById('generateReelVideoBtn');
+      const loader = document.getElementById('videoLoader');
+      const canvas = document.getElementById('reelVideoCanvas');
+      const state = document.getElementById('videoGenerationState');
+      if (!button || !loader || !canvas) return;
+      drawReelVideoCanvas(canvas, 0);
+
+      button.addEventListener('click', () => {
+        button.disabled = true;
+        button.textContent = 'Generating Reel...';
+        loader.style.width = '100%';
+        if (state) state.textContent = 'Building the 9:16 motion preview from today\\'s script, captions, and market mood.';
+        setStudioActionState('Generating AI reel video package...');
+
+        const started = performance.now();
+        const duration = 1200;
+        function frame(now) {
+          const progress = Math.min(1, (now - started) / duration);
+          canvas.dataset.progress = String(progress);
+          drawReelVideoCanvas(canvas, progress);
+          if (progress < 1) {
+            requestAnimationFrame(frame);
+            return;
+          }
+          button.disabled = false;
+          button.textContent = 'Regenerate AI Reel Video';
+          button.classList.add('done');
+          if (state) state.textContent = 'AI reel video package ready: vertical preview, captions, shot timings, and video prompt are prepared.';
+          setStudioActionState('AI reel video package ready for review.');
+          setTimeout(() => {
+            loader.style.transition = 'none';
+            loader.style.width = '0%';
+            setTimeout(() => {
+              loader.style.transition = 'width 2s ease-in-out';
+            }, 0);
+          }, 500);
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    function drawReelVideoCanvas(canvas, progress) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      const digest = window.__DIGEST__ || {};
+      const video = digest.asset?.reelVideo || {};
+      const scenes = Array.isArray(video.scenes) && video.scenes.length ? video.scenes : [];
+      const sentiment = digest.sentimentLabel || 'PRE-MARKET';
+      const bearish = sentiment === 'BEARISH';
+      const volatile = sentiment === 'VOLATILE';
+      const p = Math.max(0, Math.min(1, Number(progress || 0)));
+      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, bearish ? '#7f1d1d' : volatile ? '#1e3a8a' : '#064e3b');
+      gradient.addColorStop(0.5, '#0f172a');
+      gradient.addColorStop(1, '#020617');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      for (let i = 0; i < 7; i += 1) {
+        const y = height * (0.18 + i * 0.11);
+        ctx.fillRect(width * 0.08, y, width * (0.22 + ((i + p * 4) % 5) * 0.11), 3);
+      }
+
+      const activeIndex = Math.min(scenes.length - 1, Math.floor(p * Math.max(1, scenes.length)));
+      const activeScene = scenes[activeIndex] || { title: 'Market Read', caption: 'Opening range decides' };
+      ctx.fillStyle = 'rgba(255,255,255,0.14)';
+      roundRect(ctx, width * 0.08, height * 0.07, width * 0.84, 42, 14);
+      ctx.fill();
+      ctx.fillStyle = '#e0f2fe';
+      ctx.font = '900 18px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(sentiment + ' REEL', width / 2, height * 0.07 + 27);
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 34px Arial';
+      wrapCanvasText(ctx, activeScene.title || 'Market Read', width * 0.1, height * 0.28, width * 0.8, 40, 2);
+      ctx.fillStyle = '#dbeafe';
+      ctx.font = '700 20px Arial';
+      wrapCanvasText(ctx, activeScene.caption || 'Opening range decides', width * 0.1, height * 0.43, width * 0.8, 30, 3);
+
+      const lineY = height * 0.72;
+      scenes.slice(0, 5).forEach((scene, index) => {
+        const x = width * (0.12 + index * 0.19);
+        ctx.fillStyle = index <= activeIndex ? '#67e8f9' : 'rgba(255,255,255,0.26)';
+        ctx.beginPath();
+        ctx.arc(x, lineY, index === activeIndex ? 8 : 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = index === activeIndex ? '#f8fafc' : '#94a3b8';
+        ctx.font = '800 10px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(scene.time || '', x, lineY + 24);
+      });
+
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = '900 18px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('SAVE BEFORE THE OPEN', width / 2, height * 0.88);
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '700 11px Arial';
+      ctx.fillText('Educational market preparation - not investment advice', width / 2, height * 0.92);
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+      const words = String(text || '').split(/\\s+/).filter(Boolean);
+      let line = '';
+      let lines = 0;
+      for (const word of words) {
+        const testLine = line ? line + ' ' + word : word;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          ctx.fillText(line, x, y + lines * lineHeight);
+          line = word;
+          lines += 1;
+          if (lines >= maxLines) return;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line && lines < maxLines) {
+        ctx.fillText(line, x, y + lines * lineHeight);
+      }
+    }
+
     function bindStudioActions() {
       const log = document.getElementById('studioActivityLog');
       const publishState = document.getElementById('studioPublishState');
@@ -5092,19 +5371,37 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
       const run = document.getElementById('runDigestBtn');
       if (run) {
-        run.addEventListener('click', () => addLog('Digest check completed', window.__DIGEST__.news.length + ' source articles and ' + window.__DIGEST__.marketSnapshots.length + ' market snapshots are loaded.'));
+        run.addEventListener('click', () => {
+          setStudioActionState('Digest check completed: sources, quote snapshots, and script inputs are loaded.');
+          addLog('Digest check completed', window.__DIGEST__.news.length + ' source articles and ' + window.__DIGEST__.marketSnapshots.length + ' market snapshots are loaded.');
+        });
       }
       const regenerate = document.getElementById('regenerateScriptBtn');
       if (regenerate) {
-        regenerate.addEventListener('click', () => addLog('Script refreshed', 'The template was rebuilt from the current source and scanner state.'));
+        regenerate.addEventListener('click', () => {
+          const state = document.getElementById('copyReelScriptState');
+          if (state) state.textContent = 'Script refreshed. Review the hook, India open, and trade plan before recording.';
+          setStudioActionState('Script refreshed: the reel is ready for recording review.');
+          addLog('Script refreshed', 'The template was rebuilt from the current source and scanner state.');
+        });
       }
       const publish = document.getElementById('publishDigestBtn');
       if (publish) {
         publish.addEventListener('click', () => {
           if (publishState) publishState.textContent = 'PUBLISH QUEUED';
+          setStudioActionState('Publish queued: the public briefing is ready for the next scheduled publish workflow.');
           addLog('Publish queued', 'The public briefing is queued for the next scheduled publish workflow.');
         });
       }
+    }
+
+    function setStudioActionState(message) {
+      const state = document.getElementById('studioActionState');
+      if (!state) return;
+      state.textContent = message;
+      state.classList.remove('pulse');
+      state.offsetHeight;
+      state.classList.add('pulse');
     }
 
     function bindReelScriptCopy() {
@@ -5192,6 +5489,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const assetCanvas = document.getElementById('aiCanvas');
       if (assetCanvas) {
         drawAssetCanvas(assetCanvas, assetCanvas.dataset.generated === 'true');
+      }
+      const reelCanvas = document.getElementById('reelVideoCanvas');
+      if (reelCanvas) {
+        drawReelVideoCanvas(reelCanvas, Number(reelCanvas.dataset.progress || 0));
       }
     });
   </script>
@@ -6062,6 +6363,26 @@ function assetPromptDetailsHtml(asset) {
       <span>${escapeHtml(label)}</span>
       <strong>${escapeHtml(value)}</strong>
     </div>
+  `).join("");
+}
+
+function assetVideoScenesHtml(video) {
+  const scenes = Array.isArray(video?.scenes) && video.scenes.length
+    ? video.scenes
+    : [
+      { time: "0-03s", title: "Hook", caption: "Market mood" },
+      { time: "03-14s", title: "Global Cue", caption: "Overnight cues" },
+      { time: "14-34s", title: "India Read", caption: "Nifty and banks" },
+      { time: "34-52s", title: "Trade Plan", caption: "Only 1:2+ setups" },
+      { time: "52-60s", title: "Close", caption: "Save before open" }
+    ];
+
+  return scenes.slice(0, 5).map((scene) => `
+    <article class="scene-card">
+      <span>${escapeHtml(scene.time || "Scene")}</span>
+      <strong>${escapeHtml(scene.title || "Reel beat")}</strong>
+      <small>${escapeHtml(scene.caption || scene.visual || "")}</small>
+    </article>
   `).join("");
 }
 

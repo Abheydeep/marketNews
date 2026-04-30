@@ -6,7 +6,9 @@ import { cockpitPage } from "./cockpit-page.mjs";
 import { createDemoApp } from "./demo-app.mjs";
 import {
   PUBLIC_BRIEFING_EDITORIAL_PROMPT,
+  REEL_SCRIPT_EDITORIAL_PROMPT,
   assertPublicBriefingCopy,
+  assertReelScriptCopy,
   sanitizeLegacyPublicBriefingCopy
 } from "./editorial-guardrails.mjs";
 import {
@@ -117,10 +119,13 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.onePageSummary.includes("Educational note"));
   assert.ok(digest.teleprompterScript.includes("[RISK DISCLAIMER]"));
   assert.ok(digest.reelScript.includes("[REEL SCRIPT"));
-  assert.ok(digest.reelScript.includes("[HOOK]"));
-  assert.ok(digest.reelScript.includes("[TRADE PLAN]"));
+  assert.ok(digest.reelScript.includes("[0-03s | HOOK]"));
+  assert.ok(digest.reelScript.includes("[40-52s | TRADE PLAN]"));
+  assertReelScriptCopy("daily reel script", digest.reelScript);
   assert.ok(reelScriptMarkdown(digest).includes("## Daily Reel Script"));
   assert.ok(digest.asset.positivePrompt.includes("identity-locked creator portrait"));
+  assert.ok(digest.asset.reelVideo.videoPrompt.includes("60-second vertical financial market reel"));
+  assert.ok(digest.asset.reelVideo.scenes.length >= 5);
   assert.ok(digest.news.length >= 14);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
   const jsonLd = newsArticleJsonLd(digest);
@@ -136,6 +141,7 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(Object.hasOwn(payload, "teleprompterScript"), false);
   assert.equal(Object.hasOwn(payload, "reelScript"), false);
   assert.equal(payload.asset?.positivePrompt, undefined);
+  assert.equal(payload.asset?.reelVideo, undefined);
   assert.deepEqual(newsKeys, [
     "category",
     "publisherName",
@@ -162,7 +168,9 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
 
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("financial news article"));
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("Do not mention internal implementation details"));
+  assert.ok(REEL_SCRIPT_EDITORIAL_PROMPT.includes("actually say on camera"));
   assertPublicBriefingCopy("onePageSummary", digest.onePageSummary);
+  assertReelScriptCopy("reelScript", digest.reelScript);
   assertPublicBriefingCopy("public digest payload", JSON.stringify(publicPayload));
   assertPublicBriefingCopy("public page HTML", publicHtml);
   assert.throws(
@@ -558,6 +566,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
+  assert.ok(adminHtml.body.includes("AI Reel Video Generator"));
+  assert.ok(adminHtml.body.includes("generateReelVideoBtn"));
+  assert.ok(adminHtml.body.includes("studioActionState"));
   assertAdminCopyIsPolished(adminHtml.body, "admin studio");
 
   const componentsHtml = await app.request("GET", "/admin/components");

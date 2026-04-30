@@ -349,8 +349,17 @@ async function exerciseAdminStudioControls(page) {
   await expectOne(asset, "generate asset button");
   await asset.click();
   clicked += 1;
-  await page.waitForFunction(() => document.querySelector("#generateAssetBtn")?.textContent?.includes("Asset Generated"));
-  await expectOne(page.getByRole("button", { name: "Asset Generated" }), "asset generated state");
+  await page.waitForFunction(() => document.querySelector("#generateAssetBtn")?.textContent?.includes("Regenerate Thumbnail"));
+  await expectOne(page.getByRole("button", { name: "Regenerate Thumbnail" }), "thumbnail generated state");
+
+  await expectOne(page.getByText("AI Reel Video Generator", { exact: true }), "AI reel video generator heading");
+  const video = page.locator("#generateReelVideoBtn");
+  await expectOne(video, "generate reel video button");
+  await video.click();
+  clicked += 1;
+  await page.waitForFunction(() => document.querySelector("#generateReelVideoBtn")?.textContent?.includes("Regenerate AI Reel Video"));
+  await expectOne(page.getByRole("button", { name: "Regenerate AI Reel Video" }), "AI reel video generated state");
+  await expectAtLeast(page.getByText("AI reel video package ready", { exact: false }), 1, "AI reel video status");
 
   return clicked;
 }
