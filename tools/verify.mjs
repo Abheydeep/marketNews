@@ -334,13 +334,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Expanded briefing after multi-source extraction"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
   assert.ok(publicHtml.body.includes("Asia Watch"));
-  assert.ok(publicHtml.body.includes("Asia Watch (top 5 country markets)"));
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
   assert.ok(publicHtml.body.includes("Hong Kong - Hang Seng"));
   assert.ok(publicHtml.body.includes("Mainland China - Shanghai Composite"));
   assert.ok(publicHtml.body.includes("South Korea - KOSPI"));
   assert.ok(publicHtml.body.includes("Taiwan - Taiwan Weighted"));
-  assert.ok(publicHtml.body.includes("country markets are higher; average move is"));
+  assert.ok(publicHtml.body.includes("Top 5 countries"));
+  assert.ok(publicHtml.body.includes("up <em>/"));
+  assert.ok(publicHtml.body.includes("Avg move"));
   assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
   assert.ok(publicHtml.body.includes("Economic Times Markets"));

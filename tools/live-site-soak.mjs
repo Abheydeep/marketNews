@@ -229,9 +229,10 @@ async function expandQuoteBoard(page) {
   await expectOne(page.locator('button[data-symbol="TAIEX"]').getByText("Taiwan - Taiwan Weighted", { exact: true }), "Taiwan Weighted country label");
   assert.equal(await page.locator('button[data-symbol="STI"]').count(), 0, "STI should not be visible in top-five Asia Watch");
   assert.equal(await page.locator('button[data-symbol="ASX200"]').count(), 0, "ASX200 should not be visible in top-five Asia Watch");
-  const asiaBreadth = page.locator(".breadth-card").filter({ hasText: "Asia Watch (top 5 country markets)" });
+  const asiaBreadth = page.locator(".breadth-card").filter({ hasText: "Asia Watch" });
   await expectOne(asiaBreadth, "top-five Asia breadth card");
-  await expectOne(asiaBreadth.getByText(/\d of 5 country markets are higher; average move is/), "readable Asia breadth sentence");
+  await expectOne(asiaBreadth.getByText(/\d up\s*\/ 5 tracked/), "compact Asia breadth sentence");
+  await expectOne(asiaBreadth.getByText("Top 5 countries", { exact: false }), "top-five Asia breadth context");
 }
 
 async function expectOne(locator, label) {

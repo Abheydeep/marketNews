@@ -1035,42 +1035,56 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     .regional-breadth {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 12px;
-      margin: 18px 0;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 16px;
     }
 
     .breadth-card {
       border: 1px solid rgba(229, 231, 235, 0.72);
-      border-radius: 12px;
+      border-radius: 10px;
       background: #fff;
-      padding: 14px;
-      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.03);
+      padding: 12px;
+      box-shadow: 0 3px 14px rgba(17, 24, 39, 0.028);
     }
 
     .breadth-card span {
       display: block;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .breadth-card strong {
-      display: block;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 8px;
       margin-top: 5px;
       color: #111827;
-      font-size: 19px;
-      line-height: 1.15;
+      font-size: 17px;
+      line-height: 1.18;
+    }
+
+    .breadth-card strong em {
+      color: #64748b;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 900;
     }
 
     .breadth-card small {
       display: block;
-      margin-top: 6px;
+      margin-top: 7px;
       color: #9ca3af;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 750;
+      line-height: 1.35;
     }
 
     .quote-region {
@@ -2358,6 +2372,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
         gap: 10px;
       }
 
+      .regional-breadth {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .live-clock {
         text-align: left;
       }
@@ -2390,6 +2408,12 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .teleprompter-view {
         height: 360px;
         font-size: 20px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .regional-breadth {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -2936,8 +2960,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function regionSummary(quotes) {
       const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
       const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
-      const unit = quotes.some((quote) => regionForSymbol(quote.symbol) === 'Asia Watch') ? 'country markets' : 'indices';
-      return positives + ' of ' + quotes.length + ' ' + unit + ' are higher; average move is ' + formatClientChange(average);
+      const unit = quotes.some((quote) => regionForSymbol(quote.symbol) === 'Asia Watch') ? 'country markets' : 'tracked';
+      return positives + ' up / ' + quotes.length + ' ' + unit + ' - Avg move ' + formatClientChange(average);
     }
 
     async function refreshPublishedDigest(reason) {
@@ -3940,13 +3964,14 @@ function regionalBreadthHtml(digest) {
       const strongest = snapshots
         .slice()
         .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
-      const label = region === "Asia Watch" ? "Asia Watch (top 5 country markets)" : region;
-      const unit = region === "Asia Watch" ? "country markets" : "indices";
+      const label = region === "Asia Watch" ? "Asia Watch" : region;
+      const leadName = region === "Asia Watch" ? countryForSnapshot(strongest) || strongest.name : strongest.name;
+      const context = region === "Asia Watch" ? "Top 5 countries · " : "";
       return `
         <div class="breadth-card">
           <span>${escapeHtml(label)}</span>
-          <strong>${positives} of ${snapshots.length} ${unit} are higher; average move is ${formatChange(average)}</strong>
-          <small>Largest move: ${escapeHtml(marketDisplayNameForSnapshot(strongest))} ${formatChange(strongest.changePercent)}</small>
+          <strong>${positives} up <em>/ ${snapshots.length} tracked</em></strong>
+          <small>Avg move ${formatChange(average)} · ${escapeHtml(context)}Lead: ${escapeHtml(leadName)} ${formatChange(strongest.changePercent)}</small>
         </div>
       `;
     })
