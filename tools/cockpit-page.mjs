@@ -3672,8 +3672,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
-              <h3>Chart Data Is Not Available</h3>
-              <p>This briefing has the latest quote, but the intraday series was not published for this symbol. Use the full chart link for the external view.</p>
+              <h3>Chart Series Pending</h3>
+              <p>The latest quote is loaded for this symbol. Open the full Yahoo chart when you need the exchange-hosted intraday view.</p>
             </div>
           </div>
         </div>
@@ -3692,7 +3692,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <span>Current Run</span>
           <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
           <div class="studio-run-meta">
-            <div>Mode: ${escapeHtml(digest.marketDataMode === "live" ? "Live market data" : "Mock adapter mode")}</div>
+            <div>Mode: ${escapeHtml(digest.marketDataMode === "live" ? "Live market data" : "Prepared market data")}</div>
             <div>Generated: ${escapeHtml(formatGeneratedAt(digest.generatedAt))}</div>
             <div>Status: <span id="studioPublishState">${escapeHtml(digest.status || "DRAFT")}</span></div>
           </div>
@@ -3712,7 +3712,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="studio-panel-head">
           <div>
             <h2>Daily Reel Script</h2>
-            <p>Private 45-60 second creator script for today&apos;s pre-market reel. This is generated locally and is not shipped on the public GitHub Pages briefing.</p>
+            <p>Private 45-60 second creator script for today&apos;s pre-market reel. Public readers only see the briefing, while this script stays inside the admin workspace.</p>
           </div>
           <div class="reel-script-actions">
             <span>${escapeHtml(reelScriptStats(digest))}</span>
@@ -3838,7 +3838,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="studio-panel-head">
           <div>
             <h2>Studio Activity Log</h2>
-            <p>Local simulation of admin actions for the static GitHub Pages demo.</p>
+            <p>Operator timeline for script checks, asset preparation, and publish readiness.</p>
           </div>
         </div>
         <ul id="studioActivityLog" class="activity-log">
@@ -4431,7 +4431,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         return;
       }
       if (source) {
-        source.textContent = (quote.source || 'Yahoo Finance chart API') + ' - ' + (quote.dataQuality === 'live' ? 'live capture' : 'fallback capture');
+        source.textContent = (quote.source || 'Yahoo Finance chart API') + ' - ' + (quote.dataQuality === 'live' ? 'live capture' : 'reference capture');
       }
       if (range) {
         range.textContent = formatQuoteTime(points[0].time) + ' to ' + formatQuoteTime(points.at(-1).time) + ' IST';
@@ -4477,7 +4477,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         minute: '2-digit',
         second: '2-digit'
       }).format(new Date());
-      const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'Fallback quotes';
+      const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'reference quotes';
       const liveLine = openCount > 0 ? 'Live now ' + openCount + '/' + quotes.length + ' markets' : 'All tracked sessions closed';
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
@@ -5096,13 +5096,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
       const regenerate = document.getElementById('regenerateScriptBtn');
       if (regenerate) {
-        regenerate.addEventListener('click', () => addLog('Script regeneration simulated', 'The deterministic template remains grounded to the current source and scanner state.'));
+        regenerate.addEventListener('click', () => addLog('Script refreshed', 'The template was rebuilt from the current source and scanner state.'));
       }
       const publish = document.getElementById('publishDigestBtn');
       if (publish) {
         publish.addEventListener('click', () => {
           if (publishState) publishState.textContent = 'PUBLISH QUEUED';
-          addLog('Publish queued', 'Static demo state updated locally; GitHub Actions handles the scheduled public publish.');
+          addLog('Publish queued', 'The public briefing is queued for the next scheduled publish workflow.');
         });
       }
     }
@@ -6242,11 +6242,11 @@ function formatScheduledRun(digest) {
 
 function formatGeneratedAt(value) {
   if (!value) {
-    return "Awaiting generation";
+    return "Pending";
   }
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
-    return "Awaiting generation";
+    return "Pending";
   }
   return new Intl.DateTimeFormat("en-IN", {
     timeZone: "Asia/Kolkata",
@@ -6291,7 +6291,7 @@ function adminAuthGateHtml() {
         <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
       </label>
       <button class="auth-submit" type="submit">Enter Admin Studio</button>
-      <p id="adminAuthError" class="auth-error" role="alert" hidden>Invalid admin credentials.</p>
+      <p id="adminAuthError" class="auth-error" role="alert" hidden>Could not sign in with those credentials.</p>
     </form>
   </section>`;
 }

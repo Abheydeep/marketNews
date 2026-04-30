@@ -109,11 +109,12 @@ async function runCycle(page, cycle) {
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
   const darkPreviewCards = await verifyDarkPreview(page, stamp);
-  const adminChecks = await verifyAdminRoutes(page, stamp);
+  const adminResult = await verifyAdminRoutes(page, stamp);
+  const adminChecks = adminResult.checks;
   let chartButtons = 0;
   let chartExternalLinks = 0;
   let sourceLinks = 0;
-  let studioButtons = 0;
+  let studioButtons = adminResult.studioButtons;
   let tabs = 0;
 
   for (const daily of dailyPages) {
@@ -294,12 +295,15 @@ async function verifyAdminRoutes(page, stamp) {
   await loginAsAdmin(page, "admin route");
   await expectOne(page.locator("body.auth-ready"), "admin route unlocks after login");
   await expectOne(page.getByRole("heading", { name: "Studio Command Center" }), "admin studio heading after login");
+  await assertNoRoughAdminCopy(page, "admin studio");
+  const studioButtons = await exerciseAdminStudioControls(page);
   await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
   const componentsLink = page.getByRole("link", { name: "Project Components" });
   await expectOne(componentsLink, "admin project components link");
   await clickInternalLink(page, componentsLink, await componentsLink.getAttribute("href"), "admin project components");
   await expectOne(page.locator("body.auth-ready"), "admin components reuses login session");
   await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "admin components heading");
+  await assertNoRoughAdminCopy(page, "admin components");
   await verifyDarkSurfaceContrast(page, "admin components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
   const panels = page.locator("details.component");
   const panelCount = await panels.count();
@@ -311,7 +315,68 @@ async function verifyAdminRoutes(page, stamp) {
   await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine opens");
   await digestPanel.locator("summary").click();
   await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine collapses");
-  return 2;
+  return { checks: 2, studioButtons };
+}
+
+async function exerciseAdminStudioControls(page) {
+  let clicked = 0;
+  const controls = [
+    ["#runDigestBtn", "Digest check completed"],
+    ["#regenerateScriptBtn", "Script refreshed"],
+    ["#publishDigestBtn", "PUBLISH QUEUED"],
+    ["#copyReelScriptBtn", null],
+    ["#togglePrompterBtn", "Pause Script"],
+    ["#resetPrompterBtn", null]
+  ];
+  for (const [selector, expectedText] of controls) {
+    const button = page.locator(selector);
+    await expectOne(button, `admin control ${selector}`);
+    await button.click();
+    clicked += 1;
+    if (expectedText) {
+      await expectAtLeast(page.getByText(expectedText, { exact: false }), 1, `admin control result ${expectedText}`);
+    }
+  }
+
+  for (const name of ["Slow", "Normal", "Fast"]) {
+    const button = page.locator(".speed-btn").filter({ hasText: name });
+    await expectOne(button, `teleprompter speed ${name}`);
+    await button.click();
+    clicked += 1;
+  }
+
+  const asset = page.locator("#generateAssetBtn");
+  await expectOne(asset, "generate asset button");
+  await asset.click();
+  clicked += 1;
+  await page.waitForFunction(() => document.querySelector("#generateAssetBtn")?.textContent?.includes("Asset Generated"));
+  await expectOne(page.getByRole("button", { name: "Asset Generated" }), "asset generated state");
+
+  return clicked;
+}
+
+async function assertNoRoughAdminCopy(page, label) {
+  const text = await page.locator("body").innerText();
+  const bannedPhrases = [
+    "Mock adapter mode",
+    "fallback capture",
+    "Fallback quotes",
+    "Static demo",
+    "Local simulation",
+    "generated locally",
+    "GitHub Pages briefing",
+    "Invalid admin credentials",
+    "Awaiting generation",
+    "static-site publishing",
+    "mock-first",
+    "Generated local",
+    "static MVP",
+    "Public GitHub Pages",
+    "Static Publisher"
+  ];
+  for (const phrase of bannedPhrases) {
+    assert.ok(!text.includes(phrase), `${label} visible text should not include rough admin copy: ${phrase}`);
+  }
 }
 
 async function loginAsAdmin(page, label) {

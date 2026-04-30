@@ -558,12 +558,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
+  assertAdminCopyIsPolished(adminHtml.body, "admin studio");
 
   const componentsHtml = await app.request("GET", "/admin/components");
   assert.ok(componentsHtml.body.includes("Admin Login"));
   assert.ok(componentsHtml.body.includes("auth-pending"));
   assert.ok(componentsHtml.body.includes("How the Market Narrative Engine fits together"));
   assert.ok(componentsHtml.body.includes('details class="component"'));
+  assertAdminCopyIsPolished(componentsHtml.body, "admin components");
 });
 
 for (const result of results) {
@@ -586,5 +588,28 @@ async function test(name, fn) {
     results.push({ name, ok: true });
   } catch (error) {
     results.push({ name, ok: false, error });
+  }
+}
+
+function assertAdminCopyIsPolished(html, label) {
+  const bannedPhrases = [
+    "Mock adapter mode",
+    "fallback capture",
+    "Fallback quotes",
+    "Static demo",
+    "Local simulation",
+    "generated locally",
+    "GitHub Pages briefing",
+    "Invalid admin credentials",
+    "Awaiting generation",
+    "static-site publishing",
+    "mock-first",
+    "Generated local",
+    "static MVP",
+    "Public GitHub Pages",
+    "Static Publisher"
+  ];
+  for (const phrase of bannedPhrases) {
+    assert.ok(!html.includes(phrase), `${label} should not show rough admin copy: ${phrase}`);
   }
 }

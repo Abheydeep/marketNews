@@ -869,7 +869,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <p class="hero-copy">This admin-only page explains the system we built in plain engineering terms: what is public, what is private, how daily market data moves through the generator, where the reel script comes from, and what the tests protect.</p>
         <div class="legend" aria-label="Component legend">
           <span class="automation">Automation and data flow</span>
-          <span class="public">Public GitHub Pages output</span>
+          <span class="public">Public briefing output</span>
           <span class="private">Auth-gated Studio output</span>
         </div>
       </div>
@@ -886,7 +886,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="section-title">
       <h2>End-to-End System View</h2>
-      <p>The MVP is a static-site publishing pipeline with live quote capture, public-safe digest publishing, and a local private Studio artifact for your daily creator workflow.</p>
+      <p>The engine captures live quote context, separates public briefing content from private creator material, and prepares the daily Studio workflow for recording.</p>
     </section>
 
     <section class="map" aria-label="Visual map of project components">
@@ -894,7 +894,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <article class="map-node automation">
           <span>Trigger</span>
           <strong>Schedule or Manual Run</strong>
-          <small>GitHub Actions runs every 15 minutes on weekdays. Local runs use <code>npm run daily:generate</code>.</small>
+          <small>The scheduled workflow refreshes market data through the weekday session. Manual operator runs use <code>npm run daily:generate</code>.</small>
         </article>
         <article class="map-node automation">
           <span>Inputs</span>
@@ -918,7 +918,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <article class="map-node public">
           <span>Public Output</span>
           <strong>Briefing Website</strong>
-          <small>GitHub Pages serves archive pages, dated briefings, source cards, quote board, and charts.</small>
+          <small>The public site serves archive pages, dated briefings, source cards, quote board, and charts.</small>
         </article>
         <article class="map-node private">
           <span>Private Output</span>
@@ -929,8 +929,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       <div class="map-column">
         <article class="map-node public">
           <span>Reader Experience</span>
-          <strong>Public Briefing and Components Doc</strong>
-          <small>Readers only see public market research, source attribution, and this system explanation.</small>
+          <strong>Public Briefing</strong>
+          <small>Readers see public market research, source attribution, and chartable quote snapshots.</small>
         </article>
         <article class="map-node automation">
           <span>Quality Gate</span>
@@ -949,7 +949,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="section-title">
       <h2>Repository Component Map</h2>
-      <p>This shows where the major parts live, including the resume-grade backend/frontend scaffolding and the static publishing engine currently powering the public site.</p>
+      <p>This shows where the major parts live, including the resume-grade backend/frontend scaffolding and the active publishing engine powering the public site.</p>
     </section>
 
     <section class="repo-grid" aria-label="Repository component map">
@@ -960,8 +960,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       </article>
       <article class="repo-card">
         <code>apps/public-portal/</code>
-        <strong>Future public Next.js app</strong>
-        <p>Reserved for the SEO public portal once the static MVP graduates into a full app deployment.</p>
+        <strong>Public Next.js portal path</strong>
+        <p>Reserved for the SEO public portal when the project moves into a full application deployment.</p>
       </article>
       <article class="repo-card">
         <code>apps/admin-studio/</code>
@@ -976,22 +976,22 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       <article class="repo-card">
         <code>tools/</code>
         <strong>Working generator and publisher</strong>
-        <p>The active no-install engine: live quote adapter, digest builder, page renderer, static publisher, tests, and browser QA.</p>
+        <p>The active generator: live quote adapter, digest builder, page renderer, publisher, tests, and browser QA.</p>
       </article>
       <article class="repo-card">
         <code>archive/</code>
         <strong>Public-safe digest history</strong>
-        <p>Stores redacted daily digest JSON so GitHub Pages can keep old days available without exposing private Studio content.</p>
+        <p>Stores redacted daily digest JSON so old briefings remain available without exposing private Studio content.</p>
       </article>
       <article class="repo-card">
         <code>out/daily/</code>
-        <strong>Generated local artifacts</strong>
-        <p>Daily public HTML, private Studio HTML, private reel-script markdown, and full local digest JSON.</p>
+        <strong>Generated run artifacts</strong>
+        <p>Daily public HTML, private Studio HTML, reel-script markdown, and full run digest JSON.</p>
       </article>
       <article class="repo-card">
         <code>infra/</code>
         <strong>Production database/cache path</strong>
-        <p>Docker Compose foundation for PostgreSQL and Redis when the project moves from static publishing into a service deployment.</p>
+        <p>Docker Compose foundation for PostgreSQL and Redis when the project moves into a service deployment.</p>
       </article>
     </section>
 
@@ -1002,11 +1002,11 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="panel">
       <ol class="flow-list">
-        <li><strong>Generate digest</strong><span>Load mock-first news, fetch live quote snapshots when enabled, and stamp the run for 8:30 IST.</span></li>
+        <li><strong>Generate digest</strong><span>Load source-backed news, fetch live quote snapshots when enabled, and stamp the run for 8:30 IST.</span></li>
         <li><strong>Analyze markets</strong><span>Calculate regional breadth, sentiment, Nifty/Bank Nifty setup validity, and source themes.</span></li>
         <li><strong>Create scripts</strong><span>Build a public summary, a teleprompter draft, and a 45-60 second daily reel script.</span></li>
-        <li><strong>Write local files</strong><span>Save public HTML, private Studio HTML, private reel-script markdown, and full local digest JSON.</span></li>
-        <li><strong>Publish public site</strong><span>Create GitHub Pages files while redacting private script and AI prompt fields.</span></li>
+        <li><strong>Write run files</strong><span>Save public HTML, private Studio HTML, reel-script markdown, and full run digest JSON.</span></li>
+        <li><strong>Publish public site</strong><span>Create public hosting files while redacting private script and AI prompt fields.</span></li>
         <li><strong>Test the website</strong><span>Run browser QA across archive, daily pages, quote-board cards, chart modals, and source links.</span></li>
       </ol>
     </section>
@@ -1018,7 +1018,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="boundary">
       <article class="boundary-card public">
-        <h3>Public GitHub Pages</h3>
+        <h3>Public Website</h3>
         <ul>
           <li>Archive root at <code>/marketNews/</code></li>
           <li>Dated pages such as <code>/marketNews/30apr2026/</code></li>
@@ -1034,7 +1034,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
           <li><code>out/daily/YYYY-MM-DD-0830-studio.html</code></li>
           <li><code>out/daily/YYYY-MM-DD-0830-reel-script.md</code></li>
           <li>Teleprompter script, daily reel script, AI prompt package, Studio activity buttons</li>
-          <li>Not exposed on the public briefing surface; production hosting should replace static auth with server/Auth0 auth</li>
+          <li>Not exposed on the public briefing surface; production hosting should use server-side/Auth0 authorization</li>
         </ul>
       </article>
     </section>
@@ -1069,7 +1069,7 @@ function adminAuthGateHtml() {
         <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
       </label>
       <button class="auth-submit" type="submit">Open Components</button>
-      <p id="adminAuthError" class="auth-error" role="alert" hidden>Invalid admin credentials.</p>
+      <p id="adminAuthError" class="auth-error" role="alert" hidden>Could not sign in with those credentials.</p>
     </form>
   </section>`;
 }
@@ -1130,12 +1130,12 @@ function componentDetailsHtml() {
   const components = [
     {
       title: "1. Data and Seed Layer",
-      summary: "The project starts with stable seed data, then overlays live quotes when the generator runs in live mode.",
+      summary: "The project starts with curated source data, then overlays live quotes when the generator runs in live mode.",
       leftTitle: "What it does",
       left: [
         "Stores source-backed article examples, market snapshots, Nifty/Bank Nifty bars, and creator profile data.",
-        "Keeps the MVP usable even if an external API fails.",
-        "Lets the generator create a complete briefing without requiring paid API keys."
+        "Keeps the morning workflow usable while external providers are being upgraded.",
+        "Lets the generator create a complete briefing before paid API keys are connected."
       ],
       rightTitle: "Important files",
       right: [
@@ -1197,7 +1197,7 @@ function componentDetailsHtml() {
       summary: "The shareable page your audience sees: market pulse, source notes, quote board, charts, and setup status.",
       leftTitle: "What it does",
       left: [
-        "Builds the archive and dated daily briefing pages for GitHub Pages.",
+        "Builds the archive and dated daily briefing pages for the public website.",
         "Shows the Live Quote Board only after the reader expands it.",
         "Uses source categories, thumbnails, filters, and chart modals to make the briefing readable."
       ],
@@ -1210,7 +1210,7 @@ function componentDetailsHtml() {
     },
     {
       title: "6. Private Studio and Reel Script",
-      summary: "The creator-facing workflow is generated locally but not exposed on the public website.",
+      summary: "The creator-facing workflow is auth-gated and never appears on the public briefing pages.",
       leftTitle: "What it does",
       left: [
         "Creates a private Studio Command page with source QA, scanner, teleprompter, and AI asset prompt preview.",
@@ -1227,8 +1227,8 @@ function componentDetailsHtml() {
       ]
     },
     {
-      title: "7. Static Publisher and GitHub Pages",
-      summary: "The deploy step converts generated digests into a public-safe static website.",
+      title: "7. Publisher and Public Hosting",
+      summary: "The deploy step converts generated digests into a public-safe website.",
       leftTitle: "What it does",
       left: [
         "Creates the root archive, each dated page, and public-safe digest JSON.",
