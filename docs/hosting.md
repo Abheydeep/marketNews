@@ -35,7 +35,7 @@ Upload `out/site/` to any static host:
 
 ## Will It Change Automatically?
 
-On GitHub Pages, yes, within the limits of a static host. The workflow republishes `out/site` every 15 minutes across weekday Indian and US market windows. The page also checks `digest.json` every minute, so visitors see the newest published quote file without a manual refresh.
+On GitHub Pages, yes, within the limits of a static host. The workflow republishes `out/site` every 5 minutes across weekday Indian and US market windows. The page also checks `digest.json` every minute, so visitors see the newest published quote file without a manual refresh. Local dated `file://` previews check the public GitHub Pages digest first before falling back to the local JSON file.
 
 The quote snapshots and chart series are fetched server-side by GitHub Actions from Yahoo Finance's chart endpoint. The browser does not fake ticks. Clicking an index opens a first-party canvas preview from the captured Yahoo series and links to the external Yahoo Finance chart.
 

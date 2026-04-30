@@ -383,6 +383,7 @@ await test("static publisher emits archive root, components doc, and dated daily
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: true"));
+  assert.ok(workflow.includes('cron: "*/5 3-21 * * 1-5"'), "workflow should refresh market data every 5 minutes during market windows");
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
 
@@ -525,6 +526,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
   assert.ok(publicHtml.body.includes("Refreshing prices after page load"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest('page-load')"));
+  assert.ok(publicHtml.body.includes("setInterval(() => refreshPublishedDigest('background'), 60_000)"));
+  assert.ok(publicHtml.body.includes("resolveDigestRefreshUrls"));
+  assert.ok(publicHtml.body.includes("window.location.protocol === 'file:'"));
+  assert.ok(publicHtml.body.includes("'127.0.0.1'"));
+  assert.ok(publicHtml.body.includes("https://abheydeep.github.io/marketNews"));
+  assert.ok(publicHtml.body.includes("shouldAdoptDigest"));
+  assert.ok(publicHtml.body.includes("digestFreshnessTime"));
   assert.ok(publicHtml.body.includes("marketChartCanvas"));
   assert.ok(publicHtml.body.includes("drawMarketSeriesChart"));
   assert.ok(!publicHtml.body.includes("tickLiveQuotes"));

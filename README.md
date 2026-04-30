@@ -115,13 +115,13 @@ This creates `out/site/index.html`, dated briefing pages, and public-safe digest
 npm run daily:generate -- --market-data live
 ```
 
-The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
+The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Local dated `file://` previews also check the public GitHub Pages digest first, so a manual reload does not stay pinned to an old generated file. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
 
 The export also creates `out/site/components/index.html`, an expandable project-components map that explains the data pipeline, public/private split, Studio workflow, publishing process, and QA checks in a readable visual format. The public archive, dated briefings, and components page all use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
 
 ## GitHub Pages
 
-This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 15 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.
+This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 5 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.
 
 See `docs/github-pages.md`.
 

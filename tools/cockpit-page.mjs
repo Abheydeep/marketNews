@@ -3805,6 +3805,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     window.__DIGEST__ = ${JSON.stringify(clientDigest)};
     window.__INITIAL_TAB__ = ${JSON.stringify(safeInitialTab)};
     window.__INCLUDE_STUDIO__ = ${JSON.stringify(includeStudio)};
+    window.__PUBLIC_SITE_BASE_URL__ = 'https://abheydeep.github.io/marketNews';
 
     document.addEventListener('DOMContentLoaded', () => {
       const tabs = document.querySelectorAll('.tab-btn');
@@ -4056,30 +4057,112 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     async function refreshPublishedDigest(reason) {
-      try {
-        const response = await fetch('digest.json?ts=' + Date.now(), { cache: 'no-store' });
-        if (!response.ok) {
-          throw new Error('digest.json returned HTTP ' + response.status);
-        }
-        const digest = await response.json();
-        if (!Array.isArray(digest.marketSnapshots)) {
-          throw new Error('digest.json did not include market snapshots');
-        }
-        window.__DIGEST__ = { ...window.__DIGEST__, ...digest };
-        window.__PUBLISHED_QUOTES__ = digest.marketSnapshots;
-        renderIndexBoard();
-        drawOvernightChart();
-        if (window.__ACTIVE_INDEX_SYMBOL__) {
-          const activeQuote = window.__PUBLISHED_QUOTES__.find((item) => item.symbol === window.__ACTIVE_INDEX_SYMBOL__);
-          if (activeQuote) {
-            drawIndexChartPreview(activeQuote);
-            setChartLinks(activeQuote);
+      let lastError = null;
+      for (const url of resolveDigestRefreshUrls()) {
+        try {
+          const response = await fetch(withCacheBuster(url), { cache: 'no-store' });
+          if (!response.ok) {
+            throw new Error(url + ' returned HTTP ' + response.status);
           }
+          const digest = await response.json();
+          if (!Array.isArray(digest.marketSnapshots)) {
+            throw new Error(url + ' did not include market snapshots');
+          }
+          if (!shouldAdoptDigest(digest, window.__DIGEST__)) {
+            updateLiveClock('Checked for newer prices');
+            return;
+          }
+          window.__DIGEST__ = { ...window.__DIGEST__, ...digest };
+          window.__PUBLISHED_QUOTES__ = digest.marketSnapshots;
+          renderIndexBoard();
+          drawOvernightChart();
+          if (window.__ACTIVE_INDEX_SYMBOL__) {
+            const activeQuote = window.__PUBLISHED_QUOTES__.find((item) => item.symbol === window.__ACTIVE_INDEX_SYMBOL__);
+            if (activeQuote) {
+              drawIndexChartPreview(activeQuote);
+              setChartLinks(activeQuote);
+            }
+          }
+          const sourceLabel = /^https?:/i.test(url) ? 'public feed' : 'published file';
+          updateLiveClock(reason === 'page-load' ? 'Prices refreshed from ' + sourceLabel : undefined);
+          return;
+        } catch (error) {
+          lastError = error;
         }
-        updateLiveClock(reason === 'page-load' ? 'Prices refreshed from latest published file' : undefined);
-      } catch (error) {
-        updateLiveClock('Waiting for next published quote file');
       }
+      updateLiveClock('Waiting for next published quote file');
+      if (lastError && window.location.search.includes('debugRefresh=1')) {
+        console.warn(lastError);
+      }
+    }
+
+    function resolveDigestRefreshUrls() {
+      const urls = [];
+      const publicUrl = publicDigestUrl();
+      const localPreview = isLocalPreview();
+      if (localPreview && publicUrl) {
+        urls.push(publicUrl);
+      }
+      urls.push('digest.json');
+      if (publicUrl && !localPreview && !sameUrl(publicUrl, relativeDigestUrl())) {
+        urls.push(publicUrl);
+      }
+      return [...new Set(urls.filter(Boolean))];
+    }
+
+    function isLocalPreview() {
+      return window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+    }
+
+    function publicDigestUrl() {
+      const canonicalPath = window.__DIGEST__?.canonicalPath;
+      if (!canonicalPath) return '';
+      const base = String(window.__PUBLIC_SITE_BASE_URL__ || '').replace(/\\/$/, '');
+      const path = String(canonicalPath).startsWith('/') ? canonicalPath : '/' + canonicalPath;
+      return base + path.replace(/\\/?$/, '/') + 'digest.json';
+    }
+
+    function relativeDigestUrl() {
+      try {
+        return new URL('digest.json', window.location.href).href;
+      } catch {
+        return 'digest.json';
+      }
+    }
+
+    function sameUrl(candidate, current) {
+      try {
+        const left = new URL(candidate);
+        const right = new URL(current);
+        return left.origin === right.origin && left.pathname === right.pathname;
+      } catch {
+        return false;
+      }
+    }
+
+    function withCacheBuster(url) {
+      const joiner = url.includes('?') ? '&' : '?';
+      return url + joiner + 'ts=' + Date.now();
+    }
+
+    function shouldAdoptDigest(incomingDigest, currentDigest) {
+      const incomingFreshness = digestFreshnessTime(incomingDigest);
+      const currentFreshness = digestFreshnessTime(currentDigest);
+      if (!Number.isFinite(currentFreshness)) {
+        return true;
+      }
+      if (!Number.isFinite(incomingFreshness)) {
+        return false;
+      }
+      return incomingFreshness >= currentFreshness;
+    }
+
+    function digestFreshnessTime(digest) {
+      const quoteTimes = (digest?.marketSnapshots ?? [])
+        .map((quote) => Date.parse(quote.dataTimestamp ?? ''))
+        .filter((time) => Number.isFinite(time));
+      const generatedAt = Date.parse(digest?.generatedAt ?? '');
+      return Math.max(...quoteTimes, Number.isFinite(generatedAt) ? generatedAt : -Infinity);
     }
 
     function bindIndexModal() {
@@ -4109,7 +4192,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = marketDisplayName(quote) + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Live Yahoo Finance price series from the latest published digest. The board refreshes every scheduled publish.'
+        ? 'Live Yahoo Finance price series from the latest quote feed. The board checks for updates every 60 seconds.'
         : 'Market closed. Showing the latest published Yahoo Finance price series for review.';
       setChartLinks(quote);
       modal.classList.add('open');
