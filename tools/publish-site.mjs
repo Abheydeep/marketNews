@@ -3,7 +3,6 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
-import { projectComponentsPage } from "./project-components-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -50,8 +49,6 @@ for (const digest of digests) {
 
 const latest = digests[0];
 const darkPreviewDir = join(siteDir, "dark-preview");
-await mkdir(join(siteDir, "components"), { recursive: true });
-await writeFile(join(siteDir, "components", "index.html"), projectComponentsPage({ digests }), "utf8");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
@@ -432,7 +429,6 @@ function archivePage(digests) {
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
-          <a class="nav-link" href="./components/">Project components</a>
         </div>
       </div>
     </div>

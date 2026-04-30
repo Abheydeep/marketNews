@@ -1,4 +1,4 @@
-export function projectComponentsPage({ digests = [] } = {}) {
+export function projectComponentsPage({ digests = [], publicBaseHref = "../" } = {}) {
   const latest = digests[0];
   const latestSlug = latest ? slugForDigest(latest) : "";
   const latestDate = latest ? formatDigestDate(latest.digestDate) : "No briefing generated yet";
@@ -751,10 +751,10 @@ export function projectComponentsPage({ digests = [] } = {}) {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <a class="brand" href="../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+        <a class="brand" href="${escapeHtml(publicBaseHref)}"><span class="brand-mark">M</span><span>Market Narrative</span></a>
         <div class="nav-actions">
-          ${latestSlug ? `<a class="nav-link dark" href="../${latestSlug}/">Latest briefing</a>` : ""}
-          <a class="nav-link" href="../">Briefing archive</a>
+          ${latestSlug ? `<a class="nav-link dark" href="${escapeHtml(`${publicBaseHref}${latestSlug}/`)}">Latest briefing</a>` : ""}
+          <a class="nav-link" href="${escapeHtml(publicBaseHref)}">Briefing archive</a>
         </div>
       </div>
     </div>
@@ -765,7 +765,7 @@ export function projectComponentsPage({ digests = [] } = {}) {
       <div>
         <p class="eyebrow">Project Components Map</p>
         <h1>How the Market Narrative Engine fits together</h1>
-        <p class="hero-copy">This page explains the system we built in plain engineering terms: what is public, what is private, how daily market data moves through the generator, where the reel script comes from, and what the tests protect.</p>
+        <p class="hero-copy">This admin-only page explains the system we built in plain engineering terms: what is public, what is private, how daily market data moves through the generator, where the reel script comes from, and what the tests protect.</p>
         <div class="legend" aria-label="Component legend">
           <span class="automation">Automation and data flow</span>
           <span class="public">Public GitHub Pages output</span>
@@ -922,7 +922,7 @@ export function projectComponentsPage({ digests = [] } = {}) {
           <li>Archive root at <code>/marketNews/</code></li>
           <li>Dated pages such as <code>/marketNews/30apr2026/</code></li>
           <li>Public-safe <code>digest.json</code> with market quotes, source cards, themes, and setup status</li>
-          <li>Live Quote Board, chart modal, source filters, and this components documentation</li>
+          <li>Live Quote Board, chart modal, source filters, and public-safe source attribution</li>
         </ul>
       </article>
       <article class="boundary-card private">
@@ -1028,7 +1028,7 @@ function componentDetailsHtml() {
       right: [
         "<code>/marketNews/</code> archive",
         "<code>/marketNews/30apr2026/</code> daily briefing",
-        "<code>/marketNews/components/</code> this documentation"
+        "<code>/admin/components</code> private project documentation"
       ]
     },
     {
@@ -1052,7 +1052,7 @@ function componentDetailsHtml() {
       summary: "The deploy step converts generated digests into a public-safe static website.",
       leftTitle: "What it does",
       left: [
-        "Creates the root archive, each dated page, public digest JSON, and this components page.",
+        "Creates the root archive, each dated page, and public-safe digest JSON.",
         "Imports previous deployed archive entries so old dates remain available.",
         "Runs on push and on a weekday schedule through GitHub Actions."
       ],

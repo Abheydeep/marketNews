@@ -1,5 +1,6 @@
 import { buildDigest, todayIso } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { projectComponentsPage } from "./project-components-page.mjs";
 
 export async function createDemoApp(date = todayIso()) {
   let currentDigest = await buildDigest(date);
@@ -16,7 +17,11 @@ export async function createDemoApp(date = todayIso()) {
       }
 
       if (method === "GET" && url.pathname === "/admin") {
-        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2" }));
+        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", componentsHref: "/admin/components" }));
+      }
+
+      if (method === "GET" && url.pathname === "/admin/components") {
+        return htmlResponse(projectComponentsPage({ digests: [currentDigest], publicBaseHref: "/" }));
       }
 
       if (method === "GET" && url.pathname === "/api/public/digest/today") {

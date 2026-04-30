@@ -4,10 +4,14 @@ import { publicDigestPayload } from "./public-payload.mjs";
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
-  const safeInitialTab = includeStudio || initialTab !== "studio-view" ? initialTab : "public-view";
+  const safeInitialTab = includeStudio || initialTab === "public-view" ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
+    : "";
+  const adminArchitectureTabHtml = includeStudio
+    ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
+          <a class="tab-link" href="${escapeHtml(options.componentsHref ?? "/admin/components")}">Project Components</a>`
     : "";
   return `<!DOCTYPE html>
 <html lang="en">
@@ -3449,8 +3453,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}
-          <button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
-          <a class="tab-link" href="${digest.canonicalPath ? "../components/" : "./components/"}">Project Components</a>
+          ${adminArchitectureTabHtml}
         </div>
       </div>
     </div>
@@ -3733,6 +3736,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     </section>
     ` : ""}
 
+    ${includeStudio ? `
     <section id="architecture-view" class="tab-content hidden">
       <header class="page-header">
         <h1>Engine Architecture & Roadmap</h1>
@@ -3799,6 +3803,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         </section>
       </div>
     </section>
+    ` : ""}
   </main>
 
   <script>

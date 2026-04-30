@@ -353,12 +353,12 @@ await test("backend market snapshot contract carries quote regions, countries, a
   assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
-await test("static publisher emits archive root, components doc, and dated daily pages", async () => {
+await test("static publisher emits public archive and dated daily pages while keeping components private", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
-  assert.ok(publisher.includes("projectComponentsPage"));
-  assert.ok(publisher.includes('"components"'));
-  assert.ok(publisher.includes("Project components"));
+  assert.ok(!publisher.includes("projectComponentsPage"));
+  assert.ok(!publisher.includes('join(siteDir, "components")'));
+  assert.ok(!publisher.includes("Project components"));
   assert.ok(publisher.includes('"dark-preview"'));
   assert.equal(publisher.includes("dark-preview-link"), false);
   assert.ok(publisher.includes('theme: "glass-v2"'));
@@ -463,7 +463,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
   assert.ok(!publicHtml.body.includes("Studio Command Center"));
   assert.ok(!publicHtml.body.includes("[REEL SCRIPT"));
-  assert.ok(publicHtml.body.includes("Engine Architecture"));
+  assert.ok(!publicHtml.body.includes("Engine Architecture"));
+  assert.ok(!publicHtml.body.includes("Project Components"));
+  assert.ok(!publicHtml.body.includes('id="architecture-view"'));
   assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("1. What Changed Overnight"));
   assert.ok(publicHtml.body.includes("2. Top Source Reads"));
@@ -545,9 +547,15 @@ await test("demo app serves public and admin flows without external packages", a
   const adminHtml = await app.request("GET", "/admin");
   assert.ok(adminHtml.body.includes("Studio Command Center"));
   assert.ok(adminHtml.body.includes('"studio-view"'));
+  assert.ok(adminHtml.body.includes("Engine Architecture"));
+  assert.ok(adminHtml.body.includes("Project Components"));
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
+
+  const componentsHtml = await app.request("GET", "/admin/components");
+  assert.ok(componentsHtml.body.includes("How the Market Narrative Engine fits together"));
+  assert.ok(componentsHtml.body.includes('details class="component"'));
 });
 
 for (const result of results) {

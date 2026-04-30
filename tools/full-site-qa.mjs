@@ -51,7 +51,6 @@ try {
       [
         `cycle=${summary.cycle}`,
         `archiveLinks=${summary.archiveLinks}`,
-        `componentPanels=${summary.componentPanels}`,
         `darkPreviewCards=${summary.darkPreviewCards}`,
         `dailyPages=${summary.dailyPages}`,
         `chartButtons=${summary.chartButtons}`,
@@ -108,7 +107,6 @@ async function runCycle(page, cycle) {
   const stamp = `${Date.now()}-${cycle}`;
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
-  const componentPanels = await verifyComponentsPage(page, stamp);
   const darkPreviewCards = await verifyDarkPreview(page, stamp);
   let chartButtons = 0;
   let chartExternalLinks = 0;
@@ -128,7 +126,6 @@ async function runCycle(page, cycle) {
   return {
     cycle,
     archiveLinks,
-    componentPanels,
     darkPreviewCards,
     dailyPages: dailyPages.length,
     chartButtons,
@@ -147,7 +144,7 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
-  await expectOne(page.getByRole("link", { name: "Project components" }), "project components link");
+  assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
   for (const daily of dailyPages) {
     await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
     await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
@@ -163,38 +160,6 @@ async function verifyArchive(page, rootUrl) {
     await clickInternalLink(page, link, href, "archive");
   }
   return linkCount;
-}
-
-async function verifyComponentsPage(page, stamp) {
-  const componentsUrl = `${baseUrl}/components/?fullqa=${stamp}`;
-  await page.goto(componentsUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
-  await expectOne(page.locator("body.components-dark"), "components dark theme");
-  await verifyDarkSurfaceContrast(page, "components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
-  await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "components page heading");
-  await expectOne(page.getByRole("heading", { name: "End-to-End System View" }), "system view heading");
-  await expectOne(page.getByRole("heading", { name: "Repository Component Map" }), "repository component map heading");
-  await expectOne(page.getByRole("heading", { name: "Daily Publishing Flow" }), "daily publishing flow heading");
-  await expectOne(page.getByRole("heading", { name: "Public vs Private Boundary" }), "public private boundary heading");
-  await expectOne(page.getByRole("heading", { name: "Expandable Component Notes" }), "expandable component notes heading");
-  await expectOne(page.getByText("Public GitHub Pages", { exact: true }), "public boundary card");
-  await expectOne(page.getByText("Private Local Studio", { exact: true }), "private boundary card");
-  await expectOne(page.getByText("tools/", { exact: true }), "tools repository card");
-  await expectOne(page.getByText("archive/", { exact: true }), "archive repository card");
-  const panels = page.locator("details.component");
-  const panelCount = await panels.count();
-  assert.ok(panelCount >= 8, `components page should render at least 8 expandable panels, got ${panelCount}`);
-  assert.equal(await page.locator("details.component[open]").count(), 0, "components should start collapsed");
-  await expectOne(page.getByRole("heading", { name: "1. Data and Seed Layer" }), "data and seed component");
-  await expectOne(page.getByRole("heading", { name: "6. Private Studio and Reel Script" }), "private studio component");
-  await expectOne(page.getByRole("heading", { name: "8. Testing and QA" }), "testing component");
-  const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Engine" });
-  await expectOne(digestPanel, "digest engine expandable panel");
-  await digestPanel.locator("summary").click();
-  await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine opens");
-  await digestPanel.locator("summary").click();
-  await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine collapses");
-  await expectOne(page.getByRole("link", { name: "Briefing archive" }), "components archive link");
-  return panelCount;
 }
 
 async function verifyDarkPreview(page, stamp) {
@@ -324,7 +289,8 @@ async function verifyDailyPage(page, daily, stamp) {
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
-  await expectOne(page.getByRole("link", { name: "Project Components" }), `${daily.slug} project components link`);
+  assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
+  assert.equal(await page.getByRole("button", { name: "Engine Architecture" }).count(), 0, `${daily.slug} should not expose admin architecture`);
   assert.equal(await page.getByText("Real Quote Board", { exact: true }).count(), 0, `${daily.slug} should not show Real Quote Board`);
 
   const brandLink = page.locator("a.brand");
@@ -344,7 +310,6 @@ async function verifyDailyPage(page, daily, stamp) {
   await verifyPublicDigestJson(daily, stamp);
   const chartResult = await verifyCharts(page, daily);
   const sourceLinks = await clickSourceLinks(page, daily);
-  await verifyArchitecture(page, daily);
 
   return {
     tabs,
@@ -375,9 +340,7 @@ async function verifyPublicDigestJson(daily, stamp) {
 
 async function verifyTabs(page, daily) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
-  await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  return 3;
+  return 1;
 }
 
 async function clickTab(page, name, expectedHeading) {
@@ -508,12 +471,6 @@ async function verifySourceFilters(page, daily) {
   await page.locator('[data-source-filter="all"]').click();
   await expectOne(page.locator('[data-source-filter="all"][aria-pressed="true"]'), `${daily.slug} all source filter active`);
   assert.ok(await page.locator(".source-card:visible").count() >= 14, `${daily.slug} all source filter should restore cards`);
-}
-
-async function verifyArchitecture(page, daily) {
-  await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
-  await expectOne(page.getByRole("heading", { name: "Tech Stack Overview" }), `${daily.slug} tech stack`);
-  await expectOne(page.getByRole("heading", { name: "Execution Milestones" }), `${daily.slug} milestones`);
 }
 
 async function clickInternalLink(page, locator, href, label) {
