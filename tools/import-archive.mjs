@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const archivePath = process.argv[2];
@@ -24,7 +25,7 @@ for (const digest of digests) {
   if (!digest?.digestDate) {
     continue;
   }
-  const safeDigest = publicDigestPayload(digest);
+  const safeDigest = redactedDigestPayload(digest);
   const label = scheduledLabelForDigest(safeDigest).replace(":", "");
   const fileName = `${safeDigest.digestDate}-${label}-digest.json`;
   const localPath = join(archiveDir, fileName);
@@ -76,26 +77,7 @@ function thumbnailCount(digest) {
   if (!Array.isArray(digest.news)) {
     return 0;
   }
-  return digest.news.filter((article) => article.thumbnail?.alt).length;
-}
-
-function publicDigestPayload(digest) {
-  const {
-    teleprompterScript,
-    reelScript,
-    asset,
-    ...publicFields
-  } = digest;
-
-  return {
-    ...publicFields,
-    asset: asset
-      ? {
-        sentimentLabel: asset.sentimentLabel,
-        assetUrl: asset.assetUrl
-      }
-      : null
-  };
+  return digest.news.filter((article) => article.thumbnail?.alt || article.thumbnailAlt).length;
 }
 
 function scheduledLabelForDigest(digest) {

@@ -207,10 +207,61 @@ async function verifyDarkPreview(page, stamp) {
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
   const sourceCardCount = await sourceCards.count();
   assert.ok(sourceCardCount >= 14, `dark preview should render whole-card source links, got ${sourceCardCount}`);
+  await verifyDarkPreviewContrast(page);
   await verifySummary(page, preview);
   await verifyQuoteBoard(page, preview);
   await verifyPublicDigestJson(preview, stamp);
   return sourceCardCount;
+}
+
+async function verifyDarkPreviewContrast(page) {
+  const result = await page.evaluate(() => {
+    const selectors = [
+      ".glass-v2 .page-header h1",
+      ".glass-v2 .source-card h3",
+      ".glass-v2 .setup-level strong",
+      ".glass-v2 .index-tile .price",
+      ".glass-v2 .market-move.up",
+      ".glass-v2 .market-move.down"
+    ];
+    const base = [5, 8, 22];
+    const samples = selectors.flatMap((selector) =>
+      Array.from(document.querySelectorAll(selector)).slice(0, 4).map((node) => ({
+        selector,
+        color: getComputedStyle(node).color,
+        text: node.textContent.trim().slice(0, 40)
+      }))
+    );
+    const ratios = samples.map((sample) => ({
+      ...sample,
+      ratio: contrastRatio(parseRgb(sample.color), base)
+    }));
+    return {
+      min: Math.min(...ratios.map((sample) => sample.ratio)),
+      ratios
+    };
+
+    function parseRgb(value) {
+      const match = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+      return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : [255, 255, 255];
+    }
+
+    function contrastRatio(foreground, background) {
+      const bright = luminance(foreground);
+      const dark = luminance(background);
+      return (Math.max(bright, dark) + 0.05) / (Math.min(bright, dark) + 0.05);
+    }
+
+    function luminance(rgb) {
+      const [red, green, blue] = rgb.map((channel) => {
+        const value = channel / 255;
+        return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+      });
+      return red * 0.2126 + green * 0.7152 + blue * 0.0722;
+    }
+  });
+
+  assert.ok(result.min >= 4.5, `dark preview critical text contrast should be at least 4.5:1, got ${result.min}`);
 }
 
 async function verifyDailyPage(page, daily, stamp) {
@@ -256,6 +307,14 @@ async function verifyPublicDigestJson(daily, stamp) {
   assert.equal(Object.hasOwn(digest, "teleprompterScript"), false, `${daily.slug} public digest.json should redact teleprompterScript`);
   assert.equal(Object.hasOwn(digest, "reelScript"), false, `${daily.slug} public digest.json should redact reelScript`);
   assert.equal(digest.asset?.positivePrompt, undefined, `${daily.slug} public digest.json should redact asset prompts`);
+  assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length >= 10, `${daily.slug} public digest.json should include compact news card DTOs`);
+  assert.deepEqual(
+    Object.keys(digest.newsCards[0]).sort(),
+    ["category", "publisherName", "sentimentLabel", "sentimentScore", "sourceUrl", "thumbnailAlt", "thumbnailUrl", "timestamp", "title"],
+    `${daily.slug} newsCards should expose only display fields`
+  );
+  assert.equal(JSON.stringify(digest.newsCards).includes("whyItMatters"), false, `${daily.slug} newsCards should not ship expanded article analysis`);
+  assert.equal(JSON.stringify(digest.newsCards).includes("entityMatchScore"), false, `${daily.slug} newsCards should not ship raw weighting fields`);
 }
 
 async function verifyTabs(page, daily) {

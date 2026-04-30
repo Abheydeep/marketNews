@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { projectComponentsPage } from "./project-components-page.mjs";
+import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -16,7 +17,7 @@ const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
-await writeFile(archivedJson, `${JSON.stringify(publicDigestPayload(sourceDigest), null, 2)}\n`, "utf8");
+await writeFile(archivedJson, `${JSON.stringify(redactedDigestPayload(sourceDigest), null, 2)}\n`, "utf8");
 
 const digests = await loadArchivedDigests();
 if (!digests.length) {
@@ -52,7 +53,7 @@ await writeFile(
 await writeFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
 await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
-await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(publicDigestPayload) }, null, 2)}\n`, "utf8");
+await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`, "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -100,7 +101,7 @@ function archivePage(digests) {
         .filter((snapshot) => topAsiaSymbols().includes(snapshot.symbol))
         .slice()
         .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
-      const sourceCount = new Set(digest.news.map((item) => item.sourceName)).size;
+      const sourceCount = digest.sourceStats?.publisherCount ?? new Set((digest.news ?? []).map((item) => item.publisherName ?? item.sourceName)).size;
       return `
         <article class="digest-card">
           <div class="card-topline">
@@ -468,25 +469,6 @@ function countryForSymbol(symbol) {
     STI: "Singapore",
     ASX200: "Australia"
   }[symbol] || "";
-}
-
-function publicDigestPayload(digest) {
-  const {
-    teleprompterScript,
-    reelScript,
-    asset,
-    ...publicFields
-  } = digest;
-
-  return {
-    ...publicFields,
-    asset: asset
-      ? {
-        sentimentLabel: asset.sentimentLabel,
-        assetUrl: asset.assetUrl
-      }
-      : null
-  };
 }
 
 function sentimentColor(label) {

@@ -17,6 +17,7 @@ import {
   weightedSentiment
 } from "./core.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
+import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
@@ -119,6 +120,33 @@ await test("full digest contains public SEO and studio contracts", async () => {
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
+});
+
+await test("public digest payload ships compact display DTOs", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const payload = publicDigestPayload(digest);
+  const newsKeys = Object.keys(payload.news[0]).sort();
+
+  assert.equal(Object.hasOwn(payload, "teleprompterScript"), false);
+  assert.equal(Object.hasOwn(payload, "reelScript"), false);
+  assert.equal(payload.asset?.positivePrompt, undefined);
+  assert.deepEqual(newsKeys, [
+    "category",
+    "publisherName",
+    "sentimentLabel",
+    "sentimentScore",
+    "sourceUrl",
+    "thumbnailAlt",
+    "thumbnailUrl",
+    "timestamp",
+    "title"
+  ]);
+  assert.ok(payload.news.every((article) => article.thumbnailUrl.startsWith("data:image/svg+xml,")));
+  assert.equal(JSON.stringify(payload.news).includes("whyItMatters"), false);
+  assert.equal(JSON.stringify(payload.news).includes("indiaImpact"), false);
+  assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
+  assert.equal(payload.sourceStats.articleCount, digest.news.length);
+  assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
 });
 
 await test("Yahoo market data normalization calculates previous-close change", () => {
@@ -302,6 +330,7 @@ await test("static publisher emits archive root, components doc, and dated daily
   assert.ok(publisher.includes("archive.json"));
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
+  assert.ok(publisher.includes("redactedDigestPayload"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
   assert.ok(!publisher.includes("copyFile(sourceJson"));
 
@@ -321,7 +350,7 @@ await test("static publisher emits archive root, components doc, and dated daily
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
   assert.ok(importer.includes("archive.digests"));
   assert.ok(importer.includes('"archive", "daily"'));
-  assert.ok(importer.includes("publicDigestPayload"));
+  assert.ok(importer.includes("redactedDigestPayload"));
 
   const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {

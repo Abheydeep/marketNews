@@ -1,4 +1,5 @@
 import { newsArticleJsonLd } from "./core.mjs";
+import { publicDigestPayload } from "./public-payload.mjs";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -3872,7 +3873,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const active = window.__ACTIVE_QUOTE_REGION__ === region;
       const context = region === 'Asia Watch' ? 'Top 5 countries · ' : '';
       const leadName = region === 'Asia Watch' ? countryForQuote(strongest) || strongest.name : strongest.name;
-      return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '">' +
+      return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '" aria-label="Open ' + escapeClientHtml(region) + ' live quote board">' +
         '<div class="breadth-card-top"><span>' + escapeClientHtml(region) + '</span><em class="market-state ' + status.className + '">' + escapeClientHtml(status.label) + '</em></div>' +
         '<strong>' + positives + ' up <em>/ ' + quotes.length + ' tracked</em></strong>' +
         '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + 'Lead: ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClass(strongest.changePercent) + '">' + formatClientChange(strongest.changePercent) + '</b></small>' +
@@ -3921,7 +3922,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const direction = quote.changePercent >= 0 ? 'up' : 'down';
       const statusClass = status.open ? 'status live' : 'status closed';
       const quoteTime = formatQuoteTime(quote.dataTimestamp);
-      return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
+      return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '" aria-label="Open chart for ' + escapeClientHtml(marketDisplayName(quote)) + '">' +
         '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + (status.open ? 'Live' : 'Closed') + '</span></div>' +
         '<div class="name">' + escapeClientHtml(marketDisplayName(quote)) + '</div>' +
         '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
@@ -5354,7 +5355,7 @@ function regionalBreadthHtml(digest) {
       const leadName = region === "Asia Watch" ? countryForSnapshot(strongest) || strongest.name : strongest.name;
       const context = region === "Asia Watch" ? "Top 5 countries · " : "";
       return `
-        <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false">
+        <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false" aria-label="Open ${escapeHtml(label)} live quote board">
           <div class="breadth-card-top"><span>${escapeHtml(label)}</span><em class="market-state">Latest</em></div>
           <strong>${positives} up <em>/ ${snapshots.length} tracked</em></strong>
           <small>Avg move <b class="market-move ${changeClass(average)}">${formatChange(average)}</b> · ${escapeHtml(context)}Lead: ${escapeHtml(leadName)} <b class="market-move ${changeClass(strongest.changePercent)}">${formatChange(strongest.changePercent)}</b></small>
@@ -5776,25 +5777,6 @@ function marketSetupCopy(digest) {
     return "No 1:2 risk-reward setup has passed the scanner yet. Let the first hour define direction before taking a view.";
   }
   return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the scanner confirms ${setup.riskReward}R.`;
-}
-
-function publicDigestPayload(digest) {
-  const {
-    teleprompterScript,
-    reelScript,
-    asset,
-    ...publicFields
-  } = digest;
-
-  return {
-    ...publicFields,
-    asset: asset
-      ? {
-        sentimentLabel: asset.sentimentLabel,
-        assetUrl: asset.assetUrl
-      }
-      : null
-  };
 }
 
 function sentimentPinPosition(score) {

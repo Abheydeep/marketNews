@@ -2,7 +2,9 @@ export function projectComponentsPage({ digests = [] } = {}) {
   const latest = digests[0];
   const latestSlug = latest ? slugForDigest(latest) : "";
   const latestDate = latest ? formatDigestDate(latest.digestDate) : "No briefing generated yet";
-  const sourceCount = latest ? new Set((latest.news ?? []).map((item) => item.sourceName)).size : 0;
+  const sourceCount = latest
+    ? latest.sourceStats?.publisherCount ?? new Set((latest.news ?? []).map((item) => item.publisherName ?? item.sourceName)).size
+    : 0;
   const trackedMarkets = latest?.marketSnapshots?.length ?? 0;
   const dailyPages = digests.length;
 
