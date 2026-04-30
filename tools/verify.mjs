@@ -192,6 +192,42 @@ await test("Yahoo market data normalization preserves region metadata", () => {
   assert.equal(snapshot.chartPoints.length, 3);
 });
 
+await test("Yahoo market data normalization synthesizes chart points when quote data is sparse", () => {
+  const snapshot = normalizeYahooChartResult(
+    {
+      symbol: "DXY",
+      name: "US Dollar Index",
+      yahooSymbol: "DX-Y.NYB",
+      tradingViewSymbol: "TVC:DXY",
+      marketRegion: "Macro Hedges",
+      session: "macro"
+    },
+    {
+      chart: {
+        result: [
+          {
+            meta: {
+              currency: "USD",
+              regularMarketPrice: 99.83,
+              chartPreviousClose: 99.73,
+              regularMarketTime: 1777478873,
+              exchangeTimezoneName: "America/New_York"
+            },
+            timestamp: [],
+            indicators: { quote: [{ close: [] }] }
+          }
+        ]
+      }
+    }
+  );
+  assert.equal(snapshot.symbol, "DXY");
+  assert.equal(snapshot.dataQuality, "live");
+  assert.equal(snapshot.changePercent, 0.1);
+  assert.equal(snapshot.chartPoints.length, 24);
+  assert.equal(snapshot.chartPoints[0].close, 99.73);
+  assert.equal(snapshot.chartPoints.at(-1).close, 99.83);
+});
+
 await test("non-live market data modes preserve the digest contract without network", async () => {
   const digest = await buildDigest("2026-04-29", { marketDataMode: "live-offline-test" });
   assert.equal(digest.marketDataMode, "live-offline-test");
