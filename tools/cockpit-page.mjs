@@ -2,6 +2,7 @@ import { newsArticleJsonLd } from "./core.mjs";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
+  const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
   const safeInitialTab = includeStudio || initialTab !== "studio-view" ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const studioTabHtml = includeStudio
@@ -3375,7 +3376,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
   </style>
 </head>
-<body class="glass-v2">
+<body${themeClass ? ` class="${themeClass}"` : ""}>
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -3406,7 +3407,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(digest.title)}</h1>
         </header>
 
-        ${marketMoodRailHtml(digest)}
+        ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -4306,10 +4307,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function drawEmptyScannerChart(canvas) {
       const { ctx, width, height } = scaleCanvas(canvas);
+      const palette = chartPalette();
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'rgba(2, 6, 23, 0.42)';
+      ctx.fillStyle = palette.surface;
       ctx.fillRect(0, 0, width, height);
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = palette.grid;
       ctx.lineWidth = 1;
       for (let i = 1; i <= 4; i += 1) {
         const y = (height / 5) * i;
@@ -4318,11 +4320,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ctx.lineTo(width - 24, y);
         ctx.stroke();
       }
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = palette.text;
       ctx.textAlign = 'center';
       ctx.font = 'bold 16px Arial';
       ctx.fillText('No active scanner setup', width / 2, height / 2 - 8);
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = palette.muted;
       ctx.font = '13px Arial';
       ctx.fillText('Live quote validation removed stale 1:2 levels.', width / 2, height / 2 + 18);
     }
@@ -4337,8 +4339,38 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       return { ctx, width: rect.width, height: rect.height };
     }
 
+    function chartPalette() {
+      const glass = document.body?.classList.contains('glass-v2');
+      return glass
+        ? {
+            surface: 'rgba(2, 6, 23, 0.42)',
+            grid: 'rgba(255, 255, 255, 0.12)',
+            axis: 'rgba(255, 255, 255, 0.26)',
+            muted: '#cbd5e1',
+            text: '#f8fafc',
+            up: '#34d399',
+            down: '#fb7185',
+            upFill: 'rgba(52, 211, 153, 0.24)',
+            downFill: 'rgba(251, 113, 133, 0.22)',
+            fade: 'rgba(2, 6, 23, 0)'
+          }
+        : {
+            surface: '#f8fafc',
+            grid: '#e5e7eb',
+            axis: '#d6d3d1',
+            muted: '#64748b',
+            text: '#111827',
+            up: '#059669',
+            down: '#dc2626',
+            upFill: 'rgba(5, 150, 105, 0.22)',
+            downFill: 'rgba(220, 38, 38, 0.20)',
+            fade: 'rgba(255, 255, 255, 0)'
+          };
+    }
+
     function drawBarChart(canvas, data) {
       const { ctx, width, height } = scaleCanvas(canvas);
+      const palette = chartPalette();
       ctx.clearRect(0, 0, width, height);
       const pad = { top: 24, right: 18, bottom: 54, left: 54 };
       const chartW = width - pad.left - pad.right;
@@ -4347,7 +4379,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const max = Math.max(1.8, ...data.map((item) => item.value));
       const zeroY = pad.top + (max / (max - min)) * chartH;
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = palette.grid;
       ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i += 1) {
         const y = pad.top + (chartH / 4) * i;
@@ -4357,7 +4389,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ctx.stroke();
       }
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.26)';
+      ctx.strokeStyle = palette.axis;
       ctx.beginPath();
       ctx.moveTo(pad.left, zeroY);
       ctx.lineTo(width - pad.right, zeroY);
@@ -4370,11 +4402,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         const y = pad.top + ((max - item.value) / (max - min)) * chartH;
         const barTop = Math.min(y, zeroY);
         const barH = Math.max(4, Math.abs(zeroY - y));
-        ctx.fillStyle = item.value >= 0 ? 'rgba(52, 211, 153, 0.92)' : 'rgba(251, 113, 133, 0.92)';
+        ctx.fillStyle = item.value >= 0 ? palette.up : palette.down;
         roundRect(ctx, x, barTop, barW, barH, 5);
         ctx.fill();
 
-        ctx.fillStyle = '#cbd5e1';
+        ctx.fillStyle = palette.muted;
         ctx.font = data.length > 9 ? '10px Arial' : '12px Arial';
         ctx.textAlign = 'center';
         ctx.save();
@@ -4384,7 +4416,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         }
         ctx.fillText(item.label, 0, 0);
         ctx.restore();
-        ctx.fillStyle = item.value >= 0 ? '#34d399' : '#fb7185';
+        ctx.fillStyle = item.value >= 0 ? palette.up : palette.down;
         ctx.font = data.length > 9 ? 'bold 10px Arial' : 'bold 12px Arial';
         ctx.fillText((item.value >= 0 ? '+' : '') + item.value.toFixed(2) + '%', x + barW / 2, barTop - 8);
       });
@@ -4392,6 +4424,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function drawMarketSeriesChart(canvas, quote, points) {
       const { ctx, width, height } = scaleCanvas(canvas);
+      const palette = chartPalette();
       ctx.clearRect(0, 0, width, height);
 
       const pad = { top: 28, right: 28, bottom: 46, left: 70 };
@@ -4407,12 +4440,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       max += spread * 0.18;
       const xFor = (index) => pad.left + (chartW / Math.max(1, points.length - 1)) * index;
       const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
-      const lineColor = Number(quote.changePercent) >= 0 ? '#34d399' : '#fb7185';
+      const lineColor = Number(quote.changePercent) >= 0 ? palette.up : palette.down;
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = palette.grid;
       ctx.lineWidth = 1;
       ctx.font = '11px Arial';
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = palette.muted;
       ctx.textAlign = 'right';
       for (let i = 0; i <= 4; i += 1) {
         const value = min + ((max - min) / 4) * i;
@@ -4426,21 +4459,21 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       if (Number.isFinite(previous)) {
         const y = yFor(previous);
-        ctx.strokeStyle = 'rgba(203, 213, 225, 0.55)';
+        ctx.strokeStyle = palette.axis;
         ctx.setLineDash([6, 6]);
         ctx.beginPath();
         ctx.moveTo(pad.left, y);
         ctx.lineTo(width - pad.right, y);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#cbd5e1';
+        ctx.fillStyle = palette.muted;
         ctx.textAlign = 'left';
         ctx.fillText('Prev close ' + formatCompactNumber(previous), pad.left + 8, y - 7);
       }
 
       const gradient = ctx.createLinearGradient(0, pad.top, 0, height - pad.bottom);
-      gradient.addColorStop(0, Number(quote.changePercent) >= 0 ? 'rgba(52, 211, 153, 0.24)' : 'rgba(251, 113, 133, 0.22)');
-      gradient.addColorStop(1, 'rgba(2, 6, 23, 0)');
+      gradient.addColorStop(0, Number(quote.changePercent) >= 0 ? palette.upFill : palette.downFill);
+      gradient.addColorStop(1, palette.fade);
       ctx.beginPath();
       points.forEach((point, index) => {
         const x = xFor(index);
@@ -4469,18 +4502,18 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       const first = points[0];
       const last = points.at(-1);
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = palette.muted;
       ctx.textAlign = 'left';
       ctx.font = '12px Arial';
       ctx.fillText(formatQuoteTime(first.time) || 'Start', pad.left, height - 16);
       ctx.textAlign = 'right';
       ctx.fillText(formatQuoteTime(last.time) || 'Latest', width - pad.right, height - 16);
 
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = palette.text;
       ctx.textAlign = 'left';
       ctx.font = 'bold 18px Arial';
       ctx.fillText(formatClientNumber(quote.closeValue) + ' (' + formatClientChange(quote.changePercent) + ')', pad.left, 20);
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = palette.muted;
       ctx.textAlign = 'right';
       ctx.font = '12px Arial';
       ctx.fillText(points.length + ' captured points', width - pad.right, 20);
@@ -4488,6 +4521,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function drawLineChart(canvas, setup) {
       const { ctx, width, height } = scaleCanvas(canvas);
+      const palette = chartPalette();
       ctx.clearRect(0, 0, width, height);
       const pad = { top: 20, right: 18, bottom: 42, left: 54 };
       const labels = ['9:15', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '15:30'];
@@ -4509,7 +4543,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const xFor = (index) => pad.left + (chartW / (labels.length - 1)) * index;
       const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = palette.grid;
       for (let i = 0; i <= 4; i += 1) {
         const y = pad.top + (chartH / 4) * i;
         ctx.beginPath();
@@ -4532,7 +4566,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ctx.lineWidth = 3;
       ctx.stroke();
 
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = palette.muted;
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
       labels.forEach((label, index) => ctx.fillText(label, xFor(index), height - 16));

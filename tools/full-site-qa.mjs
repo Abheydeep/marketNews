@@ -51,6 +51,7 @@ try {
         `cycle=${summary.cycle}`,
         `archiveLinks=${summary.archiveLinks}`,
         `componentPanels=${summary.componentPanels}`,
+        `darkPreviewCards=${summary.darkPreviewCards}`,
         `dailyPages=${summary.dailyPages}`,
         `chartButtons=${summary.chartButtons}`,
         `chartExternalLinks=${summary.chartExternalLinks}`,
@@ -107,6 +108,7 @@ async function runCycle(page, cycle) {
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
   const componentPanels = await verifyComponentsPage(page, stamp);
+  const darkPreviewCards = await verifyDarkPreview(page, stamp);
   let chartButtons = 0;
   let chartExternalLinks = 0;
   let sourceLinks = 0;
@@ -126,6 +128,7 @@ async function runCycle(page, cycle) {
     cycle,
     archiveLinks,
     componentPanels,
+    darkPreviewCards,
     dailyPages: dailyPages.length,
     chartButtons,
     chartExternalLinks,
@@ -139,6 +142,7 @@ async function verifyArchive(page, rootUrl) {
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
+  await expectOne(page.getByRole("link", { name: "Dark preview" }), "dark preview link");
   await expectOne(page.getByRole("link", { name: "Project components" }), "project components link");
   for (const daily of dailyPages) {
     await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
@@ -188,15 +192,33 @@ async function verifyComponentsPage(page, stamp) {
   return panelCount;
 }
 
+async function verifyDarkPreview(page, stamp) {
+  const preview = { slug: "dark-preview", label: "dark preview" };
+  const previewUrl = `${baseUrl}/dark-preview/?fullqa=${stamp}`;
+  await page.goto(previewUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.glass-v2"), "dark preview glass theme");
+  await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), "dark preview heading");
+  await expectOne(page.getByText("Market Mood", { exact: true }), "dark preview market mood rail");
+  await expectOne(page.getByText("Primary Driver", { exact: true }), "dark preview primary driver rail");
+  await expectOne(page.getByText("India Filter", { exact: true }), "dark preview india filter rail");
+  await expectOne(page.getByText("Live Quote Board", { exact: true }), "dark preview live quote board");
+  assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "dark preview should not expose Studio Command");
+  assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
+  const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
+  const sourceCardCount = await sourceCards.count();
+  assert.ok(sourceCardCount >= 14, `dark preview should render whole-card source links, got ${sourceCardCount}`);
+  await verifySummary(page, preview);
+  await verifyQuoteBoard(page, preview);
+  await verifyPublicDigestJson(preview, stamp);
+  return sourceCardCount;
+}
+
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
-  await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
+  assert.equal(await page.locator("body.glass-v2").count(), 0, `${daily.slug} should keep the standard public theme`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
-  await expectOne(page.getByText("Market Mood", { exact: true }), `${daily.slug} market mood rail`);
-  await expectOne(page.getByText("Primary Driver", { exact: true }), `${daily.slug} primary driver rail`);
-  await expectOne(page.getByText("India Filter", { exact: true }), `${daily.slug} india filter rail`);
   await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
   await expectOne(page.getByRole("link", { name: "Project Components" }), `${daily.slug} project components link`);

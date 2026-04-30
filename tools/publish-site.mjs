@@ -40,8 +40,16 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
+const darkPreviewDir = join(siteDir, "dark-preview");
 await mkdir(join(siteDir, "components"), { recursive: true });
 await writeFile(join(siteDir, "components", "index.html"), projectComponentsPage({ digests }), "utf8");
+await mkdir(darkPreviewDir, { recursive: true });
+await writeFile(
+  join(darkPreviewDir, "index.html"),
+  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" }),
+  "utf8"
+);
+await writeFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
 await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(publicDigestPayload) }, null, 2)}\n`, "utf8");
@@ -387,6 +395,7 @@ function archivePage(digests) {
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+          <a class="nav-link dark-preview-link" href="./dark-preview/">Dark preview</a>
           <a class="nav-link" href="./components/">Project components</a>
         </div>
       </div>
