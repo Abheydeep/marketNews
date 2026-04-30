@@ -361,6 +361,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Open Yahoo Chart"));
   assert.ok(publicHtml.body.includes("chartFallback"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
+  assert.ok(publicHtml.body.includes("Refreshing prices after page load"));
+  assert.ok(publicHtml.body.includes("refreshPublishedDigest('page-load')"));
   assert.ok(publicHtml.body.includes("marketChartCanvas"));
   assert.ok(publicHtml.body.includes("drawMarketSeriesChart"));
   assert.ok(!publicHtml.body.includes("tickLiveQuotes"));

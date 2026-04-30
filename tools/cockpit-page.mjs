@@ -6,6 +6,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
   <title>Market Narrative | Pre-Market Intelligence & Studio Engine</title>
   <script type="application/ld+json">${JSON.stringify(newsArticleJsonLd(digest))}</script>
   <style>
@@ -2664,9 +2666,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
       window.__PUBLISHED_QUOTES__ = window.__DIGEST__.marketSnapshots;
       window.__QUOTE_BOARD_EXPANDED__ = false;
       renderIndexBoard();
-      updateLiveClock();
+      updateLiveClock('Refreshing prices after page load');
       bindIndexModal();
-      setInterval(refreshPublishedDigest, 60_000);
+      refreshPublishedDigest('page-load');
+      setInterval(() => refreshPublishedDigest('background'), 60_000);
     }
 
     function renderIndexBoard() {
@@ -2787,7 +2790,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       return positives + ' of ' + quotes.length + ' ' + unit + ' are higher; average move is ' + formatClientChange(average);
     }
 
-    async function refreshPublishedDigest() {
+    async function refreshPublishedDigest(reason) {
       try {
         const response = await fetch('digest.json?ts=' + Date.now(), { cache: 'no-store' });
         if (!response.ok) {
@@ -2808,7 +2811,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
             setChartLinks(activeQuote);
           }
         }
-        updateLiveClock();
+        updateLiveClock(reason === 'page-load' ? 'Prices refreshed from latest published file' : undefined);
       } catch (error) {
         updateLiveClock('Waiting for next published quote file');
       }
