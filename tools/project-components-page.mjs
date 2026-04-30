@@ -1,7 +1,7 @@
 export function projectComponentsPage({ digests = [], publicBaseHref = "../", requireAuth = false } = {}) {
   const latest = digests[0];
   const latestSlug = latest ? slugForDigest(latest) : "";
-  const latestDate = latest ? formatDigestDate(latest.digestDate) : "No briefing generated yet";
+  const latestDate = latest ? formatDigestDate(latest.digestDate) : "No briefing ready yet";
   const sourceCount = latest
     ? latest.sourceStats?.publisherCount ?? new Set((latest.news ?? []).map((item) => item.publisherName ?? item.sourceName)).size
     : 0;
@@ -865,8 +865,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
     <section class="hero">
       <div>
         <p class="eyebrow">Project Components Map</p>
-        <h1>How the Market Narrative Engine fits together</h1>
-        <p class="hero-copy">This admin-only page explains the system we built in plain engineering terms: what is public, what is private, how daily market data moves through the generator, where the reel script comes from, and what the tests protect.</p>
+        <h1>How the Market Narrative desk fits together</h1>
+        <p class="hero-copy">This admin-only page explains the workbench in human terms: what readers see, what stays private, how market data becomes a creator read, and what the tests protect.</p>
         <div class="legend" aria-label="Component legend">
           <span class="automation">Automation and data flow</span>
           <span class="public">Public briefing output</span>
@@ -885,8 +885,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
     </section>
 
     <section class="section-title">
-      <h2>End-to-End System View</h2>
-      <p>The engine captures live quote context, separates public briefing content from private creator material, and prepares the daily Studio workflow for recording.</p>
+      <h2>From Market Data To Creator Read</h2>
+      <p>The workflow captures live quote context, separates public briefing content from private creator material, and prepares the daily Studio package for recording.</p>
     </section>
 
     <section class="map" aria-label="Visual map of project components">
@@ -904,7 +904,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       </div>
       <div class="map-column">
         <article class="map-node automation">
-          <span>Core Engine</span>
+          <span>Market Desk</span>
           <strong>Digest Builder</strong>
           <small><code>tools/core.mjs</code> creates sentiment, source clusters, scanner output, summaries, and scripts.</small>
         </article>
@@ -923,7 +923,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <article class="map-node private">
           <span>Private Output</span>
           <strong>Studio and Reel Script</strong>
-          <small>Local files include Studio Command, teleprompter, prompt package, and daily reel script.</small>
+          <small>Run files include Studio Command, recording script, visual prompt package, and daily reel script.</small>
         </article>
       </div>
       <div class="map-column">
@@ -934,8 +934,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         </article>
         <article class="map-node automation">
           <span>Quality Gate</span>
-          <strong>Tests and Browser QA</strong>
-          <small>Unit checks plus multi-cycle browser QA verify charts, links, quote board, redaction, and page navigation.</small>
+          <strong>Human QA Loop</strong>
+          <small>Unit checks plus browser passes verify charts, links, quote board, redaction, and page navigation before anything is shared.</small>
         </article>
       </div>
     </section>
@@ -949,7 +949,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="section-title">
       <h2>Repository Component Map</h2>
-      <p>This shows where the major parts live, including the resume-grade backend/frontend scaffolding and the active publishing engine powering the public site.</p>
+      <p>This shows where the major parts live, including the resume-grade backend/frontend scaffolding and the publishing workflow powering the public site.</p>
     </section>
 
     <section class="repo-grid" aria-label="Repository component map">
@@ -975,8 +975,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       </article>
       <article class="repo-card">
         <code>tools/</code>
-        <strong>Working generator and publisher</strong>
-        <p>The active generator: live quote adapter, digest builder, page renderer, publisher, tests, and browser QA.</p>
+        <strong>Working market desk tooling</strong>
+        <p>The active workflow: live quote adapter, digest builder, page renderer, publisher, tests, and browser QA.</p>
       </article>
       <article class="repo-card">
         <code>archive/</code>
@@ -985,7 +985,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       </article>
       <article class="repo-card">
         <code>out/daily/</code>
-        <strong>Generated run artifacts</strong>
+        <strong>Daily run artifacts</strong>
         <p>Daily public HTML, private Studio HTML, reel-script markdown, and full run digest JSON.</p>
       </article>
       <article class="repo-card">
@@ -1002,11 +1002,11 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="panel">
       <ol class="flow-list">
-        <li><strong>Generate digest</strong><span>Load source-backed news, fetch live quote snapshots when enabled, and stamp the run for 8:30 IST.</span></li>
+        <li><strong>Build digest</strong><span>Load source-backed news, fetch live quote snapshots when enabled, and stamp the run for 8:30 IST.</span></li>
         <li><strong>Analyze markets</strong><span>Calculate regional breadth, sentiment, Nifty/Bank Nifty setup validity, and source themes.</span></li>
-        <li><strong>Create scripts</strong><span>Build a public summary, a teleprompter draft, and a 45-60 second daily reel script.</span></li>
+        <li><strong>Create scripts</strong><span>Build a public summary, recording draft, and a 45-60 second daily reel script.</span></li>
         <li><strong>Write run files</strong><span>Save public HTML, private Studio HTML, reel-script markdown, and full run digest JSON.</span></li>
-        <li><strong>Publish public site</strong><span>Create public hosting files while redacting private script and AI prompt fields.</span></li>
+        <li><strong>Publish public site</strong><span>Create public hosting files while redacting private script and visual prompt fields.</span></li>
         <li><strong>Test the website</strong><span>Run browser QA across archive, daily pages, quote-board cards, chart modals, and source links.</span></li>
       </ol>
     </section>
@@ -1033,7 +1033,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
           <li><code>/marketNews/admin/components/</code></li>
           <li><code>out/daily/YYYY-MM-DD-0830-studio.html</code></li>
           <li><code>out/daily/YYYY-MM-DD-0830-reel-script.md</code></li>
-          <li>Teleprompter script, daily reel script, AI prompt package, Studio activity buttons</li>
+          <li>Recording script, daily reel script, visual prompt package, Studio activity buttons</li>
           <li>Not exposed on the public briefing surface; production hosting should use server-side/Auth0 authorization</li>
         </ul>
       </article>
@@ -1130,12 +1130,12 @@ function componentDetailsHtml() {
   const components = [
     {
       title: "1. Data and Seed Layer",
-      summary: "The project starts with curated source data, then overlays live quotes when the generator runs in live mode.",
+      summary: "The project starts with curated source data, then overlays live quotes when the market-data mode is live.",
       leftTitle: "What it does",
       left: [
         "Stores source-backed article examples, market snapshots, Nifty/Bank Nifty bars, and creator profile data.",
         "Keeps the morning workflow usable while external providers are being upgraded.",
-        "Lets the generator create a complete briefing before paid API keys are connected."
+        "Lets the workflow create a complete briefing before paid API keys are connected."
       ],
       rightTitle: "Important files",
       right: [
@@ -1161,7 +1161,7 @@ function componentDetailsHtml() {
       ]
     },
     {
-      title: "3. Digest and Narrative Engine",
+      title: "3. Digest and Narrative Desk",
       summary: "This is the main transformation layer: raw inputs become source clusters, sentiment, summaries, and scripts.",
       leftTitle: "What it does",
       left: [
@@ -1213,7 +1213,7 @@ function componentDetailsHtml() {
       summary: "The creator-facing workflow is auth-gated and never appears on the public briefing pages.",
       leftTitle: "What it does",
       left: [
-        "Creates a private Studio Command page with source QA, scanner, teleprompter, and AI asset prompt preview.",
+        "Creates a private Studio Command page with source QA, scanner, recording script, and visual prompt preview.",
         "Generates a daily 45-60 second reel script with hook, global cues, India open, trade plan, watch next, and close.",
         "Keeps private scripts out of public HTML, public JSON, and public archive files."
       ],
@@ -1228,7 +1228,7 @@ function componentDetailsHtml() {
     },
     {
       title: "7. Publisher and Public Hosting",
-      summary: "The deploy step converts generated digests into a public-safe website.",
+      summary: "The deploy step converts daily digests into a public-safe website.",
       leftTitle: "What it does",
       left: [
         "Creates the root archive, each dated page, and public-safe digest JSON.",

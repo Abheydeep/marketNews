@@ -302,19 +302,19 @@ async function verifyAdminRoutes(page, stamp) {
   await expectOne(componentsLink, "admin project components link");
   await clickInternalLink(page, componentsLink, await componentsLink.getAttribute("href"), "admin project components");
   await expectOne(page.locator("body.auth-ready"), "admin components reuses login session");
-  await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "admin components heading");
+  await expectOne(page.getByRole("heading", { name: "How the Market Narrative desk fits together" }), "admin components heading");
   await assertNoRoughAdminCopy(page, "admin components");
   await verifyDarkSurfaceContrast(page, "admin components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
   const panels = page.locator("details.component");
   const panelCount = await panels.count();
   assert.ok(panelCount >= 8, `admin components should render at least 8 expandable panels, got ${panelCount}`);
   assert.equal(await page.locator("details.component[open]").count(), 0, "admin components should start collapsed");
-  const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Engine" });
-  await expectOne(digestPanel, "admin digest engine expandable panel");
+  const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Desk" });
+  await expectOne(digestPanel, "admin digest desk expandable panel");
   await digestPanel.locator("summary").click();
-  await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine opens");
+  await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Desk" }), "admin digest desk opens");
   await digestPanel.locator("summary").click();
-  await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "admin digest engine collapses");
+  await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Desk" }), "admin digest desk collapses");
   return { checks: 2, studioButtons };
 }
 
@@ -352,14 +352,14 @@ async function exerciseAdminStudioControls(page) {
   await page.waitForFunction(() => document.querySelector("#generateAssetBtn")?.textContent?.includes("Regenerate Thumbnail"));
   await expectOne(page.getByRole("button", { name: "Regenerate Thumbnail" }), "thumbnail generated state");
 
-  await expectOne(page.getByText("AI Reel Video Generator", { exact: true }), "AI reel video generator heading");
+  await expectOne(page.getByText("Reel Cut Builder", { exact: true }), "reel cut builder heading");
   const video = page.locator("#generateReelVideoBtn");
   await expectOne(video, "generate reel video button");
   await video.click();
   clicked += 1;
-  await page.waitForFunction(() => document.querySelector("#generateReelVideoBtn")?.textContent?.includes("Regenerate AI Reel Video"));
-  await expectOne(page.getByRole("button", { name: "Regenerate AI Reel Video" }), "AI reel video generated state");
-  await expectAtLeast(page.getByText("AI reel video package ready", { exact: false }), 1, "AI reel video status");
+  await page.waitForFunction(() => document.querySelector("#generateReelVideoBtn")?.textContent?.includes("Rebuild Reel Video Draft"));
+  await expectOne(page.getByRole("button", { name: "Rebuild Reel Video Draft" }), "reel video draft generated state");
+  await expectAtLeast(page.getByText("Reel video draft ready", { exact: false }), 1, "reel video draft status");
 
   return clicked;
 }

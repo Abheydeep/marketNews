@@ -28,7 +28,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
-  <title>Market Narrative | Pre-Market Intelligence & Studio Engine</title>
+  <title>Market Narrative | Pre-Market Intelligence & Creator Studio</title>
   <script type="application/ld+json">${JSON.stringify(newsArticleJsonLd(digest))}</script>
   <style>
     :root {
@@ -3288,7 +3288,63 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-color: rgba(251, 113, 133, 0.42);
     }
 
-    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone, .scene-card) {
+    .desk-note {
+      display: grid;
+      grid-template-columns: minmax(92px, 0.18fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      margin: 18px 0;
+      padding: 18px;
+    }
+
+    .desk-note-mark {
+      display: grid;
+      place-items: center;
+      min-height: 118px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.16), transparent 32%),
+        linear-gradient(135deg, rgba(103, 232, 249, 0.16), rgba(251, 191, 36, 0.12));
+      color: #0f172a;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.16em;
+      line-height: 1.45;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .desk-note-copy span {
+      display: inline-flex;
+      margin-bottom: 8px;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .desk-note-copy p {
+      margin: 0;
+      color: #111827;
+      font-size: clamp(18px, 2vw, 25px);
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .desk-note-copy small {
+      display: block;
+      margin-top: 10px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone, .scene-card, .desk-note) {
       border-color: rgba(255, 255, 255, 0.14);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
       box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -3301,15 +3357,15 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
-    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong, .video-kit h3, .scene-card strong) {
+    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong, .video-kit h3, .scene-card strong, .desk-note-copy p) {
       color: #f8fafc;
     }
 
-    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-ledger-details summary p, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p, .video-kit p, .scene-card small, .video-status) {
+    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-ledger-details summary p, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p, .video-kit p, .scene-card small, .video-status, .desk-note-copy small) {
       color: #cbd5e1;
     }
 
-    .glass-v2 :is(.eyebrow, .summary-label, .briefing-date span, .briefing-lens span, .source-extract-meta small, .source-stat-strip span, .source-category-label small, .source-category-meta span, .source-name, .source-entity, .metric .label, .summary-chip span, .workflow-step span, .prompt-detail span, .rr-cell span, .strategy-label, .setup-level span, .quote-board-title strong, .breadth-card span, .index-tile .symbol, .scene-card span) {
+    .glass-v2 :is(.eyebrow, .summary-label, .briefing-date span, .briefing-lens span, .source-extract-meta small, .source-stat-strip span, .source-category-label small, .source-category-meta span, .source-name, .source-entity, .metric .label, .summary-chip span, .workflow-step span, .prompt-detail span, .rr-cell span, .strategy-label, .setup-level span, .quote-board-title strong, .breadth-card span, .index-tile .symbol, .scene-card span, .desk-note-copy span) {
       color: #9fb0c8;
     }
 
@@ -3542,6 +3598,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #67e8f9;
     }
 
+    .glass-v2 .desk-note-mark {
+      color: #fef3c7;
+    }
+
     @media (max-width: 900px) {
       .nav-inner {
         align-items: start;
@@ -3720,6 +3780,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         </header>
 
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
+        ${deskNoteHtml(digest)}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -3727,7 +3788,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <span class="summary-label">2 min read</span>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
-            <strong class="summary-expand-action">Open full source-backed briefing</strong>
+            <strong class="summary-expand-action">Read the full desk note</strong>
           </summary>
           <div class="expanded-briefing-page">
             ${expandedBriefingHtml(digest)}
@@ -3778,7 +3839,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
-          <p>Data generated by the Agentic RAG pipeline. Sources are retained for attribution. Educational market research only, not investment advice.</p>
+          <p>Prepared from live market data and linked source notes. Educational market research only, not investment advice.</p>
         </footer>
       </div>
     </section>
@@ -3817,20 +3878,20 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div>
           <p class="eyebrow">Admin Studio</p>
           <h1>Studio Command Center</h1>
-          <p>Operator workspace for turning the public briefing into a finished video package: source QA, scanner validation, teleprompter pacing, thumbnail prompts, and publish readiness.</p>
+          <p>Private creator workspace for turning the morning brief into a finished reel: source checks, market levels, recording pace, thumbnail direction, and publish readiness.</p>
         </div>
         <aside class="studio-run-card">
           <span>Current Run</span>
           <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
           <div class="studio-run-meta">
             <div>Mode: ${escapeHtml(digest.marketDataMode === "live" ? "Live market data" : "Prepared market data")}</div>
-            <div>Generated: ${escapeHtml(formatGeneratedAt(digest.generatedAt))}</div>
+            <div>Refreshed: ${escapeHtml(formatGeneratedAt(digest.generatedAt))}</div>
             <div>Status: <span id="studioPublishState">${escapeHtml(digest.status || "DRAFT")}</span></div>
           </div>
           <div class="studio-actions">
-            <button id="runDigestBtn" class="studio-action-btn" type="button">Run Digest Check</button>
-            <button id="regenerateScriptBtn" class="studio-ghost-btn" type="button">Regenerate Script</button>
-            <button id="publishDigestBtn" class="studio-ghost-btn" type="button">Publish Digest</button>
+            <button id="runDigestBtn" class="studio-action-btn" type="button">Refresh Market Read</button>
+            <button id="regenerateScriptBtn" class="studio-ghost-btn" type="button">Rewrite Script</button>
+            <button id="publishDigestBtn" class="studio-ghost-btn" type="button">Publish Briefing</button>
           </div>
           <div id="studioActionState" class="studio-action-state" role="status" aria-live="polite">Ready: choose an action to update the Studio package.</div>
         </aside>
@@ -3844,7 +3905,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="studio-panel-head">
           <div>
             <h2>Daily Reel Script</h2>
-            <p>Private 45-60 second creator script for today&apos;s pre-market reel. Public readers only see the briefing, while this script stays inside the admin workspace.</p>
+          <p>Private 45-60 second creator script for today&apos;s pre-market reel. Public readers only see the market note; the recording angle stays here.</p>
           </div>
           <div class="reel-script-actions">
             <span>${escapeHtml(reelScriptStats(digest))}</span>
@@ -3857,7 +3918,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       <section class="studio-workflow">
         <div class="section-kicker">
-          <h2>Production Pipeline</h2>
+          <h2>Creator Workflow</h2>
         </div>
         <div class="workflow-grid">
           ${studioWorkflowHtml(digest)}
@@ -3897,7 +3958,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <div class="studio-panel-head">
               <div>
                 <h2>Publish Readiness</h2>
-                <p>Checks before the daily briefing is safe to share.</p>
+          <p>Quick human checks before the daily briefing goes public.</p>
               </div>
             </div>
             <ul class="checklist-list">
@@ -3924,8 +3985,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <section class="panel asset-panel">
           <div class="studio-panel-head">
             <div>
-              <h2>AI Asset Pipeline</h2>
-              <p>Prompt package for an identity-locked thumbnail using the day&apos;s sentiment palette.</p>
+              <h2>Visual Kit</h2>
+              <p>Thumbnail and reel art direction using the day&apos;s sentiment palette.</p>
             </div>
             <span class="valid-badge ${digest.sentimentLabel === "BULLISH" ? "" : "idle"}">${escapeHtml(digest.sentimentLabel)}</span>
           </div>
@@ -3933,41 +3994,41 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             ${assetPromptDetailsHtml(digest.asset)}
           </div>
           <div class="prompt-box">Prompt: ${escapeHtml(digest.asset.positivePrompt)}</div>
-          <button id="generateAssetBtn" class="primary-btn">Generate Daily Thumbnail</button>
+          <button id="generateAssetBtn" class="primary-btn">Build Daily Thumbnail</button>
           <div class="loader-track">
             <div id="assetLoader" class="loader-bar"></div>
           </div>
           <div id="assetOutput" class="asset-output">
             <span id="assetPlaceholderText">Prompt package ready</span>
-            <canvas id="aiCanvas" aria-label="Generated thumbnail preview"></canvas>
+            <canvas id="aiCanvas" aria-label="Thumbnail draft preview"></canvas>
           </div>
           <p class="asset-caption">Negative prompt: ${escapeHtml(digest.asset.negativePrompt)}</p>
           <div class="video-kit">
-            <h3>AI Reel Video Generator</h3>
-            <p>Creates a 9:16 reel video package from today&apos;s script: shot timing, caption stack, visual direction, and a generated motion preview.</p>
+            <h3>Reel Cut Builder</h3>
+            <p>Builds a 9:16 reel draft from today&apos;s script: shot timing, caption stack, visual direction, and a motion preview.</p>
             <div class="scene-strip">
               ${assetVideoScenesHtml(digest.asset.reelVideo)}
             </div>
-            <div class="prompt-box">Video prompt: ${escapeHtml(digest.asset.reelVideo?.videoPrompt || "Use the daily reel script and market mood to generate a vertical market briefing video.")}</div>
-            <button id="generateReelVideoBtn" class="primary-btn video-btn" type="button">Generate AI Reel Video</button>
+            <div class="prompt-box">Video prompt: ${escapeHtml(digest.asset.reelVideo?.videoPrompt || "Use the daily reel script and market mood to shape a vertical market briefing video.")}</div>
+            <button id="generateReelVideoBtn" class="primary-btn video-btn" type="button">Build Reel Video Draft</button>
             <div class="loader-track">
               <div id="videoLoader" class="loader-bar"></div>
             </div>
             <div class="video-output">
-              <canvas id="reelVideoCanvas" width="360" height="640" aria-label="Generated AI reel video preview"></canvas>
+              <canvas id="reelVideoCanvas" width="360" height="640" aria-label="Reel video draft preview"></canvas>
             </div>
-            <p id="videoGenerationState" class="video-status">Ready to generate today&apos;s vertical reel preview.</p>
+            <p id="videoGenerationState" class="video-status">Ready to build today&apos;s vertical reel preview.</p>
           </div>
         </section>
       </div>
 
       <section class="panel teleprompter-shell">
         <div class="teleprompter-header">
-          <h2>Teleprompter Script Workbench</h2>
+          <h2>Recording Script Workbench</h2>
           <button id="togglePrompterBtn" class="dark-btn">&#9654; Play Script</button>
         </div>
-        <p class="muted-copy">Clean formatting, pacing-optimized, derived from scanner and digest data. Use the speed controls to rehearse the open before recording.</p>
-        <div class="script-toolbar" aria-label="Teleprompter speed controls">
+        <p class="muted-copy">Clean formatting, paced for voice, and grounded in today&apos;s source stack. Use the speed controls to rehearse the open before recording.</p>
+        <div class="script-toolbar" aria-label="Recording speed controls">
           <button class="speed-btn" type="button" data-prompter-speed="28">Slow</button>
           <button class="speed-btn active" type="button" data-prompter-speed="20">Normal</button>
           <button class="speed-btn" type="button" data-prompter-speed="14">Fast</button>
@@ -4001,7 +4062,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     <section id="architecture-view" class="tab-content hidden">
       <header class="page-header">
         <h1>Engine Architecture & Roadmap</h1>
-        <p>Technical breakdown of the backend infrastructure built to support the high-concurrency demands of the Morning Prep window.</p>
+        <p>Technical breakdown of the infrastructure behind the morning desk workflow, from live quotes to public briefing and private creator tools.</p>
       </header>
 
       <div class="arch-grid">
@@ -4045,20 +4106,20 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h2 class="section-title">Execution Milestones</h2>
           <div class="milestones">
             <article class="milestone">
-              <h3>Phase 1: The Data Pipeline</h3>
+              <h3>Phase 1: Market Desk Feed</h3>
               <p>Set up Spring Boot backend, Maven configuration, and multithreaded adapter calls to pull overnight market data quickly.</p>
             </article>
             <article class="milestone indigo">
               <h3>Phase 2: The Scanner</h3>
-              <p>Implement algorithmic logic to calculate and validate strict 1:2 risk-reward swing setups on index data.</p>
+              <p>Implement strict 1:2 risk-reward checks for index setups without connecting order execution.</p>
             </article>
             <article class="milestone todo">
-              <h3>Phase 3: The Teleprompter</h3>
-              <p>Format aggregated data into a readable daily script with pacing and studio controls.</p>
+              <h3>Phase 3: Recording Script</h3>
+              <p>Format the morning source stack into a readable daily script with pacing and studio controls.</p>
             </article>
             <article class="milestone todo">
               <h3>Phase 4: The Visuals</h3>
-              <p>Integrate identity-locked AI image generation for automated sentiment-based thumbnails.</p>
+              <p>Integrate identity-locked visual generation for sentiment-based thumbnails.</p>
             </article>
           </div>
         </section>
@@ -5149,8 +5210,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       button.addEventListener('click', () => {
         button.disabled = true;
-        button.textContent = 'Processing via Pipeline...';
-        setStudioActionState('Generating thumbnail prompt preview...');
+        button.textContent = 'Building visual draft...';
+        setStudioActionState('Building thumbnail preview...');
         loader.style.width = '100%';
 
         setTimeout(() => {
@@ -5245,10 +5306,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       button.addEventListener('click', () => {
         button.disabled = true;
-        button.textContent = 'Generating Reel...';
+        button.textContent = 'Building Reel...';
         loader.style.width = '100%';
         if (state) state.textContent = 'Building the 9:16 motion preview from today\\'s script, captions, and market mood.';
-        setStudioActionState('Generating AI reel video package...');
+        setStudioActionState('Building reel video draft...');
 
         const started = performance.now();
         const duration = 1200;
@@ -5261,10 +5322,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             return;
           }
           button.disabled = false;
-          button.textContent = 'Regenerate AI Reel Video';
+          button.textContent = 'Rebuild Reel Video Draft';
           button.classList.add('done');
-          if (state) state.textContent = 'AI reel video package ready: vertical preview, captions, shot timings, and video prompt are prepared.';
-          setStudioActionState('AI reel video package ready for review.');
+          if (state) state.textContent = 'Reel video draft ready: vertical preview, captions, shot timings, and video prompt are prepared.';
+          setStudioActionState('Reel video draft ready for review.');
           setTimeout(() => {
             loader.style.transition = 'none';
             loader.style.width = '0%';
@@ -5516,6 +5577,28 @@ function compactSummaryText(digest) {
     asiaLine,
     setupLine
   ].filter(Boolean).join(" "), 50);
+}
+
+function deskNoteHtml(digest) {
+  const pressureStory = strongestStory(digest.news, "negative");
+  const supportStory = strongestStory(digest.news, "positive");
+  const setup = niftySetup(digest);
+  const pressure = pressureStory?.takeaway || pressureStory?.summary || "macro cues are not clean enough to chase blindly";
+  const support = supportStory?.takeaway || supportStory?.summary || "banks and breadth need to prove the open";
+  const setupLine = setup
+    ? `The only trade I would respect is around ${formatNumber(setup.entry)}, with ${formatNumber(setup.stopLoss)} as the line in the sand.`
+    : "No forced trade at the bell. Let the first range print, then decide.";
+  const note = `${pressure} ${support} ${setupLine}`;
+  return `
+    <aside class="desk-note" aria-label="Creator desk note">
+      <div class="desk-note-mark">Desk<br>Note</div>
+      <div class="desk-note-copy">
+        <span>Creator read</span>
+        <p>${escapeHtml(editorialSentence(note))}</p>
+        <small>Human rule for the open: do not let the headline candle do your thinking. Confirm breadth, VWAP, and the first clean level.</small>
+      </div>
+    </aside>
+  `;
 }
 
 function marketMoodRailHtml(digest) {
@@ -6141,7 +6224,7 @@ function algorithmicSetupHtml(digest) {
     return `
       <section class="info-card setup-card">
         <div class="setup-card-header">
-          <h2>Nifty 50 Algorithmic Setup</h2>
+          <h2>Nifty 50 Game Plan</h2>
           <span class="setup-badge">No setup yet</span>
         </div>
         <p class="strategy-note">No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.</p>
@@ -6158,7 +6241,7 @@ function algorithmicSetupHtml(digest) {
   return `
     <section class="info-card setup-card">
       <div class="setup-card-header">
-        <h2>Nifty 50 Algorithmic Setup</h2>
+        <h2>Nifty 50 Game Plan</h2>
         <span class="setup-badge">1:2 R:R Validated</span>
       </div>
       <div class="setup-grid">
@@ -6201,7 +6284,7 @@ function scannerPanelCopy(digest) {
   if (!setup) {
     return "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
   }
-  return "Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.";
+  return "Nifty has a clean conditional setup, but the open still needs price acceptance and breadth confirmation.";
 }
 
 function studioMetricCards(digest) {
@@ -6215,7 +6298,7 @@ function studioMetricCards(digest) {
     ["Market Tone", headlineSentiment(digest.sentimentLabel), `Weighted sentiment ${formatSignedScore(digest.overallSentiment)}`],
     ["Sources", `${digest.news.length} articles`, `${sourceCount} publishers; ${thumbnailCount} thumbnails`],
     ["Scanner", setupLabel, setupHint],
-    ["Script", `${sections.length} sections`, "Teleprompter package ready"]
+    ["Script", `${sections.length} sections`, "Recording draft ready"]
   ].map(([label, value, hint]) => `
     <article class="studio-metric">
       <span>${escapeHtml(label)}</span>
@@ -6240,7 +6323,7 @@ function studioWorkflowHtml(digest) {
     ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
     ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
     ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup yet.", setup ? "ok" : "blocked"],
-    ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} teleprompter sections generated from source-backed facts.`, "ok"],
+    ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} recording beats drafted from the morning source stack.`, "ok"],
     ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
     ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
   ];
@@ -6339,7 +6422,7 @@ function publishingChecklistHtml(digest) {
   const items = [
     ["Source attribution", hasSources, `${digest.news.length} articles retain publisher names and outbound links.`],
     ["Article thumbnails", hasThumbnails, `${digest.news.filter((article) => article.thumbnail?.alt).length} thumbnails render across public and studio views.`],
-    ["Risk disclaimer", hasDisclaimer, "Teleprompter script includes the educational-use disclaimer."],
+    ["Risk disclaimer", hasDisclaimer, "Recording script includes the educational-use disclaimer."],
     ["Scanner discipline", true, setup ? `${setup.symbol} setup passed risk math.` : "No setup is published until fresh levels meet the risk math."],
     ["SEO metadata", true, "Daily page includes NewsArticle JSON-LD for the public archive."]
   ];
