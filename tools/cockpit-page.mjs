@@ -1318,6 +1318,497 @@ export function cockpitPage(digest, initialTab = "public-view") {
       color: var(--green);
     }
 
+    .studio-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .studio-hero h1 {
+      margin: 0 0 10px;
+      color: var(--slate);
+      font-size: 38px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .studio-hero p {
+      max-width: 760px;
+      margin: 0;
+      color: #57534e;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .studio-run-card {
+      border: 1px solid rgba(229, 231, 235, 0.82);
+      border-radius: 14px;
+      background: #fff;
+      padding: 18px;
+      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.04);
+    }
+
+    .studio-run-card span {
+      display: block;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .studio-run-card strong {
+      display: block;
+      margin-top: 6px;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.16;
+    }
+
+    .studio-run-meta {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .studio-command-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .studio-metric {
+      border: 1px solid rgba(229, 231, 235, 0.82);
+      border-radius: 12px;
+      background: #fff;
+      padding: 16px;
+      box-shadow: 0 4px 18px rgba(17, 24, 39, 0.032);
+    }
+
+    .studio-metric span {
+      display: block;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .studio-metric strong {
+      display: block;
+      margin-top: 7px;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .studio-metric small {
+      display: block;
+      margin-top: 6px;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+
+    .studio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .studio-action-btn,
+    .studio-ghost-btn {
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .studio-action-btn {
+      border: 0;
+      background: #111827;
+      color: #fff;
+    }
+
+    .studio-ghost-btn {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #111827;
+    }
+
+    .studio-workflow {
+      margin-bottom: 24px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .workflow-step {
+      position: relative;
+      min-height: 150px;
+      border: 1px solid rgba(229, 231, 235, 0.82);
+      border-radius: 12px;
+      background: #fff;
+      padding: 15px;
+      box-shadow: 0 4px 18px rgba(17, 24, 39, 0.032);
+    }
+
+    .workflow-step::before {
+      content: "";
+      display: block;
+      width: 9px;
+      height: 9px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.12);
+    }
+
+    .workflow-step.warn::before {
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.16);
+    }
+
+    .workflow-step.blocked::before {
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+    }
+
+    .workflow-step span {
+      display: block;
+      color: #6b7280;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .workflow-step strong {
+      display: block;
+      margin-top: 6px;
+      color: #111827;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .workflow-step small {
+      display: block;
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.42;
+    }
+
+    .studio-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .studio-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .studio-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .studio-panel-head h2 {
+      margin: 0;
+    }
+
+    .studio-panel-head p {
+      margin: 5px 0 0;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .validation-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .validation-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+
+    .validation-dot {
+      width: 10px;
+      height: 10px;
+      margin-top: 5px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .validation-row.warn .validation-dot {
+      background: var(--gold);
+    }
+
+    .validation-row.blocked .validation-dot {
+      background: var(--red);
+    }
+
+    .validation-row strong {
+      display: block;
+      color: #111827;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .validation-row span {
+      display: block;
+      margin-top: 3px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .theme-review-list,
+    .source-qa-list,
+    .script-section-list,
+    .checklist-list,
+    .activity-log {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .script-section-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .theme-review-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+
+    .theme-review-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .theme-review-top strong {
+      color: #111827;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .theme-review-top span {
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .theme-bar {
+      position: relative;
+      height: 6px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .theme-bar i {
+      display: block;
+      width: var(--theme-width);
+      height: 100%;
+      border-radius: inherit;
+      background: var(--theme-color);
+    }
+
+    .source-qa-item {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 11px;
+      align-items: start;
+      border-bottom: 1px solid #eef2f7;
+      padding-bottom: 10px;
+    }
+
+    .source-qa-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .source-mini-thumb {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      min-height: 54px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--thumb-accent) 82%, #111827), #111827);
+      color: #fff;
+      padding: 7px;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .source-qa-item strong {
+      display: block;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .source-qa-item span {
+      display: block;
+      margin-top: 4px;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .script-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 16px;
+    }
+
+    .speed-btn {
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      background: #fff;
+      color: #111827;
+      padding: 7px 9px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .speed-btn.active {
+      border-color: #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .script-section-card,
+    .checklist-item,
+    .activity-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+
+    .script-section-card strong,
+    .checklist-item strong,
+    .activity-item strong {
+      display: block;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .script-section-card span,
+    .checklist-item span,
+    .activity-item span {
+      display: block;
+      margin-top: 4px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .prompt-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0 16px;
+    }
+
+    .prompt-detail {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 11px;
+    }
+
+    .prompt-detail span {
+      display: block;
+      color: #6b7280;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .prompt-detail strong {
+      display: block;
+      margin-top: 5px;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .asset-output {
+      min-height: 238px;
+    }
+
+    .asset-caption {
+      margin-top: 12px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .studio-note {
+      margin-top: 12px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
     .panel-title-row {
       display: flex;
       justify-content: space-between;
@@ -1455,7 +1946,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 210px;
+      min-height: 238px;
       flex: 1;
       overflow: hidden;
       border: 2px dashed #d6d3d1;
@@ -1548,13 +2039,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .teleprompter-text {
-      transform: translateY(100%);
-      animation: scrollText 20s linear infinite;
-      animation-play-state: paused;
+      transform: translateY(0);
     }
 
     .teleprompter-view.playing .teleprompter-text {
-      animation-play-state: running;
+      animation: scrollText 20s linear infinite;
     }
 
     @keyframes scrollText {
@@ -1681,7 +2170,13 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .briefing-grid,
       .source-extract-row,
       .watch-grid,
-      .arch-grid {
+      .arch-grid,
+      .studio-hero,
+      .studio-command-grid,
+      .workflow-grid,
+      .studio-layout,
+      .prompt-detail-grid,
+      .script-section-list {
         grid-template-columns: 1fr;
       }
 
@@ -1737,6 +2232,15 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .studio-header {
         align-items: start;
         flex-direction: column;
+      }
+
+      .studio-actions {
+        flex-direction: column;
+      }
+
+      .studio-action-btn,
+      .studio-ghost-btn {
+        width: 100%;
       }
 
       .teleprompter-view {
@@ -1879,52 +2383,154 @@ export function cockpitPage(digest, initialTab = "public-view") {
     </div>
 
     <section id="studio-view" class="tab-content hidden">
-      <header class="studio-header">
+      <header class="studio-hero">
         <div>
+          <p class="eyebrow">Admin Studio</p>
           <h1>Studio Command Center</h1>
-          <p>Admin restricted view. Automates research, scripting, and visual asset generation for daily videos based on algorithmic 1:2 Risk-Reward filtering.</p>
+          <p>Operator workspace for turning the public briefing into a finished video package: source QA, scanner validation, teleprompter pacing, thumbnail prompts, and publish readiness.</p>
         </div>
-        <div class="status-pill">Status: <strong>&#9679; APIs Connected</strong></div>
+        <aside class="studio-run-card">
+          <span>Current Run</span>
+          <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
+          <div class="studio-run-meta">
+            <div>Mode: ${escapeHtml(digest.marketDataMode === "live" ? "Live market data" : "Mock adapter mode")}</div>
+            <div>Generated: ${escapeHtml(formatGeneratedAt(digest.generatedAt))}</div>
+            <div>Status: <span id="studioPublishState">${escapeHtml(digest.status || "DRAFT")}</span></div>
+          </div>
+          <div class="studio-actions">
+            <button id="runDigestBtn" class="studio-action-btn" type="button">Run Digest Check</button>
+            <button id="regenerateScriptBtn" class="studio-ghost-btn" type="button">Regenerate Script</button>
+            <button id="publishDigestBtn" class="studio-ghost-btn" type="button">Publish Digest</button>
+          </div>
+        </aside>
       </header>
 
-      <div class="grid-two">
-        <section class="panel">
-          <div class="panel-title-row">
-            <h2>&#128187; Technical Setup Scanner</h2>
+      <section class="studio-command-grid" aria-label="Studio run summary">
+        ${studioMetricCards(digest)}
+      </section>
+
+      <section class="studio-workflow">
+        <div class="section-kicker">
+          <h2>Production Pipeline</h2>
+        </div>
+        <div class="workflow-grid">
+          ${studioWorkflowHtml(digest)}
+        </div>
+      </section>
+
+      <div class="studio-layout">
+        <section class="panel scanner-workbench">
+          <div class="studio-panel-head">
+            <div>
+              <h2>Technical Setup Scanner</h2>
+              <p>${scannerPanelCopy(digest)}</p>
+            </div>
             ${scannerBadgeHtml(digest)}
           </div>
-          <p class="muted-copy">${scannerPanelCopy(digest)}</p>
           <div class="chart-container scanner-height">
             <canvas id="scannerChart" aria-label="Technical scanner setup chart"></canvas>
           </div>
           ${scannerCells(digest)}
+          ${scannerValidationHtml(digest)}
+        </section>
+
+        <div class="studio-stack">
+          <section class="panel">
+            <div class="studio-panel-head">
+              <div>
+                <h2>Narrative QA</h2>
+                <p>Theme clustering from the source extraction layer.</p>
+              </div>
+            </div>
+            <div class="theme-review-list">
+              ${themeReviewHtml(digest)}
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="studio-panel-head">
+              <div>
+                <h2>Publish Readiness</h2>
+                <p>Checks before the daily briefing is safe to share.</p>
+              </div>
+            </div>
+            <ul class="checklist-list">
+              ${publishingChecklistHtml(digest)}
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <div class="grid-two">
+        <section class="panel">
+          <div class="studio-panel-head">
+            <div>
+              <h2>Source QA Queue</h2>
+              <p>Top weighted articles driving the video angle, with thumbnails carried from the public briefing.</p>
+            </div>
+          </div>
+          <div class="source-qa-list">
+            ${sourceQaHtml(digest)}
+          </div>
+          <p class="studio-note">The full public page keeps every source link for attribution; this queue shows the items most likely to shape the intro and risk framing.</p>
         </section>
 
         <section class="panel asset-panel">
-          <h2>&#127912; AI Asset Pipeline</h2>
-          <p class="muted-copy">Identity-locked image generation based on overnight sentiment score (${escapeHtml(digest.sentimentLabel)} = sentiment-aware palette).</p>
+          <div class="studio-panel-head">
+            <div>
+              <h2>AI Asset Pipeline</h2>
+              <p>Prompt package for an identity-locked thumbnail using the day&apos;s sentiment palette.</p>
+            </div>
+            <span class="valid-badge ${digest.sentimentLabel === "BULLISH" ? "" : "idle"}">${escapeHtml(digest.sentimentLabel)}</span>
+          </div>
+          <div class="prompt-detail-grid">
+            ${assetPromptDetailsHtml(digest.asset)}
+          </div>
           <div class="prompt-box">Prompt: ${escapeHtml(digest.asset.positivePrompt)}</div>
           <button id="generateAssetBtn" class="primary-btn">Generate Daily Thumbnail</button>
           <div class="loader-track">
             <div id="assetLoader" class="loader-bar"></div>
           </div>
           <div id="assetOutput" class="asset-output">
-            <span id="assetPlaceholderText">Awaiting Generation...</span>
+            <span id="assetPlaceholderText">Prompt package ready</span>
             <canvas id="aiCanvas" aria-label="Generated thumbnail preview"></canvas>
           </div>
+          <p class="asset-caption">Negative prompt: ${escapeHtml(digest.asset.negativePrompt)}</p>
         </section>
       </div>
 
       <section class="panel teleprompter-shell">
         <div class="teleprompter-header">
-          <h2>&#128249; Teleprompter UI (Studio Mode)</h2>
+          <h2>Teleprompter Script Workbench</h2>
           <button id="togglePrompterBtn" class="dark-btn">&#9654; Play Script</button>
         </div>
-        <p class="muted-copy">Clean formatting, pacing-optimized, derived from scanner and digest data.</p>
+        <p class="muted-copy">Clean formatting, pacing-optimized, derived from scanner and digest data. Use the speed controls to rehearse the open before recording.</p>
+        <div class="script-toolbar" aria-label="Teleprompter speed controls">
+          <button class="speed-btn" type="button" data-prompter-speed="28">Slow</button>
+          <button class="speed-btn active" type="button" data-prompter-speed="20">Normal</button>
+          <button class="speed-btn" type="button" data-prompter-speed="14">Fast</button>
+          <button id="resetPrompterBtn" class="speed-btn" type="button">Reset</button>
+        </div>
+        <div class="script-section-list">
+          ${scriptSectionCardsHtml(digest)}
+        </div>
         <div id="teleprompterContainer" class="teleprompter-view">
           <div class="read-line"><span>Read Here</span></div>
           <div class="teleprompter-text">${teleprompterHtml(digest)}</div>
         </div>
+      </section>
+
+      <section class="panel teleprompter-shell">
+        <div class="studio-panel-head">
+          <div>
+            <h2>Studio Activity Log</h2>
+            <p>Local simulation of admin actions for the static GitHub Pages demo.</p>
+          </div>
+        </div>
+        <ul id="studioActivityLog" class="activity-log">
+          <li class="activity-item"><strong>Digest loaded</strong><span>${escapeHtml(digest.news.length)} articles, ${escapeHtml(digest.themes.length)} themes, ${escapeHtml(digest.marketSnapshots.length)} quote snapshots.</span></li>
+          <li class="activity-item"><strong>Scanner state</strong><span>${escapeHtml(scannerActivityLine(digest))}</span></li>
+        </ul>
       </section>
     </section>
 
@@ -2028,7 +2634,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
       drawOvernightChart();
       drawScannerChart();
       bindTeleprompter();
+      bindTeleprompterControls();
       bindAssetGeneration();
+      bindStudioActions();
       bindQuoteBoardToggle();
       initLiveIndexBoard();
     });
@@ -2757,12 +3365,43 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const container = document.getElementById('teleprompterContainer');
       if (!button || !container) return;
       let playing = false;
-      button.addEventListener('click', () => {
-        playing = !playing;
+      window.__SET_PROMPTER_PLAYING__ = (next) => {
+        playing = next;
         container.classList.toggle('playing', playing);
         button.classList.toggle('playing', playing);
         button.innerHTML = playing ? '&#10074;&#10074; Pause Script' : '&#9654; Play Script';
+      };
+      button.addEventListener('click', () => {
+        window.__SET_PROMPTER_PLAYING__(!playing);
       });
+    }
+
+    function bindTeleprompterControls() {
+      const container = document.getElementById('teleprompterContainer');
+      const text = container ? container.querySelector('.teleprompter-text') : null;
+      if (!container || !text) return;
+      document.querySelectorAll('[data-prompter-speed]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const seconds = Number(button.dataset.prompterSpeed || 20);
+          text.style.animationDuration = seconds + 's';
+          document.querySelectorAll('[data-prompter-speed]').forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+      const reset = document.getElementById('resetPrompterBtn');
+      if (reset) {
+        reset.addEventListener('click', () => {
+          if (typeof window.__SET_PROMPTER_PLAYING__ === 'function') {
+            window.__SET_PROMPTER_PLAYING__(false);
+          } else {
+            container.classList.remove('playing');
+          }
+          text.style.animation = 'none';
+          text.offsetHeight;
+          text.style.animation = '';
+          text.style.animationDuration = document.querySelector('.speed-btn.active')?.dataset.prompterSpeed + 's' || '20s';
+        });
+      }
     }
 
     function bindAssetGeneration() {
@@ -2771,6 +3410,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const canvas = document.getElementById('aiCanvas');
       const placeholder = document.getElementById('assetPlaceholderText');
       if (!button || !loader || !canvas || !placeholder) return;
+      drawAssetCanvas(canvas, false);
+      canvas.dataset.generated = 'false';
+      canvas.classList.add('visible');
 
       button.addEventListener('click', () => {
         button.disabled = true;
@@ -2778,29 +3420,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
         loader.style.width = '100%';
 
         setTimeout(() => {
-          const { ctx, width, height } = scaleCanvas(canvas);
-          const gradient = ctx.createLinearGradient(0, 0, width, height);
-          gradient.addColorStop(0, window.__DIGEST__.sentimentLabel === 'BULLISH' ? '#064e3b' : '#7f1d1d');
-          gradient.addColorStop(1, '#020617');
-          ctx.fillStyle = gradient;
-          ctx.fillRect(0, 0, width, height);
-
-          ctx.strokeStyle = '#fbbf24';
-          ctx.lineWidth = 4;
-          ctx.beginPath();
-          ctx.moveTo(0, height * 0.85);
-          ctx.lineTo(width * 0.3, height * 0.55);
-          ctx.lineTo(width * 0.6, height * 0.72);
-          ctx.lineTo(width, height * 0.25);
-          ctx.stroke();
-
-          ctx.fillStyle = '#ffffff';
-          ctx.font = 'bold 24px Arial';
-          ctx.fillText('MARKET OPEN', 22, 42);
-          ctx.fillStyle = '#fbbf24';
-          ctx.font = '16px Arial';
-          ctx.fillText('1:2 RR SETUP READY', 22, 68);
-
+          drawAssetCanvas(canvas, true);
+          canvas.dataset.generated = 'true';
           canvas.classList.add('visible');
           placeholder.classList.add('hidden');
           button.textContent = 'Asset Generated';
@@ -2813,9 +3434,102 @@ export function cockpitPage(digest, initialTab = "public-view") {
       });
     }
 
+    function drawAssetCanvas(canvas, generated) {
+      const { ctx, width, height } = scaleCanvas(canvas);
+      const bearish = window.__DIGEST__.sentimentLabel !== 'BULLISH';
+      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, bearish ? '#7f1d1d' : '#064e3b');
+      gradient.addColorStop(0.58, '#111827');
+      gradient.addColorStop(1, '#020617');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < width; x += 26) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += 26) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      const points = bearish
+        ? [[0.05, 0.28], [0.28, 0.36], [0.48, 0.30], [0.7, 0.55], [0.94, 0.68]]
+        : [[0.05, 0.76], [0.28, 0.58], [0.48, 0.64], [0.7, 0.38], [0.94, 0.24]];
+      ctx.strokeStyle = bearish ? '#fca5a5' : '#86efac';
+      ctx.lineWidth = 4;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      points.forEach(([x, y], index) => {
+        const px = width * x;
+        const py = height * y;
+        if (index === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+
+      ctx.fillStyle = 'rgba(255,255,255,0.92)';
+      ctx.font = 'bold 24px Arial';
+      ctx.fillText('PRE-MARKET BRIEF', 22, 40);
+      ctx.fillStyle = bearish ? '#fecaca' : '#bbf7d0';
+      ctx.font = 'bold 16px Arial';
+      ctx.fillText(window.__DIGEST__.sentimentLabel + ' SETUP', 22, 66);
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = 'bold 14px Arial';
+      ctx.fillText(window.__DIGEST__.news.length + ' SOURCES VERIFIED', 22, height - 24);
+      if (generated) {
+        ctx.fillStyle = 'rgba(255,255,255,0.14)';
+        roundRect(ctx, width - 158, 18, 136, 36, 8);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('CONTROLNET LOCKED', width - 90, 41);
+        ctx.textAlign = 'left';
+      }
+    }
+
+    function bindStudioActions() {
+      const log = document.getElementById('studioActivityLog');
+      const publishState = document.getElementById('studioPublishState');
+      function addLog(title, detail) {
+        if (!log) return;
+        const item = document.createElement('li');
+        item.className = 'activity-item';
+        item.innerHTML = '<strong>' + escapeClientHtml(title) + '</strong><span>' + escapeClientHtml(detail) + '</span>';
+        log.prepend(item);
+      }
+      const run = document.getElementById('runDigestBtn');
+      if (run) {
+        run.addEventListener('click', () => addLog('Digest check completed', window.__DIGEST__.news.length + ' source articles and ' + window.__DIGEST__.marketSnapshots.length + ' market snapshots are loaded.'));
+      }
+      const regenerate = document.getElementById('regenerateScriptBtn');
+      if (regenerate) {
+        regenerate.addEventListener('click', () => addLog('Script regeneration simulated', 'The deterministic template remains grounded to the current source and scanner state.'));
+      }
+      const publish = document.getElementById('publishDigestBtn');
+      if (publish) {
+        publish.addEventListener('click', () => {
+          if (publishState) publishState.textContent = 'PUBLISH QUEUED';
+          addLog('Publish queued', 'Static demo state updated locally; GitHub Actions handles the scheduled public publish.');
+        });
+      }
+    }
+
     window.addEventListener('resize', () => {
       drawOvernightChart();
       drawScannerChart();
+      const assetCanvas = document.getElementById('aiCanvas');
+      if (assetCanvas) {
+        drawAssetCanvas(assetCanvas, assetCanvas.dataset.generated === 'true');
+      }
     });
   </script>
 </body>
@@ -3113,6 +3827,211 @@ function scannerPanelCopy(digest) {
   return "Scanning historical Nifty 50 data. Algorithms have flagged a valid swing setup meeting strict risk parameters.";
 }
 
+function studioMetricCards(digest) {
+  const setup = niftySetup(digest);
+  const sourceCount = new Set(digest.news.map((article) => article.sourceName)).size;
+  const thumbnailCount = digest.news.filter((article) => article.thumbnail?.alt).length;
+  const sections = parseScriptSections(digest.teleprompterScript);
+  const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : "Setup blocked";
+  const setupHint = setup ? "Scanner-approved trade plan is available." : "Live validation removed stale levels.";
+  return [
+    ["Market Tone", headlineSentiment(digest.sentimentLabel), `Weighted sentiment ${formatSignedScore(digest.overallSentiment)}`],
+    ["Sources", `${digest.news.length} articles`, `${sourceCount} publishers; ${thumbnailCount} thumbnails`],
+    ["Scanner", setupLabel, setupHint],
+    ["Script", `${sections.length} sections`, "Teleprompter package ready"]
+  ].map(([label, value, hint]) => `
+    <article class="studio-metric">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <small>${escapeHtml(hint)}</small>
+    </article>
+  `).join("");
+}
+
+function studioWorkflowHtml(digest) {
+  const setup = niftySetup(digest);
+  const stages = [
+    ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
+    ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
+    ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup after live quote validation.", setup ? "ok" : "blocked"],
+    ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} teleprompter sections generated from source-backed facts.`, "ok"],
+    ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
+    ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
+  ];
+  return stages.map(([step, title, detail, state]) => `
+    <article class="workflow-step ${escapeHtml(state)}">
+      <span>${escapeHtml(step)}</span>
+      <strong>${escapeHtml(title)}</strong>
+      <small>${escapeHtml(detail)}</small>
+    </article>
+  `).join("");
+}
+
+function scannerValidationHtml(digest) {
+  const setup = niftySetup(digest) ?? digest.tradeSetups[0];
+  if (!setup) {
+    return `
+      <div class="validation-list">
+        ${validationRow("blocked", "Live validation blocked the trade setup", "The page no longer shows stale Nifty levels when live quotes have crossed target, stop, or invalidated the reward math.")}
+        ${validationRow("warn", "Opening range required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
+        ${validationRow("ok", "Trade execution disabled", "Studio output remains educational research for video planning; no order placement is connected.")}
+      </div>
+    `;
+  }
+  return `
+    <div class="validation-list">
+      ${validationRow("ok", "Trend filter accepted", `${setup.symbol} price is aligned with the moving-average bias used by the scanner.`)}
+      ${validationRow("ok", "Momentum filter accepted", "RSI-14 and volume conditions are strong enough for the setup candidate.")}
+      ${validationRow("ok", "Risk-reward gate accepted", `Entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)} gives ${setup.riskReward}R.`)}
+      ${validationRow("warn", "Manual confirmation still required", "Use the first-hour range and source context before recording a firm view.")}
+    </div>
+  `;
+}
+
+function validationRow(state, title, detail) {
+  return `
+    <div class="validation-row ${escapeHtml(state)}">
+      <span class="validation-dot"></span>
+      <div>
+        <strong>${escapeHtml(title)}</strong>
+        <span>${escapeHtml(detail)}</span>
+      </div>
+    </div>
+  `;
+}
+
+function themeReviewHtml(digest) {
+  return digest.themes.map((theme) => {
+    const score = Number(theme.sentimentScore || 0);
+    const width = Math.max(10, Math.min(100, Math.abs(score) * 100)).toFixed(1);
+    return `
+      <article class="theme-review-card">
+        <div class="theme-review-top">
+          <strong>${escapeHtml(theme.title)}</strong>
+          <span>${escapeHtml(formatSignedScore(score))} / ${escapeHtml(theme.evidenceCount)} sources</span>
+        </div>
+        <div class="theme-bar" aria-label="${escapeHtml(theme.title)} sentiment strength">
+          <i style="--theme-width: ${width}%; --theme-color: ${scoreColor(score)}"></i>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function sourceQaHtml(digest) {
+  return weightedSourceArticles(digest.news)
+    .slice(0, 6)
+    .map((article) => {
+      const thumbnail = article.thumbnail || {};
+      const accent = safeAccent(thumbnail.accent, Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626");
+      return `
+        <article class="source-qa-item">
+          <div class="source-mini-thumb" style="--thumb-accent: ${accent}">${escapeHtml(thumbnail.label || article.entityName || "Macro")}</div>
+          <div>
+            <strong>${escapeHtml(article.headline)}</strong>
+            <span>${escapeHtml(article.sourceName)} - ${escapeHtml(categoryLabel(article.category))} - weight ${escapeHtml(Math.abs(Number(article.sentimentScore) * Number(article.entityMatchScore)).toFixed(2))}</span>
+          </div>
+        </article>
+      `;
+    }).join("");
+}
+
+function weightedSourceArticles(articles) {
+  return articles
+    .slice()
+    .sort((left, right) =>
+      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
+      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
+    );
+}
+
+function publishingChecklistHtml(digest) {
+  const hasSources = digest.news.every((article) => article.sourceUrl);
+  const hasThumbnails = digest.news.every((article) => article.thumbnail?.alt);
+  const hasDisclaimer = digest.teleprompterScript.includes("not investment advice");
+  const setup = niftySetup(digest);
+  const items = [
+    ["Source attribution", hasSources, `${digest.news.length} articles retain publisher names and outbound links.`],
+    ["Article thumbnails", hasThumbnails, `${digest.news.filter((article) => article.thumbnail?.alt).length} thumbnails render across public and studio views.`],
+    ["Risk disclaimer", hasDisclaimer, "Teleprompter script includes the educational-use disclaimer."],
+    ["Scanner discipline", true, setup ? `${setup.symbol} setup passed risk math.` : "No setup is published when live validation rejects the levels."],
+    ["SEO metadata", true, "Daily page includes NewsArticle JSON-LD for the public archive."]
+  ];
+  return items.map(([label, ok, detail]) => `
+    <li class="checklist-item">
+      <strong>${ok ? "Ready" : "Needs Review"}: ${escapeHtml(label)}</strong>
+      <span>${escapeHtml(detail)}</span>
+    </li>
+  `).join("");
+}
+
+function assetPromptDetailsHtml(asset) {
+  const details = [
+    ["Palette", asset.palette],
+    ["Identity Ref", asset.referenceImageId],
+    ["ControlNet", asset.controlNetMode],
+    ["Output", asset.assetUrl]
+  ];
+  return details.map(([label, value]) => `
+    <div class="prompt-detail">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+    </div>
+  `).join("");
+}
+
+function scriptSectionCardsHtml(digest) {
+  return parseScriptSections(digest.teleprompterScript)
+    .map((section) => `
+      <article class="script-section-card">
+        <strong>${escapeHtml(section.title)}</strong>
+        <span>${escapeHtml(section.lines.length)} line${section.lines.length === 1 ? "" : "s"} ready for pacing</span>
+      </article>
+    `)
+    .join("");
+}
+
+function parseScriptSections(script) {
+  const sections = [];
+  let current = null;
+  for (const rawLine of String(script || "").split(/\n+/)) {
+    const line = rawLine.trim();
+    if (!line) {
+      continue;
+    }
+    const match = line.match(/^\[(.+)\]$/);
+    if (match) {
+      current = { title: match[1].replaceAll("_", " "), lines: [] };
+      sections.push(current);
+      continue;
+    }
+    if (!current) {
+      current = { title: "SCRIPT", lines: [] };
+      sections.push(current);
+    }
+    current.lines.push(line);
+  }
+  return sections;
+}
+
+function scannerActivityLine(digest) {
+  const setup = niftySetup(digest);
+  if (!setup) {
+    return "No active setup after live quote validation; stale levels are hidden from the studio.";
+  }
+  return `${setup.symbol} ${setup.direction.toLowerCase()} setup remains active at ${setup.riskReward}R.`;
+}
+
+function scoreColor(score) {
+  if (score <= -0.2) {
+    return "#dc2626";
+  }
+  if (score >= 0.2) {
+    return "#059669";
+  }
+  return "#f59e0b";
+}
+
 function articleThumbnailHtml(article) {
   const thumbnail = article.thumbnail || {};
   const label = thumbnail.label || article.entityName || "Macro";
@@ -3230,6 +4149,23 @@ function formatScheduledRun(digest) {
     return `${digest.digestDate} 08:30 IST`;
   }
   return digest.scheduledFor.replace("T", " ").replace(":00+05:30", " IST");
+}
+
+function formatGeneratedAt(value) {
+  if (!value) {
+    return "Awaiting generation";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "Awaiting generation";
+  }
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(date);
 }
 
 function formatNumber(value) {

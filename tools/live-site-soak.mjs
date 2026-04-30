@@ -93,12 +93,31 @@ async function runCycle(page, cycle) {
   await expectOne(adminTab, "studio command tab");
   await adminTab.click();
   await expectOne(page.getByRole("heading", { name: "Studio Command Center" }), "studio command heading");
+  await expectOne(page.getByRole("heading", { name: "Production Pipeline" }), "studio pipeline heading");
+  await expectOne(page.getByRole("heading", { name: "Narrative QA" }), "studio narrative QA heading");
+  await expectOne(page.getByRole("heading", { name: "Publish Readiness" }), "studio readiness heading");
+  await expectOne(page.getByRole("heading", { name: "Source QA Queue" }), "studio source QA heading");
+  await expectOne(page.getByRole("heading", { name: "AI Asset Pipeline" }), "studio asset pipeline heading");
+  await expectOne(page.getByRole("heading", { name: "Teleprompter Script Workbench" }), "studio script workbench heading");
   await expectOne(page.getByText("No active setup", { exact: true }), "studio scanner no-active badge");
   await expectOne(
     page.getByText("No active 1:2 risk-reward setup is available after live quote validation.", { exact: false }),
     "studio scanner no-active copy"
   );
-  await expectOne(page.getByRole("button", { name: "Generate Daily Thumbnail" }), "generate thumbnail button");
+  assert.equal(await page.locator(".workflow-step").count(), 6, "studio workflow should render six pipeline stages");
+  assert.equal(await page.locator(".source-qa-item").count(), 6, "studio source QA queue should render six weighted articles");
+  assert.ok(await page.locator(".prompt-detail").count() >= 4, "studio prompt detail grid should render adapter metadata");
+  await expectOne(page.getByRole("button", { name: "Run Digest Check" }), "run digest check button");
+  await page.getByRole("button", { name: "Run Digest Check" }).click();
+  await expectOne(page.getByText("Digest check completed", { exact: true }), "digest check activity log item");
+  const fastSpeed = page.getByRole("button", { name: "Fast" });
+  await expectOne(fastSpeed, "fast teleprompter speed button");
+  await fastSpeed.click();
+  await expectOne(page.locator('.speed-btn.active').filter({ hasText: "Fast" }), "fast speed active state");
+  const assetButton = page.getByRole("button", { name: "Generate Daily Thumbnail" });
+  await expectOne(assetButton, "generate thumbnail button");
+  await assetButton.click();
+  await page.getByRole("button", { name: "Asset Generated" }).waitFor({ state: "visible", timeout: 5_000 });
 
   return {
     cycle,
@@ -148,18 +167,19 @@ async function verifyIndexChart(page, symbol) {
 }
 
 async function expectDailyContent(page) {
-  await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
-  await expectOne(page.getByText("Wed, 29 Apr, 2026", { exact: true }), "daily date");
-  await expectOne(page.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
-  await expectOne(page.getByRole("heading", { name: "1. What Changed Overnight" }), "changed overnight heading");
-  await expectOne(page.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
-  await expectOne(page.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
-  await expectOne(page.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
-  await expectOne(page.getByRole("heading", { name: "Latest Market Dashboard" }), "market dashboard heading");
-  await expectOne(page.getByText("Quick snapshot only:", { exact: false }), "market dashboard scope note");
+  const publicView = page.locator("#public-view");
+  await expectOne(publicView.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
+  await expectOne(publicView.getByText("Wed, 29 Apr, 2026", { exact: true }), "daily date");
+  await expectOne(publicView.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
+  await expectOne(publicView.getByRole("heading", { name: "1. What Changed Overnight" }), "changed overnight heading");
+  await expectOne(publicView.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
+  await expectOne(publicView.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
+  await expectOne(publicView.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
+  await expectOne(publicView.getByRole("heading", { name: "Latest Market Dashboard" }), "market dashboard heading");
+  await expectOne(publicView.getByText("Quick snapshot only:", { exact: false }), "market dashboard scope note");
   const dashboardSymbols = await page.evaluate(() => window.__MARKET_DASHBOARD_SYMBOLS__ ?? []);
   assert.deepEqual(dashboardSymbols, ["SPX", "NDX", "HSI", "NIFTY", "BANKNIFTY", "BRENT"]);
-  const setupCard = page.locator(".setup-card");
+  const setupCard = publicView.locator(".setup-card");
   await expectOne(setupCard, "algorithmic setup card");
   await expectOne(
     setupCard.getByText("No active 1:2 risk-reward setup has passed live quote validation.", { exact: false }),
@@ -167,19 +187,19 @@ async function expectDailyContent(page) {
   );
   assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "stale Nifty entry should not be visible");
   assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "stale Nifty target should not be visible");
-  await expectOne(page.locator("#quoteBoardToggle"), "quote board toggle");
-  await expectOne(page.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
-  await expectOne(page.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
+  await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
+  await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
+  await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
   for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
     assert.equal(await page.locator("#indexBoard .quote-region h3").filter({ hasText: region }).count(), 0, `${region} quote group should not render while collapsed`);
   }
   assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
-  await expectOne(page.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
-  await expectOne(page.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
-  await expectOne(page.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
-  const sourceCards = await page.locator(".source-card").count();
+  await expectOne(publicView.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
+  await expectOne(publicView.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
+  await expectOne(publicView.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
+  const sourceCards = await publicView.locator(".source-card").count();
   assert.ok(sourceCards >= 14, `expected at least 14 source cards, got ${sourceCards}`);
-  assert.equal(await page.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
+  assert.equal(await publicView.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
 }
 
 async function expandQuoteBoard(page) {
