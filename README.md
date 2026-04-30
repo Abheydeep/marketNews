@@ -1,6 +1,6 @@
 # Market Narrative Storyboard Engine
 
-Resume-grade MVP for an automated financial media system that turns overnight global market data, news sentiment, and rule-based technical analysis into a pre-market storyboard, teleprompter script, thumbnail prompt package, and public SEO summary.
+Resume-grade MVP for an automated financial media system that turns overnight global market data, news sentiment, and rule-based technical analysis into a public pre-market briefing plus a private creator studio with a daily reel script, teleprompter draft, and thumbnail prompt package.
 
 ## Monorepo Layout
 
@@ -19,7 +19,7 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 2. Backend concurrently loads market snapshots, news articles, and Nifty price bars.
 3. News is clustered into market narrative themes.
 4. Technical scanner validates only 1:2+ risk-reward setups.
-5. Script generator builds a deterministic teleprompter script.
+5. Script generator builds deterministic teleprompter and 45-60 second reel scripts.
 6. Asset pipeline stores a Stable Diffusion/ControlNet-ready prompt package.
 7. Public portal renders the daily digest with source attribution and `NewsArticle` JSON-LD.
 
@@ -62,11 +62,10 @@ Demo admin credentials:
 
 The no-install demo mirrors the mock workflow used by the Spring/Next implementation. It is included so the project is usable even before Java 17, Maven, Docker, and npm registry access are available.
 
-The demo is a polished single-page cockpit with three tabs:
+The demo keeps the public and private surfaces separate:
 
-- Public Briefing: overnight market chart, Nifty setup, and source-attributed news.
-- Studio Command: technical scanner chart, 1:2 RR levels, AI thumbnail simulation, and animated teleprompter.
-- Engine Architecture: stack overview and execution milestones for resume storytelling.
+- Public route `/`: public briefing and architecture only.
+- Private route `/admin`: Studio Command with daily reel script, scanner workbench, source QA, AI thumbnail simulation, and animated teleprompter.
 
 ## Daily 8:30 AM Summary
 
@@ -79,7 +78,9 @@ npm run daily:generate
 This writes:
 
 - `out/daily/YYYY-MM-DD-0830-digest.json`
-- `out/daily/YYYY-MM-DD-0830-summary.html`
+- `out/daily/YYYY-MM-DD-0830-summary.html` public-safe briefing
+- `out/daily/YYYY-MM-DD-0830-studio.html` private local studio
+- `out/daily/YYYY-MM-DD-0830-reel-script.md` private daily creator script
 
 To run it every market morning at 8:30 AM IST on macOS/Linux, add this cron entry:
 
@@ -108,7 +109,7 @@ After generating the daily summary, prepare a deployable static site:
 npm run site:publish -- --date 2026-04-29 --scheduled-time 08:30
 ```
 
-This creates `out/site/index.html` and `out/site/digest.json`. Use live Yahoo Finance market snapshots during generation with:
+This creates `out/site/index.html`, dated briefing pages, and public-safe digest JSON. The static export intentionally redacts private teleprompter/reel scripts and AI prompts. Use live Yahoo Finance market snapshots during generation with:
 
 ```bash
 npm run daily:generate -- --market-data live

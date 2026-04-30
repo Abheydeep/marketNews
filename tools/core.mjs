@@ -48,7 +48,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const tradeSetups = reconcileTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
-  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment);
+  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles);
   const asset = generateAsset(date, sentimentLabel);
 
   return {
@@ -60,6 +60,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     sentimentLabel,
     onePageSummary: script.onePageSummary,
     teleprompterScript: script.teleprompterScript,
+    reelScript: script.reelScript,
     publishedAt: null,
     marketSnapshots,
     news: articles,
@@ -269,7 +270,7 @@ export function labelFromScore(score) {
   return "VOLATILE";
 }
 
-export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment) {
+export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = []) {
   const title = `Nifty Pre-Market: ${titleSuffix(sentimentLabel)}`;
   const marketLine = snapshots
     .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
@@ -321,14 +322,74 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     `[VALIDATED SETUPS]\n${setupsText}`,
     "[RISK DISCLAIMER]\nThis is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled."
   ].join("\n\n");
+  const reelScript = generateReelScript({
+    date,
+    sentimentLabel,
+    snapshots,
+    themes,
+    setups,
+    articles
+  });
 
   return {
     digestDate: date,
     title,
     onePageSummary,
     teleprompterScript,
+    reelScript,
     overallSentiment: round(overallSentiment, 3)
   };
+}
+
+function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, articles }) {
+  const pressure = strongestArticle(articles, (article) => Number(article.sentimentScore) < 0) ?? articles[0];
+  const support = strongestArticle(articles, (article) => Number(article.sentimentScore) > 0);
+  const usLine = conciseRegionLine(snapshots, "US Overnight");
+  const asiaLine = conciseRegionLine(snapshots, "Asia Watch");
+  const indiaLine = conciseRegionLine(snapshots, "India Open");
+  const macroLine = conciseRegionLine(snapshots, "Macro Hedges");
+  const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
+  const setupLine = setup
+    ? `For trades, I am only interested if ${setup.symbol} accepts near ${formatNumber(setup.entry)}. Stop is ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, so the risk-reward stays above 1:2.`
+    : "For trades, there is no fresh 1:2 setup yet. That means no chasing the first candle; I want the first-hour range to form first.";
+  const toneLine = {
+    BULLISH: "The tone is constructive, but I still want confirmation after the open.",
+    BEARISH: "The tone is cautious, so the open is about risk control first.",
+    VOLATILE: "The tone is mixed, so today is a level-by-level market.",
+    NEUTRAL: "The tone is balanced, so the first hour should define direction."
+  }[sentimentLabel] ?? "The tone is mixed, so the first hour matters.";
+  const pressureLine = pressure
+    ? `${pressure.takeaway || pressure.summary} Source check: ${pressure.sourceName}.`
+    : themes[0]?.summary || "Global cues are mixed.";
+  const supportLine = support
+    ? `The offset is ${support.takeaway || support.summary} Source check: ${support.sourceName}.`
+    : "The offset is selective domestic support, but it needs breadth confirmation.";
+  const watchLine = pressure?.watchFor || support?.watchFor || "Watch opening breadth, Bank Nifty behavior, and whether Nifty holds the first-hour range.";
+
+  return [
+    `[REEL SCRIPT | ${date} | 45-60 sec]`,
+    "",
+    "[HOOK]",
+    `Before the market opens, here is the one thing Indian traders need to know: ${toneLine}`,
+    "",
+    "[GLOBAL CUES]",
+    `US setup: ${usLine || "US data is awaiting refresh"}. Asia check: ${asiaLine || "Asia is mixed"}. Macro hedge: ${macroLine || "Dollar and crude need monitoring"}.`,
+    "",
+    "[WHY IT MATTERS]",
+    `${pressureLine} ${supportLine}`,
+    "",
+    "[INDIA OPEN]",
+    `For India, ${indiaLine || "Nifty and Bank Nifty need first-hour confirmation"}. If banks support and crude cools, dips can stay selective. If breadth weakens, respect the risk-off signal.`,
+    "",
+    "[TRADE PLAN]",
+    setupLine,
+    "",
+    "[WATCH NEXT]",
+    watchLine,
+    "",
+    "[CLOSE]",
+    "This is for education and market preparation, not investment advice. Save this before the open and trade only your own plan."
+  ].join("\n");
 }
 
 export function generateAsset(date, sentimentLabel) {
@@ -381,6 +442,29 @@ export function newsArticleJsonLd(digest) {
   };
 }
 
+export function reelScriptMarkdown(digest) {
+  return [
+    `# ${digest.title}`,
+    "",
+    `Date: ${digest.digestDate}`,
+    `Sentiment: ${digest.sentimentLabel}`,
+    `Sources: ${digest.news?.length ?? 0}`,
+    "",
+    "## Daily Reel Script",
+    "",
+    digest.reelScript || digest.teleprompterScript || "",
+    "",
+    "## Source Anchors",
+    "",
+    ...(digest.news ?? []).slice(0, 8).map((article) =>
+      `- ${article.sourceName}: ${article.headline} (${article.sourceUrl})`
+    ),
+    "",
+    "Educational market preparation only. Not investment advice.",
+    ""
+  ].join("\n");
+}
+
 export function todayIso() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -403,6 +487,36 @@ function titleSuffix(label) {
     VOLATILE: "Mixed Cues Put Levels in Focus",
     NEUTRAL: "Balanced Start Ahead of First-Hour Confirmation"
   }[label];
+}
+
+function strongestArticle(articles, predicate) {
+  return articles
+    .filter(predicate)
+    .sort((left, right) =>
+      Math.abs(Number(right.sentimentScore || 0) * Number(right.entityMatchScore || 0)) -
+      Math.abs(Number(left.sentimentScore || 0) * Number(left.entityMatchScore || 0))
+    )[0];
+}
+
+function conciseRegionLine(snapshots, region) {
+  const selected = snapshots.filter((snapshot) => snapshot.marketRegion === region);
+  if (!selected.length) {
+    return "";
+  }
+  const positives = selected.filter((snapshot) => Number(snapshot.changePercent) >= 0).length;
+  const leader = selected
+    .slice()
+    .sort((left, right) => Math.abs(Number(right.changePercent)) - Math.abs(Number(left.changePercent)))[0];
+  const label = region === "Asia Watch"
+    ? `${positives} of ${selected.length} top Asian country markets are higher`
+    : `${positives} of ${selected.length} tracked markets are higher`;
+  return `${label}; lead move is ${leader.name} ${formatChange(leader.changePercent)}`;
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("en-IN", {
+    maximumFractionDigits: 2
+  }).format(Number(value));
 }
 
 function formatChange(changePercent) {

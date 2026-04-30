@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createDemoApp } from "./demo-app.mjs";
@@ -11,6 +11,7 @@ import {
   labelFromScore,
   loadSeeds,
   newsArticleJsonLd,
+  reelScriptMarkdown,
   reconcileTradeSetupsWithMarketSnapshots,
   scanPriceSeries,
   weightedSentiment
@@ -108,6 +109,10 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.equal(digest.sentimentLabel, "BEARISH");
   assert.ok(digest.onePageSummary.includes("Educational note"));
   assert.ok(digest.teleprompterScript.includes("[RISK DISCLAIMER]"));
+  assert.ok(digest.reelScript.includes("[REEL SCRIPT"));
+  assert.ok(digest.reelScript.includes("[HOOK]"));
+  assert.ok(digest.reelScript.includes("[TRADE PLAN]"));
+  assert.ok(reelScriptMarkdown(digest).includes("## Daily Reel Script"));
   assert.ok(digest.asset.positivePrompt.includes("identity-locked creator portrait"));
   assert.ok(digest.news.length >= 14);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
@@ -290,7 +295,9 @@ await test("static publisher emits archive root and dated daily pages", async ()
   assert.ok(publisher.includes("Root index.html is the digest archive"));
   assert.ok(publisher.includes("archive.json"));
   assert.ok(publisher.includes("join(siteDir, slug"));
+  assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
+  assert.ok(!publisher.includes("copyFile(sourceJson"));
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: true"));
@@ -300,6 +307,15 @@ await test("static publisher emits archive root and dated daily pages", async ()
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
   assert.ok(importer.includes("archive.digests"));
   assert.ok(importer.includes('"archive", "daily"'));
+  assert.ok(importer.includes("publicDigestPayload"));
+
+  const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
+  for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {
+    const archiveDigest = await readFile(join(rootDir, "archive", "daily", fileName), "utf8");
+    assert.ok(!archiveDigest.includes("teleprompterScript"), `${fileName} should not archive private teleprompterScript`);
+    assert.ok(!archiveDigest.includes("reelScript"), `${fileName} should not archive private reelScript`);
+    assert.ok(!archiveDigest.includes("positivePrompt"), `${fileName} should not archive private asset prompt`);
+  }
 });
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
@@ -356,7 +372,10 @@ await test("demo app serves public and admin flows without external packages", a
   const publicHtml = await app.request("GET", "/");
   assert.ok(publicHtml.body.includes("application/ld+json"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
-  assert.ok(publicHtml.body.includes("Studio Command (Admin)"));
+  assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
+  assert.ok(!publicHtml.body.includes('id="studio-view"'));
+  assert.ok(!publicHtml.body.includes("Studio Command Center"));
+  assert.ok(!publicHtml.body.includes("[REEL SCRIPT"));
   assert.ok(publicHtml.body.includes("Engine Architecture"));
   assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("1. What Changed Overnight"));
@@ -423,11 +442,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("mock quote source"));
   assert.ok(!publicHtml.body.includes("example.com"));
   assert.ok(publicHtml.body.includes("overnightChart"));
-  assert.ok(publicHtml.body.includes("teleprompterContainer"));
-  assert.ok(publicHtml.body.includes("generateAssetBtn"));
+  assert.ok(!publicHtml.body.includes('id="teleprompterContainer"'));
+  assert.ok(!publicHtml.body.includes('id="generateAssetBtn"'));
   const adminHtml = await app.request("GET", "/admin");
   assert.ok(adminHtml.body.includes("Studio Command Center"));
   assert.ok(adminHtml.body.includes('"studio-view"'));
+  assert.ok(adminHtml.body.includes("Daily Reel Script"));
+  assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
+  assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
 });
 
 for (const result of results) {

@@ -12,11 +12,11 @@ export async function createDemoApp(date = todayIso()) {
       const url = new URL(path, "http://localhost");
 
       if (method === "GET" && url.pathname === "/") {
-        return htmlResponse(cockpitPage(currentDigest, "public-view"));
+        return htmlResponse(cockpitPage(currentDigest, "public-view", { includeStudio: false }));
       }
 
       if (method === "GET" && url.pathname === "/admin") {
-        return htmlResponse(cockpitPage(currentDigest, "studio-view"));
+        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true }));
       }
 
       if (method === "GET" && url.pathname === "/api/public/digest/today") {

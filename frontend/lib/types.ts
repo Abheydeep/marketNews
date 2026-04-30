@@ -66,6 +66,7 @@ export type PublicDigest = {
   sentimentLabel: SentimentLabel;
   onePageSummary: string;
   teleprompterScript: string;
+  reelScript: string;
   publishedAt: string | null;
   marketSnapshots: MarketSnapshot[];
   news: NewsCard[];

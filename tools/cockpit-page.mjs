@@ -1,6 +1,12 @@
 import { newsArticleJsonLd } from "./core.mjs";
 
-export function cockpitPage(digest, initialTab = "public-view") {
+export function cockpitPage(digest, initialTab = "public-view", options = {}) {
+  const includeStudio = options.includeStudio ?? true;
+  const safeInitialTab = includeStudio || initialTab !== "studio-view" ? initialTab : "public-view";
+  const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
+  const studioTabHtml = includeStudio
+    ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
+    : "";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2070,6 +2076,46 @@ export function cockpitPage(digest, initialTab = "public-view") {
       margin-top: 18px;
     }
 
+    .reel-script-panel {
+      margin-bottom: 24px;
+      border-color: rgba(17, 24, 39, 0.13);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .reel-script-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reel-script-actions span {
+      border-radius: 999px;
+      background: #eef2ff;
+      padding: 7px 10px;
+      color: #3730a3;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .reel-script-box {
+      display: block;
+      width: 100%;
+      min-height: 360px;
+      resize: vertical;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #0b1220;
+      color: #f8fafc;
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 15px;
+      line-height: 1.68;
+      white-space: pre-wrap;
+    }
+
     .studio-action-btn,
     .studio-ghost-btn {
       border-radius: 8px;
@@ -2897,6 +2943,16 @@ export function cockpitPage(digest, initialTab = "public-view") {
         flex-direction: column;
       }
 
+      .reel-script-actions {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .reel-script-actions span {
+        width: 100%;
+        text-align: center;
+      }
+
       .studio-action-btn,
       .studio-ghost-btn {
         width: 100%;
@@ -2922,7 +2978,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
         <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive"><span class="brand-mark">M</span><span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
-          <button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>
+          ${studioTabHtml}
           <button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
         </div>
       </div>
@@ -3035,6 +3091,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       </div>
     </div>
 
+    ${includeStudio ? `
     <section id="studio-view" class="tab-content hidden">
       <header class="studio-hero">
         <div>
@@ -3060,6 +3117,21 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
       <section class="studio-command-grid" aria-label="Studio run summary">
         ${studioMetricCards(digest)}
+      </section>
+
+      <section class="panel reel-script-panel" aria-label="Daily reel script">
+        <div class="studio-panel-head">
+          <div>
+            <h2>Daily Reel Script</h2>
+            <p>Private 45-60 second creator script for today&apos;s pre-market reel. This is generated locally and is not shipped on the public GitHub Pages briefing.</p>
+          </div>
+          <div class="reel-script-actions">
+            <span>${escapeHtml(reelScriptStats(digest))}</span>
+            <button id="copyReelScriptBtn" class="studio-action-btn" type="button">Copy Reel Script</button>
+          </div>
+        </div>
+        <textarea id="dailyReelScript" class="reel-script-box" readonly>${escapeHtml(digest.reelScript || digest.teleprompterScript || "")}</textarea>
+        <p id="copyReelScriptState" class="studio-note">Ready for today&apos;s recording.</p>
       </section>
 
       <section class="studio-workflow">
@@ -3186,6 +3258,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
         </ul>
       </section>
     </section>
+    ` : ""}
 
     <section id="architecture-view" class="tab-content hidden">
       <header class="page-header">
@@ -3256,8 +3329,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
   </main>
 
   <script>
-    window.__DIGEST__ = ${JSON.stringify(digest)};
-    window.__INITIAL_TAB__ = ${JSON.stringify(initialTab)};
+    window.__DIGEST__ = ${JSON.stringify(clientDigest)};
+    window.__INITIAL_TAB__ = ${JSON.stringify(safeInitialTab)};
+    window.__INCLUDE_STUDIO__ = ${JSON.stringify(includeStudio)};
 
     document.addEventListener('DOMContentLoaded', () => {
       const tabs = document.querySelectorAll('.tab-btn');
@@ -3271,7 +3345,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
         contents.forEach((content) => {
           content.classList.toggle('hidden', content.id !== target);
         });
-        if (target === 'studio-view') {
+        if (target === 'studio-view' && window.__INCLUDE_STUDIO__) {
           drawScannerChart();
         }
         if (target === 'public-view') {
@@ -3285,11 +3359,14 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
       activate(window.__INITIAL_TAB__);
       drawOvernightChart();
-      drawScannerChart();
-      bindTeleprompter();
-      bindTeleprompterControls();
-      bindAssetGeneration();
-      bindStudioActions();
+      if (window.__INCLUDE_STUDIO__) {
+        drawScannerChart();
+        bindTeleprompter();
+        bindTeleprompterControls();
+        bindAssetGeneration();
+        bindStudioActions();
+        bindReelScriptCopy();
+      }
       bindQuoteBoardToggle();
       bindSourceFilters();
       initLiveIndexBoard();
@@ -4082,6 +4159,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       ctx.closePath();
     }
 
+    ${includeStudio ? `
     function bindTeleprompter() {
       const button = document.getElementById('togglePrompterBtn');
       const container = document.getElementById('teleprompterContainer');
@@ -4244,6 +4322,32 @@ export function cockpitPage(digest, initialTab = "public-view") {
         });
       }
     }
+
+    function bindReelScriptCopy() {
+      const button = document.getElementById('copyReelScriptBtn');
+      const box = document.getElementById('dailyReelScript');
+      const state = document.getElementById('copyReelScriptState');
+      if (!button || !box) return;
+      button.addEventListener('click', async () => {
+        const text = box.value || '';
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            box.focus();
+            box.select();
+            document.execCommand('copy');
+          }
+          if (state) state.textContent = 'Copied. Paste this into your notes or teleprompter before recording.';
+          button.textContent = 'Copied';
+        } catch {
+          box.focus();
+          box.select();
+          if (state) state.textContent = 'Script selected. Use copy from your keyboard.';
+        }
+      });
+    }
+    ` : ""}
 
     function bindSourceFilters() {
       const buttons = [...document.querySelectorAll('[data-source-filter]')];
@@ -4911,6 +5015,15 @@ function studioMetricCards(digest) {
   `).join("");
 }
 
+function reelScriptStats(digest) {
+  const words = String(digest.reelScript || digest.teleprompterScript || "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .length;
+  const seconds = Math.max(30, Math.round(words / 2.45));
+  return `${words} words / ~${seconds}s`;
+}
+
 function studioWorkflowHtml(digest) {
   const setup = niftySetup(digest);
   const stages = [
@@ -5163,6 +5276,25 @@ function marketSetupCopy(digest) {
     return "No 1:2 risk-reward setup has passed the scanner yet. Let the first hour define direction before taking a view.";
   }
   return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the scanner confirms ${setup.riskReward}R.`;
+}
+
+function publicDigestPayload(digest) {
+  const {
+    teleprompterScript,
+    reelScript,
+    asset,
+    ...publicFields
+  } = digest;
+
+  return {
+    ...publicFields,
+    asset: asset
+      ? {
+        sentimentLabel: asset.sentimentLabel,
+        assetUrl: asset.assetUrl
+      }
+      : null
+  };
 }
 
 function sentimentPinPosition(score) {

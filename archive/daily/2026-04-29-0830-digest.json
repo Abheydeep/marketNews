@@ -6,7 +6,6 @@
   "overallSentiment": -0.255,
   "sentimentLabel": "BEARISH",
   "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.247%, Nasdaq 100 +0.253%, Dow Jones -0.751%, Nifty 50 +0.758%, Bank Nifty +0.006%, Nikkei 225 -1.024%, Hang Seng +1.682%, Shanghai Composite +0.518%, KOSPI +0.751%, Taiwan Weighted -0.552%, Straits Times -0.547%, ASX 200 -0.272%, US Dollar Index +0.305%, Brent Crude +6.255%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n- Global Risk-Off Cue: US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n- Volatile Opening Bias: Gold remained bid, showing that defensive hedging has not fully left the market despite selective equity strength.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n- Positive Macro Tailwind: Domestic liquidity indicators stayed orderly, offering a partial cushion against the tighter global macro backdrop.\n\nValidated Trading Setups:\n- No active 1:2 RR setup passed all scanner and live-quote filters.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
-  "teleprompterScript": "[OPENING]\nGood morning. The overnight setup is cautious, with global pressure visible before the Indian open.\n\n[GLOBAL CUES]\nS&P 500 closed -0.247%. Nasdaq 100 closed +0.253%. Dow Jones closed -0.751%. Nifty 50 closed +0.758%. Bank Nifty closed +0.006%. Nikkei 225 closed -1.024%. Hang Seng closed +1.682%. Shanghai Composite closed +0.518%. KOSPI closed +0.751%. Taiwan Weighted closed -0.552%. Straits Times closed -0.547%. ASX 200 closed -0.272%. US Dollar Index closed +0.305%. Brent Crude closed +6.255%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n\nTheme: Global Risk-Off Cue. US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n\nTheme: Volatile Opening Bias. Gold remained bid, showing that defensive hedging has not fully left the market despite selective equity strength.\n\nTheme: Sector-Specific Cushion. Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n\nTheme: Positive Macro Tailwind. Domestic liquidity indicators stayed orderly, offering a partial cushion against the tighter global macro backdrop.\n\n[NIFTY AND BANK NIFTY VIEW]\nLet price confirm the opening bias. Do not chase the first candle; wait for acceptance around the levels.\n\n[VALIDATED SETUPS]\nNo trade setup qualifies under the 1:2 risk-reward framework after live quote validation.\n\n[RISK DISCLAIMER]\nThis is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -10724,19 +10723,14 @@
     }
   ],
   "tradeSetups": [],
-  "asset": {
-    "sentimentLabel": "BEARISH",
-    "positivePrompt": "photorealistic Indian financial news thumbnail, identity-locked creator portrait, crimson risk dashboard, falling candles, serious financial presenter, cinematic studio lighting, sharp facial features, realistic skin texture, 8k editorial detail",
-    "negativePrompt": "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands",
-    "palette": "crimson, graphite, cool white",
-    "referenceImageId": "creator-ref-001",
-    "controlNetMode": "ControlNet Canny + Depth identity lock",
-    "assetUrl": "/assets/mock/daily-thumbnail-2026-04-29.webp"
-  },
   "marketDataMode": "live",
   "marketDataError": null,
   "durationMillis": 798,
   "scheduledFor": "2026-04-29T08:30:00+05:30",
   "generatedAt": "2026-04-29T18:18:38.299Z",
-  "runMode": "scheduled-live-market-data"
+  "runMode": "scheduled-live-market-data",
+  "asset": {
+    "sentimentLabel": "BEARISH",
+    "assetUrl": "/assets/mock/daily-thumbnail-2026-04-29.webp"
+  }
 }

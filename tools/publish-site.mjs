@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
@@ -14,7 +14,8 @@ const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 
 await mkdir(archiveDir, { recursive: true });
-await copyFile(sourceJson, archivedJson);
+const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
+await writeFile(archivedJson, `${JSON.stringify(publicDigestPayload(sourceDigest), null, 2)}\n`, "utf8");
 
 const digests = await loadArchivedDigests();
 if (!digests.length) {
@@ -33,14 +34,14 @@ for (const digest of digests) {
     canonicalPath: `/${slug}/`
   };
   await mkdir(digestDir, { recursive: true });
-  await writeFile(join(digestDir, "index.html"), cockpitPage(pageDigest, "public-view"), "utf8");
-  await writeFile(join(digestDir, "digest.json"), `${JSON.stringify(pageDigest, null, 2)}\n`, "utf8");
+  await writeFile(join(digestDir, "index.html"), cockpitPage(pageDigest, "public-view", { includeStudio: false }), "utf8");
+  await writeFile(join(digestDir, "digest.json"), `${JSON.stringify(publicDigestPayload(pageDigest), null, 2)}\n`, "utf8");
 }
 
 const latest = digests[0];
 await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
-await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(latest, null, 2)}\n`, "utf8");
-await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests }, null, 2)}\n`, "utf8");
+await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
+await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(publicDigestPayload) }, null, 2)}\n`, "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -363,7 +364,7 @@ function archivePage(digests) {
     <section class="hero">
       <p class="eyebrow">Daily Pre-Market Archive</p>
       <h1>All Market Narrative briefings</h1>
-      <p>The root page now works like a news archive. Open a dated briefing for the full quote board, Asian market watch, source cards, technical setup, teleprompter, and chart links.</p>
+      <p>The root page now works like a news archive. Open a dated briefing for the full quote board, Asian market watch, source cards, technical setup, and chart links.</p>
     </section>
     <section class="summary-row" aria-label="Archive summary">
       <div class="summary-chip"><span>Total briefings</span><strong>${digests.length}</strong></div>
@@ -426,6 +427,25 @@ function countryForSymbol(symbol) {
     STI: "Singapore",
     ASX200: "Australia"
   }[symbol] || "";
+}
+
+function publicDigestPayload(digest) {
+  const {
+    teleprompterScript,
+    reelScript,
+    asset,
+    ...publicFields
+  } = digest;
+
+  return {
+    ...publicFields,
+    asset: asset
+      ? {
+        sentimentLabel: asset.sentimentLabel,
+        assetUrl: asset.assetUrl
+      }
+      : null
+  };
 }
 
 function sentimentColor(label) {

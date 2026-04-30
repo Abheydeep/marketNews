@@ -24,15 +24,16 @@ for (const digest of digests) {
   if (!digest?.digestDate) {
     continue;
   }
-  const label = scheduledLabelForDigest(digest).replace(":", "");
-  const fileName = `${digest.digestDate}-${label}-digest.json`;
+  const safeDigest = publicDigestPayload(digest);
+  const label = scheduledLabelForDigest(safeDigest).replace(":", "");
+  const fileName = `${safeDigest.digestDate}-${label}-digest.json`;
   const localPath = join(archiveDir, fileName);
   const localDigest = await readExistingDigest(localPath);
-  if (localDigest && shouldPreserveLocalDigest(localDigest, digest)) {
+  if (localDigest && shouldPreserveLocalDigest(localDigest, safeDigest)) {
     preserved += 1;
     continue;
   }
-  await writeFile(localPath, `${JSON.stringify(digest, null, 2)}\n`, "utf8");
+  await writeFile(localPath, `${JSON.stringify(safeDigest, null, 2)}\n`, "utf8");
   imported += 1;
 }
 
@@ -76,6 +77,25 @@ function thumbnailCount(digest) {
     return 0;
   }
   return digest.news.filter((article) => article.thumbnail?.alt).length;
+}
+
+function publicDigestPayload(digest) {
+  const {
+    teleprompterScript,
+    reelScript,
+    asset,
+    ...publicFields
+  } = digest;
+
+  return {
+    ...publicFields,
+    asset: asset
+      ? {
+        sentimentLabel: asset.sentimentLabel,
+        assetUrl: asset.assetUrl
+      }
+      : null
+  };
 }
 
 function scheduledLabelForDigest(digest) {

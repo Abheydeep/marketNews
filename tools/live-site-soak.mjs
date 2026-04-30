@@ -6,8 +6,8 @@ const { chromium } = require("playwright");
 
 const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
-const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "29apr2026";
-const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Wed, 29 Apr, 2026";
+const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "30apr2026";
+const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Thu, 30 Apr, 2026";
 const expectedChartSymbols = [
   "SPX",
   "NDX",
@@ -51,7 +51,7 @@ try {
         `charts=${result.verifiedCharts}`,
         `sampleChart="${result.chartTitle}"`,
         `sampleLink=${result.chartHref}`,
-        `admin=${result.adminReady}`
+        `studioPublic=${result.studioPublic}`
       ].join(" | ")
     );
   }
@@ -91,35 +91,11 @@ async function runCycle(page, cycle) {
     verifiedCharts.push(await verifyIndexChart(page, symbol));
   }
 
-  const adminTab = page.getByRole("button", { name: "Studio Command (Admin)" });
-  await expectOne(adminTab, "studio command tab");
-  await adminTab.click();
-  await expectOne(page.getByRole("heading", { name: "Studio Command Center" }), "studio command heading");
-  await expectOne(page.getByRole("heading", { name: "Production Pipeline" }), "studio pipeline heading");
-  await expectOne(page.getByRole("heading", { name: "Narrative QA" }), "studio narrative QA heading");
-  await expectOne(page.getByRole("heading", { name: "Publish Readiness" }), "studio readiness heading");
-  await expectOne(page.getByRole("heading", { name: "Source QA Queue" }), "studio source QA heading");
-  await expectOne(page.getByRole("heading", { name: "AI Asset Pipeline" }), "studio asset pipeline heading");
-  await expectOne(page.getByRole("heading", { name: "Teleprompter Script Workbench" }), "studio script workbench heading");
-  await expectOne(page.getByText("No active setup", { exact: true }), "studio scanner no-active badge");
-  await expectOne(
-    page.getByText("No active 1:2 risk-reward setup is available after live quote validation.", { exact: false }),
-    "studio scanner no-active copy"
-  );
-  assert.equal(await page.locator(".workflow-step").count(), 6, "studio workflow should render six pipeline stages");
-  assert.equal(await page.locator(".source-qa-item").count(), 6, "studio source QA queue should render six weighted articles");
-  assert.ok(await page.locator(".prompt-detail").count() >= 4, "studio prompt detail grid should render adapter metadata");
-  await expectOne(page.getByRole("button", { name: "Run Digest Check" }), "run digest check button");
-  await page.getByRole("button", { name: "Run Digest Check" }).click();
-  await expectOne(page.getByText("Digest check completed", { exact: true }), "digest check activity log item");
-  const fastSpeed = page.getByRole("button", { name: "Fast" });
-  await expectOne(fastSpeed, "fast teleprompter speed button");
-  await fastSpeed.click();
-  await expectOne(page.locator('.speed-btn.active').filter({ hasText: "Fast" }), "fast speed active state");
-  const assetButton = page.getByRole("button", { name: "Generate Daily Thumbnail" });
-  await expectOne(assetButton, "generate thumbnail button");
-  await assetButton.click();
-  await page.getByRole("button", { name: "Asset Generated" }).waitFor({ state: "visible", timeout: 5_000 });
+  assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "public page should not expose Studio Command tab");
+  assert.equal(await page.locator("#studio-view").count(), 0, "public page should not render studio section");
+  const publicDigest = await fetch(`${baseUrl.replace(/\/$/, "")}/${dailySlug}/digest.json`).then((response) => response.json());
+  assert.equal(Object.hasOwn(publicDigest, "teleprompterScript"), false, "public digest.json must redact teleprompterScript");
+  assert.equal(Object.hasOwn(publicDigest, "reelScript"), false, "public digest.json must redact reelScript");
 
   return {
     cycle,
@@ -127,7 +103,7 @@ async function runCycle(page, cycle) {
     chartTitle: verifiedCharts[0].title,
     chartHref: verifiedCharts[0].href,
     verifiedCharts: verifiedCharts.length,
-    adminReady: true
+    studioPublic: false
   };
 }
 

@@ -11,6 +11,8 @@ export const mockDigest: PublicDigest = {
     "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Brent Crude +1.64%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient.\n\nValidated Trading Setups:\n- BANKNIFTY BULLISH entry 50960, stop 50383.23, target 52228.89 (RR 2.2)\n- NIFTY BULLISH entry 22705, stop 22428.45, target 23313.41 (RR 2.2)",
   teleprompterScript:
     "[OPENING]\nGood morning. The overnight setup is cautious, with global pressure visible before the Indian open.\n\n[GLOBAL CUES]\nS&P 500 closed -0.82%. Nasdaq 100 closed -1.21%. Brent Crude closed +1.64%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Energy prices moved higher overnight as traders priced fresh supply risk.\n\n[VALIDATED SETUPS]\nNIFTY and BANKNIFTY are valid only if price respects the listed invalidation levels.\n\n[RISK DISCLAIMER]\nThis is educational analysis for content planning.",
+  reelScript:
+    "[REEL SCRIPT | 45-60 sec]\n\n[HOOK]\nBefore the open, Indian traders need to watch crude and banks first.\n\n[GLOBAL CUES]\nUS risk appetite softened and Brent is firm, so the open needs confirmation.\n\n[TRADE PLAN]\nNo chasing. I only take a 1:2 setup if price accepts the level and respects the stop.\n\n[CLOSE]\nEducational market preparation only, not investment advice.",
   publishedAt: null,
   marketSnapshots: [
     { symbol: "SPX", name: "S&P 500", closeValue: 5069.53, changePercent: -0.82, source: "Alpha Vantage Mock", marketRegion: "US Overnight", session: "us", tradingViewSymbol: "SP:SPX" },

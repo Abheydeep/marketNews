@@ -170,9 +170,11 @@ async function verifyDailyPage(page, daily, stamp) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
   await verifySummary(page, daily);
   await verifyQuoteBoard(page, daily);
+  assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, `${daily.slug} should not expose Studio Command`);
+  assert.equal(await page.locator("#studio-view").count(), 0, `${daily.slug} should not render studio section`);
+  await verifyPublicDigestJson(daily, stamp);
   const chartResult = await verifyCharts(page, daily);
   const sourceLinks = await clickSourceLinks(page, daily);
-  const studioButtons = await verifyStudio(page, daily);
   await verifyArchitecture(page, daily);
 
   return {
@@ -180,16 +182,24 @@ async function verifyDailyPage(page, daily, stamp) {
     chartButtons: chartResult.buttons,
     chartExternalLinks: chartResult.externalLinks,
     sourceLinks,
-    studioButtons
+    studioButtons: 0
   };
+}
+
+async function verifyPublicDigestJson(daily, stamp) {
+  const response = await fetch(`${baseUrl}/${daily.slug}/digest.json?fullqa=${stamp}`);
+  assert.equal(response.ok, true, `${daily.slug} public digest.json should load`);
+  const digest = await response.json();
+  assert.equal(Object.hasOwn(digest, "teleprompterScript"), false, `${daily.slug} public digest.json should redact teleprompterScript`);
+  assert.equal(Object.hasOwn(digest, "reelScript"), false, `${daily.slug} public digest.json should redact reelScript`);
+  assert.equal(digest.asset?.positivePrompt, undefined, `${daily.slug} public digest.json should redact asset prompts`);
 }
 
 async function verifyTabs(page, daily) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  await clickTab(page, "Studio Command (Admin)", "Studio Command Center");
   await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  return 4;
+  return 3;
 }
 
 async function clickTab(page, name, expectedHeading) {
@@ -310,37 +320,6 @@ async function verifySourceFilters(page, daily) {
   await page.locator('[data-source-filter="all"]').click();
   await expectOne(page.locator('[data-source-filter="all"][aria-pressed="true"]'), `${daily.slug} all source filter active`);
   assert.ok(await page.locator(".source-card:visible").count() >= 14, `${daily.slug} all source filter should restore cards`);
-}
-
-async function verifyStudio(page, daily) {
-  await clickTab(page, "Studio Command (Admin)", "Studio Command Center");
-  const actions = [
-    { name: "Run Digest Check", expected: "Digest check completed" },
-    { name: "Regenerate Script", expected: "Script regeneration simulated" },
-    { name: "Publish Digest", expected: "Publish queued" }
-  ];
-  for (const action of actions) {
-    const button = page.getByRole("button", { name: action.name });
-    await expectOne(button, `${daily.slug} ${action.name}`);
-    await button.click();
-    await expectOne(page.getByText(action.expected, { exact: true }), `${daily.slug} ${action.expected}`);
-  }
-  for (const speed of ["Slow", "Normal", "Fast", "Reset"]) {
-    const button = page.getByRole("button", { name: speed });
-    await expectOne(button, `${daily.slug} ${speed} speed button`);
-    await button.click();
-  }
-  const play = page.locator("#togglePrompterBtn");
-  await expectOne(play, `${daily.slug} play script`);
-  await play.click();
-  await expectOne(page.locator("#teleprompterContainer.playing"), `${daily.slug} teleprompter playing`);
-  await play.click();
-  assert.equal(await page.locator("#teleprompterContainer.playing").count(), 0, `${daily.slug} teleprompter pauses`);
-  const asset = page.getByRole("button", { name: "Generate Daily Thumbnail" });
-  await expectOne(asset, `${daily.slug} generate thumbnail`);
-  await asset.click();
-  await page.getByRole("button", { name: "Asset Generated" }).waitFor({ state: "visible", timeout: 5_000 });
-  return actions.length + 4 + 3;
 }
 
 async function verifyArchitecture(page, daily) {
