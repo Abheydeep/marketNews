@@ -16,25 +16,46 @@ export function projectComponentsPage({ digests = [] } = {}) {
   <title>Market Narrative | Project Components Map</title>
   <style>
     :root {
-      --paper: #f4f5f7;
-      --ink: #111827;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --panel: #ffffff;
-      --blue: #2563eb;
-      --green: #059669;
-      --red: #dc2626;
-      --gold: #f59e0b;
+      --paper: #050816;
+      --ink: #f8fafc;
+      --muted: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(15, 23, 42, 0.62);
+      --blue: #60a5fa;
+      --green: #34d399;
+      --red: #fb7185;
+      --gold: #fbbf24;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background: var(--paper);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.32), transparent 32vw),
+        radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.30), transparent 34vw),
+        radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.18), transparent 28vw),
+        linear-gradient(135deg, #030712 0%, #08111f 46%, #111827 100%);
       color: var(--ink);
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 42%);
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     a {
@@ -567,6 +588,115 @@ export function projectComponentsPage({ digests = [] } = {}) {
       line-height: 1.45;
     }
 
+    .topbar {
+      background: rgba(3, 7, 18, 0.66);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-mark {
+      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
+      box-shadow: 0 0 34px rgba(34, 211, 238, 0.28);
+    }
+
+    .nav-link,
+    .nav-link.dark {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(15, 23, 42, 0.52);
+      color: #f8fafc;
+    }
+
+    .nav-link.dark {
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28);
+    }
+
+    .hero-card,
+    .panel,
+    details.component,
+    .stat,
+    .map-node,
+    .repo-card,
+    .flow-list li,
+    .body-card,
+    .file-list li,
+    .boundary-card {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    h1,
+    .section-title h2,
+    .stat strong,
+    .map-node strong,
+    .repo-card strong,
+    .flow-list strong,
+    details.component summary h3,
+    .body-card strong,
+    .boundary-card h3,
+    .chev {
+      color: #f8fafc;
+    }
+
+    .hero-copy,
+    .section-title p,
+    .map-node small,
+    .repo-card p,
+    .flow-list span,
+    details.component summary p,
+    .body-card p,
+    .body-card li,
+    .file-list li,
+    .boundary-card li {
+      color: #cbd5e1;
+    }
+
+    .eyebrow,
+    .stat span,
+    .map-node span,
+    .arrow-row,
+    .legend span,
+    .chip {
+      color: #9fb0c8;
+    }
+
+    .legend span,
+    .chip,
+    code,
+    .chev {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    code {
+      color: #bfdbfe;
+    }
+
+    .legend .public,
+    .boundary-card.public {
+      border-color: rgba(52, 211, 153, 0.28);
+      background: rgba(52, 211, 153, 0.12);
+      color: #bbf7d0;
+    }
+
+    .legend .private,
+    .boundary-card.private {
+      border-color: rgba(251, 113, 133, 0.28);
+      background: rgba(251, 113, 133, 0.12);
+      color: #fecdd3;
+    }
+
+    .legend .automation {
+      background: rgba(96, 165, 250, 0.16);
+      color: #bfdbfe;
+    }
+
+    .component-body,
+    .arrow-row span {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
     @media (max-width: 960px) {
       .hero,
       .map,
@@ -617,7 +747,7 @@ export function projectComponentsPage({ digests = [] } = {}) {
     }
   </style>
 </head>
-<body>
+<body class="components-dark">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">

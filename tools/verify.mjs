@@ -360,8 +360,9 @@ await test("static publisher emits archive root, components doc, and dated daily
   assert.ok(publisher.includes('"components"'));
   assert.ok(publisher.includes("Project components"));
   assert.ok(publisher.includes('"dark-preview"'));
-  assert.ok(publisher.includes("Dark preview"));
+  assert.equal(publisher.includes("dark-preview-link"), false);
   assert.ok(publisher.includes('theme: "glass-v2"'));
+  assert.ok(publisher.includes('includeStudio: false, theme: "glass-v2"'));
   assert.ok(publisher.includes("slugForDigest"));
   assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
   assert.ok(publisher.includes("Root index.html is the digest archive"));
@@ -454,7 +455,7 @@ await test("demo app serves public and admin flows without external packages", a
 
   const publicHtml = await app.request("GET", "/");
   assert.ok(publicHtml.body.includes("application/ld+json"));
-  assert.ok(!publicHtml.body.includes('class="glass-v2"'));
+  assert.ok(publicHtml.body.includes('class="glass-v2"'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));

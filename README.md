@@ -117,7 +117,7 @@ npm run daily:generate -- --market-data live
 
 The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
 
-The export also creates `out/site/components/index.html`, an expandable project-components map that explains the data pipeline, public/private split, Studio workflow, publishing process, and QA checks in a readable visual format. A separate `out/site/dark-preview/index.html` route publishes the premium dark glassmorphism UI without replacing the standard public briefing pages.
+The export also creates `out/site/components/index.html`, an expandable project-components map that explains the data pipeline, public/private split, Studio workflow, publishing process, and QA checks in a readable visual format. The public archive, dated briefings, and components page all use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
 
 ## GitHub Pages
 

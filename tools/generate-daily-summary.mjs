@@ -25,7 +25,7 @@ const jsonPath = join(outputDir, `${date}-${label}-digest.json`);
 const htmlPath = join(outputDir, `${date}-${label}-summary.html`);
 const studioHtmlPath = join(outputDir, `${date}-${label}-studio.html`);
 const reelScriptPath = join(outputDir, `${date}-${label}-reel-script.md`);
-const publicHtml = cockpitPage(digest, "public-view", { includeStudio: false });
+const publicHtml = cockpitPage(digest, "public-view", { includeStudio: false, theme: "glass-v2" });
 
 assertPublicBriefingCopy(jsonPath, JSON.stringify(publicDigestPayload(digest)));
 assertPublicBriefingCopy(htmlPath, publicHtml);

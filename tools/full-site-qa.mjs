@@ -142,9 +142,11 @@ async function runCycle(page, cycle) {
 async function verifyArchive(page, rootUrl) {
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   assertPublicBriefingCopy("archive page HTML", await page.content());
+  await expectOne(page.locator("body.archive-dark"), "archive dark theme");
+  await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
-  await expectOne(page.getByRole("link", { name: "Dark preview" }), "dark preview link");
+  assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   await expectOne(page.getByRole("link", { name: "Project components" }), "project components link");
   for (const daily of dailyPages) {
     await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
@@ -166,6 +168,8 @@ async function verifyArchive(page, rootUrl) {
 async function verifyComponentsPage(page, stamp) {
   const componentsUrl = `${baseUrl}/components/?fullqa=${stamp}`;
   await page.goto(componentsUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.components-dark"), "components dark theme");
+  await verifyDarkSurfaceContrast(page, "components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
   await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "components page heading");
   await expectOne(page.getByRole("heading", { name: "End-to-End System View" }), "system view heading");
   await expectOne(page.getByRole("heading", { name: "Repository Component Map" }), "repository component map heading");
@@ -209,9 +213,9 @@ async function verifyDarkPreview(page, stamp) {
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
   const sourceCardCount = await sourceCards.count();
   assert.ok(sourceCardCount >= 14, `dark preview should render whole-card source links, got ${sourceCardCount}`);
-  await verifyDarkPreviewContrast(page, "dark preview initial view");
+  await verifyDarkSurfaceContrast(page, "dark preview initial view");
   await verifySummary(page, preview, { keepOpen: true });
-  await verifyDarkPreviewContrast(page, "dark preview expanded summary");
+  await verifyDarkSurfaceContrast(page, "dark preview expanded summary");
   await page.locator("#summaryExpand > summary").click();
   await expectOne(page.locator("#summaryExpand:not([open])"), "dark preview summary closes after contrast check");
   await verifyQuoteBoard(page, preview);
@@ -219,10 +223,10 @@ async function verifyDarkPreview(page, stamp) {
   return sourceCardCount;
 }
 
-async function verifyDarkPreviewContrast(page, label) {
-  const result = await page.evaluate(() => {
+async function verifyDarkSurfaceContrast(page, label, options = {}) {
+  const result = await page.evaluate((input) => {
     const base = [5, 8, 22];
-    const root = document.querySelector(".glass-v2 #public-view") ?? document.querySelector(".glass-v2");
+    const root = document.querySelector(input.rootSelector) ?? document.querySelector(".glass-v2 #public-view") ?? document.querySelector(".glass-v2") ?? document.body;
     const ignoredTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "SVG", "CANVAS"]);
     const samples = Array.from(root.querySelectorAll("*"))
       .filter((node) => hasVisibleDirectText(node, ignoredTags))
@@ -298,9 +302,11 @@ async function verifyDarkPreviewContrast(page, label) {
       });
       return red * 0.2126 + green * 0.7152 + blue * 0.0722;
     }
+  }, {
+    rootSelector: options.rootSelector ?? ".glass-v2 #public-view"
   });
 
-  assert.ok(result.count > 40, `${label} should sample visible text nodes, got ${result.count}`);
+  assert.ok(result.count > (options.minimumSamples ?? 40), `${label} should sample visible text nodes, got ${result.count}`);
   assert.deepEqual(
     result.failures,
     [],
@@ -312,7 +318,8 @@ async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   assertPublicBriefingCopy(`${daily.slug} HTML`, await page.content());
-  assert.equal(await page.locator("body.glass-v2").count(), 0, `${daily.slug} should keep the standard public theme`);
+  await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
+  await verifyDarkSurfaceContrast(page, `${daily.slug} initial dark view`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
@@ -327,7 +334,10 @@ async function verifyDailyPage(page, daily, stamp) {
 
   const tabs = await verifyTabs(page, daily);
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  await verifySummary(page, daily);
+  await verifySummary(page, daily, { keepOpen: true });
+  await verifyDarkSurfaceContrast(page, `${daily.slug} expanded dark summary`);
+  await page.locator("#summaryExpand > summary").click();
+  await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary closes after contrast check`);
   await verifyQuoteBoard(page, daily);
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, `${daily.slug} should not expose Studio Command`);
   assert.equal(await page.locator("#studio-view").count(), 0, `${daily.slug} should not render studio section`);

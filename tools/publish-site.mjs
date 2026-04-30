@@ -40,7 +40,7 @@ for (const digest of digests) {
   await mkdir(digestDir, { recursive: true });
   await writeGuardedFile(
     join(digestDir, "index.html"),
-    cockpitPage(pageDigest, "public-view", { includeStudio: false })
+    cockpitPage(pageDigest, "public-view", { includeStudio: false, theme: "glass-v2" })
   );
   await writeGuardedFile(
     join(digestDir, "digest.json"),
@@ -141,21 +141,42 @@ function archivePage(digests) {
   <title>Market Narrative | Daily Pre-Market Archive</title>
   <style>
     :root {
-      --paper: #f4f5f7;
-      --ink: #111827;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --panel: #fff;
+      --paper: #050816;
+      --ink: #f8fafc;
+      --muted: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(15, 23, 42, 0.62);
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background: var(--paper);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.32), transparent 32vw),
+        radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.30), transparent 34vw),
+        radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.18), transparent 28vw),
+        linear-gradient(135deg, #030712 0%, #08111f 46%, #111827 100%);
       color: var(--ink);
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 42%);
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     a {
@@ -167,9 +188,10 @@ function archivePage(digests) {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(3, 7, 18, 0.66);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
     }
 
     .shell {
@@ -200,7 +222,7 @@ function archivePage(digests) {
       width: 32px;
       height: 32px;
       border-radius: 9px;
-      background: #030712;
+      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
       color: #fff;
       font-size: 15px;
       font-weight: 900;
@@ -208,7 +230,7 @@ function archivePage(digests) {
 
     .latest-link {
       border-radius: 8px;
-      background: #111827;
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
       color: #fff;
       padding: 10px 13px;
       font-size: 13px;
@@ -225,9 +247,9 @@ function archivePage(digests) {
     .nav-link {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fff;
+      background: rgba(15, 23, 42, 0.52);
       padding: 10px 13px;
-      color: #374151;
+      color: #f8fafc;
       font-size: 13px;
       font-weight: 900;
     }
@@ -242,7 +264,7 @@ function archivePage(digests) {
 
     .eyebrow {
       margin: 0 0 10px;
-      color: #6b7280;
+      color: #9fb0c8;
       font-size: 13px;
       font-weight: 900;
       letter-spacing: 0.08em;
@@ -260,7 +282,7 @@ function archivePage(digests) {
     .hero p {
       max-width: 780px;
       margin: 0;
-      color: #4b5563;
+      color: #cbd5e1;
       font-size: 18px;
       line-height: 1.65;
     }
@@ -274,10 +296,11 @@ function archivePage(digests) {
 
     .summary-chip,
     .digest-card {
-      border: 1px solid rgba(229, 231, 235, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 16px;
-      background: var(--panel);
-      box-shadow: 0 4px 20px rgba(17, 24, 39, 0.035);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
     }
 
     .summary-chip {
@@ -286,7 +309,7 @@ function archivePage(digests) {
 
     .summary-chip span {
       display: block;
-      color: #6b7280;
+      color: #9fb0c8;
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.06em;
@@ -302,7 +325,7 @@ function archivePage(digests) {
 
     .archive-title {
       margin: 0 0 16px;
-      color: #111827;
+      color: #f8fafc;
       font-size: 22px;
     }
 
@@ -318,14 +341,15 @@ function archivePage(digests) {
 
     .digest-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.075);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
     .card-topline {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      color: #6b7280;
+      color: #9fb0c8;
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
@@ -334,14 +358,14 @@ function archivePage(digests) {
 
     .digest-card h2 {
       margin: 12px 0 10px;
-      color: #111827;
+      color: #f8fafc;
       font-size: 26px;
       line-height: 1.2;
     }
 
     .digest-card p {
       margin: 0;
-      color: #4b5563;
+      color: #cbd5e1;
       font-size: 15px;
       line-height: 1.6;
     }
@@ -356,9 +380,9 @@ function archivePage(digests) {
     .metrics span,
     .asia-note {
       border-radius: 999px;
-      background: #f3f4f6;
+      background: rgba(255, 255, 255, 0.10);
       padding: 7px 10px;
-      color: #374151;
+      color: #dbeafe;
       font-size: 12px;
       font-weight: 850;
     }
@@ -366,14 +390,14 @@ function archivePage(digests) {
     .asia-note {
       display: inline-flex;
       margin-top: 12px;
-      background: #eef2ff;
-      color: #3730a3;
+      background: rgba(96, 165, 250, 0.16);
+      color: #bfdbfe;
     }
 
     .open-link {
       display: inline-flex;
       margin-top: 18px;
-      color: #2563eb;
+      color: #67e8f9;
       font-size: 14px;
       font-weight: 900;
     }
@@ -401,14 +425,13 @@ function archivePage(digests) {
     }
   </style>
 </head>
-<body>
+<body class="archive-dark">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
-          <a class="nav-link dark-preview-link" href="./dark-preview/">Dark preview</a>
           <a class="nav-link" href="./components/">Project components</a>
         </div>
       </div>
@@ -485,11 +508,11 @@ function countryForSymbol(symbol) {
 
 function sentimentColor(label) {
   return {
-    BULLISH: "#047857",
-    BEARISH: "#b91c1c",
-    VOLATILE: "#b45309",
-    NEUTRAL: "#374151"
-  }[label] ?? "#374151";
+    BULLISH: "#34d399",
+    BEARISH: "#fb7185",
+    VOLATILE: "#fbbf24",
+    NEUTRAL: "#dbeafe"
+  }[label] ?? "#dbeafe";
 }
 
 function todayInIst() {
