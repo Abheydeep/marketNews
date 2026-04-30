@@ -209,43 +209,80 @@ async function verifyDarkPreview(page, stamp) {
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
   const sourceCardCount = await sourceCards.count();
   assert.ok(sourceCardCount >= 14, `dark preview should render whole-card source links, got ${sourceCardCount}`);
-  await verifyDarkPreviewContrast(page);
-  await verifySummary(page, preview);
+  await verifyDarkPreviewContrast(page, "dark preview initial view");
+  await verifySummary(page, preview, { keepOpen: true });
+  await verifyDarkPreviewContrast(page, "dark preview expanded summary");
+  await page.locator("#summaryExpand > summary").click();
+  await expectOne(page.locator("#summaryExpand:not([open])"), "dark preview summary closes after contrast check");
   await verifyQuoteBoard(page, preview);
   await verifyPublicDigestJson(preview, stamp);
   return sourceCardCount;
 }
 
-async function verifyDarkPreviewContrast(page) {
+async function verifyDarkPreviewContrast(page, label) {
   const result = await page.evaluate(() => {
-    const selectors = [
-      ".glass-v2 .page-header h1",
-      ".glass-v2 .source-card h3",
-      ".glass-v2 .setup-level strong",
-      ".glass-v2 .index-tile .price",
-      ".glass-v2 .market-move.up",
-      ".glass-v2 .market-move.down"
-    ];
     const base = [5, 8, 22];
-    const samples = selectors.flatMap((selector) =>
-      Array.from(document.querySelectorAll(selector)).slice(0, 4).map((node) => ({
-        selector,
+    const root = document.querySelector(".glass-v2 #public-view") ?? document.querySelector(".glass-v2");
+    const ignoredTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "SVG", "CANVAS"]);
+    const samples = Array.from(root.querySelectorAll("*"))
+      .filter((node) => hasVisibleDirectText(node, ignoredTags))
+      .map((node) => ({
+        selector: selectorFor(node),
         color: getComputedStyle(node).color,
-        text: node.textContent.trim().slice(0, 40)
-      }))
-    );
+        text: directText(node).slice(0, 70)
+      }));
     const ratios = samples.map((sample) => ({
       ...sample,
       ratio: contrastRatio(parseRgb(sample.color), base)
     }));
+    const failures = ratios
+      .filter((sample) => sample.ratio < 4.5)
+      .sort((left, right) => left.ratio - right.ratio)
+      .slice(0, 12);
     return {
       min: Math.min(...ratios.map((sample) => sample.ratio)),
-      ratios
+      count: ratios.length,
+      failures
     };
 
+    function hasVisibleDirectText(node, ignoredTags) {
+      if (ignoredTags.has(node.tagName)) {
+        return false;
+      }
+      if (!directText(node)) {
+        return false;
+      }
+      const style = getComputedStyle(node);
+      if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) < 0.15) {
+        return false;
+      }
+      const rect = node.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    }
+
+    function directText(node) {
+      return Array.from(node.childNodes)
+        .filter((child) => child.nodeType === Node.TEXT_NODE)
+        .map((child) => child.textContent.trim())
+        .filter(Boolean)
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function selectorFor(node) {
+      const tag = node.tagName.toLowerCase();
+      const id = node.id ? `#${node.id}` : "";
+      const className = Array.from(node.classList).slice(0, 3).map((item) => `.${item}`).join("");
+      return `${tag}${id}${className}`;
+    }
+
     function parseRgb(value) {
-      const match = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-      return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : [255, 255, 255];
+      const match = value.match(/rgba?\(([^)]+)\)/);
+      if (!match) {
+        return [255, 255, 255];
+      }
+      return match[1].split(",").slice(0, 3).map((channel) => Number.parseFloat(channel));
     }
 
     function contrastRatio(foreground, background) {
@@ -263,7 +300,12 @@ async function verifyDarkPreviewContrast(page) {
     }
   });
 
-  assert.ok(result.min >= 4.5, `dark preview critical text contrast should be at least 4.5:1, got ${result.min}`);
+  assert.ok(result.count > 40, `${label} should sample visible text nodes, got ${result.count}`);
+  assert.deepEqual(
+    result.failures,
+    [],
+    `${label} has visible text below 4.5:1 contrast: ${JSON.stringify(result.failures, null, 2)}`
+  );
 }
 
 async function verifyDailyPage(page, daily, stamp) {
@@ -339,7 +381,7 @@ async function clickTab(page, name, expectedHeading) {
   }
 }
 
-async function verifySummary(page, daily) {
+async function verifySummary(page, daily, options = {}) {
   const summary = page.locator("#summaryExpand");
   await expectOne(summary, `${daily.slug} compact summary details`);
   await expectOne(summary.locator("summary"), `${daily.slug} compact summary toggle`);
@@ -347,6 +389,9 @@ async function verifySummary(page, daily) {
   await summary.locator("summary").click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
   await expectOne(page.getByText("Expanded briefing after multi-source extraction", { exact: true }), `${daily.slug} expanded briefing`);
+  if (options.keepOpen) {
+    return;
+  }
   await summary.locator("summary").click();
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary closes`);
 }
