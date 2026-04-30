@@ -130,6 +130,11 @@ async function runCycle(page, cycle) {
 }
 
 async function verifyIndexChart(page, symbol) {
+  const region = regionForTestSymbol(symbol);
+  const regionCard = page.locator(`button.breadth-card[data-region="${region}"]`);
+  await expectOne(regionCard, `${region} region card for ${symbol}`);
+  await regionCard.click();
+  await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: region }), `${region} quote group for ${symbol}`);
   const tile = page.locator(`button[data-symbol="${symbol}"]`);
   await expectOne(tile, `${symbol} index tile`);
   await tile.click();
@@ -164,6 +169,13 @@ async function verifyIndexChart(page, symbol) {
   await page.locator("#indexChartModal.open").waitFor({ state: "hidden", timeout: 15_000 });
 
   return { symbol, title, href };
+}
+
+function regionForTestSymbol(symbol) {
+  if (["SPX", "NDX", "DJI"].includes(symbol)) return "US Overnight";
+  if (["NIFTY", "BANKNIFTY"].includes(symbol)) return "India Open";
+  if (["DXY", "BRENT"].includes(symbol)) return "Macro Hedges";
+  return "Asia Watch";
 }
 
 async function expectDailyContent(page) {
@@ -218,10 +230,23 @@ async function expandQuoteBoard(page) {
   await page.locator("#quoteBoardBody").waitFor({ state: "visible", timeout: 15_000 });
   await expectOne(page.locator('#quoteBoardToggle[aria-expanded="true"]'), "expanded quote board toggle");
   assert.equal(await page.locator("#quoteBoardBody[hidden]").count(), 0, "expanded quote board body should not be hidden");
+  await expectOne(page.getByText("Select a market card above to inspect its live quotes and open charts.", { exact: true }), "quote board selection prompt");
   for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {
-    await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: region }), `${region} quote group after expansion`);
+    await expectOne(page.locator(`button.breadth-card[data-region="${region}"]`), `${region} quote board card`);
+    await expectOne(page.locator(`button.breadth-card[data-region="${region}"] .market-state`), `${region} live/closed state`);
+    assert.equal(await page.locator("#indexBoard .quote-region h3").filter({ hasText: region }).count(), 0, `${region} quote group should wait for card click`);
   }
+  assert.ok(await page.locator(".breadth-card .market-move.up").count() > 0, "quote board should color positive moves green");
+  assert.ok(await page.locator(".breadth-card .market-move.down").count() > 0, "quote board should color negative moves red");
+  const usCard = page.locator('button.breadth-card[data-region="US Overnight"]');
+  await usCard.click();
+  await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "US Overnight" }), "US Overnight quote group after card click");
+  await expectOne(page.locator('button[data-symbol="SPX"]'), "SPX tile after US card click");
+  assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "Asia tiles should not render after US card click");
+  const asiaCard = page.locator('button.breadth-card[data-region="Asia Watch"]');
+  await asiaCard.click();
   await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "Asia Watch" }), "asia watch heading");
+  assert.equal(await page.locator('button[data-symbol="SPX"]').count(), 0, "US tiles should not render after Asia card click");
   await expectOne(page.locator('button[data-symbol="NIKKEI"]').getByText("Japan - Nikkei 225", { exact: true }), "Japan Nikkei country label");
   await expectOne(page.locator('button[data-symbol="HSI"]').getByText("Hong Kong - Hang Seng", { exact: true }), "Hong Kong Hang Seng country label");
   await expectOne(page.locator('button[data-symbol="SHCOMP"]').getByText("Mainland China - Shanghai Composite", { exact: true }), "China Shanghai country label");
@@ -233,6 +258,12 @@ async function expandQuoteBoard(page) {
   await expectOne(asiaBreadth, "top-five Asia breadth card");
   await expectOne(asiaBreadth.getByText(/\d up\s*\/ 5 tracked/), "compact Asia breadth sentence");
   await expectOne(asiaBreadth.getByText("Top 5 countries", { exact: false }), "top-five Asia breadth context");
+  await page.locator('button.breadth-card[data-region="India Open"]').click();
+  await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "India Open" }), "India Open quote group after card click");
+  assert.equal(await page.locator('button[data-symbol="SPX"]').count(), 0, "US tiles should not render after India card click");
+  await page.locator('button.breadth-card[data-region="Macro Hedges"]').click();
+  await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "Macro Hedges" }), "Macro Hedges quote group after card click");
+  assert.equal(await page.locator('button[data-symbol="NIFTY"]').count(), 0, "India tiles should not render after Macro card click");
 }
 
 async function expectOne(locator, label) {

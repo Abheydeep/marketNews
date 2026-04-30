@@ -1041,15 +1041,36 @@ export function cockpitPage(digest, initialTab = "public-view") {
     }
 
     .breadth-card {
+      width: 100%;
       border: 1px solid rgba(229, 231, 235, 0.72);
       border-radius: 10px;
       background: #fff;
       padding: 12px;
+      text-align: left;
+      cursor: pointer;
       box-shadow: 0 3px 14px rgba(17, 24, 39, 0.028);
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .breadth-card:hover {
+      transform: translateY(-1px);
+      border-color: #cbd5e1;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+    }
+
+    .breadth-card[aria-pressed="true"] {
+      border-color: #111827;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.11);
+    }
+
+    .breadth-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
     .breadth-card span {
-      display: block;
       color: #6b7280;
       font-size: 10px;
       font-weight: 900;
@@ -1058,6 +1079,36 @@ export function cockpitPage(digest, initialTab = "public-view") {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .market-state {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: #f5f5f4;
+      padding: 4px 7px;
+      color: #57534e;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .market-state.live {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .market-state.partial {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .market-move.up {
+      color: #047857;
+    }
+
+    .market-move.down {
+      color: #b91c1c;
     }
 
     .breadth-card strong {
@@ -1085,6 +1136,22 @@ export function cockpitPage(digest, initialTab = "public-view") {
       font-size: 11px;
       font-weight: 750;
       line-height: 1.35;
+    }
+
+    .breadth-card small b {
+      font-weight: 900;
+    }
+
+    .quote-region-empty {
+      margin-top: 14px;
+      border: 1px dashed #d1d5db;
+      border-radius: 12px;
+      background: #f8fafc;
+      padding: 18px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
     }
 
     .quote-region {
@@ -1172,6 +1239,11 @@ export function cockpitPage(digest, initialTab = "public-view") {
     .index-tile .status.live {
       background: #dcfce7;
       color: #166534;
+    }
+
+    .index-tile .status.closed {
+      background: #f5f5f4;
+      color: #57534e;
     }
 
     .index-tile .name {
@@ -2484,7 +2556,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
               <span class="quote-board-action"><span id="quoteBoardState">Expand</span><span class="quote-board-chev">&#9662;</span></span>
             </button>
             <div id="quoteBoardBody" class="quote-board-body" hidden>
-              <div class="regional-breadth">
+              <div id="regionalBreadth" class="regional-breadth">
                 ${regionalBreadthHtml(digest)}
               </div>
               <div id="indexBoard" aria-label="Clickable live index quotes"></div>
@@ -2839,6 +2911,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function initLiveIndexBoard() {
       window.__PUBLISHED_QUOTES__ = window.__DIGEST__.marketSnapshots;
       window.__QUOTE_BOARD_EXPANDED__ = false;
+      window.__ACTIVE_QUOTE_REGION__ = null;
       renderIndexBoard();
       updateLiveClock('Refreshing prices after page load');
       bindIndexModal();
@@ -2849,21 +2922,80 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function renderIndexBoard() {
       const board = document.getElementById('indexBoard');
       if (!board || !window.__PUBLISHED_QUOTES__) return;
+      renderRegionCards();
       if (!window.__QUOTE_BOARD_EXPANDED__) {
         board.innerHTML = '';
         return;
       }
       const grouped = groupQuotesByRegion(window.__PUBLISHED_QUOTES__);
-      board.innerHTML = regionOrder().filter((region) => grouped.has(region)).map((region) => {
-        const quotes = displayQuotesForRegion(region, grouped.get(region));
-        return '<section class="quote-region">' +
-          '<div class="quote-region-head"><h3>' + escapeClientHtml(region) + '</h3><span>' + regionSummary(quotes) + '</span></div>' +
-          '<div class="index-grid">' + quotes.map((quote) => quoteTileHtml(quote)).join('') + '</div>' +
-        '</section>';
-      }).join('');
+      const activeRegion = window.__ACTIVE_QUOTE_REGION__;
+      if (!activeRegion || !grouped.has(activeRegion)) {
+        board.innerHTML = '<div class="quote-region-empty">Select a market card above to inspect its live quotes and open charts.</div>';
+        return;
+      }
+      const quotes = displayQuotesForRegion(activeRegion, grouped.get(activeRegion));
+      board.innerHTML = '<section class="quote-region">' +
+        '<div class="quote-region-head"><h3>' + escapeClientHtml(activeRegion) + '</h3><span>' + regionSummary(quotes) + '</span></div>' +
+        '<div class="index-grid">' + quotes.map((quote) => quoteTileHtml(quote)).join('') + '</div>' +
+      '</section>';
       board.querySelectorAll('.index-tile').forEach((tile) => {
         tile.addEventListener('click', () => openIndexChart(tile.dataset.symbol));
       });
+    }
+
+    function renderRegionCards() {
+      const container = document.getElementById('regionalBreadth');
+      if (!container || !window.__PUBLISHED_QUOTES__) return;
+      const grouped = groupQuotesByRegion(window.__PUBLISHED_QUOTES__);
+      const cards = regionOrder()
+        .filter((region) => region !== 'Other Markets' && grouped.has(region))
+        .map((region) => regionCardHtml(region, displayQuotesForRegion(region, grouped.get(region))))
+        .join('');
+      container.innerHTML = cards;
+      container.querySelectorAll('.breadth-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          window.__ACTIVE_QUOTE_REGION__ = card.dataset.region;
+          window.__QUOTE_BOARD_EXPANDED__ = true;
+          const toggle = document.getElementById('quoteBoardToggle');
+          const body = document.getElementById('quoteBoardBody');
+          const state = document.getElementById('quoteBoardState');
+          if (toggle) {
+            toggle.setAttribute('aria-expanded', 'true');
+            toggle.classList.add('open');
+          }
+          if (body) body.hidden = false;
+          if (state) state.textContent = 'Collapse';
+          renderIndexBoard();
+        });
+      });
+    }
+
+    function regionCardHtml(region, quotes) {
+      const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
+      const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
+      const strongest = quotes
+        .slice()
+        .sort((left, right) => Math.abs(Number(right.changePercent)) - Math.abs(Number(left.changePercent)))[0];
+      const status = regionLiveStatus(quotes);
+      const active = window.__ACTIVE_QUOTE_REGION__ === region;
+      const context = region === 'Asia Watch' ? 'Top 5 countries · ' : '';
+      const leadName = region === 'Asia Watch' ? countryForQuote(strongest) || strongest.name : strongest.name;
+      return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '">' +
+        '<div class="breadth-card-top"><span>' + escapeClientHtml(region) + '</span><em class="market-state ' + status.className + '">' + escapeClientHtml(status.label) + '</em></div>' +
+        '<strong>' + positives + ' up <em>/ ' + quotes.length + ' tracked</em></strong>' +
+        '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + 'Lead: ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClass(strongest.changePercent) + '">' + formatClientChange(strongest.changePercent) + '</b></small>' +
+      '</button>';
+    }
+
+    function regionLiveStatus(quotes) {
+      const openCount = quotes.filter((quote) => marketStatusFor(quote).open).length;
+      if (openCount === quotes.length) {
+        return { label: 'Live', className: 'live' };
+      }
+      if (openCount > 0) {
+        return { label: openCount + '/' + quotes.length + ' live', className: 'partial' };
+      }
+      return { label: 'Closed', className: 'closed' };
     }
 
     function bindQuoteBoardToggle() {
@@ -2874,6 +3006,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
       function setExpanded(expanded) {
         window.__QUOTE_BOARD_EXPANDED__ = expanded;
+        if (!expanded) {
+          window.__ACTIVE_QUOTE_REGION__ = null;
+        }
         toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         toggle.classList.toggle('open', expanded);
         body.hidden = !expanded;
@@ -2892,11 +3027,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function quoteTileHtml(quote) {
       const status = marketStatusFor(quote);
       const direction = quote.changePercent >= 0 ? 'up' : 'down';
-      const quality = quote.dataQuality === 'live' ? 'Real' : 'Fallback';
-      const statusClass = status.open && quote.dataQuality === 'live' ? 'status live' : 'status';
+      const statusClass = status.open ? 'status live' : 'status closed';
       const quoteTime = formatQuoteTime(quote.dataTimestamp);
       return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '">' +
-        '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + quality + '</span></div>' +
+        '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + (status.open ? 'Live' : 'Closed') + '</span></div>' +
         '<div class="name">' + escapeClientHtml(marketDisplayName(quote)) + '</div>' +
         '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
         '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
@@ -2961,7 +3095,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       const positives = quotes.filter((quote) => Number(quote.changePercent) >= 0).length;
       const average = quotes.reduce((sum, quote) => sum + Number(quote.changePercent || 0), 0) / Math.max(1, quotes.length);
       const unit = quotes.some((quote) => regionForSymbol(quote.symbol) === 'Asia Watch') ? 'country markets' : 'tracked';
-      return positives + ' up / ' + quotes.length + ' ' + unit + ' - Avg move ' + formatClientChange(average);
+      return positives + ' up / ' + quotes.length + ' ' + unit + ' - Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b>';
     }
 
     async function refreshPublishedDigest(reason) {
@@ -3110,8 +3244,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
         second: '2-digit'
       }).format(new Date());
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'Fallback quotes';
+      const liveLine = openCount > 0 ? 'Live now ' + openCount + '/' + quotes.length + ' markets' : 'All tracked sessions closed';
       clock.textContent = (note ? note + ' - ' : '') +
-        'Active sessions ' + openCount + '/' + quotes.length +
+        liveLine +
         ' - ' + mode +
         (latest ? ' - latest ' + latest : '') +
         ' - checked IST ' + time;
@@ -3253,6 +3388,10 @@ export function cockpitPage(digest, initialTab = "public-view") {
 
     function formatClientChange(value) {
       return (value >= 0 ? '+' : '') + Number(value).toFixed(2) + '%';
+    }
+
+    function moveClass(value) {
+      return Number(value) >= 0 ? 'up' : 'down';
     }
 
     function escapeClientHtml(value) {
@@ -3968,11 +4107,11 @@ function regionalBreadthHtml(digest) {
       const leadName = region === "Asia Watch" ? countryForSnapshot(strongest) || strongest.name : strongest.name;
       const context = region === "Asia Watch" ? "Top 5 countries · " : "";
       return `
-        <div class="breadth-card">
-          <span>${escapeHtml(label)}</span>
+        <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false">
+          <div class="breadth-card-top"><span>${escapeHtml(label)}</span><em class="market-state">Latest</em></div>
           <strong>${positives} up <em>/ ${snapshots.length} tracked</em></strong>
-          <small>Avg move ${formatChange(average)} · ${escapeHtml(context)}Lead: ${escapeHtml(leadName)} ${formatChange(strongest.changePercent)}</small>
-        </div>
+          <small>Avg move <b class="market-move ${changeClass(average)}">${formatChange(average)}</b> · ${escapeHtml(context)}Lead: ${escapeHtml(leadName)} <b class="market-move ${changeClass(strongest.changePercent)}">${formatChange(strongest.changePercent)}</b></small>
+        </button>
       `;
     })
     .join("");
@@ -4419,6 +4558,10 @@ function niftySetup(digest) {
 
 function formatChange(changePercent) {
   return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+}
+
+function changeClass(changePercent) {
+  return Number(changePercent) >= 0 ? "up" : "down";
 }
 
 function formatSignedScore(score) {
