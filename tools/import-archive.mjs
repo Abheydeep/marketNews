@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -25,7 +26,8 @@ for (const digest of digests) {
   if (!digest?.digestDate) {
     continue;
   }
-  const safeDigest = redactedDigestPayload(digest);
+  const safeDigest = sanitizeLegacyPublicBriefingCopy(redactedDigestPayload(digest));
+  assertPublicBriefingCopy(`${safeDigest.digestDate} imported archive digest`, JSON.stringify(safeDigest));
   const label = scheduledLabelForDigest(safeDigest).replace(":", "");
   const fileName = `${safeDigest.digestDate}-${label}-digest.json`;
   const localPath = join(archiveDir, fileName);

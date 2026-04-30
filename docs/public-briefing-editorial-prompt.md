@@ -48,3 +48,8 @@ The same rules are enforced in code by `tools/editorial-guardrails.mjs`.
 Publishing now checks public HTML, public digest JSON, archive JSON, and the dark
 preview. Tests also include a bad sample with the exact kind of internal wording
 that previously leaked, so future edits fail fast before deployment.
+
+`tools/import-archive.mjs` also sanitizes older deployed archive entries before
+they are re-imported by GitHub Actions. That keeps legacy copy from blocking a
+new deployment while still making fresh violations fail during generation,
+publishing, and browser QA.

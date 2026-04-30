@@ -4,7 +4,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { createDemoApp } from "./demo-app.mjs";
-import { PUBLIC_BRIEFING_EDITORIAL_PROMPT, assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import {
+  PUBLIC_BRIEFING_EDITORIAL_PROMPT,
+  assertPublicBriefingCopy,
+  sanitizeLegacyPublicBriefingCopy
+} from "./editorial-guardrails.mjs";
 import {
   buildDigest,
   bullishRiskReward,
@@ -167,6 +171,19 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
       "The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase."
     ),
     /Public editorial guardrail failed/
+  );
+  const sanitized = sanitizeLegacyPublicBriefingCopy({
+    onePageSummary: "No active 1:2 RR setup passed all scanner and live-quote filters.",
+    news: [
+      {
+        indiaImpact: "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance near the scanner levels."
+      }
+    ]
+  });
+  assertPublicBriefingCopy("sanitized legacy archive", JSON.stringify(sanitized));
+  assert.equal(
+    sanitized.news[0].indiaImpact,
+    "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the opening range."
   );
 });
 
@@ -372,6 +389,8 @@ await test("static publisher emits archive root, components doc, and dated daily
   assert.ok(importer.includes("archive.digests"));
   assert.ok(importer.includes('"archive", "daily"'));
   assert.ok(importer.includes("redactedDigestPayload"));
+  assert.ok(importer.includes("sanitizeLegacyPublicBriefingCopy"));
+  assert.ok(importer.includes("assertPublicBriefingCopy"));
 
   const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {
