@@ -938,6 +938,67 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       text-transform: uppercase;
     }
 
+    .source-ledger-details {
+      border: 1px solid rgba(229, 231, 235, 0.82);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.045);
+      overflow: hidden;
+    }
+
+    .source-ledger-details summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .source-ledger-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .source-ledger-details summary h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .source-ledger-details summary p {
+      margin: 5px 0 0;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .source-ledger-action {
+      border-radius: 8px;
+      background: #111827;
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .source-ledger-action::after {
+      content: " +";
+      margin-left: 4px;
+    }
+
+    .source-ledger-details[open] .source-ledger-action::after {
+      content: " -";
+    }
+
+    .source-ledger-body {
+      border-top: 1px solid #eef2f7;
+      padding: 16px;
+    }
+
     .news-card-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2983,7 +3044,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-color: rgba(251, 113, 133, 0.42);
     }
 
-    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone) {
+    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone) {
       border-color: rgba(255, 255, 255, 0.14);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
       box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -2996,11 +3057,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
-    .glass-v2 :is(.page-header h1, .executive-card h2, .expanded-briefing-head h2, .section-kicker h2, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong) {
+    .glass-v2 :is(.page-header h1, .executive-card h2, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong) {
       color: #f8fafc;
     }
 
-    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p) {
+    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-ledger-details summary p, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p) {
       color: #cbd5e1;
     }
 
@@ -3021,6 +3082,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .glass-v2 .chart-link-btn,
     .glass-v2 .studio-action-btn,
     .glass-v2 .speed-btn.active,
+    .glass-v2 .source-ledger-action,
     .glass-v2 .source-filter-btn.active {
       background: linear-gradient(135deg, #06b6d4, #6366f1);
       color: #fff;
@@ -3029,7 +3091,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .glass-v2 .expanded-briefing-page,
     .glass-v2 .market-chart-preview,
-    .glass-v2 .reel-script-panel {
+    .glass-v2 .reel-script-panel,
+    .glass-v2 .source-ledger-details {
       border-color: rgba(255, 255, 255, 0.12);
       background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.58));
     }
@@ -3066,6 +3129,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .glass-v2 .source-extract-row,
     .glass-v2 .source-category-head,
     .glass-v2 .source-card-detail,
+    .glass-v2 .source-ledger-body,
     .glass-v2 .public-footer,
     .glass-v2 .studio-header,
     .glass-v2 .studio-hero,
@@ -3413,7 +3477,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
             <div>
-              <span class="summary-label">50-word compact summary</span>
+              <span class="summary-label">2-minute compact briefing</span>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
             <strong class="summary-expand-action">Open full source-backed briefing</strong>
@@ -4797,7 +4861,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const cards = [...document.querySelectorAll('.source-card[data-source-category]')];
       const sections = [...document.querySelectorAll('[data-source-group]')];
       const visibleCount = document.getElementById('sourceVisibleCount');
+      const ledger = document.getElementById('sourceLedger');
       if (!buttons.length || !cards.length) return;
+      const defaultFilter = ledger?.dataset.defaultSourceFilter || buttons.find((button) => button.dataset.sourceFilter !== 'all')?.dataset.sourceFilter || 'all';
 
       function applyFilter(filter) {
         let count = 0;
@@ -4820,7 +4886,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       buttons.forEach((button) => {
         button.addEventListener('click', () => applyFilter(button.dataset.sourceFilter || 'all'));
       });
-      applyFilter('all');
+      applyFilter(defaultFilter);
     }
 
     function bindSourceCardClicks() {
@@ -4959,7 +5025,6 @@ function expandedLeadParagraphs(digest) {
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
-  const globalRisk = firstByCategory(digest.news, "global_risk");
   const setup = niftySetup(digest);
   const setupLine = setup
     ? `The scanner still keeps a conditional ${setup.symbol} ${setup.direction.toLowerCase()} setup alive at ${setup.riskReward}R, but only if price accepts near ${formatNumber(setup.entry)} without damaging the stop-to-target structure.`
@@ -4967,13 +5032,10 @@ function expandedLeadParagraphs(digest) {
 
   return [
     [
-      `This briefing is built from ${digest.news.length} source notes, ${digest.themes.length} narrative clusters, and ${digest.marketSnapshots.length} market snapshots.`,
+      `Two-minute read: this briefing distills ${digest.news.length} source notes, ${digest.themes.length} narrative clusters, and ${digest.marketSnapshots.length} market snapshots into the cues that matter before the Indian open.`,
       pressureStory ? `The heaviest pressure point is ${pressureStory.takeaway || pressureStory.summary}` : "",
-      supportStory ? `The main offset is ${supportStory.takeaway || supportStory.summary}` : ""
-    ].filter(Boolean).join(" "),
-    [
       macro ? `Macro read-through: ${macro.indiaImpact || macro.whyItMatters}` : "",
-      globalRisk ? `Risk read-through: ${globalRisk.indiaImpact || globalRisk.whyItMatters}` : "",
+      supportStory ? `The main offset is ${supportStory.takeaway || supportStory.summary}` : "",
       setupLine
     ].filter(Boolean).join(" ")
   ];
@@ -5030,9 +5092,9 @@ function executiveSummaryHtml(digest) {
     </div>
 
     <div class="brief-section">
-      <h3>2. Source Extraction</h3>
+      <h3>2. Top Source Reads</h3>
       <div class="source-extract-list">
-        ${sourceExtractionRows(digest.news)}
+        ${sourceExtractionRows(briefingSourceArticles(digest.news))}
       </div>
     </div>
 
@@ -5071,6 +5133,26 @@ function sourceExtractionRows(articles) {
     .join("");
 }
 
+function briefingSourceArticles(articles) {
+  const categoryOrder = ["macro_negative", "global_risk", "neutral_volatile", "sector_positive", "macro_positive"];
+  const byCategory = categoryOrder
+    .map((category) => weightedSourceArticles((articles ?? []).filter((article) => article.category === category))[0])
+    .filter(Boolean);
+  return uniqueArticles([...byCategory, ...weightedSourceArticles(articles ?? [])]).slice(0, 5);
+}
+
+function uniqueArticles(articles) {
+  const seen = new Set();
+  return articles.filter((article) => {
+    const key = article.sourceUrl || article.headline;
+    if (!key || seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
 function indiaReadThroughItems(digest, setupText) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
@@ -5089,7 +5171,7 @@ function watchItemsHtml(articles, setup) {
   const items = articles
     .map((article) => article.watchFor)
     .filter(Boolean)
-    .slice(0, 7);
+    .slice(0, 4);
   if (setup) {
     items.push(`Nifty acceptance near ${formatNumber(setup.entry)} and invalidation near ${formatNumber(setup.stopLoss)}.`);
   }
@@ -5100,6 +5182,8 @@ function sourceNotesHtml(digest) {
   const articles = digest.news ?? [];
   const lead = weightedSourceArticles(articles)[0] ?? articles[0];
   const categories = sourceCategoryGroups(articles);
+  const defaultFilter = categories[0]?.category || "all";
+  const defaultCount = categories[0]?.count || articles.length;
   const sourceCount = new Set(articles.map((article) => article.sourceName)).size;
   const negativeCount = articles.filter((article) => Number(article.sentimentScore) < -0.1).length;
   const positiveCount = articles.filter((article) => Number(article.sentimentScore) > 0.1).length;
@@ -5109,7 +5193,7 @@ function sourceNotesHtml(digest) {
       <div class="section-kicker">
         <div>
           <h2>Source Notes & Attribution</h2>
-          <p class="source-section-copy">Evidence ledger behind the briefing: what moved the narrative, how it maps to India, and where each claim is sourced.</p>
+          <p class="source-section-copy">Evidence ledger behind the briefing. The full article list stays collapsed by default so the page reads quickly.</p>
         </div>
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
@@ -5124,14 +5208,25 @@ function sourceNotesHtml(digest) {
         ${sourceEvidenceMapHtml(categories)}
       </div>
 
-      <div class="source-filter-row" aria-label="Source category filters">
-        ${sourceFilterButtonsHtml(categories, articles.length)}
-        <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(articles.length)} shown</span>
-      </div>
+      <details id="sourceLedger" class="source-ledger-details" data-default-source-filter="${escapeHtml(defaultFilter)}">
+        <summary>
+          <div>
+            <h3>Open categorized source ledger</h3>
+            <p>Starts with the highest-impact category only. Use All when you want the complete research trail.</p>
+          </div>
+          <strong class="source-ledger-action">Open sources</strong>
+        </summary>
+        <div class="source-ledger-body">
+          <div class="source-filter-row" aria-label="Source category filters">
+            ${sourceFilterButtonsHtml(categories, articles.length, defaultFilter)}
+            <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(defaultCount)} shown</span>
+          </div>
 
-      <div class="source-category-board" aria-label="Categorized source notes">
-        ${categories.map((group) => sourceCategorySectionHtml(group)).join("")}
-      </div>
+          <div class="source-category-board" aria-label="Categorized source notes">
+            ${categories.map((group) => sourceCategorySectionHtml(group, defaultFilter)).join("")}
+          </div>
+        </div>
+      </details>
     </section>
   `;
 }
@@ -5178,18 +5273,18 @@ function sourceEvidenceMapHtml(categories) {
   `;
 }
 
-function sourceFilterButtonsHtml(categories, articleCount) {
+function sourceFilterButtonsHtml(categories, articleCount, defaultFilter) {
   return [
-    `<button class="source-filter-btn active" type="button" data-source-filter="all" aria-pressed="true">All <span>${escapeHtml(articleCount)}</span></button>`,
+    `<button class="source-filter-btn" type="button" data-source-filter="all" aria-pressed="false">All <span>${escapeHtml(articleCount)}</span></button>`,
     ...categories.map((group) =>
-      `<button class="source-filter-btn" type="button" data-source-filter="${escapeHtml(group.category)}" aria-pressed="false">${escapeHtml(sourceCategoryTitle(group.category))} <span>${escapeHtml(group.count)}</span></button>`
+      `<button class="source-filter-btn${group.category === defaultFilter ? " active" : ""}" type="button" data-source-filter="${escapeHtml(group.category)}" aria-pressed="${group.category === defaultFilter ? "true" : "false"}">${escapeHtml(sourceCategoryTitle(group.category))} <span>${escapeHtml(group.count)}</span></button>`
     )
   ].join("");
 }
 
-function sourceCategorySectionHtml(group) {
+function sourceCategorySectionHtml(group, defaultFilter) {
   return `
-    <section class="source-category-section" data-source-group="${escapeHtml(group.category)}">
+    <section class="source-category-section" data-source-group="${escapeHtml(group.category)}"${group.category === defaultFilter ? "" : " hidden"}>
       <div class="source-category-head">
         <div>
           <div class="source-category-label">

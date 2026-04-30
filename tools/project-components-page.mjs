@@ -951,8 +951,8 @@ function componentDetailsHtml() {
     }
   ];
 
-  return components.map((component, index) => `
-    <details class="component" ${index < 2 ? "open" : ""}>
+  return components.map((component) => `
+    <details class="component">
       <summary>
         <div>
           <h3>${escapeHtml(component.title)}</h3>

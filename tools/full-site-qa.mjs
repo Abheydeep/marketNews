@@ -177,17 +177,16 @@ async function verifyComponentsPage(page, stamp) {
   const panels = page.locator("details.component");
   const panelCount = await panels.count();
   assert.ok(panelCount >= 8, `components page should render at least 8 expandable panels, got ${panelCount}`);
+  assert.equal(await page.locator("details.component[open]").count(), 0, "components should start collapsed");
   await expectOne(page.getByRole("heading", { name: "1. Data and Seed Layer" }), "data and seed component");
   await expectOne(page.getByRole("heading", { name: "6. Private Studio and Reel Script" }), "private studio component");
   await expectOne(page.getByRole("heading", { name: "8. Testing and QA" }), "testing component");
   const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Engine" });
   await expectOne(digestPanel, "digest engine expandable panel");
-  if (await digestPanel.getAttribute("open") !== null) {
-    await digestPanel.locator("summary").click();
-    await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine collapses");
-  }
   await digestPanel.locator("summary").click();
   await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine opens");
+  await digestPanel.locator("summary").click();
+  await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine collapses");
   await expectOne(page.getByRole("link", { name: "Briefing archive" }), "components archive link");
   return panelCount;
 }
@@ -410,7 +409,7 @@ async function verifyCharts(page, daily) {
 async function clickSourceLinks(page, daily) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
   await verifySourceFilters(page, daily);
-  const links = page.locator(".source-lead-card a, .source-card a");
+  const links = page.locator(".source-lead-card a, .source-card a").filter({ visible: true });
   const count = await links.count();
   assert.ok(count >= 15, `${daily.slug} should render at least 15 source links`);
   for (let index = 0; index < count; index += 1) {
@@ -422,12 +421,19 @@ async function clickSourceLinks(page, daily) {
 async function verifySourceFilters(page, daily) {
   await expectOne(page.getByText("Evidence Map", { exact: true }), `${daily.slug} source evidence map`);
   await expectOne(page.getByText("Lead evidence", { exact: true }), `${daily.slug} lead source evidence`);
-  for (const heading of ["Macro Pressure", "Global Risk", "Asia & Volatility", "Sector Support", "Domestic Macro Support"]) {
-    await expectAtLeast(page.getByRole("heading", { name: heading }), 1, `${daily.slug} ${heading} source category`);
-  }
+  const ledger = page.locator("#sourceLedger");
+  await expectOne(ledger, `${daily.slug} source ledger details`);
+  await expectOne(page.locator("#sourceLedger:not([open])"), `${daily.slug} source ledger should start collapsed`);
+  assert.equal(await page.locator(".source-card:visible").count(), 0, `${daily.slug} full source cards should not show by default`);
+  await page.locator("#sourceLedger > summary").click();
+  await expectOne(page.locator("#sourceLedger[open]"), `${daily.slug} source ledger opens`);
+  await expectAtLeast(page.locator(".source-category-head h3"), 5, `${daily.slug} source category headings`);
   const buttons = page.locator("[data-source-filter]");
   const buttonCount = await buttons.count();
   assert.ok(buttonCount >= 5, `${daily.slug} should render source filter buttons`);
+  await expectOne(page.locator('[data-source-filter="all"][aria-pressed="false"]'), `${daily.slug} all source filter should not be active by default`);
+  const defaultVisibleCards = await page.locator(".source-card:visible").count();
+  assert.ok(defaultVisibleCards > 0 && defaultVisibleCards < 14, `${daily.slug} source ledger should default to one category, got ${defaultVisibleCards}`);
 
   for (let index = 1; index < buttonCount; index += 1) {
     const button = buttons.nth(index);

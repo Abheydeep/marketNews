@@ -424,12 +424,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Engine Architecture"));
   assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("1. What Changed Overnight"));
-  assert.ok(publicHtml.body.includes("2. Source Extraction"));
+  assert.ok(publicHtml.body.includes("2. Top Source Reads"));
   assert.ok(publicHtml.body.includes("3. India Read-Through"));
   assert.ok(publicHtml.body.includes("4. What To Watch Next"));
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
-  assert.ok(publicHtml.body.includes("50-word compact summary"));
+  assert.ok(publicHtml.body.includes("2-minute compact briefing"));
   assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("Expanded briefing after multi-source extraction"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
@@ -444,6 +444,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Avg move"));
   assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
   assert.ok(publicHtml.body.includes("Evidence ledger behind the briefing"));
+  assert.ok(publicHtml.body.includes("Open categorized source ledger"));
+  assert.ok(publicHtml.body.includes("source-ledger-details"));
+  assert.ok(publicHtml.body.includes("data-default-source-filter"));
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
@@ -455,6 +458,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("data-source-group=\"macro_negative\""));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
+  assert.ok(publicHtml.body.includes("aria-pressed=\"false\">All"));
   assert.ok(publicHtml.body.includes("Read-through"));
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
   assert.ok(publicHtml.body.includes("Economic Times Markets"));
