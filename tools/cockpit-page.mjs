@@ -672,22 +672,281 @@ export function cockpitPage(digest, initialTab = "public-view") {
       font-weight: 700;
     }
 
+    .sources-section {
+      margin-top: 34px;
+    }
+
+    .source-section-copy {
+      margin: 8px 0 0;
+      max-width: 680px;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.6;
+    }
+
+    .source-stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .source-stat-strip span {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 8px 10px;
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .source-stat-strip strong {
+      display: block;
+      margin-top: 2px;
+      color: #111827;
+      font-size: 18px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .source-overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: 16px;
+      margin: 16px 0;
+      align-items: stretch;
+    }
+
+    .source-lead-card {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      padding: 16px;
+    }
+
+    .source-lead-card .source-thumb {
+      min-height: 218px;
+    }
+
+    .source-lead-copy {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+    }
+
+    .source-lead-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .source-lead-copy h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 24px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .source-lead-copy > p {
+      margin: 12px 0 0;
+      color: #4b5563;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .source-lead-copy a {
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .source-readthrough-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: auto 0 14px;
+      padding-top: 18px;
+    }
+
+    .source-readthrough-grid div {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 10px;
+    }
+
+    .source-readthrough-grid span {
+      display: block;
+      margin-bottom: 5px;
+      color: #9ca3af;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .source-readthrough-grid strong {
+      display: block;
+      color: #111827;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .source-evidence-map {
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: 8px;
+      background: #111827;
+      padding: 18px;
+      color: #f9fafb;
+      box-shadow: var(--shadow);
+    }
+
+    .source-evidence-map > span {
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .source-evidence-map h3 {
+      margin: 8px 0 16px;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .source-theme-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .source-theme-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.045);
+      padding: 10px;
+    }
+
+    .source-theme-row strong {
+      display: block;
+      color: #f9fafb;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .source-theme-row small {
+      display: block;
+      margin-top: 3px;
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .source-theme-score {
+      border-radius: 6px;
+      padding: 6px 7px;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .source-theme-score.up {
+      background: rgba(16, 185, 129, 0.16);
+      color: #86efac;
+    }
+
+    .source-theme-score.down {
+      background: rgba(248, 113, 113, 0.15);
+      color: #fca5a5;
+    }
+
+    .source-theme-score.flat {
+      background: rgba(229, 231, 235, 0.11);
+      color: #e5e7eb;
+    }
+
+    .source-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .source-filter-btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 9px 11px;
+      color: #4b5563;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .source-filter-btn span {
+      margin-left: 6px;
+      color: #9ca3af;
+    }
+
+    .source-filter-btn.active {
+      border-color: #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .source-filter-btn.active span {
+      color: #d1d5db;
+    }
+
+    .source-visible-count {
+      align-self: center;
+      margin-left: auto;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     .news-card-list {
       display: grid;
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
     }
 
     .source-card {
       cursor: pointer;
       display: grid;
-      grid-template-columns: 168px minmax(0, 1fr);
-      gap: 16px;
-      align-items: stretch;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 13px;
+      align-items: start;
+      padding: 13px;
+    }
+
+    .source-card[hidden] {
+      display: none;
     }
 
     .source-thumb {
       position: relative;
-      min-height: 142px;
+      min-height: 116px;
       border-radius: 8px;
       overflow: hidden;
       background:
@@ -752,7 +1011,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       justify-content: space-between;
       align-items: start;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 9px;
     }
 
     .news-badge {
@@ -792,8 +1051,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
     .source-card h3 {
       margin: 0 0 8px;
       color: #111827;
-      font-size: 19px;
-      line-height: 1.35;
+      font-size: 16px;
+      line-height: 1.32;
       transition: color 160ms ease;
     }
 
@@ -804,8 +1063,8 @@ export function cockpitPage(digest, initialTab = "public-view") {
     .source-card p {
       margin: 0;
       color: #4b5563;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.52;
     }
 
     .source-card a {
@@ -814,6 +1073,45 @@ export function cockpitPage(digest, initialTab = "public-view") {
       color: #2563eb;
       font-size: 14px;
       font-weight: 750;
+    }
+
+    .source-takeaway strong {
+      color: #111827;
+    }
+
+    .source-card-detail {
+      margin-top: 9px;
+      border-top: 1px solid #eef0f3;
+      padding-top: 8px;
+    }
+
+    .source-card-detail summary {
+      color: #111827;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      list-style-position: outside;
+    }
+
+    .source-card-detail p {
+      margin-top: 8px;
+      color: #6b7280;
+    }
+
+    .source-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .source-entity {
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .public-footer {
@@ -2388,6 +2686,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .grid-two,
       .grid-three,
       .source-card,
+      .source-overview-grid,
+      .source-lead-card,
+      .source-readthrough-grid,
       .setup-grid,
       .setup-levels,
       .summary-strip,
@@ -2574,27 +2875,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
           </div>
         </section>
 
-        <section class="sources-section">
-          <div class="section-kicker">
-            <h2>Source Notes & Attribution</h2>
-          </div>
-          <div class="news-card-list">
-            ${digest.news.map((item) => `
-              <article class="info-card source-card">
-                ${articleThumbnailHtml(item)}
-                <div class="source-card-copy">
-                  <div class="source-card-header">
-                    <span class="news-badge ${newsToneClass(item.sentimentScore)}">${escapeHtml(newsBadgeLabel(item))}</span>
-                    <span class="source-name">Source: ${escapeHtml(item.sourceName)}</span>
-                  </div>
-                  <h3>${escapeHtml(item.headline)}</h3>
-                  <p>${escapeHtml(item.summary)}</p>
-                  <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
-                </div>
-              </article>
-            `).join("")}
-          </div>
-        </section>
+        ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
           <p>Data generated by the Agentic RAG pipeline. Sources are retained for attribution. Educational market research only, not investment advice.</p>
@@ -2886,6 +3167,7 @@ export function cockpitPage(digest, initialTab = "public-view") {
       bindAssetGeneration();
       bindStudioActions();
       bindQuoteBoardToggle();
+      bindSourceFilters();
       initLiveIndexBoard();
     });
 
@@ -3839,6 +4121,33 @@ export function cockpitPage(digest, initialTab = "public-view") {
       }
     }
 
+    function bindSourceFilters() {
+      const buttons = [...document.querySelectorAll('[data-source-filter]')];
+      const cards = [...document.querySelectorAll('.source-card[data-source-category]')];
+      const visibleCount = document.getElementById('sourceVisibleCount');
+      if (!buttons.length || !cards.length) return;
+
+      function applyFilter(filter) {
+        let count = 0;
+        cards.forEach((card) => {
+          const visible = filter === 'all' || card.dataset.sourceCategory === filter;
+          card.hidden = !visible;
+          if (visible) count += 1;
+        });
+        buttons.forEach((button) => {
+          const active = button.dataset.sourceFilter === filter;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        if (visibleCount) visibleCount.textContent = count + ' shown';
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => applyFilter(button.dataset.sourceFilter || 'all'));
+      });
+      applyFilter('all');
+    }
+
     window.addEventListener('resize', () => {
       drawOvernightChart();
       drawScannerChart();
@@ -4052,6 +4361,161 @@ function watchItemsHtml(articles, setup) {
     items.push(`Nifty acceptance near ${formatNumber(setup.entry)} and invalidation near ${formatNumber(setup.stopLoss)}.`);
   }
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function sourceNotesHtml(digest) {
+  const articles = digest.news ?? [];
+  const lead = weightedSourceArticles(articles)[0] ?? articles[0];
+  const categories = sourceCategoryGroups(articles);
+  const sourceCount = new Set(articles.map((article) => article.sourceName)).size;
+  const negativeCount = articles.filter((article) => Number(article.sentimentScore) < -0.1).length;
+  const positiveCount = articles.filter((article) => Number(article.sentimentScore) > 0.1).length;
+
+  return `
+    <section class="sources-section">
+      <div class="section-kicker">
+        <div>
+          <h2>Source Notes & Attribution</h2>
+          <p class="source-section-copy">Evidence ledger behind the briefing: what moved the narrative, how it maps to India, and where each claim is sourced.</p>
+        </div>
+        <div class="source-stat-strip" aria-label="Source ledger statistics">
+          <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
+          <span>Sources<strong>${escapeHtml(sourceCount)}</strong></span>
+          <span>Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
+          <span>Support<strong>${escapeHtml(positiveCount)}</strong></span>
+        </div>
+      </div>
+
+      <div class="source-overview-grid">
+        ${lead ? sourceLeadCardHtml(lead) : ""}
+        ${sourceEvidenceMapHtml(categories)}
+      </div>
+
+      <div class="source-filter-row" aria-label="Source category filters">
+        ${sourceFilterButtonsHtml(categories, articles.length)}
+        <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(articles.length)} shown</span>
+      </div>
+
+      <div class="news-card-list">
+        ${articles.map((article) => sourceEvidenceCardHtml(article)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function sourceLeadCardHtml(article) {
+  return `
+    <article class="info-card source-lead-card">
+      ${articleThumbnailHtml(article)}
+      <div class="source-lead-copy">
+        <div class="source-lead-kicker">
+          <span class="news-badge ${newsToneClass(article.sentimentScore)}">Lead evidence</span>
+          <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
+        </div>
+        <h3>${escapeHtml(article.headline)}</h3>
+        <p>${escapeHtml(article.summary)}</p>
+        <div class="source-readthrough-grid">
+          <div><span>Takeaway</span><strong>${escapeHtml(article.takeaway || article.summary)}</strong></div>
+          <div><span>India Read</span><strong>${escapeHtml(article.indiaImpact || "Watch opening breadth for confirmation.")}</strong></div>
+          <div><span>Watch</span><strong>${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</strong></div>
+        </div>
+        <a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
+      </div>
+    </article>
+  `;
+}
+
+function sourceEvidenceMapHtml(categories) {
+  return `
+    <aside class="source-evidence-map">
+      <span>Evidence Map</span>
+      <h3>Narrative buckets ranked by weighted source tone</h3>
+      <div class="source-theme-list">
+        ${categories.map((group) => `
+          <div class="source-theme-row">
+            <div>
+              <strong>${escapeHtml(categoryLabel(group.category))}</strong>
+              <small>${escapeHtml(group.count)} notes - ${escapeHtml(group.leadEntity)} lead entity</small>
+            </div>
+            <span class="source-theme-score ${sourceScoreClass(group.score)}">${escapeHtml(formatSignedScore(group.score))}</span>
+          </div>
+        `).join("")}
+      </div>
+    </aside>
+  `;
+}
+
+function sourceFilterButtonsHtml(categories, articleCount) {
+  return [
+    `<button class="source-filter-btn active" type="button" data-source-filter="all" aria-pressed="true">All <span>${escapeHtml(articleCount)}</span></button>`,
+    ...categories.map((group) =>
+      `<button class="source-filter-btn" type="button" data-source-filter="${escapeHtml(group.category)}" aria-pressed="false">${escapeHtml(categoryLabel(group.category))} <span>${escapeHtml(group.count)}</span></button>`
+    )
+  ].join("");
+}
+
+function sourceEvidenceCardHtml(article) {
+  return `
+    <article class="info-card source-card source-evidence-card" data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}">
+      ${articleThumbnailHtml(article)}
+      <div class="source-card-copy">
+        <div class="source-card-header">
+          <span class="news-badge ${newsToneClass(article.sentimentScore)}">${escapeHtml(newsBadgeLabel(article))}</span>
+          <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
+        </div>
+        <h3>${escapeHtml(article.headline)}</h3>
+        <p class="source-takeaway"><strong>Takeaway:</strong> ${escapeHtml(article.takeaway || article.summary)}</p>
+        <details class="source-card-detail">
+          <summary>Read-through</summary>
+          <p><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
+          <p><strong>India impact:</strong> ${escapeHtml(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
+          <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</p>
+        </details>
+        <div class="source-card-footer">
+          <span class="source-entity">${escapeHtml(article.entityName || "Market")} - weight ${escapeHtml(sourceWeight(article).toFixed(2))}</span>
+          <a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function sourceCategoryGroups(articles) {
+  const categoryOrder = ["macro_negative", "global_risk", "neutral_volatile", "sector_positive", "macro_positive"];
+  const groups = new Map();
+  for (const article of articles) {
+    const category = article.category || "market";
+    groups.set(category, [...(groups.get(category) || []), article]);
+  }
+  return [...groups.entries()]
+    .map(([category, groupedArticles]) => {
+      const weight = groupedArticles.reduce((sum, article) => sum + Number(article.entityMatchScore || 0), 0);
+      const score = weight
+        ? groupedArticles.reduce((sum, article) => sum + Number(article.sentimentScore || 0) * Number(article.entityMatchScore || 0), 0) / weight
+        : 0;
+      const lead = weightedSourceArticles(groupedArticles)[0] || groupedArticles[0];
+      return {
+        category,
+        count: groupedArticles.length,
+        score,
+        leadEntity: lead?.entityName || "Market"
+      };
+    })
+    .sort((left, right) => {
+      const leftIndex = categoryOrder.indexOf(left.category);
+      const rightIndex = categoryOrder.indexOf(right.category);
+      return (leftIndex === -1 ? 99 : leftIndex) - (rightIndex === -1 ? 99 : rightIndex);
+    });
+}
+
+function sourceWeight(article) {
+  return Math.abs(Number(article.sentimentScore || 0) * Number(article.entityMatchScore || 0));
+}
+
+function sourceScoreClass(score) {
+  if (score >= 0.1) return "up";
+  if (score <= -0.1) return "down";
+  return "flat";
 }
 
 function strongestStory(articles, direction) {

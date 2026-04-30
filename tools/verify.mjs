@@ -379,6 +379,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("up <em>/"));
   assert.ok(publicHtml.body.includes("Avg move"));
   assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
+  assert.ok(publicHtml.body.includes("Evidence ledger behind the briefing"));
+  assert.ok(publicHtml.body.includes("Evidence Map"));
+  assert.ok(publicHtml.body.includes("Lead evidence"));
+  assert.ok(publicHtml.body.includes("source-filter-row"));
+  assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
+  assert.ok(publicHtml.body.includes("Read-through"));
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
   assert.ok(publicHtml.body.includes("Economic Times Markets"));
   assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));

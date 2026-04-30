@@ -277,13 +277,35 @@ async function verifyCharts(page, daily) {
 
 async function clickSourceLinks(page, daily) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
-  const links = page.locator(".source-card a");
+  await verifySourceFilters(page, daily);
+  const links = page.locator(".source-lead-card a, .source-card a");
   const count = await links.count();
-  assert.ok(count >= 14, `${daily.slug} should render at least 14 source links`);
+  assert.ok(count >= 15, `${daily.slug} should render at least 15 source links`);
   for (let index = 0; index < count; index += 1) {
     await clickExternalPopup(page, links.nth(index), "http", `${daily.slug} source link ${index + 1}`);
   }
   return count;
+}
+
+async function verifySourceFilters(page, daily) {
+  await expectOne(page.getByText("Evidence Map", { exact: true }), `${daily.slug} source evidence map`);
+  await expectOne(page.getByText("Lead evidence", { exact: true }), `${daily.slug} lead source evidence`);
+  const buttons = page.locator("[data-source-filter]");
+  const buttonCount = await buttons.count();
+  assert.ok(buttonCount >= 5, `${daily.slug} should render source filter buttons`);
+
+  for (let index = 1; index < buttonCount; index += 1) {
+    const button = buttons.nth(index);
+    const filter = await button.getAttribute("data-source-filter");
+    await button.click();
+    await expectOne(page.locator(`[data-source-filter="${filter}"][aria-pressed="true"]`), `${daily.slug} source filter ${filter} active`);
+    const visibleCards = await page.locator(`.source-card[data-source-category="${filter}"]:visible`).count();
+    assert.ok(visibleCards > 0, `${daily.slug} source filter ${filter} should show cards`);
+  }
+
+  await page.locator('[data-source-filter="all"]').click();
+  await expectOne(page.locator('[data-source-filter="all"][aria-pressed="true"]'), `${daily.slug} all source filter active`);
+  assert.ok(await page.locator(".source-card:visible").count() >= 14, `${daily.slug} all source filter should restore cards`);
 }
 
 async function verifyStudio(page, daily) {
