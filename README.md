@@ -117,6 +117,8 @@ npm run daily:generate -- --market-data live
 
 The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
 
+The export also creates `out/site/components/index.html`, an expandable project-components map that explains the data pipeline, public/private split, Studio workflow, publishing process, and QA checks in a readable visual format.
+
 ## GitHub Pages
 
 This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 15 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.

@@ -50,6 +50,7 @@ try {
       [
         `cycle=${summary.cycle}`,
         `archiveLinks=${summary.archiveLinks}`,
+        `componentPanels=${summary.componentPanels}`,
         `dailyPages=${summary.dailyPages}`,
         `chartButtons=${summary.chartButtons}`,
         `chartExternalLinks=${summary.chartExternalLinks}`,
@@ -105,6 +106,7 @@ async function runCycle(page, cycle) {
   const stamp = `${Date.now()}-${cycle}`;
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
+  const componentPanels = await verifyComponentsPage(page, stamp);
   let chartButtons = 0;
   let chartExternalLinks = 0;
   let sourceLinks = 0;
@@ -123,6 +125,7 @@ async function runCycle(page, cycle) {
   return {
     cycle,
     archiveLinks,
+    componentPanels,
     dailyPages: dailyPages.length,
     chartButtons,
     chartExternalLinks,
@@ -136,6 +139,7 @@ async function verifyArchive(page, rootUrl) {
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
+  await expectOne(page.getByRole("link", { name: "Project components" }), "project components link");
   for (const daily of dailyPages) {
     await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
     await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
@@ -153,12 +157,44 @@ async function verifyArchive(page, rootUrl) {
   return linkCount;
 }
 
+async function verifyComponentsPage(page, stamp) {
+  const componentsUrl = `${baseUrl}/components/?fullqa=${stamp}`;
+  await page.goto(componentsUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.getByRole("heading", { name: "How the Market Narrative Engine fits together" }), "components page heading");
+  await expectOne(page.getByRole("heading", { name: "End-to-End System View" }), "system view heading");
+  await expectOne(page.getByRole("heading", { name: "Repository Component Map" }), "repository component map heading");
+  await expectOne(page.getByRole("heading", { name: "Daily Publishing Flow" }), "daily publishing flow heading");
+  await expectOne(page.getByRole("heading", { name: "Public vs Private Boundary" }), "public private boundary heading");
+  await expectOne(page.getByRole("heading", { name: "Expandable Component Notes" }), "expandable component notes heading");
+  await expectOne(page.getByText("Public GitHub Pages", { exact: true }), "public boundary card");
+  await expectOne(page.getByText("Private Local Studio", { exact: true }), "private boundary card");
+  await expectOne(page.getByText("tools/", { exact: true }), "tools repository card");
+  await expectOne(page.getByText("archive/", { exact: true }), "archive repository card");
+  const panels = page.locator("details.component");
+  const panelCount = await panels.count();
+  assert.ok(panelCount >= 8, `components page should render at least 8 expandable panels, got ${panelCount}`);
+  await expectOne(page.getByRole("heading", { name: "1. Data and Seed Layer" }), "data and seed component");
+  await expectOne(page.getByRole("heading", { name: "6. Private Studio and Reel Script" }), "private studio component");
+  await expectOne(page.getByRole("heading", { name: "8. Testing and QA" }), "testing component");
+  const digestPanel = page.locator("details.component").filter({ hasText: "3. Digest and Narrative Engine" });
+  await expectOne(digestPanel, "digest engine expandable panel");
+  if (await digestPanel.getAttribute("open") !== null) {
+    await digestPanel.locator("summary").click();
+    await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine collapses");
+  }
+  await digestPanel.locator("summary").click();
+  await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Engine" }), "digest engine opens");
+  await expectOne(page.getByRole("link", { name: "Briefing archive" }), "components archive link");
+  return panelCount;
+}
+
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
+  await expectOne(page.getByRole("link", { name: "Project Components" }), `${daily.slug} project components link`);
   assert.equal(await page.getByText("Real Quote Board", { exact: true }).count(), 0, `${daily.slug} should not show Real Quote Board`);
 
   const brandLink = page.locator("a.brand");

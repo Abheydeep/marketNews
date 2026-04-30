@@ -287,9 +287,12 @@ await test("backend market snapshot contract carries quote regions, countries, a
   assert.ok(service.includes("getTradingViewSymbol()"));
 });
 
-await test("static publisher emits archive root and dated daily pages", async () => {
+await test("static publisher emits archive root, components doc, and dated daily pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
+  assert.ok(publisher.includes("projectComponentsPage"));
+  assert.ok(publisher.includes('"components"'));
+  assert.ok(publisher.includes("Project components"));
   assert.ok(publisher.includes("slugForDigest"));
   assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
   assert.ok(publisher.includes("Root index.html is the digest archive"));
@@ -298,6 +301,14 @@ await test("static publisher emits archive root and dated daily pages", async ()
   assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
   assert.ok(!publisher.includes("copyFile(sourceJson"));
+
+  const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
+  assert.ok(componentsPage.includes("How the Market Narrative Engine fits together"));
+  assert.ok(componentsPage.includes('details class="component"'));
+  assert.ok(componentsPage.includes("End-to-End System View"));
+  assert.ok(componentsPage.includes("Repository Component Map"));
+  assert.ok(componentsPage.includes("Public vs Private Boundary"));
+  assert.ok(componentsPage.includes("Private Studio and Reel Script"));
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: true"));

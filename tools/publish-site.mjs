@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { projectComponentsPage } from "./project-components-page.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -39,6 +40,8 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
+await mkdir(join(siteDir, "components"), { recursive: true });
+await writeFile(join(siteDir, "components", "index.html"), projectComponentsPage({ digests }), "utf8");
 await writeFile(join(siteDir, "index.html"), archivePage(digests), "utf8");
 await writeFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(publicDigestPayload) }, null, 2)}\n`, "utf8");
@@ -187,6 +190,23 @@ function archivePage(digests) {
       background: #111827;
       color: #fff;
       padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav-link {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px 13px;
+      color: #374151;
       font-size: 13px;
       font-weight: 900;
     }
@@ -348,6 +368,15 @@ function archivePage(digests) {
         width: 100%;
         text-align: center;
       }
+
+      .nav-actions,
+      .nav-link {
+        width: 100%;
+      }
+
+      .nav-link {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -356,7 +385,10 @@ function archivePage(digests) {
     <div class="shell">
       <div class="nav-inner">
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
-        <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+        <div class="nav-actions">
+          <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+          <a class="nav-link" href="./components/">Project components</a>
+        </div>
       </div>
     </div>
   </nav>

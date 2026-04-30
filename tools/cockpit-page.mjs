@@ -104,7 +104,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       min-height: 64px;
     }
 
-    .tab-btn {
+    .tab-btn,
+    .tab-link {
       border: 0;
       border-bottom: 2px solid transparent;
       background: transparent;
@@ -113,6 +114,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 14px;
       font-weight: 650;
       cursor: pointer;
+    }
+
+    .tab-link {
+      display: inline-flex;
+      align-items: center;
     }
 
     .tab-btn.active {
@@ -2980,6 +2986,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}
           <button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
+          <a class="tab-link" href="${digest.canonicalPath ? "../components/" : "./components/"}">Project Components</a>
         </div>
       </div>
     </div>
