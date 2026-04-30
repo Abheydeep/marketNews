@@ -3477,7 +3477,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
             <div>
-              <span class="summary-label">2-minute compact briefing</span>
+              <span class="summary-label">2 min read</span>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
             <strong class="summary-expand-action">Open full source-backed briefing</strong>
@@ -4925,17 +4925,18 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 function compactSummaryText(digest) {
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
+  const macro = firstByCategory(digest.news, "macro_negative");
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const setup = niftySetup(digest);
   const setupLine = setup
-    ? `Scanner accepts ${setup.symbol} only near ${formatNumber(setup.entry)}.`
-    : "Scanner blocks stale trade levels.";
+    ? `${setup.symbol} has a conditional 1:2 setup near ${formatNumber(setup.entry)}.`
+    : "No fresh 1:2 setup has passed live validation yet.";
+  const pressureLabel = marketRiskLabel(macro || pressureStory);
   return limitWords([
-    `Risk tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()}.`,
-    `${compactEntityName(pressureStory?.entityName || "Macro")} is the main pressure point; ${compactEntityName(supportStory?.entityName || "domestic breadth")} is the offset.`,
+    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} but selective.`,
+    `${pressureLabel} is the risk to watch; ${compactEntityName(supportStory?.entityName || "domestic breadth")} is the offset.`,
     asiaLine,
-    setupLine,
-    "Open for the source-backed read."
+    setupLine
   ].filter(Boolean).join(" "), 50);
 }
 
@@ -4998,7 +4999,7 @@ function compactAsiaLine(snapshots) {
   const strongest = asia
     .slice()
     .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
-  return `Asia is mixed across top-five country markets: ${positives} of ${asia.length} are higher, led by ${countryForSnapshot(strongest) || strongest.name} ${formatChange(strongest.changePercent)}.`;
+  return `Asia: ${positives} of ${asia.length} top country markets are higher, led by ${countryForSnapshot(strongest) || strongest.name} ${formatChange(strongest.changePercent)}.`;
 }
 
 function expandedBriefingHtml(digest) {
@@ -5021,23 +5022,55 @@ function expandedBriefingHeadline(digest) {
   return `${primaryTheme}: ${headlineSentiment(digest.sentimentLabel)} pre-market read for India`;
 }
 
+function storyReadThrough(story) {
+  if (!story) {
+    return "";
+  }
+  return story.indiaImpact || story.whyItMatters || story.takeaway || story.summary || "";
+}
+
+function marketRiskLabel(story) {
+  const headline = String(story?.headline || "").toLowerCase();
+  if (headline.includes("crude") || headline.includes("oil")) return "Crude";
+  if (headline.includes("dollar") && headline.includes("yield")) return "Dollar and yields";
+  if (headline.includes("yield")) return "US yields";
+  if (headline.includes("inflation")) return "Inflation expectations";
+  if (headline.includes("volatility")) return "Volatility";
+  if (headline.includes("fed")) return "Fed policy";
+  if (headline.includes("yen") || headline.includes("carry")) return "Asia FX";
+  return compactEntityName(story?.entityName || "macro cues");
+}
+
+function editorialSentence(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  return /[.!?]$/.test(text) ? text : `${text}.`;
+}
+
 function expandedLeadParagraphs(digest) {
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
   const setup = niftySetup(digest);
+  const pressureEntity = marketRiskLabel(macro || pressureStory);
+  const supportEntity = compactEntityName(supportStory?.entityName || "domestic breadth");
+  const pressureRead = storyReadThrough(macro || pressureStory);
+  const supportRead = storyReadThrough(supportStory);
   const setupLine = setup
     ? `The scanner still keeps a conditional ${setup.symbol} ${setup.direction.toLowerCase()} setup alive at ${setup.riskReward}R, but only if price accepts near ${formatNumber(setup.entry)} without damaging the stop-to-target structure.`
     : "The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call.";
 
   return [
     [
-      `Two-minute read: this briefing distills ${digest.news.length} source notes, ${digest.themes.length} narrative clusters, and ${digest.marketSnapshots.length} market snapshots into the cues that matter before the Indian open.`,
-      pressureStory ? `The heaviest pressure point is ${pressureStory.takeaway || pressureStory.summary}` : "",
-      macro ? `Macro read-through: ${macro.indiaImpact || macro.whyItMatters}` : "",
-      supportStory ? `The main offset is ${supportStory.takeaway || supportStory.summary}` : "",
+      `The Indian open looks ${headlineSentiment(digest.sentimentLabel).toLowerCase()} rather than one-way.`,
+      `${pressureEntity} is the main risk to track before chasing the first move.`,
+      pressureRead,
+      supportStory ? `${supportEntity} is the key offset in the morning setup.` : "",
+      supportRead,
       setupLine
-    ].filter(Boolean).join(" ")
+    ].filter(Boolean).map(editorialSentence).join(" ")
   ];
 }
 
@@ -5066,17 +5099,20 @@ function executiveSummaryHtml(digest) {
   const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
+  const macroPressure = firstByCategory(digest.news, "macro_negative") || pressureStory;
   const primaryTheme = digest.themes[0];
   const setup = niftySetup(digest);
   const setupText = setup
     ? `Nifty has a scanner-approved ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
     : "The scanner has not accepted a 1:2 risk-reward setup yet, so the first hour should define the actionable levels.";
+  const pressureRead = storyReadThrough(macroPressure);
+  const supportRead = storyReadThrough(supportStory);
   const bottomLine = [
     `Overnight financial news points to a ${digest.sentimentLabel.toLowerCase()} but selective Indian open.`,
-    pressureStory ? `The main pressure point is ${pressureStory.takeaway || pressureStory.summary}` : primaryTheme?.summary,
-    supportStory ? `The offset is ${supportStory.takeaway || supportStory.summary}` : "",
+    macroPressure ? `${marketRiskLabel(macroPressure)} is the main pressure point${pressureRead ? `: ${pressureRead}` : "."}` : primaryTheme?.summary,
+    supportStory ? `${compactEntityName(supportStory.entityName || "Domestic breadth")} is the offset${supportRead ? `: ${supportRead}` : "."}` : "",
     "This is a source-led brief, not just an index-move recap."
-  ].filter(Boolean).join(" ");
+  ].filter(Boolean).map(editorialSentence).join(" ");
 
   return `
     <p class="brief-lead"><strong>Bottom line:</strong> ${escapeHtml(bottomLine)}</p>

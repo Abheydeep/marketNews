@@ -429,7 +429,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("4. What To Watch Next"));
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
-  assert.ok(publicHtml.body.includes("2-minute compact briefing"));
+  assert.ok(publicHtml.body.includes("2 min read"));
   assert.ok(publicHtml.body.includes("Open full source-backed briefing"));
   assert.ok(publicHtml.body.includes("Expanded briefing after multi-source extraction"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
