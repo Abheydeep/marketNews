@@ -13,6 +13,7 @@
     "demo": "node tools/demo-server.mjs",
     "daily:generate": "node tools/generate-daily-summary.mjs",
     "site:publish": "node tools/publish-site.mjs",
+    "site:qa": "node tools/full-site-qa.mjs",
     "public:dev": "npm --workspace @market-narrative/public-portal run dev",
     "admin:dev": "npm --workspace @market-narrative/admin-studio run dev"
   }
