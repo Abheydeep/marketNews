@@ -2837,6 +2837,400 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       line-height: 1.55;
     }
 
+    /* Dark glassmorphism branch theme */
+    body.glass-v2 {
+      --paper: #050816;
+      --ink: #f8fafc;
+      --slate: #f8fafc;
+      --stone: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(15, 23, 42, 0.62);
+      --blue: #60a5fa;
+      --green: #34d399;
+      --red: #fb7185;
+      --gold: #fbbf24;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.32), transparent 32vw),
+        radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.30), transparent 34vw),
+        radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.18), transparent 28vw),
+        linear-gradient(135deg, #030712 0%, #08111f 46%, #111827 100%);
+      color: #f8fafc;
+    }
+
+    body.glass-v2::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 42%);
+    }
+
+    body.glass-v2 > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass-v2 .topbar {
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+      background: rgba(3, 7, 18, 0.66);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .glass-v2 .brand-mark {
+      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
+      box-shadow: 0 0 34px rgba(34, 211, 238, 0.28);
+    }
+
+    .glass-v2 .tab-btn,
+    .glass-v2 .tab-link {
+      color: #b8c4d8;
+    }
+
+    .glass-v2 .tab-btn.active {
+      border-bottom-color: #67e8f9;
+      color: #f8fafc;
+    }
+
+    .mood-rail {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 0.85fr);
+      gap: 12px;
+      margin: -8px 0 18px;
+    }
+
+    .mood-cell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.58);
+      padding: 15px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    .mood-cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), transparent 42%);
+      pointer-events: none;
+    }
+
+    .mood-cell span,
+    .mood-cell strong,
+    .mood-cell small,
+    .mood-bar {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mood-cell span {
+      display: block;
+      color: #b8c4d8;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mood-cell strong {
+      display: block;
+      margin-top: 7px;
+      color: #f8fafc;
+      font-size: 22px;
+      line-height: 1.16;
+    }
+
+    .mood-cell small {
+      display: block;
+      margin-top: 7px;
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .mood-bar {
+      height: 9px;
+      margin-top: 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .mood-bar i {
+      display: block;
+      width: var(--mood-width);
+      height: 100%;
+      border-radius: inherit;
+      background: var(--mood-color);
+      box-shadow: 0 0 20px color-mix(in srgb, var(--mood-color) 70%, transparent);
+    }
+
+    .mood-rail.bullish .mood-cell:first-child {
+      border-color: rgba(52, 211, 153, 0.42);
+    }
+
+    .mood-rail.bearish .mood-cell:first-child {
+      border-color: rgba(251, 113, 133, 0.42);
+    }
+
+    .glass-v2 :is(.info-card, .panel, .briefing-card, .quote-board-card, .breadth-card, .index-tile, .source-category-section, .source-category-meta div, .source-lead-card, .source-card, .summary-chip, .briefing-block, .briefing-lens, .metric, .studio-run-card, .studio-metric, .workflow-step, .validation-row, .theme-review-card, .script-section-card, .checklist-item, .activity-item, .prompt-detail, .rr-cell, .milestone) {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .glass-v2 :is(.info-card:hover, .breadth-card:hover, .index-tile:hover, .source-card:hover) {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
+    }
+
+    .glass-v2 :is(.page-header h1, .executive-card h2, .expanded-briefing-head h2, .section-kicker h2, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong) {
+      color: #f8fafc;
+    }
+
+    .glass-v2 :is(.page-header p, .executive-card p, .expanded-briefing-head p, .briefing-lens p, .brief-list, .watch-grid, .source-section-copy, .source-lead-copy > p, .source-category-head p, .source-card p, .source-card-detail p, .chart-note, .panel p, .briefing-block ul, .quote-board-title small, .live-clock, .quote-region-head span, .chart-modal-header p, .market-chart-caption, .studio-header p, .studio-hero p, .studio-run-meta, .studio-metric small, .studio-panel-head p, .validation-row span, .source-qa-item span, .script-section-card span, .checklist-item span, .activity-item span, .asset-caption, .studio-note, .muted-copy, .tech-block p, .milestone p, .public-footer p) {
+      color: #cbd5e1;
+    }
+
+    .glass-v2 :is(.eyebrow, .summary-label, .source-extract-meta small, .source-stat-strip span, .source-category-label small, .source-category-meta span, .source-name, .source-entity, .metric .label, .summary-chip span, .workflow-step span, .prompt-detail span, .rr-cell span, .strategy-label, .setup-level span, .quote-board-title strong, .breadth-card span, .index-tile .symbol) {
+      color: #9fb0c8;
+    }
+
+    .glass-v2 .briefing-expand-card {
+      border-left-color: rgba(103, 232, 249, 0.62);
+    }
+
+    .glass-v2 .briefing-expand-card summary p {
+      color: #f8fafc;
+    }
+
+    .glass-v2 .summary-expand-action,
+    .glass-v2 .quote-board-action,
+    .glass-v2 .chart-link-btn,
+    .glass-v2 .studio-action-btn,
+    .glass-v2 .speed-btn.active,
+    .glass-v2 .source-filter-btn.active {
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.28);
+    }
+
+    .glass-v2 .expanded-briefing-page,
+    .glass-v2 .market-chart-preview,
+    .glass-v2 .reel-script-panel {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.58));
+    }
+
+    .glass-v2 .sentiment-bar {
+      height: 9px;
+      background: linear-gradient(90deg, #fb7185 0%, #fbbf24 50%, #34d399 100%);
+      box-shadow: 0 0 24px rgba(251, 191, 36, 0.18);
+    }
+
+    .glass-v2 .sentiment-pin {
+      top: -5px;
+      width: 18px;
+      height: 18px;
+      border: 3px solid #f8fafc;
+      background: #020617;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.34);
+    }
+
+    .glass-v2 :is(.source-filter-btn, .studio-ghost-btn, .speed-btn, .icon-btn, .quote-board-toggle) {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(15, 23, 42, 0.52);
+      color: #f8fafc;
+    }
+
+    .glass-v2 .quote-board-toggle:hover {
+      background: rgba(30, 41, 59, 0.68);
+    }
+
+    .glass-v2 .quote-board-body,
+    .glass-v2 .expanded-briefing-page,
+    .glass-v2 .brief-lead,
+    .glass-v2 .source-extract-list,
+    .glass-v2 .source-extract-row,
+    .glass-v2 .source-category-head,
+    .glass-v2 .source-card-detail,
+    .glass-v2 .public-footer,
+    .glass-v2 .studio-header,
+    .glass-v2 .studio-hero,
+    .glass-v2 .studio-note,
+    .glass-v2 .market-chart-caption,
+    .glass-v2 .news-list li {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-v2 .source-card {
+      position: relative;
+    }
+
+    .glass-v2 .source-card::after {
+      content: "Open";
+      position: absolute;
+      right: 13px;
+      bottom: 12px;
+      border-radius: 999px;
+      background: rgba(96, 165, 250, 0.16);
+      padding: 4px 8px;
+      color: #bfdbfe;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .glass-v2 .source-card:hover::after,
+    .glass-v2 .source-card:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .source-card:focus-visible,
+    .breadth-card:focus-visible,
+    .index-tile:focus-visible,
+    .quote-board-toggle:focus-visible {
+      outline: 3px solid rgba(103, 232, 249, 0.72);
+      outline-offset: 3px;
+    }
+
+    .glass-v2 .setup-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at 85% 12%, rgba(251, 113, 133, 0.20), transparent 30%),
+        radial-gradient(circle at 18% 8%, rgba(52, 211, 153, 0.18), transparent 34%),
+        linear-gradient(135deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.70));
+      box-shadow: 0 24px 76px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+    .glass-v2 .setup-badge {
+      border-color: rgba(52, 211, 153, 0.42);
+      background: rgba(52, 211, 153, 0.13);
+      color: #bbf7d0;
+    }
+
+    .glass-v2 .strategy-bias {
+      font-size: 24px;
+    }
+
+    .glass-v2 .setup-levels {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(2, 6, 23, 0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .glass-v2 .setup-level + .setup-level {
+      border-left-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .glass-v2 .setup-level strong {
+      font-size: clamp(28px, 4.6vw, 42px);
+      letter-spacing: 0;
+    }
+
+    .glass-v2 .setup-level.stop strong,
+    .glass-v2 .setup-level.stop span {
+      color: #fb7185;
+    }
+
+    .glass-v2 .setup-level.target strong,
+    .glass-v2 .setup-level.target span {
+      color: #34d399;
+    }
+
+    .glass-v2 .news-badge.negative,
+    .glass-v2 .valid-badge.idle {
+      background: rgba(251, 113, 133, 0.16);
+      color: #fecdd3;
+    }
+
+    .glass-v2 .news-badge.positive,
+    .glass-v2 .valid-badge {
+      background: rgba(52, 211, 153, 0.16);
+      color: #bbf7d0;
+    }
+
+    .glass-v2 .news-badge.neutral,
+    .glass-v2 .market-state,
+    .glass-v2 .index-tile .status,
+    .glass-v2 .chip,
+    .glass-v2 .source-stat-strip span {
+      background: rgba(255, 255, 255, 0.10);
+      color: #dbeafe;
+    }
+
+    .glass-v2 :is(.market-state.live, .index-tile .status.live) {
+      background: rgba(52, 211, 153, 0.16);
+      color: #bbf7d0;
+    }
+
+    .glass-v2 :is(.market-state.partial) {
+      background: rgba(251, 191, 36, 0.16);
+      color: #fde68a;
+    }
+
+    .glass-v2 .market-move.up,
+    .glass-v2 .index-tile .change.up,
+    .glass-v2 .source-category-meta strong.up {
+      color: #34d399;
+    }
+
+    .glass-v2 .market-move.down,
+    .glass-v2 .index-tile .change.down,
+    .glass-v2 .source-category-meta strong.down {
+      color: #fb7185;
+    }
+
+    .glass-v2 :is(.index-tile .price, .metric strong, .summary-chip strong, .source-extract-meta span, .source-extract-copy h4, .briefing-block h3, .teleprompter-header h2) {
+      color: #f8fafc;
+    }
+
+    .glass-v2 .source-thumb {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 18px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .glass-v2 .chart-modal {
+      background: rgba(2, 6, 23, 0.74);
+      backdrop-filter: blur(10px);
+    }
+
+    .glass-v2 .chart-modal-panel {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.86));
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+    }
+
+    .glass-v2 :is(.modal-chart-container, .chart-fallback, .quote-region-empty, .prompt-box, .asset-output, .loader-track, .theme-bar, .reel-script-box) {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(2, 6, 23, 0.48);
+      color: #cbd5e1;
+    }
+
+    .glass-v2 .source-card a,
+    .glass-v2 .source-lead-copy a,
+    .glass-v2 .news-list a {
+      color: #93c5fd;
+    }
+
+    .glass-v2 .source-card:hover h3 {
+      color: #67e8f9;
+    }
+
     @media (max-width: 900px) {
       .nav-inner {
         align-items: start;
@@ -2880,6 +3274,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .script-section-list,
       .briefing-expand-card summary,
       .briefing-lens-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mood-rail {
         grid-template-columns: 1fr;
       }
 
@@ -2977,7 +3375,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
   </style>
 </head>
-<body>
+<body class="glass-v2">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -3007,6 +3405,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
           <h1>${escapeHtml(digest.title)}</h1>
         </header>
+
+        ${marketMoodRailHtml(digest)}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -3376,6 +3776,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
       bindQuoteBoardToggle();
       bindSourceFilters();
+      bindSourceCardClicks();
       initLiveIndexBoard();
     });
 
@@ -3906,9 +4307,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     function drawEmptyScannerChart(canvas) {
       const { ctx, width, height } = scaleCanvas(canvas);
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = 'rgba(2, 6, 23, 0.42)';
       ctx.fillRect(0, 0, width, height);
-      ctx.strokeStyle = '#e5e7eb';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 1; i <= 4; i += 1) {
         const y = (height / 5) * i;
@@ -3917,11 +4318,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ctx.lineTo(width - 24, y);
         ctx.stroke();
       }
-      ctx.fillStyle = '#111827';
+      ctx.fillStyle = '#f8fafc';
       ctx.textAlign = 'center';
       ctx.font = 'bold 16px Arial';
       ctx.fillText('No active scanner setup', width / 2, height / 2 - 8);
-      ctx.fillStyle = '#64748b';
+      ctx.fillStyle = '#cbd5e1';
       ctx.font = '13px Arial';
       ctx.fillText('Live quote validation removed stale 1:2 levels.', width / 2, height / 2 + 18);
     }
@@ -3946,7 +4347,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const max = Math.max(1.8, ...data.map((item) => item.value));
       const zeroY = pad.top + (max / (max - min)) * chartH;
 
-      ctx.strokeStyle = '#f5f5f4';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i += 1) {
         const y = pad.top + (chartH / 4) * i;
@@ -3956,7 +4357,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ctx.stroke();
       }
 
-      ctx.strokeStyle = '#d6d3d1';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.26)';
       ctx.beginPath();
       ctx.moveTo(pad.left, zeroY);
       ctx.lineTo(width - pad.right, zeroY);
@@ -3969,11 +4370,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         const y = pad.top + ((max - item.value) / (max - min)) * chartH;
         const barTop = Math.min(y, zeroY);
         const barH = Math.max(4, Math.abs(zeroY - y));
-        ctx.fillStyle = item.value >= 0 ? 'rgba(16, 185, 129, 0.86)' : 'rgba(239, 68, 68, 0.86)';
+        ctx.fillStyle = item.value >= 0 ? 'rgba(52, 211, 153, 0.92)' : 'rgba(251, 113, 133, 0.92)';
         roundRect(ctx, x, barTop, barW, barH, 5);
         ctx.fill();
 
-        ctx.fillStyle = '#57534e';
+        ctx.fillStyle = '#cbd5e1';
         ctx.font = data.length > 9 ? '10px Arial' : '12px Arial';
         ctx.textAlign = 'center';
         ctx.save();
@@ -3983,7 +4384,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         }
         ctx.fillText(item.label, 0, 0);
         ctx.restore();
-        ctx.fillStyle = item.value >= 0 ? '#047857' : '#b91c1c';
+        ctx.fillStyle = item.value >= 0 ? '#34d399' : '#fb7185';
         ctx.font = data.length > 9 ? 'bold 10px Arial' : 'bold 12px Arial';
         ctx.fillText((item.value >= 0 ? '+' : '') + item.value.toFixed(2) + '%', x + barW / 2, barTop - 8);
       });
@@ -4006,12 +4407,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       max += spread * 0.18;
       const xFor = (index) => pad.left + (chartW / Math.max(1, points.length - 1)) * index;
       const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
-      const lineColor = Number(quote.changePercent) >= 0 ? '#059669' : '#dc2626';
+      const lineColor = Number(quote.changePercent) >= 0 ? '#34d399' : '#fb7185';
 
-      ctx.strokeStyle = '#e5e7eb';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
       ctx.lineWidth = 1;
       ctx.font = '11px Arial';
-      ctx.fillStyle = '#64748b';
+      ctx.fillStyle = '#cbd5e1';
       ctx.textAlign = 'right';
       for (let i = 0; i <= 4; i += 1) {
         const value = min + ((max - min) / 4) * i;
@@ -4025,21 +4426,21 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       if (Number.isFinite(previous)) {
         const y = yFor(previous);
-        ctx.strokeStyle = '#94a3b8';
+        ctx.strokeStyle = 'rgba(203, 213, 225, 0.55)';
         ctx.setLineDash([6, 6]);
         ctx.beginPath();
         ctx.moveTo(pad.left, y);
         ctx.lineTo(width - pad.right, y);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#64748b';
+        ctx.fillStyle = '#cbd5e1';
         ctx.textAlign = 'left';
         ctx.fillText('Prev close ' + formatCompactNumber(previous), pad.left + 8, y - 7);
       }
 
       const gradient = ctx.createLinearGradient(0, pad.top, 0, height - pad.bottom);
-      gradient.addColorStop(0, Number(quote.changePercent) >= 0 ? 'rgba(5, 150, 105, 0.22)' : 'rgba(220, 38, 38, 0.20)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      gradient.addColorStop(0, Number(quote.changePercent) >= 0 ? 'rgba(52, 211, 153, 0.24)' : 'rgba(251, 113, 133, 0.22)');
+      gradient.addColorStop(1, 'rgba(2, 6, 23, 0)');
       ctx.beginPath();
       points.forEach((point, index) => {
         const x = xFor(index);
@@ -4068,18 +4469,18 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       const first = points[0];
       const last = points.at(-1);
-      ctx.fillStyle = '#475569';
+      ctx.fillStyle = '#cbd5e1';
       ctx.textAlign = 'left';
       ctx.font = '12px Arial';
       ctx.fillText(formatQuoteTime(first.time) || 'Start', pad.left, height - 16);
       ctx.textAlign = 'right';
       ctx.fillText(formatQuoteTime(last.time) || 'Latest', width - pad.right, height - 16);
 
-      ctx.fillStyle = '#111827';
+      ctx.fillStyle = '#f8fafc';
       ctx.textAlign = 'left';
       ctx.font = 'bold 18px Arial';
       ctx.fillText(formatClientNumber(quote.closeValue) + ' (' + formatClientChange(quote.changePercent) + ')', pad.left, 20);
-      ctx.fillStyle = '#64748b';
+      ctx.fillStyle = '#cbd5e1';
       ctx.textAlign = 'right';
       ctx.font = '12px Arial';
       ctx.fillText(points.length + ' captured points', width - pad.right, 20);
@@ -4108,7 +4509,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const xFor = (index) => pad.left + (chartW / (labels.length - 1)) * index;
       const yFor = (value) => pad.top + ((max - value) / (max - min)) * chartH;
 
-      ctx.strokeStyle = '#f5f5f4';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
       for (let i = 0; i <= 4; i += 1) {
         const y = pad.top + (chartH / 4) * i;
         ctx.beginPath();
@@ -4131,7 +4532,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ctx.lineWidth = 3;
       ctx.stroke();
 
-      ctx.fillStyle = '#57534e';
+      ctx.fillStyle = '#cbd5e1';
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
       labels.forEach((label, index) => ctx.fillText(label, xFor(index), height - 16));
@@ -4387,6 +4788,26 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       applyFilter('all');
     }
 
+    function bindSourceCardClicks() {
+      document.querySelectorAll('.source-card[data-source-url]').forEach((card) => {
+        const openSource = () => {
+          const url = card.dataset.sourceUrl;
+          if (!url) return;
+          window.open(url, '_blank', 'noopener,noreferrer');
+        };
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('a, button, summary, details')) return;
+          openSource();
+        });
+        card.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          if (event.target.closest('a, button, summary, details')) return;
+          event.preventDefault();
+          openSource();
+        });
+      });
+    }
+
     window.addEventListener('resize', () => {
       drawOvernightChart();
       drawScannerChart();
@@ -4415,6 +4836,44 @@ function compactSummaryText(digest) {
     setupLine,
     "Open for the source-backed read."
   ].filter(Boolean).join(" "), 50);
+}
+
+function marketMoodRailHtml(digest) {
+  const moodClass = String(digest.sentimentLabel || "").toLowerCase();
+  const moodColor = digest.sentimentLabel === "BULLISH" ? "#34d399" : digest.sentimentLabel === "BEARISH" ? "#fb7185" : "#fbbf24";
+  const moodWidth = sentimentPinPosition(digest.overallSentiment);
+  const primaryTheme = digest.themes[0];
+  const nifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "NIFTY");
+  const bankNifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
+  const setup = niftySetup(digest);
+  const indexLine = [nifty, bankNifty]
+    .filter(Boolean)
+    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .join(" / ");
+  const setupLine = setup
+    ? `${setup.symbol} ${setup.riskReward}R setup: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)}.`
+    : "No active setup after live quote validation.";
+
+  return `
+    <section class="mood-rail ${escapeHtml(moodClass)}" aria-label="Market mood and priority signals">
+      <article class="mood-cell">
+        <span>Market Mood</span>
+        <strong style="color: ${moodColor}">${escapeHtml(headlineSentiment(digest.sentimentLabel))}</strong>
+        <small>Weighted sentiment ${escapeHtml(formatSignedScore(digest.overallSentiment))}</small>
+        <div class="mood-bar" aria-hidden="true"><i style="--mood-width: ${moodWidth}%; --mood-color: ${moodColor}"></i></div>
+      </article>
+      <article class="mood-cell">
+        <span>Primary Driver</span>
+        <strong>${escapeHtml(primaryTheme?.title || "Narrative cluster pending")}</strong>
+        <small>${escapeHtml(primaryTheme?.summary || "Source-backed theme will appear after the digest run.")}</small>
+      </article>
+      <article class="mood-cell">
+        <span>India Filter</span>
+        <strong>${escapeHtml(indexLine || "Indian quotes awaiting refresh")}</strong>
+        <small>${escapeHtml(setupLine)}</small>
+      </article>
+    </section>
+  `;
 }
 
 function compactEntityName(value) {
@@ -4720,7 +5179,7 @@ function sourceCategorySectionHtml(group) {
 
 function sourceEvidenceCardHtml(article) {
   return `
-    <article class="info-card source-card source-evidence-card" data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}">
+    <article class="info-card source-card source-evidence-card" role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(article.headline)}" data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}" data-source-url="${escapeHtml(article.sourceUrl)}">
       ${articleThumbnailHtml(article)}
       <div class="source-card-copy">
         <div class="source-card-header">

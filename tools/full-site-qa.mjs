@@ -191,8 +191,13 @@ async function verifyComponentsPage(page, stamp) {
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
+  await expectOne(page.getByText("Market Mood", { exact: true }), `${daily.slug} market mood rail`);
+  await expectOne(page.getByText("Primary Driver", { exact: true }), `${daily.slug} primary driver rail`);
+  await expectOne(page.getByText("India Filter", { exact: true }), `${daily.slug} india filter rail`);
+  await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
   await expectOne(page.getByRole("link", { name: "Project Components" }), `${daily.slug} project components link`);
   assert.equal(await page.getByText("Real Quote Board", { exact: true }).count(), 0, `${daily.slug} should not show Real Quote Board`);

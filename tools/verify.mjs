@@ -382,6 +382,11 @@ await test("demo app serves public and admin flows without external packages", a
 
   const publicHtml = await app.request("GET", "/");
   assert.ok(publicHtml.body.includes("application/ld+json"));
+  assert.ok(publicHtml.body.includes('class="glass-v2"'));
+  assert.ok(publicHtml.body.includes("Market Mood"));
+  assert.ok(publicHtml.body.includes("Primary Driver"));
+  assert.ok(publicHtml.body.includes("India Filter"));
+  assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
