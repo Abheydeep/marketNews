@@ -6,6 +6,8 @@ const { chromium } = require("playwright");
 
 const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
+const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "29apr2026";
+const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Wed, 29 Apr, 2026";
 const expectedChartSymbols = [
   "SPX",
   "NDX",
@@ -60,12 +62,12 @@ try {
 async function runCycle(page, cycle) {
   const stamp = `${Date.now()}-${cycle}`;
   const rootUrl = `${baseUrl}/?soak=${stamp}`;
-  const dailyUrl = `${baseUrl}/29apr2026/?soak=${stamp}`;
+  const dailyUrl = `${baseUrl}/${dailySlug}/?soak=${stamp}`;
 
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
-  const openDailyLink = page.locator('a.open-link[href="./29apr2026/"]');
+  const openDailyLink = page.locator(`a.open-link[href="./${dailySlug}/"]`);
   await expectOne(openDailyLink, "open daily link");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
@@ -74,10 +76,10 @@ async function runCycle(page, cycle) {
   );
 
   await Promise.all([
-    page.waitForURL(/\/(?:marketNews\/)?29apr2026\/?/, { timeout: 30_000, waitUntil: "domcontentloaded" }),
+    page.waitForURL((url) => url.href.includes(`/${dailySlug}/`), { timeout: 30_000, waitUntil: "domcontentloaded" }),
     openDailyLink.click()
   ]);
-  assert.ok(/\/(?:marketNews\/)?29apr2026\/?/.test(page.url()), `archive card opened unexpected URL: ${page.url()}`);
+  assert.ok(page.url().includes(`/${dailySlug}/`), `archive card opened unexpected URL: ${page.url()}`);
   await expectDailyContent(page);
 
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
@@ -181,7 +183,7 @@ function regionForTestSymbol(symbol) {
 async function expectDailyContent(page) {
   const publicView = page.locator("#public-view");
   await expectOne(publicView.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
-  await expectOne(publicView.getByText("Wed, 29 Apr, 2026", { exact: true }), "daily date");
+  await expectOne(publicView.getByText(dailyDateLabel, { exact: true }), "daily date");
   const summaryExpand = publicView.locator("#summaryExpand");
   await expectOne(summaryExpand, "compact expandable summary");
   await expectOne(publicView.getByText("50-word compact summary", { exact: true }), "compact summary label");
