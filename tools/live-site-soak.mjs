@@ -181,8 +181,8 @@ async function expectDailyContent(page) {
   const setupCard = publicView.locator(".setup-card");
   await expectOne(setupCard, "algorithmic setup card");
   await expectOne(
-    setupCard.getByText("No active 1:2 risk-reward setup has passed live quote validation.", { exact: false }),
-    "live-validated no setup notice"
+    setupCard.getByText("No clean 1:2 risk-reward setup is active yet.", { exact: false }),
+    "public no-setup notice"
   );
   assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "stale Nifty entry should not be visible");
   assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "stale Nifty target should not be visible");

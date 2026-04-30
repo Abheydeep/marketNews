@@ -279,7 +279,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     .map((theme) => `- ${theme.title}: ${theme.summary}`)
     .join("\n");
   const setupLines = setups.length === 0
-    ? "- No active 1:2 RR setup passed all scanner and live-quote filters."
+    ? "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation."
     : setups
       .map((setup) =>
         `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`

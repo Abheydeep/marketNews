@@ -5,7 +5,7 @@
   "status": "DRAFT",
   "overallSentiment": -0.255,
   "sentimentLabel": "BEARISH",
-  "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.04%, Nasdaq 100 +0.584%, Dow Jones -0.57%, Nifty 50 -1.344%, Bank Nifty -1.558%, Nikkei 225 -1.426%, Hang Seng -1.234%, Shanghai Composite +0.794%, KOSPI -0.628%, Taiwan Weighted +0.457%, Straits Times +0.751%, ASX 200 -0.352%, US Dollar Index +0.077%, Brent Crude +3.097%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n- Global Risk-Off Cue: US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n- Volatile Opening Bias: Gold remained bid, showing that defensive hedging has not fully left the market despite selective equity strength.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n- Positive Macro Tailwind: Domestic liquidity indicators stayed orderly, offering a partial cushion against the tighter global macro backdrop.\n\nValidated Trading Setups:\n- No active 1:2 RR setup passed all scanner and live-quote filters.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
+  "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 -0.04%, Nasdaq 100 +0.584%, Dow Jones -0.57%, Nifty 50 -1.344%, Bank Nifty -1.558%, Nikkei 225 -1.426%, Hang Seng -1.234%, Shanghai Composite +0.794%, KOSPI -0.628%, Taiwan Weighted +0.457%, Straits Times +0.751%, ASX 200 -0.352%, US Dollar Index +0.077%, Brent Crude +3.097%\n\nNarrative Themes:\n- Negative Macro Impact: Energy prices moved higher overnight as traders priced fresh supply risk, raising pressure on oil-importing markets.\n- Global Risk-Off Cue: US technology shares closed lower while treasury yields edged up, weakening the risk appetite setup for Asia.\n- Volatile Opening Bias: Gold remained bid, showing that defensive hedging has not fully left the market despite selective equity strength.\n- Sector-Specific Cushion: Domestic banking indicators remained resilient, giving Bank Nifty a possible cushion against weak global cues.\n- Positive Macro Tailwind: Domestic liquidity indicators stayed orderly, offering a partial cushion against the tighter global macro backdrop.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -7983,7 +7983,7 @@
       "summary": "Regional markets traded without clear direction, pointing to a volatile but selective start for Indian equities.",
       "takeaway": "Asia is not giving one clean directional message.",
       "whyItMatters": "Mixed regional breadth usually makes the Indian open more level-driven than news-driven.",
-      "indiaImpact": "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance near the scanner levels.",
+      "indiaImpact": "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance near the opening range.",
       "watchFor": "Hong Kong and Japan breadth into the Indian first hour.",
       "thumbnail": {
         "label": "Asia",

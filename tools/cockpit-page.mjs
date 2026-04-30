@@ -4930,7 +4930,7 @@ function compactSummaryText(digest) {
   const setup = niftySetup(digest);
   const setupLine = setup
     ? `${setup.symbol} has a conditional 1:2 setup near ${formatNumber(setup.entry)}.`
-    : "No fresh 1:2 setup has passed live validation yet.";
+    : "No clean 1:2 setup is active yet; wait for the opening range to form.";
   const pressureLabel = marketRiskLabel(macro || pressureStory);
   return limitWords([
     `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} but selective.`,
@@ -4954,7 +4954,7 @@ function marketMoodRailHtml(digest) {
     .join(" / ");
   const setupLine = setup
     ? `${setup.symbol} ${setup.riskReward}R setup: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)}.`
-    : "No active setup after live quote validation.";
+    : "No clean 1:2 setup is active yet; wait for the opening range.";
 
   return `
     <section class="mood-rail ${escapeHtml(moodClass)}" aria-label="Market mood and priority signals">
@@ -5059,8 +5059,8 @@ function expandedLeadParagraphs(digest) {
   const pressureRead = storyReadThrough(macro || pressureStory);
   const supportRead = storyReadThrough(supportStory);
   const setupLine = setup
-    ? `The scanner still keeps a conditional ${setup.symbol} ${setup.direction.toLowerCase()} setup alive at ${setup.riskReward}R, but only if price accepts near ${formatNumber(setup.entry)} without damaging the stop-to-target structure.`
-    : "The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call.";
+    ? `A conditional ${setup.symbol} ${setup.direction.toLowerCase()} plan remains valid only if price accepts near ${formatNumber(setup.entry)} while preserving the ${setup.riskReward}R stop-to-target structure.`
+    : "No clean 1:2 setup is active yet, so the first hour should be used to watch opening-range acceptance before taking a directional view.";
 
   return [
     [
@@ -5103,8 +5103,8 @@ function executiveSummaryHtml(digest) {
   const primaryTheme = digest.themes[0];
   const setup = niftySetup(digest);
   const setupText = setup
-    ? `Nifty has a scanner-approved ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
-    : "The scanner has not accepted a 1:2 risk-reward setup yet, so the first hour should define the actionable levels.";
+    ? `Nifty has a conditional ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
+    : "No clean 1:2 setup is active yet, so the first hour should define the actionable levels.";
   const pressureRead = storyReadThrough(macroPressure);
   const supportRead = storyReadThrough(supportStory);
   const bottomLine = [
@@ -5199,7 +5199,7 @@ function indiaReadThroughItems(digest, setupText) {
     `<li><strong>Risk appetite:</strong> ${escapeHtml(globalRisk?.indiaImpact || "US risk appetite needs confirmation before chasing a gap move.")}</li>`,
     `<li><strong>Domestic cushion:</strong> ${escapeHtml(sectorSupport?.indiaImpact || "Banks and defensives are the first areas to check for institutional support.")}</li>`,
     `<li><strong>Opening behavior:</strong> ${escapeHtml(neutral?.indiaImpact || "Mixed Asia argues for waiting on the first-hour range.")}</li>`,
-    `<li><strong>Trading discipline:</strong> ${escapeHtml(setupText)} This is educational market research for content planning, not investment advice.</li>`
+    `<li><strong>Trading discipline:</strong> ${escapeHtml(setupText)} This is educational market commentary, not investment advice.</li>`
   ].join("");
 }
 
@@ -5566,7 +5566,7 @@ function algorithmicSetupHtml(digest) {
           <h2>Nifty 50 Algorithmic Setup</h2>
           <span class="setup-badge">No setup yet</span>
         </div>
-        <p class="strategy-note">No active 1:2 risk-reward setup has passed live quote validation. Let the opening range define the next valid level.</p>
+        <p class="strategy-note">No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.</p>
       </section>
     `;
   }
@@ -5762,7 +5762,7 @@ function publishingChecklistHtml(digest) {
     ["Source attribution", hasSources, `${digest.news.length} articles retain publisher names and outbound links.`],
     ["Article thumbnails", hasThumbnails, `${digest.news.filter((article) => article.thumbnail?.alt).length} thumbnails render across public and studio views.`],
     ["Risk disclaimer", hasDisclaimer, "Teleprompter script includes the educational-use disclaimer."],
-    ["Scanner discipline", true, setup ? `${setup.symbol} setup passed risk math.` : "No setup is published when live validation rejects the levels."],
+    ["Scanner discipline", true, setup ? `${setup.symbol} setup passed risk math.` : "No setup is published until fresh levels meet the risk math."],
     ["SEO metadata", true, "Daily page includes NewsArticle JSON-LD for the public archive."]
   ];
   return items.map(([label, ok, detail]) => `
@@ -5905,9 +5905,9 @@ function headlineSentiment(label) {
 function marketSetupCopy(digest) {
   const setup = niftySetup(digest);
   if (!setup) {
-    return "No 1:2 risk-reward setup has passed the scanner yet. Let the first hour define direction before taking a view.";
+    return "No clean 1:2 risk-reward setup is active yet. Let the first hour define direction before taking a view.";
   }
-  return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the scanner confirms ${setup.riskReward}R.`;
+  return `Today's global narrative is ${digest.sentimentLabel.toLowerCase()}, led by ${digest.themes[0]?.title?.toLowerCase() ?? "overnight cues"}. The Nifty setup is valid only if price accepts near ${formatNumber(setup.entry)}; invalidation sits at ${formatNumber(setup.stopLoss)}, target is ${formatNumber(setup.target)}, and the structure offers ${setup.riskReward}R.`;
 }
 
 function sentimentPinPosition(score) {
