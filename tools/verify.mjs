@@ -382,6 +382,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Evidence ledger behind the briefing"));
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
+  assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
+  assert.ok(publicHtml.body.includes("Macro Pressure"));
+  assert.ok(publicHtml.body.includes("Global Risk"));
+  assert.ok(publicHtml.body.includes("Asia &amp; Volatility"));
+  assert.ok(publicHtml.body.includes("Sector Support"));
+  assert.ok(publicHtml.body.includes("Domestic Macro Support"));
+  assert.ok(publicHtml.body.includes("data-source-group=\"macro_negative\""));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
   assert.ok(publicHtml.body.includes("Read-through"));

@@ -931,6 +931,127 @@ export function cockpitPage(digest, initialTab = "public-view") {
       align-items: start;
     }
 
+    .source-category-board {
+      display: grid;
+      gap: 16px;
+    }
+
+    .source-category-section {
+      border: 1px solid rgba(229, 231, 235, 0.82);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 14px;
+      box-shadow: 0 12px 34px rgba(17, 24, 39, 0.045);
+    }
+
+    .source-category-section[hidden] {
+      display: none;
+    }
+
+    .source-category-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #eef0f3;
+      padding-bottom: 12px;
+    }
+
+    .source-category-label {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .source-category-label span {
+      border-radius: 6px;
+      background: #111827;
+      color: #fff;
+      padding: 5px 7px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .source-category-label small {
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .source-category-head h3 {
+      margin: 0;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .source-category-head p {
+      margin: 7px 0 0;
+      max-width: 760px;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    .source-category-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(72px, 1fr));
+      gap: 8px;
+      min-width: 270px;
+    }
+
+    .source-category-meta div {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      padding: 9px;
+    }
+
+    .source-category-meta span {
+      display: block;
+      color: #9ca3af;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .source-category-meta strong {
+      display: block;
+      margin-top: 4px;
+      color: #111827;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .source-category-meta strong.up {
+      color: #047857;
+    }
+
+    .source-category-meta strong.down {
+      color: #b91c1c;
+    }
+
+    .source-category-meta strong.flat {
+      color: #b45309;
+    }
+
+    .source-category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+
     .source-card {
       cursor: pointer;
       display: grid;
@@ -2689,6 +2810,9 @@ export function cockpitPage(digest, initialTab = "public-view") {
       .source-overview-grid,
       .source-lead-card,
       .source-readthrough-grid,
+      .source-category-head,
+      .source-category-meta,
+      .source-category-grid,
       .setup-grid,
       .setup-levels,
       .summary-strip,
@@ -4124,11 +4248,15 @@ export function cockpitPage(digest, initialTab = "public-view") {
     function bindSourceFilters() {
       const buttons = [...document.querySelectorAll('[data-source-filter]')];
       const cards = [...document.querySelectorAll('.source-card[data-source-category]')];
+      const sections = [...document.querySelectorAll('[data-source-group]')];
       const visibleCount = document.getElementById('sourceVisibleCount');
       if (!buttons.length || !cards.length) return;
 
       function applyFilter(filter) {
         let count = 0;
+        sections.forEach((section) => {
+          section.hidden = filter !== 'all' && section.dataset.sourceGroup !== filter;
+        });
         cards.forEach((card) => {
           const visible = filter === 'all' || card.dataset.sourceCategory === filter;
           card.hidden = !visible;
@@ -4396,8 +4524,8 @@ function sourceNotesHtml(digest) {
         <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(articles.length)} shown</span>
       </div>
 
-      <div class="news-card-list">
-        ${articles.map((article) => sourceEvidenceCardHtml(article)).join("")}
+      <div class="source-category-board" aria-label="Categorized source notes">
+        ${categories.map((group) => sourceCategorySectionHtml(group)).join("")}
       </div>
     </section>
   `;
@@ -4434,7 +4562,7 @@ function sourceEvidenceMapHtml(categories) {
         ${categories.map((group) => `
           <div class="source-theme-row">
             <div>
-              <strong>${escapeHtml(categoryLabel(group.category))}</strong>
+              <strong>${escapeHtml(sourceCategoryTitle(group.category))}</strong>
               <small>${escapeHtml(group.count)} notes - ${escapeHtml(group.leadEntity)} lead entity</small>
             </div>
             <span class="source-theme-score ${sourceScoreClass(group.score)}">${escapeHtml(formatSignedScore(group.score))}</span>
@@ -4449,9 +4577,34 @@ function sourceFilterButtonsHtml(categories, articleCount) {
   return [
     `<button class="source-filter-btn active" type="button" data-source-filter="all" aria-pressed="true">All <span>${escapeHtml(articleCount)}</span></button>`,
     ...categories.map((group) =>
-      `<button class="source-filter-btn" type="button" data-source-filter="${escapeHtml(group.category)}" aria-pressed="false">${escapeHtml(categoryLabel(group.category))} <span>${escapeHtml(group.count)}</span></button>`
+      `<button class="source-filter-btn" type="button" data-source-filter="${escapeHtml(group.category)}" aria-pressed="false">${escapeHtml(sourceCategoryTitle(group.category))} <span>${escapeHtml(group.count)}</span></button>`
     )
   ].join("");
+}
+
+function sourceCategorySectionHtml(group) {
+  return `
+    <section class="source-category-section" data-source-group="${escapeHtml(group.category)}">
+      <div class="source-category-head">
+        <div>
+          <div class="source-category-label">
+            <span>Category</span>
+            <small>${escapeHtml(categoryLabel(group.category))}</small>
+          </div>
+          <h3>${escapeHtml(sourceCategoryTitle(group.category))}</h3>
+          <p>${escapeHtml(sourceCategorySummary(group))}</p>
+        </div>
+        <div class="source-category-meta" aria-label="${escapeHtml(sourceCategoryTitle(group.category))} category metrics">
+          <div><span>Notes</span><strong>${escapeHtml(group.count)}</strong></div>
+          <div><span>Tone</span><strong class="${sourceScoreClass(group.score)}">${escapeHtml(formatSignedScore(group.score))}</strong></div>
+          <div><span>Lead</span><strong>${escapeHtml(group.leadEntity)}</strong></div>
+        </div>
+      </div>
+      <div class="source-category-grid">
+        ${group.articles.map((article) => sourceEvidenceCardHtml(article)).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function sourceEvidenceCardHtml(article) {
@@ -4498,7 +4651,10 @@ function sourceCategoryGroups(articles) {
         category,
         count: groupedArticles.length,
         score,
-        leadEntity: lead?.entityName || "Market"
+        leadEntity: lead?.entityName || "Market",
+        leadSource: lead?.sourceName || "Source",
+        leadTakeaway: lead?.takeaway || lead?.summary || "",
+        articles: weightedSourceArticles(groupedArticles)
       };
     })
     .sort((left, right) => {
@@ -4506,6 +4662,29 @@ function sourceCategoryGroups(articles) {
       const rightIndex = categoryOrder.indexOf(right.category);
       return (leftIndex === -1 ? 99 : leftIndex) - (rightIndex === -1 ? 99 : rightIndex);
     });
+}
+
+function sourceCategoryTitle(category) {
+  return {
+    macro_negative: "Macro Pressure",
+    global_risk: "Global Risk",
+    neutral_volatile: "Asia & Volatility",
+    sector_positive: "Sector Support",
+    macro_positive: "Domestic Macro Support"
+  }[category] || categoryLabel(category);
+}
+
+function sourceCategorySummary(group) {
+  const fallback = {
+    macro_negative: "Crude, currency, yields, and imported inflation risks that can pressure the Indian open.",
+    global_risk: "US and global risk-appetite cues that decide whether traders chase or fade the first move.",
+    neutral_volatile: "Mixed regional and defensive-market signals that argue for patience around the opening range.",
+    sector_positive: "Sector-specific offsets that can keep leadership selective even when the index tone is weak.",
+    macro_positive: "Domestic liquidity or policy cushions that can soften the global pressure."
+  }[group.category] || "Related source notes grouped by theme for faster attribution.";
+  return group.leadTakeaway
+    ? `${fallback} Lead read: ${group.leadTakeaway}`
+    : fallback;
 }
 
 function sourceWeight(article) {

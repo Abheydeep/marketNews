@@ -290,6 +290,9 @@ async function clickSourceLinks(page, daily) {
 async function verifySourceFilters(page, daily) {
   await expectOne(page.getByText("Evidence Map", { exact: true }), `${daily.slug} source evidence map`);
   await expectOne(page.getByText("Lead evidence", { exact: true }), `${daily.slug} lead source evidence`);
+  for (const heading of ["Macro Pressure", "Global Risk", "Asia & Volatility", "Sector Support", "Domestic Macro Support"]) {
+    await expectAtLeast(page.getByRole("heading", { name: heading }), 1, `${daily.slug} ${heading} source category`);
+  }
   const buttons = page.locator("[data-source-filter]");
   const buttonCount = await buttons.count();
   assert.ok(buttonCount >= 5, `${daily.slug} should render source filter buttons`);
@@ -299,6 +302,7 @@ async function verifySourceFilters(page, daily) {
     const filter = await button.getAttribute("data-source-filter");
     await button.click();
     await expectOne(page.locator(`[data-source-filter="${filter}"][aria-pressed="true"]`), `${daily.slug} source filter ${filter} active`);
+    await expectOne(page.locator(`[data-source-group="${filter}"]:visible`), `${daily.slug} source group ${filter} visible`);
     const visibleCards = await page.locator(`.source-card[data-source-category="${filter}"]:visible`).count();
     assert.ok(visibleCards > 0, `${daily.slug} source filter ${filter} should show cards`);
   }
