@@ -548,6 +548,8 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.ok(adminStudioPage.includes("BrandMark"));
   assert.ok(tradingAuth.includes("abhey@marketnarrative.in"));
   assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
+  assert.ok(tradingAuth.includes("Auth API unreachable"));
+  assert.ok(tradingAuth.includes("api.marketnarrative.in DNS"));
   assert.ok(tradingBrand.includes("Market Narrative"));
   assert.ok(tradingBrand.includes("trade-mn-signal"));
   assert.ok(tradingLayout.includes("/icon.svg"));

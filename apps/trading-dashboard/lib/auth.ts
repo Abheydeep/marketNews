@@ -44,13 +44,22 @@ export function isTradingAdmin(token: string): boolean {
 }
 
 export async function loginTradingAdmin(email: string, password: string): Promise<LoginResponse> {
-  const response = await fetch(`${authApiBase}/api/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
+  const loginUrl = `${authApiBase}/api/auth/login`;
+  let response: Response;
+  try {
+    response = await fetch(loginUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+  } catch {
+    throw new Error(`Auth API unreachable at ${authApiBase}. Check api.marketnarrative.in DNS, HTTPS, and VPS status.`);
+  }
   if (!response.ok) {
-    throw new Error("Login failed");
+    if (response.status === 401 || response.status === 403) {
+      throw new Error("Invalid Abhey admin credentials");
+    }
+    throw new Error(`Login API returned HTTP ${response.status}`);
   }
   const payload = (await response.json()) as LoginResponse;
   if (!isTradingAdmin(payload.token)) {

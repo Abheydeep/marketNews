@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { LogIn } from "lucide-react";
 import { BrandMark } from "./BrandMark";
-import { loginTradingAdmin, tokenStorageKey, tradingAdminEmail } from "../lib/auth";
+import { authApiBase, loginTradingAdmin, tokenStorageKey, tradingAdminEmail } from "../lib/auth";
 import { useMarketStore } from "../store/marketStore";
 
 export function TradingAdminGate() {
@@ -68,6 +68,7 @@ export function TradingAdminGate() {
             <LogIn className="h-4 w-4" aria-hidden="true" />
             Login as Abhey Admin
           </button>
+          <p className="text-[11px] font-semibold text-slate-500">Auth API: {authApiBase}</p>
         </div>
       </section>
     </main>
