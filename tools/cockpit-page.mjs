@@ -743,6 +743,48 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       line-height: 1.55;
     }
 
+    .setup-audit-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .setup-audit-item {
+      display: grid;
+      grid-template-columns: minmax(82px, auto) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.48);
+      padding: 12px;
+    }
+
+    .setup-audit-item strong {
+      color: #f8fafc;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .setup-audit-item span {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .setup-audit-item small {
+      display: block;
+      margin-top: 5px;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
     .setup-levels {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -791,7 +833,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .setup-level small {
       display: block;
       margin-top: 5px;
-      color: #6b7280;
+      color: #cbd5e1;
       font-size: 11px;
       font-weight: 700;
     }
@@ -6228,6 +6270,7 @@ function algorithmicSetupHtml(digest) {
           <span class="setup-badge">No setup yet</span>
         </div>
         <p class="strategy-note">No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.</p>
+        ${setupAuditHtml(digest)}
       </section>
     `;
   }
@@ -6282,18 +6325,19 @@ function scannerBadgeHtml(digest) {
 function scannerPanelCopy(digest) {
   const setup = niftySetup(digest) ?? digest.tradeSetups[0];
   if (!setup) {
-    return "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
+    return setupAuditSummary(digest) || "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
   }
   return "Nifty has a clean conditional setup, but the open still needs price acceptance and breadth confirmation.";
 }
 
 function studioMetricCards(digest) {
   const setup = niftySetup(digest);
+  const inactiveAudit = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
   const sourceCount = new Set(digest.news.map((article) => article.sourceName)).size;
   const thumbnailCount = digest.news.filter((article) => article.thumbnail?.alt).length;
   const sections = parseScriptSections(digest.teleprompterScript);
-  const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : "Setup blocked";
-  const setupHint = setup ? "Scanner-approved trade plan is available." : "Waiting for fresh levels.";
+  const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : inactiveAudit.length ? `${inactiveAudit.length} checked` : "Setup blocked";
+  const setupHint = setup ? "Scanner-approved trade plan is available." : setupAuditSummary(digest) || "Waiting for fresh levels.";
   return [
     ["Market Tone", headlineSentiment(digest.sentimentLabel), `Weighted sentiment ${formatSignedScore(digest.overallSentiment)}`],
     ["Sources", `${digest.news.length} articles`, `${sourceCount} publishers; ${thumbnailCount} thumbnails`],
@@ -6319,10 +6363,11 @@ function reelScriptStats(digest) {
 
 function studioWorkflowHtml(digest) {
   const setup = niftySetup(digest);
+  const auditLine = setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : setupAuditSummary(digest) || "No active setup yet.";
   const stages = [
     ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
     ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
-    ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup yet.", setup ? "ok" : "blocked"],
+    ["03", "Scanner", auditLine, setup ? "ok" : "blocked"],
     ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} recording beats drafted from the morning source stack.`, "ok"],
     ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
     ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
@@ -6339,9 +6384,14 @@ function studioWorkflowHtml(digest) {
 function scannerValidationHtml(digest) {
   const setup = niftySetup(digest) ?? digest.tradeSetups[0];
   if (!setup) {
+    const auditRows = setupAuditItems(digest)
+      .filter((item) => item.status !== "ACTIVE")
+      .slice(0, 3)
+      .map((item) => validationRow("blocked", `${item.symbol} ${auditStatusLabel(item.status)}`, item.reason))
+      .join("");
     return `
       <div class="validation-list">
-        ${validationRow("blocked", "Setup blocked by current market levels", "The page no longer shows outdated Nifty levels when current prices have crossed target, stop, or invalidated the reward math.")}
+        ${auditRows || validationRow("blocked", "No active setup from current checks", "The page only shows a trade plan when the entry, stop, and target still preserve at least 2R.")}
         ${validationRow("warn", "Opening range required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
         ${validationRow("ok", "Trade execution disabled", "Studio output remains educational research for video planning; no order placement is connected.")}
       </div>
@@ -6506,7 +6556,7 @@ function parseScriptSections(script) {
 function scannerActivityLine(digest) {
   const setup = niftySetup(digest);
   if (!setup) {
-    return "No active setup yet; outdated levels are hidden from the studio.";
+    return setupAuditSummary(digest) || "No active setup yet; outdated levels are hidden from the studio.";
   }
   return `${setup.symbol} ${setup.direction.toLowerCase()} setup remains active at ${setup.riskReward}R.`;
 }
@@ -6557,6 +6607,66 @@ function scannerCells(digest) {
       <div class="rr-cell target"><span>Target</span><strong>${formatNumber(setup.target)}</strong></div>
     </div>
   `;
+}
+
+function setupAuditItems(digest) {
+  return Array.isArray(digest.setupAudit) ? digest.setupAudit : [];
+}
+
+function setupAuditSummary(digest) {
+  const inactive = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
+  if (!inactive.length) {
+    return "";
+  }
+  const completed = inactive.filter((item) => item.status === "TARGET_REACHED");
+  if (completed.length === inactive.length) {
+    return `${completed.map((item) => item.symbol).join(" and ")} already crossed the earlier target${completed.length === 1 ? "" : "s"}; no fresh entry is shown.`;
+  }
+  const labels = inactive.slice(0, 2).map((item) => `${item.symbol}: ${auditStatusLabel(item.status).toLowerCase()}`);
+  return `${inactive.length} candidate${inactive.length === 1 ? "" : "s"} checked; ${labels.join("; ")}.`;
+}
+
+function setupAuditHtml(digest) {
+  const inactive = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
+  if (!inactive.length) {
+    return "";
+  }
+  return `
+    <div class="setup-audit-list" aria-label="Setup rejection reasons">
+      ${inactive.slice(0, 3).map((item) => `
+        <div class="setup-audit-item">
+          <strong>${escapeHtml(item.symbol)}</strong>
+          <span>
+            ${escapeHtml(item.reason)}
+            <small>${escapeHtml(setupAuditLevelLine(item))}</small>
+          </span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function setupAuditLevelLine(item) {
+  const parts = [];
+  if (Number.isFinite(Number(item.currentPrice))) {
+    parts.push(`Current ${formatNumber(item.currentPrice)}`);
+  }
+  if (Number.isFinite(Number(item.entry))) {
+    parts.push(`Entry ${formatNumber(item.entry)}`);
+  }
+  if (Number.isFinite(Number(item.target))) {
+    parts.push(`Target ${formatNumber(item.target)}`);
+  }
+  return parts.join(" / ");
+}
+
+function auditStatusLabel(status) {
+  return {
+    TARGET_REACHED: "Target already reached",
+    STOP_INVALIDATED: "Invalidation crossed",
+    RISK_REWARD_COMPRESSED: "Reward compressed",
+    UNKNOWN: "Unavailable"
+  }[status] ?? "Checked";
 }
 
 function teleprompterHtml(digest) {

@@ -7,6 +7,7 @@ export function publicDigestPayload(digest) {
     news,
     themes,
     tradeSetups,
+    setupAudit,
     ...publicFields
   } = digest;
 
@@ -19,6 +20,7 @@ export function publicDigestPayload(digest) {
     newsCards,
     themes: (themes ?? []).map(publicThemeDto),
     tradeSetups: (tradeSetups ?? []).map(publicTradeSetupDto),
+    setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),
     sourceStats: sourceStats(news ?? []),
     asset: asset
       ? {
@@ -34,11 +36,13 @@ export function redactedDigestPayload(digest) {
     teleprompterScript,
     reelScript,
     asset,
+    setupAudit,
     ...publicFields
   } = digest;
 
   return {
     ...publicFields,
+    setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),
     asset: asset
       ? {
         sentimentLabel: asset.sentimentLabel,
@@ -131,6 +135,21 @@ function publicTradeSetupDto(setup) {
     confidenceReason: setup.confidenceReason,
     invalidationReason: setup.invalidationReason,
     outcome: setup.outcome ?? null
+  };
+}
+
+function publicSetupAuditDto(item) {
+  return {
+    symbol: item.symbol,
+    direction: item.direction,
+    status: item.status,
+    reason: item.reason,
+    currentPrice: item.currentPrice ?? null,
+    entry: item.entry,
+    stopLoss: item.stopLoss,
+    target: item.target,
+    riskReward: item.riskReward,
+    remainingRiskReward: item.remainingRiskReward ?? null
   };
 }
 
