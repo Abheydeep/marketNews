@@ -605,12 +605,12 @@ export function newsArticleJsonLd(digest) {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: digest.title,
-    image: `https://marketnarrative.local${digest.asset?.assetUrl ?? "/assets/generated/daily-thumbnail.webp"}`,
+    image: "https://marketnarrative.in/og-card.svg",
     datePublished: digest.publishedAt ?? `${digest.digestDate}T08:30:00+05:30`,
     author: {
       "@type": "Person",
       name: "Market Narrative Engine",
-      url: "https://marketnarrative.local/profile"
+      url: "https://marketnarrative.in"
     }
   };
 }

@@ -385,11 +385,23 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
   assert.ok(publisher.includes("Root index.html is the digest archive"));
   assert.ok(publisher.includes("archive.json"));
+  assert.ok(publisher.includes("robots.txt"));
+  assert.ok(publisher.includes("sitemap.xml"));
+  assert.ok(publisher.includes("og-card.svg"));
+  assert.ok(publisher.includes("og:title"));
+  assert.ok(publisher.includes("twitter:card"));
+  assert.ok(publisher.includes('rel="canonical"'));
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(publisher.includes("redactedDigestPayload"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
   assert.ok(!publisher.includes("copyFile(sourceJson"));
+
+  const cockpit = await readFile(join(rootDir, "tools", "cockpit-page.mjs"), "utf8");
+  assert.ok(cockpit.includes("og:site_name"));
+  assert.ok(cockpit.includes("twitter:image"));
+  assert.ok(cockpit.includes("absoluteSiteUrl"));
+  assert.ok(!cockpit.includes("marketnarrative.local"));
 
   const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
   assert.ok(componentsPage.includes("How the Market Narrative desk fits together"));
