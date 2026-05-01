@@ -7,8 +7,10 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 - `backend/` - Java 17 Spring Boot modular monolith.
 - `apps/public-portal/` - public Next.js SEO portal.
 - `apps/admin-studio/` - private React SPA command center.
+- `apps/trading-dashboard/` - private Next.js real-time Nifty/Bank Nifty trading cockpit.
 - `packages/ui/` - shared market design system.
 - `packages/api-client/` - typed API client and permission contracts.
+- `services/trading-api/` - Python FastAPI service for Kite Connect, options microstructure, signals, and guarded order placement.
 - `frontend/` - earlier combined Next.js prototype retained for reference.
 - `infra/` - Docker Compose for PostgreSQL and Redis.
 - `docs/` - Architecture notes, production roadmap, and resume framing.
@@ -130,6 +132,44 @@ See `docs/github-pages.md`.
 
 The repo now includes the production architecture path described in `docs/advanced-architecture.md`: split public/admin frontend deployments, shared workspace packages, Auth0-style permission claims, agentic RAG extension points, Redis digest publication, and PostgreSQL monthly partitioning guidance.
 
+## Production Deployment
+
+Use `docs/deployment.md` for the `marketnarrative.in` rollout:
+
+- Vercel: `marketnarrative.in`, `www.marketnarrative.in`, `trade.marketnarrative.in`
+- DigitalOcean: `api.marketnarrative.in`, `trade-api.marketnarrative.in`
+- Cloudflare DNS
+- Live trading disabled by default
+
+## Trading Cockpit
+
+The additive trading cockpit is documented in `docs/trading-cockpit.md`. It runs beside the existing Spring Boot app:
+
+```bash
+cd services/trading-api
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8090
+```
+
+In another terminal:
+
+```bash
+npm install
+npm run trading:dashboard:dev
+```
+
+Trading dashboard defaults:
+
+- API: `http://localhost:8090`
+- Dashboard: `http://127.0.0.1:3002`
+- WebSocket: `ws://localhost:8090/ws/market`
+
+Live Kite order placement is disabled by default. It requires the documented manual Kite redirect login/token exchange, `ENABLE_LIVE_ORDERS=true`, a fresh order proposal, explicit click confirmation, and risk checks.
+
+Trading access is restricted to the configured Abhey admin account. Local demo mode uses `abhey@marketnarrative.local`; production uses `abhey@marketnarrative.in`.
+
 ## Run Infrastructure
 
 ```bash
@@ -178,4 +218,4 @@ Frontend defaults:
 
 ## Safety Notice
 
-The MVP produces educational market analysis only. It does not place orders, automate trades, or provide financial advice.
+The original narrative MVP produces educational market analysis only. The trading cockpit includes optional live Zerodha order placement, but it is disabled by default and guarded by manual confirmation, one-lot long-option defaults, token checks, stale-data checks, loss lockout, and a kill switch. It should be treated as personal tooling, not financial advice.

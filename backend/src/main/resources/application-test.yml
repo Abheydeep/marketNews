@@ -10,3 +10,14 @@ spring:
     enabled: false
   cache:
     type: simple
+
+app:
+  security:
+    jwt-secret: test-secret-test-secret-test-secret-test-secret
+    issuer: market-narrative-test
+    trading-admin-email: abhey@marketnarrative.local
+  demo-users:
+    seed-demo-admin: true
+    demo-admin-password: market-open
+    seed-trading-admin: true
+    trading-admin-password: market-open

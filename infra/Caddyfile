@@ -1,0 +1,9 @@
+api.marketnarrative.in {
+    encode gzip zstd
+    reverse_proxy backend:8080
+}
+
+trade-api.marketnarrative.in {
+    encode gzip zstd
+    reverse_proxy trading-api:8090
+}

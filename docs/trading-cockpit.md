@@ -1,0 +1,107 @@
+# Nifty/Bank Nifty Trading Cockpit
+
+## Shape
+
+The cockpit is additive to the existing market-narrative system:
+
+- `services/trading-api` is a Python FastAPI service for Kite auth, instruments, option-chain construction, technical analysis, sentiment, signals, and guarded order placement.
+- `apps/trading-dashboard` is a private Next.js/Tailwind dashboard that consumes REST and WebSocket data from the trading API.
+- `packages/api-client` now includes shared TypeScript contracts for candles, options, signals, risk state, order proposals, and market envelopes.
+
+Trading access is restricted to the configured Abhey admin account. In local demo mode, `DemoUserInitializer` creates `abhey@marketnarrative.local` with password `market-open`. In production, set `TRADING_ADMIN_EMAIL=abhey@marketnarrative.in` and `ABHEY_ADMIN_PASSWORD` in the VPS `.env`. `LocalJwtService` grants `trade:read` and `trade:execute` only to the configured email.
+
+## Kite Auth And Market Data
+
+Kite authentication follows the official redirect flow:
+
+1. Open `GET /api/kite/login-url`.
+2. Complete manual Kite login in the browser.
+3. Kite redirects to `/kite/callback?request_token=...`.
+4. The dashboard posts the `request_token` to `POST /api/kite/session`.
+5. The backend computes the checksum and stores the session token until the next 6 AM IST expiry.
+
+The implementation intentionally does not store Kite passwords, TOTP seeds, or automate daily login.
+
+Set `TRADING_TOKEN_KEY` to a Fernet key to encrypt the local session file. Without it, the dev fallback writes the token to a chmod `0600` local file under `.local/`.
+
+## Backend Modules
+
+- `app/adapters/kite`: manual auth, token storage, rate-limited historical/quote calls, instruments, margins, and order placement.
+- `app/adapters/kite/ticker.py`: `KiteTicker` full-mode bridge for ATM option tokens.
+- `app/domain/technical.py`: zero-volume cleanup, EMA, RSI, MACD, VWAP, fractal pivots, wick rejection zones, KDE/histogram support-resistance zones, and regression trendlines.
+- `app/domain/options.py`: instrument master parsing, nearest-expiry ATM option selection, PCR, five-minute PCR velocity, and OI interpretation.
+- `app/domain/sentiment.py`: mock fallback news provider plus optional FinBERT inference.
+- `app/domain/signals.py`: BUY/SELL/WAIT confluence engine.
+- `app/domain/risk.py`: manual-confirm order proposals, live-order unlock, stale proposal rejection, session checks, quote/margin checks, loss lockout, one-position cap, and kill switch.
+
+## API Surface
+
+- `GET /api/kite/login-url`
+- `POST /api/kite/session`
+- `GET /api/kite/status`
+- `POST /api/instruments/refresh`
+- `GET /api/market/envelope`
+- `WS /ws/market`
+- `GET /api/options/chain?index=NIFTY|BANKNIFTY`
+- `GET /api/signals/latest?index=NIFTY|BANKNIFTY`
+- `POST /api/orders/proposals`
+- `POST /api/orders/confirm`
+- `POST /api/orders/kill-switch`
+
+## Data
+
+The SQL schema lives at `services/trading-api/sql/schema.sql` and creates a separate `trading` schema in the existing PostgreSQL database. `app/storage.py` includes optional Redis hot-state caching and PostgreSQL signal recording; both degrade to no-ops when the dependencies or services are not available.
+
+## Run
+
+```bash
+cd infra
+docker compose up -d
+```
+
+```bash
+cd services/trading-api
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8090
+```
+
+Use `pip install -r requirements-ml.txt` only for FinBERT inference. Use `requirements-quant-extra.txt` only where `pandas-ta` is available; the default technical engine includes pure-Python fallbacks.
+
+```bash
+npm install
+npm run trading:dashboard:dev
+```
+
+Open `http://127.0.0.1:3002`. The dashboard dev script uses Turbopack because the default webpack dev server in the installed Next 15.5.x release can throw a broken dev-overlay `__webpack_modules__[moduleId] is not a function` error in this monorepo.
+
+The dashboard login screen defaults to the configured Abhey email, but never pre-fills the password. It calls the existing Spring `/api/auth/login` endpoint and refuses tokens that are not for the configured Abhey admin or do not include `trade:execute`.
+
+Dashboard public env defaults live in `apps/trading-dashboard/.env.example`.
+
+## Test
+
+```bash
+cd services/trading-api
+python3 -m pytest
+```
+
+If `pytest` is not installed yet, the same deterministic tests can be smoke-run with:
+
+```bash
+cd services/trading-api
+python3 tests/run_unit_tests.py
+```
+
+The tests cover technical analysis cleanup/pivots/zones, option-chain parsing, PCR velocity, OI classification, sentiment score mapping, confluence signal generation, and live-order safety gates.
+
+## Live Order Defaults
+
+- Signal BUY maps to long ATM CE.
+- Signal SELL maps to long ATM PE.
+- Product is `MIS`.
+- Order type is `LIMIT`.
+- Quantity is one lot from the current instrument master.
+- Option writing is not implemented in v1.
+- Exits are monitored as target/stop alerts and require manual confirmation.

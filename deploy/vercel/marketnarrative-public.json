@@ -1,0 +1,12 @@
+{
+  "projectName": "marketnarrative-public",
+  "rootDirectory": ".",
+  "frameworkPreset": "other",
+  "installCommand": "npm install",
+  "buildCommand": "npm run vercel:build:public",
+  "outputDirectory": "out/site",
+  "domains": ["marketnarrative.in", "www.marketnarrative.in"],
+  "environment": {
+    "MARKET_DATA_MODE": "live"
+  }
+}

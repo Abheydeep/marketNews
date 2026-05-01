@@ -14,7 +14,12 @@
     "daily:generate": "node tools/generate-daily-summary.mjs",
     "site:publish": "node tools/publish-site.mjs",
     "site:qa": "node tools/full-site-qa.mjs",
+    "vercel:build:public": "node tools/vercel-build-public.mjs",
     "public:dev": "npm --workspace @market-narrative/public-portal run dev",
-    "admin:dev": "npm --workspace @market-narrative/admin-studio run dev"
+    "admin:dev": "npm --workspace @market-narrative/admin-studio run dev",
+    "trading:api": "cd services/trading-api && uvicorn app.main:app --reload --port 8090",
+    "trading:test": "cd services/trading-api && python3 -m pytest",
+    "trading:test:lite": "cd services/trading-api && python3 tests/run_unit_tests.py",
+    "trading:dashboard:dev": "npm --workspace @market-narrative/trading-dashboard run dev"
   }
 }

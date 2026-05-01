@@ -25,15 +25,18 @@ public class LocalJwtService {
     private final ObjectMapper objectMapper;
     private final String jwtSecret;
     private final String issuer;
+    private final String tradingAdminEmail;
 
     public LocalJwtService(
         ObjectMapper objectMapper,
         @Value("${app.security.jwt-secret}") String jwtSecret,
-        @Value("${app.security.issuer}") String issuer
+        @Value("${app.security.issuer}") String issuer,
+        @Value("${app.security.trading-admin-email}") String tradingAdminEmail
     ) {
         this.objectMapper = objectMapper;
         this.jwtSecret = jwtSecret;
         this.issuer = issuer;
+        this.tradingAdminEmail = tradingAdminEmail;
     }
 
     public String issue(UserAccount user) {
@@ -48,6 +51,18 @@ public class LocalJwtService {
                 "edit:script",
                 "generate:assets",
                 "publish:digest"
+            );
+        }
+        if (user.getRole() == UserRole.ADMIN && user.getEmail().equalsIgnoreCase(tradingAdminEmail)) {
+            permissions = List.of(
+                "admin:read",
+                "admin:write",
+                "create:script",
+                "edit:script",
+                "generate:assets",
+                "publish:digest",
+                "trade:read",
+                "trade:execute"
             );
         }
 
