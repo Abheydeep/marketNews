@@ -1,7 +1,7 @@
 import type { Permission } from "@market-narrative/api-client";
 
 export const authApiBase = process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? "http://localhost:8080";
-export const tradingAdminEmail = process.env.NEXT_PUBLIC_TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.local";
+export const tradingAdminEmail = process.env.NEXT_PUBLIC_TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in";
 export const tokenStorageKey = "marketNarrativeTradingToken";
 
 export type TradingClaims = {

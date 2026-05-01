@@ -3,10 +3,11 @@
   "rootDirectory": ".",
   "frameworkPreset": "other",
   "installCommand": "npm install",
-  "buildCommand": "npm run vercel:build:public",
-  "outputDirectory": "out/site",
+  "buildCommand": "npm run vercel:build",
+  "outputDirectory": "out/vercel",
   "domains": ["marketnarrative.in", "www.marketnarrative.in"],
   "environment": {
+    "MARKET_NARRATIVE_DEPLOY_TARGET": "public",
     "MARKET_DATA_MODE": "live"
   }
 }

@@ -6,20 +6,23 @@ Use this as the launch cheat sheet. DNS records do not go in `.env`; DNS records
 
 Project: `marketnarrative-public`
 
-The root `vercel.json` configures this project to run `npm run vercel:build:public` and publish `out/site`. If the Vercel deployment summary lists source files such as `/apps/...` as static assets, the project is ignoring the public build config and is publishing the repository root by mistake.
+The root `vercel.json` configures every Vercel project to run `npm run vercel:build` and publish `out/vercel`. The project role is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`.
+
+If the deployment summary lists source files such as `/apps/...` as static assets, the project is ignoring the build config and is publishing the repository root by mistake.
 
 Build settings:
 
 ```text
 Root Directory: ./
 Install Command: npm install
-Build Command: npm run vercel:build:public
-Output Directory: out/site
+Build Command: npm run vercel:build
+Output Directory: out/vercel
 ```
 
 Environment variables:
 
 ```env
+MARKET_NARRATIVE_DEPLOY_TARGET=public
 MARKET_DATA_MODE=live
 ```
 
@@ -34,18 +37,21 @@ www.marketnarrative.in
 
 Project: `marketnarrative-trade`
 
+You can either create a new Vercel project named `marketnarrative-trade` or reuse/rename the existing `market-news-admin-studio` project. The important part is that the trade project must have `MARKET_NARRATIVE_DEPLOY_TARGET=trade`, and it must not own the apex `marketnarrative.in` or `www.marketnarrative.in` domains.
+
 Build settings:
 
 ```text
 Root Directory: ./
 Install Command: npm install
-Build Command: npm --workspace @market-narrative/trading-dashboard run build
-Output Directory: apps/trading-dashboard/out
+Build Command: npm run vercel:build
+Output Directory: out/vercel
 ```
 
 Environment variables:
 
 ```env
+MARKET_NARRATIVE_DEPLOY_TARGET=trade
 NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in
 NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in
 NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
@@ -55,6 +61,17 @@ Domain:
 
 ```text
 trade.marketnarrative.in
+```
+
+Domain ownership:
+
+```text
+marketnarrative-public owns:
+  marketnarrative.in
+  www.marketnarrative.in
+
+marketnarrative-trade or market-news-admin-studio owns:
+  trade.marketnarrative.in
 ```
 
 ## DigitalOcean VPS `.env`

@@ -436,11 +436,14 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
+  assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
+  assert.ok(rootPackage.scripts["vercel:build:trade"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=trade"));
 
   const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
   const adminPackage = JSON.parse(await readFile(join(rootDir, "apps", "admin-studio", "package.json"), "utf8"));
   const uiPackage = JSON.parse(await readFile(join(rootDir, "packages", "ui", "package.json"), "utf8"));
   const apiPackage = JSON.parse(await readFile(join(rootDir, "packages", "api-client", "package.json"), "utf8"));
+  const tradingAuth = await readFile(join(rootDir, "apps", "trading-dashboard", "lib", "auth.ts"), "utf8");
 
   assert.equal(publicPackage.name, "@market-narrative/public-portal");
   assert.equal(adminPackage.name, "@market-narrative/admin-studio");
@@ -448,6 +451,33 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.equal(apiPackage.name, "@market-narrative/api-client");
   assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
   assert.ok(adminPackage.dependencies["@market-narrative/api-client"]);
+  assert.ok(tradingAuth.includes("abhey@marketnarrative.in"));
+  assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
+});
+
+await test("Vercel projects select public or trade output by deploy target", async () => {
+  const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
+  assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
+  assert.equal(vercelConfig.outputDirectory, "out/vercel");
+
+  const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
+  assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
+  assert.ok(buildScript.includes('"public"'));
+  assert.ok(buildScript.includes('"trade"'));
+  assert.ok(buildScript.includes("vercel:build:public"));
+  assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
+  assert.ok(buildScript.includes("out\", \"vercel"));
+
+  const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
+  const tradeProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
+  assert.equal(publicProject.buildCommand, "npm run vercel:build");
+  assert.equal(publicProject.outputDirectory, "out/vercel");
+  assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
+  assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
+  assert.equal(tradeProject.buildCommand, "npm run vercel:build");
+  assert.equal(tradeProject.outputDirectory, "out/vercel");
+  assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
+  assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
 });
 
 await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {
