@@ -13,6 +13,7 @@ import {
 } from "./editorial-guardrails.mjs";
 import {
   buildDigest,
+  auditTradeSetupsWithMarketSnapshots,
   bullishRiskReward,
   clusterThemes,
   evaluateSeries,
@@ -75,10 +76,10 @@ await test("technical scanner emits only qualifying Nifty and Bank Nifty setups"
   assert.ok(setups.every((setup) => setup.target > setup.entry));
 });
 
-await test("live quote reconciliation removes stale completed setups", async () => {
+await test("live quote reconciliation removes completed setups from fresh entries", async () => {
   const { priceSeries } = await loadSeeds();
   const setups = scanPriceSeries("2026-04-29", priceSeries);
-  const reconciled = reconcileTradeSetupsWithMarketSnapshots(setups, [
+  const liveSnapshots = [
     {
       symbol: "NIFTY",
       closeValue: 24177.65,
@@ -89,8 +90,13 @@ await test("live quote reconciliation removes stale completed setups", async () 
       closeValue: 55403.6,
       dataQuality: "live"
     }
-  ]);
+  ];
+  const audit = auditTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
+  const reconciled = reconcileTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
   assert.deepEqual(reconciled, []);
+  assert.deepEqual(audit.map((item) => item.status), ["TARGET_REACHED", "TARGET_REACHED"]);
+  assert.ok(audit.every((item) => item.reason.includes("fresh entry")));
+  assert.ok(audit.every((item) => item.currentPrice > item.target));
 });
 
 await test("scanner rejects low-volume candidates", async () => {
@@ -157,6 +163,8 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.news).includes("whyItMatters"), false);
   assert.equal(JSON.stringify(payload.news).includes("indiaImpact"), false);
   assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
+  assert.ok(payload.setupAudit.length >= payload.tradeSetups.length);
+  assert.equal(JSON.stringify(payload.setupAudit).includes('"setup"'), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
   assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
 });
@@ -478,15 +486,15 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Project Components"));
   assert.ok(!publicHtml.body.includes('id="architecture-view"'));
   assert.ok(publicHtml.body.includes("Read the full desk note"));
-  assert.ok(publicHtml.body.includes("1. What Changed Overnight"));
-  assert.ok(publicHtml.body.includes("2. Top Source Reads"));
-  assert.ok(publicHtml.body.includes("3. India Read-Through"));
-  assert.ok(publicHtml.body.includes("4. What To Watch Next"));
+  assert.ok(publicHtml.body.includes("Market Map"));
+  assert.ok(publicHtml.body.includes("Stories Driving The Open"));
+  assert.ok(publicHtml.body.includes("How It Lands In India"));
+  assert.ok(publicHtml.body.includes("What To Watch First"));
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
   assert.ok(publicHtml.body.includes("2 min read"));
   assert.ok(publicHtml.body.includes("Read the full desk note"));
-  assert.ok(publicHtml.body.includes("Expanded briefing after multi-source extraction"));
+  assert.ok(publicHtml.body.includes("Pre-market desk note"));
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
   assert.ok(publicHtml.body.includes("Asia Watch"));
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));

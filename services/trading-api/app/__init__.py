@@ -1,0 +1,2 @@
+"""Trading cockpit FastAPI service."""
+

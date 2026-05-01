@@ -11,3 +11,9 @@ target/
 .env
 .env.local
 out/
+.local/
+.venv/
+__pycache__/
+.pycache/
+.pytest_cache/
+*.tsbuildinfo

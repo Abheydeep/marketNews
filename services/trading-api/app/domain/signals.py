@@ -1,0 +1,96 @@
+from __future__ import annotations
+
+from datetime import datetime, timezone
+
+from app.domain.options import OI_LONG_BUILDUP, OI_SHORT_BUILDUP
+from app.schemas import IndexSymbol, OptionChain, PriceZone, TechnicalSnapshot, TradingSignal
+
+
+class SignalGenerator:
+    def __init__(self, zone_proximity_percent: float = 0.005) -> None:
+        self.zone_proximity_percent = zone_proximity_percent
+
+    def generate(
+        self,
+        index: IndexSymbol,
+        price: float,
+        technical: TechnicalSnapshot,
+        option_chain: OptionChain,
+        sentiment_score: float,
+    ) -> TradingSignal:
+        support = self._nearest_zone(price, technical.kde_zones, "support")
+        resistance = self._nearest_zone(price, technical.kde_zones, "resistance")
+        reasons: list[str] = []
+
+        buy_checks = [
+            (support is not None and self._near(price, support), "price is near a KDE support zone"),
+            (option_chain.oi_status == OI_LONG_BUILDUP, "options matrix confirms Long Build-up"),
+            (option_chain.pcr.pcr > 0.8 and option_chain.pcr.velocity_5m >= 0, "PCR is above 0.8 and rising"),
+            (sentiment_score > 0.20, "financial news sentiment is positive"),
+        ]
+        sell_checks = [
+            (resistance is not None and self._near(price, resistance), "price is near a KDE resistance zone"),
+            (option_chain.oi_status == OI_SHORT_BUILDUP, "options matrix confirms Short Build-up"),
+            (option_chain.pcr.pcr < 1.0 and option_chain.pcr.velocity_5m <= 0, "PCR is below 1.0 and falling"),
+            (sentiment_score < -0.20, "financial news sentiment is negative"),
+        ]
+
+        if all(passed for passed, _reason in buy_checks) and support is not None:
+            target = self._next_resistance(price, technical.kde_zones)
+            stop = support.lower * 0.998
+            return TradingSignal(
+                index=index,
+                action="BUY",
+                entry_price=price,
+                target_price=target.center if target else price + (price - stop) * 2,
+                stop_loss=stop,
+                confidence=self._confidence(buy_checks, option_chain.pcr.velocity_5m, sentiment_score),
+                reasons=[reason for _passed, reason in buy_checks],
+                generated_at=datetime.now(timezone.utc),
+            )
+
+        if all(passed for passed, _reason in sell_checks) and resistance is not None:
+            target = self._next_support(price, technical.kde_zones)
+            stop = resistance.upper * 1.002
+            return TradingSignal(
+                index=index,
+                action="SELL",
+                entry_price=price,
+                target_price=target.center if target else price - (stop - price) * 2,
+                stop_loss=stop,
+                confidence=self._confidence(sell_checks, option_chain.pcr.velocity_5m, sentiment_score),
+                reasons=[reason for _passed, reason in sell_checks],
+                generated_at=datetime.now(timezone.utc),
+            )
+
+        reasons.extend(self._failed_reasons("BUY", buy_checks))
+        reasons.extend(self._failed_reasons("SELL", sell_checks))
+        return TradingSignal(index=index, action="WAIT", confidence=0.0, reasons=reasons[:6], generated_at=datetime.now(timezone.utc))
+
+    def _near(self, price: float, zone: PriceZone) -> bool:
+        if zone.lower <= price <= zone.upper:
+            return True
+        return abs(price - zone.center) / price <= self.zone_proximity_percent
+
+    def _nearest_zone(self, price: float, zones: list[PriceZone], kind: str) -> PriceZone | None:
+        typed = [zone for zone in zones if zone.kind == kind]
+        if not typed:
+            return None
+        return min(typed, key=lambda zone: abs(zone.center - price))
+
+    def _next_resistance(self, price: float, zones: list[PriceZone]) -> PriceZone | None:
+        candidates = [zone for zone in zones if zone.kind == "resistance" and zone.center > price]
+        return min(candidates, key=lambda zone: zone.center) if candidates else None
+
+    def _next_support(self, price: float, zones: list[PriceZone]) -> PriceZone | None:
+        candidates = [zone for zone in zones if zone.kind == "support" and zone.center < price]
+        return max(candidates, key=lambda zone: zone.center) if candidates else None
+
+    def _confidence(self, checks: list[tuple[bool, str]], velocity: float, sentiment: float) -> float:
+        base = sum(25 for passed, _reason in checks if passed)
+        bonus = min(abs(velocity) * 8.0, 5.0) + min(abs(sentiment) * 5.0, 5.0)
+        return min(100.0, round(base + bonus, 2))
+
+    def _failed_reasons(self, side: str, checks: list[tuple[bool, str]]) -> list[str]:
+        return [f"{side} blocked: {reason}" for passed, reason in checks if not passed]
+

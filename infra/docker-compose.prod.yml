@@ -1,0 +1,101 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: market_narrative
+      POSTGRES_USER: narrative
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ../services/trading-api/sql/schema.sql:/docker-entrypoint-initdb.d/02-trading-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U narrative -d market_narrative"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ../backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/market_narrative
+      DATABASE_USERNAME: narrative
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+      JWT_ISSUER: ${JWT_ISSUER:-market-narrative-prod}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-https://trade.marketnarrative.in}
+      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-abhey@marketnarrative.in}
+      SEED_DEMO_ADMIN: "false"
+      SEED_TRADING_ADMIN: "true"
+      ABHEY_ADMIN_PASSWORD: ${ABHEY_ADMIN_PASSWORD:?set ABHEY_ADMIN_PASSWORD}
+      DIGEST_ZONE: Asia/Kolkata
+
+  trading-api:
+    build:
+      context: ../services/trading-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      TRADING_API_PORT: 8090
+      TRADING_CORS_ORIGIN: https://trade.marketnarrative.in
+      TRADING_AUTH_REQUIRED: "true"
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+      JWT_ISSUER: ${JWT_ISSUER:-market-narrative-prod}
+      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-abhey@marketnarrative.in}
+      ENABLE_LIVE_ORDERS: "false"
+      TRADING_DATABASE_URL: postgresql://narrative:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/market_narrative
+      TRADING_REDIS_URL: redis://redis:6379/1
+      KITE_API_KEY: ${KITE_API_KEY:-}
+      KITE_API_SECRET: ${KITE_API_SECRET:-}
+      KITE_REDIRECT_URL: https://trade.marketnarrative.in/kite/callback
+      KITE_TOKEN_STORE: /app/.local/kite-session.json
+      TRADING_TOKEN_KEY: ${TRADING_TOKEN_KEY:-}
+      NEWSAPI_AI_KEY: ${NEWSAPI_AI_KEY:-}
+      EODHD_API_KEY: ${EODHD_API_KEY:-}
+    volumes:
+      - trading-local:/app/.local
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - trading-api
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  postgres-data:
+  redis-data:
+  trading-local:
+  caddy-data:
+  caddy-config:

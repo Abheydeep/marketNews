@@ -9,6 +9,7 @@ const { chromium } = loadPlaywright();
 const baseUrl = (process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews").replace(/\/$/, "");
 const cycles = Number.parseInt(process.env.FULL_QA_CYCLES ?? "5", 10);
 const dailyPages = [
+  { slug: "1may2026", label: "Fri, 01 May, 2026" },
   { slug: "30apr2026", label: "Thu, 30 Apr, 2026" },
   { slug: "29apr2026", label: "Wed, 29 Apr, 2026" }
 ];
@@ -483,7 +484,7 @@ async function verifySummary(page, daily, options = {}) {
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary initially collapsed`);
   await summary.locator("summary").click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(page.getByText("Expanded briefing after multi-source extraction", { exact: true }), `${daily.slug} expanded briefing`);
+  await expectOne(page.getByText("Pre-market desk note", { exact: true }), `${daily.slug} expanded briefing`);
   if (options.keepOpen) {
     return;
   }

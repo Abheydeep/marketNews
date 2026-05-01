@@ -9,8 +9,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@market-narrative/api-client": "workspace:*",
-    "@market-narrative/ui": "workspace:*",
+    "@market-narrative/api-client": "0.1.0",
+    "@market-narrative/ui": "0.1.0",
     "@vitejs/plugin-react": "^4.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

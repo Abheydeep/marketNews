@@ -743,6 +743,48 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       line-height: 1.55;
     }
 
+    .setup-audit-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .setup-audit-item {
+      display: grid;
+      grid-template-columns: minmax(82px, auto) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.48);
+      padding: 12px;
+    }
+
+    .setup-audit-item strong {
+      color: #f8fafc;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .setup-audit-item span {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .setup-audit-item small {
+      display: block;
+      margin-top: 5px;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
     .setup-levels {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -791,7 +833,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .setup-level small {
       display: block;
       margin-top: 5px;
-      color: #6b7280;
+      color: #cbd5e1;
       font-size: 11px;
       font-weight: 700;
     }
@@ -5667,20 +5709,23 @@ function expandedBriefingHtml(digest) {
   const lead = expandedLeadParagraphs(digest);
   return `
     <div class="expanded-briefing-head">
-      <span class="summary-label">Expanded briefing after multi-source extraction</span>
+      <span class="summary-label">Pre-market desk note</span>
       <h2>${escapeHtml(expandedBriefingHeadline(digest))}</h2>
       ${lead.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-    </div>
-    <div class="briefing-lens-grid">
-      ${briefingLensCards(digest)}
     </div>
     ${executiveSummaryHtml(digest)}
   `;
 }
 
 function expandedBriefingHeadline(digest) {
-  const primaryTheme = digest.themes[0]?.title || "Market Cues";
-  return `${primaryTheme}: ${headlineSentiment(digest.sentimentLabel)} pre-market read for India`;
+  const macro = firstByCategory(digest.news, "macro_negative") || strongestStory(digest.news, "negative");
+  const support = firstByCategory(digest.news, "sector_positive") || strongestStory(digest.news, "positive");
+  const pressure = marketRiskLabel(macro);
+  const cushion = compactEntityName(support?.entityName || "banks");
+  if (macro && support) {
+    return `${pressure} is the pressure; ${cushion} is the cushion`;
+  }
+  return `${headlineSentiment(digest.sentimentLabel)} pre-market read for India`;
 }
 
 function storyReadThrough(story) {
@@ -5714,43 +5759,16 @@ function expandedLeadParagraphs(digest) {
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
-  const setup = niftySetup(digest);
   const pressureEntity = marketRiskLabel(macro || pressureStory);
   const supportEntity = compactEntityName(supportStory?.entityName || "domestic breadth");
-  const pressureRead = storyReadThrough(macro || pressureStory);
-  const supportRead = storyReadThrough(supportStory);
-  const setupLine = setup
-    ? `A conditional ${setup.symbol} ${setup.direction.toLowerCase()} plan remains valid only if price accepts near ${formatNumber(setup.entry)} while preserving the ${setup.riskReward}R stop-to-target structure.`
-    : "No clean 1:2 setup is active yet, so the first hour should be used to watch opening-range acceptance before taking a directional view.";
 
   return [
     [
-      `The Indian open looks ${headlineSentiment(digest.sentimentLabel).toLowerCase()} rather than one-way.`,
-      `${pressureEntity} is the main risk to track before chasing the first move.`,
-      pressureRead,
-      supportStory ? `${supportEntity} is the key offset in the morning setup.` : "",
-      supportRead,
-      setupLine
-    ].filter(Boolean).map(editorialSentence).join(" ")
+      `This is not a simple ${digest.sentimentLabel.toLowerCase()} call.`,
+      `${pressureEntity} is the risk filter for the morning.`,
+      supportStory ? `${supportEntity} is the offset if breadth improves.` : ""
+    ].filter(Boolean).map(editorialSentence).join(" "),
   ];
-}
-
-function briefingLensCards(digest) {
-  const macro = firstByCategory(digest.news, "macro_negative");
-  const globalRisk = firstByCategory(digest.news, "global_risk");
-  const sectorSupport = firstByCategory(digest.news, "sector_positive");
-  const cards = [
-    ["Global pressure", macro?.headline || digest.themes[0]?.title || "Macro watch", macro?.whyItMatters || digest.themes[0]?.summary || "Macro variables remain the first filter for the open."],
-    ["Risk appetite", globalRisk?.headline || "Cross-market confirmation", globalRisk?.indiaImpact || "US and Asian breadth need confirmation before chasing the first move."],
-    ["Domestic cushion", sectorSupport?.headline || "Banks and defensives", sectorSupport?.indiaImpact || "Domestic breadth decides whether weak global cues turn into trend or only a gap reaction."]
-  ];
-  return cards.map(([label, title, detail]) => `
-    <article class="briefing-lens">
-      <span>${escapeHtml(label)}</span>
-      <strong>${escapeHtml(title)}</strong>
-      <p>${escapeHtml(detail)}</p>
-    </article>
-  `).join("");
 }
 
 function executiveSummaryHtml(digest) {
@@ -5758,52 +5776,44 @@ function executiveSummaryHtml(digest) {
   const asiaLine = formatAsiaSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
-  const pressureStory = strongestStory(digest.news, "negative");
-  const supportStory = strongestStory(digest.news, "positive");
-  const macroPressure = firstByCategory(digest.news, "macro_negative") || pressureStory;
-  const primaryTheme = digest.themes[0];
+  const globalRisk = firstByCategory(digest.news, "global_risk");
   const setup = niftySetup(digest);
   const setupText = setup
     ? `Nifty has a conditional ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
-    : "No clean 1:2 setup is active yet, so the first hour should define the actionable levels.";
-  const pressureRead = storyReadThrough(macroPressure);
-  const supportRead = storyReadThrough(supportStory);
-  const bottomLine = [
-    `Overnight financial news points to a ${digest.sentimentLabel.toLowerCase()} but selective Indian open.`,
-    macroPressure ? `${marketRiskLabel(macroPressure)} is the main pressure point${pressureRead ? `: ${pressureRead}` : "."}` : primaryTheme?.summary,
-    supportStory ? `${compactEntityName(supportStory.entityName || "Domestic breadth")} is the offset${supportRead ? `: ${supportRead}` : "."}` : "",
-    "This is a source-led brief, not just an index-move recap."
-  ].filter(Boolean).map(editorialSentence).join(" ");
+    : noSetupTradeFrame(digest);
 
   return `
-    <p class="brief-lead"><strong>Bottom line:</strong> ${escapeHtml(bottomLine)}</p>
-
     <div class="brief-section">
-      <h3>1. What Changed Overnight</h3>
+      <h3>Market Map</h3>
       <ul class="brief-list">
-        <li><strong>US risk appetite:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. The news stack links US technology softness and firmer yields to a lower-quality risk backdrop.</li>
-        <li><strong>Asia read:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Mixed regional breadth means the Indian open should be treated as level-driven rather than purely directional.</li>
-        <li><strong>Macro hedges:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar remain the two variables most likely to shape inflation, rupee, and foreign-flow expectations.</li>
-        <li><strong>Domestic context:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Banks are the key stabilizer; broad-market conviction still needs breadth confirmation.</li>
+        <li><strong>US:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. ${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</li>
+        <li><strong>Asia:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Treat mixed regional breadth as a reason to wait for the opening range.</li>
+        <li><strong>Macro:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</li>
+        <li><strong>India:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Banks decide whether the open becomes a trend or just a gap reaction.</li>
       </ul>
     </div>
 
     <div class="brief-section">
-      <h3>2. Top Source Reads</h3>
+      <h3>Stories Driving The Open</h3>
       <div class="source-extract-list">
         ${sourceExtractionRows(briefingSourceArticles(digest.news))}
       </div>
     </div>
 
     <div class="brief-section">
-      <h3>3. India Read-Through</h3>
+      <h3>How It Lands In India</h3>
       <ul class="brief-list">
-        ${indiaReadThroughItems(digest, setupText)}
+        ${indiaReadThroughItems(digest)}
       </ul>
     </div>
 
     <div class="brief-section">
-      <h3>4. What To Watch Next</h3>
+      <h3>Trade Framing</h3>
+      <p class="brief-list">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+    </div>
+
+    <div class="brief-section">
+      <h3>What To Watch First</h3>
       <ul class="watch-grid">
         ${watchItemsHtml(digest.news, setup)}
       </ul>
@@ -5817,13 +5827,12 @@ function sourceExtractionRows(articles) {
       <div class="source-extract-row">
         <div class="source-extract-meta">
           <span>${escapeHtml(article.sourceName)}</span>
-          <small>${escapeHtml(categoryLabel(article.category))} - ${escapeHtml(article.entityName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</small>
+          <small>${escapeHtml(formatArticleTime(article.publishedAt))} - ${escapeHtml(categoryLabel(article.category))}</small>
         </div>
         <div class="source-extract-copy">
           <h4>${escapeHtml(article.headline)}</h4>
           <p>${escapeHtml(article.takeaway || article.summary)}</p>
-          <p class="why-line"><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
-          <p class="why-line"><strong>India impact:</strong> ${escapeHtml(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
+          <p class="why-line"><strong>India angle:</strong> ${escapeHtml(article.indiaImpact || article.whyItMatters || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
         </div>
       </div>
     `)
@@ -5831,11 +5840,11 @@ function sourceExtractionRows(articles) {
 }
 
 function briefingSourceArticles(articles) {
-  const categoryOrder = ["macro_negative", "global_risk", "neutral_volatile", "sector_positive", "macro_positive"];
+  const categoryOrder = ["macro_negative", "global_risk", "sector_positive"];
   const byCategory = categoryOrder
     .map((category) => weightedSourceArticles((articles ?? []).filter((article) => article.category === category))[0])
     .filter(Boolean);
-  return uniqueArticles([...byCategory, ...weightedSourceArticles(articles ?? [])]).slice(0, 5);
+  return uniqueArticles([...byCategory, ...weightedSourceArticles(articles ?? [])]).slice(0, 3);
 }
 
 function uniqueArticles(articles) {
@@ -5850,7 +5859,7 @@ function uniqueArticles(articles) {
   });
 }
 
-function indiaReadThroughItems(digest, setupText) {
+function indiaReadThroughItems(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const sectorSupport = firstByCategory(digest.news, "sector_positive");
@@ -5859,16 +5868,28 @@ function indiaReadThroughItems(digest, setupText) {
     `<li><strong>Macro pressure:</strong> ${escapeHtml(macro?.indiaImpact || "Crude, dollar, and yields remain the first pressure points for the index.")}</li>`,
     `<li><strong>Risk appetite:</strong> ${escapeHtml(globalRisk?.indiaImpact || "US risk appetite needs confirmation before chasing a gap move.")}</li>`,
     `<li><strong>Domestic cushion:</strong> ${escapeHtml(sectorSupport?.indiaImpact || "Banks and defensives are the first areas to check for institutional support.")}</li>`,
-    `<li><strong>Opening behavior:</strong> ${escapeHtml(neutral?.indiaImpact || "Mixed Asia argues for waiting on the first-hour range.")}</li>`,
-    `<li><strong>Trading discipline:</strong> ${escapeHtml(setupText)} This is educational market commentary, not investment advice.</li>`
+    `<li><strong>Opening behavior:</strong> ${escapeHtml(neutral?.indiaImpact || "Mixed Asia argues for waiting on the first-hour range.")}</li>`
   ].join("");
+}
+
+function noSetupTradeFrame(digest) {
+  const completed = setupAuditItems(digest).filter((item) => item.status === "TARGET_REACHED");
+  if (completed.length) {
+    const symbols = completed.map((item) => compactEntityName(item.symbol)).join(" and ");
+    return `The earlier ${symbols} move has already played out, so there is no fresh 1:2 entry on the plan. Wait for a new range instead of chasing a completed move.`;
+  }
+  const compressed = setupAuditItems(digest).filter((item) => item.status === "RISK_REWARD_COMPRESSED");
+  if (compressed.length) {
+    return "The move has already stretched away from the entry zone, so the remaining reward is not worth the risk. Wait for price to reset near a cleaner level.";
+  }
+  return "No clean 1:2 setup is active yet, so wait for opening-range confirmation before taking a directional view.";
 }
 
 function watchItemsHtml(articles, setup) {
   const items = articles
     .map((article) => article.watchFor)
     .filter(Boolean)
-    .slice(0, 4);
+    .slice(0, 3);
   if (setup) {
     items.push(`Nifty acceptance near ${formatNumber(setup.entry)} and invalidation near ${formatNumber(setup.stopLoss)}.`);
   }
@@ -6228,6 +6249,7 @@ function algorithmicSetupHtml(digest) {
           <span class="setup-badge">No setup yet</span>
         </div>
         <p class="strategy-note">No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.</p>
+        ${setupAuditHtml(digest)}
       </section>
     `;
   }
@@ -6282,18 +6304,19 @@ function scannerBadgeHtml(digest) {
 function scannerPanelCopy(digest) {
   const setup = niftySetup(digest) ?? digest.tradeSetups[0];
   if (!setup) {
-    return "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
+    return setupAuditSummary(digest) || "No active 1:2 risk-reward setup is available yet. The scanner is waiting for fresh levels.";
   }
   return "Nifty has a clean conditional setup, but the open still needs price acceptance and breadth confirmation.";
 }
 
 function studioMetricCards(digest) {
   const setup = niftySetup(digest);
+  const inactiveAudit = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
   const sourceCount = new Set(digest.news.map((article) => article.sourceName)).size;
   const thumbnailCount = digest.news.filter((article) => article.thumbnail?.alt).length;
   const sections = parseScriptSections(digest.teleprompterScript);
-  const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : "Setup blocked";
-  const setupHint = setup ? "Scanner-approved trade plan is available." : "Waiting for fresh levels.";
+  const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : inactiveAudit.length ? `${inactiveAudit.length} checked` : "Setup blocked";
+  const setupHint = setup ? "Scanner-approved trade plan is available." : setupAuditSummary(digest) || "Waiting for fresh levels.";
   return [
     ["Market Tone", headlineSentiment(digest.sentimentLabel), `Weighted sentiment ${formatSignedScore(digest.overallSentiment)}`],
     ["Sources", `${digest.news.length} articles`, `${sourceCount} publishers; ${thumbnailCount} thumbnails`],
@@ -6319,10 +6342,11 @@ function reelScriptStats(digest) {
 
 function studioWorkflowHtml(digest) {
   const setup = niftySetup(digest);
+  const auditLine = setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : setupAuditSummary(digest) || "No active setup yet.";
   const stages = [
     ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
     ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
-    ["03", "Scanner", setup ? `${setup.symbol} passed the 1:2 risk-reward gate.` : "No active setup yet.", setup ? "ok" : "blocked"],
+    ["03", "Scanner", auditLine, setup ? "ok" : "blocked"],
     ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} recording beats drafted from the morning source stack.`, "ok"],
     ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
     ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
@@ -6339,9 +6363,14 @@ function studioWorkflowHtml(digest) {
 function scannerValidationHtml(digest) {
   const setup = niftySetup(digest) ?? digest.tradeSetups[0];
   if (!setup) {
+    const auditRows = setupAuditItems(digest)
+      .filter((item) => item.status !== "ACTIVE")
+      .slice(0, 3)
+      .map((item) => validationRow("blocked", `${item.symbol} ${auditStatusLabel(item.status)}`, item.reason))
+      .join("");
     return `
       <div class="validation-list">
-        ${validationRow("blocked", "Setup blocked by current market levels", "The page no longer shows outdated Nifty levels when current prices have crossed target, stop, or invalidated the reward math.")}
+        ${auditRows || validationRow("blocked", "No active setup from current checks", "The page only shows a trade plan when the entry, stop, and target still preserve at least 2R.")}
         ${validationRow("warn", "Opening range required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
         ${validationRow("ok", "Trade execution disabled", "Studio output remains educational research for video planning; no order placement is connected.")}
       </div>
@@ -6506,7 +6535,7 @@ function parseScriptSections(script) {
 function scannerActivityLine(digest) {
   const setup = niftySetup(digest);
   if (!setup) {
-    return "No active setup yet; outdated levels are hidden from the studio.";
+    return setupAuditSummary(digest) || "No active setup yet; outdated levels are hidden from the studio.";
   }
   return `${setup.symbol} ${setup.direction.toLowerCase()} setup remains active at ${setup.riskReward}R.`;
 }
@@ -6557,6 +6586,66 @@ function scannerCells(digest) {
       <div class="rr-cell target"><span>Target</span><strong>${formatNumber(setup.target)}</strong></div>
     </div>
   `;
+}
+
+function setupAuditItems(digest) {
+  return Array.isArray(digest.setupAudit) ? digest.setupAudit : [];
+}
+
+function setupAuditSummary(digest) {
+  const inactive = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
+  if (!inactive.length) {
+    return "";
+  }
+  const completed = inactive.filter((item) => item.status === "TARGET_REACHED");
+  if (completed.length === inactive.length) {
+    return `${completed.map((item) => item.symbol).join(" and ")} already crossed the earlier target${completed.length === 1 ? "" : "s"}; no fresh entry is shown.`;
+  }
+  const labels = inactive.slice(0, 2).map((item) => `${item.symbol}: ${auditStatusLabel(item.status).toLowerCase()}`);
+  return `${inactive.length} candidate${inactive.length === 1 ? "" : "s"} checked; ${labels.join("; ")}.`;
+}
+
+function setupAuditHtml(digest) {
+  const inactive = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
+  if (!inactive.length) {
+    return "";
+  }
+  return `
+    <div class="setup-audit-list" aria-label="Setup rejection reasons">
+      ${inactive.slice(0, 3).map((item) => `
+        <div class="setup-audit-item">
+          <strong>${escapeHtml(item.symbol)}</strong>
+          <span>
+            ${escapeHtml(item.reason)}
+            <small>${escapeHtml(setupAuditLevelLine(item))}</small>
+          </span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function setupAuditLevelLine(item) {
+  const parts = [];
+  if (Number.isFinite(Number(item.currentPrice))) {
+    parts.push(`Current ${formatNumber(item.currentPrice)}`);
+  }
+  if (Number.isFinite(Number(item.entry))) {
+    parts.push(`Entry ${formatNumber(item.entry)}`);
+  }
+  if (Number.isFinite(Number(item.target))) {
+    parts.push(`Target ${formatNumber(item.target)}`);
+  }
+  return parts.join(" / ");
+}
+
+function auditStatusLabel(status) {
+  return {
+    TARGET_REACHED: "Target already reached",
+    STOP_INVALIDATED: "Invalidation crossed",
+    RISK_REWARD_COMPRESSED: "Reward compressed",
+    UNKNOWN: "Unavailable"
+  }[status] ?? "Checked";
 }
 
 function teleprompterHtml(digest) {

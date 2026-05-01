@@ -45,7 +45,10 @@ export async function buildDigest(date = todayIso(), options = {}) {
   }));
   const themes = clusterThemes(date, articles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
-  const tradeSetups = reconcileTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
+  const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
+  const tradeSetups = setupAudit
+    .filter((item) => item.status === "ACTIVE")
+    .map((item) => item.setup);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles);
@@ -71,6 +74,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     news: articles,
     themes,
     tradeSetups,
+    setupAudit,
     asset,
     marketDataMode,
     marketDataError,
@@ -104,38 +108,121 @@ export function scanPriceSeries(date, priceSeriesSeed) {
 }
 
 export function reconcileTradeSetupsWithMarketSnapshots(setups, marketSnapshots) {
-  const snapshotsBySymbol = new Map(marketSnapshots.map((snapshot) => [snapshot.symbol, snapshot]));
-  return setups.filter((setup) => setupIsStillActive(setup, snapshotsBySymbol.get(setup.symbol)));
+  return auditTradeSetupsWithMarketSnapshots(setups, marketSnapshots)
+    .filter((item) => item.status === "ACTIVE")
+    .map((item) => item.setup);
 }
 
-function setupIsStillActive(setup, snapshot) {
+export function auditTradeSetupsWithMarketSnapshots(setups, marketSnapshots) {
+  const snapshotsBySymbol = new Map(marketSnapshots.map((snapshot) => [snapshot.symbol, snapshot]));
+  return setups.map((setup) => setupAuditEntry(setup, snapshotsBySymbol.get(setup.symbol)));
+}
+
+function setupAuditEntry(setup, snapshot) {
+  const base = {
+    symbol: setup.symbol,
+    direction: setup.direction,
+    entry: setup.entry,
+    stopLoss: setup.stopLoss,
+    target: setup.target,
+    riskReward: setup.riskReward,
+    setup
+  };
+
   if (!snapshot || snapshot.dataQuality !== "live" || !Number.isFinite(Number(snapshot.closeValue))) {
-    return true;
+    return {
+      ...base,
+      status: "ACTIVE",
+      reason: "Prepared market data is in use, so the setup remains on the watchlist until a live price check is available.",
+      currentPrice: Number.isFinite(Number(snapshot?.closeValue)) ? round(Number(snapshot.closeValue), 2) : null,
+      remainingRiskReward: setup.riskReward
+    };
   }
 
   const current = Number(snapshot.closeValue);
   if (setup.direction === "BULLISH") {
     if (current <= setup.stopLoss || current >= setup.target) {
-      return false;
+      const crossedStop = current <= setup.stopLoss;
+      return {
+        ...base,
+        status: crossedStop ? "STOP_INVALIDATED" : "TARGET_REACHED",
+        reason: crossedStop
+          ? `${setup.symbol} is below the invalidation line, so the bullish plan is no longer valid.`
+          : `${setup.symbol} has already crossed the target. It is not shown as a fresh entry.`,
+        currentPrice: round(current, 2),
+        remainingRiskReward: 0
+      };
     }
     if (current > setup.entry) {
-      return bullishRiskReward(current, setup.stopLoss, setup.target) >= 2;
+      const remainingRiskReward = bullishRiskReward(current, setup.stopLoss, setup.target);
+      if (remainingRiskReward < 2) {
+        return {
+          ...base,
+          status: "RISK_REWARD_COMPRESSED",
+          reason: `${setup.symbol} moved away from the entry zone; the reward left is only ${round(remainingRiskReward, 2)}R.`,
+          currentPrice: round(current, 2),
+          remainingRiskReward: round(remainingRiskReward, 3)
+        };
+      }
     }
-    return true;
+    return {
+      ...base,
+      status: "ACTIVE",
+      reason: current < setup.entry
+        ? `${setup.symbol} is still below the entry zone, so this remains a conditional pullback plan.`
+        : `${setup.symbol} still preserves at least 2R from the current price to target.`,
+      currentPrice: round(current, 2),
+      remainingRiskReward: current > setup.entry
+        ? round(bullishRiskReward(current, setup.stopLoss, setup.target), 3)
+        : setup.riskReward
+    };
   }
 
   if (setup.direction === "BEARISH") {
     if (current >= setup.stopLoss || current <= setup.target) {
-      return false;
+      const crossedStop = current >= setup.stopLoss;
+      return {
+        ...base,
+        status: crossedStop ? "STOP_INVALIDATED" : "TARGET_REACHED",
+        reason: crossedStop
+          ? `${setup.symbol} is above the invalidation line, so the bearish plan is no longer valid.`
+          : `${setup.symbol} has already crossed the target. It is not shown as a fresh entry.`,
+        currentPrice: round(current, 2),
+        remainingRiskReward: 0
+      };
     }
     if (current < setup.entry) {
       const risk = setup.stopLoss - current;
       const reward = current - setup.target;
-      return risk > 0 && reward / risk >= 2;
+      const remainingRiskReward = risk > 0 ? reward / risk : 0;
+      if (remainingRiskReward < 2) {
+        return {
+          ...base,
+          status: "RISK_REWARD_COMPRESSED",
+          reason: `${setup.symbol} moved away from the entry zone; the reward left is only ${round(remainingRiskReward, 2)}R.`,
+          currentPrice: round(current, 2),
+          remainingRiskReward: round(remainingRiskReward, 3)
+        };
+      }
     }
+    return {
+      ...base,
+      status: "ACTIVE",
+      reason: current > setup.entry
+        ? `${setup.symbol} is still above the entry zone, so this remains a conditional pullback plan.`
+        : `${setup.symbol} still preserves at least 2R from the current price to target.`,
+      currentPrice: round(current, 2),
+      remainingRiskReward: setup.riskReward
+    };
   }
 
-  return true;
+  return {
+    ...base,
+    status: "UNKNOWN",
+    reason: `${setup.symbol} direction is not supported by the current scanner.`,
+    currentPrice: round(current, 2),
+    remainingRiskReward: 0
+  };
 }
 
 export function evaluateSeries(date, symbol, bars) {
