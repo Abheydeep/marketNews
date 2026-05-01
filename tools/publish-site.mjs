@@ -3,6 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { multibaggerState } from "./multibagger-data.mjs";
+import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
 import { projectComponentsPage } from "./project-components-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
@@ -15,6 +17,8 @@ const archiveDir = join(rootDir, "archive", "daily");
 const siteDir = join(rootDir, "out", "site");
 const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
+const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
@@ -30,6 +34,7 @@ await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
 await writeFile(join(siteDir, ".nojekyll"), "", "utf8");
 await writeFile(join(siteDir, "favicon.ico"), "", "utf8");
+await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 
 for (const digest of digests) {
   const slug = slugForDigest(digest);
@@ -50,26 +55,35 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
+const publicMultibaggerState = multibaggerState();
 const adminDigest = {
   ...sourceDigest,
-  canonicalPath: "/admin/"
+  canonicalPath: "/"
 };
 const darkPreviewDir = join(siteDir, "dark-preview");
 const adminDir = join(siteDir, "admin");
+const multibaggerDir = join(siteDir, "multibagger");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
   cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" })
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
+await mkdir(multibaggerDir, { recursive: true });
+await writeGuardedFile(join(multibaggerDir, "index.html"), multibaggerPage(publicMultibaggerState));
+await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
 await mkdir(join(adminDir, "components"), { recursive: true });
+await mkdir(join(adminDir, "multibagger"), { recursive: true });
 await writeFile(
   join(adminDir, "index.html"),
   cockpitPage(adminDigest, "studio-view", {
     includeStudio: true,
     theme: "glass-v2",
     requireAuth: true,
-    componentsHref: "./components/"
+    componentsHref: "./components/",
+    multibaggerHref: `${siteOrigin}/multibagger/`,
+    adminMultibaggerHref: "./multibagger/",
+    siteOrigin: adminSiteOrigin
   }),
   "utf8"
 );
@@ -77,12 +91,15 @@ await writeFile(join(adminDir, "favicon.ico"), "", "utf8");
 await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(
   join(adminDir, "components", "index.html"),
-  projectComponentsPage({ digests, publicBaseHref: "../../", requireAuth: true }),
+  projectComponentsPage({ digests, publicBaseHref: `${siteOrigin}/`, requireAuth: true }),
   "utf8"
 );
+await writeFile(join(adminDir, "multibagger", "index.html"), multibaggerAdminPage(publicMultibaggerState), "utf8");
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);
+await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
+await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(digests), "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -127,6 +144,8 @@ async function loadArchivedDigests() {
 
 function archivePage(digests) {
   const latest = digests[0];
+  const pageTitle = "Market Narrative | Daily Pre-Market Archive";
+  const pageDescription = "Daily pre-market intelligence archive for Nifty, Bank Nifty, global cues, Asian markets, source cards, and charts.";
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -160,7 +179,20 @@ function archivePage(digests) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Market Narrative | Daily Pre-Market Archive</title>
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(siteOrigin)}/">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <title>${escapeHtml(pageTitle)}</title>
   <style>
     :root {
       --paper: #050816;
@@ -454,7 +486,8 @@ function archivePage(digests) {
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
-          <a class="nav-link" href="./admin/">Admin login</a>
+          <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
+          <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin login</a>
         </div>
       </div>
     </div>
@@ -477,6 +510,65 @@ function archivePage(digests) {
   </main>
 </body>
 </html>`;
+}
+
+function robotsTxt() {
+  return [
+    "User-agent: *",
+    "Allow: /",
+    "Disallow: /admin/",
+    `Sitemap: ${siteOrigin}/sitemap.xml`,
+    ""
+  ].join("\n");
+}
+
+function sitemapXml(digests) {
+  const urls = [
+    { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
+    ...digests.map((digest) => ({
+      loc: `${siteOrigin}/${slugForDigest(digest)}/`,
+      lastmod: digest.digestDate
+    }))
+  ];
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((url) => `  <url>
+    <loc>${escapeHtml(url.loc)}</loc>
+    ${url.lastmod ? `<lastmod>${escapeHtml(url.lastmod)}</lastmod>` : ""}
+  </url>`).join("\n")}
+</urlset>
+`;
+}
+
+function ogCardSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Market Narrative</title>
+  <desc id="desc">Daily pre-market intelligence for Nifty, Bank Nifty, global cues, and Asian markets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#030712"/>
+      <stop offset="0.52" stop-color="#08111f"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#f43f5e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="165" cy="80" r="210" fill="#22d3ee" opacity="0.18"/>
+  <circle cx="1020" cy="72" r="240" fill="#6366f1" opacity="0.22"/>
+  <circle cx="880" cy="560" r="210" fill="#f43f5e" opacity="0.14"/>
+  <path d="M96 448 C238 360 308 392 420 305 S632 173 805 220 S1010 351 1106 258" fill="none" stroke="url(#line)" stroke-width="16" stroke-linecap="round"/>
+  <rect x="78" y="72" width="1044" height="486" rx="42" fill="#020617" opacity="0.56" stroke="#ffffff" stroke-opacity="0.16"/>
+  <text x="126" y="174" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">MARKET NARRATIVE</text>
+  <text x="126" y="294" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900">Daily Pre-Market Intelligence</text>
+  <text x="126" y="376" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="650">Nifty, Bank Nifty, global cues, Asia watch, charts, and source-backed context.</text>
+  <text x="126" y="488" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">marketnarrative.in</text>
+</svg>
+`;
 }
 
 function slugForDigest(digest) {

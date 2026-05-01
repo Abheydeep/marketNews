@@ -1,6 +1,9 @@
 import { newsArticleJsonLd } from "./core.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
+const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
+
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
   const requireAuth = Boolean(options.requireAuth);
@@ -8,6 +11,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
   const safeInitialTab = includeStudio || initialTab === "public-view" ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
+  const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative`;
+  const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
+  const pageOrigin = options.siteOrigin ?? siteOrigin;
+  const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
+  const previewImageUrl = absoluteSiteUrl("/og-card.svg", siteOrigin);
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
     : "";
@@ -16,7 +24,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <a class="tab-link" href="${escapeHtml(options.componentsHref ?? "/admin/components")}">Project Components</a>`
     : "";
   const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
-    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? (digest.canonicalPath ? "../admin/" : "./admin/"))}">Admin Login</a>`
+    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
+    : "";
+  const multibaggerLinkHtml = `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
+  const adminMultibaggerLinkHtml = includeStudio
+    ? `<a class="tab-link" href="${escapeHtml(options.adminMultibaggerHref ?? `${adminSiteOrigin}/multibagger/`)}">Multibagger Review</a>`
     : "";
   const adminLogoutHtml = requireAuth
     ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
@@ -28,7 +40,20 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
-  <title>Market Narrative | Pre-Market Intelligence & Creator Studio</title>
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="robots" content="${requireAuth ? "noindex,nofollow" : "index,follow"}">
+  <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
+  <meta property="og:image" content="${escapeHtml(previewImageUrl)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
+  <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${JSON.stringify(newsArticleJsonLd(digest))}</script>
   <style>
     :root {
@@ -3798,6 +3823,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
+          ${multibaggerLinkHtml}
+          ${adminMultibaggerLinkHtml}
           ${publicAdminLinkHtml}
           ${adminLogoutHtml}
         </div>
@@ -6795,4 +6822,12 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function absoluteSiteUrl(path, origin = siteOrigin) {
+  if (/^https?:\/\//.test(String(path))) {
+    return String(path);
+  }
+  const normalizedPath = String(path ?? "/").startsWith("/") ? String(path ?? "/") : `/${path}`;
+  return `${origin}${normalizedPath}`;
 }

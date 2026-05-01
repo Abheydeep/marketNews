@@ -26,6 +26,8 @@ import {
   weightedSentiment
 } from "./core.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
+import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -167,6 +169,39 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.setupAudit).includes('"setup"'), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
   assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
+});
+
+await test("multibagger public model is concentrated and sanitized", () => {
+  const state = validateMultibaggerState(multibaggerState());
+  const weights = state.holdings.map((holding) => holding.targetWeight);
+  assert.equal(state.holdings.length, 6);
+  assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
+  assert.deepEqual(
+    state.holdings.map((holding) => holding.ticker),
+    ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
+  );
+  const publicJson = JSON.stringify(state).toLowerCase();
+  for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
+    assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
+  }
+});
+
+await test("multibagger public page is expandable and public-safe", () => {
+  const state = multibaggerState();
+  const html = multibaggerPage(state);
+  assertPublicBriefingCopy("multibagger public page", html);
+  assert.ok(html.includes("5x Multibagger Portfolio"));
+  assert.ok(html.includes("Portfolio At A Glance"));
+  assert.ok(html.includes("Buy And Sell Record"));
+  assert.ok(html.includes("Monthly Reviews"));
+  assert.ok(html.includes("Watchlist And Replacements"));
+  assert.ok(html.includes("og:site_name"));
+  assert.ok(html.includes("twitter:card"));
+  assert.ok(html.includes('rel="canonical"'));
+  assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
+  assert.ok(html.includes("/api/public/multibagger/state"));
+  assert.ok(html.includes("<details class=\"panel\" open>"));
+  assert.ok((html.match(/<details class="panel"/g) ?? []).length >= 7);
 });
 
 await test("public briefing copy follows editorial prompt guardrails", async () => {
@@ -373,6 +408,13 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
   assert.ok(publisher.includes("projectComponentsPage"));
+  assert.ok(publisher.includes("multibaggerPage"));
+  assert.ok(publisher.includes("multibaggerAdminPage"));
+  assert.ok(publisher.includes('join(siteDir, "multibagger")'));
+  assert.ok(publisher.includes('join(adminDir, "multibagger")'));
+  assert.ok(publisher.includes('"state.json"'));
+  assert.ok(publisher.includes("adminSiteOrigin"));
+  assert.ok(publisher.includes("https://admin.marketnarrative.in"));
   assert.ok(publisher.includes('join(siteDir, "admin")'));
   assert.ok(publisher.includes('requireAuth: true'));
   assert.ok(!publisher.includes('join(siteDir, "components")'));
@@ -385,11 +427,26 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("29apr2026") || publisher.includes("monthName"));
   assert.ok(publisher.includes("Root index.html is the digest archive"));
   assert.ok(publisher.includes("archive.json"));
+  assert.ok(publisher.includes("robots.txt"));
+  assert.ok(publisher.includes("sitemap.xml"));
+  assert.ok(publisher.includes("og-card.svg"));
+  assert.ok(publisher.includes("og:title"));
+  assert.ok(publisher.includes("twitter:card"));
+  assert.ok(publisher.includes('rel="canonical"'));
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(publisher.includes("redactedDigestPayload"));
   assert.ok(!publisher.includes('copyFile(sourceHtml, join(siteDir, "index.html"))'));
   assert.ok(!publisher.includes("copyFile(sourceJson"));
+
+  const cockpit = await readFile(join(rootDir, "tools", "cockpit-page.mjs"), "utf8");
+  assert.ok(cockpit.includes("og:site_name"));
+  assert.ok(cockpit.includes("twitter:image"));
+  assert.ok(cockpit.includes("absoluteSiteUrl"));
+  assert.ok(cockpit.includes("adminSiteOrigin"));
+  assert.ok(cockpit.includes("Multibagger Portfolio"));
+  assert.ok(cockpit.includes("Multibagger Review"));
+  assert.ok(!cockpit.includes("marketnarrative.local"));
 
   const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
   assert.ok(componentsPage.includes("How the Market Narrative desk fits together"));
@@ -421,14 +478,43 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   }
 });
 
+await test("backend multibagger endpoints preserve public/private boundary", async () => {
+  const publicController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "PublicMultibaggerController.java"), "utf8");
+  const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "AdminMultibaggerController.java"), "utf8");
+  const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerService.java"), "utf8");
+  assert.ok(publicController.includes('@RequestMapping("/api/public/multibagger")'));
+  assert.ok(publicController.includes('@GetMapping("/state")'));
+  assert.ok(adminController.includes('@RequestMapping("/api/admin/multibagger")'));
+  assert.ok(adminController.includes('@PostMapping(value = "/snapshots"'));
+  assert.ok(adminController.includes('@PostMapping("/reviews/run")'));
+  assert.ok(adminController.includes('@PostMapping("/reviews/{id}/publish")'));
+  assert.ok(adminController.includes("hasAuthority('admin:write')"));
+  assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
+  assert.ok(service.includes("@Scheduled"));
+});
+
+await test("Spring CORS allows admin and trade frontend origins", async () => {
+  const securityConfig = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "config", "SecurityConfig.java"), "utf8");
+  const applicationConfig = await readFile(join(rootDir, "backend", "src", "main", "resources", "application.yml"), "utf8");
+  const compose = await readFile(join(rootDir, "infra", "docker-compose.prod.yml"), "utf8");
+  assert.ok(securityConfig.includes("parseAllowedOrigins"));
+  assert.ok(securityConfig.includes("allowedOrigins.split"));
+  assert.ok(applicationConfig.includes("FRONTEND_ORIGINS"));
+  assert.ok(compose.includes("https://admin.marketnarrative.in,https://trade.marketnarrative.in"));
+});
+
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
+  assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
+  assert.ok(rootPackage.scripts["vercel:build:admin"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=admin"));
+  assert.ok(rootPackage.scripts["vercel:build:trade"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=trade"));
 
   const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
   const adminPackage = JSON.parse(await readFile(join(rootDir, "apps", "admin-studio", "package.json"), "utf8"));
   const uiPackage = JSON.parse(await readFile(join(rootDir, "packages", "ui", "package.json"), "utf8"));
   const apiPackage = JSON.parse(await readFile(join(rootDir, "packages", "api-client", "package.json"), "utf8"));
+  const tradingAuth = await readFile(join(rootDir, "apps", "trading-dashboard", "lib", "auth.ts"), "utf8");
 
   assert.equal(publicPackage.name, "@market-narrative/public-portal");
   assert.equal(adminPackage.name, "@market-narrative/admin-studio");
@@ -436,6 +522,56 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.equal(apiPackage.name, "@market-narrative/api-client");
   assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
   assert.ok(adminPackage.dependencies["@market-narrative/api-client"]);
+  assert.ok(tradingAuth.includes("abhey@marketnarrative.in"));
+  assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
+});
+
+await test("Vercel projects select public, admin, or trade output by deploy target", async () => {
+  const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
+  assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
+  assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
+  const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");
+  const architectureDoc = await readFile(join(rootDir, "docs", "production-architecture.md"), "utf8");
+
+  const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
+  assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
+  assert.ok(buildScript.includes('"public"'));
+  assert.ok(buildScript.includes('"admin"'));
+  assert.ok(buildScript.includes('"trade"'));
+  assert.ok(buildScript.includes('excludeTopLevel: ["admin"]'));
+  assert.ok(buildScript.includes("vercel:build:public"));
+  assert.ok(buildScript.includes('"out", "site", "admin"'));
+  assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
+  assert.ok(buildScript.includes("out\", \"vercel"));
+
+  const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
+  const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
+  const tradeProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
+  assert.equal(publicProject.buildCommand, "npm run vercel:build");
+  assert.equal(publicProject.outputDirectory, "out/vercel");
+  assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
+  assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
+  assert.equal(adminProject.buildCommand, "npm run vercel:build");
+  assert.equal(adminProject.outputDirectory, "out/vercel");
+  assert.equal(adminProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "admin");
+  assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
+  assert.equal(tradeProject.buildCommand, "npm run vercel:build");
+  assert.equal(tradeProject.outputDirectory, "out/vercel");
+  assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
+  assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
+  for (const route of [
+    "https://admin.marketnarrative.in/",
+    "https://admin.marketnarrative.in/components/",
+    "https://admin.marketnarrative.in/multibagger/"
+  ]) {
+    assert.ok(launchValues.includes(route), `launch values missing ${route}`);
+    assert.ok(architectureDoc.includes(route), `architecture doc missing ${route}`);
+  }
+  assert.ok(architectureDoc.includes("Private script engine / admin studio"));
+  assert.ok(architectureDoc.includes("Private project components and architecture map"));
+  assert.ok(productionSmoke.includes("/components/"));
+  assert.ok(productionSmoke.includes("Project Components Map"));
 });
 
 await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {
@@ -477,6 +613,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes('class="glass-v2"'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
+  assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(publicHtml.body.includes("Admin Login"));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
@@ -573,6 +710,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes('"studio-view"'));
   assert.ok(adminHtml.body.includes("Engine Architecture"));
   assert.ok(adminHtml.body.includes("Project Components"));
+  assert.ok(adminHtml.body.includes("Multibagger Review"));
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
@@ -587,6 +725,31 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(componentsHtml.body.includes("How the Market Narrative desk fits together"));
   assert.ok(componentsHtml.body.includes('details class="component"'));
   assertAdminCopyIsPolished(componentsHtml.body, "admin components");
+
+  const multibagger = await app.request("GET", "/api/public/multibagger/state");
+  assert.equal(multibagger.json.holdings.length, 6);
+  assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
+  assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
+
+  const multibaggerHtml = await app.request("GET", "/multibagger/");
+  assert.ok(multibaggerHtml.body.includes("5x Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
+  assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));
+
+  const adminMultibaggerHtml = await app.request("GET", "/admin/multibagger");
+  assert.ok(adminMultibaggerHtml.body.includes("Admin Login"));
+  assert.ok(adminMultibaggerHtml.body.includes("Multibagger Review Desk"));
+  assert.ok(adminMultibaggerHtml.body.includes("Run Monthly Review"));
+
+  const review = await app.request("POST", "/api/admin/multibagger/reviews/run", { month: "2026-05" });
+  assert.equal(review.status, 200);
+  assert.equal(review.json.decisions.length, 6);
+  assert.ok(review.json.privateReasoning);
+
+  const publishedReview = await app.request("POST", `/api/admin/multibagger/reviews/${review.json.reviewId}/publish`);
+  assert.equal(publishedReview.status, 200);
+  assert.equal(JSON.stringify(publishedReview.json).toLowerCase().includes("private"), false);
 });
 
 for (const result of results) {

@@ -1,9 +1,13 @@
 import { buildDigest, todayIso } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { multibaggerState } from "./multibagger-data.mjs";
+import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
 import { projectComponentsPage } from "./project-components-page.mjs";
 
 export async function createDemoApp(date = todayIso()) {
   let currentDigest = await buildDigest(date);
+  let currentMultibaggerState = multibaggerState();
+  let latestReview = null;
 
   return {
     get digest() {
@@ -16,16 +20,32 @@ export async function createDemoApp(date = todayIso()) {
         return htmlResponse(cockpitPage(currentDigest, "public-view", { includeStudio: false, theme: "glass-v2" }));
       }
 
+      if (method === "GET" && url.pathname === "/multibagger") {
+        return htmlResponse(multibaggerPage(currentMultibaggerState));
+      }
+
+      if (method === "GET" && url.pathname === "/multibagger/") {
+        return htmlResponse(multibaggerPage(currentMultibaggerState));
+      }
+
       if (method === "GET" && url.pathname === "/admin") {
-        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, componentsHref: "/admin/components" }));
+        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, componentsHref: "/admin/components", adminMultibaggerHref: "/admin/multibagger" }));
       }
 
       if (method === "GET" && url.pathname === "/admin/components") {
         return htmlResponse(projectComponentsPage({ digests: [currentDigest], publicBaseHref: "/", requireAuth: true }));
       }
 
+      if (method === "GET" && url.pathname === "/admin/multibagger") {
+        return htmlResponse(multibaggerAdminPage(currentMultibaggerState));
+      }
+
       if (method === "GET" && url.pathname === "/api/public/digest/today") {
         return jsonResponse(200, currentDigest);
+      }
+
+      if (method === "GET" && url.pathname === "/api/public/multibagger/state") {
+        return jsonResponse(200, currentMultibaggerState);
       }
 
       if (method === "GET" && /^\/api\/public\/digest\/\d{4}-\d{2}-\d{2}$/.test(url.pathname)) {
@@ -73,6 +93,45 @@ export async function createDemoApp(date = todayIso()) {
 
       if (method === "POST" && url.pathname === "/api/admin/assets/generate") {
         return jsonResponse(200, currentDigest.asset);
+      }
+
+      if (method === "POST" && url.pathname === "/api/admin/multibagger/snapshots") {
+        return jsonResponse(200, {
+          snapshotId: `demo-snapshot-${Date.now()}`,
+          status: "STORED",
+          parsedPositions: currentMultibaggerState.holdings.map((holding) => ({
+            ticker: holding.ticker,
+            confidence: 0.72,
+            note: "Demo extraction placeholder"
+          }))
+        });
+      }
+
+      if (method === "POST" && url.pathname === "/api/admin/multibagger/reviews/run") {
+        latestReview = {
+          reviewId: `demo-review-${body.month ?? currentMultibaggerState.monthlyReviews[0].month}`,
+          month: body.month ?? currentMultibaggerState.monthlyReviews[0].month,
+          decisions: currentMultibaggerState.holdings.map((holding) => ({
+            ticker: holding.ticker,
+            action: holding.ticker === "TEMBO" ? "KEEP_CAPPED" : "KEEP",
+            confidence: holding.ticker === "TEMBO" ? 0.62 : 0.76,
+            evidence: holding.breakRule,
+            publicSummary: holding.status
+          })),
+          privateReasoning: "Demo-only review reasoning stays out of public state."
+        };
+        return jsonResponse(200, latestReview);
+      }
+
+      if (method === "POST" && /^\/api\/admin\/multibagger\/reviews\/[^/]+\/publish$/.test(url.pathname)) {
+        const month = latestReview?.month ?? currentMultibaggerState.monthlyReviews[0].month;
+        currentMultibaggerState = {
+          ...currentMultibaggerState,
+          monthlyReviews: currentMultibaggerState.monthlyReviews.map((review) =>
+            review.month === month ? { ...review, publishedDate: currentMultibaggerState.updatedAt.slice(0, 10) } : review
+          )
+        };
+        return jsonResponse(200, { month, status: "PUBLISHED", publicState: currentMultibaggerState });
       }
 
       return jsonResponse(404, { error: "Not found" });

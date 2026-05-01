@@ -33,7 +33,7 @@ app:
     issuer: ${JWT_ISSUER:market-narrative-local}
     trading-admin-email: ${TRADING_ADMIN_EMAIL:abhey@marketnarrative.local}
   frontend:
-    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:3000}
+    allowed-origin: ${FRONTEND_ORIGINS:${FRONTEND_ORIGIN:http://localhost:3000}}
   demo-users:
     seed-demo-admin: ${SEED_DEMO_ADMIN:true}
     demo-admin-email: ${DEMO_ADMIN_EMAIL:admin@marketnarrative.local}

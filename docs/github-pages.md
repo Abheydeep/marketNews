@@ -31,3 +31,13 @@ https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 The hosted page updates when the GitHub Action runs. The workflow uses `--market-data live`, so index values are server-side snapshots from Yahoo Finance rather than browser-generated ticks. The page checks `digest.json` every minute and updates when GitHub Pages has a newer published file. Local `file://` previews with a canonical dated path also check the public GitHub Pages digest first, so a local reload does not stay pinned to an old generated file.
 
 Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during the scheduled generation. The modal also links to the matching Yahoo Finance chart for the external full view.
+
+## Multibagger Tracker
+
+The static export also publishes the public 5x model tracker at:
+
+```text
+https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/multibagger/
+```
+
+The public tracker uses sanitized model data only: target weights, public buy/sell records, published monthly review decisions, risks, watchlist context, and source links. Admin-only review controls live at `/admin/multibagger/` and are protected by the same static demo login gate as the rest of the admin studio. In production, the Spring backend endpoints under `/api/admin/multibagger/**` should handle private portfolio image uploads and monthly review generation; uploaded images must not be copied into `out/site`.
