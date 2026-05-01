@@ -68,6 +68,7 @@ Routes:
 
 ```text
 https://admin.marketnarrative.in/              Private script engine / admin studio
+https://admin.marketnarrative.in/components/   Private project components / architecture map
 https://admin.marketnarrative.in/multibagger/ Private multibagger monthly review
 ```
 

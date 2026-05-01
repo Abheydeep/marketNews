@@ -530,6 +530,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
   assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
+  const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");
+  const architectureDoc = await readFile(join(rootDir, "docs", "production-architecture.md"), "utf8");
 
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
@@ -557,6 +560,18 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.equal(tradeProject.outputDirectory, "out/vercel");
   assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
   assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
+  for (const route of [
+    "https://admin.marketnarrative.in/",
+    "https://admin.marketnarrative.in/components/",
+    "https://admin.marketnarrative.in/multibagger/"
+  ]) {
+    assert.ok(launchValues.includes(route), `launch values missing ${route}`);
+    assert.ok(architectureDoc.includes(route), `architecture doc missing ${route}`);
+  }
+  assert.ok(architectureDoc.includes("Private script engine / admin studio"));
+  assert.ok(architectureDoc.includes("Private project components and architecture map"));
+  assert.ok(productionSmoke.includes("/components/"));
+  assert.ok(productionSmoke.includes("Project Components Map"));
 });
 
 await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {

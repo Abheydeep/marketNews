@@ -35,6 +35,13 @@ await check("admin host loads script engine login gate", async () => {
   assert.match(response.body, /Studio Command|Private Studio|Daily Reel Script/i);
 });
 
+await check("admin host loads project components map", async () => {
+  const response = await fetchText(`${config.adminUrl}/components/`);
+  assert.equal(response.status, 200);
+  assert.match(response.body, /Project Components Map|Repository Component Map/i);
+  assert.match(response.body, /Admin Login/i);
+});
+
 await check("admin host loads multibagger review workflow", async () => {
   const response = await fetchText(`${config.adminUrl}/multibagger/`);
   assert.equal(response.status, 200);
