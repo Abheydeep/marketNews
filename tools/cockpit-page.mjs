@@ -3924,21 +3924,21 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <h2 id="indexChartTitle">Index Chart</h2>
             <p id="indexChartMeta">Live market chart with the latest published snapshot.</p>
           </div>
-          <a id="openFullChart" class="chart-link-btn" href="https://finance.yahoo.com/markets/" target="_blank" rel="noreferrer">Open Yahoo Chart</a>
+          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open TradingView Chart</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
           <div id="marketChartPreview" class="market-chart-preview" aria-label="Selected market chart preview">
-            <canvas id="marketChartCanvas" class="market-chart-canvas" aria-label="Yahoo Finance intraday price chart"></canvas>
+            <canvas id="marketChartCanvas" class="market-chart-canvas" aria-label="Published intraday price chart"></canvas>
             <div class="market-chart-caption">
-              <strong id="marketChartSource">Yahoo Finance price series</strong>
+              <strong id="marketChartSource">Published price series</strong>
               <span id="marketChartRange">Waiting for chart data</span>
             </div>
           </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
               <h3>Chart Series Pending</h3>
-              <p>The latest quote is loaded for this symbol. Open the full Yahoo chart when you need the exchange-hosted intraday view.</p>
+              <p>The latest quote is loaded for this symbol. Open the TradingView chart when you need a full interactive view.</p>
             </div>
           </div>
         </div>
@@ -4669,8 +4669,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = marketDisplayName(quote) + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Live Yahoo Finance price series from the latest quote feed. The board checks for updates every 60 seconds.'
-        : 'Market closed. Showing the latest published Yahoo Finance price series for review.';
+        ? 'Published price series from the latest quote feed. The board checks for updates every 60 seconds.'
+        : 'Market closed. Showing the latest published price series for review.';
       setChartLinks(quote);
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
@@ -4714,7 +4714,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         return;
       }
       if (source) {
-        source.textContent = (quote.source || 'Yahoo Finance chart API') + ' - ' + (quote.dataQuality === 'live' ? 'live capture' : 'reference capture');
+        source.textContent = chartSeriesLabel(quote);
       }
       if (range) {
         range.textContent = formatQuoteTime(points[0].time) + ' to ' + formatQuoteTime(points.at(-1).time) + ' IST';
@@ -4723,17 +4723,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       canvas.dataset.renderState = 'rendered';
     }
 
-    function setChartLinks(quote) {
-      const url = yahooFinanceChartUrl(quote);
-      const open = document.getElementById('openFullChart');
-      if (open) open.href = url;
+    function chartSeriesLabel(quote) {
+      return (quote.dataQuality === 'live' ? 'Captured price series' : 'Reference price series') +
+        ' - ' +
+        (quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol));
     }
 
-    function yahooFinanceChartUrl(quote) {
-      if (quote.yahooSymbol) {
-        return 'https://finance.yahoo.com/quote/' + encodeURIComponent(quote.yahooSymbol) + '/chart/';
-      }
-      return tradingViewUrl(quote);
+    function setChartLinks(quote) {
+      const url = tradingViewUrl(quote);
+      const open = document.getElementById('openFullChart');
+      if (open) open.href = url;
     }
 
     function tradingViewUrl(quote) {
@@ -4760,7 +4759,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         minute: '2-digit',
         second: '2-digit'
       }).format(new Date());
-      const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'Yahoo Finance quotes' : 'reference quotes';
+      const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
       const liveLine = openCount > 0 ? 'Live now ' + openCount + '/' + quotes.length + ' markets' : 'All tracked sessions closed';
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +

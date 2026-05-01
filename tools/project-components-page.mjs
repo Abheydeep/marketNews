@@ -904,7 +904,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <article class="map-node automation">
           <span>Inputs</span>
           <strong>Market Quotes and News Seeds</strong>
-          <small>Yahoo Finance chart data updates indices; source-backed seed articles drive narrative themes.</small>
+          <small>Market quote snapshots update indices; source-backed seed articles drive narrative themes.</small>
         </article>
       </div>
       <div class="map-column">
@@ -1151,12 +1151,12 @@ function componentDetailsHtml() {
     },
     {
       title: "2. Live Market Adapter",
-      summary: "Yahoo Finance chart data powers refreshed index values and first-party canvas charts.",
+      summary: "Market data snapshots power refreshed index values, first-party canvas charts, and TradingView full-chart handoffs.",
       leftTitle: "What it does",
       left: [
         "Fetches S&P 500, Nasdaq 100, Dow Jones, top Asian markets, Nifty, Bank Nifty, DXY, and Brent.",
         "Calculates percent change from previous close instead of faking chart movement.",
-        "Stores chart points so clicking an index opens a real captured chart preview."
+        "Stores chart points so clicking an index opens a real captured preview plus a TradingView full chart."
       ],
       rightTitle: "Important files",
       right: [

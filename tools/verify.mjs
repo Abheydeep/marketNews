@@ -717,7 +717,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("live-board-header"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
-  assert.ok(publicHtml.body.includes("Open Yahoo Chart"));
+  assert.ok(publicHtml.body.includes("Open TradingView Chart"));
+  assert.ok(publicHtml.body.includes("https://www.tradingview.com/chart/?symbol="));
+  assert.ok(!publicHtml.body.includes("Open Yahoo Chart"));
+  assert.ok(publicHtml.body.includes("chartSeriesLabel"));
+  assert.ok(!publicHtml.body.includes("Yahoo Finance intraday price chart"));
+  assert.ok(!publicHtml.body.includes("Yahoo Finance price series"));
   assert.ok(publicHtml.body.includes("chartFallback"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
   assert.ok(publicHtml.body.includes("Refreshing prices after page load"));

@@ -118,7 +118,7 @@ This creates `out/site/index.html`, dated briefing pages, and public-safe digest
 npm run daily:generate -- --market-data live
 ```
 
-The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Local dated `file://` previews also check the public GitHub Pages digest first, so a manual reload does not stay pinned to an old generated file. Clicking an index opens a first-party canvas chart from the Yahoo Finance price series captured during generation, with a Yahoo Finance chart link for the external full view.
+The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Local dated `file://` previews also check the public GitHub Pages digest first, so a manual reload does not stay pinned to an old generated file. Clicking an index opens a first-party canvas chart from the captured price series, with a TradingView chart link for the external full view.
 
 The public export ships `/admin/` and `/admin/components/` behind a client-side login gate so the main website has one coherent admin entry point. This is suitable for the static demo; production hosting should replace it with server-side/Auth0 authentication. The public archive, dated briefings, and admin pages use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
 

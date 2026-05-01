@@ -542,7 +542,7 @@ async function verifyCharts(page, daily) {
     assert.ok(stats.nonBlank > 100, `${daily.slug} ${symbol} chart appears blank`);
     const chartLink = page.locator("#openFullChart");
     await expectOne(chartLink, `${daily.slug} ${symbol} full chart link`);
-    await clickExternalPopup(page, chartLink, "https://finance.yahoo.com/quote/", `${daily.slug} ${symbol} Yahoo chart`);
+    await clickExternalPopup(page, chartLink, "https://www.tradingview.com/chart/", `${daily.slug} ${symbol} TradingView chart`);
     externalLinks += 1;
     const close = page.getByRole("button", { name: "Close index chart" });
     await expectOne(close, `${daily.slug} ${symbol} close chart`);

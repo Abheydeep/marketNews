@@ -122,7 +122,7 @@ async function verifyIndexChart(page, symbol) {
   const href = await page.locator("#openFullChart").getAttribute("href", { timeout: 10_000 });
   const renderState = await page.locator("#marketChartCanvas").getAttribute("data-render-state", { timeout: 10_000 });
   assert.ok(title.includes(symbol), `${symbol} chart title should include symbol, got ${title}`);
-  assert.ok(href?.startsWith("https://finance.yahoo.com/quote/"), `${symbol} chart link should use Yahoo Finance, got ${href}`);
+  assert.ok(href?.startsWith("https://www.tradingview.com/chart/"), `${symbol} chart link should use TradingView, got ${href}`);
   assert.equal(renderState, "rendered", `${symbol} chart canvas should render from published series`);
   assert.equal(await page.locator("#chartFallback.visible").count(), 0, `${symbol} chart fallback should not be visible`);
 
