@@ -168,12 +168,12 @@ async function expectDailyContent(page) {
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
   await summaryExpand.locator("summary").click();
   await publicView.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(publicView.getByText("Expanded briefing after multi-source extraction", { exact: true }), "expanded briefing label");
+  await expectOne(publicView.getByText("Pre-market desk note", { exact: true }), "expanded briefing label");
   await expectOne(publicView.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
-  await expectOne(publicView.getByRole("heading", { name: "1. What Changed Overnight" }), "changed overnight heading");
-  await expectOne(publicView.getByRole("heading", { name: "2. Source Extraction" }), "source extraction heading");
-  await expectOne(publicView.getByRole("heading", { name: "3. India Read-Through" }), "india read-through heading");
-  await expectOne(publicView.getByRole("heading", { name: "4. What To Watch Next" }), "watch next heading");
+  await expectOne(publicView.getByRole("heading", { name: "Market Map" }), "market map heading");
+  await expectOne(publicView.getByRole("heading", { name: "Stories Driving The Open" }), "stories heading");
+  await expectOne(publicView.getByRole("heading", { name: "How It Lands In India" }), "india read-through heading");
+  await expectOne(publicView.getByRole("heading", { name: "What To Watch First" }), "watch next heading");
   await expectOne(publicView.getByRole("heading", { name: "Latest Market Dashboard" }), "market dashboard heading");
   await expectOne(publicView.getByText("Quick snapshot only:", { exact: false }), "market dashboard scope note");
   const dashboardSymbols = await page.evaluate(() => window.__MARKET_DASHBOARD_SYMBOLS__ ?? []);

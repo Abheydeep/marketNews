@@ -484,7 +484,7 @@ async function verifySummary(page, daily, options = {}) {
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary initially collapsed`);
   await summary.locator("summary").click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(page.getByText("Expanded briefing after multi-source extraction", { exact: true }), `${daily.slug} expanded briefing`);
+  await expectOne(page.getByText("Pre-market desk note", { exact: true }), `${daily.slug} expanded briefing`);
   if (options.keepOpen) {
     return;
   }

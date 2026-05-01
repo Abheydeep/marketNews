@@ -9,6 +9,10 @@ Style:
 - Use a concise, editorial tone similar to a market desk note.
 - Explain what moved, why it matters for India, and what to watch next.
 - Keep the expanded briefing close to a two-minute read.
+- Keep the expanded briefing readable: one short lead, a market map, three
+  important source reads, India read-through, trade framing, and a watch list.
+- Do not repeat the same crude/bank/IT point in multiple sections unless the
+  second mention adds a new India angle.
 - Attribute market-moving claims to publishers or market data surfaces.
 - Use plain trader language: "opening range", "breadth", "crude pressure",
   "banks as a stabilizer", "dollar-yield pressure", "watch confirmation".
@@ -20,6 +24,8 @@ Do not mention internal implementation details:
   "14 market snapshots" as editorial copy.
 - Do not say "video should", "teleprompter", "ready-made trade call",
   "live quote validation", "stale trade levels", or similar workflow text.
+- Do not write labels such as "Expanded briefing after multi-source extraction"
+  or "source-led brief"; write like a human editor, not like a system report.
 
 Translate internal states into public language:
 - no_valid_setup -> "No clean 1:2 setup is active yet; wait for opening-range
@@ -73,6 +79,8 @@ export const PUBLIC_FORBIDDEN_PATTERNS = [
   /ready-made trade call/i,
   /level-discovery phase/i,
   /video should frame/i,
+  /expanded briefing after multi-source extraction/i,
+  /source-led brief/i,
   /backend scanner/i,
   /passed all scanner/i,
   /scanner and live-quote/i,
