@@ -105,16 +105,15 @@ trade-api A     <droplet-ip>     DNS only
 
 Use DNS-only for API records at first. Enable proxying only after WebSocket and HTTPS smoke tests pass.
 
-## Smoke Tests
+## Test Gates
 
 Before deploying:
 
 ```bash
-npm test
-npm --workspace @market-narrative/trading-dashboard run typecheck
-npm --workspace @market-narrative/trading-dashboard run build
-cd services/trading-api && .venv/bin/python -m pytest
+npm run test:deploy
 ```
+
+The complete release test matrix lives in `docs/testing.md`. Do not treat a green build as a launch approval; VPS, DNS, auth, order-block, and browser smoke tests are separate gates.
 
 After VPS:
 
@@ -125,6 +124,31 @@ curl -i https://trade-api.marketnarrative.in/api/market/envelope
 ```
 
 Expected unauthenticated trading API result: `401`.
+
+After DNS and Vercel:
+
+```bash
+npm run prod:smoke
+```
+
+For the authenticated production check, transmit the admin password only from a trusted shell:
+
+```bash
+RUN_AUTHENTICATED_SMOKE=true \
+TRADING_ADMIN_PASSWORD='<production password>' \
+npm run prod:smoke
+```
+
+For the launch order-safety check:
+
+```bash
+RUN_AUTHENTICATED_SMOKE=true \
+RUN_ORDER_BLOCK_SMOKE=true \
+TRADING_ADMIN_PASSWORD='<production password>' \
+npm run prod:smoke
+```
+
+Expected order result while `ENABLE_LIVE_ORDERS=false`: `BLOCKED`, never `PLACED`.
 
 After Vercel/DNS:
 

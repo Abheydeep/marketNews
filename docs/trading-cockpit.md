@@ -96,6 +96,8 @@ python3 tests/run_unit_tests.py
 
 The tests cover technical analysis cleanup/pivots/zones, option-chain parsing, PCR velocity, OI classification, sentiment score mapping, confluence signal generation, and live-order safety gates.
 
+For the full release matrix, including auth boundaries, browser smoke, DNS/TLS, market-hours observation, order-block checks, and rollback drills, see `docs/testing.md`.
+
 ## Live Order Defaults
 
 - Signal BUY maps to long ATM CE.

@@ -14,6 +14,8 @@
     "daily:generate": "node tools/generate-daily-summary.mjs",
     "site:publish": "node tools/publish-site.mjs",
     "site:qa": "node tools/full-site-qa.mjs",
+    "test:deploy": "node tools/predeploy-verify.mjs",
+    "prod:smoke": "node tools/production-smoke.mjs",
     "vercel:build:public": "node tools/vercel-build-public.mjs",
     "public:dev": "npm --workspace @market-narrative/public-portal run dev",
     "admin:dev": "npm --workspace @market-narrative/admin-studio run dev",
