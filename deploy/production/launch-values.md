@@ -10,6 +10,12 @@ The root `vercel.json` configures every Vercel project to run `npm run vercel:bu
 
 If the deployment summary lists source files such as `/apps/...` as static assets, the project is ignoring the build config and is publishing the repository root by mistake.
 
+If `admin.marketnarrative.in` shows the public archive, either the domain is attached to the public Vercel project or this env var is missing on the admin project:
+
+```env
+MARKET_NARRATIVE_DEPLOY_TARGET=admin
+```
+
 Build settings:
 
 ```text
@@ -38,6 +44,8 @@ www.marketnarrative.in
 Project: `marketnarrative-admin`
 
 You can reuse/rename the existing `market-news-admin-studio` Vercel project for this. This project owns the private script engine/admin studio and the private portfolio workflow.
+
+Before redeploying, remove `admin.marketnarrative.in` from every other Vercel project. Vercel routes by the domain attached to a project, so the DNS record alone is not enough.
 
 Build settings:
 

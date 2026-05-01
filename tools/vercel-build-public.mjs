@@ -9,7 +9,11 @@ const parts = new Intl.DateTimeFormat("en-GB", {
 const byType = Object.fromEntries(parts.map((part) => [part.type, part.value]));
 const date = `${byType.year}-${byType.month}-${byType.day}`;
 
-run("npm", ["run", "daily:generate", "--", "--date", date, "--scheduled-time", "08:30", "--market-data", process.env.MARKET_DATA_MODE ?? "live"]);
+if (process.env.SKIP_DAILY_GENERATE === "true") {
+  console.log("Skipping daily digest generation for artifact verification.");
+} else {
+  run("npm", ["run", "daily:generate", "--", "--date", date, "--scheduled-time", "08:30", "--market-data", process.env.MARKET_DATA_MODE ?? "live"]);
+}
 run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"]);
 
 function run(command, args) {

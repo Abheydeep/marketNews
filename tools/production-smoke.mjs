@@ -23,6 +23,12 @@ await check("public apex loads archive", async () => {
   assert.match(response.body, /Market Narrative|briefings|Daily Pre-Market Summary/i);
 });
 
+await check("public host serves public deployment target", async () => {
+  const payload = await fetchJson(`${config.publicUrl}/deployment-manifest.json`, 200);
+  assert.equal(payload.app, "marketnarrative");
+  assert.equal(payload.target, "public");
+});
+
 await check("www host loads or redirects cleanly", async () => {
   const response = await fetchText(config.wwwUrl);
   assert.ok([200, 301, 302, 307, 308].includes(response.status), `unexpected status ${response.status}`);
@@ -33,6 +39,12 @@ await check("admin host loads script engine login gate", async () => {
   assert.equal(response.status, 200);
   assert.match(response.body, /Admin Login/i);
   assert.match(response.body, /Studio Command|Private Studio|Daily Reel Script/i);
+});
+
+await check("admin host serves admin deployment target", async () => {
+  const payload = await fetchJson(`${config.adminUrl}/deployment-manifest.json`, 200);
+  assert.equal(payload.app, "marketnarrative");
+  assert.equal(payload.target, "admin");
 });
 
 await check("admin host loads project components map", async () => {
@@ -54,6 +66,12 @@ await check("trade host loads Abhey login gate", async () => {
   assert.equal(response.status, 200);
   assert.match(response.body, /Trading Cockpit/i);
   assert.match(response.body, /Abhey|admin/i);
+});
+
+await check("trade host serves trade deployment target", async () => {
+  const payload = await fetchJson(`${config.tradeUrl}/deployment-manifest.json`, 200);
+  assert.equal(payload.app, "marketnarrative");
+  assert.equal(payload.target, "trade");
 });
 
 await check("Spring health endpoint is healthy", async () => {

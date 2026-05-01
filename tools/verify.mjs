@@ -564,6 +564,8 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
 
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
+  assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel"));
+  assert.ok(buildScript.includes("deployment-manifest.json"));
   assert.ok(buildScript.includes('"public"'));
   assert.ok(buildScript.includes('"admin"'));
   assert.ok(buildScript.includes('"trade"'));
@@ -600,6 +602,12 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(architectureDoc.includes("Private project components and architecture map"));
   assert.ok(productionSmoke.includes("/components/"));
   assert.ok(productionSmoke.includes("Project Components Map"));
+  assert.ok(productionSmoke.includes("deployment-manifest.json"));
+  assert.ok(productionSmoke.includes('payload.target, "admin"'));
+  const predeployVerify = await readFile(join(rootDir, "tools", "predeploy-verify.mjs"), "utf8");
+  const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
+  assert.ok(predeployVerify.includes("SKIP_ARCHIVE_WRITE"));
+  assert.ok(publisher.includes("skipArchiveWrite"));
 });
 
 await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {

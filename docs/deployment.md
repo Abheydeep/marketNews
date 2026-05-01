@@ -20,7 +20,9 @@ Open a PR to `main` after the verification commands pass.
 
 ## Vercel Projects
 
-Create two Vercel projects from `Abheydeep/marketNews`.
+Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `out/vercel`; the deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`.
+
+Do not attach `admin.marketnarrative.in` to the public project, and do not attach `marketnarrative.in` or `www.marketnarrative.in` to the admin project. If a deployment summary lists repository source files like `/apps/...` as static assets, the build settings are wrong and the project is publishing the repository root.
 
 Public project:
 
@@ -28,10 +30,36 @@ Public project:
 - Root directory: `.`
 - Framework preset: Other
 - Install command: `npm install`
-- Build command: `npm run vercel:build:public`
-- Output directory: `out/site`
+- Build command: `npm run vercel:build`
+- Output directory: `out/vercel`
 - Domains: `marketnarrative.in`, `www.marketnarrative.in`
-- Env: `MARKET_DATA_MODE=live`
+- Env:
+  - `MARKET_NARRATIVE_DEPLOY_TARGET=public`
+  - `MARKET_DATA_MODE=live`
+
+Admin project:
+
+- Project name: `marketnarrative-admin` or the reused `market-news-admin-studio`
+- Root directory: `.`
+- Framework preset: Other
+- Install command: `npm install`
+- Build command: `npm run vercel:build`
+- Output directory: `out/vercel`
+- Domains: `admin.marketnarrative.in`
+- Env:
+  - `MARKET_NARRATIVE_DEPLOY_TARGET=admin`
+  - `MARKET_DATA_MODE=live`
+  - `PUBLIC_SITE_ORIGIN=https://marketnarrative.in`
+  - `ADMIN_SITE_ORIGIN=https://admin.marketnarrative.in`
+  - `MARKET_NARRATIVE_API_BASE=https://api.marketnarrative.in`
+
+Admin routes:
+
+```text
+https://admin.marketnarrative.in/              Private Studio Command page
+https://admin.marketnarrative.in/components/   Private project components map
+https://admin.marketnarrative.in/multibagger/ Private multibagger review workflow
+```
 
 Trade project:
 
@@ -39,10 +67,11 @@ Trade project:
 - Root directory: `.`
 - Framework preset: Other
 - Install command: `npm install`
-- Build command: `npm --workspace @market-narrative/trading-dashboard run build`
-- Output directory: `apps/trading-dashboard/out`
+- Build command: `npm run vercel:build`
+- Output directory: `out/vercel`
 - Domains: `trade.marketnarrative.in`
 - Env:
+  - `MARKET_NARRATIVE_DEPLOY_TARGET=trade`
   - `NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in`
   - `NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in`
   - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`

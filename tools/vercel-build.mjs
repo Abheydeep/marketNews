@@ -5,7 +5,16 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const outputDir = join(rootDir, "out", "vercel");
-const target = normalizeTarget(process.env.MARKET_NARRATIVE_DEPLOY_TARGET ?? "public");
+const explicitTarget = process.env.MARKET_NARRATIVE_DEPLOY_TARGET;
+
+if (process.env.VERCEL === "1" && !explicitTarget) {
+  console.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
+  console.error("Set it to one of: public, admin, trade.");
+  console.error("This prevents admin.marketnarrative.in from accidentally serving the public site.");
+  process.exit(1);
+}
+
+const target = normalizeTarget(explicitTarget ?? "public");
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
@@ -13,15 +22,18 @@ await mkdir(outputDir, { recursive: true });
 if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
+  await writeManifest(target, ["/", "/1may2026/", "/multibagger/"]);
   console.log("Prepared Vercel public output in out/vercel");
 } else if (target === "admin") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site", "admin"));
   await writeFile(join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n", "utf8");
+  await writeManifest(target, ["/", "/components/", "/multibagger/"]);
   console.log("Prepared Vercel admin studio output in out/vercel");
 } else if (target === "trade") {
   run("npm", ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]);
   await copyOutput(join(rootDir, "apps", "trading-dashboard", "out"));
+  await writeManifest(target, ["/", "/kite/callback/"]);
   console.log("Prepared Vercel trading cockpit output in out/vercel");
 } else {
   console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public", "admin", or "trade".`);
@@ -41,6 +53,22 @@ async function copyOutput(sourceDir, options = {}) {
     }
     await cp(join(sourceDir, entry.name), join(outputDir, entry.name), { recursive: true });
   }
+}
+
+async function writeManifest(targetName, routes) {
+  await writeFile(
+    join(outputDir, "deployment-manifest.json"),
+    `${JSON.stringify(
+      {
+        app: "marketnarrative",
+        target: targetName,
+        routes
+      },
+      null,
+      2
+    )}\n`,
+    "utf8"
+  );
 }
 
 function run(command, args) {

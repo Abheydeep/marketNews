@@ -181,7 +181,13 @@ Default unauthenticated smoke checks:
 
 - `https://marketnarrative.in` loads.
 - `https://www.marketnarrative.in` loads or redirects.
+- `https://marketnarrative.in/deployment-manifest.json` reports `target=public`.
+- `https://admin.marketnarrative.in` loads the private Studio Command login gate.
+- `https://admin.marketnarrative.in/deployment-manifest.json` reports `target=admin`.
+- `https://admin.marketnarrative.in/components/` loads the private component map.
+- `https://admin.marketnarrative.in/multibagger/` loads the private review workflow, not the public tracker.
 - `https://trade.marketnarrative.in` loads the trading cockpit login gate.
+- `https://trade.marketnarrative.in/deployment-manifest.json` reports `target=trade`.
 - `https://api.marketnarrative.in/actuator/health` is healthy.
 - `https://trade-api.marketnarrative.in/health` is healthy.
 - Unauthenticated trading API access returns `401`.

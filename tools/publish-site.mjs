@@ -20,11 +20,14 @@ const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
+const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 
 await mkdir(archiveDir, { recursive: true });
-const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
-const archivedDigest = redactedDigestPayload(sourceDigest);
-await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
+const sourceDigest = await loadSourceDigest();
+if (!skipArchiveWrite) {
+  const archivedDigest = redactedDigestPayload(sourceDigest);
+  await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
+}
 
 const digests = await loadArchivedDigests();
 if (!digests.length) {
@@ -145,6 +148,17 @@ async function loadArchivedDigests() {
     const rightTime = Date.parse(right.scheduledFor ?? `${right.digestDate}T08:30:00+05:30`);
     return rightTime - leftTime;
   });
+}
+
+async function loadSourceDigest() {
+  try {
+    return JSON.parse(await readFile(sourceJson, "utf8"));
+  } catch (error) {
+    if (!skipArchiveWrite) {
+      throw error;
+    }
+    return JSON.parse(await readFile(archivedJson, "utf8"));
+  }
 }
 
 function archivePage(digests) {

@@ -1,5 +1,6 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { join } from "node:path";
 
 const checks = [
   {
@@ -16,6 +17,10 @@ const checks = [
     name: "Trading dashboard production export",
     command: "npm",
     args: ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]
+  },
+  {
+    name: "Vercel artifact separation",
+    run: verifyVercelArtifacts
   },
   {
     name: "FastAPI trading API tests",
@@ -44,13 +49,21 @@ const failures = [];
 for (const check of checks) {
   const label = `\n==> ${check.name}`;
   console.log(label);
-  const result = spawnSync(check.command, check.args, {
-    cwd: check.cwd,
-    stdio: "inherit",
-    shell: false
-  });
-  if (result.status !== 0) {
-    failures.push(`${check.name} exited with ${result.status ?? "unknown status"}`);
+  if (check.run) {
+    try {
+      check.run();
+    } catch (error) {
+      failures.push(`${check.name}: ${error.message}`);
+    }
+  } else {
+    const result = spawnSync(check.command, check.args, {
+      cwd: check.cwd,
+      stdio: "inherit",
+      shell: false
+    });
+    if (result.status !== 0) {
+      failures.push(`${check.name} exited with ${result.status ?? "unknown status"}`);
+    }
   }
 }
 
@@ -73,4 +86,71 @@ function fastApiPython() {
 function commandExists(command) {
   const result = spawnSync(command, ["--version"], { stdio: "ignore", shell: false });
   return result.status === 0;
+}
+
+function verifyVercelArtifacts() {
+  buildTarget("public");
+  assertOutput("deployment-manifest.json", /"target": "public"/);
+  assertOutput("index.html", /Daily Pre-Market Archive/);
+  assertOutput("index.html", /Admin login/);
+  assertOutputAbsent("components/index.html");
+
+  buildTarget("admin");
+  assertOutput("deployment-manifest.json", /"target": "admin"/);
+  assertOutput("index.html", /Studio Command|Daily Reel Script|Admin Login/);
+  assertOutput("components/index.html", /Project Components Map|Repository Component Map/);
+  assertOutput("multibagger/index.html", /Multibagger Review Desk|Run Monthly Review/);
+  assertOutput("robots.txt", /Disallow: \//);
+  assertOutputNot("index.html", /Daily Pre-Market Archive/);
+
+  buildTarget("trade");
+  assertOutput("deployment-manifest.json", /"target": "trade"/);
+  assertOutput("icon.svg", /mn-signal/);
+  assertOutput("index.html", /_next\/static/);
+}
+
+function buildTarget(target) {
+  const result = spawnSync("npm", ["run", "vercel:build"], {
+    env: {
+      ...process.env,
+      MARKET_NARRATIVE_DEPLOY_TARGET: target,
+      MARKET_DATA_MODE: "mock",
+      SKIP_DAILY_GENERATE: "true",
+      SKIP_ARCHIVE_WRITE: "true"
+    },
+    stdio: "inherit",
+    shell: false
+  });
+  if (result.status !== 0) {
+    throw new Error(`${target} Vercel build exited with ${result.status ?? "unknown status"}`);
+  }
+}
+
+function assertOutput(relativePath, pattern) {
+  const filePath = join("out", "vercel", relativePath);
+  if (!existsSync(filePath)) {
+    throw new Error(`expected ${filePath} to exist`);
+  }
+  const content = readFileSync(filePath, "utf8");
+  if (!pattern.test(content)) {
+    throw new Error(`${filePath} did not match ${pattern}`);
+  }
+}
+
+function assertOutputNot(relativePath, pattern) {
+  const filePath = join("out", "vercel", relativePath);
+  if (!existsSync(filePath)) {
+    throw new Error(`expected ${filePath} to exist`);
+  }
+  const content = readFileSync(filePath, "utf8");
+  if (pattern.test(content)) {
+    throw new Error(`${filePath} unexpectedly matched ${pattern}`);
+  }
+}
+
+function assertOutputAbsent(relativePath) {
+  const filePath = join("out", "vercel", relativePath);
+  if (existsSync(filePath)) {
+    throw new Error(`expected ${filePath} to be absent`);
+  }
 }
