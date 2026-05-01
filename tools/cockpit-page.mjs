@@ -24,6 +24,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? (digest.canonicalPath ? "../admin/" : "./admin/"))}">Admin Login</a>`
     : "";
+  const multibaggerLinkHtml = `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
+  const adminMultibaggerLinkHtml = includeStudio
+    ? `<a class="tab-link" href="${escapeHtml(options.adminMultibaggerHref ?? (digest.canonicalPath ? "./multibagger/" : "/admin/multibagger/"))}">Multibagger Review</a>`
+    : "";
   const adminLogoutHtml = requireAuth
     ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
     : "";
@@ -3817,6 +3821,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
+          ${multibaggerLinkHtml}
+          ${adminMultibaggerLinkHtml}
           ${publicAdminLinkHtml}
           ${adminLogoutHtml}
         </div>

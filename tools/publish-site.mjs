@@ -3,6 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { multibaggerState } from "./multibagger-data.mjs";
+import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
 import { projectComponentsPage } from "./project-components-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
@@ -52,26 +54,33 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
+const publicMultibaggerState = multibaggerState();
 const adminDigest = {
   ...sourceDigest,
   canonicalPath: "/admin/"
 };
 const darkPreviewDir = join(siteDir, "dark-preview");
 const adminDir = join(siteDir, "admin");
+const multibaggerDir = join(siteDir, "multibagger");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
   cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" })
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
+await mkdir(multibaggerDir, { recursive: true });
+await writeGuardedFile(join(multibaggerDir, "index.html"), multibaggerPage(publicMultibaggerState));
+await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
 await mkdir(join(adminDir, "components"), { recursive: true });
+await mkdir(join(adminDir, "multibagger"), { recursive: true });
 await writeFile(
   join(adminDir, "index.html"),
   cockpitPage(adminDigest, "studio-view", {
     includeStudio: true,
     theme: "glass-v2",
     requireAuth: true,
-    componentsHref: "./components/"
+    componentsHref: "./components/",
+    adminMultibaggerHref: "./multibagger/"
   }),
   "utf8"
 );
@@ -82,6 +91,7 @@ await writeFile(
   projectComponentsPage({ digests, publicBaseHref: "../../", requireAuth: true }),
   "utf8"
 );
+await writeFile(join(adminDir, "multibagger", "index.html"), multibaggerAdminPage(publicMultibaggerState), "utf8");
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);
@@ -473,6 +483,7 @@ function archivePage(digests) {
         <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+          <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
           <a class="nav-link" href="./admin/">Admin login</a>
         </div>
       </div>
@@ -511,6 +522,7 @@ function robotsTxt() {
 function sitemapXml(digests) {
   const urls = [
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/`,
       lastmod: digest.digestDate

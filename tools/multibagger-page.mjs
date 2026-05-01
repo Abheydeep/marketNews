@@ -1,0 +1,964 @@
+import { multibaggerState } from "./multibagger-data.mjs";
+
+const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+
+export function multibaggerPage(state = multibaggerState()) {
+  const serializedState = JSON.stringify(state);
+  const pageTitle = "Market Narrative | 5x Multibagger Portfolio";
+  const pageDescription = "Public research tracker for Abhey's concentrated six-stock multibagger model, monthly review discipline, buy/sell record, watchlist, and source trail.";
+  const canonicalUrl = `${siteOrigin}/multibagger/`;
+  const previewImageUrl = `${siteOrigin}/og-card.svg`;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
+  <meta property="og:image" content="${escapeHtml(previewImageUrl)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
+  <title>${escapeHtml(pageTitle)}</title>
+  <style>
+    :root {
+      --paper: #050816;
+      --ink: #f8fafc;
+      --muted: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(15, 23, 42, 0.70);
+      --panel-strong: rgba(15, 23, 42, 0.90);
+      --cyan: #22d3ee;
+      --blue: #60a5fa;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #fb7185;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { overflow-x: hidden; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(34, 211, 238, 0.28), transparent 30vw),
+        radial-gradient(circle at 86% 4%, rgba(96, 165, 250, 0.26), transparent 34vw),
+        linear-gradient(135deg, #030712 0%, #07111f 46%, #111827 100%);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(3, 7, 18, 0.72);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--cyan), #6366f1 54%, #f43f5e);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .hero {
+      padding: 56px 0 26px;
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 16px 0 0;
+      max-width: 780px;
+    }
+
+    .hero-stat {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 18px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-stat strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.58);
+      padding: 15px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+    }
+
+    details.panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      margin: 14px 0;
+      overflow: hidden;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.20);
+    }
+
+    details.panel summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      padding: 18px 20px;
+      list-style: none;
+    }
+
+    details.panel summary::-webkit-details-marker { display: none; }
+
+    .summary-title {
+      display: grid;
+      gap: 4px;
+    }
+
+    .summary-title strong {
+      font-size: 18px;
+    }
+
+    .summary-title span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chev {
+      color: var(--cyan);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    details[open] .chev { transform: rotate(45deg); }
+
+    .panel-body {
+      border-top: 1px solid var(--line);
+      padding: 18px 20px 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 12px 13px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    th {
+      color: #dbeafe;
+      background: rgba(30, 41, 59, 0.76);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td { color: #d7e0ee; }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .ticker {
+      color: #fff;
+      display: block;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .subtext {
+      color: var(--muted);
+      display: block;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .bar-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr) 58px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .bar-label {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .bar-track {
+      height: 12px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .bar {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+    }
+
+    .bar-value {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.38);
+      padding: 15px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .mini-card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .decision {
+      display: inline-flex;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.12);
+      color: #a7f3d0;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .note {
+      border-left: 4px solid var(--amber);
+      background: rgba(251, 191, 36, 0.10);
+      border-radius: 8px;
+      color: #fde68a;
+      padding: 14px 16px;
+      line-height: 1.65;
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 28px 0 48px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .summary-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 13px 0;
+      }
+
+      .nav-actions {
+        width: 100%;
+      }
+
+      .nav-link {
+        flex: 1;
+        text-align: center;
+      }
+
+      .bar-row {
+        grid-template-columns: 86px minmax(0, 1fr) 46px;
+      }
+
+      details.panel summary {
+        padding: 16px;
+      }
+
+      .panel-body {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell">
+      <div class="nav-inner">
+        <a class="brand" href="../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+        <div class="nav-actions">
+          <a class="nav-link" href="../">Briefings</a>
+          <a class="nav-link" href="../admin/multibagger/">Admin review</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Public model tracker</p>
+        <h1>5x Multibagger Portfolio</h1>
+        <p>A sanitized public record of the concentrated six-stock model, monthly keep-or-replace decisions, and the evidence rules used to avoid turning a watchlist into a noisy portfolio.</p>
+      </div>
+      <aside class="hero-stat">
+        <span>Primary model</span>
+        <strong>6 stocks</strong>
+        <p>${escapeHtml(state.disclaimer)}</p>
+      </aside>
+    </section>
+
+    <section class="summary-grid" aria-label="Portfolio summary">
+      <div class="metric"><span>Model capital</span><strong>${formatInr(state.modelCapitalInr)}</strong></div>
+      <div class="metric"><span>Since launch</span><strong>${formatPercent(state.performance.sinceLaunchPercent)}</strong></div>
+      <div class="metric"><span>Benchmark</span><strong>${escapeHtml(state.performance.benchmark)}</strong></div>
+      <div class="metric"><span>Last update</span><strong>${escapeHtml(formatDateTime(state.updatedAt))}</strong></div>
+    </section>
+
+    <details class="panel" open>
+      <summary>
+        <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="bar-list">
+          ${state.holdings.map((holding) => `
+          <div class="bar-row">
+            <span class="bar-label">${escapeHtml(holding.ticker)}</span>
+            <span class="bar-track"><span class="bar" style="width:${holding.targetWeight * 4}%"></span></span>
+            <span class="bar-value">${formatPercent(holding.targetWeight)}</span>
+          </div>`).join("")}
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Model Holdings</strong><span>Sanitized model positions; no private account data is published.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Weight</th><th>Model INR</th><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+            <tbody>
+              ${state.holdings.map((holding) => `
+              <tr>
+                <td>${formatPercent(holding.targetWeight)}</td>
+                <td>${formatInr(holding.modelAmountInr)}</td>
+                <td><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
+                <td>${escapeHtml(holding.role)}</td>
+                <td><span class="decision">${escapeHtml(holding.status)}</span></td>
+              </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Thesis And Break Rules</strong><span>Why each stock belongs, and what would force a change.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="cards">
+          ${state.holdings.map((holding) => `
+          <article class="mini-card">
+            <h3>${escapeHtml(holding.ticker)}</h3>
+            <p><strong>Thesis:</strong> ${escapeHtml(holding.thesis)}</p>
+            <p><strong>Buy rule:</strong> ${escapeHtml(holding.buyRule)}</p>
+            <p><strong>Break rule:</strong> ${escapeHtml(holding.breakRule)}</p>
+          </article>`).join("")}
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Buy And Sell Record</strong><span>Public model actions and allocation changes.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Public Note</th></tr></thead>
+            <tbody>
+              ${state.transactions.map((item) => `
+              <tr>
+                <td>${escapeHtml(item.date)}</td>
+                <td><span class="ticker">${escapeHtml(item.ticker)}</span></td>
+                <td>${escapeHtml(item.action)}</td>
+                <td>${formatPercent(item.weightChange)}</td>
+                <td>${escapeHtml(item.publicNote)}</td>
+              </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Monthly Reviews</strong><span>Published keep/replace history from the admin review process.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        ${state.monthlyReviews.map((review) => `
+        <article class="mini-card" style="margin-bottom:12px;">
+          <h3>${escapeHtml(review.month)} - ${escapeHtml(review.headline)}</h3>
+          <p>Published ${escapeHtml(review.publishedDate)}.</p>
+        </article>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ticker</th><th>Decision</th><th>Public Rationale</th></tr></thead>
+            <tbody>
+              ${review.decisions.map((decision) => `
+              <tr>
+                <td><span class="ticker">${escapeHtml(decision.ticker)}</span></td>
+                <td><span class="decision">${escapeHtml(decision.decision)}</span></td>
+                <td>${escapeHtml(decision.publicRationale)}</td>
+              </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>`).join("")}
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Watchlist And Replacements</strong><span>Names that can challenge the six-stock model.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="cards">
+          ${state.watchlist.map((item) => `
+          <article class="mini-card">
+            <h3>${escapeHtml(item.ticker)}</h3>
+            <p><strong>${escapeHtml(item.status)}:</strong> ${escapeHtml(item.reason)}</p>
+          </article>`).join("")}
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Risk Controls</strong><span>Rules that keep the 5x attempt from becoming blind conviction.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <p class="note">Tembo is capped at 10%. PIGL and JNK must prove margin and receivable quality. KPEL and Dhabriya carry the cleanest alpha weight, but both still need monthly working-capital review. CPCL is outside this model because refinery-cycle value is not treated as permanent compounding.</p>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Sources</strong><span>Primary filings and reference summaries used for the public model.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="cards">
+          ${state.sources.map((source) => `
+          <a class="mini-card" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">
+            <h3>${escapeHtml(source.label)}</h3>
+            <p>Open source</p>
+          </a>`).join("")}
+        </div>
+      </div>
+    </details>
+  </main>
+
+  <footer class="shell">
+    <p>${escapeHtml(state.disclaimer)} Last static update: ${escapeHtml(formatDateTime(state.updatedAt))}.</p>
+  </footer>
+
+  <script>
+    window.__MULTIBAGGER_STATE__ = ${serializedState};
+    (async function refreshMultibaggerState() {
+      const configuredBase = window.MARKET_NARRATIVE_API_BASE || "";
+      const urls = configuredBase
+        ? [configuredBase.replace(/\\/$/, "") + "/api/public/multibagger/state", "./state.json"]
+        : ["./state.json"];
+      for (const url of urls) {
+        try {
+          const response = await fetch(url, { cache: "no-store" });
+          if (response.ok) {
+            window.__MULTIBAGGER_STATE__ = await response.json();
+            document.documentElement.dataset.multibaggerSource = url;
+            return;
+          }
+        } catch {
+          // Static HTML remains usable when the live endpoint is unavailable.
+        }
+      }
+    })();
+  </script>
+</body>
+</html>`;
+}
+
+export function multibaggerAdminPage(state = multibaggerState()) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Market Narrative | Multibagger Admin Review</title>
+  <style>${adminCss()}</style>
+</head>
+<body class="admin-auth-required auth-pending">
+  ${adminAuthGateHtml()}
+  <nav class="topbar">
+    <div class="shell nav-inner">
+      <a class="brand" href="../../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+      <div class="nav-actions">
+        <a class="nav-link" href="../../multibagger/">Public tracker</a>
+        <a class="nav-link" href="../">Admin studio</a>
+        <button id="adminLogoutBtn" class="nav-link" type="button">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Private monthly review</p>
+      <h1>Multibagger Review Desk</h1>
+      <p>Upload the current portfolio image, run the monthly keep-or-replace review, correct extracted positions, and publish only the public-safe decision summary.</p>
+    </section>
+
+    <section class="admin-grid">
+      <article class="panel">
+        <h2>1. Portfolio Image</h2>
+        <input id="portfolioFile" type="file" accept="image/png,image/jpeg,image/webp">
+        <button id="uploadSnapshotBtn" type="button">Upload Snapshot</button>
+        <p id="snapshotState" class="state-line">No upload yet.</p>
+      </article>
+      <article class="panel">
+        <h2>2. Monthly Review</h2>
+        <label>Review month <input id="reviewMonth" type="month" value="2026-05"></label>
+        <button id="runReviewBtn" type="button">Run Monthly Review</button>
+        <p id="reviewState" class="state-line">Waiting for a snapshot or manual review run.</p>
+      </article>
+      <article class="panel">
+        <h2>3. Publish</h2>
+        <button id="publishReviewBtn" type="button" disabled>Publish Sanitized Review</button>
+        <p id="publishState" class="state-line">Nothing published in this session.</p>
+      </article>
+    </section>
+
+    <details class="panel" open>
+      <summary><strong>Current Public Model</strong><span>+</span></summary>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ticker</th><th>Weight</th><th>Review Rule</th></tr></thead>
+          <tbody>${state.holdings.map((holding) => `
+            <tr><td>${escapeHtml(holding.ticker)}</td><td>${formatPercent(holding.targetWeight)}</td><td>${escapeHtml(holding.breakRule)}</td></tr>
+          `).join("")}</tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="panel" open>
+      <summary><strong>Agent Output</strong><span>+</span></summary>
+      <pre id="reviewOutput">${escapeHtml(JSON.stringify({ status: "idle", expectedDecisions: ["KEEP", "ADD", "TRIM", "SELL", "REPLACE"] }, null, 2))}</pre>
+    </details>
+  </main>
+  <script>
+    window.__ADMIN_AUTH_HASH__ = "80b6c184bff356be9b060287583d6c10afe1d425a98410dcd5bfd72e251c40f6";
+    window.__MULTIBAGGER_STATE__ = ${JSON.stringify(state)};
+    ${adminScript()}
+  </script>
+</body>
+</html>`;
+}
+
+function adminCss() {
+  return `
+    :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.76); --cyan:#22d3ee; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:linear-gradient(135deg,#030712,#0f172a); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1120px,calc(100% - 36px)); margin:0 auto; }
+    .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
+    .nav-inner { min-height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { display:flex; align-items:center; gap:12px; font-size:20px; font-weight:850; }
+    .brand-mark { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,var(--cyan),#6366f1 54%,#f43f5e); font-weight:900; }
+    .nav-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav-link, button { border:1px solid var(--line); border-radius:8px; background:rgba(15,23,42,.7); color:var(--ink); padding:10px 12px; font-size:13px; font-weight:850; cursor:pointer; }
+    main { padding:34px 0 64px; }
+    .hero { margin-bottom:20px; }
+    .eyebrow { color:var(--cyan); font-size:12px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; margin:0 0 10px; }
+    h1 { margin:0; font-size:clamp(36px,6vw,64px); line-height:1; }
+    h2 { margin:0 0 14px; font-size:19px; }
+    p { color:var(--muted); line-height:1.65; }
+    .admin-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .panel { border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:18px; margin:14px 0; }
+    details.panel summary { display:flex; justify-content:space-between; cursor:pointer; list-style:none; }
+    details.panel summary::-webkit-details-marker { display:none; }
+    input { width:100%; border:1px solid var(--line); border-radius:8px; background:#020617; color:var(--ink); padding:10px; margin:8px 0 12px; }
+    .state-line { min-height:24px; margin:10px 0 0; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; margin-top:14px; }
+    table { width:100%; min-width:680px; border-collapse:collapse; }
+    th,td { text-align:left; border-bottom:1px solid rgba(255,255,255,.1); padding:11px 12px; font-size:14px; }
+    th { color:#dbeafe; background:rgba(30,41,59,.76); }
+    pre { overflow:auto; border:1px solid var(--line); border-radius:8px; background:#020617; color:#dbeafe; padding:14px; }
+    .auth-gate { min-height:100vh; display:grid; place-items:center; padding:28px; }
+    .auth-card { width:min(460px,100%); border:1px solid var(--line); border-radius:16px; background:var(--panel); padding:28px; }
+    .auth-card h1 { font-size:32px; }
+    .auth-field { display:grid; gap:7px; margin-bottom:12px; }
+    .auth-submit { width:100%; background:linear-gradient(135deg,#67e8f9,#60a5fa 48%,#818cf8); color:#020617; }
+    .auth-error { color:#fecaca; }
+    .auth-error[hidden] { display:none; }
+    body.admin-auth-required.auth-pending .topbar, body.admin-auth-required.auth-pending main.shell { display:none; }
+    body.admin-auth-required.auth-ready #adminAuthGate { display:none; }
+    @media (max-width:900px) { .admin-grid { grid-template-columns:1fr; } .nav-inner { align-items:flex-start; flex-direction:column; padding:13px 0; } }
+  `;
+}
+
+function adminAuthGateHtml() {
+  return `
+  <section id="adminAuthGate" class="auth-gate" aria-label="Admin login">
+    <form id="adminLoginForm" class="auth-card" autocomplete="on">
+      <p class="eyebrow">Private Studio</p>
+      <h1>Admin Login</h1>
+      <p>Sign in to open the private multibagger monthly review workflow.</p>
+      <label class="auth-field"><span>Email</span><input id="adminEmail" name="email" type="email" autocomplete="username" required></label>
+      <label class="auth-field"><span>Password</span><input id="adminPassword" name="password" type="password" autocomplete="current-password" required></label>
+      <button class="auth-submit" type="submit">Open Review Desk</button>
+      <p id="adminAuthError" class="auth-error" role="alert" hidden>Could not sign in with those credentials.</p>
+    </form>
+  </section>`;
+}
+
+function adminScript() {
+  return `
+    const apiBase = window.MARKET_NARRATIVE_API_BASE || "";
+    let snapshotId = null;
+    let reviewId = null;
+    bindAdminAuth();
+    bindReviewActions();
+    if (hasAdminSession()) unlockAdminGate(); else showAdminGate();
+
+    function bindReviewActions() {
+      document.getElementById('uploadSnapshotBtn')?.addEventListener('click', uploadSnapshot);
+      document.getElementById('runReviewBtn')?.addEventListener('click', runReview);
+      document.getElementById('publishReviewBtn')?.addEventListener('click', publishReview);
+    }
+
+    async function uploadSnapshot() {
+      const file = document.getElementById('portfolioFile')?.files?.[0];
+      if (!file) return setText('snapshotState', 'Choose an image first.');
+      const form = new FormData();
+      form.append('file', file);
+      setText('snapshotState', 'Uploading...');
+      try {
+        const response = await fetch(apiBase + '/api/admin/multibagger/snapshots', { method: 'POST', headers: authHeaders(), body: form });
+        const payload = await response.json();
+        snapshotId = payload.snapshotId;
+        setText('snapshotState', 'Snapshot stored for review: ' + snapshotId);
+      } catch {
+        snapshotId = 'local-static-snapshot';
+        setText('snapshotState', 'Backend unavailable. Static preview mode is active.');
+      }
+    }
+
+    async function runReview() {
+      const month = document.getElementById('reviewMonth')?.value || new Date().toISOString().slice(0, 7);
+      setText('reviewState', 'Running review...');
+      const body = JSON.stringify({ snapshotId, month, corrections: [] });
+      try {
+        const response = await fetch(apiBase + '/api/admin/multibagger/reviews/run', { method: 'POST', headers: authHeaders({ 'Content-Type': 'application/json' }), body });
+        const payload = await response.json();
+        reviewId = payload.reviewId;
+        document.getElementById('reviewOutput').textContent = JSON.stringify(payload, null, 2);
+        document.getElementById('publishReviewBtn').disabled = false;
+        setText('reviewState', 'Review ready.');
+      } catch {
+        const fallback = localReview(month);
+        reviewId = fallback.reviewId;
+        document.getElementById('reviewOutput').textContent = JSON.stringify(fallback, null, 2);
+        document.getElementById('publishReviewBtn').disabled = false;
+        setText('reviewState', 'Static preview review ready.');
+      }
+    }
+
+    async function publishReview() {
+      if (!reviewId) return setText('publishState', 'Run a review first.');
+      try {
+        const response = await fetch(apiBase + '/api/admin/multibagger/reviews/' + encodeURIComponent(reviewId) + '/publish', { method: 'POST', headers: authHeaders() });
+        const payload = await response.json();
+        setText('publishState', 'Published sanitized review for ' + (payload.month || 'current month') + '.');
+      } catch {
+        setText('publishState', 'Backend unavailable. Nothing was published from this static preview.');
+      }
+    }
+
+    function localReview(month) {
+      return {
+        reviewId: 'static-' + month,
+        month,
+        decisions: window.__MULTIBAGGER_STATE__.holdings.map((holding) => ({
+          ticker: holding.ticker,
+          action: holding.ticker === 'TEMBO' ? 'KEEP_CAPPED' : 'KEEP',
+          confidence: holding.ticker === 'TEMBO' ? 0.62 : 0.74,
+          evidence: holding.breakRule,
+          publicSummary: holding.status
+        })),
+        note: 'Preview only. Publish requires the Spring backend.'
+      };
+    }
+
+    function setText(id, value) {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
+    }
+
+    function bindAdminAuth() {
+      const form = document.getElementById('adminLoginForm');
+      const logout = document.getElementById('adminLogoutBtn');
+      if (form) {
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const email = document.getElementById('adminEmail')?.value ?? '';
+          const password = document.getElementById('adminPassword')?.value ?? '';
+          const error = document.getElementById('adminAuthError');
+          const hash = await adminCredentialHash(email, password);
+          const token = await requestBackendToken(email, password);
+          if (hash === window.__ADMIN_AUTH_HASH__) {
+            sessionStorage.setItem('marketNarrativeAdminSession', hash);
+            if (token) sessionStorage.setItem('marketNarrativeAdminToken', token);
+            if (error) error.hidden = true;
+            unlockAdminGate();
+            return;
+          }
+          if (error) error.hidden = false;
+        });
+      }
+      if (logout) {
+        logout.addEventListener('click', () => {
+          sessionStorage.removeItem('marketNarrativeAdminSession');
+          sessionStorage.removeItem('marketNarrativeAdminToken');
+          window.location.reload();
+        });
+      }
+    }
+
+    function hasAdminSession() {
+      try { return sessionStorage.getItem('marketNarrativeAdminSession') === window.__ADMIN_AUTH_HASH__; } catch { return false; }
+    }
+
+    function showAdminGate() {
+      document.body.classList.add('auth-pending');
+      document.body.classList.remove('auth-ready');
+      document.getElementById('adminEmail')?.focus();
+    }
+
+    function unlockAdminGate() {
+      document.body.classList.remove('auth-pending');
+      document.body.classList.add('auth-ready');
+    }
+
+    async function adminCredentialHash(email, password) {
+      const identity = String(email || '').trim().toLowerCase() + ':' + String(password || '');
+      const bytes = new TextEncoder().encode(identity);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function requestBackendToken(email, password) {
+      try {
+        const response = await fetch(apiBase + '/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        return payload.token || null;
+      } catch {
+        return null;
+      }
+    }
+
+    function authHeaders(extra = {}) {
+      const token = sessionStorage.getItem('marketNarrativeAdminToken');
+      return token ? { ...extra, Authorization: 'Bearer ' + token } : extra;
+    }
+  `;
+}
+
+function formatInr(value) {
+  return `INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value))}`;
+}
+
+function formatPercent(value) {
+  return `${Number(value).toLocaleString("en-IN", { maximumFractionDigits: 1 })}%`;
+}
+
+function formatDateTime(value) {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(value));
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}

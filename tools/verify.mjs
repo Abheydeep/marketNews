@@ -26,6 +26,8 @@ import {
   weightedSentiment
 } from "./core.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
+import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -167,6 +169,39 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.setupAudit).includes('"setup"'), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
   assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
+});
+
+await test("multibagger public model is concentrated and sanitized", () => {
+  const state = validateMultibaggerState(multibaggerState());
+  const weights = state.holdings.map((holding) => holding.targetWeight);
+  assert.equal(state.holdings.length, 6);
+  assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
+  assert.deepEqual(
+    state.holdings.map((holding) => holding.ticker),
+    ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
+  );
+  const publicJson = JSON.stringify(state).toLowerCase();
+  for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
+    assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
+  }
+});
+
+await test("multibagger public page is expandable and public-safe", () => {
+  const state = multibaggerState();
+  const html = multibaggerPage(state);
+  assertPublicBriefingCopy("multibagger public page", html);
+  assert.ok(html.includes("5x Multibagger Portfolio"));
+  assert.ok(html.includes("Portfolio At A Glance"));
+  assert.ok(html.includes("Buy And Sell Record"));
+  assert.ok(html.includes("Monthly Reviews"));
+  assert.ok(html.includes("Watchlist And Replacements"));
+  assert.ok(html.includes("og:site_name"));
+  assert.ok(html.includes("twitter:card"));
+  assert.ok(html.includes('rel="canonical"'));
+  assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
+  assert.ok(html.includes("/api/public/multibagger/state"));
+  assert.ok(html.includes("<details class=\"panel\" open>"));
+  assert.ok((html.match(/<details class="panel"/g) ?? []).length >= 7);
 });
 
 await test("public briefing copy follows editorial prompt guardrails", async () => {
@@ -373,6 +408,11 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
   assert.ok(publisher.includes("projectComponentsPage"));
+  assert.ok(publisher.includes("multibaggerPage"));
+  assert.ok(publisher.includes("multibaggerAdminPage"));
+  assert.ok(publisher.includes('join(siteDir, "multibagger")'));
+  assert.ok(publisher.includes('join(adminDir, "multibagger")'));
+  assert.ok(publisher.includes('"state.json"'));
   assert.ok(publisher.includes('join(siteDir, "admin")'));
   assert.ok(publisher.includes('requireAuth: true'));
   assert.ok(!publisher.includes('join(siteDir, "components")'));
@@ -401,6 +441,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(cockpit.includes("og:site_name"));
   assert.ok(cockpit.includes("twitter:image"));
   assert.ok(cockpit.includes("absoluteSiteUrl"));
+  assert.ok(cockpit.includes("Multibagger Portfolio"));
+  assert.ok(cockpit.includes("Multibagger Review"));
   assert.ok(!cockpit.includes("marketnarrative.local"));
 
   const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
@@ -431,6 +473,21 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
     assert.ok(!archiveDigest.includes("reelScript"), `${fileName} should not archive private reelScript`);
     assert.ok(!archiveDigest.includes("positivePrompt"), `${fileName} should not archive private asset prompt`);
   }
+});
+
+await test("backend multibagger endpoints preserve public/private boundary", async () => {
+  const publicController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "PublicMultibaggerController.java"), "utf8");
+  const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "AdminMultibaggerController.java"), "utf8");
+  const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerService.java"), "utf8");
+  assert.ok(publicController.includes('@RequestMapping("/api/public/multibagger")'));
+  assert.ok(publicController.includes('@GetMapping("/state")'));
+  assert.ok(adminController.includes('@RequestMapping("/api/admin/multibagger")'));
+  assert.ok(adminController.includes('@PostMapping(value = "/snapshots"'));
+  assert.ok(adminController.includes('@PostMapping("/reviews/run")'));
+  assert.ok(adminController.includes('@PostMapping("/reviews/{id}/publish")'));
+  assert.ok(adminController.includes("hasAuthority('admin:write')"));
+  assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
+  assert.ok(service.includes("@Scheduled"));
 });
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
@@ -519,6 +576,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes('class="glass-v2"'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
+  assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(publicHtml.body.includes("Admin Login"));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
@@ -615,6 +673,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes('"studio-view"'));
   assert.ok(adminHtml.body.includes("Engine Architecture"));
   assert.ok(adminHtml.body.includes("Project Components"));
+  assert.ok(adminHtml.body.includes("Multibagger Review"));
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
@@ -629,6 +688,31 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(componentsHtml.body.includes("How the Market Narrative desk fits together"));
   assert.ok(componentsHtml.body.includes('details class="component"'));
   assertAdminCopyIsPolished(componentsHtml.body, "admin components");
+
+  const multibagger = await app.request("GET", "/api/public/multibagger/state");
+  assert.equal(multibagger.json.holdings.length, 6);
+  assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
+  assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
+
+  const multibaggerHtml = await app.request("GET", "/multibagger/");
+  assert.ok(multibaggerHtml.body.includes("5x Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
+  assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));
+
+  const adminMultibaggerHtml = await app.request("GET", "/admin/multibagger");
+  assert.ok(adminMultibaggerHtml.body.includes("Admin Login"));
+  assert.ok(adminMultibaggerHtml.body.includes("Multibagger Review Desk"));
+  assert.ok(adminMultibaggerHtml.body.includes("Run Monthly Review"));
+
+  const review = await app.request("POST", "/api/admin/multibagger/reviews/run", { month: "2026-05" });
+  assert.equal(review.status, 200);
+  assert.equal(review.json.decisions.length, 6);
+  assert.ok(review.json.privateReasoning);
+
+  const publishedReview = await app.request("POST", `/api/admin/multibagger/reviews/${review.json.reviewId}/publish`);
+  assert.equal(publishedReview.status, 200);
+  assert.equal(JSON.stringify(publishedReview.json).toLowerCase().includes("private"), false);
 });
 
 for (const result of results) {
