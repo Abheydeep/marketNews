@@ -18,6 +18,7 @@ const siteDir = join(rootDir, "out", "site");
 const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = JSON.parse(await readFile(sourceJson, "utf8"));
@@ -57,7 +58,7 @@ const latest = digests[0];
 const publicMultibaggerState = multibaggerState();
 const adminDigest = {
   ...sourceDigest,
-  canonicalPath: "/admin/"
+  canonicalPath: "/"
 };
 const darkPreviewDir = join(siteDir, "dark-preview");
 const adminDir = join(siteDir, "admin");
@@ -80,7 +81,9 @@ await writeFile(
     theme: "glass-v2",
     requireAuth: true,
     componentsHref: "./components/",
-    adminMultibaggerHref: "./multibagger/"
+    multibaggerHref: `${siteOrigin}/multibagger/`,
+    adminMultibaggerHref: "./multibagger/",
+    siteOrigin: adminSiteOrigin
   }),
   "utf8"
 );
@@ -88,7 +91,7 @@ await writeFile(join(adminDir, "favicon.ico"), "", "utf8");
 await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(
   join(adminDir, "components", "index.html"),
-  projectComponentsPage({ digests, publicBaseHref: "../../", requireAuth: true }),
+  projectComponentsPage({ digests, publicBaseHref: `${siteOrigin}/`, requireAuth: true }),
   "utf8"
 );
 await writeFile(join(adminDir, "multibagger", "index.html"), multibaggerAdminPage(publicMultibaggerState), "utf8");
@@ -484,7 +487,7 @@ function archivePage(digests) {
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
           <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
-          <a class="nav-link" href="./admin/">Admin login</a>
+          <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin login</a>
         </div>
       </div>
     </div>

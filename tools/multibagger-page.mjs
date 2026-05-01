@@ -1,6 +1,8 @@
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
+const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
 
 export function multibaggerPage(state = multibaggerState()) {
   const serializedState = JSON.stringify(state);
@@ -437,7 +439,7 @@ export function multibaggerPage(state = multibaggerState()) {
         <a class="brand" href="../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
         <div class="nav-actions">
           <a class="nav-link" href="../">Briefings</a>
-          <a class="nav-link" href="../admin/multibagger/">Admin review</a>
+          <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/multibagger/">Admin review</a>
         </div>
       </div>
     </div>
@@ -622,6 +624,7 @@ export function multibaggerPage(state = multibaggerState()) {
   </footer>
 
   <script>
+    window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
     window.__MULTIBAGGER_STATE__ = ${serializedState};
     (async function refreshMultibaggerState() {
       const configuredBase = window.MARKET_NARRATIVE_API_BASE || "";
@@ -660,10 +663,10 @@ export function multibaggerAdminPage(state = multibaggerState()) {
   ${adminAuthGateHtml()}
   <nav class="topbar">
     <div class="shell nav-inner">
-      <a class="brand" href="../../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+      <a class="brand" href="${escapeHtml(adminSiteOrigin)}/"><span class="brand-mark">M</span><span>Market Narrative</span></a>
       <div class="nav-actions">
-        <a class="nav-link" href="../../multibagger/">Public tracker</a>
-        <a class="nav-link" href="../">Admin studio</a>
+        <a class="nav-link" href="${escapeHtml(siteOrigin)}/multibagger/">Public tracker</a>
+        <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin studio</a>
         <button id="adminLogoutBtn" class="nav-link" type="button">Logout</button>
       </div>
     </div>
@@ -713,6 +716,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
     </details>
   </main>
   <script>
+    window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
     window.__ADMIN_AUTH_HASH__ = "80b6c184bff356be9b060287583d6c10afe1d425a98410dcd5bfd72e251c40f6";
     window.__MULTIBAGGER_STATE__ = ${JSON.stringify(state)};
     ${adminScript()}

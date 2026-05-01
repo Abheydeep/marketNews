@@ -413,6 +413,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes('join(siteDir, "multibagger")'));
   assert.ok(publisher.includes('join(adminDir, "multibagger")'));
   assert.ok(publisher.includes('"state.json"'));
+  assert.ok(publisher.includes("adminSiteOrigin"));
+  assert.ok(publisher.includes("https://admin.marketnarrative.in"));
   assert.ok(publisher.includes('join(siteDir, "admin")'));
   assert.ok(publisher.includes('requireAuth: true'));
   assert.ok(!publisher.includes('join(siteDir, "components")'));
@@ -441,6 +443,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(cockpit.includes("og:site_name"));
   assert.ok(cockpit.includes("twitter:image"));
   assert.ok(cockpit.includes("absoluteSiteUrl"));
+  assert.ok(cockpit.includes("adminSiteOrigin"));
   assert.ok(cockpit.includes("Multibagger Portfolio"));
   assert.ok(cockpit.includes("Multibagger Review"));
   assert.ok(!cockpit.includes("marketnarrative.local"));
@@ -490,10 +493,21 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(service.includes("@Scheduled"));
 });
 
+await test("Spring CORS allows admin and trade frontend origins", async () => {
+  const securityConfig = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "config", "SecurityConfig.java"), "utf8");
+  const applicationConfig = await readFile(join(rootDir, "backend", "src", "main", "resources", "application.yml"), "utf8");
+  const compose = await readFile(join(rootDir, "infra", "docker-compose.prod.yml"), "utf8");
+  assert.ok(securityConfig.includes("parseAllowedOrigins"));
+  assert.ok(securityConfig.includes("allowedOrigins.split"));
+  assert.ok(applicationConfig.includes("FRONTEND_ORIGINS"));
+  assert.ok(compose.includes("https://admin.marketnarrative.in,https://trade.marketnarrative.in"));
+});
+
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
   assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
+  assert.ok(rootPackage.scripts["vercel:build:admin"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=admin"));
   assert.ok(rootPackage.scripts["vercel:build:trade"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=trade"));
 
   const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
@@ -512,7 +526,7 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
 });
 
-await test("Vercel projects select public or trade output by deploy target", async () => {
+await test("Vercel projects select public, admin, or trade output by deploy target", async () => {
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
   assert.equal(vercelConfig.outputDirectory, "out/vercel");
@@ -520,17 +534,25 @@ await test("Vercel projects select public or trade output by deploy target", asy
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
   assert.ok(buildScript.includes('"public"'));
+  assert.ok(buildScript.includes('"admin"'));
   assert.ok(buildScript.includes('"trade"'));
+  assert.ok(buildScript.includes('excludeTopLevel: ["admin"]'));
   assert.ok(buildScript.includes("vercel:build:public"));
+  assert.ok(buildScript.includes('"out", "site", "admin"'));
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
   assert.ok(buildScript.includes("out\", \"vercel"));
 
   const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
+  const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
   const tradeProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
   assert.equal(publicProject.buildCommand, "npm run vercel:build");
   assert.equal(publicProject.outputDirectory, "out/vercel");
   assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
   assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
+  assert.equal(adminProject.buildCommand, "npm run vercel:build");
+  assert.equal(adminProject.outputDirectory, "out/vercel");
+  assert.equal(adminProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "admin");
+  assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
   assert.equal(tradeProject.buildCommand, "npm run vercel:build");
   assert.equal(tradeProject.outputDirectory, "out/vercel");
   assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");

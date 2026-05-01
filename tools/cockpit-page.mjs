@@ -2,6 +2,7 @@ import { newsArticleJsonLd } from "./core.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -12,8 +13,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative`;
   const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
-  const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/");
-  const previewImageUrl = absoluteSiteUrl("/og-card.svg");
+  const pageOrigin = options.siteOrigin ?? siteOrigin;
+  const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
+  const previewImageUrl = absoluteSiteUrl("/og-card.svg", siteOrigin);
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
     : "";
@@ -22,11 +24,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <a class="tab-link" href="${escapeHtml(options.componentsHref ?? "/admin/components")}">Project Components</a>`
     : "";
   const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
-    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? (digest.canonicalPath ? "../admin/" : "./admin/"))}">Admin Login</a>`
+    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
   const multibaggerLinkHtml = `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
   const adminMultibaggerLinkHtml = includeStudio
-    ? `<a class="tab-link" href="${escapeHtml(options.adminMultibaggerHref ?? (digest.canonicalPath ? "./multibagger/" : "/admin/multibagger/"))}">Multibagger Review</a>`
+    ? `<a class="tab-link" href="${escapeHtml(options.adminMultibaggerHref ?? `${adminSiteOrigin}/multibagger/`)}">Multibagger Review</a>`
     : "";
   const adminLogoutHtml = requireAuth
     ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
@@ -6822,10 +6824,10 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
-function absoluteSiteUrl(path) {
+function absoluteSiteUrl(path, origin = siteOrigin) {
   if (/^https?:\/\//.test(String(path))) {
     return String(path);
   }
   const normalizedPath = String(path ?? "/").startsWith("/") ? String(path ?? "/") : `/${path}`;
-  return `${siteOrigin}${normalizedPath}`;
+  return `${origin}${normalizedPath}`;
 }

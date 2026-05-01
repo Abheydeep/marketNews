@@ -1,14 +1,15 @@
 {
-  "projectName": "marketnarrative-public",
+  "projectName": "marketnarrative-admin",
   "rootDirectory": ".",
   "frameworkPreset": "other",
   "installCommand": "npm install",
   "buildCommand": "npm run vercel:build",
   "outputDirectory": "out/vercel",
-  "domains": ["marketnarrative.in", "www.marketnarrative.in"],
+  "domains": ["admin.marketnarrative.in"],
   "environment": {
-    "MARKET_NARRATIVE_DEPLOY_TARGET": "public",
+    "MARKET_NARRATIVE_DEPLOY_TARGET": "admin",
     "MARKET_DATA_MODE": "live",
+    "PUBLIC_SITE_ORIGIN": "https://marketnarrative.in",
     "ADMIN_SITE_ORIGIN": "https://admin.marketnarrative.in",
     "MARKET_NARRATIVE_API_BASE": "https://api.marketnarrative.in"
   }

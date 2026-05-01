@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 const config = {
   publicUrl: envUrl("PUBLIC_URL", "https://marketnarrative.in"),
   wwwUrl: envUrl("WWW_URL", "https://www.marketnarrative.in"),
+  adminUrl: envUrl("ADMIN_URL", "https://admin.marketnarrative.in"),
   tradeUrl: envUrl("TRADE_URL", "https://trade.marketnarrative.in"),
   authApiUrl: envUrl("AUTH_API_URL", "https://api.marketnarrative.in"),
   tradingApiUrl: envUrl("TRADING_API_URL", "https://trade-api.marketnarrative.in"),
@@ -25,6 +26,20 @@ await check("public apex loads archive", async () => {
 await check("www host loads or redirects cleanly", async () => {
   const response = await fetchText(config.wwwUrl);
   assert.ok([200, 301, 302, 307, 308].includes(response.status), `unexpected status ${response.status}`);
+});
+
+await check("admin host loads script engine login gate", async () => {
+  const response = await fetchText(config.adminUrl);
+  assert.equal(response.status, 200);
+  assert.match(response.body, /Admin Login/i);
+  assert.match(response.body, /Studio Command|Private Studio|Daily Reel Script/i);
+});
+
+await check("admin host loads multibagger review workflow", async () => {
+  const response = await fetchText(`${config.adminUrl}/multibagger/`);
+  assert.equal(response.status, 200);
+  assert.match(response.body, /Multibagger Review Desk/i);
+  assert.match(response.body, /Run Monthly Review/i);
 });
 
 await check("trade host loads Abhey login gate", async () => {

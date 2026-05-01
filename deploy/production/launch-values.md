@@ -33,11 +33,49 @@ marketnarrative.in
 www.marketnarrative.in
 ```
 
+## Vercel Admin Project
+
+Project: `marketnarrative-admin`
+
+You can reuse/rename the existing `market-news-admin-studio` Vercel project for this. This project owns the private script engine/admin studio and the private portfolio workflow.
+
+Build settings:
+
+```text
+Root Directory: ./
+Install Command: npm install
+Build Command: npm run vercel:build
+Output Directory: out/vercel
+```
+
+Environment variables:
+
+```env
+MARKET_NARRATIVE_DEPLOY_TARGET=admin
+MARKET_DATA_MODE=live
+PUBLIC_SITE_ORIGIN=https://marketnarrative.in
+ADMIN_SITE_ORIGIN=https://admin.marketnarrative.in
+MARKET_NARRATIVE_API_BASE=https://api.marketnarrative.in
+```
+
+Domains:
+
+```text
+admin.marketnarrative.in
+```
+
+Routes:
+
+```text
+https://admin.marketnarrative.in/              Private script engine / admin studio
+https://admin.marketnarrative.in/multibagger/ Private multibagger monthly review
+```
+
 ## Vercel Trade Project
 
 Project: `marketnarrative-trade`
 
-You can either create a new Vercel project named `marketnarrative-trade` or reuse/rename the existing `market-news-admin-studio` project. The important part is that the trade project must have `MARKET_NARRATIVE_DEPLOY_TARGET=trade`, and it must not own the apex `marketnarrative.in` or `www.marketnarrative.in` domains.
+Create a separate Vercel project named `marketnarrative-trade`. The trade project must have `MARKET_NARRATIVE_DEPLOY_TARGET=trade`, and it must not own the apex `marketnarrative.in`, `www.marketnarrative.in`, or `admin.marketnarrative.in` domains.
 
 Build settings:
 
@@ -70,7 +108,10 @@ marketnarrative-public owns:
   marketnarrative.in
   www.marketnarrative.in
 
-marketnarrative-trade or market-news-admin-studio owns:
+marketnarrative-admin or market-news-admin-studio owns:
+  admin.marketnarrative.in
+
+marketnarrative-trade owns:
   trade.marketnarrative.in
 ```
 
@@ -83,7 +124,7 @@ POSTGRES_PASSWORD=replace-with-strong-postgres-password
 JWT_SECRET=replace-with-64-plus-character-shared-secret
 JWT_ISSUER=market-narrative-prod
 TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
-FRONTEND_ORIGIN=https://trade.marketnarrative.in
+FRONTEND_ORIGINS=https://admin.marketnarrative.in,https://trade.marketnarrative.in
 ABHEY_ADMIN_PASSWORD=replace-with-strong-abhey-password
 
 ENABLE_LIVE_ORDERS=false
@@ -104,6 +145,7 @@ Add these after Vercel gives you the exact records:
 ```text
 marketnarrative.in        Vercel apex record
 www.marketnarrative.in    Vercel www record
+admin.marketnarrative.in  Vercel admin project record
 trade.marketnarrative.in  Vercel trade project record
 ```
 
