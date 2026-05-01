@@ -6,6 +6,8 @@ Use this as the launch cheat sheet. DNS records do not go in `.env`; DNS records
 
 Project: `marketnarrative-public`
 
+The root `vercel.json` configures this project to run `npm run vercel:build:public` and publish `out/site`. If the Vercel deployment summary lists source files such as `/apps/...` as static assets, the project is ignoring the public build config and is publishing the repository root by mistake.
+
 Build settings:
 
 ```text
