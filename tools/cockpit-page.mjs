@@ -1,3 +1,4 @@
+import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd } from "./core.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
@@ -38,6 +39,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(pageOrigin)}
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta name="description" content="${escapeHtml(pageDescription)}">
@@ -135,6 +137,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-weight: 900;
       box-shadow: 0 8px 20px rgba(17, 24, 39, 0.12);
     }
+
+    ${brandMarkCss()}
 
     .tabs {
       display: flex;
@@ -3818,7 +3822,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+        <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
           ${studioTabHtml}

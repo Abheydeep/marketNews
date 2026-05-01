@@ -1,4 +1,4 @@
-import { NewsArticleJsonLd, SentimentBadge } from "@market-narrative/ui";
+import { BrandMark, NewsArticleJsonLd, SentimentBadge } from "@market-narrative/ui";
 import { getPublicDigest } from "@market-narrative/api-client";
 
 export default async function PublicPortalPage() {
@@ -7,6 +7,7 @@ export default async function PublicPortalPage() {
   return (
     <main>
       <NewsArticleJsonLd digest={digest} />
+      <BrandMark />
       <h1>{digest.title}</h1>
       <SentimentBadge label={digest.sentimentLabel} />
       <p>{digest.onePageSummary}</p>

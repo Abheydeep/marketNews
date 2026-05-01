@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LockKeyhole, LogIn } from "lucide-react";
+import { LogIn } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { loginTradingAdmin, tokenStorageKey, tradingAdminEmail } from "../lib/auth";
 import { useMarketStore } from "../store/marketStore";
 
@@ -37,8 +38,8 @@ export function TradingAdminGate() {
     <main className="grid min-h-screen place-items-center px-4">
       <section className="widget w-full max-w-md p-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md border border-line bg-panelSoft">
-            <LockKeyhole className="h-5 w-5 text-cyan" aria-hidden="true" />
+          <div className="flex h-11 w-11 items-center justify-center">
+            <BrandMark className="h-11 w-11" />
           </div>
           <div>
             <h1 className="text-lg font-black text-white">Trading Cockpit</h1>

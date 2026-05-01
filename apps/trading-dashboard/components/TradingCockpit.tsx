@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { Activity, AlertTriangle, Shield, Wifi } from "lucide-react";
+import { AlertTriangle, Shield, Wifi } from "lucide-react";
 import type { TradingIndex } from "@market-narrative/api-client";
+import { BrandMark } from "./BrandMark";
 import { useMarketStore } from "../store/marketStore";
 import { CandleChart } from "./CandleChart";
 import { NewsTicker } from "./NewsTicker";
@@ -45,8 +46,8 @@ export function TradingCockpit() {
     <main className="min-h-screen px-3 py-3 lg:px-5">
       <header className="mb-3 grid gap-3 border-b border-line pb-3 lg:grid-cols-[1fr_auto]">
         <div className="flex min-w-0 flex-wrap items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md border border-line bg-panelSoft">
-            <Activity className="h-5 w-5 text-cyan" aria-hidden="true" />
+          <div className="flex h-11 w-11 items-center justify-center">
+            <BrandMark className="h-11 w-11" />
           </div>
           <div>
             <h1 className="text-xl font-black tracking-normal text-white">Nifty/Bank Nifty Trading Cockpit</h1>

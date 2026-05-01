@@ -406,6 +406,7 @@ await test("backend market snapshot contract carries quote regions, countries, a
 
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
+  const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
   assert.ok(publisher.includes("projectComponentsPage"));
   assert.ok(publisher.includes("multibaggerPage"));
@@ -430,6 +431,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("robots.txt"));
   assert.ok(publisher.includes("sitemap.xml"));
   assert.ok(publisher.includes("og-card.svg"));
+  assert.ok(publisher.includes("favicon.svg"));
+  assert.ok(publisher.includes("apple-touch-icon.svg"));
+  assert.ok(publisher.includes("brandMarkHtml"));
+  assert.ok(publisher.includes("brandSocialCardSvg"));
   assert.ok(publisher.includes("og:title"));
   assert.ok(publisher.includes("twitter:card"));
   assert.ok(publisher.includes('rel="canonical"'));
@@ -440,15 +445,23 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(!publisher.includes("copyFile(sourceJson"));
 
   const cockpit = await readFile(join(rootDir, "tools", "cockpit-page.mjs"), "utf8");
+  assert.ok(brandAssets.includes("brandMarkSvg"));
+  assert.ok(brandAssets.includes("brandFaviconSvg"));
+  assert.ok(brandAssets.includes("brandSocialCardSvg"));
+  assert.ok(brandAssets.includes("Market Narrative"));
+  assert.ok(brandAssets.includes("mn-signal"));
   assert.ok(cockpit.includes("og:site_name"));
   assert.ok(cockpit.includes("twitter:image"));
   assert.ok(cockpit.includes("absoluteSiteUrl"));
   assert.ok(cockpit.includes("adminSiteOrigin"));
+  assert.ok(cockpit.includes("brandHeadLinks"));
+  assert.ok(cockpit.includes("brandMarkHtml"));
   assert.ok(cockpit.includes("Multibagger Portfolio"));
   assert.ok(cockpit.includes("Multibagger Review"));
   assert.ok(!cockpit.includes("marketnarrative.local"));
 
   const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
+  assert.ok(componentsPage.includes("brandMarkHtml"));
   assert.ok(componentsPage.includes("How the Market Narrative desk fits together"));
   assert.ok(componentsPage.includes('details class="component"'));
   assert.ok(componentsPage.includes("From Market Data To Creator Read"));
@@ -514,7 +527,14 @@ await test("frontend workspace separates public portal, admin studio, and shared
   const adminPackage = JSON.parse(await readFile(join(rootDir, "apps", "admin-studio", "package.json"), "utf8"));
   const uiPackage = JSON.parse(await readFile(join(rootDir, "packages", "ui", "package.json"), "utf8"));
   const apiPackage = JSON.parse(await readFile(join(rootDir, "packages", "api-client", "package.json"), "utf8"));
+  const uiIndex = await readFile(join(rootDir, "packages", "ui", "src", "index.ts"), "utf8");
+  const uiBrand = await readFile(join(rootDir, "packages", "ui", "src", "BrandMark.tsx"), "utf8");
+  const publicPortalPage = await readFile(join(rootDir, "apps", "public-portal", "app", "page.tsx"), "utf8");
+  const adminStudioPage = await readFile(join(rootDir, "apps", "admin-studio", "src", "App.tsx"), "utf8");
   const tradingAuth = await readFile(join(rootDir, "apps", "trading-dashboard", "lib", "auth.ts"), "utf8");
+  const tradingBrand = await readFile(join(rootDir, "apps", "trading-dashboard", "components", "BrandMark.tsx"), "utf8");
+  const tradingLayout = await readFile(join(rootDir, "apps", "trading-dashboard", "app", "layout.tsx"), "utf8");
+  const tradingIcon = await readFile(join(rootDir, "apps", "trading-dashboard", "app", "icon.svg"), "utf8");
 
   assert.equal(publicPackage.name, "@market-narrative/public-portal");
   assert.equal(adminPackage.name, "@market-narrative/admin-studio");
@@ -522,8 +542,16 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.equal(apiPackage.name, "@market-narrative/api-client");
   assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
   assert.ok(adminPackage.dependencies["@market-narrative/api-client"]);
+  assert.ok(uiIndex.includes("BrandMark"));
+  assert.ok(uiBrand.includes("ui-mn-signal"));
+  assert.ok(publicPortalPage.includes("BrandMark"));
+  assert.ok(adminStudioPage.includes("BrandMark"));
   assert.ok(tradingAuth.includes("abhey@marketnarrative.in"));
   assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
+  assert.ok(tradingBrand.includes("Market Narrative"));
+  assert.ok(tradingBrand.includes("trade-mn-signal"));
+  assert.ok(tradingLayout.includes("/icon.svg"));
+  assert.ok(tradingIcon.includes("mn-signal"));
 });
 
 await test("Vercel projects select public, admin, or trade output by deploy target", async () => {

@@ -1,3 +1,4 @@
+import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -15,6 +16,7 @@ export function multibaggerPage(state = multibaggerState()) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
@@ -105,6 +107,8 @@ export function multibaggerPage(state = multibaggerState()) {
       font-size: 15px;
       font-weight: 900;
     }
+
+    ${brandMarkCss()}
 
     .nav-actions {
       display: flex;
@@ -436,7 +440,7 @@ export function multibaggerPage(state = multibaggerState()) {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <a class="brand" href="../"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+        <a class="brand" href="../">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="nav-actions">
           <a class="nav-link" href="../">Briefings</a>
           <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/multibagger/">Admin review</a>
@@ -655,6 +659,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(adminSiteOrigin)}
   <meta name="robots" content="noindex,nofollow">
   <title>Market Narrative | Multibagger Admin Review</title>
   <style>${adminCss()}</style>
@@ -663,7 +668,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
   ${adminAuthGateHtml()}
   <nav class="topbar">
     <div class="shell nav-inner">
-      <a class="brand" href="${escapeHtml(adminSiteOrigin)}/"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+      <a class="brand" href="${escapeHtml(adminSiteOrigin)}/">${brandMarkHtml()}<span>Market Narrative</span></a>
       <div class="nav-actions">
         <a class="nav-link" href="${escapeHtml(siteOrigin)}/multibagger/">Public tracker</a>
         <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin studio</a>
@@ -736,6 +741,7 @@ function adminCss() {
     .nav-inner { min-height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
     .brand { display:flex; align-items:center; gap:12px; font-size:20px; font-weight:850; }
     .brand-mark { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,var(--cyan),#6366f1 54%,#f43f5e); font-weight:900; }
+    ${brandMarkCss()}
     .nav-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
     .nav-link, button { border:1px solid var(--line); border-radius:8px; background:rgba(15,23,42,.7); color:var(--ink); padding:10px 12px; font-size:13px; font-weight:850; cursor:pointer; }
     main { padding:34px 0 64px; }

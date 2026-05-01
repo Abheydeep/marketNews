@@ -1,3 +1,5 @@
+import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+
 export function projectComponentsPage({ digests = [], publicBaseHref = "../", requireAuth = false } = {}) {
   const latest = digests[0];
   const latestSlug = latest ? slugForDigest(latest) : "";
@@ -13,6 +15,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks("https://admin.marketnarrative.in")}
   <title>Market Narrative | Project Components Map</title>
   <style>
     :root {
@@ -105,6 +108,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       font-size: 15px;
       font-weight: 900;
     }
+
+    ${brandMarkCss()}
 
     .nav-actions {
       display: flex;
@@ -852,7 +857,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <a class="brand" href="${escapeHtml(publicBaseHref)}"><span class="brand-mark">M</span><span>Market Narrative</span></a>
+        <a class="brand" href="${escapeHtml(publicBaseHref)}">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="nav-actions">
           ${latestSlug ? `<a class="nav-link dark" href="${escapeHtml(`${publicBaseHref}${latestSlug}/`)}">Latest briefing</a>` : ""}
           <a class="nav-link" href="${escapeHtml(publicBaseHref)}">Briefing archive</a>

@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
@@ -34,6 +35,8 @@ await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
 await writeFile(join(siteDir, ".nojekyll"), "", "utf8");
 await writeFile(join(siteDir, "favicon.ico"), "", "utf8");
+await writeFile(join(siteDir, "favicon.svg"), brandFaviconSvg(), "utf8");
+await writeFile(join(siteDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 
 for (const digest of digests) {
@@ -88,6 +91,8 @@ await writeFile(
   "utf8"
 );
 await writeFile(join(adminDir, "favicon.ico"), "", "utf8");
+await writeFile(join(adminDir, "favicon.svg"), brandFaviconSvg(), "utf8");
+await writeFile(join(adminDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(
   join(adminDir, "components", "index.html"),
@@ -179,6 +184,7 @@ function archivePage(digests) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/">
@@ -281,6 +287,8 @@ function archivePage(digests) {
       font-size: 15px;
       font-weight: 900;
     }
+
+    ${brandMarkCss()}
 
     .latest-link {
       border-radius: 8px;
@@ -483,7 +491,7 @@ function archivePage(digests) {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <div class="brand"><span class="brand-mark">M</span><span>Market Narrative</span></div>
+        <div class="brand">${brandMarkHtml()}<span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
           <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
@@ -542,33 +550,7 @@ ${urls.map((url) => `  <url>
 }
 
 function ogCardSvg() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Market Narrative</title>
-  <desc id="desc">Daily pre-market intelligence for Nifty, Bank Nifty, global cues, and Asian markets.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#030712"/>
-      <stop offset="0.52" stop-color="#08111f"/>
-      <stop offset="1" stop-color="#172554"/>
-    </linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#22d3ee"/>
-      <stop offset="0.5" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#f43f5e"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="165" cy="80" r="210" fill="#22d3ee" opacity="0.18"/>
-  <circle cx="1020" cy="72" r="240" fill="#6366f1" opacity="0.22"/>
-  <circle cx="880" cy="560" r="210" fill="#f43f5e" opacity="0.14"/>
-  <path d="M96 448 C238 360 308 392 420 305 S632 173 805 220 S1010 351 1106 258" fill="none" stroke="url(#line)" stroke-width="16" stroke-linecap="round"/>
-  <rect x="78" y="72" width="1044" height="486" rx="42" fill="#020617" opacity="0.56" stroke="#ffffff" stroke-opacity="0.16"/>
-  <text x="126" y="174" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">MARKET NARRATIVE</text>
-  <text x="126" y="294" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900">Daily Pre-Market Intelligence</text>
-  <text x="126" y="376" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="650">Nifty, Bank Nifty, global cues, Asia watch, charts, and source-backed context.</text>
-  <text x="126" y="488" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">marketnarrative.in</text>
-</svg>
-`;
+  return brandSocialCardSvg();
 }
 
 function slugForDigest(digest) {
