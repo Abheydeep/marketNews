@@ -90,3 +90,7 @@ The public artifact can expose public digest payloads, sanitized multibagger sta
 The public artifact must not expose Studio Command, Project Components, reel scripts, positive prompts, uploaded portfolio screenshots, raw OCR, quantities, broker data, account values, private review reasoning, or trading execution controls.
 
 The admin artifact can render private operator workflows, but sensitive operations still belong behind authenticated backend endpoints. The trading artifact must never place live orders unless the explicit risk gates and manual confirmation pass.
+
+## Release QA Gate
+
+Release branches cannot bypass the public-copy gate. Before pushing or merging a release branch, run `npm test`, `npm run test:deploy`, and `npm run public:copy:qa` against the generated public artifact. The repo pre-push hook runs the local guard, and GitHub Actions is the final required check for PRs and `main` pushes because local hooks can be skipped by Git.

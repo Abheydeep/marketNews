@@ -255,7 +255,10 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
     /Public editorial guardrail failed/
   );
   for (const badArchiveCopy of [
+    "Daily Pre-Market Archive",
     "All Market Narrative briefings",
+    "root page",
+    "now works",
     "The root page now works like a news archive.",
     "Open a dated briefing for the full quote board.",
     "Asia watch: South Korea - KOSPI -1.38%",

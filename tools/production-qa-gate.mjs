@@ -23,6 +23,27 @@ const config = {
   timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "12000", 10)
 };
 
+const publicBlockedCopyPatterns = [
+  /Daily Pre-Market Archive/i,
+  /All Market Narrative briefings/i,
+  /root page/i,
+  /now works/i,
+  /news archive/i,
+  /Open a dated briefing/i,
+  /full quote board/i,
+  /chart links/i,
+  /Asia watch:/i,
+  /markets tracked/i,
+  /\b\d+\s+setups\b/i,
+  /\b\d+\s+sources\b/i,
+  /Open daily briefing/i,
+  /\bdemo\b/i,
+  /\bplaceholder\b/i,
+  /\bscaffolding\b/i,
+  /\bTODO\b/,
+  /\blorem\b/i
+];
+
 const results = [];
 
 await group("Domain sanity", async () => {
@@ -86,7 +107,7 @@ await group("Public user surface", async () => {
     config.publicUrl,
     200,
     [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Previous session driver/i, /sentiment-sparkline/i],
-    [/Studio Command/i, /All Market Narrative briefings/i, /The root page now works/i, /Asia watch:/i, /markets tracked/i, /\b\d+\s+setups\b/i, /\b\d+\s+sources\b/i, /Open daily briefing/i]
+    [/Studio Command/i, ...publicBlockedCopyPatterns]
   );
   await expectPage(
     "User",
@@ -94,11 +115,11 @@ await group("Public user surface", async () => {
     config.wwwUrl,
     [200, 301, 302, 307, 308],
     [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i],
-    [/All Market Narrative briefings/i, /The root page now works/i, /Asia watch:/i, /markets tracked/i, /\b\d+\s+setups\b/i, /\b\d+\s+sources\b/i]
+    publicBlockedCopyPatterns
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}/1may2026/`, 200, [/Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i], [/Open Yahoo Chart/i]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}/1may2026/`, 200, [/Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}/1may2026/digest.json`, 200, (payload) => {
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");

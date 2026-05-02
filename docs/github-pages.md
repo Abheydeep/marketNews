@@ -32,6 +32,10 @@ The hosted page updates when the GitHub Action runs. The workflow uses `--market
 
 Clicking an index opens a first-party canvas chart from the captured price series. The modal also links to the matching TradingView chart for the external interactive view.
 
+## Public Copy Gate
+
+Release branches cannot bypass the public-copy gate. Run `npm test`, `npm run test:deploy`, and `npm run public:copy:qa` before publishing. The local pre-push hook runs the guard automatically after `npm run hooks:install`; GitHub Actions repeats the same checks on PRs and `main` pushes.
+
 ## Multibagger Tracker
 
 The static export also publishes the public 5x model tracker at:

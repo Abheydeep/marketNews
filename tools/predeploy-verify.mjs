@@ -96,7 +96,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Read market briefing/);
   assertOutput("index.html", /Previous session driver/);
   assertOutput("index.html", /sentiment-sparkline/);
-  assertOutputNot("index.html", /All Market Narrative briefings|The root page now works|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
+  assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
   assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
   assertOutput("multibagger/index.html", /Current value/);
   assertOutput("multibagger/index.html", /Model P&L/);

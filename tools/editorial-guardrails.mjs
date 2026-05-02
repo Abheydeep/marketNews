@@ -63,8 +63,11 @@ from a trader who respects risk and understands attention.
 `.trim();
 
 export const PUBLIC_FORBIDDEN_PATTERNS = [
+  /Daily Pre-Market Archive/i,
   /All Market Narrative briefings/i,
   /The root page now works/i,
+  /root page/i,
+  /now works/i,
   /news archive/i,
   /Open a dated briefing/i,
   /full quote board/i,
