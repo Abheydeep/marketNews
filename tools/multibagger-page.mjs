@@ -721,7 +721,7 @@ export function multibaggerPage(state = multibaggerState()) {
         status.className = "price-status " + (stale ? "stale" : "fresh");
         const first = status.querySelector("span");
         if (first) first.textContent = stale
-          ? "Showing the latest published server price snapshot. Live refresh resumes when the API is available."
+          ? "Verified live quotes are not available yet. Current prices, returns, P&L, and day moves are hidden."
           : "Prices are refreshed server-side during Indian market hours.";
       }
     }
@@ -762,25 +762,30 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     function formatInr(value) {
-      return "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value || 0));
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
+      return "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value));
     }
 
     function formatSignedInr(value) {
-      const number = Number(value || 0);
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "--";
+      const number = Number(value);
       const prefix = number > 0 ? "+" : number < 0 ? "-" : "";
       return prefix + "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Math.abs(number));
     }
 
     function formatPrice(value) {
-      return "INR " + new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value || 0));
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
+      return "INR " + new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value));
     }
 
     function formatPercent(value) {
-      return Number(value || 0).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + "%";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "--";
+      return Number(value).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + "%";
     }
 
     function formatSignedPercent(value) {
-      const number = Number(value || 0);
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "--";
+      const number = Number(value);
       const prefix = number > 0 ? "+" : "";
       return prefix + number.toLocaleString("en-IN", { maximumFractionDigits: 2 }) + "%";
     }
@@ -1107,7 +1112,7 @@ function holdingsRowsHtml(holdings) {
 
 function priceStatusText(state) {
   if (state.pricing?.isStale || state.holdings?.some((holding) => holding.isStale)) {
-    return "Showing the latest published server price snapshot. Live refresh resumes when the API is available.";
+    return "Verified live quotes are not available yet. Current prices, returns, P&L, and day moves are hidden.";
   }
   return "Prices are refreshed server-side during Indian market hours.";
 }
@@ -1120,24 +1125,39 @@ function toneClass(value) {
 }
 
 function formatInr(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
+    return "Awaiting quote";
+  }
   return `INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value))}`;
 }
 
 function formatSignedInr(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
+    return "--";
+  }
   const number = Number(value);
   const prefix = number > 0 ? "+" : number < 0 ? "-" : "";
   return `${prefix}INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Math.abs(number))}`;
 }
 
 function formatPrice(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
+    return "Awaiting quote";
+  }
   return `INR ${new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value))}`;
 }
 
 function formatPercent(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
+    return "--";
+  }
   return `${Number(value).toLocaleString("en-IN", { maximumFractionDigits: 1 })}%`;
 }
 
 function formatSignedPercent(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
+    return "--";
+  }
   const number = Number(value);
   const prefix = number > 0 ? "+" : "";
   return `${prefix}${number.toLocaleString("en-IN", { maximumFractionDigits: 2 })}%`;

@@ -34,20 +34,20 @@ public class MultibaggerQuoteService {
         "TEMBO", "TEMBO.NS"
     );
     private static final Map<String, MultibaggerQuoteSnapshot> FALLBACK_QUOTES = Map.ofEntries(
-        fallback("KPEL", "486.40", "502.75", "497.20"),
-        fallback("DHABRIYA", "308.20", "318.65", "316.10"),
-        fallback("PIGL", "148.80", "156.35", "153.40"),
-        fallback("JNKINDIA", "608.50", "596.20", "601.80"),
-        fallback("DYCL", "505.10", "519.40", "512.00"),
-        fallback("TEMBO", "246.30", "238.75", "241.60")
+        fallback("KPEL", "486.40"),
+        fallback("DHABRIYA", "308.20"),
+        fallback("PIGL", "148.80"),
+        fallback("JNKINDIA", "608.50"),
+        fallback("DYCL", "505.10"),
+        fallback("TEMBO", "246.30")
     );
     private static final BenchmarkSnapshot FALLBACK_BENCHMARK = benchmarkSnapshot(
         "NIFTY 50",
         new BigDecimal("24203.35"),
-        new BigDecimal("23997.55"),
-        new BigDecimal("24188.65"),
+        null,
+        null,
         STATIC_PRICE_REFRESH_AT,
-        "Server quote snapshot",
+        "Awaiting verified live quote",
         true
     );
 
@@ -65,7 +65,7 @@ public class MultibaggerQuoteService {
     private volatile Map<String, MultibaggerQuoteSnapshot> currentQuotes = FALLBACK_QUOTES;
     private volatile BenchmarkSnapshot currentBenchmark = FALLBACK_BENCHMARK;
     private volatile Instant refreshedAt = STATIC_PRICE_REFRESH_AT;
-    private volatile String mode = "server-snapshot-fallback";
+    private volatile String mode = "awaiting-verified-quotes";
 
     public MultibaggerQuoteService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
@@ -83,7 +83,9 @@ public class MultibaggerQuoteService {
             stale,
             "Every 5 minutes during Indian market hours when live quote refresh is enabled",
             currentBenchmark,
-            "Real-time means server-refreshed latest prices with timestamps, not account-level performance."
+            stale
+                ? "Fallback mode does not publish current prices, returns, or P&L."
+                : "Real-time means server-refreshed latest prices with timestamps, not account-level performance."
         );
     }
 
@@ -106,7 +108,7 @@ public class MultibaggerQuoteService {
         currentQuotes = Map.copyOf(nextQuotes);
         currentBenchmark = fetchBenchmark("^NSEI").orElse(FALLBACK_BENCHMARK);
         refreshedAt = latestTimestamp(currentQuotes, currentBenchmark);
-        mode = hasLiveQuote ? "server-yahoo-snapshot" : "server-snapshot-fallback";
+        mode = hasLiveQuote ? "server-yahoo-snapshot" : "awaiting-verified-quotes";
     }
 
     private Optional<MultibaggerQuoteSnapshot> fetchYahooQuote(String yahooSymbol, String ticker, MultibaggerQuoteSnapshot fallback) {
@@ -188,14 +190,14 @@ public class MultibaggerQuoteService {
         return meta;
     }
 
-    private static Map.Entry<String, MultibaggerQuoteSnapshot> fallback(String ticker, String entryPrice, String lastPrice, String previousClose) {
+    private static Map.Entry<String, MultibaggerQuoteSnapshot> fallback(String ticker, String entryPrice) {
         return Map.entry(ticker, new MultibaggerQuoteSnapshot(
             ticker,
             new BigDecimal(entryPrice),
-            new BigDecimal(lastPrice),
-            new BigDecimal(previousClose),
+            null,
+            null,
             STATIC_PRICE_REFRESH_AT,
-            "Server quote snapshot",
+            "Awaiting verified live quote",
             true
         ));
     }
@@ -245,7 +247,7 @@ public class MultibaggerQuoteService {
 
     static BigDecimal returnPercent(BigDecimal start, BigDecimal end) {
         if (start == null || end == null || BigDecimal.ZERO.compareTo(start) == 0) {
-            return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+            return null;
         }
         return end.subtract(start)
             .divide(start, 6, RoundingMode.HALF_UP)

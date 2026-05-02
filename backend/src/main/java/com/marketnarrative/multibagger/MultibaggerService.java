@@ -31,14 +31,22 @@ public class MultibaggerService {
     public MultibaggerState publicState() {
         List<MultibaggerHolding> publicHoldings = holdings();
         PricingSnapshot pricing = quoteService.pricingSnapshot();
-        BigDecimal currentModelValue = publicHoldings.stream()
-            .map(MultibaggerHolding::currentModelValueInr)
-            .reduce(BigDecimal.ZERO, BigDecimal::add)
-            .setScale(2, RoundingMode.HALF_UP);
-        BigDecimal totalPnl = currentModelValue
-            .subtract(BigDecimal.valueOf(MODEL_CAPITAL))
-            .setScale(2, RoundingMode.HALF_UP);
-        BigDecimal sinceLaunchPercent = returnPercent(BigDecimal.valueOf(MODEL_CAPITAL), currentModelValue);
+        boolean hasVerifiedPrices = !pricing.isStale() && publicHoldings.stream()
+            .allMatch(holding -> holding.currentModelValueInr() != null && !holding.isStale());
+        BigDecimal currentModelValue = hasVerifiedPrices
+            ? publicHoldings.stream()
+                .map(MultibaggerHolding::currentModelValueInr)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .setScale(2, RoundingMode.HALF_UP)
+            : null;
+        BigDecimal totalPnl = hasVerifiedPrices
+            ? currentModelValue
+                .subtract(BigDecimal.valueOf(MODEL_CAPITAL))
+                .setScale(2, RoundingMode.HALF_UP)
+            : null;
+        BigDecimal sinceLaunchPercent = hasVerifiedPrices
+            ? returnPercent(BigDecimal.valueOf(MODEL_CAPITAL), currentModelValue)
+            : null;
         return new MultibaggerState(
             "Concentrated 5x Multibagger Model",
             MODEL_CAPITAL,
@@ -47,7 +55,9 @@ public class MultibaggerService {
             new QuoteStatus(
                 pricing.mode(),
                 pricing.refreshedAt(),
-                "Public model prices refresh from the server when the live API is available. The static page shows the last published snapshot when the API is offline."
+                pricing.isStale()
+                    ? "Current prices and returns are hidden until the server supplies verified live quotes."
+                    : "Public model prices refresh from the server during Indian market hours."
             ),
             pricing,
             new PerformanceSnapshot(
@@ -133,12 +143,17 @@ public class MultibaggerService {
 
     private MultibaggerHolding holding(String ticker, String yahooSymbol, String name, String weight, Integer amount, String role, String thesis, String buyRule, String breakRule, String status) {
         MultibaggerQuoteSnapshot quote = quoteService.snapshotFor(ticker);
-        BigDecimal currentModelValue = BigDecimal.valueOf(amount)
-            .multiply(quote.lastPrice())
-            .divide(quote.entryPrice(), 2, RoundingMode.HALF_UP);
-        BigDecimal modelPnl = currentModelValue
-            .subtract(BigDecimal.valueOf(amount))
-            .setScale(2, RoundingMode.HALF_UP);
+        boolean hasVerifiedQuote = !quote.isStale() && quote.lastPrice() != null && quote.entryPrice() != null;
+        BigDecimal currentModelValue = hasVerifiedQuote
+            ? BigDecimal.valueOf(amount)
+                .multiply(quote.lastPrice())
+                .divide(quote.entryPrice(), 2, RoundingMode.HALF_UP)
+            : null;
+        BigDecimal modelPnl = hasVerifiedQuote
+            ? currentModelValue
+                .subtract(BigDecimal.valueOf(amount))
+                .setScale(2, RoundingMode.HALF_UP)
+            : null;
         return new MultibaggerHolding(
             ticker,
             yahooSymbol,
@@ -154,11 +169,11 @@ public class MultibaggerService {
             quote.entryPrice(),
             quote.lastPrice(),
             quote.previousClose(),
-            returnPercent(quote.previousClose(), quote.lastPrice()),
+            hasVerifiedQuote ? returnPercent(quote.previousClose(), quote.lastPrice()) : null,
             quote.lastPriceAt(),
             quote.priceSource(),
             quote.isStale(),
-            returnPercent(quote.entryPrice(), quote.lastPrice()),
+            hasVerifiedQuote ? returnPercent(quote.entryPrice(), quote.lastPrice()) : null,
             modelPnl,
             currentModelValue
         );

@@ -178,25 +178,25 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
   assert.equal(state.modelEntryDate, "2026-04-27");
   assert.equal(state.performance.modelEntryDate, "2026-04-27");
-  assert.ok(Number.isFinite(state.performance.currentModelValueInr));
-  assert.ok(Number.isFinite(state.performance.totalPnlInr));
-  assert.ok(Number.isFinite(state.performance.benchmarkSinceLaunchPercent));
+  assert.equal(state.pricing.isStale, true);
+  assert.equal(state.performance.currentModelValueInr, null);
+  assert.equal(state.performance.totalPnlInr, null);
+  assert.equal(state.performance.benchmarkSinceLaunchPercent, null);
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
     ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
   );
-  assert.ok(state.holdings.some((holding) => holding.returnPercent > 0));
-  assert.ok(state.holdings.some((holding) => holding.returnPercent < 0));
   for (const holding of state.holdings) {
-    for (const field of ["entryPrice", "lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
-      assert.ok(Number.isFinite(holding[field]), `${holding.ticker} missing ${field}`);
-    }
-    const expectedReturn = Math.round((((holding.lastPrice - holding.entryPrice) / holding.entryPrice) * 100) * 100) / 100;
-    assert.ok(Math.abs(expectedReturn - holding.returnPercent) <= 0.01, `${holding.ticker} return math mismatch`);
+    assert.ok(Number.isFinite(holding.entryPrice), `${holding.ticker} missing entryPrice`);
+    assert.equal(holding.lastPrice, null, `${holding.ticker} fallback current price must be hidden`);
+    assert.equal(holding.returnPercent, null, `${holding.ticker} fallback return must be hidden`);
+    assert.equal(holding.modelPnlInr, null, `${holding.ticker} fallback P&L must be hidden`);
+    assert.equal(holding.currentModelValueInr, null, `${holding.ticker} fallback current value must be hidden`);
+    assert.equal(holding.dayChangePercent, null, `${holding.ticker} fallback day move must be hidden`);
+    assert.equal(holding.priceSource, "Awaiting verified live quote");
   }
-  const expectedCurrentValue = Math.round(state.holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0) * 100) / 100;
-  assert.ok(Math.abs(expectedCurrentValue - state.performance.currentModelValueInr) <= 0.01);
   const publicJson = JSON.stringify(state).toLowerCase();
+  assert.equal(publicJson.includes("server quote snapshot"), false, "fallback must not masquerade as a server quote snapshot");
   for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
     assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
   }
@@ -219,6 +219,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Current"));
   assert.ok(html.includes("Return"));
   assert.ok(html.includes("price-status"));
+  assert.ok(html.includes("Awaiting verified live quote"));
+  assert.ok(html.includes("Current prices, returns, P&amp;L, and day moves are hidden."));
+  assert.equal(html.includes("Server quote snapshot"), false);
   assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Monthly Reviews"));
   assert.ok(html.includes("Watchlist And Replacements"));
@@ -906,15 +909,17 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.holdings.length, 6);
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
-  assert.ok(Number.isFinite(multibagger.json.performance.currentModelValueInr));
-  assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && Number.isFinite(holding.returnPercent)));
+  assert.equal(multibagger.json.performance.currentModelValueInr, null);
+  assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
+  assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("server quote snapshot"), false);
 
   const multibaggerHtml = await app.request("GET", "/multibagger/");
   assert.ok(multibaggerHtml.body.includes("5x Multibagger Portfolio"));
   assert.ok(multibaggerHtml.body.includes("Since Apr 27, 2026"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
+  assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
   assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));

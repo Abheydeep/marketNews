@@ -5,50 +5,50 @@ const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
 const priceSnapshots = {
   KPEL: {
     entryPrice: 486.4,
-    lastPrice: 502.75,
-    previousClose: 497.2,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   },
   DHABRIYA: {
     entryPrice: 308.2,
-    lastPrice: 318.65,
-    previousClose: 316.1,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   },
   PIGL: {
     entryPrice: 148.8,
-    lastPrice: 156.35,
-    previousClose: 153.4,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   },
   JNKINDIA: {
     entryPrice: 608.5,
-    lastPrice: 596.2,
-    previousClose: 601.8,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   },
   DYCL: {
     entryPrice: 505.1,
-    lastPrice: 519.4,
-    previousClose: 512,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   },
   TEMBO: {
     entryPrice: 246.3,
-    lastPrice: 238.75,
-    previousClose: 241.6,
+    lastPrice: null,
+    previousClose: null,
     lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Server quote snapshot",
+    priceSource: "Awaiting verified live quote",
     isStale: true
   }
 };
@@ -56,10 +56,10 @@ const priceSnapshots = {
 const benchmarkSnapshot = {
   symbol: "NIFTY 50",
   entryPrice: 24_203.35,
-  lastPrice: 23_997.55,
-  previousClose: 24_188.65,
+  lastPrice: null,
+  previousClose: null,
   lastPriceAt: STATIC_PRICE_REFRESH_AT,
-  source: "Server quote snapshot",
+  source: "Awaiting verified live quote",
   isStale: true
 };
 
@@ -260,9 +260,12 @@ const sources = [
 ];
 
 export function multibaggerState() {
-  const currentModelValueInr = round(holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0), 2);
-  const totalPnlInr = round(currentModelValueInr - MODEL_CAPITAL_INR, 2);
-  const sinceLaunchPercent = round((totalPnlInr / MODEL_CAPITAL_INR) * 100, 2);
+  const hasVerifiedPrices = holdings.every((holding) => !holding.isStale && Number.isFinite(Number(holding.currentModelValueInr)));
+  const currentModelValueInr = hasVerifiedPrices
+    ? round(holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0), 2)
+    : null;
+  const totalPnlInr = hasVerifiedPrices ? round(currentModelValueInr - MODEL_CAPITAL_INR, 2) : null;
+  const sinceLaunchPercent = hasVerifiedPrices ? round((totalPnlInr / MODEL_CAPITAL_INR) * 100, 2) : null;
   const benchmarkSinceLaunchPercent = returnPercent(benchmarkSnapshot.entryPrice, benchmarkSnapshot.lastPrice);
   const state = {
     modelName: "Concentrated 5x Multibagger Model",
@@ -270,12 +273,12 @@ export function multibaggerState() {
     modelEntryDate: MODEL_ENTRY_DATE,
     updatedAt: STATIC_PRICE_REFRESH_AT,
     quoteStatus: {
-      mode: "static-published-snapshot",
+      mode: "awaiting-verified-quotes",
       lastRefreshAt: STATIC_PRICE_REFRESH_AT,
-      note: "Public model prices refresh from the server when the live API is available. The static page shows the last published snapshot when the API is offline."
+      note: "Current prices and returns are hidden until the server supplies verified live quotes."
     },
     pricing: {
-      mode: "server-snapshot-fallback",
+      mode: "awaiting-verified-quotes",
       refreshedAt: STATIC_PRICE_REFRESH_AT,
       isStale: true,
       refreshCadence: "Every 5 minutes during Indian market hours when the backend is live",
@@ -284,7 +287,7 @@ export function multibaggerState() {
         returnPercent: benchmarkSinceLaunchPercent,
         dayChangePercent: returnPercent(benchmarkSnapshot.previousClose, benchmarkSnapshot.lastPrice)
       },
-      note: "Real-time means server-refreshed latest prices with timestamps, not account-level performance."
+      note: "Fallback mode does not publish current prices, returns, or P&L."
     },
     performance: {
       sinceLaunchPercent,
@@ -311,8 +314,11 @@ function holdingPerformance(ticker, modelAmountInr) {
   const snapshot = priceSnapshots[ticker];
   const returnValue = returnPercent(snapshot.entryPrice, snapshot.lastPrice);
   const dayChangePercent = returnPercent(snapshot.previousClose, snapshot.lastPrice);
-  const currentModelValueInr = round(modelAmountInr * (snapshot.lastPrice / snapshot.entryPrice), 2);
-  const modelPnlInr = round(currentModelValueInr - modelAmountInr, 2);
+  const hasVerifiedQuote = !snapshot.isStale && Number.isFinite(Number(snapshot.lastPrice));
+  const currentModelValueInr = hasVerifiedQuote
+    ? round(modelAmountInr * (snapshot.lastPrice / snapshot.entryPrice), 2)
+    : null;
+  const modelPnlInr = hasVerifiedQuote ? round(currentModelValueInr - modelAmountInr, 2) : null;
   return {
     modelEntryDate: MODEL_ENTRY_DATE,
     entryPrice: snapshot.entryPrice,
@@ -330,7 +336,7 @@ function holdingPerformance(ticker, modelAmountInr) {
 
 function returnPercent(start, end) {
   if (!Number.isFinite(start) || !Number.isFinite(end) || start === 0) {
-    return 0;
+    return null;
   }
   return round(((end - start) / start) * 100, 2);
 }
@@ -351,20 +357,27 @@ export function validateMultibaggerState(state = multibaggerState()) {
   }
 
   for (const holding of state.holdings) {
-    for (const field of ["entryPrice", "lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
-      if (!Number.isFinite(Number(holding[field]))) {
-        throw new Error(`${holding.ticker} is missing numeric ${field}`);
-      }
+    if (!Number.isFinite(Number(holding.entryPrice))) {
+      throw new Error(`${holding.ticker} is missing numeric entryPrice`);
     }
-    const expectedReturn = returnPercent(holding.entryPrice, holding.lastPrice);
-    if (Math.abs(expectedReturn - Number(holding.returnPercent)) > 0.01) {
-      throw new Error(`${holding.ticker} return math is inconsistent`);
+    if (!holding.isStale) {
+      for (const field of ["lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
+        if (!Number.isFinite(Number(holding[field]))) {
+          throw new Error(`${holding.ticker} is missing numeric ${field}`);
+        }
+      }
+      const expectedReturn = returnPercent(holding.entryPrice, holding.lastPrice);
+      if (Math.abs(expectedReturn - Number(holding.returnPercent)) > 0.01) {
+        throw new Error(`${holding.ticker} return math is inconsistent`);
+      }
     }
   }
 
-  const expectedCurrentValue = round(state.holdings.reduce((sum, holding) => sum + Number(holding.currentModelValueInr), 0), 2);
-  if (Math.abs(expectedCurrentValue - Number(state.performance.currentModelValueInr)) > 0.01) {
-    throw new Error("Multibagger portfolio current value math is inconsistent");
+  if (!state.pricing.isStale) {
+    const expectedCurrentValue = round(state.holdings.reduce((sum, holding) => sum + Number(holding.currentModelValueInr), 0), 2);
+    if (Math.abs(expectedCurrentValue - Number(state.performance.currentModelValueInr)) > 0.01) {
+      throw new Error("Multibagger portfolio current value math is inconsistent");
+    }
   }
 
   const serialized = JSON.stringify(state).toLowerCase();
