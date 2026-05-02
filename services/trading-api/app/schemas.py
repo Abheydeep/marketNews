@@ -130,6 +130,16 @@ class RiskState(BaseModel):
     open_positions_by_index: dict[IndexSymbol, int] = Field(default_factory=dict)
 
 
+class MarketDataStatus(BaseModel):
+    mode: Literal["mock", "kite"]
+    is_live: bool
+    kite_configured: bool
+    kite_session_valid: bool
+    message: str
+    updated_at: datetime
+    last_refresh_at: datetime | None = None
+
+
 class OrderProposal(BaseModel):
     proposal_id: str
     status: OrderStatus = "PROPOSED"
@@ -162,6 +172,7 @@ class OrderResult(BaseModel):
 
 
 class MarketEnvelope(BaseModel):
+    status: MarketDataStatus
     candles: dict[IndexSymbol, list[Candle]]
     technicals: dict[IndexSymbol, TechnicalSnapshot]
     option_chains: dict[IndexSymbol, OptionChain]

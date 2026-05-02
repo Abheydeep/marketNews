@@ -236,7 +236,18 @@ export type TradingRiskState = {
   open_positions_by_index: Record<TradingIndex, number>;
 };
 
+export type MarketDataStatus = {
+  mode: "mock" | "kite";
+  is_live: boolean;
+  kite_configured: boolean;
+  kite_session_valid: boolean;
+  message: string;
+  updated_at: string;
+  last_refresh_at?: string | null;
+};
+
 export type TradingMarketEnvelope = {
+  status: MarketDataStatus;
   candles: Record<TradingIndex, TradingCandle[]>;
   technicals: Record<TradingIndex, TechnicalSnapshot>;
   option_chains: Record<TradingIndex, OptionChain>;

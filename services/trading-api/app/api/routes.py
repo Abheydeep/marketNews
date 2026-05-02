@@ -44,20 +44,32 @@ async def kite_session(request: KiteSessionRequest) -> dict[str, object]:
     if not settings.kite_api_key or not settings.kite_api_secret:
         raise HTTPException(status_code=400, detail="Kite API credentials are not configured")
     payload = await kite_client.exchange_request_token(request.request_token)
-    return {"user_id": payload.get("user_id"), "login_time": payload.get("login_time"), "expires_at": payload.get("expires_at")}
+    status = await trading_state.refresh_from_kite(kite_client)
+    return {
+        "user_id": payload.get("user_id"),
+        "login_time": payload.get("login_time"),
+        "expires_at": payload.get("expires_at"),
+        "market_status": status.model_dump(mode="json"),
+    }
 
 
 @router.get("/api/kite/status")
 async def kite_status() -> dict[str, object]:
-    return {"token_valid": auth_service.token_store.token_valid(), "login_url": auth_service.login_url() if settings.kite_api_key else None}
+    return {
+        "market_mode": settings.trading_market_mode,
+        "kite_configured": bool(settings.kite_api_key),
+        "secret_configured": bool(settings.kite_api_secret),
+        "token_valid": auth_service.token_store.token_valid(),
+        "login_url": auth_service.login_url() if settings.kite_api_key else None,
+    }
 
 
 @router.post("/api/instruments/refresh")
 async def refresh_instruments() -> dict[str, object]:
     if not auth_service.token_store.token_valid():
         raise HTTPException(status_code=401, detail="Kite token is missing or expired")
-    payload = await kite_client.instruments()
-    return {"bytes": len(payload), "source": "kite"}
+    contracts = await trading_state.refresh_instruments(kite_client)
+    return {"contracts": len(contracts), "source": "kite"}
 
 
 @router.get("/api/options/chain")
@@ -72,7 +84,13 @@ async def latest_signal(index: IndexSymbol) -> object:
 
 @router.get("/api/market/envelope")
 async def market_envelope() -> object:
+    await trading_state.refresh_if_due(kite_client)
     return trading_state.envelope()
+
+
+@router.post("/api/market/refresh")
+async def refresh_market() -> object:
+    return await trading_state.refresh_from_kite(kite_client)
 
 
 @router.post("/api/orders/proposals")
@@ -146,6 +164,7 @@ async def market_socket(websocket: WebSocket) -> None:
     await websocket.accept()
     try:
         while True:
+            await trading_state.refresh_if_due(kite_client)
             envelope = trading_state.envelope().model_dump(mode="json")
             envelope["server_ts"] = datetime.now(timezone.utc).isoformat()
             await websocket.send_json(envelope)

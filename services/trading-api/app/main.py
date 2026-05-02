@@ -23,10 +23,9 @@ app.include_router(router)
 
 @app.on_event("startup")
 async def startup() -> None:
-    await trading_state.bootstrap_mock()
+    await trading_state.bootstrap()
 
 
 @app.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
-

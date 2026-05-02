@@ -94,6 +94,10 @@ services:
         value: "10000"
       - key: TRADING_AUTH_REQUIRED
         value: "true"
+      - key: TRADING_MARKET_MODE
+        value: kite
+      - key: KITE_REFRESH_SECONDS
+        value: "60"
       - key: TRADING_CORS_ORIGIN
         value: https://trade.marketnarrative.in
       - key: TRADING_DATABASE_URL

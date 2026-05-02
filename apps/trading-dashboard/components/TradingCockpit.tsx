@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertTriangle, Shield, Wifi } from "lucide-react";
+import { AlertTriangle, RefreshCw, Shield, Unplug, Wifi } from "lucide-react";
 import type { TradingIndex } from "@market-narrative/api-client";
 import { BrandMark } from "./BrandMark";
 import { useMarketStore } from "../store/marketStore";
@@ -14,6 +14,7 @@ import { RiskPanel } from "./RiskPanel";
 import { SignalModule } from "./SignalModule";
 import { TradingAdminGate } from "./TradingAdminGate";
 import { tokenStorageKey } from "../lib/auth";
+import { fetchKiteLoginUrl, refreshMarketData } from "../lib/api";
 
 const indices: TradingIndex[] = ["BANKNIFTY", "NIFTY"];
 
@@ -41,6 +42,31 @@ export function TradingCockpit() {
   const signal = envelope?.signals[selectedIndex];
   const candles = envelope?.candles[selectedIndex] ?? [];
   const technical = envelope?.technicals[selectedIndex];
+  const status = envelope?.status;
+
+  async function connectKite() {
+    if (!token) {
+      return;
+    }
+    try {
+      const loginUrl = await fetchKiteLoginUrl(token);
+      window.location.assign(loginUrl);
+    } catch (error) {
+      useMarketStore.setState({ error: error instanceof Error ? error.message : "Unable to start Kite login" });
+    }
+  }
+
+  async function refreshKite() {
+    if (!token) {
+      return;
+    }
+    try {
+      await refreshMarketData(token);
+      await loadSnapshot();
+    } catch (error) {
+      useMarketStore.setState({ error: error instanceof Error ? error.message : "Unable to refresh Kite data" });
+    }
+  }
 
   return (
     <main className="min-h-screen px-3 py-3 lg:px-5">
@@ -87,6 +113,35 @@ export function TradingCockpit() {
       </header>
 
       {error ? <div className="mb-3 rounded-md border border-loss/60 bg-loss/10 p-3 text-sm text-red-100">{error}</div> : null}
+      {status ? (
+        <section
+          className={`mb-3 flex flex-col gap-3 rounded-md border p-3 text-sm md:flex-row md:items-center md:justify-between ${
+            status.is_live ? "border-gain/40 bg-gain/10 text-emerald-100" : "border-amber/50 bg-amber/10 text-amber"
+          }`}
+        >
+          <div className="flex items-start gap-2">
+            {status.is_live ? <Wifi className="mt-0.5 h-4 w-4" aria-hidden="true" /> : <Unplug className="mt-0.5 h-4 w-4" aria-hidden="true" />}
+            <div>
+              <p className="font-black">{status.is_live ? "Kite live data active" : status.mode === "kite" ? "Kite live data waiting" : "Demo stream active"}</p>
+              <p className="mt-1 text-xs text-slate-300">{status.message}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {status.mode === "kite" && !status.kite_session_valid ? (
+              <button onClick={() => void connectKite()} className="inline-flex h-9 items-center gap-2 rounded-md bg-cyan px-3 text-xs font-black text-ink">
+                <Unplug className="h-4 w-4" aria-hidden="true" />
+                Connect Kite
+              </button>
+            ) : null}
+            {status.mode === "kite" ? (
+              <button onClick={() => void refreshKite()} className="inline-flex h-9 items-center gap-2 rounded-md border border-line px-3 text-xs font-black text-slate-100">
+                <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                Refresh
+              </button>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       <section className="grid gap-3 xl:grid-cols-[minmax(0,1.6fr)_minmax(360px,0.9fr)]">
         <div className="grid min-w-0 gap-3">

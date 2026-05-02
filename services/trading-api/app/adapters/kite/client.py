@@ -99,6 +99,16 @@ class KiteHttpClient:
             response.raise_for_status()
             return response.json()["data"]
 
+    async def quote(self, instruments: list[str]) -> dict[str, Any]:
+        import httpx
+
+        await self.quote_limiter.wait()
+        params = [("i", instrument) for instrument in instruments]
+        async with httpx.AsyncClient(base_url=self.settings.kite_base_url, timeout=10) as client:
+            response = await client.get("/quote", params=params, headers=self.headers())
+            response.raise_for_status()
+            return response.json()["data"]
+
     async def margins(self) -> dict[str, Any]:
         import httpx
 
@@ -114,4 +124,3 @@ class KiteHttpClient:
             response = await client.post("/orders/regular", data=payload, headers=self.headers())
             response.raise_for_status()
             return str(response.json()["data"]["order_id"])
-

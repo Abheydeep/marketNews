@@ -1,4 +1,4 @@
-import type { OrderProposal, OrderResult, TradingIndex, TradingMarketEnvelope } from "@market-narrative/api-client";
+import type { MarketDataStatus, OrderProposal, OrderResult, TradingIndex, TradingMarketEnvelope } from "@market-narrative/api-client";
 
 export const tradingApiBase = process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? "http://localhost:8090";
 
@@ -55,4 +55,27 @@ export async function setKillSwitch(enabled: boolean, token: string) {
     throw new Error(await response.text());
   }
   return response.json();
+}
+
+export async function fetchKiteLoginUrl(token: string): Promise<string> {
+  const response = await fetch(`${tradingApiBase}/api/kite/login-url`, {
+    cache: "no-store",
+    headers: authHeaders(token)
+  });
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+  const payload = (await response.json()) as { login_url: string };
+  return payload.login_url;
+}
+
+export async function refreshMarketData(token: string): Promise<MarketDataStatus> {
+  const response = await fetch(`${tradingApiBase}/api/market/refresh`, {
+    method: "POST",
+    headers: authHeaders(token)
+  });
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+  return response.json() as Promise<MarketDataStatus>;
 }
