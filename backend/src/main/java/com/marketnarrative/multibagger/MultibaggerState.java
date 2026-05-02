@@ -13,6 +13,7 @@ public record MultibaggerState(
     PricingSnapshot pricing,
     PerformanceSnapshot performance,
     List<MultibaggerHolding> holdings,
+    MultibaggerMethodology methodology,
     List<PublicTransaction> transactions,
     List<PublicMonthlyReview> monthlyReviews,
     List<WatchlistItem> watchlist,

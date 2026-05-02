@@ -20,7 +20,8 @@ const config = {
   runAuthenticated: process.env.RUN_AUTHENTICATED_QA === "true",
   requireAuthenticated: process.env.REQUIRE_AUTHENTICATED_QA === "true",
   runBrowser: process.env.SKIP_BROWSER_QA !== "true",
-  timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "12000", 10)
+  timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "12000", 10),
+  latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? "/2may2026/"
 };
 
 const publicBlockedCopyPatterns = [
@@ -45,6 +46,8 @@ const publicBlockedCopyPatterns = [
 ];
 
 const results = [];
+const offTopicAuditPatterns = [/Museum of Fine Arts/i, /MFA Boston/i, /Robert Frank/i, /Monet/i, /audio tours?/i, /\bexhibitions?\b/i, /\bgalleries\b/i];
+const financeMetadataPatterns = [/<title>[^<]*(Market Narrative|Nifty|Multibagger)[^<]*<\/title>/i, /<meta name="description" content="[^"]{24,}"/i, /<h1[\s\S]*?<\/h1>/i, /<nav[\s\S]*?<\/nav>/i];
 
 await group("Domain sanity", async () => {
   await check("Domain", "Production URLs use .in only", "config", "No .com production hostnames", async () => {
@@ -106,8 +109,8 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Previous session driver/i, /sentiment-sparkline/i],
-    [/Studio Command/i, ...publicBlockedCopyPatterns]
+    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Previous session driver/i, /sentiment-sparkline/i],
+    [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
     "User",
@@ -115,12 +118,12 @@ await group("Public user surface", async () => {
     config.wwwUrl,
     [200, 301, 302, 307, 308],
     [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i],
-    publicBlockedCopyPatterns
+    [...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}/1may2026/`, 200, [/Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns]);
-  await expectJson("User", "Latest digest JSON", `${config.publicUrl}/1may2026/digest.json`, 200, (payload) => {
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i, /Bank Nifty|global cues|India/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");
     assert.equal(Object.hasOwn(payload, "reelScript"), false, "reelScript leaked");
@@ -130,12 +133,14 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [/Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i],
-    [/Run Monthly Review/i, /Admin review/i]
+    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i, /Research Method/i, /Profitability|Valuation|replacement/i],
+    [/Run Monthly Review/i, /Admin review/i, ...offTopicAuditPatterns]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
     const serialized = JSON.stringify(payload);
     assert.match(serialized, /KPEL/);
+    assert.ok(payload.methodology?.definition, "methodology missing");
+    assert.ok(payload.methodology?.evaluationCategories?.some((item) => /Profitability|Valuation/i.test(item)), "methodology categories missing");
     assert.doesNotMatch(serialized, /broker|account value|quantity|raw OCR/i);
     assert.equal(payload.modelEntryDate, "2026-04-27");
     assert.equal(payload.performance?.modelEntryDate, "2026-04-27");
@@ -179,10 +184,14 @@ await group("Trade surface", async () => {
 });
 
 await group("API surface", async () => {
-  await expectJson("API", "Spring health", `${config.authApiUrl}/actuator/health`, 200, (payload) => {
+  await expectNotVercelHost("API", "Spring API is not Vercel DNS", `${config.authApiUrl}/actuator/health`);
+  await expectNotVercelHost("API", "Trading API is not Vercel DNS", `${config.tradingApiUrl}/health`);
+  await expectJson("API", "Spring health", `${config.authApiUrl}/actuator/health`, 200, (payload, response) => {
+    assertNotVercelResponse(response);
     assert.match(String(payload.status ?? ""), /UP|ok/i);
   });
-  await expectJson("API", "Trading API health", `${config.tradingApiUrl}/health`, 200, (payload) => {
+  await expectJson("API", "Trading API health", `${config.tradingApiUrl}/health`, 200, (payload, response) => {
+    assertNotVercelResponse(response);
     assert.equal(payload.status, "ok");
   });
   await expectPage("API", "Trading API unauth is 401", `${config.tradingApiUrl}/api/market/envelope`, 401, [/not authenticated|unauthorized|detail/i]);
@@ -321,6 +330,19 @@ async function expectSvg(surface, name, url, pattern) {
   });
 }
 
+async function expectNotVercelHost(surface, name, url) {
+  await check(surface, name, url, "API host must not resolve to Vercel", async () => {
+    const response = await fetchText(url, { headers: { Accept: "application/json,text/plain,*/*" } });
+    assertNotVercelResponse(response);
+    return `HTTP ${response.status}; server=${response.headers.get("server") ?? "(missing)"}`;
+  });
+}
+
+function assertNotVercelResponse(response) {
+  const server = response.headers.get("server") ?? "";
+  assert.doesNotMatch(server, /vercel/i, "Server: Vercel means API DNS is pointing at Vercel, not DigitalOcean");
+}
+
 async function expectCors(surface, name, url, origin) {
   await check(surface, name, url, `CORS preflight allows ${origin}`, async () => {
     const response = await fetchText(url, {
@@ -442,8 +464,8 @@ async function runBrowserSmoke() {
       });
       const page = await context.newPage();
       await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
-      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}/1may2026/`, /Live Quote Board|Daily Pre-Market Summary/i);
-      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since Apr 27, 2026|Current value/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Live Quote Board|Daily Pre-Market Summary/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since Apr 27, 2026|Current value|Research Method/i);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
       await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);

@@ -71,6 +71,7 @@ public class MultibaggerService {
                 "Model performance is calculated from the public model start date and model allocation weights."
             ),
             publicHoldings,
+            methodology(),
             transactions(publicHoldings),
             monthlyReviews(),
             watchlist(),
@@ -132,16 +133,32 @@ public class MultibaggerService {
 
     private List<MultibaggerHolding> holdings() {
         return List.of(
-            holding("KPEL", "KPEL.BO", "KP Energy", "25", 125_000, "Anchor renewable alpha", "Low-PE renewable execution with strong revenue growth and room for rerating.", "Build first while valuation remains a small-cap growth bargain.", "Trim if receivables, project execution or group complexity worsen.", "Core hold / buy staged"),
-            holding("DHABRIYA", "538715.BO", "Dhabriya Polywood", "20", 100_000, "Hidden-quality margin inflection", "Microcap quality candidate with PAT doubling and expanded EBITDA margin.", "Build after confirming liquidity and margin sustainability.", "Reduce if inventory, debt or receivables absorb earnings growth.", "Core hold / buy staged"),
-            holding("PIGL", "PIGL.NS", "Power & Instrumentation Gujarat", "17.5", 87_500, "Microcap order-book asymmetry", "Order book is materially larger than market cap, with busduct optionality.", "Build capped exposure only while PAT margin catches up.", "Do not average down into low-margin working-capital strain.", "Capped alpha"),
-            holding("JNKINDIA", "JNKINDIA.NS", "JNK India", "15", 75_000, "Order book entering P&L", "Order visibility is already touching reported earnings.", "Scale only after conversion without debtor blowout.", "Reduce if receivables expand faster than sales.", "Capped alpha"),
-            holding("DYCL", "DYCL.NS", "Dynamic Cables", "12.5", 62_500, "Cleaner cable-cycle quality alpha", "Mid-teens valuation, PAT growth and capacity optionality.", "Build if order inflow, spreads and ramp stay disciplined.", "Trim if cable spreads or receivables turn.", "Quality alpha"),
-            holding("TEMBO", "TEMBO.NS", "Tembo Global", "10", 50_000, "Capped high-asymmetry optionality", "Large order book and scaled profit create upside, but cash-flow and governance risks cap sizing.", "Hold as option-sized exposure only.", "Reduce quickly on weak cash flow, guarantees, related-party issues or dilution.", "Speculative cap")
+            holding("KPEL", "KPEL.BO", "KP Energy", "25", 125_000, "Anchor renewable alpha", "Low-PE renewable execution with strong revenue growth and room for rerating.", "Build first while valuation remains a small-cap growth bargain.", "Trim if receivables, project execution or group complexity worsen.", "Execution momentum must keep translating into profit and operating cash flow.", "Valuation-growth anchor with rerating room.", "Renewable project execution and order conversion.", "Delayed project cash collection would weaken the anchor role.", "Group complexity and debt-funded expansion must stay contained.", "Core hold / buy staged"),
+            holding("DHABRIYA", "538715.BO", "Dhabriya Polywood", "20", 100_000, "Hidden-quality margin inflection", "Microcap quality candidate with PAT doubling and expanded EBITDA margin.", "Build after confirming liquidity and margin sustainability.", "Reduce if inventory, debt or receivables absorb earnings growth.", "Improved margin band must survive beyond one strong result.", "Valuation is acceptable only while earnings quality improves.", "Operating leverage from scale, product mix and margin recovery.", "Inventory build-up or debtor stretch would lower growth quality.", "Debt and working-capital funding must not rise faster than earnings.", "Core hold / buy staged"),
+            holding("PIGL", "PIGL.NS", "Power & Instrumentation Gujarat", "17.5", 87_500, "Microcap order-book asymmetry", "Order book is materially larger than market cap, with busduct optionality.", "Build capped exposure only while PAT margin catches up.", "Do not average down into low-margin working-capital strain.", "Revenue growth has to become PAT-margin expansion.", "Order-book-to-market-cap asymmetry needs margin and cash proof.", "RDSS execution, busduct optionality and infrastructure orders.", "Large orders can strain billing, margins and debtor quality.", "Working-capital borrowing needs monthly review.", "Capped alpha"),
+            holding("JNKINDIA", "JNKINDIA.NS", "JNK India", "15", 75_000, "Order book entering P&L", "Order visibility is already touching reported earnings.", "Scale only after conversion without debtor blowout.", "Reduce if receivables expand faster than sales.", "PAT acceleration must be supported by margin stability.", "The slot depends on underpriced order conversion.", "Industrial capex execution entering reported earnings.", "Receivables expanding faster than sales would be the main evidence break.", "Execution scale-up should avoid balance-sheet strain.", "Capped alpha"),
+            holding("DYCL", "DYCL.NS", "Dynamic Cables", "12.5", 62_500, "Cleaner cable-cycle quality alpha", "Mid-teens valuation, PAT growth and capacity optionality.", "Build if order inflow, spreads and ramp stay disciplined.", "Trim if cable spreads or receivables turn.", "PAT growth should not rely on one-off commodity spread tailwinds.", "Mid-teens valuation leaves room for capacity optionality.", "Cable-cycle demand, solar DC products and e-beam capacity.", "Receivable quality and commodity-linked margin swings are key checks.", "Capacity ramp must avoid excessive leverage.", "Quality alpha"),
+            holding("TEMBO", "TEMBO.NS", "Tembo Global", "10", 50_000, "Capped high-asymmetry optionality", "Large order book and scaled profit create upside, but cash-flow and governance risks cap sizing.", "Hold as option-sized exposure only.", "Reduce quickly on weak cash flow, guarantees, related-party issues or dilution.", "Profit scale-up matters only if operating cash flow confirms it.", "The market-cap/order-book gap is discounted until governance proof improves.", "Large order-book execution and infrastructure-linked demand.", "Cash-flow slippage, guarantees or delayed collections would break the case.", "Dilution, pledges, guarantees and related-party risk keep sizing capped.", "Speculative cap")
         );
     }
 
-    private MultibaggerHolding holding(String ticker, String yahooSymbol, String name, String weight, Integer amount, String role, String thesis, String buyRule, String breakRule, String status) {
+    private MultibaggerHolding holding(
+        String ticker,
+        String yahooSymbol,
+        String name,
+        String weight,
+        Integer amount,
+        String role,
+        String thesis,
+        String buyRule,
+        String breakRule,
+        String profitabilityLens,
+        String valuationLens,
+        String growthCatalyst,
+        String conversionRisk,
+        String capitalStructureRisk,
+        String status
+    ) {
         MultibaggerQuoteSnapshot quote = quoteService.snapshotFor(ticker);
         boolean hasVerifiedQuote = !quote.isStale() && quote.lastPrice() != null && quote.entryPrice() != null;
         BigDecimal currentModelValue = hasVerifiedQuote
@@ -164,6 +181,11 @@ public class MultibaggerService {
             thesis,
             buyRule,
             breakRule,
+            profitabilityLens,
+            valuationLens,
+            growthCatalyst,
+            conversionRisk,
+            capitalStructureRisk,
             status,
             MODEL_ENTRY_DATE,
             quote.entryPrice(),
@@ -176,6 +198,23 @@ public class MultibaggerService {
             hasVerifiedQuote ? returnPercent(quote.entryPrice(), quote.lastPrice()) : null,
             modelPnl,
             currentModelValue
+        );
+    }
+
+    private MultibaggerMethodology methodology() {
+        return new MultibaggerMethodology(
+            "A multibagger candidate is a business that can compound the original model capital several times over a full cycle, not merely a stock with a short-term price spike.",
+            "The public model tests a concentrated 5x-style research thesis through sizing discipline, monthly evidence review, and replacement logic.",
+            List.of(
+                "Profitability: ROE, ROCE, margin durability, and free-cash-flow conversion.",
+                "Valuation: current multiple versus growth, balance-sheet quality, and rerating room.",
+                "Growth catalysts: order-book conversion, capacity addition, sector tailwind, or operating leverage.",
+                "Cash conversion: receivables, inventory, debtor days, and whether earnings turn into cash.",
+                "Capital structure: debt, guarantees, dilution risk, and interest coverage.",
+                "Replacement discipline: every holding must keep earning its slot against the challenger list."
+            ),
+            "A holding is replaced when the thesis weakens, valuation absorbs the upside, cash conversion breaks, or a challenger offers cleaner upside with lower evidence risk.",
+            "Educational research tracker only. It is not stock advice, not a promise of returns, and not a demat statement mirror."
         );
     }
 

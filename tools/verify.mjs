@@ -182,6 +182,15 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(state.performance.currentModelValueInr, null);
   assert.equal(state.performance.totalPnlInr, null);
   assert.equal(state.performance.benchmarkSinceLaunchPercent, null);
+  assert.ok(state.methodology?.definition.includes("multibagger"));
+  assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Profitability")));
+  assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Valuation")));
+  assert.ok(state.methodology?.replacementLogic.includes("replaced"));
+  for (const holding of state.holdings) {
+    for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
+      assert.ok(holding[field], `${holding.ticker} missing ${field}`);
+    }
+  }
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
     ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
@@ -206,6 +215,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   const state = multibaggerState();
   const html = multibaggerPage(state);
   assertPublicBriefingCopy("multibagger public page", html);
+  assertPublicFinancePageIntegrity("multibagger public page", html, [/Nifty|stock|equities|multibagger/i, /Research Method/i]);
   assert.ok(html.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(html.includes("Market Narrative Research"));
   assert.ok(html.includes("Briefing archive"));
@@ -216,6 +226,13 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Model P&L"));
   assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
   assert.ok(html.includes("Portfolio At A Glance"));
+  assert.ok(html.includes("Research Method"));
+  assert.ok(html.includes("What this is"));
+  assert.ok(html.includes("not stock advice"));
+  assert.ok(html.includes("Profitability"));
+  assert.ok(html.includes("Valuation"));
+  assert.ok(html.includes("Growth catalyst"));
+  assert.ok(html.includes("Capital structure"));
   assert.ok(html.includes("Buy And Sell Record"));
   assert.ok(html.includes("MODEL_BUY"));
   assert.ok(html.includes("Reference"));
@@ -244,15 +261,18 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   const publicHtml = cockpitPage(digest, "public-view", { includeStudio: false });
 
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("financial news article"));
+  assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("yield cycle"));
+  assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("current source stack supports"));
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("Do not mention internal implementation details"));
   assert.ok(REEL_SCRIPT_EDITORIAL_PROMPT.includes("actually say on camera"));
   assertPublicBriefingCopy("onePageSummary", digest.onePageSummary);
   assertReelScriptCopy("reelScript", digest.reelScript);
   assertPublicBriefingCopy("public digest payload", JSON.stringify(publicPayload));
   assertPublicBriefingCopy("public page HTML", publicHtml);
+  assertPublicFinancePageIntegrity("public daily briefing HTML", publicHtml, [/Nifty/i, /Bank Nifty/i, /market/i]);
   assertPublicBriefingCopy(
     "reputation-safe archive hero",
-    "Pre-Market Intelligence Archive. Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups."
+    "Pre-Market Intelligence Archive. Independent Indian pre-market intelligence for the cash open: global cues, Nifty and Bank Nifty context, sector impact, source cards, technical risk levels, and links into the public multibagger research tracker."
   );
   assert.throws(
     () => assertPublicBriefingCopy(
@@ -280,6 +300,13 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
       `expected guardrail to reject ${badArchiveCopy}`
     );
   }
+  assert.throws(
+    () => assertPublicBriefingCopy(
+      "bad museum sample",
+      "The May briefing highlights Museum of Fine Arts Boston exhibitions, Robert Frank, Monet, galleries, and audio tours."
+    ),
+    /Public editorial guardrail failed/
+  );
   const sanitized = sanitizeLegacyPublicBriefingCopy({
     onePageSummary: "No active 1:2 RR setup passed all scanner and live-quote filters.",
     news: [
@@ -525,6 +552,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("og:title"));
   assert.ok(publisher.includes("twitter:card"));
   assert.ok(publisher.includes('rel="canonical"'));
+  assert.ok(publisher.includes("Source-led Indian pre-market intelligence archive"));
+  assert.ok(publisher.includes("Independent Indian pre-market intelligence"));
+  assert.ok(publisher.includes("public multibagger research tracker"));
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(publisher.includes("redactedDigestPayload"));
@@ -591,6 +621,8 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "AdminMultibaggerController.java"), "utf8");
   const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerService.java"), "utf8");
   const quoteService = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerQuoteService.java"), "utf8");
+  const state = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerState.java"), "utf8");
+  const holding = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerHolding.java"), "utf8");
   assert.ok(publicController.includes('@RequestMapping("/api/public/multibagger")'));
   assert.ok(publicController.includes('@GetMapping("/state")'));
   assert.ok(adminController.includes('@RequestMapping("/api/admin/multibagger")'));
@@ -598,6 +630,12 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(adminController.includes('@PostMapping("/reviews/run")'));
   assert.ok(adminController.includes('@PostMapping("/reviews/{id}/publish")'));
   assert.ok(adminController.includes("hasAuthority('admin:write')"));
+  assert.ok(state.includes("MultibaggerMethodology methodology"));
+  for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
+    assert.ok(holding.includes(field), `backend holding missing ${field}`);
+  }
+  assert.ok(service.includes("methodology()"));
+  assert.ok(service.includes("Replacement discipline"));
   assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
   assert.ok(service.includes("MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27)"));
   assert.ok(service.includes('"MODEL_BUY"'));
@@ -729,6 +767,10 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "api.marketnarrative.in",
     "actuator/health",
     "trade-api.marketnarrative.in",
+    "Server: Vercel",
+    "assertNotVercelResponse",
+    "Research Method",
+    "Museum of Fine Arts",
     "RUN_AUTHENTICATED_QA",
     "Desktop and mobile smoke",
     "Launch remains BLOCKED"
@@ -978,10 +1020,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
   assert.equal(multibagger.json.performance.currentModelValueInr, null);
   assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
+  assert.ok(multibagger.json.methodology.definition.includes("multibagger"));
+  assert.ok(multibagger.json.holdings.every((holding) => holding.profitabilityLens && holding.valuationLens && holding.growthCatalyst));
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("server quote snapshot"), false);
 
   const multibaggerHtml = await app.request("GET", "/multibagger/");
+  assertPublicFinancePageIntegrity("demo multibagger page", multibaggerHtml.body, [/Research Method/i, /KPEL/i]);
   assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(multibaggerHtml.body.includes("Briefing archive"));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
@@ -990,6 +1035,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
+  assert.ok(multibaggerHtml.body.includes("Research Method"));
   assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
   assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));
 
@@ -1054,4 +1100,15 @@ function assertAdminCopyIsPolished(html, label) {
   for (const phrase of bannedPhrases) {
     assert.ok(!html.includes(phrase), `${label} should not show rough admin copy: ${phrase}`);
   }
+}
+
+function assertPublicFinancePageIntegrity(label, html, requiredPatterns = []) {
+  assert.match(html, /<title>[^<]{8,}<\/title>/i, `${label} missing useful title`);
+  assert.match(html, /<meta name="description" content="[^"]{24,}"/i, `${label} missing useful meta description`);
+  assert.match(html, /<h1[\s\S]*?<\/h1>/i, `${label} missing h1`);
+  assert.match(html, /<nav[\s\S]*?<\/nav>/i, `${label} missing navigation`);
+  for (const pattern of requiredPatterns) {
+    assert.match(html, pattern, `${label} missing finance pattern ${pattern}`);
+  }
+  assertPublicBriefingCopy(label, html);
 }

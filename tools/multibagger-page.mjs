@@ -8,7 +8,7 @@ const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketna
 export function multibaggerPage(state = multibaggerState()) {
   const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
   const pageTitle = "Market Narrative | Multibagger Model Tracker";
-  const pageDescription = "A public Market Narrative research model tracking six high-conviction Indian equities, allocation discipline, review history, and public-safe performance updates.";
+  const pageDescription = "A public Market Narrative research model tracking six high-conviction Indian equities, methodology, allocation discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
   const previewImageUrl = `${siteOrigin}/og-card.svg`;
   return `<!DOCTYPE html>
@@ -512,7 +512,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <div>
         <p class="eyebrow">Market Narrative Research</p>
         <h1>Market Narrative Multibagger Portfolio</h1>
-        <p>A public research model within Market Narrative, tracking six high-conviction Indian equities with allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
+        <p>A public research model within Market Narrative, tracking six high-conviction Indian equities with source-led methodology, allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
       </div>
       <aside class="hero-stat">
         <span>Since Apr 27, 2026</span>
@@ -550,7 +550,39 @@ export function multibaggerPage(state = multibaggerState()) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Model Holdings</strong><span>Public model allocations with entry, latest price, and return math.</span></span>
+        <span class="summary-title"><strong>Research Method</strong><span>How the model defines and evaluates a multibagger candidate.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="cards">
+          <article class="mini-card">
+            <h3>Definition</h3>
+            <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
+          </article>
+          <article class="mini-card">
+            <h3>Target Outcome</h3>
+            <p>${escapeHtml(state.methodology?.targetOutcome ?? "The model tests a concentrated long-term research thesis with monthly review discipline.")}</p>
+          </article>
+          <article class="mini-card">
+            <h3>Replacement Logic</h3>
+            <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
+          </article>
+        </div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>Evaluation Category</th></tr></thead>
+            <tbody>
+              ${(state.methodology?.evaluationCategories ?? []).map((item) => `<tr><td>${escapeHtml(item)}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-top:12px;">What this is: a public educational research tracker with transparent rules. What this is not: stock advice, guaranteed return guidance, or a demat statement mirror.</p>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>
+        <span class="summary-title"><strong>Model Holdings</strong><span>Public model allocations with entry, latest price, and return math; no personal account data is published.</span></span>
         <span class="chev">+</span>
       </summary>
       <div class="panel-body">
@@ -578,6 +610,11 @@ export function multibaggerPage(state = multibaggerState()) {
             <p><strong>Thesis:</strong> ${escapeHtml(holding.thesis)}</p>
             <p><strong>Buy rule:</strong> ${escapeHtml(holding.buyRule)}</p>
             <p><strong>Break rule:</strong> ${escapeHtml(holding.breakRule)}</p>
+            <p><strong>Profitability:</strong> ${escapeHtml(holding.profitabilityLens ?? "")}</p>
+            <p><strong>Valuation:</strong> ${escapeHtml(holding.valuationLens ?? "")}</p>
+            <p><strong>Growth catalyst:</strong> ${escapeHtml(holding.growthCatalyst ?? "")}</p>
+            <p><strong>Conversion risk:</strong> ${escapeHtml(holding.conversionRisk ?? "")}</p>
+            <p><strong>Capital structure:</strong> ${escapeHtml(holding.capitalStructureRisk ?? "")}</p>
           </article>`).join("")}
         </div>
       </div>

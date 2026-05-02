@@ -63,6 +63,21 @@ const benchmarkSnapshot = {
   isStale: true
 };
 
+const methodology = {
+  definition: "A multibagger candidate is a business that can compound the original model capital several times over a full cycle, not merely a stock with a short-term price spike.",
+  targetOutcome: "The public model is built to test a concentrated 5x-style research thesis through sizing discipline, monthly evidence review, and replacement logic.",
+  evaluationCategories: [
+    "Profitability: ROE, ROCE, margin durability, and free-cash-flow conversion.",
+    "Valuation: current multiple versus growth, balance-sheet quality, and rerating room.",
+    "Growth catalysts: order-book conversion, capacity addition, sector tailwind, or operating leverage.",
+    "Cash conversion: receivables, inventory, debtor days, and whether earnings turn into cash.",
+    "Capital structure: debt, guarantees, dilution risk, and interest coverage.",
+    "Replacement discipline: every holding must keep earning its slot against the challenger list."
+  ],
+  replacementLogic: "A holding is replaced when the thesis weakens, valuation absorbs the upside, cash conversion breaks, or a challenger offers cleaner upside with lower evidence risk.",
+  disclaimer: "Educational research tracker only. It is not stock advice, not a promise of returns, and not a demat statement mirror."
+};
+
 const holdings = [
   {
     ticker: "KPEL",
@@ -74,6 +89,11 @@ const holdings = [
     thesis: "Low-PE renewable execution with strong revenue growth and a valuation that still leaves room for rerating.",
     buyRule: "Build first while valuation remains a small-cap growth bargain and receivables stay controlled.",
     breakRule: "Trim if project execution slips, receivables stretch, or group complexity starts driving the story.",
+    profitabilityLens: "Revenue growth and execution momentum must keep translating into reported profit and operating cash flow.",
+    valuationLens: "Still treated as the valuation-growth anchor; rerating room matters more than headline theme popularity.",
+    growthCatalyst: "Renewable project execution, order conversion, and sector capex visibility.",
+    conversionRisk: "Receivables or delayed project cash collection would weaken the anchor role.",
+    capitalStructureRisk: "Group complexity, debt-funded expansion, or guarantees must stay contained.",
     status: "Core hold / buy staged",
     ...holdingPerformance("KPEL", 125_000)
   },
@@ -87,6 +107,11 @@ const holdings = [
     thesis: "Microcap quality candidate with PAT doubling, expanded EBITDA margin and a still-sane valuation base.",
     buyRule: "Build after confirming liquidity; add only if FY26 keeps the new margin band intact.",
     breakRule: "Reduce if inventory, debt or receivables absorb the reported earnings growth.",
+    profitabilityLens: "The key proof is whether the improved margin band survives beyond one strong result.",
+    valuationLens: "Microcap valuation is acceptable only while earnings quality and liquidity improve together.",
+    growthCatalyst: "Operating leverage from scale, product mix, and margin recovery.",
+    conversionRisk: "Inventory build-up or debtor stretch would turn reported PAT into lower-quality growth.",
+    capitalStructureRisk: "Debt and working-capital funding must not rise faster than earnings.",
     status: "Core hold / buy staged",
     ...holdingPerformance("DHABRIYA", 100_000)
   },
@@ -100,6 +125,11 @@ const holdings = [
     thesis: "Order book is materially larger than market cap, with RDSS work and Peaton busduct optionality.",
     buyRule: "Build capped exposure only while PAT margin begins catching up with revenue growth.",
     breakRule: "Do not average down if orders convert into low-margin working-capital strain.",
+    profitabilityLens: "Revenue growth has to become PAT-margin expansion, not just larger low-margin execution.",
+    valuationLens: "Order-book-to-market-cap asymmetry is attractive but only if margins and cash collection improve.",
+    growthCatalyst: "RDSS execution, busduct optionality, and electrical infrastructure order conversion.",
+    conversionRisk: "Large orders can destroy value if they arrive with low margins, slow billing, or debtor stress.",
+    capitalStructureRisk: "Working-capital borrowing and customer concentration need monthly review.",
     status: "Capped alpha",
     ...holdingPerformance("PIGL", 87_500)
   },
@@ -113,6 +143,11 @@ const holdings = [
     thesis: "Q3 revenue and PAT acceleration show that order visibility is already touching reported earnings.",
     buyRule: "Start now; scale only after the next result confirms conversion without debtor blowout.",
     breakRule: "Reduce if receivables expand faster than sales or order conversion stalls.",
+    profitabilityLens: "Reported PAT acceleration must be supported by execution quality and margin stability.",
+    valuationLens: "The stock earns a slot only while the market still underprices order conversion.",
+    growthCatalyst: "Order book entering P&L through process-heating and industrial capex execution.",
+    conversionRisk: "Receivables expanding faster than sales would be the main evidence break.",
+    capitalStructureRisk: "Balance-sheet strain from execution scale-up should stay modest.",
     status: "Capped alpha",
     ...holdingPerformance("JNKINDIA", 75_000)
   },
@@ -126,6 +161,11 @@ const holdings = [
     thesis: "Mid-teens valuation, PAT growth, order visibility and solar DC/e-beam capacity provide a second trigger.",
     buyRule: "Build measured exposure; add if order inflow, spreads and capacity ramp remain disciplined.",
     breakRule: "Trim if cable spreads turn, receivables worsen, or capacity ramp disappoints.",
+    profitabilityLens: "PAT growth should remain visible without relying on a one-off commodity spread tailwind.",
+    valuationLens: "Mid-teens style valuation keeps it in the model while capacity optionality is still underpriced.",
+    growthCatalyst: "Cable-cycle demand, solar DC products, e-beam capacity, and order inflow.",
+    conversionRisk: "Receivable quality and commodity-linked margin swings are the main conversion checks.",
+    capitalStructureRisk: "Capacity ramp must avoid excessive leverage or weak interest coverage.",
     status: "Quality alpha",
     ...holdingPerformance("DYCL", 62_500)
   },
@@ -139,6 +179,11 @@ const holdings = [
     thesis: "Large order book and scaled 9M profit create upside, but cash-flow and governance risks cap sizing.",
     buyRule: "Hold as option-sized exposure; do not average up without cash-flow and governance proof.",
     breakRule: "Reduce quickly on weak operating cash flow, guarantees, related-party issues or dilution.",
+    profitabilityLens: "Profit scale-up matters only if operating cash flow confirms it.",
+    valuationLens: "The market-cap/order-book gap offers upside, but the discount is partly deserved until governance proof improves.",
+    growthCatalyst: "Large order-book execution and exports or infrastructure-linked demand.",
+    conversionRisk: "Cash-flow slippage, guarantees, or delayed collections would break the optionality case.",
+    capitalStructureRisk: "Dilution, pledges, guarantees, and related-party risk keep sizing capped.",
     status: "Speculative cap",
     ...holdingPerformance("TEMBO", 50_000)
   }
@@ -300,6 +345,7 @@ export function multibaggerState() {
       note: "Model performance is calculated from the public model start date and model allocation weights."
     },
     holdings,
+    methodology,
     transactions,
     monthlyReviews,
     watchlist,

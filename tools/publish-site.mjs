@@ -177,7 +177,7 @@ async function loadSourceDigest() {
 function archivePage(digests) {
   const latest = digests[0];
   const pageTitle = "Market Narrative | Pre-Market Intelligence Archive";
-  const pageDescription = "Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups.";
+  const pageDescription = "Source-led Indian pre-market intelligence archive for Nifty, Bank Nifty, global cues, sector impact, Asian market watch, source cards, technical risk levels, charts, and the public multibagger tracker.";
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -596,7 +596,7 @@ function archivePage(digests) {
     <section class="hero">
       <p class="eyebrow">Pre-Market Intelligence Archive</p>
       <h1>Market Narrative</h1>
-      <p>Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups.</p>
+      <p>Independent Indian pre-market intelligence for the cash open: global cues, Nifty and Bank Nifty context, sector impact, source cards, technical risk levels, and links into the public multibagger research tracker.</p>
     </section>
     <section class="summary-row" aria-label="Archive summary">
       <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
