@@ -441,17 +441,23 @@ await test("database schema includes all planned persistence tables", async () =
   assert.ok(schema.includes("trading_view_symbol VARCHAR"), "market_snapshots missing TradingView chart symbol");
 });
 
-await test("backend market snapshot contract carries quote regions, countries, and chart symbols", async () => {
+await test("backend market snapshot contract carries chart-refresh fields", async () => {
   const entity = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "marketdata", "MarketSnapshot.java"), "utf8");
   const dto = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestDto.java"), "utf8");
   const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "PublicDigestService.java"), "utf8");
-  for (const token of ["marketRegion", "country", "session", "tradingViewSymbol"]) {
+  const cache = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "config", "CacheConfig.java"), "utf8");
+  for (const token of ["marketRegion", "country", "session", "tradingViewSymbol", "capturedAt"]) {
     assert.ok(entity.includes(token), `entity missing ${token}`);
+  }
+  for (const token of ["marketRegion", "country", "session", "tradingViewSymbol", "previousClose", "dataQuality", "dataTimestamp", "ChartPointView", "chartPoints"]) {
     assert.ok(dto.includes(token), `DTO missing ${token}`);
   }
   assert.ok(service.includes("getMarketRegion()"));
   assert.ok(service.includes("getCountry()"));
   assert.ok(service.includes("getTradingViewSymbol()"));
+  assert.ok(service.includes("getCapturedAt()"));
+  assert.ok(service.includes("chartPoints(snapshot)"));
+  assert.ok(cache.includes("Duration.ofSeconds(45)"), "public digest cache must stay short enough for chart refresh");
 });
 
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
@@ -843,9 +849,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("refreshPublishedDigest('page-load')"));
   assert.ok(publicHtml.body.includes("setInterval(() => refreshPublishedDigest('background'), 60_000)"));
   assert.ok(publicHtml.body.includes("resolveDigestRefreshUrls"));
+  assert.ok(publicHtml.body.includes("apiDigestUrl"));
+  assert.ok(publicHtml.body.includes("/api/public/digest/"));
+  assert.ok(publicHtml.body.includes("adoptMarketSnapshotDigest"));
+  assert.ok(publicHtml.body.includes("digestHasLiveQuotes"));
   assert.ok(publicHtml.body.includes("window.location.protocol === 'file:'"));
   assert.ok(publicHtml.body.includes("'127.0.0.1'"));
-  assert.ok(publicHtml.body.includes("https://abheydeep.github.io/marketNews"));
+  assert.ok(publicHtml.body.includes("https://api.marketnarrative.in"));
+  assert.equal(publicHtml.body.includes("https://abheydeep.github.io/marketNews"), false);
   assert.ok(publicHtml.body.includes("shouldAdoptDigest"));
   assert.ok(publicHtml.body.includes("digestFreshnessTime"));
   assert.ok(publicHtml.body.includes("marketChartCanvas"));

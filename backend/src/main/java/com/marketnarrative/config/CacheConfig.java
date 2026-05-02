@@ -13,7 +13,7 @@ public class CacheConfig implements CachingConfigurer {
     @Bean
     RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
         RedisCacheConfiguration digestCache = RedisCacheConfiguration.defaultCacheConfig()
-            .entryTtl(Duration.ofMinutes(15));
+            .entryTtl(Duration.ofSeconds(45));
         return builder -> builder.withCacheConfiguration("publicDigest", digestCache);
     }
 }

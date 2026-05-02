@@ -118,4 +118,8 @@ public class MarketSnapshot {
     public String getTradingViewSymbol() {
         return tradingViewSymbol;
     }
+
+    public OffsetDateTime getCapturedAt() {
+        return capturedAt;
+    }
 }

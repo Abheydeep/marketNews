@@ -28,12 +28,23 @@ public record PublicDigestDto(
         String symbol,
         String name,
         double closeValue,
+        double previousClose,
         double changePercent,
+        String currency,
         String source,
         String marketRegion,
         String country,
         String session,
-        String tradingViewSymbol
+        String dataQuality,
+        OffsetDateTime dataTimestamp,
+        String tradingViewSymbol,
+        List<ChartPointView> chartPoints
+    ) implements Serializable {
+    }
+
+    public record ChartPointView(
+        OffsetDateTime time,
+        double close
     ) implements Serializable {
     }
 

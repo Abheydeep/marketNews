@@ -6,7 +6,7 @@ import { publicDigestPayload } from "./public-payload.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
-const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
+const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? process.env.PUBLIC_API_ORIGIN ?? "https://api.marketnarrative.in";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -18,6 +18,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative`;
   const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
   const pageOrigin = options.siteOrigin ?? siteOrigin;
+  const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
   const previewImageUrl = absoluteSiteUrl("/og-card.svg", siteOrigin);
@@ -4460,13 +4461,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
   <script>
     window.__DIGEST__ = ${JSON.stringify(clientDigest)};
-    ${includeStudio ? `window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};` : ""}
+    window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
     ${includeStudio ? `window.__MULTIBAGGER_STATE__ = ${JSON.stringify(publicMultibaggerState)};` : ""}
     window.__INITIAL_TAB__ = ${JSON.stringify(safeInitialTab)};
     window.__INCLUDE_STUDIO__ = ${JSON.stringify(includeStudio)};
     window.__REQUIRE_ADMIN_AUTH__ = ${JSON.stringify(requireAuth)};
     window.__ADMIN_AUTH_HASH__ = "80b6c184bff356be9b060287583d6c10afe1d425a98410dcd5bfd72e251c40f6";
-    window.__PUBLIC_SITE_BASE_URL__ = 'https://abheydeep.github.io/marketNews';
+    window.__PUBLIC_SITE_BASE_URL__ = ${JSON.stringify(publicSiteBaseUrl)};
 
     document.addEventListener('DOMContentLoaded', () => {
       if (window.__REQUIRE_ADMIN_AUTH__) {
@@ -4928,7 +4929,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             updateLiveClock('Checked for newer prices');
             return;
           }
-          window.__DIGEST__ = { ...window.__DIGEST__, ...digest };
+          window.__DIGEST__ = adoptMarketSnapshotDigest(digest, window.__DIGEST__);
           window.__PUBLISHED_QUOTES__ = digest.marketSnapshots;
           renderIndexBoard();
           drawOvernightChart();
@@ -4954,6 +4955,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function resolveDigestRefreshUrls() {
       const urls = [];
+      const apiUrl = apiDigestUrl();
+      if (apiUrl) {
+        urls.push(apiUrl);
+      }
       const publicUrl = publicDigestUrl();
       const localPreview = isLocalPreview();
       if (localPreview && publicUrl) {
@@ -4964,6 +4969,23 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         urls.push(publicUrl);
       }
       return [...new Set(urls.filter(Boolean))];
+    }
+
+    function adoptMarketSnapshotDigest(incomingDigest, currentDigest) {
+      return {
+        ...currentDigest,
+        generatedAt: incomingDigest.generatedAt ?? incomingDigest.publishedAt ?? currentDigest.generatedAt,
+        publishedAt: incomingDigest.publishedAt ?? currentDigest.publishedAt,
+        marketDataMode: incomingDigest.marketDataMode ?? currentDigest.marketDataMode,
+        marketSnapshots: incomingDigest.marketSnapshots
+      };
+    }
+
+    function apiDigestUrl() {
+      const base = String(window.MARKET_NARRATIVE_API_BASE || '').replace(/\\/$/, '');
+      const digestDate = window.__DIGEST__?.digestDate;
+      if (!base || !digestDate) return '';
+      return base + '/api/public/digest/' + encodeURIComponent(digestDate);
     }
 
     function isLocalPreview() {
@@ -5004,6 +5026,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     function shouldAdoptDigest(incomingDigest, currentDigest) {
       const incomingFreshness = digestFreshnessTime(incomingDigest);
       const currentFreshness = digestFreshnessTime(currentDigest);
+      if (!digestHasLiveQuotes(incomingDigest) && digestHasLiveQuotes(currentDigest)) {
+        return false;
+      }
       if (!Number.isFinite(currentFreshness)) {
         return true;
       }
@@ -5011,6 +5036,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         return false;
       }
       return incomingFreshness >= currentFreshness;
+    }
+
+    function digestHasLiveQuotes(digest) {
+      return (digest?.marketSnapshots ?? []).some((quote) => quote.dataQuality === 'live');
     }
 
     function digestFreshnessTime(digest) {

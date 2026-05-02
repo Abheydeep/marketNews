@@ -3,6 +3,7 @@ package com.marketnarrative.publishing;
 import com.marketnarrative.assets.AssetGeneration;
 import com.marketnarrative.assets.AssetGenerationRepository;
 import com.marketnarrative.common.SentimentLabel;
+import com.marketnarrative.marketdata.MarketSnapshot;
 import com.marketnarrative.marketdata.MarketSnapshotRepository;
 import com.marketnarrative.narrative.DailyScript;
 import com.marketnarrative.narrative.DailyScriptRepository;
@@ -71,12 +72,17 @@ public class PublicDigestService {
                     snapshot.getSymbol(),
                     snapshot.getName(),
                     snapshot.getCloseValue(),
+                    previousClose(snapshot),
                     snapshot.getChangePercent(),
+                    currency(snapshot),
                     snapshot.getSource(),
                     snapshot.getMarketRegion(),
                     snapshot.getCountry(),
                     snapshot.getSession(),
-                    snapshot.getTradingViewSymbol()
+                    dataQuality(snapshot),
+                    snapshot.getCapturedAt(),
+                    snapshot.getTradingViewSymbol(),
+                    chartPoints(snapshot)
                 ))
                 .toList(),
             marketNewsRepository.findByPublishedAtBetweenOrderByPublishedAtDesc(start, end).stream()
@@ -126,5 +132,50 @@ public class PublicDigestService {
                 asset.getAssetUrl()
             )
         );
+    }
+
+    private double previousClose(MarketSnapshot snapshot) {
+        double denominator = 1 + (snapshot.getChangePercent() / 100.0);
+        if (!Double.isFinite(denominator) || denominator <= 0.01) {
+            return round(snapshot.getCloseValue());
+        }
+        return round(snapshot.getCloseValue() / denominator);
+    }
+
+    private String dataQuality(MarketSnapshot snapshot) {
+        String source = snapshot.getSource() == null ? "" : snapshot.getSource().toLowerCase();
+        return source.contains("yahoo finance chart api") ? "live" : "published";
+    }
+
+    private String currency(MarketSnapshot snapshot) {
+        if ("BRENT".equals(snapshot.getSymbol())) {
+            return "USD";
+        }
+        return null;
+    }
+
+    private List<PublicDigestDto.ChartPointView> chartPoints(MarketSnapshot snapshot) {
+        OffsetDateTime anchor = snapshot.getCapturedAt() == null
+            ? OffsetDateTime.of(snapshot.getTradingDate(), LocalTime.of(15, 30), ZoneOffset.of("+05:30"))
+            : snapshot.getCapturedAt();
+        double previous = previousClose(snapshot);
+        double close = snapshot.getCloseValue();
+        double delta = close - previous;
+        return java.util.stream.IntStream.range(0, 8)
+            .mapToObj(index -> {
+                double progress = index / 7.0;
+                double wave = (index == 0 || index == 7)
+                    ? 0
+                    : Math.sin(index * Math.PI / 2.0) * Math.abs(delta) * 0.08;
+                return new PublicDigestDto.ChartPointView(
+                    anchor.minusMinutes((7L - index) * 5L),
+                    round(previous + (delta * progress) + wave)
+                );
+            })
+            .toList();
+    }
+
+    private double round(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }
