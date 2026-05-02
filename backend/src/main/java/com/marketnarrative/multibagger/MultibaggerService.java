@@ -72,6 +72,7 @@ public class MultibaggerService {
             ),
             publicHoldings,
             methodology(),
+            researchEvidence(),
             transactions(publicHoldings),
             monthlyReviews(),
             watchlist(),
@@ -218,6 +219,111 @@ public class MultibaggerService {
         );
     }
 
+    private ResearchEvidence researchEvidence() {
+        return new ResearchEvidence(
+            LocalDate.of(2026, 5, 2),
+            List.of(
+                new ResearchEvidenceItem(
+                    "10Y G-sec hurdle",
+                    "Economic Times reported India's 10-year benchmark government bond yield closed at 7.01% on Apr 30, 2026, after touching 7.06%. The model treats that as a higher hurdle rate for equity rerating.",
+                    "Economic Times",
+                    "https://economictimes.indiatimes.com/markets/bonds/g-sec-10-year-yield-tops-7-as-oil-soars/articleshow/130661336.cms?from=mdr"
+                ),
+                new ResearchEvidenceItem(
+                    "IT valuation reset",
+                    "Economic Times listed Nifty IT at 29,353.90 on Apr 30, 2026 with a 19.36 P/E, 6.13 P/B, and negative 1Y return. This is watchlist context, not a published IT-sector allocation call.",
+                    "Economic Times",
+                    "https://economictimes.indiatimes.com/markets/indices/nifty-it"
+                ),
+                new ResearchEvidenceItem(
+                    "Domestic savings base",
+                    "AMFI reported Indian mutual fund AUM of Rs 73.73 lakh crore as on Mar 31, 2026 and 20.83 crore retail-heavy equity, hybrid and solution-oriented folios.",
+                    "AMFI",
+                    "https://www.amfiindia.com/articles/indian-mutual"
+                ),
+                new ResearchEvidenceItem(
+                    "Bond access benchmark",
+                    "RBI Retail Direct widened direct access to government securities for individual investors, so the equity model is judged against a visible fixed-income alternative.",
+                    "Reserve Bank of India",
+                    "https://www.rbi.org.in/scripts/FS_PressRelease.aspx?prid=52548"
+                )
+            ),
+            List.of(
+                new HoldingEvidence(
+                    "KPEL",
+                    List.of(
+                        "K.P. Energy's Q3 FY26 total revenue was Rs 347.55 crore, up about 63% YoY, with PAT of Rs 41.35 crore, up 58% YoY.",
+                        "The company investor-presentation hub lists Q3 FY26 material for primary cross-check.",
+                        "The public thesis is execution-led renewable growth, not a generic green-energy story."
+                    ),
+                    "Operating cash flow, debtor days and project collections must confirm that revenue growth is converting into cash.",
+                    "KP Energy investor presentations",
+                    "https://kpenergy.in/Investor-Presentation"
+                ),
+                new HoldingEvidence(
+                    "DHABRIYA",
+                    List.of(
+                        "Dhabriya reported Q3 FY26 revenue of Rs 65.66 crore, up 19.6% YoY.",
+                        "Q3 FY26 EBITDA rose 56.5% YoY and PAT rose 100.5% YoY, showing margin-led operating leverage.",
+                        "9M FY26 PAT was up 72.4% YoY in the company release."
+                    ),
+                    "The next two quarters need to show that the margin band survives without inventory, debt or receivable stress.",
+                    "Dhabriya Q3/9M FY26 release",
+                    "https://www.polywood.org/wp-content/uploads/2020/12/Press-Release-Q3-9M-FY26.pdf"
+                ),
+                new HoldingEvidence(
+                    "PIGL",
+                    List.of(
+                        "Power & Instrumentation Gujarat reported Q3 FY26 total income of Rs 48.89 crore, up 43.2% YoY.",
+                        "Q3 FY26 PAT was Rs 3.57 crore, up 14.4% YoY but down 24.2% QoQ.",
+                        "The evidence supports capped sizing because revenue growth is ahead of profit growth."
+                    ),
+                    "Order wins must convert into better PAT margin and clean working-capital collection.",
+                    "PIGL Q3 FY26 summary",
+                    "https://www.kotakneo.com/financial-results/power-instrumentation-gujarat-share-price-q3fy2025-26-results/"
+                ),
+                new HoldingEvidence(
+                    "JNKINDIA",
+                    List.of(
+                        "JNK India reported Q3 FY26 revenue of Rs 2,062.3 million, up 113% YoY.",
+                        "Q3 FY26 PAT was Rs 180.2 million, up 535% YoY, from a depressed prior-year base.",
+                        "The company cited a total order book of Rs 17,611 million at the 9M FY26 mark."
+                    ),
+                    "Receivables and execution pace must stay controlled as order-book conversion enters reported earnings.",
+                    "JNK India Q3 FY26 summary",
+                    "https://www.icicidirect.com/research/equity/rapid-results/jnk-india-ltd"
+                ),
+                new HoldingEvidence(
+                    "DYCL",
+                    List.of(
+                        "Dynamic Cables reported Q3 FY26 revenue of Rs 29,876.77 lakh, up 19% YoY.",
+                        "Q3 FY26 PAT was Rs 2,242.27 lakh, up 42% YoY.",
+                        "The evidence fits a cleaner cable-cycle quality slot rather than a pure story stock."
+                    ),
+                    "Margins need to hold through commodity swings, receivable quality and capacity ramp-up.",
+                    "Dynamic Cables Q3 FY26 summary",
+                    "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"
+                ),
+                new HoldingEvidence(
+                    "TEMBO",
+                    List.of(
+                        "Tembo public announcements cited Q3 revenue near Rs 251 crore and an order book near Rs 1,484 crore.",
+                        "Screener's announcement list also shows NSE fine disclosure and large EGM approvals for borrowings, charges, investments and guarantees.",
+                        "The evidence supports optionality but also explains why the model caps the weight."
+                    ),
+                    "Cash-flow confirmation, governance cleanup and financing discipline are required before any higher-conviction role.",
+                    "Tembo public filings/announcements",
+                    "https://www.screener.in/company/TEMBO/"
+                )
+            ),
+            List.of(
+                "This evidence layer is dated context, not a trading signal or return promise.",
+                "The model avoids unverified percentile claims, unsourced ROE figures and short-term return claims.",
+                "Public data excludes demat-level positions, account values and unpublished admin review notes."
+            )
+        );
+    }
+
     private List<PublicTransaction> transactions(List<MultibaggerHolding> publicHoldings) {
         List<PublicTransaction> rows = new ArrayList<>();
         for (MultibaggerHolding holding : publicHoldings) {
@@ -266,12 +372,16 @@ public class MultibaggerService {
 
     private List<SourceReference> sources() {
         return List.of(
-            new SourceReference("KP Energy Q3 FY26 investor presentation", "https://kpenergy.in/kpedata/assets/uploads/Investor%20Presentation%20Q3%20FY26%20Performance.pdf"),
+            new SourceReference("KP Energy Q3 FY26 investor presentation", "https://kpenergy.in/Investor-Presentation"),
             new SourceReference("Dhabriya Polywood Q3/9M FY26 release", "https://www.polywood.org/wp-content/uploads/2020/12/Press-Release-Q3-9M-FY26.pdf"),
-            new SourceReference("PIGL Q3 FY26 and order-book summary", "https://www.whalesbook.com/news/English/industrial-goodsservices/Power-and-Instrumentation-Q3-FY26-Revenue-Surges-43percent-Bags-indian-rupee124-Cr-Orders/69999ca0730b6847a5176b11"),
+            new SourceReference("PIGL Q3 FY26 summary", "https://www.kotakneo.com/financial-results/power-instrumentation-gujarat-share-price-q3fy2025-26-results/"),
             new SourceReference("JNK India Q3 FY26 result summary", "https://www.icicidirect.com/research/equity/rapid-results/jnk-india-ltd"),
             new SourceReference("Dynamic Cables Q3 FY26 result summary", "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"),
-            new SourceReference("Tembo Global public filings and result material", "https://www.screener.in/company/TEMBO/")
+            new SourceReference("Tembo Global public filings and result material", "https://www.screener.in/company/TEMBO/"),
+            new SourceReference("Economic Times 10Y G-sec yield note", "https://economictimes.indiatimes.com/markets/bonds/g-sec-10-year-yield-tops-7-as-oil-soars/articleshow/130661336.cms?from=mdr"),
+            new SourceReference("Economic Times Nifty IT metrics", "https://economictimes.indiatimes.com/markets/indices/nifty-it"),
+            new SourceReference("AMFI mutual fund industry data", "https://www.amfiindia.com/articles/indian-mutual"),
+            new SourceReference("RBI Retail Direct release", "https://www.rbi.org.in/scripts/FS_PressRelease.aspx?prid=52548")
         );
     }
 

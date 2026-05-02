@@ -14,6 +14,7 @@ public record MultibaggerState(
     PerformanceSnapshot performance,
     List<MultibaggerHolding> holdings,
     MultibaggerMethodology methodology,
+    ResearchEvidence researchEvidence,
     List<PublicTransaction> transactions,
     List<PublicMonthlyReview> monthlyReviews,
     List<WatchlistItem> watchlist,

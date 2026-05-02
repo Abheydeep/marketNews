@@ -186,6 +186,15 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Profitability")));
   assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Valuation")));
   assert.ok(state.methodology?.replacementLogic.includes("replaced"));
+  assert.equal(state.researchEvidence?.asOf, "2026-05-02");
+  assert.ok(state.researchEvidence?.marketRegime?.some((item) => item.label === "10Y G-sec hurdle"));
+  assert.ok(state.researchEvidence?.marketRegime?.some((item) => item.summary.includes("7.01%")));
+  assert.ok(state.researchEvidence?.marketRegime?.some((item) => item.summary.includes("Rs 73.73 lakh crore")));
+  assert.deepEqual(
+    state.researchEvidence?.holdingEvidence?.map((item) => item.ticker),
+    ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
+  );
+  assert.ok(state.researchEvidence?.holdingEvidence?.every((item) => item.evidence.length >= 2 && item.needsProof));
   for (const holding of state.holdings) {
     for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
       assert.ok(holding[field], `${holding.ticker} missing ${field}`);
@@ -206,6 +215,9 @@ await test("multibagger public model is concentrated and sanitized", () => {
   }
   const publicJson = JSON.stringify(state).toLowerCase();
   assert.equal(publicJson.includes("server quote snapshot"), false, "fallback must not masquerade as a server quote snapshot");
+  assert.equal(publicJson.includes("60% of it below 33rd percentile"), false, "unverified IT percentile claim leaked");
+  assert.equal(publicJson.includes("45.4%"), false, "unsourced KPEL ROE claim leaked");
+  assert.equal(publicJson.includes("buy now"), false, "stock-advice phrasing leaked");
   for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
     assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
   }
@@ -229,9 +241,20 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Research Method"));
   assert.ok(html.includes("Research Method Snapshot"));
   assert.ok(html.includes("How the six-stock model earns its slots."));
+  assert.ok(html.includes("Market Regime Evidence"));
+  assert.ok(html.includes("10Y G-sec hurdle"));
+  assert.ok(html.includes("7.01%"));
+  assert.ok(html.includes("Rs 73.73 lakh crore"));
+  assert.ok(html.includes("RBI Retail Direct"));
+  assert.ok(html.includes("Verified Evidence Ledger"));
+  assert.ok(html.includes("Needs proof"));
+  for (const ticker of ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]) {
+    assert.ok(html.includes(`<h3>${ticker}</h3>`), `evidence ledger missing ${ticker}`);
+  }
   assert.ok(html.includes("<details class=\"panel method-panel\" open>"));
   assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("<details class=\"panel\" open>"));
   assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("<details class=\"panel method-panel\" open>"));
+  assert.ok(html.indexOf("Market Regime Evidence") < html.indexOf("<details class=\"panel\" open>"));
   assert.ok(html.includes("What this is"));
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
@@ -257,7 +280,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
   assert.ok(html.includes("/api/public/multibagger/state"));
   assert.ok(html.includes("<details class=\"panel\" open>"));
-  assert.ok((html.match(/<details class="panel"/g) ?? []).length >= 7);
+  assert.ok((html.match(/<details class="panel"/g) ?? []).length >= 8);
+  assert.equal(html.includes("60% of IT below 33rd percentile"), false);
+  assert.equal(html.includes("45.4%"), false);
+  assert.equal(html.toLowerCase().includes("buy now"), false);
 });
 
 await test("public briefing copy follows editorial prompt guardrails", async () => {
@@ -636,10 +662,13 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(adminController.includes('@PostMapping("/reviews/{id}/publish")'));
   assert.ok(adminController.includes("hasAuthority('admin:write')"));
   assert.ok(state.includes("MultibaggerMethodology methodology"));
+  assert.ok(state.includes("ResearchEvidence researchEvidence"));
   for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
     assert.ok(holding.includes(field), `backend holding missing ${field}`);
   }
   assert.ok(service.includes("methodology()"));
+  assert.ok(service.includes("researchEvidence()"));
+  assert.ok(service.includes("10Y G-sec hurdle"));
   assert.ok(service.includes("Replacement discipline"));
   assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
   assert.ok(service.includes("MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27)"));

@@ -133,7 +133,7 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i, /Research Method Snapshot/i, /Research Method/i, /Profitability|Valuation|replacement/i],
+    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
     [/Run Monthly Review/i, /Admin review/i, ...offTopicAuditPatterns]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
@@ -141,7 +141,11 @@ await group("Public user surface", async () => {
     assert.match(serialized, /KPEL/);
     assert.ok(payload.methodology?.definition, "methodology missing");
     assert.ok(payload.methodology?.evaluationCategories?.some((item) => /Profitability|Valuation/i.test(item)), "methodology categories missing");
+    assert.equal(payload.researchEvidence?.asOf, "2026-05-02", "research evidence date missing");
+    assert.ok(payload.researchEvidence?.marketRegime?.some((item) => /10Y G-sec hurdle/i.test(item.label)), "market regime evidence missing");
+    assert.ok(payload.researchEvidence?.holdingEvidence?.length === 6, "holding evidence ledger missing");
     assert.doesNotMatch(serialized, /broker|account value|quantity|raw OCR/i);
+    assert.doesNotMatch(serialized, /60% of IT below 33rd percentile|45\.4%|buy now/i);
     assert.equal(payload.modelEntryDate, "2026-04-27");
     assert.equal(payload.performance?.modelEntryDate, "2026-04-27");
     assert.ok(Array.isArray(payload.holdings), "holdings missing");

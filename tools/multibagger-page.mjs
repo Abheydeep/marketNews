@@ -408,7 +408,8 @@ export function multibaggerPage(state = multibaggerState()) {
       gap: 12px;
     }
 
-    .method-snapshot {
+    .method-snapshot,
+    .regime-snapshot {
       border: 1px solid rgba(34, 211, 238, 0.26);
       border-radius: 10px;
       background: rgba(2, 6, 23, 0.42);
@@ -416,7 +417,12 @@ export function multibaggerPage(state = multibaggerState()) {
       padding: 17px;
     }
 
-    .method-snapshot-head {
+    .regime-snapshot {
+      border-color: rgba(52, 211, 153, 0.24);
+    }
+
+    .method-snapshot-head,
+    .regime-snapshot-head {
       align-items: end;
       display: flex;
       gap: 14px;
@@ -425,7 +431,10 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .method-snapshot-head span,
-    .method-pill span {
+    .method-pill span,
+    .regime-snapshot-head span,
+    .regime-pill span,
+    .evidence-card span {
       color: var(--cyan);
       display: block;
       font-size: 11px;
@@ -434,31 +443,62 @@ export function multibaggerPage(state = multibaggerState()) {
       text-transform: uppercase;
     }
 
-    .method-snapshot-head strong {
+    .regime-snapshot-head span,
+    .regime-pill span {
+      color: var(--green);
+    }
+
+    .method-snapshot-head strong,
+    .regime-snapshot-head strong {
       color: #fff;
       font-size: 17px;
       line-height: 1.35;
       text-align: right;
     }
 
-    .method-snapshot-grid {
+    .method-snapshot-grid,
+    .regime-snapshot-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .method-pill {
+    .method-snapshot-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .method-pill,
+    .regime-pill {
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
       background: rgba(15, 23, 42, 0.56);
       padding: 13px;
     }
 
-    .method-pill p {
+    .method-pill p,
+    .regime-pill p,
+    .evidence-card p,
+    .evidence-card li {
       color: #d7e0ee;
       font-size: 14px;
       line-height: 1.55;
       margin: 7px 0 0;
+    }
+
+    .regime-pill a,
+    .evidence-card a {
+      color: #a7f3d0;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      margin-top: 10px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .evidence-card ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
     }
 
     .mini-card {
@@ -513,16 +553,19 @@ export function multibaggerPage(state = multibaggerState()) {
       .summary-grid,
       .return-strip,
       .method-snapshot-grid,
+      .regime-snapshot-grid,
       .cards {
         grid-template-columns: 1fr;
       }
 
-      .method-snapshot-head {
+      .method-snapshot-head,
+      .regime-snapshot-head {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .method-snapshot-head strong {
+      .method-snapshot-head strong,
+      .regime-snapshot-head strong {
         text-align: left;
       }
     }
@@ -615,6 +658,21 @@ export function multibaggerPage(state = multibaggerState()) {
       </div>
     </section>
 
+    <section class="regime-snapshot" aria-labelledby="marketRegimeEvidenceTitle">
+      <div class="regime-snapshot-head">
+        <span>Market Regime Evidence</span>
+        <strong id="marketRegimeEvidenceTitle">Dated source context as of ${escapeHtml(state.researchEvidence?.asOf ?? "2026-05-02")}.</strong>
+      </div>
+      <div class="regime-snapshot-grid">
+        ${(state.researchEvidence?.marketRegime ?? []).map((item) => `
+        <article class="regime-pill">
+          <span>${escapeHtml(item.label)}</span>
+          <p>${escapeHtml(item.summary)}</p>
+          <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
+        </article>`).join("")}
+      </div>
+    </section>
+
     <details class="panel" open>
       <summary>
         <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
@@ -661,6 +719,28 @@ export function multibaggerPage(state = multibaggerState()) {
           </table>
         </div>
         <p class="note" style="margin-top:12px;">What this is: a public educational research tracker with transparent rules. What this is not: stock advice, guaranteed return guidance, or a demat statement mirror.</p>
+      </div>
+    </details>
+
+    <details class="panel evidence-panel">
+      <summary>
+        <span class="summary-title"><strong>Verified Evidence Ledger</strong><span>Dated facts supporting each model slot, plus the proof still needed.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="cards">
+          ${(state.researchEvidence?.holdingEvidence ?? []).map((item) => `
+          <article class="mini-card evidence-card">
+            <h3>${escapeHtml(item.ticker)}</h3>
+            <span>Verified Evidence</span>
+            <ul>
+              ${(item.evidence ?? []).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+            </ul>
+            <p><strong>Needs proof:</strong> ${escapeHtml(item.needsProof)}</p>
+            <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
+          </article>`).join("")}
+        </div>
+        <p class="note" style="margin-top:12px;">${escapeHtml((state.researchEvidence?.researchBoundaries ?? [])[0] ?? "This evidence layer is dated context, not a trading signal or return promise.")}</p>
       </div>
     </details>
 
