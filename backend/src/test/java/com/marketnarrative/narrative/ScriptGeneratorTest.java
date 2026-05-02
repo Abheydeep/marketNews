@@ -24,6 +24,10 @@ class ScriptGeneratorTest {
                 5069.53,
                 -0.82,
                 "Mock",
+                "US Market",
+                "United States",
+                "new-york",
+                "SP:SPX",
                 OffsetDateTime.now()
             )),
             List.of(new NarrativeTheme(
