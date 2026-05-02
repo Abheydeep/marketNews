@@ -44,6 +44,14 @@ npm test
 
 This runs seed validation, risk-reward math tests, scanner acceptance/rejection tests, sentiment clustering tests, digest/script/SEO contract checks, schema checks, and a no-install public/admin demo flow.
 
+Before sharing production, run the no-silly-mistakes gate:
+
+```bash
+npm run prod:qa
+```
+
+It checks public/admin/trade domains, deployment manifests, logos, stale chart links, API health, auth boundaries, browser console errors, and mobile rendering. Treat any failure as a launch blocker.
+
 ## No-Install Demo
 
 You can run a working demo server with only Node:

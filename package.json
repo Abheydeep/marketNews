@@ -16,6 +16,8 @@
     "site:qa": "node tools/full-site-qa.mjs",
     "test:deploy": "node tools/predeploy-verify.mjs",
     "prod:smoke": "node tools/production-smoke.mjs",
+    "prod:qa": "node tools/production-qa-gate.mjs",
+    "prod:qa:strict": "RUN_AUTHENTICATED_QA=true REQUIRE_AUTHENTICATED_QA=true node tools/production-qa-gate.mjs",
     "vercel:build": "node tools/vercel-build.mjs",
     "vercel:build:admin": "MARKET_NARRATIVE_DEPLOY_TARGET=admin node tools/vercel-build.mjs",
     "vercel:build:public": "node tools/vercel-build-public.mjs",

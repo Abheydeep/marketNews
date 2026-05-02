@@ -520,6 +520,8 @@ await test("frontend workspace separates public portal, admin studio, and shared
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
   assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
+  assert.equal(rootPackage.scripts["prod:qa"], "node tools/production-qa-gate.mjs");
+  assert.ok(rootPackage.scripts["prod:qa:strict"].includes("REQUIRE_AUTHENTICATED_QA=true"));
   assert.ok(rootPackage.scripts["vercel:build:admin"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=admin"));
   assert.ok(rootPackage.scripts["vercel:build:trade"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=trade"));
 
@@ -561,8 +563,10 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
   assert.equal(vercelConfig.outputDirectory, "out/vercel");
   const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
+  const productionQaGate = await readFile(join(rootDir, "tools", "production-qa-gate.mjs"), "utf8");
   const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");
   const architectureDoc = await readFile(join(rootDir, "docs", "production-architecture.md"), "utf8");
+  const testingDoc = await readFile(join(rootDir, "docs", "testing.md"), "utf8");
 
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
@@ -606,6 +610,23 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(productionSmoke.includes("Project Components Map"));
   assert.ok(productionSmoke.includes("deployment-manifest.json"));
   assert.ok(productionSmoke.includes('payload.target, "admin"'));
+  for (const required of [
+    "Open TradingView Chart",
+    "Open Yahoo Chart",
+    "trade-mn-signal",
+    "lucide-lock-keyhole",
+    "Auth API:",
+    "api.marketnarrative.in",
+    "actuator/health",
+    "trade-api.marketnarrative.in",
+    "RUN_AUTHENTICATED_QA",
+    "Desktop and mobile smoke",
+    "Launch remains BLOCKED"
+  ]) {
+    assert.ok(productionQaGate.includes(required), `production QA gate missing ${required}`);
+  }
+  assert.ok(testingDoc.includes("npm run prod:qa"));
+  assert.ok(testingDoc.includes("route-by-route matrix"));
   const predeployVerify = await readFile(join(rootDir, "tools", "predeploy-verify.mjs"), "utf8");
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(predeployVerify.includes("SKIP_ARCHIVE_WRITE"));

@@ -177,6 +177,23 @@ After VPS, Vercel, and DNS are configured, run:
 npm run prod:smoke
 ```
 
+For the no-silly-mistakes release gate, run:
+
+```bash
+npm run prod:qa
+```
+
+This prints a route-by-route matrix for public, admin, trade, APIs, logos, manifests, stale chart-provider copy, CORS, browser console errors, and mobile rendering. A failed row blocks sharing the site.
+
+Before using the trading cockpit for real workflows, run the strict authenticated gate from a trusted shell:
+
+```bash
+TRADING_ADMIN_PASSWORD='<production password>' \
+RUN_AUTHENTICATED_QA=true \
+REQUIRE_AUTHENTICATED_QA=true \
+npm run prod:qa
+```
+
 Default unauthenticated smoke checks:
 
 - `https://marketnarrative.in` loads.
