@@ -20,7 +20,7 @@ Open a PR to `main` after the verification commands pass.
 
 ## Vercel Projects
 
-Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `out/vercel`; the deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`.
+Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `out/vercel`; the deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`. The build script can also infer the target from unmistakable Vercel project/deployment URLs such as `market-news-admin-studio` or `admin.marketnarrative.in`, but the explicit env var remains the preferred production setting.
 
 Do not attach `admin.marketnarrative.in` to the public project, and do not attach `marketnarrative.in` or `www.marketnarrative.in` to the admin project. If a deployment summary lists repository source files like `/apps/...` as static assets, the build settings are wrong and the project is publishing the repository root.
 

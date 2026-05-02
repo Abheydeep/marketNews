@@ -6344,7 +6344,7 @@ function studioMetricCards(digest) {
   const inactiveAudit = setupAuditItems(digest).filter((item) => item.status !== "ACTIVE");
   const sourceCount = new Set(digest.news.map((article) => article.sourceName)).size;
   const thumbnailCount = digest.news.filter((article) => article.thumbnail?.alt).length;
-  const sections = parseScriptSections(digest.teleprompterScript);
+  const sections = parseScriptSections(digestScript(digest));
   const setupLabel = setup ? `${setup.symbol} ${setup.riskReward}R` : inactiveAudit.length ? `${inactiveAudit.length} checked` : "Setup blocked";
   const setupHint = setup ? "Scanner-approved trade plan is available." : setupAuditSummary(digest) || "Waiting for fresh levels.";
   return [
@@ -6377,7 +6377,7 @@ function studioWorkflowHtml(digest) {
     ["01", "Ingestion", `${digest.marketSnapshots.length} market snapshots and ${digest.news.length} source articles normalized.`, "ok"],
     ["02", "Clustering", `${digest.themes.length} narrative themes ranked by sentiment and entity weight.`, "ok"],
     ["03", "Scanner", auditLine, setup ? "ok" : "blocked"],
-    ["04", "Script", `${parseScriptSections(digest.teleprompterScript).length} recording beats drafted from the morning source stack.`, "ok"],
+    ["04", "Script", `${parseScriptSections(digestScript(digest)).length} recording beats drafted from the morning source stack.`, "ok"],
     ["05", "Asset", `${digest.asset.palette} prompt package with ${digest.asset.controlNetMode}.`, "ok"],
     ["06", "Publish", `${digest.status || "DRAFT"} briefing with NewsArticle schema and source links.`, digest.status === "PUBLISHED" ? "ok" : "warn"]
   ];
@@ -6476,7 +6476,7 @@ function weightedSourceArticles(articles) {
 function publishingChecklistHtml(digest) {
   const hasSources = digest.news.every((article) => article.sourceUrl);
   const hasThumbnails = digest.news.every((article) => article.thumbnail?.alt);
-  const hasDisclaimer = digest.teleprompterScript.includes("not investment advice");
+  const hasDisclaimer = digestScript(digest).includes("not investment advice");
   const setup = niftySetup(digest);
   const items = [
     ["Source attribution", hasSources, `${digest.news.length} articles retain publisher names and outbound links.`],
@@ -6529,7 +6529,7 @@ function assetVideoScenesHtml(video) {
 }
 
 function scriptSectionCardsHtml(digest) {
-  return parseScriptSections(digest.teleprompterScript)
+  return parseScriptSections(digestScript(digest))
     .map((section) => `
       <article class="script-section-card">
         <strong>${escapeHtml(section.title)}</strong>
@@ -6537,6 +6537,10 @@ function scriptSectionCardsHtml(digest) {
       </article>
     `)
     .join("");
+}
+
+function digestScript(digest) {
+  return String(digest.reelScript || digest.teleprompterScript || digest.onePageSummary || "");
 }
 
 function parseScriptSections(script) {
@@ -6679,7 +6683,7 @@ function auditStatusLabel(status) {
 }
 
 function teleprompterHtml(digest) {
-  const lines = digest.teleprompterScript
+  const lines = digestScript(digest)
     .replaceAll("[OPENING]", "")
     .replaceAll("[GLOBAL CUES]", "")
     .replaceAll("[NARRATIVE THEMES]", "")

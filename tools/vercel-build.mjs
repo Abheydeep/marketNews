@@ -6,15 +6,18 @@ import { fileURLToPath } from "node:url";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const outputDir = join(rootDir, "out", "vercel");
 const explicitTarget = process.env.MARKET_NARRATIVE_DEPLOY_TARGET;
+const inferredTarget = explicitTarget ? null : inferVercelTarget();
 
-if (process.env.VERCEL === "1" && !explicitTarget) {
+if (process.env.VERCEL === "1" && !explicitTarget && !inferredTarget) {
   console.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
   console.error("Set it to one of: public, admin, trade.");
+  console.error("Or use a Vercel project/deployment URL that clearly includes public, admin, or trade.");
   console.error("This prevents admin.marketnarrative.in from accidentally serving the public site.");
+  console.error(`Vercel target signals: ${vercelTargetSignals().join(", ") || "none"}`);
   process.exit(1);
 }
 
-const target = normalizeTarget(explicitTarget ?? "public");
+const target = normalizeTarget(explicitTarget ?? inferredTarget ?? "public");
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
@@ -42,6 +45,33 @@ if (target === "public") {
 
 function normalizeTarget(value) {
   return String(value).trim().toLowerCase();
+}
+
+function inferVercelTarget() {
+  const signals = vercelTargetSignals();
+  for (const signal of signals) {
+    if (/(^|[^a-z])admin([^a-z]|$)|admin-studio|market-news-admin/.test(signal)) {
+      return "admin";
+    }
+    if (/(^|[^a-z])trade([^a-z]|$)|trading|market-news-trade/.test(signal)) {
+      return "trade";
+    }
+    if (/(^|[^a-z])public([^a-z]|$)|marketnarrative-public|market-news-public|^marketnarrative\.in$|^www\.marketnarrative\.in$/.test(signal)) {
+      return "public";
+    }
+  }
+  return null;
+}
+
+function vercelTargetSignals() {
+  return [
+    process.env.VERCEL_PROJECT_NAME,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_BRANCH_URL,
+    process.env.VERCEL_URL
+  ]
+    .filter(Boolean)
+    .map((value) => String(value).trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, ""));
 }
 
 async function copyOutput(sourceDir, options = {}) {

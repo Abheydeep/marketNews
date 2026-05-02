@@ -571,6 +571,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel"));
+  assert.ok(buildScript.includes("inferVercelTarget"));
+  assert.ok(buildScript.includes("VERCEL_PROJECT_PRODUCTION_URL"));
+  assert.ok(buildScript.includes("market-news-admin"));
   assert.ok(buildScript.includes("deployment-manifest.json"));
   assert.ok(buildScript.includes('"public"'));
   assert.ok(buildScript.includes('"admin"'));
