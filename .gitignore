@@ -17,3 +17,4 @@ __pycache__/
 .pycache/
 .pytest_cache/
 *.tsbuildinfo
+.vercel
