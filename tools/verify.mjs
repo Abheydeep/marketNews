@@ -237,6 +237,8 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Model P&L"));
   assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
+  assert.ok(html.includes("Expandable portfolio research modules"));
+  assert.ok(html.includes("module-grid"));
   assert.ok(html.includes("Portfolio At A Glance"));
   assert.ok(html.includes("allocation-grid"));
   assert.ok(html.includes("allocation-tile"));
@@ -1073,6 +1075,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
+  assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("allocation-grid"));
   assert.ok(multibaggerHtml.body.includes("Research Framework"));

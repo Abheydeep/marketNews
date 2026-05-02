@@ -263,13 +263,46 @@ export function multibaggerPage(state = multibaggerState()) {
       margin: 0 0 24px;
     }
 
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 22px 0 0;
+    }
+
     details.panel {
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 8px;
       background: var(--panel);
-      margin: 14px 0;
+      margin: 0;
+      min-height: 190px;
       overflow: hidden;
+      position: relative;
       box-shadow: 0 20px 70px rgba(0, 0, 0, 0.20);
+      isolation: isolate;
+    }
+
+    .module-grid details.panel[open] {
+      grid-column: 1 / -1;
+      min-height: 0;
+    }
+
+    .module-grid details.panel:not([open])::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 46%;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.24), rgba(52, 211, 153, 0.14));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .module-grid details.panel:nth-of-type(3n+2):not([open])::before {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.24), rgba(251, 191, 36, 0.14));
+    }
+
+    .module-grid details.panel:nth-of-type(3n):not([open])::before {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.20), rgba(34, 211, 238, 0.14));
     }
 
     details.panel summary {
@@ -280,6 +313,17 @@ export function multibaggerPage(state = multibaggerState()) {
       cursor: pointer;
       padding: 18px 20px;
       list-style: none;
+    }
+
+    .module-grid details.panel:not([open]) summary {
+      align-items: flex-start;
+      flex-direction: column;
+      min-height: 190px;
+      padding: 22px;
+    }
+
+    .module-grid details.panel[open] summary {
+      min-height: 0;
     }
 
     details.panel summary::-webkit-details-marker { display: none; }
@@ -293,15 +337,31 @@ export function multibaggerPage(state = multibaggerState()) {
       font-size: 18px;
     }
 
+    .module-grid details.panel:not([open]) .summary-title strong {
+      font-size: 23px;
+      line-height: 1.1;
+    }
+
     .summary-title span {
       color: var(--muted);
       font-size: 13px;
+    }
+
+    .module-grid details.panel:not([open]) .summary-title span {
+      font-size: 14px;
+      line-height: 1.45;
     }
 
     .chev {
       color: var(--cyan);
       font-size: 22px;
       font-weight: 900;
+    }
+
+    .module-grid details.panel:not([open]) .chev {
+      align-self: flex-end;
+      font-size: 30px;
+      line-height: 1;
     }
 
     details[open] .chev { transform: rotate(45deg); }
@@ -591,6 +651,7 @@ export function multibaggerPage(state = multibaggerState()) {
       .hero,
       .summary-grid,
       .return-strip,
+      .module-grid,
       .allocation-grid,
       .method-snapshot-grid,
       .regime-snapshot-grid,
@@ -628,6 +689,11 @@ export function multibaggerPage(state = multibaggerState()) {
 
       details.panel summary {
         padding: 16px;
+      }
+
+      .module-grid details.panel:not([open]) summary {
+        min-height: 160px;
+        padding: 18px;
       }
 
       .panel-body {
@@ -673,6 +739,7 @@ export function multibaggerPage(state = multibaggerState()) {
     <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(formatDateTime(state.updatedAt))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
 
+    <section class="module-grid" aria-label="Expandable portfolio research modules">
     <details class="panel research-framework-panel" open>
       <summary>
         <span class="summary-title"><strong>Research Framework</strong><span>Method snapshot and dated market-regime evidence in one collapsible section.</span></span>
@@ -902,6 +969,7 @@ export function multibaggerPage(state = multibaggerState()) {
         </div>
       </div>
     </details>
+    </section>
   </main>
 
   <footer class="shell">
