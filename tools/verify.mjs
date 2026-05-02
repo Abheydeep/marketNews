@@ -751,6 +751,7 @@ await test("Render blueprint provisions real API and trade API backends", async 
     join(rootDir, "backend", "src", "main", "resources", "META-INF", "spring", "org.springframework.boot.env.EnvironmentPostProcessor"),
     "utf8"
   );
+  const normalizerSpringFactories = await readFile(join(rootDir, "backend", "src", "main", "resources", "META-INF", "spring.factories"), "utf8");
   const renderDoc = await readFile(join(rootDir, "docs", "render-deployment.md"), "utf8");
 
   for (const required of [
@@ -784,6 +785,8 @@ await test("Render blueprint provisions real API and trade API backends", async 
   assert.ok(databaseNormalizer.includes("DATABASE_USERNAME"));
   assert.ok(databaseNormalizer.includes("DATABASE_PASSWORD"));
   assert.ok(normalizerRegistration.includes("DatabaseUrlEnvironmentPostProcessor"));
+  assert.ok(normalizerSpringFactories.includes("org.springframework.boot.env.EnvironmentPostProcessor"));
+  assert.ok(normalizerSpringFactories.includes("DatabaseUrlEnvironmentPostProcessor"));
   assert.ok(renderDoc.includes("Render Backend Deployment"));
   assert.ok(renderDoc.includes("Free web services can cold-start"));
   assert.ok(renderDoc.includes("Free Postgres expires after 30 days"));
