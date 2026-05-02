@@ -408,6 +408,59 @@ export function multibaggerPage(state = multibaggerState()) {
       gap: 12px;
     }
 
+    .method-snapshot {
+      border: 1px solid rgba(34, 211, 238, 0.26);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.42);
+      margin: 0 0 18px;
+      padding: 17px;
+    }
+
+    .method-snapshot-head {
+      align-items: end;
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      margin: 0 0 12px;
+    }
+
+    .method-snapshot-head span,
+    .method-pill span {
+      color: var(--cyan);
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .method-snapshot-head strong {
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    .method-snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .method-pill {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.56);
+      padding: 13px;
+    }
+
+    .method-pill p {
+      color: #d7e0ee;
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 7px 0 0;
+    }
+
     .mini-card {
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
@@ -459,8 +512,18 @@ export function multibaggerPage(state = multibaggerState()) {
       .hero,
       .summary-grid,
       .return-strip,
+      .method-snapshot-grid,
       .cards {
         grid-template-columns: 1fr;
+      }
+
+      .method-snapshot-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .method-snapshot-head strong {
+        text-align: left;
       }
     }
 
@@ -531,6 +594,27 @@ export function multibaggerPage(state = multibaggerState()) {
     <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(formatDateTime(state.updatedAt))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
 
+    <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
+      <div class="method-snapshot-head">
+        <span>Research Method Snapshot</span>
+        <strong id="researchMethodSnapshotTitle">How the six-stock model earns its slots.</strong>
+      </div>
+      <div class="method-snapshot-grid">
+        <article class="method-pill">
+          <span>Definition</span>
+          <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
+        </article>
+        <article class="method-pill">
+          <span>Evaluation</span>
+          <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
+        </article>
+        <article class="method-pill">
+          <span>Replacement</span>
+          <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
+        </article>
+      </div>
+    </section>
+
     <details class="panel" open>
       <summary>
         <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
@@ -548,7 +632,7 @@ export function multibaggerPage(state = multibaggerState()) {
       </div>
     </details>
 
-    <details class="panel">
+    <details class="panel method-panel" open>
       <summary>
         <span class="summary-title"><strong>Research Method</strong><span>How the model defines and evaluates a multibagger candidate.</span></span>
         <span class="chev">+</span>
@@ -1214,6 +1298,17 @@ function formatDateTime(value) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(new Date(value));
+}
+
+function methodologyEvaluationSummary(methodology) {
+  const categories = methodology?.evaluationCategories ?? [];
+  const labels = categories
+    .slice(0, 5)
+    .map((item) => String(item).split(":")[0].trim())
+    .filter(Boolean);
+  return labels.length > 0
+    ? labels.join(", ")
+    : "Profitability, valuation, growth catalysts, cash conversion, and capital structure.";
 }
 
 function escapeHtml(value) {

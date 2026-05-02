@@ -227,6 +227,11 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
   assert.ok(html.includes("Portfolio At A Glance"));
   assert.ok(html.includes("Research Method"));
+  assert.ok(html.includes("Research Method Snapshot"));
+  assert.ok(html.includes("How the six-stock model earns its slots."));
+  assert.ok(html.includes("<details class=\"panel method-panel\" open>"));
+  assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("<details class=\"panel\" open>"));
+  assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("<details class=\"panel method-panel\" open>"));
   assert.ok(html.includes("What this is"));
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
@@ -1036,6 +1041,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("Research Method"));
+  assert.ok(multibaggerHtml.body.includes("Research Method Snapshot"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel method-panel\" open>"));
   assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
   assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));
 
