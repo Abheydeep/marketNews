@@ -7,8 +7,8 @@ const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketna
 
 export function multibaggerPage(state = multibaggerState()) {
   const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
-  const pageTitle = "Market Narrative | 5x Multibagger Portfolio";
-  const pageDescription = "Public research tracker for Abhey's concentrated six-stock multibagger model, monthly review discipline, buy/sell record, watchlist, and source trail.";
+  const pageTitle = "Market Narrative | Multibagger Model Tracker";
+  const pageDescription = "A public Market Narrative research model tracking six high-conviction Indian equities, allocation discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
   const previewImageUrl = `${siteOrigin}/og-card.svg`;
   return `<!DOCTYPE html>
@@ -124,6 +124,12 @@ export function multibaggerPage(state = multibaggerState()) {
       padding: 9px 12px;
       font-size: 13px;
       font-weight: 850;
+    }
+
+    .nav-link.active {
+      color: var(--ink);
+      border-color: rgba(34, 211, 238, 0.45);
+      background: rgba(34, 211, 238, 0.10);
     }
 
     .hero {
@@ -492,10 +498,10 @@ export function multibaggerPage(state = multibaggerState()) {
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
-        <a class="brand" href="../">${brandMarkHtml()}<span>Market Narrative</span></a>
+        <a class="brand" href="${escapeHtml(siteOrigin)}/">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="nav-actions">
-          <a class="nav-link" href="../">Briefings</a>
-          <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/multibagger/">Admin review</a>
+          <a class="nav-link" href="${escapeHtml(siteOrigin)}/">Briefing archive</a>
+          <span class="nav-link active" aria-current="page">Model tracker</span>
         </div>
       </div>
     </div>
@@ -504,9 +510,9 @@ export function multibaggerPage(state = multibaggerState()) {
   <main class="shell">
     <section class="hero">
       <div>
-        <p class="eyebrow">Public model tracker</p>
-        <h1>5x Multibagger Portfolio</h1>
-        <p>A sanitized public record of the concentrated six-stock model, monthly keep-or-replace decisions, and the evidence rules used to avoid turning a watchlist into a noisy portfolio.</p>
+        <p class="eyebrow">Market Narrative Research</p>
+        <h1>Market Narrative Multibagger Portfolio</h1>
+        <p>A public research model within Market Narrative, tracking six high-conviction Indian equities with allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
       </div>
       <aside class="hero-stat">
         <span>Since Apr 27, 2026</span>
@@ -820,7 +826,6 @@ export function multibaggerAdminPage(state = multibaggerState()) {
     <div class="shell nav-inner">
       <a class="brand" href="${escapeHtml(adminSiteOrigin)}/">${brandMarkHtml()}<span>Market Narrative</span></a>
       <div class="nav-actions">
-        <a class="nav-link" href="${escapeHtml(siteOrigin)}/multibagger/">Public tracker</a>
         <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin studio</a>
         <button id="adminLogoutBtn" class="nav-link" type="button">Logout</button>
       </div>

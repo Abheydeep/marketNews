@@ -130,8 +130,8 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [/5x Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i],
-    [/Run Monthly Review/i]
+    [/Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i],
+    [/Run Monthly Review/i, /Admin review/i]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
     const serialized = JSON.stringify(payload);
@@ -139,15 +139,25 @@ await group("Public user surface", async () => {
     assert.doesNotMatch(serialized, /broker|account value|quantity|raw OCR/i);
     assert.equal(payload.modelEntryDate, "2026-04-27");
     assert.equal(payload.performance?.modelEntryDate, "2026-04-27");
-    assert.ok(Number.isFinite(payload.performance?.currentModelValueInr), "portfolio current value missing");
-    assert.ok(Number.isFinite(payload.performance?.totalPnlInr), "portfolio P&L missing");
     assert.ok(Array.isArray(payload.holdings), "holdings missing");
-    assert.ok(payload.holdings.every((holding) =>
-      Number.isFinite(holding.entryPrice)
-      && Number.isFinite(holding.lastPrice)
-      && Number.isFinite(holding.returnPercent)
-      && Number.isFinite(holding.currentModelValueInr)
-    ), "holding return fields missing");
+    assert.ok(payload.holdings.every((holding) => Number.isFinite(holding.entryPrice)), "holding entry prices missing");
+    if (payload.pricing?.isStale) {
+      assert.equal(payload.performance?.currentModelValueInr, null, "stale public state must hide current value");
+      assert.equal(payload.performance?.totalPnlInr, null, "stale public state must hide P&L");
+      assert.ok(payload.holdings.every((holding) =>
+        holding.lastPrice === null
+        && holding.returnPercent === null
+        && holding.currentModelValueInr === null
+      ), "stale public holdings must hide current price math");
+    } else {
+      assert.ok(Number.isFinite(payload.performance?.currentModelValueInr), "portfolio current value missing");
+      assert.ok(Number.isFinite(payload.performance?.totalPnlInr), "portfolio P&L missing");
+      assert.ok(payload.holdings.every((holding) =>
+        Number.isFinite(holding.lastPrice)
+        && Number.isFinite(holding.returnPercent)
+        && Number.isFinite(holding.currentModelValueInr)
+      ), "holding return fields missing");
+    }
   });
   await expectPage("User", "Public admin path blocked", `${config.publicUrl}/admin/`, 404, [/not found|NOT_FOUND|404/i]);
 });
@@ -156,7 +166,7 @@ await group("Admin surface", async () => {
   await expectPage("Admin", "Admin home", config.adminUrl, 200, [/Admin Login/i, /Studio Command|Daily Reel Script/i], [/Pre-Market Intelligence Archive/i]);
   await expectManifest("Admin", "Admin manifest", config.adminUrl, "admin");
   await expectPage("Admin", "Project components", `${config.adminUrl}/components/`, 200, [/Project Components Map|Repository Component Map/i, /Admin Login/i]);
-  await expectPage("Admin", "Multibagger review", `${config.adminUrl}/multibagger/`, 200, [/Multibagger Review Desk/i, /Run Monthly Review/i], [/Public research tracker/i]);
+  await expectPage("Admin", "Multibagger review", `${config.adminUrl}/multibagger/`, 200, [/Multibagger Review Desk/i, /Run Monthly Review/i], [/Public research tracker/i, /Multibagger Portfolio/i]);
   await expectSvg("Admin", "Admin favicon", `${config.adminUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
   await expectPage("Admin", "Admin robots noindex", `${config.adminUrl}/robots.txt`, 200, [/Disallow:\s*\//i]);
 });

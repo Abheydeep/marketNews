@@ -32,7 +32,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
-  const multibaggerLinkHtml = `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
+  const multibaggerLinkHtml = includeStudio
+    ? ""
+    : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
   const adminMultibaggerLinkHtml = includeStudio
     ? `<button class="tab-btn" data-target="multibagger-admin-view">Multibagger Review</button>`
     : "";

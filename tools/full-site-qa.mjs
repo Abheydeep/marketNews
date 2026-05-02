@@ -334,6 +334,7 @@ async function verifyAdminRoutes(page, stamp) {
   await clickTab(page, "Multibagger Review", "Multibagger Review Desk");
   await expectOne(page.locator("#multibagger-admin-view details.admin-console-details").first(), "admin multibagger collapsible panel");
   assert.equal(await page.getByRole("link", { name: "Multibagger Review" }).count(), 0, "multibagger review should be a console tab, not a separate link");
+  assert.equal(await page.getByRole("link", { name: "Multibagger Portfolio" }).count(), 0, "admin console should not link out to the public multibagger tracker");
   await page.goto(`${baseUrl}/admin/components/?fullqa=${stamp}`, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await expectOne(page.locator("body.auth-ready"), "admin components route reuses login session");
   await expectOne(page.locator('#components-view:not(.hidden)'), "admin components route opens inside console");

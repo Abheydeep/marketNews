@@ -86,7 +86,6 @@ await writeFile(
     theme: "glass-v2",
     requireAuth: true,
     multibaggerState: publicMultibaggerState,
-    multibaggerHref: `${siteOrigin}/multibagger/`,
     siteOrigin: adminSiteOrigin
   }),
   "utf8"
@@ -102,7 +101,6 @@ await writeFile(
     theme: "glass-v2",
     requireAuth: true,
     multibaggerState: publicMultibaggerState,
-    multibaggerHref: `${siteOrigin}/multibagger/`,
     siteOrigin: adminSiteOrigin
   }),
   "utf8"
@@ -114,7 +112,6 @@ await writeFile(
     theme: "glass-v2",
     requireAuth: true,
     multibaggerState: publicMultibaggerState,
-    multibaggerHref: `${siteOrigin}/multibagger/`,
     siteOrigin: adminSiteOrigin
   }),
   "utf8"

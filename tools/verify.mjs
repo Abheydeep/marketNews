@@ -206,7 +206,11 @@ await test("multibagger public page is expandable and public-safe", () => {
   const state = multibaggerState();
   const html = multibaggerPage(state);
   assertPublicBriefingCopy("multibagger public page", html);
-  assert.ok(html.includes("5x Multibagger Portfolio"));
+  assert.ok(html.includes("Market Narrative Multibagger Portfolio"));
+  assert.ok(html.includes("Market Narrative Research"));
+  assert.ok(html.includes("Briefing archive"));
+  assert.equal(html.includes("Admin review"), false);
+  assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Since Apr 27, 2026"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Model P&L"));
@@ -535,6 +539,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(cockpit.includes("brandHeadLinks"));
   assert.ok(cockpit.includes("brandMarkHtml"));
   assert.ok(cockpit.includes("Multibagger Portfolio"));
+  assert.ok(cockpit.includes("includeStudio"));
   assert.ok(cockpit.includes("Multibagger Review"));
   assert.ok(cockpit.includes('data-target="components-view"'));
   assert.ok(cockpit.includes('data-target="multibagger-admin-view"'));
@@ -888,6 +893,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes("Repository Component Map"));
   assert.equal(adminHtml.body.includes('href="/admin/components"'), false);
   assert.equal(adminHtml.body.includes('href="/admin/multibagger"'), false);
+  assert.equal(adminHtml.body.includes("marketnarrative.in/multibagger"), false);
+  assert.equal(adminHtml.body.includes("Multibagger Portfolio"), false);
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
@@ -915,7 +922,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("server quote snapshot"), false);
 
   const multibaggerHtml = await app.request("GET", "/multibagger/");
-  assert.ok(multibaggerHtml.body.includes("5x Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes("Briefing archive"));
+  assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Since Apr 27, 2026"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
