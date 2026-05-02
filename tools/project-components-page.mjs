@@ -1131,7 +1131,7 @@ function adminAuthScriptHtml() {
   </script>`;
 }
 
-function componentDetailsHtml() {
+export function componentDetailsHtml() {
   const components = [
     {
       title: "1. Data and Seed Layer",

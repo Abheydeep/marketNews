@@ -26,6 +26,14 @@ await context.route("**/*", async (route) => {
   const url = new URL(request.url());
   const base = new URL(baseUrl);
   const isSameSite = url.origin === base.origin && url.pathname.startsWith(base.pathname.replace(/\/$/, ""));
+  if (!isSameSite && ["api.marketnarrative.in", "trade-api.marketnarrative.in"].includes(url.hostname)) {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ token: "qa-admin-token", status: "ok" })
+    });
+    return;
+  }
   if (!isSameSite && request.resourceType() === "document") {
     await route.fulfill({
       status: 200,
@@ -307,13 +315,12 @@ async function verifyAdminRoutes(page, stamp) {
   await assertNoRoughAdminCopy(page, "admin studio");
   const studioButtons = await exerciseAdminStudioControls(page);
   await clickTab(page, "Engine Architecture", "Engine Architecture & Roadmap");
-  const componentsLink = page.getByRole("link", { name: "Project Components" });
-  await expectOne(componentsLink, "admin project components link");
-  await clickInternalLink(page, componentsLink, await componentsLink.getAttribute("href"), "admin project components");
+  assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, "project components should be a console tab, not a separate link");
+  await clickTab(page, "Project Components", "How the Market Narrative desk fits together");
   await expectOne(page.locator("body.auth-ready"), "admin components reuses login session");
   await expectOne(page.getByRole("heading", { name: "How the Market Narrative desk fits together" }), "admin components heading");
   await assertNoRoughAdminCopy(page, "admin components");
-  await verifyDarkSurfaceContrast(page, "admin components dark page", { rootSelector: ".components-dark", minimumSamples: 80 });
+  await verifyDarkSurfaceContrast(page, "admin components console tab", { rootSelector: ".glass-v2 #components-view", minimumSamples: 80 });
   const panels = page.locator("details.component");
   const panelCount = await panels.count();
   assert.ok(panelCount >= 8, `admin components should render at least 8 expandable panels, got ${panelCount}`);
@@ -324,7 +331,18 @@ async function verifyAdminRoutes(page, stamp) {
   await expectOne(page.locator("details.component[open]").filter({ hasText: "3. Digest and Narrative Desk" }), "admin digest desk opens");
   await digestPanel.locator("summary").click();
   await expectOne(page.locator("details.component:not([open])").filter({ hasText: "3. Digest and Narrative Desk" }), "admin digest desk collapses");
-  return { checks: 2, studioButtons };
+  await clickTab(page, "Multibagger Review", "Multibagger Review Desk");
+  await expectOne(page.locator("#multibagger-admin-view details.admin-console-details").first(), "admin multibagger collapsible panel");
+  assert.equal(await page.getByRole("link", { name: "Multibagger Review" }).count(), 0, "multibagger review should be a console tab, not a separate link");
+  await page.goto(`${baseUrl}/admin/components/?fullqa=${stamp}`, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.auth-ready"), "admin components route reuses login session");
+  await expectOne(page.locator('#components-view:not(.hidden)'), "admin components route opens inside console");
+  await expectOne(page.getByRole("heading", { name: "How the Market Narrative desk fits together" }), "admin components route heading");
+  await page.goto(`${baseUrl}/admin/multibagger/?fullqa=${stamp}`, { waitUntil: "domcontentloaded", timeout: 30_000 });
+  await expectOne(page.locator("body.auth-ready"), "admin multibagger route reuses login session");
+  await expectOne(page.locator('#multibagger-admin-view:not(.hidden)'), "admin multibagger route opens inside console");
+  await expectOne(page.getByRole("heading", { name: "Multibagger Review Desk" }), "admin multibagger route heading");
+  return { checks: 4, studioButtons };
 }
 
 async function exerciseAdminStudioControls(page) {

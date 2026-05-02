@@ -477,9 +477,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   ]) {
     assert.equal(publisher.includes(roughCopy), false, `publisher should not contain rough copy: ${roughCopy}`);
   }
-  assert.ok(publisher.includes("projectComponentsPage"));
   assert.ok(publisher.includes("multibaggerPage"));
-  assert.ok(publisher.includes("multibaggerAdminPage"));
+  assert.ok(publisher.includes("components-view"));
+  assert.ok(publisher.includes("multibagger-admin-view"));
   assert.ok(publisher.includes('join(siteDir, "multibagger")'));
   assert.ok(publisher.includes('join(adminDir, "multibagger")'));
   assert.ok(publisher.includes('"state.json"'));
@@ -527,6 +527,13 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(cockpit.includes("brandMarkHtml"));
   assert.ok(cockpit.includes("Multibagger Portfolio"));
   assert.ok(cockpit.includes("Multibagger Review"));
+  assert.ok(cockpit.includes('data-target="components-view"'));
+  assert.ok(cockpit.includes('data-target="multibagger-admin-view"'));
+  assert.ok(cockpit.includes("adminComponentsConsoleHtml"));
+  assert.ok(cockpit.includes("multibaggerAdminConsoleHtml"));
+  assert.ok(cockpit.includes("bindMultibaggerReviewActions"));
+  assert.equal(cockpit.includes("adminMultibaggerHref"), false);
+  assert.equal(cockpit.includes("componentsHref"), false);
   assert.ok(!cockpit.includes("marketnarrative.local"));
 
   const componentsPage = await readFile(join(rootDir, "tools", "project-components-page.mjs"), "utf8");
@@ -859,6 +866,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(adminHtml.body.includes("Engine Architecture"));
   assert.ok(adminHtml.body.includes("Project Components"));
   assert.ok(adminHtml.body.includes("Multibagger Review"));
+  assert.ok(adminHtml.body.includes('data-target="components-view"'));
+  assert.ok(adminHtml.body.includes('data-target="multibagger-admin-view"'));
+  assert.ok(adminHtml.body.includes('id="components-view"'));
+  assert.ok(adminHtml.body.includes('id="multibagger-admin-view"'));
+  assert.ok(adminHtml.body.includes("Multibagger Review Desk"));
+  assert.ok(adminHtml.body.includes("Repository Component Map"));
+  assert.equal(adminHtml.body.includes('href="/admin/components"'), false);
+  assert.equal(adminHtml.body.includes('href="/admin/multibagger"'), false);
   assert.ok(adminHtml.body.includes("Daily Reel Script"));
   assert.ok(adminHtml.body.includes("[REEL SCRIPT"));
   assert.ok(adminHtml.body.includes("copyReelScriptBtn"));
@@ -870,6 +885,8 @@ await test("demo app serves public and admin flows without external packages", a
   const componentsHtml = await app.request("GET", "/admin/components");
   assert.ok(componentsHtml.body.includes("Admin Login"));
   assert.ok(componentsHtml.body.includes("auth-pending"));
+  assert.ok(componentsHtml.body.includes("Studio Command Center"));
+  assert.ok(componentsHtml.body.includes('window.__INITIAL_TAB__ = "components-view"'));
   assert.ok(componentsHtml.body.includes("How the Market Narrative desk fits together"));
   assert.ok(componentsHtml.body.includes('details class="component"'));
   assertAdminCopyIsPolished(componentsHtml.body, "admin components");
@@ -893,6 +910,8 @@ await test("demo app serves public and admin flows without external packages", a
 
   const adminMultibaggerHtml = await app.request("GET", "/admin/multibagger");
   assert.ok(adminMultibaggerHtml.body.includes("Admin Login"));
+  assert.ok(adminMultibaggerHtml.body.includes("Studio Command Center"));
+  assert.ok(adminMultibaggerHtml.body.includes('window.__INITIAL_TAB__ = "multibagger-admin-view"'));
   assert.ok(adminMultibaggerHtml.body.includes("Multibagger Review Desk"));
   assert.ok(adminMultibaggerHtml.body.includes("Run Monthly Review"));
 

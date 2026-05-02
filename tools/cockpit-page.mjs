@@ -1,9 +1,12 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd } from "./core.mjs";
+import { multibaggerState } from "./multibagger-data.mjs";
+import { componentDetailsHtml } from "./project-components-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
+const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -15,6 +18,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative`;
   const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
   const pageOrigin = options.siteOrigin ?? siteOrigin;
+  const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
   const previewImageUrl = absoluteSiteUrl("/og-card.svg", siteOrigin);
   const studioTabHtml = includeStudio
@@ -22,14 +26,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     : "";
   const adminArchitectureTabHtml = includeStudio
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
-          <a class="tab-link" href="${escapeHtml(options.componentsHref ?? "/admin/components")}">Project Components</a>`
+          <button class="tab-btn" data-target="components-view">Project Components</button>`
     : "";
   const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
   const multibaggerLinkHtml = `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
   const adminMultibaggerLinkHtml = includeStudio
-    ? `<a class="tab-link" href="${escapeHtml(options.adminMultibaggerHref ?? `${adminSiteOrigin}/multibagger/`)}">Multibagger Review</a>`
+    ? `<button class="tab-btn" data-target="multibagger-admin-view">Multibagger Review</button>`
     : "";
   const adminLogoutHtml = requireAuth
     ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
@@ -162,6 +166,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .tab-link {
       display: inline-flex;
       align-items: center;
+    }
+
+    .tab-btn {
+      font-family: inherit;
     }
 
     .tab-btn.active {
@@ -1593,6 +1601,192 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .panel p {
       color: #57534e;
       line-height: 1.65;
+    }
+
+    .admin-console-section {
+      display: grid;
+      gap: 18px;
+    }
+
+    .admin-console-note {
+      color: #64748b;
+      line-height: 1.65;
+      margin: 0 0 10px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    details.admin-console-details,
+    details.component {
+      border: 1px solid rgba(226, 232, 240, 0.92);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      overflow: hidden;
+    }
+
+    details.admin-console-details summary,
+    details.component summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 20px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    details.admin-console-details summary::-webkit-details-marker,
+    details.component summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.admin-console-details summary h2,
+    details.component summary h3 {
+      color: #0f172a;
+      font-size: 18px;
+      margin: 0 0 5px;
+      line-height: 1.25;
+    }
+
+    details.admin-console-details summary p,
+    details.component summary p {
+      color: #64748b;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    details.admin-console-details .chev,
+    details.component .chev {
+      color: #22d3ee;
+      font-size: 19px;
+      font-weight: 950;
+      transition: transform 160ms ease;
+    }
+
+    details.admin-console-details[open] .chev,
+    details.component[open] .chev {
+      transform: rotate(180deg);
+    }
+
+    .admin-console-body,
+    .component-body {
+      border-top: 1px solid rgba(226, 232, 240, 0.88);
+      padding: 18px 20px 20px;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .body-card,
+    .repo-card-inline {
+      border: 1px solid rgba(226, 232, 240, 0.88);
+      border-radius: 10px;
+      background: rgba(248, 250, 252, 0.88);
+      padding: 15px;
+    }
+
+    .body-card strong,
+    .repo-card-inline strong {
+      color: #0f172a;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .body-card ul,
+    .file-list,
+    .admin-list {
+      color: #475569;
+      line-height: 1.65;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .file-list code,
+    .repo-card-inline code {
+      color: #0891b2;
+      font-weight: 850;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid rgba(226, 232, 240, 0.84);
+      padding: 12px 13px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(241, 245, 249, 0.92);
+      color: #334155;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .admin-form-field {
+      display: grid;
+      gap: 8px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .admin-form-field input,
+    #portfolioFile {
+      width: 100%;
+      border: 1px solid rgba(203, 213, 225, 0.95);
+      border-radius: 9px;
+      background: #fff;
+      color: #0f172a;
+      padding: 10px 11px;
+    }
+
+    .state-line {
+      color: #64748b;
+      min-height: 24px;
+      margin: 12px 0 0;
+      font-size: 13px;
+    }
+
+    .review-output {
+      overflow: auto;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      border-radius: 10px;
+      background: #020617;
+      color: #dbeafe;
+      padding: 14px;
+      min-height: 160px;
     }
 
     .chart-container {
@@ -3274,6 +3468,57 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #fecdd3;
     }
 
+    .glass-v2 details.admin-console-details,
+    .glass-v2 details.component,
+    .glass-v2 .body-card,
+    .glass-v2 .repo-card-inline {
+      border-color: rgba(255, 255, 255, 0.13);
+      background: rgba(15, 23, 42, 0.58);
+      box-shadow: 0 18px 58px rgba(0, 0, 0, 0.18);
+    }
+
+    .glass-v2 details.admin-console-details summary h2,
+    .glass-v2 details.component summary h3,
+    .glass-v2 .body-card strong,
+    .glass-v2 .repo-card-inline strong {
+      color: #f8fafc;
+    }
+
+    .glass-v2 details.admin-console-details summary p,
+    .glass-v2 details.component summary p,
+    .glass-v2 .admin-console-note,
+    .glass-v2 .body-card ul,
+    .glass-v2 .file-list,
+    .glass-v2 .admin-list,
+    .glass-v2 td,
+    .glass-v2 .state-line {
+      color: #b8c4d8;
+    }
+
+    .glass-v2 .admin-console-body,
+    .glass-v2 .component-body,
+    .glass-v2 .table-wrap,
+    .glass-v2 th,
+    .glass-v2 td {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-v2 th {
+      background: rgba(30, 41, 59, 0.72);
+      color: #dbeafe;
+    }
+
+    .glass-v2 .admin-form-field {
+      color: #dbeafe;
+    }
+
+    .glass-v2 .admin-form-field input,
+    .glass-v2 #portfolioFile {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(2, 6, 23, 0.72);
+      color: #f8fafc;
+    }
+
     .mood-rail {
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 0.85fr);
@@ -3714,6 +3959,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .studio-layout,
       .prompt-detail-grid,
       .script-section-list,
+      .admin-grid,
+      .body-grid,
       .briefing-expand-card summary,
       .briefing-lens-grid {
         grid-template-columns: 1fr;
@@ -4199,10 +4446,22 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       </div>
     </section>
     ` : ""}
+
+    ${includeStudio ? `
+    <section id="components-view" class="tab-content hidden">
+      ${adminComponentsConsoleHtml(digest)}
+    </section>
+
+    <section id="multibagger-admin-view" class="tab-content hidden">
+      ${multibaggerAdminConsoleHtml(publicMultibaggerState)}
+    </section>
+    ` : ""}
   </main>
 
   <script>
     window.__DIGEST__ = ${JSON.stringify(clientDigest)};
+    ${includeStudio ? `window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};` : ""}
+    ${includeStudio ? `window.__MULTIBAGGER_STATE__ = ${JSON.stringify(publicMultibaggerState)};` : ""}
     window.__INITIAL_TAB__ = ${JSON.stringify(safeInitialTab)};
     window.__INCLUDE_STUDIO__ = ${JSON.stringify(includeStudio)};
     window.__REQUIRE_ADMIN_AUTH__ = ${JSON.stringify(requireAuth)};
@@ -4255,6 +4514,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         bindReelVideoGeneration();
         bindStudioActions();
         bindReelScriptCopy();
+        bindMultibaggerReviewActions();
       }
       bindQuoteBoardToggle();
       bindSourceFilters();
@@ -4278,6 +4538,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             } catch {
               // Continue with the in-memory unlock if storage is blocked.
             }
+            requestBackendToken(email, password)
+              .then((token) => {
+                if (!token) return;
+                try {
+                  sessionStorage.setItem('marketNarrativeAdminToken', token);
+                } catch {
+                  // The local static gate is already open; the backend token is optional.
+                }
+              })
+              .catch(() => {});
             if (error) error.hidden = true;
             unlockAdminGate();
             bootMarketNarrative();
@@ -4289,6 +4559,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       if (logout) {
         logout.addEventListener('click', () => {
           sessionStorage.removeItem('marketNarrativeAdminSession');
+          sessionStorage.removeItem('marketNarrativeAdminToken');
           window.location.reload();
         });
       }
@@ -4318,6 +4589,114 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const bytes = new TextEncoder().encode(identity);
       const digest = await crypto.subtle.digest('SHA-256', bytes);
       return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function requestBackendToken(email, password) {
+      try {
+        const response = await fetch((window.MARKET_NARRATIVE_API_BASE || '') + '/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        return payload.token || null;
+      } catch {
+        return null;
+      }
+    }
+
+    function bindMultibaggerReviewActions() {
+      document.getElementById('uploadSnapshotBtn')?.addEventListener('click', uploadMultibaggerSnapshot);
+      document.getElementById('runReviewBtn')?.addEventListener('click', runMultibaggerReview);
+      document.getElementById('publishReviewBtn')?.addEventListener('click', publishMultibaggerReview);
+    }
+
+    let multibaggerSnapshotId = null;
+    let multibaggerReviewId = null;
+
+    async function uploadMultibaggerSnapshot() {
+      const file = document.getElementById('portfolioFile')?.files?.[0];
+      if (!file) return setAdminText('snapshotState', 'Choose an image first.');
+      const form = new FormData();
+      form.append('file', file);
+      setAdminText('snapshotState', 'Uploading...');
+      try {
+        const response = await fetch((window.MARKET_NARRATIVE_API_BASE || '') + '/api/admin/multibagger/snapshots', {
+          method: 'POST',
+          headers: authHeaders(),
+          body: form
+        });
+        const payload = await response.json();
+        multibaggerSnapshotId = payload.snapshotId;
+        setAdminText('snapshotState', 'Snapshot stored for review: ' + multibaggerSnapshotId);
+      } catch {
+        multibaggerSnapshotId = 'local-static-snapshot';
+        setAdminText('snapshotState', 'Backend unavailable. Static preview mode is active.');
+      }
+    }
+
+    async function runMultibaggerReview() {
+      const month = document.getElementById('reviewMonth')?.value || new Date().toISOString().slice(0, 7);
+      setAdminText('reviewState', 'Running review...');
+      const body = JSON.stringify({ snapshotId: multibaggerSnapshotId, month, corrections: [] });
+      try {
+        const response = await fetch((window.MARKET_NARRATIVE_API_BASE || '') + '/api/admin/multibagger/reviews/run', {
+          method: 'POST',
+          headers: authHeaders({ 'Content-Type': 'application/json' }),
+          body
+        });
+        const payload = await response.json();
+        multibaggerReviewId = payload.reviewId;
+        document.getElementById('reviewOutput').textContent = JSON.stringify(payload, null, 2);
+        document.getElementById('publishReviewBtn').disabled = false;
+        setAdminText('reviewState', 'Review ready.');
+      } catch {
+        const fallback = localMultibaggerReview(month);
+        multibaggerReviewId = fallback.reviewId;
+        document.getElementById('reviewOutput').textContent = JSON.stringify(fallback, null, 2);
+        document.getElementById('publishReviewBtn').disabled = false;
+        setAdminText('reviewState', 'Static preview review ready.');
+      }
+    }
+
+    async function publishMultibaggerReview() {
+      if (!multibaggerReviewId) return setAdminText('publishState', 'Run a review first.');
+      try {
+        const response = await fetch((window.MARKET_NARRATIVE_API_BASE || '') + '/api/admin/multibagger/reviews/' + encodeURIComponent(multibaggerReviewId) + '/publish', {
+          method: 'POST',
+          headers: authHeaders()
+        });
+        const payload = await response.json();
+        setAdminText('publishState', 'Published sanitized review for ' + (payload.month || 'current month') + '.');
+      } catch {
+        setAdminText('publishState', 'Backend unavailable. Nothing was published from this static preview.');
+      }
+    }
+
+    function localMultibaggerReview(month) {
+      return {
+        reviewId: 'static-' + month,
+        month,
+        decisions: (window.__MULTIBAGGER_STATE__?.holdings || []).map((holding) => ({
+          ticker: holding.ticker,
+          action: holding.ticker === 'TEMBO' ? 'KEEP_CAPPED' : 'KEEP',
+          confidence: holding.ticker === 'TEMBO' ? 0.62 : 0.74,
+          evidence: holding.breakRule,
+          publicSummary: holding.status
+        })),
+        note: 'Preview only. Publish requires the Spring backend.'
+      };
+    }
+
+    function authHeaders(extra = {}) {
+      const token = sessionStorage.getItem('marketNarrativeAdminToken');
+      return token ? { ...extra, Authorization: 'Bearer ' + token } : extra;
+    }
+
+    function setAdminText(id, value) {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
     }
 
     function drawOvernightChart() {
@@ -6782,6 +7161,156 @@ function formatGeneratedAt(value) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(date);
+}
+
+function adminComponentsConsoleHtml(digest) {
+  return `
+    <header class="page-header">
+      <p class="eyebrow">Admin Console</p>
+      <h1>How the Market Narrative desk fits together</h1>
+      <p>Everything stays inside the admin console: architecture notes, repository boundaries, QA gates, and implementation modules are collapsible below.</p>
+    </header>
+    <section class="admin-console-section">
+      <details class="admin-console-details" open>
+        <summary>
+          <div>
+            <h2>Console Overview</h2>
+            <p>How the Market Narrative desk fits together without leaving the admin workspace.</p>
+          </div>
+          <span class="chev">v</span>
+        </summary>
+        <div class="admin-console-body">
+          <div class="body-grid">
+            <article class="body-card">
+              <strong>From Market Data To Creator Read</strong>
+              <ul class="admin-list">
+                <li>Market quote snapshots and source-backed articles enter the digest builder.</li>
+                <li>The scanner, sentiment model, and editorial guardrails shape the private Studio package.</li>
+                <li>Public pages receive only reader-safe briefing copy, source attribution, and chart context.</li>
+              </ul>
+            </article>
+            <article class="body-card">
+              <strong>Current Run</strong>
+              <ul class="admin-list">
+                <li>Digest date: ${escapeHtml(formatDigestDate(digest.digestDate))}</li>
+                <li>Articles: ${escapeHtml(digest.news?.length ?? 0)}</li>
+                <li>Markets: ${escapeHtml(digest.marketSnapshots?.length ?? 0)}</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="admin-console-details">
+        <summary>
+          <div>
+            <h2>Repository Component Map</h2>
+            <p>Major code areas and why they exist.</p>
+          </div>
+          <span class="chev">v</span>
+        </summary>
+        <div class="admin-console-body">
+          <div class="body-grid">
+            ${[
+              ["backend/", "Spring Boot API, auth, persistence, public/admin digest contracts, and multibagger endpoints."],
+              ["services/trading-api/", "FastAPI trading cockpit service for Kite auth, signals, options, risk checks, and mock-safe order proposals."],
+              ["tools/", "Static publishing, daily digest generation, editorial QA, public copy gate, and browser smoke tooling."],
+              ["apps/", "Split public, admin, and trading frontend surfaces for deploy isolation."]
+            ].map(([path, summary]) => `
+            <article class="repo-card-inline">
+              <code>${escapeHtml(path)}</code>
+              <strong>${escapeHtml(summary)}</strong>
+            </article>`).join("")}
+          </div>
+        </div>
+      </details>
+
+      ${componentDetailsHtml()}
+    </section>`;
+}
+
+function multibaggerAdminConsoleHtml(state) {
+  return `
+    <header class="page-header">
+      <p class="eyebrow">Admin Console</p>
+      <h1>Multibagger Review Desk</h1>
+      <p>Review the public model, upload the current portfolio image, run keep-or-replace checks, and publish only sanitized public output without leaving the admin console.</p>
+    </header>
+    <section class="admin-console-section">
+      <details class="admin-console-details" open>
+        <summary>
+          <div>
+            <h2>Review Actions</h2>
+            <p>Upload, run the monthly review, and publish sanitized output from one collapsible control panel.</p>
+          </div>
+          <span class="chev">v</span>
+        </summary>
+        <div class="admin-console-body">
+          <div class="admin-grid">
+            <article class="body-card">
+              <strong>1. Portfolio Image</strong>
+              <input id="portfolioFile" type="file" accept="image/png,image/jpeg,image/webp">
+              <button id="uploadSnapshotBtn" class="primary-btn" type="button">Upload Snapshot</button>
+              <p id="snapshotState" class="state-line">No upload yet.</p>
+            </article>
+            <article class="body-card">
+              <strong>2. Monthly Review</strong>
+              <label class="admin-form-field">Review month <input id="reviewMonth" type="month" value="2026-05"></label>
+              <button id="runReviewBtn" class="primary-btn" type="button">Run Monthly Review</button>
+              <p id="reviewState" class="state-line">Waiting for a snapshot or manual review run.</p>
+            </article>
+            <article class="body-card">
+              <strong>3. Publish</strong>
+              <p class="admin-console-note">Publishing sends only public-safe decisions and model commentary.</p>
+              <button id="publishReviewBtn" class="primary-btn" type="button" disabled>Publish Sanitized Review</button>
+              <p id="publishState" class="state-line">Nothing published in this session.</p>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="admin-console-details">
+        <summary>
+          <div>
+            <h2>Current Public Model</h2>
+            <p>Allocation, model return, and review rules shown inside the admin console.</p>
+          </div>
+          <span class="chev">v</span>
+        </summary>
+        <div class="admin-console-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ticker</th><th>Weight</th><th>Return</th><th>Review Rule</th></tr></thead>
+              <tbody>${state.holdings.map((holding) => `
+                <tr>
+                  <td>${escapeHtml(holding.ticker)}</td>
+                  <td>${formatAdminPercent(holding.targetWeight)}</td>
+                  <td>${formatAdminPercent(holding.returnPercent)}</td>
+                  <td>${escapeHtml(holding.breakRule)}</td>
+                </tr>
+              `).join("")}</tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="admin-console-details">
+        <summary>
+          <div>
+            <h2>Agent Output</h2>
+            <p>Review output remains collapsed until you need to inspect it.</p>
+          </div>
+          <span class="chev">v</span>
+        </summary>
+        <div class="admin-console-body">
+          <pre id="reviewOutput" class="review-output">${escapeHtml(JSON.stringify({ status: "idle", expectedDecisions: ["KEEP", "ADD", "TRIM", "SELL", "REPLACE"] }, null, 2))}</pre>
+        </div>
+      </details>
+    </section>`;
+}
+
+function formatAdminPercent(value) {
+  return `${Number(value).toLocaleString("en-IN", { maximumFractionDigits: 2 })}%`;
 }
 
 function limitWords(text, maxWords) {

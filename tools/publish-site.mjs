@@ -5,8 +5,7 @@ import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSoci
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
-import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
-import { projectComponentsPage } from "./project-components-page.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -86,9 +85,8 @@ await writeFile(
     includeStudio: true,
     theme: "glass-v2",
     requireAuth: true,
-    componentsHref: "./components/",
+    multibaggerState: publicMultibaggerState,
     multibaggerHref: `${siteOrigin}/multibagger/`,
-    adminMultibaggerHref: "./multibagger/",
     siteOrigin: adminSiteOrigin
   }),
   "utf8"
@@ -99,10 +97,28 @@ await writeFile(join(adminDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8
 await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
 await writeFile(
   join(adminDir, "components", "index.html"),
-  projectComponentsPage({ digests, publicBaseHref: `${siteOrigin}/`, requireAuth: true }),
+  cockpitPage(adminDigest, "components-view", {
+    includeStudio: true,
+    theme: "glass-v2",
+    requireAuth: true,
+    multibaggerState: publicMultibaggerState,
+    multibaggerHref: `${siteOrigin}/multibagger/`,
+    siteOrigin: adminSiteOrigin
+  }),
   "utf8"
 );
-await writeFile(join(adminDir, "multibagger", "index.html"), multibaggerAdminPage(publicMultibaggerState), "utf8");
+await writeFile(
+  join(adminDir, "multibagger", "index.html"),
+  cockpitPage(adminDigest, "multibagger-admin-view", {
+    includeStudio: true,
+    theme: "glass-v2",
+    requireAuth: true,
+    multibaggerState: publicMultibaggerState,
+    multibaggerHref: `${siteOrigin}/multibagger/`,
+    siteOrigin: adminSiteOrigin
+  }),
+  "utf8"
+);
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);

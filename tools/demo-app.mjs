@@ -1,8 +1,7 @@
 import { buildDigest, todayIso } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
-import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
-import { projectComponentsPage } from "./project-components-page.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
 
 export async function createDemoApp(date = todayIso()) {
   let currentDigest = await buildDigest(date);
@@ -29,15 +28,15 @@ export async function createDemoApp(date = todayIso()) {
       }
 
       if (method === "GET" && url.pathname === "/admin") {
-        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, componentsHref: "/admin/components", adminMultibaggerHref: "/admin/multibagger" }));
+        return htmlResponse(cockpitPage(currentDigest, "studio-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, multibaggerState: currentMultibaggerState }));
       }
 
       if (method === "GET" && url.pathname === "/admin/components") {
-        return htmlResponse(projectComponentsPage({ digests: [currentDigest], publicBaseHref: "/", requireAuth: true }));
+        return htmlResponse(cockpitPage(currentDigest, "components-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, multibaggerState: currentMultibaggerState }));
       }
 
       if (method === "GET" && url.pathname === "/admin/multibagger") {
-        return htmlResponse(multibaggerAdminPage(currentMultibaggerState));
+        return htmlResponse(cockpitPage(currentDigest, "multibagger-admin-view", { includeStudio: true, theme: "glass-v2", requireAuth: true, multibaggerState: currentMultibaggerState }));
       }
 
       if (method === "GET" && url.pathname === "/api/public/digest/today") {
