@@ -1,13 +1,16 @@
 package com.marketnarrative.multibagger;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 public record MultibaggerState(
     String modelName,
     Integer modelCapitalInr,
+    LocalDate modelEntryDate,
     Instant updatedAt,
     QuoteStatus quoteStatus,
+    PricingSnapshot pricing,
     PerformanceSnapshot performance,
     List<MultibaggerHolding> holdings,
     List<PublicTransaction> transactions,

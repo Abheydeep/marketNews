@@ -2,7 +2,7 @@ package com.marketnarrative.multibagger;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -10,40 +10,58 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class MultibaggerService {
 
-    private static final Instant LAUNCH_TIME = Instant.parse("2026-05-01T03:00:00Z");
-    private static final LocalDate LAUNCH_DATE = LocalDate.of(2026, 5, 1);
+    private static final LocalDate MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27);
+    private static final LocalDate PUBLISHED_REVIEW_DATE = LocalDate.of(2026, 5, 1);
     private static final Integer MODEL_CAPITAL = 500_000;
 
+    private final MultibaggerQuoteService quoteService;
     private final Map<String, byte[]> snapshots = new ConcurrentHashMap<>();
     private final Map<String, MonthlyReviewResult> adminReviews = new ConcurrentHashMap<>();
-    private volatile Instant lastQuoteRefreshAt;
+
+    public MultibaggerService(MultibaggerQuoteService quoteService) {
+        this.quoteService = quoteService;
+    }
 
     public MultibaggerState publicState() {
+        List<MultibaggerHolding> publicHoldings = holdings();
+        PricingSnapshot pricing = quoteService.pricingSnapshot();
+        BigDecimal currentModelValue = publicHoldings.stream()
+            .map(MultibaggerHolding::currentModelValueInr)
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
+            .setScale(2, RoundingMode.HALF_UP);
+        BigDecimal totalPnl = currentModelValue
+            .subtract(BigDecimal.valueOf(MODEL_CAPITAL))
+            .setScale(2, RoundingMode.HALF_UP);
+        BigDecimal sinceLaunchPercent = returnPercent(BigDecimal.valueOf(MODEL_CAPITAL), currentModelValue);
         return new MultibaggerState(
             "Concentrated 5x Multibagger Model",
             MODEL_CAPITAL,
-            LAUNCH_TIME,
+            MODEL_ENTRY_DATE,
+            pricing.refreshedAt(),
             new QuoteStatus(
-                "backend-or-static-fallback",
-                lastQuoteRefreshAt,
-                "Daily quote refresh updates the public tracker when backend data is available."
+                pricing.mode(),
+                pricing.refreshedAt(),
+                "Public model prices refresh from the server when the live API is available. The static page shows the last published snapshot when the API is offline."
             ),
+            pricing,
             new PerformanceSnapshot(
-                BigDecimal.ZERO,
-                LAUNCH_DATE,
+                sinceLaunchPercent,
+                MODEL_ENTRY_DATE,
+                MODEL_ENTRY_DATE,
                 "NIFTY 50",
-                BigDecimal.ZERO,
-                "Performance starts from the first published quote snapshot after launch."
+                pricing.benchmark().returnPercent(),
+                currentModelValue,
+                totalPnl,
+                "Model performance is calculated from the public model start date and model allocation weights."
             ),
-            holdings(),
-            transactions(),
+            publicHoldings,
+            transactions(publicHoldings),
             monthlyReviews(),
             watchlist(),
             sources(),
@@ -102,11 +120,6 @@ public class MultibaggerService {
         return publicState();
     }
 
-    @Scheduled(cron = "0 30 18 * * MON-FRI", zone = "Asia/Kolkata")
-    public void refreshDailyQuotes() {
-        lastQuoteRefreshAt = Instant.now();
-    }
-
     private List<MultibaggerHolding> holdings() {
         return List.of(
             holding("KPEL", "KPEL.BO", "KP Energy", "25", 125_000, "Anchor renewable alpha", "Low-PE renewable execution with strong revenue growth and room for rerating.", "Build first while valuation remains a small-cap growth bargain.", "Trim if receivables, project execution or group complexity worsen.", "Core hold / buy staged"),
@@ -119,20 +132,49 @@ public class MultibaggerService {
     }
 
     private MultibaggerHolding holding(String ticker, String yahooSymbol, String name, String weight, Integer amount, String role, String thesis, String buyRule, String breakRule, String status) {
-        return new MultibaggerHolding(ticker, yahooSymbol, name, new BigDecimal(weight), amount, role, thesis, buyRule, breakRule, status);
+        MultibaggerQuoteSnapshot quote = quoteService.snapshotFor(ticker);
+        BigDecimal currentModelValue = BigDecimal.valueOf(amount)
+            .multiply(quote.lastPrice())
+            .divide(quote.entryPrice(), 2, RoundingMode.HALF_UP);
+        BigDecimal modelPnl = currentModelValue
+            .subtract(BigDecimal.valueOf(amount))
+            .setScale(2, RoundingMode.HALF_UP);
+        return new MultibaggerHolding(
+            ticker,
+            yahooSymbol,
+            name,
+            new BigDecimal(weight),
+            amount,
+            role,
+            thesis,
+            buyRule,
+            breakRule,
+            status,
+            MODEL_ENTRY_DATE,
+            quote.entryPrice(),
+            quote.lastPrice(),
+            quote.previousClose(),
+            returnPercent(quote.previousClose(), quote.lastPrice()),
+            quote.lastPriceAt(),
+            quote.priceSource(),
+            quote.isStale(),
+            returnPercent(quote.entryPrice(), quote.lastPrice()),
+            modelPnl,
+            currentModelValue
+        );
     }
 
-    private List<PublicTransaction> transactions() {
+    private List<PublicTransaction> transactions(List<MultibaggerHolding> publicHoldings) {
         List<PublicTransaction> rows = new ArrayList<>();
-        for (MultibaggerHolding holding : holdings()) {
+        for (MultibaggerHolding holding : publicHoldings) {
             rows.add(new PublicTransaction(
-                LAUNCH_DATE,
+                MODEL_ENTRY_DATE,
                 holding.ticker(),
-                "MODEL_START",
+                "MODEL_BUY",
                 holding.targetWeight(),
-                "Initial model allocation for " + holding.role().toLowerCase() + ".",
-                null,
-                "Entry will be locked from the first published quote snapshot."
+                "Public model buy for " + holding.role().toLowerCase() + ".",
+                holding.entryPrice(),
+                "Return tracking starts from the 2026-04-27 model price."
             ));
         }
         return rows;
@@ -141,7 +183,7 @@ public class MultibaggerService {
     private List<PublicMonthlyReview> monthlyReviews() {
         return List.of(new PublicMonthlyReview(
             "2026-05",
-            LAUNCH_DATE,
+            PUBLISHED_REVIEW_DATE,
             "Model launched after the deep-dive portfolio reset",
             holdings().stream()
                 .map(holding -> new PublicMonthlyReview.PublicReviewDecision(
@@ -177,5 +219,9 @@ public class MultibaggerService {
             new SourceReference("Dynamic Cables Q3 FY26 result summary", "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"),
             new SourceReference("Tembo Global public filings and result material", "https://www.screener.in/company/TEMBO/")
         );
+    }
+
+    private static BigDecimal returnPercent(BigDecimal start, BigDecimal end) {
+        return MultibaggerQuoteService.returnPercent(start, end);
     }
 }

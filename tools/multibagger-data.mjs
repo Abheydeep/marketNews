@@ -1,4 +1,67 @@
 const MODEL_CAPITAL_INR = 500_000;
+const MODEL_ENTRY_DATE = "2026-04-27";
+const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
+
+const priceSnapshots = {
+  KPEL: {
+    entryPrice: 486.4,
+    lastPrice: 502.75,
+    previousClose: 497.2,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  },
+  DHABRIYA: {
+    entryPrice: 308.2,
+    lastPrice: 318.65,
+    previousClose: 316.1,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  },
+  PIGL: {
+    entryPrice: 148.8,
+    lastPrice: 156.35,
+    previousClose: 153.4,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  },
+  JNKINDIA: {
+    entryPrice: 608.5,
+    lastPrice: 596.2,
+    previousClose: 601.8,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  },
+  DYCL: {
+    entryPrice: 505.1,
+    lastPrice: 519.4,
+    previousClose: 512,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  },
+  TEMBO: {
+    entryPrice: 246.3,
+    lastPrice: 238.75,
+    previousClose: 241.6,
+    lastPriceAt: STATIC_PRICE_REFRESH_AT,
+    priceSource: "Server quote snapshot",
+    isStale: true
+  }
+};
+
+const benchmarkSnapshot = {
+  symbol: "NIFTY 50",
+  entryPrice: 24_203.35,
+  lastPrice: 23_997.55,
+  previousClose: 24_188.65,
+  lastPriceAt: STATIC_PRICE_REFRESH_AT,
+  source: "Server quote snapshot",
+  isStale: true
+};
 
 const holdings = [
   {
@@ -11,7 +74,8 @@ const holdings = [
     thesis: "Low-PE renewable execution with strong revenue growth and a valuation that still leaves room for rerating.",
     buyRule: "Build first while valuation remains a small-cap growth bargain and receivables stay controlled.",
     breakRule: "Trim if project execution slips, receivables stretch, or group complexity starts driving the story.",
-    status: "Core hold / buy staged"
+    status: "Core hold / buy staged",
+    ...holdingPerformance("KPEL", 125_000)
   },
   {
     ticker: "DHABRIYA",
@@ -23,7 +87,8 @@ const holdings = [
     thesis: "Microcap quality candidate with PAT doubling, expanded EBITDA margin and a still-sane valuation base.",
     buyRule: "Build after confirming liquidity; add only if FY26 keeps the new margin band intact.",
     breakRule: "Reduce if inventory, debt or receivables absorb the reported earnings growth.",
-    status: "Core hold / buy staged"
+    status: "Core hold / buy staged",
+    ...holdingPerformance("DHABRIYA", 100_000)
   },
   {
     ticker: "PIGL",
@@ -35,7 +100,8 @@ const holdings = [
     thesis: "Order book is materially larger than market cap, with RDSS work and Peaton busduct optionality.",
     buyRule: "Build capped exposure only while PAT margin begins catching up with revenue growth.",
     breakRule: "Do not average down if orders convert into low-margin working-capital strain.",
-    status: "Capped alpha"
+    status: "Capped alpha",
+    ...holdingPerformance("PIGL", 87_500)
   },
   {
     ticker: "JNKINDIA",
@@ -47,7 +113,8 @@ const holdings = [
     thesis: "Q3 revenue and PAT acceleration show that order visibility is already touching reported earnings.",
     buyRule: "Start now; scale only after the next result confirms conversion without debtor blowout.",
     breakRule: "Reduce if receivables expand faster than sales or order conversion stalls.",
-    status: "Capped alpha"
+    status: "Capped alpha",
+    ...holdingPerformance("JNKINDIA", 75_000)
   },
   {
     ticker: "DYCL",
@@ -59,7 +126,8 @@ const holdings = [
     thesis: "Mid-teens valuation, PAT growth, order visibility and solar DC/e-beam capacity provide a second trigger.",
     buyRule: "Build measured exposure; add if order inflow, spreads and capacity ramp remain disciplined.",
     breakRule: "Trim if cable spreads turn, receivables worsen, or capacity ramp disappoints.",
-    status: "Quality alpha"
+    status: "Quality alpha",
+    ...holdingPerformance("DYCL", 62_500)
   },
   {
     ticker: "TEMBO",
@@ -71,18 +139,19 @@ const holdings = [
     thesis: "Large order book and scaled 9M profit create upside, but cash-flow and governance risks cap sizing.",
     buyRule: "Hold as option-sized exposure; do not average up without cash-flow and governance proof.",
     breakRule: "Reduce quickly on weak operating cash flow, guarantees, related-party issues or dilution.",
-    status: "Speculative cap"
+    status: "Speculative cap",
+    ...holdingPerformance("TEMBO", 50_000)
   }
 ];
 
 const transactions = holdings.map((holding) => ({
-  date: "2026-05-01",
+  date: MODEL_ENTRY_DATE,
   ticker: holding.ticker,
-  action: "MODEL_START",
+  action: "MODEL_BUY",
   weightChange: holding.targetWeight,
-  publicNote: `Initial model allocation for ${holding.role.toLowerCase()}.`,
-  referencePrice: null,
-  performanceNote: "Entry will be locked from the first published quote snapshot."
+  publicNote: `Public model buy for ${holding.role.toLowerCase()}.`,
+  referencePrice: holding.entryPrice,
+  performanceNote: `Return tracking starts from the ${MODEL_ENTRY_DATE} model price.`
 }));
 
 const monthlyReviews = [
@@ -191,21 +260,41 @@ const sources = [
 ];
 
 export function multibaggerState() {
+  const currentModelValueInr = round(holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0), 2);
+  const totalPnlInr = round(currentModelValueInr - MODEL_CAPITAL_INR, 2);
+  const sinceLaunchPercent = round((totalPnlInr / MODEL_CAPITAL_INR) * 100, 2);
+  const benchmarkSinceLaunchPercent = returnPercent(benchmarkSnapshot.entryPrice, benchmarkSnapshot.lastPrice);
   const state = {
     modelName: "Concentrated 5x Multibagger Model",
     modelCapitalInr: MODEL_CAPITAL_INR,
-    updatedAt: "2026-05-01T08:30:00+05:30",
+    modelEntryDate: MODEL_ENTRY_DATE,
+    updatedAt: STATIC_PRICE_REFRESH_AT,
     quoteStatus: {
-      mode: "static-fallback",
-      lastRefreshAt: null,
-      note: "Daily quote refresh is expected from the backend or scheduled publisher. Static data keeps the public page readable when the backend is offline."
+      mode: "static-published-snapshot",
+      lastRefreshAt: STATIC_PRICE_REFRESH_AT,
+      note: "Public model prices refresh from the server when the live API is available. The static page shows the last published snapshot when the API is offline."
+    },
+    pricing: {
+      mode: "server-snapshot-fallback",
+      refreshedAt: STATIC_PRICE_REFRESH_AT,
+      isStale: true,
+      refreshCadence: "Every 5 minutes during Indian market hours when the backend is live",
+      benchmark: {
+        ...benchmarkSnapshot,
+        returnPercent: benchmarkSinceLaunchPercent,
+        dayChangePercent: returnPercent(benchmarkSnapshot.previousClose, benchmarkSnapshot.lastPrice)
+      },
+      note: "Real-time means server-refreshed latest prices with timestamps, not account-level performance."
     },
     performance: {
-      sinceLaunchPercent: 0,
-      launchDate: "2026-05-01",
+      sinceLaunchPercent,
+      launchDate: MODEL_ENTRY_DATE,
+      modelEntryDate: MODEL_ENTRY_DATE,
       benchmark: "NIFTY 50",
-      benchmarkSinceLaunchPercent: 0,
-      note: "Performance starts from the first published quote snapshot after launch."
+      benchmarkSinceLaunchPercent,
+      currentModelValueInr,
+      totalPnlInr,
+      note: "Model performance is calculated from the public model start date and model allocation weights."
     },
     holdings,
     transactions,
@@ -218,10 +307,64 @@ export function multibaggerState() {
   return state;
 }
 
+function holdingPerformance(ticker, modelAmountInr) {
+  const snapshot = priceSnapshots[ticker];
+  const returnValue = returnPercent(snapshot.entryPrice, snapshot.lastPrice);
+  const dayChangePercent = returnPercent(snapshot.previousClose, snapshot.lastPrice);
+  const currentModelValueInr = round(modelAmountInr * (snapshot.lastPrice / snapshot.entryPrice), 2);
+  const modelPnlInr = round(currentModelValueInr - modelAmountInr, 2);
+  return {
+    modelEntryDate: MODEL_ENTRY_DATE,
+    entryPrice: snapshot.entryPrice,
+    lastPrice: snapshot.lastPrice,
+    previousClose: snapshot.previousClose,
+    dayChangePercent,
+    lastPriceAt: snapshot.lastPriceAt,
+    priceSource: snapshot.priceSource,
+    isStale: snapshot.isStale,
+    returnPercent: returnValue,
+    modelPnlInr,
+    currentModelValueInr
+  };
+}
+
+function returnPercent(start, end) {
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start === 0) {
+    return 0;
+  }
+  return round(((end - start) / start) * 100, 2);
+}
+
+function round(value, places = 2) {
+  const factor = 10 ** places;
+  return Math.round(Number(value) * factor) / factor;
+}
+
 export function validateMultibaggerState(state = multibaggerState()) {
   const totalWeight = state.holdings.reduce((sum, holding) => sum + Number(holding.targetWeight), 0);
   if (Math.abs(totalWeight - 100) > 0.001) {
     throw new Error(`Multibagger weights must sum to 100, got ${totalWeight}`);
+  }
+
+  if (state.modelEntryDate !== MODEL_ENTRY_DATE || state.performance.modelEntryDate !== MODEL_ENTRY_DATE) {
+    throw new Error(`Multibagger model entry date must be ${MODEL_ENTRY_DATE}`);
+  }
+
+  for (const holding of state.holdings) {
+    for (const field of ["entryPrice", "lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
+      if (!Number.isFinite(Number(holding[field]))) {
+        throw new Error(`${holding.ticker} is missing numeric ${field}`);
+      }
+    }
+    const expectedReturn = returnPercent(holding.entryPrice, holding.lastPrice);
+    if (Math.abs(expectedReturn - Number(holding.returnPercent)) > 0.01) {
+      throw new Error(`${holding.ticker} return math is inconsistent`);
+    }
+  }
+
+  const expectedCurrentValue = round(state.holdings.reduce((sum, holding) => sum + Number(holding.currentModelValueInr), 0), 2);
+  if (Math.abs(expectedCurrentValue - Number(state.performance.currentModelValueInr)) > 0.01) {
+    throw new Error("Multibagger portfolio current value math is inconsistent");
   }
 
   const serialized = JSON.stringify(state).toLowerCase();

@@ -30,6 +30,90 @@ export async function getPublicDigest(date: "today" | string): Promise<PublicDig
   return response.json() as Promise<PublicDigest>;
 }
 
+export type MultibaggerBenchmark = {
+  symbol: string;
+  entryPrice: number;
+  lastPrice: number;
+  previousClose: number;
+  lastPriceAt: string;
+  source: string;
+  isStale: boolean;
+  returnPercent: number;
+  dayChangePercent: number;
+};
+
+export type MultibaggerPricing = {
+  mode: string;
+  refreshedAt: string;
+  isStale: boolean;
+  refreshCadence: string;
+  benchmark: MultibaggerBenchmark;
+  note: string;
+};
+
+export type MultibaggerPerformance = {
+  sinceLaunchPercent: number;
+  launchDate: string;
+  modelEntryDate: string;
+  benchmark: string;
+  benchmarkSinceLaunchPercent: number;
+  currentModelValueInr: number;
+  totalPnlInr: number;
+  note: string;
+};
+
+export type MultibaggerHolding = {
+  ticker: string;
+  yahooSymbol: string;
+  name: string;
+  targetWeight: number;
+  modelAmountInr: number;
+  role: string;
+  thesis: string;
+  buyRule: string;
+  breakRule: string;
+  status: string;
+  modelEntryDate: string;
+  entryPrice: number;
+  lastPrice: number;
+  previousClose: number;
+  dayChangePercent: number;
+  lastPriceAt: string;
+  priceSource: string;
+  isStale: boolean;
+  returnPercent: number;
+  modelPnlInr: number;
+  currentModelValueInr: number;
+};
+
+export type MultibaggerState = {
+  modelName: string;
+  modelCapitalInr: number;
+  modelEntryDate: string;
+  updatedAt: string;
+  quoteStatus: {
+    mode: string;
+    lastRefreshAt: string;
+    note: string;
+  };
+  pricing: MultibaggerPricing;
+  performance: MultibaggerPerformance;
+  holdings: MultibaggerHolding[];
+  transactions: Array<{
+    date: string;
+    ticker: string;
+    action: "MODEL_BUY" | string;
+    weightChange: number;
+    publicNote: string;
+    referencePrice: number;
+    performanceNote: string;
+  }>;
+  monthlyReviews: unknown[];
+  watchlist: unknown[];
+  sources: Array<{ label: string; url: string }>;
+  disclaimer: string;
+};
+
 export type TradingIndex = "NIFTY" | "BANKNIFTY";
 export type TradingAction = "BUY" | "SELL" | "WAIT";
 export type OptionType = "CE" | "PE";

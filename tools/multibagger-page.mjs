@@ -6,7 +6,7 @@ const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketna
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
 
 export function multibaggerPage(state = multibaggerState()) {
-  const serializedState = JSON.stringify(state);
+  const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
   const pageTitle = "Market Narrative | 5x Multibagger Portfolio";
   const pageDescription = "Public research tracker for Abhey's concentrated six-stock multibagger model, monthly review discipline, buy/sell record, watchlist, and source trail.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
@@ -182,11 +182,25 @@ export function multibaggerPage(state = multibaggerState()) {
       line-height: 1;
     }
 
+    .hero-stat p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin: 12px 0 0;
+    }
+
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
       margin: 18px 0 24px;
+    }
+
+    .return-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 12px;
     }
 
     .metric {
@@ -209,6 +223,38 @@ export function multibaggerPage(state = multibaggerState()) {
       display: block;
       margin-top: 8px;
       font-size: 24px;
+    }
+
+    .positive { color: var(--green) !important; }
+    .negative { color: var(--red) !important; }
+    .neutral { color: #dbeafe !important; }
+    .stale { color: var(--amber) !important; }
+
+    .price-status {
+      border: 1px solid rgba(251, 191, 36, 0.24);
+      border-radius: 8px;
+      background: rgba(251, 191, 36, 0.08);
+      color: #fde68a;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .price-status.fresh {
+      border-color: rgba(52, 211, 153, 0.28);
+      background: rgba(52, 211, 153, 0.08);
+      color: #bbf7d0;
+    }
+
+    .performance-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0 0 24px;
     }
 
     details.panel {
@@ -292,6 +338,11 @@ export function multibaggerPage(state = multibaggerState()) {
     td { color: #d7e0ee; }
 
     tr:last-child td { border-bottom: 0; }
+
+    .price-cell {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
 
     .ticker {
       color: #fff;
@@ -401,6 +452,7 @@ export function multibaggerPage(state = multibaggerState()) {
     @media (max-width: 900px) {
       .hero,
       .summary-grid,
+      .return-strip,
       .cards {
         grid-template-columns: 1fr;
       }
@@ -457,18 +509,21 @@ export function multibaggerPage(state = multibaggerState()) {
         <p>A sanitized public record of the concentrated six-stock model, monthly keep-or-replace decisions, and the evidence rules used to avoid turning a watchlist into a noisy portfolio.</p>
       </div>
       <aside class="hero-stat">
-        <span>Primary model</span>
-        <strong>6 stocks</strong>
+        <span>Since Apr 27, 2026</span>
+        <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatSignedPercent(state.performance.sinceLaunchPercent)}</strong>
         <p>${escapeHtml(state.disclaimer)}</p>
       </aside>
     </section>
 
-    <section class="summary-grid" aria-label="Portfolio summary">
-      <div class="metric"><span>Model capital</span><strong>${formatInr(state.modelCapitalInr)}</strong></div>
-      <div class="metric"><span>Since launch</span><strong>${formatPercent(state.performance.sinceLaunchPercent)}</strong></div>
-      <div class="metric"><span>Benchmark</span><strong>${escapeHtml(state.performance.benchmark)}</strong></div>
-      <div class="metric"><span>Last update</span><strong>${escapeHtml(formatDateTime(state.updatedAt))}</strong></div>
+    <section class="return-strip" aria-label="Public model performance">
+      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong></div>
+      <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatInr(state.performance.currentModelValueInr)}</strong></div>
+      <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatSignedInr(state.performance.totalPnlInr)}</strong></div>
+      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatSignedPercent(state.performance.sinceLaunchPercent)}</strong></div>
+      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatSignedPercent(state.performance.benchmarkSinceLaunchPercent)}</strong></div>
     </section>
+    <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(formatDateTime(state.updatedAt))}</span></p>
+    <p class="performance-note">${escapeHtml(state.performance.note)}</p>
 
     <details class="panel" open>
       <summary>
@@ -489,22 +544,15 @@ export function multibaggerPage(state = multibaggerState()) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Model Holdings</strong><span>Sanitized model positions; no private account data is published.</span></span>
+        <span class="summary-title"><strong>Model Holdings</strong><span>Public model allocations with entry, latest price, and return math.</span></span>
         <span class="chev">+</span>
       </summary>
       <div class="panel-body">
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Weight</th><th>Model INR</th><th>Name</th><th>Role</th><th>Status</th></tr></thead>
-            <tbody>
-              ${state.holdings.map((holding) => `
-              <tr>
-                <td>${formatPercent(holding.targetWeight)}</td>
-                <td>${formatInr(holding.modelAmountInr)}</td>
-                <td><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
-                <td>${escapeHtml(holding.role)}</td>
-                <td><span class="decision">${escapeHtml(holding.status)}</span></td>
-              </tr>`).join("")}
+            <thead><tr><th>Ticker</th><th>Weight</th><th>Entry</th><th>Current</th><th>Return</th><th>P&L</th><th>Day</th><th>Role</th></tr></thead>
+            <tbody id="modelHoldingsRows">
+              ${holdingsRowsHtml(state.holdings)}
             </tbody>
           </table>
         </div>
@@ -537,7 +585,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <div class="panel-body">
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Public Note</th></tr></thead>
+            <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Reference</th><th>Public Note</th></tr></thead>
             <tbody>
               ${state.transactions.map((item) => `
               <tr>
@@ -545,6 +593,7 @@ export function multibaggerPage(state = multibaggerState()) {
                 <td><span class="ticker">${escapeHtml(item.ticker)}</span></td>
                 <td>${escapeHtml(item.action)}</td>
                 <td>${formatPercent(item.weightChange)}</td>
+                <td class="price-cell">${formatPrice(item.referencePrice)}</td>
                 <td>${escapeHtml(item.publicNote)}</td>
               </tr>`).join("")}
             </tbody>
@@ -630,6 +679,7 @@ export function multibaggerPage(state = multibaggerState()) {
   <script>
     window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
     window.__MULTIBAGGER_STATE__ = ${serializedState};
+    renderMultibaggerState(window.__MULTIBAGGER_STATE__);
     (async function refreshMultibaggerState() {
       const configuredBase = window.MARKET_NARRATIVE_API_BASE || "";
       const urls = configuredBase
@@ -640,6 +690,7 @@ export function multibaggerPage(state = multibaggerState()) {
           const response = await fetch(url, { cache: "no-store" });
           if (response.ok) {
             window.__MULTIBAGGER_STATE__ = await response.json();
+            renderMultibaggerState(window.__MULTIBAGGER_STATE__);
             document.documentElement.dataset.multibaggerSource = url;
             return;
           }
@@ -648,6 +699,100 @@ export function multibaggerPage(state = multibaggerState()) {
         }
       }
     })();
+
+    function renderMultibaggerState(state) {
+      if (!state || !Array.isArray(state.holdings)) return;
+      setText("portfolioReturn", formatSignedPercent(state.performance?.sinceLaunchPercent));
+      setTone("portfolioReturn", state.performance?.sinceLaunchPercent);
+      setText("modelCapitalMetric", formatInr(state.modelCapitalInr));
+      setText("currentValueMetric", formatInr(state.performance?.currentModelValueInr));
+      setText("modelPnlMetric", formatSignedInr(state.performance?.totalPnlInr));
+      setTone("modelPnlMetric", state.performance?.totalPnlInr);
+      setText("portfolioReturnMetric", formatSignedPercent(state.performance?.sinceLaunchPercent));
+      setTone("portfolioReturnMetric", state.performance?.sinceLaunchPercent);
+      setText("benchmarkReturnMetric", formatSignedPercent(state.performance?.benchmarkSinceLaunchPercent));
+      setTone("benchmarkReturnMetric", state.performance?.benchmarkSinceLaunchPercent);
+      setText("lastPriceAtMetric", formatDateTime(state.updatedAt || state.pricing?.refreshedAt));
+      const rows = document.getElementById("modelHoldingsRows");
+      if (rows) rows.innerHTML = state.holdings.map(holdingRowHtml).join("");
+      const status = document.getElementById("priceStatus");
+      if (status) {
+        const stale = Boolean(state.pricing?.isStale || state.holdings.some((holding) => holding.isStale));
+        status.className = "price-status " + (stale ? "stale" : "fresh");
+        const first = status.querySelector("span");
+        if (first) first.textContent = stale
+          ? "Showing the latest published server price snapshot. Live refresh resumes when the API is available."
+          : "Prices are refreshed server-side during Indian market hours.";
+      }
+    }
+
+    function holdingRowHtml(holding) {
+      const returnTone = toneClass(holding.returnPercent);
+      const dayTone = toneClass(holding.dayChangePercent);
+      const currentTone = holding.isStale ? "stale" : "neutral";
+      return "<tr data-return-tone=\\"" + returnTone + "\\">"
+        + "<td><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
+        + "<td class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
+        + "<td class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "</td>"
+        + "<td class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holding.priceSource || "Price snapshot") + "</span></td>"
+        + "<td class=\\"price-cell " + returnTone + "\\">" + formatSignedPercent(holding.returnPercent) + "</td>"
+        + "<td class=\\"price-cell " + toneClass(holding.modelPnlInr) + "\\">" + formatSignedInr(holding.modelPnlInr) + "</td>"
+        + "<td class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
+        + "<td>" + escapeHtml(holding.role) + "<span class=\\"subtext\\">" + escapeHtml(holding.status) + "</span></td>"
+        + "</tr>";
+    }
+
+    function setText(id, value) {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
+    }
+
+    function setTone(id, value) {
+      const node = document.getElementById(id);
+      if (!node) return;
+      node.classList.remove("positive", "negative", "neutral", "stale");
+      node.classList.add(toneClass(value));
+    }
+
+    function toneClass(value) {
+      const number = Number(value);
+      if (number > 0) return "positive";
+      if (number < 0) return "negative";
+      return "neutral";
+    }
+
+    function formatInr(value) {
+      return "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value || 0));
+    }
+
+    function formatSignedInr(value) {
+      const number = Number(value || 0);
+      const prefix = number > 0 ? "+" : number < 0 ? "-" : "";
+      return prefix + "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Math.abs(number));
+    }
+
+    function formatPrice(value) {
+      return "INR " + new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value || 0));
+    }
+
+    function formatPercent(value) {
+      return Number(value || 0).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + "%";
+    }
+
+    function formatSignedPercent(value) {
+      const number = Number(value || 0);
+      const prefix = number > 0 ? "+" : "";
+      return prefix + number.toLocaleString("en-IN", { maximumFractionDigits: 2 }) + "%";
+    }
+
+    function formatDateTime(value) {
+      const date = value ? new Date(value) : new Date();
+      return new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(date);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
+    }
   </script>
 </body>
 </html>`;
@@ -946,12 +1091,56 @@ function adminScript() {
   `;
 }
 
+function holdingsRowsHtml(holdings) {
+  return holdings.map((holding) => `
+              <tr data-return-tone="${toneClass(holding.returnPercent)}">
+                <td><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
+                <td class="price-cell">${formatPercent(holding.targetWeight)}</td>
+                <td class="price-cell">${formatPrice(holding.entryPrice)}</td>
+                <td class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holding.priceSource ?? "Price snapshot")}</span></td>
+                <td class="price-cell ${toneClass(holding.returnPercent)}">${formatSignedPercent(holding.returnPercent)}</td>
+                <td class="price-cell ${toneClass(holding.modelPnlInr)}">${formatSignedInr(holding.modelPnlInr)}</td>
+                <td class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
+                <td>${escapeHtml(holding.role)}<span class="subtext">${escapeHtml(holding.status)}</span></td>
+              </tr>`).join("");
+}
+
+function priceStatusText(state) {
+  if (state.pricing?.isStale || state.holdings?.some((holding) => holding.isStale)) {
+    return "Showing the latest published server price snapshot. Live refresh resumes when the API is available.";
+  }
+  return "Prices are refreshed server-side during Indian market hours.";
+}
+
+function toneClass(value) {
+  const number = Number(value);
+  if (number > 0) return "positive";
+  if (number < 0) return "negative";
+  return "neutral";
+}
+
 function formatInr(value) {
   return `INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value))}`;
 }
 
+function formatSignedInr(value) {
+  const number = Number(value);
+  const prefix = number > 0 ? "+" : number < 0 ? "-" : "";
+  return `${prefix}INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Math.abs(number))}`;
+}
+
+function formatPrice(value) {
+  return `INR ${new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value))}`;
+}
+
 function formatPercent(value) {
   return `${Number(value).toLocaleString("en-IN", { maximumFractionDigits: 1 })}%`;
+}
+
+function formatSignedPercent(value) {
+  const number = Number(value);
+  const prefix = number > 0 ? "+" : "";
+  return `${prefix}${number.toLocaleString("en-IN", { maximumFractionDigits: 2 })}%`;
 }
 
 function formatDateTime(value) {

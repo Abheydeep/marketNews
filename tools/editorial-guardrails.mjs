@@ -78,6 +78,8 @@ export const PUBLIC_FORBIDDEN_PATTERNS = [
   /\bscaffolding\b/i,
   /\bTODO\b/,
   /\blorem\b/i,
+  /\bwe\s+(have\s+)?bought\b/i,
+  /\breal\s+broker\s+transactions?\b/i,
   /two-minute read:\s*this briefing/i,
   /this briefing distills/i,
   /\b\d+\s+source notes\b/i,

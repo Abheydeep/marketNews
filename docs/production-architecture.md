@@ -31,6 +31,8 @@ https://marketnarrative.in/multibagger/
 https://marketnarrative.in/multibagger/state.json
 ```
 
+The multibagger public state is a model tracker, not a statement of real account activity. It uses April 27, 2026 as the public model entry date, publishes reference entry prices, calculates current model value/P&L/return from server-side quote snapshots, and falls back to the latest static snapshot when the Spring API is unavailable.
+
 ## Admin Studio
 
 The admin Vercel project uses:

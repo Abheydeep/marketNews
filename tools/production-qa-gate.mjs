@@ -104,11 +104,29 @@ await group("Public user surface", async () => {
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");
     assert.equal(Object.hasOwn(payload, "reelScript"), false, "reelScript leaked");
   });
-  await expectPage("User", "Public multibagger", `${config.publicUrl}/multibagger/`, 200, [/5x Multibagger Portfolio|Concentrated 5x/i, /KPEL/i], [/Run Monthly Review/i]);
+  await expectPage(
+    "User",
+    "Public multibagger",
+    `${config.publicUrl}/multibagger/`,
+    200,
+    [/5x Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i],
+    [/Run Monthly Review/i]
+  );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
     const serialized = JSON.stringify(payload);
     assert.match(serialized, /KPEL/);
     assert.doesNotMatch(serialized, /broker|account value|quantity|raw OCR/i);
+    assert.equal(payload.modelEntryDate, "2026-04-27");
+    assert.equal(payload.performance?.modelEntryDate, "2026-04-27");
+    assert.ok(Number.isFinite(payload.performance?.currentModelValueInr), "portfolio current value missing");
+    assert.ok(Number.isFinite(payload.performance?.totalPnlInr), "portfolio P&L missing");
+    assert.ok(Array.isArray(payload.holdings), "holdings missing");
+    assert.ok(payload.holdings.every((holding) =>
+      Number.isFinite(holding.entryPrice)
+      && Number.isFinite(holding.lastPrice)
+      && Number.isFinite(holding.returnPercent)
+      && Number.isFinite(holding.currentModelValueInr)
+    ), "holding return fields missing");
   });
   await expectPage("User", "Public admin path blocked", `${config.publicUrl}/admin/`, 404, [/not found|NOT_FOUND|404/i]);
 });
@@ -394,7 +412,7 @@ async function runBrowserSmoke() {
       const page = await context.newPage();
       await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}/1may2026/`, /Live Quote Board|Daily Pre-Market Summary/i);
-      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /5x Multibagger Portfolio|Concentrated 5x/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since Apr 27, 2026|Current value/i);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
       await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);

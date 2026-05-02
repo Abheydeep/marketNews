@@ -1,6 +1,8 @@
 package com.marketnarrative.multibagger;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
 
 public record MultibaggerHolding(
     String ticker,
@@ -12,6 +14,17 @@ public record MultibaggerHolding(
     String thesis,
     String buyRule,
     String breakRule,
-    String status
+    String status,
+    LocalDate modelEntryDate,
+    BigDecimal entryPrice,
+    BigDecimal lastPrice,
+    BigDecimal previousClose,
+    BigDecimal dayChangePercent,
+    Instant lastPriceAt,
+    String priceSource,
+    boolean isStale,
+    BigDecimal returnPercent,
+    BigDecimal modelPnlInr,
+    BigDecimal currentModelValueInr
 ) {
 }

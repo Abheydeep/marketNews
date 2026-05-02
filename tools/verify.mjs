@@ -176,10 +176,26 @@ await test("multibagger public model is concentrated and sanitized", () => {
   const weights = state.holdings.map((holding) => holding.targetWeight);
   assert.equal(state.holdings.length, 6);
   assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
+  assert.equal(state.modelEntryDate, "2026-04-27");
+  assert.equal(state.performance.modelEntryDate, "2026-04-27");
+  assert.ok(Number.isFinite(state.performance.currentModelValueInr));
+  assert.ok(Number.isFinite(state.performance.totalPnlInr));
+  assert.ok(Number.isFinite(state.performance.benchmarkSinceLaunchPercent));
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
     ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
   );
+  assert.ok(state.holdings.some((holding) => holding.returnPercent > 0));
+  assert.ok(state.holdings.some((holding) => holding.returnPercent < 0));
+  for (const holding of state.holdings) {
+    for (const field of ["entryPrice", "lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
+      assert.ok(Number.isFinite(holding[field]), `${holding.ticker} missing ${field}`);
+    }
+    const expectedReturn = Math.round((((holding.lastPrice - holding.entryPrice) / holding.entryPrice) * 100) * 100) / 100;
+    assert.ok(Math.abs(expectedReturn - holding.returnPercent) <= 0.01, `${holding.ticker} return math mismatch`);
+  }
+  const expectedCurrentValue = Math.round(state.holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0) * 100) / 100;
+  assert.ok(Math.abs(expectedCurrentValue - state.performance.currentModelValueInr) <= 0.01);
   const publicJson = JSON.stringify(state).toLowerCase();
   for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
     assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
@@ -191,8 +207,19 @@ await test("multibagger public page is expandable and public-safe", () => {
   const html = multibaggerPage(state);
   assertPublicBriefingCopy("multibagger public page", html);
   assert.ok(html.includes("5x Multibagger Portfolio"));
+  assert.ok(html.includes("Since Apr 27, 2026"));
+  assert.ok(html.includes("Current value"));
+  assert.ok(html.includes("Model P&L"));
+  assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
   assert.ok(html.includes("Portfolio At A Glance"));
   assert.ok(html.includes("Buy And Sell Record"));
+  assert.ok(html.includes("MODEL_BUY"));
+  assert.ok(html.includes("Reference"));
+  assert.ok(html.includes("Entry"));
+  assert.ok(html.includes("Current"));
+  assert.ok(html.includes("Return"));
+  assert.ok(html.includes("price-status"));
+  assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Monthly Reviews"));
   assert.ok(html.includes("Watchlist And Replacements"));
   assert.ok(html.includes("og:site_name"));
@@ -234,7 +261,8 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
     "Asia watch: South Korea - KOSPI -1.38%",
     "14 markets tracked",
     "0 setups",
-    "15 sources"
+    "15 sources",
+    "we bought these stocks last week"
   ]) {
     assert.throws(
       () => assertPublicBriefingCopy("bad archive sample", badArchiveCopy),
@@ -533,6 +561,7 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   const publicController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "PublicMultibaggerController.java"), "utf8");
   const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "AdminMultibaggerController.java"), "utf8");
   const service = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerService.java"), "utf8");
+  const quoteService = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "multibagger", "MultibaggerQuoteService.java"), "utf8");
   assert.ok(publicController.includes('@RequestMapping("/api/public/multibagger")'));
   assert.ok(publicController.includes('@GetMapping("/state")'));
   assert.ok(adminController.includes('@RequestMapping("/api/admin/multibagger")'));
@@ -541,7 +570,11 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(adminController.includes('@PostMapping("/reviews/{id}/publish")'));
   assert.ok(adminController.includes("hasAuthority('admin:write')"));
   assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
-  assert.ok(service.includes("@Scheduled"));
+  assert.ok(service.includes("MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27)"));
+  assert.ok(service.includes('"MODEL_BUY"'));
+  assert.ok(quoteService.includes("@Scheduled"));
+  assert.ok(quoteService.includes("Yahoo Finance chart API"));
+  assert.ok(quoteService.includes("live-quotes-enabled"));
 });
 
 await test("Spring CORS allows admin and trade frontend origins", async () => {
@@ -841,10 +874,16 @@ await test("demo app serves public and admin flows without external packages", a
   const multibagger = await app.request("GET", "/api/public/multibagger/state");
   assert.equal(multibagger.json.holdings.length, 6);
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
+  assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
+  assert.ok(Number.isFinite(multibagger.json.performance.currentModelValueInr));
+  assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && Number.isFinite(holding.returnPercent)));
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
 
   const multibaggerHtml = await app.request("GET", "/multibagger/");
   assert.ok(multibaggerHtml.body.includes("5x Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes("Since Apr 27, 2026"));
+  assert.ok(multibaggerHtml.body.includes("Current value"));
+  assert.ok(multibaggerHtml.body.includes("Model P&L"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
   assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));

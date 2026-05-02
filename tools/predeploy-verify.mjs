@@ -97,6 +97,14 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Previous session driver/);
   assertOutput("index.html", /sentiment-sparkline/);
   assertOutputNot("index.html", /All Market Narrative briefings|The root page now works|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
+  assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
+  assertOutput("multibagger/index.html", /Current value/);
+  assertOutput("multibagger/index.html", /Model P&L/);
+  assertOutput("multibagger/index.html", /Model performance is calculated from the public model start date and model allocation weights/);
+  assertOutput("multibagger/state.json", /"modelEntryDate": "2026-04-27"/);
+  assertOutput("multibagger/state.json", /"entryPrice"/);
+  assertOutput("multibagger/state.json", /"returnPercent"/);
+  assertOutput("multibagger/state.json", /"currentModelValueInr"/);
   runPublicCopyQa("out/vercel");
   assertOutput("index.html", /Admin login/);
   assertOutputAbsent("components/index.html");
