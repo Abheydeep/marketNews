@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
-import { multibaggerState } from "./multibagger-data.mjs";
+import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
@@ -60,7 +60,7 @@ for (const digest of digests) {
 }
 
 const latest = digests[0];
-const publicMultibaggerState = multibaggerState();
+const publicMultibaggerState = await multibaggerStateWithMarketQuotes();
 const adminDigest = {
   ...sourceDigest,
   canonicalPath: "/"

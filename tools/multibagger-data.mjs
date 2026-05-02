@@ -1,6 +1,8 @@
 const MODEL_CAPITAL_INR = 500_000;
 const MODEL_ENTRY_DATE = "2026-04-27";
 const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
+const QUOTE_FRESHNESS_HOURS = 120;
+const FILLS_PUBLISHED = false;
 
 const priceSnapshots = {
   KPEL: {
@@ -62,6 +64,20 @@ const benchmarkSnapshot = {
   source: "Awaiting verified live quote",
   isStale: true
 };
+
+const yahooSymbols = {
+  KPEL: "KPEL.BO",
+  PIGL: "PIGL.NS",
+  JNKINDIA: "JNKINDIA.NS",
+  DYCL: "DYCL.NS",
+  TEMBO: "TEMBO.NS"
+};
+
+const bseSymbols = {
+  DHABRIYA: "538715"
+};
+
+const BSE_QUOTE_URL = "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w";
 
 const methodology = {
   definition: "A multibagger candidate is a business that can compound the original model capital several times over a full cycle, not merely a stock with a short-term price spike.",
@@ -181,7 +197,7 @@ const researchEvidence = {
   ]
 };
 
-const holdings = [
+const baseHoldings = [
   {
     ticker: "KPEL",
     yahooSymbol: "KPEL.BO",
@@ -197,8 +213,7 @@ const holdings = [
     growthCatalyst: "Renewable project execution, order conversion, and sector capex visibility.",
     conversionRisk: "Receivables or delayed project cash collection would weaken the anchor role.",
     capitalStructureRisk: "Group complexity, debt-funded expansion, or guarantees must stay contained.",
-    status: "Core hold / buy staged",
-    ...holdingPerformance("KPEL", 125_000)
+    status: "Core hold / buy staged"
   },
   {
     ticker: "DHABRIYA",
@@ -215,8 +230,7 @@ const holdings = [
     growthCatalyst: "Operating leverage from scale, product mix, and margin recovery.",
     conversionRisk: "Inventory build-up or debtor stretch would turn reported PAT into lower-quality growth.",
     capitalStructureRisk: "Debt and working-capital funding must not rise faster than earnings.",
-    status: "Core hold / buy staged",
-    ...holdingPerformance("DHABRIYA", 100_000)
+    status: "Core hold / buy staged"
   },
   {
     ticker: "PIGL",
@@ -233,8 +247,7 @@ const holdings = [
     growthCatalyst: "RDSS execution, busduct optionality, and electrical infrastructure order conversion.",
     conversionRisk: "Large orders can destroy value if they arrive with low margins, slow billing, or debtor stress.",
     capitalStructureRisk: "Working-capital borrowing and customer concentration need monthly review.",
-    status: "Capped alpha",
-    ...holdingPerformance("PIGL", 87_500)
+    status: "Capped alpha"
   },
   {
     ticker: "JNKINDIA",
@@ -251,8 +264,7 @@ const holdings = [
     growthCatalyst: "Order book entering P&L through process-heating and industrial capex execution.",
     conversionRisk: "Receivables expanding faster than sales would be the main evidence break.",
     capitalStructureRisk: "Balance-sheet strain from execution scale-up should stay modest.",
-    status: "Capped alpha",
-    ...holdingPerformance("JNKINDIA", 75_000)
+    status: "Capped alpha"
   },
   {
     ticker: "DYCL",
@@ -269,8 +281,7 @@ const holdings = [
     growthCatalyst: "Cable-cycle demand, solar DC products, e-beam capacity, and order inflow.",
     conversionRisk: "Receivable quality and commodity-linked margin swings are the main conversion checks.",
     capitalStructureRisk: "Capacity ramp must avoid excessive leverage or weak interest coverage.",
-    status: "Quality alpha",
-    ...holdingPerformance("DYCL", 62_500)
+    status: "Quality alpha"
   },
   {
     ticker: "TEMBO",
@@ -287,20 +298,11 @@ const holdings = [
     growthCatalyst: "Large order-book execution and exports or infrastructure-linked demand.",
     conversionRisk: "Cash-flow slippage, guarantees, or delayed collections would break the optionality case.",
     capitalStructureRisk: "Dilution, pledges, guarantees, and related-party risk keep sizing capped.",
-    status: "Speculative cap",
-    ...holdingPerformance("TEMBO", 50_000)
+    status: "Speculative cap"
   }
 ];
 
-const transactions = holdings.map((holding) => ({
-  date: MODEL_ENTRY_DATE,
-  ticker: holding.ticker,
-  action: "MODEL_BUY",
-  weightChange: holding.targetWeight,
-  publicNote: `Public model buy for ${holding.role.toLowerCase()}.`,
-  referencePrice: holding.entryPrice,
-  performanceNote: `Return tracking starts from the ${MODEL_ENTRY_DATE} model price.`
-}));
+const transactions = [];
 
 const monthlyReviews = [
   {
@@ -423,35 +425,46 @@ const sources = [
   }
 ];
 
-export function multibaggerState() {
-  const hasVerifiedPrices = holdings.every((holding) => !holding.isStale && Number.isFinite(Number(holding.currentModelValueInr)));
+export function multibaggerState(options = {}) {
+  const activeSnapshots = options.priceSnapshots ?? priceSnapshots;
+  const activeBenchmark = options.benchmarkSnapshot ?? benchmarkSnapshot;
+  const refreshedAt = options.updatedAt ?? latestStateTimestamp(activeSnapshots, activeBenchmark);
+  const holdings = holdingsWithPerformance(activeSnapshots);
+  const hasMarketQuotes = holdings.some((holding) => !holding.isStale && Number.isFinite(Number(holding.lastPrice)));
+  const hasVerifiedPrices = FILLS_PUBLISHED && holdings.every((holding) => !holding.isStale && Number.isFinite(Number(holding.currentModelValueInr)));
   const currentModelValueInr = hasVerifiedPrices
     ? round(holdings.reduce((sum, holding) => sum + holding.currentModelValueInr, 0), 2)
     : null;
   const totalPnlInr = hasVerifiedPrices ? round(currentModelValueInr - MODEL_CAPITAL_INR, 2) : null;
   const sinceLaunchPercent = hasVerifiedPrices ? round((totalPnlInr / MODEL_CAPITAL_INR) * 100, 2) : null;
-  const benchmarkSinceLaunchPercent = returnPercent(benchmarkSnapshot.entryPrice, benchmarkSnapshot.lastPrice);
+  const benchmarkSinceLaunchPercent = activeBenchmark.isStale ? null : returnPercent(activeBenchmark.entryPrice, activeBenchmark.lastPrice);
+  const quoteMode = hasMarketQuotes ? (options.mode ?? "public-market-snapshot") : "awaiting-verified-quotes";
+  const quoteNote = hasMarketQuotes
+    ? "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published."
+    : "Current prices and returns are hidden until verified market quotes are available.";
   const state = {
     modelName: "Concentrated 5x Multibagger Model",
     modelCapitalInr: MODEL_CAPITAL_INR,
     modelEntryDate: MODEL_ENTRY_DATE,
-    updatedAt: STATIC_PRICE_REFRESH_AT,
+    updatedAt: refreshedAt,
     quoteStatus: {
-      mode: "awaiting-verified-quotes",
-      lastRefreshAt: STATIC_PRICE_REFRESH_AT,
-      note: "Current prices and returns are hidden until the server supplies verified live quotes."
+      mode: quoteMode,
+      lastRefreshAt: refreshedAt,
+      note: quoteNote
     },
     pricing: {
-      mode: "awaiting-verified-quotes",
-      refreshedAt: STATIC_PRICE_REFRESH_AT,
-      isStale: true,
-      refreshCadence: "Every 5 minutes during Indian market hours when the backend is live",
+      mode: quoteMode,
+      refreshedAt,
+      isStale: !hasMarketQuotes,
+      refreshCadence: "Static publish fetches latest public quotes; backend refreshes every 5 minutes during Indian market hours when live quotes are enabled",
       benchmark: {
-        ...benchmarkSnapshot,
+        ...activeBenchmark,
         returnPercent: benchmarkSinceLaunchPercent,
-        dayChangePercent: returnPercent(benchmarkSnapshot.previousClose, benchmarkSnapshot.lastPrice)
+        dayChangePercent: activeBenchmark.isStale ? null : returnPercent(activeBenchmark.previousClose, activeBenchmark.lastPrice)
       },
-      note: "Fallback mode does not publish current prices, returns, or P&L."
+      note: hasMarketQuotes
+        ? "Latest price and day move are public market-data fields. Model return and P&L require admin-published fills."
+        : "Fallback mode does not publish current prices, returns, or P&L."
     },
     performance: {
       sinceLaunchPercent,
@@ -461,7 +474,9 @@ export function multibaggerState() {
       benchmarkSinceLaunchPercent,
       currentModelValueInr,
       totalPnlInr,
-      note: "Model performance is calculated from the public model start date and model allocation weights."
+      note: FILLS_PUBLISHED
+        ? "Model performance is calculated from published fills and model allocation weights."
+        : "Target weights are research allocations. Return, P&L and current model value remain hidden until exact public fills are published."
     },
     holdings,
     methodology,
@@ -476,20 +491,36 @@ export function multibaggerState() {
   return state;
 }
 
-function holdingPerformance(ticker, modelAmountInr) {
-  const snapshot = priceSnapshots[ticker];
-  const returnValue = returnPercent(snapshot.entryPrice, snapshot.lastPrice);
-  const dayChangePercent = returnPercent(snapshot.previousClose, snapshot.lastPrice);
+export async function multibaggerStateWithMarketQuotes() {
+  try {
+    return multibaggerState(await fetchMarketQuoteSnapshots());
+  } catch {
+    return multibaggerState();
+  }
+}
+
+function holdingsWithPerformance(snapshots = priceSnapshots) {
+  return baseHoldings.map((holding) => ({
+    ...holding,
+    ...holdingPerformance(holding.ticker, holding.modelAmountInr, snapshots)
+  }));
+}
+
+function holdingPerformance(ticker, modelAmountInr, snapshots = priceSnapshots) {
+  const snapshot = snapshots[ticker] ?? priceSnapshots[ticker];
   const hasVerifiedQuote = !snapshot.isStale && Number.isFinite(Number(snapshot.lastPrice));
-  const currentModelValueInr = hasVerifiedQuote
+  const showPerformance = FILLS_PUBLISHED && hasVerifiedQuote;
+  const returnValue = showPerformance ? returnPercent(snapshot.entryPrice, snapshot.lastPrice) : null;
+  const dayChangePercent = hasVerifiedQuote ? returnPercent(snapshot.previousClose, snapshot.lastPrice) : null;
+  const currentModelValueInr = showPerformance
     ? round(modelAmountInr * (snapshot.lastPrice / snapshot.entryPrice), 2)
     : null;
-  const modelPnlInr = hasVerifiedQuote ? round(currentModelValueInr - modelAmountInr, 2) : null;
+  const modelPnlInr = showPerformance ? round(currentModelValueInr - modelAmountInr, 2) : null;
   return {
     modelEntryDate: MODEL_ENTRY_DATE,
     entryPrice: snapshot.entryPrice,
-    lastPrice: snapshot.lastPrice,
-    previousClose: snapshot.previousClose,
+    lastPrice: hasVerifiedQuote ? snapshot.lastPrice : null,
+    previousClose: hasVerifiedQuote ? snapshot.previousClose : null,
     dayChangePercent,
     lastPriceAt: snapshot.lastPriceAt,
     priceSource: snapshot.priceSource,
@@ -498,6 +529,211 @@ function holdingPerformance(ticker, modelAmountInr) {
     modelPnlInr,
     currentModelValueInr
   };
+}
+
+async function fetchMarketQuoteSnapshots() {
+  const nextSnapshots = { ...priceSnapshots };
+  const yahooResults = await Promise.all(Object.entries(yahooSymbols).map(async ([ticker, symbol]) => {
+    const quote = await fetchYahooQuote(ticker, symbol, priceSnapshots[ticker]);
+    return [ticker, quote];
+  }));
+  for (const [ticker, quote] of yahooResults) {
+    if (quote) {
+      nextSnapshots[ticker] = quote;
+    }
+  }
+
+  const bseResults = await Promise.all(Object.entries(bseSymbols).map(async ([ticker, scripcode]) => {
+    const quote = await fetchBseQuote(ticker, scripcode, priceSnapshots[ticker]);
+    return [ticker, quote];
+  }));
+  for (const [ticker, quote] of bseResults) {
+    if (quote) {
+      nextSnapshots[ticker] = quote;
+    }
+  }
+
+  const nextBenchmark = await fetchYahooBenchmark("^NSEI").catch(() => null);
+  const hasLiveQuote = Object.values(nextSnapshots).some((quote) => !quote.isStale && Number.isFinite(Number(quote.lastPrice)));
+  return {
+    priceSnapshots: hasLiveQuote ? nextSnapshots : priceSnapshots,
+    benchmarkSnapshot: nextBenchmark ?? benchmarkSnapshot,
+    updatedAt: latestStateTimestamp(hasLiveQuote ? nextSnapshots : priceSnapshots, nextBenchmark ?? benchmarkSnapshot),
+    mode: hasLiveQuote ? "public-market-snapshot" : "awaiting-verified-quotes"
+  };
+}
+
+async function fetchYahooQuote(ticker, yahooSymbol, fallback) {
+  try {
+    const meta = await fetchYahooMeta(yahooSymbol);
+    const lastPrice = numberFrom(meta.regularMarketPrice);
+    if (!Number.isFinite(lastPrice)) {
+      return null;
+    }
+    const previousClose = firstFinite(
+      numberFrom(meta.chartPreviousClose),
+      numberFrom(meta.previousClose),
+      numberFrom(meta.regularMarketPreviousClose),
+      fallback.previousClose
+    );
+    const lastPriceAt = timestampFromEpoch(meta.regularMarketTime) ?? new Date().toISOString();
+    return {
+      ticker,
+      entryPrice: fallback.entryPrice,
+      lastPrice,
+      previousClose,
+      lastPriceAt,
+      priceSource: `Yahoo Finance (${yahooSymbol})`,
+      isStale: isQuoteTimestampStale(lastPriceAt)
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchYahooBenchmark(yahooSymbol) {
+  const meta = await fetchYahooMeta(yahooSymbol);
+  const lastPrice = numberFrom(meta.regularMarketPrice);
+  if (!Number.isFinite(lastPrice)) {
+    return null;
+  }
+  const previousClose = firstFinite(
+    numberFrom(meta.chartPreviousClose),
+    numberFrom(meta.previousClose),
+    numberFrom(meta.regularMarketPreviousClose),
+    benchmarkSnapshot.previousClose
+  );
+  const lastPriceAt = timestampFromEpoch(meta.regularMarketTime) ?? new Date().toISOString();
+  return {
+    ...benchmarkSnapshot,
+    lastPrice,
+    previousClose,
+    lastPriceAt,
+    source: `Yahoo Finance (${yahooSymbol})`,
+    isStale: isQuoteTimestampStale(lastPriceAt)
+  };
+}
+
+async function fetchYahooMeta(yahooSymbol) {
+  const json = await fetchJson(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yahooSymbol)}?range=1d&interval=1m`, {
+    headers: {
+      "User-Agent": "Mozilla/5.0"
+    }
+  });
+  const meta = json?.chart?.result?.[0]?.meta;
+  if (!meta) {
+    throw new Error(`Yahoo response missing meta for ${yahooSymbol}`);
+  }
+  return meta;
+}
+
+async function fetchBseQuote(ticker, scripcode, fallback) {
+  try {
+    const url = new URL(BSE_QUOTE_URL);
+    url.searchParams.set("scripcode", scripcode);
+    url.searchParams.set("flag", "0");
+    url.searchParams.set("fromdate", "");
+    url.searchParams.set("todate", "");
+    url.searchParams.set("seriesid", "");
+    const payload = await fetchJson(url.toString(), {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+        "Referer": "https://www.bseindia.com/",
+        "Origin": "https://www.bseindia.com"
+      }
+    });
+    const lastPrice = numberFrom(payload?.CurrVal);
+    if (!Number.isFinite(lastPrice)) {
+      return null;
+    }
+    const previousClose = firstFinite(numberFrom(payload?.PrevClose), fallback.previousClose);
+    const lastPriceAt = parseBseTimestamp(payload?.CurrDate, payload?.CurrTime);
+    return {
+      ticker,
+      entryPrice: fallback.entryPrice,
+      lastPrice,
+      previousClose,
+      lastPriceAt,
+      priceSource: `BSE India (${scripcode})`,
+      isStale: isQuoteTimestampStale(lastPriceAt)
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchJson(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4500);
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    if (!response.ok) {
+      throw new Error(`Quote request failed with HTTP ${response.status}`);
+    }
+    return await response.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function latestStateTimestamp(snapshots = priceSnapshots, benchmark = benchmarkSnapshot) {
+  const liveTimestamps = [
+    !benchmark.isStale && Number.isFinite(Number(benchmark.lastPrice)) ? benchmark.lastPriceAt : null,
+    ...Object.values(snapshots).map((snapshot) =>
+      !snapshot.isStale && Number.isFinite(Number(snapshot.lastPrice)) ? snapshot.lastPriceAt : null
+    )
+  ]
+    .map((value) => new Date(value).getTime())
+    .filter(Number.isFinite);
+  const latest = liveTimestamps.length ? Math.max(...liveTimestamps) : new Date(STATIC_PRICE_REFRESH_AT).getTime();
+  return new Date(latest).toISOString();
+}
+
+function parseBseTimestamp(dateValue, timeValue) {
+  const rawDate = String(dateValue ?? "").trim();
+  if (!rawDate) {
+    return new Date().toISOString();
+  }
+  const withOffset = /\bGMT\b|[+-]\d{4}$/.test(rawDate)
+    ? rawDate
+    : `${rawDate} GMT+0530`;
+  const parsed = new Date(withOffset);
+  if (Number.isFinite(parsed.getTime())) {
+    return parsed.toISOString();
+  }
+  const fallback = new Date(`${rawDate.slice(0, 15)} ${String(timeValue ?? "15:30").trim()} GMT+0530`);
+  return Number.isFinite(fallback.getTime()) ? fallback.toISOString() : new Date().toISOString();
+}
+
+function timestampFromEpoch(epochSeconds) {
+  const number = Number(epochSeconds);
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+  return new Date(number * 1000).toISOString();
+}
+
+function isQuoteTimestampStale(value) {
+  const timestamp = new Date(value).getTime();
+  if (!Number.isFinite(timestamp)) {
+    return true;
+  }
+  return Math.abs(Date.now() - timestamp) > QUOTE_FRESHNESS_HOURS * 60 * 60 * 1000;
+}
+
+function numberFrom(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+  const number = Number(String(value).replace(/,/g, ""));
+  return Number.isFinite(number) ? round(number, 2) : null;
+}
+
+function firstFinite(...values) {
+  return values.find((value) => Number.isFinite(Number(value))) ?? null;
 }
 
 function returnPercent(start, end) {
@@ -527,19 +763,21 @@ export function validateMultibaggerState(state = multibaggerState()) {
       throw new Error(`${holding.ticker} is missing numeric entryPrice`);
     }
     if (!holding.isStale) {
-      for (const field of ["lastPrice", "returnPercent", "modelPnlInr", "currentModelValueInr", "dayChangePercent"]) {
+      for (const field of ["lastPrice", "dayChangePercent"]) {
         if (!Number.isFinite(Number(holding[field]))) {
           throw new Error(`${holding.ticker} is missing numeric ${field}`);
         }
       }
-      const expectedReturn = returnPercent(holding.entryPrice, holding.lastPrice);
-      if (Math.abs(expectedReturn - Number(holding.returnPercent)) > 0.01) {
-        throw new Error(`${holding.ticker} return math is inconsistent`);
+      if (holding.returnPercent !== null) {
+        const expectedReturn = returnPercent(holding.entryPrice, holding.lastPrice);
+        if (Math.abs(expectedReturn - Number(holding.returnPercent)) > 0.01) {
+          throw new Error(`${holding.ticker} return math is inconsistent`);
+        }
       }
     }
   }
 
-  if (!state.pricing.isStale) {
+  if (!state.pricing.isStale && state.performance.currentModelValueInr !== null) {
     const expectedCurrentValue = round(state.holdings.reduce((sum, holding) => sum + Number(holding.currentModelValueInr), 0), 2);
     if (Math.abs(expectedCurrentValue - Number(state.performance.currentModelValueInr)) > 0.01) {
       throw new Error("Multibagger portfolio current value math is inconsistent");

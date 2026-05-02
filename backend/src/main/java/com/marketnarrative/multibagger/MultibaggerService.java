@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -19,6 +18,7 @@ public class MultibaggerService {
     private static final LocalDate MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27);
     private static final LocalDate PUBLISHED_REVIEW_DATE = LocalDate.of(2026, 5, 1);
     private static final Integer MODEL_CAPITAL = 500_000;
+    private static final boolean FILLS_PUBLISHED = false;
 
     private final MultibaggerQuoteService quoteService;
     private final Map<String, byte[]> snapshots = new ConcurrentHashMap<>();
@@ -31,7 +31,7 @@ public class MultibaggerService {
     public MultibaggerState publicState() {
         List<MultibaggerHolding> publicHoldings = holdings();
         PricingSnapshot pricing = quoteService.pricingSnapshot();
-        boolean hasVerifiedPrices = !pricing.isStale() && publicHoldings.stream()
+        boolean hasVerifiedPrices = FILLS_PUBLISHED && !pricing.isStale() && publicHoldings.stream()
             .allMatch(holding -> holding.currentModelValueInr() != null && !holding.isStale());
         BigDecimal currentModelValue = hasVerifiedPrices
             ? publicHoldings.stream()
@@ -56,8 +56,8 @@ public class MultibaggerService {
                 pricing.mode(),
                 pricing.refreshedAt(),
                 pricing.isStale()
-                    ? "Current prices and returns are hidden until the server supplies verified live quotes."
-                    : "Public model prices refresh from the server during Indian market hours."
+                    ? "Current prices and day moves are hidden until verified market quotes are available."
+                    : "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published."
             ),
             pricing,
             new PerformanceSnapshot(
@@ -68,7 +68,9 @@ public class MultibaggerService {
                 pricing.benchmark().returnPercent(),
                 currentModelValue,
                 totalPnl,
-                "Model performance is calculated from the public model start date and model allocation weights."
+                FILLS_PUBLISHED
+                    ? "Model performance is calculated from published fills and model allocation weights."
+                    : "Target weights are research allocations. Return, P&L and current model value remain hidden until exact public fills are published."
             ),
             publicHoldings,
             methodology(),
@@ -162,12 +164,13 @@ public class MultibaggerService {
     ) {
         MultibaggerQuoteSnapshot quote = quoteService.snapshotFor(ticker);
         boolean hasVerifiedQuote = !quote.isStale() && quote.lastPrice() != null && quote.entryPrice() != null;
-        BigDecimal currentModelValue = hasVerifiedQuote
+        boolean showPerformance = FILLS_PUBLISHED && hasVerifiedQuote;
+        BigDecimal currentModelValue = showPerformance
             ? BigDecimal.valueOf(amount)
                 .multiply(quote.lastPrice())
                 .divide(quote.entryPrice(), 2, RoundingMode.HALF_UP)
             : null;
-        BigDecimal modelPnl = hasVerifiedQuote
+        BigDecimal modelPnl = showPerformance
             ? currentModelValue
                 .subtract(BigDecimal.valueOf(amount))
                 .setScale(2, RoundingMode.HALF_UP)
@@ -196,7 +199,7 @@ public class MultibaggerService {
             quote.lastPriceAt(),
             quote.priceSource(),
             quote.isStale(),
-            hasVerifiedQuote ? returnPercent(quote.entryPrice(), quote.lastPrice()) : null,
+            showPerformance ? returnPercent(quote.entryPrice(), quote.lastPrice()) : null,
             modelPnl,
             currentModelValue
         );
@@ -325,19 +328,7 @@ public class MultibaggerService {
     }
 
     private List<PublicTransaction> transactions(List<MultibaggerHolding> publicHoldings) {
-        List<PublicTransaction> rows = new ArrayList<>();
-        for (MultibaggerHolding holding : publicHoldings) {
-            rows.add(new PublicTransaction(
-                MODEL_ENTRY_DATE,
-                holding.ticker(),
-                "MODEL_BUY",
-                holding.targetWeight(),
-                "Public model buy for " + holding.role().toLowerCase() + ".",
-                holding.entryPrice(),
-                "Return tracking starts from the 2026-04-27 model price."
-            ));
-        }
-        return rows;
+        return List.of();
     }
 
     private List<PublicMonthlyReview> monthlyReviews() {

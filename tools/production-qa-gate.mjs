@@ -159,13 +159,14 @@ await group("Public user surface", async () => {
         && holding.currentModelValueInr === null
       ), "stale public holdings must hide current price math");
     } else {
-      assert.ok(Number.isFinite(payload.performance?.currentModelValueInr), "portfolio current value missing");
-      assert.ok(Number.isFinite(payload.performance?.totalPnlInr), "portfolio P&L missing");
+      assert.equal(payload.performance?.currentModelValueInr, null, "public state must hide current value until fills are published");
+      assert.equal(payload.performance?.totalPnlInr, null, "public state must hide P&L until fills are published");
       assert.ok(payload.holdings.every((holding) =>
         Number.isFinite(holding.lastPrice)
-        && Number.isFinite(holding.returnPercent)
-        && Number.isFinite(holding.currentModelValueInr)
-      ), "holding return fields missing");
+        && Number.isFinite(holding.dayChangePercent)
+        && holding.returnPercent === null
+        && holding.currentModelValueInr === null
+      ), "holding quote fields missing");
     }
   });
   await expectPage("User", "Public admin path blocked", `${config.publicUrl}/admin/`, 404, [/not found|NOT_FOUND|404/i]);

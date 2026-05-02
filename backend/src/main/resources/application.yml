@@ -35,7 +35,7 @@ app:
   frontend:
     allowed-origin: ${FRONTEND_ORIGINS:${FRONTEND_ORIGIN:http://localhost:3000}}
   multibagger:
-    live-quotes-enabled: ${MULTIBAGGER_LIVE_QUOTES_ENABLED:false}
+    live-quotes-enabled: ${MULTIBAGGER_LIVE_QUOTES_ENABLED:true}
     quote-timeout-ms: ${MULTIBAGGER_QUOTE_TIMEOUT_MS:3500}
   demo-users:
     seed-demo-admin: ${SEED_DEMO_ADMIN:true}

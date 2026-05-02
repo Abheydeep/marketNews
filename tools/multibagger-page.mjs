@@ -412,7 +412,7 @@ export function multibaggerPage(state = multibaggerState()) {
 
     table {
       width: 100%;
-      min-width: 860px;
+      min-width: 720px;
       border-collapse: collapse;
     }
 
@@ -874,14 +874,14 @@ export function multibaggerPage(state = multibaggerState()) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Model Holdings</strong><span>Public model allocations with entry, latest price, and return math; no personal account data is published.</span></span>
+        <span class="summary-title"><strong>Model Holdings</strong><span>Target allocations with latest market quote and day move; exact fills are not published yet.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">Entry prices</span><span class="preview-pill">Quotes hidden</span><span class="preview-pill">P&L hidden</span></span>
+        <span class="module-preview"><span class="preview-pill">Latest quotes</span><span class="preview-pill">Day moves</span><span class="preview-pill">Fills pending</span></span>
       </summary>
       <div class="panel-body">
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Ticker</th><th>Weight</th><th>Entry</th><th>Current</th><th>Return</th><th>P&L</th><th>Day</th><th>Role</th></tr></thead>
+            <thead><tr><th>Ticker</th><th>Target</th><th>Latest</th><th>Day Move</th><th>Role</th></tr></thead>
             <tbody id="modelHoldingsRows">
               ${holdingsRowsHtml(state.holdings)}
             </tbody>
@@ -916,12 +916,12 @@ export function multibaggerPage(state = multibaggerState()) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Buy And Sell Record</strong><span>Public model actions and allocation changes.</span></span>
+        <span class="summary-title"><strong>Buy And Sell Record</strong><span>Published execution ledger once exact fills are confirmed.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">6 model buys</span><span class="preview-pill">Apr 27</span><span class="preview-pill">No account data</span></span>
+        <span class="module-preview"><span class="preview-pill">No fills yet</span><span class="preview-pill">Targets only</span><span class="preview-pill">Review first</span></span>
       </summary>
       <div class="panel-body">
-        <div class="table-wrap">
+        ${state.transactions.length ? `<div class="table-wrap">
           <table>
             <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Reference</th><th>Public Note</th></tr></thead>
             <tbody>
@@ -936,7 +936,7 @@ export function multibaggerPage(state = multibaggerState()) {
               </tr>`).join("")}
             </tbody>
           </table>
-        </div>
+        </div>` : `<p class="note">No public execution ledger has been published yet. Target weights are research allocations, not confirmed fills.</p>`}
       </div>
     </details>
 
@@ -1060,26 +1060,22 @@ export function multibaggerPage(state = multibaggerState()) {
       if (rows) rows.innerHTML = state.holdings.map(holdingRowHtml).join("");
       const status = document.getElementById("priceStatus");
       if (status) {
-        const stale = Boolean(state.pricing?.isStale || state.holdings.some((holding) => holding.isStale));
+        const stale = Boolean(state.pricing?.isStale);
         status.className = "price-status " + (stale ? "stale" : "fresh");
         const first = status.querySelector("span");
         if (first) first.textContent = stale
-          ? "Verified live quotes are not available yet. Current prices, returns, P&L, and day moves are hidden."
-          : "Prices are refreshed server-side during Indian market hours.";
+          ? "Verified market quotes are not available yet. Current prices and day moves are hidden."
+          : "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published.";
       }
     }
 
     function holdingRowHtml(holding) {
-      const returnTone = toneClass(holding.returnPercent);
       const dayTone = toneClass(holding.dayChangePercent);
       const currentTone = holding.isStale ? "stale" : "neutral";
-      return "<tr data-return-tone=\\"" + returnTone + "\\">"
+      return "<tr>"
         + "<td><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
         + "<td class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
-        + "<td class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "</td>"
         + "<td class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holding.priceSource || "Price snapshot") + "</span></td>"
-        + "<td class=\\"price-cell " + returnTone + "\\">" + formatSignedPercent(holding.returnPercent) + "</td>"
-        + "<td class=\\"price-cell " + toneClass(holding.modelPnlInr) + "\\">" + formatSignedInr(holding.modelPnlInr) + "</td>"
         + "<td class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
         + "<td>" + escapeHtml(holding.role) + "<span class=\\"subtext\\">" + escapeHtml(holding.status) + "</span></td>"
         + "</tr>";
@@ -1105,7 +1101,7 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     function formatInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Pending fills";
       return "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value));
     }
 
@@ -1440,23 +1436,20 @@ function adminScript() {
 
 function holdingsRowsHtml(holdings) {
   return holdings.map((holding) => `
-              <tr data-return-tone="${toneClass(holding.returnPercent)}">
+              <tr>
                 <td><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
                 <td class="price-cell">${formatPercent(holding.targetWeight)}</td>
-                <td class="price-cell">${formatPrice(holding.entryPrice)}</td>
                 <td class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holding.priceSource ?? "Price snapshot")}</span></td>
-                <td class="price-cell ${toneClass(holding.returnPercent)}">${formatSignedPercent(holding.returnPercent)}</td>
-                <td class="price-cell ${toneClass(holding.modelPnlInr)}">${formatSignedInr(holding.modelPnlInr)}</td>
                 <td class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
                 <td>${escapeHtml(holding.role)}<span class="subtext">${escapeHtml(holding.status)}</span></td>
               </tr>`).join("");
 }
 
 function priceStatusText(state) {
-  if (state.pricing?.isStale || state.holdings?.some((holding) => holding.isStale)) {
-    return "Verified live quotes are not available yet. Current prices, returns, P&L, and day moves are hidden.";
+  if (state.pricing?.isStale) {
+    return "Verified market quotes are not available yet. Current prices and day moves are hidden.";
   }
-  return "Prices are refreshed server-side during Indian market hours.";
+  return "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published.";
 }
 
 function toneClass(value) {
@@ -1468,7 +1461,7 @@ function toneClass(value) {
 
 function formatInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Awaiting quote";
+    return "Pending fills";
   }
   return `INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value))}`;
 }

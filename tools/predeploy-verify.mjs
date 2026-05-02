@@ -100,7 +100,7 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
   assertOutput("multibagger/index.html", /Current value/);
   assertOutput("multibagger/index.html", /Model P&L/);
-  assertOutput("multibagger/index.html", /Model performance is calculated from the public model start date and model allocation weights/);
+  assertOutput("multibagger/index.html", /Target weights are research allocations/);
   assertOutput("multibagger/state.json", /"modelEntryDate": "2026-04-27"/);
   assertOutput("multibagger/state.json", /"entryPrice"/);
   assertOutput("multibagger/state.json", /"returnPercent"/);

@@ -33,13 +33,13 @@ export async function getPublicDigest(date: "today" | string): Promise<PublicDig
 export type MultibaggerBenchmark = {
   symbol: string;
   entryPrice: number;
-  lastPrice: number;
-  previousClose: number;
+  lastPrice: number | null;
+  previousClose: number | null;
   lastPriceAt: string;
   source: string;
   isStale: boolean;
-  returnPercent: number;
-  dayChangePercent: number;
+  returnPercent: number | null;
+  dayChangePercent: number | null;
 };
 
 export type MultibaggerPricing = {
@@ -52,13 +52,13 @@ export type MultibaggerPricing = {
 };
 
 export type MultibaggerPerformance = {
-  sinceLaunchPercent: number;
+  sinceLaunchPercent: number | null;
   launchDate: string;
   modelEntryDate: string;
   benchmark: string;
-  benchmarkSinceLaunchPercent: number;
-  currentModelValueInr: number;
-  totalPnlInr: number;
+  benchmarkSinceLaunchPercent: number | null;
+  currentModelValueInr: number | null;
+  totalPnlInr: number | null;
   note: string;
 };
 
@@ -75,15 +75,15 @@ export type MultibaggerHolding = {
   status: string;
   modelEntryDate: string;
   entryPrice: number;
-  lastPrice: number;
-  previousClose: number;
-  dayChangePercent: number;
+  lastPrice: number | null;
+  previousClose: number | null;
+  dayChangePercent: number | null;
   lastPriceAt: string;
   priceSource: string;
   isStale: boolean;
-  returnPercent: number;
-  modelPnlInr: number;
-  currentModelValueInr: number;
+  returnPercent: number | null;
+  modelPnlInr: number | null;
+  currentModelValueInr: number | null;
 };
 
 export type MultibaggerState = {
@@ -102,10 +102,10 @@ export type MultibaggerState = {
   transactions: Array<{
     date: string;
     ticker: string;
-    action: "MODEL_BUY" | string;
+    action: string;
     weightChange: number;
     publicNote: string;
-    referencePrice: number;
+    referencePrice: number | null;
     performanceNote: string;
   }>;
   monthlyReviews: unknown[];

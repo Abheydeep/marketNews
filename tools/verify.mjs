@@ -182,6 +182,7 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(state.performance.currentModelValueInr, null);
   assert.equal(state.performance.totalPnlInr, null);
   assert.equal(state.performance.benchmarkSinceLaunchPercent, null);
+  assert.deepEqual(state.transactions, []);
   assert.ok(state.methodology?.definition.includes("multibagger"));
   assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Profitability")));
   assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Valuation")));
@@ -236,7 +237,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Since Apr 27, 2026"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Model P&L"));
-  assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
+  assert.ok(html.includes("Target weights are research allocations. Return, P&amp;L and current model value remain hidden until exact public fills are published."));
   assert.ok(html.includes("Expandable portfolio research modules"));
   assert.ok(html.includes("module-grid"));
   assert.ok(html.includes("module-preview"));
@@ -271,14 +272,12 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Growth catalyst"));
   assert.ok(html.includes("Capital structure"));
   assert.ok(html.includes("Buy And Sell Record"));
-  assert.ok(html.includes("MODEL_BUY"));
-  assert.ok(html.includes("Reference"));
-  assert.ok(html.includes("Entry"));
-  assert.ok(html.includes("Current"));
-  assert.ok(html.includes("Return"));
+  assert.ok(html.includes("No public execution ledger has been published yet."));
+  assert.ok(html.includes("Latest"));
+  assert.ok(html.includes("Day Move"));
   assert.ok(html.includes("price-status"));
   assert.ok(html.includes("Awaiting verified live quote"));
-  assert.ok(html.includes("Current prices, returns, P&amp;L, and day moves are hidden."));
+  assert.ok(html.includes("Current prices and day moves are hidden."));
   assert.equal(html.includes("Server quote snapshot"), false);
   assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Monthly Reviews"));
@@ -681,9 +680,10 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(service.includes("Replacement discipline"));
   assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
   assert.ok(service.includes("MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27)"));
-  assert.ok(service.includes('"MODEL_BUY"'));
+  assert.ok(service.includes("return List.of();"));
   assert.ok(quoteService.includes("@Scheduled"));
-  assert.ok(quoteService.includes("Yahoo Finance chart API"));
+  assert.ok(quoteService.includes("Yahoo Finance ("));
+  assert.ok(quoteService.includes("BSE India ("));
   assert.ok(quoteService.includes("live-quotes-enabled"));
 });
 
@@ -1063,6 +1063,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
   assert.equal(multibagger.json.performance.currentModelValueInr, null);
   assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
+  assert.deepEqual(multibagger.json.transactions, []);
   assert.ok(multibagger.json.methodology.definition.includes("multibagger"));
   assert.ok(multibagger.json.holdings.every((holding) => holding.profitabilityLens && holding.valuationLens && holding.growthCatalyst));
   assert.equal(JSON.stringify(multibagger.json).toLowerCase().includes("screenshot"), false);
@@ -1077,6 +1078,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
+  assert.ok(multibaggerHtml.body.includes("No public execution ledger has been published yet."));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("allocation-grid"));

@@ -13,9 +13,14 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -25,13 +30,17 @@ public class MultibaggerQuoteService {
 
     private static final Instant STATIC_PRICE_REFRESH_AT = Instant.parse("2026-05-01T10:00:00Z");
     private static final BigDecimal HUNDRED = new BigDecimal("100");
+    private static final Duration QUOTE_FRESHNESS = Duration.ofHours(120);
+    private static final ZoneId INDIA_ZONE = ZoneId.of("Asia/Kolkata");
     private static final Map<String, String> YAHOO_SYMBOLS = Map.of(
         "KPEL", "KPEL.BO",
-        "DHABRIYA", "538715.BO",
         "PIGL", "PIGL.NS",
         "JNKINDIA", "JNKINDIA.NS",
         "DYCL", "DYCL.NS",
         "TEMBO", "TEMBO.NS"
+    );
+    private static final Map<String, String> BSE_SYMBOLS = Map.of(
+        "DHABRIYA", "538715"
     );
     private static final Map<String, MultibaggerQuoteSnapshot> FALLBACK_QUOTES = Map.ofEntries(
         fallback("KPEL", "486.40"),
@@ -56,7 +65,7 @@ public class MultibaggerQuoteService {
         .connectTimeout(Duration.ofSeconds(4))
         .build();
 
-    @Value("${app.multibagger.live-quotes-enabled:false}")
+    @Value("${app.multibagger.live-quotes-enabled:true}")
     private boolean liveQuotesEnabled;
 
     @Value("${app.multibagger.quote-timeout-ms:3500}")
@@ -71,12 +80,20 @@ public class MultibaggerQuoteService {
         this.objectMapper = objectMapper;
     }
 
+    @PostConstruct
+    public void refreshOnStartup() {
+        if (liveQuotesEnabled) {
+            refreshNow();
+        }
+    }
+
     public MultibaggerQuoteSnapshot snapshotFor(String ticker) {
         return currentQuotes.getOrDefault(ticker, FALLBACK_QUOTES.get(ticker));
     }
 
     public PricingSnapshot pricingSnapshot() {
-        boolean stale = currentBenchmark.isStale() || currentQuotes.values().stream().anyMatch(MultibaggerQuoteSnapshot::isStale);
+        boolean hasMarketQuote = !currentBenchmark.isStale() || currentQuotes.values().stream().anyMatch(quote -> !quote.isStale());
+        boolean stale = !hasMarketQuote;
         return new PricingSnapshot(
             mode,
             refreshedAt,
@@ -85,7 +102,7 @@ public class MultibaggerQuoteService {
             currentBenchmark,
             stale
                 ? "Fallback mode does not publish current prices, returns, or P&L."
-                : "Real-time means server-refreshed latest prices with timestamps, not account-level performance."
+                : "Latest price and day move are public market-data fields. Model return and P&L require admin-published fills."
         );
     }
 
@@ -105,10 +122,16 @@ public class MultibaggerQuoteService {
             hasLiveQuote = hasLiveQuote || !quote.isStale();
             nextQuotes.put(entry.getKey(), quote);
         }
+        for (Map.Entry<String, String> entry : BSE_SYMBOLS.entrySet()) {
+            MultibaggerQuoteSnapshot fallback = FALLBACK_QUOTES.get(entry.getKey());
+            MultibaggerQuoteSnapshot quote = fetchBseQuote(entry.getValue(), entry.getKey(), fallback).orElse(fallback);
+            hasLiveQuote = hasLiveQuote || !quote.isStale();
+            nextQuotes.put(entry.getKey(), quote);
+        }
         currentQuotes = Map.copyOf(nextQuotes);
         currentBenchmark = fetchBenchmark("^NSEI").orElse(FALLBACK_BENCHMARK);
         refreshedAt = latestTimestamp(currentQuotes, currentBenchmark);
-        mode = hasLiveQuote ? "server-yahoo-snapshot" : "awaiting-verified-quotes";
+        mode = hasLiveQuote ? "server-market-snapshot" : "awaiting-verified-quotes";
     }
 
     private Optional<MultibaggerQuoteSnapshot> fetchYahooQuote(String yahooSymbol, String ticker, MultibaggerQuoteSnapshot fallback) {
@@ -128,7 +151,7 @@ public class MultibaggerQuoteService {
                 lastPrice.get(),
                 previousClose,
                 lastPriceAt,
-                "Yahoo Finance chart API",
+                "Yahoo Finance (" + yahooSymbol + ")",
                 isQuoteTimestampStale(lastPriceAt)
             ));
         } catch (IOException | InterruptedException | IllegalStateException error) {
@@ -156,7 +179,7 @@ public class MultibaggerQuoteService {
                 lastPrice.get(),
                 previousClose,
                 lastPriceAt,
-                "Yahoo Finance chart API",
+                "Yahoo Finance (" + yahooSymbol + ")",
                 isQuoteTimestampStale(lastPriceAt)
             ));
         } catch (IOException | InterruptedException | IllegalStateException error) {
@@ -172,7 +195,7 @@ public class MultibaggerQuoteService {
         URI uri = URI.create("https://query1.finance.yahoo.com/v8/finance/chart/" + encoded + "?range=1d&interval=1m");
         HttpRequest request = HttpRequest.newBuilder(uri)
             .timeout(Duration.ofMillis(quoteTimeoutMs))
-            .header("User-Agent", "MarketNarrative/1.0")
+            .header("User-Agent", "Mozilla/5.0")
             .GET()
             .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -188,6 +211,48 @@ public class MultibaggerQuoteService {
             throw new IllegalStateException("Yahoo quote response is missing meta");
         }
         return meta;
+    }
+
+    private Optional<MultibaggerQuoteSnapshot> fetchBseQuote(String scripcode, String ticker, MultibaggerQuoteSnapshot fallback) {
+        try {
+            URI uri = URI.create(
+                "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scripcode="
+                    + URLEncoder.encode(scripcode, StandardCharsets.UTF_8)
+                    + "&flag=0&fromdate=&todate=&seriesid="
+            );
+            HttpRequest request = HttpRequest.newBuilder(uri)
+                .timeout(Duration.ofMillis(quoteTimeoutMs))
+                .header("User-Agent", "Mozilla/5.0")
+                .header("Referer", "https://www.bseindia.com/")
+                .header("Origin", "https://www.bseindia.com")
+                .GET()
+                .build();
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() >= 400) {
+                throw new IOException("BSE quote request failed with status " + response.statusCode());
+            }
+            JsonNode payload = objectMapper.readTree(response.body());
+            Optional<BigDecimal> lastPrice = decimal(payload, "CurrVal");
+            if (lastPrice.isEmpty()) {
+                return Optional.empty();
+            }
+            BigDecimal previousClose = decimal(payload, "PrevClose").orElse(fallback.previousClose());
+            Instant lastPriceAt = bseInstant(payload.path("CurrDate").asText(null)).orElse(Instant.now());
+            return Optional.of(new MultibaggerQuoteSnapshot(
+                ticker,
+                fallback.entryPrice(),
+                lastPrice.get(),
+                previousClose,
+                lastPriceAt,
+                "BSE India (" + scripcode + ")",
+                isQuoteTimestampStale(lastPriceAt)
+            ));
+        } catch (IOException | InterruptedException | IllegalStateException error) {
+            if (error instanceof InterruptedException) {
+                Thread.currentThread().interrupt();
+            }
+            return Optional.empty();
+        }
     }
 
     private static Map.Entry<String, MultibaggerQuoteSnapshot> fallback(String ticker, String entryPrice) {
@@ -218,10 +283,20 @@ public class MultibaggerQuoteService {
 
     private static Optional<BigDecimal> decimal(JsonNode node, String fieldName) {
         JsonNode value = node.path(fieldName);
-        if (!value.isNumber()) {
-            return Optional.empty();
+        if (value.isNumber()) {
+            return Optional.of(BigDecimal.valueOf(value.asDouble()).setScale(2, RoundingMode.HALF_UP));
         }
-        return Optional.of(BigDecimal.valueOf(value.asDouble()).setScale(2, RoundingMode.HALF_UP));
+        if (value.isTextual()) {
+            String cleaned = value.asText().replace(",", "").trim();
+            if (!cleaned.isBlank()) {
+                try {
+                    return Optional.of(new BigDecimal(cleaned).setScale(2, RoundingMode.HALF_UP));
+                } catch (NumberFormatException error) {
+                    return Optional.empty();
+                }
+            }
+        }
+        return Optional.empty();
     }
 
     private static Optional<Instant> instant(JsonNode node, String fieldName) {
@@ -234,15 +309,31 @@ public class MultibaggerQuoteService {
 
     private static Instant latestTimestamp(Map<String, MultibaggerQuoteSnapshot> quotes, BenchmarkSnapshot benchmark) {
         Instant latestQuoteAt = quotes.values().stream()
+            .filter(quote -> !quote.isStale() && quote.lastPrice() != null)
             .map(MultibaggerQuoteSnapshot::lastPriceAt)
             .filter(value -> value != null)
             .max(Instant::compareTo)
-            .orElse(benchmark.lastPriceAt());
-        return latestQuoteAt.isAfter(benchmark.lastPriceAt()) ? latestQuoteAt : benchmark.lastPriceAt();
+            .orElse(STATIC_PRICE_REFRESH_AT);
+        Instant benchmarkAt = !benchmark.isStale() && benchmark.lastPrice() != null
+            ? benchmark.lastPriceAt()
+            : STATIC_PRICE_REFRESH_AT;
+        return latestQuoteAt.isAfter(benchmarkAt) ? latestQuoteAt : benchmarkAt;
     }
 
     private static boolean isQuoteTimestampStale(Instant lastPriceAt) {
-        return lastPriceAt == null || Duration.between(lastPriceAt, Instant.now()).abs().toHours() > 96;
+        return lastPriceAt == null || Duration.between(lastPriceAt, Instant.now()).abs().compareTo(QUOTE_FRESHNESS) > 0;
+    }
+
+    private static Optional<Instant> bseInstant(String value) {
+        if (value == null || value.isBlank()) {
+            return Optional.empty();
+        }
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd yyyy HH:mm:ss", Locale.ENGLISH);
+            return Optional.of(LocalDateTime.parse(value.trim(), formatter).atZone(INDIA_ZONE).toInstant());
+        } catch (RuntimeException error) {
+            return Optional.empty();
+        }
     }
 
     static BigDecimal returnPercent(BigDecimal start, BigDecimal end) {
