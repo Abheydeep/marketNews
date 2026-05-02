@@ -446,11 +446,11 @@ await test("database schema includes all planned persistence tables", async () =
   assert.ok(schema.includes("market_region VARCHAR"), "market_snapshots missing market_region");
   assert.ok(schema.includes("country VARCHAR"), "market_snapshots missing country");
   assert.ok(schema.includes("trading_view_symbol VARCHAR"), "market_snapshots missing TradingView chart symbol");
-  assert.ok(schema.includes("overall_sentiment DOUBLE PRECISION"), "daily_scripts should align Java double with Postgres double precision");
-  assert.equal(schema.includes("NUMERIC("), false, "Java double-backed MVP schema should not use NUMERIC precision columns");
+  assert.ok(schema.includes("overall_sentiment NUMERIC(6, 3)"), "V1 migration must remain checksum-stable after it has shipped");
   const v2 = await readFile(join(rootDir, "backend", "src", "main", "resources", "db", "migration", "V2__align_double_precision_columns.sql"), "utf8");
   assert.ok(v2.includes("ALTER TABLE daily_scripts"));
   assert.ok(v2.includes("DOUBLE PRECISION"));
+  assert.ok(v2.includes("ALTER COLUMN overall_sentiment TYPE DOUBLE PRECISION"));
 });
 
 await test("backend market snapshot contract carries chart-refresh fields", async () => {

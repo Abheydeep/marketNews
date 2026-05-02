@@ -12,8 +12,8 @@ CREATE TABLE market_snapshots (
     trading_date DATE NOT NULL,
     symbol VARCHAR(64) NOT NULL,
     name VARCHAR(255) NOT NULL,
-    close_value DOUBLE PRECISION NOT NULL,
-    change_percent DOUBLE PRECISION NOT NULL,
+    close_value NUMERIC(14, 2) NOT NULL,
+    change_percent NUMERIC(8, 3) NOT NULL,
     source VARCHAR(128) NOT NULL,
     market_region VARCHAR(64),
     country VARCHAR(128),
@@ -34,9 +34,9 @@ CREATE TABLE market_news (
     thumbnail_accent VARCHAR(16),
     thumbnail_alt VARCHAR(255),
     source_url TEXT NOT NULL,
-    sentiment_score DOUBLE PRECISION NOT NULL,
+    sentiment_score NUMERIC(6, 3) NOT NULL,
     entity_name VARCHAR(128) NOT NULL,
-    entity_match_score DOUBLE PRECISION NOT NULL,
+    entity_match_score NUMERIC(6, 3) NOT NULL,
     category VARCHAR(64) NOT NULL
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE narrative_themes (
     theme_type VARCHAR(64) NOT NULL,
     title VARCHAR(255) NOT NULL,
     summary TEXT NOT NULL,
-    sentiment_score DOUBLE PRECISION NOT NULL,
+    sentiment_score NUMERIC(6, 3) NOT NULL,
     evidence_count INTEGER NOT NULL
 );
 
@@ -58,10 +58,10 @@ CREATE TABLE trade_setups (
     digest_date DATE NOT NULL,
     symbol VARCHAR(64) NOT NULL,
     direction VARCHAR(32) NOT NULL,
-    entry_price DOUBLE PRECISION NOT NULL,
-    stop_loss DOUBLE PRECISION NOT NULL,
-    target_price DOUBLE PRECISION NOT NULL,
-    risk_reward DOUBLE PRECISION NOT NULL,
+    entry_price NUMERIC(14, 2) NOT NULL,
+    stop_loss NUMERIC(14, 2) NOT NULL,
+    target_price NUMERIC(14, 2) NOT NULL,
+    risk_reward NUMERIC(8, 3) NOT NULL,
     confidence_reason TEXT NOT NULL,
     invalidation_reason TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL
@@ -74,7 +74,7 @@ CREATE TABLE daily_scripts (
     one_page_summary TEXT NOT NULL,
     teleprompter_script TEXT NOT NULL,
     status VARCHAR(32) NOT NULL,
-    overall_sentiment DOUBLE PRECISION NOT NULL,
+    overall_sentiment NUMERIC(6, 3) NOT NULL,
     published_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ NOT NULL
 );
