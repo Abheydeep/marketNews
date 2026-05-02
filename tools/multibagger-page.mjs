@@ -265,20 +265,20 @@ export function multibaggerPage(state = multibaggerState()) {
 
     .module-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
       margin: 22px 0 0;
     }
 
     details.panel {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: var(--panel);
+      background: rgba(15, 23, 42, 0.74);
       margin: 0;
-      min-height: 190px;
+      min-height: 0;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.20);
+      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.16);
       isolation: isolate;
     }
 
@@ -287,22 +287,32 @@ export function multibaggerPage(state = multibaggerState()) {
       min-height: 0;
     }
 
+    .module-grid details.panel:not([open]) {
+      --accent: var(--cyan);
+      min-height: 132px;
+    }
+
+    .module-grid details.panel:nth-of-type(2n):not([open]) {
+      --accent: var(--green);
+    }
+
+    .module-grid details.panel:nth-of-type(3n):not([open]) {
+      --accent: var(--blue);
+    }
+
+    .module-grid details.panel:nth-of-type(5n):not([open]) {
+      --accent: var(--amber);
+    }
+
     .module-grid details.panel:not([open])::before {
       content: "";
       position: absolute;
-      inset: auto 0 0;
-      height: 46%;
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.24), rgba(52, 211, 153, 0.14));
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--accent);
+      opacity: 0.78;
       pointer-events: none;
-      z-index: -1;
-    }
-
-    .module-grid details.panel:nth-of-type(3n+2):not([open])::before {
-      background: linear-gradient(135deg, rgba(96, 165, 250, 0.24), rgba(251, 191, 36, 0.14));
-    }
-
-    .module-grid details.panel:nth-of-type(3n):not([open])::before {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.20), rgba(34, 211, 238, 0.14));
+      z-index: 0;
     }
 
     details.panel summary {
@@ -317,9 +327,8 @@ export function multibaggerPage(state = multibaggerState()) {
 
     .module-grid details.panel:not([open]) summary {
       align-items: flex-start;
-      flex-direction: column;
-      min-height: 190px;
-      padding: 22px;
+      min-height: 132px;
+      padding: 18px 18px 16px 22px;
     }
 
     .module-grid details.panel[open] summary {
@@ -338,8 +347,8 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .module-grid details.panel:not([open]) .summary-title strong {
-      font-size: 23px;
-      line-height: 1.1;
+      font-size: 20px;
+      line-height: 1.18;
     }
 
     .summary-title span {
@@ -348,7 +357,7 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .module-grid details.panel:not([open]) .summary-title span {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.45;
     }
 
@@ -359,9 +368,16 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .module-grid details.panel:not([open]) .chev {
-      align-self: flex-end;
-      font-size: 30px;
+      align-items: center;
+      border: 1px solid rgba(34, 211, 238, 0.34);
+      border-radius: 8px;
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 23px;
+      height: 32px;
+      justify-content: center;
       line-height: 1;
+      width: 32px;
     }
 
     details[open] .chev { transform: rotate(45deg); }
@@ -692,7 +708,7 @@ export function multibaggerPage(state = multibaggerState()) {
       }
 
       .module-grid details.panel:not([open]) summary {
-        min-height: 160px;
+        min-height: 132px;
         padding: 18px;
       }
 
