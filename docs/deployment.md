@@ -4,8 +4,8 @@
 
 - `marketnarrative.in` and `www.marketnarrative.in`: public static briefing on Vercel.
 - `trade.marketnarrative.in`: Abhey-only trading cockpit on Vercel.
-- `api.marketnarrative.in`: Spring Boot API on DigitalOcean.
-- `trade-api.marketnarrative.in`: FastAPI trading API on DigitalOcean.
+- `api.marketnarrative.in`: Spring Boot API on Render or a VPS.
+- `trade-api.marketnarrative.in`: FastAPI trading API on Render or a VPS.
 - DNS: Cloudflare.
 
 ## Branch And PR
@@ -79,6 +79,10 @@ Trade project:
 Reference settings are stored in `deploy/vercel/`.
 
 ## DigitalOcean VPS
+
+Render is now the preferred free/low-friction backend path for launch smoke testing. Use `docs/render-deployment.md` and the root `render.yaml` if deploying the APIs on Render.
+
+Use the VPS path below only when you want a long-running Docker host with Caddy and full control.
 
 Create an Ubuntu LTS droplet with Docker and Compose. Recommended baseline:
 

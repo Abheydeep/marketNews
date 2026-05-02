@@ -738,6 +738,58 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(publisher.includes("skipArchiveWrite"));
 });
 
+await test("Render blueprint provisions real API and trade API backends", async () => {
+  const renderBlueprint = await readFile(join(rootDir, "render.yaml"), "utf8");
+  const backendDockerfile = await readFile(join(rootDir, "backend", "Dockerfile"), "utf8");
+  const tradingDockerfile = await readFile(join(rootDir, "services", "trading-api", "Dockerfile"), "utf8");
+  const applicationConfig = await readFile(join(rootDir, "backend", "src", "main", "resources", "application.yml"), "utf8");
+  const databaseNormalizer = await readFile(
+    join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "config", "DatabaseUrlEnvironmentPostProcessor.java"),
+    "utf8"
+  );
+  const normalizerRegistration = await readFile(
+    join(rootDir, "backend", "src", "main", "resources", "META-INF", "spring", "org.springframework.boot.env.EnvironmentPostProcessor"),
+    "utf8"
+  );
+  const renderDoc = await readFile(join(rootDir, "docs", "render-deployment.md"), "utf8");
+
+  for (const required of [
+    "marketnarrative-prod-shared",
+    "marketnarrative-postgres",
+    "marketnarrative-redis",
+    "marketnarrative-api",
+    "marketnarrative-trade-api",
+    "api.marketnarrative.in",
+    "trade-api.marketnarrative.in",
+    "healthCheckPath: /actuator/health",
+    "healthCheckPath: /health",
+    "ENABLE_LIVE_ORDERS",
+    'value: "false"',
+    "ABHEY_ADMIN_PASSWORD",
+    "sync: false",
+    "KITE_REDIRECT_URL",
+    "https://trade.marketnarrative.in/kite/callback"
+  ]) {
+    assert.ok(renderBlueprint.includes(required), `render.yaml missing ${required}`);
+  }
+  assert.ok(renderBlueprint.includes("fromDatabase"));
+  assert.ok(renderBlueprint.includes("property: connectionString"));
+  assert.ok(renderBlueprint.includes("fromService"));
+  assert.ok(renderBlueprint.includes("type: keyvalue"));
+  assert.ok(applicationConfig.includes("${SERVER_PORT:${PORT:8080}}"));
+  assert.ok(backendDockerfile.includes("EXPOSE 8080"));
+  assert.ok(tradingDockerfile.includes("${PORT:-8090}"));
+  assert.ok(databaseNormalizer.includes("jdbc:postgresql://"));
+  assert.ok(databaseNormalizer.includes("DATABASE_URL"));
+  assert.ok(databaseNormalizer.includes("DATABASE_USERNAME"));
+  assert.ok(databaseNormalizer.includes("DATABASE_PASSWORD"));
+  assert.ok(normalizerRegistration.includes("DatabaseUrlEnvironmentPostProcessor"));
+  assert.ok(renderDoc.includes("Render Backend Deployment"));
+  assert.ok(renderDoc.includes("Free web services can cold-start"));
+  assert.ok(renderDoc.includes("Free Postgres expires after 30 days"));
+  assert.ok(renderDoc.includes("Do not point API subdomains at Vercel"));
+});
+
 await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis publish, and partition plan", async () => {
   const auth0Converter = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "identity", "Auth0JwtAuthenticationConverter.java"), "utf8");
   const adminController = await readFile(join(rootDir, "backend", "src", "main", "java", "com", "marketnarrative", "publishing", "AdminDigestController.java"), "utf8");

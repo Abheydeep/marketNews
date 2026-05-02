@@ -1,0 +1,117 @@
+previews:
+  generation: off
+
+envVarGroups:
+  - name: marketnarrative-prod-shared
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ISSUER
+        value: market-narrative-prod
+      - key: TRADING_ADMIN_EMAIL
+        value: abhey@marketnarrative.in
+      - key: ENABLE_LIVE_ORDERS
+        value: "false"
+
+databases:
+  - name: marketnarrative-postgres
+    databaseName: market_narrative
+    user: narrative
+    plan: free
+    region: singapore
+
+services:
+  - type: keyvalue
+    name: marketnarrative-redis
+    plan: free
+    region: singapore
+    ipAllowList: []
+    maxmemoryPolicy: allkeys-lru
+
+  - type: web
+    name: marketnarrative-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /actuator/health
+    domains:
+      - api.marketnarrative.in
+    envVars:
+      - fromGroup: marketnarrative-prod-shared
+      - key: PORT
+        value: "10000"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: marketnarrative-postgres
+          property: connectionString
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: marketnarrative-postgres
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: marketnarrative-postgres
+          property: password
+      - key: SPRING_DATA_REDIS_URL
+        fromService:
+          name: marketnarrative-redis
+          type: keyvalue
+          property: connectionString
+      - key: FRONTEND_ORIGINS
+        value: https://admin.marketnarrative.in,https://trade.marketnarrative.in,https://marketnarrative.in
+      - key: SEED_DEMO_ADMIN
+        value: "false"
+      - key: SEED_TRADING_ADMIN
+        value: "true"
+      - key: ABHEY_ADMIN_PASSWORD
+        sync: false
+      - key: MULTIBAGGER_LIVE_QUOTES_ENABLED
+        value: "true"
+      - key: DIGEST_ZONE
+        value: Asia/Kolkata
+
+  - type: web
+    name: marketnarrative-trade-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./services/trading-api/Dockerfile
+    dockerContext: ./services/trading-api
+    healthCheckPath: /health
+    domains:
+      - trade-api.marketnarrative.in
+    envVars:
+      - fromGroup: marketnarrative-prod-shared
+      - key: PORT
+        value: "10000"
+      - key: TRADING_API_PORT
+        value: "10000"
+      - key: TRADING_AUTH_REQUIRED
+        value: "true"
+      - key: TRADING_CORS_ORIGIN
+        value: https://trade.marketnarrative.in
+      - key: TRADING_DATABASE_URL
+        fromDatabase:
+          name: marketnarrative-postgres
+          property: connectionString
+      - key: TRADING_REDIS_URL
+        fromService:
+          name: marketnarrative-redis
+          type: keyvalue
+          property: connectionString
+      - key: KITE_REDIRECT_URL
+        value: https://trade.marketnarrative.in/kite/callback
+      - key: KITE_API_KEY
+        sync: false
+      - key: KITE_API_SECRET
+        sync: false
+      - key: TRADING_TOKEN_KEY
+        sync: false
+      - key: NEWSAPI_AI_KEY
+        sync: false
+      - key: EODHD_API_KEY
+        sync: false

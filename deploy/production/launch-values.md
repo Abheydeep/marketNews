@@ -124,9 +124,34 @@ marketnarrative-trade owns:
   trade.marketnarrative.in
 ```
 
-## DigitalOcean VPS `.env`
+## Render Backend Launch
 
-Create this file at `/opt/marketnarrative/.env` on the VPS. Replace placeholder values before starting Docker Compose.
+Render is the fastest backend path for the current launch. The root `render.yaml` creates:
+
+```text
+marketnarrative-api        -> api.marketnarrative.in
+marketnarrative-trade-api  -> trade-api.marketnarrative.in
+marketnarrative-postgres
+marketnarrative-redis
+```
+
+Use `docs/render-deployment.md` for the full flow.
+
+The only required secret for login is:
+
+```env
+ABHEY_ADMIN_PASSWORD=replace-with-strong-abhey-password
+```
+
+Keep this launch guard:
+
+```env
+ENABLE_LIVE_ORDERS=false
+```
+
+## VPS `.env`
+
+If you choose a VPS instead of Render, create this file at `/opt/marketnarrative/.env` on the VPS. Replace placeholder values before starting Docker Compose.
 
 ```env
 POSTGRES_PASSWORD=replace-with-strong-postgres-password
@@ -158,11 +183,11 @@ admin.marketnarrative.in  Vercel admin project record
 trade.marketnarrative.in  Vercel trade project record
 ```
 
-Add these after creating the DigitalOcean droplet:
+Add these after creating the Render services or VPS backend:
 
 ```text
-api.marketnarrative.in        A    <digitalocean-droplet-public-ip>
-trade-api.marketnarrative.in  A    <digitalocean-droplet-public-ip>
+api.marketnarrative.in        CNAME or A    <backend target>
+trade-api.marketnarrative.in  CNAME or A    <backend target>
 ```
 
-Keep API records DNS-only until HTTPS and WebSocket smoke tests pass.
+For Render, use the exact CNAME targets shown in each service's Custom Domains page. Keep API records DNS-only until HTTPS and WebSocket smoke tests pass.
