@@ -216,6 +216,10 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   assertReelScriptCopy("reelScript", digest.reelScript);
   assertPublicBriefingCopy("public digest payload", JSON.stringify(publicPayload));
   assertPublicBriefingCopy("public page HTML", publicHtml);
+  assertPublicBriefingCopy(
+    "reputation-safe archive hero",
+    "Pre-Market Intelligence Archive. Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups."
+  );
   assert.throws(
     () => assertPublicBriefingCopy(
       "bad sample",
@@ -223,6 +227,21 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
     ),
     /Public editorial guardrail failed/
   );
+  for (const badArchiveCopy of [
+    "All Market Narrative briefings",
+    "The root page now works like a news archive.",
+    "Open a dated briefing for the full quote board.",
+    "Asia watch: South Korea - KOSPI -1.38%",
+    "14 markets tracked",
+    "0 setups",
+    "15 sources"
+  ]) {
+    assert.throws(
+      () => assertPublicBriefingCopy("bad archive sample", badArchiveCopy),
+      /Public editorial guardrail failed/,
+      `expected guardrail to reject ${badArchiveCopy}`
+    );
+  }
   const sanitized = sanitizeLegacyPublicBriefingCopy({
     onePageSummary: "No active 1:2 RR setup passed all scanner and live-quote filters.",
     news: [
@@ -408,6 +427,25 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
   assert.ok(publisher.includes("archivePage(digests)"));
+  assert.ok(publisher.includes("archiveCardSummary"));
+  assert.ok(publisher.includes("previousSessionDriver"));
+  assert.ok(publisher.includes("archiveToneClass"));
+  assert.ok(publisher.includes("sentimentSparklineHtml"));
+  assert.ok(publisher.includes("archiveChips"));
+  assert.ok(publisher.includes("Pre-Market Intelligence Archive"));
+  assert.ok(publisher.includes("Latest Market Briefings"));
+  assert.ok(publisher.includes("Read market briefing"));
+  assert.ok(publisher.includes("Previous session driver"));
+  assert.ok(publisher.includes("sentiment-sparkline"));
+  for (const roughCopy of [
+    "All Market Narrative briefings",
+    "The root page now works",
+    "Open daily briefing",
+    "Asia watch:",
+    "markets tracked"
+  ]) {
+    assert.equal(publisher.includes(roughCopy), false, `publisher should not contain rough copy: ${roughCopy}`);
+  }
   assert.ok(publisher.includes("projectComponentsPage"));
   assert.ok(publisher.includes("multibaggerPage"));
   assert.ok(publisher.includes("multibaggerAdminPage"));
@@ -520,6 +558,8 @@ await test("frontend workspace separates public portal, admin studio, and shared
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
   assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
   assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
+  assert.equal(rootPackage.scripts["public:copy:qa"], "node tools/public-copy-qa.mjs");
+  assert.equal(rootPackage.scripts["hooks:install"], "git config core.hooksPath .githooks");
   assert.equal(rootPackage.scripts["prod:qa"], "node tools/production-qa-gate.mjs");
   assert.ok(rootPackage.scripts["prod:qa:strict"].includes("REQUIRE_AUTHENTICATED_QA=true"));
   assert.ok(rootPackage.scripts["vercel:build:admin"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=admin"));
@@ -580,6 +620,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes('"trade"'));
   assert.ok(buildScript.includes('excludeTopLevel: ["admin"]'));
   assert.ok(buildScript.includes("vercel:build:public"));
+  assert.ok(buildScript.includes("tools/public-copy-qa.mjs"));
   assert.ok(buildScript.includes('"out", "site", "admin"'));
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
   assert.ok(buildScript.includes("out\", \"vercel"));
@@ -616,6 +657,10 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   for (const required of [
     "Open TradingView Chart",
     "Open Yahoo Chart",
+    "Pre-Market Intelligence Archive",
+    "Latest Market Briefings",
+    "Read market briefing",
+    "Previous session driver",
     "trade-mn-signal",
     "lucide-lock-keyhole",
     "Auth API:",

@@ -80,8 +80,22 @@ await group("Domain sanity", async () => {
 });
 
 await group("Public user surface", async () => {
-  await expectPage("User", "Public home", config.publicUrl, 200, [/Daily Pre-Market Archive|All Market Narrative briefings/i], [/Studio Command/i]);
-  await expectPage("User", "Public www", config.wwwUrl, [200, 301, 302, 307, 308], [/Daily Pre-Market Archive|All Market Narrative briefings/i]);
+  await expectPage(
+    "User",
+    "Public home",
+    config.publicUrl,
+    200,
+    [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Previous session driver/i, /sentiment-sparkline/i],
+    [/Studio Command/i, /All Market Narrative briefings/i, /The root page now works/i, /Asia watch:/i, /markets tracked/i, /\b\d+\s+setups\b/i, /\b\d+\s+sources\b/i, /Open daily briefing/i]
+  );
+  await expectPage(
+    "User",
+    "Public www",
+    config.wwwUrl,
+    [200, 301, 302, 307, 308],
+    [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i],
+    [/All Market Narrative briefings/i, /The root page now works/i, /Asia watch:/i, /markets tracked/i, /\b\d+\s+setups\b/i, /\b\d+\s+sources\b/i]
+  );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
   await expectPage("User", "Latest briefing", `${config.publicUrl}/1may2026/`, 200, [/Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i], [/Open Yahoo Chart/i]);
@@ -100,7 +114,7 @@ await group("Public user surface", async () => {
 });
 
 await group("Admin surface", async () => {
-  await expectPage("Admin", "Admin home", config.adminUrl, 200, [/Admin Login/i, /Studio Command|Daily Reel Script/i], [/Daily Pre-Market Archive/i]);
+  await expectPage("Admin", "Admin home", config.adminUrl, 200, [/Admin Login/i, /Studio Command|Daily Reel Script/i], [/Pre-Market Intelligence Archive/i]);
   await expectManifest("Admin", "Admin manifest", config.adminUrl, "admin");
   await expectPage("Admin", "Project components", `${config.adminUrl}/components/`, 200, [/Project Components Map|Repository Component Map/i, /Admin Login/i]);
   await expectPage("Admin", "Multibagger review", `${config.adminUrl}/multibagger/`, 200, [/Multibagger Review Desk/i, /Run Monthly Review/i], [/Public research tracker/i]);
@@ -378,7 +392,7 @@ async function runBrowserSmoke() {
         });
       });
       const page = await context.newPage();
-      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /All Market Narrative briefings|Daily Pre-Market Archive/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}/1may2026/`, /Live Quote Board|Daily Pre-Market Summary/i);
       await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /5x Multibagger Portfolio|Concentrated 5x/i);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);

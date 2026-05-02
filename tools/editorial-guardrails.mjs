@@ -63,6 +63,21 @@ from a trader who respects risk and understands attention.
 `.trim();
 
 export const PUBLIC_FORBIDDEN_PATTERNS = [
+  /All Market Narrative briefings/i,
+  /The root page now works/i,
+  /news archive/i,
+  /Open a dated briefing/i,
+  /full quote board/i,
+  /chart links/i,
+  /Asia watch:/i,
+  /\b\d+\s+markets tracked\b/i,
+  /\b\d+\s+setups\b/i,
+  /\b\d+\s+sources\b/i,
+  /\bdemo\b/i,
+  /\bplaceholder\b/i,
+  /\bscaffolding\b/i,
+  /\bTODO\b/,
+  /\blorem\b/i,
   /two-minute read:\s*this briefing/i,
   /this briefing distills/i,
   /\b\d+\s+source notes\b/i,

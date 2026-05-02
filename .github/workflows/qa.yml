@@ -1,0 +1,39 @@
+name: Market Narrative QA
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  public-copy-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Repo tests
+        run: npm test
+
+      - name: Build public Vercel artifact
+        env:
+          MARKET_NARRATIVE_DEPLOY_TARGET: public
+          MARKET_DATA_MODE: mock
+          SKIP_DAILY_GENERATE: "true"
+          SKIP_ARCHIVE_WRITE: "true"
+        run: npm run vercel:build
+
+      - name: Public copy QA
+        run: npm run public:copy:qa -- out/vercel

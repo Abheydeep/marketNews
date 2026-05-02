@@ -65,10 +65,13 @@ async function runCycle(page, cycle) {
   const dailyUrl = `${baseUrl}/${dailySlug}/?soak=${stamp}`;
 
   await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
-  await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
+  await expectOne(page.getByRole("heading", { name: "Market Narrative" }), "archive heading");
+  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   const openDailyLink = page.locator(`a.open-link[href="./${dailySlug}/"]`);
-  await expectOne(openDailyLink, "open daily link");
+  await expectOne(openDailyLink.filter({ hasText: "Read market briefing" }), "read market briefing link");
+  await expectOne(page.locator(".sentiment-sparkline").first(), "archive sentiment sparkline");
+  await expectOne(page.getByText("Previous session driver", { exact: true }).first(), "archive previous session driver");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
     0,

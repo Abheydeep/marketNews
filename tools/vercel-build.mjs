@@ -26,6 +26,7 @@ if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
   await writeManifest(target, ["/", "/1may2026/", "/multibagger/"]);
+  run("node", ["tools/public-copy-qa.mjs", "out/vercel"]);
   console.log("Prepared Vercel public output in out/vercel");
 } else if (target === "admin") {
   run("npm", ["run", "vercel:build:public"]);

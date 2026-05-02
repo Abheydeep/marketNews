@@ -163,31 +163,31 @@ async function loadSourceDigest() {
 
 function archivePage(digests) {
   const latest = digests[0];
-  const pageTitle = "Market Narrative | Daily Pre-Market Archive";
-  const pageDescription = "Daily pre-market intelligence archive for Nifty, Bank Nifty, global cues, Asian markets, source cards, and charts.";
+  const pageTitle = "Market Narrative | Pre-Market Intelligence Archive";
+  const pageDescription = "Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups.";
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
-      const topAsia = digest.marketSnapshots
-        .filter((snapshot) => (snapshot.marketRegion ?? "") === "Asia Watch")
-        .filter((snapshot) => topAsiaSymbols().includes(snapshot.symbol))
-        .slice()
-        .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
-      const sourceCount = digest.sourceStats?.publisherCount ?? new Set((digest.news ?? []).map((item) => item.publisherName ?? item.sourceName)).size;
+      const toneClass = archiveToneClass(digest);
+      const chips = archiveChips(digest)
+        .map((chip) => `<span>${escapeHtml(chip)}</span>`)
+        .join("");
       return `
-        <article class="digest-card">
+        <article class="digest-card ${toneClass}">
           <div class="card-topline">
             <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
-            <strong style="color: ${sentimentColor(digest.sentimentLabel)}">${escapeHtml(digest.sentimentLabel)}</strong>
+            ${sentimentSparklineHtml(digest)}
           </div>
           <h2><a href="./${slug}/">${escapeHtml(digest.title)}</a></h2>
-          <div class="metrics">
-            <span>${digest.marketSnapshots.length} markets tracked</span>
-            <span>${digest.tradeSetups.length} setups</span>
-            <span>${sourceCount} sources</span>
+          <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
+          <div class="archive-chips">
+            ${chips}
           </div>
-          ${topAsia ? `<div class="asia-note">Asia watch: ${escapeHtml(marketDisplayNameForSnapshot(topAsia))} ${formatChange(topAsia.changePercent)}</div>` : ""}
-          <a class="open-link" href="./${slug}/">Open daily briefing</a>
+          <div class="session-driver">
+            <span>Previous session driver</span>
+            <strong>${escapeHtml(previousSessionDriver(digest))}</strong>
+          </div>
+          <a class="open-link" href="./${slug}/">Read market briefing</a>
         </article>
       `;
     })
@@ -412,17 +412,35 @@ function archivePage(digests) {
 
     .digest-card {
       padding: 22px;
+      --tone: #67e8f9;
+      --tone-soft: rgba(103, 232, 249, 0.13);
       transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .digest-card.tone-bullish {
+      --tone: #34d399;
+      --tone-soft: rgba(52, 211, 153, 0.15);
+    }
+
+    .digest-card.tone-bearish {
+      --tone: #fb7185;
+      --tone-soft: rgba(251, 113, 133, 0.15);
+    }
+
+    .digest-card.tone-neutral {
+      --tone: #fbbf24;
+      --tone-soft: rgba(251, 191, 36, 0.15);
     }
 
     .digest-card:hover {
       transform: translateY(-2px);
       border-color: rgba(255, 255, 255, 0.28);
-      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px var(--tone-soft), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
     .card-topline {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 16px;
       color: #9fb0c8;
@@ -439,35 +457,82 @@ function archivePage(digests) {
       line-height: 1.2;
     }
 
-    .digest-card p {
+    .digest-card p,
+    .session-driver strong {
       margin: 0;
       color: #cbd5e1;
       font-size: 15px;
       line-height: 1.6;
     }
 
-    .metrics {
+    .card-summary {
+      display: -webkit-box;
+      min-height: 48px;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .archive-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 16px;
     }
 
-    .metrics span,
-    .asia-note {
+    .archive-chips span {
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.10);
+      background: var(--tone-soft);
       padding: 7px 10px;
       color: #dbeafe;
       font-size: 12px;
       font-weight: 850;
     }
 
-    .asia-note {
-      display: inline-flex;
-      margin-top: 12px;
-      background: rgba(96, 165, 250, 0.16);
-      color: #bfdbfe;
+    .sentiment-sparkline {
+      width: 92px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.34);
+      padding: 5px 8px;
+      flex: 0 0 auto;
+    }
+
+    .sentiment-sparkline svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .spark-area {
+      fill: var(--tone-soft);
+    }
+
+    .spark-line {
+      fill: none;
+      stroke: var(--tone);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .session-driver {
+      display: grid;
+      gap: 5px;
+      margin-top: 16px;
+      border-left: 3px solid var(--tone);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.28);
+      padding: 12px 14px;
+    }
+
+    .session-driver span {
+      color: #9fb0c8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .open-link {
@@ -516,22 +581,110 @@ function archivePage(digests) {
   </nav>
   <main class="shell">
     <section class="hero">
-      <p class="eyebrow">Daily Pre-Market Archive</p>
-      <h1>All Market Narrative briefings</h1>
-      <p>The root page now works like a news archive. Open a dated briefing for the full quote board, Asian market watch, source cards, technical setup, and chart links.</p>
+      <p class="eyebrow">Pre-Market Intelligence Archive</p>
+      <h1>Market Narrative</h1>
+      <p>Independent pre-market intelligence for India's trading day, combining global cues, index levels, sector context, source-led developments, and disciplined technical setups.</p>
     </section>
     <section class="summary-row" aria-label="Archive summary">
-      <div class="summary-chip"><span>Total briefings</span><strong>${digests.length}</strong></div>
-      <div class="summary-chip"><span>Latest date</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
-      <div class="summary-chip"><span>Latest sentiment</span><strong>${escapeHtml(latest.sentimentLabel)}</strong></div>
+      <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
+      <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
+      <div class="summary-chip"><span>Current focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
     </section>
-    <h2 class="archive-title">Briefings</h2>
+    <h2 class="archive-title">Latest Market Briefings</h2>
     <section class="digest-grid">
       ${cards}
     </section>
   </main>
 </body>
 </html>`;
+}
+
+function archiveCardSummary(digest) {
+  const primary = cleanArchiveSentence(digest.themes?.[0]?.summary);
+  const driver = highestImpactArticle(digest);
+  const secondary = cleanArchiveSentence(driver?.indiaImpact || driver?.takeaway || driver?.summary);
+  return compactWords([primary, secondary].filter(Boolean).join(" "), 38) || "A disciplined pre-market read for index levels, sector context, and the opening range.";
+}
+
+function previousSessionDriver(digest) {
+  const driver = highestImpactArticle(digest);
+  return (
+    cleanArchiveSentence(driver?.takeaway || driver?.indiaImpact || driver?.summary) ||
+    cleanArchiveSentence(digest.themes?.[0]?.summary) ||
+    "Global cues and domestic breadth set the tone for the opening range."
+  );
+}
+
+function archiveToneClass(digest) {
+  const label = String(digest.sentimentLabel ?? "").toUpperCase();
+  if (label === "BULLISH") {
+    return "tone-bullish";
+  }
+  if (label === "BEARISH") {
+    return "tone-bearish";
+  }
+  return "tone-neutral";
+}
+
+function sentimentSparklineHtml(digest) {
+  const toneClass = archiveToneClass(digest);
+  const label = String(digest.sentimentLabel ?? "neutral").toLowerCase();
+  const paths = {
+    "tone-bullish": {
+      line: "M4 23 C18 20 26 18 36 14 C48 9 58 11 72 5",
+      area: "M4 23 C18 20 26 18 36 14 C48 9 58 11 72 5 L72 28 L4 28 Z"
+    },
+    "tone-bearish": {
+      line: "M4 6 C18 9 28 10 38 15 C50 21 60 22 72 26",
+      area: "M4 6 C18 9 28 10 38 15 C50 21 60 22 72 26 L72 28 L4 28 Z"
+    },
+    "tone-neutral": {
+      line: "M4 16 C15 9 25 23 36 16 C48 9 57 22 72 15",
+      area: "M4 16 C15 9 25 23 36 16 C48 9 57 22 72 15 L72 28 L4 28 Z"
+    }
+  }[toneClass];
+  return `
+    <span class="sentiment-sparkline" role="img" aria-label="Market bias: ${escapeHtml(label)}">
+      <svg viewBox="0 0 76 32" aria-hidden="true" focusable="false">
+        <path class="spark-area" d="${paths.area}"></path>
+        <path class="spark-line" d="${paths.line}"></path>
+      </svg>
+    </span>
+  `;
+}
+
+function archiveChips(digest) {
+  const themeType = String(digest.themes?.[0]?.themeType ?? "").toLowerCase();
+  const macroChip = themeType.includes("macro") ? "Macro pressure" : "Global cues";
+  return [macroChip, "India impact", "Opening bias"];
+}
+
+function archiveFocus(digest) {
+  const title = cleanArchiveSentence(digest.themes?.[0]?.title);
+  return title ? compactWords(title, 4) : "Opening range";
+}
+
+function highestImpactArticle(digest) {
+  return [...(digest.news ?? [])].sort((left, right) => impactScore(right) - impactScore(left))[0] ?? null;
+}
+
+function impactScore(article) {
+  return Math.abs(Number(article?.sentimentScore ?? 0)) * Math.max(0.5, Number(article?.entityMatchScore ?? 1));
+}
+
+function cleanArchiveSentence(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\s+\./g, ".")
+    .trim();
+}
+
+function compactWords(value, maxWords) {
+  const words = cleanArchiveSentence(value).split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) {
+    return words.join(" ");
+  }
+  return `${words.slice(0, maxWords).join(" ")}...`;
 }
 
 function robotsTxt() {

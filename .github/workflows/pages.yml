@@ -55,6 +55,9 @@ jobs:
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
           npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
 
+      - name: Public copy QA
+        run: npm run public:copy:qa -- out/site
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

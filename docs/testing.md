@@ -185,6 +185,14 @@ npm run prod:qa
 
 This prints a route-by-route matrix for public, admin, trade, APIs, logos, manifests, stale chart-provider copy, CORS, browser console errors, and mobile rendering. A failed row blocks sharing the site.
 
+Install the local pre-push hook before release work:
+
+```bash
+npm run hooks:install
+```
+
+The hook runs `npm test`, builds the public Vercel artifact in mock mode, and runs `npm run public:copy:qa`. Do not bypass it on release branches. GitHub Actions also runs the public-copy QA gate on pull requests and `main` pushes.
+
 Before using the trading cockpit for real workflows, run the strict authenticated gate from a trusted shell:
 
 ```bash

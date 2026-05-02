@@ -44,6 +44,14 @@ npm test
 
 This runs seed validation, risk-reward math tests, scanner acceptance/rejection tests, sentiment clustering tests, digest/script/SEO contract checks, schema checks, and a no-install public/admin demo flow.
 
+Install the repo-native pre-push hook once per clone:
+
+```bash
+npm run hooks:install
+```
+
+The hook runs `npm test`, builds the public Vercel artifact in mock mode, and runs `npm run public:copy:qa`. Release branches must not bypass it; CI repeats the same public-copy gate.
+
 Before sharing production, run the no-silly-mistakes gate:
 
 ```bash

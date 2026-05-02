@@ -91,7 +91,13 @@ function commandExists(command) {
 function verifyVercelArtifacts() {
   buildTarget("public");
   assertOutput("deployment-manifest.json", /"target": "public"/);
-  assertOutput("index.html", /Daily Pre-Market Archive/);
+  assertOutput("index.html", /Pre-Market Intelligence Archive/);
+  assertOutput("index.html", /Latest Market Briefings/);
+  assertOutput("index.html", /Read market briefing/);
+  assertOutput("index.html", /Previous session driver/);
+  assertOutput("index.html", /sentiment-sparkline/);
+  assertOutputNot("index.html", /All Market Narrative briefings|The root page now works|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
+  runPublicCopyQa("out/vercel");
   assertOutput("index.html", /Admin login/);
   assertOutputAbsent("components/index.html");
 
@@ -101,7 +107,7 @@ function verifyVercelArtifacts() {
   assertOutput("components/index.html", /Project Components Map|Repository Component Map/);
   assertOutput("multibagger/index.html", /Multibagger Review Desk|Run Monthly Review/);
   assertOutput("robots.txt", /Disallow: \//);
-  assertOutputNot("index.html", /Daily Pre-Market Archive/);
+  assertOutputNot("index.html", /Pre-Market Intelligence Archive/);
 
   buildTarget("trade");
   assertOutput("deployment-manifest.json", /"target": "trade"/);
@@ -123,6 +129,16 @@ function buildTarget(target) {
   });
   if (result.status !== 0) {
     throw new Error(`${target} Vercel build exited with ${result.status ?? "unknown status"}`);
+  }
+}
+
+function runPublicCopyQa(target) {
+  const result = spawnSync("node", ["tools/public-copy-qa.mjs", target], {
+    stdio: "inherit",
+    shell: false
+  });
+  if (result.status !== 0) {
+    throw new Error(`public copy QA exited with ${result.status ?? "unknown status"}`);
   }
 }
 

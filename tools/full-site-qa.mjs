@@ -146,14 +146,22 @@ async function verifyArchive(page, rootUrl) {
   assertPublicBriefingCopy("archive page HTML", await page.content());
   await expectOne(page.locator("body.archive-dark"), "archive dark theme");
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
-  await expectOne(page.getByRole("heading", { name: "All Market Narrative briefings" }), "archive heading");
+  await expectOne(page.getByRole("heading", { name: "Market Narrative" }), "archive heading");
+  await expectOne(page.getByText("Pre-Market Intelligence Archive", { exact: true }), "archive eyebrow");
+  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   await expectOne(page.getByRole("link", { name: "Admin login" }), "archive admin login link");
+  await expectAtLeast(page.getByText("Previous session driver", { exact: true }), 1, "archive previous session driver");
+  await expectAtLeast(page.locator(".sentiment-sparkline"), 1, "archive sentiment sparkline");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
   for (const daily of dailyPages) {
     await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
+    await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Read market briefing" }), `${daily.slug} read market briefing link`);
     await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
+  }
+  for (const phrase of ["All Market Narrative briefings", "The root page now works", "Asia watch:", "markets tracked", "Open daily briefing"]) {
+    assert.equal(await page.getByText(phrase, { exact: false }).count(), 0, `archive should not show rough copy: ${phrase}`);
   }
   assert.equal(await page.getByText("Daily Pre-Market Summary", { exact: true }).count(), 0, "archive root must not render a daily briefing");
 
