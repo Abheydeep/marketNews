@@ -239,6 +239,8 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Model performance is calculated from the public model start date and model allocation weights."));
   assert.ok(html.includes("Expandable portfolio research modules"));
   assert.ok(html.includes("module-grid"));
+  assert.ok(html.includes("module-preview"));
+  assert.ok(html.includes("preview-pill"));
   assert.ok(html.includes("Portfolio At A Glance"));
   assert.ok(html.includes("allocation-grid"));
   assert.ok(html.includes("allocation-tile"));

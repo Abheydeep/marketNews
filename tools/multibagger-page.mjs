@@ -288,20 +288,7 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .module-grid details.panel:not([open]) {
-      --accent: var(--cyan);
       min-height: 132px;
-    }
-
-    .module-grid details.panel:nth-of-type(2n):not([open]) {
-      --accent: var(--green);
-    }
-
-    .module-grid details.panel:nth-of-type(3n):not([open]) {
-      --accent: var(--blue);
-    }
-
-    .module-grid details.panel:nth-of-type(5n):not([open]) {
-      --accent: var(--amber);
     }
 
     .module-grid details.panel:not([open])::before {
@@ -309,8 +296,8 @@ export function multibaggerPage(state = multibaggerState()) {
       position: absolute;
       inset: 0 auto 0 0;
       width: 4px;
-      background: var(--accent);
-      opacity: 0.78;
+      background: var(--cyan);
+      opacity: 0.72;
       pointer-events: none;
       z-index: 0;
     }
@@ -327,6 +314,9 @@ export function multibaggerPage(state = multibaggerState()) {
 
     .module-grid details.panel:not([open]) summary {
       align-items: flex-start;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 32px;
+      grid-template-rows: auto 1fr;
       min-height: 132px;
       padding: 18px 18px 16px 22px;
     }
@@ -347,7 +337,7 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     .module-grid details.panel:not([open]) .summary-title strong {
-      font-size: 20px;
+      font-size: 19px;
       line-height: 1.18;
     }
 
@@ -378,6 +368,33 @@ export function multibaggerPage(state = multibaggerState()) {
       justify-content: center;
       line-height: 1;
       width: 32px;
+    }
+
+    .module-preview {
+      display: none;
+    }
+
+    .module-grid details.panel:not([open]) .module-preview {
+      align-self: end;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      grid-column: 1 / -1;
+      margin-top: 18px;
+      padding-right: 42px;
+    }
+
+    .preview-pill {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.32);
+      color: #d7e0ee;
+      display: inline-flex;
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1;
+      padding: 7px 9px;
+      white-space: nowrap;
     }
 
     details[open] .chev { transform: rotate(45deg); }
@@ -760,6 +777,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Research Framework</strong><span>Method snapshot and dated market-regime evidence in one collapsible section.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">Definition</span><span class="preview-pill">Evaluation</span><span class="preview-pill">Replacement</span><span class="preview-pill">4 regime checks</span></span>
       </summary>
       <div class="panel-body">
         <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
@@ -814,6 +832,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">KPEL 25%</span><span class="preview-pill">DHABRIYA 20%</span><span class="preview-pill">PIGL 17.5%</span><span class="preview-pill">6 stocks</span></span>
       </summary>
       <div class="panel-body">
         <div class="allocation-grid">
@@ -834,6 +853,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Verified Evidence Ledger</strong><span>Dated facts supporting each model slot, plus the proof still needed.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">6 tickers</span><span class="preview-pill">Source backed</span><span class="preview-pill">Proof gaps</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
@@ -856,6 +876,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Model Holdings</strong><span>Public model allocations with entry, latest price, and return math; no personal account data is published.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">Entry prices</span><span class="preview-pill">Quotes hidden</span><span class="preview-pill">P&L hidden</span></span>
       </summary>
       <div class="panel-body">
         <div class="table-wrap">
@@ -873,6 +894,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Thesis And Break Rules</strong><span>Why each stock belongs, and what would force a change.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">Thesis</span><span class="preview-pill">Buy rule</span><span class="preview-pill">Break rule</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
@@ -896,6 +918,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Buy And Sell Record</strong><span>Public model actions and allocation changes.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">6 model buys</span><span class="preview-pill">Apr 27</span><span class="preview-pill">No account data</span></span>
       </summary>
       <div class="panel-body">
         <div class="table-wrap">
@@ -921,6 +944,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Monthly Reviews</strong><span>Published keep/replace history from the admin review process.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">May 2026</span><span class="preview-pill">Keep review</span><span class="preview-pill">Changes logged</span></span>
       </summary>
       <div class="panel-body">
         ${state.monthlyReviews.map((review) => `
@@ -948,6 +972,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Watchlist And Replacements</strong><span>Names that can challenge the six-stock model.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
@@ -964,6 +989,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Risk Controls</strong><span>Rules that keep the 5x attempt from becoming blind conviction.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">TEMBO cap</span><span class="preview-pill">Receivables</span><span class="preview-pill">Cash flow</span></span>
       </summary>
       <div class="panel-body">
         <p class="note">Tembo is capped at 10%. PIGL and JNK must prove margin and receivable quality. KPEL and Dhabriya carry the cleanest alpha weight, but both still need monthly working-capital review. CPCL is outside this model because refinery-cycle value is not treated as permanent compounding.</p>
@@ -974,6 +1000,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <summary>
         <span class="summary-title"><strong>Sources</strong><span>Primary filings and reference summaries used for the public model.</span></span>
         <span class="chev">+</span>
+        <span class="module-preview"><span class="preview-pill">10 links</span><span class="preview-pill">Filings</span><span class="preview-pill">Market data</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
