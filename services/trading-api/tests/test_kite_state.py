@@ -18,8 +18,10 @@ class Auth:
 
 
 class FakeKiteClient:
-    def __init__(self, valid=True):
+    def __init__(self, valid=True, fail_ltp=False, fail_quote=False):
         self.auth = Auth(valid)
+        self.fail_ltp = fail_ltp
+        self.fail_quote = fail_quote
 
     async def instruments(self):
         return "\n".join(
@@ -33,20 +35,25 @@ class FakeKiteClient:
         )
 
     async def ltp(self, instruments):
+        if self.fail_ltp:
+            raise RuntimeError("403 quote forbidden")
         return {
             "NSE:NIFTY 50": {"last_price": 22510.0},
             "NSE:NIFTY BANK": {"last_price": 48520.0},
         }
 
     async def historical(self, instrument_token, interval, from_ts, to_ts, continuous=False, oi=False):
+        base = 22500 if instrument_token == 256265 else 48500 if instrument_token == 260105 else 100
         return {
             "candles": [
-                ["2026-05-02T09:15:00+0530", 100 + i, 104 + i, 98 + i, 102 + i, 1000 + i]
+                ["2026-05-02T09:15:00+0530", base + i, base + 4 + i, base - 2 + i, base + 2 + i, 1000 + i, 100000 + i]
                 for i in range(30)
             ]
         }
 
     async def quote(self, instruments):
+        if self.fail_quote:
+            raise RuntimeError("403 quote forbidden")
         return {
             instrument: {
                 "last_price": 100.0,
@@ -90,3 +97,25 @@ async def _kite_refresh_builds_live_envelope_from_kite_payloads():
     assert envelope.candles["NIFTY"]
     assert envelope.option_chains["NIFTY"].snapshots
     assert envelope.option_chains["BANKNIFTY"].snapshots
+
+
+def test_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
+    asyncio.run(_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden())
+
+
+async def _kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
+    state = TradingState(
+        Settings(
+            trading_market_mode="kite",
+            kite_api_key="key",
+            kite_refresh_seconds=0,
+            kite_option_history_fallback_limit=4,
+        )
+    )
+    await state.bootstrap()
+    await state.refresh_from_kite(FakeKiteClient(valid=True, fail_ltp=True, fail_quote=True))
+    envelope = state.envelope()
+    assert envelope.status.is_live
+    assert "fallback" in envelope.status.message.lower()
+    assert envelope.candles["NIFTY"]
+    assert envelope.option_chains["NIFTY"].snapshots

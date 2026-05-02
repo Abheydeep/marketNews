@@ -109,7 +109,8 @@ class TradingState:
         try:
             if not self.contracts:
                 await self.refresh_instruments(kite_client)
-            spots = await self._kite_spots(kite_client)
+            notes: list[str] = []
+            spots = await self._kite_spots(kite_client, now, notes)
             all_quote_keys: list[str] = []
             selected_contracts: dict[IndexSymbol, list[OptionContract]] = {"NIFTY": [], "BANKNIFTY": []}
             for index in ("NIFTY", "BANKNIFTY"):
@@ -121,13 +122,22 @@ class TradingState:
                     self.candles[index] = candles
                     self.technicals[index] = self.technical_engine.analyze(candles)
 
-            option_quotes = await kite_client.quote(all_quote_keys) if all_quote_keys else {}
+            option_quotes: dict[str, Any] = {}
+            quote_failed = False
+            if all_quote_keys:
+                try:
+                    option_quotes = await kite_client.quote(all_quote_keys)
+                except Exception as exc:
+                    quote_failed = True
+                    notes.append(f"Option quote fallback active: {exc}")
             self.news = await self.sentiment_service.ingest([MockNewsProvider()])
             avg_sentiment = sum(event.sentiment_score for event in self.news) / len(self.news) if self.news else 0.0
 
             for index in ("NIFTY", "BANKNIFTY"):
                 spot = spots[index]
                 snapshots = self._option_snapshots(selected_contracts[index], option_quotes, now)
+                if quote_failed and not snapshots:
+                    snapshots = await self._historical_option_snapshots(kite_client, selected_contracts[index], spot, now)
                 if snapshots:
                     spot_delta = spot - self.last_spots.get(index, spot)
                     self.option_chains[index] = self.options_engine.build_chain(index, spot, snapshots, spot_delta=spot_delta, ts=now)
@@ -137,7 +147,10 @@ class TradingState:
                 self.last_spots[index] = spot
 
             self.last_refresh_at = now
-            self.status = self._status("kite", True, "Live Kite market data is active.", kite_session_valid=True, last_refresh_at=now)
+            message = "Live Kite market data is active."
+            if notes:
+                message = "Kite data active with fallback: " + " | ".join(notes[:2])
+            self.status = self._status("kite", True, message, kite_session_valid=True, last_refresh_at=now)
             return self.status
         except Exception as exc:
             self.status = self._status(
@@ -193,12 +206,25 @@ class TradingState:
             last_refresh_at=last_refresh_at,
         )
 
-    async def _kite_spots(self, kite_client: KiteClientProtocol) -> dict[IndexSymbol, float]:
-        payload = await kite_client.ltp(["NSE:NIFTY 50", "NSE:NIFTY BANK"])
-        return {
-            "NIFTY": float(payload["NSE:NIFTY 50"]["last_price"]),
-            "BANKNIFTY": float(payload["NSE:NIFTY BANK"]["last_price"]),
-        }
+    async def _kite_spots(self, kite_client: KiteClientProtocol, now: datetime, notes: list[str]) -> dict[IndexSymbol, float]:
+        try:
+            payload = await kite_client.ltp(["NSE:NIFTY 50", "NSE:NIFTY BANK"])
+            return {
+                "NIFTY": float(payload["NSE:NIFTY 50"]["last_price"]),
+                "BANKNIFTY": float(payload["NSE:NIFTY BANK"]["last_price"]),
+            }
+        except Exception as exc:
+            notes.append(f"Index LTP fallback active: {exc}")
+            spots: dict[IndexSymbol, float] = {}
+            for index in ("NIFTY", "BANKNIFTY"):
+                candles = await self._kite_candles(kite_client, index, now)
+                if candles:
+                    self.candles[index] = candles
+                    self.technicals[index] = self.technical_engine.analyze(candles)
+                    spots[index] = candles[-1].close
+            if set(spots) != {"NIFTY", "BANKNIFTY"}:
+                raise RuntimeError("Kite quote and historical fallbacks both failed for index spots") from exc
+            return spots
 
     async def _kite_candles(self, kite_client: KiteClientProtocol, index: IndexSymbol, now: datetime) -> list[Candle]:
         token = self.settings.banknifty_index_token if index == "BANKNIFTY" else self.settings.nifty_index_token
@@ -246,6 +272,41 @@ class TradingState:
                     price_delta=last_price - previous_close,
                     volume=float(quote.get("volume") or 0.0),
                     ts=self._parse_kite_ts(timestamp),
+                )
+            )
+        return snapshots
+
+    async def _historical_option_snapshots(
+        self,
+        kite_client: KiteClientProtocol,
+        contracts: list[OptionContract],
+        spot: float,
+        now: datetime,
+    ) -> list[OptionSnapshot]:
+        snapshots: list[OptionSnapshot] = []
+        ordered = sorted(contracts, key=lambda contract: (abs(contract.strike - spot), contract.strike, contract.option_type))
+        for contract in ordered[: self.settings.kite_option_history_fallback_limit]:
+            try:
+                payload = await kite_client.historical(contract.instrument_token, "minute", now - timedelta(days=5), now, oi=True)
+            except Exception:
+                continue
+            rows = payload.get("candles", []) if isinstance(payload, dict) else []
+            if not rows:
+                continue
+            row = rows[-1]
+            if len(row) < 6:
+                continue
+            close = float(row[4])
+            open_price = float(row[1])
+            snapshots.append(
+                OptionSnapshot(
+                    contract=contract,
+                    last_price=close,
+                    open_interest=float(row[6]) if len(row) > 6 and row[6] is not None else 0.0,
+                    oi_delta=0.0,
+                    price_delta=close - open_price,
+                    volume=float(row[5]),
+                    ts=self._parse_kite_ts(row[0]),
                 )
             )
         return snapshots
