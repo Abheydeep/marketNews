@@ -364,42 +364,81 @@ export function multibaggerPage(state = multibaggerState()) {
       margin-top: 2px;
     }
 
-    .bar-list {
+    .allocation-grid {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .bar-row {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr) 58px;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .bar-label {
-      color: #fff;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .bar-track {
-      height: 12px;
-      border-radius: 99px;
+    .allocation-tile {
+      position: relative;
+      min-height: 178px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.46);
+      padding: 16px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      isolation: isolate;
     }
 
-    .bar {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--cyan), var(--green));
+    .allocation-tile::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: var(--tile-fill);
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.28), rgba(52, 211, 153, 0.20));
+      z-index: -1;
     }
 
-    .bar-value {
+    .allocation-tile:nth-child(2)::before,
+    .allocation-tile:nth-child(5)::before {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.28), rgba(251, 191, 36, 0.16));
+    }
+
+    .allocation-tile:nth-child(3)::before,
+    .allocation-tile:nth-child(6)::before {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.22), rgba(34, 211, 238, 0.18));
+    }
+
+    .allocation-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .allocation-ticker {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .allocation-weight {
+      color: var(--green);
+      font-size: 28px;
+      font-weight: 950;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .allocation-role {
+      color: #d7e0ee;
+      font-size: 14px;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .allocation-status {
       color: var(--muted);
-      font-size: 12px;
+      display: block;
+      font-size: 11px;
       font-weight: 900;
-      text-align: right;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .cards {
@@ -552,6 +591,7 @@ export function multibaggerPage(state = multibaggerState()) {
       .hero,
       .summary-grid,
       .return-strip,
+      .allocation-grid,
       .method-snapshot-grid,
       .regime-snapshot-grid,
       .cards {
@@ -584,10 +624,6 @@ export function multibaggerPage(state = multibaggerState()) {
       .nav-link {
         flex: 1;
         text-align: center;
-      }
-
-      .bar-row {
-        grid-template-columns: 86px minmax(0, 1fr) 46px;
       }
 
       details.panel summary {
@@ -637,79 +673,48 @@ export function multibaggerPage(state = multibaggerState()) {
     <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(formatDateTime(state.updatedAt))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
 
-    <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
-      <div class="method-snapshot-head">
-        <span>Research Method Snapshot</span>
-        <strong id="researchMethodSnapshotTitle">How the six-stock model earns its slots.</strong>
-      </div>
-      <div class="method-snapshot-grid">
-        <article class="method-pill">
-          <span>Definition</span>
-          <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
-        </article>
-        <article class="method-pill">
-          <span>Evaluation</span>
-          <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
-        </article>
-        <article class="method-pill">
-          <span>Replacement</span>
-          <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="regime-snapshot" aria-labelledby="marketRegimeEvidenceTitle">
-      <div class="regime-snapshot-head">
-        <span>Market Regime Evidence</span>
-        <strong id="marketRegimeEvidenceTitle">Dated source context as of ${escapeHtml(state.researchEvidence?.asOf ?? "2026-05-02")}.</strong>
-      </div>
-      <div class="regime-snapshot-grid">
-        ${(state.researchEvidence?.marketRegime ?? []).map((item) => `
-        <article class="regime-pill">
-          <span>${escapeHtml(item.label)}</span>
-          <p>${escapeHtml(item.summary)}</p>
-          <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
-        </article>`).join("")}
-      </div>
-    </section>
-
-    <details class="panel" open>
+    <details class="panel research-framework-panel" open>
       <summary>
-        <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
+        <span class="summary-title"><strong>Research Framework</strong><span>Method snapshot and dated market-regime evidence in one collapsible section.</span></span>
         <span class="chev">+</span>
       </summary>
       <div class="panel-body">
-        <div class="bar-list">
-          ${state.holdings.map((holding) => `
-          <div class="bar-row">
-            <span class="bar-label">${escapeHtml(holding.ticker)}</span>
-            <span class="bar-track"><span class="bar" style="width:${holding.targetWeight * 4}%"></span></span>
-            <span class="bar-value">${formatPercent(holding.targetWeight)}</span>
-          </div>`).join("")}
-        </div>
-      </div>
-    </details>
+        <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
+          <div class="method-snapshot-head">
+            <span>Research Method Snapshot</span>
+            <strong id="researchMethodSnapshotTitle">How the six-stock model earns its slots.</strong>
+          </div>
+          <div class="method-snapshot-grid">
+            <article class="method-pill">
+              <span>Definition</span>
+              <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
+            </article>
+            <article class="method-pill">
+              <span>Evaluation</span>
+              <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
+            </article>
+            <article class="method-pill">
+              <span>Replacement</span>
+              <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
+            </article>
+          </div>
+        </section>
 
-    <details class="panel method-panel" open>
-      <summary>
-        <span class="summary-title"><strong>Research Method</strong><span>How the model defines and evaluates a multibagger candidate.</span></span>
-        <span class="chev">+</span>
-      </summary>
-      <div class="panel-body">
-        <div class="cards">
-          <article class="mini-card">
-            <h3>Definition</h3>
-            <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
-          </article>
-          <article class="mini-card">
-            <h3>Target Outcome</h3>
-            <p>${escapeHtml(state.methodology?.targetOutcome ?? "The model tests a concentrated long-term research thesis with monthly review discipline.")}</p>
-          </article>
-          <article class="mini-card">
-            <h3>Replacement Logic</h3>
-            <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
-          </article>
-        </div>
+        <section class="regime-snapshot" aria-labelledby="marketRegimeEvidenceTitle">
+          <div class="regime-snapshot-head">
+            <span>Market Regime Evidence</span>
+            <strong id="marketRegimeEvidenceTitle">Dated source context as of ${escapeHtml(state.researchEvidence?.asOf ?? "2026-05-02")}.</strong>
+          </div>
+          <div class="regime-snapshot-grid">
+            ${(state.researchEvidence?.marketRegime ?? []).map((item) => `
+            <article class="regime-pill">
+              <span>${escapeHtml(item.label)}</span>
+              <p>${escapeHtml(item.summary)}</p>
+              <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
+            </article>`).join("")}
+          </div>
+        </section>
+
         <div class="table-wrap" style="margin-top:12px;">
           <table>
             <thead><tr><th>Evaluation Category</th></tr></thead>
@@ -719,6 +724,26 @@ export function multibaggerPage(state = multibaggerState()) {
           </table>
         </div>
         <p class="note" style="margin-top:12px;">What this is: a public educational research tracker with transparent rules. What this is not: stock advice, guaranteed return guidance, or a demat statement mirror.</p>
+      </div>
+    </details>
+
+    <details class="panel" open>
+      <summary>
+        <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
+        <span class="chev">+</span>
+      </summary>
+      <div class="panel-body">
+        <div class="allocation-grid">
+          ${state.holdings.map((holding) => `
+          <article class="allocation-tile" style="--tile-fill:${Math.min(88, 22 + holding.targetWeight * 2.2)}%;">
+            <div class="allocation-top">
+              <span class="allocation-ticker">${escapeHtml(holding.ticker)}</span>
+              <strong class="allocation-weight">${formatPercent(holding.targetWeight)}</strong>
+            </div>
+            <p class="allocation-role">${escapeHtml(holding.role)}</p>
+            <span class="allocation-status">${escapeHtml(holding.status)}</span>
+          </article>`).join("")}
+        </div>
       </div>
     </details>
 
