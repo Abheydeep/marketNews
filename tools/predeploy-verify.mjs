@@ -26,6 +26,11 @@ const checks = [
     name: "FastAPI trading API tests",
     command: fastApiPython(),
     args: ["-m", "pytest"]
+  },
+  {
+    name: "Mock trading cockpit regression",
+    command: "npm",
+    args: ["run", "trading:mock:regression"]
   }
 ];
 
@@ -123,6 +128,10 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /_next\/static/);
   assertOutputTree("_next/static", /marketnarrative-trade-api\.onrender\.com/);
   assertOutputTreeNot("_next/static", /Market WebSocket connection failed/);
+  assertOutputTree("_next/static", /Waiting for live/);
+  assertOutputTree("_next/static", /OI Δ warming up/);
+  assertOutputTree("_next/static", /ATM/);
+  assertOutputTree("_next/static", /Asia\/Kolkata/);
 }
 
 function buildTarget(target) {

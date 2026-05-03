@@ -130,7 +130,8 @@ if (config.authenticated) {
     await check(`Abhey admin can read ${index} option chain`, async () => {
       const payload = await fetchJson(`${config.tradingApiUrl}/api/options/chain?index=${index}`, 200, token);
       assert.equal(payload.index, index);
-      assert.ok(Array.isArray(payload.strikes));
+      assert.ok(Array.isArray(payload.snapshots));
+      assert.ok(payload.snapshots.length > 0);
     });
   }
 

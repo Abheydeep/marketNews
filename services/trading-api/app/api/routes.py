@@ -15,7 +15,8 @@ from app.schemas import IndexSymbol, OrderConfirmation, OrderResult
 from app.state import trading_state
 
 
-router = APIRouter(dependencies=[Depends(require_trading_admin)])
+admin_only = [Depends(require_trading_admin)]
+router = APIRouter()
 auth_service = KiteAuthService(settings)
 kite_client = KiteHttpClient(settings, auth_service)
 
@@ -32,14 +33,14 @@ class ProposalRequest(BaseModel):
     index: IndexSymbol
 
 
-@router.get("/api/kite/login-url")
+@router.get("/api/kite/login-url", dependencies=admin_only)
 async def kite_login_url() -> dict[str, str]:
     if not settings.kite_api_key:
         raise HTTPException(status_code=400, detail="KITE_API_KEY is not configured")
     return {"login_url": auth_service.login_url()}
 
 
-@router.post("/api/kite/session")
+@router.post("/api/kite/session", dependencies=admin_only)
 async def kite_session(request: KiteSessionRequest) -> dict[str, object]:
     if not settings.kite_api_key or not settings.kite_api_secret:
         raise HTTPException(status_code=400, detail="Kite API credentials are not configured")
@@ -53,7 +54,7 @@ async def kite_session(request: KiteSessionRequest) -> dict[str, object]:
     }
 
 
-@router.get("/api/kite/status")
+@router.get("/api/kite/status", dependencies=admin_only)
 async def kite_status() -> dict[str, object]:
     return {
         "market_mode": settings.trading_market_mode,
@@ -64,7 +65,7 @@ async def kite_status() -> dict[str, object]:
     }
 
 
-@router.post("/api/instruments/refresh")
+@router.post("/api/instruments/refresh", dependencies=admin_only)
 async def refresh_instruments() -> dict[str, object]:
     if not auth_service.token_store.token_valid():
         raise HTTPException(status_code=401, detail="Kite token is missing or expired")
@@ -72,28 +73,28 @@ async def refresh_instruments() -> dict[str, object]:
     return {"contracts": len(contracts), "source": "kite"}
 
 
-@router.get("/api/options/chain")
+@router.get("/api/options/chain", dependencies=admin_only)
 async def option_chain(index: IndexSymbol) -> object:
     return trading_state.option_chains[index]
 
 
-@router.get("/api/signals/latest")
+@router.get("/api/signals/latest", dependencies=admin_only)
 async def latest_signal(index: IndexSymbol) -> object:
     return trading_state.signals[index]
 
 
-@router.get("/api/market/envelope")
+@router.get("/api/market/envelope", dependencies=admin_only)
 async def market_envelope() -> object:
     await trading_state.refresh_if_due(kite_client)
     return trading_state.envelope()
 
 
-@router.post("/api/market/refresh")
+@router.post("/api/market/refresh", dependencies=admin_only)
 async def refresh_market() -> object:
     return await trading_state.refresh_from_kite(kite_client)
 
 
-@router.post("/api/orders/proposals")
+@router.post("/api/orders/proposals", dependencies=admin_only)
 async def create_order_proposal(request: ProposalRequest) -> object:
     signal = trading_state.signals[request.index]
     if signal.action == "WAIT":
@@ -103,7 +104,7 @@ async def create_order_proposal(request: ProposalRequest) -> object:
     return proposal
 
 
-@router.post("/api/orders/confirm")
+@router.post("/api/orders/confirm", dependencies=admin_only)
 async def confirm_order(request: OrderConfirmation) -> OrderResult:
     proposal = trading_state.proposals.get(request.proposal_id)
     if proposal is None:
@@ -149,7 +150,7 @@ async def confirm_order(request: OrderConfirmation) -> OrderResult:
     )
 
 
-@router.post("/api/orders/kill-switch")
+@router.post("/api/orders/kill-switch", dependencies=admin_only)
 async def kill_switch(request: KillSwitchRequest) -> object:
     return trading_state.risk_manager.set_kill_switch(request.enabled)
 

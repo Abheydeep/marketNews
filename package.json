@@ -29,6 +29,7 @@
     "trading:api": "cd services/trading-api && uvicorn app.main:app --reload --port 8090",
     "trading:test": "cd services/trading-api && python3 -m pytest",
     "trading:test:lite": "cd services/trading-api && python3 tests/run_unit_tests.py",
+    "trading:mock:regression": "node tools/trading-mock-regression.mjs",
     "trading:dashboard:dev": "npm --workspace @market-narrative/trading-dashboard run dev"
   }
 }
