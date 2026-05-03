@@ -6,7 +6,7 @@ import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
-import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -33,10 +33,12 @@ if (!skipArchiveWrite) {
   await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
 }
 
-const digests = await loadArchivedDigests();
+const digests = (await loadArchivedDigests()).map(enrichPublicDigest);
 if (!digests.length) {
   throw new Error("No archived digests are available to publish");
 }
+const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
+const archiveHomeDigests = publicArchiveDigests.length ? publicArchiveDigests : digests.slice(0, 1);
 
 await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
@@ -49,9 +51,11 @@ await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 for (const digest of digests) {
   const slug = slugForDigest(digest);
   const digestDir = join(siteDir, slug);
+  const related = relatedVerifiedEditions(digest, publicArchiveDigests);
   const pageDigest = {
     ...digest,
-    canonicalPath: `/${slug}/`
+    canonicalPath: `/${slug}/`,
+    ...related
   };
   await mkdir(digestDir, { recursive: true });
   await writeGuardedFile(
@@ -64,7 +68,7 @@ for (const digest of digests) {
   );
 }
 
-const latest = digests[0];
+const latest = archiveHomeDigests[0];
 const publicMultibaggerState = await multibaggerStateWithMarketQuotes();
 const adminDigest = {
   ...sourceDigest,
@@ -121,11 +125,11 @@ await writeFile(
   }),
   "utf8"
 );
-await writeGuardedFile(join(siteDir, "index.html"), archivePage(digests));
+await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveHomeDigests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
-await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: digests.map(redactedDigestPayload) }, null, 2)}\n`);
+await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: archiveHomeDigests.map(redactedDigestPayload) }, null, 2)}\n`);
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
-await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(digests), "utf8");
+await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(archiveHomeDigests), "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -193,17 +197,77 @@ function assertNewDigestSourceIntegrity(digest, previousDigest) {
   if (badSource) {
     throw new Error(`Source verification failed: ${badSource.sourceName || "source"} links to a section page (${badSource.sourceUrl})`);
   }
+  const offTopic = (digest.news ?? []).find((article) => !articleLooksMarketRelevant(article));
+  if (offTopic) {
+    throw new Error(`Source verification failed: ${offTopic.sourceName || "source"} is not market-relevant (${offTopic.headline || offTopic.title})`);
+  }
   return verification;
 }
 
 function previousDigestFor(digest, digests) {
   const currentTime = Date.parse(digest.scheduledFor ?? `${digest.digestDate}T08:30:00+05:30`);
   return [...digests]
+    .filter(isVerifiedPublicDigest)
     .filter((item) => Date.parse(item.scheduledFor ?? `${item.digestDate}T08:30:00+05:30`) < currentTime)
     .sort((left, right) =>
       Date.parse(right.scheduledFor ?? `${right.digestDate}T08:30:00+05:30`) -
       Date.parse(left.scheduledFor ?? `${left.digestDate}T08:30:00+05:30`)
     )[0] ?? null;
+}
+
+function enrichPublicDigest(digest) {
+  const verified = isVerifiedPublicDigest(digest);
+  const news = verified
+    ? (digest.news ?? []).filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
+    : (digest.news ?? []);
+  return {
+    ...digest,
+    news,
+    sourceVerification: digest.sourceVerification
+      ? {
+        ...digest.sourceVerification,
+        isVerifiedForPublicArchive: digest.sourceVerification.isVerifiedForPublicArchive ?? !digest.sourceVerification.blockedReason
+      }
+      : undefined,
+    legacyAuditStatus: verified
+      ? undefined
+      : "Legacy source audit unavailable - direct archive page retained for continuity and hidden from public briefing cards.",
+    archiveSummary: digest.archiveSummary || archiveCardSummary({ ...digest, news }),
+    deskNote: digest.deskNote || legacyDeskNote({ ...digest, news }),
+    watchItems: Array.isArray(digest.watchItems) && digest.watchItems.length
+      ? digest.watchItems.slice(0, 3)
+      : fallbackWatchItems({ ...digest, news }),
+    generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T08:30:00+05:30`
+  };
+}
+
+function isVerifiedPublicDigest(digest) {
+  return Boolean(digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
+}
+
+function relatedVerifiedEditions(digest, verifiedDigests) {
+  const index = verifiedDigests.findIndex((item) => item.digestDate === digest.digestDate && scheduledLabelForDigest(item) === scheduledLabelForDigest(digest));
+  if (index === -1) {
+    return {};
+  }
+  return {
+    nextEditionPath: index > 0 ? `../${slugForDigest(verifiedDigests[index - 1])}/` : "",
+    previousEditionPath: index < verifiedDigests.length - 1 ? `../${slugForDigest(verifiedDigests[index + 1])}/` : ""
+  };
+}
+
+function legacyDeskNote(digest) {
+  const driver = highestImpactArticle(digest);
+  return driver
+    ? `${cleanArchiveSentence(driver.takeaway || driver.summary || driver.headline)} Use this legacy page as context only because the source audit was not available when it was created.`
+    : "Use this legacy page as context only because the source audit was not available when it was created.";
+}
+
+function fallbackWatchItems(digest) {
+  const items = (digest.news ?? [])
+    .map((article) => cleanArchiveSentence(article.watchFor))
+    .filter(Boolean);
+  return [...new Set(items)].slice(0, 3);
 }
 
 function archivePage(digests) {
@@ -383,6 +447,40 @@ function archivePage(digests) {
       color: #f8fafc;
       font-size: 13px;
       font-weight: 900;
+    }
+
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .share-row span,
+    .byline {
+      color: #9fb0c8;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .share-link,
+    .share-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.42);
+      color: #e5e7eb;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .share-copy-btn {
+      cursor: pointer;
+      font: inherit;
     }
 
     main {
@@ -740,7 +838,6 @@ function archivePage(digests) {
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
           <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
-          <a class="nav-link" href="${escapeHtml(adminSiteOrigin)}/">Admin login</a>
         </div>
       </div>
     </div>
@@ -749,18 +846,34 @@ function archivePage(digests) {
     <section class="hero">
       <p class="eyebrow">Pre-Market Intelligence Archive</p>
       <h1>Market Narrative</h1>
-      <p>Independent Indian pre-market intelligence for the cash open: global cues, Nifty and Bank Nifty context, sector impact, source cards, technical risk levels, and links into the public multibagger research tracker.</p>
+      <p>Published before 8:30 AM IST on trading days. Independent, source-led pre-market context for Nifty and Bank Nifty - no account required.</p>
+      <p class="byline">By Abhey Deep / Market Narrative</p>
+      ${archiveShareRowHtml()}
     </section>
     <section class="summary-row" aria-label="Archive summary">
       <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
       <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
       <div class="summary-chip"><span>Current focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
+      <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T08:30:00+05:30`))}</strong></div>
     </section>
     <h2 class="archive-title">Latest Market Briefings</h2>
     <section class="digest-grid">
       ${cards}
     </section>
   </main>
+  <script>
+    document.querySelectorAll('[data-copy-url]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyUrl || location.href);
+          button.textContent = 'Copied';
+        } catch {
+          button.textContent = 'Copy failed';
+        }
+        setTimeout(() => { button.textContent = 'Copy link'; }, 1800);
+      });
+    });
+  </script>
 </body>
 </html>`;
 }
@@ -772,6 +885,22 @@ function archiveSourceQualityLine(digest) {
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
+}
+
+function archiveShareRowHtml() {
+  const url = `${siteOrigin}/`;
+  const text = "Market Narrative pre-market briefing archive";
+  const encodedUrl = encodeURIComponent(url);
+  const encodedText = encodeURIComponent(text);
+  return `
+    <div class="share-row" aria-label="Share Market Narrative">
+      <span>Share</span>
+      <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">X</a>
+      <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(url)}">Copy link</button>
+    </div>
+  `;
 }
 
 function archiveMarketSnapshotHtml(digest) {
@@ -826,6 +955,9 @@ function formatSnapshotValue(snapshot) {
 }
 
 function archiveCardSummary(digest) {
+  if (digest.archiveSummary) {
+    return digest.archiveSummary;
+  }
   const primary = cleanArchiveSentence(digest.themes?.[0]?.summary);
   const driver = highestImpactArticle(digest);
   const secondary = cleanArchiveSentence(driver?.indiaImpact || driver?.takeaway || driver?.summary);
@@ -880,9 +1012,11 @@ function sentimentSparklineHtml(digest) {
 }
 
 function archiveChips(digest) {
-  const themeType = String(digest.themes?.[0]?.themeType ?? "").toLowerCase();
-  const macroChip = themeType.includes("macro") ? "Macro pressure" : "Global cues";
-  return [macroChip, "India impact", "Opening bias"];
+  const articles = weightedArchiveSources(digest).slice(0, 3);
+  const chips = articles.map((article) =>
+    compactWords(cleanArchiveSentence(article.entityName || article.category || article.sourceName || "Market"), 3)
+  ).filter(Boolean);
+  return [...new Set(chips)].slice(0, 3);
 }
 
 function archiveFocus(digest) {
@@ -968,6 +1102,21 @@ function formatDigestDate(date) {
     month: "short",
     year: "numeric"
   }).format(new Date(`${date}T12:00:00+05:30`));
+}
+
+function formatGeneratedTime(value) {
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) {
+    return "Unavailable";
+  }
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).format(date);
 }
 
 function formatChange(changePercent) {

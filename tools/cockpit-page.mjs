@@ -1,6 +1,7 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd } from "./core.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
+import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
@@ -15,7 +16,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
   const safeInitialTab = includeStudio || initialTab === "public-view" ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
-  const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative`;
+  const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
   const pageOrigin = options.siteOrigin ?? siteOrigin;
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
@@ -29,7 +30,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
           <button class="tab-btn" data-target="components-view">Project Components</button>`
     : "";
-  const publicAdminLinkHtml = !includeStudio && options.adminHref !== null
+  const publicAdminLinkHtml = !includeStudio && options.showAdminLink === true
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
   const multibaggerLinkHtml = includeStudio
@@ -753,6 +754,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       white-space: nowrap;
     }
 
+    .setup-badge.complete {
+      border-color: rgba(148, 163, 184, 0.45);
+      background: rgba(71, 85, 105, 0.34);
+      color: #cbd5e1;
+    }
+
     .setup-grid {
       position: relative;
       z-index: 1;
@@ -823,6 +830,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 12px;
       font-weight: 800;
       line-height: 1.45;
+    }
+
+    .setup-audit-item.complete strong,
+    .setup-audit-item.complete span {
+      color: #cbd5e1;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(148, 163, 184, 0.62);
     }
 
     .setup-levels {
@@ -1530,6 +1545,66 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 12px;
       font-weight: 650;
       line-height: 1.6;
+    }
+
+    .legacy-audit-banner,
+    .edition-nav,
+    .share-row,
+    .chart-cta-panel {
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.58);
+      padding: 14px;
+    }
+
+    .legacy-audit-banner {
+      margin: 16px 0;
+      border-color: rgba(251, 191, 36, 0.42);
+      background: rgba(120, 53, 15, 0.28);
+      color: #fde68a;
+      font-weight: 850;
+    }
+
+    .edition-nav,
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 14px 0;
+    }
+
+    .edition-nav a,
+    .share-link,
+    .share-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.42);
+      color: #e5e7eb;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .share-copy-btn {
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .chart-cta-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .chart-cta-panel h2 {
+      margin: 0 0 6px;
     }
 
     .briefing-card {
@@ -3703,6 +3778,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #9fb0c8;
     }
 
+    .glass-v2 .source-quality-line {
+      border-color: rgba(103, 232, 249, 0.24);
+      background: rgba(103, 232, 249, 0.08);
+      color: #dbeafe;
+    }
+
     .glass-v2 .briefing-expand-card {
       border-left-color: rgba(103, 232, 249, 0.62);
     }
@@ -4117,6 +4198,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(digest.title)}</h1>
         </header>
 
+        ${legacyAuditBannerHtml(digest)}
+        ${editionNavHtml(digest)}
+        ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
         ${deskNoteHtml(digest)}
 
@@ -4152,7 +4236,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
                 <strong>Live Quote Board</strong>
                 <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
               </span>
-              <span id="liveClock" class="live-clock">Preparing quotes...</span>
+              <span id="liveClock" class="live-clock">${escapeHtml(quoteSessionLabel(digest))}</span>
               <span class="quote-board-action"><span id="quoteBoardState">Expand</span><span class="quote-board-chev">&#9662;</span></span>
             </button>
             <div id="quoteBoardBody" class="quote-board-body" hidden>
@@ -4166,13 +4250,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
         ${algorithmicSetupHtml(digest)}
 
-        <section class="panel market-chart-panel">
-          <h2>Latest Market Dashboard</h2>
-          <p class="chart-note">Quick snapshot only: US risk appetite, Asia lead, Indian open, and the key macro hedge. Open the Live Quote Board for every tracked market.</p>
-          <div class="chart-container">
-            <canvas id="overnightChart" aria-label="Overnight global indices chart"></canvas>
-          </div>
-        </section>
+        ${chartCtaPanelHtml(digest)}
 
         ${sourceNotesHtml(digest)}
 
@@ -4202,8 +4280,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
-              <h3>Chart Series Pending</h3>
-              <p>The latest quote is loaded for this symbol. Open the TradingView chart when you need a full interactive view.</p>
+              <h3>Open the live chart</h3>
+              <p>The latest quote snapshot is loaded. Use TradingView for the full interactive series.</p>
             </div>
           </div>
         </div>
@@ -4537,7 +4615,23 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       bindQuoteBoardToggle();
       bindSourceFilters();
       bindSourceCardClicks();
+      bindShareButtons();
       initLiveIndexBoard();
+    }
+
+    function bindShareButtons() {
+      document.querySelectorAll('[data-copy-url]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const url = button.dataset.copyUrl || window.location.href;
+          try {
+            await navigator.clipboard.writeText(url);
+            button.textContent = 'Copied';
+          } catch {
+            button.textContent = 'Copy failed';
+          }
+          setTimeout(() => { button.textContent = 'Copy link'; }, 1800);
+        });
+      });
     }
 
     function bindAdminAuth() {
@@ -5185,12 +5279,26 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         second: '2-digit'
       }).format(new Date());
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
-      const liveLine = openCount > 0 ? 'Live now ' + openCount + '/' + quotes.length + ' markets' : 'All tracked sessions closed';
+      const liveLine = openCount > 0
+        ? 'Live now ' + openCount + '/' + quotes.length + ' markets'
+        : 'Markets closed - ' + (latestSnapshotDateLabel(quotes) || 'latest published') + ' close prices shown';
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
         ' - ' + mode +
         (latest ? ' - latest ' + latest : '') +
         ' - checked IST ' + time;
+    }
+
+    function latestSnapshotDateLabel(quotes) {
+      const timestamps = (quotes || [])
+        .map((quote) => Date.parse(quote.dataTimestamp || ''))
+        .filter((value) => Number.isFinite(value));
+      if (!timestamps.length) return '';
+      return new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: '2-digit',
+        month: 'short'
+      }).format(new Date(Math.max(...timestamps)));
     }
 
     function compactMarketLabel(item) {
@@ -6069,11 +6177,102 @@ function compactSummaryText(digest) {
     : "No clean 1:2 setup is active yet; wait for the opening range to form.";
   const pressureLabel = marketRiskLabel(macro || pressureStory);
   return limitWords([
-    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} but selective.`,
+    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} and confirmation-led.`,
     `${pressureLabel} is the risk to watch; ${compactEntityName(supportStory?.entityName || "domestic breadth")} is the offset.`,
     asiaLine,
     setupLine
   ].filter(Boolean).join(" "), 50);
+}
+
+function legacyAuditBannerHtml(digest) {
+  if (isVerifiedPublicDigest(digest)) {
+    return "";
+  }
+  return `
+    <div class="legacy-audit-banner" role="note">
+      Legacy source audit unavailable. This direct archive page is kept for continuity and is hidden from the public briefing archive.
+    </div>
+  `;
+}
+
+function editionNavHtml(digest) {
+  const links = [
+    digest.previousEditionPath ? `<a href="${escapeHtml(digest.previousEditionPath)}">&#8592; Previous edition</a>` : "",
+    digest.nextEditionPath ? `<a href="${escapeHtml(digest.nextEditionPath)}">Next edition &#8594;</a>` : ""
+  ].filter(Boolean);
+  if (!links.length) {
+    return "";
+  }
+  return `<nav class="edition-nav" aria-label="Briefing editions">${links.join("")}</nav>`;
+}
+
+function shareRowHtml(canonicalUrl, title) {
+  const shareText = `${title} - Market Narrative`;
+  const encodedUrl = encodeURIComponent(canonicalUrl);
+  const encodedText = encodeURIComponent(shareText);
+  return `
+    <div class="share-row" aria-label="Share briefing">
+      <span>By Abhey Deep / Market Narrative</span>
+      <div>
+        <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">X</a>
+        <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(canonicalUrl)}">Copy link</button>
+      </div>
+    </div>
+  `;
+}
+
+function chartCtaPanelHtml(digest) {
+  const nifty = (digest.marketSnapshots || []).find((snapshot) => snapshot.symbol === "NIFTY") || (digest.marketSnapshots || [])[0];
+  const href = nifty ? tradingViewUrlForSnapshot(nifty) : "https://www.tradingview.com/markets/indices/";
+  return `
+    <section class="chart-cta-panel" aria-label="Live chart link">
+      <div>
+        <h2>Live Chart</h2>
+        <p class="chart-note">The page publishes source-backed levels and quote snapshots. Use TradingView for the full interactive chart.</p>
+      </div>
+      <a class="chart-link-btn" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Open live chart on TradingView</a>
+    </section>
+  `;
+}
+
+function quoteSessionLabel(digest) {
+  const quotes = digest.marketSnapshots || [];
+  if (quotes.some((quote) => quote.dataQuality === "live")) {
+    return "Live quote feed available";
+  }
+  const latest = latestSnapshotDateLabel(quotes);
+  return latest ? `Markets closed - ${latest} close prices shown` : "Markets closed - latest published closes shown";
+}
+
+function latestSnapshotDateLabel(quotes) {
+  const timestamps = quotes
+    .map((quote) => Date.parse(quote.dataTimestamp || ""))
+    .filter((value) => Number.isFinite(value));
+  if (!timestamps.length) {
+    return "";
+  }
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short"
+  }).format(new Date(Math.max(...timestamps)));
+}
+
+function tradingViewUrlForSnapshot(snapshot) {
+  const symbol = snapshot.tradingViewSymbol || {
+    NIFTY: "NSE:NIFTY",
+    BANKNIFTY: "NSE:BANKNIFTY",
+    GIFTNIFTY: "NSEIX:NIFTY1!",
+    BRENT: "TVC:UKOIL",
+    DXY: "TVC:DXY"
+  }[snapshot.symbol] || "NSE:NIFTY";
+  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
+}
+
+function isVerifiedPublicDigest(digest) {
+  return Boolean(digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
 }
 
 function deskNoteHtml(digest) {
@@ -6085,12 +6284,12 @@ function deskNoteHtml(digest) {
   const setupLine = setup
     ? `The only trade I would respect is around ${formatNumber(setup.entry)}, with ${formatNumber(setup.stopLoss)} as the line in the sand.`
     : "No forced trade at the bell. Let the first range print, then decide.";
-  const note = `${pressure} ${support} ${setupLine}`;
+  const note = digest.deskNote || `${pressure} ${support} ${setupLine}`;
   return `
     <aside class="desk-note" aria-label="Creator desk note">
       <div class="desk-note-mark">Desk<br>Note</div>
       <div class="desk-note-copy">
-        <span>Creator read</span>
+        <span>Creator read - Abhey Deep</span>
         <p>${escapeHtml(editorialSentence(note))}</p>
         <small>Human rule for the open: do not let the headline candle do your thinking. Confirm breadth, VWAP, and the first clean level.</small>
       </div>
@@ -6270,7 +6469,7 @@ function executiveSummaryHtml(digest) {
     <div class="brief-section">
       <h3>What To Watch First</h3>
       <ul class="watch-grid">
-        ${watchItemsHtml(digest.news, setup)}
+        ${watchItemsHtml(digest, setup)}
       </ul>
     </div>
   `;
@@ -6340,11 +6539,13 @@ function noSetupTradeFrame(digest) {
   return "No clean 1:2 setup is active yet, so wait for opening-range confirmation before taking a directional view.";
 }
 
-function watchItemsHtml(articles, setup) {
-  const items = articles
-    .map((article) => article.watchFor)
-    .filter(Boolean)
-    .slice(0, 3);
+function watchItemsHtml(digest, setup) {
+  const items = Array.isArray(digest.watchItems) && digest.watchItems.length
+    ? digest.watchItems.slice(0, 3)
+    : (digest.news || [])
+      .map((article) => article.watchFor)
+      .filter(Boolean)
+      .slice(0, 3);
   if (setup) {
     items.push(`Nifty acceptance near ${formatNumber(setup.entry)} and invalidation near ${formatNumber(setup.stopLoss)}.`);
   }
@@ -6432,6 +6633,9 @@ function formatGeneratedTime(value) {
 }
 
 function sourceLeadCardHtml(article) {
+  const sourceLink = sourceUrlLooksArticleLevel(article.sourceUrl)
+    ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
+    : '<span class="source-name">Legacy source link suppressed</span>';
   return `
     <article class="info-card source-lead-card">
       ${articleThumbnailHtml(article)}
@@ -6447,7 +6651,7 @@ function sourceLeadCardHtml(article) {
           <div><span>India Read</span><strong>${escapeHtml(article.indiaImpact || "Watch opening breadth for confirmation.")}</strong></div>
           <div><span>Watch</span><strong>${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</strong></div>
         </div>
-        <a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
+        ${sourceLink}
       </div>
     </article>
   `;
@@ -6508,8 +6712,15 @@ function sourceCategorySectionHtml(group, defaultFilter) {
 }
 
 function sourceEvidenceCardHtml(article) {
+  const hasArticleUrl = sourceUrlLooksArticleLevel(article.sourceUrl);
+  const linkAttrs = hasArticleUrl
+    ? `role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(article.headline)}" data-source-url="${escapeHtml(article.sourceUrl)}"`
+    : `aria-label="Legacy source note: ${escapeHtml(article.headline)}"`;
+  const footerLink = hasArticleUrl
+    ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
+    : '<span>Legacy link suppressed</span>';
   return `
-    <article class="info-card source-card source-evidence-card" role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(article.headline)}" data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}" data-source-url="${escapeHtml(article.sourceUrl)}">
+    <article class="info-card source-card source-evidence-card" ${linkAttrs} data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}">
       ${articleThumbnailHtml(article)}
       <div class="source-card-copy">
         <div class="source-card-header">
@@ -6525,8 +6736,8 @@ function sourceEvidenceCardHtml(article) {
           <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</p>
         </details>
         <div class="source-card-footer">
-          <span class="source-entity">${escapeHtml(article.entityName || "Market")} - weight ${escapeHtml(sourceWeight(article).toFixed(2))}</span>
-          <a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>
+          <span class="source-entity">${escapeHtml(article.entityName || "Market")} - ${escapeHtml(categoryLabel(article.category))}</span>
+          ${footerLink}
         </div>
       </div>
     </article>
@@ -6542,9 +6753,9 @@ function sourceCategoryGroups(articles) {
   }
   return [...groups.entries()]
     .map(([category, groupedArticles]) => {
-      const weight = groupedArticles.reduce((sum, article) => sum + Number(article.entityMatchScore || 0), 0);
+      const weight = groupedArticles.reduce((sum, article) => sum + articleWeight(article), 0);
       const score = weight
-        ? groupedArticles.reduce((sum, article) => sum + Number(article.sentimentScore || 0) * Number(article.entityMatchScore || 0), 0) / weight
+        ? groupedArticles.reduce((sum, article) => sum + articleTone(article) * articleWeight(article), 0) / weight
         : 0;
       const lead = weightedSourceArticles(groupedArticles)[0] || groupedArticles[0];
       return {
@@ -6588,7 +6799,7 @@ function sourceCategorySummary(group) {
 }
 
 function sourceWeight(article) {
-  return Math.abs(Number(article.sentimentScore || 0) * Number(article.entityMatchScore || 0));
+  return Math.abs(articleTone(article) * articleWeight(article));
 }
 
 function sourceScoreClass(score) {
@@ -6600,10 +6811,9 @@ function sourceScoreClass(score) {
 function strongestStory(articles, direction) {
   const sorted = articles
     .slice()
-    .filter((article) => direction === "positive" ? Number(article.sentimentScore) > 0 : Number(article.sentimentScore) < 0)
+    .filter((article) => direction === "positive" ? articleTone(article) > 0 : articleTone(article) < 0)
     .sort((left, right) =>
-      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
-      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
+      sourceWeight(right) - sourceWeight(left)
     );
   return sorted[0];
 }
@@ -6611,10 +6821,7 @@ function strongestStory(articles, direction) {
 function firstByCategory(articles, category) {
   return articles
     .filter((article) => article.category === category)
-    .sort((left, right) =>
-      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
-      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
-    )[0];
+    .sort((left, right) => sourceWeight(right) - sourceWeight(left))[0];
 }
 
 function categoryLabel(category) {
@@ -6724,13 +6931,19 @@ function countryForSnapshot(snapshot) {
 function algorithmicSetupHtml(digest) {
   const setup = niftySetup(digest);
   if (!setup) {
+    const completed = setupAuditItems(digest).filter((item) => item.status === "TARGET_REACHED");
+    const title = completed.length ? "Completed Setups" : "Active Game Plan";
+    const badge = completed.length ? "No active setup" : "No setup yet";
+    const note = completed.length
+      ? "No active trade setup for this session. Earlier levels are archived below because the move has already played out."
+      : "No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.";
     return `
       <section class="info-card setup-card">
         <div class="setup-card-header">
-          <h2>Nifty 50 Game Plan</h2>
-          <span class="setup-badge">No setup yet</span>
+          <h2>${escapeHtml(title)}</h2>
+          <span class="setup-badge${completed.length ? " complete" : ""}">${escapeHtml(badge)}</span>
         </div>
-        <p class="strategy-note">No clean 1:2 risk-reward setup is active yet. Let the opening range define the next valid level.</p>
+        <p class="strategy-note">${escapeHtml(note)}</p>
         ${setupAuditHtml(digest)}
       </section>
     `;
@@ -6745,7 +6958,7 @@ function algorithmicSetupHtml(digest) {
   return `
     <section class="info-card setup-card">
       <div class="setup-card-header">
-        <h2>Nifty 50 Game Plan</h2>
+        <h2>Active Game Plan</h2>
         <span class="setup-badge">1:2 R:R Validated</span>
       </div>
       <div class="setup-grid">
@@ -6919,10 +7132,21 @@ function sourceQaHtml(digest) {
 function weightedSourceArticles(articles) {
   return articles
     .slice()
-    .sort((left, right) =>
-      Math.abs(Number(right.sentimentScore) * Number(right.entityMatchScore)) -
-      Math.abs(Number(left.sentimentScore) * Number(left.entityMatchScore))
-    );
+    .sort((left, right) => sourceWeight(right) - sourceWeight(left));
+}
+
+function articleTone(article) {
+  if (Number.isFinite(Number(article?.sentimentScore))) {
+    return Number(article.sentimentScore);
+  }
+  const label = String(article?.sentimentLabel || "").toLowerCase();
+  if (label.includes("positive") || label.includes("bullish")) return 0.35;
+  if (label.includes("negative") || label.includes("bearish")) return -0.35;
+  return 0;
+}
+
+function articleWeight(article) {
+  return Number.isFinite(Number(article?.entityMatchScore)) ? Math.max(0.1, Number(article.entityMatchScore)) : 1;
 }
 
 function publishingChecklistHtml(digest) {
@@ -7099,7 +7323,7 @@ function setupAuditHtml(digest) {
   return `
     <div class="setup-audit-list" aria-label="Setup rejection reasons">
       ${inactive.slice(0, 3).map((item) => `
-        <div class="setup-audit-item">
+        <div class="setup-audit-item${item.status === "TARGET_REACHED" ? " complete" : ""}">
           <strong>${escapeHtml(item.symbol)}</strong>
           <span>
             ${escapeHtml(item.reason)}

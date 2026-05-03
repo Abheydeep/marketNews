@@ -99,10 +99,13 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Pre-Market Intelligence Archive/);
   assertOutput("index.html", /Latest Market Briefings/);
   assertOutput("index.html", /details class="digest-card/);
-  assertOutput("index.html", /Legacy source audit unavailable|verified article links/);
+  assertOutput("index.html", /verified article links/);
   assertOutput("index.html", /Read market briefing/);
   assertOutput("index.html", /Previous session driver/);
   assertOutput("index.html", /sentiment-sparkline/);
+  assertOutput("index.html", /Published before 8:30 AM IST on trading days/);
+  assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
+  assertOutput("index.html", /Last verified update/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
   assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
   assertOutput("multibagger/index.html", /Current value/);
@@ -120,7 +123,7 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/state.json", /"returnPercent"/);
   assertOutput("multibagger/state.json", /"currentModelValueInr"/);
   runPublicCopyQa("out/vercel");
-  assertOutput("index.html", /Admin login/);
+  assertOutputNot("index.html", /Admin login|admin\.marketnarrative\.in/);
   assertOutputAbsent("components/index.html");
 
   buildTarget("admin");

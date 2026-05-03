@@ -22,6 +22,9 @@ await check("public apex loads archive", async () => {
   const response = await fetchText(config.publicUrl);
   assert.equal(response.status, 200);
   assert.match(response.body, /Market Narrative|briefings|Daily Pre-Market Summary/i);
+  assert.doesNotMatch(response.body, /Admin Login|admin\.marketnarrative\.in/i);
+  assert.match(response.body, /By Abhey Deep \/ Market Narrative/i);
+  assert.match(response.body, /Last verified update/i);
 });
 
 await check("public host serves public deployment target", async () => {
@@ -49,6 +52,7 @@ await check("latest public digest exposes verified article sources when generate
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
   assert.ok(payload.sourceVerification.categoryCount >= 4);
   assert.ok((payload.news ?? []).every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)), "latest digest has a section homepage source URL");
+  assert.equal(JSON.stringify(payload.newsCards ?? []).includes("sentimentScore"), false, "public newsCards leaked raw sentiment scores");
 });
 
 await check("latest and previous verified digests do not repeat the same source stack", async () => {

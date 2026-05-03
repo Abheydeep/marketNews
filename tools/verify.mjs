@@ -136,6 +136,10 @@ await test("fixture news source stacks are date-specific and article-level", asy
   assert.ok(second.news.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)), "second fixture stack has a section URL");
   assert.equal(first.sourceVerification.mode, "fixture");
   assert.equal(second.sourceVerification.mode, "fixture");
+  assert.notEqual(first.title, second.title, "fixture dates must not reuse identical page titles");
+  assert.notEqual(first.archiveSummary, second.archiveSummary, "fixture dates must not reuse identical archive summaries");
+  assert.notEqual(first.deskNote, second.deskNote, "fixture dates must not reuse identical desk notes");
+  assert.notDeepEqual(first.watchItems, second.watchItems, "fixture dates must not reuse identical watch lists");
   assert.ok(first.sourceVerification.verifiedArticleCount >= 8);
   assert.ok(second.sourceVerification.duplicateWithPreviousPercent < 55);
 });
@@ -219,6 +223,11 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.sourceVerification.verifiedArticleCount >= 8);
   assert.equal(digest.sourceVerification.blockedReason, null);
   assert.ok(digest.news.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)));
+  assert.ok(digest.generatedAt);
+  assert.ok(digest.archiveSummary);
+  assert.ok(digest.deskNote);
+  assert.equal(digest.watchItems.length, 3);
+  assert.equal(digest.title.includes("Global Pressure Meets Domestic Selectivity"), false);
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
@@ -237,7 +246,6 @@ await test("public digest payload ships compact display DTOs", async () => {
     "category",
     "publisherName",
     "sentimentLabel",
-    "sentimentScore",
     "sourceUrl",
     "thumbnailAlt",
     "thumbnailUrl",
@@ -248,10 +256,12 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.news).includes("whyItMatters"), false);
   assert.equal(JSON.stringify(payload.news).includes("indiaImpact"), false);
   assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
+  assert.equal(JSON.stringify(payload.news).includes("sentimentScore"), false);
   assert.ok(payload.setupAudit.length >= payload.tradeSetups.length);
   assert.equal(JSON.stringify(payload.setupAudit).includes('"setup"'), false);
   assert.equal(payload.sourceVerification.mode, "fixture");
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
+  assert.equal(payload.sourceVerification.isVerifiedForPublicArchive, true);
   assert.equal(JSON.stringify(payload).includes("sourceDebug"), false);
   assert.equal(JSON.stringify(payload).includes("rejectedSources"), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
@@ -657,7 +667,9 @@ await test("backend market snapshot contract carries chart-refresh fields", asyn
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
-  assert.ok(publisher.includes("archivePage(digests)"));
+  assert.ok(publisher.includes("archivePage(archiveHomeDigests)"));
+  assert.ok(publisher.includes("isVerifiedPublicDigest"));
+  assert.ok(publisher.includes("legacyAuditStatus"));
   assert.ok(publisher.includes("archiveCardSummary"));
   assert.ok(publisher.includes("previousSessionDriver"));
   assert.ok(publisher.includes("archiveToneClass"));
@@ -712,8 +724,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("twitter:card"));
   assert.ok(publisher.includes('rel="canonical"'));
   assert.ok(publisher.includes("Source-led Indian pre-market intelligence archive"));
-  assert.ok(publisher.includes("Independent Indian pre-market intelligence"));
-  assert.ok(publisher.includes("public multibagger research tracker"));
+  assert.ok(publisher.includes("Published before 8:30 AM IST on trading days"));
+  assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
+  assert.ok(publisher.includes("Last verified update"));
+  assert.equal(publisher.includes("Admin login</a>"), false);
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
   assert.ok(publisher.includes("redactedDigestPayload"));
@@ -918,7 +932,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(productionSmoke.includes("deployment-manifest.json"));
   assert.ok(productionSmoke.includes('payload.target, "admin"'));
   for (const required of [
-    "Open TradingView Chart",
+    "Open live chart on TradingView",
     "Open Yahoo Chart",
     "Pre-Market Intelligence Archive",
     "Latest Market Briefings",
@@ -1043,7 +1057,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
-  assert.ok(publicHtml.body.includes("Admin Login"));
+  assert.ok(!publicHtml.body.includes("Admin Login"));
+  assert.ok(publicHtml.body.includes("By Abhey Deep"));
+  assert.ok(publicHtml.body.includes("Open live chart on TradingView"));
+  assert.ok(!publicHtml.body.includes("Chart Series Pending"));
+  assert.ok(!publicHtml.body.includes("Preparing quotes"));
+  assert.ok(!/\\bweight\\s+0\\.[0-9]/i.test(publicHtml.body));
   assert.ok(!publicHtml.body.includes("Studio Command (Admin)"));
   assert.ok(!publicHtml.body.includes('id="studio-view"'));
   assert.ok(!publicHtml.body.includes("Studio Command Center"));
@@ -1096,7 +1115,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));
   assert.ok(publicHtml.body.includes("sentiment-pin"));
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
-  assert.ok(publicHtml.body.includes("Nifty 50 Game Plan"));
+  assert.ok(publicHtml.body.includes("Active Game Plan") || publicHtml.body.includes("Completed Setups"));
   assert.ok(publicHtml.body.includes("Creator read"));
   assert.ok(!publicHtml.body.includes("Agentic RAG pipeline"));
   assert.ok(!publicHtml.body.includes("News Driving This 8:30 Brief"));
@@ -1140,7 +1159,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Math.random"));
   assert.ok(!publicHtml.body.includes("mock quote source"));
   assert.ok(!publicHtml.body.includes("example.com"));
-  assert.ok(publicHtml.body.includes("overnightChart"));
+  assert.ok(!publicHtml.body.includes('<canvas id="overnightChart"'));
   assert.ok(!publicHtml.body.includes('id="teleprompterContainer"'));
   assert.ok(!publicHtml.body.includes('id="generateAssetBtn"'));
   const adminHtml = await app.request("GET", "/admin");

@@ -21,7 +21,7 @@ const config = {
   requireAuthenticated: process.env.REQUIRE_AUTHENTICATED_QA === "true",
   runBrowser: process.env.SKIP_BROWSER_QA !== "true",
   timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "12000", 10),
-  latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? "/2may2026/"
+  latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? "/3may2026/"
 };
 
 const publicBlockedCopyPatterns = [
@@ -41,6 +41,11 @@ const publicBlockedCopyPatterns = [
   /\bdemo\b/i,
   /\bplaceholder\b/i,
   /\bscaffolding\b/i,
+  /Admin Login/i,
+  /admin\.marketnarrative\.in/i,
+  /Chart Series Pending/i,
+  /Preparing quotes/i,
+  /weight 0\./i,
   /\bTODO\b/,
   /\blorem\b/i
 ];
@@ -122,7 +127,7 @@ await group("Public user surface", async () => {
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open TradingView Chart/i, /Bank Nifty|global cues|India/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open live chart on TradingView/i, /Bank Nifty|global cues|India/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");

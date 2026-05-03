@@ -46,6 +46,16 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles);
+  const generatedAt = options.generatedAt ?? new Date().toISOString();
+  const archiveSummary = archiveSummaryForDigest(articles, themes, options.previousDigest);
+  const deskNote = deskNoteForDigest(articles, tradeSetups, options.previousDigest);
+  const watchItems = watchItemsForDigest(articles, tradeSetups, options.previousDigest);
+  assertDigestEditorialIntegrity({
+    title: script.title,
+    archiveSummary,
+    deskNote,
+    watchItems
+  }, options.previousDigest);
   const asset = generateAsset(date, sentimentLabel, {
     snapshots: marketSnapshots,
     themes,
@@ -58,6 +68,10 @@ export async function buildDigest(date = todayIso(), options = {}) {
     digestDate: date,
     title: script.title,
     status: "DRAFT",
+    generatedAt,
+    archiveSummary,
+    deskNote,
+    watchItems,
     overallSentiment: round(overallSentiment, 3),
     sentimentLabel,
     onePageSummary: script.onePageSummary,
@@ -359,7 +373,7 @@ export function labelFromScore(score) {
 }
 
 export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = []) {
-  const title = `Nifty Pre-Market: ${titleSuffix(sentimentLabel)}`;
+  const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes);
   const marketLine = snapshots
     .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
     .join(", ");
@@ -656,6 +670,227 @@ function titleSuffix(label) {
     VOLATILE: "Mixed Cues Put Levels in Focus",
     NEUTRAL: "Balanced Start Ahead of First-Hour Confirmation"
   }[label];
+}
+
+function uniqueTitleForDigest(date, sentimentLabel, articles, themes) {
+  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+  const headline = String(lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
+  const force = dominantForceLabel(lead, headline);
+  const verb = dominantVerb(headline, lead?.category, sentimentLabel);
+  const consequence = titleConsequence(lead, sentimentLabel);
+  return compactTitle(`${force} ${verb} ${consequence}`);
+}
+
+function dominantForceLabel(article, headline) {
+  if (/\b(crude|oil|brent)\b/.test(headline)) return "Crude";
+  if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "Yields";
+  if (/\b(dollar|rupee|currency|forex|yen)\b/.test(headline)) return "Currency";
+  if (/\b(bank|banks|banking|credit)\b/.test(headline)) return "Banks";
+  if (/\b(it|tech|ai|software|semiconductor)\b/.test(headline)) return "Tech";
+  if (/\b(wall street|nasdaq|dow|s&p|futures)\b/.test(headline)) return "Global Risk";
+  if (/\b(asia|china|japan|korea|hong kong|taiwan)\b/.test(headline)) return "Asia";
+  if (/\b(commodity|commodities|metals|gold)\b/.test(headline)) return "Commodities";
+  const entity = String(article?.entityName || "").replace(/\b50\b/g, "").trim();
+  return entity && entity !== "Market" ? compactTitle(entity) : "Market Cues";
+}
+
+function dominantVerb(headline, category, sentimentLabel) {
+  if (/\b(crude|oil|brent)\b/.test(headline) && String(category).includes("risk")) return "Tests";
+  if (/\b(spike|surge|jump|rise|rally|gain|firm|lift)\b/.test(headline)) return "Lift";
+  if (/\b(fall|drop|slide|slip|ease|cool|weaken)\b/.test(headline)) return "Ease";
+  if (/\b(pressure|risk|volatile|mixed|pause|stall|cautious)\b/.test(headline)) return "Test";
+  if (String(category).includes("positive") || sentimentLabel === "BULLISH") return "Support";
+  if (String(category).includes("negative") || sentimentLabel === "BEARISH") return "Weighs On";
+  return "Shape";
+}
+
+function titleConsequence(article, sentimentLabel) {
+  const entity = String(article?.entityName || "").toLowerCase();
+  if (entity.includes("bank")) return "Bank Nifty Open";
+  if (entity.includes("it") || entity.includes("tech")) return "IT Breadth";
+  if (entity.includes("brent") || entity.includes("crude")) return "India Inflation Watch";
+  if (sentimentLabel === "BULLISH") return "Nifty Upside Watch";
+  if (sentimentLabel === "BEARISH") return "Nifty Open";
+  return "Opening Range";
+}
+
+function archiveSummaryForDigest(articles, themes, previousDigest) {
+  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+  const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
+  const text = lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
+  const summary = compactWords(cleanSentence(`${force}: ${text}`), 20);
+  if (summary && normalizeEditorial(summary) !== normalizeEditorial(previousDigest?.archiveSummary)) {
+    return summary;
+  }
+  const fallback = lead?.headline ? `${lead.headline} is today's main source-led difference for the India open.` : "Today needs fresh confirmation from verified source cues.";
+  return compactWords(cleanSentence(fallback), 20);
+}
+
+function deskNoteForDigest(articles, setups, previousDigest) {
+  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+  const sector = leadSectorArticle(articles) ?? lead;
+  const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
+  const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
+  const sectorLabel = sectorFocusLabel(sector);
+  const first = `${force} is the first filter today: ${sentenceFragment(lead?.summary || lead?.headline || "the verified source stack changed")}.`;
+  const second = `${sectorLabel} is the key watch because ${becauseFragment(sector?.summary || sector?.headline || "it decides whether the first move has breadth behind it")}.`;
+  const third = setup
+    ? `The open rule is simple: respect ${setup.symbol} only near ${formatNumber(setup.entry)} and abandon it below ${formatNumber(setup.stopLoss)}.`
+    : "The open rule is simple: wait for the first range and do not chase the headline candle.";
+  const note = [first, second, third].map(cleanSentence).join(" ");
+  if (normalizeEditorial(note) !== normalizeEditorial(previousDigest?.deskNote)) {
+    return note;
+  }
+  return `${first} ${second} The open rule is simple: wait for a fresh level that still pays at least twice the risk.`;
+}
+
+function sentenceFragment(value) {
+  return cleanSentence(value).replace(/[.!?]+$/g, "");
+}
+
+function becauseFragment(value) {
+  const text = sentenceFragment(value);
+  return text.replace(/^(A|An|The)\b/, (match) => match.toLowerCase());
+}
+
+function leadMarketArticle(articles) {
+  return [...(articles ?? [])]
+    .map((article, index) => ({ article, index, score: marketLeadScore(article) }))
+    .filter((item) => item.score > 0)
+    .sort((left, right) => right.score - left.score || left.index - right.index)[0]?.article;
+}
+
+function leadSectorArticle(articles) {
+  return [...(articles ?? [])]
+    .map((article, index) => ({ article, index, score: sectorLeadScore(article) }))
+    .filter((item) => item.score > 0)
+    .sort((left, right) => right.score - left.score || left.index - right.index)[0]?.article;
+}
+
+function marketLeadScore(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  let score = 0;
+  if (/\b(crude|oil|brent|strait of hormuz)\b/.test(text)) score += 8;
+  if (/\b(yield|bond|fed|rate|inflation)\b/.test(text)) score += 7;
+  if (/\b(nasdaq|s&p|dow|wall street|futures|stocks?|shares?)\b/.test(text)) score += 6;
+  if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) score += 5;
+  if (/\b(rupee|dollar|currency)\b/.test(text)) score += 4;
+  if (/\b(earnings|revenue|profit|guidance|outlook)\b/.test(text)) score += 3;
+  if (/\b(investigation|legal advice|traveler|tickets)\b/.test(text)) score -= 4;
+  return score;
+}
+
+function sectorLeadScore(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  let score = 0;
+  if (/\b(earnings|revenue|profit|guidance|outlook|sales)\b/.test(text)) score += 6;
+  if (/\b(tech|ai|semiconductor|software|mag 7|alphabet|nvidia)\b/.test(text)) score += 5;
+  if (/\b(bank|credit|private credit|financial)\b/.test(text)) score += 4;
+  if (/\b(stocks?|shares?|wall street analysts?)\b/.test(text)) score += 4;
+  if (/\b(airfare|travelers|tickets|legal advice)\b/.test(text)) score -= 4;
+  return score;
+}
+
+function sectorFocusLabel(article) {
+  const headline = String(article?.headline || "").toLowerCase();
+  if (/\b(tech|ai|semiconductor|software|mag 7|alphabet|nvidia)\b/.test(headline)) return "Tech breadth";
+  if (/\b(bank|credit|financial)\b/.test(headline)) return "Financials";
+  if (/\b(pharma|lilly|healthcare)\b/.test(headline)) return "Healthcare";
+  if (/\b(auto|airline|travel)\b/.test(headline)) return "Consumer cyclicals";
+  return "Sector breadth";
+}
+
+function watchItemsForDigest(articles, setups, previousDigest) {
+  const candidates = [
+    ...articles.map((article) => specificWatchItem(article)).filter(Boolean),
+    ...setups.map((setup) => `${setup.symbol} acceptance near ${formatNumber(setup.entry)} with invalidation at ${formatNumber(setup.stopLoss)}.`)
+  ];
+  const previous = new Set((previousDigest?.watchItems || []).map(normalizeEditorial));
+  const unique = [];
+  for (const item of candidates) {
+    const cleaned = cleanSentence(item);
+    const key = normalizeEditorial(cleaned);
+    if (!key || previous.has(key) || unique.some((existing) => normalizeEditorial(existing) === key)) {
+      continue;
+    }
+    unique.push(cleaned);
+    if (unique.length === 3) break;
+  }
+  while (unique.length < 3) {
+    unique.push([
+      "Opening breadth after 10:15 AM IST and whether Bank Nifty confirms the first move.",
+      "Rupee and crude behavior before the Europe open; a reversal changes import-risk sentiment.",
+      "Nifty VWAP acceptance during the first hour; failed acceptance keeps the plan defensive."
+    ][unique.length]);
+  }
+  return unique.slice(0, 3);
+}
+
+function specificWatchItem(article) {
+  const headline = String(article?.headline || "").toLowerCase();
+  if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
+  if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
+  if (/\b(dollar|rupee|currency|yen)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
+  if (/\b(bank|banks|credit|deposit)\b/.test(headline)) return "Bank Nifty follow-through after 10:15 AM IST and whether private-bank breadth confirms.";
+  if (/\b(it|tech|ai|software|semiconductor)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
+  if (/\b(asia|china|japan|hong kong|korea|taiwan)\b/.test(headline)) return "Asia breadth into the Indian first hour and whether regional risk stays supportive.";
+  return article?.watchFor || "";
+}
+
+function assertDigestEditorialIntegrity(current, previousDigest) {
+  const stale = ["Global Pressure Meets Domestic Selectivity", "clearest macro headwind", "Selectivity"];
+  const publicText = [current.title, current.archiveSummary, current.deskNote, ...(current.watchItems || [])].join(" ");
+  const banned = stale.find((phrase) => publicText.includes(phrase));
+  if (banned) {
+    throw new Error(`Digest editorial integrity failed: stale phrase "${banned}"`);
+  }
+  if (!previousDigest) {
+    return;
+  }
+  const duplicateChecks = [
+    ["title", current.title, previousDigest.title],
+    ["archive summary", current.archiveSummary, previousDigest.archiveSummary],
+    ["desk note", current.deskNote, previousDigest.deskNote]
+  ];
+  for (const [label, left, right] of duplicateChecks) {
+    if (right && normalizeEditorial(left) === normalizeEditorial(right)) {
+      throw new Error(`Digest editorial integrity failed: ${label} repeats the previous verified edition`);
+    }
+  }
+  const previousWatch = new Set((previousDigest.watchItems || []).map(normalizeEditorial));
+  const repeatedWatch = (current.watchItems || []).filter((item) => previousWatch.has(normalizeEditorial(item)));
+  if (repeatedWatch.length) {
+    throw new Error("Digest editorial integrity failed: watch items repeat the previous verified edition");
+  }
+}
+
+function cleanSentence(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/\s+\./g, ".")
+    .trim();
+}
+
+function compactTitle(value) {
+  return compactWords(cleanSentence(value).replace(/\bSelectivity\b/gi, "Focus"), 9)
+    .replace(/[.?!]$/, "");
+}
+
+function compactWords(value, maxWords) {
+  const words = cleanSentence(value).split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) {
+    return words.join(" ");
+  }
+  return `${words.slice(0, maxWords).join(" ")}...`;
+}
+
+function normalizeEditorial(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\b(the|a|an|to|of|and|for|in|on|as|with|after|before|is|are|this|that)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function strongestArticle(articles, predicate) {

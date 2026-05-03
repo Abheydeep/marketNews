@@ -6,8 +6,8 @@ const { chromium } = require("playwright");
 
 const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
-const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "30apr2026";
-const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Thu, 30 Apr, 2026";
+const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "3may2026";
+const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Sun, 03 May, 2026";
 const expectedChartSymbols = [
   "SPX",
   "NDX",
@@ -196,12 +196,10 @@ async function expectDailyContent(page) {
     assert.equal(await page.locator("#indexBoard .quote-region h3").filter({ hasText: region }).count(), 0, `${region} quote group should not render while collapsed`);
   }
   assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
-  await expectOne(publicView.getByText("Source: Reuters Markets", { exact: true }), "Reuters source link");
-  await expectOne(publicView.getByText("Moneycontrol Markets", { exact: true }), "Moneycontrol source");
-  await expectOne(publicView.getByText("Economic Times Markets", { exact: true }), "Economic Times source");
   const sourceCards = await publicView.locator(".source-card").count();
   assert.ok(sourceCards >= 14, `expected at least 14 source cards, got ${sourceCards}`);
   assert.equal(await publicView.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
+  assert.equal(await publicView.getByText("weight 0.", { exact: false }).count(), 0, "raw source weights should not render");
 }
 
 async function expandQuoteBoard(page) {

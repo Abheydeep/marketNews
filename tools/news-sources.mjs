@@ -3,6 +3,11 @@ export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 const MIN_VERIFIED_ARTICLES = 8;
 const MIN_SOURCE_CATEGORY_BUCKETS = 4;
 const MAX_DUPLICATE_WITH_PREVIOUS_PERCENT = 55;
+const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
+const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
+const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
+const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|celebrity|movie|sports|football|baseball|recipe|travel|museum|gallery|exhibition|polls?|election|campaign|senate|house of representatives)\b/i;
+const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -161,6 +166,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   }
   return dedupeArticles(feedResults)
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
+    .filter(articleLooksMarketRelevant)
     .filter((article) => articleIsFreshForDigest(article, date))
     .slice(0, 24);
 }
@@ -195,7 +201,9 @@ export function fixtureNewsArticles(date, seedNews = []) {
 
 export function verifySourceArticles(articles, options = {}) {
   const mode = normalizeNewsMode(options.mode ?? "fixture");
-  const verified = (articles ?? []).filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl));
+  const verified = (articles ?? []).filter((article) =>
+    sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article)
+  );
   const publisherCount = new Set(verified.map((article) => article.sourceName).filter(Boolean)).size;
   const categoryCount = new Set(verified.map((article) => article.category).filter(Boolean)).size;
   const sourceCategoryBucketCount = new Set(
@@ -217,7 +225,8 @@ export function verifySourceArticles(articles, options = {}) {
     publisherCount,
     categoryCount,
     duplicateWithPreviousPercent,
-    blockedReason
+    blockedReason,
+    isVerifiedForPublicArchive: !blockedReason
   };
 }
 
@@ -234,8 +243,31 @@ export function publicSourceVerification(verification) {
     publisherCount: verification.publisherCount,
     categoryCount: verification.categoryCount,
     duplicateWithPreviousPercent: verification.duplicateWithPreviousPercent,
-    blockedReason: verification.blockedReason ?? null
+    blockedReason: verification.blockedReason ?? null,
+    isVerifiedForPublicArchive: verification.isVerifiedForPublicArchive ?? !verification.blockedReason
   };
+}
+
+export function articleLooksMarketRelevant(article) {
+  const titleText = [article?.headline, article?.title].filter(Boolean).join(" ");
+  const text = [
+    article?.headline,
+    article?.title,
+    article?.summary
+  ].filter(Boolean).join(" ");
+  if (!text.trim()) {
+    return false;
+  }
+  if (OFF_TOPIC_ALWAYS_PATTERN.test(text) && !DIRECT_MARKET_MOVING_PATTERN.test(text)) {
+    return false;
+  }
+  if (OFF_TOPIC_WITHOUT_MARKET_PATTERN.test(titleText) && !STRICT_MARKET_RELEVANCE_PATTERN.test(text)) {
+    return false;
+  }
+  if (MARKET_RELEVANCE_PATTERN.test(text)) {
+    return true;
+  }
+  return !OFF_TOPIC_WITHOUT_MARKET_PATTERN.test(text) && /(business|economy|finance|company|corporate|investor|investment)/i.test(text);
 }
 
 export function sourceUrlLooksArticleLevel(value) {

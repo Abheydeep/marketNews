@@ -8,10 +8,9 @@ const { chromium } = loadPlaywright();
 
 const baseUrl = (process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews").replace(/\/$/, "");
 const cycles = Number.parseInt(process.env.FULL_QA_CYCLES ?? "5", 10);
-const dailyPages = [
-  { slug: "1may2026", label: "Fri, 01 May, 2026" },
-  { slug: "30apr2026", label: "Thu, 30 Apr, 2026" },
-  { slug: "29apr2026", label: "Wed, 29 Apr, 2026" }
+const dailyPages = parseDailyPages(process.env.FULL_QA_DAILY_PAGES) ?? [
+  { slug: "3may2026", label: "Sun, 03 May, 2026" },
+  { slug: "1may2026", label: "Fri, 01 May, 2026", archive: false }
 ];
 const chartSymbols = ["SPX", "NDX", "DJI", "NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "NIFTY", "BANKNIFTY", "DXY", "BRENT"];
 
@@ -158,15 +157,19 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.getByText("Pre-Market Intelligence Archive", { exact: true }), "archive eyebrow");
   await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
-  await expectOne(page.getByRole("link", { name: "Admin login" }), "archive admin login link");
+  await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
+  await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
+  assert.equal(await page.getByRole("link", { name: "Admin login" }).count(), 0, "archive should not expose admin login");
   await expectAtLeast(page.getByText("Previous session driver", { exact: true }), 1, "archive previous session driver");
   await expectAtLeast(page.locator(".sentiment-sparkline"), 1, "archive sentiment sparkline");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
   for (const daily of dailyPages) {
-    await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
-    await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Read market briefing" }), `${daily.slug} read market briefing link`);
-    await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
+    if (daily.archive !== false) {
+      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
+      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Read market briefing" }), `${daily.slug} read market briefing link`);
+      await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
+    }
   }
   for (const phrase of ["All Market Narrative briefings", "The root page now works", "Asia watch:", "markets tracked", "Open daily briefing"]) {
     assert.equal(await page.getByText(phrase, { exact: false }).count(), 0, `archive should not show rough copy: ${phrase}`);
@@ -179,6 +182,9 @@ async function verifyArchive(page, rootUrl) {
     const link = page.locator("a").nth(index);
     const href = await link.getAttribute("href");
     assert.ok(href, `archive link ${index} should have href`);
+    if (!isInternalHref(href)) {
+      continue;
+    }
     await clickInternalLink(page, link, href, "archive");
   }
   return linkCount;
@@ -431,17 +437,27 @@ async function loginAsAdmin(page, label) {
 async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
-  assertPublicBriefingCopy(`${daily.slug} HTML`, await page.content());
+  const pageHtml = await page.content();
+  const isLegacy = pageHtml.includes("Legacy source audit unavailable");
+  assertPublicBriefingCopy(`${daily.slug} HTML`, pageHtml);
   await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
   await verifyDarkSurfaceContrast(page, `${daily.slug} initial dark view`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
-  await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card source links`);
+  if (isLegacy) {
+    await expectOne(page.getByText("Legacy source audit unavailable", { exact: false }), `${daily.slug} legacy audit banner`);
+  } else {
+    await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
+  }
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
-  await expectOne(page.getByRole("link", { name: "Admin Login" }), `${daily.slug} admin login link`);
+  await expectOne(page.getByRole("link", { name: "Open live chart on TradingView" }), `${daily.slug} live chart CTA`);
+  await expectOne(page.locator(".share-row"), `${daily.slug} share row`);
+  assert.equal(await page.getByRole("link", { name: "Admin Login" }).count(), 0, `${daily.slug} should not expose admin login`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
   assert.equal(await page.getByRole("button", { name: "Engine Architecture" }).count(), 0, `${daily.slug} should not expose admin architecture`);
   assert.equal(await page.getByText("Real Quote Board", { exact: true }).count(), 0, `${daily.slug} should not show Real Quote Board`);
+  assert.equal(await page.getByText("Chart Series Pending", { exact: false }).count(), 0, `${daily.slug} should not show stale chart placeholder`);
+  assert.equal(await page.getByText("Preparing quotes", { exact: false }).count(), 0, `${daily.slug} should not show permanent quote loading text`);
 
   const brandLink = page.locator("a.brand");
   await expectOne(brandLink, `${daily.slug} brand link`);
@@ -459,7 +475,7 @@ async function verifyDailyPage(page, daily, stamp) {
   assert.equal(await page.locator("#studio-view").count(), 0, `${daily.slug} should not render studio section`);
   await verifyPublicDigestJson(daily, stamp);
   const chartResult = await verifyCharts(page, daily);
-  const sourceLinks = await clickSourceLinks(page, daily);
+  const sourceLinks = await clickSourceLinks(page, daily, { isLegacy });
 
   return {
     tabs,
@@ -481,11 +497,12 @@ async function verifyPublicDigestJson(daily, stamp) {
   assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length >= 10, `${daily.slug} public digest.json should include compact news card DTOs`);
   assert.deepEqual(
     Object.keys(digest.newsCards[0]).sort(),
-    ["category", "publisherName", "sentimentLabel", "sentimentScore", "sourceUrl", "thumbnailAlt", "thumbnailUrl", "timestamp", "title"],
+    ["category", "publisherName", "sentimentLabel", "sourceUrl", "thumbnailAlt", "thumbnailUrl", "timestamp", "title"],
     `${daily.slug} newsCards should expose only display fields`
   );
   assert.equal(JSON.stringify(digest.newsCards).includes("whyItMatters"), false, `${daily.slug} newsCards should not ship expanded article analysis`);
   assert.equal(JSON.stringify(digest.newsCards).includes("entityMatchScore"), false, `${daily.slug} newsCards should not ship raw weighting fields`);
+  assert.equal(JSON.stringify(digest.newsCards).includes("sentimentScore"), false, `${daily.slug} newsCards should not ship raw sentiment scores`);
 }
 
 async function verifyTabs(page, daily) {
@@ -579,11 +596,15 @@ async function verifyCharts(page, daily) {
   return { buttons: chartSymbols.length, externalLinks };
 }
 
-async function clickSourceLinks(page, daily) {
+async function clickSourceLinks(page, daily, options = {}) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
   await verifySourceFilters(page, daily);
   const links = page.locator(".source-lead-card a, .source-card a").filter({ visible: true });
   const count = await links.count();
+  if (options.isLegacy) {
+    assert.equal(count, 0, `${daily.slug} legacy page should suppress unaudited read-source links`);
+    return 0;
+  }
   assert.ok(count >= 15, `${daily.slug} should render at least 15 source links`);
   for (let index = 0; index < count; index += 1) {
     await clickExternalPopup(page, links.nth(index), "http", `${daily.slug} source link ${index + 1}`);
@@ -600,7 +621,7 @@ async function verifySourceFilters(page, daily) {
   assert.equal(await page.locator(".source-card:visible").count(), 0, `${daily.slug} full source cards should not show by default`);
   await page.locator("#sourceLedger > summary").click();
   await expectOne(page.locator("#sourceLedger[open]"), `${daily.slug} source ledger opens`);
-  await expectAtLeast(page.locator(".source-category-head h3"), 5, `${daily.slug} source category headings`);
+  await expectAtLeast(page.locator(".source-category-head h3"), 4, `${daily.slug} source category headings`);
   const buttons = page.locator("[data-source-filter]");
   const buttonCount = await buttons.count();
   assert.ok(buttonCount >= 5, `${daily.slug} should render source filter buttons`);
@@ -669,6 +690,24 @@ function stripQuery(value) {
   url.search = "";
   url.hash = "";
   return url.href;
+}
+
+function isInternalHref(href) {
+  const resolved = new URL(href, baseUrl);
+  return resolved.origin === new URL(baseUrl).origin;
+}
+
+function parseDailyPages(value) {
+  if (!value) {
+    return null;
+  }
+  return value.split(",").map((item) => {
+    const [slug, label, archiveFlag] = item.split("|").map((part) => part.trim());
+    if (!slug || !label) {
+      throw new Error("FULL_QA_DAILY_PAGES entries must be slug|label or slug|label|archive=false");
+    }
+    return { slug, label, archive: archiveFlag === "archive=false" ? false : true };
+  });
 }
 
 function escapeHtml(value) {

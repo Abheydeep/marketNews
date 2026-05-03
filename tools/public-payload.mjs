@@ -39,14 +39,18 @@ export function redactedDigestPayload(digest) {
     teleprompterScript,
     reelScript,
     asset,
+    news,
     setupAudit,
     sourceDebug,
     rejectedSources,
     ...publicFields
   } = digest;
+  const newsCards = (news ?? []).map(publicNewsCardDto);
 
   return {
     ...publicFields,
+    news: (news ?? []).map(publicSourceArticleDto),
+    newsCards,
     setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),
     sourceVerification: publicSourceVerification(publicFields.sourceVerification),
     asset: asset
@@ -68,7 +72,8 @@ function publicSourceVerification(verification) {
     publisherCount: verification.publisherCount,
     categoryCount: verification.categoryCount,
     duplicateWithPreviousPercent: verification.duplicateWithPreviousPercent,
-    blockedReason: verification.blockedReason ?? null
+    blockedReason: verification.blockedReason ?? null,
+    isVerifiedForPublicArchive: verification.isVerifiedForPublicArchive ?? !verification.blockedReason
   };
 }
 
@@ -81,8 +86,26 @@ export function publicNewsCardDto(article) {
     thumbnailUrl: article.thumbnail?.url ?? thumbnailDataUrl(article),
     thumbnailAlt: article.thumbnail?.alt ?? article.headline,
     sentimentLabel: sentimentLabel(article.sentimentScore),
-    sentimentScore: round(article.sentimentScore, 3),
     category: article.category ?? "market"
+  };
+}
+
+function publicSourceArticleDto(article) {
+  return {
+    publishedAt: article.publishedAt,
+    sourceId: article.sourceId,
+    sourceName: article.sourceName,
+    headline: article.headline,
+    summary: article.summary,
+    takeaway: article.takeaway,
+    whyItMatters: article.whyItMatters,
+    indiaImpact: article.indiaImpact,
+    watchFor: article.watchFor,
+    sourceUrl: article.sourceUrl,
+    sentimentLabel: sentimentLabel(article.sentimentScore),
+    entityName: article.entityName,
+    category: article.category ?? "market",
+    thumbnail: article.thumbnail
   };
 }
 
