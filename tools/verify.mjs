@@ -337,7 +337,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Latest public close"));
   assert.ok(html.includes("Plain-English Role"));
   assert.ok(html.includes("Role legend") || html.includes("Plain-English role legend"));
-  assert.ok(html.includes("Research label: Anchor renewable alpha"));
+  assert.ok(html.includes("Slot type: Core staged"));
+  assert.ok(html.includes("Capped slot"));
+  assert.equal(html.includes("Research label: Anchor renewable alpha"), false);
   assert.equal(html.includes("Last static update:"), false);
   assert.ok(html.includes("Copy tracker link"));
   assert.ok(html.includes("allocation-visual"));

@@ -1229,7 +1229,7 @@ export function multibaggerPage(state = multibaggerState()) {
       <div class="panel-body">
         <div class="role-legend" aria-label="Plain-English role legend">
           <span><strong>Core staged</strong> Larger allocation, but still staged until working-capital proof holds.</span>
-          <span><strong>Capped alpha</strong> Upside exists, but execution, margin, or liquidity proof limits sizing.</span>
+          <span><strong>Capped slot</strong> Upside exists, but execution, margin, or liquidity proof limits sizing.</span>
           <span><strong>Quality slot</strong> Cleaner business quality with more measured upside torque.</span>
           <span><strong>Speculative cap</strong> Optionality only; governance and cash-flow evidence must improve.</span>
         </div>
@@ -1490,7 +1490,7 @@ export function multibaggerPage(state = multibaggerState()) {
         + "<td data-label=\\"Target\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
         + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Day Move\\" class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
-        + "<td data-label=\\"Plain-English Role\\">" + escapeHtml(holding.rolePlain || holding.status || holding.role) + "<span class=\\"subtext\\">Research label: " + escapeHtml(holding.role || holding.status) + "</span></td>"
+        + "<td data-label=\\"Plain-English Role\\">" + escapeHtml(holding.rolePlain || holding.status || holding.role) + "<span class=\\"subtext\\">Slot type: " + escapeHtml(statusPlain(holding.status)) + "</span></td>"
         + "</tr>";
     }
 
@@ -1618,7 +1618,7 @@ export function multibaggerPage(state = multibaggerState()) {
       if (/core/i.test(value)) return "Core staged";
       if (/quality/i.test(value)) return "Quality slot";
       if (/speculative/i.test(value)) return "Speculative cap";
-      if (/capped/i.test(value)) return "Capped alpha";
+      if (/capped/i.test(value)) return "Capped slot";
       return value;
     }
 
@@ -1940,7 +1940,7 @@ function holdingsRowsHtml(holdings) {
                 <td data-label="Target" class="price-cell">${formatPercent(holding.targetWeight)}</td>
                 <td data-label="Latest public close" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
                 <td data-label="Day Move" class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
-                <td data-label="Plain-English Role">${escapeHtml(holding.rolePlain ?? holding.status ?? holding.role)}<span class="subtext">Research label: ${escapeHtml(holding.role ?? holding.status)}</span></td>
+                <td data-label="Plain-English Role">${escapeHtml(holding.rolePlain ?? holding.status ?? holding.role)}<span class="subtext">Slot type: ${escapeHtml(statusPlain(holding.status))}</span></td>
               </tr>`).join("");
 }
 
@@ -2098,7 +2098,7 @@ function statusPlain(status) {
   if (/core/i.test(value)) return "Core staged";
   if (/quality/i.test(value)) return "Quality slot";
   if (/speculative/i.test(value)) return "Speculative cap";
-  if (/capped/i.test(value)) return "Capped alpha";
+  if (/capped/i.test(value)) return "Capped slot";
   return value;
 }
 
