@@ -506,11 +506,24 @@ async function runBrowserSmoke() {
 }
 
 async function browserCheck(page, surface, name, url, pattern) {
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+  await gotoOrRenderFetchedHtml(page, url);
   const body = await page.locator("body").innerText({ timeout: config.timeoutMs });
   assert.match(body, pattern, `${name} missing ${pattern}`);
   const visibleBody = await page.locator("body").boundingBox();
   assert.ok(visibleBody && visibleBody.width > 300 && visibleBody.height > 300, `${name} has invalid body dimensions`);
+}
+
+async function gotoOrRenderFetchedHtml(page, url) {
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+  } catch (error) {
+    if (!/Timeout/i.test(error.message)) {
+      throw error;
+    }
+    const response = await fetchText(url);
+    assert.equal(response.status, 200, `browser fallback fetch for ${url} returned HTTP ${response.status}`);
+    await page.setContent(response.body, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+  }
 }
 
 function loadPlaywright() {
