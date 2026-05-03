@@ -4281,7 +4281,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
               <h3>Open the live chart</h3>
-              <p>The latest quote snapshot is loaded. Use TradingView for the full interactive series.</p>
+              <p>The latest quote snapshot is loaded. Open the full chart on TradingView for the interactive series.</p>
             </div>
           </div>
         </div>
@@ -4906,10 +4906,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const active = window.__ACTIVE_QUOTE_REGION__ === region;
       const context = region === 'Asia Watch' ? 'Top 5 countries · ' : '';
       const leadName = region === 'Asia Watch' ? countryForQuote(strongest) || strongest.name : strongest.name;
+      const leadLabel = Number(strongest.changePercent) >= 0 ? 'Biggest lift' : 'Biggest drag';
       return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '" aria-label="Open ' + escapeClientHtml(region) + ' live quote board">' +
         '<div class="breadth-card-top"><span>' + escapeClientHtml(region) + '</span><em class="market-state ' + status.className + '">' + escapeClientHtml(status.label) + '</em></div>' +
         '<strong>' + positives + ' up <em>/ ' + quotes.length + ' tracked</em></strong>' +
-        '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + 'Lead: ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClass(strongest.changePercent) + '">' + formatClientChange(strongest.changePercent) + '</b></small>' +
+        '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + escapeClientHtml(leadLabel) + ': ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClass(strongest.changePercent) + '">' + formatClientChange(strongest.changePercent) + '</b></small>' +
       '</button>';
     }
 
@@ -6463,7 +6464,7 @@ function executiveSummaryHtml(digest) {
 
     <div class="brief-section">
       <h3>Trade Framing</h3>
-      <p class="brief-list">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+      ${tradeFramingHtml(digest, setup, setupText)}
     </div>
 
     <div class="brief-section">
@@ -6537,6 +6538,30 @@ function noSetupTradeFrame(digest) {
     return "The move has already stretched away from the entry zone, so the remaining reward is not worth the risk. Wait for price to reset near a cleaner level.";
   }
   return "No clean 1:2 setup is active yet, so wait for opening-range confirmation before taking a directional view.";
+}
+
+function tradeFramingHtml(digest, setup, setupText) {
+  if (setup) {
+    const direction = setup.direction === "BULLISH" ? "holds above" : "fails below";
+    const invalidation = setup.direction === "BULLISH" ? "breaks below" : "reclaims above";
+    return `
+      <ul class="brief-list">
+        <li><strong>IF:</strong> ${escapeHtml(setup.symbol)} ${escapeHtml(direction)} ${escapeHtml(formatNumber(setup.entry))} after the opening range, with breadth confirming.</li>
+        <li><strong>THEN:</strong> respect the ${escapeHtml(setup.direction.toLowerCase())} plan toward ${escapeHtml(formatNumber(setup.target))}, only while reward remains at least twice the risk.</li>
+        <li><strong>INVALIDATE:</strong> stand down if price ${escapeHtml(invalidation)} ${escapeHtml(formatNumber(setup.stopLoss))} or Bank Nifty breadth diverges.</li>
+      </ul>
+      <p class="chart-note">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+    `;
+  }
+  const completed = setupAuditItems(digest).some((item) => item.status === "TARGET_REACHED");
+  return `
+    <ul class="brief-list">
+      <li><strong>IF:</strong> the first range forms without a fresh 1:2 reward-risk level, do nothing.</li>
+      <li><strong>THEN:</strong> wait for VWAP acceptance and sector breadth before creating a new plan.</li>
+      <li><strong>INVALIDATE:</strong> ${escapeHtml(completed ? "do not chase the completed move; the old level is archived." : "skip the trade if the entry is already stretched away from the stop.")}</li>
+    </ul>
+    <p class="chart-note">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+  `;
 }
 
 function watchItemsHtml(digest, setup) {
@@ -6669,7 +6694,7 @@ function sourceEvidenceMapHtml(categories) {
               <strong>${escapeHtml(sourceCategoryTitle(group.category))}</strong>
               <small>${escapeHtml(group.count)} notes - ${escapeHtml(group.leadEntity)} lead entity</small>
             </div>
-            <span class="source-theme-score ${sourceScoreClass(group.score)}">${escapeHtml(formatSignedScore(group.score))}</span>
+            <span class="source-theme-score ${sourceScoreClass(group.score)}" title="Weighted source tone: pressure, neutral, or support">${escapeHtml(sourceToneLabel(group.score))}</span>
           </div>
         `).join("")}
       </div>
@@ -6700,7 +6725,7 @@ function sourceCategorySectionHtml(group, defaultFilter) {
         </div>
         <div class="source-category-meta" aria-label="${escapeHtml(sourceCategoryTitle(group.category))} category metrics">
           <div><span>Notes</span><strong>${escapeHtml(group.count)}</strong></div>
-          <div><span>Tone</span><strong class="${sourceScoreClass(group.score)}">${escapeHtml(formatSignedScore(group.score))}</strong></div>
+          <div><span>Tone</span><strong class="${sourceScoreClass(group.score)}" title="Weighted source tone: pressure, neutral, or support">${escapeHtml(sourceToneLabel(group.score))}</strong></div>
           <div><span>Lead</span><strong>${escapeHtml(group.leadEntity)}</strong></div>
         </div>
       </div>
@@ -6808,6 +6833,12 @@ function sourceScoreClass(score) {
   return "flat";
 }
 
+function sourceToneLabel(score) {
+  if (score >= 0.1) return "Support";
+  if (score <= -0.1) return "Pressure";
+  return "Neutral";
+}
+
 function strongestStory(articles, direction) {
   const sorted = articles
     .slice()
@@ -6855,12 +6886,13 @@ function regionalBreadthHtml(digest) {
         .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
       const label = region === "Asia Watch" ? "Asia Watch" : region;
       const leadName = region === "Asia Watch" ? countryForSnapshot(strongest) || strongest.name : strongest.name;
+      const leadLabel = Number(strongest.changePercent) >= 0 ? "Biggest lift" : "Biggest drag";
       const context = region === "Asia Watch" ? "Top 5 countries · " : "";
       return `
         <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false" aria-label="Open ${escapeHtml(label)} live quote board">
           <div class="breadth-card-top"><span>${escapeHtml(label)}</span><em class="market-state">Latest</em></div>
           <strong>${positives} up <em>/ ${snapshots.length} tracked</em></strong>
-          <small>Avg move <b class="market-move ${changeClass(average)}">${formatChange(average)}</b> · ${escapeHtml(context)}Lead: ${escapeHtml(leadName)} <b class="market-move ${changeClass(strongest.changePercent)}">${formatChange(strongest.changePercent)}</b></small>
+          <small>Avg move <b class="market-move ${changeClass(average)}">${formatChange(average)}</b> · ${escapeHtml(context)}${escapeHtml(leadLabel)}: ${escapeHtml(leadName)} <b class="market-move ${changeClass(strongest.changePercent)}">${formatChange(strongest.changePercent)}</b></small>
         </button>
       `;
     })

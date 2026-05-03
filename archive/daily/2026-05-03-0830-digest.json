@@ -1,19 +1,19 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-03",
-  "title": "Crude Tests India Inflation Watch",
+  "title": "Yields Shape Opening Range",
   "status": "DRAFT",
-  "generatedAt": "2026-05-03T17:29:45.978Z",
-  "archiveSummary": "Crude: Oil exports are booming from the U.S. Gulf Coast thanks to the Middle East supply disruption caused by the...",
-  "deskNote": "Crude is the first filter today: Oil exports are booming from the U.S. Gulf Coast thanks to the Middle East supply disruption caused by the Iran war. Sector breadth is the key watch because a trio of Club holdings report earnings. Plus, there is Corning's investor day and a fresh batch of jobs data. The open rule is simple: wait for the first range and do not chase the headline candle.",
+  "generatedAt": "2026-05-03T18:29:01.769Z",
+  "archiveSummary": "Yields: Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of...",
+  "deskNote": "Yields are the first filter today: Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed. Tech breadth is the key watch because earnings have dazzled in Q1, but continued upward revisions to 2026 outlooks have been highly concentrated. The open rule is simple: wait for the first range and do not chase the headline candle.",
   "watchItems": [
     "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
-    "Watch the first-hour range and market breadth.",
-    "US yield direction into the afternoon and whether Bank Nifty holds VWAP."
+    "Nifty IT breadth after the open and whether exporters confirm the currency read-through.",
+    "Aviation reaction during the first-hour range and whether it broadens into sector leadership."
   ],
-  "overallSentiment": -0.231,
+  "overallSentiment": -0.188,
   "sentimentLabel": "VOLATILE",
-  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.293%, Nasdaq 100 +0.941%, Dow Jones -0.308%, Nifty 50 -0.745%, Bank Nifty -0.975%, Nikkei 225 +0.385%, Hang Seng -1.284%, Shanghai Composite +0.113%, KOSPI -1.375%, Taiwan Weighted -0.959%, Straits Times +1.064%, ASX 200 +0.739%, US Dollar Index +0.056%, Brent Crude -2.02%\n\nNarrative Themes:\n- Negative Macro Impact: The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell just ahead of a deadline.\n- Global Risk-Off Cue: Oil exports are booming from the U.S. Gulf Coast thanks to the Middle East supply disruption caused by the Iran war.\n- Sector-Specific Pressure: Spirit Airlines ceased operations overnight after a failed government bailout.\n- Sector-Specific Cushion: Quietly, shares of Google-parent Alphabet are on the verge of topping $5 trillion, and overtaking AI-leader Nvidia as the world's most valuable company.\n- Positive Macro Tailwind: The recommendations and analysis of these Wall Street experts can provide useful insights for stock selection.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
+  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.293%, Nasdaq 100 +0.941%, Dow Jones -0.308%, Nifty 50 -0.745%, Bank Nifty -0.975%, Nikkei 225 +0.385%, Hang Seng -1.284%, Shanghai Composite +0.113%, KOSPI -1.375%, Taiwan Weighted -0.959%, Straits Times +1.064%, ASX 200 +0.739%, US Dollar Index +0.056%, Brent Crude -2.02%\n\nNarrative Themes:\n- Negative Macro Impact: The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell just ahead of a deadline.\n- Global Risk-Off Cue: Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.\n- Sector-Specific Pressure: Spirit Airlines ceased operations overnight after a failed government bailout.\n- Positive Macro Tailwind: Lilly hiked its full-year sales outlook by $2 billion, and also raised its adjusted profit guidance.\n- Sector-Specific Cushion: Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -7242,15 +7242,15 @@
       "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell just ahead of a deadline.",
-      "sentimentScore": -0.55,
-      "evidenceCount": 3
+      "sentimentScore": -0.778,
+      "evidenceCount": 2
     },
     {
       "digestDate": "2026-05-03",
       "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
-      "summary": "Oil exports are booming from the U.S. Gulf Coast thanks to the Middle East supply disruption caused by the Iran war.",
-      "sentimentScore": -0.42,
+      "summary": "Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.",
+      "sentimentScore": -0.503,
       "evidenceCount": 12
     },
     {
@@ -7258,23 +7258,23 @@
       "themeType": "sector_negative",
       "title": "Sector-Specific Pressure",
       "summary": "Spirit Airlines ceased operations overnight after a failed government bailout.",
-      "sentimentScore": -0.35,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-05-03",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Quietly, shares of Google-parent Alphabet are on the verge of topping $5 trillion, and overtaking AI-leader Nvidia as the world's most valuable company.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 4
+      "sentimentScore": -0.48,
+      "evidenceCount": 1
     },
     {
       "digestDate": "2026-05-03",
       "themeType": "macro_positive",
       "title": "Positive Macro Tailwind",
-      "summary": "The recommendations and analysis of these Wall Street experts can provide useful insights for stock selection.",
-      "sentimentScore": 0.4,
+      "summary": "Lilly hiked its full-year sales outlook by $2 billion, and also raised its adjusted profit guidance.",
+      "sentimentScore": 0.397,
+      "evidenceCount": 7
+    },
+    {
+      "digestDate": "2026-05-03",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.",
+      "sentimentScore": 0.53,
       "evidenceCount": 2
     }
   ],
@@ -7285,13 +7285,13 @@
   "sourceVerification": {
     "mode": "live",
     "verifiedArticleCount": 24,
-    "publisherCount": 2,
+    "publisherCount": 6,
     "categoryCount": 5,
     "duplicateWithPreviousPercent": 0,
     "blockedReason": null,
     "isVerifiedForPublicArchive": true
   },
-  "durationMillis": 2616,
+  "durationMillis": 3510,
   "scheduledFor": "2026-05-03T08:30:00+05:30",
   "runMode": "scheduled-verified-source-data",
   "news": [
@@ -7301,10 +7301,10 @@
       "sourceName": "CNBC Markets",
       "headline": "U.S. crude oil exports surge to record as tankers flock to Gulf Coast during Iran war",
       "summary": "Oil exports are booming from the U.S. Gulf Coast thanks to the Middle East supply disruption caused by the Iran war.",
-      "takeaway": "U.S. crude oil exports surge to record as tankers flock to Gulf Coast during Iran war is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "U.S. crude oil exports surge to record as tankers flock to Gulf Coast during Iran war is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "U.S. crude oil exports surge to record as tankers flock to Gulf Coast during Iran war can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
+      "takeaway": "Crude is the transmission line: import costs, OMC margins, aviation fuel, and inflation expectations matter more than the headline direction alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Watch OMCs, aviation, paints, tyres and upstream energy; Nifty needs breadth to absorb import-cost anxiety.",
+      "watchFor": "Brent direction before Europe opens, plus OMC and aviation reaction after 9:45 AM IST.",
       "sourceUrl": "https://www.cnbc.com/2026/05/03/us-crude-oil-exports-surge-to-record-as-tankers-flock-to-gulf-coast.html",
       "sentimentLabel": "negative",
       "entityName": "Brent Crude",
@@ -7317,375 +7317,18 @@
       }
     },
     {
-      "publishedAt": "2026-05-03T14:58:24.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "'Godspeed my friend': Inside the final hours of Spirit Airlines",
-      "summary": "Spirit Airlines ceased operations overnight after a failed government bailout.",
-      "takeaway": "'Godspeed my friend': Inside the final hours of Spirit Airlines is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "'Godspeed my friend': Inside the final hours of Spirit Airlines is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "'Godspeed my friend': Inside the final hours of Spirit Airlines keeps the opening read dependent on confirmation rather than prediction.",
-      "watchFor": "Watch the first-hour range and market breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/spirit-airlines-shutdown-inside-the-final-hours.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Pressure",
-        "accent": "#b45309",
-        "alt": "'Godspeed my friend': Inside the final hours of Spirit Airlines source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-03T15:59:31.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell",
-      "summary": "The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell just ahead of a deadline.",
-      "takeaway": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell raises the hurdle rate for banks, real estate, autos, and high-duration equities.",
-      "watchFor": "Watch G-sec yields, rupee movement, and Bank Nifty acceptance.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/pirro-fed-powell.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Macro",
-        "theme": "Macro Pressure",
-        "accent": "#dc2626",
-        "alt": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-03T11:04:43.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting",
-      "summary": "New CEO Greg Abel did most of the talking at his first Berkshire Hathaway shareholders meeting, but Warren Buffett was still a major presence.",
-      "takeaway": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-annual-meeting-greg-abel-rules-out-break-up-stressing-continuity-with-buffett.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-02T23:23:07.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues",
-      "summary": "As fears about a credit crisis rise, bond investors may be too complacent with Kevin Warsh to become next Fed chair and volatility in rates likely to follow.",
-      "takeaway": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/kevin-warsh-federal-reserve-interest-rates-bonds-fixed-income.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-03T11:13:01.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Top Wall Street analysts like these 3 stocks for their long-term prospects",
-      "summary": "The recommendations and analysis of these Wall Street experts can provide useful insights for stock selection.",
-      "takeaway": "Top Wall Street analysts like these 3 stocks for their long-term prospects is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Top Wall Street analysts like these 3 stocks for their long-term prospects is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Top Wall Street analysts like these 3 stocks for their long-term prospects supports domestic-liquidity and earnings-resilience narratives.",
-      "watchFor": "Watch domestic breadth and FII/DII flow read-through.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/top-street-analysts-like-these-3-stocks-for-their-long-term-prospects.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "India",
-        "theme": "Domestic Support",
-        "accent": "#059669",
-        "alt": "Top Wall Street analysts like these 3 stocks for their long-term prospects source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-02T11:57:32.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets",
-      "summary": "What travelers who are ticketed on Spirit Airlines need to know.",
-      "takeaway": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets keeps the opening read dependent on confirmation rather than prediction.",
-      "watchFor": "Watch the first-hour range and market breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/spirit-airlines-flights-shut-down.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Pressure",
-        "accent": "#b45309",
-        "alt": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-02T23:07:35.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era",
-      "summary": "Talks with bondholders for a government bailout this week failed to yield a deal.",
-      "takeaway": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era keeps the opening read dependent on confirmation rather than prediction.",
-      "watchFor": "Watch the first-hour range and market breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/spirit-airlines-trump-bailout.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Pressure",
-        "accent": "#b45309",
-        "alt": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-03T15:48:16.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Here are the 3 big things we're watching in the stock market in the week ahead",
-      "summary": "A trio of Club holdings report earnings. Plus, there is Corning's investor day and a fresh batch of jobs data.",
-      "takeaway": "Here are the 3 big things we're watching in the stock market in the week ahead is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Here are the 3 big things we're watching in the stock market in the week ahead is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Here are the 3 big things we're watching in the stock market in the week ahead supports domestic-liquidity and earnings-resilience narratives.",
-      "watchFor": "Watch domestic breadth and FII/DII flow read-through.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/3-big-things-were-watching-in-the-stock-market-in-the-week-ahead.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "India",
-        "theme": "Domestic Support",
-        "accent": "#059669",
-        "alt": "Here are the 3 big things we're watching in the stock market in the week ahead source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-02T14:12:35.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "The U.S.-Iran war is coming for your credit score and mortgage application",
-      "summary": "The U.S.-Iran war and Strait of Hormuz closure have caused a global economic ripple effect, your credit score included as banks and lenders get tighter.",
-      "takeaway": "The U.S.-Iran war is coming for your credit score and mortgage application is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "The U.S.-Iran war is coming for your credit score and mortgage application is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "The U.S.-Iran war is coming for your credit score and mortgage application can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/us-iran-war-credit-score-loans-mortgage-rates.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "The U.S.-Iran war is coming for your credit score and mortgage application source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-02T14:35:02.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks",
-      "summary": "It could be risky to delay buying plane tickets and hoping fares will drop, according to travel experts.",
-      "takeaway": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/iran-war-airfare-travel-airlines-plane-tickets-when-to-buy.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T18:58:24.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’",
-      "summary": "Oil prices have soared on the risk of escalation and then plunged on hopes for peace before repeating the cycle.",
-      "takeaway": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’ is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’ is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’ can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/exxon-ceo-iran-war-oil-strait-hormuz.html",
-      "sentimentLabel": "negative",
-      "entityName": "Brent Crude",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’ source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T21:47:39.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Trump says he's raising EU auto tariffs to 25%",
-      "summary": "The Supreme Court struck down Trump's \"reciprocal\" tariffs earlier this year, and Europe warned that its trade deal with Washington could be in jeopardy.",
-      "takeaway": "Trump says he's raising EU auto tariffs to 25% is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Trump says he's raising EU auto tariffs to 25% is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Trump says he's raising EU auto tariffs to 25% can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/trump-eu-auto-tariffs.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Trump says he's raising EU auto tariffs to 25% source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T09:19:59.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants",
-      "summary": "Supercar engines rely on base oils because they can withstand extreme heat, high revs and intense pressure.",
-      "takeaway": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/strait-of-hormuz-base-oils-luxury-autos.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T15:35:47.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "A major shift could soon happen in the Mag 7",
-      "summary": "Quietly, shares of Google-parent Alphabet are on the verge of topping $5 trillion, and overtaking AI-leader Nvidia as the world's most valuable company.",
-      "takeaway": "A major shift could soon happen in the Mag 7 is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "A major shift could soon happen in the Mag 7 is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "A major shift could soon happen in the Mag 7 can create selective sector follow-through if breadth confirms it.",
-      "watchFor": "Watch sector leadership and opening-volume confirmation.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/a-major-mag-7-shift-with-alphabets-market-cap-set-to-pass-nvidias.html",
-      "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Rotation",
-        "accent": "#2563eb",
-        "alt": "A major shift could soon happen in the Mag 7 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T19:15:15.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut",
-      "summary": "Federal Reserve officials who voted this week against the post-meeting statement said they didn't think it was appropriate to signal that the next interest rate move would be lower.",
-      "takeaway": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut raises the hurdle rate for banks, real estate, autos, and high-duration equities.",
-      "watchFor": "Watch G-sec yields, rupee movement, and Bank Nifty acceptance.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/fed-dissenters-explain-no-votes-saying-they-disagreed-with-hinting-next-move-would-be-a-cut.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Macro",
-        "theme": "Macro Pressure",
-        "accent": "#dc2626",
-        "alt": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T11:12:15.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid",
-      "summary": "When the Fed gathers again, it will mark the first time a sitting and former chair conduct business together in nearly 80 years.",
-      "takeaway": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/04/30/inside-the-fed-powell-and-warsh-set-to-clash.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-01T15:11:44.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz",
-      "summary": "The U.K. is now running a trade deficit with its largest trading partner.",
-      "takeaway": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/uk-exports-us-fall-25-trump-tariffs-liberation-day.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Risk",
-        "theme": "Global Risk",
-        "accent": "#7c3aed",
-        "alt": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz source thumbnail"
-      }
-    },
-    {
       "publishedAt": "2026-05-01T12:41:24.000Z",
       "sourceId": "cnbc-business",
       "sourceName": "CNBC Business",
       "headline": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby",
       "summary": "Middle East investors account for roughly a quarter of global AI investments over the next 5 years, said Jack Selby, managing director of Thiel Capital.",
-      "takeaway": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
+      "takeaway": "Global tech tone can affect IT exporters and risk appetite, but it needs currency and Nasdaq confirmation before becoming an India trade.",
+      "whyItMatters": "Global Tech matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Use it as an IT-exporter and Nasdaq read-through, not a blanket Nifty signal; currency and sector breadth decide relevance.",
+      "watchFor": "Nasdaq futures, Nifty IT breadth, and USD/INR before trusting any exporter move.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/investor-jack-selby-markets-underpricing-middle-east-ai-pullback-risk.html",
       "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
+      "entityName": "Global Tech",
       "category": "global_risk",
       "thumbnail": {
         "label": "Risk",
@@ -7695,18 +7338,123 @@
       }
     },
     {
+      "publishedAt": "2026-05-03T13:56:06.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "UK government plans to allow airlines to consolidate flights as jet fuel costs soar",
+      "summary": "The government says it wants to reduce the likelihood of last-minute flight cancelations over the summer amid uncertainty over the Iran war.",
+      "takeaway": "Airline stress is a demand and fuel-cost signal, not a direct Nifty setup; use it to check aviation and consumer-risk sentiment.",
+      "whyItMatters": "Aviation matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Aviation and travel sentiment are the direct read-through; do not translate it into Nifty IT or broad index conviction.",
+      "watchFor": "Aviation reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/uk-govt-consolidate-flights-as-jet-fuel-costs-soar.html",
+      "sentimentLabel": "negative",
+      "entityName": "Aviation",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "UK government plans to allow airlines to consolidate flights as jet fuel costs soar source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-04-30T13:37:31.000Z",
+      "sourceId": "cnbc-economy",
+      "sourceName": "CNBC Economy",
+      "headline": "Core inflation rate hit 3.2% in March as first-quarter growth disappointed at 2%",
+      "summary": "Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.",
+      "takeaway": "Crude is the transmission line: import costs, OMC margins, aviation fuel, and inflation expectations matter more than the headline direction alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Watch OMCs, aviation, paints, tyres and upstream energy; Nifty needs breadth to absorb import-cost anxiety.",
+      "watchFor": "Brent direction before Europe opens, plus OMC and aviation reaction after 9:45 AM IST.",
+      "sourceUrl": "https://www.cnbc.com/2026/04/30/pce-inflation-rate-march-2026.html",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Core inflation rate hit 3.2% in March as first-quarter growth disappointed at 2% source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T17:54:25.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Kashkari says Iran war limits Fed's ability to provide rate guidance",
+      "summary": "Kashkari says Iran war limits Fed's ability to provide rate guidance.",
+      "takeaway": "Rates are the hurdle-rate input; higher yields make high-multiple pockets work harder and put Bank Nifty confirmation in focus.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Watch Bank Nifty, realty, autos and high-PE growth; a yield-led move should not be chased without VWAP acceptance.",
+      "watchFor": "US yield direction into the afternoon and whether Bank Nifty can hold VWAP.",
+      "sourceUrl": "https://finance.yahoo.com/economy/policy/articles/kashkari-says-iran-war-limits-175425920.html",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Kashkari says Iran war limits Fed's ability to provide rate guidance source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T16:00:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "The market is riding high on an AI spending boom &#x2014; but what could crack this rally?",
+      "summary": "Earnings have dazzled in Q1, but continued upward revisions to 2026 outlooks have been highly concentrated.",
+      "takeaway": "Global Tech is an earnings-quality cue; treat it as sector evidence unless Indian breadth confirms the same direction.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Use it as an IT-exporter and Nasdaq read-through, not a blanket Nifty signal; currency and sector breadth decide relevance.",
+      "watchFor": "Nasdaq futures, Nifty IT breadth, and USD/INR before trusting any exporter move.",
+      "sourceUrl": "https://www.marketwatch.com/story/the-market-is-riding-high-on-an-ai-spending-boom-but-what-could-crack-this-rally-531b0854?mod=mw_rss_topstories",
+      "sentimentLabel": "negative",
+      "entityName": "Global Tech",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "The market is riding high on an AI spending boom &#x2014; but what could crack this rally? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T17:30:36.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Greg Abel earns solid scorecard from Berkshire shareholders after first annual meeting",
+      "summary": "The reviews from longtime shareholders and professional investors were broadly positive, even as many acknowledged the notable absence of Warren Buffett,",
+      "takeaway": "Market changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Market is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-ceo-greg-abel-earns-solid-first-scorecard-after-first-annual-meeting.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Greg Abel earns solid scorecard from Berkshire shareholders after first annual meeting source thumbnail"
+      }
+    },
+    {
       "publishedAt": "2026-04-30T19:36:55.000Z",
       "sourceId": "cnbc-business",
       "sourceName": "CNBC Business",
       "headline": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX",
       "summary": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.",
-      "takeaway": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX can create selective sector follow-through if breadth confirms it.",
-      "watchFor": "Watch sector leadership and opening-volume confirmation.",
+      "takeaway": "Bank Nifty changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
+      "indiaImpact": "Private banks and NBFCs become the first confirmation check; weak financial breadth can cap the index even if global cues are firm.",
+      "watchFor": "Private-bank breadth after 10:15 AM IST and whether financials lead or lag Nifty.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/blue-owl-shares-private-credit-spacex-gains.html",
       "sentimentLabel": "positive",
-      "entityName": "Nifty IT",
+      "entityName": "Bank Nifty",
       "category": "sector_positive",
       "thumbnail": {
         "label": "Sector",
@@ -7716,24 +7464,213 @@
       }
     },
     {
+      "publishedAt": "2026-05-03T05:00:01.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "Global week ahead: Is 'Sell in May' just a myth?",
+      "summary": "Should investors 'sell in May' or flip a coin?",
+      "takeaway": "Market changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Market is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/global-week-ahead-sell-in-may-just-a-myth.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Global week ahead: Is 'Sell in May' just a myth? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-04-30T10:44:14.000Z",
+      "sourceId": "cnbc-economy",
+      "sourceName": "CNBC Economy",
+      "headline": "Will rates go higher in Europe this week? Central banks confront stagflation threat",
+      "summary": "The European Central Bank and Bank of England are expected to hold their nerve and stand pat on rates this month.",
+      "takeaway": "Bank Nifty changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
+      "indiaImpact": "Private banks and NBFCs become the first confirmation check; weak financial breadth can cap the index even if global cues are firm.",
+      "watchFor": "Private-bank breadth after 10:15 AM IST and whether financials lead or lag Nifty.",
+      "sourceUrl": "https://www.cnbc.com/2026/04/29/europes-central-banks-in-wait-and-see-mode-on-interest-rates.html",
+      "sentimentLabel": "negative",
+      "entityName": "Bank Nifty",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Macro",
+        "theme": "Macro Pressure",
+        "accent": "#dc2626",
+        "alt": "Will rates go higher in Europe this week? Central banks confront stagflation threat source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T17:54:11.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now?",
+      "summary": "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now?.",
+      "takeaway": "Market improves the risk-appetite backdrop, but the India trade still needs opening breadth and Bank Nifty support.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/cf-industries-holdings-inc-cf-175411042.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T14:00:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "S&P 500 profits haven&#x2019;t been this rich in at least 15 years &#x2014; but there&#x2019;s more to the story",
+      "summary": "Three Big Tech companies have had an outsize impact on first-quarter profit performance.",
+      "takeaway": "Global Tech is an earnings-quality cue; treat it as sector evidence unless Indian breadth confirms the same direction.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Use it as an IT-exporter and Nasdaq read-through, not a blanket Nifty signal; currency and sector breadth decide relevance.",
+      "watchFor": "Nasdaq futures, Nifty IT breadth, and USD/INR before trusting any exporter move.",
+      "sourceUrl": "https://www.marketwatch.com/story/s-p-500-profits-havent-been-this-rich-in-at-least-15-years-but-theres-more-to-the-story-c3ccaf3b?mod=mw_rss_topstories",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "S&P 500 profits haven&#x2019;t been this rich in at least 15 years &#x2014; but there&#x2019;s more to the story source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T14:58:24.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "'Godspeed my friend': Inside the final hours of Spirit Airlines",
+      "summary": "Spirit Airlines ceased operations overnight after a failed government bailout.",
+      "takeaway": "Airline stress is a demand and fuel-cost signal, not a direct Nifty setup; use it to check aviation and consumer-risk sentiment.",
+      "whyItMatters": "Aviation matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Aviation and travel sentiment are the direct read-through; do not translate it into Nifty IT or broad index conviction.",
+      "watchFor": "Aviation reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/02/spirit-airlines-shutdown-inside-the-final-hours.html",
+      "sentimentLabel": "negative",
+      "entityName": "Aviation",
+      "category": "sector_negative",
+      "thumbnail": {
+        "label": "Sector",
+        "theme": "Sector Pressure",
+        "accent": "#b45309",
+        "alt": "'Godspeed my friend': Inside the final hours of Spirit Airlines source thumbnail"
+      }
+    },
+    {
       "publishedAt": "2026-04-30T17:22:52.000Z",
       "sourceId": "cnbc-business",
       "sourceName": "CNBC Business",
       "headline": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket",
       "summary": "Lilly hiked its full-year sales outlook by $2 billion, and also raised its adjusted profit guidance.",
-      "takeaway": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket can create selective sector follow-through if breadth confirms it.",
-      "watchFor": "Watch sector leadership and opening-volume confirmation.",
+      "takeaway": "Pharma is an earnings-quality cue; treat it as sector evidence unless Indian breadth confirms the same direction.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Pharma and healthcare can move independently of the index; check whether defensives are leading or just isolated.",
+      "watchFor": "Pharma reaction during the first-hour range and whether it broadens into sector leadership.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/eli-lilly-lly-earnings-q1-2026.html",
       "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
+      "entityName": "Pharma",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-01T09:24:29.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar",
+      "summary": "Bank of England policymakers must contend with the \"most difficult combination\" of economic effects, according to governor Andrew Bailey",
+      "takeaway": "Bank Nifty changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
+      "indiaImpact": "Private banks and NBFCs become the first confirmation check; weak financial breadth can cap the index even if global cues are firm.",
+      "watchFor": "Private-bank breadth after 10:15 AM IST and whether financials lead or lag Nifty.",
+      "sourceUrl": "https://www.cnbc.com/2026/04/30/energy-price-very-uncertain-bank-of-england-andrew-bailey-boe.html",
+      "sentimentLabel": "positive",
+      "entityName": "Bank Nifty",
       "category": "sector_positive",
       "thumbnail": {
         "label": "Sector",
         "theme": "Sector Rotation",
         "accent": "#2563eb",
-        "alt": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket source thumbnail"
+        "alt": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T17:53:42.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Is Commvault Systems, Inc. (CVLT) A Good Stock To Buy Now?",
+      "summary": "Is Commvault Systems, Inc. (CVLT) A Good Stock To Buy Now?.",
+      "takeaway": "Market improves the risk-appetite backdrop, but the India trade still needs opening breadth and Bank Nifty support.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/commvault-systems-inc-cvlt-good-175342213.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "Is Commvault Systems, Inc. (CVLT) A Good Stock To Buy Now? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T13:45:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "&#x2018;The numbers don&#x2019;t lie&#x2019;: If I had invested my Social Security in the S&P 500 I&#x2019;d have $4 million. Is the system broken?",
+      "summary": "&#x201c;I do better than many citizens because I&#x2019;ve contributed at the highest level.&#x201d;",
+      "takeaway": "Market improves the risk-appetite backdrop, but the India trade still needs opening breadth and Bank Nifty support.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.marketwatch.com/story/the-numbers-dont-lie-if-i-had-invested-my-social-security-in-the-s-p-500-id-have-4-million-is-the-system-broken-d41b1779?mod=mw_rss_topstories",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "&#x2018;The numbers don&#x2019;t lie&#x2019;: If I had invested my Social Security in the S&P 500 I&#x2019;d have $4 million. Is the system broken? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T15:59:31.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell",
+      "summary": "The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell just ahead of a deadline.",
+      "takeaway": "Rates are the hurdle-rate input; higher yields make high-multiple pockets work harder and put Bank Nifty confirmation in focus.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Watch Bank Nifty, realty, autos and high-PE growth; a yield-led move should not be chased without VWAP acceptance.",
+      "watchFor": "US yield direction into the afternoon and whether Bank Nifty can hold VWAP.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/pirro-fed-powell.html",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Macro",
+        "theme": "Macro Pressure",
+        "accent": "#dc2626",
+        "alt": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell source thumbnail"
       }
     },
     {
@@ -7742,13 +7679,13 @@
       "sourceName": "CNBC Business",
       "headline": "Lawyers to the wealthy warn that AI legal advice comes with serious risks",
       "summary": "Asking ChatGPT how to divide your fortune or design a prenup can be used against you in court, lawyers say.",
-      "takeaway": "Lawyers to the wealthy warn that AI legal advice comes with serious risks is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Lawyers to the wealthy warn that AI legal advice comes with serious risks is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Lawyers to the wealthy warn that AI legal advice comes with serious risks can move crude, currency, and global-risk appetite into the India open.",
-      "watchFor": "Watch crude, dollar index, and Asia risk breadth.",
+      "takeaway": "Global tech tone can affect IT exporters and risk appetite, but it needs currency and Nasdaq confirmation before becoming an India trade.",
+      "whyItMatters": "Global Tech matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Use it as an IT-exporter and Nasdaq read-through, not a blanket Nifty signal; currency and sector breadth decide relevance.",
+      "watchFor": "Nasdaq futures, Nifty IT breadth, and USD/INR before trusting any exporter move.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/ai-legal-advice-lawyers-risks.html",
       "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
+      "entityName": "Global Tech",
       "category": "global_risk",
       "thumbnail": {
         "label": "Risk",
@@ -7758,45 +7695,108 @@
       }
     },
     {
+      "publishedAt": "2026-05-01T10:44:37.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "Trump scraps Scotch whisky tariffs ‘in honor’ of King Charles",
+      "summary": "The move is expected to recoup millions of dollars a month for Scotland’s economy.",
+      "takeaway": "Market changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Market is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/01/donald-trump-king-charles-queen-camilla-state-visit-scotch-whisky-tariffs.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Trump scraps Scotch whisky tariffs ‘in honor’ of King Charles source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T17:53:27.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Is Dynatrace, Inc. (DT) A Good Stock To Buy Now?",
+      "summary": "Is Dynatrace, Inc. (DT) A Good Stock To Buy Now?.",
+      "takeaway": "Market improves the risk-appetite backdrop, but the India trade still needs opening breadth and Bank Nifty support.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/dynatrace-inc-dt-good-stock-175327784.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
+        "alt": "Is Dynatrace, Inc. (DT) A Good Stock To Buy Now? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T13:06:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "&#x2018;We&#x2019;re all worried the honey pot will run dry&#x2019;: Does the U.S. government borrow from my Social Security to fund federal programs?",
+      "summary": "There are many suggestions floating around Washington D.C. on how to fix the program&#x2019;s imminent funding issues.",
+      "takeaway": "Market changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Market is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.marketwatch.com/story/were-worried-the-honey-pot-will-run-dry-does-the-trump-administration-use-my-social-security-to-fund-federal-programs-1cd01b8f?mod=mw_rss_topstories",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "&#x2018;We&#x2019;re all worried the honey pot will run dry&#x2019;: Does the U.S. government borrow from my Social Security to fund federal programs? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-03T11:04:43.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting",
+      "summary": "New CEO Greg Abel did most of the talking at his first Berkshire Hathaway shareholders meeting, but Warren Buffett was still a major presence.",
+      "takeaway": "Market changes the morning checklist; translate it into levels, breadth, and sector leadership before acting.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Market is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-annual-meeting-greg-abel-rules-out-break-up-stressing-continuity-with-buffett.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Risk",
+        "theme": "Global Risk",
+        "accent": "#7c3aed",
+        "alt": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting source thumbnail"
+      }
+    },
+    {
       "publishedAt": "2026-04-29T21:40:27.000Z",
       "sourceId": "cnbc-business",
       "sourceName": "CNBC Business",
       "headline": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump",
       "summary": "Chipotle shares have plummeted 35% over the last year.",
-      "takeaway": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump can create selective sector follow-through if breadth confirms it.",
-      "watchFor": "Watch sector leadership and opening-volume confirmation.",
+      "takeaway": "Market improves the risk-appetite backdrop, but the India trade still needs opening breadth and Bank Nifty support.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Market reaction during the first-hour range and whether it broadens into sector leadership.",
       "sourceUrl": "https://www.cnbc.com/2026/04/29/chipotle-mexican-grill-cmg-q1-2026-earnings.html",
       "sentimentLabel": "positive",
-      "entityName": "Nifty IT",
-      "category": "sector_positive",
+      "entityName": "Market",
+      "category": "macro_positive",
       "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Rotation",
-        "accent": "#2563eb",
+        "label": "India",
+        "theme": "Domestic Support",
+        "accent": "#059669",
         "alt": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-04-29T19:13:31.000Z",
-      "sourceId": "cnbc-business",
-      "sourceName": "CNBC Business",
-      "headline": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle",
-      "summary": "PayPal is betting that a new corporate structure can reignite growth at a company that has lost ground to Apple, Google and Stripe in the e-commerce battle.",
-      "takeaway": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle is part of the verified source stack for the pre-market read.",
-      "whyItMatters": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle is checked against global cues, rates, currency, and sector breadth before shaping the India read-through.",
-      "indiaImpact": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle raises the hurdle rate for banks, real estate, autos, and high-duration equities.",
-      "watchFor": "Watch G-sec yields, rupee movement, and Bank Nifty acceptance.",
-      "sourceUrl": "https://www.cnbc.com/2026/04/29/paypal-restructures-venmo-standalone-unit.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty IT",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Macro",
-        "theme": "Macro Pressure",
-        "accent": "#dc2626",
-        "alt": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle source thumbnail"
       }
     }
   ],
@@ -7812,182 +7812,62 @@
       "category": "global_risk"
     },
     {
-      "title": "'Godspeed my friend': Inside the final hours of Spirit Airlines",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-03T14:58:24.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/spirit-airlines-shutdown-inside-the-final-hours.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "'Godspeed my friend': Inside the final hours of Spirit Airlines source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "sector_negative"
-    },
-    {
-      "title": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-03T15:59:31.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/pirro-fed-powell.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-03T11:04:43.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-annual-meeting-greg-abel-rules-out-break-up-stressing-continuity-with-buffett.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-02T23:23:07.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/kevin-warsh-federal-reserve-interest-rates-bonds-fixed-income.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Top Wall Street analysts like these 3 stocks for their long-term prospects",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-03T11:13:01.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/top-street-analysts-like-these-3-stocks-for-their-long-term-prospects.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Top Wall Street analysts like these 3 stocks for their long-term prospects source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-02T11:57:32.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/spirit-airlines-flights-shut-down.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Spirit Airlines shut down. Here's what travelers need to know if they have tickets source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "sector_negative"
-    },
-    {
-      "title": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-02T23:07:35.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/spirit-airlines-trump-bailout.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Spirit Airlines shuts down after failing to reach a bailout deal, ending discount travel era source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "sector_negative"
-    },
-    {
-      "title": "Here are the 3 big things we're watching in the stock market in the week ahead",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-03T15:48:16.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/03/3-big-things-were-watching-in-the-stock-market-in-the-week-ahead.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Here are the 3 big things we're watching in the stock market in the week ahead source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "The U.S.-Iran war is coming for your credit score and mortgage application",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-02T14:12:35.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/us-iran-war-credit-score-loans-mortgage-rates.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "The U.S.-Iran war is coming for your credit score and mortgage application source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-02T14:35:02.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/02/iran-war-airfare-travel-airlines-plane-tickets-when-to-buy.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Airfare amid Iran war: Buy now or wait out the conflict? Experts weigh the risks source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T18:58:24.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/exxon-ceo-iran-war-oil-strait-hormuz.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Exxon Mobil CEO expects higher oil prices due to Iran war: ‘The market hasn’t seen the full impact’ source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Trump says he's raising EU auto tariffs to 25%",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T21:47:39.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/trump-eu-auto-tariffs.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Trump says he's raising EU auto tariffs to 25% source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T09:19:59.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/strait-of-hormuz-base-oils-luxury-autos.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Engine trouble ahead? How the Strait of Hormuz standoff threatens luxury auto giants source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "A major shift could soon happen in the Mag 7",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T15:35:47.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/a-major-mag-7-shift-with-alphabets-market-cap-set-to-pass-nvidias.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "A major shift could soon happen in the Mag 7 source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T19:15:15.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/fed-dissenters-explain-no-votes-saying-they-disagreed-with-hinting-next-move-would-be-a-cut.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Fed dissenters explain 'no' votes, saying they disagreed with hinting next move would be a cut source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T11:12:15.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/04/30/inside-the-fed-powell-and-warsh-set-to-clash.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Inside the Fed: Powell vows he won't be a 'shadow chair,' but a Warsh clash will be tough to avoid source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-05-01T15:11:44.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/05/01/uk-exports-us-fall-25-trump-tariffs-liberation-day.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "UK exports to U.S. plunge by 25% after Trump's 'liberation day' tariffs blitz source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
       "title": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby",
       "publisherName": "CNBC Business",
       "timestamp": "2026-05-01T12:41:24.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/investor-jack-selby-markets-underpricing-middle-east-ai-pullback-risk.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Markets are underpricing the risk of Middle East pullback in AI, says tech investor Jack Selby source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "UK government plans to allow airlines to consolidate flights as jet fuel costs soar",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-03T13:56:06.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/uk-govt-consolidate-flights-as-jet-fuel-costs-soar.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "UK government plans to allow airlines to consolidate flights as jet fuel costs soar source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Core inflation rate hit 3.2% in March as first-quarter growth disappointed at 2%",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-04-30T13:37:31.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/04/30/pce-inflation-rate-march-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Core inflation rate hit 3.2% in March as first-quarter growth disappointed at 2% source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Kashkari says Iran war limits Fed's ability to provide rate guidance",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-05-03T17:54:25.000Z",
+      "sourceUrl": "https://finance.yahoo.com/economy/policy/articles/kashkari-says-iran-war-limits-175425920.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Kashkari says Iran war limits Fed's ability to provide rate guidance source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "The market is riding high on an AI spending boom &#x2014; but what could crack this rally?",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-03T16:00:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/the-market-is-riding-high-on-an-ai-spending-boom-but-what-could-crack-this-rally-531b0854?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "The market is riding high on an AI spending boom &#x2014; but what could crack this rally? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Greg Abel earns solid scorecard from Berkshire shareholders after first annual meeting",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-03T17:30:36.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-ceo-greg-abel-earns-solid-first-scorecard-after-first-annual-meeting.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Greg Abel earns solid scorecard from Berkshire shareholders after first annual meeting source thumbnail",
       "sentimentLabel": "negative",
       "category": "global_risk"
     },
@@ -8002,14 +7882,104 @@
       "category": "sector_positive"
     },
     {
+      "title": "Global week ahead: Is 'Sell in May' just a myth?",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-03T05:00:01.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/global-week-ahead-sell-in-may-just-a-myth.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Global week ahead: Is 'Sell in May' just a myth? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Will rates go higher in Europe this week? Central banks confront stagflation threat",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-04-30T10:44:14.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/04/29/europes-central-banks-in-wait-and-see-mode-on-interest-rates.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Will rates go higher in Europe this week? Central banks confront stagflation threat source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now?",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-05-03T17:54:11.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/cf-industries-holdings-inc-cf-175411042.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now? source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "S&P 500 profits haven&#x2019;t been this rich in at least 15 years &#x2014; but there&#x2019;s more to the story",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-03T14:00:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/s-p-500-profits-havent-been-this-rich-in-at-least-15-years-but-theres-more-to-the-story-c3ccaf3b?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "S&P 500 profits haven&#x2019;t been this rich in at least 15 years &#x2014; but there&#x2019;s more to the story source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "'Godspeed my friend': Inside the final hours of Spirit Airlines",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-03T14:58:24.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/02/spirit-airlines-shutdown-inside-the-final-hours.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "'Godspeed my friend': Inside the final hours of Spirit Airlines source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "sector_negative"
+    },
+    {
       "title": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket",
       "publisherName": "CNBC Business",
       "timestamp": "2026-04-30T17:22:52.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/eli-lilly-lly-earnings-q1-2026.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Eli Lilly blows past quarterly estimates, hikes outlook as Zepbound and Mounjaro sales skyrocket source thumbnail",
       "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-01T09:24:29.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/04/30/energy-price-very-uncertain-bank-of-england-andrew-bailey-boe.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar source thumbnail",
+      "sentimentLabel": "positive",
       "category": "sector_positive"
+    },
+    {
+      "title": "Is Commvault Systems, Inc. (CVLT) A Good Stock To Buy Now?",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-05-03T17:53:42.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/commvault-systems-inc-cvlt-good-175342213.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Is Commvault Systems, Inc. (CVLT) A Good Stock To Buy Now? source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "&#x2018;The numbers don&#x2019;t lie&#x2019;: If I had invested my Social Security in the S&P 500 I&#x2019;d have $4 million. Is the system broken?",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-03T13:45:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/the-numbers-dont-lie-if-i-had-invested-my-social-security-in-the-s-p-500-id-have-4-million-is-the-system-broken-d41b1779?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "&#x2018;The numbers don&#x2019;t lie&#x2019;: If I had invested my Social Security in the S&P 500 I&#x2019;d have $4 million. Is the system broken? source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-03T15:59:31.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/pirro-fed-powell.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Pirro appears to drop plans to appeal criminal investigation of Fed Chair Powell source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
     },
     {
       "title": "Lawyers to the wealthy warn that AI legal advice comes with serious risks",
@@ -8022,24 +7992,54 @@
       "category": "global_risk"
     },
     {
+      "title": "Trump scraps Scotch whisky tariffs ‘in honor’ of King Charles",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-01T10:44:37.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/01/donald-trump-king-charles-queen-camilla-state-visit-scotch-whisky-tariffs.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump scraps Scotch whisky tariffs ‘in honor’ of King Charles source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Is Dynatrace, Inc. (DT) A Good Stock To Buy Now?",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-05-03T17:53:27.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/dynatrace-inc-dt-good-stock-175327784.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Is Dynatrace, Inc. (DT) A Good Stock To Buy Now? source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "&#x2018;We&#x2019;re all worried the honey pot will run dry&#x2019;: Does the U.S. government borrow from my Social Security to fund federal programs?",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-03T13:06:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/were-worried-the-honey-pot-will-run-dry-does-the-trump-administration-use-my-social-security-to-fund-federal-programs-1cd01b8f?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "&#x2018;We&#x2019;re all worried the honey pot will run dry&#x2019;: Does the U.S. government borrow from my Social Security to fund federal programs? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-03T11:04:43.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/03/berkshire-annual-meeting-greg-abel-rules-out-break-up-stressing-continuity-with-buffett.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Risk%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Greg Abel rules out Berkshire break-up, stresses continuity with Buffett's legacy at annual meeting source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
       "title": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump",
       "publisherName": "CNBC Business",
       "timestamp": "2026-04-29T21:40:27.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/29/chipotle-mexican-grill-cmg-q1-2026-earnings.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDomestic%20Support%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Chipotle posts surprise same-store sales growth in early sign chain could be breaking its slump source thumbnail",
       "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle",
-      "publisherName": "CNBC Business",
-      "timestamp": "2026-04-29T19:13:31.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/04/29/paypal-restructures-venmo-standalone-unit.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "PayPal's new CEO makes Venmo a standalone business unit as potential buyers circle source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
+      "category": "macro_positive"
     }
   ],
   "setupAudit": [

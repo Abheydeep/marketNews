@@ -125,7 +125,7 @@ await writeFile(
   }),
   "utf8"
 );
-await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveHomeDigests));
+await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveHomeDigests, digests));
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: archiveHomeDigests.map(redactedDigestPayload) }, null, 2)}\n`);
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
@@ -270,10 +270,11 @@ function fallbackWatchItems(digest) {
   return [...new Set(items)].slice(0, 3);
 }
 
-function archivePage(digests) {
+function archivePage(digests, allDigests = digests) {
   const latest = digests[0];
   const pageTitle = "Market Narrative | Pre-Market Intelligence Archive";
   const pageDescription = "Source-led Indian pre-market intelligence archive for Nifty, Bank Nifty, global cues, sector impact, Asian market watch, source cards, technical risk levels, charts, and the public multibagger tracker.";
+  const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -807,6 +808,61 @@ function archivePage(digests) {
       font-weight: 900;
     }
 
+    .recent-archive-section {
+      margin-top: 34px;
+    }
+
+    .recent-archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .recent-archive-link {
+      display: grid;
+      gap: 7px;
+      min-height: 126px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.50);
+      padding: 14px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .recent-archive-link:hover,
+    .recent-archive-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(103, 232, 249, 0.42);
+      background: rgba(15, 23, 42, 0.70);
+      outline: none;
+    }
+
+    .recent-archive-link span {
+      color: #9fb0c8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .recent-archive-link strong {
+      color: #f8fafc;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .recent-status {
+      align-self: end;
+      color: #67e8f9;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .recent-status.legacy {
+      color: #fbbf24;
+    }
+
     @media (max-width: 640px) {
       .nav-inner {
         align-items: start;
@@ -860,6 +916,10 @@ function archivePage(digests) {
     <section class="digest-grid">
       ${cards}
     </section>
+    <section class="recent-archive-section" aria-label="Recent briefing navigation">
+      <h2 class="archive-title">Recent Briefing Navigation</h2>
+      ${recentGrid}
+    </section>
   </main>
   <script>
     document.querySelectorAll('[data-copy-url]').forEach((button) => {
@@ -901,6 +961,25 @@ function archiveShareRowHtml() {
       <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(url)}">Copy link</button>
     </div>
   `;
+}
+
+function recentArchiveGridHtml(digests) {
+  const items = (digests ?? []).map((digest) => {
+    const verified = isVerifiedPublicDigest(digest);
+    const slug = slugForDigest(digest);
+    const title = compactWords(digest.title || "Market briefing", 10);
+    const status = verified
+      ? `${digest.sourceVerification.verifiedArticleCount} verified links`
+      : "Legacy source audit unavailable";
+    return `
+      <a class="recent-archive-link" href="./${slug}/">
+        <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
+        <strong>${escapeHtml(title)}</strong>
+        <small class="recent-status${verified ? "" : " legacy"}">${escapeHtml(status)}</small>
+      </a>
+    `;
+  }).join("");
+  return `<div class="recent-archive-grid">${items}</div>`;
 }
 
 function archiveMarketSnapshotHtml(digest) {

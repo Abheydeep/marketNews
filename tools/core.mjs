@@ -45,7 +45,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     .map((item) => item.setup);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
-  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles);
+  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles, options.previousDigest);
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(articles, themes, options.previousDigest);
   const deskNote = deskNoteForDigest(articles, tradeSetups, options.previousDigest);
@@ -372,8 +372,8 @@ export function labelFromScore(score) {
   return "VOLATILE";
 }
 
-export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = []) {
-  const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes);
+export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null) {
+  const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest);
   const marketLine = snapshots
     .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
     .join(", ");
@@ -672,13 +672,23 @@ function titleSuffix(label) {
   }[label];
 }
 
-function uniqueTitleForDigest(date, sentimentLabel, articles, themes) {
+function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest = null) {
   const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
   const headline = String(lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
   const force = dominantForceLabel(lead, headline);
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
   const consequence = titleConsequence(lead, sentimentLabel);
-  return compactTitle(`${force} ${verb} ${consequence}`);
+  const previousTitle = normalizeEditorial(previousDigest?.title);
+  const candidates = [
+    `${force} ${verb} ${consequence}`,
+    lead?.headline ? `${lead.headline} Sets Nifty Lens` : "",
+    themes[0]?.title ? `${themes[0].title} Shapes The Open` : "",
+    themes[1]?.title ? `${themes[1].title} Frames Bank Nifty` : ""
+  ]
+    .map(compactTitle)
+    .filter(Boolean);
+  return candidates.find((candidate) => normalizeEditorial(candidate) !== previousTitle)
+    || compactTitle(`${force} ${verb} ${date} Open`);
 }
 
 function dominantForceLabel(article, headline) {
@@ -732,7 +742,7 @@ function deskNoteForDigest(articles, setups, previousDigest) {
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
   const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
   const sectorLabel = sectorFocusLabel(sector);
-  const first = `${force} is the first filter today: ${sentenceFragment(lead?.summary || lead?.headline || "the verified source stack changed")}.`;
+  const first = `${force} ${forceVerb(force)} the first filter today: ${sentenceFragment(lead?.summary || lead?.headline || "the source mix changed from the last verified edition")}.`;
   const second = `${sectorLabel} is the key watch because ${becauseFragment(sector?.summary || sector?.headline || "it decides whether the first move has breadth behind it")}.`;
   const third = setup
     ? `The open rule is simple: respect ${setup.symbol} only near ${formatNumber(setup.entry)} and abandon it below ${formatNumber(setup.stopLoss)}.`
@@ -748,9 +758,14 @@ function sentenceFragment(value) {
   return cleanSentence(value).replace(/[.!?]+$/g, "");
 }
 
+function forceVerb(force) {
+  return /\b(yields|banks|commodities|market cues)\b/i.test(String(force || "")) ? "are" : "is";
+}
+
 function becauseFragment(value) {
   const text = sentenceFragment(value);
-  return text.replace(/^(A|An|The)\b/, (match) => match.toLowerCase());
+  const withoutArticle = text.replace(/^(A|An|The)\b/, (match) => match.toLowerCase());
+  return withoutArticle ? `${withoutArticle.charAt(0).toLowerCase()}${withoutArticle.slice(1)}` : withoutArticle;
 }
 
 function leadMarketArticle(articles) {

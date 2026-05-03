@@ -189,6 +189,16 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
           title: `Bank and IT breadth from ${sourceSlug}`,
           link: testArticleUrl(publisher, sourceSlug, "bank-it-breadth"),
           description: "Banking, technology, and domestic liquidity cues drive sector selection."
+        },
+        {
+          title: `Spirit Airlines shutdown pressure from ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "spirit-airlines-shutdown-pressure"),
+          description: "Airline cost pressure, passenger demand, and bankruptcy risk matter for aviation sentiment."
+        },
+        {
+          title: `Fed investigation and yields from ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "fed-investigation-yields"),
+          description: "Bond yields, rates, and Powell headlines keep the hurdle rate in focus."
         }
       ]);
     }
@@ -198,9 +208,23 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
   assert.equal(sourceVerification.mode, "live");
   assert.equal(sourceVerification.blockedReason, null);
   assert.ok(sourceVerification.verifiedArticleCount >= 8);
-  assert.ok(sourceVerification.publisherCount >= 2);
+  assert.ok(sourceVerification.publisherCount >= 4);
   assert.ok(sourceVerification.categoryCount >= 2);
   assert.ok(articles.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)));
+  assert.ok(new Set(articles.map((article) => article.sentimentScore)).size >= 3, "live sentiment scores should vary by article text");
+  assert.ok(articles.every((article) => !/verified source stack/i.test([
+    article.takeaway,
+    article.whyItMatters,
+    article.indiaImpact,
+    article.watchFor
+  ].join(" "))));
+  const airline = articles.find((article) => /Spirit Airlines/i.test(article.headline));
+  assert.equal(airline?.entityName, "Aviation");
+  assert.match(airline?.indiaImpact || "", /Aviation/);
+  const fed = articles.find((article) => /Fed investigation/i.test(article.headline));
+  assert.equal(fed?.entityName, "Rates");
+  assert.notEqual(airline?.entityName, "Nifty IT");
+  assert.notEqual(fed?.entityName, "Nifty IT");
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {
@@ -228,6 +252,7 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.deskNote);
   assert.equal(digest.watchItems.length, 3);
   assert.equal(digest.title.includes("Global Pressure Meets Domestic Selectivity"), false);
+  assert.equal(JSON.stringify(digest.news).includes("verified source stack"), false);
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
@@ -667,9 +692,10 @@ await test("backend market snapshot contract carries chart-refresh fields", asyn
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
-  assert.ok(publisher.includes("archivePage(archiveHomeDigests)"));
+  assert.ok(publisher.includes("archivePage(archiveHomeDigests, digests)"));
   assert.ok(publisher.includes("isVerifiedPublicDigest"));
   assert.ok(publisher.includes("legacyAuditStatus"));
+  assert.ok(publisher.includes("recentArchiveGridHtml"));
   assert.ok(publisher.includes("archiveCardSummary"));
   assert.ok(publisher.includes("previousSessionDriver"));
   assert.ok(publisher.includes("archiveToneClass"));
@@ -681,6 +707,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveChips"));
   assert.ok(publisher.includes("Pre-Market Intelligence Archive"));
   assert.ok(publisher.includes("Latest Market Briefings"));
+  assert.ok(publisher.includes("Recent Briefing Navigation"));
+  assert.ok(publisher.includes("recent-archive-link"));
   assert.ok(publisher.includes("Read market briefing"));
   assert.ok(publisher.includes("Previous session driver"));
   assert.ok(publisher.includes("sentiment-sparkline"));
@@ -1075,6 +1103,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Stories Driving The Open"));
   assert.ok(publicHtml.body.includes("How It Lands In India"));
   assert.ok(publicHtml.body.includes("What To Watch First"));
+  assert.ok(publicHtml.body.includes("<strong>IF:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>THEN:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>INVALIDATE:</strong>"));
+  assert.ok(publicHtml.body.includes("Weighted source tone: pressure, neutral, or support"));
+  assert.ok(publicHtml.body.includes("Pressure") || publicHtml.body.includes("Support"));
+  assert.equal(publicHtml.body.includes("Lead:"), false);
+  assert.equal(publicHtml.body.includes("verified source stack"), false);
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
   assert.ok(publicHtml.body.includes("2 min read"));
