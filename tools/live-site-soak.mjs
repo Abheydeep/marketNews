@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { join } from "node:path";
 
 const require = createRequire(import.meta.url);
-const { chromium } = require("playwright");
+const { chromium } = loadPlaywright();
 
 const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
@@ -177,18 +178,12 @@ async function expectDailyContent(page) {
   await expectOne(publicView.getByRole("heading", { name: "Stories Driving The Open" }), "stories heading");
   await expectOne(publicView.getByRole("heading", { name: "How It Lands In India" }), "india read-through heading");
   await expectOne(publicView.getByRole("heading", { name: "What To Watch First" }), "watch next heading");
-  await expectOne(publicView.getByRole("heading", { name: "Latest Market Dashboard" }), "market dashboard heading");
-  await expectOne(publicView.getByText("Quick snapshot only:", { exact: false }), "market dashboard scope note");
-  const dashboardSymbols = await page.evaluate(() => window.__MARKET_DASHBOARD_SYMBOLS__ ?? []);
-  assert.deepEqual(dashboardSymbols, ["SPX", "NDX", "HSI", "NIFTY", "BANKNIFTY", "BRENT"]);
+  await expectOne(publicView.getByRole("heading", { name: "Live Chart" }), "live chart CTA heading");
+  await expectOne(publicView.getByRole("link", { name: "Open live chart on TradingView" }), "live chart CTA link");
   const setupCard = publicView.locator(".setup-card");
   await expectOne(setupCard, "algorithmic setup card");
-  await expectOne(
-    setupCard.getByText("No clean 1:2 risk-reward setup is active yet.", { exact: false }),
-    "public no-setup notice"
-  );
-  assert.equal(await setupCard.getByText("22,705", { exact: false }).count(), 0, "outdated Nifty entry should not be visible");
-  assert.equal(await setupCard.getByText("23,859", { exact: false }).count(), 0, "outdated Nifty target should not be visible");
+  const setupStateCount = await setupCard.getByText(/Active Game Plan|Completed Setups|No active trade setup/i).count();
+  assert.ok(setupStateCount > 0, "setup card should show an active, completed, or no-active-trade state");
   await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
   await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
@@ -248,4 +243,31 @@ async function expandQuoteBoard(page) {
 async function expectOne(locator, label) {
   const count = await locator.count();
   assert.equal(count, 1, `${label} should resolve to exactly one element, got ${count}`);
+}
+
+function loadPlaywright() {
+  try {
+    return require("playwright");
+  } catch (error) {
+    const fallbackRoot =
+      process.env.PLAYWRIGHT_NODE_MODULES ??
+      (process.env.HOME
+        ? join(process.env.HOME, ".cache", "codex-runtimes", "codex-primary-runtime", "dependencies", "node", "node_modules")
+        : "");
+    if (fallbackRoot) {
+      try {
+        const fallbackRequire = createRequire(join(fallbackRoot, "playwright", "package.json"));
+        return fallbackRequire("playwright");
+      } catch {
+        // Fall through to the actionable error below.
+      }
+    }
+    throw new Error(
+      [
+        "Playwright is required for live-site soak.",
+        "Install it in this workspace or set PLAYWRIGHT_NODE_MODULES to a node_modules directory that contains playwright.",
+        `Original error: ${error.message}`
+      ].join(" ")
+    );
+  }
 }
