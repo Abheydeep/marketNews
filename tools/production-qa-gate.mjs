@@ -522,6 +522,7 @@ async function gotoOrRenderFetchedHtml(page, url) {
     }
     const response = await fetchText(url);
     assert.equal(response.status, 200, `browser fallback fetch for ${url} returned HTTP ${response.status}`);
+    await page.goto("about:blank", { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
     await page.setContent(response.body, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
   }
 }
