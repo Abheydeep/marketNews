@@ -11,9 +11,9 @@
     "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.",
     "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks."
   ],
-  "overallSentiment": -0.11,
+  "overallSentiment": -0.16811902231668438,
   "sentimentLabel": "VOLATILE",
-  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.293%, Nasdaq 100 +0.941%, Dow Jones -0.308%, Nifty 50 -0.745%, Bank Nifty -0.975%, Nikkei 225 +0.385%, Hang Seng -1.284%, Shanghai Composite +0.113%, KOSPI -1.375%, Taiwan Weighted -0.959%, Straits Times +1.064%, ASX 200 +0.739%, US Dollar Index +0.056%, Brent Crude +0%\n\nNarrative Themes:\n- Negative Macro Impact: The European Central Bank and Bank of England are expected to hold their nerve and stand pat on rates this month.\n- Global Risk-Off Cue: Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.\n- Sector-Specific Cushion: Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.\n- Positive Macro Tailwind: 'It's a boom': Wall Street sees more market gains as strong earnings fuel the AI trade.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
+  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.293%, Nasdaq 100 +0.941%, Dow Jones -0.308%, Nifty 50 -0.745%, Bank Nifty -0.975%, Nikkei 225 +0.385%, Hang Seng -1.284%, Shanghai Composite +0.113%, KOSPI -1.375%, Taiwan Weighted -0.959%, Straits Times +1.064%, ASX 200 +0.739%, US Dollar Index +0.056%, Brent Crude last close 108.17\n\nNarrative Themes:\n- Negative Macro Impact: The European Central Bank and Bank of England are expected to hold their nerve and stand pat on rates this month.\n- Global Risk-Off Cue: Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.\n- Volatile Opening Bias: Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.\n- Positive Macro Tailwind: 'It's a boom': Wall Street sees more market gains as strong earnings fuel the AI trade.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -7242,31 +7242,31 @@
       "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "The European Central Bank and Bank of England are expected to hold their nerve and stand pat on rates this month.",
-      "sentimentScore": -0.65,
-      "evidenceCount": 1
+      "sentimentScore": -0.6,
+      "evidenceCount": 2
     },
     {
       "digestDate": "2026-05-04",
       "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "Consumers faced escalating prices in March as the Iran war sent oil soaring and created a new level of challenges for the Fed.",
-      "sentimentScore": -0.514,
+      "sentimentScore": -0.503,
       "evidenceCount": 13
     },
     {
       "digestDate": "2026-05-04",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
       "summary": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.",
-      "sentimentScore": 0.473,
-      "evidenceCount": 3
+      "sentimentScore": 0.107,
+      "evidenceCount": 2
     },
     {
       "digestDate": "2026-05-04",
       "themeType": "macro_positive",
       "title": "Positive Macro Tailwind",
       "summary": "'It's a boom': Wall Street sees more market gains as strong earnings fuel the AI trade.",
-      "sentimentScore": 0.506,
+      "sentimentScore": 0.538,
       "evidenceCount": 7
     }
   ],
@@ -7440,18 +7440,18 @@
       "sourceName": "CNBC Business",
       "headline": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX",
       "summary": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO later this year.",
-      "takeaway": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO; keep it as Bank Nifty context unless a related Indian sector confirms the move.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth after 10:15 AM IST; no long bias if financials lag Nifty.",
+      "takeaway": "Blue Owl said it's made 10 times its investment in SpaceX, which is headed for a record IPO; keep it as private-market risk appetite, not an Indian financial-sector signal.",
+      "whyItMatters": "Private-market marks can show risk appetite, but they do not map cleanly to listed Indian lenders.",
+      "indiaImpact": "No direct India read-through for this story.",
+      "watchFor": "No specific watch for this article.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/blue-owl-shares-private-credit-spacex-gains.html",
       "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
+      "entityName": "Private markets",
+      "category": "neutral_volatile",
       "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Rotation",
-        "accent": "#2563eb",
+        "label": "Range",
+        "theme": "Asia Volatility",
+        "accent": "#0891b2",
         "alt": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX source thumbnail"
       }
     },
@@ -7470,9 +7470,9 @@
       "entityName": "Rates",
       "category": "macro_negative",
       "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Rotation",
-        "accent": "#2563eb",
+        "label": "Macro",
+        "theme": "Macro Pressure",
+        "accent": "#dc2626",
         "alt": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar source thumbnail"
       }
     },
@@ -7692,18 +7692,18 @@
       "sourceName": "CNBC World",
       "headline": "Boaz Weinstein’s activist investor Saba seizes control of UK tech fund after bitter SpaceX feud",
       "summary": "The Edinburgh Worldwide Investment Trust conceded defeat to the Boaz Weinstein's activist fund on Thursday.",
-      "takeaway": "The Edinburgh Worldwide Investment Trust conceded defeat to the Boaz Weinstein's activist fund on Thursday; SpaceX is global technology context; Indian exporters need local breadth before it matters.",
-      "whyItMatters": "Global Tech matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
-      "indiaImpact": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
-      "watchFor": "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines.",
+      "takeaway": "The Edinburgh Worldwide Investment Trust conceded defeat to the Boaz Weinstein's activist fund on Thursday; keep it as private-market risk appetite, not an Indian financial-sector signal.",
+      "whyItMatters": "Private-market marks can show risk appetite, but they do not map cleanly to listed Indian lenders.",
+      "indiaImpact": "No direct India read-through for this story.",
+      "watchFor": "No specific watch for this article.",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/boaz-weinsteins-hedge-fund-saba-uk-tech-fund-spacex.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
+      "sentimentLabel": "neutral",
+      "entityName": "Private markets",
+      "category": "neutral_volatile",
       "thumbnail": {
-        "label": "Sector",
-        "theme": "Sector Rotation",
-        "accent": "#2563eb",
+        "label": "Range",
+        "theme": "Asia Volatility",
+        "accent": "#0891b2",
         "alt": "Boaz Weinstein’s activist investor Saba seizes control of UK tech fund after bitter SpaceX feud source thumbnail"
       }
     },
@@ -7868,17 +7868,17 @@
       "publisherName": "CNBC Business",
       "timestamp": "2026-04-30T19:36:55.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/blue-owl-shares-private-credit-spacex-gains.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsia%20Volatility%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERange%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX source thumbnail",
       "sentimentLabel": "positive",
-      "category": "sector_positive"
+      "category": "neutral_volatile"
     },
     {
       "title": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar",
       "publisherName": "CNBC World",
       "timestamp": "2026-05-01T09:24:29.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/energy-price-very-uncertain-bank-of-england-andrew-bailey-boe.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMacro%20Pressure%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMacro%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Bank of England faces the 'most difficult combination,' says governor Bailey as energy prices soar source thumbnail",
       "sentimentLabel": "negative",
       "category": "macro_negative"
@@ -7988,10 +7988,10 @@
       "publisherName": "CNBC World",
       "timestamp": "2026-04-30T13:34:34.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/04/30/boaz-weinsteins-hedge-fund-saba-uk-tech-fund-spacex.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESector%20Rotation%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsia%20Volatility%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERange%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Boaz Weinstein’s activist investor Saba seizes control of UK tech fund after bitter SpaceX feud source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
     },
     {
       "title": "Palantir expected to report Q1 revenue jump as software stocks rebound",

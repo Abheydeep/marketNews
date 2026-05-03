@@ -478,6 +478,9 @@ function categoryFromText(text, fallback) {
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(value)) {
     return "macro_negative";
   }
+  if (isPrivateMarketStory(value)) {
+    return "neutral_volatile";
+  }
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
     return "global_risk";
   }
@@ -500,6 +503,10 @@ function categoryFromText(text, fallback) {
     return "macro_positive";
   }
   return fallback ?? "neutral_volatile";
+}
+
+function isPrivateMarketStory(value) {
+  return /\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(String(value || ""));
 }
 
 function articleIsFreshForDigest(article, digestDate) {
@@ -530,6 +537,9 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   if (/\b(airline|airlines|spirit)\b/.test(lower)) {
     return compactWords(`${fact}; ${aviationReadthrough(lower).takeaway}`, 35);
   }
+  if (isPrivateMarketStory(lower)) {
+    return compactWords(`${fact}; keep it as private-market risk appetite, not an Indian financial-sector signal.`, 35);
+  }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return compactWords(`${fact}; ${techReadthrough(lower, entityName).takeaway}`, 35);
   }
@@ -550,6 +560,9 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   if (/\b(fed|yield|bond|rate|inflation)\b/.test(lower)) {
     return "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.";
   }
+  if (isPrivateMarketStory(lower)) {
+    return "Private-market marks can show risk appetite, but they do not map cleanly to listed Indian lenders.";
+  }
   if (/\b(bank|credit|loan|deposit|jpmorgan|private credit)\b/.test(lower)) {
     return "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.";
   }
@@ -567,6 +580,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (hasNoDirectIndiaRead(lower, category)) {
     return "No direct India read-through for this story.";
   }
+  if (isPrivateMarketStory(lower)) {
+    return "No direct India read-through for this story.";
+  }
   if (/\b(oil|crude|brent)\b/.test(lower)) {
     return oilReadthrough(lower).indiaImpact;
   }
@@ -577,6 +593,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.";
   }
   if (/\b(bank|credit|loan|deposit|jpmorgan|private credit)\b/.test(lower)) {
+    if (isPrivateMarketStory(lower)) {
+      return "No direct India read-through for this story.";
+    }
     return "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.";
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
@@ -607,6 +626,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (hasNoDirectIndiaRead(lower, category)) {
     return "No specific watch for this article.";
   }
+  if (isPrivateMarketStory(lower)) {
+    return "No specific watch for this article.";
+  }
   if (/\b(oil|crude|brent)\b/.test(lower)) {
     return oilReadthrough(lower).watchFor;
   }
@@ -617,6 +639,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
     return "Watch USD/INR near 84.20 and DXY in the first hour; pressure splits exporters from importers.";
   }
   if (/\b(bank|credit|loan|deposit|jpmorgan|private credit)\b/.test(lower)) {
+    if (isPrivateMarketStory(lower)) {
+      return "No specific watch for this article.";
+    }
     return "Watch private-bank breadth after 10:15 AM IST; no long bias if financials lag Nifty.";
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
@@ -892,6 +917,9 @@ function entityForHeadline(headline, category) {
   const lower = headline.toLowerCase();
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return "Rates";
+  }
+  if (/\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(lower)) {
+    return "Private markets";
   }
   if (/\b(bank|banks|banking|credit|deposit|loan|jpmorgan|private credit|financials?)\b/.test(lower)) {
     return "Bank Nifty";

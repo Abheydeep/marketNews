@@ -3641,6 +3641,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     /* Dark glassmorphism branch theme */
     body.glass-v2 {
+      color-scheme: dark;
       --paper: #050816;
       --ink: #f8fafc;
       --slate: #f8fafc;
@@ -3653,10 +3654,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       --gold: #fbbf24;
       min-height: 100vh;
       background:
-        radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.32), transparent 32vw),
-        radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.30), transparent 34vw),
-        radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.18), transparent 28vw),
-        linear-gradient(135deg, #030712 0%, #08111f 46%, #111827 100%);
+        radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.18), transparent 32vw),
+        radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.16), transparent 34vw),
+        radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.10), transparent 28vw),
+        linear-gradient(135deg, #050816 0%, #07101d 46%, #0b1220 100%);
       color: #f8fafc;
     }
 
@@ -3667,8 +3668,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       z-index: 0;
       pointer-events: none;
       background:
-        linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 42%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 42%);
+        linear-gradient(120deg, rgba(255, 255, 255, 0.026), transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.018), transparent 42%);
     }
 
     body.glass-v2 > * {
@@ -4136,6 +4137,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .glass-v2 .index-tile .change.down,
     .glass-v2 .source-category-meta strong.down {
       color: #fb7185;
+    }
+
+    .glass-v2 .market-move.flat,
+    .glass-v2 .index-tile .change.flat {
+      color: #b8c4d8;
     }
 
     .glass-v2 :is(.index-tile .price, .metric strong, .summary-chip strong, .source-extract-meta span, .source-extract-copy h4, .briefing-block h3, .teleprompter-header h2) {
@@ -5094,11 +5100,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const active = window.__ACTIVE_QUOTE_REGION__ === region;
       const context = region === 'Asia Watch' ? 'Top 5 countries · ' : '';
       const leadName = region === 'Asia Watch' ? countryForQuote(strongest) || strongest.name : strongest.name;
-      const leadLabel = Number(strongest.changePercent) >= 0 ? 'Biggest lift' : 'Biggest drag';
+      const leadLabel = quoteIsFlatOrStale(strongest) ? 'Last close' : Number(strongest.changePercent) >= 0 ? 'Biggest lift' : 'Biggest drag';
       return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '" aria-label="Open ' + escapeClientHtml(region) + ' live quote board">' +
         '<div class="breadth-card-top"><span>' + escapeClientHtml(region) + '</span><em class="market-state ' + status.className + '">' + escapeClientHtml(status.label) + '</em></div>' +
         '<strong>' + positives + ' up <em>/ ' + quotes.length + ' tracked</em></strong>' +
-        '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + escapeClientHtml(leadLabel) + ': ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClass(strongest.changePercent) + '">' + formatClientChange(strongest.changePercent) + '</b></small>' +
+        '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + escapeClientHtml(leadLabel) + ': ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClassForQuote(strongest) + '">' + formatClientQuoteChange(strongest) + '</b></small>' +
       '</button>';
     }
 
@@ -5141,19 +5147,22 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function quoteTileHtml(quote) {
       const status = marketStatusFor(quote);
-      const direction = quote.changePercent >= 0 ? 'up' : 'down';
+      const direction = moveClassForQuote(quote);
       const statusClass = status.open ? 'status live' : 'status closed';
-      const quoteTime = formatQuoteTime(quote.dataTimestamp);
+      const quoteTime = formatQuoteTimestamp(quote.dataTimestamp);
       return '<button class="index-tile" type="button" data-symbol="' + quote.symbol + '" aria-label="Open chart for ' + escapeClientHtml(marketDisplayName(quote)) + '">' +
         '<div class="symbol-row"><span class="symbol">' + escapeClientHtml(quote.symbol) + '</span><span class="' + statusClass + '">' + (status.open ? 'Live' : 'Closed') + '</span></div>' +
         '<div class="name">' + escapeClientHtml(marketDisplayName(quote)) + '</div>' +
         '<div class="price">' + formatClientNumber(quote.closeValue) + '</div>' +
-        '<div class="change ' + direction + '">' + formatClientChange(quote.changePercent) + '</div>' +
+        '<div class="change ' + direction + '">' + formatClientQuoteChange(quote) + '</div>' +
         '<div class="name">' + displayStatusLabel(quote, status) + (quoteTime ? ' - ' + quoteTime : '') + '</div>' +
       '</button>';
     }
 
     function displayStatusLabel(quote, status) {
+      if (quoteIsStaleForDisplay(quote)) {
+        return 'Last close';
+      }
       if (quote.dataQuality !== 'live' && status.open) {
         return 'Session open';
       }
@@ -5470,7 +5479,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
       const liveLine = openCount > 0
         ? 'Live now ' + openCount + '/' + quotes.length + ' markets'
-        : 'Markets closed - ' + (latestSnapshotDateLabel(quotes) || 'latest published') + ' close prices shown';
+        : 'Snapshot board - latest feed ' + (latestSnapshotDateLabel(quotes) || 'latest published');
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
         ' - ' + mode +
@@ -5516,6 +5525,19 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }).format(date);
     }
 
+    function formatQuoteTimestamp(value) {
+      if (!value) return '';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return '';
+      return new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: '2-digit',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+    }
+
     function fallbackTradingViewSymbol(symbol) {
       return {
         SPX: 'SP:SPX',
@@ -5546,6 +5568,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     function marketStatusFor(quoteOrSymbol) {
       const quote = typeof quoteOrSymbol === 'string' ? { symbol: quoteOrSymbol } : quoteOrSymbol;
+      if (quoteIsStaleForDisplay(quote)) {
+        return { open: false, label: 'Last close', closeLabel: 'timestamped close' };
+      }
       const symbol = quote.symbol;
       const session = quote.session || sessionForSymbol(symbol);
       const now = new Date();
@@ -5577,6 +5602,19 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         return marketWindow(now, 'Australia/Sydney', 10, 0, 16, 0, 'Sydney close 4:00 PM AEDT');
       }
       return marketWindow(now, 'UTC', 0, 0, 23, 30, 'global close window');
+    }
+
+    function quoteIsStaleForDisplay(quote) {
+      const timestamp = Date.parse(quote?.dataTimestamp || '');
+      if (!Number.isFinite(timestamp)) return false;
+      const ageHours = (Date.now() - timestamp) / 36e5;
+      const session = quote?.session || sessionForSymbol(quote?.symbol);
+      const limit = session === 'macro' ? 12 : session === 'us' ? 24 : 10;
+      return ageHours > limit;
+    }
+
+    function quoteIsFlatOrStale(quote) {
+      return quoteIsStaleForDisplay(quote) && Math.abs(Number(quote?.changePercent || 0)) < 0.005;
     }
 
     function sessionForSymbol(symbol) {
@@ -5628,8 +5666,19 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       return (value >= 0 ? '+' : '') + Number(value).toFixed(2) + '%';
     }
 
+    function formatClientQuoteChange(quote) {
+      if (quoteIsFlatOrStale(quote)) {
+        return 'Last close';
+      }
+      return formatClientChange(quote.changePercent);
+    }
+
     function moveClass(value) {
-      return Number(value) >= 0 ? 'up' : 'down';
+      return Math.abs(Number(value || 0)) < 0.005 ? 'flat' : Number(value) >= 0 ? 'up' : 'down';
+    }
+
+    function moveClassForQuote(quote) {
+      return quoteIsFlatOrStale(quote) ? 'flat' : moveClass(quote.changePercent);
     }
 
     function escapeClientHtml(value) {
@@ -5858,7 +5907,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ctx.fillStyle = palette.text;
       ctx.textAlign = 'left';
       ctx.font = 'bold 18px Arial';
-      ctx.fillText(formatClientNumber(quote.closeValue) + ' (' + formatClientChange(quote.changePercent) + ')', pad.left, 20);
+      ctx.fillText(formatClientNumber(quote.closeValue) + ' (' + formatClientQuoteChange(quote) + ')', pad.left, 20);
       ctx.fillStyle = palette.muted;
       ctx.textAlign = 'right';
       ctx.font = '12px Arial';
@@ -6365,9 +6414,10 @@ function compactSummaryText(digest) {
     ? `${setup.symbol} has a conditional 1:2 setup near ${formatNumber(setup.entry)}.`
     : "No clean 1:2 setup is active yet; wait for the opening range to form.";
   const pressureLabel = marketRiskLabel(macro || pressureStory);
+  const supportLabel = distinctSupportLabel(pressureLabel, supportStory);
   return limitWords([
     `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} and confirmation-led.`,
-    `${pressureLabel} is the risk to watch; ${compactEntityName(supportStory?.entityName || "domestic breadth")} is the offset.`,
+    `${pressureLabel} is the risk to watch; ${supportLabel} is the confirmation check.`,
     asiaLine,
     setupLine
   ].filter(Boolean).join(" "), 50);
@@ -6438,11 +6488,10 @@ function chartCtaPanelHtml(digest) {
 
 function quoteSessionLabel(digest) {
   const quotes = digest.marketSnapshots || [];
-  if (quotes.some((quote) => quote.dataQuality === "live")) {
-    return "Live quote feed available";
-  }
   const latest = latestSnapshotDateLabel(quotes);
-  return latest ? `Markets closed - ${latest} close prices shown` : "Markets closed - latest published closes shown";
+  return latest
+    ? `Snapshot board - latest feed ${latest}; each quote shows its timestamp`
+    : "Snapshot board - latest published closes shown";
 }
 
 function latestSnapshotDateLabel(quotes) {
@@ -6506,7 +6555,7 @@ function marketMoodRailHtml(digest) {
   const setup = niftySetup(digest);
   const indexLine = [nifty, bankNifty]
     .filter(Boolean)
-    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(" / ");
   const setupLine = setup
     ? `${setup.symbol} ${setup.riskReward}R setup: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)}.`
@@ -6781,6 +6830,25 @@ function compactEntityName(value) {
   }[String(value || "").toUpperCase()] || value;
 }
 
+function distinctSupportLabel(pressureLabel, supportStory) {
+  const label = compactEntityName(supportStory?.entityName || "breadth");
+  if (!label || sameLabel(pressureLabel, label) || label === "Market") {
+    return "breadth";
+  }
+  if (label === "Private markets") {
+    return "risk appetite";
+  }
+  return label;
+}
+
+function sameLabel(left, right) {
+  return normalizeLabel(left) === normalizeLabel(right);
+}
+
+function normalizeLabel(value) {
+  return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
 function compactAsiaLine(snapshots) {
   const asia = displaySnapshotsForRegion("Asia Watch", snapshots);
   if (!asia.length) {
@@ -6810,9 +6878,11 @@ function expandedBriefingHeadline(digest) {
   const macro = firstByCategory(digest.news, "macro_negative") || strongestStory(digest.news, "negative");
   const support = firstByCategory(digest.news, "sector_positive") || strongestStory(digest.news, "positive");
   const pressure = marketRiskLabel(macro);
-  const cushion = compactEntityName(support?.entityName || "banks");
+  const cushion = distinctSupportLabel(pressure, support);
   if (macro && support) {
-    return `${pressure} is the pressure; ${cushion} is the cushion`;
+    return sameLabel(pressure, cushion)
+      ? `${pressure} sets the morning test`
+      : `${pressure} sets the risk; ${cushion} confirms follow-through`;
   }
   return `${headlineSentiment(digest.sentimentLabel)} pre-market read for India`;
 }
@@ -6849,13 +6919,13 @@ function expandedLeadParagraphs(digest) {
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
   const pressureEntity = marketRiskLabel(macro || pressureStory);
-  const supportEntity = compactEntityName(supportStory?.entityName || "domestic breadth");
+  const supportEntity = distinctSupportLabel(pressureEntity, supportStory);
 
   return [
     [
       `This is not a simple ${digest.sentimentLabel.toLowerCase()} call.`,
       `${pressureEntity} is the risk filter for the morning.`,
-      supportStory ? `${supportEntity} is the offset if breadth improves.` : ""
+      supportStory ? `${supportEntity} is the confirmation check if breadth improves.` : ""
     ].filter(Boolean).map(editorialSentence).join(" "),
   ];
 }
@@ -7399,13 +7469,13 @@ function regionForSnapshot(snapshot) {
 function formatSnapshotLine(snapshots) {
   return snapshots
     .slice(0, 7)
-    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(", ");
 }
 
 function formatAsiaSnapshotLine(snapshots) {
   return displaySnapshotsForRegion("Asia Watch", snapshots)
-    .map((snapshot) => `${marketDisplayNameForSnapshot(snapshot)} ${formatChange(snapshot.changePercent)}`)
+    .map((snapshot) => `${marketDisplayNameForSnapshot(snapshot)} ${formatSnapshotChange(snapshot)}`)
     .join(", ");
 }
 
@@ -7927,11 +7997,20 @@ function niftySetup(digest) {
 }
 
 function formatChange(changePercent) {
-  return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+  const value = Number(changePercent);
+  return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
+}
+
+function formatSnapshotChange(snapshot) {
+  const change = Number(snapshot?.changePercent);
+  if (snapshot?.symbol === "BRENT" && Math.abs(change || 0) < 0.005) {
+    return `last close ${formatNumber(snapshot.closeValue)}`;
+  }
+  return formatChange(change);
 }
 
 function changeClass(changePercent) {
-  return Number(changePercent) >= 0 ? "up" : "down";
+  return Math.abs(Number(changePercent || 0)) < 0.005 ? "flat" : Number(changePercent) >= 0 ? "up" : "down";
 }
 
 function formatSignedScore(score) {

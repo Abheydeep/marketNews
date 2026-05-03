@@ -321,7 +321,7 @@ function roundPublic(value, places) {
 
 function publicOnePageSummary(digest) {
   const marketLine = (digest.marketSnapshots ?? [])
-    .map((snapshot) => `${snapshot.name} ${formatChange(Number(snapshot.changePercent || 0))}`)
+    .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(", ");
   const themeLines = (digest.themes ?? [])
     .map((theme) => `- ${theme.title}: ${theme.summary}`)
@@ -1180,7 +1180,7 @@ function weightedArchiveSources(digest) {
 
 function formatSnapshotValue(snapshot) {
   const value = Number.isFinite(Number(snapshot.closeValue)) ? Number(snapshot.closeValue).toFixed(2) : "n/a";
-  const change = Number.isFinite(Number(snapshot.changePercent)) ? ` (${formatChange(Number(snapshot.changePercent))})` : "";
+  const change = Number.isFinite(Number(snapshot.changePercent)) ? ` (${formatSnapshotChange(snapshot)})` : "";
   return `${snapshot.name || snapshot.symbol}: ${value}${change}`;
 }
 
@@ -1365,6 +1365,18 @@ function formatGeneratedTime(value) {
 
 function formatChange(changePercent) {
   return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+}
+
+function formatSnapshotChange(snapshot) {
+  const changePercent = Number(snapshot?.changePercent || 0);
+  if (snapshot?.symbol === "BRENT" && Math.abs(changePercent) < 0.005) {
+    const value = Number(snapshot?.closeValue);
+    const label = Number.isFinite(value)
+      ? value.toLocaleString("en-IN", { maximumFractionDigits: 2 })
+      : "shown";
+    return `last close ${label}`;
+  }
+  return formatChange(changePercent);
 }
 
 function topAsiaSymbols() {

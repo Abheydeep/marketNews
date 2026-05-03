@@ -375,7 +375,7 @@ export function labelFromScore(score) {
 export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null) {
   const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest);
   const marketLine = snapshots
-    .map((snapshot) => `${snapshot.name} ${formatChange(snapshot.changePercent)}`)
+    .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(", ");
   const themeLines = themes
     .map((theme) => `- ${theme.title}: ${theme.summary}`)
@@ -403,7 +403,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     NEUTRAL: "Good morning. The market is balanced, and the first hour should define direction."
   }[sentimentLabel];
   const cues = snapshots
-    .map((snapshot) => `${snapshot.name} closed ${formatChange(snapshot.changePercent)}`)
+    .map((snapshot) => `${snapshot.name} closed ${formatSnapshotChange(snapshot)}`)
     .join(". ");
   const themesText = themes
     .map((theme) => `Theme: ${theme.title}. ${theme.summary}`)
@@ -1064,6 +1064,14 @@ function formatNumber(value) {
 
 function formatChange(changePercent) {
   return `${changePercent >= 0 ? "+" : ""}${changePercent}%`;
+}
+
+function formatSnapshotChange(snapshot) {
+  const change = Number(snapshot?.changePercent);
+  if (snapshot?.symbol === "BRENT" && Math.abs(change || 0) < 0.005) {
+    return `last close ${formatNumber(snapshot.closeValue)}`;
+  }
+  return formatChange(snapshot.changePercent);
 }
 
 function formatAbsChange(changePercent) {

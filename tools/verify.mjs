@@ -308,6 +308,10 @@ await test("article read-through copy does not reuse category templates", async 
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
   assert.match(opec.indiaImpact, /OPEC|Brent|upstream/i);
+  assert.equal(blueOwl.entityName, "Private markets");
+  assert.equal(blueOwl.indiaImpact, "No direct India read-through for this story.");
+  assert.equal(blueOwl.watchFor, "No specific watch for this article.");
+  assert.equal(/Bank Nifty|NBFC/i.test(blueOwl.indiaImpact), false);
   assert.equal(/translate it into levels/i.test(blueOwl.takeaway), false);
   assert.equal(/translate it into levels/i.test(boe.takeaway), false);
   assert.equal(/translate it into levels/i.test(supercar.takeaway), false);
@@ -1199,6 +1203,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
+  assert.ok(publicHtml.body.includes("Snapshot board"));
   assert.ok(publicHtml.body.includes("Today's Trade Map"));
   assert.ok(publicHtml.body.includes("Long only above"));
   assert.ok(publicHtml.body.includes("Short risk below"));
@@ -1244,6 +1249,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("2 min read"));
   assert.ok(publicHtml.body.includes("Read the full desk note"));
   assert.ok(publicHtml.body.includes("Pre-market desk note"));
+  assert.equal(/Bank Nifty is the pressure; Bank Nifty is the cushion/i.test(publicHtml.body), false);
   assert.ok(publicHtml.body.includes("The Overnight Pulse"));
   assert.ok(publicHtml.body.includes("Asia Watch"));
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
