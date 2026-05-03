@@ -320,7 +320,7 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(publicJson.includes("60% of it below 33rd percentile"), false, "unverified IT percentile claim leaked");
   assert.equal(publicJson.includes("45.4%"), false, "unsourced KPEL ROE claim leaked");
   assert.equal(publicJson.includes("buy now"), false, "stock-advice phrasing leaked");
-  for (const forbidden of ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"]) {
+  for (const forbidden of ["screenshot", "rawocr", "raw ocr", "private", "accountvalue", "account value", "quantity", "broker"]) {
     assert.equal(publicJson.includes(forbidden), false, `public multibagger state leaked ${forbidden}`);
   }
 });

@@ -204,7 +204,7 @@ const researchEvidence = {
   researchBoundaries: [
     "This evidence layer is dated context, not a trading signal or return promise.",
     "The model avoids unverified percentile claims, unsourced ROE figures and short-term return claims.",
-    "Public data excludes demat-level positions, account values and unpublished admin review notes."
+    "Public data excludes demat-level positions, personal portfolio totals and unpublished operator notes."
   ]
 };
 
@@ -829,7 +829,7 @@ export function validateMultibaggerState(state = multibaggerState()) {
   }
 
   const serialized = JSON.stringify(state).toLowerCase();
-  const forbidden = ["screenshot", "rawocr", "private", "accountvalue", "quantity", "broker"];
+  const forbidden = ["screenshot", "rawocr", "raw ocr", "private", "accountvalue", "account value", "quantity", "broker"];
   for (const token of forbidden) {
     if (serialized.includes(token)) {
       throw new Error(`Public multibagger state contains forbidden token: ${token}`);

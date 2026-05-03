@@ -1319,7 +1319,7 @@ export function multibaggerPage(state = multibaggerState()) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Monthly Reviews</strong><span>Published keep/replace history from the admin review process.</span></span>
+        <span class="summary-title"><strong>Monthly Reviews</strong><span>Published keep/replace history from the monthly evidence process.</span></span>
         <span class="chev">+</span>
         <span class="module-preview"><span class="preview-pill">May 2026</span><span class="preview-pill">Keep review</span><span class="preview-pill">Changes logged</span></span>
       </summary>
@@ -1394,7 +1394,7 @@ export function multibaggerPage(state = multibaggerState()) {
   </main>
 
   <footer class="shell">
-    <p>Quote timestamps are shown beside each holding. Public data excludes account screenshots, share quantities, account value, and unpublished review notes.</p>
+    <p>Quote timestamps are shown beside each holding. Public data excludes personal screenshots, share counts, portfolio totals, and unpublished review notes.</p>
   </footer>
 
   <script>
