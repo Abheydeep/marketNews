@@ -26,7 +26,7 @@ spring:
 
 app:
   digest:
-    cron: ${DIGEST_CRON:0 30 8 * * MON-FRI}
+    cron: ${DIGEST_CRON:0 15 7 * * MON-FRI}
     zone: ${DIGEST_ZONE:Asia/Kolkata}
   security:
     jwt-secret: ${JWT_SECRET:change-this-local-demo-secret-change-this-local-demo-secret}

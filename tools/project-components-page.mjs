@@ -1007,7 +1007,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
 
     <section class="panel">
       <ol class="flow-list">
-        <li><strong>Build digest</strong><span>Load source-backed news, fetch live quote snapshots when enabled, and stamp the run for 8:30 IST.</span></li>
+        <li><strong>Build digest</strong><span>Load source-backed news, fetch live quote snapshots when enabled, and stamp the run for 7:15 IST.</span></li>
         <li><strong>Analyze markets</strong><span>Calculate regional breadth, sentiment, Nifty/Bank Nifty setup validity, and source themes.</span></li>
         <li><strong>Create scripts</strong><span>Build a public summary, recording draft, and a 45-60 second daily reel script.</span></li>
         <li><strong>Write run files</strong><span>Save public HTML, private Studio HTML, reel-script markdown, and full run digest JSON.</span></li>
@@ -1036,8 +1036,8 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <ul>
           <li><code>/marketNews/admin/</code></li>
           <li><code>/marketNews/admin/components/</code></li>
-          <li><code>out/daily/YYYY-MM-DD-0830-studio.html</code></li>
-          <li><code>out/daily/YYYY-MM-DD-0830-reel-script.md</code></li>
+          <li><code>out/daily/YYYY-MM-DD-0715-studio.html</code></li>
+          <li><code>out/daily/YYYY-MM-DD-0715-reel-script.md</code></li>
           <li>Recording script, daily reel script, visual prompt package, Studio activity buttons</li>
           <li>Not exposed on the public briefing surface; production hosting should use server-side/Auth0 authorization</li>
         </ul>
@@ -1226,9 +1226,9 @@ export function componentDetailsHtml() {
       right: [
         "<code>/marketNews/admin/</code>",
         "<code>/marketNews/admin/components/</code>",
-        "<code>out/daily/YYYY-MM-DD-0830-studio.html</code>",
-        "<code>out/daily/YYYY-MM-DD-0830-reel-script.md</code>",
-        "<code>out/daily/YYYY-MM-DD-0830-digest.json</code>"
+        "<code>out/daily/YYYY-MM-DD-0715-studio.html</code>",
+        "<code>out/daily/YYYY-MM-DD-0715-reel-script.md</code>",
+        "<code>out/daily/YYYY-MM-DD-0715-digest.json</code>"
       ]
     },
     {

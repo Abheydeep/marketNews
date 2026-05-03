@@ -8,11 +8,19 @@ import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
-const scheduledTime = readArg("--scheduled-time") ?? "08:30";
+const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const marketDataMode = readArg("--market-data") ?? process.env.MARKET_DATA_MODE ?? "mock";
 const newsDataMode = readArg("--news-data") ?? process.env.NEWS_DATA_MODE ?? "live";
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
+const liveMode = marketDataMode === "live" || newsDataMode === "live";
+
+if (liveMode && !isWeekdayIst(date) && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
+  process.stderr.write(`Daily briefing generation blocked for ${date}: weekday-only public schedule.\n`);
+  process.stderr.write("Set ALLOW_NON_TRADING_DAY_DIGEST=true only for an explicit manual non-trading-day test.\n");
+  process.exit(2);
+}
+
 const digest = {
   ...(await buildDigest(date, { marketDataMode, newsDataMode })),
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
@@ -58,6 +66,11 @@ function todayInIst() {
     day: "2-digit"
   });
   return formatter.format(new Date());
+}
+
+function isWeekdayIst(value) {
+  const day = new Date(`${value}T12:00:00+05:30`).getDay();
+  return day >= 1 && day <= 5;
 }
 
 function readArg(name) {

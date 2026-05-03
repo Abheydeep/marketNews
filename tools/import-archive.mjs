@@ -86,5 +86,5 @@ function scheduledLabelForDigest(digest) {
   if (digest.scheduledFor) {
     return digest.scheduledFor.slice(11, 16);
   }
-  return "08:30";
+  return "07:15";
 }

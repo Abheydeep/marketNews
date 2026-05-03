@@ -768,7 +768,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("twitter:card"));
   assert.ok(publisher.includes('rel="canonical"'));
   assert.ok(publisher.includes("Source-led Indian pre-market intelligence archive"));
-  assert.ok(publisher.includes("Published before 8:30 AM IST on trading days"));
+  assert.ok(publisher.includes("Published before 7:15 AM IST on trading days"));
   assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
   assert.ok(publisher.includes("Last verified update"));
   assert.equal(publisher.includes("Admin login</a>"), false);
@@ -813,9 +813,19 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: true"));
-  assert.ok(workflow.includes('cron: "*/5 3-21 * * 1-5"'), "workflow should refresh market data every 5 minutes during market windows");
+  assert.ok(workflow.includes('cron: "*/5 1-21 * * 1-5"'), "workflow should refresh market data every 5 minutes during weekday market windows");
+  assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
+  assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
+
+  const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
+  assert.equal(archiveFiles.includes("2026-05-03-0830-digest.json"), false, "Sunday briefing archive should not be promoted or retained");
+
+  const dailyGenerator = await readFile(join(rootDir, "tools", "generate-daily-summary.mjs"), "utf8");
+  assert.ok(dailyGenerator.includes('?? "07:15"'));
+  assert.ok(dailyGenerator.includes("weekday-only public schedule"));
+  assert.ok(dailyGenerator.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
 
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
   assert.ok(importer.includes("archive.digests"));
@@ -824,7 +834,6 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(importer.includes("sanitizeLegacyPublicBriefingCopy"));
   assert.ok(importer.includes("assertPublicBriefingCopy"));
 
-  const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {
     const archiveDigest = await readFile(join(rootDir, "archive", "daily", fileName), "utf8");
     assert.ok(!archiveDigest.includes("teleprompterScript"), `${fileName} should not archive private teleprompterScript`);
@@ -947,7 +956,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
   assert.ok(buildScript.includes("out\", \"vercel"));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
-  assert.ok(publicBuildScript.includes("latestArchivedDate()"));
+  assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
+  assert.ok(publicBuildScript.includes("latest verified weekday archive"));
+  assert.ok(publicBuildScript.includes("(0715|0830)"));
   assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
 
   const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
@@ -1107,6 +1118,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
+  assert.ok(publicHtml.body.includes("Today's Trade Map"));
+  assert.ok(publicHtml.body.includes("Long only above"));
+  assert.ok(publicHtml.body.includes("Short risk below"));
+  assert.ok(publicHtml.body.includes("No-trade zone"));
+  assert.ok(publicHtml.body.includes("Bank Nifty confirmation"));
+  assert.ok(publicHtml.body.includes("Top sector to watch"));
   assert.ok(publicHtml.body.includes("Open live chart on TradingView"));
   assert.ok(!publicHtml.body.includes("Chart Series Pending"));
   assert.ok(!publicHtml.body.includes("Preparing quotes"));

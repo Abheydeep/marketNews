@@ -12,10 +12,14 @@ const parts = new Intl.DateTimeFormat("en-GB", {
 }).formatToParts(new Date());
 const byType = Object.fromEntries(parts.map((part) => [part.type, part.value]));
 const today = `${byType.year}-${byType.month}-${byType.day}`;
-const date = process.env.SKIP_DAILY_GENERATE === "true" ? process.env.VERCEL_BUILD_FIXTURE_DATE ?? latestArchivedDate() : today;
+const latestArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
+  ? { date: process.env.VERCEL_BUILD_FIXTURE_DATE, scheduledTime: process.env.VERCEL_BUILD_FIXTURE_TIME ?? "07:15" }
+  : latestArchivedDigest();
+const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : today;
+const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
-  console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date}.`);
+  console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
 } else {
   const generated = run("npm", [
     "run",
@@ -24,39 +28,48 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     "--date",
     date,
     "--scheduled-time",
-    "08:30",
+    "07:15",
     "--market-data",
     process.env.MARKET_DATA_MODE ?? "live",
     "--news-data",
     process.env.NEWS_DATA_MODE ?? "live"
   ], { exitOnFailure: false });
   if (generated.status === 0) {
-    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"], { exitOnFailure: false });
+    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], { exitOnFailure: false });
     if (published.status === 0) {
       process.exit(0);
     }
   }
-  const fallbackDate = latestArchivedDate();
-  console.warn(`Live briefing for ${date} was not verified. Publishing latest verified archive ${fallbackDate} instead.`);
-  run("npm", ["run", "site:publish", "--", "--date", fallbackDate, "--scheduled-time", "08:30"], {
+  const fallback = latestArchivedDigest();
+  console.warn(`Live briefing for ${date} was not verified. Publishing latest verified weekday archive ${fallback.date} ${fallback.scheduledTime} instead.`);
+  run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
     env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" }
   });
   process.exit(0);
 }
-run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"]);
+run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", scheduledTime]);
 
-function latestArchivedDate() {
+function latestArchivedDigest() {
   const archiveDir = join(rootDir, "archive", "daily");
-  const dates = readdirSync(archiveDir)
-    .map((fileName) => fileName.match(/^(\d{4}-\d{2}-\d{2})-0830-digest\.json$/)?.[1])
+  const digests = readdirSync(archiveDir)
+    .map((fileName) => {
+      const match = fileName.match(/^(\d{4}-\d{2}-\d{2})-(0715|0830)-digest\.json$/);
+      return match ? { date: match[1], scheduledTime: `${match[2].slice(0, 2)}:${match[2].slice(2)}` } : null;
+    })
     .filter(Boolean)
-    .sort();
-  const latest = dates.at(-1);
+    .filter((item) => isWeekdayIst(item.date))
+    .sort((left, right) => `${left.date}T${left.scheduledTime}`.localeCompare(`${right.date}T${right.scheduledTime}`));
+  const latest = digests.at(-1);
   if (!latest) {
-    console.error("No archived digest is available for artifact verification.");
+    console.error("No weekday archived digest is available for artifact verification.");
     process.exit(1);
   }
   return latest;
+}
+
+function isWeekdayIst(value) {
+  const day = new Date(`${value}T12:00:00+05:30`).getDay();
+  return day >= 1 && day <= 5;
 }
 
 function run(command, args, options = {}) {

@@ -705,6 +705,109 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 30px;
     }
 
+    .trade-map-card {
+      position: relative;
+      margin-top: 24px;
+      overflow: hidden;
+      border: 0;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .trade-map-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .trade-map-head h2 {
+      margin: 4px 0 6px;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .trade-map-head p {
+      margin: 0;
+      max-width: 680px;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .trade-bias-pill {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.78);
+      padding: 8px 12px;
+      color: #fde68a;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .trade-bias-pill.long {
+      color: #bbf7d0;
+    }
+
+    .trade-bias-pill.short {
+      color: #fecdd3;
+    }
+
+    .trade-map-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .trade-map-tile {
+      min-height: 124px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.62);
+      padding: 16px;
+    }
+
+    .trade-map-tile.wide {
+      grid-column: span 2;
+    }
+
+    .trade-map-tile span {
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .trade-map-tile strong {
+      color: #fff;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .trade-map-tile small {
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
     .setup-card {
       position: relative;
       margin-top: 30px;
@@ -3934,6 +4037,25 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 24px 76px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.10);
     }
 
+    .glass-v2 .trade-map-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(34, 211, 238, 0.18), transparent 34%),
+        radial-gradient(circle at 86% 10%, rgba(250, 204, 21, 0.12), transparent 28%),
+        linear-gradient(135deg, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.74));
+      box-shadow: 0 22px 72px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+    .glass-v2 .trade-map-tile {
+      background: rgba(2, 6, 23, 0.46);
+      border-color: rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .glass-v2 .trade-map-tile strong {
+      color: #e0f2fe;
+    }
+
     .glass-v2 .setup-badge {
       border-color: rgba(52, 211, 153, 0.42);
       background: rgba(52, 211, 153, 0.13);
@@ -4081,6 +4203,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .source-category-grid,
       .setup-grid,
       .setup-levels,
+      .trade-map-grid,
       .summary-strip,
       .briefing-grid,
       .source-extract-row,
@@ -4110,9 +4233,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .briefing-topline,
       .section-kicker,
       .setup-card-header,
+      .trade-map-head,
       .quote-region-head {
         align-items: start;
         flex-direction: column;
+      }
+
+      .trade-map-tile.wide {
+        grid-column: auto;
       }
 
       .chart-modal-header {
@@ -4237,6 +4365,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
         ${deskNoteHtml(digest)}
+        ${todayTradeMapHtml(digest)}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -6391,6 +6520,155 @@ function marketMoodRailHtml(digest) {
   `;
 }
 
+function todayTradeMapHtml(digest) {
+  const setup = niftySetup(digest);
+  const levels = tradeMapLevels(digest, setup);
+  const map = tradeMapSummary(digest, setup, levels);
+  const topSector = topSectorWatch(digest);
+  return `
+    <section class="info-card trade-map-card" aria-label="Today's Trade Map">
+      <div class="trade-map-head">
+        <div>
+          <span class="summary-label">Today's Trade Map</span>
+          <h2>Levels before opinion</h2>
+          <p>Start here before reading the full brief: bias, index gates, the no-trade zone, Bank Nifty confirmation, and the sector that can decide follow-through.</p>
+        </div>
+        <span class="trade-bias-pill ${escapeHtml(map.biasClass)}">${escapeHtml(map.bias)}</span>
+      </div>
+      <div class="trade-map-grid">
+        <article class="trade-map-tile">
+          <span>Bias</span>
+          <strong>${escapeHtml(map.bias)}</strong>
+          <small>${escapeHtml(map.biasNote)}</small>
+        </article>
+        <article class="trade-map-tile">
+          <span>Long only above</span>
+          <strong>${escapeHtml(formatLevelOrWait(map.longAbove))}</strong>
+          <small>Nifty must accept above this gate before long-side preparation has teeth.</small>
+        </article>
+        <article class="trade-map-tile">
+          <span>Short risk below</span>
+          <strong>${escapeHtml(formatLevelOrWait(map.shortBelow))}</strong>
+          <small>Losing this line shifts the first read from patience to defensive risk control.</small>
+        </article>
+        <article class="trade-map-tile">
+          <span>No-trade zone</span>
+          <strong>${escapeHtml(map.noTradeZone)}</strong>
+          <small>Inside this band, wait for the first range instead of forcing a direction.</small>
+        </article>
+        <article class="trade-map-tile">
+          <span>Bank Nifty confirmation</span>
+          <strong>${escapeHtml(map.bankConfirm)}</strong>
+          <small>Banks decide whether the Nifty move is tradable breadth or just a gap reaction.</small>
+        </article>
+        <article class="trade-map-tile">
+          <span>Top sector to watch</span>
+          <strong>${escapeHtml(topSector.label)}</strong>
+          <small>${escapeHtml(topSector.reason)}</small>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function tradeMapSummary(digest, setup, levels) {
+  const longAbove = setup?.direction === "BULLISH" ? setup.entry : levels.niftyBullishHold;
+  const shortBelow = setup?.direction === "BEARISH" ? setup.entry : levels.niftyBearishBreak;
+  const low = Math.min(Number(longAbove || 0), Number(shortBelow || 0));
+  const high = Math.max(Number(longAbove || 0), Number(shortBelow || 0));
+  const noTradeZone = low > 0 && high > 0 && low !== high
+    ? `${formatNumber(low)} - ${formatNumber(high)}`
+    : "First range only";
+
+  if (setup?.direction === "BULLISH") {
+    return {
+      bias: "Conditional Long",
+      biasClass: "long",
+      biasNote: `${setup.symbol} has a scanner-approved plan, but only if price respects ${formatNumber(setup.stopLoss)}.`,
+      longAbove,
+      shortBelow,
+      noTradeZone,
+      bankConfirm: `Hold ${formatLevelOrWait(levels.bankBullishHold)}`
+    };
+  }
+  if (setup?.direction === "BEARISH") {
+    return {
+      bias: "Conditional Short",
+      biasClass: "short",
+      biasNote: `${setup.symbol} has a scanner-approved short-risk plan, but no chase if the first candle stretches.`,
+      longAbove,
+      shortBelow,
+      noTradeZone,
+      bankConfirm: `Lose ${formatLevelOrWait(levels.bankBearishBreak)}`
+    };
+  }
+  if (Number(digest.overallSentiment) >= 0.25) {
+    return {
+      bias: "Bullish If Accepted",
+      biasClass: "long",
+      biasNote: "Source tone is supportive, but the scanner still needs price acceptance.",
+      longAbove,
+      shortBelow,
+      noTradeZone,
+      bankConfirm: `Hold ${formatLevelOrWait(levels.bankBullishHold)}`
+    };
+  }
+  if (Number(digest.overallSentiment) <= -0.25) {
+    return {
+      bias: "Defensive Below Gate",
+      biasClass: "short",
+      biasNote: "Source tone is pressure-heavy, so failed support matters more than upside hope.",
+      longAbove,
+      shortBelow,
+      noTradeZone,
+      bankConfirm: `Lose ${formatLevelOrWait(levels.bankBearishBreak)}`
+    };
+  }
+  return {
+    bias: "Neutral Until Break",
+    biasClass: "neutral",
+    biasNote: setupAuditSummary(digest) || "No clean 1:2 setup is active; let the opening range choose the side.",
+    longAbove,
+    shortBelow,
+    noTradeZone,
+    bankConfirm: `${formatLevelOrWait(levels.bankBullishHold)} / ${formatLevelOrWait(levels.bankBearishBreak)}`
+  };
+}
+
+function topSectorWatch(digest) {
+  const articles = weightedSourceArticles(digest.news ?? []);
+  for (const article of articles) {
+    const text = `${article.headline || ""} ${article.summary || ""} ${article.indiaImpact || ""} ${article.entityName || ""}`.toLowerCase();
+    if (/\b(bank|credit|lender|financial)\b/.test(text)) {
+      return { label: "Bank Nifty", reason: "Financial breadth decides whether the index move becomes trend follow-through." };
+    }
+    if (/\b(crude|oil|brent|opec)\b/.test(text)) {
+      return { label: "OMCs / energy", reason: "Crude feeds directly into OMC margins, aviation costs, inflation expectations, and upstream energy." };
+    }
+    if (/\b(tech|software|semiconductor|chip|ai|nasdaq)\b/.test(text)) {
+      return { label: "Nifty IT", reason: "Use Nasdaq, USD/INR, and exporter breadth as confirmation before extrapolating global tech cues." };
+    }
+    if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) {
+      return { label: "Banks / realty", reason: "Yield direction sets the hurdle-rate pressure for rate-sensitive pockets." };
+    }
+    if (/\b(pharma|healthcare|drug|fda)\b/.test(text)) {
+      return { label: "Nifty Pharma", reason: "Healthcare headlines need stock-specific confirmation because the sector often trades idiosyncratically." };
+    }
+    if (/\b(auto|vehicle|ev|battery)\b/.test(text)) {
+      return { label: "Nifty Auto", reason: "Autos are the first check when oil, rates, or consumer demand drive the source stack." };
+    }
+    if (/\b(metal|steel|copper|aluminium|china commodity)\b/.test(text)) {
+      return { label: "Nifty Metal", reason: "Metals need China and commodity confirmation before the domestic basket follows." };
+    }
+  }
+  return { label: "Bank Nifty breadth", reason: "When the source stack is mixed, banks are the cleanest confirmation for Nifty follow-through." };
+}
+
+function formatLevelOrWait(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? formatNumber(number) : "Opening range";
+}
+
 function primaryDriverForDigest(digest) {
   const ranked = weightedSourceArticles(digest.news ?? []);
   const article = ranked.find(isTradeRelevantDriver) ?? ranked[0];
@@ -7605,7 +7883,7 @@ function formatSignedScore(score) {
 
 function formatScheduledRun(digest) {
   if (!digest.scheduledFor) {
-    return `${digest.digestDate} 08:30 IST`;
+    return `${digest.digestDate} 07:15 IST`;
   }
   return digest.scheduledFor.replace("T", " ").replace(":00+05:30", " IST");
 }

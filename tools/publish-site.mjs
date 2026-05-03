@@ -11,7 +11,7 @@ import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
-const scheduledTime = readArg("--scheduled-time") ?? "08:30";
+const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const label = scheduledTime.replace(":", "");
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
@@ -38,7 +38,11 @@ if (!digests.length) {
   throw new Error("No archived digests are available to publish");
 }
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
-const archiveHomeDigests = publicArchiveDigests.length ? publicArchiveDigests : digests.slice(0, 1);
+const weekdayDigests = digests.filter(isWeekdayDigest);
+const archiveHomeDigests = publicArchiveDigests.length ? publicArchiveDigests : weekdayDigests.slice(0, 1);
+if (!archiveHomeDigests.length) {
+  throw new Error("No weekday archived digests are available to publish");
+}
 
 await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
@@ -166,8 +170,8 @@ async function loadArchivedDigests() {
   }
 
   return [...digestsByKey.values()].sort((left, right) => {
-    const leftTime = Date.parse(left.scheduledFor ?? `${left.digestDate}T08:30:00+05:30`);
-    const rightTime = Date.parse(right.scheduledFor ?? `${right.digestDate}T08:30:00+05:30`);
+    const leftTime = Date.parse(left.scheduledFor ?? `${left.digestDate}T07:15:00+05:30`);
+    const rightTime = Date.parse(right.scheduledFor ?? `${right.digestDate}T07:15:00+05:30`);
     return rightTime - leftTime;
   });
 }
@@ -205,13 +209,13 @@ function assertNewDigestSourceIntegrity(digest, previousDigest) {
 }
 
 function previousDigestFor(digest, digests) {
-  const currentTime = Date.parse(digest.scheduledFor ?? `${digest.digestDate}T08:30:00+05:30`);
+  const currentTime = Date.parse(digest.scheduledFor ?? `${digest.digestDate}T07:15:00+05:30`);
   return [...digests]
     .filter(isVerifiedPublicDigest)
-    .filter((item) => Date.parse(item.scheduledFor ?? `${item.digestDate}T08:30:00+05:30`) < currentTime)
+    .filter((item) => Date.parse(item.scheduledFor ?? `${item.digestDate}T07:15:00+05:30`) < currentTime)
     .sort((left, right) =>
-      Date.parse(right.scheduledFor ?? `${right.digestDate}T08:30:00+05:30`) -
-      Date.parse(left.scheduledFor ?? `${left.digestDate}T08:30:00+05:30`)
+      Date.parse(right.scheduledFor ?? `${right.digestDate}T07:15:00+05:30`) -
+      Date.parse(left.scheduledFor ?? `${left.digestDate}T07:15:00+05:30`)
     )[0] ?? null;
 }
 
@@ -235,18 +239,20 @@ function enrichPublicDigest(digest) {
     sourceVerification: digest.sourceVerification
       ? {
         ...digest.sourceVerification,
-        isVerifiedForPublicArchive: digest.sourceVerification.isVerifiedForPublicArchive ?? !digest.sourceVerification.blockedReason
+        isVerifiedForPublicArchive: verified
       }
       : undefined,
     legacyAuditStatus: verified
       ? undefined
-      : "Legacy source audit unavailable - direct archive page retained for continuity and hidden from public briefing cards.",
+      : isWeekdayDigest(digest)
+        ? "Legacy source audit unavailable - direct archive page retained for continuity and hidden from public briefing cards."
+        : "Non-trading-day archive retained for continuity and hidden from public briefing cards.",
     archiveSummary: digest.archiveSummary || archiveCardSummary({ ...digest, news }),
     deskNote: digest.deskNote || legacyDeskNote({ ...digest, news }),
     watchItems: Array.isArray(digest.watchItems) && digest.watchItems.length
       ? digest.watchItems.slice(0, 3)
       : fallbackWatchItems({ ...digest, news }),
-    generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T08:30:00+05:30`
+    generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`
   };
 }
 
@@ -332,7 +338,12 @@ function publicOnePageSummary(digest) {
 }
 
 function isVerifiedPublicDigest(digest) {
-  return Boolean(digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
+  return Boolean(isWeekdayDigest(digest) && digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
+}
+
+function isWeekdayDigest(digest) {
+  const day = new Date(`${digest.digestDate}T12:00:00+05:30`).getDay();
+  return day >= 1 && day <= 5;
 }
 
 function relatedVerifiedEditions(digest, verifiedDigests) {
@@ -1016,7 +1027,7 @@ function archivePage(digests, allDigests = digests) {
     <section class="hero">
       <p class="eyebrow">Pre-Market Intelligence Archive</p>
       <h1>Market Narrative</h1>
-      <p>Published before 8:30 AM IST on trading days. Independent, source-led pre-market context for Nifty and Bank Nifty - no account required.</p>
+      <p>Published before 7:15 AM IST on trading days. Independent, source-led pre-market context for Nifty and Bank Nifty - no account required.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       ${archiveShareRowHtml()}
     </section>
@@ -1024,7 +1035,7 @@ function archivePage(digests, allDigests = digests) {
       <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
       <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
       <div class="summary-chip"><span>Current focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
-      <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T08:30:00+05:30`))}</strong></div>
+      <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
     </section>
     <h2 class="archive-title">Latest Market Briefings</h2>
     <section class="digest-grid">
@@ -1321,7 +1332,7 @@ function scheduledLabelForDigest(digest) {
   if (digest.scheduledFor) {
     return digest.scheduledFor.slice(11, 16);
   }
-  return "08:30";
+  return "07:15";
 }
 
 function formatDigestDate(date) {

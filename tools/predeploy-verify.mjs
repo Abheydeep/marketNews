@@ -103,7 +103,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Read market briefing/);
   assertOutput("index.html", /Previous session driver/);
   assertOutput("index.html", /sentiment-sparkline/);
-  assertOutput("index.html", /Published before 8:30 AM IST on trading days/);
+  assertOutput("index.html", /Published before 7:15 AM IST on trading days/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);

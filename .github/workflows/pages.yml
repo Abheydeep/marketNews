@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
   schedule:
     # Refresh every 5 minutes across Indian and US market windows on weekdays.
-    # 03:00 UTC includes the 08:30 IST pre-market publish.
-    - cron: "*/5 3-21 * * 1-5"
+    # 01:45 UTC includes the 07:15 IST pre-market publish.
+    - cron: "*/5 1-21 * * 1-5"
 
 permissions:
   contents: write
@@ -37,12 +37,12 @@ jobs:
       - name: Test generator
         run: npm test
 
-      - name: Generate daily 8:30 IST summary
+      - name: Generate daily 7:15 IST summary
         env:
           MARKET_DATA_MODE: live
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 08:30 --market-data live
+          npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live
 
       - name: Import previous deployed archive
         run: |
@@ -53,7 +53,7 @@ jobs:
       - name: Publish static archive site
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 08:30
+          npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 07:15
 
       - name: Public copy QA
         run: npm run public:copy:qa -- out/site
@@ -62,7 +62,7 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0830-digest.json"
+          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0715-digest.json"
           if git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
             echo "Verified archive already tracked: $ARCHIVE_FILE"
             exit 0

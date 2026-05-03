@@ -501,7 +501,7 @@ function categoryFromText(text, fallback) {
 
 function articleIsFreshForDigest(article, digestDate) {
   const published = Date.parse(article.publishedAt);
-  const digestTime = Date.parse(`${digestDate}T08:30:00+05:30`);
+  const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
   if (!Number.isFinite(published) || !Number.isFinite(digestTime)) {
     return true;
   }

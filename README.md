@@ -86,7 +86,7 @@ The demo keeps the public and private surfaces separate:
 - Auth-gated route `/admin`: Studio Command with daily reel script, scanner workbench, source QA, AI thumbnail simulation, architecture notes, and animated teleprompter.
 - Auth-gated route `/admin/components`: expandable project-components map for understanding the system internals.
 
-## Daily 8:30 AM Summary
+## Daily 7:15 AM Summary
 
 For the no-install demo, generate the daily pre-market summary with:
 
@@ -96,15 +96,15 @@ npm run daily:generate
 
 This writes:
 
-- `out/daily/YYYY-MM-DD-0830-digest.json`
-- `out/daily/YYYY-MM-DD-0830-summary.html` public-safe briefing
-- `out/daily/YYYY-MM-DD-0830-studio.html` private local studio
-- `out/daily/YYYY-MM-DD-0830-reel-script.md` private daily creator script
+- `out/daily/YYYY-MM-DD-0715-digest.json`
+- `out/daily/YYYY-MM-DD-0715-summary.html` public-safe briefing
+- `out/daily/YYYY-MM-DD-0715-studio.html` private local studio
+- `out/daily/YYYY-MM-DD-0715-reel-script.md` private daily creator script
 
-To run it every market morning at 8:30 AM IST on macOS/Linux, add this cron entry:
+To run it every market morning at 7:15 AM IST on macOS/Linux, add this cron entry:
 
 ```cron
-30 8 * * 1-5 cd /Users/abheydeep/Documents/Codex/2026-04-29/i-want-make-below-project-lets && /usr/local/bin/npm run daily:generate >> /tmp/market-narrative-daily.log 2>&1
+15 7 * * 1-5 cd /Users/abheydeep/Documents/Codex/2026-04-29/i-want-make-below-project-lets && /usr/local/bin/npm run daily:generate >> /tmp/market-narrative-daily.log 2>&1
 ```
 
 If `npm` is in a different location, run `which npm` and replace `/usr/local/bin/npm`.
@@ -114,18 +114,20 @@ For the Spring Boot backend, the scheduler is already configured through:
 ```yaml
 app:
   digest:
-    cron: 0 30 8 * * MON-FRI
+    cron: 0 15 7 * * MON-FRI
     zone: Asia/Kolkata
 ```
 
 Production delivery options can be added on top of the scheduled run: email, Telegram, WhatsApp, Slack, or publishing the HTML page to a hosted public URL.
+
+Live public digest generation is weekday-only. Non-trading-day manual experiments should use fixture mode or set `ALLOW_NON_TRADING_DAY_DIGEST=true` explicitly so weekend pages are not promoted by accident.
 
 ## Static Hosting Export
 
 After generating the daily summary, prepare a deployable static site:
 
 ```bash
-npm run site:publish -- --date 2026-04-29 --scheduled-time 08:30
+npm run site:publish -- --date 2026-04-29 --scheduled-time 07:15
 ```
 
 This creates `out/site/index.html`, dated briefing pages, and public-safe digest JSON. The static export intentionally redacts private teleprompter/reel scripts and AI prompts. Use live Yahoo Finance market snapshots during generation with:
@@ -140,7 +142,7 @@ The public export ships `/admin/` and `/admin/components/` behind a client-side 
 
 ## GitHub Pages
 
-This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 5 minutes across weekday Indian and US market windows, including the 08:30 IST pre-market run.
+This repo includes a GitHub Pages workflow at `.github/workflows/pages.yml`. After pushing to GitHub, enable Pages with **GitHub Actions** as the source. The workflow publishes the static site on push and every 5 minutes across weekday Indian and US market windows, including the 07:15 IST pre-market run.
 
 See `docs/github-pages.md`.
 

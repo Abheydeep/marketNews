@@ -616,7 +616,7 @@ export function newsArticleJsonLd(digest) {
     "@type": "NewsArticle",
     headline: digest.title,
     image: "https://marketnarrative.in/og-card.svg",
-    datePublished: digest.publishedAt ?? `${digest.digestDate}T08:30:00+05:30`,
+    datePublished: digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
     author: {
       "@type": "Person",
       name: "Market Narrative Engine",
@@ -892,7 +892,7 @@ function specificWatchItem(article) {
 
 function freshnessScore(article, date) {
   const published = Date.parse(article?.publishedAt || "");
-  const digestTime = Date.parse(`${date}T08:30:00+05:30`);
+  const digestTime = Date.parse(`${date}T07:15:00+05:30`);
   if (!Number.isFinite(published) || !Number.isFinite(digestTime)) return 0;
   const ageHours = (digestTime - published) / (60 * 60 * 1000);
   if (ageHours < -2) return -2;
