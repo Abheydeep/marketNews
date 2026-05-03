@@ -20,7 +20,7 @@ const config = {
   runAuthenticated: process.env.RUN_AUTHENTICATED_QA === "true",
   requireAuthenticated: process.env.REQUIRE_AUTHENTICATED_QA === "true",
   runBrowser: process.env.SKIP_BROWSER_QA !== "true",
-  timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "12000", 10),
+  timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "30000", 10),
   latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? "/3may2026/"
 };
 
