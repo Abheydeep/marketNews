@@ -220,9 +220,18 @@ function enrichPublicDigest(digest) {
   const news = verified
     ? (digest.news ?? []).filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
     : (digest.news ?? []);
+  const themes = verified ? publicThemesForNews(digest.digestDate, news) : (digest.themes ?? []);
+  const overallSentiment = verified ? publicWeightedSentiment(news) : digest.overallSentiment;
+  const sentimentLabel = verified ? publicLabelFromScore(overallSentiment) : digest.sentimentLabel;
   return {
     ...digest,
     news,
+    themes,
+    overallSentiment,
+    sentimentLabel,
+    onePageSummary: verified
+      ? publicOnePageSummary({ ...digest, news, themes, overallSentiment, sentimentLabel })
+      : digest.onePageSummary,
     sourceVerification: digest.sourceVerification
       ? {
         ...digest.sourceVerification,
@@ -239,6 +248,87 @@ function enrichPublicDigest(digest) {
       : fallbackWatchItems({ ...digest, news }),
     generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T08:30:00+05:30`
   };
+}
+
+function publicThemesForNews(date, news) {
+  const groups = new Map();
+  for (const article of news ?? []) {
+    const category = article.category || "market";
+    groups.set(category, [...(groups.get(category) ?? []), article]);
+  }
+  return [...groups.entries()]
+    .map(([category, groupedArticles]) => {
+      const lead = groupedArticles
+        .slice()
+        .sort((left, right) => impactScore(right) - impactScore(left))[0];
+      return {
+        digestDate: date,
+        themeType: category,
+        title: publicTitleForCategory(category),
+        summary: lead?.summary || lead?.takeaway || lead?.headline || "Verified market source cluster.",
+        sentimentScore: roundPublic(publicWeightedSentiment(groupedArticles), 3),
+        evidenceCount: groupedArticles.length,
+        sourceCount: groupedArticles.length
+      };
+    })
+    .sort((left, right) => left.sentimentScore - right.sentimentScore);
+}
+
+function publicWeightedSentiment(news) {
+  const items = news ?? [];
+  const weights = items.reduce((sum, article) => sum + publicArticleWeight(article), 0);
+  if (!weights) {
+    return 0;
+  }
+  return items.reduce((sum, article) => sum + articleTone(article) * publicArticleWeight(article), 0) / weights;
+}
+
+function publicArticleWeight(article) {
+  return Number.isFinite(Number(article?.entityMatchScore)) ? Number(article.entityMatchScore) : 1;
+}
+
+function publicLabelFromScore(score) {
+  if (score >= 0.25) return "BULLISH";
+  if (score <= -0.25) return "BEARISH";
+  if (Math.abs(score) < 0.1) return "NEUTRAL";
+  return "VOLATILE";
+}
+
+function publicTitleForCategory(category) {
+  return {
+    macro_negative: "Macro Pressure",
+    global_risk: "Global Risk",
+    neutral_volatile: "Opening Volatility",
+    sector_negative: "Sector Pressure",
+    sector_positive: "Sector Support",
+    macro_positive: "Domestic Macro Support"
+  }[category] || "Market Cues";
+}
+
+function roundPublic(value, places) {
+  const number = Number(value);
+  return Number.isFinite(number) ? Number(number.toFixed(places)) : 0;
+}
+
+function publicOnePageSummary(digest) {
+  const marketLine = (digest.marketSnapshots ?? [])
+    .map((snapshot) => `${snapshot.name} ${formatChange(Number(snapshot.changePercent || 0))}`)
+    .join(", ");
+  const themeLines = (digest.themes ?? [])
+    .map((theme) => `- ${theme.title}: ${theme.summary}`)
+    .join("\n");
+  const setupLines = (digest.tradeSetups ?? []).length
+    ? digest.tradeSetups.map((setup) =>
+      `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`
+    ).join("\n")
+    : "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.";
+  return [
+    `Market Mood: ${digest.sentimentLabel}`,
+    `Global Cues: ${marketLine}`,
+    `Narrative Themes:\n${themeLines}`,
+    `Validated Trading Setups:\n${setupLines}`,
+    "Educational note: This summary is for market research and content preparation only, not financial advice."
+  ].join("\n\n");
 }
 
 function isVerifiedPublicDigest(digest) {
@@ -967,10 +1057,12 @@ function recentArchiveGridHtml(digests) {
   const items = (digests ?? []).map((digest) => {
     const verified = isVerifiedPublicDigest(digest);
     const slug = slugForDigest(digest);
-    const title = compactWords(digest.title || "Market briefing", 10);
+    const title = verified
+      ? compactWords(digest.title || "Market briefing", 10)
+      : "Legacy edition - source audit unavailable";
     const status = verified
       ? `${digest.sourceVerification.verifiedArticleCount} verified links`
-      : "Legacy source audit unavailable";
+      : "Direct URL retained; hidden from latest cards";
     return `
       <a class="recent-archive-link" href="./${slug}/">
         <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
@@ -1099,6 +1191,10 @@ function archiveChips(digest) {
 }
 
 function archiveFocus(digest) {
+  const driver = highestImpactArticle(digest);
+  if (driver) {
+    return compactWords(cleanArchiveSentence(driver.entityName || driver.category || "Opening range"), 4);
+  }
   const title = cleanArchiveSentence(digest.themes?.[0]?.title);
   return title ? compactWords(title, 4) : "Opening range";
 }
@@ -1108,7 +1204,17 @@ function highestImpactArticle(digest) {
 }
 
 function impactScore(article) {
-  return Math.abs(Number(article?.sentimentScore ?? 0)) * Math.max(0.5, Number(article?.entityMatchScore ?? 1));
+  return Math.abs(articleTone(article)) * Math.max(0.5, Number.isFinite(Number(article?.entityMatchScore)) ? Number(article.entityMatchScore) : 1);
+}
+
+function articleTone(article) {
+  if (Number.isFinite(Number(article?.sentimentScore))) {
+    return Number(article.sentimentScore);
+  }
+  const label = String(article?.sentimentLabel || "").toLowerCase();
+  if (label.includes("positive") || label.includes("bullish")) return 0.35;
+  if (label.includes("negative") || label.includes("bearish")) return -0.35;
+  return 0;
 }
 
 function cleanArchiveSentence(value) {

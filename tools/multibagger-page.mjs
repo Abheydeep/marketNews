@@ -251,6 +251,19 @@ export function multibaggerPage(state = multibaggerState()) {
       line-height: 1.15;
     }
 
+    .metric small {
+      color: var(--muted);
+      display: block;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+      margin-top: 7px;
+    }
+
+    .return-strip.prefill {
+      grid-template-columns: 1.05fr 1fr 1fr 0.9fr;
+    }
+
     .positive { color: var(--green) !important; }
     .negative { color: var(--red) !important; }
     .neutral { color: #dbeafe !important; }
@@ -962,6 +975,7 @@ export function multibaggerPage(state = multibaggerState()) {
       .hero,
       .summary-grid,
       .return-strip,
+      .return-strip.prefill,
       .allocation-visual,
       .module-grid,
       .allocation-grid,
@@ -1090,19 +1104,13 @@ export function multibaggerPage(state = multibaggerState()) {
         <p>A public research model within Market Narrative, tracking six high-conviction Indian equities with source-led methodology, allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
       </div>
       <aside class="hero-stat">
-        <span>Since Apr 27, 2026</span>
-        <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong>
+        <span>Model status</span>
+        <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${escapeHtml(heroStatusLabel(state))}</strong>
         <p id="shareTrackerStatus">${escapeHtml(fillStatusText(state))}</p>
       </aside>
     </section>
 
-    <section class="return-strip" aria-label="Public model performance">
-      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong></div>
-      <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong></div>
-      <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong></div>
-      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong></div>
-      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong></div>
-    </section>
+    ${performanceStripHtml(state)}
     <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(latestQuoteStatusStamp(state))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
     <p class="execution-status"><strong>Pre-fill research model</strong><span>No public trades or fills have been published yet. These are target research weights; performance tracking starts only when the first confirmed public fill is logged.</span></p>
@@ -1444,7 +1452,7 @@ export function multibaggerPage(state = multibaggerState()) {
 
     function renderMultibaggerState(state) {
       if (!state || !Array.isArray(state.holdings)) return;
-      setText("portfolioReturn", formatPerformancePercent(state.performance?.sinceLaunchPercent));
+      setText("portfolioReturn", heroStatusLabel(state));
       setTone("portfolioReturn", state.performance?.sinceLaunchPercent);
       setText("shareTrackerStatus", fillStatusText(state));
       setText("modelCapitalMetric", formatInr(state.modelCapitalInr));
@@ -1532,6 +1540,20 @@ export function multibaggerPage(state = multibaggerState()) {
       if (number > 0) return "positive";
       if (number < 0) return "negative";
       return "neutral";
+    }
+
+    function hasPublishedFillPerformance(state) {
+      return isFiniteMetric(state?.performance?.currentModelValueInr)
+        || isFiniteMetric(state?.performance?.totalPnlInr)
+        || isFiniteMetric(state?.performance?.sinceLaunchPercent);
+    }
+
+    function heroStatusLabel(state) {
+      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Pre-fill research";
+    }
+
+    function isFiniteMetric(value) {
+      return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
     }
 
     function formatInr(value) {
@@ -1987,6 +2009,40 @@ function priceStatusText(state) {
     return "Verified market quotes are not available yet. Current prices and day moves are hidden.";
   }
   return "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published.";
+}
+
+function hasPublishedFillPerformance(state) {
+  return isFiniteMetric(state.performance?.currentModelValueInr)
+    || isFiniteMetric(state.performance?.totalPnlInr)
+    || isFiniteMetric(state.performance?.sinceLaunchPercent);
+}
+
+function heroStatusLabel(state) {
+  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Pre-fill research";
+}
+
+function performanceStripHtml(state) {
+  if (!hasPublishedFillPerformance(state)) {
+    return `
+    <section class="return-strip prefill" aria-label="Public model status">
+      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong><small>Research basket size</small></div>
+      <div class="metric"><span>Execution status</span><strong>Pre-fill</strong><small>No public fills logged yet</small></div>
+      <div class="metric"><span>Quote snapshot</span><strong>${escapeHtml(latestQuoteAsOf(state) || "Awaiting quote")}</strong><small>Latest public closes in holdings</small></div>
+      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Since model date</small></div>
+    </section>`;
+  }
+  return `
+    <section class="return-strip" aria-label="Public model performance">
+      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong></div>
+      <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong></div>
+      <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong></div>
+      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong></div>
+      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong></div>
+    </section>`;
+}
+
+function isFiniteMetric(value) {
+  return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
 }
 
 function toneClass(value) {

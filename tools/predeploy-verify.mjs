@@ -107,10 +107,10 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
-  assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
-  assertOutput("multibagger/index.html", /Current value/);
-  assertOutput("multibagger/index.html", /Model P&L/);
-  assertOutput("multibagger/index.html", /Starts after fill/);
+  assertOutput("multibagger/index.html", /Model status/);
+  assertOutput("multibagger/index.html", /Execution status/);
+  assertOutput("multibagger/index.html", /Quote snapshot/);
+  assertOutput("multibagger/index.html", /Pre-fill research/);
   assertOutput("multibagger/index.html", /Pre-fill research model/);
   assertOutput("multibagger/index.html", /Latest public close/);
   assertOutput("multibagger/index.html", /Plain-English Role/);

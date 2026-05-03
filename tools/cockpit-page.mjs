@@ -6302,7 +6302,7 @@ function marketMoodRailHtml(digest) {
   const moodClass = String(digest.sentimentLabel || "").toLowerCase();
   const moodColor = digest.sentimentLabel === "BULLISH" ? "#34d399" : digest.sentimentLabel === "BEARISH" ? "#fb7185" : "#fbbf24";
   const moodWidth = sentimentPinPosition(digest.overallSentiment);
-  const primaryTheme = digest.themes[0];
+  const primaryDriver = primaryDriverForDigest(digest);
   const nifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "NIFTY");
   const bankNifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
   const setup = niftySetup(digest);
@@ -6324,8 +6324,8 @@ function marketMoodRailHtml(digest) {
       </article>
       <article class="mood-cell">
         <span>Primary Driver</span>
-        <strong>${escapeHtml(primaryTheme?.title || "Narrative cluster pending")}</strong>
-        <small>${escapeHtml(primaryTheme?.summary || "Source-backed theme will appear after the digest run.")}</small>
+        <strong>${escapeHtml(primaryDriver.title)}</strong>
+        <small>${escapeHtml(primaryDriver.summary)}</small>
       </article>
       <article class="mood-cell">
         <span>India Filter</span>
@@ -6334,6 +6334,49 @@ function marketMoodRailHtml(digest) {
       </article>
     </section>
   `;
+}
+
+function primaryDriverForDigest(digest) {
+  const ranked = weightedSourceArticles(digest.news ?? []);
+  const article = ranked.find(isTradeRelevantDriver) ?? ranked[0];
+  if (article) {
+    return {
+      title: driverLabelForArticle(article),
+      summary: compactDriverSummary(article)
+    };
+  }
+  const theme = (digest.themes ?? [])
+    .slice()
+    .sort((left, right) => Math.abs(Number(right.sentimentScore || 0)) - Math.abs(Number(left.sentimentScore || 0)))[0];
+  return {
+    title: theme?.title || "Narrative cluster pending",
+    summary: theme?.summary || "Source-backed theme will appear after the digest run."
+  };
+}
+
+function isTradeRelevantDriver(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(attorney|legal strateg(?:y|ies)|probe|investigation|subpoena|court)\b/.test(text) && !/\b(rate|rates|yield|yields|inflation|policy|fomc|market|markets|stocks?|futures)\b/.test(text)) {
+    return false;
+  }
+  return /\b(crude|oil|brent|yield|yields|bond|bonds|rate|rates|inflation|fed|fomc|dollar|rupee|currency|nasdaq|dow|s&p|wall street|futures|earnings|guidance|tariff|trade|bank|banks|credit)\b/.test(text);
+}
+
+function driverLabelForArticle(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(crude|oil|brent)\b/.test(text)) return "Crude / energy risk";
+  if (/\b(yield|yields|bond|bonds|rate|rates|inflation|fed|fomc)\b/.test(text)) return "Rates / Fed path";
+  if (/\b(dollar|rupee|currency|yen|forex)\b/.test(text)) return "Currency pressure";
+  if (/\b(nasdaq|dow|s&p|wall street|futures)\b/.test(text)) return "Global risk appetite";
+  if (/\b(bank|banks|credit|financial)\b/.test(text)) return "Financial breadth";
+  if (/\b(earnings|guidance|revenue|profit)\b/.test(text)) return "Earnings read-through";
+  if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) return "Trade-policy risk";
+  return compactEntityName(article?.entityName || article?.category || "Market driver");
+}
+
+function compactDriverSummary(article) {
+  const source = article?.summary || article?.takeaway || article?.headline || "Source-backed driver awaiting the next verified run.";
+  return limitWords(String(source).replace(/\s+/g, " ").trim(), 24);
 }
 
 function compactEntityName(value) {
@@ -6357,7 +6400,8 @@ function compactAsiaLine(snapshots) {
   const strongest = asia
     .slice()
     .sort((left, right) => Math.abs(right.changePercent) - Math.abs(left.changePercent))[0];
-  return `Asia: ${positives} of ${asia.length} top country markets are higher, led by ${countryForSnapshot(strongest) || strongest.name} ${formatChange(strongest.changePercent)}.`;
+  const direction = Number(strongest.changePercent) >= 0 ? "strongest lift" : "biggest drag";
+  return `Asia: ${positives} of ${asia.length} top country markets are higher; ${direction} is ${countryForSnapshot(strongest) || strongest.name} ${formatChange(strongest.changePercent)}.`;
 }
 
 function expandedBriefingHtml(digest) {
@@ -6584,8 +6628,8 @@ function sourceNotesHtml(digest) {
   const defaultFilter = categories[0]?.category || "all";
   const defaultCount = categories[0]?.count || articles.length;
   const sourceCount = new Set(articles.map((article) => article.sourceName)).size;
-  const negativeCount = articles.filter((article) => Number(article.sentimentScore) < -0.1).length;
-  const positiveCount = articles.filter((article) => Number(article.sentimentScore) > 0.1).length;
+  const negativeCount = articles.filter((article) => articleTone(article) < -0.1).length;
+  const positiveCount = articles.filter((article) => articleTone(article) > 0.1).length;
 
   return `
     <section class="sources-section">
@@ -6666,7 +6710,7 @@ function sourceLeadCardHtml(article) {
       ${articleThumbnailHtml(article)}
       <div class="source-lead-copy">
         <div class="source-lead-kicker">
-          <span class="news-badge ${newsToneClass(article.sentimentScore)}">Lead evidence</span>
+          <span class="news-badge ${newsToneClass(articleTone(article))}">Lead evidence</span>
           <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
         </div>
         <h3>${escapeHtml(article.headline)}</h3>

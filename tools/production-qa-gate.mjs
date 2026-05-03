@@ -138,7 +138,7 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Since Apr 27, 2026/i, /Current value/i, /Model P&L/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
+    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Model status/i, /Execution status/i, /Quote snapshot/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
     [/Run Monthly Review/i, /Admin review/i, ...offTopicAuditPatterns]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {

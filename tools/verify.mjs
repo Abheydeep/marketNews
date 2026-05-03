@@ -28,7 +28,7 @@ import {
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
-import { resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { articleLooksMarketRelevant, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -191,9 +191,9 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
           description: "Banking, technology, and domestic liquidity cues drive sector selection."
         },
         {
-          title: `Spirit Airlines shutdown pressure from ${sourceSlug}`,
-          link: testArticleUrl(publisher, sourceSlug, "spirit-airlines-shutdown-pressure"),
-          description: "Airline cost pressure, passenger demand, and bankruptcy risk matter for aviation sentiment."
+          title: `Airline fuel cost pressure from ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "airline-fuel-cost-pressure"),
+          description: "Airline fuel costs, passenger demand, and margin pressure matter for aviation sentiment."
         },
         {
           title: `Fed investigation and yields from ${sourceSlug}`,
@@ -218,13 +218,29 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     article.indiaImpact,
     article.watchFor
   ].join(" "))));
-  const airline = articles.find((article) => /Spirit Airlines/i.test(article.headline));
+  const airline = articles.find((article) => /Airline fuel cost/i.test(article.headline));
   assert.equal(airline?.entityName, "Aviation");
   assert.match(airline?.indiaImpact || "", /Aviation/);
   const fed = articles.find((article) => /Fed investigation/i.test(article.headline));
   assert.equal(fed?.entityName, "Rates");
   assert.notEqual(airline?.entityName, "Nifty IT");
   assert.notEqual(fed?.entityName, "Nifty IT");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell",
+    summary: "The deadline is approaching in the legal process."
+  }), false, "legal/political Fed articles without policy or market impact should be rejected");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Fed policy uncertainty pushes Treasury yields higher",
+    summary: "Bond yields and rate guidance changed the market setup."
+  }), true, "actual policy/yield stories should remain eligible");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Is CF Industries Holdings, Inc. (CF) A Good Stock To Buy Now?",
+    summary: "A generic stock-pick article with no India open read-through."
+  }), false, "generic SEO stock-pick articles should not pad the pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "If I had invested my Social Security in the S&P 500 I would have $4 million",
+    summary: "Personal-finance advice is not a tradeable India pre-market driver."
+  }), false, "personal-finance stories should not appear in the public briefing source stack");
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {
@@ -360,10 +376,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Briefing archive"));
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
-  assert.ok(html.includes("Since Apr 27, 2026"));
-  assert.ok(html.includes("Current value"));
-  assert.ok(html.includes("Model P&L"));
-  assert.ok(html.includes("Starts after fill"));
+  assert.ok(html.includes("Model status"));
+  assert.ok(html.includes("Execution status"));
+  assert.ok(html.includes("Quote snapshot"));
+  assert.ok(html.includes("Pre-fill research"));
   assert.ok(html.includes("Tracking begins after the first confirmed public fill is published."));
   assert.ok(html.includes("Target weights are research allocations. Return, P&amp;L and current model value remain hidden until exact public fills are published."));
   assert.ok(html.includes("Pre-fill research model"));
@@ -1254,10 +1270,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(multibaggerHtml.body.includes("Briefing archive"));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
-  assert.ok(multibaggerHtml.body.includes("Since Apr 27, 2026"));
-  assert.ok(multibaggerHtml.body.includes("Current value"));
-  assert.ok(multibaggerHtml.body.includes("Model P&L"));
-  assert.ok(multibaggerHtml.body.includes("Starts after fill"));
+  assert.ok(multibaggerHtml.body.includes("Model status"));
+  assert.ok(multibaggerHtml.body.includes("Execution status"));
+  assert.ok(multibaggerHtml.body.includes("Quote snapshot"));
+  assert.ok(multibaggerHtml.body.includes("Pre-fill research"));
   assert.ok(multibaggerHtml.body.includes("Pre-fill research model"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("No public execution ledger has been published yet."));
