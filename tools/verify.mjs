@@ -28,11 +28,17 @@ import {
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
-import { articleLooksMarketRelevant, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { articleLooksMarketRelevant, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
+const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
+  "Brent, OMC margins, aviation fuel and inflation expectations are the India open transmission line",
+  "translate it into levels, breadth and sector leadership before assigning it trading weight",
+  "treat it as Global Tech earnings-quality evidence until India gets matching sector breadth",
+  "Watch Brent at the 6 AM IST print; above $108 keeps OMC and aviation headline risk alive"
+];
 
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();
@@ -218,6 +224,9 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     article.indiaImpact,
     article.watchFor
   ].join(" "))));
+  for (const phrase of FORBIDDEN_PUBLIC_READTHROUGH_PHRASES) {
+    assert.equal(JSON.stringify(articles).includes(phrase), false, `live copy leaked category fallback phrase: ${phrase}`);
+  }
   const airline = articles.find((article) => /Airline fuel cost/i.test(article.headline));
   assert.equal(airline?.entityName, "Aviation");
   assert.match(airline?.indiaImpact || "", /Aviation/);
@@ -241,6 +250,71 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     headline: "If I had invested my Social Security in the S&P 500 I would have $4 million",
     summary: "Personal-finance advice is not a tradeable India pre-market driver."
   }), false, "personal-finance stories should not appear in the public briefing source stack");
+});
+
+await test("article read-through copy does not reuse category templates", async () => {
+  const feed = {
+    sourceId: "test-feed",
+    sourceName: "Test Feed",
+    categoryHint: "neutral_volatile",
+    url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+  };
+  const articles = [
+    {
+      title: "Trump Keystone pipeline review affects crude flows",
+      link: "https://www.cnbc.com/2026/05/04/keystone-crude-flow.html",
+      summary: "Pipeline approvals and Gulf Coast crude shipments changed the flow story without moving Indian equities directly."
+    },
+    {
+      title: "OPEC+ output talks keep Brent supply risk alive",
+      link: "https://www.cnbc.com/2026/05/04/opec-output-brent.html",
+      summary: "OPEC+ production and supply discipline can keep Brent above $84 if traders price tighter barrels."
+    },
+    {
+      title: "Blue Owl funds SpaceX private credit deal",
+      link: "https://www.cnbc.com/2026/05/04/blue-owl-spacex-credit.html",
+      summary: "Private credit demand and SpaceX financing show risk appetite outside public equity markets."
+    },
+    {
+      title: "BOE Governor warns rates may stay restrictive",
+      link: "https://www.cnbc.com/2026/05/04/boe-governor-rates.html",
+      summary: "UK rate guidance and bond yields stayed firm as policymakers debated inflation persistence."
+    },
+    {
+      title: "Supercar engine supplier warns margins are under pressure",
+      link: "https://www.cnbc.com/2026/05/04/supercar-engine-margins.html",
+      summary: "Luxury auto engine demand and supplier margins weakened, creating an auto-ancillary signal rather than a broad market setup."
+    },
+    {
+      title: "Alphabet AI chip earnings lift software sentiment",
+      link: "https://www.cnbc.com/2026/05/04/alphabet-ai-chip-earnings.html",
+      summary: "Alphabet AI spending, chip demand and cloud revenue improved after earnings commentary."
+    }
+  ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
+  const combined = JSON.stringify(articles);
+  for (const phrase of FORBIDDEN_PUBLIC_READTHROUGH_PHRASES) {
+    assert.equal(combined.includes(phrase), false, `article copy reused banned category phrase: ${phrase}`);
+  }
+
+  const keystone = articles.find((article) => /Keystone pipeline/i.test(article.headline));
+  const opec = articles.find((article) => /OPEC\+ output/i.test(article.headline));
+  const blueOwl = articles.find((article) => /Blue Owl/i.test(article.headline));
+  const boe = articles.find((article) => /BOE Governor/i.test(article.headline));
+  const supercar = articles.find((article) => /Supercar engine/i.test(article.headline));
+  const alphabet = articles.find((article) => /Alphabet AI chip/i.test(article.headline));
+
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet, "mocked source set should retain all article-specific cases");
+  assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
+  assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
+  assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
+  assert.match(opec.indiaImpact, /OPEC|Brent|upstream/i);
+  assert.equal(/translate it into levels/i.test(blueOwl.takeaway), false);
+  assert.equal(/translate it into levels/i.test(boe.takeaway), false);
+  assert.equal(/translate it into levels/i.test(supercar.takeaway), false);
+  assert.equal(boe.entityName, "Rates");
+  assert.match(boe.takeaway, /rate|yield/i);
+  assert.match(alphabet.takeaway, /Alphabet|semiconductor|AI/i);
+  assert.equal(/Global Tech earnings-quality evidence/i.test(alphabet.takeaway), false);
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {
@@ -269,6 +343,9 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.equal(digest.watchItems.length, 3);
   assert.equal(digest.title.includes("Global Pressure Meets Domestic Selectivity"), false);
   assert.equal(JSON.stringify(digest.news).includes("verified source stack"), false);
+  for (const phrase of FORBIDDEN_PUBLIC_READTHROUGH_PHRASES) {
+    assert.equal(JSON.stringify(digest.news).includes(phrase), false, `digest leaked category fallback phrase: ${phrase}`);
+  }
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);

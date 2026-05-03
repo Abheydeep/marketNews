@@ -444,7 +444,7 @@ function categorySentiment(category) {
   }[category] ?? 0;
 }
 
-function normalizeLiveArticle(date, feed, item) {
+export function normalizeLiveArticle(date, feed, item) {
   const headline = cleanText(item.title);
   const summary = cleanText(item.summary);
   const analysisText = `${headline} ${summary}`;
@@ -475,6 +475,9 @@ function normalizeLiveArticle(date, feed, item) {
 
 function categoryFromText(text, fallback) {
   const value = text.toLowerCase();
+  if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(value)) {
+    return "macro_negative";
+  }
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
     return "global_risk";
   }
@@ -513,30 +516,30 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   const fact = articleFactSentence(headline, summary);
   if (/\b(oil|crude|brent|energy supply)\b/.test(lower)) {
-    return compactWords(`${fact}; Brent, OMC margins, aviation fuel and inflation expectations are the India open transmission line.`, 35);
+    return compactWords(`${fact}; ${oilReadthrough(lower).takeaway}`, 35);
   }
-  if (/\b(fed|yield|bond|rate|inflation|powell)\b/.test(lower)) {
-    return compactWords(`${fact}; yields become the hurdle-rate input, so Bank Nifty and high-multiple growth need cleaner confirmation.`, 35);
+  if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+    return compactWords(`${fact}; ${ratesReadthrough(lower).takeaway}`, 35);
   }
   if (/\b(tariff|trade|exports?|imports?)\b/.test(lower)) {
-    return compactWords(`${fact}; exporters, autos, metals and import-cost beneficiaries can split instead of moving as one index trade.`, 35);
+    return compactWords(`${fact}; ${tradeReadthrough(lower).takeaway}`, 35);
   }
   if (/\b(earnings|revenue|profit|guidance|results?)\b/.test(lower)) {
-    return compactWords(`${fact}; treat it as ${entityName} earnings-quality evidence until India gets matching sector breadth.`, 35);
+    return compactWords(`${fact}; ${earningsReadthrough(lower, entityName).takeaway}`, 35);
   }
   if (/\b(airline|airlines|spirit)\b/.test(lower)) {
-    return compactWords(`${fact}; aviation and travel sentiment are the first read-through, not a Nifty setup without fuel or demand confirmation.`, 35);
+    return compactWords(`${fact}; ${aviationReadthrough(lower).takeaway}`, 35);
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
-    return compactWords(`${fact}; Nasdaq risk appetite and Indian IT exporters need USD/INR and sector breadth confirmation.`, 35);
+    return compactWords(`${fact}; ${techReadthrough(lower, entityName).takeaway}`, 35);
   }
   if (category === "macro_positive") {
-    return compactWords(`${fact}; it improves the risk-appetite backdrop, but India still needs opening breadth and Bank Nifty support.`, 35);
+    return compactWords(`${fact}; keep the read-through to risk appetite until Indian breadth confirms after the opening range.`, 35);
   }
   if (category === "sector_negative") {
     return compactWords(`${fact}; keep it as a sector warning unless related Indian names weaken and breadth confirms the same pressure.`, 35);
   }
-  return compactWords(`${fact}; translate it into levels, breadth and sector leadership before assigning it trading weight.`, 35);
+  return compactWords(`${fact}; keep it as ${entityName} context unless a related Indian sector confirms the move.`, 35);
 }
 
 function whyItMattersFromArticle(headline, summary, category, entityName) {
@@ -562,13 +565,13 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
 function indiaImpactFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   if (hasNoDirectIndiaRead(lower, category)) {
-    return "No direct India read-through.";
+    return "No direct India read-through for this story.";
   }
   if (/\b(oil|crude|brent)\b/.test(lower)) {
-    return "Bearish for OMCs, aviation, paints and tyres if Brent holds firm; bullish for upstream energy. Nifty needs breadth to absorb import-cost anxiety.";
+    return oilReadthrough(lower).indiaImpact;
   }
-  if (/\b(fed|yield|bond|rate|inflation|powell)\b/.test(lower)) {
-    return "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral only if VWAP acceptance and breadth hold.";
+  if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+    return ratesReadthrough(lower).indiaImpact;
   }
   if (/\b(rupee|dollar|currency|yen|forex)\b/.test(lower)) {
     return "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.";
@@ -577,7 +580,7 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.";
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
-    return "Potentially bullish for Nifty IT only if Nasdaq futures and USD/INR support exporters; otherwise treat it as global-risk context.";
+    return techReadthrough(lower, entityName).indiaImpact;
   }
   if (/\b(pharma|health|lilly|drug|fda)\b/.test(lower)) {
     return "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.";
@@ -586,7 +589,7 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return "Nifty Auto and ancillaries need a separate read; tariff or demand news can hit exporters differently from domestic OEMs.";
   }
   if (/\b(airline|airlines|spirit|travel)\b/.test(lower)) {
-    return "Aviation and travel are the direct read-through; do not translate it into Nifty IT or broad-index conviction.";
+    return aviationReadthrough(lower).indiaImpact;
   }
   if (category === "macro_positive") {
     return "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.";
@@ -594,7 +597,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (category === "sector_negative") {
     return "Treat this as a sector caution flag; index action needs confirmation from banks and breadth.";
   }
-  return `${entityName} is a watchlist input for the open; wait for breadth and VWAP before assigning it trading weight.`;
+  return entityName === "Market"
+    ? "No direct India read-through for this story."
+    : `${entityName} is only a conditional India input; require first-range breadth before using it for trade bias.`;
 }
 
 function watchForFromArticle(headline, summary, category, entityName) {
@@ -603,10 +608,10 @@ function watchForFromArticle(headline, summary, category, entityName) {
     return "No specific watch for this article.";
   }
   if (/\b(oil|crude|brent)\b/.test(lower)) {
-    return "Watch Brent at the 6 AM IST print; above $108 keeps OMC and aviation headline risk alive.";
+    return oilReadthrough(lower).watchFor;
   }
-  if (/\b(fed|yield|bond|rate|inflation)\b/.test(lower)) {
-    return "Watch US 10Y yield direction into afternoon trade; rising yields require Bank Nifty to hold VWAP.";
+  if (/\b(fed|yield|bond|rate|inflation|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+    return ratesReadthrough(lower).watchFor;
   }
   if (/\b(rupee|dollar|currency|yen|forex)\b/.test(lower)) {
     return "Watch USD/INR near 84.20 and DXY in the first hour; pressure splits exporters from importers.";
@@ -615,12 +620,173 @@ function watchForFromArticle(headline, summary, category, entityName) {
     return "Watch private-bank breadth after 10:15 AM IST; no long bias if financials lag Nifty.";
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
-    return "Watch Nasdaq futures and Nifty IT breadth together; exporter strength needs USD/INR support.";
+    return techReadthrough(lower, entityName).watchFor;
   }
   if (/\b(tariff|trade|exports?|imports?)\b/.test(lower)) {
     return "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.";
   }
   return `Watch ${entityName} during the first-hour range; trade it only if it broadens into sector leadership.`;
+}
+
+function oilReadthrough(lower) {
+  const level = extractMarketLevel(lower, "$") || "the Asia handoff";
+  if (/\b(opec|opec\+|output|production|barrels?|supply deal|saudi|russia)\b/.test(lower)) {
+    return {
+      takeaway: "treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      indiaImpact: "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      watchFor: `Watch Brent around ${level}; OMC risk stays live only if supply headlines keep prices firm.`
+    };
+  }
+  if (/\b(pipeline|keystone|refinery|export terminal|shipment|cargo|gulf coast)\b/.test(lower)) {
+    return {
+      takeaway: "treat it as crude-flow infrastructure evidence; India needs a Brent reaction before it becomes an opening trade input.",
+      indiaImpact: "No direct Indian pipeline read-through; use Brent to decide whether OMCs, aviation and paints face import-cost pressure.",
+      watchFor: `Watch whether Brent reacts to the flow story near ${level}; no India trade if prices ignore it.`
+    };
+  }
+  if (/\b(falls?|drops?|slides?|slips?|softens?|eases?|lower|down|retreats?)\b/.test(lower)) {
+    return {
+      takeaway: "lower crude eases India import-cost pressure if the move survives the morning handoff.",
+      indiaImpact: "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+      watchFor: `Watch Brent holding below ${level}; sustained softness removes part of the OMC and aviation overhang.`
+    };
+  }
+  if (/\b(rises?|gains?|jumps?|surges?|spikes?|soars?|higher|up)\b/.test(lower)) {
+    return {
+      takeaway: "higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
+      indiaImpact: "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+      watchFor: `Watch Brent acceptance above ${level}; a firm tape keeps import-cost sectors on the defensive.`
+    };
+  }
+  return {
+    takeaway: "keep the oil story tied to Brent direction before turning it into an India equity signal.",
+    indiaImpact: "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+    watchFor: `Watch Brent at ${level}; direction after Asia opens decides whether the story matters for OMCs.`
+  };
+}
+
+function ratesReadthrough(lower) {
+  const level = extractMarketLevel(lower, "%") || "the US 10Y trend";
+  if (/\b(boe|bank of england|uk rate|sterling)\b/.test(lower)) {
+    return {
+      takeaway: "use it as global rate-sensitivity evidence; India needs bond-market confirmation before banks inherit the signal.",
+      indiaImpact: "Bank Nifty and rate-sensitive sectors care only if global yields follow through and local breadth weakens.",
+      watchFor: `Watch ${level} and Indian bank breadth; no rate trade if yields fade.`
+    };
+  }
+  if (/\b(fed|powell|fomc)\b/.test(lower)) {
+    return {
+      takeaway: "Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
+      indiaImpact: "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
+      watchFor: `Watch ${level}; rising yields require Bank Nifty to hold VWAP.`
+    };
+  }
+  return {
+    takeaway: "the yield move changes the discount-rate check for banks and high-multiple growth.",
+    indiaImpact: "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+    watchFor: `Watch ${level}; pair it with Bank Nifty VWAP before assigning direction.`
+  };
+}
+
+function tradeReadthrough(lower) {
+  if (/\b(tariff|tariffs)\b/.test(lower)) {
+    return {
+      takeaway: "tariff risk can split exporters, autos and metals instead of moving the whole index together."
+    };
+  }
+  return {
+    takeaway: "trade-flow news separates exporters from import-cost sectors, so the index read needs sector confirmation."
+  };
+}
+
+function earningsReadthrough(lower, entityName) {
+  const subject = specificCompanyOrTheme(lower, entityName);
+  const evidenceLabel = /\bearnings\b/i.test(subject) ? subject : `${subject} earnings`;
+  if (/\b(space|spacex|satellite|rocket)\b/.test(lower)) {
+    return {
+      takeaway: `${subject} financing is a private-market risk cue, not a direct Nifty setup without listed peer breadth.`
+    };
+  }
+  if (/\b(supercar|engine|luxury auto|ferrari|lamborghini)\b/.test(lower)) {
+    return {
+      takeaway: `${subject} margin evidence belongs in auto-ancillary context, not broad Nifty conviction.`
+    };
+  }
+  return {
+    takeaway: `${evidenceLabel} evidence matters only if margins, guidance or demand can travel to listed Indian peers.`
+  };
+}
+
+function aviationReadthrough(lower) {
+  if (/\b(spirit airlines|shutdown|bankrupt|bankruptcy)\b/.test(lower)) {
+    return {
+      takeaway: "keep it as US aviation stress unless fuel, demand or aircraft-supply data moves Indian aviation names.",
+      indiaImpact: "No direct India read-through for this story.",
+      watchFor: "No specific watch for this article."
+    };
+  }
+  return {
+    takeaway: "aviation demand or fuel pressure matters for airlines before it matters for the broad index.",
+    indiaImpact: "Aviation is the direct read-through; do not convert it into Nifty IT or broad-index conviction.",
+    watchFor: "Watch aviation and fuel-cost names separately; avoid using the headline as a Nifty setup."
+  };
+}
+
+function techReadthrough(lower, entityName) {
+  const subject = specificCompanyOrTheme(lower, entityName);
+  if (/\b(chip|chips|semiconductor|nvidia)\b/.test(lower)) {
+    return {
+      takeaway: `${subject} is semiconductor-cycle evidence; Indian IT needs Nasdaq breadth and USD/INR support to inherit it.`,
+      indiaImpact: "Nifty IT gets a read-through only if Nasdaq futures, chip breadth and USD/INR support exporters together.",
+      watchFor: "Watch Nasdaq futures plus Nifty IT advance-decline; chip strength alone is not enough."
+    };
+  }
+  if (/\b(ai|software|cloud|alphabet|google|microsoft|oracle|meta)\b/.test(lower)) {
+    return {
+      takeaway: `${subject} is AI-spending evidence; treat the India read as conditional on IT services breadth.`,
+      indiaImpact: "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      watchFor: `Watch Nifty IT breadth against Nasdaq futures; ${subject} must translate into exporter participation.`
+    };
+  }
+  return {
+    takeaway: `${subject} is global technology context; Indian exporters need local breadth before it matters.`,
+    indiaImpact: "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
+    watchFor: "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines."
+  };
+}
+
+function specificCompanyOrTheme(lower, fallback) {
+  const patterns = [
+    [/\bblue owl\b/, "Blue Owl"],
+    [/\bspacex\b/, "SpaceX"],
+    [/\balphabet\b|\bgoogle\b/, "Alphabet"],
+    [/\bpalantir\b/, "Palantir"],
+    [/\bnvidia\b/, "Nvidia"],
+    [/\bmicrosoft\b/, "Microsoft"],
+    [/\boracle\b/, "Oracle"],
+    [/\bmeta\b/, "Meta"],
+    [/\bapple\b/, "Apple"],
+    [/\btesla\b/, "Tesla"],
+    [/\bbig tech\b/, "Big Tech"],
+    [/\bsemiconductor earnings\b/, "semiconductor earnings"],
+    [/\bsupercar\b/, "supercar supply chain"],
+    [/\bopec\+?\b/, "OPEC+"]
+  ];
+  for (const [pattern, label] of patterns) {
+    if (pattern.test(lower)) {
+      return label;
+    }
+  }
+  return fallback && fallback !== "Market" ? fallback : "the article";
+}
+
+function extractMarketLevel(lower, unit) {
+  const escapedUnit = unit === "$" ? "\\$" : unit;
+  const pattern = unit === "$"
+    ? new RegExp(`${escapedUnit}\\s?\\d+(?:\\.\\d+)?`, "i")
+    : new RegExp(`\\d+(?:\\.\\d+)?\\s?${escapedUnit}`, "i");
+  const match = String(lower || "").match(pattern);
+  return match?.[0]?.replace(/\s+/g, "") || "";
 }
 
 function articleFactSentence(headline, summary) {
@@ -724,6 +890,9 @@ function entityMatchScoreFromText(text, entityName) {
 
 function entityForHeadline(headline, category) {
   const lower = headline.toLowerCase();
+  if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+    return "Rates";
+  }
   if (/\b(bank|banks|banking|credit|deposit|loan|jpmorgan|private credit|financials?)\b/.test(lower)) {
     return "Bank Nifty";
   }
