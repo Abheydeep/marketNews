@@ -19,7 +19,7 @@ public class ScriptGenerator {
         double overallSentiment
     ) {
         SentimentLabel label = SentimentLabel.fromScore(overallSentiment);
-        String title = "Nifty Pre-Market: " + titleSuffix(label);
+        String title = titleSuffix(label) + " | Market Narrative - " + digestDate;
         String onePageSummary = buildSummary(label, snapshots, themes, setups);
         String teleprompter = buildTeleprompter(label, snapshots, themes, setups);
         return new DailyScript(digestDate, title, onePageSummary, teleprompter, overallSentiment);
@@ -38,7 +38,7 @@ public class ScriptGenerator {
             .map(theme -> "- " + theme.getTitle() + ": " + theme.getSummary())
             .collect(Collectors.joining("\n"));
         String setupLines = setups.isEmpty()
-            ? "- No 1:2 RR setup passed all filters."
+            ? "- No fresh setup: wait for a new range with defined entry, stop, and first target."
             : setups.stream()
                 .map(setup -> "- " + setup.getSymbol() + " " + setup.getDirection()
                     + " entry " + setup.getEntryPrice()
@@ -81,7 +81,7 @@ public class ScriptGenerator {
             .map(theme -> "Theme: " + theme.getTitle() + ". " + theme.getSummary())
             .collect(Collectors.joining("\n\n"));
         String setupsText = setups.isEmpty()
-            ? "No trade setup qualifies under the 1:2 risk-reward framework yet."
+            ? "No fresh setup qualifies under the 1:2 risk-reward framework yet. Build the plan as IF bullish open, IF bearish open, and invalidation before taking any trade."
             : setups.stream()
                 .map(setup -> setup.getSymbol() + ": watch " + setup.getEntryPrice()
                     + " as entry, " + setup.getStopLoss()
@@ -112,10 +112,10 @@ public class ScriptGenerator {
 
     private String titleSuffix(SentimentLabel label) {
         return switch (label) {
-            case BULLISH -> "Positive Global Cues Support Gap-Up Watch";
-            case BEARISH -> "Global Pressure Meets Domestic Selectivity";
-            case VOLATILE -> "Mixed Cues Put Levels in Focus";
-            case NEUTRAL -> "Balanced Start Ahead of First-Hour Confirmation";
+            case BULLISH -> "Risk-On Breadth Tests Nifty Follow-Through";
+            case BEARISH -> "Macro Pressure Tests Nifty Support";
+            case VOLATILE -> "Two-Way Cues Put Opening Levels In Focus";
+            case NEUTRAL -> "Balanced Tape Awaits First-Hour Confirmation";
         };
     }
 

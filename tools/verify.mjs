@@ -1123,8 +1123,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Stories Driving The Open"));
   assert.ok(publicHtml.body.includes("How It Lands In India"));
   assert.ok(publicHtml.body.includes("What To Watch First"));
-  assert.ok(publicHtml.body.includes("<strong>IF:</strong>"));
-  assert.ok(publicHtml.body.includes("<strong>THEN:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>SETUP EXISTS?</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>IF BULLISH OPEN:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>IF BEARISH OPEN:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>INVALIDATE:</strong>"));
   assert.ok(publicHtml.body.includes("Weighted source tone: pressure, neutral, or support"));
   assert.ok(publicHtml.body.includes("Pressure") || publicHtml.body.includes("Support"));

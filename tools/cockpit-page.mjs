@@ -6640,27 +6640,63 @@ function noSetupTradeFrame(digest) {
 }
 
 function tradeFramingHtml(digest, setup, setupText) {
+  const levels = tradeMapLevels(digest, setup);
   if (setup) {
-    const direction = setup.direction === "BULLISH" ? "holds above" : "fails below";
-    const invalidation = setup.direction === "BULLISH" ? "breaks below" : "reclaims above";
+    const direction = setup.direction === "BULLISH" ? "long bias" : "short bias";
+    const opposite = setup.direction === "BULLISH" ? "bearish open" : "bullish squeeze";
     return `
       <ul class="brief-list">
-        <li><strong>IF:</strong> ${escapeHtml(setup.symbol)} ${escapeHtml(direction)} ${escapeHtml(formatNumber(setup.entry))} after the opening range, with breadth confirming.</li>
-        <li><strong>THEN:</strong> respect the ${escapeHtml(setup.direction.toLowerCase())} plan toward ${escapeHtml(formatNumber(setup.target))}, only while reward remains at least twice the risk.</li>
-        <li><strong>INVALIDATE:</strong> stand down if price ${escapeHtml(invalidation)} ${escapeHtml(formatNumber(setup.stopLoss))} or Bank Nifty breadth diverges.</li>
+        <li><strong>SETUP EXISTS?</strong> Yes - ${escapeHtml(setup.symbol)} has a fresh ${escapeHtml(direction)} only near ${escapeHtml(formatNumber(setup.entry))}.</li>
+        <li><strong>IF BULLISH OPEN:</strong> Nifty must hold ${escapeHtml(formatNumber(levels.niftyBullishHold))}; first upside watch is ${escapeHtml(formatNumber(levels.niftyUpsideTarget))}.</li>
+        <li><strong>IF BEARISH OPEN:</strong> Nifty breaks below ${escapeHtml(formatNumber(levels.niftyBearishBreak))}; first downside watch is ${escapeHtml(formatNumber(levels.niftyDownsideTarget))}.</li>
+        <li><strong>INVALIDATE:</strong> stand down on the ${escapeHtml(opposite)} if ${escapeHtml(setup.symbol)} violates ${escapeHtml(formatNumber(setup.stopLoss))} or Bank Nifty breadth diverges.</li>
       </ul>
-      <p class="chart-note">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+      <p class="chart-note">${escapeHtml(setupText)} This is market preparation context, not investment advice.</p>
     `;
   }
   const completed = setupAuditItems(digest).some((item) => item.status === "TARGET_REACHED");
+  const completedNifty = setupAuditItems(digest).find((item) => item.status === "TARGET_REACHED" && item.symbol === "NIFTY");
+  const completedLine = completedNifty
+    ? `No fresh setup - prior target reached at ${formatNumber(completedNifty.target)}.`
+    : "No fresh setup - no current 1:2 level passed the scanner.";
   return `
     <ul class="brief-list">
-      <li><strong>IF:</strong> the first range forms without a fresh 1:2 reward-risk level, do nothing.</li>
-      <li><strong>THEN:</strong> wait for VWAP acceptance and sector breadth before creating a new plan.</li>
-      <li><strong>INVALIDATE:</strong> ${escapeHtml(completed ? "do not chase the completed move; the old level is archived." : "skip the trade if the entry is already stretched away from the stop.")}</li>
+      <li><strong>SETUP EXISTS?</strong> ${escapeHtml(completedLine)}</li>
+      <li><strong>IF BULLISH OPEN:</strong> Nifty must reclaim and hold ${escapeHtml(formatNumber(levels.niftyBullishHold))}; first upside watch is ${escapeHtml(formatNumber(levels.niftyUpsideTarget))}.</li>
+      <li><strong>IF BEARISH OPEN:</strong> Nifty breaks below ${escapeHtml(formatNumber(levels.niftyBearishBreak))}; first downside watch is ${escapeHtml(formatNumber(levels.niftyDownsideTarget))}.</li>
+      <li><strong>INVALIDATE:</strong> ${escapeHtml(completed ? "do not chase the completed move; the old level is archived." : "skip the trade if price is already stretched away from the nearest stop.")}</li>
     </ul>
-    <p class="chart-note">${escapeHtml(setupText)} This is market preparation, not investment advice.</p>
+    <p class="chart-note">Bank Nifty confirmation zone: hold ${escapeHtml(formatNumber(levels.bankBullishHold))} for risk-on, lose ${escapeHtml(formatNumber(levels.bankBearishBreak))} for defensive tape. ${escapeHtml(setupText)} This is market preparation context, not investment advice.</p>
   `;
+}
+
+function tradeMapLevels(digest, setup) {
+  const snapshots = digest.marketSnapshots || [];
+  const niftySnapshot = snapshots.find((snapshot) => snapshot.symbol === "NIFTY");
+  const bankSnapshot = snapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
+  const completedNifty = setupAuditItems(digest).find((item) => item.symbol === "NIFTY" && item.status === "TARGET_REACHED");
+  const completedBank = setupAuditItems(digest).find((item) => item.symbol === "BANKNIFTY" && item.status === "TARGET_REACHED");
+  const niftyClose = Number(niftySnapshot?.closeValue || completedNifty?.currentPrice || setup?.entry || 0);
+  const bankClose = Number(bankSnapshot?.closeValue || completedBank?.currentPrice || 0);
+  const niftyAnchor = Number(completedNifty?.target || setup?.entry || niftyClose);
+  const bankAnchor = Number(completedBank?.target || bankClose);
+
+  return {
+    niftyBullishHold: roundLevel(Math.max(niftyAnchor, niftyClose * 0.998)),
+    niftyUpsideTarget: roundLevel(niftyClose * 1.006),
+    niftyBearishBreak: roundLevel(Math.min(niftyAnchor, niftyClose * 0.996)),
+    niftyDownsideTarget: roundLevel(niftyClose * 0.992),
+    bankBullishHold: roundLevel(Math.max(bankAnchor, bankClose * 0.998)),
+    bankBearishBreak: roundLevel(Math.min(bankAnchor, bankClose * 0.996))
+  };
+}
+
+function roundLevel(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) {
+    return 0;
+  }
+  return Math.round(number / 5) * 5;
 }
 
 function watchItemsHtml(digest, setup) {

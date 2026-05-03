@@ -48,7 +48,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles, options.previousDigest);
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(date, articles, themes, options.previousDigest);
-  const deskNote = deskNoteForDigest(date, articles, tradeSetups, options.previousDigest);
+  const deskNote = deskNoteForDigest(date, articles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest);
   const watchItems = watchItemsForDigest(date, articles, tradeSetups, options.previousDigest);
   assertDigestEditorialIntegrity({
     title: script.title,
@@ -742,22 +742,37 @@ function archiveSummaryForDigest(date, articles, themes, previousDigest) {
   return compactWords(cleanSentence(fallback), 20);
 }
 
-function deskNoteForDigest(date, articles, setups, previousDigest) {
+function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overallSentiment = 0, previousDigest) {
   const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
   const sector = leadSectorArticle(articles, date) ?? lead;
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
   const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
   const sectorLabel = sectorFocusLabel(sector);
-  const first = `${force} ${forceVerb(force)} the first filter today: ${sentenceFragment(editorialLeadSentence(lead) || lead?.summary || lead?.headline || "the source mix changed from the last verified edition")}.`;
-  const second = `${sectorLabel} is the key watch because ${becauseFragment(editorialBecause(sector) || sector?.summary || sector?.headline || "it decides whether the first move has breadth behind it")}.`;
-  const third = setup
-    ? `The open rule is simple: respect ${setup.symbol} only near ${formatNumber(setup.entry)} and abandon it below ${formatNumber(setup.stopLoss)}.`
-    : "The open rule is simple: wait for the first range and do not chase the headline candle.";
-  const note = [first, second, third].map(cleanSentence).join(" ");
+  const keyInstrument = deskNoteInstrument(lead);
+  const indiaSnapshot = marketSnapshots.find((item) => item.symbol === "NIFTY") ?? marketSnapshots.find((item) => item.marketRegion === "India Open");
+  const first = `${force} ${forceVerb(force)} today's first filter because ${becauseFragment(editorialLeadSentence(lead) || lead?.summary || lead?.headline || "the verified source mix changed from the last edition")}.`;
+  const second = setup
+    ? `Track ${setup.symbol} ${formatNumber(setup.entry)} first; holding that zone keeps ${formatNumber(setup.target)} in play.`
+    : `Track ${keyInstrument}${indiaSnapshot?.closeValue ? ` against ${formatNumber(indiaSnapshot.closeValue)}` : ""}; sentiment at ${round(overallSentiment, 2)} says the first range must prove direction.`;
+  const third = `${sectorLabel} confirms the headline only if ${becauseFragment(editorialBecause(sector) || sector?.indiaImpact || sector?.summary || "sector breadth follows the same direction")}.`;
+  const fourth = setup
+    ? `Trade the first 15 minutes only if price holds VWAP and the stop at ${formatNumber(setup.stopLoss)} stays respected.`
+    : "Let the first 15 minutes print, then trade only the side that holds VWAP with breadth behind it.";
+  const note = [first, second, third, fourth].map(cleanSentence).join(" ");
   if (normalizeEditorial(note) !== normalizeEditorial(previousDigest?.deskNote)) {
     return note;
   }
-  return `${first} ${second} The open rule is simple: wait for a fresh level that still pays at least twice the risk.`;
+  return `${first} ${second} ${third} Use the first 15 minutes to demand a fresh level that still pays at least twice the risk.`;
+}
+
+function deskNoteInstrument(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.entityName || ""}`.toLowerCase();
+  if (/\b(brent|crude|oil|opec)\b/.test(text)) return "Brent";
+  if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) return "US 10Y yield";
+  if (/\b(dollar|rupee|currency|yen|forex)\b/.test(text)) return "USD/INR";
+  if (/\b(bank|credit|financial)\b/.test(text)) return "Bank Nifty";
+  if (/\b(tech|ai|semiconductor|software|nasdaq)\b/.test(text)) return "Nasdaq futures";
+  return "Nifty VWAP";
 }
 
 function sentenceFragment(value) {
@@ -771,6 +786,9 @@ function forceVerb(force) {
 function becauseFragment(value) {
   const text = sentenceFragment(value);
   const withoutArticle = text.replace(/^(A|An|The)\b/, (match) => match.toLowerCase());
+  if (/^[A-Z]{2,}\b/.test(withoutArticle)) {
+    return withoutArticle;
+  }
   return withoutArticle ? `${withoutArticle.charAt(0).toLowerCase()}${withoutArticle.slice(1)}` : withoutArticle;
 }
 
