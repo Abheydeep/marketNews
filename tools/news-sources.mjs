@@ -161,6 +161,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   }
   return dedupeArticles(feedResults)
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
+    .filter((article) => articleIsFreshForDigest(article, date))
     .slice(0, 24);
 }
 
@@ -412,6 +413,12 @@ function categoryFromText(text, fallback) {
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
     return "global_risk";
   }
+  if (/(shutdown|shut down|bankrupt|bailout|cuts|cost surge|failing|deductible|pressure|losses)/.test(value)) {
+    return "sector_negative";
+  }
+  if (/(s&p|nasdaq|dow|rallies|rally|wall street|analyst|berkshire|buffett|stocks?|record high|long-term prospects)/.test(value)) {
+    return "macro_positive";
+  }
   if (/(yield|bond|inflation|rate|fed|rbi|deficit|rupee)/.test(value)) {
     return "macro_negative";
   }
@@ -425,6 +432,16 @@ function categoryFromText(text, fallback) {
     return "macro_positive";
   }
   return fallback ?? "neutral_volatile";
+}
+
+function articleIsFreshForDigest(article, digestDate) {
+  const published = Date.parse(article.publishedAt);
+  const digestTime = Date.parse(`${digestDate}T08:30:00+05:30`);
+  if (!Number.isFinite(published) || !Number.isFinite(digestTime)) {
+    return true;
+  }
+  const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  return ageHours <= 120 && ageHours >= -48;
 }
 
 function indiaImpactFromCategory(headline, category) {
