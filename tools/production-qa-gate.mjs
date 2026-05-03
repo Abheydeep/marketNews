@@ -21,7 +21,7 @@ const config = {
   requireAuthenticated: process.env.REQUIRE_AUTHENTICATED_QA === "true",
   runBrowser: process.env.SKIP_BROWSER_QA !== "true",
   timeoutMs: Number.parseInt(process.env.PROD_QA_TIMEOUT_MS ?? "30000", 10),
-  latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? "/3may2026/"
+  latestBriefingPath: process.env.PROD_QA_LATEST_PATH ?? null
 };
 
 const publicBlockedCopyPatterns = [
@@ -107,6 +107,8 @@ await group("Domain sanity", async () => {
     return `${host} not configured`;
   });
 });
+
+config.latestBriefingPath = await resolveLatestBriefingPath();
 
 await group("Public user surface", async () => {
   await expectPage(
@@ -303,6 +305,28 @@ async function expectPage(surface, name, url, expectedStatus, requiredPatterns =
     }
     return `HTTP ${response.status}; ${compact(response.body)}`;
   });
+}
+
+async function resolveLatestBriefingPath() {
+  if (config.latestBriefingPath) {
+    return ensurePath(config.latestBriefingPath);
+  }
+  const payload = await fetchJson(`${config.publicUrl}/archive.json`, 200);
+  const latest = payload.digests?.[0];
+  assert.ok(latest?.digestDate, "archive.json did not expose a latest digestDate");
+  return `/${slugForDigestDate(latest.digestDate)}/`;
+}
+
+function slugForDigestDate(date) {
+  const [year, month, day] = String(date).split("-");
+  const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
+  assert.ok(year && monthName && day, `invalid digest date ${date}`);
+  return `${Number(day)}${monthName}${year}`;
+}
+
+function ensurePath(value) {
+  const path = String(value || "").startsWith("/") ? String(value) : `/${value}`;
+  return path.endsWith("/") ? path : `${path}/`;
 }
 
 async function expectJson(surface, name, url, expectedStatus, validate) {
