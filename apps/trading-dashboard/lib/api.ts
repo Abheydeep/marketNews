@@ -1,6 +1,8 @@
 import type { MarketDataStatus, OrderProposal, OrderResult, TradingIndex, TradingMarketEnvelope } from "@market-narrative/api-client";
 
-export const tradingApiBase = process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? "http://localhost:8090";
+const renderTradingApiBase = "https://marketnarrative-trade-api.onrender.com";
+
+export const tradingApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? defaultTradingApiBase());
 
 function authHeaders(token: string): HeadersInit {
   return { Authorization: `Bearer ${token}` };
@@ -18,7 +20,7 @@ export async function fetchMarketEnvelope(token: string): Promise<TradingMarketE
 }
 
 export function marketSocketUrl(token: string): string {
-  return tradingApiBase.replace(/^http/, "ws") + `/ws/market?token=${encodeURIComponent(token)}`;
+  return toWebSocketBase(tradingApiBase) + `/ws/market?token=${encodeURIComponent(token)}`;
 }
 
 export async function createOrderProposal(index: TradingIndex, token: string): Promise<OrderProposal> {
@@ -78,4 +80,35 @@ export async function refreshMarketData(token: string): Promise<MarketDataStatus
     throw new Error(await response.text());
   }
   return response.json() as Promise<MarketDataStatus>;
+}
+
+function defaultTradingApiBase(): string {
+  if (typeof window === "undefined") {
+    return renderTradingApiBase;
+  }
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
+    return "http://localhost:8090";
+  }
+  return renderTradingApiBase;
+}
+
+function normalizeApiBase(value: string): string {
+  return value.replace(/\/+$/, "");
+}
+
+function toWebSocketBase(value: string): string {
+  const base = normalizeApiBase(value);
+  if (base.startsWith("https://")) {
+    return base.replace(/^https:\/\//, "wss://");
+  }
+  if (base.startsWith("http://")) {
+    return base.replace(/^http:\/\//, "ws://");
+  }
+  if (typeof window !== "undefined") {
+    const absolute = new URL(base, window.location.origin);
+    absolute.protocol = absolute.protocol === "https:" ? "wss:" : "ws:";
+    return absolute.toString().replace(/\/+$/, "");
+  }
+  return base;
 }

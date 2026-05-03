@@ -1,6 +1,8 @@
 import type { Permission } from "@market-narrative/api-client";
 
-export const authApiBase = process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? "http://localhost:8080";
+const renderAuthApiBase = "https://marketnarrative-api.onrender.com";
+
+export const authApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? defaultAuthApiBase());
 export const tradingAdminEmail = process.env.NEXT_PUBLIC_TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in";
 export const tokenStorageKey = "marketNarrativeTradingToken";
 
@@ -66,4 +68,19 @@ export async function loginTradingAdmin(email: string, password: string): Promis
     throw new Error("This account is not the Abhey trading admin");
   }
   return payload;
+}
+
+function defaultAuthApiBase(): string {
+  if (typeof window === "undefined") {
+    return renderAuthApiBase;
+  }
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
+    return "http://localhost:8080";
+  }
+  return renderAuthApiBase;
+}
+
+function normalizeApiBase(value: string): string {
+  return value.replace(/\/+$/, "");
 }

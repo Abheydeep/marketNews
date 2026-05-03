@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
@@ -121,6 +121,8 @@ function verifyVercelArtifacts() {
   assertOutput("deployment-manifest.json", /"target": "trade"/);
   assertOutput("icon.svg", /mn-signal/);
   assertOutput("index.html", /_next\/static/);
+  assertOutputTree("_next/static", /marketnarrative-trade-api\.onrender\.com/);
+  assertOutputTreeNot("_next/static", /Market WebSocket connection failed/);
 }
 
 function buildTarget(target) {
@@ -177,4 +179,32 @@ function assertOutputAbsent(relativePath) {
   if (existsSync(filePath)) {
     throw new Error(`expected ${filePath} to be absent`);
   }
+}
+
+function assertOutputTree(relativePath, pattern) {
+  const filePath = join("out", "vercel", relativePath);
+  const content = readTree(filePath);
+  if (!pattern.test(content)) {
+    throw new Error(`${filePath} tree did not match ${pattern}`);
+  }
+}
+
+function assertOutputTreeNot(relativePath, pattern) {
+  const filePath = join("out", "vercel", relativePath);
+  const content = readTree(filePath);
+  if (pattern.test(content)) {
+    throw new Error(`${filePath} tree unexpectedly matched ${pattern}`);
+  }
+}
+
+function readTree(filePath) {
+  if (!existsSync(filePath)) {
+    throw new Error(`expected ${filePath} to exist`);
+  }
+  if (statSync(filePath).isFile()) {
+    return readFileSync(filePath, "utf8");
+  }
+  return readdirSync(filePath, { withFileTypes: true })
+    .map((entry) => readTree(join(filePath, entry.name)))
+    .join("\n");
 }

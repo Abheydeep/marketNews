@@ -21,55 +21,100 @@ type MarketStore = {
 };
 
 let socket: WebSocket | null = null;
+let pollTimer: ReturnType<typeof setInterval> | null = null;
 
-export const useMarketStore = create<MarketStore>((set) => ({
-  envelope: null,
-  selectedIndex: "BANKNIFTY",
-  connected: false,
-  error: null,
-  pendingProposal: null,
-  token: null,
-  admin: null,
-  setAuthToken: (token) => {
-    if (token && isTradingAdmin(token)) {
-      window.localStorage.setItem(tokenStorageKey, token);
-      set({ token, admin: decodeToken(token), error: null });
+export const useMarketStore = create<MarketStore>((set) => {
+  const stopPolling = () => {
+    if (pollTimer) {
+      clearInterval(pollTimer);
+      pollTimer = null;
+    }
+  };
+
+  const startPolling = () => {
+    if (pollTimer) {
       return;
     }
-    window.localStorage.removeItem(tokenStorageKey);
-    socket?.close();
-    socket = null;
-    set({ token: null, admin: null, envelope: null, connected: false, pendingProposal: null });
-  },
-  setSelectedIndex: (selectedIndex) => set({ selectedIndex }),
-  setPendingProposal: (pendingProposal) => set({ pendingProposal }),
-  loadSnapshot: async () => {
-    const token = useMarketStore.getState().token;
-    if (!token) {
-      return;
-    }
-    try {
-      const envelope = await fetchMarketEnvelope(token);
-      set({ envelope, error: null });
-    } catch (error) {
-      set({ error: error instanceof Error ? error.message : "Unable to load market data" });
-    }
-  },
-  connect: () => {
-    const token = useMarketStore.getState().token;
-    if (!token) {
-      return;
-    }
-    if (socket && socket.readyState <= 1) {
-      return;
-    }
-    socket = new WebSocket(marketSocketUrl(token));
-    socket.onopen = () => set({ connected: true, error: null });
-    socket.onclose = () => set({ connected: false });
-    socket.onerror = () => set({ error: "Market WebSocket connection failed", connected: false });
-    socket.onmessage = (event) => {
-      const envelope = JSON.parse(event.data) as TradingMarketEnvelope;
-      set({ envelope, connected: true, error: null });
+    const poll = async () => {
+      const token = useMarketStore.getState().token;
+      if (!token) {
+        stopPolling();
+        return;
+      }
+      try {
+        const envelope = await fetchMarketEnvelope(token);
+        set({ envelope, connected: false, error: null });
+      } catch (error) {
+        set({ error: error instanceof Error ? error.message : "Unable to load market data", connected: false });
+      }
     };
-  }
-}));
+    void poll();
+    pollTimer = setInterval(poll, 5000);
+  };
+
+  return {
+    envelope: null,
+    selectedIndex: "BANKNIFTY",
+    connected: false,
+    error: null,
+    pendingProposal: null,
+    token: null,
+    admin: null,
+    setAuthToken: (token) => {
+      if (token && isTradingAdmin(token)) {
+        window.localStorage.setItem(tokenStorageKey, token);
+        set({ token, admin: decodeToken(token), error: null });
+        return;
+      }
+      window.localStorage.removeItem(tokenStorageKey);
+      if (socket) {
+        socket.onclose = null;
+        socket.onerror = null;
+        socket.close();
+        socket = null;
+      }
+      stopPolling();
+      set({ token: null, admin: null, envelope: null, connected: false, pendingProposal: null });
+    },
+    setSelectedIndex: (selectedIndex) => set({ selectedIndex }),
+    setPendingProposal: (pendingProposal) => set({ pendingProposal }),
+    loadSnapshot: async () => {
+      const token = useMarketStore.getState().token;
+      if (!token) {
+        return;
+      }
+      try {
+        const envelope = await fetchMarketEnvelope(token);
+        set({ envelope, error: null });
+      } catch (error) {
+        set({ error: error instanceof Error ? error.message : "Unable to load market data" });
+      }
+    },
+    connect: () => {
+      const token = useMarketStore.getState().token;
+      if (!token) {
+        return;
+      }
+      if (socket && socket.readyState <= 1) {
+        return;
+      }
+      socket = new WebSocket(marketSocketUrl(token));
+      socket.onopen = () => {
+        stopPolling();
+        set({ connected: true, error: null });
+      };
+      socket.onclose = () => {
+        set({ connected: false });
+        startPolling();
+      };
+      socket.onerror = () => {
+        set({ connected: false });
+        startPolling();
+      };
+      socket.onmessage = (event) => {
+        const envelope = JSON.parse(event.data) as TradingMarketEnvelope;
+        set({ envelope, connected: true, error: null });
+      };
+    }
+  };
+});

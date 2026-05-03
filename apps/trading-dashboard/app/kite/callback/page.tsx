@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { tradingApiBase } from "../../../lib/api";
 import { tokenStorageKey } from "../../../lib/auth";
-
-const apiBase = process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? "http://localhost:8090";
 
 export default function KiteCallbackPage() {
   const [status, setStatus] = useState("Waiting for request token");
@@ -24,7 +23,7 @@ export default function KiteCallbackPage() {
       return;
     }
     setStatus("Exchanging request token");
-    fetch(`${apiBase}/api/kite/session`, {
+    fetch(`${tradingApiBase}/api/kite/session`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${adminToken}` },
       body: JSON.stringify({ request_token: requestToken })
