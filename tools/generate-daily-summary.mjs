@@ -10,13 +10,14 @@ const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "08:30";
 const marketDataMode = readArg("--market-data") ?? process.env.MARKET_DATA_MODE ?? "mock";
+const newsDataMode = readArg("--news-data") ?? process.env.NEWS_DATA_MODE ?? "live";
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const digest = {
-  ...(await buildDigest(date, { marketDataMode })),
+  ...(await buildDigest(date, { marketDataMode, newsDataMode })),
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
-  runMode: marketDataMode === "live" ? "scheduled-live-market-data" : "manual-mock-schedule"
+  runMode: marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule"
 };
 
 await mkdir(outputDir, { recursive: true });
@@ -39,6 +40,8 @@ process.stdout.write(`Daily pre-market summary generated for ${date}\n`);
 process.stdout.write(`Scheduled-for timestamp: ${digest.scheduledFor}\n`);
 process.stdout.write(`Generated-at timestamp: ${digest.generatedAt}\n`);
 process.stdout.write(`Market-data mode: ${digest.marketDataMode}\n`);
+process.stdout.write(`News-data mode: ${digest.newsDataMode}\n`);
+process.stdout.write(`Verified article links: ${digest.sourceVerification?.verifiedArticleCount ?? 0}\n`);
 if (digest.marketDataError) {
   process.stdout.write(`Market-data fallback: ${digest.marketDataError}\n`);
 }

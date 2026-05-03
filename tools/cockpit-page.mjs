@@ -891,6 +891,21 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       line-height: 1.6;
     }
 
+    .source-quality-line {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 0;
+      border: 1px solid rgba(37, 99, 235, 0.16);
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.07);
+      padding: 7px 10px;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
     .source-stat-strip {
       display: flex;
       flex-wrap: wrap;
@@ -6352,6 +6367,7 @@ function sourceNotesHtml(digest) {
         <div>
           <h2>Source Notes & Attribution</h2>
           <p class="source-section-copy">Evidence ledger behind the briefing. The full article list stays collapsed by default so the page reads quickly.</p>
+          <p class="source-quality-line">${escapeHtml(sourceQualityLine(digest))}</p>
         </div>
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
@@ -6387,6 +6403,32 @@ function sourceNotesHtml(digest) {
       </details>
     </section>
   `;
+}
+
+function sourceQualityLine(digest) {
+  const verification = digest.sourceVerification;
+  if (!verification) {
+    return "Source quality: legacy archive, article-link audit unavailable.";
+  }
+  const generated = digest.generatedAt ? `generated ${formatGeneratedTime(digest.generatedAt)}` : "generated timestamp unavailable";
+  const blocked = verification.blockedReason ? `, blocked: ${verification.blockedReason}` : "";
+  return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
+}
+
+function formatGeneratedTime(value) {
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) {
+    return "timestamp unavailable";
+  }
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).format(date);
 }
 
 function sourceLeadCardHtml(article) {

@@ -17,7 +17,19 @@ const date = process.env.SKIP_DAILY_GENERATE === "true" ? process.env.VERCEL_BUI
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date}.`);
 } else {
-  run("npm", ["run", "daily:generate", "--", "--date", date, "--scheduled-time", "08:30", "--market-data", process.env.MARKET_DATA_MODE ?? "live"]);
+  run("npm", [
+    "run",
+    "daily:generate",
+    "--",
+    "--date",
+    date,
+    "--scheduled-time",
+    "08:30",
+    "--market-data",
+    process.env.MARKET_DATA_MODE ?? "live",
+    "--news-data",
+    process.env.NEWS_DATA_MODE ?? "live"
+  ]);
 }
 run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"]);
 

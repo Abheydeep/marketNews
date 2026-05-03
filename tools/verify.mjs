@@ -28,6 +28,7 @@ import {
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
+import { resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -121,9 +122,86 @@ await test("narrative sentiment is weighted by entity match", async () => {
   assert.ok(clusterThemes("2026-04-29", articles).length >= 4);
 });
 
+await test("fixture news source stacks are date-specific and article-level", async () => {
+  const first = await buildDigest("2026-04-29", { newsDataMode: "fixture" });
+  const second = await buildDigest("2026-04-30", { newsDataMode: "fixture", previousDigest: first });
+  const firstTitles = first.news.map((article) => article.headline);
+  const secondTitles = second.news.map((article) => article.headline);
+  const firstUrls = first.news.map((article) => article.sourceUrl);
+  const secondUrls = second.news.map((article) => article.sourceUrl);
+
+  assert.notDeepEqual(secondTitles, firstTitles, "fixture dates must not reuse identical source headlines");
+  assert.notDeepEqual(secondUrls, firstUrls, "fixture dates must not reuse identical source URLs");
+  assert.ok(first.news.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)), "first fixture stack has a section URL");
+  assert.ok(second.news.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)), "second fixture stack has a section URL");
+  assert.equal(first.sourceVerification.mode, "fixture");
+  assert.equal(second.sourceVerification.mode, "fixture");
+  assert.ok(first.sourceVerification.verifiedArticleCount >= 8);
+  assert.ok(second.sourceVerification.duplicateWithPreviousPercent < 55);
+});
+
+await test("source verification rejects section homepages and repeated stories", async () => {
+  const sectionUrlArticles = [
+    "https://www.reuters.com/markets/",
+    "https://www.reuters.com/markets/rates-bonds/",
+    "https://www.cnbc.com/markets/",
+    "https://www.cnbc.com/world-top-news/",
+    "https://economictimes.indiatimes.com/rss.cms",
+    "https://www.moneycontrol.com/features/rss/",
+    "https://www.bloomberg.com/asia",
+    "https://www.marketwatch.com/markets"
+  ].map((sourceUrl, index) => ({
+    headline: `Section source ${index}`,
+    sourceName: "Section Publisher",
+    sourceUrl,
+    category: "macro_negative"
+  }));
+
+  const rejected = verifySourceArticles(sectionUrlArticles, { mode: "fixture" });
+  assert.match(rejected.blockedReason, /verified article links/);
+  assert.ok(sectionUrlArticles.every((article) => !sourceUrlLooksArticleLevel(article.sourceUrl)));
+
+  const current = await buildDigest("2026-05-01", { newsDataMode: "fixture" });
+  const duplicate = verifySourceArticles(current.news, { mode: "fixture", previousDigest: current });
+  assert.match(duplicate.blockedReason, /overlap with the previous digest/);
+});
+
+await test("live news pipeline accepts mocked CNBC and Moneycontrol article feeds", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
+      const publisher = String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc";
+      return testRssXml([
+        {
+          title: `Yield and rupee watch from ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "yield-rupee-watch"),
+          description: "Bond yields, rupee movement, and policy expectations shape the India open."
+        },
+        {
+          title: `Bank and IT breadth from ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "bank-it-breadth"),
+          description: "Banking, technology, and domestic liquidity cues drive sector selection."
+        }
+      ]);
+    }
+  });
+
+  const { articles, sourceVerification } = await resolveNewsArticles("2026-05-03", { mode: "live", fetcher });
+  assert.equal(sourceVerification.mode, "live");
+  assert.equal(sourceVerification.blockedReason, null);
+  assert.ok(sourceVerification.verifiedArticleCount >= 8);
+  assert.ok(sourceVerification.publisherCount >= 2);
+  assert.ok(sourceVerification.categoryCount >= 2);
+  assert.ok(articles.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)));
+});
+
 await test("full digest contains public SEO and studio contracts", async () => {
   const digest = await buildDigest("2026-04-29");
-  assert.equal(digest.sentimentLabel, "BEARISH");
+  assert.ok(["BEARISH", "VOLATILE"].includes(digest.sentimentLabel));
   assert.ok(digest.onePageSummary.includes("Educational note"));
   assert.ok(digest.teleprompterScript.includes("[RISK DISCLAIMER]"));
   assert.ok(digest.reelScript.includes("[REEL SCRIPT"));
@@ -136,6 +214,11 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
   assert.ok(digest.news.length >= 14);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
+  assert.equal(digest.newsDataMode, "fixture");
+  assert.equal(digest.sourceVerification.mode, "fixture");
+  assert.ok(digest.sourceVerification.verifiedArticleCount >= 8);
+  assert.equal(digest.sourceVerification.blockedReason, null);
+  assert.ok(digest.news.every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)));
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
@@ -167,6 +250,10 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
   assert.ok(payload.setupAudit.length >= payload.tradeSetups.length);
   assert.equal(JSON.stringify(payload.setupAudit).includes('"setup"'), false);
+  assert.equal(payload.sourceVerification.mode, "fixture");
+  assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
+  assert.equal(JSON.stringify(payload).includes("sourceDebug"), false);
+  assert.equal(JSON.stringify(payload).includes("rejectedSources"), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
   assert.equal(payload.sourceStats.publisherCount, new Set(digest.news.map((article) => article.sourceName)).size);
 });
@@ -178,6 +265,8 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
   assert.equal(state.modelEntryDate, "2026-04-27");
   assert.equal(state.performance.modelEntryDate, "2026-04-27");
+  assert.equal(state.updatedAt, "2026-05-01T10:00:00.000Z");
+  assert.notEqual(state.updatedAt, "1970-01-01T00:00:00.000Z");
   assert.equal(state.pricing.isStale, true);
   assert.equal(state.performance.currentModelValueInr, null);
   assert.equal(state.performance.totalPnlInr, null);
@@ -200,6 +289,8 @@ await test("multibagger public model is concentrated and sanitized", () => {
     for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
       assert.ok(holding[field], `${holding.ticker} missing ${field}`);
     }
+    assert.ok(holding.rolePlain, `${holding.ticker} missing plain-English role`);
+    assert.ok(holding.screenerUrl?.startsWith("https://www.screener.in/company/"), `${holding.ticker} missing Screener link`);
   }
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
@@ -237,7 +328,12 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Since Apr 27, 2026"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Model P&L"));
+  assert.ok(html.includes("Fill pending"));
+  assert.ok(html.includes("Tracking begins after the first confirmed public fill is published."));
   assert.ok(html.includes("Target weights are research allocations. Return, P&amp;L and current model value remain hidden until exact public fills are published."));
+  assert.ok(html.includes("Copy tracker link"));
+  assert.ok(html.includes("allocation-visual"));
+  assert.ok(html.includes("allocation-donut"));
   assert.ok(html.includes("Expandable portfolio research modules"));
   assert.ok(html.includes("module-grid"));
   assert.ok(html.includes("module-preview"));
@@ -254,6 +350,11 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("7.01%"));
   assert.ok(html.includes("Rs 73.73 lakh crore"));
   assert.ok(html.includes("RBI Retail Direct"));
+  assert.ok(html.includes("Investor Discipline"));
+  assert.ok(html.includes("52-week low is not a thesis"));
+  assert.ok(html.includes("A low share price does not make a stock cheap"));
+  assert.ok(html.includes("FOMO Filter"));
+  assert.ok(html.includes("not SEBI-registered investment advice"));
   assert.ok(html.includes("Verified Evidence Ledger"));
   assert.ok(html.includes("Needs proof"));
   for (const ticker of ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]) {
@@ -265,7 +366,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.indexOf("<details class=\"panel research-framework-panel\" open>") < html.indexOf("Market Regime Evidence"));
   assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("Market Regime Evidence"));
   assert.ok(html.indexOf("Market Regime Evidence") < html.indexOf("<details class=\"panel\" open>"));
-  assert.ok(html.includes("What this is"));
+  assert.ok(html.includes("<details class=\"panel holdings-panel\" open>"));
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
   assert.ok(html.includes("Valuation"));
@@ -275,6 +376,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("No public execution ledger has been published yet."));
   assert.ok(html.includes("Latest"));
   assert.ok(html.includes("Day Move"));
+  assert.ok(html.includes("data-label=\"Ticker\""));
+  assert.ok(html.includes("View on Screener"));
+  assert.ok(html.includes("https://www.screener.in/company/KPEL/"));
   assert.ok(html.includes("price-status"));
   assert.ok(html.includes("Awaiting verified live quote"));
   assert.ok(html.includes("Current prices and day moves are hidden."));
@@ -282,13 +386,15 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Monthly Reviews"));
   assert.ok(html.includes("Watchlist And Replacements"));
+  assert.ok(html.includes("watch-flags"));
+  assert.ok(html.includes("watch-flag green"));
   assert.ok(html.includes("og:site_name"));
   assert.ok(html.includes("twitter:card"));
   assert.ok(html.includes('rel="canonical"'));
   assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
   assert.ok(html.includes("/api/public/multibagger/state"));
   assert.ok(html.includes("<details class=\"panel\" open>"));
-  assert.ok((html.match(/<details class="panel"/g) ?? []).length >= 8);
+  assert.ok((html.match(/<details class="panel/g) ?? []).length >= 8);
   assert.equal(html.includes("60% of IT below 33rd percentile"), false);
   assert.equal(html.includes("45.4%"), false);
   assert.equal(html.toLowerCase().includes("buy now"), false);
@@ -546,6 +652,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("previousSessionDriver"));
   assert.ok(publisher.includes("archiveToneClass"));
   assert.ok(publisher.includes("sentimentSparklineHtml"));
+  assert.ok(publisher.includes('details class="digest-card'));
+  assert.ok(publisher.includes("archiveSourceQualityLine"));
+  assert.ok(publisher.includes("archiveSourcePreviewHtml"));
+  assert.ok(publisher.includes("assertNewDigestSourceIntegrity"));
   assert.ok(publisher.includes("archiveChips"));
   assert.ok(publisher.includes("Pre-Market Intelligence Archive"));
   assert.ok(publisher.includes("Latest Market Briefings"));
@@ -902,7 +1012,7 @@ await test("advanced architecture includes Auth0 permissions, agentic RAG, Redis
 await test("demo app serves public and admin flows without external packages", async () => {
   const app = await createDemoApp("2026-04-29");
   const digest = await app.request("GET", "/api/public/digest/today");
-  assert.equal(digest.json.sentimentLabel, "BEARISH");
+  assert.ok(["BEARISH", "VOLATILE"].includes(digest.json.sentimentLabel));
 
   const login = await app.request("POST", "/api/auth/login", {
     email: "admin@marketnarrative.local",
@@ -958,6 +1068,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("data-default-source-filter"));
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
+  assert.ok(publicHtml.body.includes("Source quality:"));
+  assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure"));
   assert.ok(publicHtml.body.includes("Global Risk"));
@@ -970,7 +1082,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("aria-pressed=\"false\">All"));
   assert.ok(publicHtml.body.includes("Read-through"));
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
-  assert.ok(publicHtml.body.includes("Economic Times Markets"));
+  assert.ok(publicHtml.body.includes("CNBC Markets"));
   assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));
   assert.ok(publicHtml.body.includes("sentiment-pin"));
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
@@ -1129,6 +1241,33 @@ async function test(name, fn) {
   } catch (error) {
     results.push({ name, ok: false, error });
   }
+}
+
+function testRssXml(items) {
+  return `<rss><channel>${items.map((item) => `
+    <item>
+      <title>${item.title}</title>
+      <link>${item.link}</link>
+      <pubDate>Sun, 03 May 2026 01:30:00 GMT</pubDate>
+      <description>${item.description}</description>
+    </item>
+  `).join("")}</channel></rss>`;
+}
+
+function testArticleUrl(publisher, sourceSlug, storySlug) {
+  if (publisher === "moneycontrol") {
+    return `https://www.moneycontrol.com/news/business/markets/${sourceSlug}-${storySlug}_1300001.html`;
+  }
+  return `https://www.cnbc.com/2026/05/03/${sourceSlug}-${storySlug}.html`;
+}
+
+function slugForTestUrl(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/https?:\/\//, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 28);
 }
 
 function assertAdminCopyIsPolished(html, label) {

@@ -8,6 +8,8 @@ export function publicDigestPayload(digest) {
     themes,
     tradeSetups,
     setupAudit,
+    sourceDebug,
+    rejectedSources,
     ...publicFields
   } = digest;
 
@@ -21,6 +23,7 @@ export function publicDigestPayload(digest) {
     themes: (themes ?? []).map(publicThemeDto),
     tradeSetups: (tradeSetups ?? []).map(publicTradeSetupDto),
     setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),
+    sourceVerification: publicSourceVerification(publicFields.sourceVerification),
     sourceStats: sourceStats(news ?? []),
     asset: asset
       ? {
@@ -37,18 +40,35 @@ export function redactedDigestPayload(digest) {
     reelScript,
     asset,
     setupAudit,
+    sourceDebug,
+    rejectedSources,
     ...publicFields
   } = digest;
 
   return {
     ...publicFields,
     setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),
+    sourceVerification: publicSourceVerification(publicFields.sourceVerification),
     asset: asset
       ? {
         sentimentLabel: asset.sentimentLabel,
         assetUrl: asset.assetUrl
       }
       : null
+  };
+}
+
+function publicSourceVerification(verification) {
+  if (!verification) {
+    return undefined;
+  }
+  return {
+    mode: verification.mode,
+    verifiedArticleCount: verification.verifiedArticleCount,
+    publisherCount: verification.publisherCount,
+    categoryCount: verification.categoryCount,
+    duplicateWithPreviousPercent: verification.duplicateWithPreviousPercent,
+    blockedReason: verification.blockedReason ?? null
   };
 }
 

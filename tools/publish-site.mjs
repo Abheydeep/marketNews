@@ -6,6 +6,7 @@ import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
+import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -23,8 +24,12 @@ const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = await loadSourceDigest();
+const existingDigests = await loadArchivedDigests();
 if (!skipArchiveWrite) {
-  const archivedDigest = redactedDigestPayload(sourceDigest);
+  const sourceVerification = assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests));
+  const archivedDigest = redactedDigestPayload(sourceVerification
+    ? { ...sourceDigest, sourceVerification }
+    : sourceDigest);
   await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
 }
 
@@ -174,6 +179,33 @@ async function loadSourceDigest() {
   }
 }
 
+function assertNewDigestSourceIntegrity(digest, previousDigest) {
+  const hasVerification = digest.sourceVerification || digest.newsDataMode === "live";
+  if (!hasVerification) {
+    return null;
+  }
+  const verification = verifySourceArticles(digest.news ?? [], {
+    mode: digest.sourceVerification?.mode ?? digest.newsDataMode ?? "live",
+    previousDigest
+  });
+  assertSourceVerification(verification);
+  const badSource = (digest.news ?? []).find((article) => !sourceUrlLooksArticleLevel(article.sourceUrl));
+  if (badSource) {
+    throw new Error(`Source verification failed: ${badSource.sourceName || "source"} links to a section page (${badSource.sourceUrl})`);
+  }
+  return verification;
+}
+
+function previousDigestFor(digest, digests) {
+  const currentTime = Date.parse(digest.scheduledFor ?? `${digest.digestDate}T08:30:00+05:30`);
+  return [...digests]
+    .filter((item) => Date.parse(item.scheduledFor ?? `${item.digestDate}T08:30:00+05:30`) < currentTime)
+    .sort((left, right) =>
+      Date.parse(right.scheduledFor ?? `${right.digestDate}T08:30:00+05:30`) -
+      Date.parse(left.scheduledFor ?? `${left.digestDate}T08:30:00+05:30`)
+    )[0] ?? null;
+}
+
 function archivePage(digests) {
   const latest = digests[0];
   const pageTitle = "Market Narrative | Pre-Market Intelligence Archive";
@@ -186,22 +218,32 @@ function archivePage(digests) {
         .map((chip) => `<span>${escapeHtml(chip)}</span>`)
         .join("");
       return `
-        <article class="digest-card ${toneClass}">
-          <div class="card-topline">
-            <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
-            ${sentimentSparklineHtml(digest)}
+        <details class="digest-card ${toneClass}"${digest === latest ? " open" : ""}>
+          <summary>
+            <div class="card-summary-head">
+              <div class="card-topline">
+                <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
+                ${sentimentSparklineHtml(digest)}
+              </div>
+              <h2>${escapeHtml(digest.title)}</h2>
+              <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
+              <div class="archive-chips">
+                ${chips}
+              </div>
+            </div>
+            <span class="card-disclosure" aria-hidden="true"></span>
+          </summary>
+          <div class="archive-card-details">
+            <div class="source-quality-pill">${escapeHtml(archiveSourceQualityLine(digest))}</div>
+            <div class="session-driver">
+              <span>Previous session driver</span>
+              <strong>${escapeHtml(previousSessionDriver(digest))}</strong>
+            </div>
+            ${archiveMarketSnapshotHtml(digest)}
+            ${archiveSourcePreviewHtml(digest)}
+            <a class="open-link" href="./${slug}/">Read market briefing</a>
           </div>
-          <h2><a href="./${slug}/">${escapeHtml(digest.title)}</a></h2>
-          <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
-          <div class="archive-chips">
-            ${chips}
-          </div>
-          <div class="session-driver">
-            <span>Previous session driver</span>
-            <strong>${escapeHtml(previousSessionDriver(digest))}</strong>
-          </div>
-          <a class="open-link" href="./${slug}/">Read market briefing</a>
-        </article>
+        </details>
       `;
     })
     .join("");
@@ -430,6 +472,55 @@ function archivePage(digests) {
       transition: transform 160ms ease, box-shadow 160ms ease;
     }
 
+    .digest-card summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .digest-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .card-summary-head {
+      min-width: 0;
+    }
+
+    .card-disclosure {
+      position: relative;
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.38);
+    }
+
+    .card-disclosure::before,
+    .card-disclosure::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--tone);
+    }
+
+    .card-disclosure::after {
+      transform: rotate(90deg);
+      transition: transform 160ms ease;
+    }
+
+    .digest-card[open] .card-disclosure::after {
+      transform: rotate(0deg);
+    }
+
     .digest-card.tone-bullish {
       --tone: #34d399;
       --tone-soft: rgba(52, 211, 153, 0.15);
@@ -540,6 +631,68 @@ function archivePage(digests) {
       padding: 12px 14px;
     }
 
+    .archive-card-details {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 18px;
+    }
+
+    .source-quality-pill {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(103, 232, 249, 0.24);
+      border-radius: 999px;
+      background: rgba(8, 145, 178, 0.13);
+      padding: 8px 11px;
+      color: #cffafe;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .archive-snapshot-grid,
+    .archive-source-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .archive-snapshot,
+    .archive-source-row {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.26);
+      padding: 11px 12px;
+    }
+
+    .archive-snapshot span,
+    .archive-source-row span {
+      display: block;
+      color: #9fb0c8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .archive-snapshot strong,
+    .archive-source-row strong {
+      display: block;
+      margin-top: 4px;
+      color: #e5e7eb;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .archive-source-row a {
+      display: inline-flex;
+      margin-top: 8px;
+      color: #67e8f9;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
     .session-driver span {
       color: #9fb0c8;
       font-size: 11px;
@@ -610,6 +763,66 @@ function archivePage(digests) {
   </main>
 </body>
 </html>`;
+}
+
+function archiveSourceQualityLine(digest) {
+  const verification = digest.sourceVerification;
+  if (!verification) {
+    return "Legacy source audit unavailable";
+  }
+  const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
+  return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
+}
+
+function archiveMarketSnapshotHtml(digest) {
+  const symbols = ["NIFTY", "BANKNIFTY", "DXY", "BRENT"];
+  const snapshots = symbols
+    .map((symbol) => (digest.marketSnapshots ?? []).find((item) => item.symbol === symbol))
+    .filter(Boolean)
+    .slice(0, 4);
+  if (!snapshots.length) {
+    return "";
+  }
+  return `
+    <div class="archive-snapshot-grid" aria-label="Market snapshot summary">
+      ${snapshots.map((snapshot) => `
+        <div class="archive-snapshot">
+          <span>${escapeHtml(snapshot.symbol)}</span>
+          <strong>${escapeHtml(formatSnapshotValue(snapshot))}</strong>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function archiveSourcePreviewHtml(digest) {
+  const sources = weightedArchiveSources(digest).slice(0, 3);
+  if (!sources.length) {
+    return "";
+  }
+  return `
+    <div class="archive-source-preview" aria-label="Source headline preview">
+      ${sources.map((article) => `
+        <div class="archive-source-row">
+          <span>${escapeHtml(article.sourceName || "Source")}</span>
+          <strong>${escapeHtml(compactWords(article.headline || article.title || "", 13))}</strong>
+          ${sourceUrlLooksArticleLevel(article.sourceUrl)
+            ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>`
+            : ""}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function weightedArchiveSources(digest) {
+  return [...(digest.news ?? [])].sort((left, right) => impactScore(right) - impactScore(left));
+}
+
+function formatSnapshotValue(snapshot) {
+  const value = Number.isFinite(Number(snapshot.closeValue)) ? Number(snapshot.closeValue).toFixed(2) : "n/a";
+  const change = Number.isFinite(Number(snapshot.changePercent)) ? ` (${formatChange(Number(snapshot.changePercent))})` : "";
+  return `${snapshot.name || snapshot.symbol}: ${value}${change}`;
 }
 
 function archiveCardSummary(digest) {

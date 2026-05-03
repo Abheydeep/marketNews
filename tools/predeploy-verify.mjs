@@ -98,6 +98,8 @@ function verifyVercelArtifacts() {
   assertOutput("deployment-manifest.json", /"target": "public"/);
   assertOutput("index.html", /Pre-Market Intelligence Archive/);
   assertOutput("index.html", /Latest Market Briefings/);
+  assertOutput("index.html", /details class="digest-card/);
+  assertOutput("index.html", /Legacy source audit unavailable|verified article links/);
   assertOutput("index.html", /Read market briefing/);
   assertOutput("index.html", /Previous session driver/);
   assertOutput("index.html", /sentiment-sparkline/);
@@ -105,6 +107,10 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
   assertOutput("multibagger/index.html", /Current value/);
   assertOutput("multibagger/index.html", /Model P&L/);
+  assertOutput("multibagger/index.html", /Fill pending/);
+  assertOutput("multibagger/index.html", /allocation-donut/);
+  assertOutput("multibagger/index.html", /Model Holdings/);
+  assertOutput("multibagger/index.html", /View on Screener/);
   assertOutput("multibagger/index.html", /Target weights are research allocations/);
   assertOutput("multibagger/state.json", /"modelEntryDate": "2026-04-27"/);
   assertOutput("multibagger/state.json", /"entryPrice"/);
@@ -140,6 +146,7 @@ function buildTarget(target) {
       ...process.env,
       MARKET_NARRATIVE_DEPLOY_TARGET: target,
       MARKET_DATA_MODE: "mock",
+      NEWS_DATA_MODE: "fixture",
       SKIP_DAILY_GENERATE: "true",
       SKIP_ARCHIVE_WRITE: "true"
     },

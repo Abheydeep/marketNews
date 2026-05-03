@@ -79,6 +79,15 @@ const bseSymbols = {
 
 const BSE_QUOTE_URL = "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w";
 
+const screenerUrls = {
+  KPEL: "https://www.screener.in/company/KPEL/",
+  DHABRIYA: "https://www.screener.in/company/DHABRIYA/",
+  PIGL: "https://www.screener.in/company/PIGL/",
+  JNKINDIA: "https://www.screener.in/company/JNKINDIA/",
+  DYCL: "https://www.screener.in/company/DYCL/",
+  TEMBO: "https://www.screener.in/company/TEMBO/"
+};
+
 const methodology = {
   definition: "A multibagger candidate is a business that can compound the original model capital several times over a full cycle, not merely a stock with a short-term price spike.",
   targetOutcome: "The public model is built to test a concentrated 5x-style research thesis through sizing discipline, monthly evidence review, and replacement logic.",
@@ -205,6 +214,7 @@ const baseHoldings = [
     targetWeight: 25,
     modelAmountInr: 125_000,
     role: "Anchor renewable alpha",
+    rolePlain: "Largest slot: renewable execution needs to keep converting into cash.",
     thesis: "Low-PE renewable execution with strong revenue growth and a valuation that still leaves room for rerating.",
     buyRule: "Build first while valuation remains a small-cap growth bargain and receivables stay controlled.",
     breakRule: "Trim if project execution slips, receivables stretch, or group complexity starts driving the story.",
@@ -222,6 +232,7 @@ const baseHoldings = [
     targetWeight: 20,
     modelAmountInr: 100_000,
     role: "Hidden-quality margin inflection",
+    rolePlain: "Core slot: margin recovery must prove it is durable, not one good quarter.",
     thesis: "Microcap quality candidate with PAT doubling, expanded EBITDA margin and a still-sane valuation base.",
     buyRule: "Build after confirming liquidity; add only if FY26 keeps the new margin band intact.",
     breakRule: "Reduce if inventory, debt or receivables absorb the reported earnings growth.",
@@ -239,6 +250,7 @@ const baseHoldings = [
     targetWeight: 17.5,
     modelAmountInr: 87_500,
     role: "Microcap order-book asymmetry",
+    rolePlain: "Capped slot: large orders are useful only if margins and collections improve.",
     thesis: "Order book is materially larger than market cap, with RDSS work and Peaton busduct optionality.",
     buyRule: "Build capped exposure only while PAT margin begins catching up with revenue growth.",
     breakRule: "Do not average down if orders convert into low-margin working-capital strain.",
@@ -256,6 +268,7 @@ const baseHoldings = [
     targetWeight: 15,
     modelAmountInr: 75_000,
     role: "Order book entering P&L",
+    rolePlain: "Capped slot: visible orders are starting to show up in reported earnings.",
     thesis: "Q3 revenue and PAT acceleration show that order visibility is already touching reported earnings.",
     buyRule: "Start now; scale only after the next result confirms conversion without debtor blowout.",
     breakRule: "Reduce if receivables expand faster than sales or order conversion stalls.",
@@ -273,6 +286,7 @@ const baseHoldings = [
     targetWeight: 12.5,
     modelAmountInr: 62_500,
     role: "Cleaner cable-cycle quality alpha",
+    rolePlain: "Quality slot: cable-cycle demand with capacity optionality and working-capital checks.",
     thesis: "Mid-teens valuation, PAT growth, order visibility and solar DC/e-beam capacity provide a second trigger.",
     buyRule: "Build measured exposure; add if order inflow, spreads and capacity ramp remain disciplined.",
     breakRule: "Trim if cable spreads turn, receivables worsen, or capacity ramp disappoints.",
@@ -290,6 +304,7 @@ const baseHoldings = [
     targetWeight: 10,
     modelAmountInr: 50_000,
     role: "Capped high-asymmetry optionality",
+    rolePlain: "Smallest slot: upside optionality stays capped until cash flow and governance proof improves.",
     thesis: "Large order book and scaled 9M profit create upside, but cash-flow and governance risks cap sizing.",
     buyRule: "Hold as option-sized exposure; do not average up without cash-flow and governance proof.",
     breakRule: "Reduce quickly on weak operating cash flow, guarantees, related-party issues or dilution.",
@@ -354,31 +369,56 @@ const watchlist = [
     ticker: "DELTNCBL",
     name: "Delton Cables",
     status: "Watch / capped challenger",
-    reason: "Order-book-to-market-cap math is attractive, but leverage and copper/input-cost risk need proof."
+    reason: "Order-book-to-market-cap math is attractive, but leverage and copper/input-cost risk need proof.",
+    evaluationFlags: [
+      { label: "Orders", tone: "green" },
+      { label: "Leverage", tone: "yellow" },
+      { label: "Input cost", tone: "yellow" }
+    ]
   },
   {
     ticker: "GALAPREC",
     name: "Gala Precision",
     status: "Watch / quality challenger",
-    reason: "Precision industrial growth is good, but near-30x PE and margin compression keep it outside the top six."
+    reason: "Precision industrial growth is good, but near-30x PE and margin compression keep it outside the top six.",
+    evaluationFlags: [
+      { label: "Quality", tone: "green" },
+      { label: "Valuation", tone: "yellow" },
+      { label: "Margins", tone: "yellow" }
+    ]
   },
   {
     ticker: "SHARDAMOTR",
     name: "Sharda Motor",
     status: "Quality ballast",
-    reason: "Useful low-PE quality name, but lower 5x torque than the concentrated alpha basket."
+    reason: "Useful low-PE quality name, but lower 5x torque than the concentrated alpha basket.",
+    evaluationFlags: [
+      { label: "Quality", tone: "green" },
+      { label: "Valuation", tone: "green" },
+      { label: "5x torque", tone: "yellow" }
+    ]
   },
   {
     ticker: "MARKOLINES",
     name: "Markolines",
     status: "Tiny optionality",
-    reason: "Interesting order-book asymmetry, but liquidity and debtor risk make it too small for the primary model."
+    reason: "Interesting order-book asymmetry, but liquidity and debtor risk make it too small for the primary model.",
+    evaluationFlags: [
+      { label: "Asymmetry", tone: "green" },
+      { label: "Liquidity", tone: "red" },
+      { label: "Debtors", tone: "yellow" }
+    ]
   },
   {
     ticker: "CPCL",
     name: "Chennai Petroleum",
     status: "Tactical side trade",
-    reason: "Refinery-cycle value is real, but it is not treated as a permanent multibagger compounder."
+    reason: "Refinery-cycle value is real, but it is not treated as a permanent multibagger compounder.",
+    evaluationFlags: [
+      { label: "Value", tone: "green" },
+      { label: "Cycle", tone: "yellow" },
+      { label: "Compounder", tone: "red" }
+    ]
   }
 ];
 
@@ -502,6 +542,7 @@ export async function multibaggerStateWithMarketQuotes() {
 function holdingsWithPerformance(snapshots = priceSnapshots) {
   return baseHoldings.map((holding) => ({
     ...holding,
+    screenerUrl: screenerUrls[holding.ticker],
     ...holdingPerformance(holding.ticker, holding.modelAmountInr, snapshots)
   }));
 }
@@ -686,6 +727,7 @@ function latestStateTimestamp(snapshots = priceSnapshots, benchmark = benchmarkS
       !snapshot.isStale && Number.isFinite(Number(snapshot.lastPrice)) ? snapshot.lastPriceAt : null
     )
   ]
+    .filter(Boolean)
     .map((value) => new Date(value).getTime())
     .filter(Number.isFinite);
   const latest = liveTimestamps.length ? Math.max(...liveTimestamps) : new Date(STATIC_PRICE_REFRESH_AT).getTime();

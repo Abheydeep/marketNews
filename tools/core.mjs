@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
+import { resolveNewsArticles } from "./news-sources.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
@@ -24,25 +25,18 @@ export async function buildDigest(date = todayIso(), options = {}) {
     delayedRead("price-bars.json", 45)
   ]);
   const marketDataMode = options.marketDataMode ?? process.env.MARKET_DATA_MODE ?? "mock";
+  const newsDataMode = options.newsDataMode ?? process.env.NEWS_DATA_MODE ?? "fixture";
   const { marketSnapshots, marketDataError } = await resolveMarketSnapshots(seedMarketSnapshots, marketDataMode);
-
-  const articles = news.map((article) => ({
-    publishedAt: `${date}T${article.publishedTime}+05:30`,
-    sourceId: article.sourceId,
-    sourceName: article.sourceName,
-    headline: article.headline,
-    summary: article.summary,
-    takeaway: article.takeaway,
-    whyItMatters: article.whyItMatters,
-    indiaImpact: article.indiaImpact,
-    watchFor: article.watchFor,
-    thumbnail: normalizeArticleThumbnail(article),
-    sourceUrl: article.sourceUrl,
-    sentimentScore: article.sentimentScore,
-    entityName: article.entityName,
-    entityMatchScore: article.entityMatchScore,
-    category: article.category
-  }));
+  const { articles, sourceVerification } = await resolveNewsArticles(date, {
+    mode: newsDataMode,
+    seedNews: news.map((article) => ({
+      ...article,
+      thumbnail: normalizeArticleThumbnail(article)
+    })),
+    previousDigest: options.previousDigest,
+    fetcher: options.fetcher,
+    strictFetch: options.strictFetch
+  });
   const themes = clusterThemes(date, articles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
   const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
@@ -78,6 +72,8 @@ export async function buildDigest(date = todayIso(), options = {}) {
     asset,
     marketDataMode,
     marketDataError,
+    newsDataMode,
+    sourceVerification,
     durationMillis: Math.round(performance.now() - started)
   };
 }
