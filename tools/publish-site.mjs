@@ -564,14 +564,38 @@ function archivePage(digests, allDigests = digests) {
       border-radius: 999px;
       background: rgba(2, 6, 23, 0.42);
       color: #e5e7eb;
-      padding: 9px 12px;
-      font-size: 12px;
-      font-weight: 900;
+      width: 42px;
+      height: 42px;
+      padding: 0;
     }
 
     .share-copy-btn {
       cursor: pointer;
       font: inherit;
+    }
+
+    .share-copy-btn[data-copy-state="copied"] {
+      border-color: rgba(52, 211, 153, 0.5);
+      background: rgba(6, 78, 59, 0.38);
+      color: #86efac;
+    }
+
+    .share-icon {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     main {
@@ -1014,13 +1038,24 @@ function archivePage(digests, allDigests = digests) {
   <script>
     document.querySelectorAll('[data-copy-url]').forEach((button) => {
       button.addEventListener('click', async () => {
+        const label = button.querySelector('.sr-only');
         try {
           await navigator.clipboard.writeText(button.dataset.copyUrl || location.href);
-          button.textContent = 'Copied';
+          button.dataset.copyState = 'copied';
+          button.setAttribute('aria-label', 'Copied');
+          button.title = 'Copied';
+          if (label) label.textContent = 'Copied';
         } catch {
-          button.textContent = 'Copy failed';
+          button.setAttribute('aria-label', 'Copy failed');
+          button.title = 'Copy failed';
+          if (label) label.textContent = 'Copy failed';
         }
-        setTimeout(() => { button.textContent = 'Copy link'; }, 1800);
+        setTimeout(() => {
+          delete button.dataset.copyState;
+          button.setAttribute('aria-label', 'Copy link');
+          button.title = 'Copy link';
+          if (label) label.textContent = 'Copy link';
+        }, 1800);
       });
     });
   </script>
@@ -1045,12 +1080,22 @@ function archiveShareRowHtml() {
   return `
     <div class="share-row" aria-label="Share Market Narrative">
       <span>Share</span>
-      <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">X</a>
-      <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(url)}">Copy link</button>
+      <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
+      <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
+      <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
+      <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(url)}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
     </div>
   `;
+}
+
+function shareIconHtml(type) {
+  const icons = {
+    whatsapp: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.1 19.2 6 16.1a7.6 7.6 0 1 1 2.9 2.6l-3.8.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.1 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.3 0 .5-.2.7l-.4.4c.6 1.1 1.5 2 2.7 2.6l.5-.5c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.6v.4c0 .4-.2.7-.5.9-.7.4-1.9.3-3.3-.4-1.6-.8-3-2.1-3.8-3.8-.7-1.4-.9-2.5-.6-3.1Z" fill="currentColor"/></svg>`,
+    x: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`,
+    linkedin: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10v7M8 7.7v.1M12 17v-4.1c0-1.7 1-2.9 2.6-2.9 1.5 0 2.4 1 2.4 2.9V17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`,
+    copy: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M6 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`
+  };
+  return icons[type] || icons.copy;
 }
 
 function recentArchiveGridHtml(digests) {
