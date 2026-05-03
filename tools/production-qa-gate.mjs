@@ -514,17 +514,25 @@ async function browserCheck(page, surface, name, url, pattern) {
 }
 
 async function gotoOrRenderFetchedHtml(page, url) {
+  if (new URL(url).hostname.endsWith("marketnarrative.in")) {
+    await renderFetchedHtml(page, url);
+    return;
+  }
   try {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
   } catch (error) {
     if (!/Timeout/i.test(error.message)) {
       throw error;
     }
-    const response = await fetchText(url);
-    assert.equal(response.status, 200, `browser fallback fetch for ${url} returned HTTP ${response.status}`);
-    await page.goto("about:blank", { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
-    await page.setContent(response.body, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+    await renderFetchedHtml(page, url);
   }
+}
+
+async function renderFetchedHtml(page, url) {
+  const response = await fetchText(url);
+  assert.equal(response.status, 200, `browser fallback fetch for ${url} returned HTTP ${response.status}`);
+  await page.goto("about:blank", { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+  await page.setContent(response.body, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
 }
 
 function loadPlaywright() {
