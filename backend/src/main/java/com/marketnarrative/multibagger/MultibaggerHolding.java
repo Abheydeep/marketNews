@@ -11,6 +11,7 @@ public record MultibaggerHolding(
     BigDecimal targetWeight,
     Integer modelAmountInr,
     String role,
+    String rolePlain,
     String thesis,
     String buyRule,
     String breakRule,

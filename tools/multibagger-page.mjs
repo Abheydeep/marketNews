@@ -283,6 +283,28 @@ export function multibaggerPage(state = multibaggerState()) {
       margin: 0 0 24px;
     }
 
+    .execution-status {
+      border: 1px solid rgba(34, 211, 238, 0.26);
+      border-radius: 8px;
+      background: rgba(34, 211, 238, 0.08);
+      color: #d7e0ee;
+      display: grid;
+      gap: 4px;
+      margin: 0 0 18px;
+      padding: 13px 14px;
+    }
+
+    .execution-status strong {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .execution-status span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     .allocation-visual {
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -411,12 +433,18 @@ export function multibaggerPage(state = multibaggerState()) {
       margin: 22px 0 0;
     }
 
+    .module-grid .portfolio-panel { order: 1; }
+    .module-grid .holdings-panel { order: 2; }
+    .module-grid .research-framework-panel { order: 3; }
+    .module-grid .evidence-panel { order: 4; }
+
     details.panel {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(15, 23, 42, 0.74);
       margin: 0;
       min-height: 0;
+      order: 10;
       overflow: hidden;
       position: relative;
       box-shadow: 0 14px 48px rgba(0, 0, 0, 0.16);
@@ -575,6 +603,16 @@ export function multibaggerPage(state = multibaggerState()) {
       text-transform: uppercase;
     }
 
+    .th-note {
+      color: var(--muted);
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-top: 3px;
+      text-transform: none;
+    }
+
     td { color: #d7e0ee; }
 
     tr:last-child td { border-bottom: 0; }
@@ -695,6 +733,30 @@ export function multibaggerPage(state = multibaggerState()) {
       margin-top: 8px;
       text-decoration: underline;
       text-underline-offset: 3px;
+    }
+
+    .role-legend {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.30);
+      display: grid;
+      gap: 9px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0 0 14px;
+      padding: 12px;
+    }
+
+    .role-legend span {
+      color: #d7e0ee;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .role-legend strong {
+      color: #fff;
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
     }
 
     .cards {
@@ -903,6 +965,7 @@ export function multibaggerPage(state = multibaggerState()) {
       .allocation-visual,
       .module-grid,
       .allocation-grid,
+      .role-legend,
       .method-snapshot-grid,
       .regime-snapshot-grid,
       .discipline-grid,
@@ -928,7 +991,7 @@ export function multibaggerPage(state = multibaggerState()) {
       }
     }
 
-    @media (max-width: 620px) {
+    @media (max-width: 760px) {
       .nav-inner {
         align-items: flex-start;
         flex-direction: column;
@@ -1040,8 +1103,9 @@ export function multibaggerPage(state = multibaggerState()) {
       <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong></div>
       <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong></div>
     </section>
-    <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">Last check: ${escapeHtml(formatDateTime(state.updatedAt))}</span></p>
+    <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(latestQuoteStatusStamp(state))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
+    <p class="execution-status"><strong>Pre-fill research model</strong><span>No public trades or fills have been published yet. These are target research weights; performance tracking starts only when the first confirmed public fill is logged.</span></p>
 
     <section class="allocation-visual" aria-label="Portfolio allocation visual">
       <div class="allocation-donut-wrap">
@@ -1143,7 +1207,7 @@ export function multibaggerPage(state = multibaggerState()) {
       </div>
     </details>
 
-    <details class="panel" open>
+    <details class="panel portfolio-panel" open>
       <summary>
         <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
         <span class="chev">+</span>
@@ -1163,9 +1227,15 @@ export function multibaggerPage(state = multibaggerState()) {
         <span class="module-preview"><span class="preview-pill">Latest quotes</span><span class="preview-pill">Day moves</span><span class="preview-pill">Research links</span></span>
       </summary>
       <div class="panel-body">
+        <div class="role-legend" aria-label="Plain-English role legend">
+          <span><strong>Core staged</strong> Larger allocation, but still staged until working-capital proof holds.</span>
+          <span><strong>Capped alpha</strong> Upside exists, but execution, margin, or liquidity proof limits sizing.</span>
+          <span><strong>Quality slot</strong> Cleaner business quality with more measured upside torque.</span>
+          <span><strong>Speculative cap</strong> Optionality only; governance and cash-flow evidence must improve.</span>
+        </div>
         <div class="table-wrap">
           <table class="holdings-table">
-            <thead><tr><th>Ticker</th><th>Target</th><th>Latest</th><th>Day Move</th><th>Role</th></tr></thead>
+            <thead><tr><th>Ticker</th><th>Target</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Day Move</th><th>Plain-English Role</th></tr></thead>
             <tbody id="modelHoldingsRows">
               ${holdingsRowsHtml(state.holdings)}
             </tbody>
@@ -1324,7 +1394,7 @@ export function multibaggerPage(state = multibaggerState()) {
   </main>
 
   <footer class="shell">
-    <p>Last static update: ${escapeHtml(formatDateTime(state.updatedAt))}. Public data excludes account screenshots, share quantities, account value, and unpublished review notes.</p>
+    <p>Quote timestamps are shown beside each holding. Public data excludes account screenshots, share quantities, account value, and unpublished review notes.</p>
   </footer>
 
   <script>
@@ -1357,7 +1427,11 @@ export function multibaggerPage(state = multibaggerState()) {
         try {
           const response = await fetch(url, { cache: "no-store" });
           if (response.ok) {
-            window.__MULTIBAGGER_STATE__ = await response.json();
+            const incomingState = await response.json();
+            if (shouldKeepExistingState(window.__MULTIBAGGER_STATE__, incomingState)) {
+              continue;
+            }
+            window.__MULTIBAGGER_STATE__ = incomingState;
             renderMultibaggerState(window.__MULTIBAGGER_STATE__);
             document.documentElement.dataset.multibaggerSource = url;
             return;
@@ -1381,7 +1455,8 @@ export function multibaggerPage(state = multibaggerState()) {
       setTone("portfolioReturnMetric", state.performance?.sinceLaunchPercent);
       setText("benchmarkReturnMetric", formatQuotePercent(state.performance?.benchmarkSinceLaunchPercent));
       setTone("benchmarkReturnMetric", state.performance?.benchmarkSinceLaunchPercent);
-      setText("lastPriceAtMetric", "Last check: " + formatDateTime(state.updatedAt || state.pricing?.refreshedAt));
+      setText("lastPriceAtMetric", latestQuoteStatusStamp(state));
+      setText("latestPriceColumnLabel", latestPriceColumnText(state));
       const rows = document.getElementById("modelHoldingsRows");
       if (rows) rows.innerHTML = state.holdings.map(holdingRowHtml).join("");
       const tiles = document.getElementById("modelAllocationTiles");
@@ -1393,8 +1468,18 @@ export function multibaggerPage(state = multibaggerState()) {
         const first = status.querySelector("span");
         if (first) first.textContent = stale
           ? "Verified market quotes are not available yet. Current prices and day moves are hidden."
-          : "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published.";
+          : "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published.";
       }
+    }
+
+    function shouldKeepExistingState(currentState, incomingState) {
+      return stateHasFreshQuotes(currentState) && !stateHasFreshQuotes(incomingState);
+    }
+
+    function stateHasFreshQuotes(state) {
+      return Boolean(state?.pricing?.isStale === false || (state?.holdings || []).some((holding) =>
+        !holding.isStale && Number.isFinite(Number(holding.lastPrice))
+      ));
     }
 
     function holdingRowHtml(holding) {
@@ -1403,9 +1488,9 @@ export function multibaggerPage(state = multibaggerState()) {
       return "<tr>"
         + "<td data-label=\\"Ticker\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span>" + stockLinkHtml(holding) + "</td>"
         + "<td data-label=\\"Target\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
-        + "<td data-label=\\"Latest\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holding.priceSource || "Price snapshot") + "</span></td>"
+        + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Day Move\\" class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
-        + "<td data-label=\\"Plain Role\\">" + escapeHtml(holding.role) + "<span class=\\"subtext\\">" + escapeHtml(holding.rolePlain || holding.status) + "</span></td>"
+        + "<td data-label=\\"Plain-English Role\\">" + escapeHtml(holding.rolePlain || holding.status || holding.role) + "<span class=\\"subtext\\">Research label: " + escapeHtml(holding.role || holding.status) + "</span></td>"
         + "</tr>";
     }
 
@@ -1416,7 +1501,7 @@ export function multibaggerPage(state = multibaggerState()) {
         + "<div class=\\"allocation-top\\"><span class=\\"allocation-ticker\\">" + escapeHtml(holding.ticker) + "</span><strong class=\\"allocation-weight\\">" + formatPercent(holding.targetWeight) + "</strong></div>"
         + "<span class=\\"allocation-quote " + dayTone + "\\">" + escapeHtml(dayText) + "</span>"
         + "<p class=\\"allocation-role\\">" + escapeHtml(holding.rolePlain || holding.role) + "</p>"
-        + "<span class=\\"allocation-status\\">" + escapeHtml(holding.status || "Model slot") + "</span>"
+        + "<span class=\\"allocation-status\\">" + escapeHtml(statusPlain(holding.status)) + "</span>"
         + stockLinkHtml(holding)
         + "</article>";
     }
@@ -1479,23 +1564,62 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     function formatPerformanceInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Fill pending";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
       return formatSignedInr(value);
     }
 
     function formatPerformanceValueInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Fill pending";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
       return formatInr(value);
     }
 
     function formatPerformancePercent(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Fill pending";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
       return formatSignedPercent(value);
     }
 
     function formatQuotePercent(value) {
       if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Quote pending";
       return formatSignedPercent(value);
+    }
+
+    function latestPriceColumnText(state) {
+      const label = latestPriceCellLabel(state);
+      const asOf = latestQuoteAsOf(state);
+      return asOf ? label + " (" + asOf + ")" : label;
+    }
+
+    function latestPriceCellLabel(state) {
+      return state?.pricing?.isStale ? "Latest quote" : "Latest public close";
+    }
+
+    function latestQuoteStatusStamp(state) {
+      const asOf = latestQuoteAsOf(state);
+      return asOf ? "Price as of: " + asOf : "Last check: " + formatDateTime(state?.updatedAt || state?.pricing?.refreshedAt);
+    }
+
+    function latestQuoteAsOf(state) {
+      const timestamps = (state?.holdings || [])
+        .filter((holding) => !holding.isStale && Number.isFinite(Number(holding.lastPrice)))
+        .map((holding) => Date.parse(holding.lastPriceAt))
+        .filter(Number.isFinite);
+      if (!timestamps.length) return "";
+      return formatDateTime(new Date(Math.max(...timestamps)).toISOString());
+    }
+
+    function holdingPriceSourceLine(holding) {
+      const source = holding.priceSource || "Price snapshot";
+      if (holding.isStale || !holding.lastPriceAt) return source;
+      return source + " - as of " + formatDateTime(holding.lastPriceAt);
+    }
+
+    function statusPlain(status) {
+      const value = String(status || "Model slot");
+      if (/core/i.test(value)) return "Core staged";
+      if (/quality/i.test(value)) return "Quality slot";
+      if (/speculative/i.test(value)) return "Speculative cap";
+      if (/capped/i.test(value)) return "Capped alpha";
+      return value;
     }
 
     function fillStatusText(state) {
@@ -1814,9 +1938,9 @@ function holdingsRowsHtml(holdings) {
               <tr>
                 <td data-label="Ticker"><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span>${stockLinkHtml(holding)}</td>
                 <td data-label="Target" class="price-cell">${formatPercent(holding.targetWeight)}</td>
-                <td data-label="Latest" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holding.priceSource ?? "Price snapshot")}</span></td>
+                <td data-label="Latest public close" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
                 <td data-label="Day Move" class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
-                <td data-label="Plain Role">${escapeHtml(holding.role)}<span class="subtext">${escapeHtml(holding.rolePlain ?? holding.status)}</span></td>
+                <td data-label="Plain-English Role">${escapeHtml(holding.rolePlain ?? holding.status ?? holding.role)}<span class="subtext">Research label: ${escapeHtml(holding.role ?? holding.status)}</span></td>
               </tr>`).join("");
 }
 
@@ -1829,7 +1953,7 @@ function allocationTilesHtml(holdings) {
             </div>
             <span class="allocation-quote ${holding.isStale ? "stale" : toneClass(holding.dayChangePercent)}">${escapeHtml(holding.isStale ? "Quote pending" : `${formatSignedPercent(holding.dayChangePercent)} today`)}</span>
             <p class="allocation-role">${escapeHtml(holding.rolePlain ?? holding.role)}</p>
-            <span class="allocation-status">${escapeHtml(holding.status)}</span>
+            <span class="allocation-status">${escapeHtml(statusPlain(holding.status))}</span>
             ${stockLinkHtml(holding)}
           </article>`).join("");
 }
@@ -1862,7 +1986,7 @@ function priceStatusText(state) {
   if (state.pricing?.isStale) {
     return "Verified market quotes are not available yet. Current prices and day moves are hidden.";
   }
-  return "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published.";
+  return "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published.";
 }
 
 function toneClass(value) {
@@ -1913,21 +2037,21 @@ function formatSignedPercent(value) {
 
 function formatPerformanceInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Fill pending";
+    return "Starts after fill";
   }
   return formatSignedInr(value);
 }
 
 function formatPerformanceValueInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Fill pending";
+    return "Starts after fill";
   }
   return formatInr(value);
 }
 
 function formatPerformancePercent(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Fill pending";
+    return "Starts after fill";
   }
   return formatSignedPercent(value);
 }
@@ -1937,6 +2061,45 @@ function formatQuotePercent(value) {
     return "Quote pending";
   }
   return formatSignedPercent(value);
+}
+
+function latestPriceColumnText(state) {
+  const label = state?.pricing?.isStale ? "Latest quote" : "Latest public close";
+  const asOf = latestQuoteAsOf(state);
+  return asOf ? `${label}<span class="th-note">${asOf}</span>` : label;
+}
+
+function latestQuoteStatusStamp(state) {
+  const asOf = latestQuoteAsOf(state);
+  return asOf ? `Price as of: ${asOf}` : `Last check: ${formatDateTime(state?.updatedAt ?? state?.pricing?.refreshedAt)}`;
+}
+
+function latestQuoteAsOf(state) {
+  const timestamps = (state?.holdings ?? [])
+    .filter((holding) => !holding.isStale && Number.isFinite(Number(holding.lastPrice)))
+    .map((holding) => Date.parse(holding.lastPriceAt))
+    .filter(Number.isFinite);
+  if (!timestamps.length) {
+    return "";
+  }
+  return formatDateTime(new Date(Math.max(...timestamps)).toISOString());
+}
+
+function holdingPriceSourceLine(holding) {
+  const source = holding.priceSource ?? "Price snapshot";
+  if (holding.isStale || !holding.lastPriceAt) {
+    return source;
+  }
+  return `${source} - as of ${formatDateTime(holding.lastPriceAt)}`;
+}
+
+function statusPlain(status) {
+  const value = String(status ?? "Model slot");
+  if (/core/i.test(value)) return "Core staged";
+  if (/quality/i.test(value)) return "Quality slot";
+  if (/speculative/i.test(value)) return "Speculative cap";
+  if (/capped/i.test(value)) return "Capped alpha";
+  return value;
 }
 
 function fillStatusText(state) {

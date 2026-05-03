@@ -67,6 +67,7 @@ const benchmarkSnapshot = {
 
 const yahooSymbols = {
   KPEL: "KPEL.BO",
+  DHABRIYA: "DHABRIYA.BO",
   PIGL: "PIGL.NS",
   JNKINDIA: "JNKINDIA.NS",
   DYCL: "DYCL.NS",
@@ -480,7 +481,7 @@ export function multibaggerState(options = {}) {
   const benchmarkSinceLaunchPercent = activeBenchmark.isStale ? null : returnPercent(activeBenchmark.entryPrice, activeBenchmark.lastPrice);
   const quoteMode = hasMarketQuotes ? (options.mode ?? "public-market-snapshot") : "awaiting-verified-quotes";
   const quoteNote = hasMarketQuotes
-    ? "Latest market quotes are shown. Return and P&L stay hidden until exact public fills are published."
+    ? "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published."
     : "Current prices and returns are hidden until verified market quotes are available.";
   const state = {
     modelName: "Concentrated 5x Multibagger Model",
@@ -503,7 +504,7 @@ export function multibaggerState(options = {}) {
         dayChangePercent: activeBenchmark.isStale ? null : returnPercent(activeBenchmark.previousClose, activeBenchmark.lastPrice)
       },
       note: hasMarketQuotes
-        ? "Latest price and day move are public market-data fields. Model return and P&L require admin-published fills."
+        ? "Latest price and day move are public market-data fields with source timestamps. Model return and P&L require admin-published fills."
         : "Fallback mode does not publish current prices, returns, or P&L."
     },
     performance: {

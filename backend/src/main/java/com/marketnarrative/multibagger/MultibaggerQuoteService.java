@@ -2,6 +2,7 @@ package com.marketnarrative.multibagger;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -33,6 +34,7 @@ public class MultibaggerQuoteService {
     private static final ZoneId INDIA_ZONE = ZoneId.of("Asia/Kolkata");
     private static final Map<String, String> YAHOO_SYMBOLS = Map.of(
         "KPEL", "KPEL.BO",
+        "DHABRIYA", "DHABRIYA.BO",
         "PIGL", "PIGL.NS",
         "JNKINDIA", "JNKINDIA.NS",
         "DYCL", "DYCL.NS",
@@ -79,6 +81,13 @@ public class MultibaggerQuoteService {
         this.objectMapper = objectMapper;
     }
 
+    @PostConstruct
+    public void refreshOnStartup() {
+        if (liveQuotesEnabled) {
+            refreshNow();
+        }
+    }
+
     public MultibaggerQuoteSnapshot snapshotFor(String ticker) {
         return currentQuotes.getOrDefault(ticker, FALLBACK_QUOTES.get(ticker));
     }
@@ -94,7 +103,7 @@ public class MultibaggerQuoteService {
             currentBenchmark,
             stale
                 ? "Fallback mode does not publish current prices, returns, or P&L."
-                : "Latest price and day move are public market-data fields. Model return and P&L require admin-published fills."
+                : "Latest price and day move are public market-data fields with source timestamps. Model return and P&L require admin-published fills."
         );
     }
 
@@ -116,9 +125,13 @@ public class MultibaggerQuoteService {
         }
         for (Map.Entry<String, String> entry : BSE_SYMBOLS.entrySet()) {
             MultibaggerQuoteSnapshot fallback = FALLBACK_QUOTES.get(entry.getKey());
-            MultibaggerQuoteSnapshot quote = fetchBseQuote(entry.getValue(), entry.getKey(), fallback).orElse(fallback);
-            hasLiveQuote = hasLiveQuote || !quote.isStale();
-            nextQuotes.put(entry.getKey(), quote);
+            Optional<MultibaggerQuoteSnapshot> quote = fetchBseQuote(entry.getValue(), entry.getKey(), fallback);
+            if (quote.isPresent() && (nextQuotes.get(entry.getKey()) == null || nextQuotes.get(entry.getKey()).isStale())) {
+                hasLiveQuote = hasLiveQuote || !quote.get().isStale();
+                nextQuotes.put(entry.getKey(), quote.get());
+            } else {
+                nextQuotes.putIfAbsent(entry.getKey(), fallback);
+            }
         }
         currentQuotes = Map.copyOf(nextQuotes);
         currentBenchmark = fetchBenchmark("^NSEI").orElse(FALLBACK_BENCHMARK);

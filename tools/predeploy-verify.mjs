@@ -107,7 +107,10 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Since Apr 27, 2026/);
   assertOutput("multibagger/index.html", /Current value/);
   assertOutput("multibagger/index.html", /Model P&L/);
-  assertOutput("multibagger/index.html", /Fill pending/);
+  assertOutput("multibagger/index.html", /Starts after fill/);
+  assertOutput("multibagger/index.html", /Pre-fill research model/);
+  assertOutput("multibagger/index.html", /Latest public close/);
+  assertOutput("multibagger/index.html", /Plain-English Role/);
   assertOutput("multibagger/index.html", /allocation-donut/);
   assertOutput("multibagger/index.html", /Model Holdings/);
   assertOutput("multibagger/index.html", /View on Screener/);

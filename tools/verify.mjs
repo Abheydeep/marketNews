@@ -328,9 +328,17 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Since Apr 27, 2026"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Model P&L"));
-  assert.ok(html.includes("Fill pending"));
+  assert.ok(html.includes("Starts after fill"));
   assert.ok(html.includes("Tracking begins after the first confirmed public fill is published."));
   assert.ok(html.includes("Target weights are research allocations. Return, P&amp;L and current model value remain hidden until exact public fills are published."));
+  assert.ok(html.includes("Pre-fill research model"));
+  assert.ok(html.includes("No public trades or fills have been published yet."));
+  assert.ok(html.includes("Latest public exchange closes are shown with row-level timestamps."));
+  assert.ok(html.includes("Latest public close"));
+  assert.ok(html.includes("Plain-English Role"));
+  assert.ok(html.includes("Role legend") || html.includes("Plain-English role legend"));
+  assert.ok(html.includes("Research label: Anchor renewable alpha"));
+  assert.equal(html.includes("Last static update:"), false);
   assert.ok(html.includes("Copy tracker link"));
   assert.ok(html.includes("allocation-visual"));
   assert.ok(html.includes("allocation-donut"));
@@ -365,7 +373,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.indexOf("<details class=\"panel research-framework-panel\" open>") < html.indexOf("Research Method Snapshot"));
   assert.ok(html.indexOf("<details class=\"panel research-framework-panel\" open>") < html.indexOf("Market Regime Evidence"));
   assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("Market Regime Evidence"));
-  assert.ok(html.indexOf("Market Regime Evidence") < html.indexOf("<details class=\"panel\" open>"));
+  assert.ok(html.includes("<details class=\"panel portfolio-panel\" open>"));
   assert.ok(html.includes("<details class=\"panel holdings-panel\" open>"));
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
@@ -393,7 +401,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes('rel="canonical"'));
   assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
   assert.ok(html.includes("/api/public/multibagger/state"));
-  assert.ok(html.includes("<details class=\"panel\" open>"));
+  assert.ok(html.includes("<details class=\"panel portfolio-panel\" open>"));
   assert.ok((html.match(/<details class="panel/g) ?? []).length >= 8);
   assert.equal(html.includes("60% of IT below 33rd percentile"), false);
   assert.equal(html.includes("45.4%"), false);
@@ -1189,8 +1197,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Since Apr 27, 2026"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Model P&L"));
+  assert.ok(multibaggerHtml.body.includes("Starts after fill"));
+  assert.ok(multibaggerHtml.body.includes("Pre-fill research model"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("No public execution ledger has been published yet."));
+  assert.ok(multibaggerHtml.body.includes("Latest public close"));
+  assert.ok(multibaggerHtml.body.includes("Plain-English Role"));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("allocation-grid"));
@@ -1201,7 +1213,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("<details class=\"panel research-framework-panel\" open>"));
   assert.equal(multibaggerHtml.body.includes("<details class=\"panel method-panel\" open>"), false);
   assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
-  assert.ok(multibaggerHtml.body.includes("<details class=\"panel\" open>"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel portfolio-panel\" open>"));
 
   const adminMultibaggerHtml = await app.request("GET", "/admin/multibagger");
   assert.ok(adminMultibaggerHtml.body.includes("Admin Login"));
