@@ -914,6 +914,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const testingDoc = await readFile(join(rootDir, "docs", "testing.md"), "utf8");
 
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
+  const publicBuildScript = await readFile(join(rootDir, "tools", "vercel-build-public.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel"));
   assert.ok(buildScript.includes("inferVercelTarget"));
@@ -929,6 +930,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes('"out", "site", "admin"'));
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
   assert.ok(buildScript.includes("out\", \"vercel"));
+  assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
+  assert.ok(publicBuildScript.includes("latestArchivedDate()"));
+  assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
 
   const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
   const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));

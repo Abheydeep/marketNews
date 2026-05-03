@@ -17,7 +17,7 @@ const date = process.env.SKIP_DAILY_GENERATE === "true" ? process.env.VERCEL_BUI
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date}.`);
 } else {
-  run("npm", [
+  const generated = run("npm", [
     "run",
     "daily:generate",
     "--",
@@ -29,7 +29,19 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     process.env.MARKET_DATA_MODE ?? "live",
     "--news-data",
     process.env.NEWS_DATA_MODE ?? "live"
-  ]);
+  ], { exitOnFailure: false });
+  if (generated.status === 0) {
+    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"], { exitOnFailure: false });
+    if (published.status === 0) {
+      process.exit(0);
+    }
+  }
+  const fallbackDate = latestArchivedDate();
+  console.warn(`Live briefing for ${date} was not verified. Publishing latest verified archive ${fallbackDate} instead.`);
+  run("npm", ["run", "site:publish", "--", "--date", fallbackDate, "--scheduled-time", "08:30"], {
+    env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" }
+  });
+  process.exit(0);
 }
 run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "08:30"]);
 
@@ -47,9 +59,14 @@ function latestArchivedDate() {
   return latest;
 }
 
-function run(command, args) {
-  const result = spawnSync(command, args, { stdio: "inherit", shell: false });
-  if (result.status !== 0) {
+function run(command, args, options = {}) {
+  const result = spawnSync(command, args, {
+    stdio: "inherit",
+    shell: false,
+    env: options.env ?? process.env
+  });
+  if (result.status !== 0 && options.exitOnFailure !== false) {
     process.exit(result.status ?? 1);
   }
+  return result;
 }
