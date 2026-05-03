@@ -41,6 +41,7 @@ public class MultibaggerQuoteService {
         "TEMBO", "TEMBO.NS"
     );
     private static final Map<String, String> BSE_SYMBOLS = Map.of(
+        "KPEL", "539686",
         "DHABRIYA", "538715"
     );
     private static final Map<String, MultibaggerQuoteSnapshot> FALLBACK_QUOTES = Map.ofEntries(

@@ -75,6 +75,7 @@ const yahooSymbols = {
 };
 
 const bseSymbols = {
+  KPEL: "539686",
   DHABRIYA: "538715"
 };
 

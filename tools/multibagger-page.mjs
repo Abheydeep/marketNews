@@ -1473,13 +1473,13 @@ export function multibaggerPage(state = multibaggerState()) {
     }
 
     function shouldKeepExistingState(currentState, incomingState) {
-      return stateHasFreshQuotes(currentState) && !stateHasFreshQuotes(incomingState);
+      return freshQuoteCount(currentState) > freshQuoteCount(incomingState);
     }
 
-    function stateHasFreshQuotes(state) {
-      return Boolean(state?.pricing?.isStale === false || (state?.holdings || []).some((holding) =>
+    function freshQuoteCount(state) {
+      return (state?.holdings || []).filter((holding) =>
         !holding.isStale && Number.isFinite(Number(holding.lastPrice))
-      ));
+      ).length;
     }
 
     function holdingRowHtml(holding) {
