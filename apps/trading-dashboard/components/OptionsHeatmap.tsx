@@ -2,7 +2,7 @@
 
 import type { OptionChain, OptionSnapshot } from "@market-narrative/api-client";
 
-const MAX_VISIBLE_STRIKES = 11;
+const MAX_VISIBLE_STRIKES = 7;
 
 export function OptionsHeatmap({ chain }: { chain: OptionChain | null }) {
   const rows = selectVisibleRows(groupRows(chain?.snapshots ?? []), chain?.spot);
@@ -21,7 +21,7 @@ export function OptionsHeatmap({ chain }: { chain: OptionChain | null }) {
         <span className="text-center">STRIKE</span>
         <span className="text-right">PUT OI</span>
       </div>
-      <div className="max-h-[218px] overflow-auto">
+      <div className="max-h-[360px] overflow-auto">
         {rows.map((row) => (
           <div
             key={row.strike}
