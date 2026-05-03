@@ -7110,7 +7110,7 @@ function indiaReadThroughItems(digest) {
     ["Macro pressure", macro?.indiaImpact, "Crude, dollar, yields, and USD/INR remain the first pressure filters for the index."],
     ["Risk appetite", globalRisk?.indiaImpact, "Global risk headlines need Brent, DXY, and Asia breadth confirmation before they become India trades."],
     ["Domestic cushion", sectorSupport?.indiaImpact, "Use sector breadth, advance-decline, and defensive participation as the cushion check."],
-    ["Opening behavior", neutral?.indiaImpact, "Mixed or private-market stories are not direct India signals; wait for the first-hour range."]
+    ["Opening behavior", noDirectIndiaCopy(neutral?.indiaImpact) ? "" : neutral?.indiaImpact, "Opening behavior stays range-first: do not convert weak read-through stories into trades until VWAP and breadth confirm."]
   ];
   return items.map(([label, value, fallback]) =>
     `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(distinctIndiaRead(value, fallback, used))}</li>`
@@ -7131,6 +7131,10 @@ function distinctIndiaRead(value, fallback, used) {
 
 function cleanBriefingText(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function noDirectIndiaCopy(value) {
+  return /^no direct india read-through/i.test(String(value || "").trim());
 }
 
 function noSetupTradeFrame(digest) {
@@ -7449,7 +7453,7 @@ function sourceCategoryTitle(category) {
     global_risk: "Global Risk",
     neutral_volatile: "Asia & Volatility",
     sector_positive: "Sector Support",
-    macro_positive: "Domestic Macro Support"
+    macro_positive: "Global Earnings & Risk Appetite"
   }[category] || categoryLabel(category);
 }
 
@@ -7459,7 +7463,7 @@ function sourceCategorySummary(group) {
     global_risk: "US and global risk-appetite cues that decide whether traders chase or fade the first move.",
     neutral_volatile: "Mixed regional and defensive-market signals that argue for patience around the opening range.",
     sector_positive: "Sector-specific offsets that can keep leadership selective even when the index tone is weak.",
-    macro_positive: "Domestic liquidity or policy cushions that can soften the global pressure."
+    macro_positive: "US earnings and global risk-appetite cues that need Indian breadth before becoming local trade inputs."
   }[group.category] || "Related source notes grouped by theme for faster attribution.";
   return group.leadTakeaway
     ? `${fallback} Lead read: ${group.leadTakeaway}`
@@ -8002,7 +8006,7 @@ function setupAuditHtml(digest) {
           <strong>${escapeHtml(item.symbol)}</strong>
           <span>
             ${escapeHtml(item.reason)}
-            <small>${escapeHtml(setupAuditLevelLine(item))}</small>
+            <small>${escapeHtml(setupAuditLevelLine(item, digest))}</small>
           </span>
         </div>
       `).join("")}
@@ -8010,8 +8014,11 @@ function setupAuditHtml(digest) {
   `;
 }
 
-function setupAuditLevelLine(item) {
-  const parts = [];
+function setupAuditLevelLine(item, digest = {}) {
+  const digestLabel = digest.digestDate ? formatDigestDate(digest.digestDate) : "this briefing";
+  const parts = item.status === "TARGET_REACHED"
+    ? [`Archived setup before ${digestLabel} - not today's entry`]
+    : [];
   if (Number.isFinite(Number(item.currentPrice))) {
     parts.push(`Current ${formatNumber(item.currentPrice)}`);
   }

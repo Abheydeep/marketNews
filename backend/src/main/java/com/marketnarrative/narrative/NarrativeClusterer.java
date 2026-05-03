@@ -50,7 +50,7 @@ public class NarrativeClusterer {
     private String titleFor(String category) {
         return switch (category) {
             case "macro_negative" -> "Negative Macro Impact";
-            case "macro_positive" -> "Positive Macro Tailwind";
+            case "macro_positive" -> "Global Earnings & Risk Appetite";
             case "sector_positive" -> "Sector-Specific Cushion";
             case "sector_negative" -> "Sector-Specific Pressure";
             case "global_risk" -> "Global Risk-Off Cue";

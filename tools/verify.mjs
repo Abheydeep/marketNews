@@ -289,6 +289,21 @@ await test("article read-through copy does not reuse category templates", async 
       title: "Alphabet AI chip earnings lift software sentiment",
       link: "https://www.cnbc.com/2026/05/04/alphabet-ai-chip-earnings.html",
       summary: "Alphabet AI spending, chip demand and cloud revenue improved after earnings commentary."
+    },
+    {
+      title: "Jobs day, semiconductor earnings, and stock market momentum: What to watch this week",
+      link: "https://www.cnbc.com/2026/05/04/jobs-day-semiconductor-earnings-stock-market-momentum.html",
+      summary: ""
+    },
+    {
+      title: "Carvana stock pops as used car retailer reports record first-quarter results",
+      link: "https://www.cnbc.com/2026/05/04/carvana-stock-record-first-quarter-results.html",
+      summary: "Carvana reported record first-quarter results as used-car demand improved."
+    },
+    {
+      title: "'It's a boom': Wall Street sees more market gains as strong earnings fuel the AI trade",
+      link: "https://www.cnbc.com/2026/05/04/wall-street-market-gains-ai-trade-earnings.html",
+      summary: ""
     }
   ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
   const combined = JSON.stringify(articles);
@@ -302,8 +317,11 @@ await test("article read-through copy does not reuse category templates", async 
   const boe = articles.find((article) => /BOE Governor/i.test(article.headline));
   const supercar = articles.find((article) => /Supercar engine/i.test(article.headline));
   const alphabet = articles.find((article) => /Alphabet AI chip/i.test(article.headline));
+  const jobs = articles.find((article) => /Jobs day/i.test(article.headline));
+  const carvana = articles.find((article) => /Carvana/i.test(article.headline));
+  const boom = articles.find((article) => /It's a boom/i.test(article.headline));
 
-  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet, "mocked source set should retain all article-specific cases");
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom, "mocked source set should retain all article-specific cases");
   assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
@@ -319,6 +337,19 @@ await test("article read-through copy does not reuse category templates", async 
   assert.match(boe.takeaway, /rate|yield/i);
   assert.match(alphabet.takeaway, /Alphabet|semiconductor|AI/i);
   assert.equal(/Global Tech earnings-quality evidence/i.test(alphabet.takeaway), false);
+  for (const article of [keystone, jobs, carvana, boom]) {
+    assert.equal(
+      normalizeForTest(article.takeaway).startsWith(normalizeForTest(article.headline).slice(0, 24)),
+      false,
+      `${article.headline} takeaway should not begin by restating the headline`
+    );
+  }
+  assert.equal(carvana.category, "neutral_volatile");
+  assert.equal(carvana.entityName, "US single-stock");
+  assert.equal(carvana.indiaImpact, "No direct India read-through for this story.");
+  assert.equal(carvana.watchFor, "No specific watch for this article.");
+  assert.match(boom.takeaway, /AI-led|earnings|risk appetite/i);
+  assert.doesNotMatch(boom.takeaway, /trade-flow/i);
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {
@@ -1274,7 +1305,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Global Risk"));
   assert.ok(publicHtml.body.includes("Asia &amp; Volatility"));
   assert.ok(publicHtml.body.includes("Sector Support"));
-  assert.ok(publicHtml.body.includes("Domestic Macro Support"));
+  assert.ok(publicHtml.body.includes("Global Earnings &amp; Risk Appetite"));
   assert.ok(publicHtml.body.includes("data-source-group=\"macro_negative\""));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
@@ -1473,6 +1504,14 @@ function slugForTestUrl(value) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 28);
+}
+
+function normalizeForTest(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function assertAdminCopyIsPolished(html, label) {

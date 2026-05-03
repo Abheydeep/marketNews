@@ -310,7 +310,7 @@ function publicTitleForCategory(category) {
     neutral_volatile: "Opening Volatility",
     sector_negative: "Sector Pressure",
     sector_positive: "Sector Support",
-    macro_positive: "Domestic Macro Support"
+    macro_positive: "Global Earnings & Risk Appetite"
   }[category] || "Market Cues";
 }
 

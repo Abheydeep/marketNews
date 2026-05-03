@@ -655,7 +655,7 @@ export function todayIso() {
 function titleForCategory(category) {
   return {
     macro_negative: "Negative Macro Impact",
-    macro_positive: "Positive Macro Tailwind",
+    macro_positive: "Global Earnings & Risk Appetite",
     sector_positive: "Sector-Specific Cushion",
     sector_negative: "Sector-Specific Pressure",
     global_risk: "Global Risk-Off Cue",

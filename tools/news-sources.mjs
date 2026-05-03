@@ -126,7 +126,7 @@ const FIXTURE_TOPICS = [
 
 const THUMBNAIL_BY_CATEGORY = {
   macro_negative: { label: "Macro", theme: "Macro Pressure", accent: "#dc2626" },
-  macro_positive: { label: "India", theme: "Domestic Support", accent: "#059669" },
+  macro_positive: { label: "Earnings", theme: "Global Earnings", accent: "#059669" },
   sector_positive: { label: "Sector", theme: "Sector Rotation", accent: "#2563eb" },
   sector_negative: { label: "Sector", theme: "Sector Pressure", accent: "#b45309" },
   global_risk: { label: "Risk", theme: "Global Risk", accent: "#7c3aed" },
@@ -481,6 +481,12 @@ function categoryFromText(text, fallback) {
   if (isPrivateMarketStory(value)) {
     return "neutral_volatile";
   }
+  if (isLowRelevanceUsSingleStockStory(value)) {
+    return "neutral_volatile";
+  }
+  if (/\b(keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(value)) {
+    return "global_risk";
+  }
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
     return "global_risk";
   }
@@ -509,6 +515,18 @@ function isPrivateMarketStory(value) {
   return /\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(String(value || ""));
 }
 
+function isLowRelevanceUsSingleStockStory(value) {
+  return /\b(carvana|used car retailer|used cars?)\b/.test(String(value || ""));
+}
+
+function isTradePolicyStory(value) {
+  const lower = String(value || "");
+  if (/\bai trade\b/.test(lower)) {
+    return false;
+  }
+  return /\b(tariff|trade policy|trade war|exports?|imports?)\b/.test(lower);
+}
+
 function articleIsFreshForDigest(article, digestDate) {
   const published = Date.parse(article.publishedAt);
   const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
@@ -522,14 +540,17 @@ function articleIsFreshForDigest(article, digestDate) {
 function takeawayFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   const fact = articleFactSentence(headline, summary);
-  if (/\b(oil|crude|brent|energy supply)\b/.test(lower)) {
+  if (/\b(oil|crude|brent|energy supply|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
     return compactWords(`${fact}; ${oilReadthrough(lower).takeaway}`, 35);
   }
   if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return compactWords(`${fact}; ${ratesReadthrough(lower).takeaway}`, 35);
   }
-  if (/\b(tariff|trade|exports?|imports?)\b/.test(lower)) {
+  if (isTradePolicyStory(lower)) {
     return compactWords(`${fact}; ${tradeReadthrough(lower).takeaway}`, 35);
+  }
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return compactWords(`${fact}; keep it as a US single-stock cue, not an India opening signal.`, 35);
   }
   if (/\b(earnings|revenue|profit|guidance|results?)\b/.test(lower)) {
     return compactWords(`${fact}; ${earningsReadthrough(lower, entityName).takeaway}`, 35);
@@ -554,7 +575,7 @@ function takeawayFromArticle(headline, summary, category, entityName) {
 
 function whyItMattersFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
-  if (/\b(oil|crude|brent)\b/.test(lower)) {
+  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
     return "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.";
   }
   if (/\b(fed|yield|bond|rate|inflation)\b/.test(lower)) {
@@ -569,7 +590,10 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   if (/\b(earnings|guidance|revenue|profit)\b/.test(lower)) {
     return "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.";
   }
-  if (/\b(tariff|trade)\b/.test(lower)) {
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return "This is useful as broad US risk-appetite context, but it has no clean listed-India transmission line.";
+  }
+  if (isTradePolicyStory(lower)) {
     return "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.";
   }
   return `${entityName} matters because it can shift the first-hour balance between macro pressure and domestic breadth.`;
@@ -583,7 +607,10 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (isPrivateMarketStory(lower)) {
     return "No direct India read-through for this story.";
   }
-  if (/\b(oil|crude|brent)\b/.test(lower)) {
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return "No direct India read-through for this story.";
+  }
+  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
     return oilReadthrough(lower).indiaImpact;
   }
   if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
@@ -601,6 +628,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return techReadthrough(lower, entityName).indiaImpact;
   }
+  if (/\b(apple|iphone|mac|big tech|faang)\b/.test(lower)) {
+    return "Nifty IT gets a conditional read-through only if Nasdaq futures, USD/INR and exporter breadth support the open.";
+  }
   if (/\b(pharma|health|lilly|drug|fda)\b/.test(lower)) {
     return "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.";
   }
@@ -611,7 +641,7 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return aviationReadthrough(lower).indiaImpact;
   }
   if (category === "macro_positive") {
-    return "Supportive for risk appetite only if Indian breadth confirms after the first 30 minutes.";
+    return "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.";
   }
   if (category === "sector_negative") {
     return "Treat this as a sector caution flag; index action needs confirmation from banks and breadth.";
@@ -629,7 +659,10 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isPrivateMarketStory(lower)) {
     return "No specific watch for this article.";
   }
-  if (/\b(oil|crude|brent)\b/.test(lower)) {
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return "No specific watch for this article.";
+  }
+  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
     return oilReadthrough(lower).watchFor;
   }
   if (/\b(fed|yield|bond|rate|inflation|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
@@ -647,7 +680,10 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return techReadthrough(lower, entityName).watchFor;
   }
-  if (/\b(tariff|trade|exports?|imports?)\b/.test(lower)) {
+  if (/\b(apple|iphone|mac|big tech|faang)\b/.test(lower)) {
+    return "Watch Nasdaq futures, USD/INR and Nifty IT breadth together; Apple alone is not a local trade trigger.";
+  }
+  if (isTradePolicyStory(lower)) {
     return "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.";
   }
   return `Watch ${entityName} during the first-hour range; trade it only if it broadens into sector leadership.`;
@@ -791,6 +827,9 @@ function specificCompanyOrTheme(lower, fallback) {
     [/\boracle\b/, "Oracle"],
     [/\bmeta\b/, "Meta"],
     [/\bapple\b/, "Apple"],
+    [/\bs&p 500 earnings\b|\bearnings madness\b/, "S&P 500 earnings season"],
+    [/\bwall street\b.*\bai trade\b|\bstrong earnings\b.*\bai trade\b/, "AI-led earnings"],
+    [/\bjobs day\b|\bsemiconductor earnings\b/, "semiconductor earnings"],
     [/\btesla\b/, "Tesla"],
     [/\bbig tech\b/, "Big Tech"],
     [/\bsemiconductor earnings\b/, "semiconductor earnings"],
@@ -802,7 +841,7 @@ function specificCompanyOrTheme(lower, fallback) {
       return label;
     }
   }
-  return fallback && fallback !== "Market" ? fallback : "the article";
+  return fallback && fallback !== "Market" ? fallback : "global cue";
 }
 
 function extractMarketLevel(lower, unit) {
@@ -819,11 +858,36 @@ function articleFactSentence(headline, summary) {
   if (summarySentence && normalizeForComparison(summarySentence) !== normalizeForComparison(headline)) {
     return compactWordsPlain(summarySentence, 18);
   }
-  return compactWordsPlain(stripTerminal(headline)
+  return fallbackFactFromHeadline(headline);
+}
+
+function fallbackFactFromHeadline(headline) {
+  const lower = String(headline || "").toLowerCase();
+  if (/\bjobs day\b|\bwhat to watch this week\b/.test(lower)) {
+    return "US jobs data and semiconductor earnings are the week's main risk-appetite tests";
+  }
+  if (/\bkeystone\b|\bpipeline\b/.test(lower)) {
+    return "Keystone Light approval keeps North American crude-flow infrastructure in focus";
+  }
+  if (/\bs&p 500 earnings\b|\bearnings madness\b/.test(lower)) {
+    return "S&P 500 earnings season is shaping the US risk-appetite read";
+  }
+  if (/\bit'?s a boom\b|\bwall street\b.*\bmarket gains\b|\bai trade\b/.test(lower)) {
+    return "Strong earnings are keeping the AI-led Wall Street risk appetite alive";
+  }
+  if (/\bapple\b/.test(lower)) {
+    return "Apple guided current-quarter revenue growth above estimates";
+  }
+  if (/\bcarvana\b/.test(lower)) {
+    return "Carvana reported record first-quarter results";
+  }
+  const cleaned = compactWordsPlain(stripTerminal(headline)
     .replace(/^why\s+/i, "")
+    .replace(/^\d+\s+things?\s+(we\s+)?learned\s+(during|from)\s+/i, "")
     .replace(/\s*-\s*[^-]+$/i, "")
     .replace(/\s+/g, " ")
-    .trim(), 18);
+    .trim(), 14);
+  return cleaned ? `The source flags ${cleaned.charAt(0).toLowerCase()}${cleaned.slice(1)}` : "The source flags a market context cue";
 }
 
 function firstUsefulSentence(value) {
@@ -838,6 +902,9 @@ function firstUsefulSentence(value) {
 
 function hasNoDirectIndiaRead(text, category) {
   const lower = String(text || "").toLowerCase();
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return true;
+  }
   if (/\b(spirit airlines|domestic us|u\.s\. consumer|us consumer|air travelers?|ticket prices?|shutdown|shut down)\b/.test(lower) &&
       !/\b(oil|crude|brent|fuel|jet fuel|boeing|airbus|supply chain|dollar|rate|yield)\b/.test(lower)) {
     return true;
@@ -918,8 +985,11 @@ function entityForHeadline(headline, category) {
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return "Rates";
   }
-  if (/\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(lower)) {
+  if (isPrivateMarketStory(lower)) {
     return "Private markets";
+  }
+  if (isLowRelevanceUsSingleStockStory(lower)) {
+    return "US single-stock";
   }
   if (/\b(bank|banks|banking|credit|deposit|loan|jpmorgan|private credit|financials?)\b/.test(lower)) {
     return "Bank Nifty";
@@ -930,13 +1000,13 @@ function entityForHeadline(headline, category) {
   if (/\b(indian it|it services|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(lower)) {
     return "Nifty IT";
   }
-  if (/\b(ai|semiconductor|software|alphabet|google|nvidia|microsoft|oracle|meta|tech)\b/.test(lower)) {
+  if (/\b(ai|semiconductor|software|alphabet|google|nvidia|microsoft|oracle|meta|tech|apple|iphone|mac|big tech|faang)\b/.test(lower)) {
     return "Global Tech";
   }
   if (/\b(yield|bond|rate|fed|inflation|powell)\b/.test(lower)) {
     return "Rates";
   }
-  if (/\b(oil|crude|brent|energy supply)\b/.test(lower)) {
+  if (/\b(oil|crude|brent|energy supply|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
     return "Brent Crude";
   }
   if (/\b(rupee|dollar|currency|forex|yen)\b/.test(lower)) {
@@ -951,7 +1021,7 @@ function entityForHeadline(headline, category) {
   if (/\b(auto|vehicle|tariff|ev|tesla)\b/.test(lower)) {
     return "Autos";
   }
-  if (/\b(tariff|trade|exports?|imports?)\b/.test(lower)) {
+  if (isTradePolicyStory(lower)) {
     return "Exporters";
   }
   if (category === "sector_positive") {
@@ -1164,7 +1234,7 @@ function decodeHtml(value) {
 function categoryLabel(category) {
   return {
     macro_negative: "Macro pressure",
-    macro_positive: "Domestic macro support",
+    macro_positive: "Global earnings and risk appetite",
     sector_positive: "Sector support",
     sector_negative: "Sector pressure",
     global_risk: "Global risk",
