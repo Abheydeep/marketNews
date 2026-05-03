@@ -59,6 +59,7 @@ class TradingState:
         self.signals: dict[IndexSymbol, TradingSignal] = {}
         self.proposals: dict[str, OrderProposal] = {}
         self.contracts: list[OptionContract] = []
+        self.previous_option_oi: dict[int, float] = {}
         self.last_refresh_at: datetime | None = None
         self.last_spots: dict[IndexSymbol, float] = {}
         self.status = self._status("mock" if self.settings.trading_market_mode != "kite" else "kite", False, "Starting trading data service")
@@ -117,10 +118,20 @@ class TradingState:
                 spot = spots[index]
                 selected_contracts[index] = self.instrument_parser.build_chain_contracts(self.contracts, index, spot, today=now)
                 all_quote_keys.extend(f"NFO:{contract.tradingsymbol}" for contract in selected_contracts[index])
-                candles = await self._kite_candles(kite_client, index, now)
+                try:
+                    candles = await self._kite_candles(kite_client, index, now)
+                except Exception as exc:
+                    candles = []
+                    notes.append(f"{index} candle fallback active: {exc}")
                 if candles:
                     self.candles[index] = candles
                     self.technicals[index] = self.technical_engine.analyze(candles)
+                elif self.candles[index]:
+                    notes.append(f"{index} using last good candles")
+                else:
+                    self.candles[index] = self._spot_seed_candles(now, spot)
+                    self.technicals[index] = self.technical_engine.analyze(self.candles[index])
+                    notes.append(f"{index} seeded from index LTP until historical candles arrive")
 
             option_quotes: dict[str, Any] = {}
             quote_failed = False
@@ -263,12 +274,15 @@ class TradingState:
             ohlc = quote.get("ohlc") or {}
             previous_close = float(ohlc.get("close") or last_price)
             timestamp = quote.get("timestamp") or fallback_ts
+            raw_oi = quote.get("oi")
+            open_interest = float(raw_oi) if raw_oi is not None else self.previous_option_oi.get(contract.instrument_token, 0.0)
+            oi_delta = self._track_option_oi(contract.instrument_token, open_interest) if raw_oi is not None else 0.0
             snapshots.append(
                 OptionSnapshot(
                     contract=contract,
                     last_price=last_price,
-                    open_interest=float(quote.get("oi") or 0.0),
-                    oi_delta=0.0,
+                    open_interest=open_interest,
+                    oi_delta=oi_delta,
                     price_delta=last_price - previous_close,
                     volume=float(quote.get("volume") or 0.0),
                     ts=self._parse_kite_ts(timestamp),
@@ -298,18 +312,32 @@ class TradingState:
                 continue
             close = float(row[4])
             open_price = float(row[1])
+            open_interest = float(row[6]) if len(row) > 6 and row[6] is not None else self.previous_option_oi.get(contract.instrument_token, 0.0)
+            previous_oi = self._previous_historical_oi(contract.instrument_token, rows)
+            oi_delta = open_interest - previous_oi if previous_oi is not None else 0.0
+            self.previous_option_oi[contract.instrument_token] = open_interest
             snapshots.append(
                 OptionSnapshot(
                     contract=contract,
                     last_price=close,
-                    open_interest=float(row[6]) if len(row) > 6 and row[6] is not None else 0.0,
-                    oi_delta=0.0,
+                    open_interest=open_interest,
+                    oi_delta=oi_delta,
                     price_delta=close - open_price,
                     volume=float(row[5]),
                     ts=self._parse_kite_ts(row[0]),
                 )
             )
         return snapshots
+
+    def _track_option_oi(self, instrument_token: int, open_interest: float) -> float:
+        previous = self.previous_option_oi.get(instrument_token)
+        self.previous_option_oi[instrument_token] = open_interest
+        return 0.0 if previous is None else open_interest - previous
+
+    def _previous_historical_oi(self, instrument_token: int, rows: list[list[object]]) -> float | None:
+        if len(rows) >= 2 and len(rows[-2]) > 6 and rows[-2][6] is not None:
+            return float(rows[-2][6])
+        return self.previous_option_oi.get(instrument_token)
 
     def _parse_kite_ts(self, raw: object) -> datetime:
         if isinstance(raw, datetime):
@@ -350,6 +378,12 @@ class TradingState:
             )
             price = close
         return candles
+
+    def _spot_seed_candles(self, now: datetime, spot: float) -> list[Candle]:
+        return [
+            Candle(ts=now - timedelta(minutes=1), open=spot, high=spot, low=spot, close=spot, volume=1),
+            Candle(ts=now, open=spot, high=spot, low=spot, close=spot, volume=1),
+        ]
 
     def _mock_chain(self, index: IndexSymbol, spot: float, now: datetime) -> OptionChain:
         step = 100 if index == "BANKNIFTY" else 50

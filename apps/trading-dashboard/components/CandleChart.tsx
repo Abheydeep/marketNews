@@ -1,20 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { IChartApi, ISeriesApi, UTCTimestamp } from "lightweight-charts";
-import type { PriceZone, TradingCandle, TradingSignal } from "@market-narrative/api-client";
+import type { IChartApi, ISeriesApi, Time, UTCTimestamp } from "lightweight-charts";
+import type { PriceZone, TradingCandle, TradingIndex, TradingSignal } from "@market-narrative/api-client";
 
 type Props = {
+  index: TradingIndex;
   candles: TradingCandle[];
   zones: PriceZone[];
   signal: TradingSignal | null;
 };
 
-export function CandleChart({ candles, zones, signal }: Props) {
+const IST_OFFSET_SECONDS = 5.5 * 60 * 60;
+
+export function CandleChart({ index, candles, zones, signal }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const priceLinesRef = useRef<Array<ReturnType<ISeriesApi<"Candlestick">["createPriceLine"]>>>([]);
+  const candlesRef = useRef<TradingCandle[]>(candles);
 
   useEffect(() => {
     let disposed = false;
@@ -37,8 +41,11 @@ export function CandleChart({ candles, zones, signal }: Props) {
           vertLines: { color: "rgba(148, 163, 184, 0.12)" },
           horzLines: { color: "rgba(148, 163, 184, 0.12)" }
         },
+        localization: {
+          timeFormatter: formatChartAxisTime
+        },
         rightPriceScale: { borderColor: "#2c3446" },
-        timeScale: { borderColor: "#2c3446", timeVisible: true }
+        timeScale: { borderColor: "#2c3446", timeVisible: true, tickMarkFormatter: formatChartAxisTime }
       });
       chartRef.current = chart;
       seriesRef.current = chart.addCandlestickSeries({
@@ -49,6 +56,8 @@ export function CandleChart({ candles, zones, signal }: Props) {
         wickUpColor: "#11a36a",
         wickDownColor: "#db3b4d"
       });
+      renderCandles(seriesRef.current, candlesRef.current);
+      chart.timeScale().fitContent();
     }
     void mount();
     return () => {
@@ -60,18 +69,11 @@ export function CandleChart({ candles, zones, signal }: Props) {
   }, []);
 
   useEffect(() => {
+    candlesRef.current = candles;
     if (!seriesRef.current) {
       return;
     }
-    seriesRef.current.setData(
-      candles.map((candle) => ({
-        time: Math.floor(new Date(candle.ts).getTime() / 1000) as UTCTimestamp,
-        open: candle.open,
-        high: candle.high,
-        low: candle.low,
-        close: candle.close
-      }))
-    );
+    renderCandles(seriesRef.current, candles);
     chartRef.current?.timeScale().fitContent();
   }, [candles]);
 
@@ -118,7 +120,7 @@ export function CandleChart({ candles, zones, signal }: Props) {
         <div>
           <h2 className="text-sm font-black uppercase text-white">Live Price Action</h2>
           <p className="text-xs text-slate-400">
-            {last ? `${last.close.toFixed(2)} close | ${new Date(last.ts).toLocaleTimeString()}` : "Waiting for candles"}
+            {last ? `${last.close.toFixed(2)} close | ${formatIstClock(last.ts)}` : `Waiting for ${index} candles`}
           </p>
         </div>
         <div className="grid grid-cols-3 gap-2 text-right text-xs">
@@ -129,6 +131,11 @@ export function CandleChart({ candles, zones, signal }: Props) {
       </div>
       <div className="relative h-[430px]">
         <div ref={containerRef} className="h-full w-full" />
+        {!candles.length ? (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/40 text-sm font-bold text-slate-300">
+            Waiting for live {index} candles
+          </div>
+        ) : null}
         <div className="pointer-events-none absolute left-3 top-3 grid gap-2 text-xs">
           {zones.slice(0, 4).map((zone) => (
             <span key={`${zone.kind}-${zone.center}`} className="rounded-md border border-line bg-ink/70 px-2 py-1">
@@ -139,6 +146,54 @@ export function CandleChart({ candles, zones, signal }: Props) {
       </div>
     </section>
   );
+}
+
+function renderCandles(series: ISeriesApi<"Candlestick">, candles: TradingCandle[]) {
+  let previousTime = 0;
+  const data = [...candles]
+    .sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime())
+    .map((candle) => ({
+      time: toIstChartTimestamp(candle.ts),
+      open: candle.open,
+      high: candle.high,
+      low: candle.low,
+      close: candle.close
+    }))
+    .filter((point) => {
+      const currentTime = Number(point.time);
+      if (currentTime <= previousTime) {
+        return false;
+      }
+      previousTime = currentTime;
+      return true;
+    });
+  series.setData(data);
+}
+
+function toIstChartTimestamp(value: string): UTCTimestamp {
+  return (Math.floor(new Date(value).getTime() / 1000) + IST_OFFSET_SECONDS) as UTCTimestamp;
+}
+
+function formatChartAxisTime(time: Time): string {
+  if (typeof time !== "number") {
+    return "";
+  }
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "UTC",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).format(new Date(time * 1000));
+}
+
+function formatIstClock(value: string): string {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).format(new Date(value));
 }
 
 function Metric({ label, value, tone }: { label: string; value: string; tone?: "loss" }) {

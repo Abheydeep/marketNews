@@ -26,16 +26,16 @@ class SignalGenerator:
             (support is not None and self._near(price, support), "price is near a KDE support zone"),
             (option_chain.oi_status == OI_LONG_BUILDUP, "options matrix confirms Long Build-up"),
             (option_chain.pcr.pcr > 0.8 and option_chain.pcr.velocity_5m >= 0, "PCR is above 0.8 and rising"),
-            (sentiment_score > 0.20, "financial news sentiment is positive"),
         ]
         sell_checks = [
             (resistance is not None and self._near(price, resistance), "price is near a KDE resistance zone"),
             (option_chain.oi_status == OI_SHORT_BUILDUP, "options matrix confirms Short Build-up"),
             (option_chain.pcr.pcr < 1.0 and option_chain.pcr.velocity_5m <= 0, "PCR is below 1.0 and falling"),
-            (sentiment_score < -0.20, "financial news sentiment is negative"),
         ]
+        buy_sentiment_ok = sentiment_score > -0.35
+        sell_sentiment_ok = sentiment_score < 0.35
 
-        if all(passed for passed, _reason in buy_checks) and support is not None:
+        if all(passed for passed, _reason in buy_checks) and support is not None and buy_sentiment_ok:
             target = self._next_resistance(price, technical.kde_zones)
             stop = support.lower * 0.998
             return TradingSignal(
@@ -45,11 +45,11 @@ class SignalGenerator:
                 target_price=target.center if target else price + (price - stop) * 2,
                 stop_loss=stop,
                 confidence=self._confidence(buy_checks, option_chain.pcr.velocity_5m, sentiment_score),
-                reasons=[reason for _passed, reason in buy_checks],
+                reasons=self._passed_reasons("BUY", buy_checks, sentiment_score),
                 generated_at=datetime.now(timezone.utc),
             )
 
-        if all(passed for passed, _reason in sell_checks) and resistance is not None:
+        if all(passed for passed, _reason in sell_checks) and resistance is not None and sell_sentiment_ok:
             target = self._next_support(price, technical.kde_zones)
             stop = resistance.upper * 1.002
             return TradingSignal(
@@ -59,12 +59,13 @@ class SignalGenerator:
                 target_price=target.center if target else price - (stop - price) * 2,
                 stop_loss=stop,
                 confidence=self._confidence(sell_checks, option_chain.pcr.velocity_5m, sentiment_score),
-                reasons=[reason for _passed, reason in sell_checks],
+                reasons=self._passed_reasons("SELL", sell_checks, sentiment_score),
                 generated_at=datetime.now(timezone.utc),
             )
 
-        reasons.extend(self._failed_reasons("BUY", buy_checks))
-        reasons.extend(self._failed_reasons("SELL", sell_checks))
+        reasons.append("No clean multi-factor opportunity yet. Wait.")
+        reasons.extend(self._status_reasons("BUY", buy_checks, buy_sentiment_ok))
+        reasons.extend(self._status_reasons("SELL", sell_checks, sell_sentiment_ok))
         return TradingSignal(index=index, action="WAIT", confidence=0.0, reasons=reasons[:6], generated_at=datetime.now(timezone.utc))
 
     def _near(self, price: float, zone: PriceZone) -> bool:
@@ -91,6 +92,15 @@ class SignalGenerator:
         bonus = min(abs(velocity) * 8.0, 5.0) + min(abs(sentiment) * 5.0, 5.0)
         return min(100.0, round(base + bonus, 2))
 
-    def _failed_reasons(self, side: str, checks: list[tuple[bool, str]]) -> list[str]:
-        return [f"{side} blocked: {reason}" for passed, reason in checks if not passed]
+    def _passed_reasons(self, side: str, checks: list[tuple[bool, str]], sentiment_score: float) -> list[str]:
+        reasons = [f"{side} confirmed: {reason}" for passed, reason in checks if passed]
+        if abs(sentiment_score) < 0.20:
+            reasons.append("News sentiment is neutral; manual confirmation still required.")
+        return reasons
 
+    def _status_reasons(self, side: str, checks: list[tuple[bool, str]], sentiment_ok: bool) -> list[str]:
+        passed_reasons = [f"{side} ready: {reason}" for passed, reason in checks if passed]
+        failed_reasons = [f"{side} missing: {reason}" for passed, reason in checks if not passed]
+        if not sentiment_ok:
+            failed_reasons.append(f"{side} missing: sentiment is too hostile for this side")
+        return (failed_reasons or passed_reasons)[:3]

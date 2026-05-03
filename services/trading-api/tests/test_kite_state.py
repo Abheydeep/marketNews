@@ -18,10 +18,12 @@ class Auth:
 
 
 class FakeKiteClient:
-    def __init__(self, valid=True, fail_ltp=False, fail_quote=False):
+    def __init__(self, valid=True, fail_ltp=False, fail_quote=False, empty_nifty_history=False):
         self.auth = Auth(valid)
         self.fail_ltp = fail_ltp
         self.fail_quote = fail_quote
+        self.empty_nifty_history = empty_nifty_history
+        self.quote_oi = 100000.0
 
     async def instruments(self):
         return "\n".join(
@@ -43,6 +45,8 @@ class FakeKiteClient:
         }
 
     async def historical(self, instrument_token, interval, from_ts, to_ts, continuous=False, oi=False):
+        if self.empty_nifty_history and instrument_token == 256265:
+            return {"candles": []}
         base = 22500 if instrument_token == 256265 else 48500 if instrument_token == 260105 else 100
         return {
             "candles": [
@@ -57,7 +61,7 @@ class FakeKiteClient:
         return {
             instrument: {
                 "last_price": 100.0,
-                "oi": 100000.0,
+                "oi": self.quote_oi,
                 "volume": 1000.0,
                 "ohlc": {"close": 98.0},
                 "timestamp": "2026-05-02T09:45:00+0530",
@@ -99,6 +103,37 @@ async def _kite_refresh_builds_live_envelope_from_kite_payloads():
     assert envelope.option_chains["BANKNIFTY"].snapshots
 
 
+def test_kite_quote_refresh_tracks_option_oi_delta():
+    asyncio.run(_kite_quote_refresh_tracks_option_oi_delta())
+
+
+async def _kite_quote_refresh_tracks_option_oi_delta():
+    state = TradingState(Settings(trading_market_mode="kite", kite_api_key="key", kite_refresh_seconds=0))
+    client = FakeKiteClient(valid=True)
+    await state.bootstrap()
+    await state.refresh_from_kite(client)
+    client.quote_oi = 101250.0
+    await state.refresh_from_kite(client)
+    deltas = [snapshot.oi_delta for snapshot in state.envelope().option_chains["NIFTY"].snapshots]
+    assert deltas
+    assert all(delta == 1250.0 for delta in deltas)
+
+
+def test_kite_refresh_seeds_nifty_chart_when_history_is_empty():
+    asyncio.run(_kite_refresh_seeds_nifty_chart_when_history_is_empty())
+
+
+async def _kite_refresh_seeds_nifty_chart_when_history_is_empty():
+    state = TradingState(Settings(trading_market_mode="kite", kite_api_key="key", kite_refresh_seconds=0))
+    await state.bootstrap()
+    await state.refresh_from_kite(FakeKiteClient(valid=True, empty_nifty_history=True))
+    envelope = state.envelope()
+    assert envelope.candles["NIFTY"]
+    assert len(envelope.candles["NIFTY"]) == 2
+    assert envelope.technicals["NIFTY"]
+    assert "NIFTY seeded" in envelope.status.message
+
+
 def test_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
     asyncio.run(_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden())
 
@@ -119,3 +154,4 @@ async def _kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
     assert "fallback" in envelope.status.message.lower()
     assert envelope.candles["NIFTY"]
     assert envelope.option_chains["NIFTY"].snapshots
+    assert any(snapshot.oi_delta != 0 for snapshot in envelope.option_chains["NIFTY"].snapshots)

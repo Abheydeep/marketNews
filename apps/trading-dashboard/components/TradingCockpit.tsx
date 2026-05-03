@@ -145,7 +145,7 @@ export function TradingCockpit() {
 
       <section className="grid gap-3 xl:grid-cols-[minmax(0,1.6fr)_minmax(360px,0.9fr)]">
         <div className="grid min-w-0 gap-3">
-          <CandleChart candles={candles} zones={technical?.kde_zones ?? []} signal={signal ?? null} />
+          <CandleChart index={selectedIndex} candles={candles} zones={technical?.kde_zones ?? []} signal={signal ?? null} />
           <div className="grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
             <OptionsHeatmap chain={chain ?? null} />
             <NewsTicker news={envelope?.news ?? []} />
