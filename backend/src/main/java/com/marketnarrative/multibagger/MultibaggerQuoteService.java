@@ -20,7 +20,6 @@ import java.util.Locale;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -78,13 +77,6 @@ public class MultibaggerQuoteService {
 
     public MultibaggerQuoteService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
-    }
-
-    @PostConstruct
-    public void refreshOnStartup() {
-        if (liveQuotesEnabled) {
-            refreshNow();
-        }
     }
 
     public MultibaggerQuoteSnapshot snapshotFor(String ticker) {
