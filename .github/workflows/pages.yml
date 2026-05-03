@@ -11,7 +11,7 @@ on:
     - cron: "*/5 3-21 * * 1-5"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -57,6 +57,21 @@ jobs:
 
       - name: Public copy QA
         run: npm run public:copy:qa -- out/site
+
+      - name: Commit verified daily archive for Vercel
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
+          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0830-digest.json"
+          if git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
+            echo "Verified archive already tracked: $ARCHIVE_FILE"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$ARCHIVE_FILE"
+          git commit -m "Publish verified daily briefing for ${SUMMARY_DATE}"
+          git push
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

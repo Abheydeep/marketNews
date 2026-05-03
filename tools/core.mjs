@@ -47,9 +47,9 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles, options.previousDigest);
   const generatedAt = options.generatedAt ?? new Date().toISOString();
-  const archiveSummary = archiveSummaryForDigest(articles, themes, options.previousDigest);
-  const deskNote = deskNoteForDigest(articles, tradeSetups, options.previousDigest);
-  const watchItems = watchItemsForDigest(articles, tradeSetups, options.previousDigest);
+  const archiveSummary = archiveSummaryForDigest(date, articles, themes, options.previousDigest);
+  const deskNote = deskNoteForDigest(date, articles, tradeSetups, options.previousDigest);
+  const watchItems = watchItemsForDigest(date, articles, tradeSetups, options.previousDigest);
   assertDigestEditorialIntegrity({
     title: script.title,
     archiveSummary,
@@ -673,7 +673,7 @@ function titleSuffix(label) {
 }
 
 function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest = null) {
-  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
   const headline = String(lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
   const force = dominantForceLabel(lead, headline);
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
@@ -692,6 +692,7 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
 }
 
 function dominantForceLabel(article, headline) {
+  if (/\b(jobs day|payroll|employment|jobless|labor market|semiconductor|chip|chips)\b/.test(headline)) return "Jobs And Chips";
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Crude";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "Yields";
   if (/\b(dollar|rupee|currency|forex|yen)\b/.test(headline)) return "Currency";
@@ -705,6 +706,7 @@ function dominantForceLabel(article, headline) {
 }
 
 function dominantVerb(headline, category, sentimentLabel) {
+  if (/\b(jobs day|payroll|employment|jobless|labor market|semiconductor|chip|chips)\b/.test(headline)) return "Test";
   if (/\b(crude|oil|brent)\b/.test(headline) && String(category).includes("risk")) return "Tests";
   if (/\b(spike|surge|jump|rise|rally|gain|firm|lift)\b/.test(headline)) return "Lift";
   if (/\b(fall|drop|slide|slip|ease|cool|weaken)\b/.test(headline)) return "Ease";
@@ -715,19 +717,23 @@ function dominantVerb(headline, category, sentimentLabel) {
 }
 
 function titleConsequence(article, sentimentLabel) {
+  const headline = String(article?.headline || "").toLowerCase();
   const entity = String(article?.entityName || "").toLowerCase();
+  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "Nifty Open";
   if (entity.includes("bank")) return "Bank Nifty Open";
-  if (entity.includes("it") || entity.includes("tech")) return "IT Breadth";
+  if (entity.includes("it") || entity.includes("tech")) {
+    return /\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline) ? "IT Breadth" : "Risk Appetite";
+  }
   if (entity.includes("brent") || entity.includes("crude")) return "India Inflation Watch";
   if (sentimentLabel === "BULLISH") return "Nifty Upside Watch";
   if (sentimentLabel === "BEARISH") return "Nifty Open";
   return "Opening Range";
 }
 
-function archiveSummaryForDigest(articles, themes, previousDigest) {
-  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+function archiveSummaryForDigest(date, articles, themes, previousDigest) {
+  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
   const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
-  const text = lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
+  const text = editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
   const summary = compactWords(cleanSentence(`${force}: ${text}`), 20);
   if (summary && normalizeEditorial(summary) !== normalizeEditorial(previousDigest?.archiveSummary)) {
     return summary;
@@ -736,14 +742,14 @@ function archiveSummaryForDigest(articles, themes, previousDigest) {
   return compactWords(cleanSentence(fallback), 20);
 }
 
-function deskNoteForDigest(articles, setups, previousDigest) {
-  const lead = leadMarketArticle(articles) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
-  const sector = leadSectorArticle(articles) ?? lead;
+function deskNoteForDigest(date, articles, setups, previousDigest) {
+  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+  const sector = leadSectorArticle(articles, date) ?? lead;
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
   const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
   const sectorLabel = sectorFocusLabel(sector);
-  const first = `${force} ${forceVerb(force)} the first filter today: ${sentenceFragment(lead?.summary || lead?.headline || "the source mix changed from the last verified edition")}.`;
-  const second = `${sectorLabel} is the key watch because ${becauseFragment(sector?.summary || sector?.headline || "it decides whether the first move has breadth behind it")}.`;
+  const first = `${force} ${forceVerb(force)} the first filter today: ${sentenceFragment(editorialLeadSentence(lead) || lead?.summary || lead?.headline || "the source mix changed from the last verified edition")}.`;
+  const second = `${sectorLabel} is the key watch because ${becauseFragment(editorialBecause(sector) || sector?.summary || sector?.headline || "it decides whether the first move has breadth behind it")}.`;
   const third = setup
     ? `The open rule is simple: respect ${setup.symbol} only near ${formatNumber(setup.entry)} and abandon it below ${formatNumber(setup.stopLoss)}.`
     : "The open rule is simple: wait for the first range and do not chase the headline candle.";
@@ -759,7 +765,7 @@ function sentenceFragment(value) {
 }
 
 function forceVerb(force) {
-  return /\b(yields|banks|commodities|market cues)\b/i.test(String(force || "")) ? "are" : "is";
+  return /\b(yields|banks|commodities|market cues|jobs and chips)\b/i.test(String(force || "")) ? "are" : "is";
 }
 
 function becauseFragment(value) {
@@ -768,16 +774,16 @@ function becauseFragment(value) {
   return withoutArticle ? `${withoutArticle.charAt(0).toLowerCase()}${withoutArticle.slice(1)}` : withoutArticle;
 }
 
-function leadMarketArticle(articles) {
+function leadMarketArticle(articles, date) {
   return [...(articles ?? [])]
-    .map((article, index) => ({ article, index, score: marketLeadScore(article) }))
+    .map((article, index) => ({ article, index, score: marketLeadScore(article) + freshnessScore(article, date) }))
     .filter((item) => item.score > 0)
     .sort((left, right) => right.score - left.score || left.index - right.index)[0]?.article;
 }
 
-function leadSectorArticle(articles) {
+function leadSectorArticle(articles, date) {
   return [...(articles ?? [])]
-    .map((article, index) => ({ article, index, score: sectorLeadScore(article) }))
+    .map((article, index) => ({ article, index, score: sectorLeadScore(article) + freshnessScore(article, date) }))
     .filter((item) => item.score > 0)
     .sort((left, right) => right.score - left.score || left.index - right.index)[0]?.article;
 }
@@ -787,11 +793,14 @@ function marketLeadScore(article) {
   let score = 0;
   if (/\b(crude|oil|brent|strait of hormuz)\b/.test(text)) score += 8;
   if (/\b(yield|bond|fed|rate|inflation)\b/.test(text)) score += 7;
+  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) score += 7;
+  if (/\b(opec|production|output cut|output boost)\b/.test(text)) score += 7;
   if (/\b(nasdaq|s&p|dow|wall street|futures|stocks?|shares?)\b/.test(text)) score += 6;
+  if (/\b(semiconductor|chip|chips|sox)\b/.test(text)) score += 5;
   if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) score += 5;
   if (/\b(rupee|dollar|currency)\b/.test(text)) score += 4;
   if (/\b(earnings|revenue|profit|guidance|outlook)\b/.test(text)) score += 3;
-  if (/\b(investigation|legal advice|traveler|tickets)\b/.test(text)) score -= 4;
+  if (/\b(investigation|legal advice|traveler|tickets|lazy millionaire|retirement|top wall street analysts?|berkshire|greg abel|chipotle|paypal)\b/.test(text)) score -= 8;
   return score;
 }
 
@@ -802,7 +811,7 @@ function sectorLeadScore(article) {
   if (/\b(tech|ai|semiconductor|software|mag 7|alphabet|nvidia)\b/.test(text)) score += 5;
   if (/\b(bank|credit|private credit|financial)\b/.test(text)) score += 4;
   if (/\b(stocks?|shares?|wall street analysts?)\b/.test(text)) score += 4;
-  if (/\b(airfare|travelers|tickets|legal advice)\b/.test(text)) score -= 4;
+  if (/\b(airfare|travelers|tickets|legal advice|lazy millionaire|retirement|top wall street analysts?|berkshire|greg abel|chipotle|paypal)\b/.test(text)) score -= 8;
   return score;
 }
 
@@ -815,9 +824,13 @@ function sectorFocusLabel(article) {
   return "Sector breadth";
 }
 
-function watchItemsForDigest(articles, setups, previousDigest) {
+function watchItemsForDigest(date, articles, setups, previousDigest) {
+  const rankedArticles = [...articles].sort((left, right) =>
+    marketLeadScore(right) + sectorLeadScore(right) + freshnessScore(right, date) -
+    (marketLeadScore(left) + sectorLeadScore(left) + freshnessScore(left, date))
+  );
   const candidates = [
-    ...articles.map((article) => specificWatchItem(article)).filter(Boolean),
+    ...rankedArticles.map((article) => specificWatchItem(article)).filter(Boolean),
     ...setups.map((setup) => `${setup.symbol} acceptance near ${formatNumber(setup.entry)} with invalidation at ${formatNumber(setup.stopLoss)}.`)
   ];
   const previous = new Set((previousDigest?.watchItems || []).map(normalizeEditorial));
@@ -843,13 +856,67 @@ function watchItemsForDigest(articles, setups, previousDigest) {
 
 function specificWatchItem(article) {
   const headline = String(article?.headline || "").toLowerCase();
+  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "US jobs-week positioning and Nasdaq futures before India opens; a weak risk tape keeps Nifty in confirmation mode.";
+  if (/\b(opec|production|output)\b/.test(headline)) return "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks.";
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
   if (/\b(dollar|rupee|currency|yen)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
   if (/\b(bank|banks|credit|deposit)\b/.test(headline)) return "Bank Nifty follow-through after 10:15 AM IST and whether private-bank breadth confirms.";
-  if (/\b(it|tech|ai|software|semiconductor)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
+  if (/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
+  if (/\b(tech|ai|software|semiconductor|chip|chips)\b/.test(headline)) return "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.";
   if (/\b(asia|china|japan|hong kong|korea|taiwan)\b/.test(headline)) return "Asia breadth into the Indian first hour and whether regional risk stays supportive.";
-  return article?.watchFor || "";
+  const fallback = article?.watchFor || "";
+  if (/\bnifty it\b/i.test(fallback) && !/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) {
+    return "";
+  }
+  return fallback;
+}
+
+function freshnessScore(article, date) {
+  const published = Date.parse(article?.publishedAt || "");
+  const digestTime = Date.parse(`${date}T08:30:00+05:30`);
+  if (!Number.isFinite(published) || !Number.isFinite(digestTime)) return 0;
+  const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  if (ageHours < -2) return -2;
+  if (ageHours <= 18) return 5;
+  if (ageHours <= 36) return 3;
+  if (ageHours <= 60) return 1;
+  if (ageHours <= 96) return -2;
+  return -5;
+}
+
+function editorialLeadSentence(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) {
+    return "US jobs data and semiconductor earnings will test whether last week's risk-on momentum can carry into India";
+  }
+  if (/\b(opec|production|output)\b/.test(text) && /\b(oil|crude|brent)\b/.test(text)) {
+    return "OPEC supply headlines keep crude as the key import-cost variable for India";
+  }
+  if (/\b(crude|oil|brent)\b/.test(text)) {
+    return "Crude remains the key transmission line for import costs, aviation fuel, OMC margins and inflation expectations";
+  }
+  if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) {
+    return "Rates remain the hurdle-rate input for banks, realty and high-multiple growth pockets";
+  }
+  if (/\b(semiconductor|chip|ai|software|tech)\b/.test(text)) {
+    return "Global technology breadth is a risk-appetite cue, but India still needs currency and sector confirmation";
+  }
+  return "";
+}
+
+function editorialBecause(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) {
+    return "jobs data, chip earnings and US momentum can decide whether global risk appetite survives the open";
+  }
+  if (/\b(semiconductor|chip|ai|software|tech)\b/.test(text)) {
+    return "semiconductor and AI headlines are driving global risk appetite, but they still need Nasdaq and USD/INR confirmation";
+  }
+  if (/\b(bank|credit|financial)\b/.test(text)) {
+    return "financial breadth decides whether a Nifty move becomes a trend or just a gap reaction";
+  }
+  return "";
 }
 
 function assertDigestEditorialIntegrity(current, previousDigest) {

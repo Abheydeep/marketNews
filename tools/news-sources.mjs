@@ -10,7 +10,7 @@ const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|
 const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
-const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy)\b/i;
+const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|greg abel|berkshire|chipotle|paypal|venmo)\b/i;
 
 const LIVE_FEEDS = [
   {
