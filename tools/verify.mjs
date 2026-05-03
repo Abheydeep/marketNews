@@ -373,7 +373,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assertPublicFinancePageIntegrity("multibagger public page", html, [/Nifty|stock|equities|multibagger/i, /Research Method/i]);
   assert.ok(html.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(html.includes("Market Narrative Research"));
-  assert.ok(html.includes("Briefing archive"));
+  assert.ok(html.includes("Public Briefing"));
+  assert.ok(html.includes("Trading Guide"));
+  assert.ok(html.includes("Multibagger Portfolio"));
+  assert.ok(html.includes('class="tab-link active" aria-current="page">Multibagger Portfolio'));
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Model status"));
@@ -1115,6 +1118,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes('class="glass-v2"'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
+  assert.ok(publicHtml.body.includes("Trading Guide"));
   assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
@@ -1124,6 +1128,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("No-trade zone"));
   assert.ok(publicHtml.body.includes("Bank Nifty confirmation"));
   assert.ok(publicHtml.body.includes("Top sector to watch"));
+  const publicSection = publicHtml.body.slice(
+    publicHtml.body.indexOf('id="public-view"'),
+    publicHtml.body.indexOf('id="trading-guide-view"')
+  );
+  const tradingGuideSection = publicHtml.body.slice(publicHtml.body.indexOf('id="trading-guide-view"'));
+  assert.equal(publicSection.includes("Today's Trade Map"), false);
+  assert.equal(publicSection.includes("Completed Setups"), false);
+  assert.equal(publicSection.includes("Active Game Plan"), false);
+  assert.ok(tradingGuideSection.includes("Today's Trade Map"));
+  assert.ok(tradingGuideSection.includes("Completed Setups") || tradingGuideSection.includes("Active Game Plan"));
   assert.ok(publicHtml.body.includes("Open live chart on TradingView"));
   assert.ok(!publicHtml.body.includes("Chart Series Pending"));
   assert.ok(!publicHtml.body.includes("Preparing quotes"));
@@ -1286,7 +1300,9 @@ await test("demo app serves public and admin flows without external packages", a
   const multibaggerHtml = await app.request("GET", "/multibagger/");
   assertPublicFinancePageIntegrity("demo multibagger page", multibaggerHtml.body, [/Research Method/i, /KPEL/i]);
   assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
-  assert.ok(multibaggerHtml.body.includes("Briefing archive"));
+  assert.ok(multibaggerHtml.body.includes("Public Briefing"));
+  assert.ok(multibaggerHtml.body.includes("Trading Guide"));
+  assert.ok(multibaggerHtml.body.includes("Multibagger Portfolio"));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Model status"));
   assert.ok(multibaggerHtml.body.includes("Execution status"));

@@ -14,7 +14,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const requireAuth = Boolean(options.requireAuth);
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
   const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
-  const safeInitialTab = includeStudio || initialTab === "public-view" ? initialTab : "public-view";
+  const publicTabs = new Set(["public-view", "trading-guide-view"]);
+  const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
@@ -26,6 +27,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
     : "";
+  const tradingGuideTabHtml = includeStudio
+    ? ""
+    : '<button class="tab-btn" data-target="trading-guide-view">Trading Guide</button>';
   const adminArchitectureTabHtml = includeStudio
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
           <button class="tab-btn" data-target="components-view">Project Components</button>`
@@ -4333,6 +4337,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
+          ${tradingGuideTabHtml}
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
           ${multibaggerLinkHtml}
@@ -4365,7 +4370,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
         ${deskNoteHtml(digest)}
-        ${todayTradeMapHtml(digest)}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -4411,8 +4415,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
         </section>
 
-        ${algorithmicSetupHtml(digest)}
-
         ${chartCtaPanelHtml(digest)}
 
         ${sourceNotesHtml(digest)}
@@ -4422,6 +4424,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         </footer>
       </div>
     </section>
+
+    ${!includeStudio ? tradingGuideViewHtml(digest) : ""}
 
     <div id="indexChartModal" class="chart-modal" aria-hidden="true">
       <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="indexChartTitle">
@@ -4760,10 +4764,20 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
 
       tabs.forEach((tab) => {
-        tab.addEventListener('click', () => activate(tab.dataset.target));
+        tab.addEventListener('click', () => {
+          activate(tab.dataset.target);
+          if (tab.dataset.target === 'trading-guide-view') {
+            history.replaceState(null, '', '#trading-guide');
+          } else if (tab.dataset.target === 'public-view' && window.location.hash === '#trading-guide') {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
+        });
       });
 
-      activate(window.__INITIAL_TAB__);
+      const hashTarget = window.location.hash === '#trading-guide' && document.getElementById('trading-guide-view')
+        ? 'trading-guide-view'
+        : window.__INITIAL_TAB__;
+      activate(hashTarget);
       drawOvernightChart();
       if (window.__INCLUDE_STUDIO__) {
         drawScannerChart();
@@ -6516,6 +6530,49 @@ function marketMoodRailHtml(digest) {
         <strong>${escapeHtml(indexLine || "Indian quotes awaiting refresh")}</strong>
         <small>${escapeHtml(setupLine)}</small>
       </article>
+    </section>
+  `;
+}
+
+function tradingGuideViewHtml(digest) {
+  const levels = tradeMapLevels(digest, niftySetup(digest));
+  const primaryDriver = primaryDriverForDigest(digest);
+  return `
+    <section id="trading-guide-view" class="tab-content hidden">
+      <div class="briefing-shell trading-guide-shell">
+        <header class="page-header trading-guide-header">
+          <div class="briefing-topline">
+            <div>
+              <p class="eyebrow">Trading Guide</p>
+            </div>
+            <div class="briefing-date">
+              <span>Prepared For</span>
+              <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
+            </div>
+          </div>
+          <h1>Opening levels, confirmation, and risk gates</h1>
+          <p class="hero-subcopy">A trader-first view of the same briefing: no fresh setup unless Nifty accepts the level, Bank Nifty confirms breadth, and the first range keeps risk-reward clean.</p>
+        </header>
+
+        ${todayTradeMapHtml(digest)}
+        ${algorithmicSetupHtml(digest)}
+
+        <section class="info-card trading-brief-card">
+          <div class="section-kicker">
+            <div>
+              <h2>Execution Notes</h2>
+              <p class="source-section-copy">Use these as the open checklist before recording or trading the morning view.</p>
+            </div>
+          </div>
+          <ul class="brief-list">
+            <li><strong>Primary driver:</strong> ${escapeHtml(primaryDriver.title)} - ${escapeHtml(primaryDriver.summary)}</li>
+            <li><strong>Bullish path:</strong> Nifty must hold ${escapeHtml(formatLevelOrWait(levels.niftyBullishHold))}; first upside watch is ${escapeHtml(formatLevelOrWait(levels.niftyUpsideTarget))}.</li>
+            <li><strong>Bearish path:</strong> Nifty losing ${escapeHtml(formatLevelOrWait(levels.niftyBearishBreak))} puts ${escapeHtml(formatLevelOrWait(levels.niftyDownsideTarget))} on watch.</li>
+            <li><strong>Bank filter:</strong> hold ${escapeHtml(formatLevelOrWait(levels.bankBullishHold))} for risk-on confirmation; lose ${escapeHtml(formatLevelOrWait(levels.bankBearishBreak))} for defensive tape.</li>
+          </ul>
+          <p class="chart-note">Market preparation context only. This guide does not place orders, bypass the scanner, or convert a completed move into a fresh entry.</p>
+        </section>
+      </div>
     </section>
   `;
 }

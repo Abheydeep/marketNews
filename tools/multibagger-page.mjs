@@ -5,12 +5,14 @@ const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
 
-export function multibaggerPage(state = multibaggerState()) {
+export function multibaggerPage(state = multibaggerState(), options = {}) {
   const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
   const pageTitle = "Market Narrative | Multibagger Model Tracker";
   const pageDescription = "A public Market Narrative research model tracking six high-conviction Indian equities, methodology, investor discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
   const previewImageUrl = `${siteOrigin}/og-card.svg`;
+  const latestBriefingHref = absoluteHref(options.latestBriefingPath ?? "/", siteOrigin);
+  const tradingGuideHref = `${latestBriefingHref.replace(/#.*$/, "")}#trading-guide`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,26 +112,28 @@ export function multibaggerPage(state = multibaggerState()) {
 
     ${brandMarkCss()}
 
-    .nav-actions {
+    .tabs {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 28px;
+      align-items: stretch;
+      min-height: 64px;
     }
 
-    .nav-link {
-      border: 1px solid var(--line);
-      border-radius: 8px;
+    .tab-link {
+      display: inline-flex;
+      align-items: center;
+      border: 0;
+      border-bottom: 2px solid transparent;
       color: var(--muted);
-      padding: 9px 12px;
-      font-size: 13px;
-      font-weight: 850;
+      padding: 0 1px;
+      font-size: 14px;
+      font-weight: 650;
     }
 
-    .nav-link.active {
+    .tab-link.active {
       color: var(--ink);
-      border-color: rgba(34, 211, 238, 0.45);
-      background: rgba(34, 211, 238, 0.10);
+      border-bottom-color: #67e8f9;
+      font-weight: 800;
     }
 
     .share-button {
@@ -144,8 +148,13 @@ export function multibaggerPage(state = multibaggerState()) {
       padding: 9px 12px;
     }
 
+    .hero-stat .share-button {
+      margin-top: 14px;
+      width: 100%;
+    }
+
     .share-button:focus-visible,
-    .nav-link:focus-visible,
+    .tab-link:focus-visible,
     details.panel summary:focus-visible {
       outline: 2px solid var(--cyan);
       outline-offset: 3px;
@@ -1012,13 +1021,15 @@ export function multibaggerPage(state = multibaggerState()) {
         padding: 13px 0;
       }
 
-      .nav-actions {
+      .tabs {
         width: 100%;
+        min-height: 48px;
+        gap: 16px;
+        overflow-x: auto;
       }
 
-      .nav-link {
-        flex: 1;
-        text-align: center;
+      .tab-link {
+        white-space: nowrap;
       }
 
       details.panel summary {
@@ -1082,15 +1093,15 @@ export function multibaggerPage(state = multibaggerState()) {
     }
   </style>
 </head>
-<body>
+<body class="glass-v2">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
         <a class="brand" href="${escapeHtml(siteOrigin)}/">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="nav-actions">
-          <a class="nav-link" href="${escapeHtml(siteOrigin)}/">Briefing archive</a>
-          <span class="nav-link active" aria-current="page">Model tracker</span>
-          <button class="share-button" id="shareTrackerButton" type="button">Copy tracker link</button>
+        <div class="tabs" aria-label="Market Narrative sections">
+          <a class="tab-link" href="${escapeHtml(latestBriefingHref)}">Public Briefing</a>
+          <a class="tab-link" href="${escapeHtml(tradingGuideHref)}">Trading Guide</a>
+          <span class="tab-link active" aria-current="page">Multibagger Portfolio</span>
         </div>
       </div>
     </div>
@@ -1107,6 +1118,7 @@ export function multibaggerPage(state = multibaggerState()) {
         <span>Model status</span>
         <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${escapeHtml(heroStatusLabel(state))}</strong>
         <p id="shareTrackerStatus">${escapeHtml(fillStatusText(state))}</p>
+        <button class="share-button" id="shareTrackerButton" type="button">Copy tracker link</button>
       </aside>
     </section>
 
@@ -2184,6 +2196,14 @@ function methodologyEvaluationSummary(methodology) {
   return labels.length > 0
     ? labels.join(", ")
     : "Profitability, valuation, growth catalysts, cash conversion, and capital structure.";
+}
+
+function absoluteHref(path, origin) {
+  const value = String(path || "/");
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+  return `${origin}${value.startsWith("/") ? value : `/${value}`}`;
 }
 
 function escapeHtml(value) {

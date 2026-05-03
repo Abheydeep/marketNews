@@ -88,7 +88,10 @@ await writeGuardedFile(
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await mkdir(multibaggerDir, { recursive: true });
-await writeGuardedFile(join(multibaggerDir, "index.html"), multibaggerPage(publicMultibaggerState));
+await writeGuardedFile(
+  join(multibaggerDir, "index.html"),
+  multibaggerPage(publicMultibaggerState, { latestBriefingPath: `/${slugForDigest(latest)}/` })
+);
 await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
 await mkdir(join(adminDir, "components"), { recursive: true });
 await mkdir(join(adminDir, "multibagger"), { recursive: true });
