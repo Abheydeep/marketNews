@@ -37,6 +37,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicAdminLinkHtml = !includeStudio && options.showAdminLink === true
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
+  const archiveLinkHtml = !includeStudio && digest.canonicalPath
+    ? '<a class="tab-link" href="../">Briefing Archive</a>'
+    : "";
   const multibaggerLinkHtml = includeStudio
     ? ""
     : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
@@ -93,6 +96,36 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       -webkit-font-smoothing: antialiased;
     }
 
+    @media (prefers-color-scheme: dark) {
+      body:not(.glass-v2) {
+        --paper: #0b1120;
+        --ink: #f4f5f7;
+        --slate: #f8fafc;
+        --stone: #b8c4d8;
+        --line: #263247;
+        --panel: #111827;
+        background: #0b1120;
+      }
+
+      body:not(.glass-v2) .topbar {
+        background: rgba(11, 17, 32, 0.94);
+      }
+
+      body:not(.glass-v2) :is(.info-card, .panel, .briefing-card, .quote-board-card, .source-category-section, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric) {
+        background: #111827;
+        border-color: #263247;
+        color: #f4f5f7;
+      }
+
+      body:not(.glass-v2) :is(.section-kicker h2, .source-category-head h3, .source-category-meta strong, .source-stat-strip strong, .source-card h3, .brief-section h3, .brief-section strong) {
+        color: #f8fafc;
+      }
+
+      body:not(.glass-v2) :is(.source-category-head p, .source-section-copy, .chart-note, .brief-list, .watch-grid, .source-stat-strip span, .source-category-meta span) {
+        color: #b8c4d8;
+      }
+    }
+
     button, textarea, input {
       font: inherit;
     }
@@ -130,7 +163,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       align-items: center;
       gap: 12px;
       font-size: 20px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0;
       color: var(--slate);
       white-space: nowrap;
@@ -167,7 +200,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: var(--stone);
       padding: 0 1px;
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 600;
       cursor: pointer;
     }
 
@@ -183,7 +216,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .tab-btn.active {
       border-bottom-color: var(--slate);
       color: var(--slate);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     main.shell {
@@ -276,7 +309,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #020617;
       padding: 13px 16px;
       font-size: 14px;
-      font-weight: 950;
+      font-weight: 900;
       cursor: pointer;
       box-shadow: 0 18px 40px rgba(96, 165, 250, 0.22);
     }
@@ -286,7 +319,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 12px 0 0;
       color: #fecdd3;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .auth-error[hidden] {
@@ -375,7 +408,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       color: #6b7280;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -440,7 +473,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #111827;
       font-size: 20px;
       line-height: 1.45;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .summary-expand-action {
@@ -518,7 +551,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .briefing-lens span {
       display: block;
       color: #6b7280;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -560,7 +593,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .executive-card strong {
       color: #111827;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .brief-lead {
@@ -604,7 +637,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 6px;
       color: #6b7280;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.45;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -678,7 +711,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       justify-content: space-between;
       margin-bottom: 6px;
       color: #9ca3af;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -752,7 +785,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding: 8px 12px;
       color: #fde68a;
       font-size: 12px;
-      font-weight: 950;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -793,7 +826,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .trade-map-tile span {
       color: #94a3b8;
       font-size: 11px;
-      font-weight: 950;
+      font-weight: 900;
       letter-spacing: 0.09em;
       text-transform: uppercase;
     }
@@ -808,7 +841,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .trade-map-tile small {
       color: #cbd5e1;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -880,7 +913,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 0 0 5px;
       color: #9ca3af;
       font-size: 14px;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .strategy-bias {
@@ -935,7 +968,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 5px;
       color: #94a3b8;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -1009,7 +1042,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       max-width: 680px;
       color: #6b7280;
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.6;
     }
 
@@ -1024,7 +1057,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding: 7px 10px;
       color: #334155;
       font-size: 12px;
-      font-weight: 850;
+      font-weight: 900;
       line-height: 1.35;
     }
 
@@ -1053,6 +1086,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #111827;
       font-size: 18px;
       letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .source-stat-help {
+      flex-basis: 100%;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-align: right;
       text-transform: none;
     }
 
@@ -1108,7 +1151,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .source-lead-copy a {
       color: #2563eb;
       font-size: 14px;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .source-readthrough-grid {
@@ -1128,7 +1171,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-bottom: 5px;
       color: #9ca3af;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1194,7 +1237,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 3px;
       color: #9ca3af;
       font-size: 11px;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .source-theme-score {
@@ -1375,7 +1418,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: #111827;
       color: #fff;
       padding: 5px 7px;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1402,7 +1445,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       max-width: 760px;
       color: #6b7280;
       font-size: 13px;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.55;
     }
 
@@ -1423,7 +1466,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .source-category-meta span {
       display: block;
       color: #9ca3af;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1566,7 +1609,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-name {
       color: #9ca3af;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1597,7 +1640,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 10px;
       color: #2563eb;
       font-size: 14px;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .source-takeaway strong {
@@ -1650,7 +1693,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 0;
       color: #9ca3af;
       font-size: 12px;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.6;
     }
 
@@ -1669,7 +1712,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-color: rgba(251, 191, 36, 0.42);
       background: rgba(120, 53, 15, 0.28);
       color: #fde68a;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .edition-nav,
@@ -1898,7 +1941,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     details.component .chev {
       color: #22d3ee;
       font-size: 19px;
-      font-weight: 950;
+      font-weight: 900;
       transition: transform 160ms ease;
     }
 
@@ -1946,7 +1989,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .file-list code,
     .repo-card-inline code {
       color: #0891b2;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .table-wrap {
@@ -1993,7 +2036,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       gap: 8px;
       color: #334155;
       font-size: 13px;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .admin-form-field input,
@@ -2088,7 +2131,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 5px;
       color: #78716c;
       font-size: 13px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -2097,7 +2140,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #78716c;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.35;
       text-align: right;
       white-space: normal;
@@ -2118,7 +2161,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .quote-board-chev {
       display: inline-block;
-      font-size: 10px;
+      font-size: 12px;
       line-height: 1;
       transition: transform 150ms ease;
     }
@@ -2175,7 +2218,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .breadth-card span {
       color: #6b7280;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -2237,7 +2280,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 7px;
       color: #9ca3af;
       font-size: 11px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.35;
     }
 
@@ -2253,7 +2296,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding: 18px;
       color: #64748b;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       text-align: center;
     }
 
@@ -2285,7 +2328,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .quote-region-head span {
       color: #9ca3af;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       white-space: nowrap;
     }
 
@@ -2333,7 +2376,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: #f5f5f4;
       padding: 4px 7px;
       color: #57534e;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
       white-space: nowrap;
@@ -2467,7 +2510,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding-top: 14px;
       color: #64748b;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
     }
 
     .market-chart-caption strong {
@@ -2532,7 +2575,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       color: #78716c;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -2587,14 +2630,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding: 5px 8px;
       color: #57534e;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .news-list .news-summary {
       margin-top: 8px;
       color: #57534e;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
     }
 
@@ -2603,7 +2646,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 6px;
       color: var(--blue);
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 600;
     }
 
     .studio-header {
@@ -2702,7 +2745,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 16px;
       color: #64748b;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -2743,7 +2786,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 6px;
       color: #9ca3af;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.35;
     }
 
@@ -2898,7 +2941,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .workflow-step span {
       display: block;
       color: #6b7280;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -3086,7 +3129,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: linear-gradient(135deg, color-mix(in srgb, var(--thumb-accent) 82%, #111827), #111827);
       color: #fff;
       padding: 7px;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       line-height: 1;
       text-transform: uppercase;
@@ -3105,7 +3148,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 4px;
       color: #64748b;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.35;
     }
 
@@ -3179,7 +3222,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .prompt-detail span {
       display: block;
       color: #6b7280;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -3201,7 +3244,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 12px;
       color: #64748b;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.5;
     }
 
@@ -3211,7 +3254,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding-top: 12px;
       color: #64748b;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.5;
     }
 
@@ -3268,7 +3311,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       color: #a8a29e;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .rr-cell strong {
@@ -3388,7 +3431,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 0 0 6px;
       color: #111827;
       font-size: 16px;
-      font-weight: 950;
+      font-weight: 900;
     }
 
     .video-kit p {
@@ -3416,7 +3459,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .scene-card span {
       display: block;
       color: #6b7280;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -3427,7 +3470,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 4px 0;
       color: #111827;
       font-size: 12px;
-      font-weight: 950;
+      font-weight: 900;
     }
 
     .scene-card small {
@@ -3461,7 +3504,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 10px;
       color: #6b7280;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .teleprompter-shell {
@@ -3489,7 +3532,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #fff;
       padding: 10px 14px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -3791,7 +3834,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .mood-cell span {
       display: block;
       color: #b8c4d8;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -3810,7 +3853,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 7px;
       color: #cbd5e1;
       font-size: 12px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -3858,7 +3901,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         linear-gradient(135deg, rgba(103, 232, 249, 0.16), rgba(251, 191, 36, 0.12));
       color: #0f172a;
       font-size: 12px;
-      font-weight: 950;
+      font-weight: 900;
       letter-spacing: 0.16em;
       line-height: 1.45;
       text-align: center;
@@ -3882,7 +3925,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 0;
       color: #111827;
       font-size: clamp(18px, 2vw, 25px);
-      font-weight: 850;
+      font-weight: 900;
       line-height: 1.45;
     }
 
@@ -3891,7 +3934,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 10px;
       color: #64748b;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.5;
     }
 
@@ -4010,7 +4053,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(96, 165, 250, 0.16);
       padding: 4px 8px;
       color: #bfdbfe;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -4328,9 +4371,46 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
     }
 
+    @media (max-width: 768px) {
+      .shell {
+        padding: 0 14px;
+      }
+
+      .source-category-meta {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .source-stat-strip,
+      .source-stat-help {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .sentiment-meter {
+        width: 100%;
+      }
+    }
+
     @media (max-width: 620px) {
       .regional-breadth {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-header h1 {
+        font-size: 30px;
+        line-height: 1.08;
+      }
+
+      .source-stat-strip span {
+        flex: 1 1 calc(50% - 8px);
+      }
+
+      .chart-link-btn {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -4343,6 +4423,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
+          ${archiveLinkHtml}
           ${tradingGuideTabHtml}
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
@@ -4380,7 +4461,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
             <div>
-              <span class="summary-label">2 min read</span>
+              <span class="summary-label">2 min summary</span>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
             <strong class="summary-expand-action">Read the full desk note</strong>
@@ -4396,6 +4477,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <div class="sentiment-meter" aria-label="Daily sentiment meter">
               <div class="sentiment-scale">
                 <span>Bearish</span>
+                <span>Neutral</span>
                 <span>Bullish</span>
               </div>
               <div class="sentiment-bar">
@@ -4438,9 +4520,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="chart-modal-header">
           <div>
             <h2 id="indexChartTitle">Index Chart</h2>
-            <p id="indexChartMeta">Live market chart with the latest published snapshot.</p>
+            <p id="indexChartMeta">Timestamped chart preview with a TradingView link for the interactive series.</p>
           </div>
-          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open TradingView Chart</a>
+          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open Chart On TradingView</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
@@ -5479,10 +5561,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
       const liveLine = openCount > 0
         ? 'Live now ' + openCount + '/' + quotes.length + ' markets'
-        : 'Snapshot board - latest feed ' + (latestSnapshotDateLabel(quotes) || 'latest published');
+        : 'Last available close - latest feed ' + (latestSnapshotDateLabel(quotes) || 'latest published');
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
-        ' - ' + mode +
+        (openCount > 0 ? ' - ' + mode : ' - live data not yet available') +
         (latest ? ' - latest ' + latest : '') +
         ' - checked IST ' + time;
     }
@@ -6476,12 +6558,12 @@ function chartCtaPanelHtml(digest) {
   const nifty = (digest.marketSnapshots || []).find((snapshot) => snapshot.symbol === "NIFTY") || (digest.marketSnapshots || [])[0];
   const href = nifty ? tradingViewUrlForSnapshot(nifty) : "https://www.tradingview.com/markets/indices/";
   return `
-    <section class="chart-cta-panel" aria-label="Live chart link">
+    <section class="chart-cta-panel" aria-label="TradingView chart link">
       <div>
-        <h2>Live Chart</h2>
-        <p class="chart-note">The page publishes source-backed levels and quote snapshots. Use TradingView for the full interactive chart.</p>
+        <h2>View Chart On TradingView</h2>
+        <p class="chart-note">This page publishes source-backed levels and timestamped quote snapshots. Use TradingView for the interactive chart.</p>
       </div>
-      <a class="chart-link-btn" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Open live chart on TradingView</a>
+      <a class="chart-link-btn" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Open chart on TradingView</a>
     </section>
   `;
 }
@@ -6490,8 +6572,8 @@ function quoteSessionLabel(digest) {
   const quotes = digest.marketSnapshots || [];
   const latest = latestSnapshotDateLabel(quotes);
   return latest
-    ? `Snapshot board - latest feed ${latest}; each quote shows its timestamp`
-    : "Snapshot board - latest published closes shown";
+    ? `Last available close - latest feed ${latest}; live data not yet available`
+    : "Last available close - latest published snapshot shown";
 }
 
 function latestSnapshotDateLabel(quotes) {
@@ -6576,7 +6658,7 @@ function marketMoodRailHtml(digest) {
       </article>
       <article class="mood-cell">
         <span>India Filter</span>
-        <strong>${escapeHtml(indexLine || "Indian quotes awaiting refresh")}</strong>
+        <strong>${escapeHtml(indexLine ? `Prev close: ${indexLine}` : "Indian quotes awaiting refresh")}</strong>
         <small>${escapeHtml(setupLine)}</small>
       </article>
     </section>
@@ -7023,12 +7105,32 @@ function indiaReadThroughItems(digest) {
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const sectorSupport = firstByCategory(digest.news, "sector_positive");
   const neutral = firstByCategory(digest.news, "neutral_volatile");
-  return [
-    `<li><strong>Macro pressure:</strong> ${escapeHtml(macro?.indiaImpact || "Crude, dollar, and yields remain the first pressure points for the index.")}</li>`,
-    `<li><strong>Risk appetite:</strong> ${escapeHtml(globalRisk?.indiaImpact || "US risk appetite needs confirmation before chasing a gap move.")}</li>`,
-    `<li><strong>Domestic cushion:</strong> ${escapeHtml(sectorSupport?.indiaImpact || "Banks and defensives are the first areas to check for institutional support.")}</li>`,
-    `<li><strong>Opening behavior:</strong> ${escapeHtml(neutral?.indiaImpact || "Mixed Asia argues for waiting on the first-hour range.")}</li>`
-  ].join("");
+  const used = new Set();
+  const items = [
+    ["Macro pressure", macro?.indiaImpact, "Crude, dollar, yields, and USD/INR remain the first pressure filters for the index."],
+    ["Risk appetite", globalRisk?.indiaImpact, "Global risk headlines need Brent, DXY, and Asia breadth confirmation before they become India trades."],
+    ["Domestic cushion", sectorSupport?.indiaImpact, "Use sector breadth, advance-decline, and defensive participation as the cushion check."],
+    ["Opening behavior", neutral?.indiaImpact, "Mixed or private-market stories are not direct India signals; wait for the first-hour range."]
+  ];
+  return items.map(([label, value, fallback]) =>
+    `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(distinctIndiaRead(value, fallback, used))}</li>`
+  ).join("");
+}
+
+function distinctIndiaRead(value, fallback, used) {
+  const cleaned = cleanBriefingText(value || fallback);
+  const key = normalizeLabel(cleaned);
+  if (!cleaned || used.has(key)) {
+    const fallbackKey = normalizeLabel(fallback);
+    used.add(fallbackKey);
+    return fallback;
+  }
+  used.add(key);
+  return cleaned;
+}
+
+function cleanBriefingText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
 }
 
 function noSetupTradeFrame(digest) {
@@ -7138,8 +7240,9 @@ function sourceNotesHtml(digest) {
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
           <span>Sources<strong>${escapeHtml(sourceCount)}</strong></span>
-          <span>Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
-          <span>Support<strong>${escapeHtml(positiveCount)}</strong></span>
+          <span title="Article-level notes with bearish India read-through">Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
+          <span title="Article-level notes with supportive India read-through">Support<strong>${escapeHtml(positiveCount)}</strong></span>
+          <small class="source-stat-help">Pressure/support count article-level India read-through tone.</small>
         </div>
       </div>
 

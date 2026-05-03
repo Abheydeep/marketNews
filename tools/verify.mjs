@@ -1075,7 +1075,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(productionSmoke.includes("deployment-manifest.json"));
   assert.ok(productionSmoke.includes('payload.target, "admin"'));
   for (const required of [
-    "Open live chart on TradingView",
+    "Open chart on TradingView",
     "Open Yahoo Chart",
     "Pre-Market Intelligence Archive",
     "Latest Market Briefings",
@@ -1203,7 +1203,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
-  assert.ok(publicHtml.body.includes("Snapshot board"));
+  assert.ok(publicHtml.body.includes("Last available close"));
   assert.ok(publicHtml.body.includes("Today's Trade Map"));
   assert.ok(publicHtml.body.includes("Long only above"));
   assert.ok(publicHtml.body.includes("Short risk below"));
@@ -1220,7 +1220,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicSection.includes("Active Game Plan"), false);
   assert.ok(tradingGuideSection.includes("Today's Trade Map"));
   assert.ok(tradingGuideSection.includes("Completed Setups") || tradingGuideSection.includes("Active Game Plan"));
-  assert.ok(publicHtml.body.includes("Open live chart on TradingView"));
+  assert.ok(publicHtml.body.includes("Open chart on TradingView"));
   assert.ok(!publicHtml.body.includes("Chart Series Pending"));
   assert.ok(!publicHtml.body.includes("Preparing quotes"));
   assert.ok(!/\\bweight\\s+0\\.[0-9]/i.test(publicHtml.body));
@@ -1246,7 +1246,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("verified source stack"), false);
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
-  assert.ok(publicHtml.body.includes("2 min read"));
+  assert.ok(publicHtml.body.includes("2 min summary"));
   assert.ok(publicHtml.body.includes("Read the full desk note"));
   assert.ok(publicHtml.body.includes("Pre-market desk note"));
   assert.equal(/Bank Nifty is the pressure; Bank Nifty is the cushion/i.test(publicHtml.body), false);
@@ -1301,7 +1301,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("live-board-header"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
-  assert.ok(publicHtml.body.includes("Open TradingView Chart"));
+  assert.ok(publicHtml.body.includes("Open Chart On TradingView"));
   assert.ok(publicHtml.body.includes("https://www.tradingview.com/chart/?symbol="));
   assert.ok(!publicHtml.body.includes("Open Yahoo Chart"));
   assert.ok(publicHtml.body.includes("chartSeriesLabel"));

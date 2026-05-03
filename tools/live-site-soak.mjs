@@ -186,7 +186,7 @@ async function expectDailyContent(page) {
   await expectOne(publicView.getByText(dailyDateLabel, { exact: true }), "daily date");
   const summaryExpand = publicView.locator("#summaryExpand");
   await expectOne(summaryExpand, "compact expandable summary");
-  await expectOne(publicView.getByText("2 min read", { exact: true }), "compact summary label");
+  await expectOne(publicView.getByText("2 min summary", { exact: true }), "compact summary label");
   await expectOne(publicView.locator("#summaryExpand:not([open])"), "collapsed expanded briefing");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
@@ -198,8 +198,8 @@ async function expectDailyContent(page) {
   await expectOne(publicView.getByRole("heading", { name: "Stories Driving The Open" }), "stories heading");
   await expectOne(publicView.getByRole("heading", { name: "How It Lands In India" }), "india read-through heading");
   await expectOne(publicView.getByRole("heading", { name: "What To Watch First" }), "watch next heading");
-  await expectOne(publicView.getByRole("heading", { name: "Live Chart" }), "live chart CTA heading");
-  await expectOne(publicView.getByRole("link", { name: "Open live chart on TradingView" }), "live chart CTA link");
+  await expectOne(publicView.getByRole("heading", { name: "View Chart On TradingView" }), "live chart CTA heading");
+  await expectOne(publicView.getByRole("link", { name: "Open chart on TradingView" }), "live chart CTA link");
   const setupCard = publicView.locator(".setup-card");
   await expectOne(setupCard, "algorithmic setup card");
   const setupStateCount = await setupCard.getByText(/Active Game Plan|Completed Setups|No active trade setup/i).count();

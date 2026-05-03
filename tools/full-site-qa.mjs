@@ -450,7 +450,7 @@ async function verifyDailyPage(page, daily, stamp) {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
-  await expectOne(page.getByRole("link", { name: "Open live chart on TradingView" }), `${daily.slug} live chart CTA`);
+  await expectOne(page.getByRole("link", { name: "Open chart on TradingView" }), `${daily.slug} live chart CTA`);
   await expectOne(page.locator(".share-row"), `${daily.slug} share row`);
   assert.equal(await page.getByRole("link", { name: "Admin Login" }).count(), 0, `${daily.slug} should not expose admin login`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
