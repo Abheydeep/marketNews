@@ -137,24 +137,50 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       font-weight: 800;
     }
 
-    .share-button {
+    .share-panel {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .share-panel-title {
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .share-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .share-action {
+      align-items: center;
       border: 1px solid rgba(52, 211, 153, 0.34);
       border-radius: 8px;
       background: rgba(52, 211, 153, 0.12);
       color: #d1fae5;
       cursor: pointer;
+      display: inline-flex;
       font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 850;
-      padding: 9px 12px;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 10px;
+      text-align: center;
     }
 
-    .hero-stat .share-button {
-      margin-top: 14px;
-      width: 100%;
+    .share-action.copy {
+      color: #dbeafe;
+      background: rgba(96, 165, 250, 0.12);
+      border-color: rgba(96, 165, 250, 0.34);
     }
 
-    .share-button:focus-visible,
+    .share-action:focus-visible,
     .tab-link:focus-visible,
     details.panel summary:focus-visible {
       outline: 2px solid var(--cyan);
@@ -272,6 +298,42 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .return-strip.prefill {
       grid-template-columns: 1.05fr 1fr 1fr 0.9fr;
+    }
+
+    .tracking-rail {
+      border: 1px solid rgba(34, 211, 238, 0.24);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.64);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 12px;
+    }
+
+    .tracking-chip {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.28);
+      color: #d7e0ee;
+      display: grid;
+      gap: 4px;
+      min-height: 64px;
+      padding: 11px 12px;
+    }
+
+    .tracking-chip span {
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tracking-chip strong {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.3;
     }
 
     .positive { color: var(--green) !important; }
@@ -456,10 +518,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       margin: 22px 0 0;
     }
 
-    .module-grid .portfolio-panel { order: 1; }
+    .module-grid .performance-panel { order: 1; }
     .module-grid .holdings-panel { order: 2; }
-    .module-grid .research-framework-panel { order: 3; }
+    .module-grid .why-panel { order: 3; }
     .module-grid .evidence-panel { order: 4; }
+    .module-grid .reviews-panel { order: 5; }
+    .module-grid .watchlist-panel { order: 6; }
+    .module-grid .sources-panel { order: 7; }
+    .module-grid .research-framework-panel { order: 8; }
 
     details.panel {
       border: 1px solid var(--line);
@@ -507,7 +573,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .module-grid details.panel:not([open]) summary {
       align-items: flex-start;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 32px;
+      grid-template-columns: minmax(0, 1fr) auto;
       grid-template-rows: auto 1fr;
       min-height: 132px;
       padding: 18px 18px 16px 22px;
@@ -543,24 +609,26 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       line-height: 1.45;
     }
 
-    .chev {
-      color: var(--cyan);
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .module-grid details.panel:not([open]) .chev {
+    .detail-toggle {
       align-items: center;
       border: 1px solid rgba(34, 211, 238, 0.34);
       border-radius: 8px;
+      color: var(--cyan);
       display: inline-flex;
       flex: 0 0 auto;
-      font-size: 23px;
+      font-size: 12px;
+      font-weight: 900;
       height: 32px;
       justify-content: center;
       line-height: 1;
-      width: 32px;
+      min-width: 104px;
+      padding: 0 10px;
+      white-space: nowrap;
     }
+
+    .hide-label { display: none; }
+    details[open] .show-label { display: none; }
+    details[open] .hide-label { display: inline; }
 
     .module-preview {
       display: none;
@@ -573,7 +641,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       gap: 7px;
       grid-column: 1 / -1;
       margin-top: 18px;
-      padding-right: 42px;
+      padding-right: 112px;
     }
 
     .preview-pill {
@@ -588,8 +656,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       padding: 7px 9px;
       white-space: nowrap;
     }
-
-    details[open] .chev { transform: rotate(45deg); }
 
     .panel-body {
       border-top: 1px solid var(--line);
@@ -703,6 +769,119 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+    }
+
+    .holding-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 14px;
+    }
+
+    .holding-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.38);
+      display: grid;
+      gap: 14px;
+      padding: 15px;
+    }
+
+    .holding-card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .holding-card-title {
+      display: grid;
+      gap: 3px;
+    }
+
+    .holding-card-title strong {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .holding-card-title span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .holding-card-role {
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      border-radius: 999px;
+      color: #cffafe;
+      font-size: 12px;
+      font-weight: 900;
+      height: fit-content;
+      padding: 5px 8px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .holding-card-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .holding-card-stat {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.54);
+      display: grid;
+      gap: 3px;
+      min-height: 62px;
+      padding: 9px;
+    }
+
+    .holding-card-stat span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .holding-card-stat strong {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .holding-card-foot {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .ledger-disclosure {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.24);
+      overflow: hidden;
+    }
+
+    .ledger-disclosure > summary {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      padding: 14px;
+    }
+
+    .ledger-disclosure > summary::-webkit-details-marker { display: none; }
+
+    .ledger-disclosure-body {
+      border-top: 1px solid var(--line);
+      padding: 14px;
     }
 
     .allocation-tile {
@@ -829,6 +1008,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot,
+    .method-strip,
     .regime-snapshot,
     .discipline-snapshot {
       border: 1px solid rgba(34, 211, 238, 0.26);
@@ -848,6 +1028,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot-head,
+    .method-strip-head,
     .regime-snapshot-head,
     .discipline-snapshot-head {
       align-items: end;
@@ -858,6 +1039,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot-head span,
+    .method-strip-head span,
     .method-pill span,
     .regime-snapshot-head span,
     .regime-pill span,
@@ -883,6 +1065,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot-head strong,
+    .method-strip-head strong,
     .regime-snapshot-head strong,
     .discipline-snapshot-head strong {
       color: #fff;
@@ -892,6 +1075,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot-grid,
+    .method-strip-grid,
     .regime-snapshot-grid,
     .discipline-grid {
       display: grid;
@@ -900,6 +1084,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-snapshot-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .method-strip {
+      margin: 18px 0 18px;
+    }
+
+    .method-strip-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -1027,10 +1219,13 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .return-strip,
       .return-strip.prefill,
       .allocation-visual,
+      .tracking-rail,
       .module-grid,
       .allocation-grid,
+      .holding-card-grid,
       .role-legend,
       .method-snapshot-grid,
+      .method-strip-grid,
       .regime-snapshot-grid,
       .discipline-grid,
       .cards {
@@ -1042,6 +1237,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       }
 
       .method-snapshot-head,
+      .method-strip-head,
       .regime-snapshot-head,
       .discipline-snapshot-head {
         align-items: flex-start;
@@ -1049,6 +1245,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       }
 
       .method-snapshot-head strong,
+      .method-strip-head strong,
       .regime-snapshot-head strong,
       .discipline-snapshot-head strong {
         text-align: left;
@@ -1159,14 +1356,17 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <span>Model status</span>
         <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${escapeHtml(heroStatusLabel(state))}</strong>
         <p id="shareTrackerStatus">${escapeHtml(fillStatusText(state))}</p>
-        <button class="share-button" id="shareTrackerButton" type="button">Copy tracker link</button>
+        <div class="share-panel" aria-label="Share this tracker">
+          <span class="share-panel-title">Share this tracker</span>
+          <div class="share-actions">
+            ${shareActionsHtml(canonicalUrl)}
+          </div>
+        </div>
       </aside>
     </section>
 
     ${performanceStripHtml(state)}
-    <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(latestQuoteStatusStamp(state))}</span></p>
-    <p class="performance-note">${escapeHtml(state.performance.note)}</p>
-    <p class="execution-status"><strong>Normalized Rs 5 lakh baseline</strong><span>The larger deployed rupee total is intentionally ignored here. Public performance is normalized to Rs 5 lakh using the published average entries and model weights.</span></p>
+    ${trackingRailHtml(state)}
 
     <section class="allocation-visual" aria-label="Portfolio allocation visual">
       <div class="allocation-donut-wrap">
@@ -1182,285 +1382,245 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
             <span class="legend-name"><span class="legend-dot" style="background:${holdingColor(index)}"></span>${escapeHtml(holding.ticker)}</span>
             <strong class="legend-weight">${formatPercent(holding.targetWeight)}</strong>
           </div>
-          <p>${escapeHtml(holding.rolePlain ?? holding.role)}</p>
+          <p><strong>${escapeHtml(displayLabelForHolding(holding))}:</strong> ${escapeHtml(holding.rolePlain ?? holding.role)}</p>
         </article>`).join("")}
       </div>
     </section>
 
-    <section class="module-grid" aria-label="Expandable portfolio research modules">
-    <details class="panel research-framework-panel" open>
-      <summary>
-        <span class="summary-title"><strong>Research Framework</strong><span>Method, dated regime evidence, investor discipline, and advisory boundaries in one collapsible section.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">Definition</span><span class="preview-pill">Evaluation</span><span class="preview-pill">FOMO filter</span><span class="preview-pill">4 regime checks</span></span>
-      </summary>
-      <div class="panel-body">
-        <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
-          <div class="method-snapshot-head">
-            <span>Research Method Snapshot</span>
-            <strong id="researchMethodSnapshotTitle">How the ${escapeHtml(modelCount)}-stock model earns its slots.</strong>
-          </div>
-          <div class="method-snapshot-grid">
-            <article class="method-pill">
-              <span>Definition</span>
-              <p>${escapeHtml(state.methodology?.definition ?? "A multibagger candidate should have the business evidence to compound capital over a full cycle.")}</p>
-            </article>
-            <article class="method-pill">
-              <span>Evaluation</span>
-              <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
-            </article>
-            <article class="method-pill">
-              <span>Replacement</span>
-              <p>${escapeHtml(state.methodology?.replacementLogic ?? "A holding must keep earning its slot against cleaner challengers.")}</p>
-            </article>
-          </div>
-        </section>
+    ${methodStripHtml(state)}
 
-        <section class="regime-snapshot" aria-labelledby="marketRegimeEvidenceTitle">
-          <div class="regime-snapshot-head">
-            <span>Market Regime Evidence</span>
-            <strong id="marketRegimeEvidenceTitle">Dated source context as of ${escapeHtml(state.researchEvidence?.asOf ?? "2026-05-02")}.</strong>
+    <section class="module-grid" aria-label="Expandable portfolio research modules">
+      <details class="panel performance-panel" open>
+        <summary>
+          <span class="summary-title"><strong>Performance</strong><span>Public baseline, allocation visual, and current model tracking basis.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">Rs 5L baseline</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Latest quotes</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="allocation-grid" id="modelAllocationTiles">
+            ${allocationTilesHtml(state.holdings)}
           </div>
-          <div class="regime-snapshot-grid">
-            ${(state.researchEvidence?.marketRegime ?? []).map((item) => `
-            <article class="regime-pill">
-              <span>${escapeHtml(item.label)}</span>
-              <p>${escapeHtml(item.summary)}</p>
+        </div>
+      </details>
+
+      <details class="panel holdings-panel" open>
+        <summary>
+          <span class="summary-title"><strong>Holdings</strong><span>Card-first view of the normalized Rs 5 lakh allocation, entries, quotes, return, P&L, and day move.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">Holding cards</span><span class="preview-pill">Detailed ledger</span><span class="preview-pill">Screener links</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="holding-card-grid" id="modelHoldingCards">
+            ${holdingCardsHtml(state.holdings)}
+          </div>
+          <details class="ledger-disclosure" id="detailedLedger" open>
+            <summary><strong>Detailed Ledger</strong>${detailToggleHtml()}</summary>
+            <div class="ledger-disclosure-body">
+              <div class="role-legend" aria-label="Plain-English role legend">
+                <span><strong>Core staged</strong> Larger allocation, but still staged until working-capital proof holds.</span>
+                <span><strong>Capped slot</strong> Upside exists, but execution, margin, or liquidity proof limits sizing.</span>
+                <span><strong>Quality slot</strong> Cleaner business quality with more measured upside torque.</span>
+                <span><strong>Speculative cap</strong> Optionality only; governance and cash-flow evidence must improve.</span>
+              </div>
+              <div class="table-wrap">
+                <table class="holdings-table">
+                  <colgroup>
+                    <col class="col-ticker">
+                    <col class="col-weight">
+                    <col class="col-deployed">
+                    <col class="col-entry">
+                    <col class="col-current">
+                    <col class="col-return">
+                    <col class="col-pnl">
+                    <col class="col-day">
+                  </colgroup>
+                  <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry<span class="th-note">Entry timestamp</span></th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
+                  <tbody id="modelHoldingsRows">
+                    ${holdingsRowsHtml(state.holdings)}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="panel why-panel">
+        <summary>
+          <span class="summary-title"><strong>Why These 5</strong><span>Why each stock belongs, and what would force a change.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">Thesis</span><span class="preview-pill">Buy rule</span><span class="preview-pill">Break rule</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="cards">
+            ${state.holdings.map((holding) => `
+            <article class="mini-card">
+              <h3>${escapeHtml(holding.ticker)} - ${escapeHtml(displayLabelForHolding(holding))}</h3>
+              <p><strong>Thesis:</strong> ${escapeHtml(holding.thesis)}</p>
+              <p><strong>Buy rule:</strong> ${escapeHtml(holding.buyRule)}</p>
+              <p><strong>Break rule:</strong> ${escapeHtml(holding.breakRule)}</p>
+              <p><strong>Profitability:</strong> ${escapeHtml(holding.profitabilityLens ?? "")}</p>
+              <p><strong>Valuation:</strong> ${escapeHtml(holding.valuationLens ?? "")}</p>
+              <p><strong>Growth catalyst:</strong> ${escapeHtml(holding.growthCatalyst ?? "")}</p>
+              <p><strong>Conversion risk:</strong> ${escapeHtml(holding.conversionRisk ?? "")}</p>
+              <p><strong>Capital structure:</strong> ${escapeHtml(holding.capitalStructureRisk ?? "")}</p>
+            </article>`).join("")}
+          </div>
+          <p class="note" style="margin-top:12px;">The public model ignores the larger deployed rupee total and normalizes everything to Rs 5 lakh. CPCL remains outside this model because refinery-cycle value is not treated as permanent compounding.</p>
+        </div>
+      </details>
+
+      <details class="panel evidence-panel">
+        <summary>
+          <span class="summary-title"><strong>Evidence Ledger</strong><span>Dated facts supporting each model slot, plus the proof still needed.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">${escapeHtml(modelCount)} tickers</span><span class="preview-pill">Source backed</span><span class="preview-pill">Proof gaps</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="cards">
+            ${(state.researchEvidence?.holdingEvidence ?? []).map((item) => `
+            <article class="mini-card evidence-card">
+              <h3>${escapeHtml(item.ticker)}</h3>
+              <span>Verified Evidence</span>
+              <ul>
+                ${(item.evidence ?? []).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+              </ul>
+              <p><strong>Needs proof:</strong> ${escapeHtml(item.needsProof)}</p>
               <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
             </article>`).join("")}
           </div>
-        </section>
+          <p class="note" style="margin-top:12px;">${escapeHtml((state.researchEvidence?.researchBoundaries ?? [])[0] ?? "This evidence layer is dated context, not a trading signal or return promise.")}</p>
+        </div>
+      </details>
 
-        <section class="discipline-snapshot" aria-labelledby="investorDisciplineTitle">
-          <div class="discipline-snapshot-head">
-            <span>Investor Discipline</span>
-            <strong id="investorDisciplineTitle">What keeps the model from becoming a famous-story chase.</strong>
+      <details class="panel reviews-panel">
+        <summary>
+          <span class="summary-title"><strong>Reviews And Changes</strong><span>Published baseline notes, buy/sell changes, and keep-or-replace history.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">Baseline live</span><span class="preview-pill">May 2026</span><span class="preview-pill">Changes logged</span></span>
+        </summary>
+        <div class="panel-body">
+          ${state.transactions.length ? `<div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Reference</th><th>Public Note</th></tr></thead>
+              <tbody>
+                ${state.transactions.map((item) => `
+                <tr>
+                  <td>${escapeHtml(item.date)}</td>
+                  <td><span class="ticker">${escapeHtml(item.ticker)}</span></td>
+                  <td>${escapeHtml(item.action)}</td>
+                  <td>${formatPercent(item.weightChange)}</td>
+                  <td class="price-cell">${formatPrice(item.referencePrice)}</td>
+                  <td>${escapeHtml(item.publicNote)}</td>
+                </tr>`).join("")}
+              </tbody>
+            </table>
+          </div>` : `<p class="note">Baseline entries are published through the Holdings table. Buy/sell changes after this baseline will be logged here.</p>`}
+          ${state.monthlyReviews.map((review) => `
+          <article class="mini-card" style="margin:12px 0;">
+            <h3>${escapeHtml(review.month)} - ${escapeHtml(review.headline)}</h3>
+            <p>Published ${escapeHtml(review.publishedDate)}.</p>
+          </article>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ticker</th><th>Decision</th><th>Public Rationale</th></tr></thead>
+              <tbody>
+                ${review.decisions.map((decision) => `
+                <tr>
+                  <td><span class="ticker">${escapeHtml(decision.ticker)}</span></td>
+                  <td><span class="decision">${escapeHtml(decision.decision)}</span></td>
+                  <td>${escapeHtml(decision.publicRationale)}</td>
+                </tr>`).join("")}
+              </tbody>
+            </table>
+          </div>`).join("")}
+        </div>
+      </details>
+
+      <details class="panel watchlist-panel">
+        <summary>
+          <span class="summary-title"><strong>Watchlist</strong><span>Names that can challenge the normalized ${escapeHtml(modelCount)}-stock model.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="cards">
+            ${state.watchlist.map((item) => `
+            <article class="mini-card">
+              <h3>${escapeHtml(item.ticker)}</h3>
+              <p><strong>${escapeHtml(item.status)}:</strong> ${escapeHtml(item.reason)}</p>
+              <div class="watch-flags">${watchFlagsHtml(item.evaluationFlags)}</div>
+            </article>`).join("")}
           </div>
-          <div class="discipline-grid">
-            <article class="discipline-card">
-              <span>Not A Dip Screen</span>
-              <p>A 52-week low is not a thesis. The model needs improving fundamentals, clean balance-sheet risk, and a clear reason earnings can compound.</p>
-            </article>
-            <article class="discipline-card">
-              <span>Not A Penny Bet</span>
-              <p>A low share price does not make a stock cheap. Valuation is judged against cash conversion, growth durability, governance, and dilution risk.</p>
-            </article>
-            <article class="discipline-card">
-              <span>Time Horizon</span>
-              <p>This is full-cycle compounding research. A holding must survive monthly evidence review before patience is treated as conviction.</p>
-            </article>
-            <article class="discipline-card">
-              <span>FOMO Filter</span>
-              <p>Vertical rallies, social screenshots, and media frenzy are not entry signals. The model waits for evidence, sizing discipline, and published review logic.</p>
-            </article>
+        </div>
+      </details>
+
+      <details class="panel sources-panel">
+        <summary>
+          <span class="summary-title"><strong>Sources</strong><span>Primary filings and reference summaries used for the public model.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">${escapeHtml(state.sources?.length ?? 0)} links</span><span class="preview-pill">Filings</span><span class="preview-pill">Market data</span></span>
+        </summary>
+        <div class="panel-body">
+          <div class="cards">
+            ${state.sources.map((source) => `
+            <a class="mini-card" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">
+              <h3>${escapeHtml(source.label)}</h3>
+              <p>Open source</p>
+            </a>`).join("")}
           </div>
-          <p class="note" style="margin-top:12px;">This page is educational research, not personalized advice, not SEBI-registered investment advice, not a PMS offer, and not a promise of 5x returns.</p>
-        </section>
-
-        <div class="table-wrap" style="margin-top:12px;">
-          <table>
-            <thead><tr><th>Evaluation Category</th></tr></thead>
-            <tbody>
-              ${(state.methodology?.evaluationCategories ?? []).map((item) => `<tr><td>${escapeHtml(item)}</td></tr>`).join("")}
-            </tbody>
-          </table>
         </div>
-      </div>
-    </details>
+      </details>
 
-    <details class="panel portfolio-panel" open>
-      <summary>
-        <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">KPEL 25.6%</span><span class="preview-pill">DHABRIYA 21.5%</span><span class="preview-pill">DYCL 21.2%</span><span class="preview-pill">${escapeHtml(modelCount)} stocks</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="allocation-grid" id="modelAllocationTiles">
-          ${allocationTilesHtml(state.holdings)}
+      <details class="panel research-framework-panel">
+        <summary>
+          <span class="summary-title"><strong>Research Framework</strong><span>Full method notes, dated market-regime evidence, investor discipline, and boundaries.</span></span>
+          ${detailToggleHtml()}
+          <span class="module-preview"><span class="preview-pill">Definition</span><span class="preview-pill">Evaluation</span><span class="preview-pill">FOMO filter</span><span class="preview-pill">4 regime checks</span></span>
+        </summary>
+        <div class="panel-body">
+          <section class="regime-snapshot" aria-labelledby="marketRegimeEvidenceTitle">
+            <div class="regime-snapshot-head">
+              <span>Market Regime Evidence</span>
+              <strong id="marketRegimeEvidenceTitle">Dated source context as of ${escapeHtml(state.researchEvidence?.asOf ?? "2026-05-02")}.</strong>
+            </div>
+            <div class="regime-snapshot-grid">
+              ${(state.researchEvidence?.marketRegime ?? []).map((item) => `
+              <article class="regime-pill">
+                <span>${escapeHtml(item.label)}</span>
+                <p>${escapeHtml(item.summary)}</p>
+                <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
+              </article>`).join("")}
+            </div>
+          </section>
+
+          <section class="discipline-snapshot" aria-labelledby="investorDisciplineTitle">
+            <div class="discipline-snapshot-head">
+              <span>Investor Discipline</span>
+              <strong id="investorDisciplineTitle">What keeps the model from becoming a famous-story chase.</strong>
+            </div>
+            <div class="discipline-grid">
+              <article class="discipline-card">
+                <span>Not A Dip Screen</span>
+                <p>A 52-week low is not a thesis. The model needs improving fundamentals, clean balance-sheet risk, and a clear reason earnings can compound.</p>
+              </article>
+              <article class="discipline-card">
+                <span>Not A Penny Bet</span>
+                <p>A low share price does not make a stock cheap. Valuation is judged against cash conversion, growth durability, governance, and dilution risk.</p>
+              </article>
+              <article class="discipline-card">
+                <span>Time Horizon</span>
+                <p>This is full-cycle compounding research. A holding must survive monthly evidence review before patience is treated as conviction.</p>
+              </article>
+              <article class="discipline-card">
+                <span>FOMO Filter</span>
+                <p>Vertical rallies, social screenshots, and media frenzy are not entry signals. The model waits for evidence, sizing discipline, and published review logic.</p>
+              </article>
+            </div>
+            <p class="note" style="margin-top:12px;">This page is educational research, not personalized advice, not SEBI-registered investment advice, not a PMS offer, and not a promise of 5x returns.</p>
+          </section>
         </div>
-      </div>
-    </details>
-
-    <details class="panel holdings-panel" open>
-      <summary>
-        <span class="summary-title"><strong>Model Holdings</strong><span>Normalized Rs 5 lakh allocation, average entry, latest quote, return, P&L, and day move.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">Latest quotes</span><span class="preview-pill">Day moves</span><span class="preview-pill">Research links</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="role-legend" aria-label="Plain-English role legend">
-          <span><strong>Core staged</strong> Larger allocation, but still staged until working-capital proof holds.</span>
-          <span><strong>Capped slot</strong> Upside exists, but execution, margin, or liquidity proof limits sizing.</span>
-          <span><strong>Quality slot</strong> Cleaner business quality with more measured upside torque.</span>
-          <span><strong>Speculative cap</strong> Optionality only; governance and cash-flow evidence must improve.</span>
-        </div>
-        <div class="table-wrap">
-          <table class="holdings-table">
-            <colgroup>
-              <col class="col-ticker">
-              <col class="col-weight">
-              <col class="col-deployed">
-              <col class="col-entry">
-              <col class="col-current">
-              <col class="col-return">
-              <col class="col-pnl">
-              <col class="col-day">
-            </colgroup>
-            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry<span class="th-note">Entry timestamp</span></th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
-            <tbody id="modelHoldingsRows">
-              ${holdingsRowsHtml(state.holdings)}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </details>
-
-    <details class="panel evidence-panel">
-      <summary>
-        <span class="summary-title"><strong>Verified Evidence Ledger</strong><span>Dated facts supporting each model slot, plus the proof still needed.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">${escapeHtml(modelCount)} tickers</span><span class="preview-pill">Source backed</span><span class="preview-pill">Proof gaps</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="cards">
-          ${(state.researchEvidence?.holdingEvidence ?? []).map((item) => `
-          <article class="mini-card evidence-card">
-            <h3>${escapeHtml(item.ticker)}</h3>
-            <span>Verified Evidence</span>
-            <ul>
-              ${(item.evidence ?? []).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
-            </ul>
-            <p><strong>Needs proof:</strong> ${escapeHtml(item.needsProof)}</p>
-            <a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.sourceLabel)}</a>
-          </article>`).join("")}
-        </div>
-        <p class="note" style="margin-top:12px;">${escapeHtml((state.researchEvidence?.researchBoundaries ?? [])[0] ?? "This evidence layer is dated context, not a trading signal or return promise.")}</p>
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Thesis And Break Rules</strong><span>Why each stock belongs, and what would force a change.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">Thesis</span><span class="preview-pill">Buy rule</span><span class="preview-pill">Break rule</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="cards">
-          ${state.holdings.map((holding) => `
-          <article class="mini-card">
-            <h3>${escapeHtml(holding.ticker)}</h3>
-            <p><strong>Thesis:</strong> ${escapeHtml(holding.thesis)}</p>
-            <p><strong>Buy rule:</strong> ${escapeHtml(holding.buyRule)}</p>
-            <p><strong>Break rule:</strong> ${escapeHtml(holding.breakRule)}</p>
-            <p><strong>Profitability:</strong> ${escapeHtml(holding.profitabilityLens ?? "")}</p>
-            <p><strong>Valuation:</strong> ${escapeHtml(holding.valuationLens ?? "")}</p>
-            <p><strong>Growth catalyst:</strong> ${escapeHtml(holding.growthCatalyst ?? "")}</p>
-            <p><strong>Conversion risk:</strong> ${escapeHtml(holding.conversionRisk ?? "")}</p>
-            <p><strong>Capital structure:</strong> ${escapeHtml(holding.capitalStructureRisk ?? "")}</p>
-          </article>`).join("")}
-        </div>
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Buy And Sell Record</strong><span>Published execution ledger once exact fills are confirmed.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">No fills yet</span><span class="preview-pill">Targets only</span><span class="preview-pill">Review first</span></span>
-      </summary>
-      <div class="panel-body">
-        ${state.transactions.length ? `<div class="table-wrap">
-          <table>
-            <thead><tr><th>Date</th><th>Ticker</th><th>Action</th><th>Weight Change</th><th>Reference</th><th>Public Note</th></tr></thead>
-            <tbody>
-              ${state.transactions.map((item) => `
-              <tr>
-                <td>${escapeHtml(item.date)}</td>
-                <td><span class="ticker">${escapeHtml(item.ticker)}</span></td>
-                <td>${escapeHtml(item.action)}</td>
-                <td>${formatPercent(item.weightChange)}</td>
-                <td class="price-cell">${formatPrice(item.referencePrice)}</td>
-                <td>${escapeHtml(item.publicNote)}</td>
-              </tr>`).join("")}
-            </tbody>
-          </table>
-        </div>` : `<p class="note">Baseline entries are published through the Model Holdings table. Buy/sell changes after this baseline will be logged here.</p>`}
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Monthly Reviews</strong><span>Published keep/replace history from the monthly evidence process.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">May 2026</span><span class="preview-pill">Keep review</span><span class="preview-pill">Changes logged</span></span>
-      </summary>
-      <div class="panel-body">
-        ${state.monthlyReviews.map((review) => `
-        <article class="mini-card" style="margin-bottom:12px;">
-          <h3>${escapeHtml(review.month)} - ${escapeHtml(review.headline)}</h3>
-          <p>Published ${escapeHtml(review.publishedDate)}.</p>
-        </article>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Ticker</th><th>Decision</th><th>Public Rationale</th></tr></thead>
-            <tbody>
-              ${review.decisions.map((decision) => `
-              <tr>
-                <td><span class="ticker">${escapeHtml(decision.ticker)}</span></td>
-                <td><span class="decision">${escapeHtml(decision.decision)}</span></td>
-                <td>${escapeHtml(decision.publicRationale)}</td>
-              </tr>`).join("")}
-            </tbody>
-          </table>
-        </div>`).join("")}
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Watchlist And Replacements</strong><span>Names that can challenge the normalized ${escapeHtml(modelCount)}-stock model.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="cards">
-          ${state.watchlist.map((item) => `
-          <article class="mini-card">
-            <h3>${escapeHtml(item.ticker)}</h3>
-            <p><strong>${escapeHtml(item.status)}:</strong> ${escapeHtml(item.reason)}</p>
-            <div class="watch-flags">${watchFlagsHtml(item.evaluationFlags)}</div>
-          </article>`).join("")}
-        </div>
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Risk Controls</strong><span>Rules that keep the 5x attempt from becoming blind conviction.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">Rs 5L baseline</span><span class="preview-pill">Receivables</span><span class="preview-pill">Cash flow</span></span>
-      </summary>
-      <div class="panel-body">
-        <p class="note">The public model ignores the larger deployed rupee total and normalizes everything to Rs 5 lakh. JNK and DYCL must prove receivable quality, KPEL and Dhabriya still need working-capital review, and Sharda must justify its ballast role with durable earnings quality. CPCL remains outside this model because refinery-cycle value is not treated as permanent compounding.</p>
-      </div>
-    </details>
-
-    <details class="panel">
-      <summary>
-        <span class="summary-title"><strong>Sources</strong><span>Primary filings and reference summaries used for the public model.</span></span>
-        <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">${escapeHtml(state.sources?.length ?? 0)} links</span><span class="preview-pill">Filings</span><span class="preview-pill">Market data</span></span>
-      </summary>
-      <div class="panel-body">
-        <div class="cards">
-          ${state.sources.map((source) => `
-          <a class="mini-card" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">
-            <h3>${escapeHtml(source.label)}</h3>
-            <p>Open source</p>
-          </a>`).join("")}
-        </div>
-      </div>
-    </details>
+      </details>
     </section>
   </main>
 
@@ -1472,23 +1632,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
     window.__MULTIBAGGER_STATE__ = ${serializedState};
     renderMultibaggerState(window.__MULTIBAGGER_STATE__);
-    const shareButton = document.getElementById("shareTrackerButton");
-    if (shareButton) {
-      shareButton.addEventListener("click", async () => {
-        const shareUrl = window.location.href.split("#")[0];
-        try {
-          if (navigator.share) {
-            await navigator.share({ title: "Market Narrative Multibagger Tracker", url: shareUrl });
-            setText("shareTrackerStatus", "Tracker shared.");
-          } else {
-            await navigator.clipboard.writeText(shareUrl);
-            setText("shareTrackerStatus", "Tracker link copied.");
-          }
-        } catch {
-          setText("shareTrackerStatus", "Use the address bar to copy this tracker link.");
-        }
-      });
-    }
+    bindShareActions();
+    collapseMobileLedger();
     (async function refreshMultibaggerState() {
       const configuredBase = window.MARKET_NARRATIVE_API_BASE || "";
       const urls = configuredBase
@@ -1526,20 +1671,55 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       setTone("portfolioReturnMetric", state.performance?.sinceLaunchPercent);
       setText("benchmarkReturnMetric", formatQuotePercent(state.performance?.benchmarkSinceLaunchPercent));
       setTone("benchmarkReturnMetric", state.performance?.benchmarkSinceLaunchPercent);
-      setText("lastPriceAtMetric", latestQuoteStatusStamp(state));
+      setText("trackingBaselineMetric", "Rs 5L public baseline");
+      setText("trackingEntriesMetric", shortEntryCapturedLabel(state));
+      setText("trackingQuotesMetric", shortQuoteLabel(state));
       setText("latestPriceColumnLabel", latestPriceColumnText(state));
       const rows = document.getElementById("modelHoldingsRows");
       if (rows) rows.innerHTML = state.holdings.map(holdingRowHtml).join("");
+      const cards = document.getElementById("modelHoldingCards");
+      if (cards) cards.innerHTML = state.holdings.map(holdingCardHtml).join("");
       const tiles = document.getElementById("modelAllocationTiles");
       if (tiles) tiles.innerHTML = state.holdings.map((holding, index) => allocationTileHtml(holding, index)).join("");
-      const status = document.getElementById("priceStatus");
-      if (status) {
-        const stale = Boolean(state.pricing?.isStale);
-        status.className = "price-status " + (stale ? "stale" : "fresh");
-        const first = status.querySelector("span");
-        if (first) first.textContent = stale
-          ? "Normalized INR 5 lakh baseline is published; current prices and returns appear after verified market quotes are available."
-          : "Latest Yahoo/BSE public quotes are shown with row-level timestamps. Return and P&L use the normalized INR 5 lakh public baseline.";
+    }
+
+    function bindShareActions() {
+      const shareUrl = window.location.href.split("#")[0];
+      const title = "Market Narrative Multibagger Tracker";
+      document.querySelectorAll("[data-share-action]").forEach((node) => {
+        const action = node.getAttribute("data-share-action");
+        if (node.tagName === "A") {
+          node.href = shareHref(action, shareUrl, title);
+        }
+        node.addEventListener("click", async (event) => {
+          if (action !== "copy") {
+            setText("shareTrackerStatus", "Opening " + node.textContent.trim() + " share.");
+            return;
+          }
+          event.preventDefault();
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            setText("shareTrackerStatus", "Tracker link copied.");
+          } catch {
+            setText("shareTrackerStatus", "Use the address bar to copy this tracker link.");
+          }
+        });
+      });
+    }
+
+    function shareHref(action, url, title) {
+      const encodedUrl = encodeURIComponent(url);
+      const encodedTitle = encodeURIComponent(title);
+      if (action === "whatsapp") return "https://wa.me/?text=" + encodedTitle + "%20" + encodedUrl;
+      if (action === "x") return "https://twitter.com/intent/tweet?text=" + encodedTitle + "&url=" + encodedUrl;
+      if (action === "linkedin") return "https://www.linkedin.com/sharing/share-offsite/?url=" + encodedUrl;
+      return url;
+    }
+
+    function collapseMobileLedger() {
+      const ledger = document.getElementById("detailedLedger");
+      if (ledger && window.matchMedia("(max-width: 760px)").matches) {
+        ledger.open = false;
       }
     }
 
@@ -1559,7 +1739,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return "<tr>"
         + "<td data-label=\\"Ticker\\"><span class=\\"holding-name-line\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span>" + stockLinkHtml(holding) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
         + "<td data-label=\\"Weight\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
-        + "<td data-label=\\"INR 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
+        + "<td data-label=\\"Rs 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
         + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "<span class=\\"subtext entry-source-line\\">" + escapeHtml(holdingEntrySourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext quote-source-line\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Return\\" class=\\"price-cell " + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</td>"
@@ -1568,13 +1748,32 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         + "</tr>";
     }
 
+    function holdingCardHtml(holding) {
+      const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
+      return "<article class=\\"holding-card\\">"
+        + "<div class=\\"holding-card-head\\"><span class=\\"holding-card-title\\"><strong>" + escapeHtml(holding.ticker) + "</strong><span>" + escapeHtml(holding.name) + "</span></span><span class=\\"holding-card-role\\">" + escapeHtml(displayLabelForHolding(holding)) + "</span></div>"
+        + "<div class=\\"holding-card-metrics\\">"
+        + "<span class=\\"holding-card-stat\\"><span>Weight</span><strong>" + formatPercent(holding.targetWeight) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Rs 5L deployed</span><strong>" + formatInr(holding.modelAmountInr) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Avg entry</span><strong>" + formatPrice(holding.entryPrice) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Entry time</span><strong>" + escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, "")) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Current price</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Quote time</span><strong>" + escapeHtml(holdingPriceShortLine(holding)) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Return</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
+        + "</div>"
+        + "<div class=\\"holding-card-foot\\"><span class=\\"subtext\\">" + escapeHtml(holding.rolePlain || holding.role) + "</span>" + stockLinkHtml(holding) + "</div>"
+        + "</article>";
+    }
+
     function allocationTileHtml(holding, index) {
       const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
       const dayText = holding.isStale ? "Quote pending" : formatSignedPercent(holding.dayChangePercent) + " today";
       return "<article class=\\"allocation-tile\\" style=\\"--tile-fill:" + Math.min(88, 22 + Number(holding.targetWeight || 0) * 2.2) + "%;\\">"
         + "<div class=\\"allocation-top\\"><span class=\\"allocation-ticker\\">" + escapeHtml(holding.ticker) + "</span><strong class=\\"allocation-weight\\">" + formatPercent(holding.targetWeight) + "</strong></div>"
         + "<span class=\\"allocation-quote " + dayTone + "\\">" + escapeHtml(dayText) + "</span>"
-        + "<p class=\\"allocation-role\\">" + escapeHtml(holding.rolePlain || holding.role) + "</p>"
+        + "<p class=\\"allocation-role\\"><strong>" + escapeHtml(displayLabelForHolding(holding)) + ":</strong> " + escapeHtml(holding.rolePlain || holding.role) + "</p>"
         + "<span class=\\"allocation-status\\">" + escapeHtml(statusPlain(holding.status)) + "</span>"
         + stockLinkHtml(holding)
         + "</article>";
@@ -1701,6 +1900,11 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return source + " - as of " + formatDateTime(holding.lastPriceAt);
     }
 
+    function holdingPriceShortLine(holding) {
+      if (holding.isStale || !holding.lastPriceAt) return "Quote pending";
+      return formatDateTime(holding.lastPriceAt);
+    }
+
     function holdingEntrySourceLine(holding) {
       const value = holding.entryAt || holding.modelEntryAt || holding.modelEntryDate;
       if (!value) return "Entry time pending";
@@ -1718,8 +1922,22 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function fillStatusText(state) {
       return state?.performance?.currentModelValueInr === null || state?.performance?.currentModelValueInr === undefined
-        ? "Normalized INR 5 lakh baseline is published; live movement appears after the next verified quote refresh."
-        : "Normalized INR 5 lakh baseline performance is live.";
+        ? "Public baseline is live; quote movement updates in holdings."
+        : "Public baseline performance is live.";
+    }
+
+    function shortEntryCapturedLabel(state) {
+      const basis = state?.trackingBasis?.publicFillBaselineAt || state?.holdings?.[0]?.entryAt || state?.modelEntryDate;
+      return basis ? "Entries captured " + formatDateTime(basis) : "Entries captured";
+    }
+
+    function shortQuoteLabel(state) {
+      const asOf = latestQuoteAsOf(state);
+      return asOf ? "Quotes: " + asOf : "Quotes pending";
+    }
+
+    function displayLabelForHolding(holding) {
+      return holding?.displayLabel || holding?.rolePlain || holding?.role || "Model slot";
     }
 
     function formatDateTime(value) {
@@ -2064,6 +2282,94 @@ function stockLinkHtml(holding) {
   return `<a class="stock-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Screener</a>`;
 }
 
+function shareActionsHtml(url) {
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent("Market Narrative Multibagger Tracker");
+  return `
+            <a class="share-action" data-share-action="whatsapp" aria-label="Share tracker on WhatsApp" href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">WA</a>
+            <a class="share-action" data-share-action="x" aria-label="Share tracker on X" href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">X</a>
+            <a class="share-action" data-share-action="linkedin" aria-label="Share tracker on LinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">in</a>
+            <button class="share-action copy" data-share-action="copy" aria-label="Copy tracker link" type="button">Copy</button>`;
+}
+
+function detailToggleHtml() {
+  return `<span class="detail-toggle" aria-hidden="true"><span class="show-label">Show details v</span><span class="hide-label">Hide details ^</span></span>`;
+}
+
+function trackingRailHtml(state) {
+  const basis = trackingBasisForState(state);
+  const entryShort = compactDateTime(basis.publicFillBaselineAt);
+  return `
+    <section class="tracking-rail" aria-label="Tracking basis">
+      <article class="tracking-chip"><span>Baseline</span><strong id="trackingBaselineMetric">Rs 5L public baseline</strong></article>
+      <article class="tracking-chip"><span>Entries: ${escapeHtml(entryShort)}</span><strong id="trackingEntriesMetric">${escapeHtml(entryCapturedLongLabel(state))}</strong></article>
+      <article class="tracking-chip"><span>Quotes</span><strong id="trackingQuotesMetric">${escapeHtml(shortQuoteLabel(state))}</strong></article>
+      <article class="tracking-chip"><span>Boundary</span><strong>Educational research only</strong></article>
+    </section>`;
+}
+
+function trackingBasisForState(state) {
+  return {
+    researchModelStartedOn: state.trackingBasis?.researchModelStartedOn ?? state.modelEntryDate,
+    publicFillBaselineAt: state.trackingBasis?.publicFillBaselineAt ?? state.holdings?.[0]?.entryAt ?? state.modelEntryDate,
+    returnsCalculatedFrom: state.trackingBasis?.returnsCalculatedFrom ?? "publicFillBaselineAt"
+  };
+}
+
+function methodStripHtml(state) {
+  return `
+    <section class="method-strip" aria-label="Research Method summary">
+      <div class="method-strip-head">
+        <span>Research Method</span>
+        <strong>What has to keep earning a slot.</strong>
+      </div>
+      <div class="method-strip-grid">
+        <article class="method-pill">
+          <span>Definition</span>
+          <p>${escapeHtml(state.methodology?.definition ?? "Full-cycle compounding evidence, not a short-term spike.")}</p>
+        </article>
+        <article class="method-pill">
+          <span>Evaluation</span>
+          <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
+        </article>
+        <article class="method-pill">
+          <span>Replacement</span>
+          <p>${escapeHtml(state.methodology?.replacementLogic ?? "Holdings must keep earning their slot against cleaner challengers.")}</p>
+        </article>
+      </div>
+    </section>`;
+}
+
+function holdingCardsHtml(holdings) {
+  return holdings.map((holding) => holdingCardHtml(holding)).join("");
+}
+
+function holdingCardHtml(holding) {
+  const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
+  return `
+          <article class="holding-card">
+            <div class="holding-card-head">
+              <span class="holding-card-title"><strong>${escapeHtml(holding.ticker)}</strong><span>${escapeHtml(holding.name)}</span></span>
+              <span class="holding-card-role">${escapeHtml(displayLabelForHolding(holding))}</span>
+            </div>
+            <div class="holding-card-metrics">
+              <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
+              <span class="holding-card-stat"><span>Rs 5L deployed</span><strong>${formatInr(holding.modelAmountInr)}</strong></span>
+              <span class="holding-card-stat"><span>Avg entry</span><strong>${formatPrice(holding.entryPrice)}</strong></span>
+              <span class="holding-card-stat"><span>Entry time</span><strong>${escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, ""))}</strong></span>
+              <span class="holding-card-stat"><span>Current price</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
+              <span class="holding-card-stat"><span>Quote time</span><strong>${escapeHtml(holdingPriceShortLine(holding))}</strong></span>
+              <span class="holding-card-stat"><span>Return</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
+              <span class="holding-card-stat"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
+              <span class="holding-card-stat"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
+            </div>
+            <div class="holding-card-foot">
+              <span class="subtext">${escapeHtml(holding.rolePlain ?? holding.role)}</span>
+              ${stockLinkHtml(holding)}
+            </div>
+          </article>`;
+}
+
 function watchFlagsHtml(flags = []) {
   return flags.map((flag) => `<span class="watch-flag ${escapeHtml(flag.tone ?? "yellow")}">${escapeHtml(flag.label)}</span>`).join("");
 }
@@ -2101,13 +2407,14 @@ function heroStatusLabel(state) {
 }
 
 function performanceStripHtml(state) {
+  const basis = trackingBasisForState(state);
   return `
     <section class="return-strip" aria-label="Public model performance">
       <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong><small>Normalized baseline</small></div>
       <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong><small>Latest quote marked</small></div>
       <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong><small>Against Rs 5 lakh</small></div>
-      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong><small>Since baseline date</small></div>
-      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Since model date</small></div>
+      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong><small>Since public fill baseline</small></div>
+      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Research model started ${escapeHtml(formatDateOnly(basis.researchModelStartedOn))}</small></div>
     </section>`;
 }
 
@@ -2219,6 +2526,13 @@ function holdingPriceSourceLine(holding) {
   return `${source} - as of ${formatDateTime(holding.lastPriceAt)}`;
 }
 
+function holdingPriceShortLine(holding) {
+  if (holding.isStale || !holding.lastPriceAt) {
+    return "Quote pending";
+  }
+  return formatDateTime(holding.lastPriceAt);
+}
+
 function holdingEntrySourceLine(holding) {
   const value = holding.entryAt ?? holding.modelEntryAt ?? holding.modelEntryDate;
   if (!value) {
@@ -2239,8 +2553,22 @@ function statusPlain(status) {
 
 function fillStatusText(state) {
   return state.performance?.currentModelValueInr === null || state.performance?.currentModelValueInr === undefined
-    ? "Normalized INR 5 lakh baseline is published; live movement appears after the next verified quote refresh."
-    : "Normalized INR 5 lakh baseline performance is live.";
+    ? "Public baseline is live; quote movement updates in holdings."
+    : "Public baseline performance is live.";
+}
+
+function entryCapturedLongLabel(state) {
+  const basis = trackingBasisForState(state);
+  return `Entries captured ${formatDateTime(basis.publicFillBaselineAt)}`;
+}
+
+function shortQuoteLabel(state) {
+  const asOf = latestQuoteAsOf(state);
+  return asOf ? `Quotes: ${asOf}` : "Quotes pending";
+}
+
+function displayLabelForHolding(holding) {
+  return holding?.displayLabel ?? holding?.rolePlain ?? holding?.role ?? "Model slot";
 }
 
 function formatDateTime(value) {
@@ -2260,6 +2588,16 @@ function formatDateOnly(value) {
     day: "2-digit",
     month: "short",
     year: "numeric"
+  }).format(new Date(value));
+}
+
+function compactDateTime(value) {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit"
   }).format(new Date(value));
 }
 

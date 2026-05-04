@@ -8,6 +8,7 @@ public record MultibaggerState(
     String modelName,
     Integer modelCapitalInr,
     LocalDate modelEntryDate,
+    TrackingBasis trackingBasis,
     Instant updatedAt,
     QuoteStatus quoteStatus,
     PricingSnapshot pricing,

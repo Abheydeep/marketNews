@@ -433,6 +433,9 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
   assert.equal(state.holdings.reduce((sum, holding) => sum + holding.modelAmountInr, 0), 500000);
   assert.equal(state.modelEntryDate, "2026-04-27");
+  assert.equal(state.trackingBasis?.researchModelStartedOn, "2026-04-27");
+  assert.equal(state.trackingBasis?.publicFillBaselineAt, "2026-05-04T14:12:00+05:30");
+  assert.equal(state.trackingBasis?.returnsCalculatedFrom, "publicFillBaselineAt");
   assert.equal(state.performance.modelEntryDate, "2026-04-27");
   assert.equal(state.updatedAt, "2026-05-01T10:00:00.000Z");
   assert.notEqual(state.updatedAt, "1970-01-01T00:00:00.000Z");
@@ -459,8 +462,13 @@ await test("multibagger public model is concentrated and sanitized", () => {
       assert.ok(holding[field], `${holding.ticker} missing ${field}`);
     }
     assert.ok(holding.rolePlain, `${holding.ticker} missing plain-English role`);
+    assert.ok(holding.displayLabel, `${holding.ticker} missing displayLabel`);
     assert.ok(holding.screenerUrl?.startsWith("https://www.screener.in/company/"), `${holding.ticker} missing Screener link`);
   }
+  assert.deepEqual(
+    state.holdings.map((holding) => holding.displayLabel),
+    ["Renewable execution", "Margin recovery", "Cable cycle quality", "Quality ballast", "Order conversion"]
+  );
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
     ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]
@@ -499,36 +507,46 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Model status"));
-  assert.ok(html.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(html.includes("Rs 5L public baseline"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Baseline live"));
-  assert.ok(html.includes("Normalized INR 5 lakh baseline is published"));
-  assert.ok(html.includes("Model performance is calculated from the normalized Rs 5 lakh baseline"));
-  assert.ok(html.includes("Normalized Rs 5 lakh baseline"));
-  assert.ok(html.includes("The larger deployed rupee total is intentionally ignored here."));
-  assert.ok(html.includes("Latest Yahoo/BSE public quotes"));
+  assert.ok(html.includes("Since public fill baseline"));
+  assert.ok(html.includes("Research model started 27 Apr 2026"));
+  assert.ok(html.includes("Entries captured 04 May 2026, 02:12 pm"));
+  assert.ok(html.includes("Entries: 04 May, 02:12 pm"));
+  assert.ok(html.includes("Educational research only"));
   assert.ok(html.includes("Current price"));
   assert.equal(html.includes("<th>Plain-English Role</th>"), false);
   assert.ok(html.includes("Plain-English role legend"));
   assert.ok(html.includes("holding-name-line"));
+  assert.ok(html.includes("holding-card-grid"));
+  assert.ok(html.includes("holding-card-role"));
+  assert.ok(html.includes("Detailed Ledger"));
   assert.ok(html.includes("quote-source-line"));
   assert.ok(html.includes("Capped slot"));
   assert.equal(html.includes("Research label: Anchor renewable alpha"), false);
   assert.equal(html.includes("Last static update:"), false);
-  assert.ok(html.includes("Copy tracker link"));
+  assert.ok(html.includes("Share this tracker"));
+  assert.ok(html.includes('aria-label="Share tracker on WhatsApp"'));
+  assert.ok(html.includes('aria-label="Share tracker on X"'));
+  assert.ok(html.includes('aria-label="Share tracker on LinkedIn"'));
+  assert.ok(html.includes('aria-label="Copy tracker link"'));
+  assert.ok(html.includes("Show details v"));
+  assert.ok(html.includes("Hide details ^"));
+  assert.equal(html.includes('class="chev"'), false);
   assert.ok(html.includes("allocation-visual"));
   assert.ok(html.includes("allocation-donut"));
   assert.ok(html.includes("Expandable portfolio research modules"));
   assert.ok(html.includes("module-grid"));
   assert.ok(html.includes("module-preview"));
   assert.ok(html.includes("preview-pill"));
-  assert.ok(html.includes("Portfolio At A Glance"));
+  assert.ok(html.includes("Performance"));
+  assert.equal(html.includes("Portfolio At A Glance"), false);
   assert.ok(html.includes("allocation-grid"));
   assert.ok(html.includes("allocation-tile"));
   assert.ok(html.includes("Research Framework"));
   assert.ok(html.includes("Research Method"));
-  assert.ok(html.includes("Research Method Snapshot"));
-  assert.ok(html.includes("How the 5-stock model earns its slots."));
+  assert.equal(html.includes("Research Method Snapshot"), false);
   assert.ok(html.includes("Market Regime Evidence"));
   assert.ok(html.includes("10Y G-sec hurdle"));
   assert.ok(html.includes("7.01%"));
@@ -539,25 +557,31 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("A low share price does not make a stock cheap"));
   assert.ok(html.includes("FOMO Filter"));
   assert.ok(html.includes("not SEBI-registered investment advice"));
-  assert.ok(html.includes("Verified Evidence Ledger"));
+  assert.ok(html.includes("Evidence Ledger"));
   assert.ok(html.includes("Needs proof"));
   for (const ticker of ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]) {
-    assert.ok(html.includes(`<h3>${ticker}</h3>`), `evidence ledger missing ${ticker}`);
+    assert.ok(html.includes(`<strong>${ticker}</strong>`) || html.includes(`<h3>${ticker}</h3>`), `page missing ${ticker}`);
   }
-  assert.ok(html.includes("<details class=\"panel research-framework-panel\" open>"));
+  assert.ok(html.includes("<details class=\"panel research-framework-panel\">"));
+  assert.equal(html.includes("<details class=\"panel research-framework-panel\" open>"), false);
   assert.equal(html.includes("<details class=\"panel method-panel\" open>"), false);
-  assert.ok(html.indexOf("<details class=\"panel research-framework-panel\" open>") < html.indexOf("Research Method Snapshot"));
-  assert.ok(html.indexOf("<details class=\"panel research-framework-panel\" open>") < html.indexOf("Market Regime Evidence"));
-  assert.ok(html.indexOf("Research Method Snapshot") < html.indexOf("Market Regime Evidence"));
-  assert.ok(html.includes("<details class=\"panel portfolio-panel\" open>"));
+  assert.ok(html.indexOf("Research Method") < html.indexOf("<details class=\"panel research-framework-panel\">"));
+  assert.ok(html.indexOf("Research Method") < html.indexOf("Market Regime Evidence"));
+  assert.ok(html.includes("<details class=\"panel performance-panel\" open>"));
   assert.ok(html.includes("<details class=\"panel holdings-panel\" open>"));
+  assert.ok(html.includes("<details class=\"ledger-disclosure\" id=\"detailedLedger\" open>"));
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
   assert.ok(html.includes("Valuation"));
   assert.ok(html.includes("Growth catalyst"));
   assert.ok(html.includes("Capital structure"));
-  assert.ok(html.includes("Buy And Sell Record"));
-  assert.ok(html.includes("Baseline entries are published through the Model Holdings table."));
+  assert.ok(html.includes("Reviews And Changes"));
+  assert.ok(html.includes("Baseline entries are published through the Holdings table."));
+  assert.ok(html.includes("Why These 5"));
+  assert.ok(html.includes("Watchlist"));
+  assert.equal(html.includes("Buy And Sell Record"), false);
+  assert.equal(html.includes("Monthly Reviews"), false);
+  assert.equal(html.includes("Watchlist And Replacements"), false);
   assert.ok(html.includes("Rs 5L deployed"));
   assert.ok(html.includes("Avg entry"));
   assert.ok(html.includes("Entry timestamp"));
@@ -567,13 +591,15 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("data-label=\"Ticker\""));
   assert.ok(html.includes(">Screener</a>"));
   assert.ok(html.includes("https://www.screener.in/company/KPEL/"));
-  assert.ok(html.includes("price-status"));
+  assert.equal(html.includes('id="priceStatus"'), false);
+  assert.equal(html.includes("Since baseline date"), false);
+  assert.equal(html.includes("Since model date"), false);
   assert.ok(html.includes("Awaiting verified live quote"));
   assert.ok(html.includes("current prices and returns appear after verified market quotes"));
   assert.equal(html.includes("Server quote snapshot"), false);
   assert.ok(html.includes("renderMultibaggerState"));
-  assert.ok(html.includes("Monthly Reviews"));
-  assert.ok(html.includes("Watchlist And Replacements"));
+  assert.ok(html.includes("Reviews And Changes"));
+  assert.ok(html.includes("Watchlist"));
   assert.ok(html.includes("watch-flags"));
   assert.ok(html.includes("watch-flag green"));
   assert.ok(html.includes("og:site_name"));
@@ -581,8 +607,8 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes('rel="canonical"'));
   assert.ok(html.includes("window.__MULTIBAGGER_STATE__"));
   assert.ok(html.includes("/api/public/multibagger/state"));
-  assert.ok(html.includes("<details class=\"panel portfolio-panel\" open>"));
-  assert.ok((html.match(/<details class="panel/g) ?? []).length >= 8);
+  assert.ok(html.includes("<details class=\"panel performance-panel\" open>"));
+  assert.ok((html.match(/<details class="panel/g) ?? []).length >= 7);
   assert.equal(html.includes("60% of IT below 33rd percentile"), false);
   assert.equal(html.includes("45.4%"), false);
   assert.equal(html.toLowerCase().includes("buy now"), false);
@@ -985,11 +1011,14 @@ await test("backend multibagger endpoints preserve public/private boundary", asy
   assert.ok(adminController.includes("hasAuthority('admin:write')"));
   assert.ok(state.includes("MultibaggerMethodology methodology"));
   assert.ok(state.includes("ResearchEvidence researchEvidence"));
+  assert.ok(state.includes("TrackingBasis trackingBasis"));
+  assert.ok(holding.includes("String displayLabel"));
   for (const field of ["profitabilityLens", "valuationLens", "growthCatalyst", "conversionRisk", "capitalStructureRisk"]) {
     assert.ok(holding.includes(field), `backend holding missing ${field}`);
   }
   assert.ok(service.includes("methodology()"));
   assert.ok(service.includes("researchEvidence()"));
+  assert.ok(service.includes('new TrackingBasis(MODEL_ENTRY_DATE, MODEL_BASELINE_ENTRY_AT, "publicFillBaselineAt")'));
   assert.ok(service.includes("10Y G-sec hurdle"));
   assert.ok(service.includes("Replacement discipline"));
   assert.ok(service.includes("snapshots.put(snapshotId, file.getBytes())"));
@@ -1436,9 +1465,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.modelAmountInr, 0), 500000);
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
+  assert.equal(multibagger.json.trackingBasis.researchModelStartedOn, "2026-04-27");
+  assert.equal(multibagger.json.trackingBasis.publicFillBaselineAt, "2026-05-04T14:12:00+05:30");
+  assert.equal(multibagger.json.trackingBasis.returnsCalculatedFrom, "publicFillBaselineAt");
   assert.equal(multibagger.json.performance.currentModelValueInr, null);
   assert.ok(multibagger.json.holdings.every((holding) => holding.entryAt === "2026-05-04T14:12:00+05:30"));
   assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
+  assert.deepEqual(
+    multibagger.json.holdings.map((holding) => holding.displayLabel),
+    ["Renewable execution", "Margin recovery", "Cable cycle quality", "Quality ballast", "Order conversion"]
+  );
   assert.deepEqual(multibagger.json.transactions, []);
   assert.ok(multibagger.json.methodology.definition.includes("multibagger"));
   assert.ok(multibagger.json.holdings.every((holding) => holding.profitabilityLens && holding.valuationLens && holding.growthCatalyst));
@@ -1453,27 +1489,33 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Multibagger Portfolio"));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Model status"));
-  assert.ok(multibaggerHtml.body.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(multibaggerHtml.body.includes("Rs 5L public baseline"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Baseline live"));
-  assert.ok(multibaggerHtml.body.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(multibaggerHtml.body.includes("Since public fill baseline"));
+  assert.ok(multibaggerHtml.body.includes("Entries captured 04 May 2026, 02:12 pm"));
+  assert.ok(multibaggerHtml.body.includes("Share this tracker"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
-  assert.ok(multibaggerHtml.body.includes("Baseline entries are published through the Model Holdings table."));
+  assert.ok(multibaggerHtml.body.includes("Baseline entries are published through the Holdings table."));
   assert.ok(multibaggerHtml.body.includes("Current price"));
   assert.equal(multibaggerHtml.body.includes("<th>Plain-English Role</th>"), false);
   assert.ok(multibaggerHtml.body.includes("Plain-English role legend"));
   assert.ok(multibaggerHtml.body.includes("holding-name-line"));
+  assert.ok(multibaggerHtml.body.includes("holding-card-grid"));
+  assert.ok(multibaggerHtml.body.includes("Detailed Ledger"));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
-  assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
+  assert.ok(multibaggerHtml.body.includes("Performance"));
+  assert.equal(multibaggerHtml.body.includes("Portfolio At A Glance"), false);
   assert.ok(multibaggerHtml.body.includes("allocation-grid"));
   assert.ok(multibaggerHtml.body.includes("Research Framework"));
   assert.ok(multibaggerHtml.body.includes("Research Method"));
-  assert.ok(multibaggerHtml.body.includes("Research Method Snapshot"));
+  assert.equal(multibaggerHtml.body.includes("Research Method Snapshot"), false);
   assert.ok(multibaggerHtml.body.includes("Market Regime Evidence"));
-  assert.ok(multibaggerHtml.body.includes("<details class=\"panel research-framework-panel\" open>"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel research-framework-panel\">"));
+  assert.equal(multibaggerHtml.body.includes("<details class=\"panel research-framework-panel\" open>"), false);
   assert.equal(multibaggerHtml.body.includes("<details class=\"panel method-panel\" open>"), false);
-  assert.ok(multibaggerHtml.body.includes("Buy And Sell Record"));
-  assert.ok(multibaggerHtml.body.includes("<details class=\"panel portfolio-panel\" open>"));
+  assert.ok(multibaggerHtml.body.includes("Reviews And Changes"));
+  assert.ok(multibaggerHtml.body.includes("<details class=\"panel performance-panel\" open>"));
 
   const adminMultibaggerHtml = await app.request("GET", "/admin/multibagger");
   assert.ok(adminMultibaggerHtml.body.includes("Admin Login"));

@@ -5,6 +5,12 @@ const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
 const QUOTE_FRESHNESS_HOURS = 120;
 const FILLS_PUBLISHED = true;
 
+const trackingBasis = {
+  researchModelStartedOn: MODEL_ENTRY_DATE,
+  publicFillBaselineAt: MODEL_BASELINE_ENTRY_AT,
+  returnsCalculatedFrom: "publicFillBaselineAt"
+};
+
 const priceSnapshots = {
   KPEL: {
     entryPrice: 369.85,
@@ -195,6 +201,7 @@ const baseHoldings = [
     targetWeight: 25.6079,
     modelAmountInr: 128_039,
     role: "Anchor renewable alpha",
+    displayLabel: "Renewable execution",
     rolePlain: "Largest slot: renewable execution needs to keep converting into cash.",
     thesis: "Low-PE renewable execution with strong revenue growth and a valuation that still leaves room for rerating.",
     buyRule: "Build first while valuation remains a small-cap growth bargain and receivables stay controlled.",
@@ -213,6 +220,7 @@ const baseHoldings = [
     targetWeight: 21.4561,
     modelAmountInr: 107_280,
     role: "Hidden-quality margin inflection",
+    displayLabel: "Margin recovery",
     rolePlain: "Core slot: margin recovery must prove it is durable, not one good quarter.",
     thesis: "Microcap quality candidate with PAT doubling, expanded EBITDA margin and a still-sane valuation base.",
     buyRule: "Build after confirming liquidity; add only if FY26 keeps the new margin band intact.",
@@ -231,6 +239,7 @@ const baseHoldings = [
     targetWeight: 21.1864,
     modelAmountInr: 105_932,
     role: "Cleaner cable-cycle quality alpha",
+    displayLabel: "Cable cycle quality",
     rolePlain: "Quality slot: cable-cycle demand with capacity optionality and working-capital checks.",
     thesis: "Mid-teens valuation, PAT growth, order visibility and solar DC/e-beam capacity provide a second trigger.",
     buyRule: "Build measured exposure; add if order inflow, spreads and capacity ramp remain disciplined.",
@@ -249,6 +258,7 @@ const baseHoldings = [
     targetWeight: 19.3262,
     modelAmountInr: 96_631,
     role: "Quality ballast",
+    displayLabel: "Quality ballast",
     rolePlain: "Quality slot: steadier operating quality balances the higher-torque smallcap names.",
     thesis: "A lower-PE quality name that gives the basket valuation ballast while the order-book names prove cash conversion.",
     buyRule: "Hold while valuation support, earnings quality and balance-sheet discipline stay intact.",
@@ -267,6 +277,7 @@ const baseHoldings = [
     targetWeight: 12.4234,
     modelAmountInr: 62_118,
     role: "Order book entering P&L",
+    displayLabel: "Order conversion",
     rolePlain: "Capped slot: visible orders are starting to show up in reported earnings.",
     thesis: "Q3 revenue and PAT acceleration show that order visibility is already touching reported earnings.",
     buyRule: "Scale only after the next result confirms conversion without debtor blowout.",
@@ -452,6 +463,7 @@ export function multibaggerState(options = {}) {
     modelName: "Concentrated 5x Multibagger Model",
     modelCapitalInr: MODEL_CAPITAL_INR,
     modelEntryDate: MODEL_ENTRY_DATE,
+    trackingBasis,
     updatedAt: refreshedAt,
     quoteStatus: {
       mode: quoteMode,
