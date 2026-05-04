@@ -79,6 +79,7 @@ async function runCycle(page, cycle) {
   assert.ok(openDailyHref?.includes(dailySlug), `archive card points at unexpected href: ${openDailyHref}`);
   await expectOne(page.locator(".sentiment-sparkline").first(), "archive sentiment sparkline");
   await expectOne(page.getByText("Why it mattered for India", { exact: true }).first(), "archive India relevance driver");
+  await expectOne(page.getByText("Top 8 India-relevant notes selected", { exact: false }).first(), "archive simplified source-count language");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
     0,
@@ -200,6 +201,7 @@ async function expectDailyContent(page) {
   await expectOne(publicView.locator("#summaryExpand[open]"), "visible two-minute summary");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
+  assert.equal(/[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/.test(compactSummary), false, `compact summary has malformed punctuation: ${compactSummary}`);
   await summaryExpand.locator("summary").click();
   await expectOne(publicView.locator("#summaryExpand:not([open])"), "two-minute summary collapses");
   await summaryExpand.locator("summary").click();
@@ -211,6 +213,8 @@ async function expectDailyContent(page) {
   assert.equal(await publicView.getByRole("heading", { name: "View Chart On TradingView" }).count(), 0, "daily brief should not show standalone chart CTA");
   assert.equal(await publicView.locator(".setup-card").count(), 0, "daily brief should not show trading recommendations");
   await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
+  await expectOne(publicView.getByText("Reference quotes shown - live refresh pending", { exact: false }), "safer quote board stale/live state");
+  assert.equal(await publicView.getByText("Last available close", { exact: false }).count(), 0, "quote board must not foreground stale close copy");
   await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
   for (const region of ["US Overnight", "Asia Watch", "India Open", "Macro Hedges"]) {

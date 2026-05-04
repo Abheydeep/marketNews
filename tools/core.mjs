@@ -771,15 +771,32 @@ export function dailyLeadForDigest(date, articles = []) {
   const support = ranked.find((article) => article !== lead && Number(article.sentimentScore) > 0.05 && hasIndiaReadThrough(article));
   const risk = ranked.find((article) => article !== lead && Number(article.sentimentScore) < -0.05 && hasIndiaReadThrough(article));
   const driverType = driverTypeForArticle(lead);
+  const indirectLead = hasIndirectIndiaImpact(lead);
+  const leadImpact = dailyLeadImpact(lead);
   return {
-    label: driverLabelForType(driverType),
+    label: indirectLead && driverType === "crude" ? "Global crude-flow signal" : driverLabelForType(driverType),
     sourceArticleId: articleLeadId(lead),
     driverType,
     headline: lead?.headline || "Source-led market cue",
-    indiaImpact: cleanLeadImpact(lead?.indiaImpact || lead?.takeaway || lead?.summary || "India read-through needs opening breadth confirmation."),
-    riskSide: cleanLeadImpact(risk?.indiaImpact || lead?.indiaImpact || "Risk side needs confirmation from the first range."),
+    indiaImpact: leadImpact,
+    riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : leadImpact,
     supportSide: cleanSentence(support?.indiaImpact || "Support side needs Indian breadth, sector leadership, or softer macro confirmation.")
   };
+}
+
+function hasIndirectIndiaImpact(article) {
+  return /^No direct Indian? |^No direct India read-through/i.test(String(article?.indiaImpact || ""));
+}
+
+function dailyLeadImpact(article) {
+  const impact = cleanSentence(article?.indiaImpact || article?.takeaway || article?.summary || "");
+  if (/^No direct Indian pipeline read-through/i.test(impact)) {
+    return "India impact runs only through Brent, OMCs, aviation costs, and import-cost expectations.";
+  }
+  if (/^No direct India read-through/i.test(impact)) {
+    return "Global cue only; India impact needs confirmation through index futures, sector breadth, currency, or rates.";
+  }
+  return cleanLeadImpact(impact || "India read-through needs opening breadth confirmation.");
 }
 
 function cleanLeadImpact(value) {

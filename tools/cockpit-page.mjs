@@ -5661,10 +5661,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
       const liveLine = openCount > 0
         ? 'Live now ' + openCount + '/' + quotes.length + ' markets'
-        : 'Last available close - latest feed ' + (latestSnapshotDateLabel(quotes) || 'latest published');
+        : 'Reference quotes shown - live refresh pending' + (latestSnapshotDateLabel(quotes) ? ' - latest snapshot ' + latestSnapshotDateLabel(quotes) : '');
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
-        (openCount > 0 ? ' - ' + mode : ' - live data not yet available') +
+        (openCount > 0 ? ' - ' + mode : ' - not a live trading feed') +
         (latest ? ' - latest ' + latest : '') +
         ' - checked IST ' + time;
     }
@@ -6588,14 +6588,29 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
 function compactSummaryText(digest) {
   const driver = primaryDriverForDigest(digest);
-  const risk = digest.dailyLead?.riskSide ? conciseSentence(digest.dailyLead.riskSide, 12) : "risk needs the first range";
-  const support = digest.dailyLead?.supportSide ? conciseSentence(digest.dailyLead.supportSide, 12) : "breadth is the confirmation check";
+  const risk = digest.dailyLead?.riskSide ? conciseClause(digest.dailyLead.riskSide, 14) : "risk needs the first range";
+  const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
   return conciseSentence([
     `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} across verified sources.`,
     `${driver.title} is the lead read.`,
     `${risk}; ${support}.`,
     `Primary source focus: ${driver.title}.`
-  ].filter(Boolean).join(" "), 34);
+  ].filter(Boolean).join(" "), 46);
+}
+
+function conciseClause(text, maxWords) {
+  return conciseSentence(text, maxWords)
+    .replace(/[.!?]+$/g, "")
+    .replace(/[,;:]+$/g, "")
+    .trim();
+}
+
+function compactSupportClause(text) {
+  const cleaned = String(text || "");
+  if (/support side needs indian breadth/i.test(cleaned)) {
+    return "support needs Indian breadth confirmation";
+  }
+  return conciseClause(cleaned, 9);
 }
 
 function legacyAuditBannerHtml(digest) {
@@ -6687,8 +6702,8 @@ function quoteSessionLabel(digest) {
   const quotes = digest.marketSnapshots || [];
   const latest = latestSnapshotDateLabel(quotes);
   return latest
-    ? `Last available close - latest feed ${latest}; live data not yet available`
-    : "Last available close - latest published snapshot shown";
+    ? `Reference quotes shown - live refresh pending; latest snapshot ${latest}`
+    : "Reference quotes shown - live refresh pending";
 }
 
 function latestSnapshotDateLabel(quotes) {
@@ -7500,10 +7515,10 @@ function sourceQualityLine(digest) {
   }
   const generated = digest.generatedAt ? `generated ${formatGeneratedTime(digest.generatedAt)}` : "generated timestamp unavailable";
   const blocked = verification.blockedReason ? `, blocked: ${verification.blockedReason}` : "";
-  const selection = digest.publicSourceSelection
-    ? ` Public view: ${digest.publicSourceSelection.visibleCount} India-first notes from ${digest.publicSourceSelection.shortlistCount} articles inside ${digest.publicSourceSelection.windowHours} hours.`
-    : "";
-  return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.${selection}`;
+  if (digest.publicSourceSelection) {
+    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.`;
+  }
+  return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
 }
 
 function formatGeneratedTime(value) {
@@ -8542,7 +8557,12 @@ function conciseSentence(text, maxWords) {
     return "";
   }
   const words = cleaned.split(" ").filter(Boolean);
-  const sentence = words.length > maxWords ? words.slice(0, maxWords).join(" ") : words.join(" ");
+  const sentence = (words.length > maxWords ? words.slice(0, maxWords).join(" ") : words.join(" "))
+    .replace(/[,;:]+$/g, "")
+    .replace(/[.!?]+[,;:]+$/g, ".")
+    .replace(/\s+\./g, ".")
+    .replace(/\b(and|or|with|through|for|if|to|the|a|an)$/i, "")
+    .trim();
   return /[.!?]$/.test(sentence) ? sentence : `${sentence}.`;
 }
 

@@ -1496,9 +1496,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       </aside>
     </section>
 
-    ${performanceStripHtml(state)}
-    ${trackingRailHtml(state)}
-
     <section class="holdings-showcase" aria-label="Current model holdings">
       <div class="section-head">
         <div>
@@ -1511,6 +1508,9 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         ${holdingCardsHtml(state.holdings)}
       </div>
     </section>
+
+    ${performanceStripHtml(state)}
+    ${trackingRailHtml(state)}
 
     <section class="allocation-visual" aria-label="Portfolio allocation visual">
       <div class="allocation-donut-wrap">
@@ -1825,7 +1825,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function bindShareActions() {
-      const shareUrl = window.location.href.split("#")[0];
+      const shareUrl = window.location.origin + window.location.pathname;
       const title = "Market Narrative Multibagger Tracker";
       document.querySelectorAll("[data-share-action]").forEach((node) => {
         const action = node.getAttribute("data-share-action");

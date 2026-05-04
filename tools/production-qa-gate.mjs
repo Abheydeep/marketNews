@@ -498,8 +498,21 @@ async function runBrowserSmoke() {
       });
       const page = await context.newPage();
       await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
+      const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
+      assert.match(homeBody, /Top 8 India-relevant notes selected/i, "homepage must simplify public source-count language");
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Live Quote Board|Daily Pre-Market Summary/i);
+      const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
+      assert.doesNotMatch(latestBody, /[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/, "latest briefing has malformed generated punctuation");
+      assert.doesNotMatch(latestBody, /Last available close|live data not yet available/i, "latest briefing must not foreground stale quote-board language");
+      assert.match(latestBody, /Reference quotes shown - live refresh pending/i, "latest briefing must show the safer quote-board state");
       await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i);
+      const multibaggerBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
+      assert.ok(
+        multibaggerBody.indexOf("Five public model slots") > -1
+          && multibaggerBody.indexOf("Model capital") > -1
+          && multibaggerBody.indexOf("Five public model slots") < multibaggerBody.indexOf("Model capital"),
+        "multibagger holdings must appear before the metric stack"
+      );
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
       await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);

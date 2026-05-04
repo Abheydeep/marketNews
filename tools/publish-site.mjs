@@ -280,7 +280,7 @@ function enrichPublicDigest(digest) {
   const themes = verified ? publicThemesForNews(digest.digestDate, news) : (digest.themes ?? []);
   const overallSentiment = verified ? publicWeightedSentiment(news) : digest.overallSentiment;
   const sentimentLabel = verified ? publicLabelFromScore(overallSentiment) : digest.sentimentLabel;
-  const dailyLead = digest.dailyLead || (verified ? dailyLeadForDigest(digest.digestDate, news) : undefined);
+  const dailyLead = verified ? dailyLeadForDigest(digest.digestDate, news) : digest.dailyLead;
   const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead) : digest.title;
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
@@ -1064,21 +1064,31 @@ function archivePage(digests, allDigests = digests) {
       .nav-inner {
         align-items: start;
         flex-direction: column;
-        padding: 14px 0;
+        gap: 12px;
+        padding: 12px 0;
       }
 
-      .latest-link {
+      .nav-actions {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 2px;
         width: 100%;
+      }
+
+      .latest-link,
+      .nav-link {
+        flex: 0 0 auto;
+        padding: 9px 11px;
         text-align: center;
       }
 
-      .nav-actions,
-      .nav-link {
-        width: 100%;
+      main {
+        padding-top: 28px;
       }
 
-      .nav-link {
-        text-align: center;
+      .hero {
+        margin-bottom: 22px;
       }
     }
   </style>
@@ -1152,6 +1162,9 @@ function archiveSourceQualityLine(digest) {
   const verification = digest.sourceVerification;
   if (!verification) {
     return "Edition archived";
+  }
+  if (digest.publicSourceSelection) {
+    return `Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links`;
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;

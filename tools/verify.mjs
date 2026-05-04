@@ -902,6 +902,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Read market briefing"));
   assert.ok(publisher.includes("Why it mattered for India"));
   assert.ok(publisher.includes("sentiment-sparkline"));
+  assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected"));
+  assert.ok(publisher.includes("overflow-x: auto"));
+  assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");
   for (const roughCopy of [
     "All Market Narrative briefings",
     "The root page now works",
@@ -1303,7 +1306,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
   assert.ok(publicHtml.body.includes("Share this briefing"));
   assert.ok(publicHtml.body.includes("Share this trading guide"));
-  assert.ok(publicHtml.body.includes("Last available close"));
+  assert.ok(publicHtml.body.includes("Reference quotes shown - live refresh pending"));
+  assert.equal(publicHtml.body.includes("Last available close"), false);
+  assert.equal(publicHtml.body.includes("live data not yet available"), false);
   assert.ok(publicHtml.body.includes("Today's Trade Map"));
   assert.ok(publicHtml.body.includes("Long only above"));
   assert.ok(publicHtml.body.includes("Short risk below"));
@@ -1341,6 +1346,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes('id="architecture-view"'));
   assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'));
   assert.ok(publicHtml.body.includes("2 Minute Summary"));
+  assert.equal(/[A-Za-z0-9][,;:]\./.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs,.");
+  assert.equal(/[A-Za-z0-9]\.[;:]/.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs.;");
+  assert.equal(/\bOMCs,\./i.test(publicSection), false, "public summary must not truncate after OMCs,");
   assert.ok(publicHtml.body.includes("<strong>Lead driver:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>Pressure:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>Support / offset:</strong>"));
@@ -1385,6 +1393,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
+  assert.ok(publicHtml.body.includes("Top 8 India-relevant notes selected from"));
   assert.ok(publicHtml.body.includes("Showing 8 India-first notes"));
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
@@ -1531,6 +1540,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("holding-name-line"));
   assert.ok(multibaggerHtml.body.includes("holding-card-grid"));
   assert.ok(multibaggerHtml.body.includes("Detailed Ledger"));
+  assert.ok(
+    multibaggerHtml.body.indexOf('aria-label="Current model holdings"') < multibaggerHtml.body.indexOf('aria-label="Public model performance"'),
+    "holding cards must render before the metric stack on mobile and desktop"
+  );
+  assert.equal(multibaggerHtml.body.includes("window.location.href.split"), false, "share links must not inherit review/query parameters");
+  assert.ok(multibaggerHtml.body.includes("window.location.origin + window.location.pathname"));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Performance"));
   assert.equal(multibaggerHtml.body.includes("Portfolio At A Glance"), false);
