@@ -129,7 +129,7 @@ await group("Public user surface", async () => {
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Open chart on TradingView/i, /Bank Nifty|global cues|India/i], [/Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Share this briefing/i, /Share this trading guide/i, /Bank Nifty|global cues|India/i], [/Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");
