@@ -483,31 +483,62 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-weight: 700;
     }
 
-    .summary-expand-action {
+    .disclosure-action {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
       justify-content: center;
-      border-radius: 8px;
+      min-width: 104px;
+      border-radius: 999px;
       background: #111827;
       color: #fff;
-      padding: 11px 14px;
+      padding: 9px 12px;
       font-size: 13px;
       font-weight: 900;
+      line-height: 1;
       white-space: nowrap;
     }
 
-    .executive-card .summary-expand-action {
+    .executive-card .disclosure-action {
       color: #fff;
     }
 
-    .summary-expand-action::after {
-      content: " +";
-      margin-left: 6px;
-      font-size: 14px;
+    .disclosure-action .label-open {
+      display: none;
     }
 
-    .briefing-expand-card[open] .summary-expand-action::after {
-      content: " -";
+    .disclosure-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .disclosure-icon::before {
+      content: "+";
+      transform: translateY(-1px);
+    }
+
+    .briefing-expand-card[open] .disclosure-action .label-closed,
+    .source-ledger-details[open] .disclosure-action .label-closed {
+      display: none;
+    }
+
+    .briefing-expand-card[open] .disclosure-action .label-open,
+    .source-ledger-details[open] .disclosure-action .label-open {
+      display: inline;
+    }
+
+    .briefing-expand-card[open] .disclosure-icon::before,
+    .source-ledger-details[open] .disclosure-icon::before,
+    .quote-board-toggle.open .disclosure-icon::before {
+      content: "-";
+      transform: translateY(-1px);
     }
 
     .expanded-briefing-page {
@@ -681,6 +712,26 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .brief-list li + li {
       margin-top: 10px;
+    }
+
+    .two-minute-summary .brief-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .two-minute-summary .brief-list li {
+      margin: 0;
+      border: 1px solid rgba(229, 231, 235, 0.86);
+      border-radius: 12px;
+      background: rgba(248, 250, 252, 0.78);
+      padding: 13px 14px;
+    }
+
+    .two-minute-summary .brief-list li + li {
+      margin-top: 0;
     }
 
     .watch-grid {
@@ -1355,22 +1406,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-ledger-action {
-      border-radius: 8px;
-      background: #111827;
-      color: #fff;
-      padding: 10px 12px;
       font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .source-ledger-action::after {
-      content: " +";
-      margin-left: 4px;
-    }
-
-    .source-ledger-details[open] .source-ledger-action::after {
-      content: " -";
     }
 
     .source-ledger-body {
@@ -2188,27 +2224,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .quote-board-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      background: #111827;
-      color: #fff;
-      padding: 8px 10px;
       font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .quote-board-chev {
-      display: inline-block;
-      font-size: 12px;
-      line-height: 1;
-      transition: transform 150ms ease;
-    }
-
-    .quote-board-toggle.open .quote-board-chev {
-      transform: rotate(180deg);
     }
 
     .quote-board-body {
@@ -4018,12 +4034,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #f8fafc;
     }
 
-    .glass-v2 .summary-expand-action,
-    .glass-v2 .quote-board-action,
+    .glass-v2 .disclosure-action,
     .glass-v2 .chart-link-btn,
     .glass-v2 .studio-action-btn,
     .glass-v2 .speed-btn.active,
-    .glass-v2 .source-ledger-action,
     .glass-v2 .source-filter-btn.active {
       background: linear-gradient(135deg, #06b6d4, #6366f1);
       color: #fff;
@@ -4036,6 +4050,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .glass-v2 .source-ledger-details {
       border-color: rgba(255, 255, 255, 0.12);
       background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.58));
+    }
+
+    .glass-v2 .two-minute-summary .brief-list li {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(15, 23, 42, 0.58);
     }
 
     .glass-v2 .sentiment-bar {
@@ -4312,6 +4331,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .admin-grid,
       .body-grid,
       .briefing-expand-card summary,
+      .two-minute-summary .brief-list,
       .briefing-lens-grid {
         grid-template-columns: 1fr;
       }
@@ -4320,8 +4340,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         grid-template-columns: 1fr;
       }
 
-      .summary-expand-action {
-        width: 100%;
+      .briefing-expand-card summary .disclosure-action {
+        justify-self: start;
       }
 
       .share-actions {
@@ -4508,7 +4528,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <h2 class="summary-card-title">2 Minute Summary</h2>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
-            <strong class="summary-expand-action">Collapse</strong>
+            <span class="disclosure-action summary-disclosure-action" aria-hidden="true">
+              <span class="label-closed">Expand</span>
+              <span class="label-open">Collapse</span>
+              <span class="disclosure-icon"></span>
+            </span>
           </summary>
           <div class="expanded-briefing-page">
             ${expandedBriefingHtml(digest)}
@@ -4536,7 +4560,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
                 <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
               </span>
               <span id="liveClock" class="live-clock">${escapeHtml(quoteSessionLabel(digest))}</span>
-              <span class="quote-board-action"><span id="quoteBoardState">Expand</span><span class="quote-board-chev">&#9662;</span></span>
+              <span class="disclosure-action quote-board-action"><span id="quoteBoardState">Expand</span><span class="disclosure-icon" aria-hidden="true"></span></span>
             </button>
             <div id="quoteBoardBody" class="quote-board-body" hidden>
               <div id="regionalBreadth" class="regional-breadth">
@@ -6532,16 +6556,14 @@ function compactSummaryText(digest) {
   const pressureStory = strongestStory(digest.news, "negative");
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
-  const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const pressureLabel = marketRiskLabel(macro || pressureStory);
   const supportLabel = distinctSupportLabel(pressureLabel, supportStory);
   const driver = primaryDriverForDigest(digest);
-  return limitWords([
+  return conciseSentence([
     `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} across verified sources.`,
     `${pressureLabel} is the risk to watch; ${supportLabel} is the confirmation check.`,
-    asiaLine,
     `Primary source focus: ${driver.title}.`
-  ].filter(Boolean).join(" "), 50);
+  ].filter(Boolean).join(" "), 34);
 }
 
 function legacyAuditBannerHtml(digest) {
@@ -6936,7 +6958,7 @@ function driverLabelForArticle(article) {
 
 function compactDriverSummary(article) {
   const source = article?.summary || article?.takeaway || article?.headline || "Source-backed driver awaiting the next verified run.";
-  return limitWords(String(source).replace(/\s+/g, " ").trim(), 24);
+  return conciseSentence(source, 24);
 }
 
 function compactEntityName(value) {
@@ -6984,13 +7006,7 @@ function compactAsiaLine(snapshots) {
 }
 
 function expandedBriefingHtml(digest) {
-  const lead = expandedLeadParagraphs(digest);
   return `
-    <div class="expanded-briefing-head">
-      <span class="summary-label">2 minute summary</span>
-      <h2>${escapeHtml(expandedBriefingHeadline(digest))}</h2>
-      ${lead.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-    </div>
     ${twoMinuteSummaryHtml(digest)}
     ${executiveSummaryHtml(digest)}
   `;
@@ -7073,8 +7089,7 @@ function twoMinuteSummaryHtml(digest) {
     ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India-relevant articles."]
   ];
   return `
-    <div class="brief-section two-minute-summary">
-      <h3>2 Minute Summary</h3>
+    <div class="brief-section two-minute-summary" aria-label="2 Minute Summary">
       <ul class="brief-list">
         ${bullets.map(([label, text]) => `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(cleanBriefingText(text))}</li>`).join("")}
       </ul>
@@ -7086,11 +7101,10 @@ function sourceSummaryForTwoMinute(article, fallback) {
   if (!article) {
     return fallback;
   }
-  const line = article.takeaway || article.indiaImpact || article.whyItMatters || article.summary || fallback;
-  const india = article.indiaImpact && !noDirectIndiaCopy(article.indiaImpact)
-    ? `India read: ${article.indiaImpact}`
-    : "";
-  return limitWords([line, india].filter(Boolean).join(" "), 42);
+  const line = article.indiaImpact && !noDirectIndiaCopy(article.indiaImpact)
+    ? article.indiaImpact
+    : article.takeaway || article.whyItMatters || article.summary || fallback;
+  return conciseSentence(line, 28);
 }
 
 function executiveSummaryHtml(digest) {
@@ -7314,7 +7328,11 @@ function sourceNotesHtml(digest) {
             <h3>Open categorized source ledger</h3>
             <p>Starts with the highest-impact category only. Use All when you want the complete research trail.</p>
           </div>
-          <strong class="source-ledger-action">Open sources</strong>
+          <span class="disclosure-action source-ledger-action" aria-hidden="true">
+            <span class="label-closed">Expand</span>
+            <span class="label-open">Collapse</span>
+            <span class="disclosure-icon"></span>
+          </span>
         </summary>
         <div class="source-ledger-body">
           <div class="source-filter-row" aria-label="Source category filters">
@@ -8429,6 +8447,19 @@ function limitWords(text, maxWords) {
     return words.join(" ");
   }
   return `${words.slice(0, maxWords - 1).join(" ")}...`;
+}
+
+function conciseSentence(text, maxWords) {
+  const cleaned = String(text || "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*\.\.\.$/, "")
+    .trim();
+  if (!cleaned) {
+    return "";
+  }
+  const words = cleaned.split(" ").filter(Boolean);
+  const sentence = words.length > maxWords ? words.slice(0, maxWords).join(" ") : words.join(" ");
+  return /[.!?]$/.test(sentence) ? sentence : `${sentence}.`;
 }
 
 function formatNumber(value) {

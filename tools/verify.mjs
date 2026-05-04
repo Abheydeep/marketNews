@@ -1284,6 +1284,12 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("<strong>Support / offset:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>India read:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>Source mix:</strong>"));
+  assert.ok(publicHtml.body.includes("disclosure-action summary-disclosure-action"));
+  assert.ok(publicHtml.body.includes("disclosure-action quote-board-action"));
+  assert.ok(publicHtml.body.includes("disclosure-action source-ledger-action"));
+  assert.equal(publicHtml.body.includes("summary-expand-action"), false);
+  assert.equal(publicHtml.body.includes("quote-board-chev"), false);
+  assert.equal(publicHtml.body.includes('class="expanded-briefing-head"'), false);
   assert.ok(publicHtml.body.includes("Collapse"));
   assert.ok(publicHtml.body.includes("Market Map"));
   assert.equal(publicSection.includes("Stories Driving The Open"), false);
@@ -1295,7 +1301,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("verified source stack"), false);
   assert.ok(publicHtml.body.includes("Why it matters"));
   assert.ok(publicHtml.body.includes("India impact"));
-  assert.ok(publicHtml.body.includes("2 minute summary"));
+  assert.ok(publicHtml.body.includes("2 Minute Summary"));
   assert.ok(!publicHtml.body.includes("Read the full desk note"));
   assert.ok(!publicHtml.body.includes("Pre-market desk note"));
   assert.equal(/Bank Nifty is the pressure; Bank Nifty is the cushion/i.test(publicHtml.body), false);
