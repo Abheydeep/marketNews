@@ -111,10 +111,6 @@ async function runCycle(page, cycle) {
 }
 
 async function openPublicPage(page, url) {
-  if (new URL(url).hostname.endsWith("marketnarrative.in")) {
-    await renderFetchedHtml(page, url);
-    return;
-  }
   try {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
   } catch (error) {
