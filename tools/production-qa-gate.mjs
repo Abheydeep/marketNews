@@ -491,11 +491,16 @@ async function runBrowserSmoke() {
       context.on("page", (page) => {
         page.on("console", (message) => {
           if (message.type() === "error") {
-            consoleErrors.push(`${page.url()} :: ${message.text()}`);
+            const text = message.text();
+            if (!isExpectedBrowserConsoleNoise(page.url(), text)) {
+              consoleErrors.push(`${page.url()} :: ${text}`);
+            }
           }
         });
         page.on("pageerror", (error) => {
-          consoleErrors.push(`${page.url()} :: ${error.message}`);
+          if (!isExpectedBrowserConsoleNoise(page.url(), error.message)) {
+            consoleErrors.push(`${page.url()} :: ${error.message}`);
+          }
         });
       });
       const page = await context.newPage();
@@ -581,6 +586,17 @@ async function renderFetchedHtml(page, url) {
   assert.equal(response.status, 200, `browser fallback fetch for ${url} returned HTTP ${response.status}`);
   await page.goto("about:blank", { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
   await page.setContent(response.body, { waitUntil: "domcontentloaded", timeout: config.timeoutMs });
+}
+
+function isExpectedBrowserConsoleNoise(pageUrl, text) {
+  if (pageUrl !== "about:blank") {
+    return false;
+  }
+  const message = String(text || "");
+  if (/api\.marketnarrative\.in\/api\/public\/digest/i.test(message) && /CORS policy|ERR_FAILED/i.test(message)) {
+    return true;
+  }
+  return /^Failed to load resource: net::ERR_FAILED$/i.test(message.trim());
 }
 
 function loadPlaywright() {

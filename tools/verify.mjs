@@ -1338,6 +1338,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "Museum of Fine Arts",
     "RUN_AUTHENTICATED_QA",
     "Desktop and mobile smoke",
+    "isExpectedBrowserConsoleNoise",
     "Launch remains BLOCKED"
   ]) {
     assert.ok(productionQaGate.includes(required), `production QA gate missing ${required}`);
