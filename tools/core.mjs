@@ -774,24 +774,24 @@ export function dailyLeadForDigest(date, articles = []) {
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
   return {
-    label: indirectLead && driverType === "crude" ? "Global crude-flow signal" : driverLabelForType(driverType),
+    label: indirectLead && driverType === "crude" ? "Crude supply watch" : driverLabelForType(driverType),
     sourceArticleId: articleLeadId(lead),
     driverType,
     headline: lead?.headline || "Source-led market cue",
     indiaImpact: leadImpact,
-    riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : leadImpact,
-    supportSide: cleanSentence(support?.indiaImpact || "Support side needs Indian breadth, sector leadership, or softer macro confirmation.")
+    riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : defaultRiskSide(driverType, leadImpact),
+    supportSide: cleanSentence(support?.indiaImpact || defaultSupportSide(driverType))
   };
 }
 
 function hasIndirectIndiaImpact(article) {
-  return /^No direct Indian? |^No direct India read-through/i.test(String(article?.indiaImpact || ""));
+  return /^No direct Indian\b|^No direct India read-through/i.test(String(article?.indiaImpact || ""));
 }
 
 function dailyLeadImpact(article) {
   const impact = cleanSentence(article?.indiaImpact || article?.takeaway || article?.summary || "");
   if (/^No direct Indian pipeline read-through/i.test(impact)) {
-    return "India impact runs only through Brent, OMCs, aviation costs, and import-cost expectations.";
+    return "Not a direct India trade; watch Brent first because only a price reaction matters for OMCs, aviation, paints, and inflation expectations.";
   }
   if (/^No direct India read-through/i.test(impact)) {
     return "Global cue only; India impact needs confirmation through index futures, sector breadth, currency, or rates.";
@@ -803,6 +803,32 @@ function cleanLeadImpact(value) {
   return cleanSentence(value)
     .replace(/^No direct Indian pipeline read-through;\s*/i, "Pipeline flow news matters through Brent; ")
     .replace(/^No direct India read-through for this story\.\s*/i, "");
+}
+
+function defaultRiskSide(driverType, leadImpact) {
+  if (driverType === "crude") {
+    return "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.";
+  }
+  if (driverType === "rates") {
+    return "Higher yields would pressure banks, realty, autos, and long-duration growth shares.";
+  }
+  if (driverType === "tech") {
+    return "Weak Nasdaq futures or poor IT breadth would turn the global tech cue into risk, not support.";
+  }
+  return cleanSentence(leadImpact || "The first range must confirm whether the source risk matters for India.");
+}
+
+function defaultSupportSide(driverType) {
+  if (driverType === "crude") {
+    return "Softer Brent and stronger Indian breadth are the confirmation checks.";
+  }
+  if (driverType === "rates") {
+    return "Stable yields plus bank breadth is the offset.";
+  }
+  if (driverType === "tech") {
+    return "Nasdaq futures, USD/INR, and Nifty IT breadth must confirm the offset.";
+  }
+  return "Support needs Indian breadth, sector leadership, or softer macro confirmation.";
 }
 
 function leadArticleForDailyLead(dailyLead, articles = []) {
@@ -830,16 +856,21 @@ function diverseVisibleArticles(articles, limit) {
   const selected = [];
   const selectedKeys = new Set();
   const categoryOrder = ["macro_negative", "global_risk", "sector_positive", "macro_positive", "sector_negative", "neutral_volatile"];
+  const categoryCount = new Map();
+  const categoryUniverse = new Set((articles ?? []).map((article) => article.category || "market"));
+  const maxPerCategory = Math.max(2, Math.ceil(limit / Math.max(2, categoryUniverse.size)));
   for (const category of categoryOrder) {
-    addVisibleSource((articles ?? []).find((article) => (article.category || "market") === category), selected, selectedKeys, limit);
+    addVisibleSource((articles ?? []).find((article) => (article.category || "market") === category), selected, selectedKeys, limit, categoryCount, maxPerCategory);
   }
   for (const article of articles ?? []) {
-    addVisibleSource(article, selected, selectedKeys, limit);
+    const category = article.category || "market";
+    const allowOverCap = selected.length >= Math.min(limit, categoryUniverse.size * maxPerCategory);
+    addVisibleSource(article, selected, selectedKeys, limit, categoryCount, allowOverCap ? limit : maxPerCategory);
   }
   return selected;
 }
 
-function addVisibleSource(article, selected, selectedKeys, limit) {
+function addVisibleSource(article, selected, selectedKeys, limit, categoryCount = new Map(), maxPerCategory = limit) {
   if (!article || selected.length >= limit) {
     return;
   }
@@ -847,8 +878,13 @@ function addVisibleSource(article, selected, selectedKeys, limit) {
   if (!key || selectedKeys.has(key)) {
     return;
   }
+  const category = article.category || "market";
+  if ((categoryCount.get(category) || 0) >= maxPerCategory) {
+    return;
+  }
   selected.push(article);
   selectedKeys.add(key);
+  categoryCount.set(category, (categoryCount.get(category) || 0) + 1);
 }
 
 function isWithinDigestWindow(article, date, hours) {
@@ -862,7 +898,7 @@ function isWithinDigestWindow(article, date, hours) {
 }
 
 function hasIndiaReadThrough(article) {
-  return !/^no direct india read-through/i.test(String(article?.indiaImpact || "").trim());
+  return !/^no direct indian\b|^no direct india read-through/i.test(String(article?.indiaImpact || "").trim());
 }
 
 function indiaSourceScore(article, date) {

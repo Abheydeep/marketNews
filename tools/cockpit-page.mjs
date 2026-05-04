@@ -4534,7 +4534,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </nav>
 
   <main class="shell">
-    <section id="public-view" class="tab-content">
+    ${isTradingGuidePage && !includeStudio ? tradingGuideViewHtml(digest, canonicalUrl, { active: true }) : ""}
+    <section id="public-view" class="tab-content${safeInitialTab === "public-view" ? "" : " hidden"}">
       <div class="briefing-shell">
         <header class="page-header">
           <div class="briefing-topline">
@@ -4613,7 +4614,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       </div>
     </section>
 
-    ${!includeStudio ? tradingGuideViewHtml(digest, canonicalUrl) : ""}
+    ${!includeStudio && !isTradingGuidePage ? tradingGuideViewHtml(digest, canonicalUrl, { active: safeInitialTab === "trading-guide-view" }) : ""}
 
     <div id="indexChartModal" class="chart-modal" aria-hidden="true">
       <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="indexChartTitle">
@@ -6588,14 +6589,28 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
 function compactSummaryText(digest) {
   const driver = primaryDriverForDigest(digest);
-  const risk = digest.dailyLead?.riskSide ? conciseClause(digest.dailyLead.riskSide, 14) : "risk needs the first range";
+  const headline = headlineLeadClause(digest.dailyLead?.headline);
+  const impact = digest.dailyLead?.indiaImpact
+    ? conciseClause(humanizeLeadCopy(digest.dailyLead.indiaImpact), 24)
+    : `${driver.summary}`;
   const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
   return conciseSentence([
-    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} across verified sources.`,
-    `${driver.title} is the lead read.`,
-    `${risk}; ${support}.`,
-    `Primary source focus: ${driver.title}.`
-  ].filter(Boolean).join(" "), 46);
+    headline
+      ? `Before the open, ${headline}.`
+      : `Before the open, ${driver.title.toLowerCase()} is the lead read.`,
+    `India read: ${impact}.`,
+    `Confirmation: ${support}.`
+  ].filter(Boolean).join(" "), 42);
+}
+
+function headlineLeadClause(headline) {
+  const text = String(headline || "");
+  if (/\bcrude oil exports?\b/i.test(text)) return "US crude exports are the overnight oil cue";
+  if (/\bOPEC\b/i.test(text)) return "OPEC supply headlines are the oil cue";
+  if (/\bjobs day|semiconductor earnings\b/i.test(text)) return "US jobs and chip earnings are the global-risk cue";
+  if (/\bFed|FOMC|rates?|yields?\b/i.test(text)) return "rates are the macro cue";
+  if (/\bAI|tech|software|semiconductor|Nasdaq\b/i.test(text)) return "global tech breadth is the risk-appetite cue";
+  return "";
 }
 
 function conciseClause(text, maxWords) {
@@ -6610,7 +6625,19 @@ function compactSupportClause(text) {
   if (/support side needs indian breadth/i.test(cleaned)) {
     return "support needs Indian breadth confirmation";
   }
-  return conciseClause(cleaned, 9);
+  if (/softer brent and stronger indian breadth are the confirmation checks/i.test(cleaned)) {
+    return "softer Brent plus stronger Indian breadth";
+  }
+  return conciseClause(humanizeLeadCopy(cleaned), 12);
+}
+
+function humanizeLeadCopy(value) {
+  return String(value || "")
+    .replace(/\bGlobal crude-flow signal\b/gi, "Crude supply")
+    .replace(/\bIndia impact runs only through\b/gi, "India only cares through")
+    .replace(/\bNot a direct India trade;\s*/gi, "")
+    .replace(/\bSupport side needs\b/gi, "Support needs")
+    .trim();
 }
 
 function legacyAuditBannerHtml(digest) {
@@ -6774,7 +6801,7 @@ function marketMoodRailHtml(digest) {
       <article class="mood-cell">
         <span>Market Mood</span>
         <strong style="color: ${moodColor}">${escapeHtml(headlineSentiment(digest.sentimentLabel))}</strong>
-        <small>Weighted sentiment ${escapeHtml(formatSignedScore(digest.overallSentiment))}</small>
+        <small>${escapeHtml(sentimentReadout(digest.overallSentiment))}</small>
         <div class="mood-bar" aria-hidden="true"><i style="--mood-width: ${moodWidth}%; --mood-color: ${moodColor}"></i></div>
       </article>
       <article class="mood-cell">
@@ -6791,12 +6818,20 @@ function marketMoodRailHtml(digest) {
   `;
 }
 
-function tradingGuideViewHtml(digest, canonicalUrl = "") {
+function sentimentReadout(score) {
+  const number = Number(score);
+  if (!Number.isFinite(number) || Math.abs(number) < 0.05) {
+    return "Source tone is balanced; no article-only edge.";
+  }
+  return `Source tone ${number > 0 ? "supports risk" : "leans defensive"} (${formatSignedScore(number)})`;
+}
+
+function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
   const levels = tradeMapLevels(digest, niftySetup(digest));
   const primaryDriver = primaryDriverForDigest(digest);
   const guideUrl = canonicalUrl ? tradingGuideShareUrl(canonicalUrl) : "";
   return `
-    <section id="trading-guide-view" class="tab-content hidden">
+    <section id="trading-guide-view" class="tab-content${options.active ? "" : " hidden"}">
       <div class="briefing-shell trading-guide-shell">
         <header class="page-header trading-guide-header">
           <div class="briefing-topline">
@@ -6996,9 +7031,9 @@ function formatLevelOrWait(value) {
 function primaryDriverForDigest(digest) {
   if (digest.dailyLead?.label) {
     return {
-      title: digest.dailyLead.label,
+      title: humanLeadTitle(digest.dailyLead),
       summary: compactDriverSummary({
-        summary: digest.dailyLead.indiaImpact || digest.dailyLead.headline || "Source-led driver awaiting the next verified run."
+        summary: humanizeLeadCopy(digest.dailyLead.indiaImpact || digest.dailyLead.headline || "Source-led driver awaiting the next verified run.")
       })
     };
   }
@@ -7017,6 +7052,16 @@ function primaryDriverForDigest(digest) {
     title: theme?.title || "Narrative cluster pending",
     summary: theme?.summary || "Source-backed theme will appear after the digest run."
   };
+}
+
+function humanLeadTitle(dailyLead) {
+  const label = String(dailyLead?.label || "");
+  const headline = String(dailyLead?.headline || "");
+  if (/crude|oil|opec|brent/i.test(`${label} ${headline}`)) return "Crude supply watch";
+  if (/rates?|fed|yield/i.test(`${label} ${headline}`)) return "Rates watch";
+  if (/tech|ai|semiconductor|software|nasdaq/i.test(`${label} ${headline}`)) return "Global tech breadth";
+  if (/bank|credit|nbfc/i.test(`${label} ${headline}`)) return "Bank breadth";
+  return label || "Market breadth";
 }
 
 function isTradeRelevantDriver(article) {
@@ -7166,8 +7211,8 @@ function twoMinuteSummaryHtml(digest) {
   const pressure = macro || globalRisk;
   const bullets = [
     ["Lead driver", `${driver.title}: ${driver.summary}`],
-    ["Pressure", digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")],
-    ["Support / offset", digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")],
+    ["Pressure", humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."))],
+    ["Support / offset", humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."))],
     ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
     ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India-relevant articles."]
   ];
@@ -7381,6 +7426,14 @@ function sourceNotesHtml(digest) {
   const sourceCount = new Set(articles.map((article) => article.sourceName)).size;
   const negativeCount = articles.filter((article) => articleTone(article) < -0.1).length;
   const positiveCount = articles.filter((article) => articleTone(article) > 0.1).length;
+  const toneStats = negativeCount || positiveCount
+    ? `
+          <span title="Article-level notes with bearish India read-through">Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
+          <span title="Article-level notes with supportive India read-through">Support<strong>${escapeHtml(positiveCount)}</strong></span>
+          <small class="source-stat-help">Pressure/support count article-level India read-through tone.</small>`
+    : `
+          <span title="Article-level source tone">Tone<strong>Neutral</strong></span>
+          <small class="source-stat-help">No strong article-level pressure/support edge; use the source notes as context.</small>`;
 
   return `
     <section class="sources-section">
@@ -7394,9 +7447,7 @@ function sourceNotesHtml(digest) {
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
           <span>Sources<strong>${escapeHtml(sourceCount)}</strong></span>
-          <span title="Article-level notes with bearish India read-through">Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
-          <span title="Article-level notes with supportive India read-through">Support<strong>${escapeHtml(positiveCount)}</strong></span>
-          <small class="source-stat-help">Pressure/support count article-level India read-through tone.</small>
+          ${toneStats}
         </div>
       </div>
 
@@ -7541,6 +7592,7 @@ function sourceLeadCardHtml(article) {
   const sourceLink = sourceUrlLooksArticleLevel(article.sourceUrl)
     ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
     : '<span class="source-name">Archived source link unavailable</span>';
+  const summary = sourceLeadSummary(article);
   return `
     <article class="info-card source-lead-card">
       ${articleThumbnailHtml(article)}
@@ -7550,7 +7602,7 @@ function sourceLeadCardHtml(article) {
           <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
         </div>
         <h3>${escapeHtml(article.headline)}</h3>
-        <p>${escapeHtml(article.summary)}</p>
+        <p>${escapeHtml(summary)}</p>
         <div class="source-readthrough-grid">
           <div><span>Takeaway</span><strong>${escapeHtml(article.takeaway || article.summary)}</strong></div>
           <div><span>India Read</span><strong>${escapeHtml(article.indiaImpact || "Watch opening breadth for confirmation.")}</strong></div>
@@ -7560,6 +7612,17 @@ function sourceLeadCardHtml(article) {
       </div>
     </article>
   `;
+}
+
+function sourceLeadSummary(article) {
+  const headline = String(article?.headline || "");
+  const summary = String(article?.summary || "").trim();
+  const normalizedHeadline = headline.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const normalizedSummary = summary.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  if (!summary || normalizedSummary === normalizedHeadline || normalizedSummary.startsWith(normalizedHeadline.slice(0, 48))) {
+    return article?.takeaway || article?.whyItMatters || "Article-level source selected for its India market read-through.";
+  }
+  return summary;
 }
 
 function sourceEvidenceMapHtml(categories) {
@@ -8561,7 +8624,7 @@ function conciseSentence(text, maxWords) {
     .replace(/[,;:]+$/g, "")
     .replace(/[.!?]+[,;:]+$/g, ".")
     .replace(/\s+\./g, ".")
-    .replace(/\b(and|or|with|through|for|if|to|the|a|an)$/i, "")
+    .replace(/\b(and|or|with|through|for|if|to|the|a|an|is|are|be|being)$/i, "")
     .trim();
   return /[.!?]$/.test(sentence) ? sentence : `${sentence}.`;
 }

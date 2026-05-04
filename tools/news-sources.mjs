@@ -764,7 +764,6 @@ function tradeReadthrough(lower) {
 
 function earningsReadthrough(lower, entityName) {
   const subject = specificCompanyOrTheme(lower, entityName);
-  const evidenceLabel = /\bearnings\b/i.test(subject) ? subject : `${subject} earnings`;
   if (/\b(space|spacex|satellite|rocket)\b/.test(lower)) {
     return {
       takeaway: `${subject} financing is a private-market risk cue, not a direct Nifty setup without listed peer breadth.`
@@ -775,8 +774,33 @@ function earningsReadthrough(lower, entityName) {
       takeaway: `${subject} margin evidence belongs in auto-ancillary context, not broad Nifty conviction.`
     };
   }
+  if (/\bjobs day\b|\bsemiconductor earnings\b/.test(lower)) {
+    return {
+      takeaway: "US jobs data and chip earnings set Nasdaq risk appetite; Nifty IT only inherits it if exporters participate."
+    };
+  }
+  if (/\bpalantir\b/.test(lower)) {
+    return {
+      takeaway: "Palantir's software rebound is a Nifty IT sentiment cue only if Indian exporters participate."
+    };
+  }
+  if (/\bs&p 500 profits?\b|\bs&p 500 earnings\b|\bprofits haven\b/.test(lower)) {
+    return {
+      takeaway: "Rich S&P 500 profits support global risk appetite, but India needs breadth beyond a few US mega-cap winners."
+    };
+  }
+  if (/\bai trade\b|\bit'?s a boom\b|\bstrong earnings\b.*\bmarket gains\b/.test(lower)) {
+    return {
+      takeaway: "AI-led earnings momentum supports risk appetite; the India read is Nifty IT breadth, not a broad-index signal."
+    };
+  }
+  if (/\bbig tech\b/.test(lower)) {
+    return {
+      takeaway: "Big Tech capex discipline supports Nasdaq tone; Nifty IT still needs exporter breadth and USD/INR confirmation."
+    };
+  }
   return {
-    takeaway: `${evidenceLabel} evidence matters only if margins, guidance or demand can travel to listed Indian peers.`
+    takeaway: `${subject} matters for India only if margins, guidance, or demand can travel to listed peers.`
   };
 }
 
@@ -806,7 +830,7 @@ function techReadthrough(lower, entityName) {
   }
   if (/\b(ai|software|cloud|alphabet|google|microsoft|oracle|meta)\b/.test(lower)) {
     return {
-      takeaway: `${subject} is AI-spending evidence; treat the India read as conditional on IT services breadth.`,
+      takeaway: `${subject} supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.`,
       indiaImpact: "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
       watchFor: `Watch Nifty IT breadth against Nasdaq futures; ${subject} must translate into exporter participation.`
     };

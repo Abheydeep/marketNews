@@ -20,6 +20,7 @@ import {
   labelFromScore,
   loadSeeds,
   newsArticleJsonLd,
+  publicSourceSelectionForDigest,
   reelScriptMarkdown,
   reconcileTradeSetupsWithMarketSnapshots,
   scanPriceSeries,
@@ -38,6 +39,8 @@ const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
   "Brent, OMC margins, aviation fuel and inflation expectations are the India open transmission line",
   "translate it into levels, breadth and sector leadership before assigning it trading weight",
   "treat it as Global Tech earnings-quality evidence until India gets matching sector breadth",
+  "evidence matters only if margins, guidance or demand can travel to listed Indian peers",
+  "evidence matters only if margins, guidance, or demand can travel to listed Indian peers",
   "Watch Brent at the 6 AM IST print; above $108 keeps OMC and aviation headline risk alive"
 ];
 
@@ -353,6 +356,44 @@ await test("article read-through copy does not reuse category templates", async 
   assert.doesNotMatch(boom.takeaway, /trade-flow/i);
 });
 
+await test("public source selection excludes no-direct India stories when direct reads are available", () => {
+  const directArticles = Array.from({ length: 9 }, (_, index) => ({
+    headline: `India-linked market article ${index + 1}`,
+    summary: "Market source with direct India read-through.",
+    takeaway: "Direct source movement can affect the India open.",
+    indiaImpact: index % 2 === 0
+      ? "Nifty and Bank Nifty need breadth confirmation."
+      : "Nifty IT and USD/INR need exporter confirmation.",
+    watchFor: "Watch the first range and sector breadth.",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/india-linked-market-article-${index + 1}.html`,
+    sourceName: index % 3 === 0 ? "CNBC Markets" : "Yahoo Finance",
+    category: index % 2 === 0 ? "global_risk" : "macro_positive",
+    entityName: index % 2 === 0 ? "Bank Nifty" : "Global Tech",
+    publishedAt: "2026-05-03T12:00:00.000Z"
+  }));
+  const noDirect = {
+    headline: "U.S. crude oil exports surge to record",
+    summary: "Crude flow story with no direct Indian pipeline read-through.",
+    takeaway: "Crude flow story needs Brent confirmation.",
+    indiaImpact: "No direct Indian pipeline read-through; use Brent to decide whether OMCs, aviation and paints face import-cost pressure.",
+    watchFor: "Watch Brent.",
+    sourceUrl: "https://www.cnbc.com/2026/05/03/us-crude-oil-exports-surge-to-record.html",
+    sourceName: "CNBC Markets",
+    category: "global_risk",
+    entityName: "Brent Crude",
+    publishedAt: "2026-05-03T13:00:00.000Z"
+  };
+  const selection = publicSourceSelectionForDigest("2026-05-04", [noDirect, ...directArticles]);
+  assert.equal(selection.visibleArticles.length, 8);
+  assert.equal(selection.visibleArticles.includes(noDirect), false);
+  assert.ok(selection.visibleArticles.every((article) => !/^No direct Indian\b|^No direct India read-through/i.test(article.indiaImpact || "")));
+  const categoryCounts = selection.visibleArticles.reduce((counts, article) => {
+    counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
+    return counts;
+  }, new Map());
+  assert.ok(Math.max(...categoryCounts.values()) <= 4, `visible source stack should not overconcentrate one bucket: ${JSON.stringify(Object.fromEntries(categoryCounts))}`);
+});
+
 await test("full digest contains public SEO and studio contracts", async () => {
   const digest = await buildDigest("2026-04-29");
   assert.ok(["BEARISH", "VOLATILE"].includes(digest.sentimentLabel));
@@ -368,9 +409,17 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
   assert.equal(digest.news.length, 8);
   assert.ok(digest.dailyLead?.driverType);
+  assert.notEqual(digest.dailyLead.label, "Global crude-flow signal");
+  assert.doesNotMatch(JSON.stringify(digest.dailyLead), /India impact runs only through|Global crude-flow signal/i);
   assert.equal(digest.publicSourceSelection.visibleCount, 8);
   assert.ok(digest.publicSourceSelection.shortlistCount >= 8);
   assert.equal(digest.publicSourceSelection.windowHours, 24);
+  assert.ok(digest.news.every((article) => !/^No direct Indian\b|^No direct India read-through/i.test(article.indiaImpact || "")));
+  const selectedCategoryCounts = digest.news.reduce((counts, article) => {
+    counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
+    return counts;
+  }, new Map());
+  assert.ok(Math.max(...selectedCategoryCounts.values()) <= 4, `top 8 source list is too category-heavy: ${JSON.stringify(Object.fromEntries(selectedCategoryCounts))}`);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
   assert.equal(digest.newsDataMode, "fixture");
   assert.equal(digest.sourceVerification.mode, "fixture");
@@ -389,6 +438,27 @@ await test("full digest contains public SEO and studio contracts", async () => {
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
+});
+
+await test("daily briefing and trading guide render the correct first-fold hierarchy", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const publicHtml = cockpitPage(
+    { ...digest, canonicalPath: "/29apr2026/" },
+    "public-view",
+    { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" }
+  );
+  const guideHtml = cockpitPage(
+    { ...digest, canonicalPath: "/29apr2026/trading-guide/" },
+    "trading-guide-view",
+    { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" }
+  );
+
+  assert.ok(publicHtml.indexOf('id="public-view" class="tab-content"') < publicHtml.indexOf('id="trading-guide-view" class="tab-content hidden"'));
+  assert.ok(publicHtml.indexOf("2 Minute Summary") < publicHtml.indexOf("Today's Trade Map"));
+  assert.ok(guideHtml.indexOf('id="trading-guide-view" class="tab-content"') < guideHtml.indexOf('id="public-view" class="tab-content hidden"'));
+  assert.ok(guideHtml.indexOf("Today's Trade Map") < guideHtml.indexOf("2 Minute Summary"));
+  assert.doesNotMatch(guideHtml.slice(0, guideHtml.indexOf("Today's Trade Map")), /Daily Pre-Market Summary|2 Minute Summary/);
+  assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
 });
 
 await test("public digest payload ships compact display DTOs", async () => {
@@ -888,6 +958,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("recentArchiveGridHtml"));
   assert.ok(publisher.includes("archiveCardSummary"));
   assert.ok(publisher.includes("previousSessionDriver"));
+  assert.ok(publisher.includes("sanitizePublicArticleCopy"));
+  assert.ok(publisher.includes("evidence matters only if margins"));
   assert.ok(publisher.includes("archiveToneClass"));
   assert.ok(publisher.includes("sentimentSparklineHtml"));
   assert.ok(publisher.includes('details class="digest-card'));
@@ -901,6 +973,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("recent-archive-link"));
   assert.ok(publisher.includes("Read market briefing"));
   assert.ok(publisher.includes("Why it mattered for India"));
+  assert.ok(publisher.includes('isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing"'));
+  assert.ok(publisher.includes("Archived continuity page. Newer editions use verified article-level sources"));
   assert.ok(publisher.includes("sentiment-sparkline"));
   assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected"));
   assert.ok(publisher.includes("overflow-x: auto"));

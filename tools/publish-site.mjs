@@ -270,10 +270,12 @@ function previousDigestFor(digest, digests) {
 function enrichPublicDigest(digest) {
   const verified = isVerifiedPublicDigest(digest);
   const filteredNews = verified
-    ? (digest.news ?? []).filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
+    ? (digest.news ?? [])
+      .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
+      .map(sanitizePublicArticleCopy)
     : (digest.news ?? []);
   const selection = verified ? safePublicSourceSelection(digest.digestDate, filteredNews) : null;
-  const visibleUrls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? selection?.publicSummary?.visibleSourceUrls ?? []);
+  const visibleUrls = new Set(selection?.publicSummary?.visibleSourceUrls ?? digest.publicSourceSelection?.visibleSourceUrls ?? []);
   const news = visibleUrls.size
     ? filteredNews.filter((article) => visibleUrls.has(article.sourceUrl))
     : filteredNews;
@@ -294,7 +296,7 @@ function enrichPublicDigest(digest) {
     news,
     themes,
     dailyLead,
-    publicSourceSelection: digest.publicSourceSelection ?? selection?.publicSummary,
+    publicSourceSelection: selection?.publicSummary ?? digest.publicSourceSelection,
     overallSentiment,
     sentimentLabel,
     onePageSummary: verified
@@ -318,6 +320,29 @@ function enrichPublicDigest(digest) {
       : fallbackWatchItems({ ...digest, news }),
     generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`
   };
+}
+
+function sanitizePublicArticleCopy(article) {
+  const headline = String(article?.headline || "");
+  const text = `${headline} ${article?.summary || ""}`.toLowerCase();
+  const patched = { ...article };
+  const staleTemplate = /evidence matters only if margins, guidance,? or demand can travel to listed Indian peers\.?/i;
+  if (staleTemplate.test(String(patched.takeaway || ""))) {
+    if (/\bjobs day\b|\bsemiconductor earnings\b/.test(text)) {
+      patched.takeaway = "US jobs data and chip earnings set Nasdaq risk appetite; Nifty IT only inherits it if exporters participate.";
+    } else if (/\bpalantir\b/.test(text)) {
+      patched.takeaway = "Palantir's expected revenue jump is a Nifty IT sentiment cue only if Indian exporters participate.";
+    } else if (/\bs&p 500 profits?\b|\bs&p 500 earnings\b|\bprofits haven\b/.test(text)) {
+      patched.takeaway = "Rich S&P 500 profits support global risk appetite, but India needs breadth beyond a few US mega-cap winners.";
+    } else if (/\bai trade\b|\bit'?s a boom\b|\bstrong earnings\b.*\bmarket gains\b/.test(text)) {
+      patched.takeaway = "AI-led earnings momentum supports risk appetite; the India read is Nifty IT breadth, not a broad-index signal.";
+    } else if (/\bbig tech\b/.test(text)) {
+      patched.takeaway = "Big Tech capex discipline supports Nasdaq tone; Nifty IT still needs exporter breadth and USD/INR confirmation.";
+    } else {
+      patched.takeaway = String(patched.takeaway || "").replace(staleTemplate, "matters for India only if margins, guidance, or demand can travel to listed peers.");
+    }
+  }
+  return patched;
 }
 
 function safePublicSourceSelection(date, news) {
@@ -463,7 +488,7 @@ function archivePage(digests, allDigests = digests) {
                 <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
                 ${sentimentSparklineHtml(digest)}
               </div>
-              <h2>${escapeHtml(digest.title)}</h2>
+              <h2>${escapeHtml(isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing")}</h2>
               <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
               <div class="archive-chips">
                 ${chips}
@@ -1202,7 +1227,7 @@ function recentArchiveGridHtml(digests) {
     const slug = slugForDigest(digest);
     const title = verified
       ? compactWords(digest.title || "Market briefing", 10)
-      : compactWords(digest.title || "Archived market briefing", 10);
+      : "Archived market briefing";
     const status = verified
       ? `${digest.sourceVerification.verifiedArticleCount} verified links`
       : "Edition archived";
@@ -1269,6 +1294,9 @@ function formatSnapshotValue(snapshot) {
 }
 
 function archiveCardSummary(digest) {
+  if (!isVerifiedPublicDigest(digest)) {
+    return "Archived continuity page. Newer editions use verified article-level sources and India-first source selection.";
+  }
   if (digest.dailyLead?.indiaImpact) {
     return compactWords(`${digest.dailyLead.label}: ${digest.dailyLead.indiaImpact}`, 38);
   }
@@ -1344,14 +1372,18 @@ function sentimentSparklineHtml(digest) {
 }
 
 function archiveChips(digest) {
+  const leadChip = digest.dailyLead?.label ? compactWords(cleanArchiveSentence(digest.dailyLead.label), 3) : "";
   const articles = weightedArchiveSources(digest).slice(0, 3);
   const chips = articles.map((article) =>
     compactWords(cleanArchiveSentence(article.entityName || article.category || article.sourceName || "Market"), 3)
   ).filter(Boolean);
-  return [...new Set(chips)].slice(0, 3);
+  return [...new Set([leadChip, ...chips].filter(Boolean))].slice(0, 3);
 }
 
 function archiveFocus(digest) {
+  if (digest.dailyLead?.label) {
+    return compactWords(cleanArchiveSentence(digest.dailyLead.label), 4);
+  }
   const driver = highestImpactArticle(digest);
   if (driver) {
     return compactWords(cleanArchiveSentence(driver.entityName || driver.category || "Opening range"), 4);

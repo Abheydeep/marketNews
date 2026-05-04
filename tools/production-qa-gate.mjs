@@ -504,7 +504,16 @@ async function runBrowserSmoke() {
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.doesNotMatch(latestBody, /[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/, "latest briefing has malformed generated punctuation");
       assert.doesNotMatch(latestBody, /Last available close|live data not yet available/i, "latest briefing must not foreground stale quote-board language");
+      assert.doesNotMatch(latestBody, /Global crude-flow signal|India impact runs only through/i, "latest briefing must not expose internal driver labels");
       assert.match(latestBody, /Reference quotes shown - live refresh pending/i, "latest briefing must show the safer quote-board state");
+      await browserCheck(page, "User", `Browser ${viewport.name} trading guide`, `${config.publicUrl}${config.latestBriefingPath}trading-guide/`, /Today's Trade Map|Long only above|Short risk below/i);
+      const guideHtml = await page.content();
+      assert.ok(
+        guideHtml.indexOf('id="trading-guide-view" class="tab-content"') > -1
+          && guideHtml.indexOf('id="public-view" class="tab-content hidden"') > -1
+          && guideHtml.indexOf('id="trading-guide-view" class="tab-content"') < guideHtml.indexOf('id="public-view" class="tab-content hidden"'),
+        "trading guide URL must render the guide before the briefing"
+      );
       await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i);
       const multibaggerHtml = await page.content();
       assert.ok(

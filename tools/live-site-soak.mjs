@@ -95,6 +95,12 @@ async function runCycle(page, cycle) {
     verifiedCharts.push(await verifyIndexChart(page, symbol));
   }
 
+  await openPublicPage(page, `${baseUrl}/${dailySlug}/trading-guide/?soak=${stamp}`);
+  await expectOne(page.locator('#trading-guide-view:not(.hidden)'), "trading guide is first visible surface");
+  await expectOne(page.getByRole("heading", { name: "Opening levels, confirmation, and risk gates" }), "standalone trading guide heading");
+  await expectOne(page.getByText("Today's Trade Map", { exact: true }), "standalone trading guide trade map");
+  assert.equal(await page.locator('#public-view:not(.hidden)').count(), 0, "trading guide URL must not foreground the daily briefing");
+
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "public page should not expose Studio Command tab");
   assert.equal(await page.locator("#studio-view").count(), 0, "public page should not render studio section");
   const publicDigest = await fetch(`${baseUrl.replace(/\/$/, "")}/${dailySlug}/digest.json`).then((response) => response.json());
@@ -202,6 +208,7 @@ async function expectDailyContent(page) {
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
   assert.equal(/[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/.test(compactSummary), false, `compact summary has malformed punctuation: ${compactSummary}`);
+  assert.equal(/Global crude-flow signal|India impact runs only through/i.test(compactSummary), false, `compact summary leaked internal driver wording: ${compactSummary}`);
   await summaryExpand.locator("summary").click();
   await expectOne(publicView.locator("#summaryExpand:not([open])"), "two-minute summary collapses");
   await summaryExpand.locator("summary").click();
