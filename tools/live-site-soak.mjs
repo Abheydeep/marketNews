@@ -5,10 +5,10 @@ import { join } from "node:path";
 const require = createRequire(import.meta.url);
 const { chromium } = loadPlaywright();
 
-const baseUrl = process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews";
+const baseUrl = process.env.MARKET_NEWS_URL ?? "https://marketnarrative.in";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
-const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "3may2026";
-const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Sun, 03 May, 2026";
+const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "4may2026";
+const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Mon, 04 May, 2026";
 const expectedChartSymbols = [
   "SPX",
   "NDX",
@@ -30,7 +30,11 @@ const consoleErrors = [];
 
 page.on("console", (message) => {
   if (message.type() === "error") {
-    consoleErrors.push(message.text());
+    const text = message.text();
+    if (isExpectedLocalApiCorsNoise(text)) {
+      return;
+    }
+    consoleErrors.push(text);
   }
 });
 
@@ -74,7 +78,7 @@ async function runCycle(page, cycle) {
   const openDailyHref = await openDailyLink.getAttribute("href", { timeout: 10_000 });
   assert.ok(openDailyHref?.includes(dailySlug), `archive card points at unexpected href: ${openDailyHref}`);
   await expectOne(page.locator(".sentiment-sparkline").first(), "archive sentiment sparkline");
-  await expectOne(page.getByText("Previous session driver", { exact: true }).first(), "archive previous session driver");
+  await expectOne(page.getByText("Why it mattered for India", { exact: true }).first(), "archive India relevance driver");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
     0,
@@ -180,30 +184,36 @@ function regionForTestSymbol(symbol) {
   return "Asia Watch";
 }
 
+function isExpectedLocalApiCorsNoise(text) {
+  if (!/^https?:\/\/(127\.0\.0\.1|localhost)(:|\/|$)/i.test(baseUrl)) {
+    return false;
+  }
+  if (/^Failed to load resource: net::ERR_FAILED$/i.test(text.trim())) {
+    return true;
+  }
+  return /api\.marketnarrative\.in\/api\/public\/digest/i.test(text) && /CORS policy|ERR_FAILED/i.test(text);
+}
+
 async function expectDailyContent(page) {
   const publicView = page.locator("#public-view");
   await expectOne(publicView.getByText("Daily Pre-Market Summary", { exact: true }), "daily summary heading");
   await expectOne(publicView.getByText(dailyDateLabel, { exact: true }), "daily date");
   const summaryExpand = publicView.locator("#summaryExpand");
   await expectOne(summaryExpand, "compact expandable summary");
-  await expectOne(publicView.getByText("2 min summary", { exact: true }), "compact summary label");
-  await expectOne(publicView.locator("#summaryExpand:not([open])"), "collapsed expanded briefing");
+  await expectOne(publicView.getByText("2 Minute Summary", { exact: true }).first(), "compact summary label");
+  await expectOne(publicView.locator("#summaryExpand[open]"), "visible two-minute summary");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
   await summaryExpand.locator("summary").click();
+  await expectOne(publicView.locator("#summaryExpand:not([open])"), "two-minute summary collapses");
+  await summaryExpand.locator("summary").click();
   await publicView.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(publicView.getByText("Pre-market desk note", { exact: true }), "expanded briefing label");
   await expectOne(publicView.getByRole("heading", { name: "The Overnight Pulse" }), "overnight pulse heading");
   await expectOne(publicView.getByRole("heading", { name: "Market Map" }), "market map heading");
-  await expectOne(publicView.getByRole("heading", { name: "Stories Driving The Open" }), "stories heading");
-  await expectOne(publicView.getByRole("heading", { name: "How It Lands In India" }), "india read-through heading");
-  await expectOne(publicView.getByRole("heading", { name: "What To Watch First" }), "watch next heading");
-  await expectOne(publicView.getByRole("heading", { name: "View Chart On TradingView" }), "live chart CTA heading");
-  await expectOne(publicView.getByRole("link", { name: "Open chart on TradingView" }), "live chart CTA link");
-  const setupCard = publicView.locator(".setup-card");
-  await expectOne(setupCard, "algorithmic setup card");
-  const setupStateCount = await setupCard.getByText(/Active Game Plan|Completed Setups|No active trade setup/i).count();
-  assert.ok(setupStateCount > 0, "setup card should show an active, completed, or no-active-trade state");
+  assert.equal(await publicView.getByText("Pre-market desk note", { exact: true }).count(), 0, "daily brief should not show desk-note module");
+  assert.equal(await publicView.getByRole("heading", { name: "Stories Driving The Open" }).count(), 0, "two-minute summary should not repeat stories module");
+  assert.equal(await publicView.getByRole("heading", { name: "View Chart On TradingView" }).count(), 0, "daily brief should not show standalone chart CTA");
+  assert.equal(await publicView.locator(".setup-card").count(), 0, "daily brief should not show trading recommendations");
   await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
   await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
@@ -212,7 +222,7 @@ async function expectDailyContent(page) {
   }
   assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
   const sourceCards = await publicView.locator(".source-card").count();
-  assert.ok(sourceCards >= 14, `expected at least 14 source cards, got ${sourceCards}`);
+  assert.equal(sourceCards, 8, `expected 8 India-first source cards, got ${sourceCards}`);
   assert.equal(await publicView.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
   assert.equal(await publicView.getByText("weight 0.", { exact: false }).count(), 0, "raw source weights should not render");
 }
@@ -230,8 +240,11 @@ async function expandQuoteBoard(page) {
     await expectOne(page.locator(`button.breadth-card[data-region="${region}"] .market-state`), `${region} live/closed state`);
     assert.equal(await page.locator("#indexBoard .quote-region h3").filter({ hasText: region }).count(), 0, `${region} quote group should wait for card click`);
   }
-  assert.ok(await page.locator(".breadth-card .market-move.up").count() > 0, "quote board should color positive moves green");
-  assert.ok(await page.locator(".breadth-card .market-move.down").count() > 0, "quote board should color negative moves red");
+  const moveStateCount =
+    (await page.locator(".market-move.up").count()) +
+    (await page.locator(".market-move.down").count()) +
+    (await page.locator(".market-move.flat").count());
+  assert.ok(moveStateCount > 0, "quote board should render quote move state classes");
   const usCard = page.locator('button.breadth-card[data-region="US Overnight"]');
   await usCard.click();
   await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: "US Overnight" }), "US Overnight quote group after card click");

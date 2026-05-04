@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Previous session driver/i, /sentiment-sparkline/i],
+    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(

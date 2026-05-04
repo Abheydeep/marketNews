@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
+import { dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
@@ -268,16 +269,32 @@ function previousDigestFor(digest, digests) {
 
 function enrichPublicDigest(digest) {
   const verified = isVerifiedPublicDigest(digest);
-  const news = verified
+  const filteredNews = verified
     ? (digest.news ?? []).filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
     : (digest.news ?? []);
+  const selection = verified ? safePublicSourceSelection(digest.digestDate, filteredNews) : null;
+  const visibleUrls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? selection?.publicSummary?.visibleSourceUrls ?? []);
+  const news = visibleUrls.size
+    ? filteredNews.filter((article) => visibleUrls.has(article.sourceUrl))
+    : filteredNews;
   const themes = verified ? publicThemesForNews(digest.digestDate, news) : (digest.themes ?? []);
   const overallSentiment = verified ? publicWeightedSentiment(news) : digest.overallSentiment;
   const sentimentLabel = verified ? publicLabelFromScore(overallSentiment) : digest.sentimentLabel;
+  const dailyLead = digest.dailyLead || (verified ? dailyLeadForDigest(digest.digestDate, news) : undefined);
+  const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead) : digest.title;
+  const coherentArchiveSummary = verified && dailyLead
+    ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
+    : (digest.archiveSummary || archiveCardSummary({ ...digest, news }));
+  const coherentDeskNote = verified && dailyLead
+    ? `${dailyLead.label} is the lead read for the India open. ${dailyLead.indiaImpact} ${dailyLead.supportSide}`
+    : (digest.deskNote || legacyDeskNote({ ...digest, news }));
   return {
     ...digest,
+    title: coherentTitle,
     news,
     themes,
+    dailyLead,
+    publicSourceSelection: digest.publicSourceSelection ?? selection?.publicSummary,
     overallSentiment,
     sentimentLabel,
     onePageSummary: verified
@@ -294,13 +311,21 @@ function enrichPublicDigest(digest) {
       : isWeekdayDigest(digest)
         ? "Edition archived."
         : "Non-trading-day archive retained for continuity.",
-    archiveSummary: digest.archiveSummary || archiveCardSummary({ ...digest, news }),
-    deskNote: digest.deskNote || legacyDeskNote({ ...digest, news }),
+    archiveSummary: coherentArchiveSummary,
+    deskNote: coherentDeskNote,
     watchItems: Array.isArray(digest.watchItems) && digest.watchItems.length
       ? digest.watchItems.slice(0, 3)
       : fallbackWatchItems({ ...digest, news }),
     generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`
   };
+}
+
+function safePublicSourceSelection(date, news) {
+  try {
+    return publicSourceSelectionForDigest(date, news);
+  } catch {
+    return null;
+  }
 }
 
 function publicThemesForNews(date, news) {
@@ -449,7 +474,7 @@ function archivePage(digests, allDigests = digests) {
           <div class="archive-card-details">
             <div class="source-quality-pill">${escapeHtml(archiveSourceQualityLine(digest))}</div>
             <div class="session-driver">
-              <span>Previous session driver</span>
+              <span>Why it mattered for India</span>
               <strong>${escapeHtml(previousSessionDriver(digest))}</strong>
             </div>
             ${archiveMarketSnapshotHtml(digest)}
@@ -1231,6 +1256,9 @@ function formatSnapshotValue(snapshot) {
 }
 
 function archiveCardSummary(digest) {
+  if (digest.dailyLead?.indiaImpact) {
+    return compactWords(`${digest.dailyLead.label}: ${digest.dailyLead.indiaImpact}`, 38);
+  }
   if (digest.archiveSummary) {
     return digest.archiveSummary;
   }
@@ -1241,12 +1269,27 @@ function archiveCardSummary(digest) {
 }
 
 function previousSessionDriver(digest) {
+  if (digest.dailyLead?.indiaImpact) {
+    return cleanArchiveSentence(digest.dailyLead.indiaImpact);
+  }
   const driver = highestImpactArticle(digest);
   return (
     cleanArchiveSentence(driver?.takeaway || driver?.indiaImpact || driver?.summary) ||
     cleanArchiveSentence(digest.themes?.[0]?.summary) ||
     "Global cues and domestic breadth set the tone for the opening range."
   );
+}
+
+function titleForDailyLead(dailyLead) {
+  return {
+    crude: "Crude Sets India Inflation Watch",
+    rates: "Rates Shape Opening Range",
+    currency: "Currency Pressure Tests Nifty Open",
+    tech: "Tech Breadth Tests Nifty Follow-Through",
+    banks: "Bank Nifty Breadth Sets The Open",
+    asia: "Asia Risk Appetite Frames Nifty Open",
+    market: "Market Breadth Shapes Nifty Open"
+  }[dailyLead.driverType] || `${dailyLead.label || "Market Breadth"} Shapes Nifty Open`;
 }
 
 function archiveToneClass(digest) {

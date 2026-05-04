@@ -37,7 +37,11 @@ export async function buildDigest(date = todayIso(), options = {}) {
     fetcher: options.fetcher,
     strictFetch: options.strictFetch
   });
-  const themes = clusterThemes(date, articles);
+  const sourceSelection = publicSourceSelectionForDigest(date, articles);
+  const publicArticles = sourceSelection.visibleArticles;
+  const publicSourceSelection = sourceSelection.publicSummary;
+  const dailyLead = dailyLeadForDigest(date, publicArticles);
+  const themes = clusterThemes(date, publicArticles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
   const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
   const tradeSetups = setupAudit
@@ -45,22 +49,23 @@ export async function buildDigest(date = todayIso(), options = {}) {
     .map((item) => item.setup);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
-  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, articles, options.previousDigest);
+  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, publicArticles, options.previousDigest, dailyLead);
   const generatedAt = options.generatedAt ?? new Date().toISOString();
-  const archiveSummary = archiveSummaryForDigest(date, articles, themes, options.previousDigest);
-  const deskNote = deskNoteForDigest(date, articles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest);
-  const watchItems = watchItemsForDigest(date, articles, tradeSetups, options.previousDigest);
+  const archiveSummary = archiveSummaryForDigest(date, publicArticles, themes, options.previousDigest, dailyLead);
+  const deskNote = deskNoteForDigest(date, publicArticles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest, dailyLead);
+  const watchItems = watchItemsForDigest(date, publicArticles, tradeSetups, options.previousDigest);
   assertDigestEditorialIntegrity({
     title: script.title,
     archiveSummary,
     deskNote,
-    watchItems
+    watchItems,
+    dailyLead
   }, options.previousDigest);
   const asset = generateAsset(date, sentimentLabel, {
     snapshots: marketSnapshots,
     themes,
     setups: tradeSetups,
-    articles
+    articles: publicArticles
   });
 
   return {
@@ -69,6 +74,8 @@ export async function buildDigest(date = todayIso(), options = {}) {
     title: script.title,
     status: "DRAFT",
     generatedAt,
+    dailyLead,
+    publicSourceSelection,
     archiveSummary,
     deskNote,
     watchItems,
@@ -79,7 +86,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     reelScript: script.reelScript,
     publishedAt: null,
     marketSnapshots,
-    news: articles,
+    news: publicArticles,
     themes,
     tradeSetups,
     setupAudit,
@@ -372,8 +379,8 @@ export function labelFromScore(score) {
   return "VOLATILE";
 }
 
-export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null) {
-  const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest);
+export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null, dailyLead = null) {
+  const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest, dailyLead);
   const marketLine = snapshots
     .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(", ");
@@ -672,10 +679,13 @@ function titleSuffix(label) {
   }[label];
 }
 
-function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest = null) {
-  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
-  const headline = String(lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
-  const force = dominantForceLabel(lead, headline);
+function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest = null, dailyLead = null) {
+  const lead = leadArticleForDailyLead(dailyLead, articles)
+    ?? leadMarketArticle(articles, date)
+    ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
+    ?? articles[0];
+  const headline = String(dailyLead?.headline || lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
+  const force = dailyLead?.label || dominantForceLabel(lead, headline);
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
   const consequence = titleConsequence(lead, sentimentLabel);
   const previousTitle = normalizeEditorial(previousDigest?.title);
@@ -730,10 +740,172 @@ function titleConsequence(article, sentimentLabel) {
   return "Opening Range";
 }
 
-function archiveSummaryForDigest(date, articles, themes, previousDigest) {
-  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
-  const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
-  const text = editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
+export function publicSourceSelectionForDigest(date, articles = []) {
+  const shortlist = uniqueSourceArticles(articles)
+    .filter((article) => isWithinDigestWindow(article, date, 24))
+    .sort((left, right) => indiaSourceScore(right, date) - indiaSourceScore(left, date))
+    .slice(0, 25);
+  const indiaLinked = shortlist.filter(hasIndiaReadThrough);
+  const visiblePool = indiaLinked.length >= 8 ? indiaLinked : shortlist;
+  const visibleArticles = diverseVisibleArticles(visiblePool, 8);
+  if (visibleArticles.length < 8) {
+    throw new Error(`Public source selection failed: only ${visibleArticles.length} India-relevant articles inside the 24-hour window; need at least 8`);
+  }
+  return {
+    visibleArticles,
+    publicSummary: {
+      visibleCount: visibleArticles.length,
+      shortlistCount: shortlist.length,
+      windowHours: 24,
+      excludedNoDirectIndiaCount: shortlist.filter((article) => !hasIndiaReadThrough(article)).length,
+      visibleSourceUrls: visibleArticles.map((article) => article.sourceUrl).filter(Boolean)
+    }
+  };
+}
+
+export function dailyLeadForDigest(date, articles = []) {
+  const ranked = uniqueSourceArticles(articles)
+    .slice()
+    .sort((left, right) => indiaSourceScore(right, date) - indiaSourceScore(left, date));
+  const lead = ranked.find(hasIndiaReadThrough) ?? ranked[0] ?? null;
+  const support = ranked.find((article) => article !== lead && Number(article.sentimentScore) > 0.05 && hasIndiaReadThrough(article));
+  const risk = ranked.find((article) => article !== lead && Number(article.sentimentScore) < -0.05 && hasIndiaReadThrough(article));
+  const driverType = driverTypeForArticle(lead);
+  return {
+    label: driverLabelForType(driverType),
+    sourceArticleId: articleLeadId(lead),
+    driverType,
+    headline: lead?.headline || "Source-led market cue",
+    indiaImpact: cleanLeadImpact(lead?.indiaImpact || lead?.takeaway || lead?.summary || "India read-through needs opening breadth confirmation."),
+    riskSide: cleanLeadImpact(risk?.indiaImpact || lead?.indiaImpact || "Risk side needs confirmation from the first range."),
+    supportSide: cleanSentence(support?.indiaImpact || "Support side needs Indian breadth, sector leadership, or softer macro confirmation.")
+  };
+}
+
+function cleanLeadImpact(value) {
+  return cleanSentence(value)
+    .replace(/^No direct Indian pipeline read-through;\s*/i, "Pipeline flow news matters through Brent; ")
+    .replace(/^No direct India read-through for this story\.\s*/i, "");
+}
+
+function leadArticleForDailyLead(dailyLead, articles = []) {
+  if (!dailyLead?.sourceArticleId) {
+    return null;
+  }
+  return (articles ?? []).find((article) => articleLeadId(article) === dailyLead.sourceArticleId) ?? null;
+}
+
+function uniqueSourceArticles(articles = []) {
+  const seen = new Set();
+  const unique = [];
+  for (const article of articles ?? []) {
+    const key = article.sourceUrl || article.headline;
+    if (!key || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    unique.push(article);
+  }
+  return unique;
+}
+
+function diverseVisibleArticles(articles, limit) {
+  const selected = [];
+  const selectedKeys = new Set();
+  const categoryOrder = ["macro_negative", "global_risk", "sector_positive", "macro_positive", "sector_negative", "neutral_volatile"];
+  for (const category of categoryOrder) {
+    addVisibleSource((articles ?? []).find((article) => (article.category || "market") === category), selected, selectedKeys, limit);
+  }
+  for (const article of articles ?? []) {
+    addVisibleSource(article, selected, selectedKeys, limit);
+  }
+  return selected;
+}
+
+function addVisibleSource(article, selected, selectedKeys, limit) {
+  if (!article || selected.length >= limit) {
+    return;
+  }
+  const key = article.sourceUrl || article.headline;
+  if (!key || selectedKeys.has(key)) {
+    return;
+  }
+  selected.push(article);
+  selectedKeys.add(key);
+}
+
+function isWithinDigestWindow(article, date, hours) {
+  const published = Date.parse(article?.publishedAt || "");
+  const digestTime = Date.parse(`${date}T07:15:00+05:30`);
+  if (!Number.isFinite(published) || !Number.isFinite(digestTime)) {
+    return false;
+  }
+  const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  return ageHours >= -1 && ageHours <= hours;
+}
+
+function hasIndiaReadThrough(article) {
+  return !/^no direct india read-through/i.test(String(article?.indiaImpact || "").trim());
+}
+
+function indiaSourceScore(article, date) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""}`.toLowerCase();
+  let score = Math.abs(Number(article?.sentimentScore) || 0) * 5 + (Number(article?.entityMatchScore) || 0);
+  if (hasIndiaReadThrough(article)) score += 8;
+  if (["macro_negative", "global_risk"].includes(article?.category)) score += 4;
+  if (["sector_positive", "macro_positive", "sector_negative"].includes(article?.category)) score += 3;
+  if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc|it exporters|nifty it)\b/.test(text)) score += 6;
+  if (/\b(crude|oil|brent|opec|hormuz|fed|rates?|yields?|inflation|dollar|dxy|usd\/inr|nasdaq|semiconductor|chip|ai)\b/.test(text)) score += 4;
+  if (/\b(carvana|private market|spacex|used car|single-stock)\b/.test(text)) score -= 8;
+  if (!hasIndiaReadThrough(article)) score -= 10;
+  return score + freshnessScore(article, date);
+}
+
+function driverTypeForArticle(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""}`.toLowerCase();
+  if (/\b(crude|oil|brent|opec|hormuz|pipeline|keystone)\b/.test(text)) return "crude";
+  if (/\b(fed|fomc|yield|yields|bond|bonds|rate|rates|inflation|boe)\b/.test(text)) return "rates";
+  if (/\b(dollar|rupee|currency|dxy|usd\/inr|yen)\b/.test(text)) return "currency";
+  if (/\b(nasdaq|semiconductor|chip|ai|software|tech|nifty it|it exporters)\b/.test(text)) return "tech";
+  if (/\b(bank|banks|credit|nbfc|financial)\b/.test(text)) return "banks";
+  if (/\b(asia|china|japan|korea|taiwan|hong kong)\b/.test(text)) return "asia";
+  return "market";
+}
+
+function driverLabelForType(type) {
+  return {
+    crude: "Crude / energy risk",
+    rates: "Rates / Fed path",
+    currency: "Currency pressure",
+    tech: "Global tech breadth",
+    banks: "Bank Nifty breadth",
+    asia: "Asia risk appetite",
+    market: "Market breadth"
+  }[type] || "Market breadth";
+}
+
+function articleLeadId(article) {
+  if (!article) {
+    return "";
+  }
+  return `${String(article.sourceId || article.sourceName || "source").toLowerCase().replace(/[^a-z0-9]+/g, "-")}:${hashString(article.sourceUrl || article.headline || "")}`;
+}
+
+function hashString(value) {
+  let hash = 0;
+  for (const char of String(value || "")) {
+    hash = ((hash << 5) - hash + char.charCodeAt(0)) | 0;
+  }
+  return Math.abs(hash).toString(36);
+}
+
+function archiveSummaryForDigest(date, articles, themes, previousDigest, dailyLead = null) {
+  const lead = leadArticleForDailyLead(dailyLead, articles)
+    ?? leadMarketArticle(articles, date)
+    ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
+    ?? articles[0];
+  const force = dailyLead?.label || dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
+  const text = dailyLead?.indiaImpact || editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
   const summary = compactWords(cleanSentence(`${force}: ${text}`), 20);
   if (summary && normalizeEditorial(summary) !== normalizeEditorial(previousDigest?.archiveSummary)) {
     return summary;
@@ -742,11 +914,14 @@ function archiveSummaryForDigest(date, articles, themes, previousDigest) {
   return compactWords(cleanSentence(fallback), 20);
 }
 
-function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overallSentiment = 0, previousDigest) {
-  const lead = leadMarketArticle(articles, date) ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore))) ?? articles[0];
+function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overallSentiment = 0, previousDigest, dailyLead = null) {
+  const lead = leadArticleForDailyLead(dailyLead, articles)
+    ?? leadMarketArticle(articles, date)
+    ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
+    ?? articles[0];
   const sector = leadSectorArticle(articles, date) ?? lead;
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
-  const force = dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
+  const force = dailyLead?.label || dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
   const sectorLabel = sectorFocusLabel(sector);
   const keyInstrument = deskNoteInstrument(lead);
   const indiaSnapshot = marketSnapshots.find((item) => item.symbol === "NIFTY") ?? marketSnapshots.find((item) => item.marketRegion === "India Open");
@@ -944,6 +1119,7 @@ function assertDigestEditorialIntegrity(current, previousDigest) {
   if (banned) {
     throw new Error(`Digest editorial integrity failed: stale phrase "${banned}"`);
   }
+  assertDailyLeadCoherence(current);
   if (!previousDigest) {
     return;
   }
@@ -961,6 +1137,18 @@ function assertDigestEditorialIntegrity(current, previousDigest) {
   const repeatedWatch = (current.watchItems || []).filter((item) => previousWatch.has(normalizeEditorial(item)));
   if (repeatedWatch.length) {
     throw new Error("Digest editorial integrity failed: watch items repeat the previous verified edition");
+  }
+}
+
+function assertDailyLeadCoherence(current) {
+  const lead = current.dailyLead;
+  if (!lead) {
+    throw new Error("Digest editorial integrity failed: missing dailyLead");
+  }
+  const labelKey = normalizeEditorial(lead.label).split(" ")[0];
+  const text = normalizeEditorial([current.title, current.archiveSummary, current.deskNote].join(" "));
+  if (labelKey && !text.includes(labelKey)) {
+    throw new Error(`Digest editorial integrity failed: dailyLead "${lead.label}" does not drive title, summary, and desk note`);
   }
 }
 

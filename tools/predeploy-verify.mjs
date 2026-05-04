@@ -101,7 +101,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /details class="digest-card/);
   assertOutput("index.html", /verified article links/);
   assertOutput("index.html", /Read market briefing/);
-  assertOutput("index.html", /Previous session driver/);
+  assertOutput("index.html", /Why it mattered for India/);
   assertOutput("index.html", /sentiment-sparkline/);
   assertOutput("index.html", /Published before 7:15 AM IST on trading days/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);

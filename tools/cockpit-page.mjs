@@ -4049,6 +4049,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #9fb0c8;
     }
 
+    .glass-v2 .source-stat-help {
+      color: #cbd5e1;
+    }
+
     .glass-v2 .source-quality-line {
       border-color: rgba(103, 232, 249, 0.24);
       background: rgba(103, 232, 249, 0.08);
@@ -6583,15 +6587,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 }
 
 function compactSummaryText(digest) {
-  const pressureStory = strongestStory(digest.news, "negative");
-  const supportStory = strongestStory(digest.news, "positive");
-  const macro = firstByCategory(digest.news, "macro_negative");
-  const pressureLabel = marketRiskLabel(macro || pressureStory);
-  const supportLabel = distinctSupportLabel(pressureLabel, supportStory);
   const driver = primaryDriverForDigest(digest);
+  const risk = digest.dailyLead?.riskSide ? conciseSentence(digest.dailyLead.riskSide, 12) : "risk needs the first range";
+  const support = digest.dailyLead?.supportSide ? conciseSentence(digest.dailyLead.supportSide, 12) : "breadth is the confirmation check";
   return conciseSentence([
     `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} across verified sources.`,
-    `${pressureLabel} is the risk to watch; ${supportLabel} is the confirmation check.`,
+    `${driver.title} is the lead read.`,
+    `${risk}; ${support}.`,
     `Primary source focus: ${driver.title}.`
   ].filter(Boolean).join(" "), 34);
 }
@@ -6977,6 +6979,14 @@ function formatLevelOrWait(value) {
 }
 
 function primaryDriverForDigest(digest) {
+  if (digest.dailyLead?.label) {
+    return {
+      title: digest.dailyLead.label,
+      summary: compactDriverSummary({
+        summary: digest.dailyLead.indiaImpact || digest.dailyLead.headline || "Source-led driver awaiting the next verified run."
+      })
+    };
+  }
   const ranked = weightedSourceArticles(digest.news ?? []);
   const article = ranked.find(isTradeRelevantDriver) ?? ranked[0];
   if (article) {
@@ -7132,7 +7142,7 @@ function twoMinuteSummaryHtml(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const support = firstByCategory(digest.news, "sector_positive") || firstByCategory(digest.news, "macro_positive") || strongestStory(digest.news, "positive");
-  const topSources = topIndiaRelevantSourceArticles(digest.news ?? [], 5);
+  const topSources = publicVisibleSourceArticles(digest, 8);
   const categoryMix = [...new Set(topSources.map((article) => sourceCategoryTitle(article.category)))]
     .slice(0, 4)
     .join(", ");
@@ -7141,8 +7151,8 @@ function twoMinuteSummaryHtml(digest) {
   const pressure = macro || globalRisk;
   const bullets = [
     ["Lead driver", `${driver.title}: ${driver.summary}`],
-    ["Pressure", sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")],
-    ["Support / offset", sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")],
+    ["Pressure", digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")],
+    ["Support / offset", digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")],
     ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
     ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India-relevant articles."]
   ];
@@ -7347,8 +7357,8 @@ function watchItemsHtml(digest, setup) {
 }
 
 function sourceNotesHtml(digest) {
-  const totalArticles = (digest.news ?? []).length;
-  const articles = topIndiaRelevantSourceArticles(digest.news ?? [], 5);
+  const totalArticles = digest.publicSourceSelection?.shortlistCount ?? (digest.news ?? []).length;
+  const articles = publicVisibleSourceArticles(digest, 8);
   const lead = weightedSourceArticles(articles)[0] ?? articles[0];
   const categories = sourceCategoryGroups(articles);
   const defaultFilter = categories[0]?.category || "all";
@@ -7364,7 +7374,7 @@ function sourceNotesHtml(digest) {
           <h2>Source Notes & Attribution</h2>
           <p class="source-section-copy">Evidence ledger behind the briefing. The full article list stays collapsed by default so the page reads quickly.</p>
           <p class="source-quality-line">${escapeHtml(sourceQualityLine(digest))}</p>
-          <p class="source-quality-line">${escapeHtml(`Showing ${articles.length} highest-impact India-relevant notes from ${totalArticles} verified articles.`)}</p>
+          <p class="source-quality-line">${escapeHtml(`Showing ${articles.length} India-first notes from a ${totalArticles}-article 24-hour shortlist.`)}</p>
         </div>
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
@@ -7405,6 +7415,17 @@ function sourceNotesHtml(digest) {
       </details>
     </section>
   `;
+}
+
+function publicVisibleSourceArticles(digest, limit = 8) {
+  const urls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? []);
+  if (urls.size) {
+    const selected = (digest.news ?? []).filter((article) => urls.has(article.sourceUrl));
+    if (selected.length) {
+      return selected.slice(0, limit);
+    }
+  }
+  return topIndiaRelevantSourceArticles(digest.news ?? [], limit);
 }
 
 function topIndiaRelevantSourceArticles(articles, limit = 5) {
@@ -7479,7 +7500,10 @@ function sourceQualityLine(digest) {
   }
   const generated = digest.generatedAt ? `generated ${formatGeneratedTime(digest.generatedAt)}` : "generated timestamp unavailable";
   const blocked = verification.blockedReason ? `, blocked: ${verification.blockedReason}` : "";
-  return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
+  const selection = digest.publicSourceSelection
+    ? ` Public view: ${digest.publicSourceSelection.visibleCount} India-first notes from ${digest.publicSourceSelection.shortlistCount} articles inside ${digest.publicSourceSelection.windowHours} hours.`
+    : "";
+  return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.${selection}`;
 }
 
 function formatGeneratedTime(value) {
@@ -7611,7 +7635,7 @@ function sourceEvidenceCardHtml(article) {
 }
 
 function sourceCategoryGroups(articles) {
-  const categoryOrder = ["macro_negative", "global_risk", "neutral_volatile", "sector_positive", "macro_positive"];
+  const categoryOrder = ["macro_negative", "global_risk", "sector_positive", "macro_positive", "sector_negative", "neutral_volatile"];
   const groups = new Map();
   for (const article of articles) {
     const category = article.category || "market";
@@ -7646,6 +7670,7 @@ function sourceCategoryTitle(category) {
     macro_negative: "Macro Pressure",
     global_risk: "Global Risk",
     neutral_volatile: "Asia & Volatility",
+    sector_negative: "Sector Pressure",
     sector_positive: "Sector Support",
     macro_positive: "Global Earnings & Risk Appetite"
   }[category] || categoryLabel(category);
@@ -7657,6 +7682,7 @@ function sourceCategorySummary(group) {
     global_risk: "US and global risk-appetite cues that decide whether traders chase or fade the first move.",
     neutral_volatile: "Mixed regional and defensive-market signals that argue for patience around the opening range.",
     sector_positive: "Sector-specific offsets that can keep leadership selective even when the index tone is weak.",
+    sector_negative: "Sector-specific pressure that needs Indian peer confirmation before it becomes index direction.",
     macro_positive: "US earnings and global risk-appetite cues that need Indian breadth before becoming local trade inputs."
   }[group.category] || "Related source notes grouped by theme for faster attribution.";
   return group.leadTakeaway

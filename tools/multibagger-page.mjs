@@ -420,6 +420,34 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       box-shadow: 0 20px 70px rgba(0, 0, 0, 0.18);
     }
 
+    .holdings-showcase {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.62);
+      margin: 18px 0 22px;
+      padding: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 16px;
+    }
+
+    .section-head h2 {
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+
+    .section-head p:last-child {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
     .allocation-donut-wrap {
       align-items: center;
       display: grid;
@@ -1471,6 +1499,19 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     ${performanceStripHtml(state)}
     ${trackingRailHtml(state)}
 
+    <section class="holdings-showcase" aria-label="Current model holdings">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Holdings first</p>
+          <h2>Five public model slots</h2>
+          <p>Start with what is owned, why it is there, and how it is moving since the public entry timestamp.</p>
+        </div>
+      </div>
+      <div class="holding-card-grid" id="modelHoldingCards">
+        ${holdingCardsHtml(state.holdings)}
+      </div>
+    </section>
+
     <section class="allocation-visual" aria-label="Portfolio allocation visual">
       <div class="allocation-donut-wrap">
         <div class="allocation-donut" style="--donut:${escapeHtml(allocationDonutGradient(state.holdings))};" role="img" aria-label="Portfolio allocation donut chart for the ${escapeHtml(modelCount)} stock model">
@@ -1495,27 +1536,22 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     <section class="module-grid" aria-label="Expandable portfolio research modules">
       <details class="panel performance-panel" open>
         <summary>
-          <span class="summary-title"><strong>Performance</strong><span>Public baseline, allocation visual, and current model tracking basis.</span></span>
+          <span class="summary-title"><strong>Performance</strong><span>Public baseline, live quote refresh, and benchmark context.</span></span>
           ${detailToggleHtml()}
           <span class="module-preview"><span class="preview-pill">Rs 5L baseline</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Latest quotes</span></span>
         </summary>
         <div class="panel-body">
-          <div class="allocation-grid" id="modelAllocationTiles">
-            ${allocationTilesHtml(state.holdings)}
-          </div>
+          <p class="note">Performance is shown in the top metric rail. The holdings cards above show stock-level return, P&amp;L, and day move so this section does not repeat the same five names again.</p>
         </div>
       </details>
 
       <details class="panel holdings-panel" open>
         <summary>
-          <span class="summary-title"><strong>Holdings</strong><span>Card-first view of the normalized Rs 5 lakh allocation, entries, quotes, return, P&L, and day move.</span></span>
+          <span class="summary-title"><strong>Holdings</strong><span>Detailed ledger for normalized Rs 5 lakh allocation, entries, quotes, return, P&L, and day move.</span></span>
           ${detailToggleHtml()}
-          <span class="module-preview"><span class="preview-pill">Holding cards</span><span class="preview-pill">Detailed ledger</span><span class="preview-pill">Screener links</span></span>
+          <span class="module-preview"><span class="preview-pill">Detailed ledger</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Screener links</span></span>
         </summary>
         <div class="panel-body">
-          <div class="holding-card-grid" id="modelHoldingCards">
-            ${holdingCardsHtml(state.holdings)}
-          </div>
           <details class="ledger-disclosure" id="detailedLedger" open>
             <summary><strong>Detailed Ledger</strong>${detailToggleHtml()}</summary>
             <div class="ledger-disclosure-body">

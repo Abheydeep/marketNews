@@ -703,7 +703,7 @@ function oilReadthrough(lower) {
   if (/\b(pipeline|keystone|refinery|export terminal|shipment|cargo|gulf coast)\b/.test(lower)) {
     return {
       takeaway: "treat it as crude-flow infrastructure evidence; India needs a Brent reaction before it becomes an opening trade input.",
-      indiaImpact: "No direct Indian pipeline read-through; use Brent to decide whether OMCs, aviation and paints face import-cost pressure.",
+      indiaImpact: "Pipeline flow news matters through Brent; use prices to decide whether OMCs, aviation and paints face import-cost pressure.",
       watchFor: `Watch whether Brent reacts to the flow story near ${level}; no India trade if prices ignore it.`
     };
   }

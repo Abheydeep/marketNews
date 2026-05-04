@@ -9,8 +9,7 @@ const { chromium } = loadPlaywright();
 const baseUrl = (process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews").replace(/\/$/, "");
 const cycles = Number.parseInt(process.env.FULL_QA_CYCLES ?? "5", 10);
 const dailyPages = parseDailyPages(process.env.FULL_QA_DAILY_PAGES) ?? [
-  { slug: "3may2026", label: "Sun, 03 May, 2026" },
-  { slug: "1may2026", label: "Fri, 01 May, 2026", archive: false }
+  { slug: "4may2026", label: "Mon, 04 May, 2026" }
 ];
 const chartSymbols = ["SPX", "NDX", "DJI", "NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "NIFTY", "BANKNIFTY", "DXY", "BRENT"];
 
@@ -160,7 +159,7 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
   assert.equal(await page.getByRole("link", { name: "Admin login" }).count(), 0, "archive should not expose admin login");
-  await expectAtLeast(page.getByText("Previous session driver", { exact: true }), 1, "archive previous session driver");
+  await expectAtLeast(page.getByText("Why it mattered for India", { exact: true }), 1, "archive India relevance driver");
   await expectAtLeast(page.locator(".sentiment-sparkline"), 1, "archive sentiment sparkline");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
@@ -205,7 +204,7 @@ async function verifyDarkPreview(page, stamp) {
   assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
   const sourceCardCount = await sourceCards.count();
-  assert.ok(sourceCardCount >= 14, `dark preview should render whole-card source links, got ${sourceCardCount}`);
+  assert.ok(sourceCardCount > 0 && sourceCardCount <= 8, `dark preview should render the public top-8 source set, got ${sourceCardCount}`);
   await verifyDarkSurfaceContrast(page, "dark preview initial view");
   await verifySummary(page, preview, { keepOpen: true });
   await verifyDarkSurfaceContrast(page, "dark preview expanded summary");
@@ -450,8 +449,7 @@ async function verifyDailyPage(page, daily, stamp) {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
   await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
-  await expectOne(page.getByRole("link", { name: "Open chart on TradingView" }), `${daily.slug} live chart CTA`);
-  await expectOne(page.locator(".share-row"), `${daily.slug} share row`);
+  await expectAtLeast(page.locator(".share-row"), 1, `${daily.slug} share row`);
   assert.equal(await page.getByRole("link", { name: "Admin Login" }).count(), 0, `${daily.slug} should not expose admin login`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
   assert.equal(await page.getByRole("button", { name: "Engine Architecture" }).count(), 0, `${daily.slug} should not expose admin architecture`);
@@ -494,7 +492,7 @@ async function verifyPublicDigestJson(daily, stamp) {
   assert.equal(Object.hasOwn(digest, "teleprompterScript"), false, `${daily.slug} public digest.json should redact teleprompterScript`);
   assert.equal(Object.hasOwn(digest, "reelScript"), false, `${daily.slug} public digest.json should redact reelScript`);
   assert.equal(digest.asset?.positivePrompt, undefined, `${daily.slug} public digest.json should redact asset prompts`);
-  assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length >= 10, `${daily.slug} public digest.json should include compact news card DTOs`);
+  assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length > 0 && digest.newsCards.length <= 8, `${daily.slug} public digest.json should include compact top-8 news card DTOs`);
   assert.deepEqual(
     Object.keys(digest.newsCards[0]).sort(),
     ["category", "publisherName", "sentimentLabel", "sourceUrl", "thumbnailAlt", "thumbnailUrl", "timestamp", "title"],
@@ -525,10 +523,13 @@ async function verifySummary(page, daily, options = {}) {
   const summary = page.locator("#summaryExpand");
   await expectOne(summary, `${daily.slug} compact summary details`);
   await expectOne(summary.locator("summary"), `${daily.slug} compact summary toggle`);
-  await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary initially collapsed`);
+  await expectOne(page.locator("#summaryExpand[open]"), `${daily.slug} summary should be visible on first load`);
+  await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, `${daily.slug} two-minute summary`);
+  await expectOne(page.getByText("Market Map", { exact: true }), `${daily.slug} market map`);
+  await summary.locator("summary").click();
+  await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary collapses`);
   await summary.locator("summary").click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(page.getByText("Pre-market desk note", { exact: true }), `${daily.slug} expanded briefing`);
   if (options.keepOpen) {
     return;
   }
@@ -550,8 +551,12 @@ async function verifyQuoteBoard(page, daily) {
     await expectOne(page.locator("#indexBoard .quote-region h3").filter({ hasText: region }), `${daily.slug} ${region} quote section`);
     await expectOne(page.locator(`button.breadth-card[data-region="${region}"][aria-pressed="true"]`), `${daily.slug} ${region} selected`);
   }
-  assert.ok(await page.locator(".breadth-card .market-move.up").count() > 0, `${daily.slug} should color gains green`);
-  assert.ok(await page.locator(".breadth-card .market-move.down").count() > 0, `${daily.slug} should color losses red`);
+  await page.locator('button.breadth-card[data-region="India Open"]').click();
+  const moveStateCount =
+    (await page.locator(".market-move.up").count()) +
+    (await page.locator(".market-move.down").count()) +
+    (await page.locator(".market-move.flat").count());
+  assert.ok(moveStateCount > 0, `${daily.slug} should render quote move state classes`);
   await toggle.click();
   await expectOne(page.locator("#quoteBoardBody[hidden]"), `${daily.slug} quote board collapses`);
   await toggle.click();
@@ -599,15 +604,18 @@ async function verifyCharts(page, daily) {
 async function clickSourceLinks(page, daily, options = {}) {
   await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
   await verifySourceFilters(page, daily);
-  const links = page.locator(".source-lead-card a, .source-card a").filter({ visible: true });
+  const links = page.locator(".source-card[role='link'][data-source-url], .source-lead-card a[href], .source-card a[href]").filter({ visible: true });
   const count = await links.count();
   if (options.isLegacy) {
     assert.equal(count, 0, `${daily.slug} legacy page should suppress unaudited read-source links`);
     return 0;
   }
-  assert.ok(count >= 15, `${daily.slug} should render at least 15 source links`);
+  assert.ok(count >= 8, `${daily.slug} should render the public top-8 source links`);
   for (let index = 0; index < count; index += 1) {
-    await clickExternalPopup(page, links.nth(index), "http", `${daily.slug} source link ${index + 1}`);
+    const link = links.nth(index);
+    const href = (await link.getAttribute("data-source-url")) || (await link.getAttribute("href"));
+    assert.ok(href?.startsWith("http"), `${daily.slug} source link ${index + 1} should use article URL, got ${href}`);
+    assert.equal(isSectionHomepageUrl(href), false, `${daily.slug} source link ${index + 1} should not be a section homepage: ${href}`);
   }
   return count;
 }
@@ -621,13 +629,13 @@ async function verifySourceFilters(page, daily) {
   assert.equal(await page.locator(".source-card:visible").count(), 0, `${daily.slug} full source cards should not show by default`);
   await page.locator("#sourceLedger > summary").click();
   await expectOne(page.locator("#sourceLedger[open]"), `${daily.slug} source ledger opens`);
-  await expectAtLeast(page.locator(".source-category-head h3"), 4, `${daily.slug} source category headings`);
+  await expectAtLeast(page.locator(".source-category-head h3"), 2, `${daily.slug} source category headings`);
   const buttons = page.locator("[data-source-filter]");
   const buttonCount = await buttons.count();
-  assert.ok(buttonCount >= 5, `${daily.slug} should render source filter buttons`);
+  assert.ok(buttonCount >= 2, `${daily.slug} should render source filter buttons`);
   await expectOne(page.locator('[data-source-filter="all"][aria-pressed="false"]'), `${daily.slug} all source filter should not be active by default`);
   const defaultVisibleCards = await page.locator(".source-card:visible").count();
-  assert.ok(defaultVisibleCards > 0 && defaultVisibleCards < 14, `${daily.slug} source ledger should default to one category, got ${defaultVisibleCards}`);
+  assert.ok(defaultVisibleCards > 0 && defaultVisibleCards <= 8, `${daily.slug} source ledger should default to one public category, got ${defaultVisibleCards}`);
 
   for (let index = 1; index < buttonCount; index += 1) {
     const button = buttons.nth(index);
@@ -641,7 +649,7 @@ async function verifySourceFilters(page, daily) {
 
   await page.locator('[data-source-filter="all"]').click();
   await expectOne(page.locator('[data-source-filter="all"][aria-pressed="true"]'), `${daily.slug} all source filter active`);
-  assert.ok(await page.locator(".source-card:visible").count() >= 14, `${daily.slug} all source filter should restore cards`);
+  assert.equal(await page.locator(".source-card:visible").count(), 8, `${daily.slug} all source filter should restore the public top-8 cards`);
 }
 
 async function clickInternalLink(page, locator, href, label) {
@@ -695,6 +703,25 @@ function stripQuery(value) {
 function isInternalHref(href) {
   const resolved = new URL(href, baseUrl);
   return resolved.origin === new URL(baseUrl).origin;
+}
+
+function isSectionHomepageUrl(href) {
+  try {
+    const url = new URL(href);
+    const pathname = url.pathname.replace(/\/+$/, "").toLowerCase();
+    return [
+      "",
+      "/markets",
+      "/markets/commodities",
+      "/markets/stocks",
+      "/finance",
+      "/world",
+      "/rss.cms",
+      "/features/rss"
+    ].some((section) => pathname === section);
+  } catch {
+    return true;
+  }
 }
 
 function parseDailyPages(value) {

@@ -366,7 +366,11 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.asset.positivePrompt.includes("identity-locked creator portrait"));
   assert.ok(digest.asset.reelVideo.videoPrompt.includes("60-second vertical financial market reel"));
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
-  assert.ok(digest.news.length >= 14);
+  assert.equal(digest.news.length, 8);
+  assert.ok(digest.dailyLead?.driverType);
+  assert.equal(digest.publicSourceSelection.visibleCount, 8);
+  assert.ok(digest.publicSourceSelection.shortlistCount >= 8);
+  assert.equal(digest.publicSourceSelection.windowHours, 24);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
   assert.equal(digest.newsDataMode, "fixture");
   assert.equal(digest.sourceVerification.mode, "fixture");
@@ -420,6 +424,9 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(payload.sourceVerification.mode, "fixture");
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
   assert.equal(payload.sourceVerification.isVerifiedForPublicArchive, true);
+  assert.ok(payload.dailyLead?.driverType);
+  assert.equal(payload.publicSourceSelection.visibleCount, 8);
+  assert.equal(payload.publicSourceSelection.windowHours, 24);
   assert.equal(JSON.stringify(payload).includes("sourceDebug"), false);
   assert.equal(JSON.stringify(payload).includes("rejectedSources"), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
@@ -893,7 +900,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Recent Briefing Navigation"));
   assert.ok(publisher.includes("recent-archive-link"));
   assert.ok(publisher.includes("Read market briefing"));
-  assert.ok(publisher.includes("Previous session driver"));
+  assert.ok(publisher.includes("Why it mattered for India"));
   assert.ok(publisher.includes("sentiment-sparkline"));
   for (const roughCopy of [
     "All Market Narrative briefings",
@@ -1170,7 +1177,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "Pre-Market Intelligence Archive",
     "Latest Market Briefings",
     "Read market briefing",
-    "Previous session driver",
+    "Why it mattered for India",
     "trade-mn-signal",
     "lucide-lock-keyhole",
     "Auth API:",
@@ -1378,14 +1385,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
-  assert.ok(publicHtml.body.includes("Showing 5 highest-impact India-relevant notes"));
+  assert.ok(publicHtml.body.includes("Showing 8 India-first notes"));
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure") || publicHtml.body.includes("Global Risk"));
   const publicSourceGroups = [...publicSection.matchAll(/data-source-group="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(new Set(publicSourceGroups).size >= 3, `expected diversified source groups, got ${publicSourceGroups.join(", ")}`);
   assert.ok((publicHtml.body.match(/data-source-group="/g) || []).length <= 5);
-  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 5);
+  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 8);
   assert.ok(publicHtml.body.includes("data-source-group="));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
