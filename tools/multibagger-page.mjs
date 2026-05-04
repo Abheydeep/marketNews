@@ -679,6 +679,12 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       white-space: normal;
     }
 
+    .entry-source-line {
+      line-height: 1.35;
+      margin-top: 4px;
+      white-space: normal;
+    }
+
     .ticker {
       color: #fff;
       display: block;
@@ -1300,7 +1306,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
               <col class="col-pnl">
               <col class="col-day">
             </colgroup>
-            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
+            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry<span class="th-note">Entry timestamp</span></th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
             <tbody id="modelHoldingsRows">
               ${holdingsRowsHtml(state.holdings)}
             </tbody>
@@ -1554,7 +1560,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         + "<td data-label=\\"Ticker\\"><span class=\\"holding-name-line\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span>" + stockLinkHtml(holding) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
         + "<td data-label=\\"Weight\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
         + "<td data-label=\\"INR 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
-        + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "</td>"
+        + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "<span class=\\"subtext entry-source-line\\">" + escapeHtml(holdingEntrySourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext quote-source-line\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Return\\" class=\\"price-cell " + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</td>"
         + "<td data-label=\\"P&L\\" class=\\"price-cell " + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</td>"
@@ -1695,6 +1701,12 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return source + " - as of " + formatDateTime(holding.lastPriceAt);
     }
 
+    function holdingEntrySourceLine(holding) {
+      const value = holding.entryAt || holding.modelEntryAt || holding.modelEntryDate;
+      if (!value) return "Entry time pending";
+      return "Entry: " + (/^\d{4}-\d{2}-\d{2}$/.test(String(value)) ? formatDateOnly(value) : formatDateTime(value));
+    }
+
     function statusPlain(status) {
       const value = String(status || "Model slot");
       if (/core/i.test(value)) return "Core staged";
@@ -1713,6 +1725,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     function formatDateTime(value) {
       const date = value ? new Date(value) : new Date();
       return new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(date);
+    }
+
+    function formatDateOnly(value) {
+      return new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric" }).format(new Date(value));
     }
 
     function escapeHtml(value) {
@@ -2021,7 +2037,7 @@ function holdingsRowsHtml(holdings) {
                 <td data-label="Ticker"><span class="holding-name-line"><span class="ticker">${escapeHtml(holding.ticker)}</span>${stockLinkHtml(holding)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
                 <td data-label="Weight" class="price-cell">${formatPercent(holding.targetWeight)}</td>
                 <td data-label="Rs 5L deployed" class="price-cell">${formatInr(holding.modelAmountInr)}</td>
-                <td data-label="Avg entry" class="price-cell">${formatPrice(holding.entryPrice)}</td>
+                <td data-label="Avg entry" class="price-cell">${formatPrice(holding.entryPrice)}<span class="subtext entry-source-line">${escapeHtml(holdingEntrySourceLine(holding))}</span></td>
                 <td data-label="Current price" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext quote-source-line">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
                 <td data-label="Return" class="price-cell ${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</td>
                 <td data-label="P&L" class="price-cell ${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</td>
@@ -2203,6 +2219,15 @@ function holdingPriceSourceLine(holding) {
   return `${source} - as of ${formatDateTime(holding.lastPriceAt)}`;
 }
 
+function holdingEntrySourceLine(holding) {
+  const value = holding.entryAt ?? holding.modelEntryAt ?? holding.modelEntryDate;
+  if (!value) {
+    return "Entry time pending";
+  }
+  const stamp = /^\d{4}-\d{2}-\d{2}$/.test(String(value)) ? formatDateOnly(value) : formatDateTime(value);
+  return `Entry: ${stamp}`;
+}
+
 function statusPlain(status) {
   const value = String(status ?? "Model slot");
   if (/core/i.test(value)) return "Core staged";
@@ -2226,6 +2251,15 @@ function formatDateTime(value) {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit"
+  }).format(new Date(value));
+}
+
+function formatDateOnly(value) {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
   }).format(new Date(value));
 }
 

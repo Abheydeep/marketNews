@@ -22,6 +22,7 @@ public record MultibaggerHolding(
     String capitalStructureRisk,
     String status,
     LocalDate modelEntryDate,
+    Instant entryAt,
     BigDecimal entryPrice,
     BigDecimal lastPrice,
     BigDecimal previousClose,

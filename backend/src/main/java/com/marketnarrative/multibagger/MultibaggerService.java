@@ -3,6 +3,7 @@ package com.marketnarrative.multibagger;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MultibaggerService {
 
     private static final LocalDate MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27);
+    private static final Instant MODEL_BASELINE_ENTRY_AT = Instant.parse("2026-05-04T08:42:00Z");
     private static final LocalDate PUBLISHED_REVIEW_DATE = LocalDate.of(2026, 5, 1);
     private static final Integer MODEL_CAPITAL = 500_000;
     private static final boolean FILLS_PUBLISHED = true;
@@ -193,6 +195,7 @@ public class MultibaggerService {
             capitalStructureRisk,
             status,
             MODEL_ENTRY_DATE,
+            MODEL_BASELINE_ENTRY_AT,
             quote.entryPrice(),
             quote.lastPrice(),
             quote.previousClose(),

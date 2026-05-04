@@ -1,5 +1,6 @@
 const MODEL_CAPITAL_INR = 500_000;
 const MODEL_ENTRY_DATE = "2026-04-27";
+const MODEL_BASELINE_ENTRY_AT = "2026-05-04T14:12:00+05:30";
 const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
 const QUOTE_FRESHNESS_HOURS = 120;
 const FILLS_PUBLISHED = true;
@@ -524,6 +525,7 @@ function holdingPerformance(ticker, modelAmountInr, snapshots = priceSnapshots) 
   const modelPnlInr = showPerformance ? round(currentModelValueInr - modelAmountInr, 2) : null;
   return {
     modelEntryDate: MODEL_ENTRY_DATE,
+    entryAt: MODEL_BASELINE_ENTRY_AT,
     entryPrice: snapshot.entryPrice,
     lastPrice: hasVerifiedQuote ? snapshot.lastPrice : null,
     previousClose: hasVerifiedQuote ? snapshot.previousClose : null,
@@ -768,6 +770,9 @@ export function validateMultibaggerState(state = multibaggerState()) {
   for (const holding of state.holdings) {
     if (!Number.isFinite(Number(holding.entryPrice))) {
       throw new Error(`${holding.ticker} is missing numeric entryPrice`);
+    }
+    if (!Number.isFinite(Date.parse(holding.entryAt))) {
+      throw new Error(`${holding.ticker} is missing entryAt timestamp`);
     }
     if (!holding.isStale) {
       for (const field of ["lastPrice", "dayChangePercent"]) {

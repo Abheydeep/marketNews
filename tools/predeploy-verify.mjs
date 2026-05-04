@@ -113,6 +113,8 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Baseline live|Normalized Rs 5 lakh baseline/);
   assertOutput("multibagger/index.html", /Rs 5L deployed/);
   assertOutput("multibagger/index.html", /Current price/);
+  assertOutput("multibagger/index.html", /Entry timestamp/);
+  assertOutput("multibagger/index.html", /Entry: 04 May 2026, 02:12 pm/);
   assertOutput("multibagger/index.html", /Plain-English role legend/);
   assertOutput("multibagger/index.html", /holding-name-line/);
   assertOutputNot("multibagger/index.html", /<th>Plain-English Role<\/th>/);
@@ -121,6 +123,7 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", />Screener<\/a>/);
   assertOutput("multibagger/index.html", /Weights are normalized to Rs 5 lakh/);
   assertOutput("multibagger/state.json", /"modelEntryDate": "2026-04-27"/);
+  assertOutput("multibagger/state.json", /"entryAt": "2026-05-04T14:12:00\+05:30"/);
   assertOutput("multibagger/state.json", /"entryPrice"/);
   assertOutput("multibagger/state.json", /"returnPercent"/);
   assertOutput("multibagger/state.json", /"currentModelValueInr"/);

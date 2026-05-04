@@ -467,6 +467,7 @@ await test("multibagger public model is concentrated and sanitized", () => {
   );
   for (const holding of state.holdings) {
     assert.ok(Number.isFinite(holding.entryPrice), `${holding.ticker} missing entryPrice`);
+    assert.equal(holding.entryAt, "2026-05-04T14:12:00+05:30", `${holding.ticker} missing baseline entry timestamp`);
     assert.equal(holding.lastPrice, null, `${holding.ticker} fallback current price must be hidden`);
     assert.equal(holding.returnPercent, null, `${holding.ticker} fallback return must be hidden`);
     assert.equal(holding.modelPnlInr, null, `${holding.ticker} fallback P&L must be hidden`);
@@ -559,6 +560,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Baseline entries are published through the Model Holdings table."));
   assert.ok(html.includes("Rs 5L deployed"));
   assert.ok(html.includes("Avg entry"));
+  assert.ok(html.includes("Entry timestamp"));
+  assert.ok(html.includes("Entry: 04 May 2026, 02:12 pm"));
+  assert.ok(html.includes("entry-source-line"));
   assert.ok(html.includes("P&amp;L"));
   assert.ok(html.includes("data-label=\"Ticker\""));
   assert.ok(html.includes(">Screener</a>"));
@@ -1433,6 +1437,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.modelAmountInr, 0), 500000);
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
   assert.equal(multibagger.json.performance.currentModelValueInr, null);
+  assert.ok(multibagger.json.holdings.every((holding) => holding.entryAt === "2026-05-04T14:12:00+05:30"));
   assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
   assert.deepEqual(multibagger.json.transactions, []);
   assert.ok(multibagger.json.methodology.definition.includes("multibagger"));
