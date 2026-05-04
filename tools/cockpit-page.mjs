@@ -37,9 +37,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicAdminLinkHtml = !includeStudio && options.showAdminLink === true
     ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
     : "";
-  const archiveLinkHtml = !includeStudio && digest.canonicalPath
-    ? '<a class="tab-link" href="../">Briefing Archive</a>'
-    : "";
   const multibaggerLinkHtml = includeStudio
     ? ""
     : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
@@ -4423,7 +4420,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs">
           <button class="tab-btn" data-target="public-view">Public Briefing</button>
-          ${archiveLinkHtml}
           ${tradingGuideTabHtml}
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
@@ -4456,15 +4452,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${editionNavHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
-        ${deskNoteHtml(digest)}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
             <div>
-              <span class="summary-label">2 min summary</span>
+              <span class="summary-label">2 minute summary</span>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
-            <strong class="summary-expand-action">Read the full desk note</strong>
+            <strong class="summary-expand-action">Read summary</strong>
           </summary>
           <div class="expanded-briefing-page">
             ${expandedBriefingHtml(digest)}
@@ -4503,8 +4498,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
         </section>
 
-        ${chartCtaPanelHtml(digest)}
-
         ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
@@ -4520,9 +4513,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="chart-modal-header">
           <div>
             <h2 id="indexChartTitle">Index Chart</h2>
-            <p id="indexChartMeta">Timestamped chart preview with a TradingView link for the interactive series.</p>
+            <p id="indexChartMeta">Timestamped snapshot preview for the selected market.</p>
           </div>
-          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open Chart On TradingView</a>
+          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open External Chart</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
@@ -4535,8 +4528,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
             <div>
-              <h3>Open the live chart</h3>
-              <p>The latest quote snapshot is loaded. Open the full chart on TradingView for the interactive series.</p>
+              <h3>Snapshot available</h3>
+              <p>The latest quote snapshot is loaded for this market.</p>
             </div>
           </div>
         </div>
@@ -6491,17 +6484,14 @@ function compactSummaryText(digest) {
   const supportStory = strongestStory(digest.news, "positive");
   const macro = firstByCategory(digest.news, "macro_negative");
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
-  const setup = niftySetup(digest);
-  const setupLine = setup
-    ? `${setup.symbol} has a conditional 1:2 setup near ${formatNumber(setup.entry)}.`
-    : "No clean 1:2 setup is active yet; wait for the opening range to form.";
   const pressureLabel = marketRiskLabel(macro || pressureStory);
   const supportLabel = distinctSupportLabel(pressureLabel, supportStory);
+  const driver = primaryDriverForDigest(digest);
   return limitWords([
-    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} and confirmation-led.`,
+    `Before the open, tone is ${headlineSentiment(digest.sentimentLabel).toLowerCase()} across verified sources.`,
     `${pressureLabel} is the risk to watch; ${supportLabel} is the confirmation check.`,
     asiaLine,
-    setupLine
+    `Primary source focus: ${driver.title}.`
   ].filter(Boolean).join(" "), 50);
 }
 
@@ -6634,14 +6624,10 @@ function marketMoodRailHtml(digest) {
   const primaryDriver = primaryDriverForDigest(digest);
   const nifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "NIFTY");
   const bankNifty = digest.marketSnapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
-  const setup = niftySetup(digest);
   const indexLine = [nifty, bankNifty]
     .filter(Boolean)
     .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
     .join(" / ");
-  const setupLine = setup
-    ? `${setup.symbol} ${setup.riskReward}R setup: entry ${formatNumber(setup.entry)}, stop ${formatNumber(setup.stopLoss)}, target ${formatNumber(setup.target)}.`
-    : "No clean 1:2 setup is active yet; wait for the opening range.";
 
   return `
     <section class="mood-rail ${escapeHtml(moodClass)}" aria-label="Market mood and priority signals">
@@ -6659,7 +6645,7 @@ function marketMoodRailHtml(digest) {
       <article class="mood-cell">
         <span>India Filter</span>
         <strong>${escapeHtml(indexLine ? `Prev close: ${indexLine}` : "Indian quotes awaiting refresh")}</strong>
-        <small>${escapeHtml(setupLine)}</small>
+        <small>Daily briefing shows market context only; execution levels live in the Trading Guide.</small>
       </article>
     </section>
   `;
@@ -6948,7 +6934,7 @@ function expandedBriefingHtml(digest) {
   const lead = expandedLeadParagraphs(digest);
   return `
     <div class="expanded-briefing-head">
-      <span class="summary-label">Pre-market desk note</span>
+      <span class="summary-label">2 minute summary</span>
       <h2>${escapeHtml(expandedBriefingHeadline(digest))}</h2>
       ${lead.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
     </div>
@@ -7018,45 +7004,15 @@ function executiveSummaryHtml(digest) {
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
   const globalRisk = firstByCategory(digest.news, "global_risk");
-  const setup = niftySetup(digest);
-  const setupText = setup
-    ? `Nifty has a conditional ${setup.direction.toLowerCase()} plan only near ${formatNumber(setup.entry)}, with invalidation at ${formatNumber(setup.stopLoss)} and target at ${formatNumber(setup.target)}. The setup only remains valid while the ${setup.riskReward}R structure is intact.`
-    : noSetupTradeFrame(digest);
 
   return `
     <div class="brief-section">
       <h3>Market Map</h3>
       <ul class="brief-list">
         <li><strong>US:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. ${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</li>
-        <li><strong>Asia:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Treat mixed regional breadth as a reason to wait for the opening range.</li>
+        <li><strong>Asia:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Regional breadth sets the sentiment backdrop for the India open.</li>
         <li><strong>Macro:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</li>
-        <li><strong>India:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Banks decide whether the open becomes a trend or just a gap reaction.</li>
-      </ul>
-    </div>
-
-    <div class="brief-section">
-      <h3>Stories Driving The Open</h3>
-      <div class="source-extract-list">
-        ${sourceExtractionRows(briefingSourceArticles(digest.news))}
-      </div>
-    </div>
-
-    <div class="brief-section">
-      <h3>How It Lands In India</h3>
-      <ul class="brief-list">
-        ${indiaReadThroughItems(digest)}
-      </ul>
-    </div>
-
-    <div class="brief-section">
-      <h3>Trade Framing</h3>
-      ${tradeFramingHtml(digest, setup, setupText)}
-    </div>
-
-    <div class="brief-section">
-      <h3>What To Watch First</h3>
-      <ul class="watch-grid">
-        ${watchItemsHtml(digest, setup)}
+        <li><strong>India:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Prior-session closes set the reference point for today's source read.</li>
       </ul>
     </div>
   `;
@@ -7224,7 +7180,8 @@ function watchItemsHtml(digest, setup) {
 }
 
 function sourceNotesHtml(digest) {
-  const articles = digest.news ?? [];
+  const totalArticles = (digest.news ?? []).length;
+  const articles = topIndiaRelevantSourceArticles(digest.news ?? [], 5);
   const lead = weightedSourceArticles(articles)[0] ?? articles[0];
   const categories = sourceCategoryGroups(articles);
   const defaultFilter = categories[0]?.category || "all";
@@ -7240,6 +7197,7 @@ function sourceNotesHtml(digest) {
           <h2>Source Notes & Attribution</h2>
           <p class="source-section-copy">Evidence ledger behind the briefing. The full article list stays collapsed by default so the page reads quickly.</p>
           <p class="source-quality-line">${escapeHtml(sourceQualityLine(digest))}</p>
+          <p class="source-quality-line">${escapeHtml(`Showing ${articles.length} highest-impact India-relevant notes from ${totalArticles} verified articles.`)}</p>
         </div>
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
@@ -7276,6 +7234,29 @@ function sourceNotesHtml(digest) {
       </details>
     </section>
   `;
+}
+
+function topIndiaRelevantSourceArticles(articles, limit = 5) {
+  return uniqueArticles(
+    articles
+      .slice()
+      .sort((left, right) => publicSourceImportance(right) - publicSourceImportance(left))
+  ).slice(0, limit);
+}
+
+function publicSourceImportance(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""}`.toLowerCase();
+  let score = Math.abs(articleTone(article)) * 4 + articleWeight(article);
+  if (!/^no direct india read-through/i.test(String(article?.indiaImpact || ""))) score += 3;
+  if (["macro_negative", "global_risk"].includes(article?.category)) score += 3;
+  if (["sector_positive", "macro_positive"].includes(article?.category)) score += 2;
+  if (/\b(crude|oil|brent|opec|iran|hormuz|jet fuel|pipeline|keystone)\b/.test(text)) score += 4;
+  if (/\b(fed|rate|yield|inflation|dollar|dxy|usd\/inr|yen|currency)\b/.test(text)) score += 3;
+  if (/\b(nasdaq|tech|software|semiconductor|chip|apple|ai|it)\b/.test(text)) score += 2.5;
+  if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc)\b/.test(text)) score += 2.5;
+  if (/\b(carvana|single-stock|private market|spacex)\b/.test(text)) score -= 3;
+  if (/^no direct india read-through/i.test(String(article?.indiaImpact || ""))) score -= 5;
+  return score;
 }
 
 function sourceQualityLine(digest) {
