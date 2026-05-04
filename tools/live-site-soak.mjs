@@ -71,6 +71,9 @@ async function runCycle(page, cycle) {
 
   await openPublicPage(page, rootUrl);
   await expectOne(page.getByRole("heading", { name: "Market Narrative" }), "archive heading");
+  await expectOne(page.getByRole("link", { name: /Read today's brief/i }), "homepage primary briefing action");
+  await expectOne(page.getByRole("link", { name: /Open Trading Guide/i }).first(), "homepage trading guide action");
+  await expectOne(page.getByRole("link", { name: /Track Portfolio/i }), "homepage portfolio action");
   await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   const openDailyLink = page.locator(`a.open-link[href="./${dailySlug}/"]`);
@@ -104,6 +107,7 @@ async function runCycle(page, cycle) {
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "public page should not expose Studio Command tab");
   assert.equal(await page.locator("#studio-view").count(), 0, "public page should not render studio section");
   const publicDigest = await fetch(`${baseUrl.replace(/\/$/, "")}/${dailySlug}/digest.json`).then((response) => response.json());
+  assert.equal(publicDigest.status, "PUBLISHED", "public digest.json must not expose DRAFT status");
   assert.equal(Object.hasOwn(publicDigest, "teleprompterScript"), false, "public digest.json must redact teleprompterScript");
   assert.equal(Object.hasOwn(publicDigest, "reelScript"), false, "public digest.json must redact reelScript");
 
@@ -207,6 +211,7 @@ async function expectDailyContent(page) {
   await expectOne(publicView.locator("#summaryExpand[open]"), "visible two-minute summary");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
+  assert.match(compactSummary, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/, `compact summary missing hard first-watch level: ${compactSummary}`);
   assert.equal(/[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/.test(compactSummary), false, `compact summary has malformed punctuation: ${compactSummary}`);
   assert.equal(/Global crude-flow signal|India impact runs only through/i.test(compactSummary), false, `compact summary leaked internal driver wording: ${compactSummary}`);
   await summaryExpand.locator("summary").click();

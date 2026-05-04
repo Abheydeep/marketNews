@@ -30,7 +30,7 @@ import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mj
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
-import { publicDigestPayload } from "./public-payload.mjs";
+import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -394,6 +394,61 @@ await test("public source selection excludes no-direct India stories when direct
   assert.ok(Math.max(...categoryCounts.values()) <= 4, `visible source stack should not overconcentrate one bucket: ${JSON.stringify(Object.fromEntries(categoryCounts))}`);
 });
 
+await test("public source selection prefers India-publisher articles when available", () => {
+  const categories = ["global_risk", "macro_negative", "sector_positive", "macro_positive", "sector_negative", "neutral_volatile"];
+  const globalArticles = Array.from({ length: 8 }, (_, index) => ({
+    headline: `Global market article ${index + 1}`,
+    summary: "Global source with direct India market read-through.",
+    takeaway: "Global cue can affect the India open.",
+    indiaImpact: "Nifty and Bank Nifty need breadth confirmation.",
+    watchFor: "Watch index breadth after the first range.",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/global-market-article-${index + 1}.html`,
+    sourceName: "CNBC Markets",
+    category: categories[index % categories.length],
+    entityName: index % 2 === 0 ? "Brent Crude" : "Rates",
+    publishedAt: "2026-05-03T12:00:00.000Z",
+    sentimentScore: index % 2 === 0 ? -0.32 : 0.24,
+    entityMatchScore: 0.72
+  }));
+  const indiaArticles = [
+    {
+      headline: "Gift Nifty signals a cautious Indian open",
+      summary: "India-linked source with direct index read-through.",
+      takeaway: "Gift Nifty points to a cautious start for domestic index traders.",
+      indiaImpact: "Bearish for Nifty until breadth improves.",
+      watchFor: "Watch Gift Nifty discount into the 9:15 open.",
+      sourceUrl: "https://www.moneycontrol.com/news/business/markets/gift-nifty-signals-cautious-open-2026-05-03.html",
+      sourceName: "Moneycontrol Markets",
+      category: "neutral_volatile",
+      entityName: "Nifty Open",
+      publishedAt: "2026-05-03T13:00:00.000Z",
+      sentimentScore: -0.28,
+      entityMatchScore: 0.86
+    },
+    {
+      headline: "Rupee traders track dollar resilience before RBI week",
+      summary: "India currency source with direct FX read-through.",
+      takeaway: "Dollar strength keeps USD/INR and rate-sensitive sectors in focus.",
+      indiaImpact: "Bearish for rate-sensitive pockets if USD/INR stays firm.",
+      watchFor: "Watch USD/INR against the morning high.",
+      sourceUrl: "https://www.livemint.com/market/stock-market-news/rupee-traders-track-dollar-resilience-before-rbi-week-2026-05-03.html",
+      sourceName: "Livemint Markets",
+      category: "macro_negative",
+      entityName: "USD/INR",
+      publishedAt: "2026-05-03T13:30:00.000Z",
+      sentimentScore: -0.22,
+      entityMatchScore: 0.88
+    }
+  ];
+  const selection = publicSourceSelectionForDigest("2026-05-04", [...globalArticles, ...indiaArticles]);
+  assert.equal(selection.visibleArticles.length, 8);
+  assert.equal(selection.publicSummary.indiaPublisherCount, 2);
+  assert.equal(selection.publicSummary.shortlistIndiaPublisherCount, 2);
+  assert.match(selection.publicSummary.indiaPublisherCoverage, /2 India-source articles/);
+  assert.ok(selection.visibleArticles.some((article) => /moneycontrol/i.test(article.sourceName)));
+  assert.ok(selection.visibleArticles.some((article) => /livemint/i.test(article.sourceName)));
+});
+
 await test("full digest contains public SEO and studio contracts", async () => {
   const digest = await buildDigest("2026-04-29");
   assert.ok(["BEARISH", "VOLATILE"].includes(digest.sentimentLabel));
@@ -455,8 +510,10 @@ await test("daily briefing and trading guide render the correct first-fold hiera
 
   assert.ok(publicHtml.indexOf('id="public-view" class="tab-content"') < publicHtml.indexOf('id="trading-guide-view" class="tab-content hidden"'));
   assert.ok(publicHtml.indexOf("2 Minute Summary") < publicHtml.indexOf("Today's Trade Map"));
+  assert.match(publicHtml, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/);
   assert.ok(guideHtml.indexOf('id="trading-guide-view" class="tab-content"') < guideHtml.indexOf('id="public-view" class="tab-content hidden"'));
   assert.ok(guideHtml.indexOf("Today's Trade Map") < guideHtml.indexOf("2 Minute Summary"));
+  assert.ok(guideHtml.includes("Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch."));
   assert.doesNotMatch(guideHtml.slice(0, guideHtml.indexOf("Today's Trade Map")), /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
 });
@@ -464,8 +521,13 @@ await test("daily briefing and trading guide render the correct first-fold hiera
 await test("public digest payload ships compact display DTOs", async () => {
   const digest = await buildDigest("2026-04-29");
   const payload = publicDigestPayload(digest);
+  const redactedPayload = redactedDigestPayload(digest);
   const newsKeys = Object.keys(payload.news[0]).sort();
 
+  assert.equal(payload.status, "PUBLISHED");
+  assert.equal(redactedPayload.status, "PUBLISHED");
+  assert.equal(JSON.stringify(payload).includes('"status":"DRAFT"'), false);
+  assert.equal(JSON.stringify(redactedPayload).includes('"status":"DRAFT"'), false);
   assert.equal(Object.hasOwn(payload, "teleprompterScript"), false);
   assert.equal(Object.hasOwn(payload, "reelScript"), false);
   assert.equal(payload.asset?.positivePrompt, undefined);
@@ -497,6 +559,8 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.ok(payload.dailyLead?.driverType);
   assert.equal(payload.publicSourceSelection.visibleCount, 8);
   assert.equal(payload.publicSourceSelection.windowHours, 24);
+  assert.ok(Number.isFinite(payload.publicSourceSelection.indiaPublisherCount));
+  assert.ok(payload.publicSourceSelection.indiaPublisherCoverage);
   assert.equal(JSON.stringify(payload).includes("sourceDebug"), false);
   assert.equal(JSON.stringify(payload).includes("rejectedSources"), false);
   assert.equal(payload.sourceStats.articleCount, digest.news.length);
@@ -604,6 +668,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("holding-name-line"));
   assert.ok(html.includes("holding-card-grid"));
   assert.ok(html.includes("holding-card-role"));
+  assert.ok(html.includes("holding-card-key-metrics"));
+  assert.ok(html.indexOf("holding-card-key-metrics") < html.indexOf("holding-card-metrics"));
+  assert.ok(html.includes("Since entry</span><strong"));
   assert.ok(html.includes("Detailed Ledger"));
   assert.ok(html.includes("quote-source-line"));
   assert.ok(html.includes("Capped slot"));
@@ -963,6 +1030,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveToneClass"));
   assert.ok(publisher.includes("sentimentSparklineHtml"));
   assert.ok(publisher.includes('details class="digest-card'));
+  assert.ok(publisher.includes("hero-actions"));
+  assert.ok(publisher.includes("Read today's brief"));
+  assert.ok(publisher.includes("Open Trading Guide"));
+  assert.ok(publisher.includes("Track Portfolio"));
   assert.ok(publisher.includes("archiveSourceQualityLine"));
   assert.ok(publisher.includes("archiveSourcePreviewHtml"));
   assert.ok(publisher.includes("assertNewDigestSourceIntegrity"));
@@ -1613,6 +1684,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Plain-English role legend"));
   assert.ok(multibaggerHtml.body.includes("holding-name-line"));
   assert.ok(multibaggerHtml.body.includes("holding-card-grid"));
+  assert.ok(multibaggerHtml.body.includes("holding-card-key-metrics"));
+  assert.ok(multibaggerHtml.body.indexOf("holding-card-key-metrics") < multibaggerHtml.body.indexOf("holding-card-metrics"));
   assert.ok(multibaggerHtml.body.includes("Detailed Ledger"));
   assert.ok(
     multibaggerHtml.body.indexOf('aria-label="Current model holdings"') < multibaggerHtml.body.indexOf('aria-label="Public model performance"'),

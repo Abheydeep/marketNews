@@ -342,7 +342,43 @@ function sanitizePublicArticleCopy(article) {
       patched.takeaway = String(patched.takeaway || "").replace(staleTemplate, "matters for India only if margins, guidance, or demand can travel to listed peers.");
     }
   }
+  for (const field of ["takeaway", "indiaImpact", "watchFor", "whyItMatters"]) {
+    patched[field] = sanitizeGeneratedTemplateText(patched[field], patched);
+  }
   return patched;
+}
+
+function sanitizeGeneratedTemplateText(value, article = {}) {
+  let text = String(value || "");
+  if (!text) {
+    return text;
+  }
+  const articleText = `${article.headline || ""} ${article.summary || ""}`.toLowerCase();
+  text = text
+    .replace(
+      /Brent,\s*OMC margins,\s*aviation fuel and inflation expectations are the India open transmission line\.?/gi,
+      "Brent direction decides the India read-through for OMCs, aviation, paints, tyres, and inflation expectations."
+    )
+    .replace(
+      /translate it into levels,\s*breadth and sector leadership before assigning it trading weight\.?/gi,
+      "Treat it as a global risk-appetite cue only after Indian breadth confirms."
+    )
+    .replace(
+      /treat it as Global Tech earnings-quality evidence until India gets matching sector breadth\.?/gi,
+      "Treat it as a Nifty IT watch item only if Indian exporters confirm."
+    )
+    .replace(
+      /Watch Brent at the 6 AM IST print;\s*above \$108 keeps OMC and aviation headline risk alive\.?/gi,
+      "Watch Brent direction before the Europe open; India impact needs OMC, aviation, and inflation confirmation."
+    )
+    .replace(
+      /evidence matters only if margins,\s*guidance,?\s*or demand can travel to listed Indian peers\.?/gi,
+      "matters for India only if margins, guidance, or demand can travel to listed peers."
+    );
+  if (/blue owl|spacex|carvana|used car/i.test(articleText)) {
+    text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "No direct India read-through for this story.");
+  }
+  return cleanArchiveSentence(text);
 }
 
 function safePublicSourceSelection(date, news) {
@@ -692,6 +728,44 @@ function archivePage(digests, allDigests = digests) {
       width: 18px;
       height: 18px;
       display: block;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      max-width: 900px;
+    }
+
+    .hero-action {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.66);
+      display: grid;
+      gap: 5px;
+      min-height: 104px;
+      padding: 16px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .hero-action:hover {
+      border-color: rgba(103, 232, 249, 0.45);
+      background: rgba(15, 23, 42, 0.86);
+      transform: translateY(-2px);
+    }
+
+    .hero-action strong {
+      color: #f8fafc;
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .hero-action span {
+      color: #9fb0c8;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.45;
     }
 
     .sr-only {
@@ -1115,6 +1189,10 @@ function archivePage(digests, allDigests = digests) {
       .hero {
         margin-bottom: 22px;
       }
+
+      .hero-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -1138,6 +1216,20 @@ function archivePage(digests, allDigests = digests) {
       <h1>Market Narrative</h1>
       <p>Daily pre-market briefing for Nifty and Bank Nifty traders. Published before 7:15 AM IST on trading days.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="hero-action" href="./latest/">
+          <strong>Read today's brief</strong>
+          <span>Start with the verified 2-minute pre-market read.</span>
+        </a>
+        <a class="hero-action" href="./latest/trading-guide/">
+          <strong>Open Trading Guide</strong>
+          <span>Use the bias, gates, and no-trade zone checklist.</span>
+        </a>
+        <a class="hero-action" href="./multibagger/">
+          <strong>Track Portfolio</strong>
+          <span>Follow the public multibagger model and changes.</span>
+        </a>
+      </div>
       ${archiveShareRowHtml()}
     </section>
     <section class="summary-row" aria-label="Archive summary">
@@ -1189,7 +1281,10 @@ function archiveSourceQualityLine(digest) {
     return "Edition archived";
   }
   if (digest.publicSourceSelection) {
-    return `Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links`;
+    const indiaCoverage = digest.publicSourceSelection.indiaPublisherCoverage
+      ? ` - ${digest.publicSourceSelection.indiaPublisherCoverage}`
+      : "";
+    return `Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links${indiaCoverage}`;
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;

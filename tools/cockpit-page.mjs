@@ -6594,13 +6594,32 @@ function compactSummaryText(digest) {
     ? conciseClause(humanizeLeadCopy(digest.dailyLead.indiaImpact), 24)
     : `${driver.summary}`;
   const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
+  const watchFirst = compactWatchFirstLine(digest);
   return conciseSentence([
     headline
       ? `Before the open, ${headline}.`
       : `Before the open, ${driver.title.toLowerCase()} is the lead read.`,
+    watchFirst,
     `India read: ${impact}.`,
     `Confirmation: ${support}.`
-  ].filter(Boolean).join(" "), 42);
+  ].filter(Boolean).join(" "), 50);
+}
+
+function compactWatchFirstLine(digest) {
+  const levels = tradeMapLevels(digest, niftySetup(digest));
+  const longGate = formatLevelOrWait(levels.niftyBullishHold);
+  const shortGate = formatLevelOrWait(levels.niftyBearishBreak);
+  const driverText = `${digest?.dailyLead?.driverType || ""} ${digest?.dailyLead?.label || ""} ${digest?.dailyLead?.headline || ""}`.toLowerCase();
+  if (/\b(crude|oil|brent|opec)\b/.test(driverText)) {
+    return `Watch first: Brent reaction, then Nifty ${longGate}/${shortGate}.`;
+  }
+  if (/\b(rate|fed|yield|bond)\b/.test(driverText)) {
+    return `Watch first: US yields, then Nifty ${longGate}/${shortGate}.`;
+  }
+  if (/\b(tech|ai|semiconductor|nasdaq)\b/.test(driverText)) {
+    return `Watch first: Nasdaq futures, then Nifty ${longGate}/${shortGate}.`;
+  }
+  return `Watch first: Nifty ${longGate}/${shortGate}.`;
 }
 
 function headlineLeadClause(headline) {
@@ -6844,7 +6863,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
             </div>
           </div>
           <h1>Opening levels, confirmation, and risk gates</h1>
-          <p class="hero-subcopy">A trader-first view of the same briefing: no fresh setup unless Nifty accepts the level, Bank Nifty confirms breadth, and the first range keeps risk-reward clean.</p>
+          <p class="hero-subcopy">Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch.</p>
         </header>
 
         ${guideUrl ? shareRowHtml(guideUrl, `${digest.title} Trading Guide`, "trading guide") : ""}

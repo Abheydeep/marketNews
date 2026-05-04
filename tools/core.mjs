@@ -747,10 +747,12 @@ export function publicSourceSelectionForDigest(date, articles = []) {
     .slice(0, 25);
   const indiaLinked = shortlist.filter(hasIndiaReadThrough);
   const visiblePool = indiaLinked.length >= 8 ? indiaLinked : shortlist;
-  const visibleArticles = diverseVisibleArticles(visiblePool, 8);
+  const visibleArticles = diverseVisibleArticles(visiblePool, 8, { preferIndiaSources: true });
   if (visibleArticles.length < 8) {
     throw new Error(`Public source selection failed: only ${visibleArticles.length} India-relevant articles inside the 24-hour window; need at least 8`);
   }
+  const visibleIndiaPublisherCount = visibleArticles.filter(isIndiaPublisherArticle).length;
+  const shortlistIndiaPublisherCount = shortlist.filter(isIndiaPublisherArticle).length;
   return {
     visibleArticles,
     publicSummary: {
@@ -758,6 +760,11 @@ export function publicSourceSelectionForDigest(date, articles = []) {
       shortlistCount: shortlist.length,
       windowHours: 24,
       excludedNoDirectIndiaCount: shortlist.filter((article) => !hasIndiaReadThrough(article)).length,
+      indiaPublisherCount: visibleIndiaPublisherCount,
+      shortlistIndiaPublisherCount,
+      indiaPublisherCoverage: visibleIndiaPublisherCount > 0
+        ? `${visibleIndiaPublisherCount} India-source article${visibleIndiaPublisherCount === 1 ? "" : "s"} in the public stack`
+        : "India-source coverage limited; global article links used only as India read-through context",
       visibleSourceUrls: visibleArticles.map((article) => article.sourceUrl).filter(Boolean)
     }
   };
@@ -852,13 +859,21 @@ function uniqueSourceArticles(articles = []) {
   return unique;
 }
 
-function diverseVisibleArticles(articles, limit) {
+function diverseVisibleArticles(articles, limit, options = {}) {
   const selected = [];
   const selectedKeys = new Set();
   const categoryOrder = ["macro_negative", "global_risk", "sector_positive", "macro_positive", "sector_negative", "neutral_volatile"];
   const categoryCount = new Map();
   const categoryUniverse = new Set((articles ?? []).map((article) => article.category || "market"));
   const maxPerCategory = Math.max(2, Math.ceil(limit / Math.max(2, categoryUniverse.size)));
+  if (options.preferIndiaSources) {
+    for (const article of (articles ?? []).filter(isIndiaPublisherArticle)) {
+      addVisibleSource(article, selected, selectedKeys, limit, categoryCount, maxPerCategory);
+      if (selected.filter(isIndiaPublisherArticle).length >= 2) {
+        break;
+      }
+    }
+  }
   for (const category of categoryOrder) {
     addVisibleSource((articles ?? []).find((article) => (article.category || "market") === category), selected, selectedKeys, limit, categoryCount, maxPerCategory);
   }
@@ -901,9 +916,15 @@ function hasIndiaReadThrough(article) {
   return !/^no direct indian\b|^no direct india read-through/i.test(String(article?.indiaImpact || "").trim());
 }
 
+function isIndiaPublisherArticle(article) {
+  const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
+  return /\b(moneycontrol|livemint|mint|business-standard|financialexpress|economic-times|economictimes|etmarkets|nseindia|bseindia|rbi\.org|sebi\.gov|thehindubusinessline|businessline)\b/.test(text);
+}
+
 function indiaSourceScore(article, date) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""}`.toLowerCase();
   let score = Math.abs(Number(article?.sentimentScore) || 0) * 5 + (Number(article?.entityMatchScore) || 0);
+  if (isIndiaPublisherArticle(article)) score += 9;
   if (hasIndiaReadThrough(article)) score += 8;
   if (["macro_negative", "global_risk"].includes(article?.category)) score += 4;
   if (["sector_positive", "macro_positive", "sector_negative"].includes(article?.category)) score += 3;

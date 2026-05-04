@@ -19,6 +19,7 @@ export function publicDigestPayload(digest) {
 
   return {
     ...publicFields,
+    status: "PUBLISHED",
     marketSnapshots: (marketSnapshots ?? []).map(publicMarketSnapshotDto),
     news: newsCards,
     newsCards,
@@ -51,6 +52,7 @@ export function redactedDigestPayload(digest) {
 
   return {
     ...publicFields,
+    status: "PUBLISHED",
     news: (news ?? []).map(publicSourceArticleDto),
     newsCards,
     setupAudit: (setupAudit ?? []).map(publicSetupAuditDto),

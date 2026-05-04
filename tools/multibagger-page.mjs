@@ -877,9 +877,15 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       margin: -4px 0 0;
     }
 
+    .holding-card-key-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
     .holding-card-metrics {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -914,6 +920,15 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .holding-card-stat.movement strong {
       font-size: 18px;
+    }
+
+    .holding-card-key-metrics .holding-card-stat {
+      min-height: 72px;
+      padding: 11px;
+    }
+
+    .holding-card-key-metrics .holding-card-stat strong {
+      font-size: 22px;
     }
 
     .holding-card-secondary {
@@ -1352,6 +1367,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .module-grid,
       .allocation-grid,
       .holding-card-grid,
+      .holding-card-key-metrics,
       .holding-card-metrics,
       .holding-card-secondary,
       .role-legend,
@@ -1894,12 +1910,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return "<article class=\\"holding-card\\">"
         + "<div class=\\"holding-card-head\\"><span class=\\"holding-card-title\\"><strong>" + escapeHtml(holding.ticker) + "</strong><span>" + escapeHtml(holding.name) + "</span></span><span class=\\"holding-card-role\\">" + escapeHtml(displayLabelForHolding(holding)) + "</span></div>"
         + "<p class=\\"holding-card-summary\\">" + escapeHtml(holdingSummaryLine(holding)) + "</p>"
+        + "<div class=\\"holding-card-key-metrics\\">"
+        + "<span class=\\"holding-card-stat movement\\"><span>Since entry</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat movement\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
+        + "</div>"
         + "<div class=\\"holding-card-metrics\\">"
         + "<span class=\\"holding-card-stat\\"><span>Weight</span><strong>" + formatPercent(holding.targetWeight) + "</strong></span>"
         + "<span class=\\"holding-card-stat\\"><span>Current price</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
-        + "<span class=\\"holding-card-stat movement\\"><span>Return</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
-        + "<span class=\\"holding-card-stat movement\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
-        + "<span class=\\"holding-card-stat movement\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
         + "</div>"
         + "<div class=\\"holding-card-secondary\\">"
         + "<span><strong>Deployed</strong>" + formatInr(holding.modelAmountInr) + "</span>"
@@ -2527,12 +2545,14 @@ function holdingCardHtml(holding) {
               <span class="holding-card-role">${escapeHtml(displayLabelForHolding(holding))}</span>
             </div>
             <p class="holding-card-summary">${escapeHtml(holdingSummaryLine(holding))}</p>
+            <div class="holding-card-key-metrics">
+              <span class="holding-card-stat movement"><span>Since entry</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
+              <span class="holding-card-stat movement"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
+            </div>
             <div class="holding-card-metrics">
               <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
               <span class="holding-card-stat"><span>Current price</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
-              <span class="holding-card-stat movement"><span>Return</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
-              <span class="holding-card-stat movement"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
-              <span class="holding-card-stat movement"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
+              <span class="holding-card-stat"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
             </div>
             <div class="holding-card-secondary">
               <span><strong>Deployed</strong>${formatInr(holding.modelAmountInr)}</span>

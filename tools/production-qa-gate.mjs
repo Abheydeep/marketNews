@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i],
+    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Read today's brief/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
@@ -129,11 +129,13 @@ await group("Public user surface", async () => {
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Share this briefing/i, /Share this trading guide/i, /Bank Nifty|global cues|India/i], [/Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Share this trading guide/i, /Bank Nifty|global cues|India/i], [/Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
+    assert.equal(payload.status, "PUBLISHED", "public digest status must not expose internal DRAFT state");
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
     assert.equal(Object.hasOwn(payload, "teleprompterScript"), false, "teleprompterScript leaked");
     assert.equal(Object.hasOwn(payload, "reelScript"), false, "reelScript leaked");
+    assert.equal(JSON.stringify(payload).includes('"status":"DRAFT"'), false, "DRAFT status leaked in public digest");
   });
   await expectPage(
     "User",
