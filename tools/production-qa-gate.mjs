@@ -592,7 +592,7 @@ function isExpectedBrowserConsoleNoise(pageUrl, text) {
     return false;
   }
   const message = String(text || "");
-  if (/api\.marketnarrative\.in\/api\/public\/digest/i.test(message) && /CORS policy|ERR_FAILED/i.test(message)) {
+  if (/api\.marketnarrative\.in\/api\/public\/(digest|multibagger\/state)/i.test(message) && /CORS policy|ERR_FAILED/i.test(message)) {
     return true;
   }
   return /^Failed to load resource: net::ERR_FAILED$/i.test(message.trim());
