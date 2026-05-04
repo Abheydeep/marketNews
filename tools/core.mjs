@@ -749,7 +749,7 @@ export function publicSourceSelectionForDigest(date, articles = []) {
   const visiblePool = indiaLinked.length >= 8 ? indiaLinked : shortlist;
   const visibleArticles = diverseVisibleArticles(visiblePool, 8, { preferIndiaSources: true });
   if (visibleArticles.length < 8) {
-    throw new Error(`Public source selection failed: only ${visibleArticles.length} India-relevant articles inside the 24-hour window; need at least 8`);
+    throw new Error(`Public source selection failed: only ${visibleArticles.length} India read-through articles inside the 24-hour window; need at least 8`);
   }
   const visibleIndiaPublisherCount = visibleArticles.filter(isIndiaPublisherArticle).length;
   const shortlistIndiaPublisherCount = shortlist.filter(isIndiaPublisherArticle).length;
@@ -763,8 +763,8 @@ export function publicSourceSelectionForDigest(date, articles = []) {
       indiaPublisherCount: visibleIndiaPublisherCount,
       shortlistIndiaPublisherCount,
       indiaPublisherCoverage: visibleIndiaPublisherCount > 0
-        ? `${visibleIndiaPublisherCount} India-source article${visibleIndiaPublisherCount === 1 ? "" : "s"} in the public stack`
-        : "India-source coverage limited; global article links used only as India read-through context",
+        ? `Direct India-source articles: ${visibleIndiaPublisherCount} in the public stack`
+        : "Direct India-source articles: 0; global verified sources used only when India read-through is explicit",
       visibleSourceUrls: visibleArticles.map((article) => article.sourceUrl).filter(Boolean)
     }
   };

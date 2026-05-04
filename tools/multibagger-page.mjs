@@ -1978,7 +1978,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function heroStatusLabel(state) {
-      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Public tracking active";
+      return hasPublishedFillPerformance(state) ? "Tracking active" : "Public tracking active";
     }
 
     function isFiniteMetric(value) {
@@ -2092,7 +2092,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function heroRefreshText(state) {
       const asOf = latestQuoteAsOf(state);
-      return asOf ? "Latest quote refresh: " + asOf : "Latest quote refresh: waiting for verified quote";
+      const returnText = hasPublishedFillPerformance(state)
+        ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) + " since entry; "
+        : "";
+      return asOf ? returnText + "latest quote refresh: " + asOf : returnText + "latest quote refresh: waiting for verified quote";
     }
 
     function shortEntryCapturedLabel(state) {
@@ -2620,7 +2623,7 @@ function hasPublishedFillPerformance(state) {
 }
 
 function heroStatusLabel(state) {
-  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Public tracking active";
+  return hasPublishedFillPerformance(state) ? "Tracking active" : "Public tracking active";
 }
 
 function performanceStripHtml(state) {
@@ -2776,7 +2779,10 @@ function fillStatusText(state) {
 
 function heroRefreshText(state) {
   const asOf = latestQuoteAsOf(state);
-  return asOf ? `Latest quote refresh: ${asOf}` : "Latest quote refresh: waiting for verified quote";
+  const returnText = hasPublishedFillPerformance(state)
+    ? `${formatPerformancePercent(state.performance?.sinceLaunchPercent)} since entry; `
+    : "";
+  return asOf ? `${returnText}latest quote refresh: ${asOf}` : `${returnText}latest quote refresh: waiting for verified quote`;
 }
 
 function entryCapturedLongLabel(state) {

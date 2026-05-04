@@ -4601,13 +4601,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(digest.title)}</h1>
         </header>
 
-        ${legacyAuditBannerHtml(digest)}
-        ${editionNavHtml(digest)}
-        ${shareRowHtml(canonicalUrl, digest.title)}
-        ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
-        ${briefingFreshnessNoticeHtml(digest)}
-        ${followBriefingCtaHtml()}
-
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card" open>
           <summary>
             <div>
@@ -4625,6 +4618,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             ${expandedBriefingHtml(digest)}
           </div>
         </details>
+
+        ${legacyAuditBannerHtml(digest)}
+        ${editionNavHtml(digest)}
+        ${briefingFreshnessNoticeHtml(digest)}
+        ${shareRowHtml(canonicalUrl, digest.title)}
+        ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
+        ${followBriefingCtaHtml()}
         ${readerPathHtml(digest)}
 
         <section class="pulse-section">
@@ -4644,8 +4644,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <div class="quote-board-card">
             <button id="quoteBoardToggle" class="quote-board-toggle" type="button" aria-expanded="false" aria-controls="quoteBoardBody">
               <span class="quote-board-title">
-                <strong>Live Quote Board</strong>
-                <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
+                <strong>${escapeHtml(quoteBoardTitle(digest))}</strong>
+                <small>${escapeHtml(quoteBoardSubtitle(digest))}</small>
               </span>
               <span id="liveClock" class="live-clock">${escapeHtml(quoteSessionLabel(digest))}</span>
               <span class="disclosure-action quote-board-action"><span id="quoteBoardState">Show details</span><span class="disclosure-icon" aria-hidden="true"></span></span>
@@ -5714,7 +5714,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const mode = quotes.some((quote) => quote.dataQuality === 'live') ? 'market quote feed' : 'reference quotes';
       const liveLine = openCount > 0
         ? 'Live now ' + openCount + '/' + quotes.length + ' markets'
-        : 'Reference quotes shown - live refresh pending' + (latestSnapshotDateLabel(quotes) ? ' - latest snapshot ' + latestSnapshotDateLabel(quotes) : '');
+        : 'Previous close/reference quotes' + (latestSnapshotDateLabel(quotes) ? ' - latest snapshot ' + latestSnapshotDateLabel(quotes) : '');
       clock.textContent = (note ? note + ' - ' : '') +
         liveLine +
         (openCount > 0 ? ' - ' + mode : ' - not a live trading feed') +
@@ -6742,7 +6742,7 @@ function readerPathHtml(digest) {
       <strong>Reading path</strong>
       <div>
         <span>Read summary</span>
-        <a href="#quoteBoardToggle">Check quote board</a>
+        <a href="#quoteBoardToggle">Review quote context</a>
         <a href="${escapeHtml(tradingGuideHref)}">Open Trading Guide</a>
         <a href="#sourceLedger">Review sources</a>
       </div>
@@ -6754,8 +6754,8 @@ function briefingFreshnessNoticeHtml(digest) {
   const generated = digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`;
   return `
     <div class="session-notice" role="note" aria-label="Briefing freshness">
-      <strong>Morning briefing published at 7:15 AM IST</strong>
-      <span>Not an intraday update. Use the quote board as reference context and the Trading Guide for the open checklist. Generated ${escapeHtml(formatGeneratedTime(generated))}.</span>
+      <strong>Prepared for the 7:15 AM IST briefing</strong>
+      <span>Source stack verified at ${escapeHtml(formatGeneratedTime(generated))}. This is pre-market context, not an intraday update.</span>
     </div>
   `;
 }
@@ -6818,12 +6818,29 @@ function chartCtaPanelHtml(digest) {
   `;
 }
 
+function quoteBoardTitle(digest) {
+  return quoteBoardShowsPreviousClose(digest)
+    ? "Previous Close Quote Board"
+    : "Market Quote Board";
+}
+
+function quoteBoardSubtitle(digest) {
+  return quoteBoardShowsPreviousClose(digest)
+    ? "Archived quote context for US Overnight, Asia Watch, India Open, and Macro Hedges."
+    : "Current quote context for US Overnight, Asia Watch, India Open, and Macro Hedges.";
+}
+
 function quoteSessionLabel(digest) {
   const quotes = digest.marketSnapshots || [];
   const latest = latestSnapshotDateLabel(quotes);
+  if (quoteBoardShowsPreviousClose(digest)) {
+    return latest
+      ? `Previous close/reference quotes; latest snapshot ${latest}; not a live trading feed`
+      : "Previous close/reference quotes; not a live trading feed";
+  }
   return latest
-    ? `Reference quotes shown - live refresh pending; latest snapshot ${latest}`
-    : "Reference quotes shown - live refresh pending";
+    ? `Market quote context; latest snapshot ${latest}`
+    : "Market quote context";
 }
 
 function latestSnapshotDateLabel(quotes) {
@@ -6838,6 +6855,31 @@ function latestSnapshotDateLabel(quotes) {
     day: "2-digit",
     month: "short"
   }).format(new Date(Math.max(...timestamps)));
+}
+
+function quoteBoardShowsPreviousClose(digest) {
+  const quotes = digest.marketSnapshots || [];
+  const timestamps = quotes
+    .map((quote) => Date.parse(quote.dataTimestamp || ""))
+    .filter((value) => Number.isFinite(value));
+  if (!timestamps.length || !digest.digestDate) {
+    return true;
+  }
+  const latest = new Date(Math.max(...timestamps));
+  const digestDate = new Date(`${digest.digestDate}T00:00:00+05:30`);
+  const latestKey = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(latest);
+  const digestKey = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(digestDate);
+  return latestKey < digestKey;
 }
 
 function tradingViewUrlForSnapshot(snapshot) {
@@ -6941,6 +6983,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
         </header>
 
         ${guideUrl ? shareRowHtml(guideUrl, `${digest.title} Trading Guide`, "trading guide") : ""}
+        ${tradingGuideValidityHtml(digest)}
         ${todayTradeMapHtml(digest)}
         ${algorithmicSetupHtml(digest)}
 
@@ -6970,6 +7013,15 @@ function tradingGuideShareUrl(canonicalUrl) {
     return base.endsWith("/") ? base : `${base}/`;
   }
   return `${base.replace(/\/?$/, "/")}trading-guide/`;
+}
+
+function tradingGuideValidityHtml(digest) {
+  return `
+    <div class="session-notice" role="note" aria-label="Trading guide validity">
+      <strong>Valid for open preparation only</strong>
+      <span>Use before and during the first 30 minutes of ${escapeHtml(formatDigestDate(digest.digestDate))}. After that, treat these levels as archived context, not an active call.</span>
+    </div>
+  `;
 }
 
 function todayTradeMapHtml(digest) {
@@ -7307,7 +7359,7 @@ function twoMinuteSummaryHtml(digest) {
     ["Pressure", humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."))],
     ["Support / offset", humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."))],
     ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
-    ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India-relevant articles."]
+    ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India read-through articles."]
   ];
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary">
@@ -7535,7 +7587,7 @@ function sourceNotesHtml(digest) {
           <h2>Source Notes & Attribution</h2>
           <p class="source-section-copy">Evidence ledger behind the briefing. The full article list stays collapsed by default so the page reads quickly.</p>
           <p class="source-quality-line">${escapeHtml(sourceQualityLine(digest))}</p>
-          <p class="source-quality-line">${escapeHtml(`Showing ${articles.length} India-first notes from a ${totalArticles}-article 24-hour shortlist.`)}</p>
+          <p class="source-quality-line">${escapeHtml(`Showing ${articles.length} India read-through notes from a ${totalArticles}-article 24-hour shortlist.`)}</p>
         </div>
         <div class="source-stat-strip" aria-label="Source ledger statistics">
           <span>Notes<strong>${escapeHtml(articles.length)}</strong></span>
@@ -7663,7 +7715,7 @@ function sourceQualityLine(digest) {
     const indiaCoverage = digest.publicSourceSelection.indiaPublisherCoverage
       ? ` ${digest.publicSourceSelection.indiaPublisherCoverage}.`
       : "";
-    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.${indiaCoverage}`;
+    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.${indiaCoverage}`;
   }
   return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
 }

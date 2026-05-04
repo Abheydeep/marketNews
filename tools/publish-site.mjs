@@ -744,8 +744,8 @@ function archivePage(digests, allDigests = digests) {
       background: rgba(15, 23, 42, 0.66);
       display: grid;
       gap: 5px;
-      min-height: 104px;
-      padding: 16px;
+      min-height: 86px;
+      padding: 13px 14px;
       transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
@@ -764,7 +764,7 @@ function archivePage(digests, allDigests = digests) {
     .hero-action span {
       color: #9fb0c8;
       font-size: 13px;
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -1192,6 +1192,17 @@ function archivePage(digests, allDigests = digests) {
 
       .hero-actions {
         grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .hero-action {
+        min-height: 54px;
+        padding: 12px;
+      }
+
+      .hero-action span {
+        display: none;
       }
     }
   </style>
@@ -1284,7 +1295,7 @@ function archiveSourceQualityLine(digest) {
     const indiaCoverage = digest.publicSourceSelection.indiaPublisherCoverage
       ? ` - ${digest.publicSourceSelection.indiaPublisherCoverage}`
       : "";
-    return `Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links${indiaCoverage}`;
+    return `Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected from ${verification.verifiedArticleCount} verified article links${indiaCoverage}`;
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
@@ -1390,7 +1401,7 @@ function formatSnapshotValue(snapshot) {
 
 function archiveCardSummary(digest) {
   if (!isVerifiedPublicDigest(digest)) {
-    return "Archived continuity page. Newer editions use verified article-level sources and India-first source selection.";
+    return "Archived continuity page. Newer editions use verified article-level sources and India read-through selection.";
   }
   if (digest.dailyLead?.indiaImpact) {
     return compactWords(`${digest.dailyLead.label}: ${digest.dailyLead.indiaImpact}`, 38);

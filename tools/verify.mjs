@@ -444,7 +444,7 @@ await test("public source selection prefers India-publisher articles when availa
   assert.equal(selection.visibleArticles.length, 8);
   assert.equal(selection.publicSummary.indiaPublisherCount, 2);
   assert.equal(selection.publicSummary.shortlistIndiaPublisherCount, 2);
-  assert.match(selection.publicSummary.indiaPublisherCoverage, /2 India-source articles/);
+  assert.match(selection.publicSummary.indiaPublisherCoverage, /Direct India-source articles: 2/);
   assert.ok(selection.visibleArticles.some((article) => /moneycontrol/i.test(article.sourceName)));
   assert.ok(selection.visibleArticles.some((article) => /livemint/i.test(article.sourceName)));
 });
@@ -520,9 +520,14 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.ok(guideHtml.includes("Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch."));
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
-  assert.ok(publicHtml.includes("Morning briefing published at 7:15 AM IST"));
+  assert.ok(publicHtml.includes("Prepared for the 7:15 AM IST briefing"));
   assert.ok(publicHtml.includes("Get tomorrow's 7:15 AM brief"));
   assert.ok(publicHtml.includes("India-source"));
+  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share/mood modules");
+  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Market Mood"), "2-minute summary should appear before market mood rail");
+  assert.ok(publicHtml.includes("Previous Close Quote Board") || publicHtml.includes("Market Quote Board"));
+  assert.equal(publicHtml.includes("Live Quote Board"), false);
+  assert.equal(publicHtml.includes("live refresh pending"), false);
 });
 
 await test("public digest payload ships compact display DTOs", async () => {
@@ -1054,7 +1059,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes('isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing"'));
   assert.ok(publisher.includes("Archived continuity page. Newer editions use verified article-level sources"));
   assert.ok(publisher.includes("sentiment-sparkline"));
-  assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected"));
+  assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected"));
   assert.ok(publisher.includes("overflow-x: auto"));
   assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");
   for (const roughCopy of [
@@ -1459,9 +1464,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
   assert.ok(publicHtml.body.includes("Share this briefing"));
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
-  assert.ok(publicHtml.body.includes("Morning briefing published at 7:15 AM IST"));
+  assert.ok(publicHtml.body.includes("Prepared for the 7:15 AM IST briefing"));
   assert.ok(publicHtml.body.includes("Get tomorrow's 7:15 AM brief"));
-  assert.ok(publicHtml.body.includes("Reference quotes shown - live refresh pending"));
+  assert.ok(publicHtml.body.includes("Previous close/reference quotes") || publicHtml.body.includes("Market quote context"));
+  assert.equal(publicHtml.body.includes("live refresh pending"), false);
   assert.equal(publicHtml.body.includes("Last available close"), false);
   assert.equal(publicHtml.body.includes("live data not yet available"), false);
   assert.equal(publicHtml.body.includes("Today's Trade Map"), false);
@@ -1496,6 +1502,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Project Components"));
   assert.ok(!publicHtml.body.includes('id="architecture-view"'));
   assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'));
+  assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("Share this briefing"), "2-minute summary should render before share controls");
+  assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("Market Mood"), "2-minute summary should render before mood cards");
   assert.ok(publicHtml.body.includes("2 Minute Summary"));
   assert.equal(/[A-Za-z0-9][,;:]\./.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs,.");
   assert.equal(/[A-Za-z0-9]\.[;:]/.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs.;");
@@ -1529,6 +1537,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal((tradingGuideHtml.body.match(/<h1/g) || []).length, 1);
   assert.ok(tradingGuideHtml.body.includes("Today's Trade Map"));
   assert.ok(tradingGuideHtml.body.includes("Completed Setups") || tradingGuideHtml.body.includes("Active Game Plan"));
+  assert.ok(tradingGuideHtml.body.includes("Valid for open preparation only"));
+  assert.ok(tradingGuideHtml.body.includes("After that, treat these levels as archived context"));
   assert.equal(tradingGuideHtml.body.includes("Daily Pre-Market Summary"), false);
   assert.equal(tradingGuideHtml.body.includes("2 Minute Summary"), false);
   assert.ok(publicHtml.body.includes("India impact"));
@@ -1554,9 +1564,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
-  assert.ok(publicHtml.body.includes("Top 8 India-relevant notes selected from"));
-  assert.ok(publicHtml.body.includes("India-source"));
-  assert.ok(publicHtml.body.includes("Showing 8 India-first notes"));
+  assert.ok(publicHtml.body.includes("Top 8 India read-through notes selected from"));
+  assert.ok(publicHtml.body.includes("Direct India-source articles"));
+  assert.ok(publicHtml.body.includes("Showing 8 India read-through notes"));
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure") || publicHtml.body.includes("Global Risk"));
@@ -1582,7 +1592,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
   assert.equal(publicHtml.body.includes("Stop Loss"), false);
-  assert.ok(publicHtml.body.includes("Live Quote Board"));
+  assert.ok(publicHtml.body.includes("Previous Close Quote Board") || publicHtml.body.includes("Market Quote Board"));
+  assert.equal(publicHtml.body.includes("Live Quote Board"), false);
   assert.ok(publicHtml.body.includes('id="quoteBoardToggle"'));
   assert.ok(publicHtml.body.includes('aria-expanded="false"'));
   assert.ok(publicHtml.body.includes('id="quoteBoardBody" class="quote-board-body" hidden'));

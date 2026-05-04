@@ -82,7 +82,7 @@ async function runCycle(page, cycle) {
   assert.ok(openDailyHref?.includes(dailySlug), `archive card points at unexpected href: ${openDailyHref}`);
   await expectOne(page.locator(".sentiment-sparkline").first(), "archive sentiment sparkline");
   await expectOne(page.getByText("Why it mattered for India", { exact: true }).first(), "archive India relevance driver");
-  await expectOne(page.getByText("Top 8 India-relevant notes selected", { exact: false }).first(), "archive simplified source-count language");
+  await expectOne(page.getByText("Top 8 India read-through notes selected", { exact: false }).first(), "archive simplified source-count language");
   assert.equal(
     await page.getByText("Daily Pre-Market Summary", { exact: true }).count(),
     0,
@@ -92,7 +92,7 @@ async function runCycle(page, cycle) {
   await openPublicPage(page, dailyUrl);
   await expectDailyContent(page);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, "daily briefing must not render hidden trading-guide content");
-  await expectOne(page.getByText("Morning briefing published at 7:15 AM IST", { exact: false }), "briefing freshness notice");
+  await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), "briefing freshness notice");
   await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), "briefing follow CTA");
   await expandQuoteBoard(page);
 
@@ -213,6 +213,13 @@ async function expectDailyContent(page) {
   await expectOne(summaryExpand, "compact expandable summary");
   await expectOne(publicView.getByText("2 Minute Summary", { exact: true }).first(), "compact summary label");
   await expectOne(publicView.locator("#summaryExpand[open]"), "visible two-minute summary");
+  const summaryBeforeShareAndMood = await publicView.locator("#summaryExpand").evaluate((node) => {
+    const summaryTop = node.getBoundingClientRect().top;
+    const shareTop = document.querySelector(".share-row")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+    const moodTop = document.querySelector("[aria-label='Market mood and priority signals']")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+    return summaryTop < shareTop && summaryTop < moodTop;
+  });
+  assert.equal(summaryBeforeShareAndMood, true, "two-minute summary should appear before share and mood modules");
   const compactSummary = await summaryExpand.locator("summary p").innerText({ timeout: 10_000 });
   assert.ok(compactSummary.split(/\s+/).filter(Boolean).length <= 50, "compact summary should be 50 words or fewer");
   assert.match(compactSummary, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/, `compact summary missing hard first-watch level: ${compactSummary}`);
@@ -229,7 +236,8 @@ async function expectDailyContent(page) {
   assert.equal(await publicView.getByRole("heading", { name: "View Chart On TradingView" }).count(), 0, "daily brief should not show standalone chart CTA");
   assert.equal(await publicView.locator(".setup-card").count(), 0, "daily brief should not show trading recommendations");
   await expectOne(publicView.locator("#quoteBoardToggle"), "quote board toggle");
-  await expectOne(publicView.getByText("Reference quotes shown - live refresh pending", { exact: false }), "safer quote board stale/live state");
+  await expectOne(publicView.getByText("Previous close/reference quotes", { exact: false }).or(publicView.getByText("Market quote context", { exact: false })), "explicit quote-board context");
+  assert.equal(await publicView.getByText("live refresh pending", { exact: false }).count(), 0, "quote board must not imply live refresh when showing archived context");
   assert.equal(await publicView.getByText("Last available close", { exact: false }).count(), 0, "quote board must not foreground stale close copy");
   await expectOne(publicView.locator('#quoteBoardToggle[aria-expanded="false"]'), "collapsed quote board toggle");
   await expectOne(publicView.locator("#quoteBoardBody[hidden]"), "collapsed quote board body");
@@ -238,7 +246,7 @@ async function expectDailyContent(page) {
   }
   assert.equal(await page.locator('button[data-symbol="NIKKEI"]').count(), 0, "index tiles should not render until quote board expands");
   const sourceCards = await publicView.locator(".source-card").count();
-  assert.equal(sourceCards, 8, `expected 8 India-first source cards, got ${sourceCards}`);
+  assert.equal(sourceCards, 8, `expected 8 India read-through source cards, got ${sourceCards}`);
   assert.equal(await publicView.locator(".source-card .source-thumb").count(), sourceCards, "each source card should render one thumbnail");
   assert.equal(await publicView.getByText("weight 0.", { exact: false }).count(), 0, "raw source weights should not render");
 }

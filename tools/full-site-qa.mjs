@@ -199,7 +199,7 @@ async function verifyDarkPreview(page, stamp) {
   await expectOne(page.getByText("Market Mood", { exact: true }), "dark preview market mood rail");
   await expectOne(page.getByText("Primary Driver", { exact: true }), "dark preview primary driver rail");
   await expectOne(page.getByText("India Filter", { exact: true }), "dark preview india filter rail");
-  await expectOne(page.getByText("Live Quote Board", { exact: true }), "dark preview live quote board");
+  await expectOne(page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })), "dark preview quote board");
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "dark preview should not expose Studio Command");
   assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
@@ -448,7 +448,7 @@ async function verifyDailyPage(page, daily, stamp) {
   } else {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
-  await expectOne(page.getByText("Live Quote Board", { exact: true }), `${daily.slug} live quote board`);
+  await expectOne(page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })), `${daily.slug} quote board`);
   await expectAtLeast(page.locator(".share-row"), 1, `${daily.slug} share row`);
   assert.equal(await page.getByRole("link", { name: "Admin Login" }).count(), 0, `${daily.slug} should not expose admin login`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
@@ -464,8 +464,18 @@ async function verifyDailyPage(page, daily, stamp) {
 
   const tabs = await verifyPublicNavigation(page, daily);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, `${daily.slug} should not render hidden trading guide content`);
-  await expectOne(page.getByText("Morning briefing published at 7:15 AM IST", { exact: false }), `${daily.slug} freshness notice`);
+  await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), `${daily.slug} freshness notice`);
   await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), `${daily.slug} follow CTA`);
+  assert.equal(
+    (await page.locator("#summaryExpand").evaluate((node) => {
+      const summaryTop = node.getBoundingClientRect().top;
+      const shareTop = document.querySelector(".share-row")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      const moodTop = document.querySelector("[aria-label='Market mood and priority signals']")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      return summaryTop < shareTop && summaryTop < moodTop;
+    })),
+    true,
+    `${daily.slug} two-minute summary should appear before share and mood modules`
+  );
   await verifySummary(page, daily, { keepOpen: true });
   await verifyDarkSurfaceContrast(page, `${daily.slug} expanded dark summary`);
   await page.locator("#summaryExpand > summary").click();
