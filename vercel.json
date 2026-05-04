@@ -2,5 +2,27 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install",
   "buildCommand": "npm run vercel:build",
-  "outputDirectory": "out/vercel"
+  "outputDirectory": "out/vercel",
+  "redirects": [
+    {
+      "source": "/latest/",
+      "destination": "/4may2026/",
+      "permanent": false
+    },
+    {
+      "source": "/latest",
+      "destination": "/4may2026/",
+      "permanent": false
+    },
+    {
+      "source": "/latest/trading-guide/",
+      "destination": "/4may2026/trading-guide/",
+      "permanent": false
+    },
+    {
+      "source": "/latest/trading-guide",
+      "destination": "/4may2026/trading-guide/",
+      "permanent": false
+    }
+  ]
 }

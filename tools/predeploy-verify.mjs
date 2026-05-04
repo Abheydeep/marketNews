@@ -114,7 +114,10 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Current value/);
   assertOutput("multibagger/index.html", /Public tracking active|Rs 5L public baseline/);
   assertOutputNot("multibagger/index.html", /Baseline live/);
-  assertOutput("multibagger/index.html", /Since public fill baseline/);
+  assertOutput("multibagger/index.html", /Since entry \(04 May 2026, 02:12 pm\)/);
+  assertOutput("latest/index.html", /Market Narrative latest briefing/);
+  assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide/);
+  assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);
   assertOutput("multibagger/index.html", /Research model started 27 Apr 2026/);
   assertOutput("multibagger/index.html", /Entries captured 04 May, 02:12 pm/);
   assertOutput("multibagger/index.html", /Latest quote refresh/);

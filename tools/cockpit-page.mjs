@@ -18,8 +18,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicTabs = new Set(["public-view", "trading-guide-view"]);
   const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
-  const pageTitle = `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
-  const pageDescription = "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
+  const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
+  const pageTitle = isTradingGuidePage
+    ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
+    : `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
+  const pageDescription = isTradingGuidePage
+    ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
+    : "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
   const pageOrigin = options.siteOrigin ?? siteOrigin;
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
@@ -40,7 +45,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     : "";
   const multibaggerLinkHtml = includeStudio
     ? ""
-    : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Multibagger Portfolio</a>`;
+    : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Portfolio</a>`;
   const adminMultibaggerLinkHtml = includeStudio
     ? `<button class="tab-btn" data-target="multibagger-admin-view">Multibagger Review</button>`
     : "";
@@ -520,7 +525,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .disclosure-icon::before {
-      content: "+";
+      content: "▾";
       transform: translateY(-1px);
     }
 
@@ -537,7 +542,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .briefing-expand-card[open] .disclosure-icon::before,
     .source-ledger-details[open] .disclosure-icon::before,
     .quote-board-toggle.open .disclosure-icon::before {
-      content: "-";
+      content: "▴";
       transform: translateY(-1px);
     }
 
@@ -1743,6 +1748,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .legacy-audit-banner,
     .edition-nav,
     .share-row,
+    .reader-path,
     .chart-cta-panel {
       border: 1px solid rgba(148, 163, 184, 0.24);
       border-radius: 14px;
@@ -1759,13 +1765,36 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .edition-nav,
-    .share-row {
+    .share-row,
+    .reader-path {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
       justify-content: space-between;
       margin: 14px 0;
+    }
+
+    .reader-path strong {
+      color: #f8fafc;
+      font-size: 14px;
+    }
+
+    .reader-path div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .reader-path a,
+    .reader-path span {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.38);
+      color: #dbeafe;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 900;
     }
 
     .edition-nav a,
@@ -4529,8 +4558,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
             <span class="disclosure-action summary-disclosure-action" aria-hidden="true">
-              <span class="label-closed">Expand</span>
-              <span class="label-open">Collapse</span>
+              <span class="label-closed">Show details</span>
+              <span class="label-open">Hide details</span>
               <span class="disclosure-icon"></span>
             </span>
           </summary>
@@ -4538,6 +4567,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             ${expandedBriefingHtml(digest)}
           </div>
         </details>
+        ${readerPathHtml(digest)}
 
         <section class="pulse-section">
           <div class="section-kicker">
@@ -4560,7 +4590,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
                 <small>Click to view US Overnight, Asia Watch, India Open, and Macro Hedges.</small>
               </span>
               <span id="liveClock" class="live-clock">${escapeHtml(quoteSessionLabel(digest))}</span>
-              <span class="disclosure-action quote-board-action"><span id="quoteBoardState">Expand</span><span class="disclosure-icon" aria-hidden="true"></span></span>
+              <span class="disclosure-action quote-board-action"><span id="quoteBoardState">Show details</span><span class="disclosure-icon" aria-hidden="true"></span></span>
             </button>
             <div id="quoteBoardBody" class="quote-board-body" hidden>
               <div id="regionalBreadth" class="regional-breadth">
@@ -5232,7 +5262,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             toggle.classList.add('open');
           }
           if (body) body.hidden = false;
-          if (state) state.textContent = 'Collapse';
+          if (state) state.textContent = 'Hide details';
           renderIndexBoard();
         });
       });
@@ -5282,7 +5312,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         toggle.classList.toggle('open', expanded);
         body.hidden = !expanded;
         if (state) {
-          state.textContent = expanded ? 'Collapse' : 'Expand';
+          state.textContent = expanded ? 'Hide details' : 'Show details';
         }
         renderIndexBoard();
       }
@@ -6572,7 +6602,7 @@ function legacyAuditBannerHtml(digest) {
   }
   return `
     <div class="legacy-audit-banner" role="note">
-      Legacy source audit unavailable. This direct archive page is kept for continuity and is hidden from the public briefing archive.
+      Archived edition. This older briefing is preserved for continuity; newer editions use the verified article-link source ledger.
     </div>
   `;
 }
@@ -6586,6 +6616,23 @@ function editionNavHtml(digest) {
     return "";
   }
   return `<nav class="edition-nav" aria-label="Briefing editions">${links.join("")}</nav>`;
+}
+
+function readerPathHtml(digest) {
+  const tradingGuideHref = digest.canonicalPath && /\/trading-guide\/?$/i.test(digest.canonicalPath)
+    ? "#trading-guide-view"
+    : "./trading-guide/";
+  return `
+    <nav class="reader-path" aria-label="Suggested reading path">
+      <strong>Reading path</strong>
+      <div>
+        <span>Read summary</span>
+        <a href="#quoteBoardToggle">Check quote board</a>
+        <a href="${escapeHtml(tradingGuideHref)}">Open Trading Guide</a>
+        <a href="#sourceLedger">Review sources</a>
+      </div>
+    </nav>
+  `;
 }
 
 function shareRowHtml(canonicalUrl, title, contextLabel = "briefing") {
@@ -6730,7 +6777,7 @@ function marketMoodRailHtml(digest) {
 function tradingGuideViewHtml(digest, canonicalUrl = "") {
   const levels = tradeMapLevels(digest, niftySetup(digest));
   const primaryDriver = primaryDriverForDigest(digest);
-  const guideUrl = canonicalUrl ? `${canonicalUrl.replace(/#.*$/, "")}#trading-guide` : "";
+  const guideUrl = canonicalUrl ? tradingGuideShareUrl(canonicalUrl) : "";
   return `
     <section id="trading-guide-view" class="tab-content hidden">
       <div class="briefing-shell trading-guide-shell">
@@ -6770,6 +6817,14 @@ function tradingGuideViewHtml(digest, canonicalUrl = "") {
       </div>
     </section>
   `;
+}
+
+function tradingGuideShareUrl(canonicalUrl) {
+  const base = canonicalUrl.replace(/#.*$/, "");
+  if (/\/trading-guide\/?$/i.test(base)) {
+    return base.endsWith("/") ? base : `${base}/`;
+  }
+  return `${base.replace(/\/?$/, "/")}trading-guide/`;
 }
 
 function todayTradeMapHtml(digest) {
@@ -7332,8 +7387,8 @@ function sourceNotesHtml(digest) {
             <p>Starts with the highest-impact category only. Use All when you want the complete research trail.</p>
           </div>
           <span class="disclosure-action source-ledger-action" aria-hidden="true">
-            <span class="label-closed">Expand</span>
-            <span class="label-open">Collapse</span>
+            <span class="label-closed">Show details</span>
+            <span class="label-open">Hide details</span>
             <span class="disclosure-icon"></span>
           </span>
         </summary>
@@ -7365,7 +7420,7 @@ function topIndiaRelevantSourceArticles(articles, limit = 5) {
 
   const selected = [];
   const selectedKeys = new Set();
-  const categoryOrder = ["macro_negative", "global_risk", "macro_positive", "sector_positive", "neutral_volatile"];
+  const categoryOrder = ["macro_negative", "global_risk", "macro_positive", "sector_positive", "sector_negative", "neutral_volatile"];
   for (const category of categoryOrder) {
     const candidate = (byCategory.get(category) || [])[0];
     addSourceCandidate(candidate, selected, selectedKeys, limit);
@@ -7446,7 +7501,7 @@ function formatGeneratedTime(value) {
 function sourceLeadCardHtml(article) {
   const sourceLink = sourceUrlLooksArticleLevel(article.sourceUrl)
     ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
-    : '<span class="source-name">Legacy source link suppressed</span>';
+    : '<span class="source-name">Archived source link unavailable</span>';
   return `
     <article class="info-card source-lead-card">
       ${articleThumbnailHtml(article)}
@@ -7526,10 +7581,10 @@ function sourceEvidenceCardHtml(article) {
   const hasArticleUrl = sourceUrlLooksArticleLevel(article.sourceUrl);
   const linkAttrs = hasArticleUrl
     ? `role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(article.headline)}" data-source-url="${escapeHtml(article.sourceUrl)}"`
-    : `aria-label="Legacy source note: ${escapeHtml(article.headline)}"`;
+    : `aria-label="Archived source note: ${escapeHtml(article.headline)}"`;
   const footerLink = hasArticleUrl
     ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
-    : '<span>Legacy link suppressed</span>';
+    : '<span>Archived link unavailable</span>';
   return `
     <article class="info-card source-card source-evidence-card" ${linkAttrs} data-source-category="${escapeHtml(article.category || "market")}" data-source-name="${escapeHtml(article.sourceName)}">
       ${articleThumbnailHtml(article)}

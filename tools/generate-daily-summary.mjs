@@ -5,6 +5,7 @@ import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
+import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -43,6 +44,7 @@ await writeFile(jsonPath, `${JSON.stringify(digest, null, 2)}\n`, "utf8");
 await writeFile(htmlPath, publicHtml, "utf8");
 await writeFile(studioHtmlPath, cockpitPage(digest, "studio-view", { includeStudio: true }), "utf8");
 await writeFile(reelScriptPath, reelScriptMarkdown(digest), "utf8");
+const latestRedirectSlug = await updateLatestRedirect({ date });
 
 process.stdout.write(`Daily pre-market summary generated for ${date}\n`);
 process.stdout.write(`Scheduled-for timestamp: ${digest.scheduledFor}\n`);
@@ -50,6 +52,7 @@ process.stdout.write(`Generated-at timestamp: ${digest.generatedAt}\n`);
 process.stdout.write(`Market-data mode: ${digest.marketDataMode}\n`);
 process.stdout.write(`News-data mode: ${digest.newsDataMode}\n`);
 process.stdout.write(`Verified article links: ${digest.sourceVerification?.verifiedArticleCount ?? 0}\n`);
+process.stdout.write(`Latest redirect: /latest/ -> /${latestRedirectSlug}/\n`);
 if (digest.marketDataError) {
   process.stdout.write(`Market-data fallback: ${digest.marketDataError}\n`);
 }

@@ -55,16 +55,26 @@ await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 for (const digest of digests) {
   const slug = slugForDigest(digest);
   const digestDir = join(siteDir, slug);
+  const tradingGuideDir = join(digestDir, "trading-guide");
   const related = relatedVerifiedEditions(digest, publicArchiveDigests);
   const pageDigest = {
     ...digest,
     canonicalPath: `/${slug}/`,
     ...related
   };
+  const tradingGuideDigest = {
+    ...pageDigest,
+    canonicalPath: `/${slug}/trading-guide/`
+  };
   await mkdir(digestDir, { recursive: true });
   await writeGuardedFile(
     join(digestDir, "index.html"),
-    cockpitPage(pageDigest, "public-view", { includeStudio: false, theme: "glass-v2" })
+    cockpitPage(pageDigest, "public-view", { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" })
+  );
+  await mkdir(tradingGuideDir, { recursive: true });
+  await writeGuardedFile(
+    join(tradingGuideDir, "index.html"),
+    cockpitPage(tradingGuideDigest, "trading-guide-view", { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" })
   );
   await writeGuardedFile(
     join(digestDir, "digest.json"),
@@ -84,15 +94,19 @@ const multibaggerDir = join(siteDir, "multibagger");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
-  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2" })
+  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" })
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await mkdir(multibaggerDir, { recursive: true });
 await writeGuardedFile(
   join(multibaggerDir, "index.html"),
-  multibaggerPage(publicMultibaggerState, { latestBriefingPath: `/${slugForDigest(latest)}/` })
+  multibaggerPage(publicMultibaggerState, { latestBriefingPath: "/latest/" })
 );
 await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
+await mkdir(join(siteDir, "latest"), { recursive: true });
+await writeGuardedFile(join(siteDir, "latest", "index.html"), redirectPage(`/${slugForDigest(latest)}/`, "latest briefing"));
+await mkdir(join(siteDir, "latest", "trading-guide"), { recursive: true });
+await writeGuardedFile(join(siteDir, "latest", "trading-guide", "index.html"), redirectPage(`/${slugForDigest(latest)}/trading-guide/`, "latest trading guide"));
 await mkdir(join(adminDir, "components"), { recursive: true });
 await mkdir(join(adminDir, "multibagger"), { recursive: true });
 await writeFile(
@@ -157,6 +171,36 @@ process.stdout.write(`Latest daily page: ${join(siteDir, slugForDigest(latest), 
 async function writeGuardedFile(path, contents) {
   assertPublicBriefingCopy(path, contents);
   await writeFile(path, contents, "utf8");
+}
+
+function redirectPage(targetHref, label) {
+  const targetUrl = absoluteUrl(targetHref);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}">
+  <link rel="canonical" href="${escapeHtml(targetUrl)}">
+  <title>Market Narrative ${escapeHtml(label)} redirect</title>
+</head>
+<body>
+  <main>
+    <h1>Market Narrative ${escapeHtml(label)}</h1>
+    <p>Redirecting to the latest Nifty and Bank Nifty market briefing.</p>
+    <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
+  </main>
+</body>
+</html>`;
+}
+
+function absoluteUrl(path) {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+  return `${siteOrigin}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 async function loadArchivedDigests() {
@@ -248,8 +292,8 @@ function enrichPublicDigest(digest) {
     legacyAuditStatus: verified
       ? undefined
       : isWeekdayDigest(digest)
-        ? "Legacy source audit unavailable - direct archive page retained for continuity and hidden from public briefing cards."
-        : "Non-trading-day archive retained for continuity and hidden from public briefing cards.",
+        ? "Edition archived."
+        : "Non-trading-day archive retained for continuity.",
     archiveSummary: digest.archiveSummary || archiveCardSummary({ ...digest, news }),
     deskNote: digest.deskNote || legacyDeskNote({ ...digest, news }),
     watchItems: Array.isArray(digest.watchItems) && digest.watchItems.length
@@ -363,8 +407,8 @@ function relatedVerifiedEditions(digest, verifiedDigests) {
 function legacyDeskNote(digest) {
   const driver = highestImpactArticle(digest);
   return driver
-    ? `${cleanArchiveSentence(driver.takeaway || driver.summary || driver.headline)} Use this legacy page as context only because the source audit was not available when it was created.`
-    : "Use this legacy page as context only because the source audit was not available when it was created.";
+    ? `${cleanArchiveSentence(driver.takeaway || driver.summary || driver.headline)} This archived edition is retained for historical context; newer editions use the verified article-link source ledger.`
+    : "This archived edition is retained for historical context; newer editions use the verified article-link source ledger.";
 }
 
 function fallbackWatchItems(digest) {
@@ -987,8 +1031,8 @@ function archivePage(digests, allDigests = digests) {
       font-weight: 900;
     }
 
-    .recent-status.legacy {
-      color: #fbbf24;
+    .recent-status.archived {
+      color: #94a3b8;
     }
 
     @media (max-width: 640px) {
@@ -1020,9 +1064,10 @@ function archivePage(digests, allDigests = digests) {
       <div class="nav-inner">
         <div class="brand">${brandMarkHtml()}<span>Market Narrative</span></div>
         <div class="nav-actions">
-          <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
-          <a class="nav-link" href="./${slugForDigest(latest)}/#trading-guide">Trading Guide</a>
-          <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
+          <a class="nav-link" href="./">Archive</a>
+          <a class="latest-link" href="./latest/">Latest briefing</a>
+          <a class="nav-link" href="./latest/trading-guide/">Trading Guide</a>
+          <a class="nav-link" href="./multibagger/">Portfolio</a>
         </div>
       </div>
     </div>
@@ -1031,7 +1076,7 @@ function archivePage(digests, allDigests = digests) {
     <section class="hero">
       <p class="eyebrow">Pre-Market Intelligence Archive</p>
       <h1>Market Narrative</h1>
-      <p>Published before 7:15 AM IST on trading days. Independent, source-led pre-market context for Nifty and Bank Nifty - no account required.</p>
+      <p>Daily pre-market briefing for Nifty and Bank Nifty traders. Published before 7:15 AM IST on trading days.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       ${archiveShareRowHtml()}
     </section>
@@ -1081,7 +1126,7 @@ function archivePage(digests, allDigests = digests) {
 function archiveSourceQualityLine(digest) {
   const verification = digest.sourceVerification;
   if (!verification) {
-    return "Legacy source audit unavailable";
+    return "Edition archived";
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
@@ -1119,15 +1164,15 @@ function recentArchiveGridHtml(digests) {
     const slug = slugForDigest(digest);
     const title = verified
       ? compactWords(digest.title || "Market briefing", 10)
-      : "Legacy edition - source audit unavailable";
+      : compactWords(digest.title || "Archived market briefing", 10);
     const status = verified
       ? `${digest.sourceVerification.verifiedArticleCount} verified links`
-      : "Direct URL retained; hidden from latest cards";
+      : "Edition archived";
     return `
       <a class="recent-archive-link" href="./${slug}/">
         <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
         <strong>${escapeHtml(title)}</strong>
-        <small class="recent-status${verified ? "" : " legacy"}">${escapeHtml(status)}</small>
+        <small class="recent-status${verified ? "" : " archived"}">${escapeHtml(status)}</small>
       </a>
     `;
   }).join("");
@@ -1305,7 +1350,13 @@ function robotsTxt() {
 function sitemapXml(digests) {
   const urls = [
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate },
     { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
+    ...digests.map((digest) => ({
+      loc: `${siteOrigin}/${slugForDigest(digest)}/trading-guide/`,
+      lastmod: digest.digestDate
+    })),
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/`,
       lastmod: digest.digestDate

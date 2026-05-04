@@ -166,13 +166,13 @@ const researchEvidence = {
     {
       ticker: "SHARDAMOTR",
       evidence: [
-        "Sharda Motor is tracked as the quality ballast slot in the normalized public baseline.",
-        "The public thesis is lower-torque than the order-book names, but it adds operating quality and valuation balance.",
-        "Screener's company page and public filings remain the source hub for quarterly checks and announcements."
+        "Sharda Motor's Q3 FY26 consolidated sales were Rs 881.55 crore, up 27.76% YoY.",
+        "Q3 FY26 consolidated net profit was Rs 81.35 crore, up 7.83% YoY, while OPM fell from 13.70% to 12.07%.",
+        "The slot is quality ballast, so margin stability matters more than headline revenue growth."
       ],
-      needsProof: "The slot must prove that earnings quality and valuation support can offset its lower 5x torque.",
-      sourceLabel: "Sharda Motor public filings/announcements",
-      sourceUrl: "https://www.screener.in/company/SHARDAMOTR/"
+      needsProof: "The next check is whether revenue scale can rebuild margins instead of only adding low-quality top-line growth.",
+      sourceLabel: "Business Standard Q3 FY26 result summary",
+      sourceUrl: "https://www.business-standard.com/markets/capital-market-news/sharda-motor-industries-consolidated-net-profit-rises-7-83-in-the-december-2025-quarter-126020700197_1.html"
     },
     {
       ticker: "JNKINDIA",
@@ -427,8 +427,8 @@ const sources = [
     url: "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"
   },
   {
-    label: "Sharda Motor public filings and result material",
-    url: "https://www.screener.in/company/SHARDAMOTR/"
+    label: "Sharda Motor Q3 FY26 result summary",
+    url: "https://www.business-standard.com/markets/capital-market-news/sharda-motor-industries-consolidated-net-profit-rises-7-83-in-the-december-2025-quarter-126020700197_1.html"
   },
   {
     label: "Economic Times 10Y G-sec yield note",

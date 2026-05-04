@@ -13,7 +13,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   const canonicalUrl = `${siteOrigin}/multibagger/`;
   const previewImageUrl = `${siteOrigin}/og-card.svg`;
   const latestBriefingHref = absoluteHref(options.latestBriefingPath ?? "/", siteOrigin);
-  const tradingGuideHref = `${latestBriefingHref.replace(/#.*$/, "")}#trading-guide`;
+  const tradingGuideHref = `${latestBriefingHref.replace(/#.*$/, "").replace(/\/?$/, "/")}trading-guide/`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -841,6 +841,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       white-space: nowrap;
     }
 
+    .holding-card-summary {
+      color: #dbeafe;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: -4px 0 0;
+    }
+
     .holding-card-metrics {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1434,7 +1442,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <div class="tabs" aria-label="Market Narrative sections">
           <a class="tab-link" href="${escapeHtml(latestBriefingHref)}">Public Briefing</a>
           <a class="tab-link" href="${escapeHtml(tradingGuideHref)}">Trading Guide</a>
-          <span class="tab-link active" aria-current="page">Multibagger Portfolio</span>
+          <span class="tab-link active" aria-current="page">Portfolio</span>
         </div>
       </div>
     </div>
@@ -1636,7 +1644,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <summary>
           <span class="summary-title"><strong>Watchlist</strong><span>Names that can challenge the normalized ${escapeHtml(modelCount)}-stock model.</span></span>
           ${detailToggleHtml()}
-          <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
+          <span class="module-preview"><span class="preview-pill">${escapeHtml(state.watchlist.slice(0, 3).map((item) => item.ticker).join(" · "))}</span><span class="preview-pill">Challengers</span></span>
         </summary>
         <div class="panel-body">
           ${watchlistLeadHtml(state.watchlist)}
@@ -1849,6 +1857,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
       return "<article class=\\"holding-card\\">"
         + "<div class=\\"holding-card-head\\"><span class=\\"holding-card-title\\"><strong>" + escapeHtml(holding.ticker) + "</strong><span>" + escapeHtml(holding.name) + "</span></span><span class=\\"holding-card-role\\">" + escapeHtml(displayLabelForHolding(holding)) + "</span></div>"
+        + "<p class=\\"holding-card-summary\\">" + escapeHtml(holdingSummaryLine(holding)) + "</p>"
         + "<div class=\\"holding-card-metrics\\">"
         + "<span class=\\"holding-card-stat\\"><span>Weight</span><strong>" + formatPercent(holding.targetWeight) + "</strong></span>"
         + "<span class=\\"holding-card-stat\\"><span>Current price</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
@@ -2039,6 +2048,16 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     function shortQuoteLabel(state) {
       const asOf = latestQuoteAsOf(state);
       return asOf || "Waiting for verified quote";
+    }
+
+    function holdingSummaryLine(holding) {
+      const returnText = Number.isFinite(Number(holding.returnPercent))
+        ? formatPerformancePercent(holding.returnPercent) + " since entry"
+        : "return awaiting verified quote";
+      const quoteText = holding.isStale
+        ? "quote pending"
+        : "quote updated " + holdingPriceShortLine(holding);
+      return holding.ticker + ": " + displayLabelForHolding(holding) + " thesis; " + returnText + "; " + quoteText + ".";
     }
 
     function displayLabelForHolding(holding) {
@@ -2471,6 +2490,7 @@ function holdingCardHtml(holding) {
               <span class="holding-card-title"><strong>${escapeHtml(holding.ticker)}</strong><span>${escapeHtml(holding.name)}</span></span>
               <span class="holding-card-role">${escapeHtml(displayLabelForHolding(holding))}</span>
             </div>
+            <p class="holding-card-summary">${escapeHtml(holdingSummaryLine(holding))}</p>
             <div class="holding-card-metrics">
               <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
               <span class="holding-card-stat"><span>Current price</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
@@ -2553,7 +2573,7 @@ function performanceStripHtml(state) {
       <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong><small>Normalized baseline</small></div>
       <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong><small>Latest quote marked</small></div>
       <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong><small>Against Rs 5 lakh</small></div>
-      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong><small>Since public fill baseline</small></div>
+      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong><small>Since entry (${escapeHtml(formatDateTime(basis.publicFillBaselineAt))})</small></div>
       <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Research model started ${escapeHtml(formatDateOnly(basis.researchModelStartedOn))}</small></div>
     </section>`;
 }
@@ -2710,6 +2730,16 @@ function entryCapturedLongLabel(state) {
 function shortQuoteLabel(state) {
   const asOf = latestQuoteAsOf(state);
   return asOf || "Waiting for verified quote";
+}
+
+function holdingSummaryLine(holding) {
+  const returnText = Number.isFinite(Number(holding.returnPercent))
+    ? `${formatPerformancePercent(holding.returnPercent)} since entry`
+    : "return awaiting verified quote";
+  const quoteText = holding.isStale
+    ? "quote pending"
+    : `quote updated ${holdingPriceShortLine(holding)}`;
+  return `${holding.ticker}: ${displayLabelForHolding(holding)} thesis; ${returnText}; ${quoteText}.`;
 }
 
 function displayLabelForHolding(holding) {

@@ -438,14 +438,14 @@ async function verifyDailyPage(page, daily, stamp) {
   const dailyUrl = `${baseUrl}/${daily.slug}/?fullqa=${stamp}`;
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   const pageHtml = await page.content();
-  const isLegacy = pageHtml.includes("Legacy source audit unavailable");
+  const isLegacy = pageHtml.includes("Archived edition");
   assertPublicBriefingCopy(`${daily.slug} HTML`, pageHtml);
   await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
   await verifyDarkSurfaceContrast(page, `${daily.slug} initial dark view`);
   await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   if (isLegacy) {
-    await expectOne(page.getByText("Legacy source audit unavailable", { exact: false }), `${daily.slug} legacy audit banner`);
+    await expectOne(page.getByText("Archived edition", { exact: false }), `${daily.slug} archived edition banner`);
   } else {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }

@@ -506,7 +506,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Public Briefing"));
   assert.ok(html.includes("Trading Guide"));
   assert.ok(html.includes("Multibagger Portfolio"));
-  assert.ok(html.includes('class="tab-link active" aria-current="page">Multibagger Portfolio'));
+  assert.ok(html.includes('class="tab-link active" aria-current="page">Portfolio'));
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Model status"));
@@ -514,7 +514,8 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Public tracking active"));
   assert.equal(html.includes("Baseline live"), false);
-  assert.ok(html.includes("Since public fill baseline"));
+  assert.ok(html.includes("Since entry (04 May 2026, 02:12 pm)"));
+  assert.ok(html.includes("return awaiting verified quote"));
   assert.ok(html.includes("Research model started 27 Apr 2026"));
   assert.ok(html.includes("Entry: 04 May 2026, 02:12 pm"));
   assert.ok(html.includes("Entries captured 04 May, 02:12 pm"));
@@ -938,7 +939,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
   assert.ok(publisher.includes("Last verified update"));
   assert.ok(publisher.includes("Share this archive"));
-  assert.ok(publisher.includes("#trading-guide"));
+  assert.ok(publisher.includes("/latest/trading-guide/"));
+  assert.ok(publisher.includes('join(tradingGuideDir, "index.html")'));
+  assert.ok(publisher.includes('join(siteDir, "latest", "trading-guide", "index.html")'));
   assert.equal(publisher.includes("Admin login</a>"), false);
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
@@ -958,7 +961,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(cockpit.includes("adminSiteOrigin"));
   assert.ok(cockpit.includes("brandHeadLinks"));
   assert.ok(cockpit.includes("brandMarkHtml"));
-  assert.ok(cockpit.includes("Multibagger Portfolio"));
+  assert.ok(cockpit.includes(">Portfolio</a>"));
   assert.ok(cockpit.includes("includeStudio"));
   assert.ok(cockpit.includes("Multibagger Review"));
   assert.ok(cockpit.includes('data-target="components-view"'));
@@ -1287,7 +1290,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(publicHtml.body.includes("Trading Guide"));
-  assert.ok(publicHtml.body.includes("Multibagger Portfolio"));
+  assert.ok(publicHtml.body.includes("Portfolio"));
   assert.ok(!publicHtml.body.includes("Briefing Archive"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
@@ -1342,7 +1345,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("summary-expand-action"), false);
   assert.equal(publicHtml.body.includes("quote-board-chev"), false);
   assert.equal(publicHtml.body.includes('class="expanded-briefing-head"'), false);
-  assert.ok(publicHtml.body.includes("Collapse"));
+  assert.ok(publicHtml.body.includes("Hide details"));
   assert.ok(publicHtml.body.includes("Market Map"));
   assert.equal(publicSection.includes("Stories Driving The Open"), false);
   assert.equal(publicSection.includes("How It Lands In India"), false);
@@ -1502,14 +1505,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(multibaggerHtml.body.includes("Public Briefing"));
   assert.ok(multibaggerHtml.body.includes("Trading Guide"));
-  assert.ok(multibaggerHtml.body.includes("Multibagger Portfolio"));
+  assert.ok(multibaggerHtml.body.includes('aria-current="page">Portfolio'));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Model status"));
   assert.ok(multibaggerHtml.body.includes("Rs 5L public baseline"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Public tracking active"));
   assert.equal(multibaggerHtml.body.includes("Baseline live"), false);
-  assert.ok(multibaggerHtml.body.includes("Since public fill baseline"));
+  assert.ok(multibaggerHtml.body.includes("Since entry (04 May 2026, 02:12 pm)"));
   assert.ok(multibaggerHtml.body.includes("Entries captured 04 May, 02:12 pm"));
   assert.ok(multibaggerHtml.body.includes("Latest quote refresh"));
   assert.ok(multibaggerHtml.body.includes("Share this public tracker"));

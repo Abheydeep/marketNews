@@ -857,10 +857,18 @@ function extractMarketLevel(lower, unit) {
 
 function articleFactSentence(headline, summary) {
   const summarySentence = firstUsefulSentence(summary);
-  if (summarySentence && normalizeForComparison(summarySentence) !== normalizeForComparison(headline)) {
+  if (summarySentence &&
+      normalizeForComparison(summarySentence) !== normalizeForComparison(headline) &&
+      !startsWithHeadline(summarySentence, headline)) {
     return compactWordsPlain(summarySentence, 18);
   }
   return fallbackFactFromHeadline(headline);
+}
+
+function startsWithHeadline(sentence, headline) {
+  const sentenceLead = normalizeForComparison(String(sentence || "").split(/[;:.!?]/)[0] || sentence);
+  const headlineLead = normalizeForComparison(String(headline || "").split(/[;:.!?]/)[0] || headline);
+  return Boolean(headlineLead && sentenceLead.startsWith(headlineLead.slice(0, 42)));
 }
 
 function fallbackFactFromHeadline(headline) {
