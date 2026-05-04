@@ -506,11 +506,11 @@ async function runBrowserSmoke() {
       assert.doesNotMatch(latestBody, /Last available close|live data not yet available/i, "latest briefing must not foreground stale quote-board language");
       assert.match(latestBody, /Reference quotes shown - live refresh pending/i, "latest briefing must show the safer quote-board state");
       await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i);
-      const multibaggerBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
+      const multibaggerHtml = await page.content();
       assert.ok(
-        multibaggerBody.indexOf("Five public model slots") > -1
-          && multibaggerBody.indexOf("Model capital") > -1
-          && multibaggerBody.indexOf("Five public model slots") < multibaggerBody.indexOf("Model capital"),
+        multibaggerHtml.indexOf('aria-label="Current model holdings"') > -1
+          && multibaggerHtml.indexOf('aria-label="Public model performance"') > -1
+          && multibaggerHtml.indexOf('aria-label="Current model holdings"') < multibaggerHtml.indexOf('aria-label="Public model performance"'),
         "multibagger holdings must appear before the metric stack"
       );
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
