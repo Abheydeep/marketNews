@@ -37,7 +37,7 @@ await check("public host loads multibagger tracker", async () => {
   const response = await fetchText(`${config.publicUrl}/multibagger/`);
   assert.equal(response.status, 200);
   assert.match(response.body, /Market Narrative Multibagger Portfolio/i);
-  assert.match(response.body, /KPEL|DHABRIYA|TEMBO/i);
+  assert.match(response.body, /KPEL|DHABRIYA|SHARDAMOTR/i);
   assert.match(response.body, /Research Framework|Investor Discipline|allocation-donut/i);
   assert.doesNotMatch(response.body, /Museum of Fine Arts|MFA Boston|art exhibition/i);
 });

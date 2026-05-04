@@ -140,7 +140,7 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Model status/i, /Execution status/i, /Quote snapshot/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
+    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Model status/i, /Normalized Rs 5 lakh baseline/i, /Quote snapshot|Current value/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
     [/Run Monthly Review/i, /Admin review/i, ...offTopicAuditPatterns]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
@@ -150,7 +150,7 @@ await group("Public user surface", async () => {
     assert.ok(payload.methodology?.evaluationCategories?.some((item) => /Profitability|Valuation/i.test(item)), "methodology categories missing");
     assert.equal(payload.researchEvidence?.asOf, "2026-05-02", "research evidence date missing");
     assert.ok(payload.researchEvidence?.marketRegime?.some((item) => /10Y G-sec hurdle/i.test(item.label)), "market regime evidence missing");
-    assert.ok(payload.researchEvidence?.holdingEvidence?.length === 6, "holding evidence ledger missing");
+    assert.ok(payload.researchEvidence?.holdingEvidence?.length === 5, "holding evidence ledger missing");
     assert.doesNotMatch(serialized, /broker|account value|quantity|raw OCR/i);
     assert.doesNotMatch(serialized, /60% of IT below 33rd percentile|45\.4%|buy now/i);
     assert.equal(payload.modelEntryDate, "2026-04-27");
@@ -166,13 +166,13 @@ await group("Public user surface", async () => {
         && holding.currentModelValueInr === null
       ), "stale public holdings must hide current price math");
     } else {
-      assert.equal(payload.performance?.currentModelValueInr, null, "public state must hide current value until fills are published");
-      assert.equal(payload.performance?.totalPnlInr, null, "public state must hide P&L until fills are published");
+      assert.ok(Number.isFinite(payload.performance?.currentModelValueInr), "public state must expose normalized current value when quotes are fresh");
+      assert.ok(Number.isFinite(payload.performance?.totalPnlInr), "public state must expose normalized P&L when quotes are fresh");
       assert.ok(payload.holdings.every((holding) =>
         Number.isFinite(holding.lastPrice)
         && Number.isFinite(holding.dayChangePercent)
-        && holding.returnPercent === null
-        && holding.currentModelValueInr === null
+        && Number.isFinite(holding.returnPercent)
+        && Number.isFinite(holding.currentModelValueInr)
       ), "holding quote fields missing");
     }
   });

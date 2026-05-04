@@ -429,8 +429,9 @@ await test("public digest payload ships compact display DTOs", async () => {
 await test("multibagger public model is concentrated and sanitized", () => {
   const state = validateMultibaggerState(multibaggerState());
   const weights = state.holdings.map((holding) => holding.targetWeight);
-  assert.equal(state.holdings.length, 6);
+  assert.equal(state.holdings.length, 5);
   assert.equal(weights.reduce((sum, weight) => sum + weight, 0), 100);
+  assert.equal(state.holdings.reduce((sum, holding) => sum + holding.modelAmountInr, 0), 500000);
   assert.equal(state.modelEntryDate, "2026-04-27");
   assert.equal(state.performance.modelEntryDate, "2026-04-27");
   assert.equal(state.updatedAt, "2026-05-01T10:00:00.000Z");
@@ -450,7 +451,7 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.ok(state.researchEvidence?.marketRegime?.some((item) => item.summary.includes("Rs 73.73 lakh crore")));
   assert.deepEqual(
     state.researchEvidence?.holdingEvidence?.map((item) => item.ticker),
-    ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
+    ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]
   );
   assert.ok(state.researchEvidence?.holdingEvidence?.every((item) => item.evidence.length >= 2 && item.needsProof));
   for (const holding of state.holdings) {
@@ -462,7 +463,7 @@ await test("multibagger public model is concentrated and sanitized", () => {
   }
   assert.deepEqual(
     state.holdings.map((holding) => holding.ticker),
-    ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]
+    ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]
   );
   for (const holding of state.holdings) {
     assert.ok(Number.isFinite(holding.entryPrice), `${holding.ticker} missing entryPrice`);
@@ -497,15 +498,15 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Model status"));
-  assert.ok(html.includes("Execution status"));
-  assert.ok(html.includes("Quote snapshot"));
-  assert.ok(html.includes("Pre-fill research"));
-  assert.ok(html.includes("Tracking begins after the first confirmed public fill is published."));
-  assert.ok(html.includes("Target weights are research allocations. Return, P&amp;L and current model value remain hidden until exact public fills are published."));
-  assert.ok(html.includes("Pre-fill research model"));
-  assert.ok(html.includes("No public trades or fills have been published yet."));
-  assert.ok(html.includes("Latest public exchange closes are shown with row-level timestamps."));
-  assert.ok(html.includes("Latest public close"));
+  assert.ok(html.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(html.includes("Current value"));
+  assert.ok(html.includes("Baseline live"));
+  assert.ok(html.includes("Normalized INR 5 lakh baseline is published"));
+  assert.ok(html.includes("Model performance is calculated from the normalized Rs 5 lakh baseline"));
+  assert.ok(html.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(html.includes("The larger deployed rupee total is intentionally ignored here."));
+  assert.ok(html.includes("Latest Yahoo/BSE public quotes"));
+  assert.ok(html.includes("Current price"));
   assert.ok(html.includes("Plain-English Role"));
   assert.ok(html.includes("Role legend") || html.includes("Plain-English role legend"));
   assert.ok(html.includes("Slot type: Core staged"));
@@ -525,7 +526,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Research Framework"));
   assert.ok(html.includes("Research Method"));
   assert.ok(html.includes("Research Method Snapshot"));
-  assert.ok(html.includes("How the six-stock model earns its slots."));
+  assert.ok(html.includes("How the 5-stock model earns its slots."));
   assert.ok(html.includes("Market Regime Evidence"));
   assert.ok(html.includes("10Y G-sec hurdle"));
   assert.ok(html.includes("7.01%"));
@@ -538,7 +539,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("not SEBI-registered investment advice"));
   assert.ok(html.includes("Verified Evidence Ledger"));
   assert.ok(html.includes("Needs proof"));
-  for (const ticker of ["KPEL", "DHABRIYA", "PIGL", "JNKINDIA", "DYCL", "TEMBO"]) {
+  for (const ticker of ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]) {
     assert.ok(html.includes(`<h3>${ticker}</h3>`), `evidence ledger missing ${ticker}`);
   }
   assert.ok(html.includes("<details class=\"panel research-framework-panel\" open>"));
@@ -554,15 +555,16 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Growth catalyst"));
   assert.ok(html.includes("Capital structure"));
   assert.ok(html.includes("Buy And Sell Record"));
-  assert.ok(html.includes("No public execution ledger has been published yet."));
-  assert.ok(html.includes("Latest"));
-  assert.ok(html.includes("Day Move"));
+  assert.ok(html.includes("Baseline entries are published through the Model Holdings table."));
+  assert.ok(html.includes("Rs 5L deployed"));
+  assert.ok(html.includes("Avg entry"));
+  assert.ok(html.includes("P&amp;L"));
   assert.ok(html.includes("data-label=\"Ticker\""));
   assert.ok(html.includes("View on Screener"));
   assert.ok(html.includes("https://www.screener.in/company/KPEL/"));
   assert.ok(html.includes("price-status"));
   assert.ok(html.includes("Awaiting verified live quote"));
-  assert.ok(html.includes("Current prices and day moves are hidden."));
+  assert.ok(html.includes("current prices and returns appear after verified market quotes"));
   assert.equal(html.includes("Server quote snapshot"), false);
   assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Monthly Reviews"));
@@ -1425,8 +1427,9 @@ await test("demo app serves public and admin flows without external packages", a
   assertAdminCopyIsPolished(componentsHtml.body, "admin components");
 
   const multibagger = await app.request("GET", "/api/public/multibagger/state");
-  assert.equal(multibagger.json.holdings.length, 6);
+  assert.equal(multibagger.json.holdings.length, 5);
   assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.targetWeight, 0), 100);
+  assert.equal(multibagger.json.holdings.reduce((sum, holding) => sum + holding.modelAmountInr, 0), 500000);
   assert.equal(multibagger.json.modelEntryDate, "2026-04-27");
   assert.equal(multibagger.json.performance.currentModelValueInr, null);
   assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
@@ -1444,13 +1447,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Multibagger Portfolio"));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Model status"));
-  assert.ok(multibaggerHtml.body.includes("Execution status"));
-  assert.ok(multibaggerHtml.body.includes("Quote snapshot"));
-  assert.ok(multibaggerHtml.body.includes("Pre-fill research"));
-  assert.ok(multibaggerHtml.body.includes("Pre-fill research model"));
+  assert.ok(multibaggerHtml.body.includes("Normalized Rs 5 lakh baseline"));
+  assert.ok(multibaggerHtml.body.includes("Current value"));
+  assert.ok(multibaggerHtml.body.includes("Baseline live"));
+  assert.ok(multibaggerHtml.body.includes("Normalized Rs 5 lakh baseline"));
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
-  assert.ok(multibaggerHtml.body.includes("No public execution ledger has been published yet."));
-  assert.ok(multibaggerHtml.body.includes("Latest public close"));
+  assert.ok(multibaggerHtml.body.includes("Baseline entries are published through the Model Holdings table."));
+  assert.ok(multibaggerHtml.body.includes("Current price"));
   assert.ok(multibaggerHtml.body.includes("Plain-English Role"));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
@@ -1473,7 +1476,7 @@ await test("demo app serves public and admin flows without external packages", a
 
   const review = await app.request("POST", "/api/admin/multibagger/reviews/run", { month: "2026-05" });
   assert.equal(review.status, 200);
-  assert.equal(review.json.decisions.length, 6);
+  assert.equal(review.json.decisions.length, 5);
   assert.ok(review.json.privateReasoning);
 
   const publishedReview = await app.request("POST", `/api/admin/multibagger/reviews/${review.json.reviewId}/publish`);

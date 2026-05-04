@@ -18,7 +18,7 @@ public class MultibaggerService {
     private static final LocalDate MODEL_ENTRY_DATE = LocalDate.of(2026, 4, 27);
     private static final LocalDate PUBLISHED_REVIEW_DATE = LocalDate.of(2026, 5, 1);
     private static final Integer MODEL_CAPITAL = 500_000;
-    private static final boolean FILLS_PUBLISHED = false;
+    private static final boolean FILLS_PUBLISHED = true;
 
     private final MultibaggerQuoteService quoteService;
     private final Map<String, byte[]> snapshots = new ConcurrentHashMap<>();
@@ -56,8 +56,8 @@ public class MultibaggerService {
                 pricing.mode(),
                 pricing.refreshedAt(),
                 pricing.isStale()
-                    ? "Current prices and day moves are hidden until verified market quotes are available."
-                    : "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published."
+                    ? "Normalized Rs 5 lakh baseline is published; current prices and returns appear after verified market quotes are available."
+                    : "Latest Yahoo/BSE public quotes are shown with row-level timestamps. Return and P&L use the normalized Rs 5 lakh public baseline."
             ),
             pricing,
             new PerformanceSnapshot(
@@ -69,7 +69,7 @@ public class MultibaggerService {
                 currentModelValue,
                 totalPnl,
                 FILLS_PUBLISHED
-                    ? "Model performance is calculated from published fills and model allocation weights."
+                    ? "Model performance is calculated from the normalized Rs 5 lakh baseline, published average entries, and latest verified public quotes."
                     : "Target weights are research allocations. Return, P&L and current model value remain hidden until exact public fills are published."
             ),
             publicHoldings,
@@ -110,8 +110,8 @@ public class MultibaggerService {
         List<AdminReviewDecision> decisions = holdings().stream()
             .map(holding -> new AdminReviewDecision(
                 holding.ticker(),
-                holding.ticker().equals("TEMBO") ? "KEEP_CAPPED" : "KEEP",
-                holding.ticker().equals("TEMBO") ? new BigDecimal("0.62") : new BigDecimal("0.76"),
+                holding.status().toLowerCase().contains("capped") ? "KEEP_CAPPED" : "KEEP",
+                holding.status().toLowerCase().contains("capped") ? new BigDecimal("0.66") : new BigDecimal("0.76"),
                 holding.breakRule(),
                 "Admin-only review uses current positions, latest quotes, thesis rules and the uploaded image extraction.",
                 holding.status()
@@ -136,12 +136,11 @@ public class MultibaggerService {
 
     private List<MultibaggerHolding> holdings() {
         return List.of(
-            holding("KPEL", "KPEL.BO", "KP Energy", "25", 125_000, "Anchor renewable alpha", "Largest slot: renewable execution needs to keep converting into cash.", "Low-PE renewable execution with strong revenue growth and room for rerating.", "Build first while valuation remains a small-cap growth bargain.", "Trim if receivables, project execution or group complexity worsen.", "Execution momentum must keep translating into profit and operating cash flow.", "Valuation-growth anchor with rerating room.", "Renewable project execution and order conversion.", "Delayed project cash collection would weaken the anchor role.", "Group complexity and debt-funded expansion must stay contained.", "Core hold / buy staged"),
-            holding("DHABRIYA", "DHABRIYA.BO", "Dhabriya Polywood", "20", 100_000, "Hidden-quality margin inflection", "Core slot: margin recovery must prove it is durable, not one good quarter.", "Microcap quality candidate with PAT doubling and expanded EBITDA margin.", "Build after confirming liquidity and margin sustainability.", "Reduce if inventory, debt or receivables absorb earnings growth.", "Improved margin band must survive beyond one strong result.", "Valuation is acceptable only while earnings quality improves.", "Operating leverage from scale, product mix and margin recovery.", "Inventory build-up or debtor stretch would lower growth quality.", "Debt and working-capital funding must not rise faster than earnings.", "Core hold / buy staged"),
-            holding("PIGL", "PIGL.NS", "Power & Instrumentation Gujarat", "17.5", 87_500, "Microcap order-book asymmetry", "Capped slot: large orders are useful only if margins and collections improve.", "Order book is materially larger than market cap, with busduct optionality.", "Build capped exposure only while PAT margin catches up.", "Do not average down into low-margin working-capital strain.", "Revenue growth has to become PAT-margin expansion.", "Order-book-to-market-cap asymmetry needs margin and cash proof.", "RDSS execution, busduct optionality and infrastructure orders.", "Large orders can strain billing, margins and debtor quality.", "Working-capital borrowing needs monthly review.", "Capped alpha"),
-            holding("JNKINDIA", "JNKINDIA.NS", "JNK India", "15", 75_000, "Order book entering P&L", "Capped slot: visible orders are starting to show up in reported earnings.", "Order visibility is already touching reported earnings.", "Scale only after conversion without debtor blowout.", "Reduce if receivables expand faster than sales.", "PAT acceleration must be supported by margin stability.", "The slot depends on underpriced order conversion.", "Industrial capex execution entering reported earnings.", "Receivables expanding faster than sales would be the main evidence break.", "Execution scale-up should avoid balance-sheet strain.", "Capped alpha"),
-            holding("DYCL", "DYCL.NS", "Dynamic Cables", "12.5", 62_500, "Cleaner cable-cycle quality alpha", "Quality slot: cable-cycle demand with capacity optionality and working-capital checks.", "Mid-teens valuation, PAT growth and capacity optionality.", "Build if order inflow, spreads and ramp stay disciplined.", "Trim if cable spreads or receivables turn.", "PAT growth should not rely on one-off commodity spread tailwinds.", "Mid-teens valuation leaves room for capacity optionality.", "Cable-cycle demand, solar DC products and e-beam capacity.", "Receivable quality and commodity-linked margin swings are key checks.", "Capacity ramp must avoid excessive leverage.", "Quality alpha"),
-            holding("TEMBO", "TEMBO.NS", "Tembo Global", "10", 50_000, "Capped high-asymmetry optionality", "Smallest slot: upside optionality stays capped until cash flow and governance proof improves.", "Large order book and scaled profit create upside, but cash-flow and governance risks cap sizing.", "Hold as option-sized exposure only.", "Reduce quickly on weak cash flow, guarantees, related-party issues or dilution.", "Profit scale-up matters only if operating cash flow confirms it.", "The market-cap/order-book gap is discounted until governance proof improves.", "Large order-book execution and infrastructure-linked demand.", "Cash-flow slippage, guarantees or delayed collections would break the case.", "Dilution, pledges, guarantees and related-party risk keep sizing capped.", "Speculative cap")
+            holding("KPEL", "KPEL.BO", "KP Energy", "25.6079", 128_039, "Anchor renewable alpha", "Largest slot: renewable execution needs to keep converting into cash.", "Low-PE renewable execution with strong revenue growth and room for rerating.", "Build first while valuation remains a small-cap growth bargain.", "Trim if receivables, project execution or group complexity worsen.", "Execution momentum must keep translating into profit and operating cash flow.", "Valuation-growth anchor with rerating room.", "Renewable project execution and order conversion.", "Delayed project cash collection would weaken the anchor role.", "Group complexity and debt-funded expansion must stay contained.", "Core hold / buy staged"),
+            holding("DHABRIYA", "DHABRIYA.BO", "Dhabriya Polywood", "21.4561", 107_280, "Hidden-quality margin inflection", "Core slot: margin recovery must prove it is durable, not one good quarter.", "Microcap quality candidate with PAT doubling and expanded EBITDA margin.", "Build after confirming liquidity and margin sustainability.", "Reduce if inventory, debt or receivables absorb earnings growth.", "Improved margin band must survive beyond one strong result.", "Valuation is acceptable only while earnings quality improves.", "Operating leverage from scale, product mix and margin recovery.", "Inventory build-up or debtor stretch would lower growth quality.", "Debt and working-capital funding must not rise faster than earnings.", "Core hold / buy staged"),
+            holding("DYCL", "DYCL.NS", "Dynamic Cables", "21.1864", 105_932, "Cleaner cable-cycle quality alpha", "Quality slot: cable-cycle demand with capacity optionality and working-capital checks.", "Mid-teens valuation, PAT growth and capacity optionality.", "Build if order inflow, spreads and ramp stay disciplined.", "Trim if cable spreads or receivables turn.", "PAT growth should not rely on one-off commodity spread tailwinds.", "Mid-teens valuation leaves room for capacity optionality.", "Cable-cycle demand, solar DC products and e-beam capacity.", "Receivable quality and commodity-linked margin swings are key checks.", "Capacity ramp must avoid excessive leverage.", "Quality alpha"),
+            holding("SHARDAMOTR", "SHARDAMOTR.NS", "Sharda Motor", "19.3262", 96_631, "Quality ballast", "Quality slot: steadier operating quality balances the higher-torque smallcap names.", "A lower-PE quality name that gives the basket valuation ballast while the order-book names prove cash conversion.", "Hold while valuation support, earnings quality and balance-sheet discipline stay intact.", "Reduce if growth stalls, margins compress without recovery, or valuation support disappears.", "The slot needs steady profitability rather than one-off cyclical expansion.", "Valuation support is the reason it earns a model slot despite lower 5x torque.", "Auto component operating leverage, export optionality and disciplined capital allocation.", "Margin compression or weak cash conversion would lower the ballast value.", "The quality role depends on avoiding aggressive leverage or unfriendly capital allocation.", "Quality ballast"),
+            holding("JNKINDIA", "JNKINDIA.NS", "JNK India", "12.4234", 62_118, "Order book entering P&L", "Capped slot: visible orders are starting to show up in reported earnings.", "Order visibility is already touching reported earnings.", "Scale only after conversion without debtor blowout.", "Reduce if receivables expand faster than sales.", "PAT acceleration must be supported by margin stability.", "The slot depends on underpriced order conversion.", "Industrial capex execution entering reported earnings.", "Receivables expanding faster than sales would be the main evidence break.", "Execution scale-up should avoid balance-sheet strain.", "Capped alpha")
         );
     }
 
@@ -277,28 +276,6 @@ public class MultibaggerService {
                     "https://www.polywood.org/wp-content/uploads/2020/12/Press-Release-Q3-9M-FY26.pdf"
                 ),
                 new HoldingEvidence(
-                    "PIGL",
-                    List.of(
-                        "Power & Instrumentation Gujarat reported Q3 FY26 total income of Rs 48.89 crore, up 43.2% YoY.",
-                        "Q3 FY26 PAT was Rs 3.57 crore, up 14.4% YoY but down 24.2% QoQ.",
-                        "The evidence supports capped sizing because revenue growth is ahead of profit growth."
-                    ),
-                    "Order wins must convert into better PAT margin and clean working-capital collection.",
-                    "PIGL Q3 FY26 summary",
-                    "https://www.kotakneo.com/financial-results/power-instrumentation-gujarat-share-price-q3fy2025-26-results/"
-                ),
-                new HoldingEvidence(
-                    "JNKINDIA",
-                    List.of(
-                        "JNK India reported Q3 FY26 revenue of Rs 2,062.3 million, up 113% YoY.",
-                        "Q3 FY26 PAT was Rs 180.2 million, up 535% YoY, from a depressed prior-year base.",
-                        "The company cited a total order book of Rs 17,611 million at the 9M FY26 mark."
-                    ),
-                    "Receivables and execution pace must stay controlled as order-book conversion enters reported earnings.",
-                    "JNK India Q3 FY26 summary",
-                    "https://www.icicidirect.com/research/equity/rapid-results/jnk-india-ltd"
-                ),
-                new HoldingEvidence(
                     "DYCL",
                     List.of(
                         "Dynamic Cables reported Q3 FY26 revenue of Rs 29,876.77 lakh, up 19% YoY.",
@@ -310,15 +287,26 @@ public class MultibaggerService {
                     "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"
                 ),
                 new HoldingEvidence(
-                    "TEMBO",
+                    "SHARDAMOTR",
                     List.of(
-                        "Tembo public announcements cited Q3 revenue near Rs 251 crore and an order book near Rs 1,484 crore.",
-                        "Screener's announcement list also shows NSE fine disclosure and large EGM approvals for borrowings, charges, investments and guarantees.",
-                        "The evidence supports optionality but also explains why the model caps the weight."
+                        "Sharda Motor is tracked as the quality ballast slot in the normalized public baseline.",
+                        "The public thesis is lower-torque than the order-book names, but it adds operating quality and valuation balance.",
+                        "Screener's company page and public filings remain the source hub for quarterly checks and announcements."
                     ),
-                    "Cash-flow confirmation, governance cleanup and financing discipline are required before any higher-conviction role.",
-                    "Tembo public filings/announcements",
-                    "https://www.screener.in/company/TEMBO/"
+                    "The slot must prove that earnings quality and valuation support can offset its lower 5x torque.",
+                    "Sharda Motor public filings/announcements",
+                    "https://www.screener.in/company/SHARDAMOTR/"
+                ),
+                new HoldingEvidence(
+                    "JNKINDIA",
+                    List.of(
+                        "JNK India reported Q3 FY26 revenue of Rs 2,062.3 million, up 113% YoY.",
+                        "Q3 FY26 PAT was Rs 180.2 million, up 535% YoY, from a depressed prior-year base.",
+                        "The company cited a total order book of Rs 17,611 million at the 9M FY26 mark."
+                    ),
+                    "Receivables and execution pace must stay controlled as order-book conversion enters reported earnings.",
+                    "JNK India Q3 FY26 summary",
+                    "https://www.icicidirect.com/research/equity/rapid-results/jnk-india-ltd"
                 )
             ),
             List.of(
@@ -341,23 +329,25 @@ public class MultibaggerService {
             holdings().stream()
                 .map(holding -> new PublicMonthlyReview.PublicReviewDecision(
                     holding.ticker(),
-                    holding.ticker().equals("TEMBO") ? "KEEP CAPPED" : "KEEP",
+                    holding.status().toLowerCase().contains("capped") ? "KEEP CAPPED" : "KEEP",
                     holding.status()
                 ))
                 .toList(),
             List.of(
-                "Moved from a broad basket to a concentrated six-stock public model.",
+                "Normalized the public model to Rs 5 lakh instead of mirroring the larger deployed rupee total.",
+                "Moved from a broad basket to a concentrated 5-stock public baseline.",
                 "Kept CPCL outside the model as a tactical refinery trade.",
-                "Moved HPL, EPack, eMudhra and Windlas to backup/watch status."
+                "Moved PIGL and TEMBO back to the watchlist until margin, cash-flow and governance proof improves."
             )
         ));
     }
 
     private List<WatchlistItem> watchlist() {
         return List.of(
+            new WatchlistItem("PIGL", "Power & Instrumentation Gujarat", "Watch / capped challenger", "Order-book asymmetry remains interesting, but margin and working-capital proof need to improve before it displaces the baseline names."),
+            new WatchlistItem("TEMBO", "Tembo Global", "Watch / optionality", "Large-order optionality remains high, but governance, financing and cash-flow proof keep it outside the normalized core model."),
             new WatchlistItem("DELTNCBL", "Delton Cables", "Watch / capped challenger", "Order-book math is attractive, but leverage and copper/input-cost risk need proof."),
-            new WatchlistItem("GALAPREC", "Gala Precision", "Watch / quality challenger", "Precision industrial growth is good, but valuation and margin compression keep it outside the top six."),
-            new WatchlistItem("SHARDAMOTR", "Sharda Motor", "Quality ballast", "Useful low-PE quality name, but lower 5x torque than the concentrated alpha basket."),
+            new WatchlistItem("GALAPREC", "Gala Precision", "Watch / quality challenger", "Precision industrial growth is good, but valuation and margin compression keep it outside the normalized baseline."),
             new WatchlistItem("MARKOLINES", "Markolines", "Tiny optionality", "Interesting order-book asymmetry, but liquidity and debtor risk make it too small for the primary model."),
             new WatchlistItem("CPCL", "Chennai Petroleum", "Tactical side trade", "Refinery-cycle value is real, but not treated as permanent compounding.")
         );
@@ -367,10 +357,9 @@ public class MultibaggerService {
         return List.of(
             new SourceReference("KP Energy Q3 FY26 investor presentation", "https://kpenergy.in/Investor-Presentation"),
             new SourceReference("Dhabriya Polywood Q3/9M FY26 release", "https://www.polywood.org/wp-content/uploads/2020/12/Press-Release-Q3-9M-FY26.pdf"),
-            new SourceReference("PIGL Q3 FY26 summary", "https://www.kotakneo.com/financial-results/power-instrumentation-gujarat-share-price-q3fy2025-26-results/"),
             new SourceReference("JNK India Q3 FY26 result summary", "https://www.icicidirect.com/research/equity/rapid-results/jnk-india-ltd"),
             new SourceReference("Dynamic Cables Q3 FY26 result summary", "https://www.icicidirect.com/research/equity/rapid-results/dynamic-cables-ltd"),
-            new SourceReference("Tembo Global public filings and result material", "https://www.screener.in/company/TEMBO/"),
+            new SourceReference("Sharda Motor public filings and result material", "https://www.screener.in/company/SHARDAMOTR/"),
             new SourceReference("Economic Times 10Y G-sec yield note", "https://economictimes.indiatimes.com/markets/bonds/g-sec-10-year-yield-tops-7-as-oil-soars/articleshow/130661336.cms?from=mdr"),
             new SourceReference("Economic Times Nifty IT metrics", "https://economictimes.indiatimes.com/markets/indices/nifty-it"),
             new SourceReference("AMFI mutual fund industry data", "https://www.amfiindia.com/articles/indian-mutual"),

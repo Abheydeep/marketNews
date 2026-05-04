@@ -8,7 +8,8 @@ const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketna
 export function multibaggerPage(state = multibaggerState(), options = {}) {
   const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
   const pageTitle = "Market Narrative | Multibagger Model Tracker";
-  const pageDescription = "A public Market Narrative research model tracking six high-conviction Indian equities, methodology, investor discipline, review history, and public-safe performance updates.";
+  const modelCount = state.holdings?.length ?? 0;
+  const pageDescription = "A public Market Narrative research model tracking a normalized Rs 5 lakh Indian equities baseline, methodology, investor discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
   const previewImageUrl = `${siteOrigin}/og-card.svg`;
   const latestBriefingHref = absoluteHref(options.latestBriefingPath ?? "/", siteOrigin);
@@ -603,7 +604,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     table {
       width: 100%;
-      min-width: 720px;
+      min-width: 980px;
       border-collapse: collapse;
     }
 
@@ -1112,7 +1113,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <div>
         <p class="eyebrow">Market Narrative Research</p>
         <h1>Market Narrative Multibagger Portfolio</h1>
-        <p>A public research model within Market Narrative, tracking six high-conviction Indian equities with source-led methodology, allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
+        <p>A public research model within Market Narrative, tracking a normalized Rs 5 lakh baseline across ${escapeHtml(modelCount)} Indian equities with source-led methodology, allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
       </div>
       <aside class="hero-stat">
         <span>Model status</span>
@@ -1125,14 +1126,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     ${performanceStripHtml(state)}
     <p id="priceStatus" class="price-status ${state.pricing?.isStale ? "stale" : "fresh"}"><span>${escapeHtml(priceStatusText(state))}</span><span id="lastPriceAtMetric">${escapeHtml(latestQuoteStatusStamp(state))}</span></p>
     <p class="performance-note">${escapeHtml(state.performance.note)}</p>
-    <p class="execution-status"><strong>Pre-fill research model</strong><span>No public trades or fills have been published yet. These are target research weights; performance tracking starts only when the first confirmed public fill is logged.</span></p>
+    <p class="execution-status"><strong>Normalized Rs 5 lakh baseline</strong><span>The larger deployed rupee total is intentionally ignored here. Public performance is normalized to Rs 5 lakh using the published average entries and model weights.</span></p>
 
     <section class="allocation-visual" aria-label="Portfolio allocation visual">
       <div class="allocation-donut-wrap">
-        <div class="allocation-donut" style="--donut:${escapeHtml(allocationDonutGradient(state.holdings))};" role="img" aria-label="Portfolio allocation donut chart for the six stock model">
-          <div class="donut-center">6<span>stock model</span></div>
+        <div class="allocation-donut" style="--donut:${escapeHtml(allocationDonutGradient(state.holdings))};" role="img" aria-label="Portfolio allocation donut chart for the ${escapeHtml(modelCount)} stock model">
+          <div class="donut-center">${escapeHtml(modelCount)}<span>stock model</span></div>
         </div>
-        <p class="donut-caption">Target allocation only. Exact fills will be published separately before return math is shown.</p>
+        <p class="donut-caption">Weights are normalized to Rs 5 lakh. Current value, return, and P&L move with the latest verified public quote refresh.</p>
       </div>
       <div class="allocation-legend">
         ${state.holdings.map((holding, index) => `
@@ -1157,7 +1158,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <section class="method-snapshot" aria-labelledby="researchMethodSnapshotTitle">
           <div class="method-snapshot-head">
             <span>Research Method Snapshot</span>
-            <strong id="researchMethodSnapshotTitle">How the six-stock model earns its slots.</strong>
+            <strong id="researchMethodSnapshotTitle">How the ${escapeHtml(modelCount)}-stock model earns its slots.</strong>
           </div>
           <div class="method-snapshot-grid">
             <article class="method-pill">
@@ -1231,7 +1232,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <summary>
         <span class="summary-title"><strong>Portfolio At A Glance</strong><span>Target weights, model capital, and current portfolio job.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">KPEL 25%</span><span class="preview-pill">DHABRIYA 20%</span><span class="preview-pill">PIGL 17.5%</span><span class="preview-pill">6 stocks</span></span>
+        <span class="module-preview"><span class="preview-pill">KPEL 25.6%</span><span class="preview-pill">DHABRIYA 21.5%</span><span class="preview-pill">DYCL 21.2%</span><span class="preview-pill">${escapeHtml(modelCount)} stocks</span></span>
       </summary>
       <div class="panel-body">
         <div class="allocation-grid" id="modelAllocationTiles">
@@ -1242,7 +1243,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     <details class="panel holdings-panel" open>
       <summary>
-        <span class="summary-title"><strong>Model Holdings</strong><span>Target allocations with latest market quote and day move; exact fills are not published yet.</span></span>
+        <span class="summary-title"><strong>Model Holdings</strong><span>Normalized Rs 5 lakh allocation, average entry, latest quote, return, P&L, and day move.</span></span>
         <span class="chev">+</span>
         <span class="module-preview"><span class="preview-pill">Latest quotes</span><span class="preview-pill">Day moves</span><span class="preview-pill">Research links</span></span>
       </summary>
@@ -1255,7 +1256,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         </div>
         <div class="table-wrap">
           <table class="holdings-table">
-            <thead><tr><th>Ticker</th><th>Target</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Day Move</th><th>Plain-English Role</th></tr></thead>
+            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th><th>Plain-English Role</th></tr></thead>
             <tbody id="modelHoldingsRows">
               ${holdingsRowsHtml(state.holdings)}
             </tbody>
@@ -1268,7 +1269,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <summary>
         <span class="summary-title"><strong>Verified Evidence Ledger</strong><span>Dated facts supporting each model slot, plus the proof still needed.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">6 tickers</span><span class="preview-pill">Source backed</span><span class="preview-pill">Proof gaps</span></span>
+        <span class="module-preview"><span class="preview-pill">${escapeHtml(modelCount)} tickers</span><span class="preview-pill">Source backed</span><span class="preview-pill">Proof gaps</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
@@ -1333,7 +1334,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
               </tr>`).join("")}
             </tbody>
           </table>
-        </div>` : `<p class="note">No public execution ledger has been published yet. Target weights are research allocations, not confirmed fills.</p>`}
+        </div>` : `<p class="note">Baseline entries are published through the Model Holdings table. Buy/sell changes after this baseline will be logged here.</p>`}
       </div>
     </details>
 
@@ -1367,7 +1368,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     <details class="panel">
       <summary>
-        <span class="summary-title"><strong>Watchlist And Replacements</strong><span>Names that can challenge the six-stock model.</span></span>
+        <span class="summary-title"><strong>Watchlist And Replacements</strong><span>Names that can challenge the normalized ${escapeHtml(modelCount)}-stock model.</span></span>
         <span class="chev">+</span>
         <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
       </summary>
@@ -1387,10 +1388,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <summary>
         <span class="summary-title"><strong>Risk Controls</strong><span>Rules that keep the 5x attempt from becoming blind conviction.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">TEMBO cap</span><span class="preview-pill">Receivables</span><span class="preview-pill">Cash flow</span></span>
+        <span class="module-preview"><span class="preview-pill">Rs 5L baseline</span><span class="preview-pill">Receivables</span><span class="preview-pill">Cash flow</span></span>
       </summary>
       <div class="panel-body">
-        <p class="note">Tembo is capped at 10%. PIGL and JNK must prove margin and receivable quality. KPEL and Dhabriya carry the cleanest alpha weight, but both still need monthly working-capital review. CPCL is outside this model because refinery-cycle value is not treated as permanent compounding.</p>
+        <p class="note">The public model ignores the larger deployed rupee total and normalizes everything to Rs 5 lakh. JNK and DYCL must prove receivable quality, KPEL and Dhabriya still need working-capital review, and Sharda must justify its ballast role with durable earnings quality. CPCL remains outside this model because refinery-cycle value is not treated as permanent compounding.</p>
       </div>
     </details>
 
@@ -1398,7 +1399,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <summary>
         <span class="summary-title"><strong>Sources</strong><span>Primary filings and reference summaries used for the public model.</span></span>
         <span class="chev">+</span>
-        <span class="module-preview"><span class="preview-pill">10 links</span><span class="preview-pill">Filings</span><span class="preview-pill">Market data</span></span>
+        <span class="module-preview"><span class="preview-pill">${escapeHtml(state.sources?.length ?? 0)} links</span><span class="preview-pill">Filings</span><span class="preview-pill">Market data</span></span>
       </summary>
       <div class="panel-body">
         <div class="cards">
@@ -1487,8 +1488,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         status.className = "price-status " + (stale ? "stale" : "fresh");
         const first = status.querySelector("span");
         if (first) first.textContent = stale
-          ? "Verified market quotes are not available yet. Current prices and day moves are hidden."
-          : "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published.";
+          ? "Normalized INR 5 lakh baseline is published; current prices and returns appear after verified market quotes are available."
+          : "Latest Yahoo/BSE public quotes are shown with row-level timestamps. Return and P&L use the normalized INR 5 lakh public baseline.";
       }
     }
 
@@ -1507,9 +1508,13 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       const currentTone = holding.isStale ? "stale" : "neutral";
       return "<tr>"
         + "<td data-label=\\"Ticker\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span>" + stockLinkHtml(holding) + "</td>"
-        + "<td data-label=\\"Target\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
+        + "<td data-label=\\"Weight\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
+        + "<td data-label=\\"INR 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
+        + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "</td>"
         + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
-        + "<td data-label=\\"Day Move\\" class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
+        + "<td data-label=\\"Return\\" class=\\"price-cell " + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</td>"
+        + "<td data-label=\\"P&L\\" class=\\"price-cell " + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</td>"
+        + "<td data-label=\\"Day\\" class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
         + "<td data-label=\\"Plain-English Role\\">" + escapeHtml(holding.rolePlain || holding.status || holding.role) + "<span class=\\"subtext\\">Slot type: " + escapeHtml(statusPlain(holding.status)) + "</span></td>"
         + "</tr>";
     }
@@ -1561,7 +1566,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function heroStatusLabel(state) {
-      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Pre-fill research";
+      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Baseline live";
     }
 
     function isFiniteMetric(value) {
@@ -1569,7 +1574,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function formatInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Pending fills";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Pending quote";
       return "INR " + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value));
     }
 
@@ -1598,17 +1603,17 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function formatPerformanceInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
       return formatSignedInr(value);
     }
 
     function formatPerformanceValueInr(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
       return formatInr(value);
     }
 
     function formatPerformancePercent(value) {
-      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Starts after fill";
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return "Awaiting quote";
       return formatSignedPercent(value);
     }
 
@@ -1624,7 +1629,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function latestPriceCellLabel(state) {
-      return state?.pricing?.isStale ? "Latest quote" : "Latest public close";
+      return state?.pricing?.isStale ? "Current price" : "Current price";
     }
 
     function latestQuoteStatusStamp(state) {
@@ -1658,8 +1663,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function fillStatusText(state) {
       return state?.performance?.currentModelValueInr === null || state?.performance?.currentModelValueInr === undefined
-        ? "Tracking begins after the first confirmed public fill is published."
-        : "Published-fill performance is live.";
+        ? "Normalized INR 5 lakh baseline is published; live movement appears after the next verified quote refresh."
+        : "Normalized INR 5 lakh baseline performance is live.";
     }
 
     function formatDateTime(value) {
@@ -1879,8 +1884,8 @@ function adminScript() {
         month,
         decisions: window.__MULTIBAGGER_STATE__.holdings.map((holding) => ({
           ticker: holding.ticker,
-          action: holding.ticker === 'TEMBO' ? 'KEEP_CAPPED' : 'KEEP',
-          confidence: holding.ticker === 'TEMBO' ? 0.62 : 0.74,
+          action: /capped/i.test(holding.status || '') ? 'KEEP_CAPPED' : 'KEEP',
+          confidence: /capped/i.test(holding.status || '') ? 0.66 : 0.74,
           evidence: holding.breakRule,
           publicSummary: holding.status
         })),
@@ -1971,9 +1976,13 @@ function holdingsRowsHtml(holdings) {
   return holdings.map((holding) => `
               <tr>
                 <td data-label="Ticker"><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span>${stockLinkHtml(holding)}</td>
-                <td data-label="Target" class="price-cell">${formatPercent(holding.targetWeight)}</td>
-                <td data-label="Latest public close" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
-                <td data-label="Day Move" class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
+                <td data-label="Weight" class="price-cell">${formatPercent(holding.targetWeight)}</td>
+                <td data-label="Rs 5L deployed" class="price-cell">${formatInr(holding.modelAmountInr)}</td>
+                <td data-label="Avg entry" class="price-cell">${formatPrice(holding.entryPrice)}</td>
+                <td data-label="Current price" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
+                <td data-label="Return" class="price-cell ${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</td>
+                <td data-label="P&L" class="price-cell ${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</td>
+                <td data-label="Day" class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
                 <td data-label="Plain-English Role">${escapeHtml(holding.rolePlain ?? holding.status ?? holding.role)}<span class="subtext">Slot type: ${escapeHtml(statusPlain(holding.status))}</span></td>
               </tr>`).join("");
 }
@@ -2018,9 +2027,9 @@ function holdingColor(index) {
 
 function priceStatusText(state) {
   if (state.pricing?.isStale) {
-    return "Verified market quotes are not available yet. Current prices and day moves are hidden.";
+    return "Normalized INR 5 lakh baseline is published; current prices and returns appear after verified market quotes are available.";
   }
-  return "Latest public exchange closes are shown with row-level timestamps. Return and P&L stay hidden until exact public fills are published.";
+  return "Latest Yahoo/BSE public quotes are shown with row-level timestamps. Return and P&L use the normalized INR 5 lakh public baseline.";
 }
 
 function hasPublishedFillPerformance(state) {
@@ -2030,26 +2039,17 @@ function hasPublishedFillPerformance(state) {
 }
 
 function heroStatusLabel(state) {
-  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Pre-fill research";
+  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Baseline live";
 }
 
 function performanceStripHtml(state) {
-  if (!hasPublishedFillPerformance(state)) {
-    return `
-    <section class="return-strip prefill" aria-label="Public model status">
-      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong><small>Research basket size</small></div>
-      <div class="metric"><span>Execution status</span><strong>Pre-fill</strong><small>No public fills logged yet</small></div>
-      <div class="metric"><span>Quote snapshot</span><strong>${escapeHtml(latestQuoteAsOf(state) || "Awaiting quote")}</strong><small>Latest public closes in holdings</small></div>
-      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Since model date</small></div>
-    </section>`;
-  }
   return `
     <section class="return-strip" aria-label="Public model performance">
-      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong></div>
-      <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong></div>
-      <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong></div>
-      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong></div>
-      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong></div>
+      <div class="metric"><span>Model capital</span><strong id="modelCapitalMetric">${formatInr(state.modelCapitalInr)}</strong><small>Normalized baseline</small></div>
+      <div class="metric"><span>Current value</span><strong id="currentValueMetric">${formatPerformanceValueInr(state.performance.currentModelValueInr)}</strong><small>Latest quote marked</small></div>
+      <div class="metric"><span>Model P&L</span><strong id="modelPnlMetric" class="${toneClass(state.performance.totalPnlInr)}">${formatPerformanceInr(state.performance.totalPnlInr)}</strong><small>Against Rs 5 lakh</small></div>
+      <div class="metric"><span>Return</span><strong id="portfolioReturnMetric" class="${toneClass(state.performance.sinceLaunchPercent)}">${formatPerformancePercent(state.performance.sinceLaunchPercent)}</strong><small>Since baseline date</small></div>
+      <div class="metric"><span>${escapeHtml(state.performance.benchmark)}</span><strong id="benchmarkReturnMetric" class="${toneClass(state.performance.benchmarkSinceLaunchPercent)}">${formatQuotePercent(state.performance.benchmarkSinceLaunchPercent)}</strong><small>Since model date</small></div>
     </section>`;
 }
 
@@ -2066,7 +2066,7 @@ function toneClass(value) {
 
 function formatInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Pending fills";
+    return "Pending quote";
   }
   return `INR ${new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Number(value))}`;
 }
@@ -2105,21 +2105,21 @@ function formatSignedPercent(value) {
 
 function formatPerformanceInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Starts after fill";
+    return "Awaiting quote";
   }
   return formatSignedInr(value);
 }
 
 function formatPerformanceValueInr(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Starts after fill";
+    return "Awaiting quote";
   }
   return formatInr(value);
 }
 
 function formatPerformancePercent(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) {
-    return "Starts after fill";
+    return "Awaiting quote";
   }
   return formatSignedPercent(value);
 }
@@ -2132,7 +2132,7 @@ function formatQuotePercent(value) {
 }
 
 function latestPriceColumnText(state) {
-  const label = state?.pricing?.isStale ? "Latest quote" : "Latest public close";
+  const label = "Current price";
   const asOf = latestQuoteAsOf(state);
   return asOf ? `${label}<span class="th-note">${asOf}</span>` : label;
 }
@@ -2172,8 +2172,8 @@ function statusPlain(status) {
 
 function fillStatusText(state) {
   return state.performance?.currentModelValueInr === null || state.performance?.currentModelValueInr === undefined
-    ? "Tracking begins after the first confirmed public fill is published."
-    : "Published-fill performance is live.";
+    ? "Normalized INR 5 lakh baseline is published; live movement appears after the next verified quote refresh."
+    : "Normalized INR 5 lakh baseline performance is live.";
 }
 
 function formatDateTime(value) {

@@ -35,22 +35,19 @@ public class MultibaggerQuoteService {
     private static final Map<String, String> YAHOO_SYMBOLS = Map.of(
         "KPEL", "KPEL.BO",
         "DHABRIYA", "DHABRIYA.BO",
-        "PIGL", "PIGL.NS",
-        "JNKINDIA", "JNKINDIA.NS",
         "DYCL", "DYCL.NS",
-        "TEMBO", "TEMBO.NS"
+        "SHARDAMOTR", "SHARDAMOTR.NS",
+        "JNKINDIA", "JNKINDIA.NS"
     );
     private static final Map<String, String> BSE_SYMBOLS = Map.of(
-        "KPEL", "539686",
-        "DHABRIYA", "538715"
+        "KPEL", "539686"
     );
     private static final Map<String, MultibaggerQuoteSnapshot> FALLBACK_QUOTES = Map.ofEntries(
-        fallback("KPEL", "486.40"),
-        fallback("DHABRIYA", "308.20"),
-        fallback("PIGL", "148.80"),
-        fallback("JNKINDIA", "608.50"),
-        fallback("DYCL", "505.10"),
-        fallback("TEMBO", "246.30")
+        fallback("KPEL", "369.85"),
+        fallback("DHABRIYA", "379.55"),
+        fallback("DYCL", "392.00"),
+        fallback("SHARDAMOTR", "882.03"),
+        fallback("JNKINDIA", "378.00")
     );
     private static final BenchmarkSnapshot FALLBACK_BENCHMARK = benchmarkSnapshot(
         "NIFTY 50",
@@ -103,8 +100,8 @@ public class MultibaggerQuoteService {
             "Every 5 minutes during Indian market hours when live quote refresh is enabled",
             currentBenchmark,
             stale
-                ? "Fallback mode does not publish current prices, returns, or P&L."
-                : "Latest price and day move are public market-data fields with source timestamps. Model return and P&L require admin-published fills."
+                ? "Fallback mode keeps the normalized baseline visible while current prices, returns, and P&L wait for verified quotes."
+                : "Latest price and day move are public market-data fields with source timestamps. Model return and P&L are computed from the normalized Rs 5 lakh baseline."
         );
     }
 

@@ -112,8 +112,8 @@ export async function createDemoApp(date = todayIso()) {
           month: body.month ?? currentMultibaggerState.monthlyReviews[0].month,
           decisions: currentMultibaggerState.holdings.map((holding) => ({
             ticker: holding.ticker,
-            action: holding.ticker === "TEMBO" ? "KEEP_CAPPED" : "KEEP",
-            confidence: holding.ticker === "TEMBO" ? 0.62 : 0.76,
+            action: /capped/i.test(holding.status || "") ? "KEEP_CAPPED" : "KEEP",
+            confidence: /capped/i.test(holding.status || "") ? 0.66 : 0.76,
             evidence: holding.breakRule,
             publicSummary: holding.status
           })),
