@@ -1,3 +1,5 @@
+import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 
 const MIN_VERIFIED_ARTICLES = 8;
@@ -206,7 +208,7 @@ export function fixtureNewsArticles(date, seedNews = []) {
       whyItMatters: fixtureWhyItMatters(headline, category),
       indiaImpact: fixtureIndiaImpact(headline, category),
       watchFor: fixtureWatchFor(headline, category),
-      thumbnail: normalizeThumbnail({ ...THUMBNAIL_BY_CATEGORY[category], alt: `${headline} source thumbnail` }),
+      thumbnail: normalizeThumbnail(articleThumbnailMeta({ headline, summary: fixtureSummary(headline, category), category, entityName })),
       sourceUrl: fixtureArticleUrl(date, sourceName, headline, index),
       sentimentScore,
       entityName,
@@ -464,7 +466,7 @@ export function normalizeLiveArticle(date, feed, item) {
     whyItMatters: whyItMattersFromArticle(headline, summary, category, entityName),
     indiaImpact: indiaImpactFromArticle(headline, summary, category, entityName),
     watchFor: watchForFromArticle(headline, summary, category, entityName),
-    thumbnail: normalizeThumbnail({ ...THUMBNAIL_BY_CATEGORY[category], alt: `${headline} source thumbnail` }),
+    thumbnail: normalizeThumbnail(articleThumbnailMeta({ headline, summary, category, entityName })),
     sourceUrl: normalizeSourceUrl(url),
     sentimentScore,
     entityName,

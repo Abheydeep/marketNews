@@ -4,6 +4,7 @@ import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
+import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
@@ -463,6 +464,15 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .summary-card-title {
+      margin: 0 0 10px;
+      color: #111827;
+      font-size: 30px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
     }
 
     .briefing-expand-card summary p {
@@ -1745,6 +1755,40 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       width: 42px;
       height: 42px;
       padding: 0;
+    }
+
+    .share-byline {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .share-byline strong,
+    .share-actions-label {
+      color: #f8fafc;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .share-byline small {
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .share-actions-label {
+      margin-right: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .share-copy-btn {
@@ -4280,6 +4324,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         width: 100%;
       }
 
+      .share-actions {
+        justify-content: flex-start;
+      }
+
       .briefing-topline,
       .section-kicker,
       .setup-card-header,
@@ -4453,13 +4501,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
 
-        <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
+        <details id="summaryExpand" class="info-card executive-card briefing-expand-card" open>
           <summary>
             <div>
-              <span class="summary-label">2 minute summary</span>
+              <span class="summary-label">Start Here</span>
+              <h2 class="summary-card-title">2 Minute Summary</h2>
               <p>${escapeHtml(compactSummaryText(digest))}</p>
             </div>
-            <strong class="summary-expand-action">Read summary</strong>
+            <strong class="summary-expand-action">Collapse</strong>
           </summary>
           <div class="expanded-briefing-page">
             ${expandedBriefingHtml(digest)}
@@ -6523,8 +6572,12 @@ function shareRowHtml(canonicalUrl, title) {
   const encodedText = encodeURIComponent(shareText);
   return `
     <div class="share-row" aria-label="Share briefing">
-      <span>By Abhey Deep / Market Narrative</span>
-      <div>
+      <div class="share-byline">
+        <strong>By Abhey Deep / Market Narrative</strong>
+        <small>Source-led pre-market context</small>
+      </div>
+      <div class="share-actions" aria-label="Share this briefing">
+        <span class="share-actions-label">Share this briefing</span>
         <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
         <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
         <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
@@ -6938,6 +6991,7 @@ function expandedBriefingHtml(digest) {
       <h2>${escapeHtml(expandedBriefingHeadline(digest))}</h2>
       ${lead.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
     </div>
+    ${twoMinuteSummaryHtml(digest)}
     ${executiveSummaryHtml(digest)}
   `;
 }
@@ -6988,14 +7042,55 @@ function expandedLeadParagraphs(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const pressureEntity = marketRiskLabel(macro || pressureStory);
   const supportEntity = distinctSupportLabel(pressureEntity, supportStory);
+  const driver = primaryDriverForDigest(digest);
 
   return [
     [
-      `This is not a simple ${digest.sentimentLabel.toLowerCase()} call.`,
+      `${driver.title} is the lead read across verified sources.`,
       `${pressureEntity} is the risk filter for the morning.`,
-      supportStory ? `${supportEntity} is the confirmation check if breadth improves.` : ""
+      supportStory ? `${supportEntity} is the confirmation check if breadth improves.` : "The India read stays context-first until domestic breadth confirms."
     ].filter(Boolean).map(editorialSentence).join(" "),
   ];
+}
+
+function twoMinuteSummaryHtml(digest) {
+  const driver = primaryDriverForDigest(digest);
+  const macro = firstByCategory(digest.news, "macro_negative");
+  const globalRisk = firstByCategory(digest.news, "global_risk");
+  const support = firstByCategory(digest.news, "sector_positive") || firstByCategory(digest.news, "macro_positive") || strongestStory(digest.news, "positive");
+  const topSources = topIndiaRelevantSourceArticles(digest.news ?? [], 5);
+  const categoryMix = [...new Set(topSources.map((article) => sourceCategoryTitle(article.category)))]
+    .slice(0, 4)
+    .join(", ");
+  const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
+  const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
+  const pressure = macro || globalRisk;
+  const bullets = [
+    ["Lead driver", `${driver.title}: ${driver.summary}`],
+    ["Pressure", sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")],
+    ["Support / offset", sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")],
+    ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
+    ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India-relevant articles."]
+  ];
+  return `
+    <div class="brief-section two-minute-summary">
+      <h3>2 Minute Summary</h3>
+      <ul class="brief-list">
+        ${bullets.map(([label, text]) => `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(cleanBriefingText(text))}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+function sourceSummaryForTwoMinute(article, fallback) {
+  if (!article) {
+    return fallback;
+  }
+  const line = article.takeaway || article.indiaImpact || article.whyItMatters || article.summary || fallback;
+  const india = article.indiaImpact && !noDirectIndiaCopy(article.indiaImpact)
+    ? `India read: ${article.indiaImpact}`
+    : "";
+  return limitWords([line, india].filter(Boolean).join(" "), 42);
 }
 
 function executiveSummaryHtml(digest) {
@@ -7237,11 +7332,53 @@ function sourceNotesHtml(digest) {
 }
 
 function topIndiaRelevantSourceArticles(articles, limit = 5) {
-  return uniqueArticles(
-    articles
-      .slice()
-      .sort((left, right) => publicSourceImportance(right) - publicSourceImportance(left))
-  ).slice(0, limit);
+  const unique = uniqueArticles(articles);
+  const ranked = unique
+    .slice()
+    .sort((left, right) => publicSourceImportance(right) - publicSourceImportance(left));
+  const byCategory = new Map();
+  for (const article of ranked) {
+    const category = article.category || "market";
+    byCategory.set(category, [...(byCategory.get(category) || []), article]);
+  }
+
+  const selected = [];
+  const selectedKeys = new Set();
+  const categoryOrder = ["macro_negative", "global_risk", "macro_positive", "sector_positive", "neutral_volatile"];
+  for (const category of categoryOrder) {
+    const candidate = (byCategory.get(category) || [])[0];
+    addSourceCandidate(candidate, selected, selectedKeys, limit);
+  }
+
+  const maxPerCategory = Math.max(1, Math.ceil(limit / Math.max(2, byCategory.size)));
+  for (const candidate of ranked) {
+    if (selected.length >= limit) break;
+    const category = candidate.category || "market";
+    const categoryCount = selected.filter((article) => (article.category || "market") === category).length;
+    if (categoryCount >= maxPerCategory && selected.length < Math.min(limit, byCategory.size)) {
+      continue;
+    }
+    addSourceCandidate(candidate, selected, selectedKeys, limit);
+  }
+
+  for (const candidate of ranked) {
+    if (selected.length >= limit) break;
+    addSourceCandidate(candidate, selected, selectedKeys, limit);
+  }
+
+  return selected;
+}
+
+function addSourceCandidate(candidate, selected, selectedKeys, limit) {
+  if (!candidate || selected.length >= limit) {
+    return;
+  }
+  const key = candidate.sourceUrl || candidate.headline;
+  if (!key || selectedKeys.has(key)) {
+    return;
+  }
+  selected.push(candidate);
+  selectedKeys.add(key);
 }
 
 function publicSourceImportance(article) {
@@ -7921,7 +8058,7 @@ function scoreColor(score) {
 }
 
 function articleThumbnailHtml(article) {
-  const thumbnail = article.thumbnail || {};
+  const thumbnail = articleThumbnailMeta(article);
   const label = thumbnail.label || article.entityName || "Macro";
   const theme = thumbnail.theme || categoryLabel(article.category);
   const alt = thumbnail.alt || `${article.headline} thumbnail`;

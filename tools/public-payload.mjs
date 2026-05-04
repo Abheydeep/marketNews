@@ -1,3 +1,5 @@
+import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+
 export function publicDigestPayload(digest) {
   const {
     teleprompterScript,
@@ -110,9 +112,10 @@ function publicSourceArticleDto(article) {
 }
 
 function thumbnailDataUrl(article) {
-  const accent = safeHex(article.thumbnail?.accent, Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626");
-  const label = escapeSvg(article.thumbnail?.label ?? article.entityName ?? "Market");
-  const theme = escapeSvg(String(article.thumbnail?.theme ?? article.category ?? "Market").replaceAll("_", " "));
+  const thumbnail = articleThumbnailMeta(article);
+  const accent = safeHex(thumbnail.accent ?? article.thumbnail?.accent, Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626");
+  const label = escapeSvg(thumbnail.label ?? article.thumbnail?.label ?? article.entityName ?? "Market");
+  const theme = escapeSvg(String(thumbnail.theme ?? article.thumbnail?.theme ?? article.category ?? "Market").replaceAll("_", " "));
   const svg = [
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">',
     '<defs>',

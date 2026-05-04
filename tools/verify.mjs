@@ -30,6 +30,7 @@ import { multibaggerState, validateMultibaggerState } from "./multibagger-data.m
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
+import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
@@ -406,6 +407,10 @@ await test("public digest payload ships compact display DTOs", async () => {
     "title"
   ]);
   assert.ok(payload.news.every((article) => article.thumbnailUrl.startsWith("data:image/svg+xml,")));
+  const thumbnailSvgs = payload.news.map((article) => decodeURIComponent(article.thumbnailUrl));
+  assert.ok(thumbnailSvgs.some((svg) => /Crude|Rates|Jobs|Chips|Inflation|Yen/i.test(svg)), "public thumbnails should be article-specific, not only category badges");
+  assert.equal(articleThumbnailMeta({ headline: "Bank of England faces the most difficult combination", category: "macro_negative" }).label, "BoE Rates");
+  assert.equal(articleThumbnailMeta({ headline: "Jobs day, semiconductor earnings, and stock market momentum", category: "macro_positive" }).label, "Jobs + Chips");
   assert.equal(JSON.stringify(payload.news).includes("whyItMatters"), false);
   assert.equal(JSON.stringify(payload.news).includes("indiaImpact"), false);
   assert.equal(JSON.stringify(payload.news).includes("entityMatchScore"), false);
@@ -1235,6 +1240,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Briefing Archive"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
+  assert.ok(publicHtml.body.includes("Share this briefing"));
   assert.ok(publicHtml.body.includes("Last available close"));
   assert.ok(publicHtml.body.includes("Today's Trade Map"));
   assert.ok(publicHtml.body.includes("Long only above"));
@@ -1271,7 +1277,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Engine Architecture"));
   assert.ok(!publicHtml.body.includes("Project Components"));
   assert.ok(!publicHtml.body.includes('id="architecture-view"'));
-  assert.ok(publicHtml.body.includes("Read summary"));
+  assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'));
+  assert.ok(publicHtml.body.includes("2 Minute Summary"));
+  assert.ok(publicHtml.body.includes("<strong>Lead driver:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>Pressure:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>Support / offset:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>India read:</strong>"));
+  assert.ok(publicHtml.body.includes("<strong>Source mix:</strong>"));
+  assert.ok(publicHtml.body.includes("Collapse"));
   assert.ok(publicHtml.body.includes("Market Map"));
   assert.equal(publicSection.includes("Stories Driving The Open"), false);
   assert.equal(publicSection.includes("How It Lands In India"), false);
@@ -1308,6 +1321,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure") || publicHtml.body.includes("Global Risk"));
+  const publicSourceGroups = [...publicSection.matchAll(/data-source-group="([^"]+)"/g)].map((match) => match[1]);
+  assert.ok(new Set(publicSourceGroups).size >= 3, `expected diversified source groups, got ${publicSourceGroups.join(", ")}`);
   assert.ok((publicHtml.body.match(/data-source-group="/g) || []).length <= 5);
   assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 5);
   assert.ok(publicHtml.body.includes("data-source-group="));
