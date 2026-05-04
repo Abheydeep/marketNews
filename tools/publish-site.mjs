@@ -1021,6 +1021,7 @@ function archivePage(digests, allDigests = digests) {
         <div class="brand">${brandMarkHtml()}<span>Market Narrative</span></div>
         <div class="nav-actions">
           <a class="latest-link" href="./${slugForDigest(latest)}/">Latest briefing</a>
+          <a class="nav-link" href="./${slugForDigest(latest)}/#trading-guide">Trading Guide</a>
           <a class="nav-link" href="./multibagger/">Multibagger Portfolio</a>
         </div>
       </div>
@@ -1092,8 +1093,8 @@ function archiveShareRowHtml() {
   const encodedUrl = encodeURIComponent(url);
   const encodedText = encodeURIComponent(text);
   return `
-    <div class="share-row" aria-label="Share Market Narrative">
-      <span>Share</span>
+    <div class="share-row" aria-label="Share Market Narrative archive">
+      <span>Share this archive</span>
       <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
       <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
       <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>

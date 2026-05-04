@@ -140,7 +140,7 @@ await group("Public user surface", async () => {
     "Public multibagger",
     `${config.publicUrl}/multibagger/`,
     200,
-    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Model status/i, /Normalized Rs 5 lakh baseline/i, /Quote snapshot|Current value/i, /KPEL/i, /Research Method Snapshot/i, /Market Regime Evidence/i, /Verified Evidence Ledger/i, /Research Method/i, /Profitability|Valuation|replacement/i],
+    [...financeMetadataPatterns, /Market Narrative Multibagger Portfolio|Concentrated 5x/i, /Model status/i, /Rs 5L public baseline|Normalized Rs 5 lakh baseline/i, /Latest quote refresh|Current value/i, /KPEL/i, /Research Method/i, /Not tips|Cash conversion matters/i, /Market Regime Evidence/i, /Evidence Ledger/i, /Closest challenger|replacement pressure/i, /Profitability|Valuation|replacement/i],
     [/Run Monthly Review/i, /Admin review/i, ...offTopicAuditPatterns]
   );
   await expectJson("User", "Public multibagger state", `${config.publicUrl}/multibagger/state.json`, 200, (payload) => {
@@ -499,7 +499,7 @@ async function runBrowserSmoke() {
       const page = await context.newPage();
       await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Live Quote Board|Daily Pre-Market Summary/i);
-      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since Apr 27, 2026|Current value|Research Method Snapshot/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since public fill baseline|Current value|Public tracking active|Cash conversion matters/i);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
       await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);

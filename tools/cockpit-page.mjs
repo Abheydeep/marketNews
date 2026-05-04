@@ -4579,7 +4579,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       </div>
     </section>
 
-    ${!includeStudio ? tradingGuideViewHtml(digest) : ""}
+    ${!includeStudio ? tradingGuideViewHtml(digest, canonicalUrl) : ""}
 
     <div id="indexChartModal" class="chart-modal" aria-hidden="true">
       <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="indexChartTitle">
@@ -6588,18 +6588,19 @@ function editionNavHtml(digest) {
   return `<nav class="edition-nav" aria-label="Briefing editions">${links.join("")}</nav>`;
 }
 
-function shareRowHtml(canonicalUrl, title) {
+function shareRowHtml(canonicalUrl, title, contextLabel = "briefing") {
   const shareText = `${title} - Market Narrative`;
   const encodedUrl = encodeURIComponent(canonicalUrl);
   const encodedText = encodeURIComponent(shareText);
+  const label = contextLabel === "trading guide" ? "Share this trading guide" : "Share this briefing";
   return `
-    <div class="share-row" aria-label="Share briefing">
+    <div class="share-row" aria-label="${escapeHtml(label)}">
       <div class="share-byline">
         <strong>By Abhey Deep / Market Narrative</strong>
         <small>Source-led pre-market context</small>
       </div>
-      <div class="share-actions" aria-label="Share this briefing">
-        <span class="share-actions-label">Share this briefing</span>
+      <div class="share-actions" aria-label="${escapeHtml(label)}">
+        <span class="share-actions-label">${escapeHtml(label)}</span>
         <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
         <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
         <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
@@ -6726,9 +6727,10 @@ function marketMoodRailHtml(digest) {
   `;
 }
 
-function tradingGuideViewHtml(digest) {
+function tradingGuideViewHtml(digest, canonicalUrl = "") {
   const levels = tradeMapLevels(digest, niftySetup(digest));
   const primaryDriver = primaryDriverForDigest(digest);
+  const guideUrl = canonicalUrl ? `${canonicalUrl.replace(/#.*$/, "")}#trading-guide` : "";
   return `
     <section id="trading-guide-view" class="tab-content hidden">
       <div class="briefing-shell trading-guide-shell">
@@ -6746,6 +6748,7 @@ function tradingGuideViewHtml(digest) {
           <p class="hero-subcopy">A trader-first view of the same briefing: no fresh setup unless Nifty accepts the level, Bank Nifty confirms breadth, and the first range keeps risk-reward clean.</p>
         </header>
 
+        ${guideUrl ? shareRowHtml(guideUrl, `${digest.title} Trading Guide`, "trading guide") : ""}
         ${todayTradeMapHtml(digest)}
         ${algorithmicSetupHtml(digest)}
 

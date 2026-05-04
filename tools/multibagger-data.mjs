@@ -339,6 +339,7 @@ const watchlist = [
     ticker: "PIGL",
     name: "Power & Instrumentation Gujarat",
     status: "Watch / capped challenger",
+    replacementPressure: "High",
     reason: "Order-book asymmetry remains interesting, but margin and working-capital proof need to improve before it displaces the baseline names.",
     evaluationFlags: [
       { label: "Orders", tone: "green" },
@@ -350,6 +351,7 @@ const watchlist = [
     ticker: "TEMBO",
     name: "Tembo Global",
     status: "Watch / optionality",
+    replacementPressure: "Medium",
     reason: "Large-order optionality remains high, but governance, financing and cash-flow proof keep it outside the normalized core model.",
     evaluationFlags: [
       { label: "Optionality", tone: "green" },
@@ -361,6 +363,7 @@ const watchlist = [
     ticker: "DELTNCBL",
     name: "Delton Cables",
     status: "Watch / capped challenger",
+    replacementPressure: "Medium",
     reason: "Order-book-to-market-cap math is attractive, but leverage and copper/input-cost risk need proof.",
     evaluationFlags: [
       { label: "Orders", tone: "green" },
@@ -372,6 +375,7 @@ const watchlist = [
     ticker: "GALAPREC",
     name: "Gala Precision",
     status: "Watch / quality challenger",
+    replacementPressure: "Low",
     reason: "Precision industrial growth is good, but near-30x PE and margin compression keep it outside the normalized baseline.",
     evaluationFlags: [
       { label: "Quality", tone: "green" },
@@ -383,6 +387,7 @@ const watchlist = [
     ticker: "MARKOLINES",
     name: "Markolines",
     status: "Tiny optionality",
+    replacementPressure: "Low",
     reason: "Interesting order-book asymmetry, but liquidity and debtor risk make it too small for the primary model.",
     evaluationFlags: [
       { label: "Asymmetry", tone: "green" },
@@ -394,6 +399,7 @@ const watchlist = [
     ticker: "CPCL",
     name: "Chennai Petroleum",
     status: "Tactical side trade",
+    replacementPressure: "Low",
     reason: "Refinery-cycle value is real, but it is not treated as a permanent multibagger compounder.",
     evaluationFlags: [
       { label: "Value", tone: "green" },

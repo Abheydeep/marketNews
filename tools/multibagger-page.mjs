@@ -180,6 +180,24 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       border-color: rgba(96, 165, 250, 0.34);
     }
 
+    .share-icon {
+      display: block;
+      height: 18px;
+      width: 18px;
+    }
+
+    .sr-only {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
     .share-action:focus-visible,
     .tab-link:focus-visible,
     details.panel summary:focus-visible {
@@ -825,7 +843,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .holding-card-metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -851,6 +869,41 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       color: #fff;
       font-size: 14px;
       line-height: 1.25;
+    }
+
+    .holding-card-stat.movement {
+      background: rgba(15, 23, 42, 0.72);
+      border-color: rgba(34, 211, 238, 0.20);
+    }
+
+    .holding-card-stat.movement strong {
+      font-size: 18px;
+    }
+
+    .holding-card-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.34);
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .holding-card-secondary span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .holding-card-secondary strong {
+      color: #dbeafe;
+      display: block;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+      text-transform: uppercase;
     }
 
     .holding-card-foot {
@@ -1092,7 +1145,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .method-strip-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .method-pill,
@@ -1148,6 +1201,46 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       margin: 0;
       font-size: 14px;
       line-height: 1.62;
+    }
+
+    .watchlist-lead {
+      border: 1px solid rgba(34, 211, 238, 0.18);
+      border-radius: 8px;
+      background: rgba(34, 211, 238, 0.08);
+      color: #d7e0ee;
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0 0 12px;
+      padding: 11px 12px;
+    }
+
+    .watch-pressure {
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0 0 10px;
+      padding: 6px 8px;
+      text-transform: uppercase;
+    }
+
+    .watch-pressure.high {
+      background: rgba(251, 113, 133, 0.18);
+      border: 1px solid rgba(251, 113, 133, 0.42);
+      color: #fecdd3;
+    }
+
+    .watch-pressure.medium {
+      background: rgba(251, 191, 36, 0.18);
+      border: 1px solid rgba(251, 191, 36, 0.38);
+      color: #fde68a;
+    }
+
+    .watch-pressure.low {
+      background: rgba(52, 211, 153, 0.18);
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      color: #bbf7d0;
     }
 
     .decision {
@@ -1223,6 +1316,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .module-grid,
       .allocation-grid,
       .holding-card-grid,
+      .holding-card-metrics,
+      .holding-card-secondary,
       .role-legend,
       .method-snapshot-grid,
       .method-strip-grid,
@@ -1350,14 +1445,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <div>
         <p class="eyebrow">Market Narrative Research</p>
         <h1>Market Narrative Multibagger Portfolio</h1>
-        <p>A public research model within Market Narrative, tracking a normalized Rs 5 lakh baseline across ${escapeHtml(modelCount)} Indian equities with source-led methodology, allocation discipline, monthly keep-or-replace reviews, and transparent public-safe performance notes.</p>
+        <p>A public ${escapeHtml(modelCount)}-stock Rs 5L model portfolio tracking entries, live prices, P&amp;L, evidence, and monthly keep-or-replace decisions.</p>
       </div>
       <aside class="hero-stat">
         <span>Model status</span>
         <strong id="portfolioReturn" class="${toneClass(state.performance.sinceLaunchPercent)}">${escapeHtml(heroStatusLabel(state))}</strong>
-        <p id="shareTrackerStatus">${escapeHtml(fillStatusText(state))}</p>
-        <div class="share-panel" aria-label="Share this tracker">
-          <span class="share-panel-title">Share this tracker</span>
+        <p id="shareTrackerStatus">${escapeHtml(heroRefreshText(state))}</p>
+        <div class="share-panel" aria-label="Share this public tracker">
+          <span class="share-panel-title">Share this public tracker</span>
           <div class="share-actions">
             ${shareActionsHtml(canonicalUrl)}
           </div>
@@ -1497,7 +1592,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <summary>
           <span class="summary-title"><strong>Reviews And Changes</strong><span>Published baseline notes, buy/sell changes, and keep-or-replace history.</span></span>
           ${detailToggleHtml()}
-          <span class="module-preview"><span class="preview-pill">Baseline live</span><span class="preview-pill">May 2026</span><span class="preview-pill">Changes logged</span></span>
+          <span class="module-preview"><span class="preview-pill">Public tracking active</span><span class="preview-pill">May 2026</span><span class="preview-pill">Changes logged</span></span>
         </summary>
         <div class="panel-body">
           ${state.transactions.length ? `<div class="table-wrap">
@@ -1544,10 +1639,12 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
           <span class="module-preview"><span class="preview-pill">DELTNCBL</span><span class="preview-pill">GALAPREC</span><span class="preview-pill">CPCL</span></span>
         </summary>
         <div class="panel-body">
+          ${watchlistLeadHtml(state.watchlist)}
           <div class="cards">
             ${state.watchlist.map((item) => `
             <article class="mini-card">
               <h3>${escapeHtml(item.ticker)}</h3>
+              <span class="watch-pressure ${escapeHtml(watchPressureClass(item.replacementPressure))}">${escapeHtml(item.replacementPressure ?? "Low")} replacement pressure</span>
               <p><strong>${escapeHtml(item.status)}:</strong> ${escapeHtml(item.reason)}</p>
               <div class="watch-flags">${watchFlagsHtml(item.evaluationFlags)}</div>
             </article>`).join("")}
@@ -1662,7 +1759,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       if (!state || !Array.isArray(state.holdings)) return;
       setText("portfolioReturn", heroStatusLabel(state));
       setTone("portfolioReturn", state.performance?.sinceLaunchPercent);
-      setText("shareTrackerStatus", fillStatusText(state));
+      setText("shareTrackerStatus", heroRefreshText(state));
       setText("modelCapitalMetric", formatInr(state.modelCapitalInr));
       setText("currentValueMetric", formatPerformanceValueInr(state.performance?.currentModelValueInr));
       setText("modelPnlMetric", formatPerformanceInr(state.performance?.totalPnlInr));
@@ -1754,16 +1851,19 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         + "<div class=\\"holding-card-head\\"><span class=\\"holding-card-title\\"><strong>" + escapeHtml(holding.ticker) + "</strong><span>" + escapeHtml(holding.name) + "</span></span><span class=\\"holding-card-role\\">" + escapeHtml(displayLabelForHolding(holding)) + "</span></div>"
         + "<div class=\\"holding-card-metrics\\">"
         + "<span class=\\"holding-card-stat\\"><span>Weight</span><strong>" + formatPercent(holding.targetWeight) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Rs 5L deployed</span><strong>" + formatInr(holding.modelAmountInr) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Avg entry</span><strong>" + formatPrice(holding.entryPrice) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Entry time</span><strong>" + escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, "")) + "</strong></span>"
         + "<span class=\\"holding-card-stat\\"><span>Current price</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Quote time</span><strong>" + escapeHtml(holdingPriceShortLine(holding)) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Return</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat movement\\"><span>Return</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat movement\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
+        + "<span class=\\"holding-card-stat movement\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
         + "</div>"
-        + "<div class=\\"holding-card-foot\\"><span class=\\"subtext\\">" + escapeHtml(holding.rolePlain || holding.role) + "</span>" + stockLinkHtml(holding) + "</div>"
+        + "<div class=\\"holding-card-secondary\\">"
+        + "<span><strong>Deployed</strong>" + formatInr(holding.modelAmountInr) + "</span>"
+        + "<span><strong>Avg entry</strong>" + formatPrice(holding.entryPrice) + "</span>"
+        + "<span><strong>Entry timestamp</strong>" + escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, "")) + "</span>"
+        + "<span><strong>Quote timestamp</strong>" + escapeHtml(holdingPriceShortLine(holding)) + "</span>"
+        + "<span><strong>Research link</strong>" + stockLinkHtml(holding) + "</span>"
+        + "</div>"
+        + "<div class=\\"holding-card-foot\\"><span class=\\"subtext\\">" + escapeHtml(holding.rolePlain || holding.role) + "</span></div>"
         + "</article>";
     }
 
@@ -1814,7 +1914,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     function heroStatusLabel(state) {
-      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Baseline live";
+      return hasPublishedFillPerformance(state) ? formatPerformancePercent(state?.performance?.sinceLaunchPercent) : "Public tracking active";
     }
 
     function isFiniteMetric(value) {
@@ -1926,6 +2026,11 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         : "Public baseline performance is live.";
     }
 
+    function heroRefreshText(state) {
+      const asOf = latestQuoteAsOf(state);
+      return asOf ? "Latest quote refresh: " + asOf : "Latest quote refresh: waiting for verified quote";
+    }
+
     function shortEntryCapturedLabel(state) {
       const basis = state?.trackingBasis?.publicFillBaselineAt || state?.holdings?.[0]?.entryAt || state?.modelEntryDate;
       return basis ? "Entries captured " + formatDateTime(basis) : "Entries captured";
@@ -1933,7 +2038,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function shortQuoteLabel(state) {
       const asOf = latestQuoteAsOf(state);
-      return asOf ? "Quotes: " + asOf : "Quotes pending";
+      return asOf || "Waiting for verified quote";
     }
 
     function displayLabelForHolding(holding) {
@@ -2286,14 +2391,24 @@ function shareActionsHtml(url) {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent("Market Narrative Multibagger Tracker");
   return `
-            <a class="share-action" data-share-action="whatsapp" aria-label="Share tracker on WhatsApp" href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">WA</a>
-            <a class="share-action" data-share-action="x" aria-label="Share tracker on X" href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">X</a>
-            <a class="share-action" data-share-action="linkedin" aria-label="Share tracker on LinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">in</a>
-            <button class="share-action copy" data-share-action="copy" aria-label="Copy tracker link" type="button">Copy</button>`;
+            <a class="share-action" data-share-action="whatsapp" aria-label="Share tracker on WhatsApp" href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
+            <a class="share-action" data-share-action="x" aria-label="Share tracker on X" href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer">${shareIconHtml("x")}<span class="sr-only">X</span></a>
+            <a class="share-action" data-share-action="linkedin" aria-label="Share tracker on LinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
+            <button class="share-action copy" data-share-action="copy" aria-label="Copy tracker link" type="button">${shareIconHtml("copy")}<span class="sr-only">Copy tracker link</span></button>`;
 }
 
 function detailToggleHtml() {
   return `<span class="detail-toggle" aria-hidden="true"><span class="show-label">Show details v</span><span class="hide-label">Hide details ^</span></span>`;
+}
+
+function shareIconHtml(type) {
+  const icons = {
+    whatsapp: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.1 19.2 6 16.1a7.6 7.6 0 1 1 2.9 2.6l-3.8.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.1 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.3 0 .5-.2.7l-.4.4c.6 1.1 1.5 2 2.7 2.6l.5-.5c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.6v.4c0 .4-.2.7-.5.9-.7.4-1.9.3-3.3-.4-1.6-.8-3-2.1-3.8-3.8-.7-1.4-.9-2.5-.6-3.1Z" fill="currentColor"/></svg>`,
+    x: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`,
+    linkedin: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10v7M8 7.7v.1M12 17v-4.1c0-1.7 1-2.9 2.6-2.9 1.5 0 2.4 1 2.4 2.9V17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`,
+    copy: `<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M6 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`
+  };
+  return icons[type] ?? icons.copy;
 }
 
 function trackingRailHtml(state) {
@@ -2302,8 +2417,8 @@ function trackingRailHtml(state) {
   return `
     <section class="tracking-rail" aria-label="Tracking basis">
       <article class="tracking-chip"><span>Baseline</span><strong id="trackingBaselineMetric">Rs 5L public baseline</strong></article>
-      <article class="tracking-chip"><span>Entries: ${escapeHtml(entryShort)}</span><strong id="trackingEntriesMetric">${escapeHtml(entryCapturedLongLabel(state))}</strong></article>
-      <article class="tracking-chip"><span>Quotes</span><strong id="trackingQuotesMetric">${escapeHtml(shortQuoteLabel(state))}</strong></article>
+      <article class="tracking-chip"><span>Entries</span><strong id="trackingEntriesMetric">Entries captured ${escapeHtml(entryShort)}</strong></article>
+      <article class="tracking-chip"><span>Latest quote refresh</span><strong id="trackingQuotesMetric">${escapeHtml(shortQuoteLabel(state))}</strong></article>
       <article class="tracking-chip"><span>Boundary</span><strong>Educational research only</strong></article>
     </section>`;
 }
@@ -2325,16 +2440,20 @@ function methodStripHtml(state) {
       </div>
       <div class="method-strip-grid">
         <article class="method-pill">
-          <span>Definition</span>
-          <p>${escapeHtml(state.methodology?.definition ?? "Full-cycle compounding evidence, not a short-term spike.")}</p>
+          <span>Not tips</span>
+          <p>Public research tracker, not stock advice or guaranteed return.</p>
         </article>
         <article class="method-pill">
-          <span>Evaluation</span>
-          <p>${escapeHtml(methodologyEvaluationSummary(state.methodology))}</p>
+          <span>Evidence reviewed monthly</span>
+          <p>Every slot faces a keep-or-replace check after fresh public evidence.</p>
         </article>
         <article class="method-pill">
-          <span>Replacement</span>
-          <p>${escapeHtml(state.methodology?.replacementLogic ?? "Holdings must keep earning their slot against cleaner challengers.")}</p>
+          <span>Replace weak slots</span>
+          <p>A cleaner challenger can replace a holding that loses evidence quality.</p>
+        </article>
+        <article class="method-pill">
+          <span>Cash conversion matters</span>
+          <p>Reported growth must become cash, not just revenue or headline orders.</p>
         </article>
       </div>
     </section>`;
@@ -2354,24 +2473,45 @@ function holdingCardHtml(holding) {
             </div>
             <div class="holding-card-metrics">
               <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
-              <span class="holding-card-stat"><span>Rs 5L deployed</span><strong>${formatInr(holding.modelAmountInr)}</strong></span>
-              <span class="holding-card-stat"><span>Avg entry</span><strong>${formatPrice(holding.entryPrice)}</strong></span>
-              <span class="holding-card-stat"><span>Entry time</span><strong>${escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, ""))}</strong></span>
               <span class="holding-card-stat"><span>Current price</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
-              <span class="holding-card-stat"><span>Quote time</span><strong>${escapeHtml(holdingPriceShortLine(holding))}</strong></span>
-              <span class="holding-card-stat"><span>Return</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
-              <span class="holding-card-stat"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
-              <span class="holding-card-stat"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
+              <span class="holding-card-stat movement"><span>Return</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
+              <span class="holding-card-stat movement"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
+              <span class="holding-card-stat movement"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
+            </div>
+            <div class="holding-card-secondary">
+              <span><strong>Deployed</strong>${formatInr(holding.modelAmountInr)}</span>
+              <span><strong>Avg entry</strong>${formatPrice(holding.entryPrice)}</span>
+              <span><strong>Entry timestamp</strong>${escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, ""))}</span>
+              <span><strong>Quote timestamp</strong>${escapeHtml(holdingPriceShortLine(holding))}</span>
+              <span><strong>Research link</strong>${stockLinkHtml(holding)}</span>
             </div>
             <div class="holding-card-foot">
               <span class="subtext">${escapeHtml(holding.rolePlain ?? holding.role)}</span>
-              ${stockLinkHtml(holding)}
             </div>
           </article>`;
 }
 
 function watchFlagsHtml(flags = []) {
   return flags.map((flag) => `<span class="watch-flag ${escapeHtml(flag.tone ?? "yellow")}">${escapeHtml(flag.label)}</span>`).join("");
+}
+
+function watchlistLeadHtml(watchlist = []) {
+  const challenger = closestWatchlistChallenger(watchlist);
+  if (!challenger) {
+    return "";
+  }
+  return `<p class="watchlist-lead"><strong>Closest challenger:</strong> ${escapeHtml(challenger.ticker)} - ${escapeHtml(challenger.reason)}</p>`;
+}
+
+function closestWatchlistChallenger(watchlist = []) {
+  return watchlist.find((item) => /high/i.test(item.replacementPressure ?? "")) ?? watchlist[0] ?? null;
+}
+
+function watchPressureClass(value) {
+  const label = String(value ?? "low").toLowerCase();
+  if (label.includes("high")) return "high";
+  if (label.includes("medium")) return "medium";
+  return "low";
 }
 
 function allocationDonutGradient(holdings) {
@@ -2403,7 +2543,7 @@ function hasPublishedFillPerformance(state) {
 }
 
 function heroStatusLabel(state) {
-  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Baseline live";
+  return hasPublishedFillPerformance(state) ? formatPerformancePercent(state.performance?.sinceLaunchPercent) : "Public tracking active";
 }
 
 function performanceStripHtml(state) {
@@ -2557,6 +2697,11 @@ function fillStatusText(state) {
     : "Public baseline performance is live.";
 }
 
+function heroRefreshText(state) {
+  const asOf = latestQuoteAsOf(state);
+  return asOf ? `Latest quote refresh: ${asOf}` : "Latest quote refresh: waiting for verified quote";
+}
+
 function entryCapturedLongLabel(state) {
   const basis = trackingBasisForState(state);
   return `Entries captured ${formatDateTime(basis.publicFillBaselineAt)}`;
@@ -2564,7 +2709,7 @@ function entryCapturedLongLabel(state) {
 
 function shortQuoteLabel(state) {
   const asOf = latestQuoteAsOf(state);
-  return asOf ? `Quotes: ${asOf}` : "Quotes pending";
+  return asOf || "Waiting for verified quote";
 }
 
 function displayLabelForHolding(holding) {
