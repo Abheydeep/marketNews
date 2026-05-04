@@ -934,11 +934,12 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .holding-card-secondary {
       border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 8px;
-      background: rgba(15, 23, 42, 0.34);
+      background: rgba(15, 23, 42, 0.24);
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
-      padding: 10px;
+      opacity: 0.82;
+      padding: 8px;
     }
 
     .holding-card-secondary span {

@@ -129,7 +129,7 @@ await group("Public user surface", async () => {
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Share this trading guide/i, /Bank Nifty|global cues|India/i], [/Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Live Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Morning briefing published at 7:15 AM IST/i, /Get tomorrow's 7:15 AM brief/i, /India-source/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.equal(payload.status, "PUBLISHED", "public digest status must not expose internal DRAFT state");
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
@@ -509,18 +509,17 @@ async function runBrowserSmoke() {
       assert.match(homeBody, /Top 8 India-relevant notes selected/i, "homepage must simplify public source-count language");
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Live Quote Board|Daily Pre-Market Summary/i);
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
+      assert.match(latestBody, /Morning briefing published at 7:15 AM IST/i, "latest briefing must show pre-market freshness boundary");
+      assert.match(latestBody, /Get tomorrow's 7:15 AM brief/i, "latest briefing must show retention CTA");
       assert.doesNotMatch(latestBody, /[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/, "latest briefing has malformed generated punctuation");
       assert.doesNotMatch(latestBody, /Last available close|live data not yet available/i, "latest briefing must not foreground stale quote-board language");
       assert.doesNotMatch(latestBody, /Global crude-flow signal|India impact runs only through/i, "latest briefing must not expose internal driver labels");
       assert.match(latestBody, /Reference quotes shown - live refresh pending/i, "latest briefing must show the safer quote-board state");
       await browserCheck(page, "User", `Browser ${viewport.name} trading guide`, `${config.publicUrl}${config.latestBriefingPath}trading-guide/`, /Today's Trade Map|Long only above|Short risk below/i);
       const guideHtml = await page.content();
-      assert.ok(
-        guideHtml.indexOf('id="trading-guide-view" class="tab-content"') > -1
-          && guideHtml.indexOf('id="public-view" class="tab-content hidden"') > -1
-          && guideHtml.indexOf('id="trading-guide-view" class="tab-content"') < guideHtml.indexOf('id="public-view" class="tab-content hidden"'),
-        "trading guide URL must render the guide before the briefing"
-      );
+      assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'), "trading guide URL must render the guide surface");
+      assert.equal(guideHtml.includes('id="public-view"'), false, "trading guide URL must not render hidden public briefing content");
+      assert.equal((guideHtml.match(/<h1/g) || []).length, 1, "trading guide URL should render exactly one h1");
       await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i);
       const multibaggerHtml = await page.content();
       assert.ok(

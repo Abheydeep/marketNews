@@ -1213,7 +1213,7 @@ function archivePage(digests, allDigests = digests) {
   <main class="shell">
     <section class="hero">
       <p class="eyebrow">Pre-Market Intelligence Archive</p>
-      <h1>Market Narrative</h1>
+      <h1>Daily Pre-Market Briefing For Nifty And Bank Nifty</h1>
       <p>Daily pre-market briefing for Nifty and Bank Nifty traders. Published before 7:15 AM IST on trading days.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       <div class="hero-actions" aria-label="Primary actions">

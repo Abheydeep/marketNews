@@ -70,7 +70,7 @@ async function runCycle(page, cycle) {
   const dailyUrl = `${baseUrl}/${dailySlug}/?soak=${stamp}`;
 
   await openPublicPage(page, rootUrl);
-  await expectOne(page.getByRole("heading", { name: "Market Narrative" }), "archive heading");
+  await expectOne(page.getByRole("heading", { name: "Daily Pre-Market Briefing For Nifty And Bank Nifty" }), "archive product-promise heading");
   await expectOne(page.getByRole("link", { name: /Read today's brief/i }), "homepage primary briefing action");
   await expectOne(page.getByRole("link", { name: /Open Trading Guide/i }).first(), "homepage trading guide action");
   await expectOne(page.getByRole("link", { name: /Track Portfolio/i }), "homepage portfolio action");
@@ -91,6 +91,9 @@ async function runCycle(page, cycle) {
 
   await openPublicPage(page, dailyUrl);
   await expectDailyContent(page);
+  assert.equal(await page.locator("#trading-guide-view").count(), 0, "daily briefing must not render hidden trading-guide content");
+  await expectOne(page.getByText("Morning briefing published at 7:15 AM IST", { exact: false }), "briefing freshness notice");
+  await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), "briefing follow CTA");
   await expandQuoteBoard(page);
 
   const verifiedCharts = [];
@@ -100,6 +103,7 @@ async function runCycle(page, cycle) {
 
   await openPublicPage(page, `${baseUrl}/${dailySlug}/trading-guide/?soak=${stamp}`);
   await expectOne(page.locator('#trading-guide-view:not(.hidden)'), "trading guide is first visible surface");
+  assert.equal(await page.locator("#public-view").count(), 0, "trading guide must not render hidden public briefing content");
   await expectOne(page.getByRole("heading", { name: "Opening levels, confirmation, and risk gates" }), "standalone trading guide heading");
   await expectOne(page.getByText("Today's Trade Map", { exact: true }), "standalone trading guide trade map");
   assert.equal(await page.locator('#public-view:not(.hidden)').count(), 0, "trading guide URL must not foreground the daily briefing");

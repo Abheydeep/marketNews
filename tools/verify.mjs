@@ -508,14 +508,21 @@ await test("daily briefing and trading guide render the correct first-fold hiera
     { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" }
   );
 
-  assert.ok(publicHtml.indexOf('id="public-view" class="tab-content"') < publicHtml.indexOf('id="trading-guide-view" class="tab-content hidden"'));
-  assert.ok(publicHtml.indexOf("2 Minute Summary") < publicHtml.indexOf("Today's Trade Map"));
+  assert.ok(publicHtml.includes('id="public-view" class="tab-content"'));
+  assert.equal(publicHtml.includes('id="trading-guide-view"'), false);
+  assert.equal((publicHtml.match(/<h1/g) || []).length, 1, "public briefing should render exactly one h1");
+  assert.equal(publicHtml.includes("Today's Trade Map"), false);
   assert.match(publicHtml, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/);
-  assert.ok(guideHtml.indexOf('id="trading-guide-view" class="tab-content"') < guideHtml.indexOf('id="public-view" class="tab-content hidden"'));
-  assert.ok(guideHtml.indexOf("Today's Trade Map") < guideHtml.indexOf("2 Minute Summary"));
+  assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'));
+  assert.equal(guideHtml.includes('id="public-view"'), false);
+  assert.equal((guideHtml.match(/<h1/g) || []).length, 1, "trading guide should render exactly one h1");
+  assert.equal(guideHtml.includes("2 Minute Summary"), false);
   assert.ok(guideHtml.includes("Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch."));
-  assert.doesNotMatch(guideHtml.slice(0, guideHtml.indexOf("Today's Trade Map")), /Daily Pre-Market Summary|2 Minute Summary/);
+  assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
+  assert.ok(publicHtml.includes("Morning briefing published at 7:15 AM IST"));
+  assert.ok(publicHtml.includes("Get tomorrow's 7:15 AM brief"));
+  assert.ok(publicHtml.includes("India-source"));
 });
 
 await test("public digest payload ships compact display DTOs", async () => {
@@ -1451,21 +1458,21 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Admin Login"));
   assert.ok(publicHtml.body.includes("By Abhey Deep"));
   assert.ok(publicHtml.body.includes("Share this briefing"));
-  assert.ok(publicHtml.body.includes("Share this trading guide"));
+  assert.equal(publicHtml.body.includes("Share this trading guide"), false);
+  assert.ok(publicHtml.body.includes("Morning briefing published at 7:15 AM IST"));
+  assert.ok(publicHtml.body.includes("Get tomorrow's 7:15 AM brief"));
   assert.ok(publicHtml.body.includes("Reference quotes shown - live refresh pending"));
   assert.equal(publicHtml.body.includes("Last available close"), false);
   assert.equal(publicHtml.body.includes("live data not yet available"), false);
-  assert.ok(publicHtml.body.includes("Today's Trade Map"));
-  assert.ok(publicHtml.body.includes("Long only above"));
-  assert.ok(publicHtml.body.includes("Short risk below"));
-  assert.ok(publicHtml.body.includes("No-trade zone"));
-  assert.ok(publicHtml.body.includes("Bank Nifty confirmation"));
-  assert.ok(publicHtml.body.includes("Top sector to watch"));
-  const publicSection = publicHtml.body.slice(
-    publicHtml.body.indexOf('id="public-view"'),
-    publicHtml.body.indexOf('id="trading-guide-view"')
-  );
-  const tradingGuideSection = publicHtml.body.slice(publicHtml.body.indexOf('id="trading-guide-view"'));
+  assert.equal(publicHtml.body.includes("Today's Trade Map"), false);
+  assert.equal(publicHtml.body.includes("Long only above"), false);
+  assert.equal(publicHtml.body.includes("Short risk below"), false);
+  assert.equal(publicHtml.body.includes("No-trade zone"), false);
+  assert.equal(publicHtml.body.includes("Bank Nifty confirmation"), false);
+  assert.equal(publicHtml.body.includes("Top sector to watch"), false);
+  assert.equal(publicHtml.body.includes('id="trading-guide-view"'), false);
+  assert.equal((publicHtml.body.match(/<h1/g) || []).length, 1);
+  const publicSection = publicHtml.body.slice(publicHtml.body.indexOf('id="public-view"'));
   assert.equal(publicSection.includes("Today's Trade Map"), false);
   assert.equal(publicSection.includes("Completed Setups"), false);
   assert.equal(publicSection.includes("Active Game Plan"), false);
@@ -1478,8 +1485,6 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicSection.includes("<strong>INVALIDATE:</strong>"), false);
   assert.equal(publicSection.includes("View Chart On TradingView"), false);
   assert.equal(publicSection.includes("Open chart on TradingView"), false);
-  assert.ok(tradingGuideSection.includes("Today's Trade Map"));
-  assert.ok(tradingGuideSection.includes("Completed Setups") || tradingGuideSection.includes("Active Game Plan"));
   assert.ok(!publicHtml.body.includes("Chart Series Pending"));
   assert.ok(!publicHtml.body.includes("Preparing quotes"));
   assert.ok(!/\\bweight\\s+0\\.[0-9]/i.test(publicHtml.body));
@@ -1516,6 +1521,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("Lead:"), false);
   assert.equal(publicHtml.body.includes("verified source stack"), false);
   assert.ok(publicHtml.body.includes("Why it matters"));
+
+  const tradingGuideHtml = await app.request("GET", "/trading-guide/");
+  assert.equal(tradingGuideHtml.status, 200);
+  assert.ok(tradingGuideHtml.body.includes('id="trading-guide-view" class="tab-content"'));
+  assert.equal(tradingGuideHtml.body.includes('id="public-view"'), false);
+  assert.equal((tradingGuideHtml.body.match(/<h1/g) || []).length, 1);
+  assert.ok(tradingGuideHtml.body.includes("Today's Trade Map"));
+  assert.ok(tradingGuideHtml.body.includes("Completed Setups") || tradingGuideHtml.body.includes("Active Game Plan"));
+  assert.equal(tradingGuideHtml.body.includes("Daily Pre-Market Summary"), false);
+  assert.equal(tradingGuideHtml.body.includes("2 Minute Summary"), false);
   assert.ok(publicHtml.body.includes("India impact"));
   assert.ok(publicHtml.body.includes("2 Minute Summary"));
   assert.ok(!publicHtml.body.includes("Read the full desk note"));
@@ -1540,6 +1555,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
   assert.ok(publicHtml.body.includes("Top 8 India-relevant notes selected from"));
+  assert.ok(publicHtml.body.includes("India-source"));
   assert.ok(publicHtml.body.includes("Showing 8 India-first notes"));
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
@@ -1558,13 +1574,14 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));
   assert.ok(publicHtml.body.includes("sentiment-pin"));
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
-  assert.ok(publicHtml.body.includes("Active Game Plan") || publicHtml.body.includes("Completed Setups"));
+  assert.equal(publicHtml.body.includes("Active Game Plan"), false);
+  assert.equal(publicHtml.body.includes("Completed Setups"), false);
   assert.ok(!publicHtml.body.includes("Creator read"));
   assert.ok(!publicHtml.body.includes("Agentic RAG pipeline"));
   assert.ok(!publicHtml.body.includes("News Driving This 8:30 Brief"));
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
-  assert.ok(publicHtml.body.includes("Stop Loss"));
+  assert.equal(publicHtml.body.includes("Stop Loss"), false);
   assert.ok(publicHtml.body.includes("Live Quote Board"));
   assert.ok(publicHtml.body.includes('id="quoteBoardToggle"'));
   assert.ok(publicHtml.body.includes('aria-expanded="false"'));

@@ -19,6 +19,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
+  const renderPublicView = includeStudio || !isTradingGuidePage;
+  const renderTradingGuideView = !includeStudio && isTradingGuidePage;
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
     : `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
@@ -33,9 +35,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
     : "";
+  const publicBriefingNavHtml = includeStudio
+    ? '<button class="tab-btn" data-target="public-view">Public Briefing</button>'
+    : isTradingGuidePage
+      ? '<a class="tab-link" href="../">Public Briefing</a>'
+      : '<span class="tab-link active" aria-current="page">Public Briefing</span>';
   const tradingGuideTabHtml = includeStudio
     ? ""
-    : '<button class="tab-btn" data-target="trading-guide-view">Trading Guide</button>';
+    : isTradingGuidePage
+      ? '<span class="tab-link active" aria-current="page">Trading Guide</span>'
+      : '<a class="tab-link" href="./trading-guide/">Trading Guide</a>';
   const adminArchitectureTabHtml = includeStudio
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
           <button class="tab-btn" data-target="components-view">Project Components</button>`
@@ -1749,6 +1758,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .edition-nav,
     .share-row,
     .reader-path,
+    .session-notice,
+    .follow-briefing-cta,
     .chart-cta-panel {
       border: 1px solid rgba(148, 163, 184, 0.24);
       border-radius: 14px;
@@ -1773,6 +1784,40 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       align-items: center;
       justify-content: space-between;
       margin: 14px 0;
+    }
+
+    .session-notice,
+    .follow-briefing-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 14px 0;
+    }
+
+    .session-notice strong,
+    .follow-briefing-cta strong {
+      color: #f8fafc;
+      font-size: 14px;
+    }
+
+    .session-notice span,
+    .follow-briefing-cta span {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .follow-link {
+      border-radius: 999px;
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      color: #fff;
+      flex: 0 0 auto;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 900;
     }
 
     .reader-path strong {
@@ -4059,6 +4104,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #dbeafe;
     }
 
+    .glass-v2 .session-notice,
+    .glass-v2 .follow-briefing-cta {
+      border-color: rgba(103, 232, 249, 0.24);
+      background: rgba(15, 23, 42, 0.66);
+    }
+
     .glass-v2 .briefing-expand-card {
       border-left-color: rgba(103, 232, 249, 0.62);
     }
@@ -4520,7 +4571,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       <div class="nav-inner">
         <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs">
-          <button class="tab-btn" data-target="public-view">Public Briefing</button>
+          ${publicBriefingNavHtml}
           ${tradingGuideTabHtml}
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
@@ -4534,8 +4585,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </nav>
 
   <main class="shell">
-    ${isTradingGuidePage && !includeStudio ? tradingGuideViewHtml(digest, canonicalUrl, { active: true }) : ""}
-    <section id="public-view" class="tab-content${safeInitialTab === "public-view" ? "" : " hidden"}">
+    ${renderTradingGuideView ? tradingGuideViewHtml(digest, canonicalUrl, { active: true }) : ""}
+    ${renderPublicView ? `<section id="public-view" class="tab-content${safeInitialTab === "public-view" ? "" : " hidden"}">
       <div class="briefing-shell">
         <header class="page-header">
           <div class="briefing-topline">
@@ -4554,6 +4605,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${editionNavHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
+        ${briefingFreshnessNoticeHtml(digest)}
+        ${followBriefingCtaHtml()}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card" open>
           <summary>
@@ -4612,9 +4665,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <p>Prepared from live market data and linked source notes. Educational market research only, not investment advice.</p>
         </footer>
       </div>
-    </section>
+    </section>` : ""}
 
-    ${!includeStudio && !isTradingGuidePage ? tradingGuideViewHtml(digest, canonicalUrl, { active: safeInitialTab === "trading-guide-view" }) : ""}
 
     <div id="indexChartModal" class="chart-modal" aria-hidden="true">
       <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="indexChartTitle">
@@ -6698,6 +6750,28 @@ function readerPathHtml(digest) {
   `;
 }
 
+function briefingFreshnessNoticeHtml(digest) {
+  const generated = digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`;
+  return `
+    <div class="session-notice" role="note" aria-label="Briefing freshness">
+      <strong>Morning briefing published at 7:15 AM IST</strong>
+      <span>Not an intraday update. Use the quote board as reference context and the Trading Guide for the open checklist. Generated ${escapeHtml(formatGeneratedTime(generated))}.</span>
+    </div>
+  `;
+}
+
+function followBriefingCtaHtml() {
+  return `
+    <div class="follow-briefing-cta" aria-label="Follow daily briefing">
+      <div>
+        <strong>Get tomorrow's 7:15 AM brief</strong>
+        <span>Bookmark the live link; it always resolves to the latest public briefing.</span>
+      </div>
+      <a class="follow-link" href="/latest/">Open /latest/</a>
+    </div>
+  `;
+}
+
 function shareRowHtml(canonicalUrl, title, contextLabel = "briefing") {
   const shareText = `${title} - Market Narrative`;
   const encodedUrl = encodeURIComponent(canonicalUrl);
@@ -7586,7 +7660,10 @@ function sourceQualityLine(digest) {
   const generated = digest.generatedAt ? `generated ${formatGeneratedTime(digest.generatedAt)}` : "generated timestamp unavailable";
   const blocked = verification.blockedReason ? `, blocked: ${verification.blockedReason}` : "";
   if (digest.publicSourceSelection) {
-    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.`;
+    const indiaCoverage = digest.publicSourceSelection.indiaPublisherCoverage
+      ? ` ${digest.publicSourceSelection.indiaPublisherCoverage}.`
+      : "";
+    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India-relevant notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.${indiaCoverage}`;
   }
   return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
 }

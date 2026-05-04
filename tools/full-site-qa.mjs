@@ -152,7 +152,7 @@ async function verifyArchive(page, rootUrl) {
   assertPublicBriefingCopy("archive page HTML", await page.content());
   await expectOne(page.locator("body.archive-dark"), "archive dark theme");
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
-  await expectOne(page.getByRole("heading", { name: "Market Narrative" }), "archive heading");
+  await expectOne(page.getByRole("heading", { name: "Daily Pre-Market Briefing For Nifty And Bank Nifty" }), "archive product-promise heading");
   await expectOne(page.getByText("Pre-Market Intelligence Archive", { exact: true }), "archive eyebrow");
   await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
@@ -462,8 +462,10 @@ async function verifyDailyPage(page, daily, stamp) {
   await clickInternalLink(page, brandLink, await brandLink.getAttribute("href"), `${daily.slug} brand`);
   await page.goto(dailyUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
-  const tabs = await verifyTabs(page, daily);
-  await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
+  const tabs = await verifyPublicNavigation(page, daily);
+  assert.equal(await page.locator("#trading-guide-view").count(), 0, `${daily.slug} should not render hidden trading guide content`);
+  await expectOne(page.getByText("Morning briefing published at 7:15 AM IST", { exact: false }), `${daily.slug} freshness notice`);
+  await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), `${daily.slug} follow CTA`);
   await verifySummary(page, daily, { keepOpen: true });
   await verifyDarkSurfaceContrast(page, `${daily.slug} expanded dark summary`);
   await page.locator("#summaryExpand > summary").click();
@@ -503,8 +505,10 @@ async function verifyPublicDigestJson(daily, stamp) {
   assert.equal(JSON.stringify(digest.newsCards).includes("sentimentScore"), false, `${daily.slug} newsCards should not ship raw sentiment scores`);
 }
 
-async function verifyTabs(page, daily) {
-  await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
+async function verifyPublicNavigation(page, daily) {
+  const nav = page.locator(".tabs");
+  await expectOne(nav.getByText("Public Briefing", { exact: true }), `${daily.slug} active public nav`);
+  await expectOne(nav.getByRole("link", { name: "Trading Guide" }), `${daily.slug} trading guide nav link`);
   return 1;
 }
 
@@ -602,7 +606,6 @@ async function verifyCharts(page, daily) {
 }
 
 async function clickSourceLinks(page, daily, options = {}) {
-  await clickTab(page, "Public Briefing", "Daily Pre-Market Summary");
   await verifySourceFilters(page, daily);
   const links = page.locator(".source-card[role='link'][data-source-url], .source-lead-card a[href], .source-card a[href]").filter({ visible: true });
   const count = await links.count();

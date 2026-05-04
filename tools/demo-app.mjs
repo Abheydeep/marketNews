@@ -19,6 +19,16 @@ export async function createDemoApp(date = todayIso()) {
         return htmlResponse(cockpitPage(currentDigest, "public-view", { includeStudio: false, theme: "glass-v2" }));
       }
 
+      if (method === "GET" && url.pathname === "/trading-guide/") {
+        return htmlResponse(
+          cockpitPage(
+            { ...currentDigest, canonicalPath: "/trading-guide/" },
+            "trading-guide-view",
+            { includeStudio: false, theme: "glass-v2" }
+          )
+        );
+      }
+
       if (method === "GET" && url.pathname === "/multibagger") {
         return htmlResponse(multibaggerPage(currentMultibaggerState));
       }
