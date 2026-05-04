@@ -604,7 +604,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     table {
       width: 100%;
-      min-width: 980px;
+      min-width: 720px;
       border-collapse: collapse;
     }
 
@@ -643,6 +643,40 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .price-cell {
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
+    }
+
+    .holdings-table {
+      table-layout: fixed;
+      min-width: 1040px;
+    }
+
+    .holdings-table th,
+    .holdings-table td {
+      padding: 11px 12px;
+      vertical-align: middle;
+    }
+
+    .holdings-table .col-ticker { width: 13%; }
+    .holdings-table .col-weight { width: 8%; }
+    .holdings-table .col-deployed { width: 12%; }
+    .holdings-table .col-entry { width: 10%; }
+    .holdings-table .col-current { width: 32%; }
+    .holdings-table .col-return { width: 8%; }
+    .holdings-table .col-pnl { width: 9%; }
+    .holdings-table .col-day { width: 8%; }
+
+    .holding-name-line {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .quote-source-line {
+      line-height: 1.35;
+      margin-top: 4px;
+      max-width: 380px;
+      white-space: normal;
     }
 
     .ticker {
@@ -753,7 +787,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       display: inline-flex;
       font-size: 12px;
       font-weight: 900;
-      margin-top: 8px;
+      margin-top: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
@@ -1256,7 +1290,17 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         </div>
         <div class="table-wrap">
           <table class="holdings-table">
-            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th><th>Plain-English Role</th></tr></thead>
+            <colgroup>
+              <col class="col-ticker">
+              <col class="col-weight">
+              <col class="col-deployed">
+              <col class="col-entry">
+              <col class="col-current">
+              <col class="col-return">
+              <col class="col-pnl">
+              <col class="col-day">
+            </colgroup>
+            <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry</th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
             <tbody id="modelHoldingsRows">
               ${holdingsRowsHtml(state.holdings)}
             </tbody>
@@ -1507,15 +1551,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       const dayTone = toneClass(holding.dayChangePercent);
       const currentTone = holding.isStale ? "stale" : "neutral";
       return "<tr>"
-        + "<td data-label=\\"Ticker\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span>" + stockLinkHtml(holding) + "</td>"
+        + "<td data-label=\\"Ticker\\"><span class=\\"holding-name-line\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span>" + stockLinkHtml(holding) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
         + "<td data-label=\\"Weight\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
         + "<td data-label=\\"INR 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
         + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "</td>"
-        + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
+        + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext quote-source-line\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Return\\" class=\\"price-cell " + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</td>"
         + "<td data-label=\\"P&L\\" class=\\"price-cell " + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</td>"
         + "<td data-label=\\"Day\\" class=\\"price-cell " + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</td>"
-        + "<td data-label=\\"Plain-English Role\\">" + escapeHtml(holding.rolePlain || holding.status || holding.role) + "<span class=\\"subtext\\">Slot type: " + escapeHtml(statusPlain(holding.status)) + "</span></td>"
         + "</tr>";
     }
 
@@ -1533,7 +1576,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function stockLinkHtml(holding) {
       const url = holding.screenerUrl || screenerUrlForTicker(holding.ticker);
-      return "<a class=\\"stock-link\\" href=\\"" + escapeHtml(url) + "\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">View on Screener</a>";
+      return "<a class=\\"stock-link\\" href=\\"" + escapeHtml(url) + "\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Screener</a>";
     }
 
     function screenerUrlForTicker(ticker) {
@@ -1975,15 +2018,14 @@ function adminScript() {
 function holdingsRowsHtml(holdings) {
   return holdings.map((holding) => `
               <tr>
-                <td data-label="Ticker"><span class="ticker">${escapeHtml(holding.ticker)}</span><span class="subtext">${escapeHtml(holding.name)}</span>${stockLinkHtml(holding)}</td>
+                <td data-label="Ticker"><span class="holding-name-line"><span class="ticker">${escapeHtml(holding.ticker)}</span>${stockLinkHtml(holding)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
                 <td data-label="Weight" class="price-cell">${formatPercent(holding.targetWeight)}</td>
                 <td data-label="Rs 5L deployed" class="price-cell">${formatInr(holding.modelAmountInr)}</td>
                 <td data-label="Avg entry" class="price-cell">${formatPrice(holding.entryPrice)}</td>
-                <td data-label="Current price" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
+                <td data-label="Current price" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext quote-source-line">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
                 <td data-label="Return" class="price-cell ${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</td>
                 <td data-label="P&L" class="price-cell ${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</td>
                 <td data-label="Day" class="price-cell ${toneClass(holding.dayChangePercent)}">${formatSignedPercent(holding.dayChangePercent)}</td>
-                <td data-label="Plain-English Role">${escapeHtml(holding.rolePlain ?? holding.status ?? holding.role)}<span class="subtext">Slot type: ${escapeHtml(statusPlain(holding.status))}</span></td>
               </tr>`).join("");
 }
 
@@ -2003,7 +2045,7 @@ function allocationTilesHtml(holdings) {
 
 function stockLinkHtml(holding) {
   const url = holding.screenerUrl ?? `https://www.screener.in/company/${encodeURIComponent(holding.ticker)}/`;
-  return `<a class="stock-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">View on Screener</a>`;
+  return `<a class="stock-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Screener</a>`;
 }
 
 function watchFlagsHtml(flags = []) {

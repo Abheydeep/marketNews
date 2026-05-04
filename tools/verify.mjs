@@ -507,9 +507,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("The larger deployed rupee total is intentionally ignored here."));
   assert.ok(html.includes("Latest Yahoo/BSE public quotes"));
   assert.ok(html.includes("Current price"));
-  assert.ok(html.includes("Plain-English Role"));
-  assert.ok(html.includes("Role legend") || html.includes("Plain-English role legend"));
-  assert.ok(html.includes("Slot type: Core staged"));
+  assert.equal(html.includes("<th>Plain-English Role</th>"), false);
+  assert.ok(html.includes("Plain-English role legend"));
+  assert.ok(html.includes("holding-name-line"));
+  assert.ok(html.includes("quote-source-line"));
   assert.ok(html.includes("Capped slot"));
   assert.equal(html.includes("Research label: Anchor renewable alpha"), false);
   assert.equal(html.includes("Last static update:"), false);
@@ -560,7 +561,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Avg entry"));
   assert.ok(html.includes("P&amp;L"));
   assert.ok(html.includes("data-label=\"Ticker\""));
-  assert.ok(html.includes("View on Screener"));
+  assert.ok(html.includes(">Screener</a>"));
   assert.ok(html.includes("https://www.screener.in/company/KPEL/"));
   assert.ok(html.includes("price-status"));
   assert.ok(html.includes("Awaiting verified live quote"));
@@ -1454,7 +1455,9 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
   assert.ok(multibaggerHtml.body.includes("Baseline entries are published through the Model Holdings table."));
   assert.ok(multibaggerHtml.body.includes("Current price"));
-  assert.ok(multibaggerHtml.body.includes("Plain-English Role"));
+  assert.equal(multibaggerHtml.body.includes("<th>Plain-English Role</th>"), false);
+  assert.ok(multibaggerHtml.body.includes("Plain-English role legend"));
+  assert.ok(multibaggerHtml.body.includes("holding-name-line"));
   assert.ok(multibaggerHtml.body.includes("module-grid"));
   assert.ok(multibaggerHtml.body.includes("Portfolio At A Glance"));
   assert.ok(multibaggerHtml.body.includes("allocation-grid"));
