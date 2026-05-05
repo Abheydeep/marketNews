@@ -1,0 +1,552 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-05-05",
+  "title": "Crude / energy risk Test India Inflation Watch",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-05-05T00:27:41.798Z",
+  "dailyLead": {
+    "label": "Crude / energy risk",
+    "sourceArticleId": "cnbc-world:f8qdqp",
+    "driverType": "crude",
+    "headline": "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds",
+    "indiaImpact": "Pipeline flow news matters through Brent; use prices to decide whether OMCs, aviation and paints face import-cost pressure.",
+    "riskSide": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+    "supportSide": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context."
+  },
+  "publicSourceSelection": {
+    "visibleCount": 8,
+    "shortlistCount": 13,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 2,
+    "indiaPublisherCount": 0,
+    "shortlistIndiaPublisherCount": 0,
+    "indiaPublisherCoverage": "Direct India-source articles: 0; global verified sources used only when India read-through is explicit",
+    "visibleSourceUrls": [
+      "https://www.cnbc.com/2026/05/04/wegovy-glp1-weight-loss-drugs-pharma-growth-bubble.html",
+      "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
+      "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
+      "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
+      "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
+      "https://www.cnbc.com/2026/05/04/pinterest-pins-q1-earnings-report-2026.html",
+      "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
+      "https://www.cnbc.com/2026/05/04/open-ai-executive-leaves-thrive-capital.html"
+    ]
+  },
+  "archiveSummary": "Crude / energy risk: Pipeline flow news matters through Brent; use prices to decide whether OMCs, aviation and paints face...",
+  "deskNote": "Crude / energy risk is today's first filter because obesity assets represent about 25% of total forecast sales of the late-stage pipeline, while oncology's share has slipped to 20%, Deloitte found. Track NIFTY 22,705 first; holding that zone keeps 23,859.42 in play. Tech breadth confirms the headline only if semiconductor and AI headlines are driving global risk appetite, but they still need Nasdaq and USD/INR confirmation. Trade the first 15 minutes only if price holds VWAP and the stop at 22,180.26 stays respected.",
+  "watchItems": [
+    "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+    "Watch whether Brent reacts to the flow story near the Asia handoff; no India trade if prices ignore it.",
+    "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call."
+  ],
+  "overallSentiment": -0.11,
+  "sentimentLabel": "VOLATILE",
+  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty -0.38%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%\n\nNarrative Themes:\n- Global Risk-Off Cue: Obesity assets represent about 25% of total forecast sales of the late-stage pipeline, while oncology's share has slipped to 20%, Deloitte found.\n- Global Earnings & Risk Appetite: Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.\n- Sector-Specific Cushion: Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 22705, stop 22180.26, target 23859.42 (RR 2.2)\n- BANKNIFTY BULLISH entry 50960, stop 49292.6, target 54628.28 (RR 2.2)\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 5069.53,
+      "changePercent": -0.82,
+      "source": "Alpha Vantage Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "SP:SPX"
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 17718.11,
+      "changePercent": -1.21,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "NASDAQ:NDX"
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 38239.66,
+      "changePercent": -0.44,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "DJ:DJI"
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22475.85,
+      "changePercent": -0.22,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSE:NIFTY"
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 48210.3,
+      "changePercent": 0.18,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSE:BANKNIFTY"
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 22480.5,
+      "changePercent": -0.38,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSEIX:NIFTY1!"
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 38105.2,
+      "changePercent": 0.51,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "tradingViewSymbol": "TVC:NI225"
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 17763.03,
+      "changePercent": -0.34,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "tradingViewSymbol": "TVC:HSI"
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3048.23,
+      "changePercent": 0.12,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "tradingViewSymbol": "SSE:000001"
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 2692.06,
+      "changePercent": -0.27,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "tradingViewSymbol": "KRX:KOSPI"
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 20328.64,
+      "changePercent": 0.44,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "tradingViewSymbol": "TWSE:TAIEX"
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 3285.1,
+      "changePercent": -0.16,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "tradingViewSymbol": "TVC:STI"
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 7694.8,
+      "changePercent": 0.23,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "tradingViewSymbol": "ASX:XJO"
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 106.18,
+      "changePercent": 0.34,
+      "source": "MarketAux Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "TVC:DXY"
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 91.42,
+      "changePercent": 1.64,
+      "source": "MarketAux Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "TVC:UKOIL"
+    }
+  ],
+  "themes": [
+    {
+      "digestDate": "2026-05-05",
+      "themeType": "global_risk",
+      "title": "Global Risk-Off Cue",
+      "summary": "Obesity assets represent about 25% of total forecast sales of the late-stage pipeline, while oncology's share has slipped to 20%, Deloitte found.",
+      "sentimentScore": -0.462,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-05-05",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.",
+      "sentimentScore": 0.474,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-05-05",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.",
+      "sentimentScore": 0.525,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 22705,
+      "stopLoss": 22180.26,
+      "target": 23859.42,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
+      "digestDate": "2026-05-05"
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "entry": 50960,
+      "stopLoss": 49292.6,
+      "target": 54628.28,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
+      "digestDate": "2026-05-05"
+    }
+  ],
+  "marketDataMode": "",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 8,
+    "publisherCount": 3,
+    "categoryCount": 3,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 7146,
+  "scheduledFor": "2026-05-05T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "news": [
+    {
+      "publishedAt": "2026-05-04T10:45:58.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds",
+      "summary": "Obesity assets represent about 25% of total forecast sales of the late-stage pipeline, while oncology's share has slipped to 20%, Deloitte found.",
+      "takeaway": "Obesity assets represent about 25% of total forecast sales of the late-stage pipeline, while oncology's share has slipped; treat it as crude-flow infrastructure evidence; India needs a Brent reaction before it becomes an opening trade.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Pipeline flow news matters through Brent; use prices to decide whether OMCs, aviation and paints face import-cost pressure.",
+      "watchFor": "Watch whether Brent reacts to the flow story near the Asia handoff; no India trade if prices ignore it.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/wegovy-glp1-weight-loss-drugs-pharma-growth-bubble.html",
+      "sentimentLabel": "negative",
+      "entityName": "Brent Crude",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Pipeline",
+        "theme": "Oil Infra",
+        "accent": "#ea580c",
+        "alt": "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-05T00:20:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019;",
+      "summary": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.",
+      "takeaway": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core US market; Palantir's software rebound is a Nifty IT sentiment cue only if Indian exporters participate.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Palantir must translate into exporter participation.",
+      "sourceUrl": "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "Palantir",
+        "theme": "Software",
+        "accent": "#2563eb",
+        "alt": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019; source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T22:51:10.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020",
+      "summary": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.",
+      "takeaway": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to US government agencies; Palantir's software rebound is a Nifty IT sentiment cue only if Indian exporters participate.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Watch Market during the first-hour range; trade it only if it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Palantir",
+        "theme": "Software",
+        "accent": "#2563eb",
+        "alt": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020 source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T22:49:28.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Andy Jassy says Amazon investors will be rewarded by all its AI spending",
+      "summary": "CEO Andy Jassy said Amazon’s massive AI spending reflects a once-in-a-generation opportunity and will ultimately reward investors.",
+      "takeaway": "CEO Andy Jassy said Amazon’s massive AI spending reflects a once-in-a-generation opportunity and will ultimately reward investors; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
+      "whyItMatters": "Global Tech matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
+      "sentimentLabel": "negative",
+      "entityName": "Global Tech",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Andy Jassy says Amazon investors will be rewarded by all its AI spending source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T21:42:35.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz",
+      "summary": "Stock market indices fell, and oil prices rose after the reported attack on the United Arab Emirates by Iran, which came nearly a month into a ceasefire.",
+      "takeaway": "Stock market indices fell, and oil prices rose after the reported attack on the United Arab Emirates; keep the oil story tied to Brent direction before turning it into an India equity signal.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
+      "sentimentLabel": "negative",
+      "entityName": "Brent Crude",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T22:23:54.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Pinterest surges 15% after earnings beat as company posts strong guidance",
+      "summary": "Pinterest cut nearly 15% of its workforce and reduced office space in January as it pushes more resources into AI.",
+      "takeaway": "Pinterest cut nearly 15% of its workforce and reduced office space in January as it pushes more resources; Global Tech financing is a private-market risk cue, not a direct Nifty setup without listed peer breadth.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/pinterest-pins-q1-earnings-report-2026.html",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Pinterest surges 15% after earnings beat as company posts strong guidance source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T23:05:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "Amazon is taking on FedEx and UPS. That may not be so simple.",
+      "summary": "FedEx and UPS shares are falling, but one analyst isn&#x2019;t sure that Amazon&#x2019;s new service will have a significantly disruptive effect.",
+      "takeaway": "FedEx and UPS shares are falling, but one analyst isn&#x2019;t sure that Amazon&#x2019;s new service will have; keep the read-through to risk appetite until Indian breadth confirms after the opening range.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Watch Market during the first-hour range; trade it only if it broadens into sector leadership.",
+      "sourceUrl": "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Amazon Taking",
+        "accent": "#059669",
+        "alt": "Amazon is taking on FedEx and UPS. That may not be so simple. source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-04T22:54:54.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "OpenAI sales leader leaves for role at Thrive Capital",
+      "summary": "James Dyett joined OpenAI in 2023, shortly after the company underwent a period of explosive growth with the launch of its ChatGPT chatbot.",
+      "takeaway": "James Dyett joined OpenAI in 2023, shortly after the company underwent a period of explosive growth; keep the read-through to risk appetite until Indian breadth confirms after the opening range.",
+      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
+      "indiaImpact": "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.",
+      "watchFor": "Watch Market during the first-hour range; trade it only if it broadens into sector leadership.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/open-ai-executive-leaves-thrive-capital.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Openai Sales",
+        "accent": "#059669",
+        "alt": "OpenAI sales leader leaves for role at Thrive Capital source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-04T10:45:58.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/wegovy-glp1-weight-loss-drugs-pharma-growth-bubble.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Infra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPipeline%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019;",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-05T00:20:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019; source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T22:51:10.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020 source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Andy Jassy says Amazon investors will be rewarded by all its AI spending",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T22:49:28.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Andy Jassy says Amazon investors will be rewarded by all its AI spending source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T21:42:35.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Pinterest surges 15% after earnings beat as company posts strong guidance",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T22:23:54.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/pinterest-pins-q1-earnings-report-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Pinterest surges 15% after earnings beat as company posts strong guidance source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Amazon is taking on FedEx and UPS. That may not be so simple.",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-04T23:05:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAmazon%20Taking%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Amazon is taking on FedEx and UPS. That may not be so simple. source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "OpenAI sales leader leaves for role at Thrive Capital",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T22:54:54.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/open-ai-executive-leaves-thrive-capital.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOpenai%20Sales%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "OpenAI sales leader leaves for role at Thrive Capital source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "ACTIVE",
+      "reason": "Prepared market data is in use, so the setup remains on the watchlist until a live price check is available.",
+      "currentPrice": 22475.85,
+      "entry": 22705,
+      "stopLoss": 22180.26,
+      "target": 23859.42,
+      "riskReward": 2.2,
+      "remainingRiskReward": 2.2
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "ACTIVE",
+      "reason": "Prepared market data is in use, so the setup remains on the watchlist until a live price check is available.",
+      "currentPrice": 48210.3,
+      "entry": 50960,
+      "stopLoss": 49292.6,
+      "target": 54628.28,
+      "riskReward": 2.2,
+      "remainingRiskReward": 2.2
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "VOLATILE",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-05-05.webp"
+  }
+}

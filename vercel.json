@@ -6,22 +6,22 @@
   "redirects": [
     {
       "source": "/latest/",
-      "destination": "/4may2026/",
+      "destination": "/5may2026/",
       "permanent": false
     },
     {
       "source": "/latest",
-      "destination": "/4may2026/",
+      "destination": "/5may2026/",
       "permanent": false
     },
     {
       "source": "/latest/trading-guide/",
-      "destination": "/4may2026/trading-guide/",
+      "destination": "/5may2026/trading-guide/",
       "permanent": false
     },
     {
       "source": "/latest/trading-guide",
-      "destination": "/4may2026/trading-guide/",
+      "destination": "/5may2026/trading-guide/",
       "permanent": false
     }
   ]

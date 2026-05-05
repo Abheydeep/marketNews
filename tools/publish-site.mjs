@@ -148,6 +148,7 @@ await writeFile(
   "utf8"
 );
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveHomeDigests, digests));
+await writeFile(join(siteDir, "404.html"), notFoundPage(), "utf8");
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: archiveHomeDigests.map(redactedDigestPayload) }, null, 2)}\n`);
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
@@ -192,6 +193,26 @@ function redirectPage(targetHref, label) {
     <h1>Market Narrative ${escapeHtml(label)}</h1>
     <p>Redirecting to the latest Nifty and Bank Nifty market briefing.</p>
     <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
+  </main>
+</body>
+</html>`;
+}
+
+function notFoundPage() {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="robots" content="noindex,follow">
+  <title>Page Not Found | Market Narrative</title>
+</head>
+<body>
+  <main>
+    <h1>Market Narrative</h1>
+    <p>This briefing page is not available. Open the latest Nifty and Bank Nifty pre-market briefing instead.</p>
+    <a href="/latest/">Open latest briefing</a>
   </main>
 </body>
 </html>`;
