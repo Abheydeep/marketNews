@@ -3,7 +3,7 @@
   "digestDate": "2026-05-05",
   "title": "Rates / Fed path Weighs On Opening Range",
   "status": "PUBLISHED",
-  "generatedAt": "2026-05-05T00:47:00.520Z",
+  "generatedAt": "2026-05-05T00:51:10.880Z",
   "dailyLead": {
     "label": "Rates / Fed path",
     "sourceArticleId": "cnbc-world:o2hvoi",
@@ -272,7 +272,7 @@
     "blockedReason": null,
     "isVerifiedForPublicArchive": true
   },
-  "durationMillis": 2770,
+  "durationMillis": 4346,
   "scheduledFor": "2026-05-05T07:15:00+05:30",
   "runMode": "scheduled-verified-source-data",
   "news": [

@@ -51,7 +51,7 @@ const publicBlockedCopyPatterns = [
 ];
 
 const results = [];
-const offTopicAuditPatterns = [/Museum of Fine Arts/i, /MFA Boston/i, /Robert Frank/i, /Monet/i, /audio tours?/i, /\bexhibitions?\b/i, /\bgalleries\b/i];
+const offTopicAuditPatterns = [/Museum of Fine Arts/i, /MFA Boston/i, /Robert Frank/i, /\bMonet\b/i, /audio tours?/i, /\bexhibitions?\b/i, /\bgalleries\b/i];
 const financeMetadataPatterns = [/<title>[^<]*(Market Narrative|Nifty|Multibagger)[^<]*<\/title>/i, /<meta name="description" content="[^"]{24,}"/i, /<h1[\s\S]*?<\/h1>/i, /<nav[\s\S]*?<\/nav>/i];
 
 await group("Domain sanity", async () => {

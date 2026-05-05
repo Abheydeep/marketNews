@@ -6826,8 +6826,8 @@ function quoteBoardTitle(digest) {
 
 function quoteBoardSubtitle(digest) {
   return quoteBoardShowsPreviousClose(digest)
-    ? "Archived quote context for US Overnight, Asia Watch, India Open, and Macro Hedges."
-    : "Current quote context for US Overnight, Asia Watch, India Open, and Macro Hedges.";
+    ? "Previous close/reference quotes for US Overnight, Asia Watch, India Open, and Macro Hedges."
+    : "Market quote context for US Overnight, Asia Watch, India Open, and Macro Hedges.";
 }
 
 function quoteSessionLabel(digest) {
