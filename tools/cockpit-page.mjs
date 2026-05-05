@@ -5336,7 +5336,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       const context = region === 'Asia Watch' ? 'Top 5 countries · ' : '';
       const leadName = region === 'Asia Watch' ? countryForQuote(strongest) || strongest.name : strongest.name;
       const leadLabel = quoteIsFlatOrStale(strongest) ? 'Last close' : Number(strongest.changePercent) >= 0 ? 'Biggest lift' : 'Biggest drag';
-      return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '" aria-label="Open ' + escapeClientHtml(region) + ' live quote board">' +
+      return '<button class="breadth-card" type="button" data-region="' + escapeClientHtml(region) + '" aria-pressed="' + (active ? 'true' : 'false') + '" aria-label="Open ' + escapeClientHtml(region) + ' quote context">' +
         '<div class="breadth-card-top"><span>' + escapeClientHtml(region) + '</span><em class="market-state ' + status.className + '">' + escapeClientHtml(status.label) + '</em></div>' +
         '<strong>' + positives + ' up <em>/ ' + quotes.length + ' tracked</em></strong>' +
         '<small>Avg move <b class="market-move ' + moveClass(average) + '">' + formatClientChange(average) + '</b> · ' + escapeClientHtml(context) + escapeClientHtml(leadLabel) + ': ' + escapeClientHtml(leadName) + ' <b class="market-move ' + moveClassForQuote(strongest) + '">' + formatClientQuoteChange(strongest) + '</b></small>' +
@@ -7982,7 +7982,7 @@ function regionalBreadthHtml(digest) {
       const leadLabel = Number(strongest.changePercent) >= 0 ? "Biggest lift" : "Biggest drag";
       const context = region === "Asia Watch" ? "Top 5 countries · " : "";
       return `
-        <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false" aria-label="Open ${escapeHtml(label)} live quote board">
+        <button class="breadth-card" type="button" data-region="${escapeHtml(label)}" aria-pressed="false" aria-label="Open ${escapeHtml(label)} quote context">
           <div class="breadth-card-top"><span>${escapeHtml(label)}</span><em class="market-state">Latest</em></div>
           <strong>${positives} up <em>/ ${snapshots.length} tracked</em></strong>
           <small>Avg move <b class="market-move ${changeClass(average)}">${formatChange(average)}</b> · ${escapeHtml(context)}${escapeHtml(leadLabel)}: ${escapeHtml(leadName)} <b class="market-move ${changeClass(strongest.changePercent)}">${formatChange(strongest.changePercent)}</b></small>
