@@ -261,11 +261,14 @@ function assertNewDigestSourceIntegrity(digest, previousDigest) {
   if (!hasVerification) {
     return null;
   }
-  const verification = verifySourceArticles(digest.news ?? [], {
+  const publicStackVerification = verifySourceArticles(digest.news ?? [], {
     mode: digest.sourceVerification?.mode ?? digest.newsDataMode ?? "live",
     previousDigest
   });
-  assertSourceVerification(verification);
+  assertSourceVerification(publicStackVerification);
+  if (digest.sourceVerification) {
+    assertSourceVerification(digest.sourceVerification);
+  }
   const badSource = (digest.news ?? []).find((article) => !sourceUrlLooksArticleLevel(article.sourceUrl));
   if (badSource) {
     throw new Error(`Source verification failed: ${badSource.sourceName || "source"} links to a section page (${badSource.sourceUrl})`);
@@ -274,7 +277,7 @@ function assertNewDigestSourceIntegrity(digest, previousDigest) {
   if (offTopic) {
     throw new Error(`Source verification failed: ${offTopic.sourceName || "source"} is not market-relevant (${offTopic.headline || offTopic.title})`);
   }
-  return verification;
+  return digest.sourceVerification ?? publicStackVerification;
 }
 
 function previousDigestFor(digest, digests) {

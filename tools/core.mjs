@@ -882,6 +882,11 @@ function diverseVisibleArticles(articles, limit, options = {}) {
     const allowOverCap = selected.length >= Math.min(limit, categoryUniverse.size * maxPerCategory);
     addVisibleSource(article, selected, selectedKeys, limit, categoryCount, allowOverCap ? limit : maxPerCategory);
   }
+  if (selected.length < limit) {
+    for (const article of articles ?? []) {
+      addVisibleSource(article, selected, selectedKeys, limit, categoryCount, limit);
+    }
+  }
   return selected;
 }
 

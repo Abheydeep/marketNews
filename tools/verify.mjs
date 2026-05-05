@@ -254,6 +254,30 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     headline: "If I had invested my Social Security in the S&P 500 I would have $4 million",
     summary: "Personal-finance advice is not a tradeable India pre-market driver."
   }), false, "personal-finance stories should not appear in the public briefing source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds",
+    summary: "Obesity assets represent about 25% of total forecast sales of the late-stage pipeline."
+  }), false, "weight-loss/pharma feature stories should not pad the India pre-market source stack");
+  const normalizationFeed = {
+    sourceId: "cnbc-world",
+    sourceName: "CNBC World",
+    categoryHint: "global_risk",
+    url: "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+  };
+  const indiaEnergy = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "India is burning more coal as extreme heat and the Iran war squeeze energy supplies",
+    link: "https://www.cnbc.com/2026/05/03/india-coal-power-heatwave-lng-supply-demand-prices-generation.html",
+    summary: "India power demand, coal generation and LNG supply pressure are rising before the market open."
+  });
+  assert.equal(indiaEnergy.entityName, "India Energy");
+  assert.match(indiaEnergy.indiaImpact, /Direct India read-through/);
+  const treasury = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Treasury yields edge higher as traders monitor factory data and Middle East developments",
+    link: "https://www.cnbc.com/2026/05/03/treasury-yields-rise-as-traders-monitor-factory-data.html",
+    summary: "Treasury yields and bond rates moved higher before Asia opened."
+  });
+  assert.equal(treasury.entityName, "Rates");
+  assert.doesNotMatch(treasury.indiaImpact, /^No direct India read-through/);
 });
 
 await test("article read-through copy does not reuse category templates", async () => {
@@ -447,6 +471,27 @@ await test("public source selection prefers India-publisher articles when availa
   assert.match(selection.publicSummary.indiaPublisherCoverage, /Direct India-source articles: 2/);
   assert.ok(selection.visibleArticles.some((article) => /moneycontrol/i.test(article.sourceName)));
   assert.ok(selection.visibleArticles.some((article) => /livemint/i.test(article.sourceName)));
+});
+
+await test("public source selection fills the stack when source categories are narrow", () => {
+  const articles = Array.from({ length: 9 }, (_, index) => ({
+    headline: `Direct India energy article ${index + 1}`,
+    summary: "India energy and rate-sensitive market source with explicit read-through.",
+    takeaway: "Direct India cue affects the market open.",
+    indiaImpact: index % 2 === 0
+      ? "Direct India read-through: power and industrial breadth are the checks."
+      : "Rate-sensitive Indian sectors need yield stability.",
+    watchFor: "Watch breadth after the first range.",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/direct-india-energy-article-${index + 1}.html`,
+    sourceName: index % 2 === 0 ? "CNBC World" : "CNBC Economy",
+    category: index < 5 ? "global_risk" : "macro_negative",
+    entityName: index < 5 ? "India Energy" : "Rates",
+    publishedAt: "2026-05-03T12:00:00.000Z",
+    sentimentScore: index % 2 === 0 ? -0.42 : -0.35,
+    entityMatchScore: 0.8
+  }));
+  const selection = publicSourceSelectionForDigest("2026-05-04", articles);
+  assert.equal(selection.visibleArticles.length, 8);
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {

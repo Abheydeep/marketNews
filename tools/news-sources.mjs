@@ -12,7 +12,7 @@ const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|
 const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
-const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted)\b/i;
+const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -486,7 +486,7 @@ function categoryFromText(text, fallback) {
   if (isLowRelevanceUsSingleStockStory(value)) {
     return "neutral_volatile";
   }
-  if (/\b(keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(value)) {
+  if (isOilStory(value)) {
     return "global_risk";
   }
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
@@ -498,7 +498,7 @@ function categoryFromText(text, fallback) {
   if (/\b(s&p|nasdaq|dow|rallies|rally|wall street|analyst|berkshire|buffett|stocks?|record high|long-term prospects)\b/.test(value)) {
     return "macro_positive";
   }
-  if (/\b(yield|yields|bond|bonds|inflation|rate|rates|fed|rbi|deficit|rupee|powell)\b/.test(value)) {
+  if (/\b(yields?|bonds?|inflation|rates?|fed|rbi|deficit|rupee|powell)\b/.test(value)) {
     return "macro_negative";
   }
   if (/\b(bank|banks|banking|financial|financials|credit|deposit|loan|nbfc)\b/.test(value)) {
@@ -542,10 +542,13 @@ function articleIsFreshForDigest(article, digestDate) {
 function takeawayFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   const fact = articleFactSentence(headline, summary);
-  if (/\b(oil|crude|brent|energy supply|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
+  if (isIndiaEnergyStory(lower)) {
+    return compactWords(`${fact}; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.`, 35);
+  }
+  if (isOilStory(lower)) {
     return compactWords(`${fact}; ${oilReadthrough(lower).takeaway}`, 35);
   }
-  if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+  if (/\b(fed|yields?|bonds?|rates?|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return compactWords(`${fact}; ${ratesReadthrough(lower).takeaway}`, 35);
   }
   if (isTradePolicyStory(lower)) {
@@ -577,10 +580,13 @@ function takeawayFromArticle(headline, summary, category, entityName) {
 
 function whyItMattersFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
-  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
+  if (isIndiaEnergyStory(lower)) {
+    return "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.";
+  }
+  if (isOilStory(lower)) {
     return "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.";
   }
-  if (/\b(fed|yield|bond|rate|inflation)\b/.test(lower)) {
+  if (/\b(fed|yields?|bonds?|rates?|inflation)\b/.test(lower)) {
     return "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.";
   }
   if (isPrivateMarketStory(lower)) {
@@ -612,10 +618,13 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (isLowRelevanceUsSingleStockStory(lower)) {
     return "No direct India read-through for this story.";
   }
-  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
+  if (isIndiaEnergyStory(lower)) {
+    return "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.";
+  }
+  if (isOilStory(lower)) {
     return oilReadthrough(lower).indiaImpact;
   }
-  if (/\b(fed|yield|bond|rate|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+  if (/\b(fed|yields?|bonds?|rates?|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return ratesReadthrough(lower).indiaImpact;
   }
   if (/\b(rupee|dollar|currency|yen|forex)\b/.test(lower)) {
@@ -664,10 +673,13 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isLowRelevanceUsSingleStockStory(lower)) {
     return "No specific watch for this article.";
   }
-  if (/\b(oil|crude|brent|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
+  if (isIndiaEnergyStory(lower)) {
+    return "Watch power, energy and industrial breadth after the open; broad-index bias needs confirmation outside the headline.";
+  }
+  if (isOilStory(lower)) {
     return oilReadthrough(lower).watchFor;
   }
-  if (/\b(fed|yield|bond|rate|inflation|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
+  if (/\b(fed|yields?|bonds?|rates?|inflation|boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return ratesReadthrough(lower).watchFor;
   }
   if (/\b(rupee|dollar|currency|yen|forex)\b/.test(lower)) {
@@ -936,6 +948,9 @@ function firstUsefulSentence(value) {
 
 function hasNoDirectIndiaRead(text, category) {
   const lower = String(text || "").toLowerCase();
+  if (isIndiaEnergyStory(lower)) {
+    return false;
+  }
   if (isLowRelevanceUsSingleStockStory(lower)) {
     return true;
   }
@@ -948,6 +963,17 @@ function hasNoDirectIndiaRead(text, category) {
     return true;
   }
   return category === "neutral_volatile" && /\b(lifestyle|travel tips|retirement|consumer advice)\b/.test(lower);
+}
+
+function isOilStory(lower) {
+  const text = String(lower || "");
+  return /\b(oil|crude|brent|keystone|refinery|export terminal|gulf coast|opec)\b/.test(text) ||
+    (/\bpipeline\b/.test(text) && /\b(oil|crude|brent|keystone|refinery|barrels?|shipments?|gulf coast)\b/.test(text));
+}
+
+function isIndiaEnergyStory(lower) {
+  const text = String(lower || "");
+  return /\bindia\b/.test(text) && /\b(coal|lng|power demand|power generation|heatwave|energy supplies?|electricity demand)\b/.test(text);
 }
 
 function compactWords(value, maxWords) {
@@ -1037,10 +1063,13 @@ function entityForHeadline(headline, category) {
   if (/\b(ai|semiconductor|software|alphabet|google|nvidia|microsoft|oracle|meta|tech|apple|iphone|mac|big tech|faang)\b/.test(lower)) {
     return "Global Tech";
   }
-  if (/\b(yield|bond|rate|fed|inflation|powell)\b/.test(lower)) {
+  if (/\b(yields?|bonds?|rates?|fed|inflation|powell)\b/.test(lower)) {
     return "Rates";
   }
-  if (/\b(oil|crude|brent|energy supply|keystone|pipeline|refinery|export terminal|gulf coast)\b/.test(lower)) {
+  if (isIndiaEnergyStory(lower)) {
+    return "India Energy";
+  }
+  if (isOilStory(lower)) {
     return "Brent Crude";
   }
   if (/\b(rupee|dollar|currency|forex|yen)\b/.test(lower)) {
