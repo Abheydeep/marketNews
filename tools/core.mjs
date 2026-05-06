@@ -6,6 +6,8 @@ import { resolveNewsArticles } from "./news-sources.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
+const PUBLIC_SOURCE_LIMIT = 8;
+const MIN_PUBLIC_SOURCE_COUNT = 3;
 
 export async function loadSeeds() {
   const [marketSnapshots, news, priceSeries, creator] = await Promise.all([
@@ -792,10 +794,11 @@ export function publicSourceSelectionForDigest(date, articles = []) {
     .sort((left, right) => indiaSourceScore(right, date) - indiaSourceScore(left, date))
     .slice(0, 25);
   const indiaLinked = shortlist.filter(hasIndiaReadThrough);
-  const visiblePool = indiaLinked.length >= 8 ? indiaLinked : shortlist;
-  const visibleArticles = diverseVisibleArticles(visiblePool, 8, { preferIndiaSources: true });
-  if (visibleArticles.length < 8) {
-    throw new Error(`Public source selection failed: only ${visibleArticles.length} India read-through articles inside the 24-hour window; need at least 8`);
+  const visiblePool = indiaLinked.length >= MIN_PUBLIC_SOURCE_COUNT ? indiaLinked : shortlist;
+  const targetCount = Math.min(PUBLIC_SOURCE_LIMIT, visiblePool.length);
+  const visibleArticles = diverseVisibleArticles(visiblePool, targetCount, { preferIndiaSources: true });
+  if (visibleArticles.length < MIN_PUBLIC_SOURCE_COUNT) {
+    throw new Error(`Public source selection failed: only ${visibleArticles.length} public source articles inside the 24-hour window; need at least ${MIN_PUBLIC_SOURCE_COUNT}`);
   }
   const visibleIndiaPublisherCount = visibleArticles.filter(isIndiaPublisherArticle).length;
   const shortlistIndiaPublisherCount = shortlist.filter(isIndiaPublisherArticle).length;

@@ -2,8 +2,8 @@ import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 
-const MIN_VERIFIED_ARTICLES = 8;
-const MIN_SOURCE_CATEGORY_BUCKETS = 4;
+const MIN_VERIFIED_ARTICLES = 3;
+const MIN_SOURCE_CATEGORY_BUCKETS = 2;
 const MAX_DUPLICATE_WITH_PREVIOUS_PERCENT = 55;
 const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
 const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
@@ -15,6 +15,55 @@ const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|p
 const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
 
 const LIVE_FEEDS = [
+  {
+    sourceName: "Moneycontrol Markets",
+    sourceId: "moneycontrol-markets",
+    type: "rss",
+    categoryHint: "sector_positive",
+    url: "https://www.moneycontrol.com/rss/marketreports.xml"
+  },
+  {
+    sourceName: "Moneycontrol Business",
+    sourceId: "moneycontrol-business",
+    type: "rss",
+    categoryHint: "macro_positive",
+    url: "https://www.moneycontrol.com/rss/business.xml"
+  },
+  {
+    sourceName: "Moneycontrol Economy",
+    sourceId: "moneycontrol-economy",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://www.moneycontrol.com/rss/economy.xml"
+  },
+  {
+    sourceName: "Moneycontrol Buzzing Stocks",
+    sourceId: "moneycontrol-buzzing-stocks",
+    type: "rss",
+    categoryHint: "sector_positive",
+    url: "https://www.moneycontrol.com/rss/buzzingstocks.xml"
+  },
+  {
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    type: "rss",
+    categoryHint: "macro_positive",
+    url: "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms"
+  },
+  {
+    sourceName: "Economic Times Stocks",
+    sourceId: "economic-times-stocks",
+    type: "rss",
+    categoryHint: "sector_positive",
+    url: "https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms"
+  },
+  {
+    sourceName: "Mint Markets",
+    sourceId: "mint-markets",
+    type: "rss",
+    categoryHint: "macro_positive",
+    url: "https://www.livemint.com/rss/markets"
+  },
   {
     sourceName: "CNBC Markets",
     sourceId: "cnbc-markets",
@@ -188,7 +237,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
     .filter(articleLooksMarketRelevant)
     .filter((article) => articleIsFreshForDigest(article, date));
-  return selectDiverseArticles(verifiedArticles, 24);
+  return selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 24);
 }
 
 export function fixtureNewsArticles(date, seedNews = []) {
@@ -550,6 +599,36 @@ function articleIsFreshForDigest(article, digestDate) {
   }
   const ageHours = (digestTime - published) / (60 * 60 * 1000);
   return ageHours <= 120 && ageHours >= -48;
+}
+
+function prioritizeDigestWindowArticles(articles, digestDate) {
+  const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
+  if (!Number.isFinite(digestTime)) {
+    return articles;
+  }
+  return [...articles].sort((left, right) => {
+    const leftScore = digestWindowScore(left, digestTime);
+    const rightScore = digestWindowScore(right, digestTime);
+    if (leftScore !== rightScore) {
+      return rightScore - leftScore;
+    }
+    return Date.parse(right.publishedAt || "") - Date.parse(left.publishedAt || "");
+  });
+}
+
+function digestWindowScore(article, digestTime) {
+  const published = Date.parse(article.publishedAt || "");
+  if (!Number.isFinite(published)) {
+    return 0;
+  }
+  const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  if (ageHours >= -1 && ageHours <= 24) {
+    return 3;
+  }
+  if (ageHours > 24 && ageHours <= 120) {
+    return 1;
+  }
+  return 0;
 }
 
 function takeawayFromArticle(headline, summary, category, entityName) {

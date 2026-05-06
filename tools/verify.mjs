@@ -234,10 +234,10 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
   const airline = articles.find((article) => /Airline fuel cost/i.test(article.headline));
   assert.equal(airline?.entityName, "Aviation");
   assert.match(airline?.indiaImpact || "", /Aviation/);
-  const fed = articles.find((article) => /Fed investigation/i.test(article.headline));
-  assert.equal(fed?.entityName, "Rates");
+  const rates = articles.find((article) => /Yield and rupee/i.test(article.headline));
+  assert.equal(rates?.entityName, "Rates");
   assert.notEqual(airline?.entityName, "Nifty IT");
-  assert.notEqual(fed?.entityName, "Nifty IT");
+  assert.notEqual(rates?.entityName, "Nifty IT");
   assert.equal(articleLooksMarketRelevant({
     headline: "The U.S. attorney shifted legal strategies in her investigation of Federal Reserve Chairman Jerome Powell",
     summary: "The deadline is approaching in the legal process."
@@ -492,6 +492,26 @@ await test("public source selection fills the stack when source categories are n
   }));
   const selection = publicSourceSelectionForDigest("2026-05-04", articles);
   assert.equal(selection.visibleArticles.length, 8);
+});
+
+await test("public source selection can publish a smaller verified stack", () => {
+  const articles = Array.from({ length: 3 }, (_, index) => ({
+    headline: `Limited verified source ${index + 1}`,
+    summary: "Small verified stack with explicit India market read-through.",
+    takeaway: "Limited but usable source context for the open.",
+    indiaImpact: index === 0
+      ? "Nifty and Bank Nifty need breadth confirmation."
+      : "Rate-sensitive Indian sectors need yield stability.",
+    watchFor: "Watch the first range and sector breadth.",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/limited-verified-source-${index + 1}.html`,
+    sourceName: index === 0 ? "CNBC Markets" : "Yahoo Finance",
+    category: index === 0 ? "global_risk" : "macro_negative",
+    entityName: index === 0 ? "Bank Nifty" : "Rates",
+    publishedAt: "2026-05-03T12:00:00.000Z"
+  }));
+  const selection = publicSourceSelectionForDigest("2026-05-04", articles);
+  assert.equal(selection.visibleArticles.length, 3);
+  assert.equal(selection.publicSummary.visibleCount, 3);
 });
 
 await test("full digest contains public SEO and studio contracts", async () => {
