@@ -403,11 +403,23 @@ function fixtureSummary(headline, category) {
 }
 
 function fixtureTakeaway(headline, category) {
-  return `${headline} shapes the opening bias through ${categoryLabel(category).toLowerCase()} conditions.`;
+  if (category.includes("macro")) {
+    return `${headline} changes the macro checklist; confirm with yields, rupee, Brent and index breadth before assigning direction.`;
+  }
+  if (category.includes("sector")) {
+    return `${headline} belongs in the sector-leadership check; use it only if related Indian names participate after the open.`;
+  }
+  return `${headline} is a risk-appetite cue; Nifty and Bank Nifty still need first-range confirmation.`;
 }
 
 function fixtureWhyItMatters(headline, category) {
-  return `${headline} matters because it changes the weight given to ${categoryLabel(category).toLowerCase()} before the cash open.`;
+  if (category.includes("macro")) {
+    return "Macro fixture stories are useful only when they change the opening checklist for rates, currency, crude, or breadth.";
+  }
+  if (category.includes("sector")) {
+    return "Sector fixture stories matter when they can show up in Indian leadership, not as automatic broad-index calls.";
+  }
+  return "Fixture stories should keep the desk in confirmation mode until price, breadth, and Bank Nifty agree.";
 }
 
 function fixtureIndiaImpact(headline, category) {
@@ -422,12 +434,12 @@ function fixtureIndiaImpact(headline, category) {
 
 function fixtureWatchFor(headline, category) {
   if (category.includes("macro")) {
-    return "Watch bond yields, rupee movement, and opening breadth.";
+    return "Watch bond yields, spot USD/INR, DXY, Brent, and opening breadth through 9:45-10:00 AM IST.";
   }
   if (category.includes("sector")) {
-    return "Watch sector leadership and follow-through after the first 30 minutes.";
+    return "Watch sector leadership and follow-through after the first range; skip the read if related Indian names do not participate.";
   }
-  return "Watch whether Asia cues persist into the Indian cash open.";
+  return "Watch whether Asia cues persist into the Indian first range and whether Bank Nifty confirms.";
 }
 
 function adjustedSentiment(seedScore, category) {
@@ -570,12 +582,12 @@ function takeawayFromArticle(headline, summary, category, entityName) {
     return compactWords(`${fact}; ${techReadthrough(lower, entityName).takeaway}`, 35);
   }
   if (category === "macro_positive") {
-    return compactWords(`${fact}; keep the read-through to risk appetite until Indian breadth confirms after the opening range.`, 35);
+    return compactWords(`${fact}; treat it as risk-appetite support only after Indian breadth confirms beyond the opening range.`, 35);
   }
   if (category === "sector_negative") {
-    return compactWords(`${fact}; keep it as a sector warning unless related Indian names weaken and breadth confirms the same pressure.`, 35);
+    return compactWords(`${fact}; make it a sector warning only if related Indian names weaken and breadth confirms the pressure.`, 35);
   }
-  return compactWords(`${fact}; keep it as ${entityName} context unless a related Indian sector confirms the move.`, 35);
+  return compactWords(`${fact}; use it as a ${entityName} watch input only if a related Indian sector confirms the move.`, 35);
 }
 
 function whyItMattersFromArticle(headline, summary, category, entityName) {
@@ -604,19 +616,25 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   if (isTradePolicyStory(lower)) {
     return "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.";
   }
-  return `${entityName} matters because it can shift the first-hour balance between macro pressure and domestic breadth.`;
+  if (category.includes("macro")) {
+    return `${entityName} can change the macro checklist, but the India open still needs confirmation from breadth, currency, or rates.`;
+  }
+  if (category.includes("sector")) {
+    return `${entityName} matters only if the related Indian sector joins the move after the first range.`;
+  }
+  return `${entityName} is a watch input, not a trade bias, until Nifty breadth and Bank Nifty confirm.`;
 }
 
 function indiaImpactFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   if (hasNoDirectIndiaRead(lower, category)) {
-    return "No direct India read-through for this story.";
+    return globalOnlyIndiaContext();
   }
   if (isPrivateMarketStory(lower)) {
-    return "No direct India read-through for this story.";
+    return globalOnlyIndiaContext();
   }
   if (isLowRelevanceUsSingleStockStory(lower)) {
-    return "No direct India read-through for this story.";
+    return globalOnlyIndiaContext();
   }
   if (isIndiaEnergyStory(lower)) {
     return "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.";
@@ -632,7 +650,7 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   }
   if (/\b(bank|credit|loan|deposit|jpmorgan|private credit)\b/.test(lower)) {
     if (isPrivateMarketStory(lower)) {
-      return "No direct India read-through for this story.";
+      return globalOnlyIndiaContext();
     }
     return "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.";
   }
@@ -652,14 +670,18 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return aviationReadthrough(lower).indiaImpact;
   }
   if (category === "macro_positive") {
-    return "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.";
+    return "Global earnings support risk appetite only if Indian breadth confirms after the first range.";
   }
   if (category === "sector_negative") {
     return "Treat this as a sector caution flag; index action needs confirmation from banks and breadth.";
   }
   return entityName === "Market"
-    ? "No direct India read-through for this story."
-    : `${entityName} is only a conditional India input; require first-range breadth before using it for trade bias.`;
+    ? globalOnlyIndiaContext()
+    : `${entityName} is only a conditional India input; require first-range breadth and related sector participation before using it for trade bias.`;
+}
+
+function globalOnlyIndiaContext() {
+  return "Global-only context: no direct India trade read; use it only if index futures, sector breadth, currency, or rates confirm after the open.";
 }
 
 function watchForFromArticle(headline, summary, category, entityName) {
@@ -683,13 +705,13 @@ function watchForFromArticle(headline, summary, category, entityName) {
     return ratesReadthrough(lower).watchFor;
   }
   if (/\b(rupee|dollar|currency|yen|forex)\b/.test(lower)) {
-    return "Watch USD/INR near 84.20 and DXY in the first hour; pressure splits exporters from importers.";
+    return "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.";
   }
   if (/\b(bank|credit|loan|deposit|jpmorgan|private credit)\b/.test(lower)) {
     if (isPrivateMarketStory(lower)) {
       return "No specific watch for this article.";
     }
-    return "Watch private-bank breadth after 10:15 AM IST; no long bias if financials lag Nifty.";
+    return "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.";
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return techReadthrough(lower, entityName).watchFor;
@@ -757,7 +779,7 @@ function ratesReadthrough(lower) {
     };
   }
   return {
-    takeaway: "the yield move changes the discount-rate check for banks and high-multiple growth.",
+    takeaway: "A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
     indiaImpact: "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
     watchFor: `Watch ${level}; pair it with Bank Nifty VWAP before assigning direction.`
   };
@@ -820,13 +842,13 @@ function aviationReadthrough(lower) {
   if (/\b(spirit airlines|shutdown|bankrupt|bankruptcy)\b/.test(lower)) {
     return {
       takeaway: "keep it as US aviation stress unless fuel, demand or aircraft-supply data moves Indian aviation names.",
-      indiaImpact: "No direct India read-through for this story.",
+      indiaImpact: globalOnlyIndiaContext(),
       watchFor: "No specific watch for this article."
     };
   }
   return {
-    takeaway: "aviation demand or fuel pressure matters for airlines before it matters for the broad index.",
-    indiaImpact: "Aviation is the direct read-through; do not convert it into Nifty IT or broad-index conviction.",
+    takeaway: "aviation demand or fuel pressure matters for IndiGo and SpiceJet before it matters for the broad index.",
+    indiaImpact: "Aviation is the direct read-through through IndiGo, SpiceJet and fuel-cost sensitivity; do not convert it into Nifty IT or broad-index conviction.",
     watchFor: "Watch aviation and fuel-cost names separately; avoid using the headline as a Nifty setup."
   };
 }

@@ -355,7 +355,7 @@ await test("article read-through copy does not reuse category templates", async 
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
   assert.match(opec.indiaImpact, /OPEC|Brent|upstream/i);
   assert.equal(blueOwl.entityName, "Private markets");
-  assert.equal(blueOwl.indiaImpact, "No direct India read-through for this story.");
+  assert.match(blueOwl.indiaImpact, /^Global-only context:/);
   assert.equal(blueOwl.watchFor, "No specific watch for this article.");
   assert.equal(/Bank Nifty|NBFC/i.test(blueOwl.indiaImpact), false);
   assert.equal(/translate it into levels/i.test(blueOwl.takeaway), false);
@@ -374,7 +374,7 @@ await test("article read-through copy does not reuse category templates", async 
   }
   assert.equal(carvana.category, "neutral_volatile");
   assert.equal(carvana.entityName, "US single-stock");
-  assert.equal(carvana.indiaImpact, "No direct India read-through for this story.");
+  assert.match(carvana.indiaImpact, /^Global-only context:/);
   assert.equal(carvana.watchFor, "No specific watch for this article.");
   assert.match(boom.takeaway, /AI-led|earnings|risk appetite/i);
   assert.doesNotMatch(boom.takeaway, /trade-flow/i);
@@ -410,7 +410,7 @@ await test("public source selection excludes no-direct India stories when direct
   const selection = publicSourceSelectionForDigest("2026-05-04", [noDirect, ...directArticles]);
   assert.equal(selection.visibleArticles.length, 8);
   assert.equal(selection.visibleArticles.includes(noDirect), false);
-  assert.ok(selection.visibleArticles.every((article) => !/^No direct Indian\b|^No direct India read-through/i.test(article.indiaImpact || "")));
+  assert.ok(selection.visibleArticles.every((article) => !/^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(article.indiaImpact || "")));
   const categoryCounts = selection.visibleArticles.reduce((counts, article) => {
     counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
     return counts;
@@ -504,7 +504,7 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.reelScript.includes("[40-52s | TRADE PLAN]"));
   assertReelScriptCopy("daily reel script", digest.reelScript);
   assert.ok(reelScriptMarkdown(digest).includes("## Daily Reel Script"));
-  assert.ok(digest.asset.positivePrompt.includes("identity-locked creator portrait"));
+  assert.ok(digest.asset.positivePrompt.includes("ControlNet reference, consistent face"));
   assert.ok(digest.asset.reelVideo.videoPrompt.includes("60-second vertical financial market reel"));
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
   assert.equal(digest.news.length, 8);
@@ -514,7 +514,7 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.equal(digest.publicSourceSelection.visibleCount, 8);
   assert.ok(digest.publicSourceSelection.shortlistCount >= 8);
   assert.equal(digest.publicSourceSelection.windowHours, 24);
-  assert.ok(digest.news.every((article) => !/^No direct Indian\b|^No direct India read-through/i.test(article.indiaImpact || "")));
+  assert.ok(digest.news.every((article) => !/^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(article.indiaImpact || "")));
   const selectedCategoryCounts = digest.news.reduce((counts, article) => {
     counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
     return counts;

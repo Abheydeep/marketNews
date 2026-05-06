@@ -13,7 +13,7 @@ public class AssetPromptService {
             digestDate,
             label,
             positivePrompt(label),
-            "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands",
+            "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands, generic Wall Street floor, NYSE trading pit, US flag backdrop, suit-and-tie corporate headshot, unreadable ticker text",
             palette(label),
             "creator-ref-001",
             "ControlNet Canny + Depth identity lock",
@@ -23,12 +23,13 @@ public class AssetPromptService {
 
     private String positivePrompt(SentimentLabel label) {
         String mood = switch (label) {
-            case BULLISH -> "emerald market screens, rising candles, confident financial presenter";
-            case BEARISH -> "crimson risk dashboard, falling candles, serious financial presenter";
-            case VOLATILE -> "slate and gold trading floor, split-direction candles, focused financial presenter";
-            case NEUTRAL -> "clean market studio, balanced chart grid, composed financial presenter";
+            case BULLISH -> "green candlestick chart overlay, NSE ticker strip, Bank Nifty breadth tile, confident financial presenter";
+            case BEARISH -> "red risk dashboard, rupee and DXY tiles, Nifty support band, serious financial presenter";
+            case VOLATILE -> "split green-red candlestick grid, PCR and OI panels, focused financial presenter";
+            case NEUTRAL -> "balanced chart grid, opening-range levels, composed financial presenter";
         };
-        return "photorealistic Indian financial news thumbnail, identity-locked creator portrait, "
+        return "photorealistic Indian male financial creator portrait, ControlNet reference, consistent face, "
+            + "NSE and BSE style market boards, Nifty and Bank Nifty ticker wall, "
             + mood
             + ", cinematic studio lighting, sharp facial features, realistic skin texture, 8k editorial detail";
     }

@@ -379,6 +379,8 @@ export function labelFromScore(score) {
   return "VOLATILE";
 }
 
+const PUBLIC_MARKET_DISCLAIMER = "Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.";
+
 export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null, dailyLead = null) {
   const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest, dailyLead);
   const marketLine = snapshots
@@ -400,14 +402,15 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     `Global Cues: ${marketLine}`,
     `Narrative Themes:\n${themeLines}`,
     `Validated Trading Setups:\n${setupLines}`,
-    "Educational note: This summary is for market research and content preparation only, not financial advice."
+    `Educational note: ${PUBLIC_MARKET_DISCLAIMER}`
   ].join("\n\n");
 
+  const openingCue = openingMarketCue(snapshots);
   const opening = {
-    BULLISH: "Good morning. Global cues are supportive, but we still want confirmation after the open.",
-    BEARISH: "Good morning. The overnight setup is cautious, with global pressure visible before the Indian open.",
-    VOLATILE: "Good morning. The setup is mixed, so today is about selectivity and levels.",
-    NEUTRAL: "Good morning. The market is balanced, and the first hour should define direction."
+    BULLISH: `Good morning. ${openingCue} The bias is constructive, but Nifty and Bank Nifty still need acceptance after the bell.`,
+    BEARISH: `Good morning. ${openingCue} The pre-open tape is cautious, so protect size until Nifty and Bank Nifty confirm support.`,
+    VOLATILE: `Good morning. ${openingCue} This is a two-way setup; levels and breadth matter more than the first tick.`,
+    NEUTRAL: `Good morning. ${openingCue} The tape is balanced, and the first range should define direction.`
   }[sentimentLabel];
   const cues = snapshots
     .map((snapshot) => `${snapshot.name} closed ${formatSnapshotChange(snapshot)}`)
@@ -429,7 +432,7 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
     `[NARRATIVE THEMES]\n${themesText}`,
     "[NIFTY AND BANK NIFTY VIEW]\nLet price confirm the opening bias. Do not chase the first candle; wait for acceptance around the levels.",
     `[VALIDATED SETUPS]\n${setupsText}`,
-    "[RISK DISCLAIMER]\nThis is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled."
+    `[RISK DISCLAIMER]\n${PUBLIC_MARKET_DISCLAIMER}`
   ].join("\n\n");
   const reelScript = generateReelScript({
     date,
@@ -450,6 +453,24 @@ export function generateScript(date, sentimentLabel, snapshots, themes, setups, 
   };
 }
 
+function openingMarketCue(snapshots = []) {
+  const gift = snapshots.find((snapshot) => snapshot.symbol === "GIFTNIFTY");
+  const nifty = snapshots.find((snapshot) => snapshot.symbol === "NIFTY");
+  const bank = snapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
+  const parts = [
+    gift ? `GIFT Nifty is ${directionWord(gift.changePercent)} ${formatAbsChange(gift.changePercent)}` : "",
+    nifty ? `Nifty reference is ${formatNumber(nifty.closeValue)} (${formatSnapshotChange(nifty)})` : "",
+    bank ? `Bank Nifty reference is ${formatNumber(bank.closeValue)} (${formatSnapshotChange(bank)})` : ""
+  ].filter(Boolean);
+  return parts.length ? parts.join("; ") + "." : "Nifty and Bank Nifty need confirmation at the open.";
+}
+
+function directionWord(value) {
+  const change = Number(value || 0);
+  if (Math.abs(change) < 0.05) return "flat near";
+  return change > 0 ? "up" : "down";
+}
+
 function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, articles }) {
   const pressure = strongestArticle(articles, (article) => Number(article.sentimentScore) < 0) ?? articles[0];
   const support = strongestArticle(articles, (article) => Number(article.sentimentScore) > 0);
@@ -458,9 +479,13 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
   const indiaLine = speechRegionLine(snapshots, "India Open");
   const macroLine = speechRegionLine(snapshots, "Macro Hedges");
   const setup = setups.find((item) => item.symbol === "NIFTY") ?? setups[0];
+  const bankSetup = setups.find((item) => item.symbol === "BANKNIFTY");
   const setupLine = setup
     ? `If ${setup.symbol} accepts near ${formatNumber(setup.entry)}, the plan is clean: invalidation below ${formatNumber(setup.stopLoss)}, target near ${formatNumber(setup.target)}, and no entry unless the reward stays at least twice the risk.`
     : "No forced trade at the open. Let the first-hour range form, then only take a setup that gives at least twice the reward for the risk.";
+  const bankSetupLine = bankSetup
+    ? `Bank Nifty confirmation sits near ${formatNumber(bankSetup.entry)}; below ${formatNumber(bankSetup.stopLoss)}, the risk-on read loses authority.`
+    : bankNiftyConfirmationLine(snapshots);
   const toneLine = {
     BULLISH: "The setup has a constructive bias, but the first candle still has to prove it.",
     BEARISH: "This is not a clean risk-on morning; protect capital first and let levels confirm.",
@@ -473,6 +498,7 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
   const supportLine = support
     ? `${support.takeaway || support.summary} That is the counterweight if breadth improves.`
     : "The counterweight has to come from banks, defensives, or stronger market breadth.";
+  const sectorStake = sectorStakeLine(pressure ?? support ?? themes[0]);
   const watchLine = pressure?.watchFor || support?.watchFor || "Watch opening breadth, Bank Nifty behavior, and whether Nifty holds the first-hour range.";
   const firstTheme = themes[0]?.title ? themes[0].title.toLowerCase() : "macro pressure";
   const sourceLine = [pressure?.sourceName, support?.sourceName].filter(Boolean).join(" and ");
@@ -492,7 +518,7 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
     "",
     "[14-28s | WHY INDIA CARES]",
     `ON SCREEN: ${firstTheme}`,
-    `VOICEOVER: ${pressureLine} ${supportLine} ${sourceLine ? `This read is backed by ${sourceLine}.` : ""}`,
+    `VOICEOVER: ${pressureLine} ${supportLine} India sector at stake: ${sectorStake}. ${sourceLine ? `This read is backed by ${sourceLine}.` : ""}`,
     "",
     "[28-40s | INDIA OPEN]",
     "ON SCREEN: Nifty + Bank Nifty game plan",
@@ -500,7 +526,7 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
     "",
     "[40-52s | TRADE PLAN]",
     "ON SCREEN: No chase. Only 1:2+ setups.",
-    `VOICEOVER: ${setupLine}`,
+    `VOICEOVER: ${setupLine} ${bankSetupLine}`,
     "",
     "[52-58s | WATCH NEXT]",
     `ON SCREEN: Watch this after 9:15`,
@@ -508,16 +534,35 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
     "",
     "[58-60s | CLOSE]",
     "ON SCREEN: Save before the open",
-    "VOICEOVER: Save this for the open. This is market education, not investment advice; trade only your own plan."
+    "VOICEOVER: This is the Market Narrative pre-open map. Save it, respect the first range, and trade only your own risk plan."
   ].join("\n");
+}
+
+function bankNiftyConfirmationLine(snapshots = []) {
+  const bank = snapshots.find((snapshot) => snapshot.symbol === "BANKNIFTY");
+  if (!bank?.closeValue) {
+    return "Bank Nifty must confirm with private-bank breadth and VWAP acceptance before any Nifty bias gets size.";
+  }
+  return `Bank Nifty confirmation is the filter: hold ${formatNumber(bank.closeValue)} and VWAP for risk-on; lose it and keep the Nifty plan defensive.`;
+}
+
+function sectorStakeLine(input) {
+  const text = `${input?.headline || ""} ${input?.summary || ""} ${input?.takeaway || ""} ${input?.indiaImpact || ""} ${input?.title || ""}`.toLowerCase();
+  if (/\b(oil|crude|brent|opec|hormuz)\b/.test(text)) return "OMCs, aviation, paints, tyres, and upstream energy";
+  if (/\b(yield|rate|fed|inflation|bond)\b/.test(text)) return "Bank Nifty, realty, autos, and high-PE growth";
+  if (/\b(dollar|rupee|currency|dxy|usd\/inr)\b/.test(text)) return "IT exporters versus import-cost sectors";
+  if (/\b(bank|credit|nbfc|financial)\b/.test(text)) return "private banks, NBFCs, and Bank Nifty breadth";
+  if (/\b(tech|ai|software|semiconductor|chip|nasdaq)\b/.test(text)) return "Nifty IT exporters and Nasdaq-sensitive risk appetite";
+  if (/\b(airline|aviation|travel)\b/.test(text)) return "IndiGo, SpiceJet, aviation fuel costs, and travel demand";
+  return "Bank Nifty confirmation, market breadth, and sector leadership";
 }
 
 export function generateAsset(date, sentimentLabel, context = {}) {
   const promptMood = {
-    BULLISH: "emerald market screens, rising candles, confident financial presenter",
-    BEARISH: "crimson risk dashboard, falling candles, serious financial presenter",
-    VOLATILE: "slate and gold trading floor, split-direction candles, focused financial presenter",
-    NEUTRAL: "clean market studio, balanced chart grid, composed financial presenter"
+    BULLISH: "green candlestick chart overlay, NSE ticker strip, Bank Nifty breadth tile, confident financial presenter",
+    BEARISH: "red risk dashboard, rupee and DXY tiles, Nifty support band, serious financial presenter",
+    VOLATILE: "split green-red candlestick grid, PCR and OI panels, focused financial presenter",
+    NEUTRAL: "balanced chart grid, opening-range levels, composed financial presenter"
   }[sentimentLabel];
   const palette = {
     BULLISH: "emerald, charcoal, bright white",
@@ -529,8 +574,8 @@ export function generateAsset(date, sentimentLabel, context = {}) {
 
   return {
     sentimentLabel,
-    positivePrompt: `photorealistic Indian financial news thumbnail, identity-locked creator portrait, ${promptMood}, cinematic studio lighting, sharp facial features, realistic skin texture, 8k editorial detail`,
-    negativePrompt: "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands",
+    positivePrompt: `photorealistic Indian male financial creator portrait, ControlNet reference, consistent face, NSE and BSE style market boards, Nifty and Bank Nifty ticker wall, ${promptMood}, cinematic studio lighting, sharp facial features, realistic skin texture, 8k editorial detail`,
+    negativePrompt: "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands, generic Wall Street floor, NYSE trading pit, US flag backdrop, suit-and-tie corporate headshot, unreadable ticker text",
     palette,
     referenceImageId: "creator-ref-001",
     controlNetMode: "ControlNet Canny + Depth identity lock",
@@ -595,7 +640,8 @@ function generateReelVideoPackage(date, sentimentLabel, { snapshots = [], themes
     videoPrompt: [
       `Create a 60-second vertical financial market reel for ${date}.`,
       `Mood: ${sentimentLabel}. Style: premium dark glassmorphism, sharp typography, Indian market desk energy.`,
-      `Use an identity-locked Indian financial creator as presenter.`,
+      `Use a photorealistic Indian male financial creator as presenter with a ControlNet reference and consistent face.`,
+      `Set the scene in an Indian market studio with NSE/BSE-style boards, Nifty, Bank Nifty, GIFT Nifty, rupee, DXY, Brent, PCR and OI visual tiles where relevant.`,
       `Main story: ${trimTerminalPunctuation(pressure?.takeaway || themes[0]?.summary || "opening range confirmation matters")}.`,
       `Trade framing: ${setupCaption}.`,
       "No exaggerated profit claims, no guaranteed calls, no investment advice."
@@ -673,7 +719,7 @@ function titleForCategory(category) {
 function titleSuffix(label) {
   return {
     BULLISH: "Positive Global Cues Support Gap-Up Watch",
-    BEARISH: "Global Pressure Meets Domestic Selectivity",
+    BEARISH: "Risk-Off Cues Test Nifty Support",
     VOLATILE: "Mixed Cues Put Levels in Focus",
     NEUTRAL: "Balanced Start Ahead of First-Hour Confirmation"
   }[label];
@@ -792,7 +838,7 @@ export function dailyLeadForDigest(date, articles = []) {
 }
 
 function hasIndirectIndiaImpact(article) {
-  return /^No direct Indian\b|^No direct India read-through/i.test(String(article?.indiaImpact || ""));
+  return /^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(String(article?.indiaImpact || ""));
 }
 
 function dailyLeadImpact(article) {
@@ -800,7 +846,7 @@ function dailyLeadImpact(article) {
   if (/^No direct Indian pipeline read-through/i.test(impact)) {
     return "Not a direct India trade; watch Brent first because only a price reaction matters for OMCs, aviation, paints, and inflation expectations.";
   }
-  if (/^No direct India read-through/i.test(impact)) {
+  if (/^No direct India read-through|^Global-only context/i.test(impact)) {
     return "Global cue only; India impact needs confirmation through index futures, sector breadth, currency, or rates.";
   }
   return cleanLeadImpact(impact || "India read-through needs opening breadth confirmation.");
@@ -809,7 +855,8 @@ function dailyLeadImpact(article) {
 function cleanLeadImpact(value) {
   return cleanSentence(value)
     .replace(/^No direct Indian pipeline read-through;\s*/i, "Pipeline flow news matters through Brent; ")
-    .replace(/^No direct India read-through for this story\.\s*/i, "");
+    .replace(/^No direct India read-through for this story\.\s*/i, "")
+    .replace(/^Global-only context:\s*/i, "");
 }
 
 function defaultRiskSide(driverType, leadImpact) {
@@ -918,7 +965,7 @@ function isWithinDigestWindow(article, date, hours) {
 }
 
 function hasIndiaReadThrough(article) {
-  return !/^no direct indian\b|^no direct india read-through/i.test(String(article?.indiaImpact || "").trim());
+  return !/^no direct indian\b|^no direct india read-through|^global-only context/i.test(String(article?.indiaImpact || "").trim());
 }
 
 function isIndiaPublisherArticle(article) {
@@ -1008,7 +1055,11 @@ function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overall
   const second = setup
     ? `Track ${setup.symbol} ${formatNumber(setup.entry)} first; holding that zone keeps ${formatNumber(setup.target)} in play.`
     : `Track ${keyInstrument}${indiaSnapshot?.closeValue ? ` against ${formatNumber(indiaSnapshot.closeValue)}` : ""}; sentiment at ${round(overallSentiment, 2)} says the first range must prove direction.`;
-  const third = `${sectorLabel} confirms the headline only if ${becauseFragment(editorialBecause(sector) || sector?.indiaImpact || sector?.summary || "sector breadth follows the same direction")}.`;
+  const third = deskNoteConfirmationLine(
+    sectorLabel,
+    editorialBecause(sector) || sector?.indiaImpact || sector?.summary || "sector breadth follows the same direction",
+    date
+  );
   const fourth = setup
     ? `Trade the first 15 minutes only if price holds VWAP and the stop at ${formatNumber(setup.stopLoss)} stays respected.`
     : "Let the first 15 minutes print, then trade only the side that holds VWAP with breadth behind it.";
@@ -1017,6 +1068,18 @@ function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overall
     return note;
   }
   return `${first} ${second} ${third} Use the first 15 minutes to demand a fresh level that still pays at least twice the risk.`;
+}
+
+function deskNoteConfirmationLine(sectorLabel, reason, date) {
+  const fragment = becauseFragment(reason);
+  const templates = [
+    `${sectorLabel} becomes actionable only when ${fragment}.`,
+    `Do not give ${sectorLabel.toLowerCase()} full weight until ${fragment}.`,
+    `${sectorLabel} is the confirmation layer: it needs ${fragment}.`,
+    `Treat ${sectorLabel.toLowerCase()} as the tell if ${fragment}.`
+  ];
+  const index = Math.abs(String(date || "").split("").reduce((sum, char) => sum + char.charCodeAt(0), 0)) % templates.length;
+  return cleanSentence(templates[index]);
 }
 
 function deskNoteInstrument(article) {
@@ -1118,7 +1181,7 @@ function watchItemsForDigest(date, articles, setups, previousDigest) {
   }
   while (unique.length < 3) {
     unique.push([
-      "Opening breadth after 10:15 AM IST and whether Bank Nifty confirms the first move.",
+      "Opening breadth through 9:45-10:00 AM IST and whether Bank Nifty confirms the first move.",
       "Rupee and crude behavior before the Europe open; a reversal changes import-risk sentiment.",
       "Nifty VWAP acceptance during the first hour; failed acceptance keeps the plan defensive."
     ][unique.length]);
@@ -1133,7 +1196,7 @@ function specificWatchItem(article) {
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
   if (/\b(dollar|rupee|currency|yen)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
-  if (/\b(bank|banks|credit|deposit)\b/.test(headline)) return "Bank Nifty follow-through after 10:15 AM IST and whether private-bank breadth confirms.";
+  if (/\b(bank|banks|credit|deposit)\b/.test(headline)) return "Bank Nifty follow-through through 9:45-10:00 AM IST and whether private-bank breadth confirms.";
   if (/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
   if (/\b(tech|ai|software|semiconductor|chip|chips)\b/.test(headline)) return "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.";
   if (/\b(asia|china|japan|hong kong|korea|taiwan)\b/.test(headline)) return "Asia breadth into the Indian first hour and whether regional risk stays supportive.";

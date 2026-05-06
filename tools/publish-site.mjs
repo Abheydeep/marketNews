@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
-import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
@@ -233,7 +233,7 @@ async function loadArchivedDigests() {
 
   const digestsByKey = new Map();
   for (const fileName of digestFiles) {
-    const digest = JSON.parse(await readFile(join(archiveDir, fileName), "utf8"));
+    const digest = sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(join(archiveDir, fileName), "utf8")));
     const key = `${digest.digestDate}-${scheduledLabelForDigest(digest)}`;
     digestsByKey.set(key, digest);
   }
@@ -247,12 +247,12 @@ async function loadArchivedDigests() {
 
 async function loadSourceDigest() {
   try {
-    return JSON.parse(await readFile(sourceJson, "utf8"));
+    return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(sourceJson, "utf8")));
   } catch (error) {
     if (!skipArchiveWrite) {
       throw error;
     }
-    return JSON.parse(await readFile(archivedJson, "utf8"));
+    return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(archivedJson, "utf8")));
   }
 }
 
@@ -400,7 +400,7 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
       "matters for India only if margins, guidance, or demand can travel to listed peers."
     );
   if (/blue owl|spacex|carvana|used car/i.test(articleText)) {
-    text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "No direct India read-through for this story.");
+    text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "Global-only context: no direct India trade read; use it only if index futures, sector breadth, currency, or rates confirm after the open.");
   }
   return cleanArchiveSentence(text);
 }
@@ -490,7 +490,7 @@ function publicOnePageSummary(digest) {
     `Global Cues: ${marketLine}`,
     `Narrative Themes:\n${themeLines}`,
     `Validated Trading Setups:\n${setupLines}`,
-    "Educational note: This summary is for market research and content preparation only, not financial advice."
+    "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."
   ].join("\n\n");
 }
 

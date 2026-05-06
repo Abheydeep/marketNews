@@ -15,11 +15,14 @@ Style:
   second mention adds a new India angle.
 - Generate a unique Takeaway, India Read, and Watch for this specific article
   only; do not reuse or paraphrase another card from the same category bucket.
-- If the article has no direct India read-through, write exactly:
-  "No direct India read-through for this story."
 - Attribute market-moving claims to publishers or market data surfaces.
 - Use plain trader language: "opening range", "breadth", "crude pressure",
-  "banks as a stabilizer", "dollar-yield pressure", "watch confirmation".
+  "banks as a stabilizer", "dollar-yield pressure", "watch confirmation",
+  "PCR", "OI buildup", "put writing", and "call resistance" only when the
+  underlying data explicitly supports those terms.
+- If the article has no direct India read-through, mark it for filtering as
+  global-only context. Do not publish the raw no-read-through label in a public
+  source card.
 - Market-regime themes such as the yield cycle, IT-sector de-rating,
   AI-enabled differentiation, household financialization, monsoon risk, or
   geopolitics may be used only when the current source stack supports them.
@@ -38,7 +41,8 @@ Translate internal states into public language:
 - no_valid_setup -> "No clean 1:2 setup is active yet; wait for opening-range
   confirmation before taking a directional view."
 - validated_setup -> "A conditional 1:2 setup is active near [entry], with
-  [stop] as invalidation and [target] as the objective."
+  [stop] as invalidation and [target] as the objective. BankNifty confirmation:
+  [level]."
 - mixed_global_cues -> "Global cues are mixed, so the open is more about
   confirmation and breadth than chasing the first move."
 
@@ -47,8 +51,12 @@ Required output shape:
 2. One paragraph on global cues.
 3. One paragraph on Asia and India read-through.
 4. One paragraph on macro hedges or sector impact.
-5. A clean "what to watch" line.
-6. Educational disclaimer only; no investment advice.
+5. One BankNifty-specific paragraph covering confirmation, breadth, or
+   derivatives context when available.
+6. A clean "what to watch" line.
+7. Strong Indian market disclaimer: educational market research only, not
+   SEBI-registered investment advice, not a research recommendation, not a
+   solicitation to buy or sell securities or derivatives, no assured returns.
 `.trim();
 
 export const REEL_SCRIPT_EDITORIAL_PROMPT = `
@@ -116,6 +124,9 @@ export const PUBLIC_FORBIDDEN_PATTERNS = [
   /translate it into levels,\s*breadth and sector leadership before assigning it trading weight/i,
   /Global Tech earnings-quality evidence until India gets matching sector breadth/i,
   /Watch Brent at the 6 AM IST print;\s*above \$108 keeps OMC and aviation headline risk alive/i,
+  /Global Pressure Meets Domestic Selectivity/i,
+  /USD\/INR near 84\.20/i,
+  /after 10:15 AM IST/i,
   /\bmuseum of fine arts\b/i,
   /\bMFA Boston\b/i,
   /\bBoston museum\b/i,
@@ -241,6 +252,14 @@ function sanitizeString(value) {
       ""
     )
     .replace(
+      /Global Pressure Meets Domestic Selectivity/gi,
+      "Global Risk Tests Domestic Breadth"
+    )
+    .replace(
+      /Educational note: This summary is for market research and content preparation only, not financial advice\./gi,
+      "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."
+    )
+    .replace(
       /The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call\./gi,
       "No clean 1:2 setup is active yet, so use the first hour to watch opening-range acceptance before taking a directional view."
     )
@@ -255,6 +274,18 @@ function sanitizeString(value) {
     .replace(
       /Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance near the scanner levels\./gi,
       "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the opening range."
+    )
+    .replace(
+      /No direct India read-through for this story\./gi,
+      "Global-only context: no direct India trade read; use it only if index futures, sector breadth, currency, or rates confirm after the open."
+    )
+    .replace(
+      /Watch USD\/INR near 84\.20 and DXY in the first hour; pressure splits exporters from importers\./gi,
+      "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers."
+    )
+    .replace(
+      /after 10:15 AM IST/gi,
+      "through 9:45-10:00 AM IST"
     )
     .replace(
       /Live quote validation removed stale 1:2 levels\./gi,

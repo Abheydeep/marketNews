@@ -58,7 +58,7 @@ public class ScriptGenerator {
             Validated Trading Setups:
             %s
 
-            Educational note: This summary is for market research and content preparation only, not financial advice.
+            Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.
             """.formatted(label, marketLine, themeLines, setupLines).trim();
     }
 
@@ -69,10 +69,10 @@ public class ScriptGenerator {
         List<TradeSetup> setups
     ) {
         String opening = switch (label) {
-            case BULLISH -> "Good morning. Global cues are supportive, but we still want confirmation after the open.";
-            case BEARISH -> "Good morning. The overnight setup is cautious, with global pressure visible before the Indian open.";
-            case VOLATILE -> "Good morning. The setup is mixed, so today is about selectivity and levels.";
-            case NEUTRAL -> "Good morning. The market is balanced, and the first hour should define direction.";
+            case BULLISH -> "Good morning. The bias is constructive, but Nifty and Bank Nifty still need acceptance after the bell.";
+            case BEARISH -> "Good morning. The pre-open tape is cautious, so protect size until Nifty and Bank Nifty confirm support.";
+            case VOLATILE -> "Good morning. This is a two-way setup; levels and breadth matter more than the first tick.";
+            case NEUTRAL -> "Good morning. The tape is balanced, and the first range should define direction.";
         };
         String cues = snapshots.stream()
             .map(snapshot -> snapshot.getName() + " closed " + formatChange(snapshot.getChangePercent()))
@@ -106,7 +106,7 @@ public class ScriptGenerator {
             %s
 
             [RISK DISCLAIMER]
-            This is educational analysis for content planning. It is not investment advice, and no automated order execution is enabled.
+            Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.
             """.formatted(opening, cues, themesText, setupsText).trim();
     }
 
