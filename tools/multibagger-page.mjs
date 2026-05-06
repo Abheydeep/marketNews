@@ -511,6 +511,50 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .allocation-legend-disclosure {
+      align-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      background: rgba(2, 6, 23, 0.28);
+      overflow: hidden;
+    }
+
+    .allocation-legend-disclosure > summary {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      list-style: none;
+      padding: 14px;
+    }
+
+    .allocation-legend-disclosure > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .allocation-legend-title {
+      display: grid;
+      gap: 4px;
+    }
+
+    .allocation-legend-title strong {
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .allocation-legend-title span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .allocation-legend-disclosure .allocation-legend {
+      border-top: 1px solid var(--line);
+      padding: 12px;
+    }
+
     .legend-item {
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
@@ -673,8 +717,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .hide-label { display: none; }
-    details[open] .show-label { display: none; }
-    details[open] .hide-label { display: inline; }
+    details[open] > summary .show-label { display: none; }
+    details[open] > summary .hide-label { display: inline; }
 
     .module-preview {
       display: none;
@@ -828,9 +872,29 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 10px;
       background: rgba(2, 6, 23, 0.38);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .holding-card[open] {
+      border-color: rgba(34, 211, 238, 0.28);
+      background: rgba(2, 6, 23, 0.46);
+    }
+
+    .holding-card > summary {
+      cursor: pointer;
       display: grid;
-      gap: 14px;
+      gap: 12px;
+      list-style: none;
       padding: 15px;
+    }
+
+    .holding-card > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .holding-card > summary .detail-toggle {
+      justify-self: start;
     }
 
     .holding-card-head {
@@ -869,18 +933,31 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       white-space: nowrap;
     }
 
+    .holding-card-closed-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .holding-card-body {
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 12px;
+      padding: 14px 15px 15px;
+    }
+
     .holding-card-summary {
       color: #dbeafe;
       font-size: 13px;
       font-weight: 700;
       line-height: 1.5;
-      margin: -4px 0 0;
+      margin: 0;
     }
 
     .holding-card-key-metrics {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
     }
 
     .holding-card-metrics {
@@ -923,12 +1000,12 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     .holding-card-key-metrics .holding-card-stat {
-      min-height: 72px;
-      padding: 11px;
+      min-height: 66px;
+      padding: 9px;
     }
 
     .holding-card-key-metrics .holding-card-stat strong {
-      font-size: 22px;
+      font-size: 16px;
     }
 
     .holding-card-secondary {
@@ -936,7 +1013,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       border-radius: 8px;
       background: rgba(15, 23, 42, 0.24);
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       opacity: 0.82;
       padding: 8px;
@@ -1368,6 +1445,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .module-grid,
       .allocation-grid,
       .holding-card-grid,
+      .holding-card-closed-metrics,
       .holding-card-key-metrics,
       .holding-card-metrics,
       .holding-card-secondary,
@@ -1536,16 +1614,22 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         </div>
         <p class="donut-caption">Weights are normalized to Rs 5 lakh. Current value, return, and P&L move with the latest verified public quote refresh.</p>
       </div>
-      <div class="allocation-legend">
-        ${state.holdings.map((holding, index) => `
-        <article class="legend-item">
-          <div class="legend-top">
-            <span class="legend-name"><span class="legend-dot" style="background:${holdingColor(index)}"></span>${escapeHtml(holding.ticker)}</span>
-            <strong class="legend-weight">${formatPercent(holding.targetWeight)}</strong>
-          </div>
-          <p><strong>${escapeHtml(displayLabelForHolding(holding))}:</strong> ${escapeHtml(holding.rolePlain ?? holding.role)}</p>
-        </article>`).join("")}
-      </div>
+      <details class="allocation-legend-disclosure">
+        <summary>
+          <span class="allocation-legend-title"><strong>Allocation breakdown</strong><span>Open only when you want the full slot-to-weight map.</span></span>
+          ${detailToggleHtml()}
+        </summary>
+        <div class="allocation-legend">
+          ${state.holdings.map((holding, index) => `
+          <article class="legend-item">
+            <div class="legend-top">
+              <span class="legend-name"><span class="legend-dot" style="background:${holdingColor(index)}"></span>${escapeHtml(holding.ticker)}</span>
+              <strong class="legend-weight">${formatPercent(holding.targetWeight)}</strong>
+            </div>
+            <p><strong>${escapeHtml(displayLabelForHolding(holding))}:</strong> ${escapeHtml(holding.rolePlain ?? holding.role)}</p>
+          </article>`).join("")}
+        </div>
+      </details>
     </section>
 
     ${methodStripHtml(state)}
@@ -1562,14 +1646,14 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         </div>
       </details>
 
-      <details class="panel holdings-panel" open>
+      <details class="panel holdings-panel">
         <summary>
           <span class="summary-title"><strong>Holdings</strong><span>Detailed ledger for normalized Rs 5 lakh allocation, entries, quotes, return, P&L, and day move.</span></span>
           ${detailToggleHtml()}
           <span class="module-preview"><span class="preview-pill">Detailed ledger</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Screener links</span></span>
         </summary>
         <div class="panel-body">
-          <details class="ledger-disclosure" id="detailedLedger" open>
+          <details class="ledger-disclosure" id="detailedLedger">
             <summary><strong>Detailed Ledger</strong>${detailToggleHtml()}</summary>
             <div class="ledger-disclosure-body">
               <div class="role-legend" aria-label="Plain-English role legend">
@@ -1908,27 +1992,30 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function holdingCardHtml(holding) {
       const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
-      return "<article class=\\"holding-card\\">"
+      return "<details class=\\"holding-card\\">"
+        + "<summary>"
         + "<div class=\\"holding-card-head\\"><span class=\\"holding-card-title\\"><strong>" + escapeHtml(holding.ticker) + "</strong><span>" + escapeHtml(holding.name) + "</span></span><span class=\\"holding-card-role\\">" + escapeHtml(displayLabelForHolding(holding)) + "</span></div>"
-        + "<p class=\\"holding-card-summary\\">" + escapeHtml(holdingSummaryLine(holding)) + "</p>"
-        + "<div class=\\"holding-card-key-metrics\\">"
-        + "<span class=\\"holding-card-stat movement\\"><span>Since entry</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
-        + "<span class=\\"holding-card-stat movement\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
-        + "</div>"
-        + "<div class=\\"holding-card-metrics\\">"
+        + "<div class=\\"holding-card-closed-metrics\\">"
         + "<span class=\\"holding-card-stat\\"><span>Weight</span><strong>" + formatPercent(holding.targetWeight) + "</strong></span>"
-        + "<span class=\\"holding-card-stat\\"><span>Current price</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
+        + "<span class=\\"holding-card-stat movement\\"><span>Since entry</span><strong class=\\"" + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</strong></span>"
         + "<span class=\\"holding-card-stat\\"><span>Day</span><strong class=\\"" + dayTone + "\\">" + formatSignedPercent(holding.dayChangePercent) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Current</span><strong class=\\"" + (holding.isStale ? "stale" : "neutral") + "\\">" + formatPrice(holding.lastPrice) + "</strong></span>"
+        + "</div>"
+        + "<span class=\\"detail-toggle\\" aria-hidden=\\"true\\"><span class=\\"show-label\\">Show details v</span><span class=\\"hide-label\\">Hide details ^</span></span>"
+        + "</summary>"
+        + "<div class=\\"holding-card-body\\">"
+        + "<div class=\\"holding-card-key-metrics\\">"
+        + "<span class=\\"holding-card-stat movement\\"><span>P&L</span><strong class=\\"" + toneClass(holding.modelPnlInr) + "\\">" + formatPerformanceInr(holding.modelPnlInr) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Deployed</span><strong>" + formatInr(holding.modelAmountInr) + "</strong></span>"
+        + "<span class=\\"holding-card-stat\\"><span>Avg entry</span><strong>" + formatPrice(holding.entryPrice) + "</strong></span>"
         + "</div>"
         + "<div class=\\"holding-card-secondary\\">"
-        + "<span><strong>Deployed</strong>" + formatInr(holding.modelAmountInr) + "</span>"
-        + "<span><strong>Avg entry</strong>" + formatPrice(holding.entryPrice) + "</span>"
         + "<span><strong>Entry timestamp</strong>" + escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, "")) + "</span>"
         + "<span><strong>Quote timestamp</strong>" + escapeHtml(holdingPriceShortLine(holding)) + "</span>"
         + "<span><strong>Research link</strong>" + stockLinkHtml(holding) + "</span>"
         + "</div>"
-        + "<div class=\\"holding-card-foot\\"><span class=\\"subtext\\">" + escapeHtml(holding.rolePlain || holding.role) + "</span></div>"
-        + "</article>";
+        + "</div>"
+        + "</details>";
     }
 
     function allocationTileHtml(holding, index) {
@@ -2543,32 +2630,33 @@ function holdingCardsHtml(holdings) {
 function holdingCardHtml(holding) {
   const dayTone = holding.isStale ? "stale" : toneClass(holding.dayChangePercent);
   return `
-          <article class="holding-card">
-            <div class="holding-card-head">
-              <span class="holding-card-title"><strong>${escapeHtml(holding.ticker)}</strong><span>${escapeHtml(holding.name)}</span></span>
-              <span class="holding-card-role">${escapeHtml(displayLabelForHolding(holding))}</span>
+          <details class="holding-card">
+            <summary>
+              <div class="holding-card-head">
+                <span class="holding-card-title"><strong>${escapeHtml(holding.ticker)}</strong><span>${escapeHtml(holding.name)}</span></span>
+                <span class="holding-card-role">${escapeHtml(displayLabelForHolding(holding))}</span>
+              </div>
+              <div class="holding-card-closed-metrics">
+                <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
+                <span class="holding-card-stat movement"><span>Since entry</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
+                <span class="holding-card-stat"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
+                <span class="holding-card-stat"><span>Current</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
+              </div>
+              ${detailToggleHtml()}
+            </summary>
+            <div class="holding-card-body">
+              <div class="holding-card-key-metrics">
+                <span class="holding-card-stat movement"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
+                <span class="holding-card-stat"><span>Deployed</span><strong>${formatInr(holding.modelAmountInr)}</strong></span>
+                <span class="holding-card-stat"><span>Avg entry</span><strong>${formatPrice(holding.entryPrice)}</strong></span>
+              </div>
+              <div class="holding-card-secondary">
+                <span><strong>Entry timestamp</strong>${escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, ""))}</span>
+                <span><strong>Quote timestamp</strong>${escapeHtml(holdingPriceShortLine(holding))}</span>
+                <span><strong>Research link</strong>${stockLinkHtml(holding)}</span>
+              </div>
             </div>
-            <p class="holding-card-summary">${escapeHtml(holdingSummaryLine(holding))}</p>
-            <div class="holding-card-key-metrics">
-              <span class="holding-card-stat movement"><span>Since entry</span><strong class="${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</strong></span>
-              <span class="holding-card-stat movement"><span>P&amp;L</span><strong class="${toneClass(holding.modelPnlInr)}">${formatPerformanceInr(holding.modelPnlInr)}</strong></span>
-            </div>
-            <div class="holding-card-metrics">
-              <span class="holding-card-stat"><span>Weight</span><strong>${formatPercent(holding.targetWeight)}</strong></span>
-              <span class="holding-card-stat"><span>Current price</span><strong class="${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}</strong></span>
-              <span class="holding-card-stat"><span>Day</span><strong class="${dayTone}">${formatSignedPercent(holding.dayChangePercent)}</strong></span>
-            </div>
-            <div class="holding-card-secondary">
-              <span><strong>Deployed</strong>${formatInr(holding.modelAmountInr)}</span>
-              <span><strong>Avg entry</strong>${formatPrice(holding.entryPrice)}</span>
-              <span><strong>Entry timestamp</strong>${escapeHtml(holdingEntrySourceLine(holding).replace(/^Entry: /, ""))}</span>
-              <span><strong>Quote timestamp</strong>${escapeHtml(holdingPriceShortLine(holding))}</span>
-              <span><strong>Research link</strong>${stockLinkHtml(holding)}</span>
-            </div>
-            <div class="holding-card-foot">
-              <span class="subtext">${escapeHtml(holding.rolePlain ?? holding.role)}</span>
-            </div>
-          </article>`;
+          </details>`;
 }
 
 function watchFlagsHtml(flags = []) {

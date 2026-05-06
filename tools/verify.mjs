@@ -744,9 +744,12 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("Plain-English role legend"));
   assert.ok(html.includes("holding-name-line"));
   assert.ok(html.includes("holding-card-grid"));
+  assert.equal((html.match(/<details class="holding-card">/g) || []).length, 5);
+  assert.equal(html.includes('<article class="holding-card">'), false);
   assert.ok(html.includes("holding-card-role"));
+  assert.ok(html.includes("holding-card-closed-metrics"));
+  assert.ok(html.indexOf("holding-card-closed-metrics") < html.indexOf("holding-card-body"));
   assert.ok(html.includes("holding-card-key-metrics"));
-  assert.ok(html.indexOf("holding-card-key-metrics") < html.indexOf("holding-card-metrics"));
   assert.ok(html.includes("Since entry</span><strong"));
   assert.ok(html.includes("Detailed Ledger"));
   assert.ok(html.includes("quote-source-line"));
@@ -763,6 +766,8 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes('class="chev"'), false);
   assert.ok(html.includes("allocation-visual"));
   assert.ok(html.includes("allocation-donut"));
+  assert.ok(html.includes('<details class="allocation-legend-disclosure">'));
+  assert.equal(html.includes('<details class="allocation-legend-disclosure" open>'), false);
   assert.ok(html.includes("Expandable portfolio research modules"));
   assert.ok(html.includes("module-grid"));
   assert.ok(html.includes("module-preview"));
@@ -799,8 +804,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.indexOf("Research Method") < html.indexOf("<details class=\"panel research-framework-panel\">"));
   assert.ok(html.indexOf("Research Method") < html.indexOf("Market Regime Evidence"));
   assert.ok(html.includes("<details class=\"panel performance-panel\" open>"));
-  assert.ok(html.includes("<details class=\"panel holdings-panel\" open>"));
-  assert.ok(html.includes("<details class=\"ledger-disclosure\" id=\"detailedLedger\" open>"));
+  assert.ok(html.includes("<details class=\"panel holdings-panel\">"));
+  assert.equal(html.includes("<details class=\"panel holdings-panel\" open>"), false);
+  assert.ok(html.includes("<details class=\"ledger-disclosure\" id=\"detailedLedger\">"));
+  assert.equal(html.includes("<details class=\"ledger-disclosure\" id=\"detailedLedger\" open>"), false);
   assert.ok(html.includes("not stock advice"));
   assert.ok(html.includes("Profitability"));
   assert.ok(html.includes("Valuation"));
@@ -1787,8 +1794,13 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Plain-English role legend"));
   assert.ok(multibaggerHtml.body.includes("holding-name-line"));
   assert.ok(multibaggerHtml.body.includes("holding-card-grid"));
+  assert.equal((multibaggerHtml.body.match(/<details class="holding-card">/g) || []).length, 5);
+  assert.equal(multibaggerHtml.body.includes('<article class="holding-card">'), false);
+  assert.ok(multibaggerHtml.body.includes("holding-card-closed-metrics"));
+  assert.ok(multibaggerHtml.body.indexOf("holding-card-closed-metrics") < multibaggerHtml.body.indexOf("holding-card-body"));
   assert.ok(multibaggerHtml.body.includes("holding-card-key-metrics"));
-  assert.ok(multibaggerHtml.body.indexOf("holding-card-key-metrics") < multibaggerHtml.body.indexOf("holding-card-metrics"));
+  assert.ok(multibaggerHtml.body.includes('<details class="allocation-legend-disclosure">'));
+  assert.equal(multibaggerHtml.body.includes('<details class="allocation-legend-disclosure" open>'), false);
   assert.ok(multibaggerHtml.body.includes("Detailed Ledger"));
   assert.ok(
     multibaggerHtml.body.indexOf('aria-label="Current model holdings"') < multibaggerHtml.body.indexOf('aria-label="Public model performance"'),
