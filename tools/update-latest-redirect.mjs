@@ -1,24 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
-
-const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
+import { pathToFileURL } from "node:url";
 
 export async function updateLatestRedirect(options = {}) {
   const date = options.date || readArg("--date") || todayInIst();
-  const slug = slugForDate(date);
-  const vercelPath = join(rootDir, "vercel.json");
-  const config = JSON.parse(await readFile(vercelPath, "utf8"));
-  const preserved = (config.redirects ?? []).filter((redirect) => !String(redirect.source ?? "").startsWith("/latest"));
-  config.redirects = [
-    { source: "/latest/", destination: `/${slug}/`, permanent: false },
-    { source: "/latest", destination: `/${slug}/`, permanent: false },
-    { source: "/latest/trading-guide/", destination: `/${slug}/trading-guide/`, permanent: false },
-    { source: "/latest/trading-guide", destination: `/${slug}/trading-guide/`, permanent: false },
-    ...preserved
-  ];
-  await writeFile(vercelPath, `${JSON.stringify(config, null, 2)}\n`, "utf8");
-  return slug;
+  return slugForDate(date);
 }
 
 function slugForDate(date) {

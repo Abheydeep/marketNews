@@ -17,6 +17,7 @@ const latestArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
   : latestArchivedDigest();
 const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : today;
 const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
+const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
@@ -39,15 +40,46 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     if (published.status === 0) {
       process.exit(0);
     }
+    stopFreshPublicDeploy({
+      date,
+      failedStep: "site publish",
+      status: published.status,
+      signal: published.signal
+    });
   }
-  const fallback = latestArchivedDigest();
-  console.warn(`Live briefing for ${date} was not verified. Publishing latest verified weekday archive ${fallback.date} ${fallback.scheduledTime} instead.`);
-  run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
-    env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" }
+  stopFreshPublicDeploy({
+    date,
+    failedStep: "daily digest generation",
+    status: generated.status,
+    signal: generated.signal
   });
-  process.exit(0);
 }
 run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", scheduledTime]);
+
+function stopFreshPublicDeploy({ date, failedStep, status, signal }) {
+  if (allowVerifiedArchiveFallback) {
+    const fallback = latestArchivedDigest();
+    console.warn(
+      `Live briefing for ${date} was not verified during ${failedStep}. ` +
+      `ALLOW_VERIFIED_ARCHIVE_FALLBACK=true is set, so publishing archived digest ${fallback.date} ${fallback.scheduledTime}.`
+    );
+    run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
+      env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" }
+    });
+    process.exit(0);
+  }
+
+  const exitStatus = status ?? 1;
+  console.error(
+    `Live briefing for ${date} was not verified during ${failedStep}. ` +
+    "Refusing to publish a previous archive as /latest. " +
+    "Fix the source/data failure or set ALLOW_VERIFIED_ARCHIVE_FALLBACK=true only for an explicit manual recovery deploy."
+  );
+  if (signal) {
+    console.error(`Failed command signal: ${signal}`);
+  }
+  process.exit(exitStatus === 0 ? 1 : exitStatus);
+}
 
 function latestArchivedDigest() {
   const archiveDir = join(rootDir, "archive", "daily");

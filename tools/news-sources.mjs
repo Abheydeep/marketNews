@@ -181,6 +181,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
       if (options.strictFetch) {
         throw error;
       }
+      console.warn(`[news-source] ${feed.sourceName} skipped: ${error.message}`);
     }
   }
   const verifiedArticles = dedupeArticles(feedResults)

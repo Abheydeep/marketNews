@@ -1318,6 +1318,11 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
   assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  assert.equal(
+    (vercelConfig.redirects ?? []).some((redirect) => String(redirect.source ?? "").startsWith("/latest")),
+    false,
+    "Vercel config must not hard-code /latest redirects; static generated /latest pages own freshness"
+  );
   const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
   const productionQaGate = await readFile(join(rootDir, "tools", "production-qa-gate.mjs"), "utf8");
   const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");
@@ -1326,6 +1331,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
 
   const buildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   const publicBuildScript = await readFile(join(rootDir, "tools", "vercel-build-public.mjs"), "utf8");
+  const latestRedirectScript = await readFile(join(rootDir, "tools", "update-latest-redirect.mjs"), "utf8");
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET"));
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel"));
   assert.ok(buildScript.includes("inferVercelTarget"));
@@ -1343,9 +1349,12 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("out\", \"vercel"));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
-  assert.ok(publicBuildScript.includes("latest verified weekday archive"));
+  assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
+  assert.ok(publicBuildScript.includes("ALLOW_VERIFIED_ARCHIVE_FALLBACK"));
   assert.ok(publicBuildScript.includes("(0715|0830)"));
   assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
+  assert.equal(latestRedirectScript.includes("writeFile"), false);
+  assert.equal(latestRedirectScript.includes('"vercel.json"'), false);
 
   const publicProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-public.json"), "utf8"));
   const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
