@@ -428,6 +428,67 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       padding: 20px;
     }
 
+    .reader-orientation {
+      border: 1px solid rgba(34, 211, 238, 0.22);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.62);
+      display: grid;
+      gap: 14px;
+      margin: 0 0 22px;
+      padding: 18px;
+    }
+
+    .reader-orientation h2 {
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .reader-orientation p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    .orientation-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .orientation-step {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.32);
+      display: grid;
+      gap: 5px;
+      min-height: 104px;
+      padding: 12px;
+    }
+
+    .orientation-step span {
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .orientation-step strong {
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .orientation-step small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 720;
+      line-height: 1.45;
+    }
+
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -1444,6 +1505,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .tracking-rail,
       .module-grid,
       .allocation-grid,
+      .orientation-steps,
       .holding-card-grid,
       .holding-card-closed-metrics,
       .holding-card-key-metrics,
@@ -1566,6 +1628,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
           <a class="tab-link" href="${escapeHtml(latestBriefingHref)}">Public Briefing</a>
           <a class="tab-link" href="${escapeHtml(tradingGuideHref)}">Trading Guide</a>
           <span class="tab-link active" aria-current="page">Portfolio</span>
+          <a class="tab-link" href="/about/">About</a>
         </div>
       </div>
     </div>
@@ -1589,6 +1652,20 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
           </div>
         </div>
       </aside>
+    </section>
+
+    <section class="reader-orientation" aria-label="How to read this page">
+      <div>
+        <p class="eyebrow">How to read this page</p>
+        <h2>Start with the live model, then open details only when you need evidence.</h2>
+        <p>The public tracker is dense by design, so the default path is compact: current slots first, performance second, methodology third, and the full ledger only for audit.</p>
+      </div>
+      <div class="orientation-steps">
+        <article class="orientation-step"><span>1</span><strong>Slots</strong><small>Five collapsed holdings show ticker, role, weight, return, day move, and current price.</small></article>
+        <article class="orientation-step"><span>2</span><strong>Performance</strong><small>Use the metric rail for model value, public baseline, and quote freshness.</small></article>
+        <article class="orientation-step"><span>3</span><strong>Evidence</strong><small>Open research modules when you want thesis, proof gaps, and source boundaries.</small></article>
+        <article class="orientation-step"><span>4</span><strong>Ledger</strong><small>Open the detailed table only when you need entries, timestamps, and Screener links.</small></article>
+      </div>
     </section>
 
     <section class="holdings-showcase" aria-label="Current model holdings">

@@ -21,6 +21,7 @@ const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
+const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 
 await mkdir(archiveDir, { recursive: true });
@@ -92,6 +93,7 @@ const adminDigest = {
 const darkPreviewDir = join(siteDir, "dark-preview");
 const adminDir = join(siteDir, "admin");
 const multibaggerDir = join(siteDir, "multibagger");
+const aboutDir = join(siteDir, "about");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
@@ -104,6 +106,8 @@ await writeGuardedFile(
   multibaggerPage(publicMultibaggerState, { latestBriefingPath: "/latest/" })
 );
 await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
+await mkdir(aboutDir, { recursive: true });
+await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest));
 await mkdir(join(siteDir, "latest"), { recursive: true });
 await writeGuardedFile(join(siteDir, "latest", "index.html"), redirectPage(`/${slugForDigest(latest)}/`, "latest briefing"));
 await mkdir(join(siteDir, "latest", "trading-guide"), { recursive: true });
@@ -537,11 +541,14 @@ function archivePage(digests, allDigests = digests) {
     .map((digest) => {
       const slug = slugForDigest(digest);
       const toneClass = archiveToneClass(digest);
-      const chips = archiveChips(digest)
+      const chipValues = archiveChips(digest);
+      const chips = chipValues
         .map((chip) => `<span>${escapeHtml(chip)}</span>`)
         .join("");
+      const searchText = archiveSearchText(digest, chipValues);
+      const tags = archiveTagValues(digest, chipValues);
       return `
-        <details class="digest-card ${toneClass}"${digest === latest ? " open" : ""}>
+        <details class="digest-card ${toneClass}" data-archive-card data-archive-search="${escapeHtml(searchText)}" data-archive-tags="${escapeHtml(tags.join("|"))}"${digest === latest ? " open" : ""}>
           <summary>
             <div class="card-summary-head">
               <div class="card-topline">
@@ -680,7 +687,17 @@ function archivePage(digests, allDigests = digests) {
       font-weight: 900;
     }
 
-    ${brandMarkCss()}
+      ${brandMarkCss()}
+
+    .subscribe-link {
+      border-radius: 8px;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.34);
+      color: #bbf7d0;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 900;
+    }
 
     .latest-link {
       border-radius: 8px;
@@ -790,6 +807,46 @@ function archivePage(digests, allDigests = digests) {
       font-size: 13px;
       font-weight: 700;
       line-height: 1.45;
+    }
+
+    .subscribe-strip {
+      align-items: center;
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      border-radius: 14px;
+      background: rgba(6, 78, 59, 0.20);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      margin-top: 16px;
+      max-width: 900px;
+      padding: 14px 15px;
+    }
+
+    .subscribe-strip strong {
+      color: #f8fafc;
+      display: block;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .subscribe-strip span {
+      color: #bbf7d0;
+      display: block;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1.45;
+      margin-top: 3px;
+    }
+
+    .subscribe-strip a {
+      border-radius: 8px;
+      background: #d1fae5;
+      color: #052e16;
+      flex: 0 0 auto;
+      font-size: 13px;
+      font-weight: 950;
+      padding: 10px 12px;
     }
 
     .sr-only {
@@ -912,6 +969,54 @@ function archivePage(digests, allDigests = digests) {
       margin: 0;
     }
 
+    .archive-filter {
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.54);
+      display: grid;
+      gap: 12px;
+      margin: 0 0 18px;
+      padding: 14px;
+    }
+
+    .archive-filter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .archive-filter-head strong {
+      color: #f8fafc;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .archive-filter-head span {
+      color: #9fb0c8;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .archive-filter-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(180px, 0.6fr);
+      gap: 10px;
+    }
+
+    .archive-filter input,
+    .archive-filter select {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.46);
+      color: #f8fafc;
+      font: inherit;
+      font-size: 14px;
+      min-height: 42px;
+      padding: 10px 11px;
+      width: 100%;
+    }
+
     .archive-title {
       margin: 0 0 16px;
       color: #f8fafc;
@@ -928,6 +1033,10 @@ function archivePage(digests, allDigests = digests) {
       --tone: #67e8f9;
       --tone-soft: rgba(103, 232, 249, 0.13);
       transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .digest-card[hidden] {
+      display: none;
     }
 
     .digest-card summary {
@@ -1239,7 +1348,8 @@ function archivePage(digests, allDigests = digests) {
       }
 
       .latest-link,
-      .nav-link {
+      .nav-link,
+      .subscribe-link {
         flex: 0 0 auto;
         padding: 9px 11px;
         text-align: center;
@@ -1257,6 +1367,16 @@ function archivePage(digests, allDigests = digests) {
         grid-template-columns: 1fr;
         gap: 8px;
         margin-top: 16px;
+      }
+
+      .archive-filter-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-filter-head,
+      .subscribe-strip {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .workflow-strip {
@@ -1286,15 +1406,17 @@ function archivePage(digests, allDigests = digests) {
           <a class="latest-link" href="./latest/">Latest briefing</a>
           <a class="nav-link" href="./latest/trading-guide/">Trading Guide</a>
           <a class="nav-link" href="./multibagger/">Portfolio</a>
+          <a class="nav-link" href="./about/">About</a>
+          <a class="subscribe-link" href="${escapeHtml(subscribeHref())}">Subscribe</a>
         </div>
       </div>
     </div>
   </nav>
   <main class="shell">
     <section class="hero">
-      <p class="eyebrow">Pre-Market Intelligence Archive</p>
-      <h1>Daily Pre-Market Briefing For Nifty And Bank Nifty</h1>
-      <p>Daily pre-market briefing for Nifty and Bank Nifty traders. Published before 7:15 AM IST on trading days.</p>
+      <p class="eyebrow">Market Nerve Before The Open</p>
+      <h1>Nifty, Bank Nifty, And The One Thing To Watch First</h1>
+      <p>Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       <div class="hero-actions" aria-label="Primary actions">
         <a class="hero-action" href="./latest/">
@@ -1309,6 +1431,13 @@ function archivePage(digests, allDigests = digests) {
           <strong>Track Portfolio</strong>
           <span>Follow the public multibagger model and changes.</span>
         </a>
+      </div>
+      <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
+        <div>
+          <strong>Get tomorrow's 7:15 AM brief</strong>
+          <span>Email subscription requests go straight to Abhey until the public list is automated.</span>
+        </div>
+        <a href="${escapeHtml(subscribeHref())}">Request daily email</a>
       </div>
       ${archiveShareRowHtml()}
     </section>
@@ -1336,6 +1465,19 @@ function archivePage(digests, allDigests = digests) {
       </article>
     </section>
     <h2 class="archive-title">Latest Market Briefings</h2>
+    <section class="archive-filter" aria-label="Search archived briefings">
+      <div class="archive-filter-head">
+        <strong>Search the archive</strong>
+        <span id="archiveResultCount">${escapeHtml(String(digests.length))} briefings shown · try crude, Bank Nifty, IT, rates, or a date</span>
+      </div>
+      <div class="archive-filter-controls">
+        <input id="archiveSearch" type="search" aria-label="Search archive by keyword">
+        <select id="archiveTagFilter" aria-label="Filter archive by driver">
+          <option value="all">All drivers</option>
+          ${archiveFilterOptions(digests)}
+        </select>
+      </div>
+    </section>
     <section class="digest-grid">
       ${cards}
     </section>
@@ -1367,7 +1509,336 @@ function archivePage(digests, allDigests = digests) {
         }, 1800);
       });
     });
+
+    const archiveSearch = document.getElementById('archiveSearch');
+    const archiveTagFilter = document.getElementById('archiveTagFilter');
+    const archiveResultCount = document.getElementById('archiveResultCount');
+    const archiveCards = Array.from(document.querySelectorAll('[data-archive-card]'));
+    function applyArchiveFilter() {
+      const query = (archiveSearch?.value || '').trim().toLowerCase();
+      const tag = archiveTagFilter?.value || 'all';
+      let visible = 0;
+      for (const card of archiveCards) {
+        const matchesQuery = !query || (card.dataset.archiveSearch || '').includes(query);
+        const tags = (card.dataset.archiveTags || '').split('|');
+        const matchesTag = tag === 'all' || tags.includes(tag);
+        const show = matchesQuery && matchesTag;
+        card.hidden = !show;
+        if (show) visible += 1;
+      }
+      if (archiveResultCount) {
+        archiveResultCount.textContent = visible + ' briefing' + (visible === 1 ? '' : 's') + ' shown';
+      }
+    }
+    archiveSearch?.addEventListener('input', applyArchiveFilter);
+    archiveTagFilter?.addEventListener('change', applyArchiveFilter);
+    applyArchiveFilter();
   </script>
+</body>
+</html>`;
+}
+
+function aboutPage(latest) {
+  const pageTitle = "About Market Narrative | Abhey Deep";
+  const pageDescription = "About Abhey Deep, Market Narrative, the daily 7:15 AM IST pre-market workflow, source methodology, and public research boundaries.";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}/about/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(siteOrigin)}/about/">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <title>${escapeHtml(pageTitle)}</title>
+  <style>
+    :root {
+      --paper: #050816;
+      --ink: #f8fafc;
+      --muted: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --amber: #fbbf24;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 16% 0%, rgba(34, 211, 238, 0.26), transparent 32vw),
+        radial-gradient(circle at 82% 4%, rgba(52, 211, 153, 0.18), transparent 30vw),
+        linear-gradient(135deg, #030712 0%, #08111f 48%, #111827 100%);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1040px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(3, 7, 18, 0.72);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      align-items: center;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      min-height: 64px;
+    }
+
+    .brand {
+      align-items: center;
+      display: flex;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    ${brandMarkCss()}
+
+    .tabs {
+      align-items: stretch;
+      display: flex;
+      gap: 24px;
+      min-height: 64px;
+    }
+
+    .tab-link {
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+      display: inline-flex;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 0 1px;
+    }
+
+    .tab-link.active {
+      border-bottom-color: var(--cyan);
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    main {
+      padding: 52px 0 72px;
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+      padding-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 70px);
+      letter-spacing: 0;
+      line-height: 0.98;
+      margin: 0;
+      max-width: 860px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 18px 0 0;
+      max-width: 760px;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-card,
+    .method-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.62);
+      padding: 18px;
+    }
+
+    .about-card h2,
+    .method-card h2 {
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.15;
+      margin: 0 0 10px;
+    }
+
+    .about-card p,
+    .method-card p,
+    .method-card li {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .about-card p,
+    .method-card p {
+      margin: 0;
+    }
+
+    .method-card {
+      grid-column: 1 / -1;
+    }
+
+    .method-list {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .about-actions a {
+      border-radius: 8px;
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.32);
+      color: #cffafe;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 10px 12px;
+    }
+
+    .about-actions a.subscribe {
+      background: rgba(52, 211, 153, 0.16);
+      border-color: rgba(52, 211, 153, 0.34);
+      color: #bbf7d0;
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0 0;
+      }
+
+      .tabs {
+        gap: 16px;
+        min-height: 48px;
+        overflow-x: auto;
+        width: 100%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell">
+      <div class="nav-inner">
+        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
+        <div class="tabs" aria-label="Market Narrative sections">
+          <a class="tab-link" href="/latest/">Public Briefing</a>
+          <a class="tab-link" href="/latest/trading-guide/">Trading Guide</a>
+          <a class="tab-link" href="/multibagger/">Portfolio</a>
+          <span class="tab-link active" aria-current="page">About</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">About Market Narrative</p>
+      <h1>Independent pre-market context for Indian traders.</h1>
+      <p>Market Narrative is built by Abhey Deep to answer one practical morning question: what is the market nerve before the Indian cash open, and what must confirm before that view matters?</p>
+      <div class="about-actions">
+        <a href="/latest/">Read latest briefing</a>
+        <a href="/latest/trading-guide/">Open Trading Guide</a>
+        <a class="subscribe" href="${escapeHtml(subscribeHref())}">Request daily email</a>
+      </div>
+    </section>
+    <section class="about-grid">
+      <article class="about-card">
+        <h2>What you get here</h2>
+        <p>A daily 7:15 AM IST public briefing for Nifty and Bank Nifty: global cues, India read-through, opening gates, Bank Nifty confirmation, sector watch, and source cards in one workflow.</p>
+      </article>
+      <article class="about-card">
+        <h2>Why not just headlines?</h2>
+        <p>Moneycontrol and news sites tell you what happened. Market Narrative focuses on what Indian traders should verify first: price acceptance, breadth, source quality, and where not to chase.</p>
+      </article>
+      <article class="about-card">
+        <h2>Who is Abhey Deep?</h2>
+        <p>Abhey Deep runs Market Narrative as a public research and product experiment for disciplined Indian market preparation, combining source verification, technical levels, and plain trader language.</p>
+      </article>
+      <article class="about-card">
+        <h2>What this is not</h2>
+        <p>This is educational market research, not SEBI-registered investment advice, a recommendation, or a promise of returns. No page places trades or asks readers to buy or sell securities.</p>
+      </article>
+      <article class="method-card">
+        <h2>Methodology</h2>
+        <p>The workflow is deliberately simple and repeatable:</p>
+        <ul class="method-list">
+          <li>Use article-level sources, not section homepages, and reject stale or repeated source stacks.</li>
+          <li>Translate global headlines into Indian read-through only when a sector, index, rupee, crude, or rate channel is clear.</li>
+          <li>Separate market context from execution by pushing levels, no-trade zones, and Bank Nifty confirmation into the Trading Guide.</li>
+          <li>Keep the public multibagger tracker separate from the morning brief so long-term research does not blur into pre-open trading bias.</li>
+        </ul>
+      </article>
+      <article class="method-card">
+        <h2>Latest verified context</h2>
+        <p>The latest public archive at build time was ${escapeHtml(formatDigestDate(latest.digestDate))}, focused on ${escapeHtml(archiveFocus(latest))}. Each verified briefing keeps source counts, publisher spread, and a collapsed source ledger for auditability.</p>
+      </article>
+    </section>
+  </main>
 </body>
 </html>`;
 }
@@ -1385,6 +1856,67 @@ function archiveSourceQualityLine(digest) {
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
+}
+
+function subscribeHref() {
+  const subject = encodeURIComponent("Subscribe me to the 7:15 AM Market Narrative brief");
+  const body = encodeURIComponent("Hi Abhey,\n\nPlease add me to the daily Market Narrative pre-market briefing list.\n\nThanks.");
+  return `mailto:${subscribeEmail}?subject=${subject}&body=${body}`;
+}
+
+function archiveFilterOptions(digests) {
+  const values = [...new Set((digests ?? []).flatMap((digest) => archiveTagValues(digest, archiveChips(digest))))]
+    .filter(Boolean)
+    .sort((left, right) => left.localeCompare(right));
+  return values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(titleCaseTag(value))}</option>`).join("");
+}
+
+function archiveSearchText(digest, chips = archiveChips(digest)) {
+  return [
+    digest.digestDate,
+    formatDigestDate(digest.digestDate),
+    digest.title,
+    digest.dailyLead?.label,
+    digest.dailyLead?.driverType,
+    digest.dailyLead?.indiaImpact,
+    digest.archiveSummary,
+    digest.sentimentLabel,
+    archiveFocus(digest),
+    ...chips,
+    ...(digest.news ?? []).flatMap((article) => [
+      article.headline,
+      article.entityName,
+      article.category,
+      article.sourceName,
+      article.indiaImpact,
+      article.watchFor
+    ])
+  ].filter(Boolean).join(" ").toLowerCase();
+}
+
+function archiveTagValues(digest, chips = archiveChips(digest)) {
+  return [...new Set([
+    digest.dailyLead?.driverType,
+    digest.dailyLead?.label,
+    archiveFocus(digest),
+    ...chips
+  ].filter(Boolean).map(slugifyTag))];
+}
+
+function slugifyTag(value) {
+  return cleanArchiveSentence(value)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function titleCaseTag(value) {
+  return String(value || "")
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.length <= 3 ? part.toUpperCase() : `${part[0].toUpperCase()}${part.slice(1)}`)
+    .join(" ");
 }
 
 function archiveShareRowHtml() {
@@ -1633,6 +2165,7 @@ function sitemapXml(digests) {
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate },
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate },
     { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
+    { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate },
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/trading-guide/`,
       lastmod: digest.digestDate

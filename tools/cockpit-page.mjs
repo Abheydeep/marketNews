@@ -55,6 +55,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const multibaggerLinkHtml = includeStudio
     ? ""
     : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Portfolio</a>`;
+  const aboutLinkHtml = includeStudio
+    ? ""
+    : '<a class="tab-link" href="/about/">About</a>';
   const adminMultibaggerLinkHtml = includeStudio
     ? `<button class="tab-btn" data-target="multibagger-admin-view">Multibagger Review</button>`
     : "";
@@ -4690,6 +4693,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
           ${multibaggerLinkHtml}
+          ${aboutLinkHtml}
           ${adminMultibaggerLinkHtml}
           ${publicAdminLinkHtml}
           ${adminLogoutHtml}
@@ -6880,8 +6884,9 @@ function followBriefingCtaHtml() {
     <div class="follow-briefing-cta" aria-label="Follow daily briefing">
       <div>
         <strong>Get tomorrow's 7:15 AM brief</strong>
-        <span>Bookmark the live link; it always resolves to the latest public briefing.</span>
+        <span>Request the daily email list, or bookmark the live link while the list is being automated.</span>
       </div>
+      <a class="follow-link" href="mailto:abhey@marketnarrative.in?subject=Subscribe%20me%20to%20the%207%3A15%20AM%20Market%20Narrative%20brief">Request daily email</a>
       <a class="follow-link" href="/latest/">Open /latest/</a>
     </div>
   `;
