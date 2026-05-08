@@ -344,7 +344,7 @@ function enrichPublicDigest(digest) {
     archiveSummary: coherentArchiveSummary,
     deskNote: coherentDeskNote,
     watchItems: Array.isArray(digest.watchItems) && digest.watchItems.length
-      ? digest.watchItems.slice(0, 3)
+      ? digest.watchItems.slice(0, 3).map((item) => sanitizeGeneratedTemplateText(item))
       : fallbackWatchItems({ ...digest, news }),
     generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`
   };
@@ -402,6 +402,26 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
     .replace(
       /evidence matters only if margins,\s*guidance,?\s*or demand can travel to listed Indian peers\.?/gi,
       "matters for India only if margins, guidance, or demand can travel to listed peers."
+    )
+    .replace(
+      /Watch Market during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
+      "Watch first-range high/low, VWAP, advance-decline, and Bank Nifty breadth through 9:45-10:00 AM IST."
+    )
+    .replace(
+      /Watch ([A-Za-z][A-Za-z\s/&+-]{1,40}) during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
+      (_match, entity) => `Watch ${entity.trim()} peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.`
+    )
+    .replace(
+      /([A-Za-z][A-Za-z\s/&+-]{1,40}) is only a conditional India input;\s*require first-range breadth and related sector participation before using it for trade bias\.?/gi,
+      (_match, entity) => `${entity.trim()} needs related Indian peer breadth before it becomes more than a watchlist cue.`
+    )
+    .replace(
+      /use it as a ([A-Za-z][A-Za-z\s/&+-]{1,40}) watch input only if a related Indian sector confirms the move\.?/gi,
+      (_match, entity) => `treat ${entity.trim()} as a watchlist cue only after related Indian sector breadth confirms.`
+    )
+    .replace(
+      /([A-Za-z][A-Za-z\s/&+-]{1,40}) is a watch input,\s*not a trade bias,\s*until Nifty breadth and Bank Nifty confirm\.?/gi,
+      (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty breadth and Bank Nifty confirm.`
     );
   if (/blue owl|spacex|carvana|used car/i.test(articleText)) {
     text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "Global-only context: no direct India trade read; use it only if index futures, sector breadth, currency, or rates confirm after the open.");

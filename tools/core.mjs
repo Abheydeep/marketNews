@@ -1075,18 +1075,39 @@ function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overall
 
 function deskNoteConfirmationLine(sectorLabel, reason, date) {
   const fragment = becauseFragment(reason);
+  const label = `${sectorLabel || ""} ${reason || ""}`.toLowerCase();
+  if (/\b(crude|oil|omc|energy|brent|aviation|paints|tyres)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} is the confirmation layer: Brent must hold its morning direction before OMCs, aviation and paints deserve follow-through weight.`);
+  }
+  if (/\b(tech|it|exporter|nasdaq|semiconductor|chip|software|ai)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} needs Nasdaq futures and USD/INR to align; treat exporter breadth as the tell, not the trade by itself.`);
+  }
+  if (/\b(financ|bank|nbfc|credit|deposit)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} decides whether a Nifty move becomes a trend; Bank Nifty VWAP hold is the minimum bar.`);
+  }
+  if (/\b(auto|consumer|fmcg|retail|discretionary)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} needs domestic demand breadth after the first range; isolated global consumer cues are not enough.`);
+  }
+  if (/\b(metal|steel|copper|china)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} needs China and commodity-price confirmation before it becomes broad-index evidence.`);
+  }
+  if (/\b(pharma|healthcare|defensive)\b/.test(label)) {
+    return cleanSentence(`${sectorLabel} is useful as defensive leadership only if banks and broad breadth fail to confirm risk appetite.`);
+  }
   const templates = [
     `${sectorLabel} becomes actionable only when ${fragment}.`,
     `Do not give ${sectorLabel.toLowerCase()} full weight until ${fragment}.`,
     `${sectorLabel} is the confirmation layer: it needs ${fragment}.`,
     `Treat ${sectorLabel.toLowerCase()} as the tell if ${fragment}.`
   ];
-  const index = Math.abs(String(date || "").split("").reduce((sum, char) => sum + char.charCodeAt(0), 0)) % templates.length;
+  const basis = `${sectorLabel || ""} ${fragment || ""} ${date || ""}`;
+  const index = Math.abs(basis.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0)) % templates.length;
   return cleanSentence(templates[index]);
 }
 
 function deskNoteInstrument(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.entityName || ""}`.toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures)\b/.test(text)) return "Gift Nifty";
   if (/\b(brent|crude|oil|opec)\b/.test(text)) return "Brent";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) return "US 10Y yield";
   if (/\b(dollar|rupee|currency|yen|forex)\b/.test(text)) return "USD/INR";
@@ -1129,6 +1150,7 @@ function leadSectorArticle(articles, date) {
 function marketLeadScore(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
   let score = 0;
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(text)) score += 9;
   if (/\b(crude|oil|brent|strait of hormuz)\b/.test(text)) score += 8;
   if (/\b(yield|bond|fed|rate|inflation)\b/.test(text)) score += 7;
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) score += 7;
@@ -1184,9 +1206,9 @@ function watchItemsForDigest(date, articles, setups, previousDigest) {
   }
   while (unique.length < 3) {
     unique.push([
-      "Opening breadth through 9:45-10:00 AM IST and whether Bank Nifty confirms the first move.",
-      "Rupee and crude behavior before the Europe open; a reversal changes import-risk sentiment.",
-      "Nifty VWAP acceptance during the first hour; failed acceptance keeps the plan defensive."
+      "Gift Nifty premium or discount versus the previous Nifty close; this sets the gap direction before 9:15 AM.",
+      "Bank Nifty VWAP hold through 9:45 AM IST; failed hold keeps the session defensive regardless of global cues.",
+      "FII provisional flow when available; heavy selling changes the breadth assumption even if the open is firm."
     ][unique.length]);
   }
   return unique.slice(0, 3);
@@ -1194,6 +1216,7 @@ function watchItemsForDigest(date, articles, setups, previousDigest) {
 
 function specificWatchItem(article) {
   const headline = String(article?.headline || "").toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(headline)) return "Gift Nifty premium/discount versus the previous Nifty close, then Nifty VWAP and Bank Nifty breadth after 9:15 AM.";
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "US jobs-week positioning and Nasdaq futures before India opens; a weak risk tape keeps Nifty in confirmation mode.";
   if (/\b(opec|production|output)\b/.test(headline)) return "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks.";
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
@@ -1203,6 +1226,11 @@ function specificWatchItem(article) {
   if (/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
   if (/\b(tech|ai|software|semiconductor|chip|chips)\b/.test(headline)) return "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.";
   if (/\b(asia|china|japan|hong kong|korea|taiwan)\b/.test(headline)) return "Asia breadth into the Indian first hour and whether regional risk stays supportive.";
+  if (/\b(apple|amazon|meta|alphabet|microsoft|big tech|faang|mega-cap)\b/.test(headline)) return "Nasdaq futures and Nifty IT advance-decline at open; mega-cap earnings must translate into exporter participation.";
+  if (/\b(tariff|trade war|export ban|import duty|trade policy)\b/.test(headline)) return "Metals, pharma, IT and auto-ancillary breadth separately; trade policy stories split sectors, not the whole index.";
+  if (/\b(rbi|repo rate|monetary policy|liquidity|g-sec|gsec)\b/.test(headline)) return "G-sec yield and Bank Nifty VWAP; RBI signals travel fastest to banks, realty and autos.";
+  if (/\b(consumer|retail|spending|sentiment|fmcg|rural demand)\b/.test(headline)) return "FMCG, auto and retail-lender breadth after the first range; skip the read if banks lag.";
+  if (/\b(volatility|vix|options?|pcr|oi buildup|put writing|call resistance)\b/.test(headline)) return "India VIX, PCR, put writing and call resistance through 9:45 AM; size only after the option tape confirms.";
   const fallback = article?.watchFor || "";
   if (/\bnifty it\b/i.test(fallback) && !/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) {
     return "";
@@ -1225,6 +1253,9 @@ function freshnessScore(article, date) {
 
 function editorialLeadSentence(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures)\b/.test(text)) {
+    return "Gift Nifty premium or discount sets the opening gap, but cash-market breadth decides whether the gap holds";
+  }
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) {
     return "US jobs data and semiconductor earnings will test whether last week's risk-on momentum can carry into India";
   }
@@ -1239,6 +1270,24 @@ function editorialLeadSentence(article) {
   }
   if (/\b(semiconductor|chip|ai|software|tech)\b/.test(text)) {
     return "Global technology breadth is a risk-appetite cue, but India still needs currency and sector confirmation";
+  }
+  if (/\b(earnings|revenue|profit|guidance|outlook)\b/.test(text) && /\b(apple|amazon|microsoft|meta|alphabet|google|nvidia|big tech|mega-cap)\b/.test(text)) {
+    return "Mega-cap earnings set the global risk tone; Nifty IT and exporters need breadth confirmation";
+  }
+  if (/\b(rupee|usd.?inr|currency|forex|dollar|dxy)\b/.test(text)) {
+    return "Currency pressure splits exporters from importers and can reset the FII flow narrative";
+  }
+  if (/\b(bank|credit|nbfc|deposit|financial)\b/.test(text)) {
+    return "Indian bank breadth decides whether a Nifty move becomes a trend or just a gap reaction";
+  }
+  if (/\b(tariff|trade war|import duty|export ban|trade policy)\b/.test(text)) {
+    return "Trade policy risk splits exporters, autos, metals and pharma instead of moving the whole index together";
+  }
+  if (/\b(consumer|retail|spending|sentiment|fmcg|rural demand)\b/.test(text)) {
+    return "Consumer demand cues matter only if FMCG, autos and retail lenders confirm after the opening range";
+  }
+  if (/\b(volatility|vix|options?|pcr|oi buildup|put writing|call resistance)\b/.test(text)) {
+    return "Options and volatility cues define sizing discipline before the cash market proves direction";
   }
   return "";
 }

@@ -29,7 +29,7 @@ import {
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
-import { articleLooksMarketRelevant, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
@@ -258,6 +258,18 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     headline: "'Bubble effect': Weight loss drug fueled growth is putting the pharma sector at risk, report finds",
     summary: "Obesity assets represent about 25% of total forecast sales of the late-stage pipeline."
   }), false, "weight-loss/pharma feature stories should not pad the India pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Bitcoin ETFs and crypto wallets pull in retail flows",
+    summary: "Web3 token flows were framed as a broad investing story."
+  }), false, "crypto/web3 stories should not pad the India pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "US home prices rise as mortgage rates pressure buyers",
+    summary: "Housing-market commentary with no Indian listed read-through."
+  }), false, "US housing stories should not pad the India pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "How to invest for passive income with dividend stocks",
+    summary: "Personal-finance advice framed as market content."
+  }), false, "personal-finance investing advice should stay out of the source stack");
   const normalizationFeed = {
     sourceId: "cnbc-world",
     sourceName: "CNBC World",
@@ -278,6 +290,44 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
   });
   assert.equal(treasury.entityName, "Rates");
   assert.doesNotMatch(treasury.indiaImpact, /^No direct India read-through/);
+});
+
+await test("live news pipeline can route generic article copy through editorial prompt enrichment", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
+      return testRssXml([
+        {
+          title: `Generic source context from ${sourceSlug}`,
+          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "generic-source-context"),
+          description: "Market context changed before the India open without a clean sector keyword."
+        }
+      ]);
+    }
+  });
+  let enrichCalls = 0;
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    articleEditorialEnricher: async ({ article, prompt, schema }) => {
+      enrichCalls += 1;
+      assert.equal(prompt, PUBLIC_BRIEFING_EDITORIAL_PROMPT);
+      assert.ok(schema.takeaway.includes("do not restate"));
+      assert.ok(article.headline.includes("Generic source context"));
+      return {
+        takeaway: "Editorial enrichment converts the vague source into an India-first breadth check",
+        indiaImpact: "Bank Nifty and Nifty breadth must confirm before the generic source changes trade bias",
+        watchFor: "Watch Bank Nifty VWAP and advance-decline through 9:45 AM"
+      };
+    }
+  });
+
+  assert.ok(enrichCalls > 0, "generic regex fallbacks should be eligible for editorial enrichment");
+  assert.ok(articles.some((article) => /Editorial enrichment converts/i.test(article.takeaway)));
+  assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
 
 await test("article read-through copy does not reuse category templates", async () => {
@@ -332,6 +382,26 @@ await test("article read-through copy does not reuse category templates", async 
       title: "'It's a boom': Wall Street sees more market gains as strong earnings fuel the AI trade",
       link: "https://www.cnbc.com/2026/05/04/wall-street-market-gains-ai-trade-earnings.html",
       summary: ""
+    },
+    {
+      title: "US consumer spending lifts retail stocks before Asia opens",
+      link: "https://www.cnbc.com/2026/05/04/us-consumer-spending-retail-stocks.html",
+      summary: "Consumer spending and retail demand improved, giving discretionary shares a firmer tone."
+    },
+    {
+      title: "Options volatility keeps traders focused on PCR and call resistance",
+      link: "https://www.cnbc.com/2026/05/04/options-volatility-pcr-call-resistance.html",
+      summary: "VIX, put writing, call resistance and OI buildup shaped futures positioning."
+    },
+    {
+      title: "Gift Nifty futures point to a cautious opening discount",
+      link: "https://www.cnbc.com/2026/05/04/gift-nifty-futures-opening-discount.html",
+      summary: "Index futures showed a discount before the Indian cash market open."
+    },
+    {
+      title: "Tariff risk splits exporters, autos and metals",
+      link: "https://www.cnbc.com/2026/05/04/tariff-risk-exporters-autos-metals.html",
+      summary: "Trade policy headlines changed exporter, auto and metal sentiment without moving every sector together."
     }
   ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
   const combined = JSON.stringify(articles);
@@ -348,8 +418,12 @@ await test("article read-through copy does not reuse category templates", async 
   const jobs = articles.find((article) => /Jobs day/i.test(article.headline));
   const carvana = articles.find((article) => /Carvana/i.test(article.headline));
   const boom = articles.find((article) => /It's a boom/i.test(article.headline));
+  const consumer = articles.find((article) => /consumer spending/i.test(article.headline));
+  const options = articles.find((article) => /Options volatility/i.test(article.headline));
+  const giftNifty = articles.find((article) => /Gift Nifty/i.test(article.headline));
+  const tariff = articles.find((article) => /Tariff risk/i.test(article.headline));
 
-  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom, "mocked source set should retain all article-specific cases");
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff, "mocked source set should retain all article-specific cases");
   assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
@@ -378,6 +452,13 @@ await test("article read-through copy does not reuse category templates", async 
   assert.equal(carvana.watchFor, "No specific watch for this article.");
   assert.match(boom.takeaway, /AI-led|earnings|risk appetite/i);
   assert.doesNotMatch(boom.takeaway, /trade-flow/i);
+  assert.match(consumer.indiaImpact, /FMCG|autos|retail/i);
+  assert.doesNotMatch(consumer.indiaImpact, /conditional India input/i);
+  assert.equal(options.entityName, "Options tape");
+  assert.match(options.watchFor, /India VIX|PCR|put writing|call resistance/i);
+  assert.equal(giftNifty.entityName, "Nifty Open");
+  assert.match(giftNifty.indiaImpact, /Direct index read-through|Bank Nifty/i);
+  assert.match(tariff.indiaImpact, /Exporters|metals|autos|pharma/i);
 });
 
 await test("public source selection excludes no-direct India stories when direct reads are available", () => {

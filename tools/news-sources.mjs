@@ -1,3 +1,4 @@
+import { PUBLIC_BRIEFING_EDITORIAL_PROMPT } from "./editorial-guardrails.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
@@ -12,7 +13,7 @@ const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|
 const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
-const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
+const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|how to invest|best etf|dividend stock|passive income|bitcoin|crypto|nft|defi|web3|blockchain wallet|us housing|home prices|mortgage rates|real estate agent|debt ceiling|government shutdown|us budget|senate vote|warren buffett quotes?|charlie munger|munger|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -237,7 +238,117 @@ export async function fetchLiveNewsArticles(date, options = {}) {
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
     .filter(articleLooksMarketRelevant)
     .filter((article) => articleIsFreshForDigest(article, date));
-  return selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 24);
+  const selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 24);
+  return enrichArticlesWithEditorialLLM(selectedArticles, options);
+}
+
+async function enrichArticlesWithEditorialLLM(articles, options = {}) {
+  const enricher = options.articleEditorialEnricher ?? configuredArticleEditorialEnricher(options);
+  if (typeof enricher !== "function") {
+    return articles;
+  }
+  const enriched = [];
+  for (const article of articles) {
+    if (!articleNeedsEditorialEnrichment(article)) {
+      enriched.push(article);
+      continue;
+    }
+    try {
+      const patch = await enricher({
+        article,
+        prompt: PUBLIC_BRIEFING_EDITORIAL_PROMPT,
+        schema: {
+          takeaway: "max 30 words, do not restate the headline",
+          indiaImpact: "max 35 words, specific India sector/index/instrument or global-only context",
+          watchFor: "max 20 words, one tradable confirmation input"
+        }
+      });
+      enriched.push(sanitizeArticleEditorialPatch(article, patch));
+    } catch (error) {
+      if (options.strictEditorialEnrichment) {
+        throw error;
+      }
+      enriched.push(article);
+    }
+  }
+  return enriched;
+}
+
+function configuredArticleEditorialEnricher(options = {}) {
+  const enabled = options.llmArticleEnrichment === true || process.env.PUBLIC_BRIEFING_LLM_ENRICH === "true";
+  const apiKey = options.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY;
+  if (!enabled || !apiKey) {
+    return null;
+  }
+  const fetcher = options.llmFetcher ?? fetch;
+  const model = options.anthropicModel ?? process.env.ANTHROPIC_MODEL ?? "claude-3-5-haiku-latest";
+  return async ({ article, prompt, schema }) => {
+    const response = await fetcher("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01"
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: 240,
+        system: prompt,
+        messages: [{
+          role: "user",
+          content: articleEditorialUserPrompt(article, schema)
+        }]
+      })
+    });
+    if (!response?.ok) {
+      throw new Error(`article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
+    }
+    const data = await response.json();
+    return parseArticleEditorialResponse(data?.content?.[0]?.text);
+  };
+}
+
+function articleNeedsEditorialEnrichment(article) {
+  const text = [
+    article?.takeaway,
+    article?.indiaImpact,
+    article?.watchFor,
+    article?.whyItMatters
+  ].join(" ");
+  return /\b(conditional India input|watch input only|watch input, not a trade bias|require first-range breadth|Global-only context|Watch .* during the first-hour range|macro checklist|sector-leadership check|watchlist cue|no index bias unless)\b/i.test(text);
+}
+
+function sanitizeArticleEditorialPatch(article, patch) {
+  if (!patch || typeof patch !== "object") {
+    return article;
+  }
+  const next = { ...article };
+  for (const key of ["takeaway", "indiaImpact", "watchFor"]) {
+    const value = cleanText(patch[key]);
+    if (value && value.length >= 12 && value.length <= 260) {
+      next[key] = stripTerminal(value) + ".";
+    }
+  }
+  return next;
+}
+
+function articleEditorialUserPrompt(article, schema) {
+  return `Article headline: ${article?.headline || ""}
+Article summary: ${article?.summary || ""}
+Category: ${article?.category || "market"}
+Entity: ${article?.entityName || "Market"}
+
+Generate JSON only:
+{
+  "takeaway": "${schema.takeaway}",
+  "indiaImpact": "${schema.indiaImpact}",
+  "watchFor": "${schema.watchFor}"
+}`;
+}
+
+function parseArticleEditorialResponse(text) {
+  const cleaned = String(text || "").replace(/```(?:json)?|```/g, "").trim();
+  return JSON.parse(cleaned);
 }
 
 export function fixtureNewsArticles(date, seedNews = []) {
@@ -539,6 +650,9 @@ export function normalizeLiveArticle(date, feed, item) {
 
 function categoryFromText(text, fallback) {
   const value = text.toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(value)) {
+    return "neutral_volatile";
+  }
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(value)) {
     return "macro_negative";
   }
@@ -634,6 +748,7 @@ function digestWindowScore(article, digestTime) {
 function takeawayFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
   const fact = articleFactSentence(headline, summary);
+  const thematic = thematicFallbackReadthrough(lower, category, entityName);
   if (isIndiaEnergyStory(lower)) {
     return compactWords(`${fact}; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.`, 35);
   }
@@ -661,17 +776,21 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return compactWords(`${fact}; ${techReadthrough(lower, entityName).takeaway}`, 35);
   }
+  if (thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
   if (category === "macro_positive") {
     return compactWords(`${fact}; treat it as risk-appetite support only after Indian breadth confirms beyond the opening range.`, 35);
   }
   if (category === "sector_negative") {
     return compactWords(`${fact}; make it a sector warning only if related Indian names weaken and breadth confirms the pressure.`, 35);
   }
-  return compactWords(`${fact}; use it as a ${entityName} watch input only if a related Indian sector confirms the move.`, 35);
+  return compactWords(`${fact}; treat ${entityName} as a watchlist cue only after related Indian sector breadth confirms.`, 35);
 }
 
 function whyItMattersFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
+  const thematic = thematicFallbackReadthrough(lower, category, entityName);
   if (isIndiaEnergyStory(lower)) {
     return "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.";
   }
@@ -696,17 +815,21 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   if (isTradePolicyStory(lower)) {
     return "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.";
   }
+  if (thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
   if (category.includes("macro")) {
     return `${entityName} can change the macro checklist, but the India open still needs confirmation from breadth, currency, or rates.`;
   }
   if (category.includes("sector")) {
     return `${entityName} matters only if the related Indian sector joins the move after the first range.`;
   }
-  return `${entityName} is a watch input, not a trade bias, until Nifty breadth and Bank Nifty confirm.`;
+  return `${entityName} stays on the watchlist until Nifty breadth and Bank Nifty confirm.`;
 }
 
 function indiaImpactFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
+  const thematic = thematicFallbackReadthrough(lower, category, entityName);
   if (hasNoDirectIndiaRead(lower, category)) {
     return globalOnlyIndiaContext();
   }
@@ -749,6 +872,12 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (/\b(airline|airlines|spirit|travel)\b/.test(lower)) {
     return aviationReadthrough(lower).indiaImpact;
   }
+  if (isTradePolicyStory(lower)) {
+    return tradeReadthrough(lower).indiaImpact;
+  }
+  if (thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
   if (category === "macro_positive") {
     return "Global earnings support risk appetite only if Indian breadth confirms after the first range.";
   }
@@ -757,7 +886,7 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   }
   return entityName === "Market"
     ? globalOnlyIndiaContext()
-    : `${entityName} is only a conditional India input; require first-range breadth and related sector participation before using it for trade bias.`;
+    : `${entityName} needs related Indian peer breadth before it becomes more than a watchlist cue.`;
 }
 
 function globalOnlyIndiaContext() {
@@ -766,6 +895,7 @@ function globalOnlyIndiaContext() {
 
 function watchForFromArticle(headline, summary, category, entityName) {
   const lower = `${headline} ${summary}`.toLowerCase();
+  const thematic = thematicFallbackReadthrough(lower, category, entityName);
   if (hasNoDirectIndiaRead(lower, category)) {
     return "No specific watch for this article.";
   }
@@ -802,7 +932,95 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isTradePolicyStory(lower)) {
     return "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.";
   }
-  return `Watch ${entityName} during the first-hour range; trade it only if it broadens into sector leadership.`;
+  if (thematic.watchFor) {
+    return thematic.watchFor;
+  }
+  return `Watch ${entityName} peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.`;
+}
+
+function thematicFallbackReadthrough(lower, category, entityName) {
+  const text = String(lower || "");
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(text)) {
+    return {
+      takeaway: "treat futures premium or discount as the opening-gap input, not a finished trade view.",
+      whyItMatters: "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
+      indiaImpact: "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
+      watchFor: "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth."
+    };
+  }
+  if (/\b(consumer|retail sales?|spending|sentiment|discretionary|fmcg|rural demand)\b/.test(text)) {
+    return {
+      takeaway: "consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
+      whyItMatters: "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
+      indiaImpact: "FMCG, autos, retail lenders and discretionary names are the India checks; Nifty bias needs breadth outside defensives.",
+      watchFor: "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag."
+    };
+  }
+  if (/\b(vix|volatility|options?|hedg(?:e|ing)|put writing|call resistance|pcr|oi buildup)\b/.test(text)) {
+    return {
+      takeaway: "options and volatility cues define sizing discipline; direction still needs cash breadth confirmation.",
+      whyItMatters: "High volatility changes risk management first: option writers need evidence before the market deserves directional size.",
+      indiaImpact: "Nifty and Bank Nifty option positioning matter through India VIX, PCR, put writing and call resistance after the open.",
+      watchFor: "Watch India VIX, PCR, put writing and call resistance through 9:45 AM before sizing direction."
+    };
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|china demand|iron ore)\b/.test(text)) {
+    return {
+      takeaway: "metals news is a China-demand and commodity-margin cue, not a full-index signal by itself.",
+      whyItMatters: "Metal stocks can lead or lag independently; traders need China, commodity prices and domestic sector breadth aligned.",
+      indiaImpact: "Nifty Metal and capital-goods suppliers are the direct checks; broad Nifty conviction needs banks to confirm.",
+      watchFor: "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range."
+    };
+  }
+  if (/\b(pharma|drug|fda|healthcare|hospital|diagnostic)\b/.test(text)) {
+    return {
+      takeaway: "healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
+      whyItMatters: "Pharma can cushion weak markets, but a defensive bid is different from broad risk appetite.",
+      indiaImpact: "Nifty Pharma and healthcare are the direct checks; use them as defensive leadership unless banks and breadth join.",
+      watchFor: "Watch Nifty Pharma breadth and defensive rotation; broad index bias still needs Bank Nifty confirmation."
+    };
+  }
+  if (/\b(auto|vehicle|ev|two-wheeler|passenger vehicle|ancillar(?:y|ies)|battery)\b/.test(text)) {
+    return {
+      takeaway: "auto news separates domestic demand from export and input-cost exposure.",
+      whyItMatters: "Autos can react to volumes, rates, fuel, tariffs or currency; the transmission channel decides the trade.",
+      indiaImpact: "Nifty Auto, ancillaries and auto-finance lenders are the checks; imported-cost pressure can split winners from laggards.",
+      watchFor: "Watch Nifty Auto breadth, auto-finance names and USD/INR; avoid treating one global EV story as an index cue."
+    };
+  }
+  if (isTradePolicyStory(text)) {
+    return {
+      takeaway: tradeReadthrough(text).takeaway,
+      whyItMatters: "Trade-policy stories split sectors instead of moving India as one block.",
+      indiaImpact: tradeReadthrough(text).indiaImpact,
+      watchFor: tradeReadthrough(text).watchFor
+    };
+  }
+  if (category === "macro_positive") {
+    return {
+      takeaway: "risk appetite is supportive only if Indian breadth confirms beyond the first range.",
+      whyItMatters: "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      indiaImpact: "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+      watchFor: "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read."
+    };
+  }
+  if (category === "sector_negative") {
+    return {
+      takeaway: "sector pressure matters only if Indian peers and breadth validate it after the open.",
+      whyItMatters: "Negative sector stories are useful as watchlist filters, not automatic index direction.",
+      indiaImpact: `${entityName} needs related Indian peers to weaken before it becomes more than a caution flag.`,
+      watchFor: `Watch ${entityName} peer breadth after 9:45 AM; no index bias if banks and Nifty hold VWAP.`
+    };
+  }
+  if (category === "neutral_volatile") {
+    return {
+      takeaway: "mixed global cues keep the India open in confirmation mode.",
+      whyItMatters: "Neutral stories matter through the first range: price acceptance, breadth and Bank Nifty decide whether noise becomes signal.",
+      indiaImpact: "Keep Nifty and Bank Nifty in range-first mode until breadth and VWAP agree.",
+      watchFor: "Watch first-range high/low, VWAP and Bank Nifty breadth through 9:45-10:00 AM IST."
+    };
+  }
+  return {};
 }
 
 function oilReadthrough(lower) {
@@ -868,11 +1086,15 @@ function ratesReadthrough(lower) {
 function tradeReadthrough(lower) {
   if (/\b(tariff|tariffs)\b/.test(lower)) {
     return {
-      takeaway: "tariff risk can split exporters, autos and metals instead of moving the whole index together."
+      takeaway: "tariff risk can split exporters, autos and metals instead of moving the whole index together.",
+      indiaImpact: "Exporters, metals, autos and pharma need separate breadth checks; Bank Nifty decides whether the index absorbs the policy shock.",
+      watchFor: "Watch metals, autos, pharma and IT breadth separately; tariff headlines are sector splitters, not automatic Nifty signals."
     };
   }
   return {
-    takeaway: "trade-flow news separates exporters from import-cost sectors, so the index read needs sector confirmation."
+    takeaway: "trade-flow news separates exporters from import-cost sectors, so the index read needs sector confirmation.",
+    indiaImpact: "IT, pharma, metals, autos and import-cost sectors can diverge; use breadth by sector before assigning index direction.",
+    watchFor: "Watch exporter breadth against import-cost sectors after the first range; avoid one-shot index conclusions."
   };
 }
 
@@ -1029,6 +1251,18 @@ function fallbackFactFromHeadline(headline) {
   if (/\bcarvana\b/.test(lower)) {
     return "Carvana reported record first-quarter results";
   }
+  const subClause = stripTerminal(String(headline || "")
+    .replace(/^[^:;–—]+[:;–—]\s*/, "")
+    .replace(/^.*?\b(as|after|amid|on|with|while)\b\s+/i, "")
+    .replace(/\s*-\s*[^-]+$/i, "")
+    .replace(/\s+/g, " ")
+    .trim());
+  if (subClause &&
+      subClause.length >= 24 &&
+      subClause.length < String(headline || "").trim().length &&
+      normalizeForComparison(subClause) !== normalizeForComparison(headline)) {
+    return compactWordsPlain(subClause, 16);
+  }
   const cleaned = compactWordsPlain(stripTerminal(headline)
     .replace(/^why\s+/i, "")
     .replace(/^\d+\s+things?\s+(we\s+)?learned\s+(during|from)\s+/i, "")
@@ -1056,7 +1290,7 @@ function hasNoDirectIndiaRead(text, category) {
   if (isLowRelevanceUsSingleStockStory(lower)) {
     return true;
   }
-  if (/\b(spirit airlines|domestic us|u\.s\. consumer|us consumer|air travelers?|ticket prices?|shutdown|shut down)\b/.test(lower) &&
+  if (/\b(spirit airlines|domestic us|air travelers?|ticket prices?|shutdown|shut down)\b/.test(lower) &&
       !/\b(oil|crude|brent|fuel|jet fuel|boeing|airbus|supply chain|dollar|rate|yield)\b/.test(lower)) {
     return true;
   }
@@ -1144,6 +1378,12 @@ function entityMatchScoreFromText(text, entityName) {
 
 function entityForHeadline(headline, category) {
   const lower = headline.toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(lower)) {
+    return "Nifty Open";
+  }
+  if (/\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(lower)) {
+    return "Options tape";
+  }
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return "Rates";
   }
