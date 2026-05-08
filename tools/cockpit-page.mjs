@@ -823,6 +823,99 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #f8fafc;
     }
 
+    .opening-nerve-card {
+      position: relative;
+      margin-top: 18px;
+      overflow: hidden;
+      border: 0;
+      background: #0b1220;
+      color: #f8fafc;
+    }
+
+    .opening-nerve-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .opening-nerve-head h2 {
+      margin: 4px 0 6px;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .opening-nerve-head p {
+      margin: 0;
+      max-width: 700px;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .opening-nerve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .opening-nerve-tile {
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.62);
+      display: grid;
+      gap: 7px;
+      min-height: 108px;
+      padding: 14px;
+    }
+
+    .opening-nerve-tile span {
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .opening-nerve-tile strong {
+      color: #fff;
+      font-size: clamp(18px, 2.4vw, 25px);
+      line-height: 1.1;
+    }
+
+    .opening-nerve-tile small {
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .opening-nerve-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 13px;
+    }
+
+    .opening-nerve-footer span,
+    .opening-nerve-footer a {
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .opening-nerve-footer a {
+      color: #67e8f9;
+    }
+
     .trade-map-head {
       position: relative;
       z-index: 1;
@@ -4238,6 +4331,25 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 22px 72px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.10);
     }
 
+    .glass-v2 .opening-nerve-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(52, 211, 153, 0.18), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(96, 165, 250, 0.16), transparent 30%),
+        linear-gradient(135deg, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.76));
+      box-shadow: 0 22px 72px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+    .glass-v2 .opening-nerve-tile {
+      background: rgba(2, 6, 23, 0.46);
+      border-color: rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .glass-v2 .opening-nerve-tile strong {
+      color: #e0f2fe;
+    }
+
     .glass-v2 .trade-map-tile {
       background: rgba(2, 6, 23, 0.46);
       border-color: rgba(255, 255, 255, 0.14);
@@ -4400,6 +4512,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .source-category-grid,
       .setup-grid,
       .setup-levels,
+      .opening-nerve-grid,
       .trade-map-grid,
       .summary-strip,
       .briefing-grid,
@@ -4434,6 +4547,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
       .briefing-topline,
       .section-kicker,
+      .opening-nerve-head,
       .setup-card-header,
       .trade-map-head,
       .quote-region-head {
@@ -4619,6 +4733,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
         </details>
 
+        ${openingNerveHtml(digest, { guideHref: "./trading-guide/" })}
         ${legacyAuditBannerHtml(digest)}
         ${editionNavHtml(digest)}
         ${briefingFreshnessNoticeHtml(digest)}
@@ -6984,6 +7099,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
 
         ${guideUrl ? shareRowHtml(guideUrl, `${digest.title} Trading Guide`, "trading guide") : ""}
         ${tradingGuideValidityHtml(digest)}
+        ${openingNerveHtml(digest)}
         ${todayTradeMapHtml(digest)}
         ${algorithmicSetupHtml(digest)}
 
@@ -7013,6 +7129,104 @@ function tradingGuideShareUrl(canonicalUrl) {
     return base.endsWith("/") ? base : `${base}/`;
   }
   return `${base.replace(/\/?$/, "/")}trading-guide/`;
+}
+
+function openingNerveHtml(digest, options = {}) {
+  const setup = niftySetup(digest);
+  const levels = tradeMapLevels(digest, setup);
+  const map = tradeMapSummary(digest, setup, levels);
+  const topSector = topSectorWatch(digest);
+  const sourceConfidence = sourceConfidenceSummary(digest);
+  const guideLink = options.guideHref
+    ? `<a href="${escapeHtml(options.guideHref)}">Open full Trading Guide</a>`
+    : "";
+  return `
+    <section class="info-card opening-nerve-card" aria-label="Opening Nerve">
+      <div class="opening-nerve-head">
+        <div>
+          <span class="summary-label">Opening Nerve</span>
+          <h2>What matters before the first range</h2>
+          <p>Use this as the 90-second pre-open read: bias, index gate, Bank Nifty filter, sector nerve, and the condition that tells you to stand down.</p>
+        </div>
+        <span class="trade-bias-pill ${escapeHtml(map.biasClass)}">${escapeHtml(map.bias)}</span>
+      </div>
+      <div class="opening-nerve-grid">
+        <article class="opening-nerve-tile">
+          <span>Bias</span>
+          <strong>${escapeHtml(map.bias)}</strong>
+          <small>${escapeHtml(map.biasNote)}</small>
+        </article>
+        <article class="opening-nerve-tile">
+          <span>Nifty gate</span>
+          <strong>${escapeHtml(openingNiftyGate(map))}</strong>
+          <small>Do not let the headline outrun price acceptance.</small>
+        </article>
+        <article class="opening-nerve-tile">
+          <span>Bank filter</span>
+          <strong>${escapeHtml(map.bankConfirm)}</strong>
+          <small>Bank Nifty must confirm the Nifty move before the view has breadth.</small>
+        </article>
+        <article class="opening-nerve-tile">
+          <span>Sector nerve</span>
+          <strong>${escapeHtml(topSector.label)}</strong>
+          <small>${escapeHtml(topSector.reason)}</small>
+        </article>
+        <article class="opening-nerve-tile">
+          <span>Stand-down trigger</span>
+          <strong>${escapeHtml(openingStandDownLine(map))}</strong>
+          <small>After 9:45-10:00 AM IST, wait for a cleaner range if confirmation is still missing.</small>
+        </article>
+        <article class="opening-nerve-tile">
+          <span>Source confidence</span>
+          <strong>${escapeHtml(sourceConfidence.label)}</strong>
+          <small>${escapeHtml(sourceConfidence.detail)}</small>
+        </article>
+      </div>
+      <div class="opening-nerve-footer">
+        <span>Educational market preparation only; no trade is active until price and breadth confirm.</span>
+        ${guideLink}
+      </div>
+    </section>
+  `;
+}
+
+function openingNiftyGate(map) {
+  if (map.biasClass === "short") {
+    return `Break below ${formatLevelOrWait(map.shortBelow)}`;
+  }
+  if (map.biasClass === "long") {
+    return `Accept above ${formatLevelOrWait(map.longAbove)}`;
+  }
+  return `${formatLevelOrWait(map.longAbove)} / ${formatLevelOrWait(map.shortBelow)}`;
+}
+
+function openingStandDownLine(map) {
+  if (map.noTradeZone && map.noTradeZone !== "First range only") {
+    return `Inside ${map.noTradeZone}`;
+  }
+  return "First range only";
+}
+
+function sourceConfidenceSummary(digest) {
+  const verification = digest.sourceVerification;
+  const selection = digest.publicSourceSelection;
+  if (verification?.isVerifiedForPublicArchive) {
+    const visible = selection?.visibleCount ?? publicVisibleSourceArticles(digest, 8).length;
+    return {
+      label: "Verified stack",
+      detail: `${visible} read-through notes from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
+    };
+  }
+  if (verification?.verifiedArticleCount) {
+    return {
+      label: "Archive context",
+      detail: `${verification.verifiedArticleCount} article links archived; use current pages only for today's open.`
+    };
+  }
+  return {
+    label: "Context only",
+    detail: "Source ledger unavailable; wait for the next verified public run."
+  };
 }
 
 function tradingGuideValidityHtml(digest) {

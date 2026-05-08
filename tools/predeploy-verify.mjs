@@ -106,6 +106,8 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Published before 7:15 AM IST on trading days/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
+  assertOutput("index.html", /Daily trader workflow/);
+  assertOutput("index.html", /Get the bias in 90 seconds/);
   assertOutput("index.html", /Trading Guide/);
   assertOutput("index.html", /Share this archive/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
@@ -117,7 +119,10 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Since entry \(04 May 2026, 02:12 pm\)/);
   assertOutput("latest/index.html", /Market Narrative latest briefing/);
   assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide/);
+  assertOutput("4may2026/index.html", /Opening Nerve/);
+  assertOutput("4may2026/index.html", /Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);
+  assertOutput("4may2026/trading-guide/index.html", /Opening Nerve/);
   assertOutput("multibagger/index.html", /Research model started 27 Apr 2026/);
   assertOutput("multibagger/index.html", /Entries captured 04 May, 02:12 pm/);
   assertOutput("multibagger/index.html", /Latest quote refresh/);

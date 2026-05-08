@@ -873,6 +873,45 @@ function archivePage(digests, allDigests = digests) {
       line-height: 1.1;
     }
 
+    .workflow-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: -6px 0 34px;
+    }
+
+    .workflow-step {
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.54);
+      display: grid;
+      gap: 7px;
+      min-height: 128px;
+      padding: 15px;
+    }
+
+    .workflow-step span {
+      color: #67e8f9;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .workflow-step strong {
+      color: #f8fafc;
+      font-size: 19px;
+      line-height: 1.18;
+    }
+
+    .workflow-step p {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1.5;
+      margin: 0;
+    }
+
     .archive-title {
       margin: 0 0 16px;
       color: #f8fafc;
@@ -1220,6 +1259,12 @@ function archivePage(digests, allDigests = digests) {
         margin-top: 16px;
       }
 
+      .workflow-strip {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: -10px;
+      }
+
       .hero-action {
         min-height: 54px;
         padding: 12px;
@@ -1272,6 +1317,23 @@ function archivePage(digests, allDigests = digests) {
       <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
       <div class="summary-chip"><span>Current focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
       <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
+    </section>
+    <section class="workflow-strip" aria-label="Daily trader workflow">
+      <article class="workflow-step">
+        <span>1. Opening nerve</span>
+        <strong>Get the bias in 90 seconds</strong>
+        <p>Start with the latest briefing card: Nifty gate, Bank filter, sector nerve, and stand-down trigger.</p>
+      </article>
+      <article class="workflow-step">
+        <span>2. Trading Guide</span>
+        <strong>Check levels before opinion</strong>
+        <p>Use the guide for the no-trade zone, Bank Nifty confirmation, and first-range risk gates.</p>
+      </article>
+      <article class="workflow-step">
+        <span>3. Source Ledger</span>
+        <strong>Trust the read-through</strong>
+        <p>Open source cards only when you want the evidence behind the India impact and sector watch.</p>
+      </article>
     </section>
     <h2 class="archive-title">Latest Market Briefings</h2>
     <section class="digest-grid">
