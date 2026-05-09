@@ -1,4 +1,4 @@
-name: Market Calendar Refresh
+name: Market Calendar Verify
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     - cron: "7 19 * * *"
 
 jobs:
-  calendar:
+  calendar-verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,5 +15,5 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - run: node tools/market-calendar.mjs --refresh --date "$(TZ=Asia/Kolkata date +%F)"
+      - run: node tools/market-calendar.mjs --verify --date "$(TZ=Asia/Kolkata date +%F)"
       - run: npm test

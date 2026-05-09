@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const holidayPath = join(rootDir, "data", "market-calendar", "nse-holidays.json");
 const overridePath = join(rootDir, "data", "market-calendar", "overrides.json");
+const EXPECTED_2026_WEEKDAY_HOLIDAYS = 15;
 
 export const PUBLICATION_STATES = Object.freeze({
   TRADING_DAY: "trading_day",
@@ -36,6 +37,17 @@ export function marketCalendarState(date, options = {}) {
       isTradingSession: false,
       reason: holiday.name || "NSE holiday",
       source: "nse_holidays"
+    };
+  }
+
+  const weekendHoliday = loadWeekendHolidays(options.holidayFile).find((item) => item.date === value);
+  if (weekendHoliday) {
+    return {
+      date: value,
+      state: PUBLICATION_STATES.WEEKEND_CLOSED,
+      isTradingSession: false,
+      reason: weekendHoliday.name || "Weekend NSE holiday",
+      source: "nse_weekend_holidays"
     };
   }
 
@@ -86,14 +98,73 @@ export function todayInIst() {
   }).format(new Date());
 }
 
+export function verifyCalendarData(options = {}) {
+  const payload = loadHolidayPayload(options.holidayFile);
+  const holidays = Array.isArray(payload.holidays) ? payload.holidays : [];
+  const weekendHolidays = Array.isArray(payload.weekendHolidays) ? payload.weekendHolidays : [];
+  const failures = [];
+  if (payload.exchange !== "NSE") failures.push("exchange must be NSE");
+  if (payload.segment !== "capital_market") failures.push("segment must be capital_market");
+  if (payload.timezone !== "Asia/Kolkata") failures.push("timezone must be Asia/Kolkata");
+  if (payload.sourceCircular !== "NSE/CMTR/71775") failures.push("sourceCircular must be NSE/CMTR/71775");
+  if (Number(payload.year) !== 2026) failures.push("year must be 2026");
+  if (holidays.length < EXPECTED_2026_WEEKDAY_HOLIDAYS) {
+    failures.push(`expected at least ${EXPECTED_2026_WEEKDAY_HOLIDAYS} weekday holidays; found ${holidays.length}`);
+  }
+  for (const item of holidays) {
+    if (!item.date || !item.name) {
+      failures.push("weekday holiday entries need date and name");
+      continue;
+    }
+    const day = dayOfWeek(item.date);
+    if (day === 0 || day === 6) {
+      failures.push(`${item.date} ${item.name} belongs in weekendHolidays, not holidays`);
+    }
+  }
+  for (const item of weekendHolidays) {
+    if (!item.date || !item.name) {
+      failures.push("weekend holiday entries need date and name");
+      continue;
+    }
+    const day = dayOfWeek(item.date);
+    if (day !== 0 && day !== 6) {
+      failures.push(`${item.date} ${item.name} belongs in holidays, not weekendHolidays`);
+    }
+  }
+  if (failures.length) {
+    throw new Error(`Market calendar verification failed:\n- ${failures.join("\n- ")}`);
+  }
+  return {
+    exchange: payload.exchange,
+    segment: payload.segment,
+    year: payload.year,
+    sourceCircular: payload.sourceCircular,
+    weekdayHolidayCount: holidays.length,
+    weekendHolidayCount: weekendHolidays.length
+  };
+}
+
+function loadHolidayPayload(path = holidayPath) {
+  return JSON.parse(readFileSync(path, "utf8"));
+}
+
 function loadHolidays(path = holidayPath) {
-  const payload = JSON.parse(readFileSync(path, "utf8"));
+  const payload = loadHolidayPayload(path);
   return Array.isArray(payload.holidays) ? payload.holidays : [];
+}
+
+function loadWeekendHolidays(path = holidayPath) {
+  const payload = loadHolidayPayload(path);
+  return Array.isArray(payload.weekendHolidays) ? payload.weekendHolidays : [];
 }
 
 function loadOverrides(path = overridePath) {
   const payload = JSON.parse(readFileSync(path, "utf8"));
   return Array.isArray(payload.overrides) ? payload.overrides : [];
+}
+
+function dayOfWeek(value) {
+  return new Date(`${normalizeDate(value)}T12:00:00+05:30`).getDay();
 }
 
 function normalizeDate(value) {
@@ -113,7 +184,16 @@ async function main() {
   const date = readArg("--date") || todayInIst();
   const state = marketCalendarState(date);
   if (process.argv.includes("--refresh")) {
-    process.stdout.write(`Market calendar files present for ${state.date}: ${state.state}\n`);
+    console.error("Live NSE calendar refresh is not implemented yet; use --verify to validate the pinned official calendar.");
+    process.exit(1);
+  }
+  if (process.argv.includes("--verify")) {
+    const verified = verifyCalendarData();
+    process.stdout.write(
+      `Market calendar verified for ${verified.exchange} ${verified.segment} ${verified.year}: ` +
+      `${verified.weekdayHolidayCount} weekday holidays, ${verified.weekendHolidayCount} weekend holidays. ` +
+      `${state.date} is ${state.state} (${state.reason}).\n`
+    );
     return;
   }
   if (process.argv.includes("--assert-trading-day") || process.argv.includes("--assert-next-ist-trading-day")) {

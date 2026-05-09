@@ -27,7 +27,7 @@ import {
   weightedSentiment
 } from "./core.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
-import { marketCalendarState } from "./market-calendar.mjs";
+import { marketCalendarState, verifyCalendarData } from "./market-calendar.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
@@ -85,10 +85,19 @@ await test("market calendar state machine separates closed days from source hold
   assert.equal(marketCalendarState("2026-05-09").state, "weekend_closed");
   assert.equal(marketCalendarState("2026-05-10").state, "weekend_closed");
   assert.equal(marketCalendarState("2026-01-26").state, "exchange_holiday");
+  assert.equal(marketCalendarState("2026-05-28").state, "exchange_holiday");
+  assert.equal(marketCalendarState("2026-06-26").state, "exchange_holiday");
+  assert.equal(marketCalendarState("2026-12-25").state, "exchange_holiday");
+  const independenceDay = marketCalendarState("2026-08-15");
+  assert.equal(independenceDay.state, "weekend_closed");
+  assert.match(independenceDay.reason, /Independence Day/);
   assert.equal(marketCalendarState("2026-05-06").state, "trading_day");
   const special = marketCalendarState("2026-11-08");
   assert.equal(special.state, "special_session");
   assert.equal(special.isTradingSession, true);
+  const verifiedCalendar = verifyCalendarData();
+  assert.equal(verifiedCalendar.weekdayHolidayCount, 15);
+  assert.equal(verifiedCalendar.weekendHolidayCount, 4);
 });
 
 await test("technical scanner emits only qualifying Nifty and Bank Nifty setups", async () => {
@@ -1442,8 +1451,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
   const calendarWorkflow = await readFile(join(rootDir, ".github", "workflows", "calendar-refresh.yml"), "utf8");
+  assert.ok(calendarWorkflow.includes("Market Calendar Verify"));
   assert.ok(calendarWorkflow.includes('cron: "7 19 * * *"'));
-  assert.ok(calendarWorkflow.includes("tools/market-calendar.mjs --refresh"));
+  assert.ok(calendarWorkflow.includes("tools/market-calendar.mjs --verify"));
 
   const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   assert.equal(archiveFiles.includes("2026-05-03-0830-digest.json"), false, "Sunday briefing archive should not be promoted or retained");
