@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i, /application\/ld\+json/i],
+    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief|Check market status|Check latest status/i, /Today's briefing is live|Market closed today|Latest under verification/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i, /application\/ld\+json/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
@@ -129,6 +129,14 @@ await group("Public user surface", async () => {
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
   await expectSvg("User", "Public favicon", `${config.publicUrl}/favicon.svg`, /mn-logo-mark|mn-signal/i);
+  await expectPage(
+    "User",
+    "Latest status route",
+    `${config.publicUrl}/latest/`,
+    200,
+    [/Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/i],
+    [/Admin Login/i, ...offTopicAuditPatterns]
+  );
   await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Previous Close Quote Board|Market Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Prepared for the 7:15 AM IST briefing/i, /Get tomorrow's 7:15 AM brief/i, /India-source/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Live Quote Board/i, /live refresh pending/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.equal(payload.status, "PUBLISHED", "public digest status must not expose internal DRAFT state");
@@ -191,7 +199,7 @@ await group("Public user surface", async () => {
     "Public subscribe",
     `${config.publicUrl}/subscribe/`,
     200,
-    [/Join The 7:15 AM Brief/i, /Join daily email/i, /method="POST"/i, /name="_honey"/i, /If you do not receive a confirmation email within a few minutes/i],
+    [/Join The 7:15 AM Brief/i, /Join daily email/i, /method="POST"/i, /name="_honey"/i, /class="sent-note" hidden/i, /If you do not receive a confirmation email within a few minutes/i],
     [/name="_captcha" value="false"/i, /mailto:/i]
   );
   await expectPage("User", "Public admin path blocked", `${config.publicUrl}/admin/`, 404, [/not found|NOT_FOUND|404/i]);

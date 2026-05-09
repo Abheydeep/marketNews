@@ -143,8 +143,9 @@ function verifyVercelArtifacts() {
   assertOutput("subscribe/index.html", /name="_honey"/);
   assertOutput("subscribe/index.html", /If you do not receive a confirmation email within a few minutes/);
   assertOutputNot("subscribe/index.html", /name="_captcha" value="false"/);
-  assertOutput("latest/index.html", /Market Narrative latest briefing/);
-  assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide/);
+  assertOutput("latest/index.html", /Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/);
+  assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide|No pre-market briefing|briefing was not published as latest/);
+  assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification/);
   assertOutput("4may2026/index.html", /Opening Nerve/);
   assertOutput("4may2026/index.html", /Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);

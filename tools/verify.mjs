@@ -692,6 +692,29 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.ok(publicHtml.includes("Previous Close Quote Board") || publicHtml.includes("Market Quote Board"));
   assert.equal(publicHtml.includes("Live Quote Board"), false);
   assert.equal(publicHtml.includes("live refresh pending"), false);
+  assert.equal(publicHtml.includes("Waiting for chart data"), false);
+  assert.equal(guideHtml.includes("Waiting for chart data"), false);
+  assert.ok(publicHtml.includes("Select a market card to inspect chart context"));
+});
+
+await test("trading guide level copy is directionally consistent", async () => {
+  const digest = JSON.parse(await readFile(join(rootDir, "archive", "daily", "2026-05-05-0715-digest.json"), "utf8"));
+  const guideHtml = cockpitPage(
+    { ...digest, canonicalPath: "/5may2026/trading-guide/" },
+    "trading-guide-view",
+    { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" }
+  );
+  const text = guideHtml.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ");
+  const bullish = text.match(/Nifty must (?:reclaim and hold|hold) ([0-9,]+); first upside watch is ([0-9,]+)/i);
+  const bearish = text.match(/Nifty (?:breaks below|losing) ([0-9,]+) puts? ([0-9,]+) on watch|Nifty breaks below ([0-9,]+); first downside watch is ([0-9,]+)/i);
+  assert.ok(bullish, "trading guide did not expose bullish hold/upside levels");
+  assert.ok(bearish, "trading guide did not expose bearish break/downside levels");
+  const bullishHold = numberFromCopy(bullish[1]);
+  const upsideWatch = numberFromCopy(bullish[2]);
+  const bearishBreak = numberFromCopy(bearish[1] || bearish[3]);
+  const downsideWatch = numberFromCopy(bearish[2] || bearish[4]);
+  assert.ok(upsideWatch > bullishHold, `upside watch ${upsideWatch} must be above bullish hold ${bullishHold}`);
+  assert.ok(downsideWatch < bearishBreak, `downside watch ${downsideWatch} must be below bearish break ${bearishBreak}`);
 });
 
 await test("public digest payload ships compact display DTOs", async () => {
@@ -1222,6 +1245,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("sentimentSparklineHtml"));
   assert.ok(publisher.includes('details class="digest-card'));
   assert.ok(publisher.includes("hero-actions"));
+  assert.ok(publisher.includes("homepageLatestState"));
+  assert.ok(publisher.includes("Market closed today"));
+  assert.ok(publisher.includes("No trading-day brief"));
+  assert.ok(publisher.includes("Check market status"));
   assert.ok(publisher.includes("Market Nerve Before The Open"));
   assert.ok(publisher.includes("Nifty, Bank Nifty, And The One Thing To Watch First"));
   assert.ok(publisher.includes("bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence"));
@@ -1246,6 +1273,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes('<span class="tab-link active" aria-current="page">About</span>'));
   assert.ok(publisher.includes('name="_honey"'));
   assert.equal(publisher.includes('name="_captcha" value="false"'), false);
+  assert.ok(publisher.includes('.sent-note[hidden]'));
+  assert.ok(publisher.includes("sentNote.hidden = false"));
   assert.ok(publisher.includes("If you do not receive a confirmation email within a few minutes"));
   assert.ok(publisher.includes('join(siteDir, "subscribe")'));
   assert.ok(publisher.includes('join(siteDir, "about")'));
@@ -1524,6 +1553,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
   assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
   assert.ok(publicBuildScript.includes("ALLOW_VERIFIED_ARCHIVE_FALLBACK"));
+  assert.ok(publicBuildScript.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
+  assert.ok(publicBuildScript.includes("market-closed"));
+  assert.ok(publicBuildScript.includes("writeLatestStatusPages"));
   assert.ok(publicBuildScript.includes("(0715|0830)"));
   assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
   assert.equal(latestRedirectScript.includes("writeFile"), false);
@@ -2045,6 +2077,10 @@ function normalizeForTest(value) {
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function numberFromCopy(value) {
+  return Number(String(value || "").replace(/,/g, ""));
 }
 
 function assertAdminCopyIsPolished(html, label) {

@@ -4807,7 +4807,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <canvas id="marketChartCanvas" class="market-chart-canvas" aria-label="Published intraday price chart"></canvas>
             <div class="market-chart-caption">
               <strong id="marketChartSource">Published price series</strong>
-              <span id="marketChartRange">Waiting for chart data</span>
+              <span id="marketChartRange">Select a market card to inspect chart context</span>
             </div>
           </div>
           <div id="chartFallback" class="chart-fallback" aria-hidden="true">
@@ -5786,7 +5786,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       if (points.length < 2) {
         canvas.dataset.renderState = 'missing-data';
         showChartFallback();
-        if (range) range.textContent = 'No intraday series in this digest';
+        if (range) range.textContent = 'Chart series unavailable for this published snapshot';
         return;
       }
       if (source) {
@@ -7751,17 +7751,41 @@ function tradeMapLevels(digest, setup) {
   const completedBank = setupAuditItems(digest).find((item) => item.symbol === "BANKNIFTY" && item.status === "TARGET_REACHED");
   const niftyClose = Number(niftySnapshot?.closeValue || completedNifty?.currentPrice || setup?.entry || 0);
   const bankClose = Number(bankSnapshot?.closeValue || completedBank?.currentPrice || 0);
-  const niftyAnchor = Number(completedNifty?.target || setup?.entry || niftyClose);
-  const bankAnchor = Number(completedBank?.target || bankClose);
+  const niftyAnchor = Number(setup?.symbol === "NIFTY" ? setup.entry : niftyClose);
+  const bankAnchor = Number(setup?.symbol === "BANKNIFTY" ? setup.entry : bankClose);
+  const niftySetupTarget = setup?.symbol === "NIFTY" ? Number(setup.target) : 0;
 
-  return {
+  return normalizeTradeMapLevels({
     niftyBullishHold: roundLevel(Math.max(niftyAnchor, niftyClose * 0.998)),
-    niftyUpsideTarget: roundLevel(niftyClose * 1.006),
+    niftyUpsideTarget: roundLevel(niftySetupTarget > niftyAnchor ? niftySetupTarget : niftyClose * 1.006),
     niftyBearishBreak: roundLevel(Math.min(niftyAnchor, niftyClose * 0.996)),
-    niftyDownsideTarget: roundLevel(niftyClose * 0.992),
+    niftyDownsideTarget: roundLevel(niftySetupTarget > 0 && niftySetupTarget < niftyAnchor ? niftySetupTarget : niftyClose * 0.992),
     bankBullishHold: roundLevel(Math.max(bankAnchor, bankClose * 0.998)),
     bankBearishBreak: roundLevel(Math.min(bankAnchor, bankClose * 0.996))
-  };
+  });
+}
+
+function normalizeTradeMapLevels(levels) {
+  const normalized = { ...levels };
+  if (normalized.niftyBullishHold > 0 && normalized.niftyUpsideTarget <= normalized.niftyBullishHold) {
+    normalized.niftyUpsideTarget = roundLevel(normalized.niftyBullishHold * 1.006);
+    if (normalized.niftyUpsideTarget <= normalized.niftyBullishHold) {
+      normalized.niftyUpsideTarget = normalized.niftyBullishHold + 5;
+    }
+  }
+  if (normalized.niftyBearishBreak > 0 && normalized.niftyDownsideTarget >= normalized.niftyBearishBreak) {
+    normalized.niftyDownsideTarget = roundLevel(normalized.niftyBearishBreak * 0.994);
+    if (normalized.niftyDownsideTarget >= normalized.niftyBearishBreak) {
+      normalized.niftyDownsideTarget = normalized.niftyBearishBreak - 5;
+    }
+  }
+  if (normalized.bankBullishHold > 0 && normalized.bankBearishBreak >= normalized.bankBullishHold) {
+    normalized.bankBearishBreak = roundLevel(normalized.bankBullishHold * 0.996);
+    if (normalized.bankBearishBreak >= normalized.bankBullishHold) {
+      normalized.bankBearishBreak = normalized.bankBullishHold - 5;
+    }
+  }
+  return normalized;
 }
 
 function roundLevel(value) {

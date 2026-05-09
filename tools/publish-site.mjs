@@ -25,6 +25,8 @@ const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrat
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").trim() || `https://formsubmit.co/${subscribeEmail}`;
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
+const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
+const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = await loadSourceDigest();
@@ -528,7 +530,11 @@ function isVerifiedPublicDigest(digest) {
 }
 
 function isWeekdayDigest(digest) {
-  const day = new Date(`${digest.digestDate}T12:00:00+05:30`).getDay();
+  return isWeekdayDate(digest.digestDate);
+}
+
+function isWeekdayDate(value) {
+  const day = new Date(`${value}T12:00:00+05:30`).getDay();
   return day >= 1 && day <= 5;
 }
 
@@ -562,6 +568,8 @@ function archivePage(digests, allDigests = digests) {
   const pageTitle = "Market Narrative: Nifty & Bank Nifty Pre-Market Briefings";
   const pageDescription = "Market Narrative by Abhey Deep publishes a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing with global cues, India read-through, source cards, trading guide levels, and archive history.";
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
+  const latestState = homepageLatestState(latest);
+  const primaryAction = homepagePrimaryAction(latestState, latest);
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -768,6 +776,70 @@ function archivePage(digests, allDigests = digests) {
       color: #9fb0c8;
       font-size: 13px;
       font-weight: 850;
+    }
+
+    .freshness-banner {
+      align-items: center;
+      border: 1px solid rgba(103, 232, 249, 0.24);
+      border-radius: 14px;
+      background: rgba(14, 165, 233, 0.14);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      margin-top: 18px;
+      max-width: 900px;
+      padding: 14px 15px;
+    }
+
+    .freshness-banner.closed {
+      border-color: rgba(251, 191, 36, 0.32);
+      background: rgba(146, 64, 14, 0.18);
+    }
+
+    .freshness-banner.hold {
+      border-color: rgba(248, 113, 113, 0.34);
+      background: rgba(127, 29, 29, 0.18);
+    }
+
+    .freshness-banner span {
+      color: #bae6fd;
+      display: block;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .freshness-banner.closed span {
+      color: #fde68a;
+    }
+
+    .freshness-banner strong {
+      color: #f8fafc;
+      display: block;
+      font-size: 17px;
+      line-height: 1.25;
+      margin-top: 4px;
+    }
+
+    .freshness-banner p {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1.45;
+      margin: 4px 0 0;
+      max-width: 650px;
+    }
+
+    .freshness-banner a {
+      border-radius: 8px;
+      background: rgba(248, 250, 252, 0.92);
+      color: #0f172a;
+      flex: 0 0 auto;
+      font-size: 13px;
+      font-weight: 950;
+      padding: 10px 12px;
     }
 
     .share-link,
@@ -1448,10 +1520,11 @@ function archivePage(digests, allDigests = digests) {
       <h1>Market Narrative: Nifty, Bank Nifty, And The One Thing To Watch First</h1>
       <p>Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
+      ${homepageFreshnessBannerHtml(latestState)}
       <div class="hero-actions" aria-label="Primary actions">
         <a class="hero-action" href="./latest/">
-          <strong>Read today's brief</strong>
-          <span>Start with the verified 2-minute pre-market read.</span>
+          <strong>${escapeHtml(primaryAction.label)}</strong>
+          <span>${escapeHtml(primaryAction.detail)}</span>
         </a>
         <a class="hero-action" href="./latest/trading-guide/">
           <strong>Open Trading Guide</strong>
@@ -2056,6 +2129,10 @@ function subscribePage() {
       padding: 12px;
     }
 
+    .sent-note[hidden] {
+      display: none !important;
+    }
+
     body[data-sent="true"] .sent-note {
       display: block;
     }
@@ -2146,7 +2223,7 @@ function subscribePage() {
     <h1>Get the 7:15 AM market nerve before the open.</h1>
     <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
     <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
-      <div class="sent-note">Request received. Check your inbox for the confirmation note.</div>
+      <div class="sent-note" hidden>Request received. Check your inbox for the confirmation note.</div>
       <form action="${escapeHtml(subscribeFormAction)}" method="POST">
         <input type="hidden" name="_subject" value="New Market Narrative daily brief subscriber">
         <input type="hidden" name="_template" value="table">
@@ -2173,6 +2250,8 @@ function subscribePage() {
   <script>
     if (new URLSearchParams(window.location.search).get('sent') === '1') {
       document.body.dataset.sent = 'true';
+      const sentNote = document.querySelector('.sent-note');
+      if (sentNote) sentNote.hidden = false;
     }
   </script>
 </body>
@@ -2345,6 +2424,68 @@ function archiveSourceQualityLine(digest) {
 
 function subscribeHref() {
   return subscribeUrl;
+}
+
+function homepageLatestState(latest) {
+  const latestDate = latest?.digestDate || "";
+  const buildDate = publicBuildDate;
+  if (latestDate === buildDate && publicLatestStatus !== "verification-hold" && publicLatestStatus !== "market-closed") {
+    return {
+      kind: "published",
+      className: "live",
+      label: "Today's briefing is live",
+      title: `Verified ${formatDigestDate(latestDate)} pre-market read`,
+      detail: "Use the latest briefing for the 7:15 AM IST market map, then confirm with the Trading Guide before the cash open.",
+      ctaLabel: "Open today's brief",
+      ctaHref: "./latest/"
+    };
+  }
+  if (publicLatestStatus === "market-closed" || !isWeekdayDate(buildDate)) {
+    return {
+      kind: "market-closed",
+      className: "closed",
+      label: "Market closed today",
+      title: `No trading-day brief for ${formatDigestDate(buildDate)}`,
+      detail: `Latest verified trading-day edition: ${formatDigestDate(latestDate)}. Treat it as archive context until the next open.`,
+      ctaLabel: "Open status page",
+      ctaHref: "./latest/"
+    };
+  }
+  return {
+    kind: "verification-hold",
+    className: "hold",
+    label: "Latest under verification",
+    title: `No verified brief for ${formatDigestDate(buildDate)}`,
+    detail: `Latest verified trading-day edition: ${formatDigestDate(latestDate)}. The archive is not being presented as today's live read.`,
+    ctaLabel: "Review latest status",
+    ctaHref: "./latest/"
+  };
+}
+
+function homepagePrimaryAction(state, latest) {
+  if (state.kind === "published") {
+    return {
+      label: "Read today's brief",
+      detail: "Start with the verified 2-minute pre-market read."
+    };
+  }
+  return {
+    label: state.kind === "market-closed" ? "Check market status" : "Check latest status",
+    detail: `Latest verified trading-day edition: ${formatDigestDate(latest.digestDate)}.`
+  };
+}
+
+function homepageFreshnessBannerHtml(state) {
+  return `
+    <div class="freshness-banner ${escapeHtml(state.className)}" role="status" aria-label="Latest briefing status">
+      <div>
+        <span>${escapeHtml(state.label)}</span>
+        <strong>${escapeHtml(state.title)}</strong>
+        <p>${escapeHtml(state.detail)}</p>
+      </div>
+      <a href="${escapeHtml(state.ctaHref)}">${escapeHtml(state.ctaLabel)}</a>
+    </div>
+  `;
 }
 
 function verifiedEditionCount(digests) {

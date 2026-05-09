@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { readdirSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,9 +19,31 @@ const latestArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
 const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : today;
 const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
+const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
+} else if (!isWeekdayIst(date) && !allowNonTradingDayDigest) {
+  const fallback = latestArchivedDigest();
+  console.warn(
+    `No weekday public briefing for ${date}. ` +
+    `Publishing archived digest ${fallback.date} ${fallback.scheduledTime} and a market-closed /latest page.`
+  );
+  const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
+    env: {
+      ...process.env,
+      PUBLIC_BUILD_DATE: date,
+      PUBLIC_LATEST_STATUS: "market-closed",
+      SKIP_ARCHIVE_WRITE: "true"
+    },
+    exitOnFailure: false
+  });
+  if (fallbackPublish.status !== 0) {
+    console.error("Unable to publish market-closed artifact.");
+    process.exit(fallbackPublish.status ?? 1);
+  }
+  await writeLatestStatusPages({ date, fallback, status: "market-closed" });
+  process.exit(0);
 } else {
   const generated = run("npm", [
     "run",
@@ -65,7 +87,12 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
       `ALLOW_VERIFIED_ARCHIVE_FALLBACK=true is set, so publishing archived digest ${fallback.date} ${fallback.scheduledTime}.`
     );
     run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
-      env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" }
+      env: {
+        ...process.env,
+        PUBLIC_BUILD_DATE: date,
+        PUBLIC_LATEST_STATUS: "archive-fallback",
+        SKIP_ARCHIVE_WRITE: "true"
+      }
     });
     process.exit(0);
   }
@@ -80,32 +107,50 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
     console.error(`Failed command signal: ${signal}`);
   }
   const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
-    env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" },
+    env: {
+      ...process.env,
+      PUBLIC_BUILD_DATE: date,
+      PUBLIC_LATEST_STATUS: "verification-hold",
+      SKIP_ARCHIVE_WRITE: "true"
+    },
     exitOnFailure: false
   });
   if (fallbackPublish.status !== 0) {
     console.error(`Unable to publish verification-hold artifact after ${failedStep} failed.`);
     process.exit(fallbackPublish.status ?? (exitStatus === 0 ? 1 : exitStatus));
   }
-  await writeVerificationHoldPages({ date, failedStep, fallback });
+  await writeLatestStatusPages({ date, failedStep, fallback, status: "verification-hold" });
   process.exit(0);
 }
 
-async function writeVerificationHoldPages({ date, failedStep, fallback }) {
+async function writeLatestStatusPages({ date, failedStep = "", fallback, status }) {
   const latestDir = join(rootDir, "out", "site", "latest");
   const guideDir = join(latestDir, "trading-guide");
-  const html = verificationHoldPage({ date, failedStep, fallback, isTradingGuide: false });
-  const guideHtml = verificationHoldPage({ date, failedStep, fallback, isTradingGuide: true });
+  const html = latestStatusPage({ date, failedStep, fallback, status, isTradingGuide: false });
+  const guideHtml = latestStatusPage({ date, failedStep, fallback, status, isTradingGuide: true });
   await mkdir(guideDir, { recursive: true });
   await writeFile(join(latestDir, "index.html"), html, "utf8");
   await writeFile(join(guideDir, "index.html"), guideHtml, "utf8");
 }
 
-function verificationHoldPage({ date, failedStep, fallback, isTradingGuide }) {
-  const title = `${formatDate(date)} briefing under verification | Market Narrative`;
+function latestStatusPage({ date, failedStep, fallback, status, isTradingGuide }) {
+  const marketClosed = status === "market-closed";
+  const title = marketClosed
+    ? `${formatDate(date)} market closed | Market Narrative`
+    : `${formatDate(date)} briefing under verification | Market Narrative`;
   const fallbackSlug = slugForDate(fallback.date);
   const fallbackHref = isTradingGuide ? `/${fallbackSlug}/trading-guide/` : `/${fallbackSlug}/`;
   const fallbackLabel = isTradingGuide ? "Open latest verified trading guide" : "Open latest verified briefing";
+  const eyebrow = marketClosed ? "Market Closed" : "Source Verification Hold";
+  const heading = marketClosed
+    ? `No ${isTradingGuide ? "trading guide" : "pre-market briefing"} for ${formatDate(date)}.`
+    : `${formatDate(date)} briefing was not published as latest.`;
+  const lead = marketClosed
+    ? `Indian cash markets are not in session today, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
+    : `The ${isTradingGuide ? "trading guide" : "pre-market briefing"} did not clear the public source-quality gate during ${failedStep}, so Market Narrative is not presenting the previous archive as today's latest edition.`;
+  const latestLine = marketClosed
+    ? `The latest verified trading-day edition remains ${formatDate(fallback.date)}. Use it as historical context for the next open.`
+    : `The latest verified archive remains ${formatDate(fallback.date)}. Use that only as historical context, not as today's pre-open read.`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,10 +170,10 @@ function verificationHoldPage({ date, failedStep, fallback, isTradingGuide }) {
 </head>
 <body>
   <main>
-    <div class="eyebrow">Source Verification Hold</div>
-    <h1>${escapeHtml(formatDate(date))} briefing was not published as latest.</h1>
-    <p>The ${isTradingGuide ? "trading guide" : "pre-market briefing"} did not clear the public source-quality gate during ${escapeHtml(failedStep)}, so Market Narrative is not presenting the previous archive as today's latest edition.</p>
-    <p>The latest verified archive remains ${escapeHtml(formatDate(fallback.date))}. Use that only as historical context, not as today's pre-open read.</p>
+    <div class="eyebrow">${escapeHtml(eyebrow)}</div>
+    <h1>${escapeHtml(heading)}</h1>
+    <p>${escapeHtml(lead)}</p>
+    <p>${escapeHtml(latestLine)}</p>
     <a href="${escapeHtml(fallbackHref)}">${escapeHtml(fallbackLabel)}</a>
     <a class="secondary" href="/">Open archive</a>
   </main>
@@ -184,13 +229,37 @@ function isWeekdayIst(value) {
 }
 
 function run(command, args, options = {}) {
-  const result = spawnSync(command, args, {
+  const spawnOptions = {
     stdio: "inherit",
     shell: false,
     env: options.env ?? process.env
-  });
+  };
+  const result = spawnSync(command, args, spawnOptions);
+  if (result.error?.code === "ENOENT" && command === "npm" && args[0] === "run") {
+    const fallback = runNpmScriptWithNode(args, spawnOptions);
+    if (fallback) {
+      return finishRun(fallback, options);
+    }
+  }
+  return finishRun(result, options);
+}
+
+function finishRun(result, options) {
   if (result.status !== 0 && options.exitOnFailure !== false) {
     process.exit(result.status ?? 1);
   }
   return result;
+}
+
+function runNpmScriptWithNode(args, spawnOptions) {
+  const scriptName = args[1];
+  const forwardedArgs = args[2] === "--" ? args.slice(3) : args.slice(2);
+  const packageJson = JSON.parse(readFileSync(join(rootDir, "package.json"), "utf8"));
+  const script = packageJson.scripts?.[scriptName];
+  const match = /^node\s+(\S+)$/.exec(script || "");
+  if (!match) {
+    return null;
+  }
+  console.warn(`npm not found; running ${scriptName} via node ${match[1]}.`);
+  return spawnSync("node", [match[1], ...forwardedArgs], spawnOptions);
 }

@@ -26,6 +26,14 @@ await check("public apex loads archive", async () => {
   assert.match(response.body, /By Abhey Deep \/ Market Narrative/i);
   assert.match(response.body, /Last verified update/i);
   assert.match(response.body, /Search the archive|Join daily email/i);
+  assert.match(response.body, /Today's briefing is live|Market closed today|Latest under verification/i);
+});
+
+await check("public latest status route is explicit", async () => {
+  const response = await fetchText(`${config.publicUrl}/latest/`);
+  assert.equal(response.status, 200);
+  assert.match(response.body, /Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/i);
+  assert.doesNotMatch(response.body, /Admin Login|admin\.marketnarrative\.in/i);
 });
 
 await check("public host serves public deployment target", async () => {
@@ -58,6 +66,7 @@ await check("public host loads subscribe page", async () => {
   assert.match(response.body, /Join The 7:15 AM Brief|Join daily email/i);
   assert.match(response.body, /method="POST"/i);
   assert.match(response.body, /name="_honey"/i);
+  assert.match(response.body, /class="sent-note" hidden/i);
   assert.doesNotMatch(response.body, /name="_captcha" value="false"/i);
   assert.match(response.body, /If you do not receive a confirmation email within a few minutes/i);
 });
