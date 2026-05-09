@@ -2081,6 +2081,10 @@ function subscribePage() {
       margin: 14px 0 0;
     }
 
+    .honey-field {
+      display: none;
+    }
+
     @media (max-width: 760px) {
       .nav-inner {
         align-items: flex-start;
@@ -2122,8 +2126,10 @@ function subscribePage() {
       <form action="${escapeHtml(subscribeFormAction)}" method="POST">
         <input type="hidden" name="_subject" value="New Market Narrative daily brief subscriber">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="${escapeHtml(`${siteOrigin}/subscribe/?sent=1`)}">
+        <label class="honey-field" aria-hidden="true">Leave this empty
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+        </label>
         <label>Email
           <input name="email" type="email" autocomplete="email" required>
         </label>
@@ -2137,7 +2143,7 @@ function subscribePage() {
         </label>
         <button type="submit">Join daily email</button>
       </form>
-      <p class="fine-print">Educational market research only. No spam, no trade calls, and no investment advice. Your email is used only for the Market Narrative daily brief.</p>
+      <p class="fine-print">Educational market research only. No spam, no trade calls, and no investment advice. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
   </main>
   <script>

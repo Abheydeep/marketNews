@@ -178,6 +178,22 @@ await group("Public user surface", async () => {
       ), "holding quote fields missing");
     }
   });
+  await expectPage(
+    "User",
+    "Public about",
+    `${config.publicUrl}/about/`,
+    200,
+    [/I'm Abhey Deep/i, /verified briefings published since launch/i, /Browse the archive/i, /aria-current="page">About/i],
+    [/Latest verified context/i, /product experiment/i]
+  );
+  await expectPage(
+    "User",
+    "Public subscribe",
+    `${config.publicUrl}/subscribe/`,
+    200,
+    [/Join The 7:15 AM Brief/i, /Join daily email/i, /method="POST"/i, /name="_honey"/i, /If you do not receive a confirmation email within a few minutes/i],
+    [/name="_captcha" value="false"/i, /mailto:/i]
+  );
   await expectPage("User", "Public admin path blocked", `${config.publicUrl}/admin/`, 404, [/not found|NOT_FOUND|404/i]);
 });
 

@@ -127,10 +127,14 @@ function verifyVercelArtifacts() {
   assertOutput("about/index.html", /About Market Narrative/);
   assertOutput("about/index.html", /Who is Abhey Deep/);
   assertOutput("about/index.html", /Why not just headlines/);
+  assertOutput("about/index.html", /aria-current="page">About/);
   assertOutput("about/index.html", /verified briefings published since launch/);
   assertOutput("about/index.html", /Browse the archive/);
   assertOutput("subscribe/index.html", /Join The 7:15 AM Brief/);
   assertOutput("subscribe/index.html", /Join daily email/);
+  assertOutput("subscribe/index.html", /name="_honey"/);
+  assertOutput("subscribe/index.html", /If you do not receive a confirmation email within a few minutes/);
+  assertOutputNot("subscribe/index.html", /name="_captcha" value="false"/);
   assertOutput("latest/index.html", /Market Narrative latest briefing/);
   assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide/);
   assertOutput("4may2026/index.html", /Opening Nerve/);
