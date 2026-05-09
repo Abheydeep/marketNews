@@ -1284,6 +1284,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("publication-events.json"));
   assert.ok(publisher.includes("publicationEventPage"));
   assert.ok(publisher.includes("Read publication record"));
+  assert.ok(publisher.includes("Backfilled context"));
+  assert.ok(publisher.includes("Trading guide boundary"));
+  assert.ok(publisher.includes("evidenceGradeLabel"));
   assert.ok(publisher.includes("isVerifiedPublicDigest"));
   assert.ok(publisher.includes("legacyAuditStatus"));
   assert.ok(publisher.includes("recentArchiveGridHtml"));
@@ -1315,8 +1318,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   const publicationEvents = await readFile(join(rootDir, "data", "publication-events.json"), "utf8");
   assert.ok(publicationEvents.includes('"date": "2026-05-07"'));
   assert.ok(publicationEvents.includes('"date": "2026-05-08"'));
-  assert.ok(publicationEvents.includes("Publication Hold"));
-  assert.ok(publicationEvents.includes("instead of reconstructing a live note after the fact"));
+  assert.ok(publicationEvents.includes("Backfilled Historical Context"));
+  assert.ok(publicationEvents.includes('"status": "backfilled_context"'));
+  assert.ok(publicationEvents.includes("does not recreate intraday trading levels"));
+  assert.ok(publicationEvents.includes("article-level sources"));
   assert.ok(publisher.includes("aboutPage"));
   assert.ok(publisher.includes("subscribePage"));
   assert.ok(publisher.includes("About Market Narrative"));

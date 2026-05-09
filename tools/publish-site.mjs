@@ -253,11 +253,18 @@ function publicationEventPage(event, latest, isTradingGuide) {
   const latestSlug = slugForDigest(latest);
   const canonicalPath = isTradingGuide ? `/${slug}/trading-guide/` : `/${slug}/`;
   const latestHref = isTradingGuide ? `/${latestSlug}/trading-guide/` : `/${latestSlug}/`;
-  const pageTitle = `${formatDigestDate(event.digestDate)} publication record | Market Narrative`;
+  const pageTitle = isBackfilledEvent(event)
+    ? `${event.title} | Market Narrative`
+    : `${formatDigestDate(event.digestDate)} publication record | Market Narrative`;
   const heading = isTradingGuide
-    ? `No trading guide was archived for ${formatDigestDate(event.digestDate)}.`
-    : `No public briefing was archived for ${formatDigestDate(event.digestDate)}.`;
+    ? `No live trading guide was archived for ${formatDigestDate(event.digestDate)}.`
+    : isBackfilledEvent(event)
+      ? event.title
+      : `No public briefing was archived for ${formatDigestDate(event.digestDate)}.`;
   const artifactName = isTradingGuide ? "trading guide" : "pre-market briefing";
+  const contextLines = event.publicationEvent.contextLines ?? [];
+  const sources = event.publicationEvent.sources ?? [];
+  const watchItems = event.publicationEvent.watchItems ?? event.watchItems ?? [];
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,7 +283,14 @@ function publicationEventPage(event, latest, isTradingGuide) {
     .panel { border: 1px solid #e5e7eb; border-radius: 14px; background: #ffffff; display: grid; gap: 10px; margin: 26px 0; padding: 18px; }
     .panel span { color: #6b7280; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
     .panel strong { color: #111827; font-size: 18px; line-height: 1.45; }
+    .grid { display: grid; gap: 14px; margin: 22px 0; }
+    .source-card { border: 1px solid #e5e7eb; border-radius: 14px; background: #ffffff; padding: 16px; }
+    .source-card span, .section-label { color: #6b7280; display: block; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+    .source-card h2 { color: #111827; font-size: 20px; line-height: 1.3; margin: 8px 0; }
+    .source-card p, li { color: #374151; font-size: 16px; line-height: 1.58; }
+    ul { padding-left: 22px; }
     a { display: inline-block; margin: 8px 12px 0 0; color: #ffffff; background: #111827; padding: 12px 16px; border-radius: 8px; text-decoration: none; font-weight: 850; }
+    .source-card a { color: #0f766e; background: transparent; margin: 0; padding: 0; border-radius: 0; }
     a.secondary { color: #111827; background: #e5e7eb; }
     .disclaimer { color: #6b7280; font-size: 14px; margin-top: 26px; }
   </style>
@@ -291,6 +305,47 @@ function publicationEventPage(event, latest, isTradingGuide) {
       <span>Why there is no ${escapeHtml(artifactName)}</span>
       <strong>${escapeHtml(event.publicationEvent.reason)}</strong>
     </section>
+    ${isBackfilledEvent(event) && !isTradingGuide ? `
+      <section class="panel" aria-label="Evidence grade">
+        <span>Evidence grade</span>
+        <strong>${escapeHtml(evidenceGradeLabel(event.publicationEvent.evidenceGrade))}. ${escapeHtml(event.publicationEvent.indiaPublisherCoverage)}</strong>
+      </section>
+      ${contextLines.length ? `
+        <section aria-label="Backfilled context">
+          <span class="section-label">Backfilled context</span>
+          <ul>
+            ${contextLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+          </ul>
+        </section>
+      ` : ""}
+      ${sources.length ? `
+        <section class="grid" aria-label="Source cards">
+          ${sources.map((source) => `
+            <article class="source-card">
+              <span>${escapeHtml(source.sourceName || "Source")} · ${escapeHtml(formatGeneratedTime(source.publishedAt))}</span>
+              <h2>${escapeHtml(source.headline)}</h2>
+              <p><strong>India read:</strong> ${escapeHtml(source.indiaImpact || "Use as global context until Indian breadth confirms.")}</p>
+              <p><strong>Watch:</strong> ${escapeHtml(source.watchFor || "Wait for first-range confirmation.")}</p>
+              <a href="${escapeHtml(source.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>
+            </article>
+          `).join("")}
+        </section>
+      ` : ""}
+      ${watchItems.length ? `
+        <section aria-label="What to watch">
+          <span class="section-label">What to watch</span>
+          <ul>
+            ${watchItems.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </section>
+      ` : ""}
+    ` : ""}
+    ${isTradingGuide ? `
+      <section class="panel" aria-label="Trading guide boundary">
+        <span>Trading guide boundary</span>
+        <strong>This backfill does not recreate entry, stop, target, PCR, OI, or first-range levels. Use it only as historical context.</strong>
+      </section>
+    ` : ""}
     <p>The latest verified trading-day edition remains ${escapeHtml(formatDigestDate(latest.digestDate))}. Use that only as historical context, not as a reconstructed ${escapeHtml(formatDigestDate(event.digestDate))} market read.</p>
     <a href="${escapeHtml(latestHref)}">${escapeHtml(isTradingGuide ? "Open latest verified trading guide" : "Open latest verified briefing")}</a>
     <a class="secondary" href="/">Open archive</a>
@@ -343,20 +398,35 @@ async function loadPublicationEvents() {
 
 function publicationEventAsArchiveEntry(event) {
   const date = event.date || event.digestDate;
+  const sources = (event.sources ?? []).map((source, index) => ({
+    publishedAt: source.publishedAt,
+    sourceId: `${event.status || "publication-event"}-${index + 1}`,
+    sourceName: source.sourceName,
+    headline: source.headline,
+    summary: source.summary || source.indiaImpact || source.headline,
+    takeaway: source.takeaway || source.indiaImpact || source.headline,
+    whyItMatters: source.whyItMatters || source.indiaImpact || source.headline,
+    indiaImpact: source.indiaImpact,
+    watchFor: source.watchFor,
+    sourceUrl: source.sourceUrl,
+    sentimentScore: 0,
+    entityName: source.entityName || event.title || "Market",
+    category: source.category || "global_risk"
+  }));
   return {
     digestDate: date,
     scheduledFor: event.scheduledFor || `${date}T07:15:00+05:30`,
-    generatedAt: event.scheduledFor || `${date}T07:15:00+05:30`,
+    generatedAt: event.createdAt || event.scheduledFor || `${date}T07:15:00+05:30`,
     title: event.title || `${formatDigestDate(date)} briefing record`,
     archiveSummary: event.summary || "No public pre-market briefing was archived for this date.",
     deskNote: event.reason || "No public pre-market briefing was archived for this date.",
     sentimentLabel: "NEUTRAL",
     overallSentiment: 0,
     marketSnapshots: [],
-    news: [],
+    news: sources,
     themes: [],
     tradeSetups: [],
-    watchItems: [
+    watchItems: event.watchItems ?? [
       "Use the latest verified trading-day edition only as historical context.",
       "Do not reconstruct a live pre-open view after the fact."
     ],
@@ -365,13 +435,19 @@ function publicationEventAsArchiveEntry(event) {
       label: event.label || "Publication Record",
       summary: event.summary || "No public pre-market briefing was archived for this date.",
       reason: event.reason || "The public archive has no verified briefing record for this date.",
-      latestVerifiedDate: event.latestVerifiedDate || ""
+      latestVerifiedDate: event.latestVerifiedDate || "",
+      createdAt: event.createdAt || "",
+      evidenceGrade: event.evidenceGrade || "",
+      indiaPublisherCoverage: event.indiaPublisherCoverage || "",
+      contextLines: event.contextLines ?? [],
+      watchItems: event.watchItems ?? [],
+      sources
     },
     sourceVerification: {
       mode: "publication_event",
-      verifiedArticleCount: 0,
-      publisherCount: 0,
-      categoryCount: 0,
+      verifiedArticleCount: sources.length,
+      publisherCount: new Set(sources.map((source) => source.sourceName).filter(Boolean)).size,
+      categoryCount: new Set(sources.map((source) => source.category).filter(Boolean)).size,
       blockedReason: event.reason || "No public pre-market briefing was archived for this date.",
       isVerifiedForPublicArchive: false
     }
@@ -387,7 +463,9 @@ function publicationEventPayload(event) {
     title: event.title,
     summary: event.publicationEvent?.summary ?? event.archiveSummary,
     reason: event.publicationEvent?.reason ?? event.deskNote,
-    latestVerifiedDate: event.publicationEvent?.latestVerifiedDate ?? ""
+    latestVerifiedDate: event.publicationEvent?.latestVerifiedDate ?? "",
+    evidenceGrade: event.publicationEvent?.evidenceGrade ?? "",
+    sources: event.publicationEvent?.sources ?? []
   };
 }
 
@@ -2557,6 +2635,10 @@ function jsonLdPayload(value) {
 
 function archiveSourceQualityLine(digest) {
   if (isPublicationEvent(digest)) {
+    if (isBackfilledEvent(digest)) {
+      const count = digest.publicationEvent.sources?.length ?? 0;
+      return `${digest.publicationEvent.label} - ${count} article-level source links - ${evidenceGradeLabel(digest.publicationEvent.evidenceGrade)}`;
+    }
     return `${digest.publicationEvent.label} - no verified public briefing was archived for this date`;
   }
   const verification = digest.sourceVerification;
@@ -2575,6 +2657,10 @@ function archiveSourceQualityLine(digest) {
 
 function isPublicationEvent(digest) {
   return Boolean(digest?.publicationEvent);
+}
+
+function isBackfilledEvent(digest) {
+  return isPublicationEvent(digest) && digest.publicationEvent.status === "backfilled_context";
 }
 
 function subscribeHref() {
@@ -2907,7 +2993,9 @@ function sentimentSparklineHtml(digest) {
 
 function archiveChips(digest) {
   if (isPublicationEvent(digest)) {
-    return ["Publication record", "No public brief", "QA hold"];
+    return isBackfilledEvent(digest)
+      ? ["Backfilled", "Global cue only", "Historical context"]
+      : ["Publication record", "No public brief", "Hold"];
   }
   const leadChip = digest.dailyLead?.label ? compactWords(cleanArchiveSentence(digest.dailyLead.label), 3) : "";
   const articles = weightedArchiveSources(digest).slice(0, 3);
@@ -2919,7 +3007,7 @@ function archiveChips(digest) {
 
 function archiveFocus(digest) {
   if (isPublicationEvent(digest)) {
-    return "Publication record";
+    return isBackfilledEvent(digest) ? "Backfilled context" : "Publication record";
   }
   if (digest.dailyLead?.label) {
     return compactWords(cleanArchiveSentence(digest.dailyLead.label), 4);
@@ -2934,6 +3022,15 @@ function archiveFocus(digest) {
 
 function highestImpactArticle(digest) {
   return [...(digest.news ?? [])].sort((left, right) => impactScore(right) - impactScore(left))[0] ?? null;
+}
+
+function evidenceGradeLabel(value) {
+  return {
+    full: "Full India-source briefing",
+    limited: "Limited briefing",
+    global_cue_only: "Global cue only",
+    held: "Held"
+  }[String(value || "").toLowerCase()] || "Backfilled context";
 }
 
 function impactScore(article) {

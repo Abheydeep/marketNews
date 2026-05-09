@@ -3,22 +3,100 @@
     {
       "date": "2026-05-07",
       "scheduledFor": "2026-05-07T07:15:00+05:30",
-      "status": "publication_qa_hold",
-      "label": "Publication Hold",
-      "title": "7 May 2026 briefing record",
-      "summary": "No public pre-market briefing was archived for 7 May 2026. The public record points back to the latest verified edition instead of reconstructing a live note after the fact.",
-      "reason": "The scheduled publish run did not complete after older archive entries did not pass the newer public editorial checks.",
-      "latestVerifiedDate": "2026-05-06"
+      "status": "backfilled_context",
+      "label": "Backfilled Historical Context",
+      "title": "Rates And Fuel Costs Framed The May 7 Open",
+      "summary": "A retroactive context note for 7 May 2026. US labour resilience kept the Fed path in focus, while aviation fuel and gasoline-pressure stories made banks, rate-sensitive sectors, aviation, and consumption the India checks.",
+      "reason": "Created after the fact on 9 May 2026 from verified article-level sources. This is not the live 7:15 AM edition and does not recreate intraday trading levels.",
+      "createdAt": "2026-05-09T20:58:00+05:30",
+      "latestVerifiedDate": "2026-05-06",
+      "evidenceGrade": "global_cue_only",
+      "indiaPublisherCoverage": "Full India-source gate: Not cleared; this backfill is global-cue context, not a full India-source briefing.",
+      "contextLines": [
+        "Fed-path pressure was the cleanest macro read: stronger private payrolls reduced urgency for rate cuts and kept yield-sensitive India sectors on watch.",
+        "Aviation fuel pressure was relevant for IndiGo, SpiceJet, OMCs, and inflation expectations, but it needed domestic sector breadth before becoming a broad-index call.",
+        "Consumer fuel stress mattered as a demand-risk cue; FMCG, autos, retail lenders, and Bank Nifty breadth were the confirmation checks."
+      ],
+      "watchItems": [
+        "Watch US 10Y direction and Bank Nifty VWAP before trusting any risk-on move.",
+        "Track aviation, OMC, and consumer-sector breadth after the first range.",
+        "Use the latest verified May 6 edition only as historical context; this page is a backfill."
+      ],
+      "sources": [
+        {
+          "sourceName": "CNBC Economy",
+          "headline": "Private payrolls rose by 109,000 in April, topping expectations, ADP says",
+          "publishedAt": "2026-05-06T13:49:25.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/06/private-payrolls-rose-by-109000-in-april-topping-expectations-adp-says.html",
+          "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
+          "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP."
+        },
+        {
+          "sourceName": "CNBC Business",
+          "headline": "Airlines spent 56.4% more on jet fuel in month after Iran war started, U.S. government says",
+          "publishedAt": "2026-05-06T19:15:47.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/06/airlines-jet-fuel-iran-war.html",
+          "indiaImpact": "Aviation is the direct read-through through IndiGo, SpiceJet and fuel-cost sensitivity; do not convert it into broad-index conviction.",
+          "watchFor": "Watch aviation peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP."
+        },
+        {
+          "sourceName": "CNBC Economy",
+          "headline": "Surging gas prices are hitting lower-income households harder, New York Fed study shows",
+          "publishedAt": "2026-05-06T19:27:54.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/06/surging-gas-prices-are-hurting-lower-income-households-harder-study-shows.html",
+          "indiaImpact": "Consumer fuel pressure keeps autos, FMCG, retail lenders and rate-sensitive growth on the watchlist.",
+          "watchFor": "Watch consumer-sector breadth and Bank Nifty confirmation after the first range."
+        }
+      ]
     },
     {
       "date": "2026-05-08",
       "scheduledFor": "2026-05-08T07:15:00+05:30",
-      "status": "publication_qa_hold",
-      "label": "Publication Hold",
-      "title": "8 May 2026 briefing record",
-      "summary": "No public pre-market briefing was archived for 8 May 2026. The public record points back to the latest verified edition instead of reconstructing a live note after the fact.",
-      "reason": "The scheduled publish run did not complete after older archive entries did not pass the newer public editorial checks.",
-      "latestVerifiedDate": "2026-05-06"
+      "status": "backfilled_context",
+      "label": "Backfilled Historical Context",
+      "title": "Fed-Cut Doubt And Consumer Demand Shaped May 8",
+      "summary": "A retroactive context note for 8 May 2026. Fed-cut skepticism kept rate-sensitive India sectors on watch, while US consumer and China-demand signals made consumption, autos, retail lenders, and Bank Nifty breadth the confirmation layer.",
+      "reason": "Created after the fact on 9 May 2026 from verified article-level sources. This is not the live 7:15 AM edition and does not recreate intraday trading levels.",
+      "createdAt": "2026-05-09T20:58:00+05:30",
+      "latestVerifiedDate": "2026-05-06",
+      "evidenceGrade": "global_cue_only",
+      "indiaPublisherCoverage": "Full India-source gate: Not cleared; this backfill is global-cue context, not a full India-source briefing.",
+      "contextLines": [
+        "The cleanest macro read was Fed-cut skepticism: higher-for-longer expectations kept Bank Nifty, realty, autos, and high-PE growth on confirmation watch.",
+        "Consumer-spending caution mattered for India only through domestic breadth in FMCG, autos, retail lenders, and discretionary names.",
+        "China-demand commentary was useful as Asia/consumption context, but it did not become an India catalyst without local sector confirmation."
+      ],
+      "watchItems": [
+        "Watch US yield direction and Bank Nifty VWAP before assigning trend weight.",
+        "Track FMCG, auto, retail-lender and discretionary breadth after the first range.",
+        "Treat this page as a backfilled context note, not a live trading guide."
+      ],
+      "sources": [
+        {
+          "sourceName": "CNBC Economy",
+          "headline": "There's 'no chance' Warsh will be able to get the Fed to cut rates, Paul Tudor Jones says",
+          "publishedAt": "2026-05-07T13:23:19.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/07/theres-no-chance-warsh-will-be-able-to-get-the-fed-to-cut-rates-paul-tudor-jones-says.html",
+          "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
+          "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP."
+        },
+        {
+          "sourceName": "CNBC Business",
+          "headline": "McDonald's CEO says consumer spending could be 'getting a little bit worse'",
+          "publishedAt": "2026-05-07T14:26:07.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/07/mcdonalds-mcd-q1-2026-earnings.html",
+          "indiaImpact": "FMCG, autos, retail lenders and discretionary names are the India checks; Nifty bias needs breadth outside defensives.",
+          "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag."
+        },
+        {
+          "sourceName": "CNBC Business",
+          "headline": "While many international brands retreat, McDonald's is supersizing its China business",
+          "publishedAt": "2026-05-07T18:37:20.000Z",
+          "sourceUrl": "https://www.cnbc.com/2026/05/07/mcd-earnings-mcdonalds-expands-in-china.html",
+          "indiaImpact": "China exposure stays Asia/consumer context until Indian consumption and auto breadth confirm.",
+          "watchFor": "Watch Asia risk appetite alongside Indian consumer breadth after the first range."
+        }
+      ]
     }
   ]
 }
