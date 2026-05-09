@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "date": "2026-05-07",
+      "scheduledFor": "2026-05-07T07:15:00+05:30",
+      "status": "publication_qa_hold",
+      "label": "Publication Hold",
+      "title": "7 May 2026 briefing record",
+      "summary": "No public pre-market briefing was archived for 7 May 2026. The public record points back to the latest verified edition instead of reconstructing a live note after the fact.",
+      "reason": "The scheduled publish run did not complete after older archive entries did not pass the newer public editorial checks.",
+      "latestVerifiedDate": "2026-05-06"
+    },
+    {
+      "date": "2026-05-08",
+      "scheduledFor": "2026-05-08T07:15:00+05:30",
+      "status": "publication_qa_hold",
+      "label": "Publication Hold",
+      "title": "8 May 2026 briefing record",
+      "summary": "No public pre-market briefing was archived for 8 May 2026. The public record points back to the latest verified edition instead of reconstructing a live note after the fact.",
+      "reason": "The scheduled publish run did not complete after older archive entries did not pass the newer public editorial checks.",
+      "latestVerifiedDate": "2026-05-06"
+    }
+  ]
+}

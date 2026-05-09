@@ -17,6 +17,7 @@ const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const label = scheduledTime.replace(":", "");
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
+const publicationEventsPath = join(rootDir, "data", "publication-events.json");
 const siteDir = join(rootDir, "out", "site");
 const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
@@ -45,11 +46,14 @@ if (!digests.length) {
   throw new Error("No archived digests are available to publish");
 }
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
+const publicationEvents = await loadPublicationEvents();
 const weekdayDigests = digests.filter(isWeekdayDigest);
 const archiveHomeDigests = publicArchiveDigests.length ? publicArchiveDigests : weekdayDigests.slice(0, 1);
 if (!archiveHomeDigests.length) {
   throw new Error("No weekday archived digests are available to publish");
 }
+const archiveTimelineEntries = sortArchiveEntries([...archiveHomeDigests, ...publicationEvents]);
+const allArchiveTimelineEntries = sortArchiveEntries([...digests, ...publicationEvents]);
 
 await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
@@ -90,6 +94,14 @@ for (const digest of digests) {
 }
 
 const latest = archiveHomeDigests[0];
+for (const event of publicationEvents) {
+  const slug = slugForDigest(event);
+  const eventDir = join(siteDir, slug);
+  const eventGuideDir = join(eventDir, "trading-guide");
+  await mkdir(eventGuideDir, { recursive: true });
+  await writeGuardedFile(join(eventDir, "index.html"), publicationEventPage(event, latest, false));
+  await writeGuardedFile(join(eventGuideDir, "index.html"), publicationEventPage(event, latest, true));
+}
 const publicMultibaggerState = await multibaggerStateWithMarketQuotes();
 const adminDigest = {
   ...sourceDigest,
@@ -159,10 +171,16 @@ await writeFile(
   }),
   "utf8"
 );
-await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveHomeDigests, digests));
+await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveTimelineEntries, allArchiveTimelineEntries, latest));
 await writeFile(join(siteDir, "404.html"), notFoundPage(), "utf8");
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
-await writeGuardedFile(join(siteDir, "archive.json"), `${JSON.stringify({ digests: archiveHomeDigests.map(redactedDigestPayload) }, null, 2)}\n`);
+await writeGuardedFile(
+  join(siteDir, "archive.json"),
+  `${JSON.stringify({
+    digests: archiveHomeDigests.map(redactedDigestPayload),
+    publicationEvents: publicationEvents.map(publicationEventPayload)
+  }, null, 2)}\n`
+);
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
 await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(archiveHomeDigests), "utf8");
 await writeFile(
@@ -230,6 +248,58 @@ function notFoundPage() {
 </html>`;
 }
 
+function publicationEventPage(event, latest, isTradingGuide) {
+  const slug = slugForDigest(event);
+  const latestSlug = slugForDigest(latest);
+  const canonicalPath = isTradingGuide ? `/${slug}/trading-guide/` : `/${slug}/`;
+  const latestHref = isTradingGuide ? `/${latestSlug}/trading-guide/` : `/${latestSlug}/`;
+  const pageTitle = `${formatDigestDate(event.digestDate)} publication record | Market Narrative`;
+  const heading = isTradingGuide
+    ? `No trading guide was archived for ${formatDigestDate(event.digestDate)}.`
+    : `No public briefing was archived for ${formatDigestDate(event.digestDate)}.`;
+  const artifactName = isTradingGuide ? "trading guide" : "pre-market briefing";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}${escapeHtml(canonicalPath)}">
+  <title>${escapeHtml(pageTitle)}</title>
+  <style>
+    body { margin: 0; min-height: 100vh; font-family: Inter, Arial, sans-serif; color: #111827; background: #f8fafc; }
+    main { max-width: 760px; margin: 0 auto; padding: 72px 24px; }
+    .eyebrow { color: #b45309; font-size: 13px; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+    h1 { font-size: clamp(36px, 6vw, 58px); line-height: 1.08; margin: 12px 0 20px; letter-spacing: 0; }
+    p { color: #374151; font-size: 18px; line-height: 1.68; margin: 0 0 18px; }
+    .panel { border: 1px solid #e5e7eb; border-radius: 14px; background: #ffffff; display: grid; gap: 10px; margin: 26px 0; padding: 18px; }
+    .panel span { color: #6b7280; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+    .panel strong { color: #111827; font-size: 18px; line-height: 1.45; }
+    a { display: inline-block; margin: 8px 12px 0 0; color: #ffffff; background: #111827; padding: 12px 16px; border-radius: 8px; text-decoration: none; font-weight: 850; }
+    a.secondary { color: #111827; background: #e5e7eb; }
+    .disclaimer { color: #6b7280; font-size: 14px; margin-top: 26px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">${escapeHtml(event.publicationEvent.label)}</div>
+    <h1>${escapeHtml(heading)}</h1>
+    <p>This trading-day slot is preserved in the archive so the public record does not skip the date.</p>
+    <p>${escapeHtml(event.publicationEvent.summary)}</p>
+    <section class="panel" aria-label="Publication record">
+      <span>Why there is no ${escapeHtml(artifactName)}</span>
+      <strong>${escapeHtml(event.publicationEvent.reason)}</strong>
+    </section>
+    <p>The latest verified trading-day edition remains ${escapeHtml(formatDigestDate(latest.digestDate))}. Use that only as historical context, not as a reconstructed ${escapeHtml(formatDigestDate(event.digestDate))} market read.</p>
+    <a href="${escapeHtml(latestHref)}">${escapeHtml(isTradingGuide ? "Open latest verified trading guide" : "Open latest verified briefing")}</a>
+    <a class="secondary" href="/">Open archive</a>
+    <p class="disclaimer">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured.</p>
+  </main>
+</body>
+</html>`;
+}
+
 function absoluteUrl(path) {
   if (/^https?:\/\//i.test(path)) {
     return path;
@@ -255,6 +325,80 @@ async function loadArchivedDigests() {
     const rightTime = Date.parse(right.scheduledFor ?? `${right.digestDate}T07:15:00+05:30`);
     return rightTime - leftTime;
   });
+}
+
+async function loadPublicationEvents() {
+  try {
+    const payload = JSON.parse(await readFile(publicationEventsPath, "utf8"));
+    return (Array.isArray(payload.events) ? payload.events : [])
+      .map(publicationEventAsArchiveEntry)
+      .sort(compareArchiveEntries);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
+}
+
+function publicationEventAsArchiveEntry(event) {
+  const date = event.date || event.digestDate;
+  return {
+    digestDate: date,
+    scheduledFor: event.scheduledFor || `${date}T07:15:00+05:30`,
+    generatedAt: event.scheduledFor || `${date}T07:15:00+05:30`,
+    title: event.title || `${formatDigestDate(date)} briefing record`,
+    archiveSummary: event.summary || "No public pre-market briefing was archived for this date.",
+    deskNote: event.reason || "No public pre-market briefing was archived for this date.",
+    sentimentLabel: "NEUTRAL",
+    overallSentiment: 0,
+    marketSnapshots: [],
+    news: [],
+    themes: [],
+    tradeSetups: [],
+    watchItems: [
+      "Use the latest verified trading-day edition only as historical context.",
+      "Do not reconstruct a live pre-open view after the fact."
+    ],
+    publicationEvent: {
+      status: event.status || "publication_record",
+      label: event.label || "Publication Record",
+      summary: event.summary || "No public pre-market briefing was archived for this date.",
+      reason: event.reason || "The public archive has no verified briefing record for this date.",
+      latestVerifiedDate: event.latestVerifiedDate || ""
+    },
+    sourceVerification: {
+      mode: "publication_event",
+      verifiedArticleCount: 0,
+      publisherCount: 0,
+      categoryCount: 0,
+      blockedReason: event.reason || "No public pre-market briefing was archived for this date.",
+      isVerifiedForPublicArchive: false
+    }
+  };
+}
+
+function publicationEventPayload(event) {
+  return {
+    date: event.digestDate,
+    scheduledFor: event.scheduledFor,
+    status: event.publicationEvent?.status ?? "publication_record",
+    label: event.publicationEvent?.label ?? "Publication Record",
+    title: event.title,
+    summary: event.publicationEvent?.summary ?? event.archiveSummary,
+    reason: event.publicationEvent?.reason ?? event.deskNote,
+    latestVerifiedDate: event.publicationEvent?.latestVerifiedDate ?? ""
+  };
+}
+
+function sortArchiveEntries(entries) {
+  return [...entries].sort(compareArchiveEntries);
+}
+
+function compareArchiveEntries(left, right) {
+  const leftTime = Date.parse(left.scheduledFor ?? `${left.digestDate}T07:15:00+05:30`);
+  const rightTime = Date.parse(right.scheduledFor ?? `${right.digestDate}T07:15:00+05:30`);
+  return rightTime - leftTime;
 }
 
 async function loadSourceDigest() {
@@ -563,13 +707,14 @@ function fallbackWatchItems(digest) {
   return [...new Set(items)].slice(0, 3);
 }
 
-function archivePage(digests, allDigests = digests) {
-  const latest = digests[0];
+function archivePage(digests, allDigests = digests, latestDigest = null) {
+  const latest = latestDigest ?? digests.find(isVerifiedPublicDigest) ?? digests[0];
   const pageTitle = "Market Narrative: Nifty & Bank Nifty Pre-Market Briefings";
   const pageDescription = "Market Narrative by Abhey Deep publishes a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing with global cues, India read-through, source cards, trading guide levels, and archive history.";
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const latestState = homepageLatestState(latest);
   const primaryAction = homepagePrimaryAction(latestState, latest);
+  const jsonLdDigests = digests.filter(isVerifiedPublicDigest);
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -588,7 +733,7 @@ function archivePage(digests, allDigests = digests) {
                 <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
                 ${sentimentSparklineHtml(digest)}
               </div>
-              <h2>${escapeHtml(isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing")}</h2>
+              <h2>${escapeHtml(archiveCardTitle(digest))}</h2>
               <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
               <div class="archive-chips">
                 ${chips}
@@ -604,7 +749,7 @@ function archivePage(digests, allDigests = digests) {
             </div>
             ${archiveMarketSnapshotHtml(digest)}
             ${archiveSourcePreviewHtml(digest)}
-            <a class="open-link" href="./${slug}/">Read market briefing</a>
+            <a class="open-link" href="./${slug}/">${escapeHtml(archiveOpenLabel(digest))}</a>
           </div>
         </details>
       `;
@@ -635,7 +780,7 @@ function archivePage(digests, allDigests = digests) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
   <title>${escapeHtml(pageTitle)}</title>
-  ${jsonLdScript(archivePageJsonLd(latest, digests, pageTitle, pageDescription))}
+  ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription))}
   <style>
     :root {
       --paper: #050816;
@@ -1567,7 +1712,7 @@ function archivePage(digests, allDigests = digests) {
         <p>Open source cards only when you want the evidence behind the India impact and sector watch.</p>
       </article>
     </section>
-    <h2 class="archive-title">Latest Market Briefings</h2>
+    <h2 class="archive-title">Latest Market Briefings And Records</h2>
     <section class="archive-filter" aria-label="Search archived briefings">
       <div class="archive-filter-head">
         <strong>Search the archive</strong>
@@ -2411,6 +2556,9 @@ function jsonLdPayload(value) {
 }
 
 function archiveSourceQualityLine(digest) {
+  if (isPublicationEvent(digest)) {
+    return `${digest.publicationEvent.label} - no verified public briefing was archived for this date`;
+  }
   const verification = digest.sourceVerification;
   if (!verification) {
     return "Edition archived";
@@ -2423,6 +2571,10 @@ function archiveSourceQualityLine(digest) {
   }
   const blocked = verification.blockedReason ? ` - blocked: ${verification.blockedReason}` : "";
   return `${verification.verifiedArticleCount} verified article links - ${verification.publisherCount} publishers - ${verification.categoryCount} categories - ${verification.mode} mode${blocked}`;
+}
+
+function isPublicationEvent(digest) {
+  return Boolean(digest?.publicationEvent);
 }
 
 function subscribeHref() {
@@ -2583,10 +2735,14 @@ function recentArchiveGridHtml(digests) {
   const items = (digests ?? []).map((digest) => {
     const verified = isVerifiedPublicDigest(digest);
     const slug = slugForDigest(digest);
-    const title = verified
+    const title = isPublicationEvent(digest)
+      ? compactWords(digest.title || "Publication record", 10)
+      : verified
       ? compactWords(digest.title || "Market briefing", 10)
       : "Archived market briefing";
-    const status = verified
+    const status = isPublicationEvent(digest)
+      ? digest.publicationEvent.label
+      : verified
       ? `${digest.sourceVerification.verifiedArticleCount} verified links`
       : "Edition archived";
     return `
@@ -2645,6 +2801,17 @@ function weightedArchiveSources(digest) {
   return [...(digest.news ?? [])].sort((left, right) => impactScore(right) - impactScore(left));
 }
 
+function archiveCardTitle(digest) {
+  if (isPublicationEvent(digest)) {
+    return digest.title || "Publication record";
+  }
+  return isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing";
+}
+
+function archiveOpenLabel(digest) {
+  return isPublicationEvent(digest) ? "Read publication record" : "Read market briefing";
+}
+
 function formatSnapshotValue(snapshot) {
   const value = Number.isFinite(Number(snapshot.closeValue)) ? Number(snapshot.closeValue).toFixed(2) : "n/a";
   const change = Number.isFinite(Number(snapshot.changePercent)) ? ` (${formatSnapshotChange(snapshot)})` : "";
@@ -2652,6 +2819,9 @@ function formatSnapshotValue(snapshot) {
 }
 
 function archiveCardSummary(digest) {
+  if (isPublicationEvent(digest)) {
+    return digest.publicationEvent.summary;
+  }
   if (!isVerifiedPublicDigest(digest)) {
     return "Archived continuity page. Newer editions use verified article-level sources and India read-through selection.";
   }
@@ -2668,6 +2838,9 @@ function archiveCardSummary(digest) {
 }
 
 function previousSessionDriver(digest) {
+  if (isPublicationEvent(digest)) {
+    return digest.publicationEvent.reason;
+  }
   if (digest.dailyLead?.indiaImpact) {
     return cleanArchiveSentence(digest.dailyLead.indiaImpact);
   }
@@ -2692,6 +2865,9 @@ function titleForDailyLead(dailyLead) {
 }
 
 function archiveToneClass(digest) {
+  if (isPublicationEvent(digest)) {
+    return "tone-neutral";
+  }
   const label = String(digest.sentimentLabel ?? "").toUpperCase();
   if (label === "BULLISH") {
     return "tone-bullish";
@@ -2730,6 +2906,9 @@ function sentimentSparklineHtml(digest) {
 }
 
 function archiveChips(digest) {
+  if (isPublicationEvent(digest)) {
+    return ["Publication record", "No public brief", "QA hold"];
+  }
   const leadChip = digest.dailyLead?.label ? compactWords(cleanArchiveSentence(digest.dailyLead.label), 3) : "";
   const articles = weightedArchiveSources(digest).slice(0, 3);
   const chips = articles.map((article) =>
@@ -2739,6 +2918,9 @@ function archiveChips(digest) {
 }
 
 function archiveFocus(digest) {
+  if (isPublicationEvent(digest)) {
+    return "Publication record";
+  }
   if (digest.dailyLead?.label) {
     return compactWords(cleanArchiveSentence(digest.dailyLead.label), 4);
   }

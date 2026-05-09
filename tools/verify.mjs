@@ -1280,7 +1280,10 @@ await test("backend market snapshot contract carries chart-refresh fields", asyn
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
-  assert.ok(publisher.includes("archivePage(archiveHomeDigests, digests)"));
+  assert.ok(publisher.includes("archivePage(archiveTimelineEntries, allArchiveTimelineEntries, latest)"));
+  assert.ok(publisher.includes("publication-events.json"));
+  assert.ok(publisher.includes("publicationEventPage"));
+  assert.ok(publisher.includes("Read publication record"));
   assert.ok(publisher.includes("isVerifiedPublicDigest"));
   assert.ok(publisher.includes("legacyAuditStatus"));
   assert.ok(publisher.includes("recentArchiveGridHtml"));
@@ -1309,6 +1312,11 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveTagFilter"));
   assert.ok(publisher.includes("data-archive-card"));
   assert.ok(publisher.includes("archiveFilterOptions"));
+  const publicationEvents = await readFile(join(rootDir, "data", "publication-events.json"), "utf8");
+  assert.ok(publicationEvents.includes('"date": "2026-05-07"'));
+  assert.ok(publicationEvents.includes('"date": "2026-05-08"'));
+  assert.ok(publicationEvents.includes("Publication Hold"));
+  assert.ok(publicationEvents.includes("instead of reconstructing a live note after the fact"));
   assert.ok(publisher.includes("aboutPage"));
   assert.ok(publisher.includes("subscribePage"));
   assert.ok(publisher.includes("About Market Narrative"));
