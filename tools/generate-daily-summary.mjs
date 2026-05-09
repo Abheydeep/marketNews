@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { marketCalendarState } from "./market-calendar.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 
@@ -15,9 +16,10 @@ const newsDataMode = readArg("--news-data") ?? process.env.NEWS_DATA_MODE ?? "li
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
+const calendarState = marketCalendarState(date);
 
-if (liveMode && !isWeekdayIst(date) && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
-  process.stderr.write(`Daily briefing generation blocked for ${date}: weekday-only public schedule.\n`);
+if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
+  process.stderr.write(`Daily briefing generation blocked for ${date}: ${calendarState.state} (${calendarState.reason}).\n`);
   process.stderr.write("Set ALLOW_NON_TRADING_DAY_DIGEST=true only for an explicit manual non-trading-day test.\n");
   process.exit(2);
 }
@@ -69,11 +71,6 @@ function todayInIst() {
     day: "2-digit"
   });
   return formatter.format(new Date());
-}
-
-function isWeekdayIst(value) {
-  const day = new Date(`${value}T12:00:00+05:30`).getDay();
-  return day >= 1 && day <= 5;
 }
 
 function readArg(name) {

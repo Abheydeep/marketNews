@@ -5,6 +5,7 @@ import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSoci
 import { cockpitPage } from "./cockpit-page.mjs";
 import { dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
@@ -534,8 +535,7 @@ function isWeekdayDigest(digest) {
 }
 
 function isWeekdayDate(value) {
-  const day = new Date(`${value}T12:00:00+05:30`).getDay();
-  return day >= 1 && day <= 5;
+  return marketCalendarState(value).isTradingSession;
 }
 
 function relatedVerifiedEditions(digest, verifiedDigests) {
@@ -1537,7 +1537,7 @@ function archivePage(digests, allDigests = digests) {
       </div>
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
-          <strong>Get tomorrow's 7:15 AM brief</strong>
+          <strong>Get the next trading-day 7:15 AM brief</strong>
           <span>Join the daily email flow so the pre-market read reaches you before the cash open.</span>
         </div>
         <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
@@ -2223,7 +2223,7 @@ function subscribePage() {
     <h1>Get the 7:15 AM market nerve before the open.</h1>
     <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
     <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
-      <div class="sent-note" hidden>Request received. Check your inbox for the confirmation note.</div>
+      <div class="sent-note" hidden aria-live="polite"></div>
       <form action="${escapeHtml(subscribeFormAction)}" method="POST">
         <input type="hidden" name="_subject" value="New Market Narrative daily brief subscriber">
         <input type="hidden" name="_template" value="table">
@@ -2251,7 +2251,10 @@ function subscribePage() {
     if (new URLSearchParams(window.location.search).get('sent') === '1') {
       document.body.dataset.sent = 'true';
       const sentNote = document.querySelector('.sent-note');
-      if (sentNote) sentNote.hidden = false;
+      if (sentNote) {
+        sentNote.textContent = ['Request received.', 'Check your inbox for the confirmation note.'].join(' ');
+        sentNote.hidden = false;
+      }
     }
   </script>
 </body>
@@ -2429,6 +2432,7 @@ function subscribeHref() {
 function homepageLatestState(latest) {
   const latestDate = latest?.digestDate || "";
   const buildDate = publicBuildDate;
+  const calendar = marketCalendarState(buildDate);
   if (latestDate === buildDate && publicLatestStatus !== "verification-hold" && publicLatestStatus !== "market-closed") {
     return {
       kind: "published",
@@ -2440,11 +2444,12 @@ function homepageLatestState(latest) {
       ctaHref: "./latest/"
     };
   }
-  if (publicLatestStatus === "market-closed" || !isWeekdayDate(buildDate)) {
+  if (publicLatestStatus === "market-closed" || !calendar.isTradingSession) {
+    const closedLabel = calendar.state === "exchange_holiday" ? "Market holiday" : "Market closed today";
     return {
       kind: "market-closed",
       className: "closed",
-      label: "Market closed today",
+      label: closedLabel,
       title: `No trading-day brief for ${formatDigestDate(buildDate)}`,
       detail: `Latest verified trading-day edition: ${formatDigestDate(latestDate)}. Treat it as archive context until the next open.`,
       ctaLabel: "Open status page",

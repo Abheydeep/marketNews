@@ -27,6 +27,7 @@ import {
   weightedSentiment
 } from "./core.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
+import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
@@ -78,6 +79,16 @@ await test("live symbol registry includes important Asian markets", () => {
 await test("risk-reward math enforces 1:2+ setups", () => {
   assert.equal(bullishRiskReward(100, 95, 110), 2);
   assert.throws(() => bullishRiskReward(100, 101, 110), /above stop loss/);
+});
+
+await test("market calendar state machine separates closed days from source holds", () => {
+  assert.equal(marketCalendarState("2026-05-09").state, "weekend_closed");
+  assert.equal(marketCalendarState("2026-05-10").state, "weekend_closed");
+  assert.equal(marketCalendarState("2026-01-26").state, "exchange_holiday");
+  assert.equal(marketCalendarState("2026-05-06").state, "trading_day");
+  const special = marketCalendarState("2026-11-08");
+  assert.equal(special.state, "special_session");
+  assert.equal(special.isTradingSession, true);
 });
 
 await test("technical scanner emits only qualifying Nifty and Bank Nifty setups", async () => {
@@ -548,10 +559,35 @@ await test("public source selection prefers India-publisher articles when availa
   const selection = publicSourceSelectionForDigest("2026-05-04", [...globalArticles, ...indiaArticles]);
   assert.equal(selection.visibleArticles.length, 8);
   assert.equal(selection.publicSummary.indiaPublisherCount, 2);
+  assert.equal(selection.publicSummary.directIndiaSourceCount, 2);
+  assert.equal(selection.publicSummary.officialIndiaSourceCount, 0);
+  assert.equal(selection.publicSummary.evidenceGrade, "limited");
   assert.equal(selection.publicSummary.shortlistIndiaPublisherCount, 2);
-  assert.match(selection.publicSummary.indiaPublisherCoverage, /Direct India-source articles: 2/);
+  assert.match(selection.publicSummary.indiaPublisherCoverage, /Full India-source gate: Limited/);
   assert.ok(selection.visibleArticles.some((article) => /moneycontrol/i.test(article.sourceName)));
   assert.ok(selection.visibleArticles.some((article) => /livemint/i.test(article.sourceName)));
+});
+
+await test("public source selection labels zero India-source full briefs as global cue context", () => {
+  const articles = Array.from({ length: 8 }, (_, index) => ({
+    headline: `Global cue article ${index + 1}`,
+    summary: "Global cue with an explicit Indian-market read-through.",
+    takeaway: "Global cue can affect the India open.",
+    indiaImpact: "Nifty and Bank Nifty need breadth confirmation before this becomes tradeable.",
+    watchFor: "Watch the first range and Bank Nifty breadth.",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/global-cue-article-${index + 1}.html`,
+    sourceName: "CNBC Markets",
+    category: index % 2 === 0 ? "global_risk" : "macro_negative",
+    entityName: index % 2 === 0 ? "Nasdaq" : "Rates",
+    publishedAt: "2026-05-03T13:00:00.000Z",
+    sentimentScore: index % 2 === 0 ? -0.2 : 0.1,
+    entityMatchScore: 0.7
+  }));
+  const selection = publicSourceSelectionForDigest("2026-05-04", articles);
+  assert.equal(selection.publicSummary.directIndiaSourceCount, 0);
+  assert.equal(selection.publicSummary.evidenceGrade, "global_cue_only");
+  assert.match(selection.publicSummary.indiaPublisherCoverage, /Full India-source gate: Not cleared/);
+  assert.equal(selection.publicSummary.indiaPublisherCoverage.includes("Direct India-source articles: 0"), false);
 });
 
 await test("public source selection fills the stack when source categories are narrow", () => {
@@ -685,7 +721,9 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
   assert.ok(publicHtml.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.includes("Get tomorrow's 7:15 AM brief"));
+  assert.ok(publicHtml.includes("Get the next trading-day 7:15 AM brief"));
+  assert.ok(publicHtml.includes("Evidence grade:"));
+  assert.ok(publicHtml.includes("Full India-source gate:"));
   assert.ok(publicHtml.includes("India-source"));
   assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share/mood modules");
   assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Market Mood"), "2-minute summary should appear before market mood rail");
@@ -1403,13 +1441,16 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
+  const calendarWorkflow = await readFile(join(rootDir, ".github", "workflows", "calendar-refresh.yml"), "utf8");
+  assert.ok(calendarWorkflow.includes('cron: "7 19 * * *"'));
+  assert.ok(calendarWorkflow.includes("tools/market-calendar.mjs --refresh"));
 
   const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   assert.equal(archiveFiles.includes("2026-05-03-0830-digest.json"), false, "Sunday briefing archive should not be promoted or retained");
 
   const dailyGenerator = await readFile(join(rootDir, "tools", "generate-daily-summary.mjs"), "utf8");
   assert.ok(dailyGenerator.includes('?? "07:15"'));
-  assert.ok(dailyGenerator.includes("weekday-only public schedule"));
+  assert.ok(dailyGenerator.includes("marketCalendarState"));
   assert.ok(dailyGenerator.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
 
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
@@ -1724,7 +1765,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Share this briefing"));
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
   assert.ok(publicHtml.body.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.body.includes("Get tomorrow's 7:15 AM brief"));
+  assert.ok(publicHtml.body.includes("Get the next trading-day 7:15 AM brief"));
   assert.ok(publicHtml.body.includes("Previous close/reference quotes") || publicHtml.body.includes("Market quote context"));
   assert.equal(publicHtml.body.includes("live refresh pending"), false);
   assert.equal(publicHtml.body.includes("Last available close"), false);
@@ -1824,7 +1865,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
   assert.ok(publicHtml.body.includes("Top 8 India read-through notes selected from"));
-  assert.ok(publicHtml.body.includes("Direct India-source articles"));
+  assert.ok(publicHtml.body.includes("Full India-source gate:"));
+  assert.equal(publicHtml.body.includes("Direct India-source articles: 0"), false);
   assert.ok(publicHtml.body.includes("Showing 8 India read-through notes"));
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));

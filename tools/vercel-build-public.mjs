@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const parts = new Intl.DateTimeFormat("en-GB", {
@@ -20,13 +21,14 @@ const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : t
 const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
+const calendarState = marketCalendarState(date);
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
-} else if (!isWeekdayIst(date) && !allowNonTradingDayDigest) {
+} else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
   const fallback = latestArchivedDigest();
   console.warn(
-    `No weekday public briefing for ${date}. ` +
+    `No trading-day public briefing for ${date} (${calendarState.state}: ${calendarState.reason}). ` +
     `Publishing archived digest ${fallback.date} ${fallback.scheduledTime} and a market-closed /latest page.`
   );
   const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
@@ -42,7 +44,7 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     console.error("Unable to publish market-closed artifact.");
     process.exit(fallbackPublish.status ?? 1);
   }
-  await writeLatestStatusPages({ date, fallback, status: "market-closed" });
+  await writeLatestStatusPages({ date, fallback, status: "market-closed", calendarState });
   process.exit(0);
 } else {
   const generated = run("npm", [
@@ -123,18 +125,19 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
   process.exit(0);
 }
 
-async function writeLatestStatusPages({ date, failedStep = "", fallback, status }) {
+async function writeLatestStatusPages({ date, failedStep = "", fallback, status, calendarState = marketCalendarState(date) }) {
   const latestDir = join(rootDir, "out", "site", "latest");
   const guideDir = join(latestDir, "trading-guide");
-  const html = latestStatusPage({ date, failedStep, fallback, status, isTradingGuide: false });
-  const guideHtml = latestStatusPage({ date, failedStep, fallback, status, isTradingGuide: true });
+  const html = latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide: false });
+  const guideHtml = latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide: true });
   await mkdir(guideDir, { recursive: true });
   await writeFile(join(latestDir, "index.html"), html, "utf8");
   await writeFile(join(guideDir, "index.html"), guideHtml, "utf8");
 }
 
-function latestStatusPage({ date, failedStep, fallback, status, isTradingGuide }) {
+function latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide }) {
   const marketClosed = status === "market-closed";
+  const holidayClosed = marketClosed && calendarState?.state === "exchange_holiday";
   const title = marketClosed
     ? `${formatDate(date)} market closed | Market Narrative`
     : `${formatDate(date)} briefing under verification | Market Narrative`;
@@ -146,7 +149,9 @@ function latestStatusPage({ date, failedStep, fallback, status, isTradingGuide }
     ? `No ${isTradingGuide ? "trading guide" : "pre-market briefing"} for ${formatDate(date)}.`
     : `${formatDate(date)} briefing was not published as latest.`;
   const lead = marketClosed
-    ? `Indian cash markets are not in session today, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
+    ? holidayClosed
+      ? `Indian cash markets are closed for ${calendarState.reason}, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
+      : `Indian cash markets are not in session today, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
     : `The ${isTradingGuide ? "trading guide" : "pre-market briefing"} did not clear the public source-quality gate during ${failedStep}, so Market Narrative is not presenting the previous archive as today's latest edition.`;
   const latestLine = marketClosed
     ? `The latest verified trading-day edition remains ${formatDate(fallback.date)}. Use it as historical context for the next open.`
@@ -213,7 +218,7 @@ function latestArchivedDigest() {
       return match ? { date: match[1], scheduledTime: `${match[2].slice(0, 2)}:${match[2].slice(2)}` } : null;
     })
     .filter(Boolean)
-    .filter((item) => isWeekdayIst(item.date))
+    .filter((item) => isTradingSessionDate(item.date))
     .sort((left, right) => `${left.date}T${left.scheduledTime}`.localeCompare(`${right.date}T${right.scheduledTime}`));
   const latest = digests.at(-1);
   if (!latest) {
@@ -221,11 +226,6 @@ function latestArchivedDigest() {
     process.exit(1);
   }
   return latest;
-}
-
-function isWeekdayIst(value) {
-  const day = new Date(`${value}T12:00:00+05:30`).getDay();
-  return day >= 1 && day <= 5;
 }
 
 function run(command, args, options = {}) {

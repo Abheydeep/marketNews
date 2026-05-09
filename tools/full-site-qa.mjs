@@ -465,7 +465,7 @@ async function verifyDailyPage(page, daily, stamp) {
   const tabs = await verifyPublicNavigation(page, daily);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, `${daily.slug} should not render hidden trading guide content`);
   await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), `${daily.slug} freshness notice`);
-  await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), `${daily.slug} follow CTA`);
+  await expectOne(page.getByText("Get the next trading-day 7:15 AM brief", { exact: false }), `${daily.slug} follow CTA`);
   assert.equal(
     (await page.locator("#summaryExpand").evaluate((node) => {
       const summaryTop = node.getBoundingClientRect().top;

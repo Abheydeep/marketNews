@@ -1,0 +1,36 @@
+{
+  "exchange": "NSE",
+  "timezone": "Asia/Kolkata",
+  "holidays": [
+    {
+      "date": "2026-01-26",
+      "name": "Republic Day",
+      "segments": ["equity", "derivatives"]
+    },
+    {
+      "date": "2026-03-03",
+      "name": "Holi",
+      "segments": ["equity", "derivatives"]
+    },
+    {
+      "date": "2026-04-03",
+      "name": "Good Friday",
+      "segments": ["equity", "derivatives"]
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Maharashtra Day",
+      "segments": ["equity", "derivatives"]
+    },
+    {
+      "date": "2026-08-15",
+      "name": "Independence Day",
+      "segments": ["equity", "derivatives"]
+    },
+    {
+      "date": "2026-10-02",
+      "name": "Mahatma Gandhi Jayanti",
+      "segments": ["equity", "derivatives"]
+    }
+  ]
+}

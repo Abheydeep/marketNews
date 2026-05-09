@@ -1860,6 +1860,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .share-row,
     .reader-path,
     .session-notice,
+    .evidence-grade-card,
     .follow-briefing-cta,
     .chart-cta-panel {
       border: 1px solid rgba(148, 163, 184, 0.24);
@@ -1888,6 +1889,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .session-notice,
+    .evidence-grade-card,
     .follow-briefing-cta {
       display: flex;
       flex-wrap: wrap;
@@ -1898,17 +1900,57 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .session-notice strong,
+    .evidence-grade-card strong,
     .follow-briefing-cta strong {
       color: #f8fafc;
       font-size: 14px;
     }
 
     .session-notice span,
+    .evidence-grade-card span,
     .follow-briefing-cta span {
       color: #cbd5e1;
       font-size: 13px;
       font-weight: 700;
       line-height: 1.5;
+    }
+
+    .evidence-grade-card {
+      border-color: rgba(52, 211, 153, 0.26);
+      background: rgba(6, 78, 59, 0.22);
+    }
+
+    .evidence-grade-card.limited,
+    .evidence-grade-card.global-cue-only {
+      border-color: rgba(251, 191, 36, 0.34);
+      background: rgba(120, 53, 15, 0.22);
+    }
+
+    .evidence-grade-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .evidence-grade-grid span {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.28);
+      padding: 8px 10px;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .evidence-grade-grid b {
+      color: #f8fafc;
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0;
+      margin-top: 2px;
+      text-transform: none;
     }
 
     .follow-link {
@@ -4206,9 +4248,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .glass-v2 .session-notice,
+    .glass-v2 .evidence-grade-card,
     .glass-v2 .follow-briefing-cta {
       border-color: rgba(103, 232, 249, 0.24);
       background: rgba(15, 23, 42, 0.66);
+    }
+
+    .glass-v2 .evidence-grade-card.limited,
+    .glass-v2 .evidence-grade-card.global-cue-only {
+      border-color: rgba(251, 191, 36, 0.34);
+      background: rgba(120, 53, 15, 0.26);
     }
 
     .glass-v2 .briefing-expand-card {
@@ -4746,6 +4795,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${legacyAuditBannerHtml(digest)}
         ${editionNavHtml(digest)}
         ${briefingFreshnessNoticeHtml(digest)}
+        ${evidenceGradeBadgeHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
         ${followBriefingCtaHtml()}
@@ -6884,11 +6934,29 @@ function briefingFreshnessNoticeHtml(digest) {
   `;
 }
 
+function evidenceGradeBadgeHtml(digest) {
+  const profile = sourceEvidenceProfile(digest);
+  return `
+    <section class="evidence-grade-card ${escapeHtml(profile.className)}" aria-label="Briefing quality badge">
+      <div>
+        <strong>Evidence grade: ${escapeHtml(profile.label)}</strong>
+        <span>${escapeHtml(profile.summary)}</span>
+      </div>
+      <div class="evidence-grade-grid" aria-label="Source quality counts">
+        <span>India sources<b>${escapeHtml(profile.directIndiaSourceCount)}</b></span>
+        <span>Official sources<b>${escapeHtml(profile.officialIndiaSourceCount)}</b></span>
+        <span>Domestic catalysts<b>${escapeHtml(profile.domesticCatalystCount)}</b></span>
+        <span>Global context<b>${escapeHtml(profile.globalContextCount)}</b></span>
+      </div>
+    </section>
+  `;
+}
+
 function followBriefingCtaHtml() {
   return `
     <div class="follow-briefing-cta" aria-label="Follow daily briefing">
       <div>
-        <strong>Get tomorrow's 7:15 AM brief</strong>
+        <strong>Get the next trading-day 7:15 AM brief</strong>
         <span>Join the daily email flow, or bookmark the live link if you prefer to read on site.</span>
       </div>
       <a class="follow-link" href="${escapeHtml(subscribeUrl)}">Join daily email</a>
@@ -7222,6 +7290,19 @@ function sourceConfidenceSummary(digest) {
   const selection = digest.publicSourceSelection;
   if (verification?.isVerifiedForPublicArchive) {
     const visible = selection?.visibleCount ?? publicVisibleSourceArticles(digest, 8).length;
+    const profile = sourceEvidenceProfile(digest);
+    if (selection?.evidenceGrade === "global_cue_only" || profile.directIndiaSourceCount === 0) {
+      return {
+        label: "Global cue only",
+        detail: "Full India-source gate is not cleared; use this edition as global context until domestic evidence improves."
+      };
+    }
+    if (selection?.evidenceGrade === "limited") {
+      return {
+        label: "Limited India stack",
+        detail: `${profile.directIndiaSourceCount} direct India sources and ${profile.officialIndiaSourceCount} official sources in the public stack.`
+      };
+    }
     return {
       label: "Verified stack",
       detail: `${visible} read-through notes from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
@@ -7960,12 +8041,54 @@ function sourceQualityLine(digest) {
   const generated = digest.generatedAt ? `generated ${formatGeneratedTime(digest.generatedAt)}` : "generated timestamp unavailable";
   const blocked = verification.blockedReason ? `, blocked: ${verification.blockedReason}` : "";
   if (digest.publicSourceSelection) {
-    const indiaCoverage = digest.publicSourceSelection.indiaPublisherCoverage
-      ? ` ${digest.publicSourceSelection.indiaPublisherCoverage}.`
-      : "";
-    return `Source quality: Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.${indiaCoverage}`;
+    const profile = sourceEvidenceProfile(digest);
+    return `Source quality: ${profile.summary} Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected from ${verification.verifiedArticleCount} verified article links across ${verification.publisherCount} publishers; ${generated}, ${verification.mode} mode${blocked}.`;
   }
   return `Source quality: ${verification.verifiedArticleCount} verified article links, ${verification.publisherCount} publishers, ${verification.categoryCount} categories, ${generated}, ${verification.mode} mode${blocked}.`;
+}
+
+function sourceEvidenceProfile(digest) {
+  const selection = digest.publicSourceSelection ?? {};
+  const verification = digest.sourceVerification ?? {};
+  const directIndiaSourceCount = Number(selection.directIndiaSourceCount ?? selection.indiaPublisherCount ?? 0);
+  const officialIndiaSourceCount = Number(selection.officialIndiaSourceCount ?? 0);
+  const domesticCatalystCount = Number(selection.domesticCatalystCount ?? 0);
+  const visibleCount = Number(selection.visibleCount ?? publicVisibleSourceArticles(digest, 8).length);
+  const globalContextCount = Number(selection.globalContextCount ?? Math.max(0, visibleCount - directIndiaSourceCount));
+  const grade = verification.blockedReason
+    ? "held"
+    : selection.evidenceGrade || (
+      directIndiaSourceCount >= 5 && officialIndiaSourceCount >= 3 && domesticCatalystCount >= 3
+        ? "full"
+        : directIndiaSourceCount > 0 || officialIndiaSourceCount > 0 || domesticCatalystCount > 0
+          ? "limited"
+          : "global_cue_only"
+    );
+  const labels = {
+    full: "Full",
+    limited: "Limited",
+    global_cue_only: "Global cue only",
+    held: "Held"
+  };
+  const className = String(grade).replaceAll("_", "-");
+  const summary = selection.indiaPublisherCoverage || (
+    grade === "full"
+      ? `Full India-source gate: Cleared; ${directIndiaSourceCount} direct India sources, ${officialIndiaSourceCount} official sources, ${domesticCatalystCount} domestic catalysts.`
+      : grade === "limited"
+        ? `Full India-source gate: Limited; ${directIndiaSourceCount} direct India sources, ${officialIndiaSourceCount} official sources, ${domesticCatalystCount} domestic catalysts.`
+        : grade === "held"
+          ? "Source gate held; this edition is not a full public briefing."
+          : "Full India-source gate: Not cleared; this edition is global-cue context, not a full India-source briefing."
+  );
+  return {
+    className,
+    label: labels[grade] || "Limited",
+    summary,
+    directIndiaSourceCount,
+    officialIndiaSourceCount,
+    domesticCatalystCount,
+    globalContextCount
+  };
 }
 
 function formatGeneratedTime(value) {

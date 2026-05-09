@@ -821,7 +821,8 @@ export function publicSourceSelectionForDigest(date, articles = []) {
   if (visibleArticles.length < MIN_PUBLIC_SOURCE_COUNT) {
     throw new Error(`Public source selection failed: only ${visibleArticles.length} public source articles inside the 24-hour window; need at least ${MIN_PUBLIC_SOURCE_COUNT}`);
   }
-  const visibleIndiaPublisherCount = visibleArticles.filter(isIndiaPublisherArticle).length;
+  const evidenceProfile = evidenceProfileForArticles(visibleArticles, shortlist);
+  const visibleIndiaPublisherCount = evidenceProfile.directIndiaSourceCount;
   const shortlistIndiaPublisherCount = shortlist.filter(isIndiaPublisherArticle).length;
   return {
     visibleArticles,
@@ -832,12 +833,60 @@ export function publicSourceSelectionForDigest(date, articles = []) {
       excludedNoDirectIndiaCount: shortlist.filter((article) => !hasIndiaReadThrough(article)).length,
       indiaPublisherCount: visibleIndiaPublisherCount,
       shortlistIndiaPublisherCount,
-      indiaPublisherCoverage: visibleIndiaPublisherCount > 0
-        ? `Direct India-source articles: ${visibleIndiaPublisherCount} in the public stack`
-        : "Direct India-source articles: 0; global verified sources used only when India read-through is explicit",
+      directIndiaSourceCount: evidenceProfile.directIndiaSourceCount,
+      officialIndiaSourceCount: evidenceProfile.officialIndiaSourceCount,
+      domesticCatalystCount: evidenceProfile.domesticCatalystCount,
+      globalContextCount: evidenceProfile.globalContextCount,
+      globalOnlySourceRatio: evidenceProfile.globalOnlySourceRatio,
+      evidenceGrade: evidenceProfile.evidenceGrade,
+      publishMode: evidenceProfile.publishMode,
+      indiaPublisherCoverage: evidenceProfile.summaryLine,
       visibleSourceUrls: visibleArticles.map((article) => article.sourceUrl).filter(Boolean)
     }
   };
+}
+
+function evidenceProfileForArticles(visibleArticles, shortlist) {
+  const directIndiaSourceCount = visibleArticles.filter(isIndiaPublisherArticle).length;
+  const officialIndiaSourceCount = visibleArticles.filter(isOfficialIndiaSourceArticle).length;
+  const domesticCatalystCount = visibleArticles.filter(isDomesticCatalystArticle).length;
+  const globalContextCount = visibleArticles.filter((article) => !isIndiaPublisherArticle(article)).length;
+  const globalOnlySourceRatio = visibleArticles.length
+    ? Math.round((visibleArticles.filter((article) => !isIndiaPublisherArticle(article) && !isOfficialIndiaSourceArticle(article)).length / visibleArticles.length) * 100)
+    : 0;
+  const fullGateCleared = directIndiaSourceCount >= 5 && officialIndiaSourceCount >= 3 && domesticCatalystCount >= 3 && globalOnlySourceRatio <= 60;
+  const evidenceGrade = fullGateCleared
+    ? "full"
+    : directIndiaSourceCount > 0 || officialIndiaSourceCount > 0 || domesticCatalystCount > 0
+      ? "limited"
+      : "global_cue_only";
+  return {
+    directIndiaSourceCount,
+    officialIndiaSourceCount,
+    domesticCatalystCount,
+    globalContextCount,
+    globalOnlySourceRatio,
+    evidenceGrade,
+    publishMode: evidenceGrade === "full" ? "full_brief" : "limited_brief",
+    summaryLine: sourceGateSummary({
+      directIndiaSourceCount,
+      officialIndiaSourceCount,
+      domesticCatalystCount,
+      globalOnlySourceRatio,
+      evidenceGrade,
+      shortlistIndiaPublisherCount: shortlist.filter(isIndiaPublisherArticle).length
+    })
+  };
+}
+
+function sourceGateSummary(profile) {
+  if (profile.evidenceGrade === "full") {
+    return `Full India-source gate: Cleared; ${profile.directIndiaSourceCount} direct India sources, ${profile.officialIndiaSourceCount} official sources, ${profile.domesticCatalystCount} domestic catalysts.`;
+  }
+  if (profile.directIndiaSourceCount > 0 || profile.officialIndiaSourceCount > 0 || profile.domesticCatalystCount > 0) {
+    return `Full India-source gate: Limited; ${profile.directIndiaSourceCount} direct India sources, ${profile.officialIndiaSourceCount} official sources, ${profile.domesticCatalystCount} domestic catalysts.`;
+  }
+  return "Full India-source gate: Not cleared; this edition is global-cue context, not a full India-source briefing.";
 }
 
 export function dailyLeadForDigest(date, articles = []) {
@@ -995,6 +1044,18 @@ function hasIndiaReadThrough(article) {
 function isIndiaPublisherArticle(article) {
   const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
   return /\b(moneycontrol|livemint|mint|business-standard|financialexpress|economic-times|economictimes|etmarkets|nseindia|bseindia|rbi\.org|sebi\.gov|thehindubusinessline|businessline)\b/.test(text);
+}
+
+function isOfficialIndiaSourceArticle(article) {
+  const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
+  return /\b(nseindia|bseindia|sebi\.gov|rbi\.org|pib\.gov|mca\.gov|finmin|dea\.gov)\b/.test(text);
+}
+
+function isDomesticCatalystArticle(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""} ${article?.sourceName || ""} ${article?.sourceUrl || ""}`.toLowerCase();
+  return hasIndiaReadThrough(article) &&
+    (isOfficialIndiaSourceArticle(article) || isIndiaPublisherArticle(article)) &&
+    /\b(nifty|bank nifty|nse|bse|sebi|rbi|fii|dii|fpi|rupee|usd\/inr|india|indian|banks?|nbfc|omc|bpcl|hpcl|iocl|tcs|infosys|wipro|hcltech|reliance|hdfc|icici|sbi|earnings|results|filing|policy|circular)\b/.test(text);
 }
 
 function indiaSourceScore(article, date) {

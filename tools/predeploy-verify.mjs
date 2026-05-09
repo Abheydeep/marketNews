@@ -107,6 +107,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Search the archive/);
   assertOutput("index.html", /archiveSearch/);
   assertOutput("index.html", /Join daily email/);
+  assertOutput("index.html", /Get the next trading-day 7:15 AM brief/);
   assertOutput("index.html", /details class="digest-card/);
   assertOutput("index.html", /verified article links/);
   assertOutput("index.html", /Read market briefing/);
@@ -142,11 +143,14 @@ function verifyVercelArtifacts() {
   assertOutput("subscribe/index.html", /RegisterAction/);
   assertOutput("subscribe/index.html", /name="_honey"/);
   assertOutput("subscribe/index.html", /If you do not receive a confirmation email within a few minutes/);
+  assertOutputNot("subscribe/index.html", /Request received\. Check your inbox/);
   assertOutputNot("subscribe/index.html", /name="_captcha" value="false"/);
   assertOutput("latest/index.html", /Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/);
   assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide|No pre-market briefing|briefing was not published as latest/);
   assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification/);
   assertOutput("4may2026/index.html", /Opening Nerve/);
+  assertOutput("4may2026/index.html", /Evidence grade:/);
+  assertOutput("4may2026/index.html", /Full India-source gate:/);
   assertOutput("4may2026/index.html", /Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);
   assertOutput("4may2026/trading-guide/index.html", /Opening Nerve/);

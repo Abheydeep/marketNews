@@ -93,7 +93,7 @@ async function runCycle(page, cycle) {
   await expectDailyContent(page);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, "daily briefing must not render hidden trading-guide content");
   await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), "briefing freshness notice");
-  await expectOne(page.getByText("Get tomorrow's 7:15 AM brief", { exact: false }), "briefing follow CTA");
+  await expectOne(page.getByText("Get the next trading-day 7:15 AM brief", { exact: false }), "briefing follow CTA");
   await expandQuoteBoard(page);
 
   const verifiedCharts = [];

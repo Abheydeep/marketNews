@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "date": "2026-11-08",
+      "state": "special_session",
+      "name": "Muhurat Trading placeholder",
+      "note": "Manual override fixture used by the calendar state-machine tests."
+    }
+  ]
+}
