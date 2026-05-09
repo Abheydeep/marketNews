@@ -21,9 +21,13 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="robots" content="index,follow">
+  <meta name="author" content="Abhey Deep">
+  <meta name="keywords" content="Market Narrative multibagger, Indian equities model tracker, KPEL, Dhabriya Polywood, Sharda Motor, public portfolio tracker">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
@@ -34,6 +38,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
+  <script type="application/ld+json">${jsonLdPayload(multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount))}</script>
   <style>
     :root {
       --paper: #050816;
@@ -3021,6 +3026,34 @@ function absoluteHref(path, origin) {
     return value;
   }
   return `${origin}${value.startsWith("/") ? value : `/${value}`}`;
+}
+
+function multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: "en-IN",
+    isAccessibleForFree: true,
+    publisher: {
+      "@type": "Organization",
+      name: "Market Narrative",
+      url: siteOrigin
+    },
+    author: {
+      "@type": "Person",
+      name: "Abhey Deep",
+      url: `${siteOrigin}/about/`
+    },
+    about: ["Indian equities", "multibagger research", "portfolio tracker", `${modelCount} stock model`]
+  };
+}
+
+function jsonLdPayload(value) {
+  return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026");
 }
 
 function escapeHtml(value) {

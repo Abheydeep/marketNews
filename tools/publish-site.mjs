@@ -559,8 +559,8 @@ function fallbackWatchItems(digest) {
 
 function archivePage(digests, allDigests = digests) {
   const latest = digests[0];
-  const pageTitle = "Market Narrative | Pre-Market Intelligence Archive";
-  const pageDescription = "Source-led Indian pre-market intelligence archive for Nifty, Bank Nifty, global cues, sector impact, Asian market watch, source cards, technical risk levels, charts, and the public multibagger tracker.";
+  const pageTitle = "Market Narrative: Nifty & Bank Nifty Pre-Market Briefings";
+  const pageDescription = "Market Narrative by Abhey Deep publishes a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing with global cues, India read-through, source cards, trading guide levels, and archive history.";
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const cards = digests
     .map((digest) => {
@@ -610,9 +610,13 @@ function archivePage(digests, allDigests = digests) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="robots" content="index,follow">
+  <meta name="author" content="Abhey Deep">
+  <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty pre-market, Indian stock market briefing, GIFT Nifty, Nifty trading guide">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
@@ -623,6 +627,7 @@ function archivePage(digests, allDigests = digests) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
   <title>${escapeHtml(pageTitle)}</title>
+  ${jsonLdScript(archivePageJsonLd(latest, digests, pageTitle, pageDescription))}
   <style>
     :root {
       --paper: #050816;
@@ -1440,7 +1445,7 @@ function archivePage(digests, allDigests = digests) {
   <main class="shell">
     <section class="hero">
       <p class="eyebrow">Market Nerve Before The Open</p>
-      <h1>Nifty, Bank Nifty, And The One Thing To Watch First</h1>
+      <h1>Market Narrative: Nifty, Bank Nifty, And The One Thing To Watch First</h1>
       <p>Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       <div class="hero-actions" aria-label="Primary actions">
@@ -1565,7 +1570,7 @@ function archivePage(digests, allDigests = digests) {
 
 function aboutPage(latest, archiveDigests = []) {
   const pageTitle = "About Market Narrative | Abhey Deep";
-  const pageDescription = "About Abhey Deep, Market Narrative, the daily 7:15 AM IST pre-market workflow, source methodology, and public research boundaries.";
+  const pageDescription = "About Abhey Deep and Market Narrative, a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing built around source verification, trader language, and public research boundaries.";
   const editionCount = verifiedEditionCount(archiveDigests);
   const editionLabel = editionCount === 1 ? "1 verified briefing" : `${editionCount} verified briefings`;
   return `<!DOCTYPE html>
@@ -1575,9 +1580,13 @@ function aboutPage(latest, archiveDigests = []) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="robots" content="index,follow">
+  <meta name="author" content="Abhey Deep">
+  <meta name="keywords" content="Abhey Deep, Market Narrative, Nifty briefing, Bank Nifty briefing, Indian market trader, pre-market research">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/about/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
@@ -1588,6 +1597,7 @@ function aboutPage(latest, archiveDigests = []) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
   <title>${escapeHtml(pageTitle)}</title>
+  ${jsonLdScript(aboutPageJsonLd(pageTitle, pageDescription))}
   <style>
     :root {
       --paper: #050816;
@@ -1902,9 +1912,23 @@ function subscribePage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="robots" content="index,follow">
+  <meta name="author" content="Abhey Deep">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/subscribe/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(siteOrigin)}/subscribe/">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
   <title>${escapeHtml(pageTitle)}</title>
+  ${jsonLdScript(subscribePageJsonLd(pageTitle, pageDescription))}
   <style>
     :root {
       --paper: #050816;
@@ -2153,6 +2177,155 @@ function subscribePage() {
   </script>
 </body>
 </html>`;
+}
+
+function archivePageJsonLd(latest, digests, pageTitle, pageDescription) {
+  return seoGraph([
+    organizationJsonLd(),
+    websiteJsonLd(),
+    breadcrumbJsonLd([
+      { name: "Market Narrative", url: `${siteOrigin}/` }
+    ]),
+    {
+      "@type": "CollectionPage",
+      "@id": `${siteOrigin}/#archive`,
+      url: `${siteOrigin}/`,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      author: { "@id": `${siteOrigin}/about/#abhey-deep` },
+      about: ["Nifty 50", "Bank Nifty", "GIFT Nifty", "Indian stock market", "pre-market briefing"],
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: digests.length,
+        itemListElement: digests.slice(0, 8).map((digest, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${siteOrigin}/${slugForDigest(digest)}/`,
+          name: digest.title || `${formatDigestDate(digest.digestDate)} Market Narrative briefing`,
+          datePublished: digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`
+        }))
+      },
+      dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
+    }
+  ]);
+}
+
+function aboutPageJsonLd(pageTitle, pageDescription) {
+  return seoGraph([
+    organizationJsonLd(),
+    websiteJsonLd(),
+    personJsonLd(),
+    breadcrumbJsonLd([
+      { name: "Market Narrative", url: `${siteOrigin}/` },
+      { name: "About Abhey Deep", url: `${siteOrigin}/about/` }
+    ]),
+    {
+      "@type": "AboutPage",
+      "@id": `${siteOrigin}/about/#webpage`,
+      url: `${siteOrigin}/about/`,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      mainEntity: { "@id": `${siteOrigin}/about/#abhey-deep` }
+    }
+  ]);
+}
+
+function subscribePageJsonLd(pageTitle, pageDescription) {
+  return seoGraph([
+    organizationJsonLd(),
+    websiteJsonLd(),
+    breadcrumbJsonLd([
+      { name: "Market Narrative", url: `${siteOrigin}/` },
+      { name: "Subscribe", url: `${siteOrigin}/subscribe/` }
+    ]),
+    {
+      "@type": "WebPage",
+      "@id": `${siteOrigin}/subscribe/#webpage`,
+      url: `${siteOrigin}/subscribe/`,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      potentialAction: {
+        "@type": "RegisterAction",
+        target: `${siteOrigin}/subscribe/`,
+        name: "Join the Market Narrative daily email brief"
+      }
+    }
+  ]);
+}
+
+function seoGraph(nodes) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": nodes
+  };
+}
+
+function organizationJsonLd() {
+  return {
+    "@type": "Organization",
+    "@id": `${siteOrigin}/#organization`,
+    name: "Market Narrative",
+    url: `${siteOrigin}/`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteOrigin}/favicon.svg`
+    },
+    founder: { "@id": `${siteOrigin}/about/#abhey-deep` },
+    description: "Daily Nifty and Bank Nifty pre-market intelligence by Abhey Deep."
+  };
+}
+
+function websiteJsonLd() {
+  return {
+    "@type": "WebSite",
+    "@id": `${siteOrigin}/#website`,
+    name: "Market Narrative",
+    alternateName: ["Market Narrative India", "Abhey Deep Market Narrative"],
+    url: `${siteOrigin}/`,
+    inLanguage: "en-IN",
+    publisher: { "@id": `${siteOrigin}/#organization` }
+  };
+}
+
+function personJsonLd() {
+  return {
+    "@type": "Person",
+    "@id": `${siteOrigin}/about/#abhey-deep`,
+    name: "Abhey Deep",
+    url: `${siteOrigin}/about/`,
+    worksFor: { "@id": `${siteOrigin}/#organization` },
+    jobTitle: "Software engineer and Indian market trader",
+    description: "Abhey Deep builds Market Narrative, a daily Nifty and Bank Nifty pre-market briefing focused on source verification and trader-ready context."
+  };
+}
+
+function breadcrumbJsonLd(items) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
+}
+
+function jsonLdScript(value) {
+  return `<script type="application/ld+json">${jsonLdPayload(value)}</script>`;
+}
+
+function jsonLdPayload(value) {
+  return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026");
 }
 
 function archiveSourceQualityLine(digest) {
@@ -2469,6 +2642,7 @@ function robotsTxt() {
     "User-agent: *",
     "Allow: /",
     "Disallow: /admin/",
+    "Disallow: /dark-preview/",
     `Sitemap: ${siteOrigin}/sitemap.xml`,
     ""
   ].join("\n");
@@ -2476,19 +2650,23 @@ function robotsTxt() {
 
 function sitemapXml(digests) {
   const urls = [
-    { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate },
-    { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate },
-    { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate },
-    { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
-    { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate },
-    { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "1.0" },
+    { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
+    { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
+    { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.7" },
+    { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.7" },
+    { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.6" },
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/trading-guide/`,
-      lastmod: digest.digestDate
+      lastmod: digest.digestDate,
+      changefreq: "monthly",
+      priority: "0.6"
     })),
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/`,
-      lastmod: digest.digestDate
+      lastmod: digest.digestDate,
+      changefreq: "monthly",
+      priority: "0.7"
     }))
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -2496,6 +2674,8 @@ function sitemapXml(digests) {
 ${urls.map((url) => `  <url>
     <loc>${escapeHtml(url.loc)}</loc>
     ${url.lastmod ? `<lastmod>${escapeHtml(url.lastmod)}</lastmod>` : ""}
+    ${url.changefreq ? `<changefreq>${escapeHtml(url.changefreq)}</changefreq>` : ""}
+    ${url.priority ? `<priority>${escapeHtml(url.priority)}</priority>` : ""}
   </url>`).join("\n")}
 </urlset>
 `;

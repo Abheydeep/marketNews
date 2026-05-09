@@ -96,9 +96,13 @@ function commandExists(command) {
 function verifyVercelArtifacts() {
   buildTarget("public");
   assertOutput("deployment-manifest.json", /"target": "public"/);
-  assertOutput("index.html", /Pre-Market Intelligence Archive/);
+  assertOutput("index.html", /Market Narrative: Nifty &amp; Bank Nifty Pre-Market Briefings/);
   assertOutput("index.html", /Market Nerve Before The Open/);
   assertOutput("index.html", /Nifty, Bank Nifty, And The One Thing To Watch First/);
+  assertOutput("index.html", /application\/ld\+json/);
+  assertOutput("index.html", /BreadcrumbList/);
+  assertOutput("index.html", /WebSite/);
+  assertOutput("index.html", /max-image-preview:large/);
   assertOutput("index.html", /Latest Market Briefings/);
   assertOutput("index.html", /Search the archive/);
   assertOutput("index.html", /archiveSearch/);
@@ -124,14 +128,18 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/index.html", /Since entry \(04 May 2026, 02:12 pm\)/);
   assertOutput("multibagger/index.html", /How to read this page/);
   assertOutput("multibagger/index.html", /Start with the live model/);
+  assertOutput("multibagger/index.html", /application\/ld\+json/);
   assertOutput("about/index.html", /About Market Narrative/);
   assertOutput("about/index.html", /Who is Abhey Deep/);
   assertOutput("about/index.html", /Why not just headlines/);
+  assertOutput("about/index.html", /AboutPage/);
+  assertOutput("about/index.html", /Person/);
   assertOutput("about/index.html", /aria-current="page">About/);
   assertOutput("about/index.html", /verified briefings published since launch/);
   assertOutput("about/index.html", /Browse the archive/);
   assertOutput("subscribe/index.html", /Join The 7:15 AM Brief/);
   assertOutput("subscribe/index.html", /Join daily email/);
+  assertOutput("subscribe/index.html", /RegisterAction/);
   assertOutput("subscribe/index.html", /name="_honey"/);
   assertOutput("subscribe/index.html", /If you do not receive a confirmation email within a few minutes/);
   assertOutputNot("subscribe/index.html", /name="_captcha" value="false"/);
@@ -177,6 +185,9 @@ function verifyVercelArtifacts() {
   runPublicCopyQa("out/vercel");
   assertOutputNot("index.html", /Admin login|admin\.marketnarrative\.in/);
   assertOutputAbsent("components/index.html");
+  assertOutput("robots.txt", /Disallow: \/dark-preview\//);
+  assertOutput("sitemap.xml", /<changefreq>daily<\/changefreq>/);
+  assertOutput("sitemap.xml", /<priority>1\.0<\/priority>/);
 
   buildTarget("admin");
   assertOutput("deployment-manifest.json", /"target": "admin"/);

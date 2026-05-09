@@ -639,6 +639,9 @@ await test("full digest contains public SEO and studio contracts", async () => {
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
+  assert.equal(jsonLd.author.name, "Abhey Deep");
+  assert.equal(jsonLd.publisher.name, "Market Narrative");
+  assert.ok(jsonLd.keywords.includes("Nifty pre-market briefing"));
 });
 
 await test("daily briefing and trading guide render the correct first-fold hierarchy", async () => {
@@ -1250,7 +1253,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveSourcePreviewHtml"));
   assert.ok(publisher.includes("assertNewDigestSourceIntegrity"));
   assert.ok(publisher.includes("archiveChips"));
-  assert.ok(publisher.includes("Pre-Market Intelligence Archive"));
+  assert.ok(publisher.includes("Market Narrative: Nifty & Bank Nifty Pre-Market Briefings"));
   assert.ok(publisher.includes("Daily trader workflow"));
   assert.ok(publisher.includes("Opening nerve"));
   assert.ok(publisher.includes("Get the bias in 90 seconds"));
@@ -1306,7 +1309,17 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("og:title"));
   assert.ok(publisher.includes("twitter:card"));
   assert.ok(publisher.includes('rel="canonical"'));
-  assert.ok(publisher.includes("Source-led Indian pre-market intelligence archive"));
+  assert.ok(publisher.includes("archivePageJsonLd"));
+  assert.ok(publisher.includes("aboutPageJsonLd"));
+  assert.ok(publisher.includes("subscribePageJsonLd"));
+  assert.ok(publisher.includes("Organization"));
+  assert.ok(publisher.includes("WebSite"));
+  assert.ok(publisher.includes("BreadcrumbList"));
+  assert.ok(publisher.includes("max-image-preview:large"));
+  assert.ok(publisher.includes("Disallow: /dark-preview/"));
+  assert.ok(publisher.includes("<changefreq>"));
+  assert.ok(publisher.includes("<priority>"));
+  assert.ok(publisher.includes("daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing"));
   assert.ok(publisher.includes("7:15 AM IST opening read"));
   assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
   assert.ok(publisher.includes("Last verified update"));
@@ -1548,7 +1561,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   for (const required of [
     "Open chart on TradingView",
     "Open Yahoo Chart",
-    "Pre-Market Intelligence Archive",
+    "Market Narrative: Nifty",
     "Latest Market Briefings",
     "Read market briefing",
     "Why it mattered for India",

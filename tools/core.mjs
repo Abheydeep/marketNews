@@ -666,17 +666,38 @@ function normalizeArticleThumbnail(article) {
 }
 
 export function newsArticleJsonLd(digest) {
+  const canonicalPath = String(digest.canonicalPath || `/${digest.digestDate}/`);
+  const canonicalUrl = `https://marketnarrative.in${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
+  const description = digest.archiveSummary || digest.deskNote || "Daily Market Narrative pre-market briefing for Nifty, Bank Nifty, global cues, and India read-through.";
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: digest.title,
+    description,
     image: "https://marketnarrative.in/og-card.svg",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
     datePublished: digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
+    dateModified: digest.generatedAt ?? digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
     author: {
       "@type": "Person",
-      name: "Market Narrative Engine",
-      url: "https://marketnarrative.in"
-    }
+      name: "Abhey Deep",
+      url: "https://marketnarrative.in/about/"
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Market Narrative",
+      url: "https://marketnarrative.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://marketnarrative.in/favicon.svg"
+      }
+    },
+    isAccessibleForFree: true,
+    keywords: "Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty, Indian stock market, 7:15 AM IST market brief",
+    about: ["Nifty 50", "Bank Nifty", "Indian stock market", "pre-market briefing", "global market cues"]
   };
 }
 

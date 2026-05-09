@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Pre-Market Intelligence Archive/i, /Read today's brief/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i],
+    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i, /application\/ld\+json/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
@@ -124,7 +124,7 @@ await group("Public user surface", async () => {
     "Public www",
     config.wwwUrl,
     [200, 301, 302, 307, 308],
-    [/Pre-Market Intelligence Archive/i, /Latest Market Briefings/i],
+    [/Market Narrative: Nifty|Latest Market Briefings/i],
     [...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
@@ -520,7 +520,7 @@ async function runBrowserSmoke() {
         });
       });
       const page = await context.newPage();
-      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Latest Market Briefings/i);
       const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.match(homeBody, /Top \d+ India read-through notes selected/i, "homepage must simplify public source-count language without hardcoding the source count");
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Previous Close Quote Board|Market Quote Board|Daily Pre-Market Summary/i);
