@@ -102,7 +102,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Latest Market Briefings/);
   assertOutput("index.html", /Search the archive/);
   assertOutput("index.html", /archiveSearch/);
-  assertOutput("index.html", /Request daily email/);
+  assertOutput("index.html", /Join daily email/);
   assertOutput("index.html", /details class="digest-card/);
   assertOutput("index.html", /verified article links/);
   assertOutput("index.html", /Read market briefing/);
@@ -127,6 +127,10 @@ function verifyVercelArtifacts() {
   assertOutput("about/index.html", /About Market Narrative/);
   assertOutput("about/index.html", /Who is Abhey Deep/);
   assertOutput("about/index.html", /Why not just headlines/);
+  assertOutput("about/index.html", /verified briefings published since launch/);
+  assertOutput("about/index.html", /Browse the archive/);
+  assertOutput("subscribe/index.html", /Join The 7:15 AM Brief/);
+  assertOutput("subscribe/index.html", /Join daily email/);
   assertOutput("latest/index.html", /Market Narrative latest briefing/);
   assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide/);
   assertOutput("4may2026/index.html", /Opening Nerve/);

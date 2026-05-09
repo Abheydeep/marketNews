@@ -9,6 +9,7 @@ import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? process.env.PUBLIC_API_ORIGIN ?? "https://api.marketnarrative.in";
+const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -6884,9 +6885,9 @@ function followBriefingCtaHtml() {
     <div class="follow-briefing-cta" aria-label="Follow daily briefing">
       <div>
         <strong>Get tomorrow's 7:15 AM brief</strong>
-        <span>Request the daily email list, or bookmark the live link while the list is being automated.</span>
+        <span>Join the daily email flow, or bookmark the live link if you prefer to read on site.</span>
       </div>
-      <a class="follow-link" href="mailto:abhey@marketnarrative.in?subject=Subscribe%20me%20to%20the%207%3A15%20AM%20Market%20Narrative%20brief">Request daily email</a>
+      <a class="follow-link" href="${escapeHtml(subscribeUrl)}">Join daily email</a>
       <a class="follow-link" href="/latest/">Open /latest/</a>
     </div>
   `;

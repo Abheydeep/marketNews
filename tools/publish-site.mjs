@@ -22,6 +22,8 @@ const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
+const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
+const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").trim() || `https://formsubmit.co/${subscribeEmail}`;
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 
 await mkdir(archiveDir, { recursive: true });
@@ -94,6 +96,7 @@ const darkPreviewDir = join(siteDir, "dark-preview");
 const adminDir = join(siteDir, "admin");
 const multibaggerDir = join(siteDir, "multibagger");
 const aboutDir = join(siteDir, "about");
+const subscribeDir = join(siteDir, "subscribe");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
@@ -107,7 +110,9 @@ await writeGuardedFile(
 );
 await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(publicMultibaggerState, null, 2)}\n`);
 await mkdir(aboutDir, { recursive: true });
-await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest));
+await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest, publicArchiveDigests.length ? publicArchiveDigests : archiveHomeDigests));
+await mkdir(subscribeDir, { recursive: true });
+await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
 await mkdir(join(siteDir, "latest"), { recursive: true });
 await writeGuardedFile(join(siteDir, "latest", "index.html"), redirectPage(`/${slugForDigest(latest)}/`, "latest briefing"));
 await mkdir(join(siteDir, "latest", "trading-guide"), { recursive: true });
@@ -1455,9 +1460,9 @@ function archivePage(digests, allDigests = digests) {
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
           <strong>Get tomorrow's 7:15 AM brief</strong>
-          <span>Email subscription requests go straight to Abhey until the public list is automated.</span>
+          <span>Join the daily email flow so the pre-market read reaches you before the cash open.</span>
         </div>
-        <a href="${escapeHtml(subscribeHref())}">Request daily email</a>
+        <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
       </div>
       ${archiveShareRowHtml()}
     </section>
@@ -1558,9 +1563,11 @@ function archivePage(digests, allDigests = digests) {
 </html>`;
 }
 
-function aboutPage(latest) {
+function aboutPage(latest, archiveDigests = []) {
   const pageTitle = "About Market Narrative | Abhey Deep";
   const pageDescription = "About Abhey Deep, Market Narrative, the daily 7:15 AM IST pre-market workflow, source methodology, and public research boundaries.";
+  const editionCount = verifiedEditionCount(archiveDigests);
+  const editionLabel = editionCount === 1 ? "1 verified briefing" : `${editionCount} verified briefings`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1751,6 +1758,26 @@ function aboutPage(latest) {
       grid-column: 1 / -1;
     }
 
+    .archive-proof-card {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.14), rgba(52, 211, 153, 0.10)), rgba(15, 23, 42, 0.62);
+    }
+
+    .archive-proof-card strong {
+      color: #f8fafc;
+    }
+
+    .archive-proof-link {
+      align-items: center;
+      border: 1px solid rgba(34, 211, 238, 0.34);
+      border-radius: 8px;
+      color: #cffafe;
+      display: inline-flex;
+      font-size: 13px;
+      font-weight: 900;
+      margin-top: 14px;
+      padding: 9px 11px;
+    }
+
     .method-list {
       display: grid;
       gap: 10px;
@@ -1807,6 +1834,7 @@ function aboutPage(latest) {
       <div class="nav-inner">
         <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
         <div class="tabs" aria-label="Market Narrative sections">
+          <a class="tab-link" href="/">Archive</a>
           <a class="tab-link" href="/latest/">Public Briefing</a>
           <a class="tab-link" href="/latest/trading-guide/">Trading Guide</a>
           <a class="tab-link" href="/multibagger/">Portfolio</a>
@@ -1819,11 +1847,11 @@ function aboutPage(latest) {
     <section class="hero">
       <p class="eyebrow">About Market Narrative</p>
       <h1>Independent pre-market context for Indian traders.</h1>
-      <p>Market Narrative is built by Abhey Deep to answer one practical morning question: what is the market nerve before the Indian cash open, and what must confirm before that view matters?</p>
+      <p>I built Market Narrative to answer one practical morning question: what is the market nerve before the Indian cash open, and what must confirm before that view matters?</p>
       <div class="about-actions">
         <a href="/latest/">Read latest briefing</a>
         <a href="/latest/trading-guide/">Open Trading Guide</a>
-        <a class="subscribe" href="${escapeHtml(subscribeHref())}">Request daily email</a>
+        <a class="subscribe" href="${escapeHtml(subscribeHref())}">Join daily email</a>
       </div>
     </section>
     <section class="about-grid">
@@ -1837,7 +1865,7 @@ function aboutPage(latest) {
       </article>
       <article class="about-card">
         <h2>Who is Abhey Deep?</h2>
-        <p>Abhey Deep runs Market Narrative as a public research and product experiment for disciplined Indian market preparation, combining source verification, technical levels, and plain trader language.</p>
+        <p>I'm Abhey Deep - a software engineer and Indian market trader. I built Market Narrative because I couldn't find a pre-market brief that told me what to verify, not just what happened.</p>
       </article>
       <article class="about-card">
         <h2>What this is not</h2>
@@ -1845,20 +1873,278 @@ function aboutPage(latest) {
       </article>
       <article class="method-card">
         <h2>Methodology</h2>
-        <p>The workflow is deliberately simple and repeatable:</p>
+        <p>The workflow is designed around what a trader can verify quickly:</p>
         <ul class="method-list">
-          <li>Use article-level sources, not section homepages, and reject stale or repeated source stacks.</li>
-          <li>Translate global headlines into Indian read-through only when a sector, index, rupee, crude, or rate channel is clear.</li>
-          <li>Separate market context from execution by pushing levels, no-trade zones, and Bank Nifty confirmation into the Trading Guide.</li>
-          <li>Keep the public multibagger tracker separate from the morning brief so long-term research does not blur into pre-open trading bias.</li>
+          <li>Every source card links to the original article, so you can verify any claim in one tap instead of hunting through a homepage.</li>
+          <li>Global headlines become an India read-through only when the Nifty, Bank Nifty, rupee, crude, rates, or sector channel is clear.</li>
+          <li>The Trading Guide keeps opinion away from execution by separating bias, no-trade zones, Bank Nifty confirmation, and invalidation levels.</li>
+          <li>The public multibagger tracker stays separate from the morning brief, so long-term research never blurs into pre-open trading bias.</li>
         </ul>
       </article>
-      <article class="method-card">
-        <h2>Latest verified context</h2>
-        <p>The latest public archive at build time was ${escapeHtml(formatDigestDate(latest.digestDate))}, focused on ${escapeHtml(archiveFocus(latest))}. Each verified briefing keeps source counts, publisher spread, and a collapsed source ledger for auditability.</p>
+      <article class="method-card archive-proof-card">
+        <h2>Published record</h2>
+        <p><strong>${escapeHtml(editionLabel)} published since launch.</strong> Browse the archive to see each edition's market focus, source ledger, and Nifty/Bank Nifty read-through.</p>
+        <a class="archive-proof-link" href="/">Browse the archive</a>
       </article>
     </section>
   </main>
+</body>
+</html>`;
+}
+
+function subscribePage() {
+  const pageTitle = "Join The 7:15 AM Brief | Market Narrative";
+  const pageDescription = "Join the Market Narrative daily email flow for the 7:15 AM IST Nifty and Bank Nifty pre-market briefing.";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}/subscribe/">
+  <title>${escapeHtml(pageTitle)}</title>
+  <style>
+    :root {
+      --paper: #050816;
+      --ink: #f8fafc;
+      --muted: #b8c4d8;
+      --line: rgba(255, 255, 255, 0.14);
+      --cyan: #22d3ee;
+      --green: #34d399;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 16% 0%, rgba(34, 211, 238, 0.26), transparent 32vw),
+        radial-gradient(circle at 82% 4%, rgba(52, 211, 153, 0.18), transparent 30vw),
+        linear-gradient(135deg, #030712 0%, #08111f 48%, #111827 100%);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(820px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: rgba(3, 7, 18, 0.72);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      align-items: center;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      min-height: 64px;
+    }
+
+    .brand {
+      align-items: center;
+      display: flex;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    ${brandMarkCss()}
+
+    .tabs {
+      align-items: stretch;
+      display: flex;
+      gap: 20px;
+      min-height: 64px;
+    }
+
+    .tab-link {
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+      display: inline-flex;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 0 1px;
+    }
+
+    .tab-link.active {
+      border-bottom-color: var(--cyan);
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    main {
+      padding: 54px 0 80px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 68px);
+      letter-spacing: 0;
+      line-height: 0.98;
+      margin: 0;
+      max-width: 780px;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 18px 0 0;
+      max-width: 700px;
+    }
+
+    .subscribe-panel {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.68);
+      margin-top: 26px;
+      padding: 20px;
+    }
+
+    .sent-note {
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      border-radius: 8px;
+      background: rgba(52, 211, 153, 0.12);
+      color: #bbf7d0;
+      display: none;
+      font-weight: 850;
+      margin-bottom: 14px;
+      padding: 12px;
+    }
+
+    body[data-sent="true"] .sent-note {
+      display: block;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      color: #e5e7eb;
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    input,
+    select {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background: rgba(2, 6, 23, 0.54);
+      color: #f8fafc;
+      font: inherit;
+      min-height: 44px;
+      padding: 10px 11px;
+      width: 100%;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #06b6d4, #34d399);
+      color: #022c22;
+      cursor: pointer;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 950;
+      min-height: 46px;
+      padding: 11px 14px;
+    }
+
+    .fine-print {
+      color: #93a4bd;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 14px 0 0;
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0 0;
+      }
+
+      .tabs {
+        gap: 16px;
+        min-height: 48px;
+        overflow-x: auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell">
+      <div class="nav-inner">
+        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
+        <div class="tabs" aria-label="Market Narrative sections">
+          <a class="tab-link" href="/">Archive</a>
+          <a class="tab-link" href="/latest/">Public Briefing</a>
+          <a class="tab-link" href="/latest/trading-guide/">Trading Guide</a>
+          <a class="tab-link" href="/multibagger/">Portfolio</a>
+          <a class="tab-link" href="/about/">About</a>
+          <span class="tab-link active" aria-current="page">Subscribe</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <p class="eyebrow">Daily Email</p>
+    <h1>Get the 7:15 AM market nerve before the open.</h1>
+    <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
+    <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
+      <div class="sent-note">Request received. Check your inbox for the confirmation note.</div>
+      <form action="${escapeHtml(subscribeFormAction)}" method="POST">
+        <input type="hidden" name="_subject" value="New Market Narrative daily brief subscriber">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="${escapeHtml(`${siteOrigin}/subscribe/?sent=1`)}">
+        <label>Email
+          <input name="email" type="email" autocomplete="email" required>
+        </label>
+        <label>What should the brief help you trade?
+          <select name="market_focus">
+            <option value="Nifty and Bank Nifty">Nifty and Bank Nifty</option>
+            <option value="Bank Nifty first">Bank Nifty first</option>
+            <option value="Sector watch">Sector watch</option>
+            <option value="Long-term portfolio context">Long-term portfolio context</option>
+          </select>
+        </label>
+        <button type="submit">Join daily email</button>
+      </form>
+      <p class="fine-print">Educational market research only. No spam, no trade calls, and no investment advice. Your email is used only for the Market Narrative daily brief.</p>
+    </section>
+  </main>
+  <script>
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      document.body.dataset.sent = 'true';
+    }
+  </script>
 </body>
 </html>`;
 }
@@ -1879,9 +2165,12 @@ function archiveSourceQualityLine(digest) {
 }
 
 function subscribeHref() {
-  const subject = encodeURIComponent("Subscribe me to the 7:15 AM Market Narrative brief");
-  const body = encodeURIComponent("Hi Abhey,\n\nPlease add me to the daily Market Narrative pre-market briefing list.\n\nThanks.");
-  return `mailto:${subscribeEmail}?subject=${subject}&body=${body}`;
+  return subscribeUrl;
+}
+
+function verifiedEditionCount(digests) {
+  const verifiedCount = (digests ?? []).filter(isVerifiedPublicDigest).length;
+  return verifiedCount || (digests ?? []).length;
 }
 
 function archiveFilterOptions(digests) {
@@ -2186,6 +2475,7 @@ function sitemapXml(digests) {
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate },
     { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01" },
     { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate },
+    { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate },
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/trading-guide/`,
       lastmod: digest.digestDate
