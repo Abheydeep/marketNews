@@ -506,7 +506,7 @@ async function runBrowserSmoke() {
       const page = await context.newPage();
       await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Pre-Market Intelligence Archive|Latest Market Briefings/i);
       const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
-      assert.match(homeBody, /Top 8 India read-through notes selected/i, "homepage must simplify public source-count language");
+      assert.match(homeBody, /Top \d+ India read-through notes selected/i, "homepage must simplify public source-count language without hardcoding the source count");
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Previous Close Quote Board|Market Quote Board|Daily Pre-Market Summary/i);
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.match(latestBody, /Prepared for the 7:15 AM IST briefing/i, "latest briefing must show pre-market freshness boundary");
