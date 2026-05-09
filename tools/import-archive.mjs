@@ -22,12 +22,20 @@ await mkdir(archiveDir, { recursive: true });
 
 let imported = 0;
 let preserved = 0;
+let skippedInvalid = 0;
 for (const digest of digests) {
   if (!digest?.digestDate) {
     continue;
   }
-  const safeDigest = sanitizeLegacyPublicBriefingCopy(redactedDigestPayload(digest));
-  assertPublicBriefingCopy(`${safeDigest.digestDate} imported archive digest`, JSON.stringify(safeDigest));
+  let safeDigest;
+  try {
+    safeDigest = sanitizeLegacyPublicBriefingCopy(redactedDigestPayload(digest));
+    assertPublicBriefingCopy(`${safeDigest.digestDate} imported archive digest`, JSON.stringify(safeDigest));
+  } catch (error) {
+    skippedInvalid += 1;
+    console.warn(`Skipped imported archive digest ${digest.digestDate}: ${error.message}`);
+    continue;
+  }
   const label = scheduledLabelForDigest(safeDigest).replace(":", "");
   const fileName = `${safeDigest.digestDate}-${label}-digest.json`;
   const localPath = join(archiveDir, fileName);
@@ -43,6 +51,9 @@ for (const digest of digests) {
 process.stdout.write(`Imported ${imported} archived digest${imported === 1 ? "" : "s"}\n`);
 if (preserved) {
   process.stdout.write(`Preserved ${preserved} richer local digest${preserved === 1 ? "" : "s"}\n`);
+}
+if (skippedInvalid) {
+  process.stdout.write(`Skipped ${skippedInvalid} invalid imported digest${skippedInvalid === 1 ? "" : "s"}\n`);
 }
 
 async function readExistingDigest(path) {

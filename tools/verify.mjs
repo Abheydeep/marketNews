@@ -1459,6 +1459,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(importer.includes("redactedDigestPayload"));
   assert.ok(importer.includes("sanitizeLegacyPublicBriefingCopy"));
   assert.ok(importer.includes("assertPublicBriefingCopy"));
+  assert.ok(importer.includes("skippedInvalid"));
+  assert.ok(importer.includes("Skipped imported archive digest"));
 
   for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {
     const archiveDigest = await readFile(join(rootDir, "archive", "daily", fileName), "utf8");
