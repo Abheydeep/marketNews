@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { createDemoApp } from "./demo-app.mjs";
 import {
+  ARTICLE_ENRICHMENT_PROMPT,
   PUBLIC_BRIEFING_EDITORIAL_PROMPT,
   REEL_SCRIPT_EDITORIAL_PROMPT,
   assertPublicBriefingCopy,
@@ -334,7 +335,7 @@ await test("live news pipeline can route generic article copy through editorial 
     fetcher,
     articleEditorialEnricher: async ({ article, prompt, schema }) => {
       enrichCalls += 1;
-      assert.equal(prompt, PUBLIC_BRIEFING_EDITORIAL_PROMPT);
+      assert.equal(prompt, ARTICLE_ENRICHMENT_PROMPT);
       assert.ok(schema.takeaway.includes("do not restate"));
       assert.ok(article.headline.includes("Generic source context"));
       return {
@@ -1042,6 +1043,8 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("yield cycle"));
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("current source stack supports"));
   assert.ok(PUBLIC_BRIEFING_EDITORIAL_PROMPT.includes("Do not mention internal implementation details"));
+  assert.ok(ARTICLE_ENRICHMENT_PROMPT.includes("Return valid JSON only"));
+  assert.ok(ARTICLE_ENRICHMENT_PROMPT.includes("global-only context"));
   assert.ok(REEL_SCRIPT_EDITORIAL_PROMPT.includes("actually say on camera"));
   assertPublicBriefingCopy("onePageSummary", digest.onePageSummary);
   assertReelScriptCopy("reelScript", digest.reelScript);

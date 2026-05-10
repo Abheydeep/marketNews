@@ -1,4 +1,4 @@
-import { PUBLIC_BRIEFING_EDITORIAL_PROMPT } from "./editorial-guardrails.mjs";
+import { ARTICLE_ENRICHMENT_PROMPT } from "./editorial-guardrails.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
@@ -247,16 +247,21 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
   if (typeof enricher !== "function") {
     return articles;
   }
+  const maxEnrichmentCalls = Number.isFinite(Number(options.maxArticleEditorialEnrichmentCalls))
+    ? Number(options.maxArticleEditorialEnrichmentCalls)
+    : 12;
   const enriched = [];
+  let enrichmentCalls = 0;
   for (const article of articles) {
-    if (!articleNeedsEditorialEnrichment(article)) {
+    if (!articleNeedsEditorialEnrichment(article) || enrichmentCalls >= maxEnrichmentCalls) {
       enriched.push(article);
       continue;
     }
     try {
+      enrichmentCalls += 1;
       const patch = await enricher({
         article,
-        prompt: PUBLIC_BRIEFING_EDITORIAL_PROMPT,
+        prompt: ARTICLE_ENRICHMENT_PROMPT,
         schema: {
           takeaway: "max 30 words, do not restate the headline",
           indiaImpact: "max 35 words, specific India sector/index/instrument or global-only context",
@@ -275,7 +280,8 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
 }
 
 function configuredArticleEditorialEnricher(options = {}) {
-  const enabled = options.llmArticleEnrichment === true || process.env.PUBLIC_BRIEFING_LLM_ENRICH === "true";
+  const enabled = options.llmArticleEnrichment !== false &&
+    process.env.PUBLIC_BRIEFING_LLM_ENRICH !== "false";
   const apiKey = options.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY;
   if (!enabled || !apiKey) {
     return null;
@@ -315,7 +321,7 @@ function articleNeedsEditorialEnrichment(article) {
     article?.watchFor,
     article?.whyItMatters
   ].join(" ");
-  return /\b(conditional India input|watch input only|watch input, not a trade bias|require first-range breadth|Global-only context|Watch .* during the first-hour range|macro checklist|sector-leadership check|watchlist cue|no index bias unless)\b/i.test(text);
+  return /\b(conditional India input|watch input only|watch input, not a trade bias|require first-range breadth|global-only context|No direct India read-through|Watch .* during the first-hour range|macro checklist|sector-leadership check|watchlist cue|no index bias unless|risk appetite is supportive only if Indian breadth confirms|mixed global cues keep the India open in confirmation mode)\b/i.test(text);
 }
 
 function sanitizeArticleEditorialPatch(article, patch) {
@@ -334,9 +340,14 @@ function sanitizeArticleEditorialPatch(article, patch) {
 
 function articleEditorialUserPrompt(article, schema) {
   return `Article headline: ${article?.headline || ""}
+Publisher: ${article?.sourceName || article?.publisher || ""}
+Published: ${article?.publishedAt || ""}
 Article summary: ${article?.summary || ""}
 Category: ${article?.category || "market"}
 Entity: ${article?.entityName || "Market"}
+Existing takeaway: ${article?.takeaway || ""}
+Existing India impact: ${article?.indiaImpact || ""}
+Existing watch: ${article?.watchFor || ""}
 
 Generate JSON only:
 {
@@ -694,7 +705,7 @@ function isPrivateMarketStory(value) {
 }
 
 function isLowRelevanceUsSingleStockStory(value) {
-  return /\b(carvana|used car retailer|used cars?)\b/.test(String(value || ""));
+  return /\b(carvana|used car retailer|used cars?|chipotle|paypal|venmo|netflix|paramount|hollywood|streaming wars?|plane tickets?|air travelers?|medical appointments?|patients who died|obesity assets?|glp-?1|wegovy)\b/.test(String(value || ""));
 }
 
 function isTradePolicyStory(value) {
@@ -940,6 +951,46 @@ function watchForFromArticle(headline, summary, category, entityName) {
 
 function thematicFallbackReadthrough(lower, category, entityName) {
   const text = String(lower || "");
+  if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|cash market flow)\b/.test(text)) {
+    return {
+      takeaway: "institutional flow is the domestic risk check; price still has to confirm it after the opening range.",
+      whyItMatters: "FII/DII direction can explain whether global cues are being absorbed or rejected by local cash-market demand.",
+      indiaImpact: "Nifty and Bank Nifty need breadth aligned with FII/DII flow before the morning bias deserves follow-through weight.",
+      watchFor: "Watch FII/DII provisional flow, Nifty VWAP and Bank Nifty breadth through 9:45 AM."
+    };
+  }
+  if (/\b(rbi|repo rate|monetary policy|liquidity|crr|slr|g-sec|gsec|government bond|india bond yield)\b/.test(text)) {
+    return {
+      takeaway: "RBI and liquidity cues travel first through banks, rates and rate-sensitive sectors.",
+      whyItMatters: "Policy liquidity can support or cap risk appetite, but the market needs Bank Nifty and local yields to confirm it.",
+      indiaImpact: "Bank Nifty, realty, autos and NBFCs are the direct checks; broad Nifty weight needs domestic breadth.",
+      watchFor: "Watch G-sec yields, Bank Nifty VWAP and rate-sensitive breadth after the open."
+    };
+  }
+  if (/\b(monsoon|rainfall|rain|kharif|rabi|agri|agriculture|rural|crop|fertili[sz]er)\b/.test(text)) {
+    return {
+      takeaway: "monsoon and rural cues matter through consumption, agri inputs and inflation expectations.",
+      whyItMatters: "Weather-linked demand can support FMCG, tractors, fertilisers and rural lenders, but it needs domestic sector breadth.",
+      indiaImpact: "FMCG, autos, fertilisers and rural-finance names are the India checks; Nifty bias still needs banks to confirm.",
+      watchFor: "Watch FMCG, tractor, fertiliser and rural-lender breadth; broad bias needs Bank Nifty support."
+    };
+  }
+  if (/\b(ipo|listing|primary market|new issue|qib|anchor investor|grey market|gmp)\b/.test(text)) {
+    return {
+      takeaway: "primary-market demand is a risk-appetite read, not an automatic index signal.",
+      whyItMatters: "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
+      indiaImpact: "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      watchFor: "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on."
+    };
+  }
+  if (/\b(china|hong kong|shanghai|beijing|yuan|pboc|property stimulus)\b/.test(text)) {
+    return {
+      takeaway: "China cues matter for India through metals, chemicals, commodities and regional risk appetite.",
+      whyItMatters: "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
+      indiaImpact: "Nifty Metal, chemicals and capital-goods suppliers are the direct checks; broad conviction needs banks to join.",
+      watchFor: "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP through the first range."
+    };
+  }
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(text)) {
     return {
       takeaway: "treat futures premium or discount as the opening-gap input, not a finished trade view.",
@@ -1298,7 +1349,15 @@ function hasNoDirectIndiaRead(text, category) {
       !/\b(rate|yield|bond|inflation|policy|market|stock|futures)\b/.test(lower)) {
     return true;
   }
-  return category === "neutral_volatile" && /\b(lifestyle|travel tips|retirement|consumer advice)\b/.test(lower);
+  if (/\b(bitcoin|crypto|nft|defi|web3|blockchain wallet|meme coin|token)\b/.test(lower) &&
+      !/\b(risk appetite|liquidity|market|markets|nasdaq|dollar|yield|india|rupee)\b/.test(lower)) {
+    return true;
+  }
+  if (/\b(museum|gallery|exhibition|film|movie|streaming|celebrity|sports|football|baseball|recipe)\b/.test(lower)) {
+    return true;
+  }
+  return category === "neutral_volatile" &&
+    /\b(lifestyle|travel tips|retirement|consumer advice|credit score|passive income|best etf|dividend stock)\b/.test(lower);
 }
 
 function isOilStory(lower) {
