@@ -1613,10 +1613,13 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
-  const calendarWorkflow = await readFile(join(rootDir, ".github", "workflows", "calendar-refresh.yml"), "utf8");
-  assert.ok(calendarWorkflow.includes("Market Calendar Verify"));
-  assert.ok(calendarWorkflow.includes('cron: "7 19 * * *"'));
-  assert.ok(calendarWorkflow.includes("tools/market-calendar.mjs --verify"));
+  const workflowFiles = await readdir(join(rootDir, ".github", "workflows"));
+  assert.equal(workflowFiles.includes("calendar-refresh.yml"), false, "calendar verifier must not run as a separate scheduled automation");
+  const workflowContents = await Promise.all(
+    workflowFiles.map(async (fileName) => readFile(join(rootDir, ".github", "workflows", fileName), "utf8"))
+  );
+  const cronMatches = workflowContents.flatMap((content) => content.match(/cron:\s*"[^"]+"/g) ?? []);
+  assert.deepEqual(cronMatches, ['cron: "45 1 * * 1-5"'], "only the weekday 07:15 IST publish cron should remain");
 
   const archiveFiles = await readdir(join(rootDir, "archive", "daily"));
   assert.equal(archiveFiles.includes("2026-05-03-0830-digest.json"), false, "Sunday briefing archive should not be promoted or retained");
