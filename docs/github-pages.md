@@ -26,6 +26,17 @@ The public URL will look like:
 https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 ```
 
+## Article Polishing Secrets
+
+The briefing generator can write without an LLM key, but article-card polishing needs one model provider secret.
+
+Add either of these under **Settings → Secrets and variables → Actions → New repository secret**:
+
+- `OPENAI_API_KEY` for OpenAI polishing.
+- `ANTHROPIC_API_KEY` for Anthropic polishing.
+
+If both are present, Anthropic is used first. To choose a specific OpenAI model, add `OPENAI_MODEL`; otherwise the generator uses its default OpenAI model.
+
 ## Data Behavior
 
 The hosted page updates when the GitHub Action runs. The workflow uses `--market-data live`, so index values are server-side snapshots from Yahoo Finance rather than browser-generated ticks. The page checks `digest.json` every minute and updates when GitHub Pages has a newer published file. Local `file://` previews with a canonical dated path also check the public GitHub Pages digest first, so a local reload does not stay pinned to an old generated file.

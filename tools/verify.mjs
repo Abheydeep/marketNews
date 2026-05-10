@@ -367,6 +367,57 @@ await test("live news pipeline can route generic article copy through editorial 
   assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
 
+await test("live news pipeline can polish source cards with OpenAI when Anthropic is absent", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
+      return testRssXml([
+        {
+          title: `Generic source context from ${sourceSlug}`,
+          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "openai-generic-source-context"),
+          description: "Market context changed before the India open without a clean sector keyword."
+        }
+      ]);
+    }
+  });
+  let openAiCalls = 0;
+  const llmFetcher = async (url, request = {}) => {
+    openAiCalls += 1;
+    assert.equal(url, "https://api.openai.com/v1/responses");
+    assert.equal(request.headers.Authorization, "Bearer test-openai-key");
+    const body = JSON.parse(request.body);
+    assert.equal(body.model, "gpt-5.2");
+    assert.equal(body.instructions, ARTICLE_ENRICHMENT_PROMPT);
+    assert.ok(body.input.includes("Generic source context"));
+    assert.equal(body.text.format.type, "json_schema");
+    assert.equal(body.text.format.name, "article_card_editorial_patch");
+    return {
+      ok: true,
+      json: async () => ({
+        output_text: JSON.stringify({
+          takeaway: "OpenAI polishing turns the loose headline into a specific pre-open breadth check",
+          indiaImpact: "Nifty and Bank Nifty breadth need confirmation before this source gets India trading weight",
+          watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
+        })
+      })
+    };
+  };
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    llmFetcher,
+    anthropicApiKey: "",
+    openaiApiKey: "test-openai-key"
+  });
+
+  assert.ok(openAiCalls > 0, "OpenAI should run when Anthropic is absent and OPENAI_API_KEY is available");
+  assert.ok(articles.some((article) => /OpenAI polishing turns/i.test(article.takeaway)));
+  assert.ok(articles.some((article) => /Nifty and Bank Nifty breadth/i.test(article.indiaImpact)));
+});
+
 await test("repeated deterministic oil and rates templates route later cards through enrichment", async () => {
   const fetcher = async (url) => ({
     ok: true,

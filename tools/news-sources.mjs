@@ -283,11 +283,23 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
 function configuredArticleEditorialEnricher(options = {}) {
   const enabled = options.llmArticleEnrichment !== false &&
     process.env.PUBLIC_BRIEFING_LLM_ENRICH !== "false";
-  const apiKey = options.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY;
-  if (!enabled || !apiKey) {
+  if (!enabled) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
+  const anthropicApiKey = options.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY;
+  if (anthropicApiKey) {
+    return configuredAnthropicArticleEditorialEnricher({ ...options, apiKey: anthropicApiKey, fetcher });
+  }
+  const openaiApiKey = options.openaiApiKey ?? process.env.OPENAI_API_KEY;
+  if (openaiApiKey) {
+    return configuredOpenAiArticleEditorialEnricher({ ...options, apiKey: openaiApiKey, fetcher });
+  }
+  return null;
+}
+
+function configuredAnthropicArticleEditorialEnricher(options = {}) {
+  const { apiKey, fetcher } = options;
   const model = options.anthropicModel ?? process.env.ANTHROPIC_MODEL ?? "claude-3-5-haiku-latest";
   return async ({ article, prompt, schema }) => {
     const response = await fetcher("https://api.anthropic.com/v1/messages", {
@@ -313,6 +325,63 @@ function configuredArticleEditorialEnricher(options = {}) {
     const data = await response.json();
     return parseArticleEditorialResponse(data?.content?.[0]?.text);
   };
+}
+
+function configuredOpenAiArticleEditorialEnricher(options = {}) {
+  const { apiKey, fetcher } = options;
+  const model = options.openaiModel ?? process.env.OPENAI_MODEL ?? "gpt-5.2";
+  return async ({ article, prompt, schema }) => {
+    const response = await fetcher("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model,
+        max_output_tokens: 240,
+        instructions: prompt,
+        input: articleEditorialUserPrompt(article, schema),
+        text: {
+          format: {
+            type: "json_schema",
+            name: "article_card_editorial_patch",
+            strict: true,
+            schema: articleEditorialJsonSchema()
+          }
+        }
+      })
+    });
+    if (!response?.ok) {
+      throw new Error(`OpenAI article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
+    }
+    const data = await response.json();
+    return parseArticleEditorialResponse(openAiResponseText(data));
+  };
+}
+
+function articleEditorialJsonSchema() {
+  return {
+    type: "object",
+    additionalProperties: false,
+    properties: {
+      takeaway: { type: "string" },
+      indiaImpact: { type: "string" },
+      watchFor: { type: "string" }
+    },
+    required: ["takeaway", "indiaImpact", "watchFor"]
+  };
+}
+
+function openAiResponseText(data) {
+  if (typeof data?.output_text === "string") {
+    return data.output_text;
+  }
+  return (data?.output ?? [])
+    .flatMap((item) => item?.content ?? [])
+    .map((content) => content?.text ?? "")
+    .filter(Boolean)
+    .join("\n");
 }
 
 function articleShouldUseEditorialEnrichment(article, seenTemplateSignatures) {
