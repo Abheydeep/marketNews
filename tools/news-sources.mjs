@@ -407,7 +407,7 @@ function configuredGeminiArticleEditorialEnricher(options = {}) {
           parts: [{ text: articleEditorialUserPrompt(article, schema) }]
         }],
         generationConfig: {
-          maxOutputTokens: 240,
+          maxOutputTokens: 1000,
           responseMimeType: "application/json",
           responseSchema: geminiArticleEditorialSchema()
         }
@@ -568,7 +568,16 @@ Generate JSON only:
 
 function parseArticleEditorialResponse(text) {
   const cleaned = String(text || "").replace(/```(?:json)?|```/g, "").trim();
-  return JSON.parse(cleaned);
+  try {
+    return JSON.parse(cleaned);
+  } catch (error) {
+    const start = cleaned.indexOf("{");
+    const end = cleaned.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      return JSON.parse(cleaned.slice(start, end + 1));
+    }
+    throw error;
+  }
 }
 
 export function fixtureNewsArticles(date, seedNews = []) {

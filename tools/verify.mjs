@@ -443,6 +443,7 @@ await test("live news pipeline can polish source cards with Gemini when other LL
     const body = JSON.parse(request.body);
     assert.equal(body.systemInstruction.parts[0].text, ARTICLE_ENRICHMENT_PROMPT);
     assert.ok(body.contents[0].parts[0].text.includes("Generic source context"));
+    assert.equal(body.generationConfig.maxOutputTokens, 1000);
     assert.equal(body.generationConfig.responseMimeType, "application/json");
     assert.equal(body.generationConfig.responseSchema.type, "OBJECT");
     return {
@@ -451,11 +452,11 @@ await test("live news pipeline can polish source cards with Gemini when other LL
         candidates: [{
           content: {
             parts: [{
-              text: JSON.stringify({
+              text: `Here is the JSON requested:\n\`\`\`json\n${JSON.stringify({
                 takeaway: "Gemini polishing turns the loose headline into a specific pre-open breadth check",
                 indiaImpact: "Bank Nifty and Nifty breadth need confirmation before this source gets India trading weight",
                 watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
-              })
+              })}\n\`\`\``
             }]
           }
         }]
