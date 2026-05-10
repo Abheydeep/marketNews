@@ -7,7 +7,7 @@ This repo is configured to publish the Market Narrative static site through GitH
 The workflow in `.github/workflows/pages.yml`:
 
 1. Runs on every push to `main`.
-2. Runs once on weekdays at 07:15 IST for the pre-market publish.
+2. Runs every 5 minutes across weekday Indian and US market windows, including 08:30 IST.
 3. Fetches live Yahoo Finance market snapshots, generates the daily summary, and runs tests.
 4. Publishes `out/site` to GitHub Pages.
 
