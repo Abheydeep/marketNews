@@ -292,6 +292,18 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     summary: "Personal-finance advice framed as market content."
   }), false, "personal-finance investing advice should stay out of the source stack");
   assert.equal(articleLooksMarketRelevant({
+    headline: "Corporate governance newsletter discusses CEO culture and investor relations",
+    summary: "Company commentary with no market data, sector read-through, price signal, or policy catalyst."
+  }), false, "weak neutral corporate commentary should not reach the neutral_volatile fallback");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Options volatility keeps traders focused on PCR and call resistance",
+    summary: "VIX, put writing and OI buildup shaped futures positioning."
+  }), true, "real neutral-volatility market structure stories should remain eligible");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Blue Owl funds SpaceX private credit deal",
+    summary: "Private credit financing shows risk appetite outside public equity markets."
+  }), true, "specific private-market risk appetite stories should remain eligible as context");
+  assert.equal(articleLooksMarketRelevant({
     headline: "Israel-Iran military conflict escalates before Asia opens",
     summary: "Military strikes and sanctions risk kept investors focused on safe-haven demand."
   }), true, "pure geopolitical escalation should remain eligible as a market risk source");

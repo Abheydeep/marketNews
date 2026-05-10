@@ -539,10 +539,27 @@ export function articleLooksMarketRelevant(article) {
   if (LOW_SIGNAL_MARKET_CONTENT_PATTERN.test(text)) {
     return false;
   }
+  if (isWeakNeutralVolatileArticle(article, text)) {
+    return false;
+  }
   if (MARKET_RELEVANCE_PATTERN.test(text)) {
     return true;
   }
   return !OFF_TOPIC_WITHOUT_MARKET_PATTERN.test(text) && /(business|economy|finance|company|corporate|investor|investment)/i.test(text);
+}
+
+function isWeakNeutralVolatileArticle(article, text) {
+  const category = article?.category ?? categoryFromText(text);
+  return category === "neutral_volatile" && !hasSpecificMarketDriverText(text);
+}
+
+function hasSpecificMarketDriverText(value) {
+  const text = String(value || "").toLowerCase();
+  if (isPrivateMarketStory(text) || isIndiaEnergyStory(text) || isOilStory(text) ||
+      isGeopoliticalRiskStory(text) || isIndiaPolicyStory(text) || isTradePolicyStory(text)) {
+    return true;
+  }
+  return /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance|fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|rbi|repo rate|monetary policy|liquidity|g-sec|gsec|monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er|ipo|listing|primary market|new issue|china|hong kong|shanghai|beijing|yuan|pboc|metal|metals|steel|copper|aluminium|aluminum|iron ore|consumer spending|retail sales|consumer confidence|personal consumption|pmi|manufacturing|factory orders|industrial production|capex|deficit|fiscal|treasury borrowing|sovereign debt|bond supply)\b/.test(text);
 }
 
 export function sourceUrlLooksArticleLevel(value) {
