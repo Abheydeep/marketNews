@@ -292,6 +292,14 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     summary: "Personal-finance advice framed as market content."
   }), false, "personal-finance investing advice should stay out of the source stack");
   assert.equal(articleLooksMarketRelevant({
+    headline: "At 103 years old, I’m the world’s oldest doctor: My 3 rules for a long, happy life",
+    summary: "A lifestyle and wellness story with patient advice, not a market catalyst."
+  }), false, "longevity/lifestyle stories should not be polished into market cards");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Meet the YouTube whisperers behind MrBeast and other million-dollar channels",
+    summary: "Creator economy advisory content with no listed-company, sector, or India-market transmission."
+  }), false, "creator-economy feature stories should not pad the pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
     headline: "Corporate governance newsletter discusses CEO culture and investor relations",
     summary: "Company commentary with no market data, sector read-through, price signal, or policy catalyst."
   }), false, "weak neutral corporate commentary should not reach the neutral_volatile fallback");
