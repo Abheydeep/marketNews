@@ -6,9 +6,8 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    # Refresh every 5 minutes across Indian and US market windows on weekdays.
-    # 01:45 UTC includes the 07:15 IST pre-market publish.
-    - cron: "*/5 1-21 * * 1-5"
+    # Publish the weekday 07:15 IST pre-market briefing once.
+    - cron: "45 1 * * 1-5"
 
 permissions:
   contents: write

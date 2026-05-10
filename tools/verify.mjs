@@ -1607,7 +1607,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: true"));
-  assert.ok(workflow.includes('cron: "*/5 1-21 * * 1-5"'), "workflow should refresh market data every 5 minutes during weekday market windows");
+  assert.ok(workflow.includes('cron: "45 1 * * 1-5"'), "workflow should publish once at 07:15 IST on weekdays");
+  assert.equal(workflow.includes('cron: "*/5 1-21 * * 1-5"'), false, "workflow must not run every 5 minutes across market windows");
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
