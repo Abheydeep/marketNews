@@ -30,12 +30,13 @@ https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 
 The briefing generator can write without an LLM key, but article-card polishing needs one model provider secret.
 
-Add either of these under **Settings → Secrets and variables → Actions → New repository secret**:
+Add any one of these under **Settings → Secrets and variables → Actions → New repository secret**:
 
 - `OPENAI_API_KEY` for OpenAI polishing.
 - `ANTHROPIC_API_KEY` for Anthropic polishing.
+- `GEMINI_API_KEY` for Gemini polishing.
 
-If both are present, Anthropic is used first. To choose a specific OpenAI model, add `OPENAI_MODEL`; otherwise the generator uses its default OpenAI model.
+Provider priority is Anthropic, then OpenAI, then Gemini. To choose a specific Gemini model, add `GEMINI_MODEL`; otherwise the generator uses `gemini-flash-latest`.
 
 ## Data Behavior
 

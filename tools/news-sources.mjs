@@ -295,6 +295,10 @@ function configuredArticleEditorialEnricher(options = {}) {
   if (openaiApiKey) {
     return configuredOpenAiArticleEditorialEnricher({ ...options, apiKey: openaiApiKey, fetcher });
   }
+  const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
+  if (geminiApiKey) {
+    return configuredGeminiArticleEditorialEnricher({ ...options, apiKey: geminiApiKey, fetcher });
+  }
   return null;
 }
 
@@ -380,6 +384,64 @@ function openAiResponseText(data) {
   return (data?.output ?? [])
     .flatMap((item) => item?.content ?? [])
     .map((content) => content?.text ?? "")
+    .filter(Boolean)
+    .join("\n");
+}
+
+function configuredGeminiArticleEditorialEnricher(options = {}) {
+  const { apiKey, fetcher } = options;
+  const model = normalizeGeminiModelName(options.geminiModel ?? process.env.GEMINI_MODEL ?? "gemini-flash-latest");
+  return async ({ article, prompt, schema }) => {
+    const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        systemInstruction: {
+          parts: [{ text: prompt }]
+        },
+        contents: [{
+          role: "user",
+          parts: [{ text: articleEditorialUserPrompt(article, schema) }]
+        }],
+        generationConfig: {
+          maxOutputTokens: 240,
+          responseMimeType: "application/json",
+          responseSchema: geminiArticleEditorialSchema()
+        }
+      })
+    });
+    if (!response?.ok) {
+      throw new Error(`Gemini article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
+    }
+    const data = await response.json();
+    return parseArticleEditorialResponse(geminiResponseText(data));
+  };
+}
+
+function normalizeGeminiModelName(value) {
+  return String(value || "gemini-flash-latest").replace(/^models\//, "");
+}
+
+function geminiArticleEditorialSchema() {
+  return {
+    type: "OBJECT",
+    properties: {
+      takeaway: { type: "STRING" },
+      indiaImpact: { type: "STRING" },
+      watchFor: { type: "STRING" }
+    },
+    required: ["takeaway", "indiaImpact", "watchFor"],
+    propertyOrdering: ["takeaway", "indiaImpact", "watchFor"]
+  };
+}
+
+function geminiResponseText(data) {
+  return (data?.candidates ?? [])
+    .flatMap((candidate) => candidate?.content?.parts ?? [])
+    .map((part) => part?.text ?? "")
     .filter(Boolean)
     .join("\n");
 }

@@ -418,6 +418,63 @@ await test("live news pipeline can polish source cards with OpenAI when Anthropi
   assert.ok(articles.some((article) => /Nifty and Bank Nifty breadth/i.test(article.indiaImpact)));
 });
 
+await test("live news pipeline can polish source cards with Gemini when other LLM keys are absent", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
+      return testRssXml([
+        {
+          title: `Generic source context from ${sourceSlug}`,
+          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "gemini-generic-source-context"),
+          description: "Market context changed before the India open without a clean sector keyword."
+        }
+      ]);
+    }
+  });
+  let geminiCalls = 0;
+  const llmFetcher = async (url, request = {}) => {
+    geminiCalls += 1;
+    assert.equal(url, "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent");
+    assert.equal(request.headers["X-goog-api-key"], "test-gemini-key");
+    const body = JSON.parse(request.body);
+    assert.equal(body.systemInstruction.parts[0].text, ARTICLE_ENRICHMENT_PROMPT);
+    assert.ok(body.contents[0].parts[0].text.includes("Generic source context"));
+    assert.equal(body.generationConfig.responseMimeType, "application/json");
+    assert.equal(body.generationConfig.responseSchema.type, "OBJECT");
+    return {
+      ok: true,
+      json: async () => ({
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                takeaway: "Gemini polishing turns the loose headline into a specific pre-open breadth check",
+                indiaImpact: "Bank Nifty and Nifty breadth need confirmation before this source gets India trading weight",
+                watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
+              })
+            }]
+          }
+        }]
+      })
+    };
+  };
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    llmFetcher,
+    anthropicApiKey: "",
+    openaiApiKey: "",
+    geminiApiKey: "test-gemini-key"
+  });
+
+  assert.ok(geminiCalls > 0, "Gemini should run when only GEMINI_API_KEY is available");
+  assert.ok(articles.some((article) => /Gemini polishing turns/i.test(article.takeaway)));
+  assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
+});
+
 await test("repeated deterministic oil and rates templates route later cards through enrichment", async () => {
   const fetcher = async (url) => ({
     ok: true,
