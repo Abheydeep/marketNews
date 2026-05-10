@@ -6,9 +6,9 @@ export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 const MIN_VERIFIED_ARTICLES = 3;
 const MIN_SOURCE_CATEGORY_BUCKETS = 2;
 const MAX_DUPLICATE_WITH_PREVIOUS_PERCENT = 55;
-const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
-const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
-const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
+const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|mpc|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|finance ministry|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
+const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|mpc|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
+const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|mpc|gst|sebi|pli|budget|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
 const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|celebrity|movie|sports|football|baseball|recipe|travel|museum|gallery|exhibition|polls?|election|campaign|senate|house of representatives)\b/i;
 const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
@@ -251,16 +251,17 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
     ? Number(options.maxArticleEditorialEnrichmentCalls)
     : 12;
   const enriched = [];
+  const seenTemplateSignatures = new Map();
   let enrichmentCalls = 0;
   for (const article of articles) {
-    if (!articleNeedsEditorialEnrichment(article) || enrichmentCalls >= maxEnrichmentCalls) {
+    if (!articleShouldUseEditorialEnrichment(article, seenTemplateSignatures) || enrichmentCalls >= maxEnrichmentCalls) {
       enriched.push(article);
       continue;
     }
     try {
       enrichmentCalls += 1;
       const patch = await enricher({
-        article,
+        article: articleForEditorialEnrichment(article),
         prompt: ARTICLE_ENRICHMENT_PROMPT,
         schema: {
           takeaway: "max 30 words, do not restate the headline",
@@ -314,6 +315,18 @@ function configuredArticleEditorialEnricher(options = {}) {
   };
 }
 
+function articleShouldUseEditorialEnrichment(article, seenTemplateSignatures) {
+  const signature = articleReadthroughTemplateSignature(article);
+  if (signature) {
+    const seenCount = seenTemplateSignatures.get(signature) || 0;
+    seenTemplateSignatures.set(signature, seenCount + 1);
+    if (seenCount > 0) {
+      return true;
+    }
+  }
+  return articleNeedsEditorialEnrichment(article);
+}
+
 function articleNeedsEditorialEnrichment(article) {
   const text = [
     article?.takeaway,
@@ -322,6 +335,64 @@ function articleNeedsEditorialEnrichment(article) {
     article?.whyItMatters
   ].join(" ");
   return /\b(conditional India input|watch input only|watch input, not a trade bias|require first-range breadth|global-only context|No direct India read-through|Watch .* during the first-hour range|macro checklist|sector-leadership check|watchlist cue|no index bias unless|risk appetite is supportive only if Indian breadth confirms|mixed global cues keep the India open in confirmation mode)\b/i.test(text);
+}
+
+function articleReadthroughTemplateSignature(article) {
+  const lower = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (isOilStory(lower)) {
+    if (/\b(opec|opec\+|output|production|barrels?|supply deal|saudi|russia)\b/.test(lower)) return "oil:supply";
+    if (/\b(pipeline|keystone|refinery|export terminal|shipment|cargo|gulf coast)\b/.test(lower)) return "oil:flow";
+    if (/\b(falls?|drops?|slides?|slips?|softens?|eases?|lower|down|retreats?)\b/.test(lower)) return "oil:lower";
+    if (/\b(rises?|gains?|jumps?|surges?|spikes?|soars?|higher|up)\b/.test(lower)) return "oil:higher";
+    return "oil:general";
+  }
+  if (/\b(fed|yields?|bonds?|rates?|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower) && !isIndiaPolicyStory(lower)) {
+    if (/\b(boe|bank of england|uk rate|sterling)\b/.test(lower)) return "rates:boe";
+    if (/\b(fed|powell|fomc)\b/.test(lower)) return "rates:fed";
+    return "rates:general";
+  }
+  return "";
+}
+
+function articleForEditorialEnrichment(article) {
+  const entityName = validatedArticleEntity(article);
+  return entityName === article?.entityName ? article : { ...article, entityName };
+}
+
+function validatedArticleEntity(article) {
+  const lower = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  const recalculated = entityForHeadline(lower, article?.category || "neutral_volatile");
+  const provided = cleanText(article?.entityName || "");
+  if (!provided || provided === "Market") {
+    return recalculated || "Market";
+  }
+  if (articleEntityMatchesText(provided, lower)) {
+    return provided;
+  }
+  return recalculated && recalculated !== "Market" ? recalculated : "Market";
+}
+
+function articleEntityMatchesText(entityName, lower) {
+  const entity = String(entityName || "").toLowerCase();
+  const checks = [
+    [/nifty open/, /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/],
+    [/options tape/, /\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/],
+    [/india policy/, /\b(gst|sebi|pli|production[-\s]?linked incentive|budget|finance ministry|mpc|monetary policy committee)\b/],
+    [/fii\/dii flow/, /\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/],
+    [/bank nifty/, /\b(bank|banks|banking|credit|deposit|loan|nbfc|financial|rbi|mpc|repo rate|liquidity)\b/],
+    [/nifty 50/, /\b(nifty|sensex|indian equities|india stocks?)\b/],
+    [/nifty it/, /\b(indian it|it services|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/],
+    [/global tech/, /\b(ai|semiconductor|software|alphabet|google|nvidia|microsoft|oracle|meta|tech|apple|iphone|mac|big tech|faang)\b/],
+    [/nifty metal/, /\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/],
+    [/rates/, /\b(yields?|bonds?|rates?|fed|inflation|powell|boe|bank of england|central bank)\b/],
+    [/brent crude/, /\b(oil|crude|brent|keystone|refinery|opec)\b/],
+    [/usdinr/, /\b(rupee|dollar|currency|forex|yen|usd.?inr|dxy)\b/],
+    [/rural demand/, /\b(monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er)\b/],
+    [/pharma/, /\b(pharma|health|lilly|drug|fda|healthcare)\b/],
+    [/autos/, /\b(auto|vehicle|tariff|ev|tesla|ancillar(?:y|ies))\b/],
+    [/exporters/, /\b(tariff|trade policy|trade war|exports?|imports?|export ban|import duty)\b/]
+  ];
+  return checks.some(([entityPattern, textPattern]) => entityPattern.test(entity) && textPattern.test(lower));
 }
 
 function sanitizeArticleEditorialPatch(article, patch) {
@@ -664,6 +735,9 @@ function categoryFromText(text, fallback) {
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(value)) {
     return "neutral_volatile";
   }
+  if (isIndiaPolicyStory(value)) {
+    return "macro_positive";
+  }
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(value)) {
     return "macro_negative";
   }
@@ -716,6 +790,14 @@ function isTradePolicyStory(value) {
   return /\b(tariff|trade policy|trade war|exports?|imports?)\b/.test(lower);
 }
 
+function isIndiaPolicyStory(value) {
+  const lower = String(value || "");
+  if (/\b(us budget|uk budget|federal budget|congressional budget)\b/.test(lower)) {
+    return false;
+  }
+  return /\b(gst|goods and services tax|sebi|pli|production[-\s]?linked incentive|union budget|india budget|budget 2026|finance ministry|ministry of finance|mpc|monetary policy committee|rbi policy|securities transaction tax|stt|capital gains tax|tax rule|government capex|disinvestment|psu divestment)\b/.test(lower);
+}
+
 function articleIsFreshForDigest(article, digestDate) {
   const published = Date.parse(article.publishedAt);
   const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
@@ -763,6 +845,9 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return compactWords(`${fact}; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.`, 35);
   }
+  if (isIndiaPolicyStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
   if (isOilStory(lower)) {
     return compactWords(`${fact}; ${oilReadthrough(lower).takeaway}`, 35);
   }
@@ -774,6 +859,9 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   }
   if (isLowRelevanceUsSingleStockStory(lower)) {
     return compactWords(`${fact}; keep it as a US single-stock cue, not an India opening signal.`, 35);
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
   }
   if (/\b(earnings|revenue|profit|guidance|results?)\b/.test(lower)) {
     return compactWords(`${fact}; ${earningsReadthrough(lower, entityName).takeaway}`, 35);
@@ -805,6 +893,9 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.";
   }
+  if (isIndiaPolicyStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
   if (isOilStory(lower)) {
     return "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.";
   }
@@ -825,6 +916,9 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   }
   if (isTradePolicyStory(lower)) {
     return "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.";
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
   }
   if (thematic.whyItMatters) {
     return thematic.whyItMatters;
@@ -853,6 +947,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.";
   }
+  if (isIndiaPolicyStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
   if (isOilStory(lower)) {
     return oilReadthrough(lower).indiaImpact;
   }
@@ -867,6 +964,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
       return globalOnlyIndiaContext();
     }
     return "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.";
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return techReadthrough(lower, entityName).indiaImpact;
@@ -919,6 +1019,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return "Watch power, energy and industrial breadth after the open; broad-index bias needs confirmation outside the headline.";
   }
+  if (isIndiaPolicyStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
   if (isOilStory(lower)) {
     return oilReadthrough(lower).watchFor;
   }
@@ -933,6 +1036,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
       return "No specific watch for this article.";
     }
     return "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.";
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(lower) && thematic.watchFor) {
+    return thematic.watchFor;
   }
   if (/\b(ai|semiconductor|software|alphabet|nvidia|tech)\b/.test(lower)) {
     return techReadthrough(lower, entityName).watchFor;
@@ -951,6 +1057,14 @@ function watchForFromArticle(headline, summary, category, entityName) {
 
 function thematicFallbackReadthrough(lower, category, entityName) {
   const text = String(lower || "");
+  if (isIndiaPolicyStory(text)) {
+    return {
+      takeaway: "India policy is a direct domestic catalyst; map the rule change to banks, consumption, exporters or listed sectors before trading it.",
+      whyItMatters: "GST, SEBI, PLI, Budget and MPC signals can change sector earnings, liquidity or positioning before global cues matter.",
+      indiaImpact: "Direct India read-through: Bank Nifty, affected sectors and listed beneficiaries need breadth confirmation after the first range.",
+      watchFor: "Watch affected-sector breadth, Bank Nifty VWAP and official follow-up circulars through the first range."
+    };
+  }
   if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|cash market flow)\b/.test(text)) {
     return {
       takeaway: "institutional flow is the domestic risk check; price still has to confirm it after the opening range.",
@@ -999,6 +1113,22 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       watchFor: "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth."
     };
   }
+  if (isTradePolicyStory(text)) {
+    return {
+      takeaway: tradeReadthrough(text).takeaway,
+      whyItMatters: "Trade-policy stories split sectors instead of moving India as one block.",
+      indiaImpact: tradeReadthrough(text).indiaImpact,
+      watchFor: tradeReadthrough(text).watchFor
+    };
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|china demand|iron ore)\b/.test(text)) {
+    return {
+      takeaway: "metals news is a China-demand and commodity-margin cue, not a full-index signal by itself.",
+      whyItMatters: "Metal stocks can lead or lag independently; traders need China, commodity prices and domestic sector breadth aligned.",
+      indiaImpact: "Nifty Metal and capital-goods suppliers are the direct checks; broad Nifty conviction needs banks to confirm.",
+      watchFor: "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range."
+    };
+  }
   if (/\b(consumer|retail sales?|spending|sentiment|discretionary|fmcg|rural demand)\b/.test(text)) {
     return {
       takeaway: "consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
@@ -1015,14 +1145,6 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       watchFor: "Watch India VIX, PCR, put writing and call resistance through 9:45 AM before sizing direction."
     };
   }
-  if (/\b(metal|metals|steel|copper|aluminium|aluminum|china demand|iron ore)\b/.test(text)) {
-    return {
-      takeaway: "metals news is a China-demand and commodity-margin cue, not a full-index signal by itself.",
-      whyItMatters: "Metal stocks can lead or lag independently; traders need China, commodity prices and domestic sector breadth aligned.",
-      indiaImpact: "Nifty Metal and capital-goods suppliers are the direct checks; broad Nifty conviction needs banks to confirm.",
-      watchFor: "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range."
-    };
-  }
   if (/\b(pharma|drug|fda|healthcare|hospital|diagnostic)\b/.test(text)) {
     return {
       takeaway: "healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
@@ -1037,14 +1159,6 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       whyItMatters: "Autos can react to volumes, rates, fuel, tariffs or currency; the transmission channel decides the trade.",
       indiaImpact: "Nifty Auto, ancillaries and auto-finance lenders are the checks; imported-cost pressure can split winners from laggards.",
       watchFor: "Watch Nifty Auto breadth, auto-finance names and USD/INR; avoid treating one global EV story as an index cue."
-    };
-  }
-  if (isTradePolicyStory(text)) {
-    return {
-      takeaway: tradeReadthrough(text).takeaway,
-      whyItMatters: "Trade-policy stories split sectors instead of moving India as one block.",
-      indiaImpact: tradeReadthrough(text).indiaImpact,
-      watchFor: tradeReadthrough(text).watchFor
     };
   }
   if (category === "macro_positive") {
@@ -1443,6 +1557,12 @@ function entityForHeadline(headline, category) {
   if (/\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(lower)) {
     return "Options tape";
   }
+  if (isIndiaPolicyStory(lower)) {
+    return "India policy";
+  }
+  if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/.test(lower)) {
+    return "FII/DII flow";
+  }
   if (/\b(boe|bank of england|central bank|governor bailey)\b/.test(lower)) {
     return "Rates";
   }
@@ -1460,6 +1580,9 @@ function entityForHeadline(headline, category) {
   }
   if (/\b(indian it|it services|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(lower)) {
     return "Nifty IT";
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(lower)) {
+    return "Nifty Metal";
   }
   if (/\b(ai|semiconductor|software|alphabet|google|nvidia|microsoft|oracle|meta|tech|apple|iphone|mac|big tech|faang)\b/.test(lower)) {
     return "Global Tech";
@@ -1481,6 +1604,9 @@ function entityForHeadline(headline, category) {
   }
   if (/\b(pharma|health|lilly|drug|fda)\b/.test(lower)) {
     return "Pharma";
+  }
+  if (/\b(monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er)\b/.test(lower)) {
+    return "Rural demand";
   }
   if (/\b(auto|vehicle|tariff|ev|tesla)\b/.test(lower)) {
     return "Autos";

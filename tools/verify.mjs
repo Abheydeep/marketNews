@@ -351,6 +351,50 @@ await test("live news pipeline can route generic article copy through editorial 
   assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
 
+await test("repeated deterministic oil and rates templates route later cards through enrichment", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = slugForTestUrl(url);
+      const publisher = String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc";
+      return testRssXml([
+        {
+          title: `OPEC output talks keep Brent supply risk alive ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "opec-template-repeat"),
+          description: "OPEC production and supply discipline can keep Brent above $84 as traders price tighter barrels."
+        },
+        {
+          title: `Fed rate guidance keeps bond yields firm ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "fed-rates-template-repeat"),
+          description: "Fed policy guidance and bond yields stayed firm as traders debated inflation persistence."
+        }
+      ]);
+    }
+  });
+  const enrichedHeadlines = [];
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    maxArticleEditorialEnrichmentCalls: 30,
+    articleEditorialEnricher: async ({ article, prompt }) => {
+      enrichedHeadlines.push(article.headline);
+      assert.equal(prompt, ARTICLE_ENRICHMENT_PROMPT);
+      assert.ok(article.entityName && article.entityName !== "Market");
+      return {
+        takeaway: `Template refresh keeps the ${article.entityName} card distinct from the repeated branch`,
+        indiaImpact: `${article.entityName} needs a fresh India confirmation line because this read-through branch already appeared`,
+        watchFor: "Watch Bank Nifty VWAP and breadth through 9:45 AM"
+      };
+    }
+  });
+
+  assert.ok(enrichedHeadlines.some((headline) => /OPEC output/i.test(headline)), "repeated oil branch should be enriched");
+  assert.ok(enrichedHeadlines.some((headline) => /Fed rate guidance/i.test(headline)), "repeated rates branch should be enriched");
+  assert.ok(articles.some((article) => /Template refresh keeps/i.test(article.takeaway)));
+});
+
 await test("article read-through copy does not reuse category templates", async () => {
   const feed = {
     sourceId: "test-feed",
@@ -423,6 +467,16 @@ await test("article read-through copy does not reuse category templates", async 
       title: "Tariff risk splits exporters, autos and metals",
       link: "https://www.cnbc.com/2026/05/04/tariff-risk-exporters-autos-metals.html",
       summary: "Trade policy headlines changed exporter, auto and metal sentiment without moving every sector together."
+    },
+    {
+      title: "SEBI changes margin rules as GST Council weighs auto tax relief",
+      link: "https://www.moneycontrol.com/news/business/markets/sebi-gst-policy-auto-tax_1300002.html",
+      summary: "SEBI rules, GST changes and finance ministry policy signals can affect listed sectors before the market opens."
+    },
+    {
+      title: "Copper demand rises as AI data-center spending lifts metals",
+      link: "https://www.cnbc.com/2026/05/04/copper-ai-data-center-metals.html",
+      summary: "Copper, aluminium and steel sentiment improved as data-center demand supported metal prices."
     }
   ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
   const combined = JSON.stringify(articles);
@@ -443,8 +497,10 @@ await test("article read-through copy does not reuse category templates", async 
   const options = articles.find((article) => /Options volatility/i.test(article.headline));
   const giftNifty = articles.find((article) => /Gift Nifty/i.test(article.headline));
   const tariff = articles.find((article) => /Tariff risk/i.test(article.headline));
+  const policy = articles.find((article) => /SEBI changes/i.test(article.headline));
+  const copper = articles.find((article) => /Copper demand/i.test(article.headline));
 
-  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff, "mocked source set should retain all article-specific cases");
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff && policy && copper, "mocked source set should retain all article-specific cases");
   assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
@@ -480,6 +536,11 @@ await test("article read-through copy does not reuse category templates", async 
   assert.equal(giftNifty.entityName, "Nifty Open");
   assert.match(giftNifty.indiaImpact, /Direct index read-through|Bank Nifty/i);
   assert.match(tariff.indiaImpact, /Exporters|metals|autos|pharma/i);
+  assert.equal(policy.entityName, "India policy");
+  assert.match(policy.indiaImpact, /Direct India read-through|Bank Nifty|affected sectors/i);
+  assert.doesNotMatch(policy.indiaImpact, /global-only|macro checklist/i);
+  assert.equal(copper.entityName, "Nifty Metal");
+  assert.match(copper.indiaImpact, /Nifty Metal|capital-goods|Bank Nifty/i);
 });
 
 await test("public source selection excludes no-direct India stories when direct reads are available", () => {

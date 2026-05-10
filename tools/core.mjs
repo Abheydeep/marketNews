@@ -1232,6 +1232,7 @@ function marketLeadScore(article) {
   if (/\b(nasdaq|s&p|dow|wall street|futures|stocks?|shares?)\b/.test(text)) score += 6;
   if (/\b(semiconductor|chip|chips|sox)\b/.test(text)) score += 5;
   if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) score += 5;
+  if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|mpc|stt|capital gains tax)\b/.test(text)) score += 6;
   if (/\b(rupee|dollar|currency)\b/.test(text)) score += 4;
   if (/\b(earnings|revenue|profit|guidance|outlook)\b/.test(text)) score += 3;
   if (/\b(investigation|legal advice|traveler|tickets|lazy millionaire|retirement|top wall street analysts?|berkshire|greg abel|chipotle|paypal)\b/.test(text)) score -= 8;
@@ -1251,6 +1252,7 @@ function sectorLeadScore(article) {
 
 function sectorFocusLabel(article) {
   const headline = String(article?.headline || "").toLowerCase();
+  if (/\b(gst|sebi|pli|budget|finance ministry|mpc|rbi policy)\b/.test(headline)) return "India policy";
   if (/\b(tech|ai|semiconductor|software|mag 7|alphabet|nvidia)\b/.test(headline)) return "Tech breadth";
   if (/\b(bank|credit|financial)\b/.test(headline)) return "Financials";
   if (/\b(pharma|lilly|healthcare)\b/.test(headline)) return "Healthcare";
@@ -1294,6 +1296,7 @@ function specificWatchItem(article) {
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "US jobs-week positioning and Nasdaq futures before India opens; a weak risk tape keeps Nifty in confirmation mode.";
   if (/\b(opec|production|output)\b/.test(headline)) return "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks.";
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
+  if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|mpc|stt|capital gains tax)\b/.test(headline)) return "Affected-sector breadth, Bank Nifty VWAP and official circular follow-through; policy stories need sector confirmation.";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
   if (/\b(dollar|rupee|currency|yen|usd.?inr|forex|dxy)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
   if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/.test(headline)) return "FII/DII provisional flow and Bank Nifty VWAP; heavy FII selling can blunt a firm global open.";
@@ -1345,6 +1348,9 @@ function editorialLeadSentence(article) {
   if (/\b(crude|oil|brent)\b/.test(text)) {
     return "Crude remains the key transmission line for import costs, aviation fuel, OMC margins and inflation expectations";
   }
+  if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|budget|stt|capital gains tax)\b/.test(text)) {
+    return "India policy is a direct domestic catalyst; affected sectors need breadth confirmation before the index inherits it";
+  }
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) {
     return "Rates remain the hurdle-rate input for banks, realty and high-multiple growth pockets";
   }
@@ -1386,14 +1392,59 @@ function editorialLeadSentence(article) {
 
 function editorialBecause(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  if (/\b(gift nifty|sgx nifty|nifty futures|index futures)\b/.test(text)) {
+    return "Gift Nifty sets the gap direction, but cash-market breadth decides whether the open has follow-through";
+  }
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) {
     return "jobs data, chip earnings and US momentum can decide whether global risk appetite survives the open";
+  }
+  if (/\b(apple|amazon|meta|alphabet|microsoft|google|nvidia|big tech|faang|mega-cap|mag.?7)\b/.test(text)) {
+    return "mega-cap tech sets Nasdaq tone, but Nifty IT and exporter breadth must confirm the India read-through";
+  }
+  if (/\b(opec|production|output)\b/.test(text) && /\b(oil|crude|brent)\b/.test(text)) {
+    return "OPEC supply news changes the crude-import cost check for OMCs, aviation, paints and inflation expectations";
+  }
+  if (/\b(crude|oil|brent)\b/.test(text)) {
+    return "Brent direction decides whether import-cost pressure or margin relief leads the India open";
+  }
+  if (/\b(rbi|repo rate|monetary policy|liquidity|g-sec|gsec|government bond|mpc)\b/.test(text)) {
+    return "RBI and local liquidity cues travel first through Bank Nifty, NBFCs, realty and autos";
+  }
+  if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|budget|stt|capital gains tax)\b/.test(text)) {
+    return "India policy can directly change sector earnings, liquidity or positioning before global cues matter";
+  }
+  if (/\b(yield|bond|rate|fed|inflation)\b/.test(text)) {
+    return "rates reset the hurdle for banks, realty and high-multiple growth pockets";
   }
   if (/\b(semiconductor|chip|ai|software|tech)\b/.test(text)) {
     return "semiconductor and AI headlines are driving global risk appetite, but they still need Nasdaq and USD/INR confirmation";
   }
+  if (/\b(rupee|usd.?inr|currency|forex|dollar|dxy)\b/.test(text)) {
+    return "currency pressure can split exporters from importers and reset the FII flow assumption";
+  }
+  if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/.test(text)) {
+    return "institutional flow decides whether global cues are being absorbed or rejected by domestic cash demand";
+  }
   if (/\b(bank|credit|financial)\b/.test(text)) {
     return "financial breadth decides whether a Nifty move becomes a trend or just a gap reaction";
+  }
+  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore|china demand)\b/.test(text)) {
+    return "metals need China, commodity prices and domestic sector breadth aligned before becoming broad-index evidence";
+  }
+  if (/\b(pharma|drug|fda|healthcare|hospital|diagnostic)\b/.test(text)) {
+    return "healthcare can act as defensive leadership, but it needs broader breadth to affect index risk appetite";
+  }
+  if (/\b(monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er)\b/.test(text)) {
+    return "monsoon and rural cues travel through FMCG, tractors, fertilisers, rural lenders and inflation expectations";
+  }
+  if (/\b(tariff|trade war|import duty|export ban|trade policy)\b/.test(text)) {
+    return "trade policy splits exporters, autos, metals and pharma instead of moving the whole index together";
+  }
+  if (/\b(consumer|retail|spending|sentiment|fmcg|rural demand)\b/.test(text)) {
+    return "consumer demand needs FMCG, auto and retail-lender breadth after the opening range";
+  }
+  if (/\b(volatility|vix|options?|pcr|oi buildup|put writing|call resistance)\b/.test(text)) {
+    return "options and volatility cues define sizing discipline before cash-market direction is proven";
   }
   return "";
 }
