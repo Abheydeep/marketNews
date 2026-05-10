@@ -395,6 +395,49 @@ await test("repeated deterministic oil and rates templates route later cards thr
   assert.ok(articles.some((article) => /Template refresh keeps/i.test(article.takeaway)));
 });
 
+await test("repeated mega-cap earnings templates route later cards through enrichment", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = slugForTestUrl(url);
+      const publisher = String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc";
+      return testRssXml([
+        {
+          title: `Apple earnings guidance lifts mega-cap tech sentiment ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "apple-earnings-template-repeat"),
+          description: "Apple revenue guidance and margins improved after earnings commentary."
+        },
+        {
+          title: `Amazon earnings show cloud margin strength ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "amazon-earnings-template-repeat"),
+          description: "Amazon earnings, cloud revenue and operating margin guidance improved."
+        }
+      ]);
+    }
+  });
+  const enrichedHeadlines = [];
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    maxArticleEditorialEnrichmentCalls: 30,
+    articleEditorialEnricher: async ({ article, prompt }) => {
+      enrichedHeadlines.push(article.headline);
+      assert.equal(prompt, ARTICLE_ENRICHMENT_PROMPT);
+      assert.match(article.entityName, /Global Tech|Nifty IT|Market/);
+      return {
+        takeaway: `Earnings refresh keeps ${article.entityName} from repeating the mega-cap template`,
+        indiaImpact: "Nifty IT and exporter breadth must confirm before the repeated mega-cap earnings cue gets local weight",
+        watchFor: "Watch Nasdaq futures, USD/INR and Nifty IT breadth after the open"
+      };
+    }
+  });
+
+  assert.ok(enrichedHeadlines.some((headline) => /Apple earnings/i.test(headline)), "repeated mega-cap earnings branch should be enriched");
+  assert.ok(articles.some((article) => /Earnings refresh keeps/i.test(article.takeaway)));
+});
+
 await test("article read-through copy does not reuse category templates", async () => {
   const feed = {
     sourceId: "test-feed",
@@ -477,6 +520,16 @@ await test("article read-through copy does not reuse category templates", async 
       title: "Copper demand rises as AI data-center spending lifts metals",
       link: "https://www.cnbc.com/2026/05/04/copper-ai-data-center-metals.html",
       summary: "Copper, aluminium and steel sentiment improved as data-center demand supported metal prices."
+    },
+    {
+      title: "UK GDP growth beats forecasts as services recover",
+      link: "https://www.cnbc.com/2026/05/04/uk-gdp-growth-services.html",
+      summary: "UK GDP growth and services PMI improved, lifting European risk appetite before Asia opened."
+    },
+    {
+      title: "Global manufacturing PMI lifts factory orders",
+      link: "https://www.cnbc.com/2026/05/04/global-manufacturing-pmi-factory-orders.html",
+      summary: "Global manufacturing PMI and factory orders improved, supporting cyclicals and capex sentiment."
     }
   ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
   const combined = JSON.stringify(articles);
@@ -499,8 +552,10 @@ await test("article read-through copy does not reuse category templates", async 
   const tariff = articles.find((article) => /Tariff risk/i.test(article.headline));
   const policy = articles.find((article) => /SEBI changes/i.test(article.headline));
   const copper = articles.find((article) => /Copper demand/i.test(article.headline));
+  const ukGdp = articles.find((article) => /UK GDP/i.test(article.headline));
+  const manufacturing = articles.find((article) => /Global manufacturing/i.test(article.headline));
 
-  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff && policy && copper, "mocked source set should retain all article-specific cases");
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff && policy && copper && ukGdp && manufacturing, "mocked source set should retain all article-specific cases");
   assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
@@ -541,6 +596,10 @@ await test("article read-through copy does not reuse category templates", async 
   assert.doesNotMatch(policy.indiaImpact, /global-only|macro checklist/i);
   assert.equal(copper.entityName, "Nifty Metal");
   assert.match(copper.indiaImpact, /Nifty Metal|capital-goods|Bank Nifty/i);
+  assert.match(ukGdp.indiaImpact, /IT exporters|autos|pharma exporters|USD\/INR|Bank Nifty/i);
+  assert.doesNotMatch(ukGdp.indiaImpact, /Nifty can open firmer/i);
+  assert.match(manufacturing.indiaImpact, /Nifty Metal|capital goods|exporters|banks/i);
+  assert.doesNotMatch(manufacturing.indiaImpact, /Nifty can open firmer/i);
 });
 
 await test("public source selection excludes no-direct India stories when direct reads are available", () => {

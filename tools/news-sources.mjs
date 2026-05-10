@@ -351,6 +351,12 @@ function articleReadthroughTemplateSignature(article) {
     if (/\b(fed|powell|fomc)\b/.test(lower)) return "rates:fed";
     return "rates:general";
   }
+  if (/\b(earnings|revenue|profit|profits|guidance|results?|outlook|margin|margins)\b/.test(lower)) {
+    if (/\b(apple|amazon|meta|alphabet|google|microsoft|nvidia|big tech|faang|mega-cap|mag.?7)\b/.test(lower)) return "earnings:megacap";
+    if (/\b(infosys|tcs|wipro|hcltech|tech mahindra|reliance|hdfc bank|icici bank|axis bank|sbi|kotak|bajaj finance|maruti|tata motors|airtel|larsen|ltimindtree)\b/.test(lower)) return "earnings:india";
+    if (/\b(bank|banks|banking|financial|financials|credit|deposit|loan|nbfc|jpmorgan|goldman|morgan stanley|citigroup|wells fargo)\b/.test(lower)) return "earnings:financial";
+    return "earnings:general";
+  }
   return "";
 }
 
@@ -1129,6 +1135,38 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       watchFor: "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range."
     };
   }
+  if (/\b(us|u\.s\.|america|american)\b.*\b(consumer spending|retail sales|consumer confidence|personal consumption|discretionary demand)\b|\b(consumer spending|retail sales|consumer confidence|personal consumption)\b.*\b(us|u\.s\.|america|american)\b/.test(text)) {
+    return {
+      takeaway: "US consumer demand is a global risk cue; India needs local consumption and lender breadth before it becomes domestic evidence.",
+      whyItMatters: "Retail spending can support global cyclicals, but Indian traders should separate exporter sentiment from FMCG, autos and retail lenders.",
+      indiaImpact: "FMCG, autos, discretionary names and retail lenders are the India checks; broad Nifty conviction still needs Bank Nifty.",
+      watchFor: "Watch FMCG, auto and retail-lender breadth with Bank Nifty VWAP after the first range."
+    };
+  }
+  if (/\b(uk|britain|eurozone|europe|germany|france)\b.*\b(gdp|growth|pmi|services|manufacturing|industrial production)\b|\b(gdp|pmi|services|manufacturing|industrial production)\b.*\b(uk|britain|eurozone|europe|germany|france)\b/.test(text)) {
+    return {
+      takeaway: "European growth data is export-demand context, not a standalone India index signal.",
+      whyItMatters: "A stronger Europe can support risk appetite and exporters, but India still needs currency, IT and sector breadth to confirm.",
+      indiaImpact: "IT exporters, autos, pharma exporters and USD/INR are the India checks; Bank Nifty decides index follow-through.",
+      watchFor: "Watch Nifty IT, pharma exporters, USD/INR and Bank Nifty VWAP after the open."
+    };
+  }
+  if (/\b(global|us|u\.s\.|china|asia)\b.*\b(pmi|manufacturing|factory orders|industrial production|capex)\b|\b(pmi|manufacturing|factory orders|industrial production|capex)\b.*\b(global|us|u\.s\.|china|asia)\b/.test(text)) {
+    return {
+      takeaway: "manufacturing data is a cyclicals check; India needs sector breadth before the macro print has trading weight.",
+      whyItMatters: "Factory and capex data can move metals, capital goods and exporters differently, so the index read needs sector confirmation.",
+      indiaImpact: "Nifty Metal, capital goods, autos and exporters are the checks; broad Nifty needs banks to join.",
+      watchFor: "Watch metals, capital goods, exporters and Bank Nifty VWAP through 9:45 AM."
+    };
+  }
+  if (/\b(deficit|fiscal|treasury borrowing|debt ceiling|sovereign debt|bond supply)\b/.test(text)) {
+    return {
+      takeaway: "fiscal stress is a yield and currency risk cue before it is an equity signal.",
+      whyItMatters: "Debt and deficit stories matter for India only if yields, DXY or USD/INR tighten financial conditions.",
+      indiaImpact: "Bank Nifty, rate-sensitive sectors and USD/INR are the direct checks; avoid broad bias if yields stay calm.",
+      watchFor: "Watch US yields, DXY, USD/INR and Bank Nifty VWAP before assigning risk-off weight."
+    };
+  }
   if (/\b(consumer|retail sales?|spending|sentiment|discretionary|fmcg|rural demand)\b/.test(text)) {
     return {
       takeaway: "consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
@@ -1167,6 +1205,22 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       whyItMatters: "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
       indiaImpact: "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
       watchFor: "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read."
+    };
+  }
+  if (category === "macro_negative") {
+    return {
+      takeaway: "macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
+      whyItMatters: "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
+      indiaImpact: "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
+      watchFor: "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off."
+    };
+  }
+  if (category === "sector_positive") {
+    return {
+      takeaway: "sector support needs Indian peer breadth before it earns index weight.",
+      whyItMatters: "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
+      indiaImpact: `${entityName} needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.`,
+      watchFor: `Watch ${entityName} peer breadth and Bank Nifty VWAP through the first range.`
     };
   }
   if (category === "sector_negative") {
