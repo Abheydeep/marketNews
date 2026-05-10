@@ -291,6 +291,10 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     headline: "How to invest for passive income with dividend stocks",
     summary: "Personal-finance advice framed as market content."
   }), false, "personal-finance investing advice should stay out of the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Israel-Iran military conflict escalates before Asia opens",
+    summary: "Military strikes and sanctions risk kept investors focused on safe-haven demand."
+  }), true, "pure geopolitical escalation should remain eligible as a market risk source");
   const normalizationFeed = {
     sourceId: "cnbc-world",
     sourceName: "CNBC World",
@@ -530,6 +534,11 @@ await test("article read-through copy does not reuse category templates", async 
       title: "Global manufacturing PMI lifts factory orders",
       link: "https://www.cnbc.com/2026/05/04/global-manufacturing-pmi-factory-orders.html",
       summary: "Global manufacturing PMI and factory orders improved, supporting cyclicals and capex sentiment."
+    },
+    {
+      title: "Israel-Iran military conflict escalates before Asia opens",
+      link: "https://www.cnbc.com/2026/05/04/israel-iran-military-conflict-asia.html",
+      summary: "Military strikes and sanctions risk kept investors focused on safe-haven demand before Asian markets opened."
     }
   ].map((item) => normalizeLiveArticle("2026-05-04", feed, item));
   const combined = JSON.stringify(articles);
@@ -554,8 +563,9 @@ await test("article read-through copy does not reuse category templates", async 
   const copper = articles.find((article) => /Copper demand/i.test(article.headline));
   const ukGdp = articles.find((article) => /UK GDP/i.test(article.headline));
   const manufacturing = articles.find((article) => /Global manufacturing/i.test(article.headline));
+  const geopolitics = articles.find((article) => /Israel-Iran military/i.test(article.headline));
 
-  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff && policy && copper && ukGdp && manufacturing, "mocked source set should retain all article-specific cases");
+  assert.ok(keystone && opec && blueOwl && boe && supercar && alphabet && jobs && carvana && boom && consumer && options && giftNifty && tariff && policy && copper && ukGdp && manufacturing && geopolitics, "mocked source set should retain all article-specific cases");
   assert.notEqual(keystone.indiaImpact, opec.indiaImpact, "oil-adjacent stories need distinct India reads");
   assert.notEqual(keystone.watchFor, opec.watchFor, "oil-adjacent stories need distinct watch fields");
   assert.match(keystone.indiaImpact, /pipeline|Brent|OMCs/i);
@@ -600,6 +610,10 @@ await test("article read-through copy does not reuse category templates", async 
   assert.doesNotMatch(ukGdp.indiaImpact, /Nifty can open firmer/i);
   assert.match(manufacturing.indiaImpact, /Nifty Metal|capital goods|exporters|banks/i);
   assert.doesNotMatch(manufacturing.indiaImpact, /Nifty can open firmer/i);
+  assert.equal(geopolitics.entityName, "Geopolitical risk");
+  assert.equal(geopolitics.category, "global_risk");
+  assert.match(geopolitics.indiaImpact, /Brent crude|USD\/INR|gold|FII/i);
+  assert.doesNotMatch(geopolitics.takeaway, /mixed global cues|confirmation mode/i);
 });
 
 await test("public source selection excludes no-direct India stories when direct reads are available", () => {

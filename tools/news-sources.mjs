@@ -6,9 +6,9 @@ export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 const MIN_VERIFIED_ARTICLES = 3;
 const MIN_SOURCE_CATEGORY_BUCKETS = 2;
 const MAX_DUPLICATE_WITH_PREVIOUS_PERCENT = 55;
-const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|mpc|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|finance ministry|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
-const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|mpc|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
-const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|mpc|gst|sebi|pli|budget|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
+const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|equity|equities|nifty|sensex|bank|banks|banking|yield|yields|bond|bonds|rate|rates|fed|rbi|mpc|inflation|deficit|rupee|dollar|currency|forex|oil|crude|brent|gold|commodity|commodities|futures|nasdaq|dow|s&p|wall street|asia|china|japan|korea|taiwan|hk|hong kong|berkshire|buffett|earnings|revenue|profit|margin|guidance|tariff|trade|export|import|gdp|economy|economic|liquidity|fund|funds|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|finance ministry|war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz|semiconductor|ai|tech|it|software|airline|airlines|energy|power|auto|autos|realty|metal|metals|pharma|fmcg|consumer)\b/i;
+const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|mpc|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
+const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|mpc|gst|sebi|pli|budget|war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
 const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|celebrity|movie|sports|football|baseball|recipe|travel|museum|gallery|exhibition|polls?|election|campaign|senate|house of representatives)\b/i;
 const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
@@ -383,6 +383,7 @@ function articleEntityMatchesText(entityName, lower) {
   const checks = [
     [/nifty open/, /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/],
     [/options tape/, /\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/],
+    [/geopolitical risk/, /\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/],
     [/india policy/, /\b(gst|sebi|pli|production[-\s]?linked incentive|budget|finance ministry|mpc|monetary policy committee)\b/],
     [/fii\/dii flow/, /\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/],
     [/bank nifty/, /\b(bank|banks|banking|credit|deposit|loan|nbfc|financial|rbi|mpc|repo rate|liquidity)\b/],
@@ -756,6 +757,9 @@ function categoryFromText(text, fallback) {
   if (isOilStory(value)) {
     return "global_risk";
   }
+  if (isGeopoliticalRiskStory(value)) {
+    return "global_risk";
+  }
   if (/(oil|crude|war|geopolitical|tariff|yen|dollar|currency|risk|volatility)/.test(value)) {
     return "global_risk";
   }
@@ -802,6 +806,10 @@ function isIndiaPolicyStory(value) {
     return false;
   }
   return /\b(gst|goods and services tax|sebi|pli|production[-\s]?linked incentive|union budget|india budget|budget 2026|finance ministry|ministry of finance|mpc|monetary policy committee|rbi policy|securities transaction tax|stt|capital gains tax|tax rule|government capex|disinvestment|psu divestment)\b/.test(lower);
+}
+
+function isGeopoliticalRiskStory(value) {
+  return /\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz)\b/.test(String(value || ""));
 }
 
 function articleIsFreshForDigest(article, digestDate) {
@@ -1063,6 +1071,14 @@ function watchForFromArticle(headline, summary, category, entityName) {
 
 function thematicFallbackReadthrough(lower, category, entityName) {
   const text = String(lower || "");
+  if (isGeopoliticalRiskStory(text)) {
+    return {
+      takeaway: "geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
+      whyItMatters: "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
+      indiaImpact: "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
+      watchFor: "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open."
+    };
+  }
   if (isIndiaPolicyStory(text)) {
     return {
       takeaway: "India policy is a direct domestic catalyst; map the rule change to banks, consumption, exporters or listed sectors before trading it.",
@@ -1611,6 +1627,12 @@ function entityForHeadline(headline, category) {
   if (/\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(lower)) {
     return "Options tape";
   }
+  if (isIndiaEnergyStory(lower)) {
+    return "India Energy";
+  }
+  if (isGeopoliticalRiskStory(lower)) {
+    return "Geopolitical risk";
+  }
   if (isIndiaPolicyStory(lower)) {
     return "India policy";
   }
@@ -1643,9 +1665,6 @@ function entityForHeadline(headline, category) {
   }
   if (/\b(yields?|bonds?|rates?|fed|inflation|powell)\b/.test(lower)) {
     return "Rates";
-  }
-  if (isIndiaEnergyStory(lower)) {
-    return "India Energy";
   }
   if (isOilStory(lower)) {
     return "Brent Crude";

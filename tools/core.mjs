@@ -1226,6 +1226,7 @@ function marketLeadScore(article) {
   let score = 0;
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(text)) score += 9;
   if (/\b(crude|oil|brent|strait of hormuz)\b/.test(text)) score += 8;
+  if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) score += 8;
   if (/\b(yield|bond|fed|rate|inflation)\b/.test(text)) score += 7;
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) score += 7;
   if (/\b(opec|production|output cut|output boost)\b/.test(text)) score += 7;
@@ -1296,6 +1297,7 @@ function specificWatchItem(article) {
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "US jobs-week positioning and Nasdaq futures before India opens; a weak risk tape keeps Nifty in confirmation mode.";
   if (/\b(opec|production|output)\b/.test(headline)) return "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks.";
   if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
+  if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(headline)) return "Brent, USD/INR, gold and FII flow at the open; geopolitics needs risk-off confirmation before it becomes an index bias.";
   if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|mpc|stt|capital gains tax)\b/.test(headline)) return "Affected-sector breadth, Bank Nifty VWAP and official circular follow-through; policy stories need sector confirmation.";
   if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
   if (/\b(dollar|rupee|currency|yen|usd.?inr|forex|dxy)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
@@ -1347,6 +1349,9 @@ function editorialLeadSentence(article) {
   }
   if (/\b(crude|oil|brent)\b/.test(text)) {
     return "Crude remains the key transmission line for import costs, aviation fuel, OMC margins and inflation expectations";
+  }
+  if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) {
+    return "Geopolitical escalation is a risk-off cue that India must verify through crude, gold, USD/INR, FII flow and breadth";
   }
   if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|budget|stt|capital gains tax)\b/.test(text)) {
     return "India policy is a direct domestic catalyst; affected sectors need breadth confirmation before the index inherits it";
@@ -1406,6 +1411,9 @@ function editorialBecause(article) {
   }
   if (/\b(crude|oil|brent)\b/.test(text)) {
     return "Brent direction decides whether import-cost pressure or margin relief leads the India open";
+  }
+  if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) {
+    return "geopolitical escalation travels through crude, gold, USD/INR and FII risk appetite before equities";
   }
   if (/\b(rbi|repo rate|monetary policy|liquidity|g-sec|gsec|government bond|mpc)\b/.test(text)) {
     return "RBI and local liquidity cues travel first through Bank Nifty, NBFCs, realty and autos";
