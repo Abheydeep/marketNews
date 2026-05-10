@@ -10,10 +10,11 @@ const MARKET_RELEVANCE_PATTERN = /\b(market|markets|stock|stocks|share|shares|eq
 const STRICT_MARKET_RELEVANCE_PATTERN = /\b(markets?|stocks?|shares?|equities|indices|nifty|sensex|bank\s+nifty|yields?|bonds?|rates?|fed|rbi|mpc|inflation|rupee|dollar|currency|forex|oil|crude|brent|gold|commodit(?:y|ies)|futures|nasdaq|dow|s&p|wall street|earnings|revenue|profit|margin|guidance|tariff|trade|exports?|imports?|gdp|econom(?:y|ic)|liquidity|mutual|sip|fii|dii|capex|manufacturing|gst|sebi|pli|budget|war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz|semiconductor|software|airlines?|energy|power|autos?|realty|metals?|pharma|fmcg|valuation|volatility|options?)\b/i;
 const DIRECT_MARKET_MOVING_PATTERN = /\b(stocks?|shares?|listed|publicly traded|market cap|earnings|revenue|profit|guidance|ipo|bonds?|yields?|rates?|tariff|oil|crude|brent|inflation|fed|rbi|mpc|gst|sebi|pli|budget|war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz|rupee|dollar|futures|wall street|nasdaq|s&p|dow)\b/i;
 const OFF_TOPIC_WITHOUT_MARKET_PATTERN = /\b(assassination|murder|suicide|crime|celebrity|movie|sports|football|baseball|recipe|travel|museum|gallery|exhibition|polls?|election|campaign|senate|house of representatives)\b/i;
-const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
+const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|mlb|yankees|mariano rivera|salary cap|sports capital|prediction market platforms?|netflix|hair loss|weight loss)\b/i;
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
-const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|how to invest|best etf|dividend stock|passive income|bitcoin|crypto|nft|defi|web3|blockchain wallet|us housing|home prices|mortgage rates|real estate agent|debt ceiling|government shutdown|us budget|senate vote|warren buffett quotes?|charlie munger|munger|greg abel|berkshire|chipotle|paypal|venmo|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|world['’]s oldest doctor|long, happy life|happy life|longevity|wellness|all my patients|youtube whisperers?|mrbeast|million-dollar channels?|creator economy|content creators?|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
+const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|best artificial intelligence .*growth stocks|ai growth stocks|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|how to invest|is this a good time to invest|good time to invest|best etf|dividend stock|passive income|bitcoin|crypto|nft|defi|web3|blockchain wallet|us housing|home prices|mortgage rates|real estate agent|homebuilders staying asset-light|millrose|clean harbors|pfas momentum|debt ceiling|government shutdown|us budget|senate vote|warren buffett quotes?|charlie munger|munger|greg abel|berkshire|chipotle|paypal|venmo|dunkin|inspire brands|arby's|buffalo wild wings|baskin robbins|sonic drive-in|restaurant company owns|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|prior authorization|doctors say|us health provider|world['’]s oldest doctor|long, happy life|happy life|longevity|wellness|all my patients|youtube whisperers?|mrbeast|million-dollar channels?|creator economy|content creators?|jim cramer|investing club subscribers|start buying .*winners|red-hot ai stocks|claude has feelings|claude to be conscious|large language model .*conscious|mythos|cybersecurity hysteria|fitness wearable|whoop|on-demand clinician|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
+const LOW_SIGNAL_LIVE_HEADLINE_PATTERN = /\b(too late to buy|should you buy|post-earnings dip|12-month gain|trump['’]s? .*gold card|gold card.*wealthy|world['’]s wealthy|wealthy investors|qualified small business stock|qsbs|tax break for wealthy|trump accounts?|buy a dell|fanduel|sports betting|data center outage hits trading|coinbase|maintains buy rating|upgrades .* stock|downgrades .* stock|raises pt|lowers pt|initiates coverage|price target|analyst rating|stocks? to buy|unstoppable stocks? to buy|top .*stock pick|cathie wood|most undervalued .*stock|high quality stock|wall street bullish on|legendary investor|negative 10-year returns|family office deal-making|best cd rates|cd rates today|apy|high-yield savings|savings interest rates|mortgage and refinance|refinance interest rates|heloc|home equity loan|home equity rates|gold and silver prices today|wearable patches?|supplement industry|lactose intolerance patch|barri[eè]re|restaurant brands international|burger king|qsr q[1-4]|apollo ceo|rival insurers|stock lagging the s&p|real estate fund made .* bet|inventrust)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -516,6 +517,11 @@ function articleEntityMatchesText(entityName, lower) {
     [/options tape/, /\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/],
     [/geopolitical risk/, /\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/],
     [/india policy/, /\b(gst|sebi|pli|production[-\s]?linked incentive|budget|finance ministry|mpc|monetary policy committee)\b/],
+    [/market infrastructure/, /\b(mcx|multi commodity exchange|commodity exchange|exchange revenue|trading volume|clearing corporation)\b/],
+    [/infrastructure/, /\b(arisinfra|infra solutions|construction materials|building materials|cement demand|roads?|highways?|infrastructure (?:orders?|capex|projects?|earnings|revenue))\b/],
+    [/fuel inflation/, /\b(gas prices|fuel prices|petrol|diesel|gasoline)\b/],
+    [/telecom/, /\b(vodafone idea|vodafone|bharti airtel|airtel|jio|telecom|telco|spectrum|average revenue per user|arpu)\b/],
+    [/corporate actions/, /\b(corporate actions?|bonus issues?|stock splits?|split shares?|dividends?|ex-date|ex date|record date|buyback|rights issue)\b/],
     [/fii\/dii flow/, /\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/],
     [/bank nifty/, /\b(bank|banks|banking|credit|deposit|loan|nbfc|financial|rbi|mpc|repo rate|liquidity)\b/],
     [/nifty 50/, /\b(nifty|sensex|indian equities|india stocks?)\b/],
@@ -679,6 +685,15 @@ export function articleLooksMarketRelevant(article) {
   if (LOW_SIGNAL_MARKET_CONTENT_PATTERN.test(text)) {
     return false;
   }
+  if (LOW_SIGNAL_LIVE_HEADLINE_PATTERN.test(text)) {
+    return false;
+  }
+  if (isLowRelevanceUsSingleStockStory(text)) {
+    return false;
+  }
+  if (isGenericEarningsCallSummary(text) && !isImportantEarningsStory(text)) {
+    return false;
+  }
   if (isWeakNeutralVolatileArticle(article, text)) {
     return false;
   }
@@ -696,7 +711,10 @@ function isWeakNeutralVolatileArticle(article, text) {
 function hasSpecificMarketDriverText(value) {
   const text = String(value || "").toLowerCase();
   if (isPrivateMarketStory(text) || isIndiaEnergyStory(text) || isOilStory(text) ||
-      isGeopoliticalRiskStory(text) || isIndiaPolicyStory(text) || isTradePolicyStory(text)) {
+      isGeopoliticalRiskStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
+      isIndiaInfrastructureStory(text) || isFuelInflationStory(text) ||
+      isIndiaTelecomStory(text) || isCorporateActionStory(text) ||
+      isTradePolicyStory(text)) {
     return true;
   }
   return /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance|fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|rbi|repo rate|monetary policy|liquidity|g-sec|gsec|monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er|ipo|listing|primary market|new issue|china|hong kong|shanghai|beijing|yuan|pboc|metal|metals|steel|copper|aluminium|aluminum|iron ore|consumer spending|retail sales|consumer confidence|personal consumption|pmi|manufacturing|factory orders|industrial production|capex|deficit|fiscal|treasury borrowing|sovereign debt|bond supply)\b/.test(text);
@@ -946,7 +964,15 @@ function isPrivateMarketStory(value) {
 }
 
 function isLowRelevanceUsSingleStockStory(value) {
-  return /\b(carvana|used car retailer|used cars?|chipotle|paypal|venmo|netflix|paramount|hollywood|streaming wars?|plane tickets?|air travelers?|medical appointments?|patients who died|obesity assets?|glp-?1|wegovy)\b/.test(String(value || ""));
+  return /\b(carvana|used car retailer|used cars?|chipotle|paypal|venmo|netflix|paramount|hollywood|streaming wars?|disney|peloton|mcdonald['’]?s?|grindr|grove collaborative|plane tickets?|air travelers?|medical appointments?|patients who died|obesity assets?|glp-?1|wegovy)\b/i.test(String(value || ""));
+}
+
+function isGenericEarningsCallSummary(value) {
+  return /\bq[1-4]\s+earnings call highlights\b/i.test(String(value || ""));
+}
+
+function isImportantEarningsStory(value) {
+  return /\b(apple|amazon|meta|alphabet|google|microsoft|nvidia|big tech|faang|mega-cap|mag.?7|infosys|tcs|wipro|hcltech|tech mahindra|reliance|hdfc bank|icici bank|axis bank|sbi|kotak|bajaj finance|maruti|tata motors|airtel|larsen|ltimindtree|mcx|bank|banks|banking|financial|financials|credit|deposit|loan|nbfc)\b/i.test(String(value || ""));
 }
 
 function isTradePolicyStory(value) {
@@ -967,6 +993,26 @@ function isIndiaPolicyStory(value) {
 
 function isGeopoliticalRiskStory(value) {
   return /\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|ceasefire|border tension|red sea|hormuz)\b/.test(String(value || ""));
+}
+
+function isMarketInfrastructureStory(value) {
+  return /\b(mcx|multi commodity exchange|commodity exchange|exchange revenue|trading volume|clearing corporation|depository|capital-market infrastructure)\b/i.test(String(value || ""));
+}
+
+function isIndiaInfrastructureStory(value) {
+  return /\b(arisinfra|infra solutions|construction materials|building materials|cement demand|roads?|highways?|infrastructure (?:orders?|capex|projects?|earnings|revenue))\b/i.test(String(value || ""));
+}
+
+function isFuelInflationStory(value) {
+  return /\b(gas prices|fuel prices|petrol|diesel|gasoline)\b/i.test(String(value || ""));
+}
+
+function isIndiaTelecomStory(value) {
+  return /\b(vodafone idea|vodafone|bharti airtel|airtel|jio|telecom|telco|spectrum|average revenue per user|arpu)\b/i.test(String(value || ""));
+}
+
+function isCorporateActionStory(value) {
+  return /\b(corporate actions?|bonus issues?|stock splits?|split shares?|dividends?|ex-date|ex date|record date|turning ex-date|buyback|rights issue)\b/.test(String(value || ""));
 }
 
 function articleIsFreshForDigest(article, digestDate) {
@@ -1019,6 +1065,18 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   if (isIndiaPolicyStory(lower) && thematic.takeaway) {
     return compactWords(`${fact}; ${thematic.takeaway}`, 35);
   }
+  if (isFuelInflationStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
+  if (isIndiaInfrastructureStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
+  if (isIndiaTelecomStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
+  if (isMarketInfrastructureStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
   if (isOilStory(lower)) {
     return compactWords(`${fact}; ${oilReadthrough(lower).takeaway}`, 35);
   }
@@ -1065,6 +1123,21 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
     return "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.";
   }
   if (isIndiaPolicyStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
+  if (isFuelInflationStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
+  if (isIndiaInfrastructureStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
+  if (isIndiaTelecomStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
+  if (isMarketInfrastructureStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
+  }
+  if (isCorporateActionStory(lower) && thematic.whyItMatters) {
     return thematic.whyItMatters;
   }
   if (isOilStory(lower)) {
@@ -1119,6 +1192,21 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
     return "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.";
   }
   if (isIndiaPolicyStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
+  if (isFuelInflationStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
+  if (isIndiaInfrastructureStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
+  if (isIndiaTelecomStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
+  if (isMarketInfrastructureStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
+  }
+  if (isCorporateActionStory(lower) && thematic.indiaImpact) {
     return thematic.indiaImpact;
   }
   if (isOilStory(lower)) {
@@ -1193,6 +1281,21 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isIndiaPolicyStory(lower) && thematic.watchFor) {
     return thematic.watchFor;
   }
+  if (isFuelInflationStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
+  if (isIndiaInfrastructureStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
+  if (isIndiaTelecomStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
+  if (isMarketInfrastructureStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
+  if (isCorporateActionStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
   if (isOilStory(lower)) {
     return oilReadthrough(lower).watchFor;
   }
@@ -1216,6 +1319,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
   }
   if (/\b(apple|iphone|mac|big tech|faang)\b/.test(lower)) {
     return "Watch Nasdaq futures, USD/INR and Nifty IT breadth together; Apple alone is not a local trade trigger.";
+  }
+  if (/\b(airline|airlines|spirit|travel|jet fuel)\b/.test(lower)) {
+    return aviationReadthrough(lower).watchFor;
   }
   if (isTradePolicyStory(lower)) {
     return "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.";
@@ -1242,6 +1348,22 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       whyItMatters: "GST, SEBI, PLI, Budget and MPC signals can change sector earnings, liquidity or positioning before global cues matter.",
       indiaImpact: "Direct India read-through: Bank Nifty, affected sectors and listed beneficiaries need breadth confirmation after the first range.",
       watchFor: "Watch affected-sector breadth, Bank Nifty VWAP and official follow-up circulars through the first range."
+    };
+  }
+  if (isFuelInflationStory(text)) {
+    return {
+      takeaway: "fuel inflation is a margin and consumption pressure cue, not a standalone index signal.",
+      whyItMatters: "Higher petrol, diesel or gasoline pressure travels to India through inflation expectations, OMCs, aviation, tyres and consumer demand.",
+      indiaImpact: "Watch OMCs, aviation, tyres, paints and consumer breadth; broad Nifty pressure needs USD/INR and Bank Nifty confirmation.",
+      watchFor: "Watch Brent, USD/INR and fuel-sensitive sector breadth after the open."
+    };
+  }
+  if (isIndiaInfrastructureStory(text)) {
+    return {
+      takeaway: "infrastructure earnings are stock-specific domestic demand evidence before they become an index cue.",
+      whyItMatters: "Infrastructure and building-material names can show capex demand, but the read-through needs peer breadth and order-book confirmation.",
+      indiaImpact: "Watch infrastructure, cement, capital-goods and construction-material peers; broad Nifty needs Bank Nifty and breadth confirmation.",
+      watchFor: "Watch infra peer breadth, cement/capital-goods participation and Bank Nifty VWAP after the open."
     };
   }
   if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|cash market flow)\b/.test(text)) {
@@ -1274,6 +1396,30 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       whyItMatters: "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
       indiaImpact: "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
       watchFor: "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on."
+    };
+  }
+  if (isIndiaTelecomStory(text)) {
+    return {
+      takeaway: "telecom capital and stake stories are sector-specific India catalysts, not broad-index signals by themselves.",
+      whyItMatters: "Telecom funding, ARPU and balance-sheet changes can move Vodafone Idea, Bharti Airtel and related lenders without deciding Nifty direction.",
+      indiaImpact: "Watch Vodafone Idea, Bharti Airtel, telecom peers and lender exposure; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
+      watchFor: "Watch telecom peer breadth, Vodafone Idea volume and Bank Nifty VWAP after the open."
+    };
+  }
+  if (isMarketInfrastructureStory(text)) {
+    return {
+      takeaway: "market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves.",
+      whyItMatters: "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
+      indiaImpact: "Watch MCX, exchanges, brokers and capital-market infrastructure peers; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
+      watchFor: "Watch MCX volume reaction, broker/exchange peer breadth and Bank Nifty VWAP after the open."
+    };
+  }
+  if (isCorporateActionStory(text)) {
+    return {
+      takeaway: "corporate actions are stock-specific flow triggers; they do not become an index signal without sector breadth.",
+      whyItMatters: "Bonus issues, splits, dividends and ex-dates can move individual counters, but the morning index read still needs breadth.",
+      indiaImpact: "Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate confirmation.",
+      watchFor: "Watch ex-date names, delivery volume and sector peer breadth after the open; avoid turning one corporate action into an index trade."
     };
   }
   if (/\b(china|hong kong|shanghai|beijing|yuan|pboc|property stimulus)\b/.test(text)) {
@@ -1781,6 +1927,15 @@ function entityForHeadline(headline, category) {
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(lower)) {
     return "Nifty Open";
   }
+  if (isMarketInfrastructureStory(lower)) {
+    return "Market infrastructure";
+  }
+  if (isIndiaInfrastructureStory(lower)) {
+    return "Infrastructure";
+  }
+  if (isFuelInflationStory(lower)) {
+    return "Fuel inflation";
+  }
   if (/\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(lower)) {
     return "Options tape";
   }
@@ -1792,6 +1947,12 @@ function entityForHeadline(headline, category) {
   }
   if (isIndiaPolicyStory(lower)) {
     return "India policy";
+  }
+  if (isIndiaTelecomStory(lower)) {
+    return "Telecom";
+  }
+  if (isCorporateActionStory(lower)) {
+    return "Corporate actions";
   }
   if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/.test(lower)) {
     return "FII/DII flow";

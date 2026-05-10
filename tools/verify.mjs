@@ -300,6 +300,118 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
     summary: "Creator economy advisory content with no listed-company, sector, or India-market transmission."
   }), false, "creator-economy feature stories should not pad the pre-market source stack");
   assert.equal(articleLooksMarketRelevant({
+    headline: "It's not too late to start buying the data center winners. Here's why",
+    summary: "In his Sunday column for Investing Club subscribers, Jim Cramer pushes AI stock picks."
+  }), false, "Cramer/subscriber stock-pick stories should not drive the India pre-market stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "The idea that Claude has feelings is great for Anthropic",
+    summary: "A feature about whether a large language model is conscious."
+  }), false, "AI philosophy/features should not be converted into Nifty IT source cards");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Fitness wearable Whoop to offer on-demand clinician access to U.S. users",
+    summary: "Wearable membership and clinician access story."
+  }), false, "consumer health/wearable feature stories should not pad the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Is this a good time to invest $100,000 in the stock market?",
+    summary: "Personal finance reader advice."
+  }), false, "personal-finance reader advice should not be polished into market context");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Is It Too Late to Buy Advanced Micro Devices Stock After Its 12-Month Gain?",
+    summary: "Generic SEO stock-pick framing with no India pre-open transmission."
+  }), false, "too-late-to-buy single-stock SEO stories should not pad the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Trump's $1 million Gold Card fails to catch on among the world's wealthy",
+    summary: "Immigration and wealth feature story with no market transmission."
+  }), false, "wealth/visa feature stories should not become market source cards");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "States crack down on tax break for wealthy investors",
+    summary: "QSBS and wealthy-investor tax planning."
+  }), false, "personal wealth-tax stories should not enter the pre-market stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Dell family gave $6.25B to Trump Accounts",
+    summary: "Wealth and political-account story with no listed market driver."
+  }), false, "political wealth-account features should not enter the pre-market stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "AWS data center outage hits trading on FanDuel, Coinbase",
+    summary: "Sports betting and crypto platforms saw service disruption."
+  }), false, "sports-betting and crypto outage stories should not become India market cards");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Grove Collaborative Q1 Earnings Call Highlights",
+    summary: "Generated transcript summary for a US single-stock earnings call."
+  }), false, "generic Yahoo earnings-call summaries should not pad the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Peloton stock rises as higher subscription prices help profitable quarter",
+    summary: "US consumer subscription company earnings."
+  }), false, "low-relevance US consumer single-stock stories should not pad the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Bank of America Upgrades Ulta Beauty Stock",
+    summary: "A US analyst-rating headline for a cosmetics retailer."
+  }), false, "generic US analyst-rating stories should not be mistaken for Bank Nifty context");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Why One Real Estate Fund Made a Bet on InvenTrust Properties",
+    summary: "US real estate fund commentary about one REIT lagging the S&P 500."
+  }), false, "US real-estate fund stock-pick stories should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Here’s Why Devon Energy Is One of the Most Undervalued High Quality Stock",
+    summary: "Yahoo-style single-stock valuation article."
+  }), false, "single-stock valuation SEO stories should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Wall Street Bullish on Newmont Corporation",
+    summary: "Analyst sentiment on one US-listed miner."
+  }), false, "generic Wall Street bullish stock-pick stories should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Legendary investor says investors could see negative 10-year returns",
+    summary: "Opinion article about long-term market returns."
+  }), false, "long-term investor opinion pieces should not enter the pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Disney pops after streaming and parks drive revenue beat",
+    summary: "US media company earnings."
+  }), false, "low-relevance US media single-stock stories should not pad the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Best CD rates today, May 10, 2026: lock in up to 4% APY",
+    summary: "Personal-finance banking rates page."
+  }), false, "personal-finance rates pages should not enter the pre-market stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Should You Buy CoreWeave on Post-Earnings Dip?",
+    summary: "Single-stock buy-now article."
+  }), false, "single-stock should-you-buy articles should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Why Amazon is a Top AI Stock Pick of Cathie Wood",
+    summary: "Celebrity investor stock-pick article."
+  }), false, "celebrity investor stock-pick articles should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "HELOC and home equity loan rates today: Home equity rates tie 2026-low",
+    summary: "Personal-finance mortgage-rate page."
+  }), false, "personal-finance mortgage and HELOC pages should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Gold and silver prices today: Prices headed for weekly gains",
+    summary: "Personal-finance precious-metals quote page."
+  }), false, "personal-finance gold/silver quote pages should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Wearable patches: How Barriere is trying to disrupt the supplement industry",
+    summary: "Lactose intolerance patch retail launch."
+  }), false, "wellness-commerce stories should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Restaurant Brands International earnings top estimates, fueled by Burger King turnaround",
+    summary: "QSR restaurant earnings story."
+  }), false, "US restaurant earnings should not enter the India pre-market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Apollo CEO warns of market correction and slams rival insurers",
+    summary: "Private equity CEO commentary about rival insurers."
+  }), false, "generic executive market-correction commentary should not enter the source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Yankees legend Mariano Rivera says he supports an MLB salary cap",
+    summary: "Sports business commentary."
+  }), false, "sports business stories should not enter the market source stack");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Bonus issues, stock splits and dividends: SBI among stocks turning ex-date this week",
+    summary: "Indian listed companies have record dates and corporate actions this week."
+  }), true, "India corporate-action calendars should remain eligible as stock-specific catalysts");
+  assert.equal(articleLooksMarketRelevant({
+    headline: "Infosys Q1 Earnings Call Highlights",
+    summary: "Indian IT services margin and guidance commentary."
+  }), true, "important India earnings-call summaries should remain eligible");
+  assert.equal(articleLooksMarketRelevant({
     headline: "Corporate governance newsletter discusses CEO culture and investor relations",
     summary: "Company commentary with no market data, sector read-through, price signal, or policy catalyst."
   }), false, "weak neutral corporate commentary should not reach the neutral_volatile fallback");
@@ -335,6 +447,53 @@ await test("live news pipeline accepts mocked CNBC and Moneycontrol article feed
   });
   assert.equal(treasury.entityName, "Rates");
   assert.doesNotMatch(treasury.indiaImpact, /^No direct India read-through/);
+  const corporateAction = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Bonus issues, stock splits and dividends: SBI among stocks turning ex-date this week",
+    link: "https://www.moneycontrol.com/news/business/markets/bonus-issues-stock-splits-dividends-sbi-ex-date-2026.html",
+    summary: "Indian listed companies have record dates, ex-dates and dividends this week."
+  });
+  assert.equal(corporateAction.entityName, "Corporate actions");
+  assert.match(corporateAction.indiaImpact, /named stocks|sector peers|cash-market volume/i);
+  const marketInfrastructure = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "MCX Q4 Results: PAT soars, revenue triples; dividend announced",
+    link: "https://economictimes.indiatimes.com/markets/stocks/earnings/mcx-q4-results/articleshow/130963666.cms",
+    summary: "Commodity exchange revenue and trading volume improved with market volatility."
+  });
+  assert.equal(marketInfrastructure.entityName, "Market infrastructure");
+  assert.match(marketInfrastructure.indiaImpact, /MCX|exchanges|brokers/i);
+  const telecom = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Vodafone weighs stake transfer to boost India unit capital",
+    link: "https://economictimes.indiatimes.com/markets/stocks/news/vodafone-india-unit-capital/articleshow/130964672.cms",
+    summary: "Vodafone Idea funding and telecom balance sheet context matter for Indian listed peers."
+  });
+  assert.equal(telecom.entityName, "Telecom");
+  assert.match(telecom.indiaImpact, /Vodafone Idea|Bharti Airtel|telecom peers/i);
+  const aviationFuel = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Airlines spent more on jet fuel after Iran war started",
+    link: "https://www.cnbc.com/2026/05/06/airlines-jet-fuel-iran-war.html",
+    summary: "Jet fuel costs rose for airlines after the Iran war."
+  });
+  assert.match(aviationFuel.watchFor, /IndiGo|SpiceJet|fuel|Brent/i);
+  const infrastructure = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Arisinfra Solutions posts FY26 revenue of Rs 1,067 crore",
+    link: "https://economictimes.indiatimes.com/markets/stocks/earnings/arisinfra-solutions-posts-fy26-revenue/articleshow/130963501.cms",
+    summary: "Infrastructure and construction-material demand supported revenue and profit."
+  });
+  assert.equal(infrastructure.entityName, "Infrastructure");
+  assert.match(infrastructure.indiaImpact, /infrastructure|cement|capital-goods/i);
+  const fuelInflation = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Surging gas prices are hitting lower-income households harder",
+    link: "https://www.cnbc.com/2026/05/06/surging-gas-prices-consumers.html",
+    summary: "Fuel prices are pressuring consumer demand."
+  });
+  assert.equal(fuelInflation.entityName, "Fuel inflation");
+  assert.match(fuelInflation.indiaImpact, /OMCs|aviation|tyres|paints/i);
+  const aiInfrastructure = normalizeLiveArticle("2026-05-03", normalizationFeed, {
+    title: "Nvidia embraces role of AI investor across the AI infrastructure stack",
+    link: "https://www.cnbc.com/2026/05/09/nvidia-ai-investor.html",
+    summary: "Nvidia and AI infrastructure spending shaped global technology risk appetite."
+  });
+  assert.equal(aiInfrastructure.entityName, "Global Tech");
 });
 
 await test("live news pipeline can route generic article copy through editorial prompt enrichment", async () => {
