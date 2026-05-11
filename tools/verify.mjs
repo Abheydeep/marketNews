@@ -2002,6 +2002,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
+  assert.ok(workflow.includes("SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}"));
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));

@@ -68,6 +68,8 @@ jobs:
           fi
 
       - name: Publish static archive site
+        env:
+          SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}
         run: |
           npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 07:15
 
