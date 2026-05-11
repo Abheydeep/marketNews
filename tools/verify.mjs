@@ -965,6 +965,39 @@ await test("daily lead uses India view rank and market severity instead of weak 
   assert.match(lead.headline, /Trump rejects Iran|Modi urges fuel/i);
 });
 
+await test("daily lead promotes India authority and move magnitude even without view counts", () => {
+  const stockLiveblog = {
+    headline: "Infosys Share Price Live Updates: Infosys shows strong monthly performance",
+    summary: "Infosys Share Price Live Updates: Infosys shows strong monthly performance.",
+    indiaImpact: "Nifty can open firmer, but Bank Nifty and advance-decline must confirm before the read gets trading weight.",
+    watchFor: "Watch Nifty VWAP.",
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live/liveblog/131002111.cms",
+    category: "macro_positive",
+    entityName: "Market",
+    publishedAt: "2026-05-11T00:30:00.000Z"
+  };
+  const crudeShock = {
+    headline: "Brent crude surges 4.8% after Trump rejects Iran peace proposal",
+    summary: "Oil prices jumped as geopolitical risk rose before the India open.",
+    indiaImpact: "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
+    watchFor: "Watch Brent and USD/INR.",
+    sourceName: "CNBC World",
+    sourceId: "cnbc-world",
+    sourceUrl: "https://www.cnbc.com/2026/05/11/cnbc-daily-open-iran-proposes-trump-opposes-xi-watches.html",
+    category: "global_risk",
+    entityName: "Geopolitical risk",
+    publishedAt: "2026-05-11T00:45:00.000Z"
+  };
+  const lead = dailyLeadForDigest("2026-05-11", [stockLiveblog, crudeShock], {
+    marketSnapshots: []
+  });
+  assert.match(lead.sourceArticleId, /^cnbc-world:/);
+  assert.equal(lead.driverType, "crude");
+  assert.match(lead.headline, /Brent crude surges 4\.8%/i);
+});
+
 await test("premarket publish window blocks stale scheduled runs", () => {
   const onTime = premarketPublishWindowStatus({
     date: "2026-05-11",

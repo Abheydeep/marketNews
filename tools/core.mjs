@@ -1079,8 +1079,10 @@ function indiaSourceScore(article, date) {
   if (["sector_positive", "macro_positive", "sector_negative"].includes(article?.category)) score += 3;
   if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc|it exporters|nifty it)\b/.test(text)) score += 6;
   if (/\b(crude|oil|brent|opec|hormuz|fed|rates?|yields?|inflation|dollar|dxy|usd\/inr|nasdaq|semiconductor|chip|ai)\b/.test(text)) score += 4;
+  if (indiaAuthorityText(text)) score += 10;
   if (crudeGeopoliticalText(text)) score += 8;
   if (indiaFuelForexPolicyText(text)) score += 10;
+  if (marketMoveMagnitudeText(text)) score += 6;
   if (marketwideStressText(text)) score += 7;
   if (isStockLiveblogArticle(article)) score -= hasMarketwideDriverText(text) ? 8 : 16;
   if (isWeakStockListArticle(article)) score -= 8;
@@ -1180,6 +1182,9 @@ function marketDriverSeverityScore(article, marketSnapshots = []) {
     score += 20;
     if (brentMove >= 2) score += 8;
   }
+  if (marketMoveMagnitudeText(text)) {
+    score += 8;
+  }
   if (marketwideStressText(text)) {
     score += 12;
   }
@@ -1216,10 +1221,22 @@ function hasMarketwideDriverText(text) {
     /\b(gift nifty|nifty futures|sensex|bank nifty|fii|dii|rupee|usd\/inr|brent|crude|yield|dxy|inflation|current account)\b/i.test(text);
 }
 
+function indiaAuthorityText(text) {
+  return /\b(modi|narendra modi|pm modi|prime minister modi|indian prime minister|nirmala sitharaman|finance minister|rbi governor|shaktikanta das|sanjay malhotra|pib|press information bureau|ministry of finance|niti aayog|sebi circular|sebi notification|pmo|petroleum minister|hardeep singh puri)\b/i.test(String(text || ""));
+}
+
 function crudeGeopoliticalText(text) {
   const value = String(text || "").toLowerCase();
   return /\b(crude|oil|brent|hormuz|opec|energy supply|supply disruption)\b/.test(value) &&
     /\b(iran|trump|war|military|missile|strike|airstrike|conflict|geopolit|israel|red sea|sanctions|ceasefire|peace proposal|totally unacceptable)\b/.test(value);
+}
+
+function marketMoveMagnitudeText(text) {
+  const value = String(text || "").toLowerCase();
+  const movement = /\b(surge|surges|surged|soar|soars|soared|spike|spikes|spiked|jump|jumps|jumped|crash|crashes|crashed|plunge|plunges|plunged|collapse|collapses|collapsed|slump|slumps|slumped|tumble|tumbles|tumbled)\b/.test(value) ||
+    /\b(?:[3-9](?:\.\d+)?|[1-9]\d+(?:\.\d+)?)%\b/.test(value);
+  const instrument = /\b(crude|oil|brent|nifty|sensex|bank nifty|market|markets|index|rupee|dollar|usd\/inr|dxy|yield|gold)\b/.test(value);
+  return movement && instrument;
 }
 
 function indiaFuelForexPolicyText(text) {
@@ -1394,8 +1411,10 @@ function marketLeadScore(article) {
   if (/\b(semiconductor|chip|chips|sox)\b/.test(text)) score += 5;
   if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) score += 5;
   if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|mpc|stt|capital gains tax)\b/.test(text)) score += 6;
+  if (indiaAuthorityText(text)) score += 8;
   if (/\b(rupee|dollar|currency)\b/.test(text)) score += 4;
   if (/\b(earnings|revenue|profit|guidance|outlook)\b/.test(text)) score += 3;
+  if (marketMoveMagnitudeText(text)) score += 5;
   if (/\b(investigation|legal advice|traveler|tickets|lazy millionaire|retirement|top wall street analysts?|berkshire|greg abel|chipotle|paypal)\b/.test(text)) score -= 8;
   return score;
 }
