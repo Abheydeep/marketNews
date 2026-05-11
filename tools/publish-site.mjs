@@ -540,7 +540,7 @@ function enrichPublicDigest(digest) {
   const themes = verified ? publicThemesForNews(digest.digestDate, news) : (digest.themes ?? []);
   const overallSentiment = verified ? publicWeightedSentiment(news) : digest.overallSentiment;
   const sentimentLabel = verified ? publicLabelFromScore(overallSentiment) : digest.sentimentLabel;
-  const dailyLead = verified ? dailyLeadForDigest(digest.digestDate, news) : digest.dailyLead;
+  const dailyLead = verified ? dailyLeadForDigest(digest.digestDate, news, { marketSnapshots: digest.marketSnapshots ?? [] }) : digest.dailyLead;
   const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead) : digest.title;
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)

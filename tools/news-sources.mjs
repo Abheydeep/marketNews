@@ -109,6 +109,13 @@ const LIVE_FEEDS = [
     url: "https://feeds.content.dowjones.io/public/rss/mw_topstories"
   },
   {
+    sourceName: "The Week Business",
+    sourceId: "the-week-business",
+    type: "html-index",
+    categoryHint: "macro_negative",
+    url: "https://www.theweek.in/wire-updates/business.html"
+  },
+  {
     sourceName: "Moneycontrol Source Page",
     sourceId: "moneycontrol-source-page",
     type: "moneycontrol-source-page",
@@ -215,6 +222,9 @@ export async function fetchLiveNewsArticles(date, options = {}) {
       if (feed.type === "rss") {
         const xml = await fetchText(feed.url, fetcher);
         feedResults.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, feed, item)));
+      } else if (feed.type === "html-index") {
+        const html = await fetchText(feed.url, fetcher);
+        feedResults.push(...parseHtmlIndexItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.type === "moneycontrol-source-page") {
         const html = await fetchText(feed.url, fetcher);
         const moneycontrolFeeds = moneycontrolFeedUrls(html).slice(0, 6);
@@ -711,7 +721,7 @@ function isWeakNeutralVolatileArticle(article, text) {
 function hasSpecificMarketDriverText(value) {
   const text = String(value || "").toLowerCase();
   if (isPrivateMarketStory(text) || isIndiaEnergyStory(text) || isOilStory(text) ||
-      isGeopoliticalRiskStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
+      isGeopoliticalRiskStory(text) || isIndiaFuelForexPolicyStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
       isIndiaInfrastructureStory(text) || isFuelInflationStory(text) ||
       isIndiaTelecomStory(text) || isCorporateActionStory(text) ||
       isTradePolicyStory(text)) {
@@ -917,6 +927,9 @@ function categoryFromText(text, fallback) {
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(value)) {
     return "neutral_volatile";
   }
+  if (isIndiaFuelForexPolicyStory(value)) {
+    return "macro_negative";
+  }
   if (isIndiaPolicyStory(value)) {
     return "macro_positive";
   }
@@ -988,7 +1001,16 @@ function isIndiaPolicyStory(value) {
   if (/\b(us budget|uk budget|federal budget|congressional budget)\b/.test(lower)) {
     return false;
   }
+  if (isIndiaFuelForexPolicyStory(lower)) {
+    return true;
+  }
   return /\b(gst|goods and services tax|sebi|pli|production[-\s]?linked incentive|union budget|india budget|budget 2026|finance ministry|ministry of finance|mpc|monetary policy committee|rbi policy|securities transaction tax|stt|capital gains tax|tax rule|government capex|disinvestment|psu divestment)\b/.test(lower);
+}
+
+function isIndiaFuelForexPolicyStory(value) {
+  const lower = String(value || "");
+  return /\b(modi|narendra modi|pm modi|prime minister modi|indian prime minister|pmo|petroleum minister|hardeep singh puri|ministry of petroleum|government of india|indian government|centre)\b/.test(lower) &&
+    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(lower);
 }
 
 function isGeopoliticalRiskStory(value) {
@@ -1334,6 +1356,14 @@ function watchForFromArticle(headline, summary, category, entityName) {
 
 function thematicFallbackReadthrough(lower, category, entityName) {
   const text = String(lower || "");
+  if (isIndiaFuelForexPolicyStory(text)) {
+    return {
+      takeaway: "India's fuel and forex conservation appeal is a domestic risk signal tied to crude, current account pressure and consumption.",
+      whyItMatters: "When policy messaging asks households and businesses to save fuel, gold and foreign exchange, traders should read it as macro stress, not routine politics.",
+      indiaImpact: "OMCs, aviation, tyres, paints, jewellery, autos, USD/INR and Bank Nifty are the first India checks; broad Nifty needs breadth confirmation.",
+      watchFor: "Watch Brent, USD/INR, OMCs, aviation, jewellery and Bank Nifty breadth through the first range."
+    };
+  }
   if (isGeopoliticalRiskStory(text)) {
     return {
       takeaway: "geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
@@ -1933,6 +1963,9 @@ function entityForHeadline(headline, category) {
   if (isIndiaInfrastructureStory(lower)) {
     return "Infrastructure";
   }
+  if (isIndiaFuelForexPolicyStory(lower)) {
+    return "India fuel / forex";
+  }
   if (isFuelInflationStory(lower)) {
     return "Fuel inflation";
   }
@@ -2034,6 +2067,35 @@ async function fetchText(url, fetcher) {
 function parseRssItems(xml) {
   const itemMatches = [...String(xml).matchAll(/<item\b[\s\S]*?<\/item>/gi)];
   return itemMatches.map((match) => parseRssItem(match[0])).filter((item) => item.title && (item.link || item.guid));
+}
+
+function parseHtmlIndexItems(html, baseUrl) {
+  const seen = new Set();
+  const items = [];
+  for (const match of String(html).matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const title = cleanText(match[2]);
+    if (!title || title.length < 18 || title.length > 180) {
+      continue;
+    }
+    const link = absoluteUrl(match[1], baseUrl);
+    if (!link || seen.has(link) || !sourceUrlLooksArticleLevel(link)) {
+      continue;
+    }
+    seen.add(link);
+    items.push({ title, link, publishedAt: "", summary: title });
+    if (items.length >= 24) {
+      break;
+    }
+  }
+  return items;
+}
+
+function absoluteUrl(value, baseUrl) {
+  try {
+    return new URL(decodeHtml(String(value || "")), baseUrl).toString();
+  } catch {
+    return "";
+  }
 }
 
 function parseRssItem(itemXml) {

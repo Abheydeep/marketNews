@@ -39,10 +39,10 @@ export async function buildDigest(date = todayIso(), options = {}) {
     fetcher: options.fetcher,
     strictFetch: options.strictFetch
   });
-  const sourceSelection = publicSourceSelectionForDigest(date, articles);
+  const sourceSelection = publicSourceSelectionForDigest(date, articles, { marketSnapshots });
   const publicArticles = sourceSelection.visibleArticles;
   const publicSourceSelection = sourceSelection.publicSummary;
-  const dailyLead = dailyLeadForDigest(date, publicArticles);
+  const dailyLead = dailyLeadForDigest(date, publicArticles, { marketSnapshots });
   const themes = clusterThemes(date, publicArticles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
   const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
@@ -809,10 +809,11 @@ function titleConsequence(article, sentimentLabel) {
   return "Opening Range";
 }
 
-export function publicSourceSelectionForDigest(date, articles = []) {
+export function publicSourceSelectionForDigest(date, articles = [], options = {}) {
+  const marketSnapshots = options.marketSnapshots ?? [];
   const shortlist = uniqueSourceArticles(articles)
     .filter((article) => isWithinDigestWindow(article, date, 24))
-    .sort((left, right) => indiaSourceScore(right, date) - indiaSourceScore(left, date))
+    .sort((left, right) => sourceSelectionScore(right, date, marketSnapshots) - sourceSelectionScore(left, date, marketSnapshots))
     .slice(0, 25);
   const indiaLinked = shortlist.filter(hasIndiaReadThrough);
   const visiblePool = indiaLinked.length >= MIN_PUBLIC_SOURCE_COUNT ? indiaLinked : shortlist;
@@ -889,18 +890,29 @@ function sourceGateSummary(profile) {
   return "Full India-source gate: Not cleared; this edition is global-cue context, not a full India-source briefing.";
 }
 
-export function dailyLeadForDigest(date, articles = []) {
+export function dailyLeadForDigest(date, articles = [], options = {}) {
+  const marketSnapshots = options.marketSnapshots ?? [];
   const ranked = uniqueSourceArticles(articles)
-    .slice()
-    .sort((left, right) => indiaSourceScore(right, date) - indiaSourceScore(left, date));
-  const lead = ranked.find(hasIndiaReadThrough) ?? ranked[0] ?? null;
-  const support = ranked.find((article) => article !== lead && Number(article.sentimentScore) > 0.05 && hasIndiaReadThrough(article));
-  const risk = ranked.find((article) => article !== lead && Number(article.sentimentScore) < -0.05 && hasIndiaReadThrough(article));
+    .map((article, index) => ({
+      article,
+      index,
+      score: dailyLeadScore(article, date, marketSnapshots)
+    }))
+    .sort((left, right) => right.score - left.score || left.index - right.index);
+  const lead = ranked.find((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article))?.article
+    ?? ranked.find((item) => hasIndiaReadThrough(item.article))?.article
+    ?? ranked[0]?.article
+    ?? null;
+  const support = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) > 0.05 && hasIndiaReadThrough(item.article))?.article;
+  const risk = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) < -0.05 && hasIndiaReadThrough(item.article))?.article;
   const driverType = driverTypeForArticle(lead);
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
+  const leadText = articleTextForLead(lead);
   return {
-    label: indirectLead && driverType === "crude" ? "Crude supply watch" : driverLabelForType(driverType),
+    label: indiaFuelForexPolicyText(leadText)
+      ? "India fuel / forex stress"
+      : indirectLead && driverType === "crude" ? "Crude supply watch" : driverLabelForType(driverType),
     sourceArticleId: articleLeadId(lead),
     driverType,
     headline: lead?.headline || "Source-led market cue",
@@ -1067,14 +1079,162 @@ function indiaSourceScore(article, date) {
   if (["sector_positive", "macro_positive", "sector_negative"].includes(article?.category)) score += 3;
   if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc|it exporters|nifty it)\b/.test(text)) score += 6;
   if (/\b(crude|oil|brent|opec|hormuz|fed|rates?|yields?|inflation|dollar|dxy|usd\/inr|nasdaq|semiconductor|chip|ai)\b/.test(text)) score += 4;
+  if (crudeGeopoliticalText(text)) score += 8;
+  if (indiaFuelForexPolicyText(text)) score += 10;
+  if (marketwideStressText(text)) score += 7;
+  if (isStockLiveblogArticle(article)) score -= hasMarketwideDriverText(text) ? 8 : 16;
+  if (isWeakStockListArticle(article)) score -= 8;
   if (/\b(carvana|private market|spacex|used car|single-stock)\b/.test(text)) score -= 8;
   if (!hasIndiaReadThrough(article)) score -= 10;
   return score + freshnessScore(article, date);
 }
 
+function sourceSelectionScore(article, date, marketSnapshots = []) {
+  return indiaSourceScore(article, date)
+    + indiaAudienceScore(article) * 0.8
+    + marketDriverSeverityScore(article, marketSnapshots) * 0.6
+    + sourceQualityScore(article);
+}
+
+function dailyLeadScore(article, date, marketSnapshots = []) {
+  const text = articleTextForLead(article);
+  let score = indiaSourceScore(article, date)
+    + marketLeadScore(article) * 1.35
+    + indiaAudienceScore(article) * 1.4
+    + marketDriverSeverityScore(article, marketSnapshots)
+    + sourceQualityScore(article);
+  if (isLeadSuppressedArticle(article)) score -= 24;
+  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(text)) score -= 18;
+  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(text)) score -= 12;
+  return score;
+}
+
+function articleTextForLead(article) {
+  return [
+    article?.headline,
+    article?.summary,
+    article?.takeaway,
+    article?.indiaImpact,
+    article?.watchFor,
+    article?.entityName,
+    article?.sourceName,
+    article?.sourceUrl
+  ].filter(Boolean).join(" ").toLowerCase();
+}
+
+function indiaAudienceScore(article) {
+  const views = firstFiniteNumber(article, [
+    "indiaViewCount",
+    "viewsFromIndia",
+    "indiaPageViews",
+    "indiaViews",
+    "viewsIndia",
+    "indianViews"
+  ]);
+  const rank = firstFiniteNumber(article, [
+    "indiaViewRank",
+    "indiaAudienceRank",
+    "indiaTrafficRank",
+    "articleRankIndia"
+  ]);
+  let score = 0;
+  if (views > 0) {
+    score += Math.min(28, Math.log10(views + 1) * 5);
+  }
+  if (rank > 0) {
+    score += Math.max(0, 24 - Math.min(rank, 60) * 0.4);
+  }
+  return score;
+}
+
+function firstFiniteNumber(source, keys) {
+  for (const key of keys) {
+    const value = Number(source?.[key]);
+    if (Number.isFinite(value) && value > 0) {
+      return value;
+    }
+  }
+  return 0;
+}
+
+function sourceQualityScore(article) {
+  if (isOfficialIndiaSourceArticle(article)) return 18;
+  if (isIndiaPublisherArticle(article)) return 9;
+  const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
+  if (/\b(reuters|pti|ani|spglobal|s&p global|theweek|marketwatch|cnbc|dowjones|wall street journal|wsj)\b/.test(text)) return 6;
+  return 0;
+}
+
+function marketDriverSeverityScore(article, marketSnapshots = []) {
+  const text = articleTextForLead(article);
+  let score = 0;
+  const brentMove = snapshotChangePercent(marketSnapshots, /\b(brent|crude|oil)\b/i);
+  const niftyMove = snapshotChangePercent(marketSnapshots, /\b(nifty 50|nifty)\b/i);
+  const bankMove = snapshotChangePercent(marketSnapshots, /\b(bank nifty)\b/i);
+  if (crudeGeopoliticalText(text)) {
+    score += 18;
+    if (brentMove >= 2) score += 16;
+    if (brentMove >= 4) score += 10;
+  }
+  if (indiaFuelForexPolicyText(text)) {
+    score += 20;
+    if (brentMove >= 2) score += 8;
+  }
+  if (marketwideStressText(text)) {
+    score += 12;
+  }
+  if ((niftyMove <= -0.75 || bankMove <= -0.75) && /\b(risk|pressure|crude|brent|iran|hormuz|forex|rupee|fii|selloff|fall|slump|tumble|crash)\b/.test(text)) {
+    score += 10;
+  }
+  return score;
+}
+
+function snapshotChangePercent(snapshots = [], pattern) {
+  const snapshot = (snapshots ?? []).find((item) => pattern.test(`${item?.name || ""} ${item?.symbol || ""}`));
+  const raw = snapshot?.changePercent ?? snapshot?.changePct ?? snapshot?.percentChange ?? snapshot?.change;
+  const value = Number(String(raw ?? "").replace("%", ""));
+  return Number.isFinite(value) ? value : 0;
+}
+
+function isLeadSuppressedArticle(article) {
+  const text = articleTextForLead(article);
+  return (isStockLiveblogArticle(article) || isWeakStockListArticle(article)) && !hasMarketwideDriverText(text);
+}
+
+function isStockLiveblogArticle(article) {
+  const text = articleTextForLead(article);
+  return /\bshare price live updates?\b|\bstock-liveblog\b|\/stock-liveblog\//i.test(text);
+}
+
+function isWeakStockListArticle(article) {
+  const text = articleTextForLead(article);
+  return /\b(stocks? to watch|recommend(?:s|ed)? .* stocks?|stock picks?|shares? in focus|buy or sell)\b/i.test(text);
+}
+
+function hasMarketwideDriverText(text) {
+  return crudeGeopoliticalText(text) || indiaFuelForexPolicyText(text) || marketwideStressText(text) ||
+    /\b(gift nifty|nifty futures|sensex|bank nifty|fii|dii|rupee|usd\/inr|brent|crude|yield|dxy|inflation|current account)\b/i.test(text);
+}
+
+function crudeGeopoliticalText(text) {
+  const value = String(text || "").toLowerCase();
+  return /\b(crude|oil|brent|hormuz|opec|energy supply|supply disruption)\b/.test(value) &&
+    /\b(iran|trump|war|military|missile|strike|airstrike|conflict|geopolit|israel|red sea|sanctions|ceasefire|peace proposal|totally unacceptable)\b/.test(value);
+}
+
+function indiaFuelForexPolicyText(text) {
+  const value = String(text || "").toLowerCase();
+  return /\b(modi|narendra modi|pm modi|prime minister modi|indian prime minister|pmo|petroleum minister|hardeep singh puri|ministry of petroleum|government of india|indian government|centre)\b/.test(value) &&
+    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(value);
+}
+
+function marketwideStressText(text) {
+  return /\b(sensex|nifty|bank nifty|indian equities|stock market|markets?)\b.*\b(falls?|fell|slumps?|tumbles?|crashes?|selloff|bloodbath|pressure|down)\b|\b(falls?|fell|slumps?|tumbles?|crashes?|selloff|bloodbath|pressure|down)\b.*\b(sensex|nifty|bank nifty|indian equities|stock market|markets?)\b/i.test(String(text || ""));
+}
+
 function driverTypeForArticle(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""}`.toLowerCase();
-  if (/\b(crude|oil|brent|opec|hormuz|pipeline|keystone)\b/.test(text)) return "crude";
+  if (indiaFuelForexPolicyText(text) || /\b(crude|oil|brent|opec|hormuz|pipeline|keystone|fuel|petrol|diesel|gasoline|lpg)\b/.test(text)) return "crude";
   if (/\b(fed|fomc|yield|yields|bond|bonds|rate|rates|inflation|boe)\b/.test(text)) return "rates";
   if (/\b(dollar|rupee|currency|dxy|usd\/inr|yen)\b/.test(text)) return "currency";
   if (/\b(nasdaq|semiconductor|chip|ai|software|tech|nifty it|it exporters)\b/.test(text)) return "tech";

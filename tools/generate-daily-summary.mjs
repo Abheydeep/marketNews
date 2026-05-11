@@ -5,6 +5,7 @@ import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
+import { assertPremarketPublishWindow } from "./publish-window.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 
@@ -13,6 +14,7 @@ const date = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const marketDataMode = readArg("--market-data") ?? process.env.MARKET_DATA_MODE ?? "mock";
 const newsDataMode = readArg("--news-data") ?? process.env.NEWS_DATA_MODE ?? "live";
+const enforcePublishWindow = readFlag("--enforce-publish-window") || process.env.ENFORCE_PREMARKET_WINDOW === "true";
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
@@ -22,6 +24,15 @@ if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING
   process.stderr.write(`Daily briefing generation blocked for ${date}: ${calendarState.state} (${calendarState.reason}).\n`);
   process.stderr.write("Set ALLOW_NON_TRADING_DAY_DIGEST=true only for an explicit manual non-trading-day test.\n");
   process.exit(2);
+}
+
+if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH !== "true") {
+  try {
+    assertPremarketPublishWindow({ date, scheduledTime });
+  } catch (error) {
+    process.stderr.write(`${error.message}\n`);
+    process.exit(2);
+  }
 }
 
 const digest = {
@@ -76,4 +87,8 @@ function todayInIst() {
 function readArg(name) {
   const index = process.argv.indexOf(name);
   return index === -1 ? null : process.argv[index + 1];
+}
+
+function readFlag(name) {
+  return process.argv.includes(name);
 }

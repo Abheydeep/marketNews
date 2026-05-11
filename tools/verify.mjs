@@ -17,6 +17,7 @@ import {
   auditTradeSetupsWithMarketSnapshots,
   bullishRiskReward,
   clusterThemes,
+  dailyLeadForDigest,
   evaluateSeries,
   labelFromScore,
   loadSeeds,
@@ -32,6 +33,7 @@ import { marketCalendarState, verifyCalendarData } from "./market-calendar.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { assertPremarketPublishWindow, premarketPublishWindowStatus } from "./publish-window.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
@@ -902,6 +904,86 @@ await test("article read-through copy does not reuse category templates", async 
   assert.equal(geopolitics.category, "global_risk");
   assert.match(geopolitics.indiaImpact, /Brent crude|USD\/INR|gold|FII/i);
   assert.doesNotMatch(geopolitics.takeaway, /mixed global cues|confirmation mode/i);
+});
+
+await test("Modi fuel and forex policy stories route as domestic macro stress", () => {
+  const article = normalizeLiveArticle("2026-05-11", {
+    sourceName: "The Week Business",
+    sourceId: "the-week-business",
+    categoryHint: "macro_negative",
+    url: "https://www.theweek.in/wire-updates/business.html"
+  }, {
+    title: "PM Modi asks citizens to save fuel, gold and foreign exchange as crude pressure rises",
+    summary: "Prime Minister Modi urged fuel conservation, work-from-home, reduced foreign travel and less gold buying to protect forex during the West Asia crisis.",
+    link: "https://www.theweek.in/wire-updates/business/2026/05/11/stock-markets-slump-in-early-trade-amid-rising-crude-oil-prices.html",
+    publishedAt: "Mon, 11 May 2026 04:54:00 GMT"
+  });
+  assert.equal(article.category, "macro_negative");
+  assert.equal(article.entityName, "India fuel / forex");
+  assert.match(article.indiaImpact, /OMCs|aviation|jewellery|USD\/INR|Bank Nifty/i);
+  assert.match(article.watchFor, /Brent|USD\/INR|OMCs|jewellery|Bank Nifty/i);
+  assert.equal(articleLooksMarketRelevant(article), true);
+});
+
+await test("daily lead uses India view rank and market severity instead of weak stock liveblogs", () => {
+  const stockLiveblog = {
+    headline: "M&M Share Price Live Updates: M&M shows strong monthly performance",
+    summary: "M&M Share Price Live Updates: M&M shows strong monthly performance.",
+    indiaImpact: "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+    watchFor: "Watch Nifty VWAP.",
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/mm-share-price-live-11-may-2026/liveblog/131002027.cms",
+    category: "macro_positive",
+    entityName: "Market",
+    publishedAt: "2026-05-11T00:30:00.000Z",
+    indiaViewCount: 25000
+  };
+  const crudePolicy = {
+    headline: "Stock markets slump as Trump rejects Iran proposal and Modi urges fuel conservation",
+    summary: "Brent crude jumped after Trump rejected Iran's peace response while Prime Minister Modi urged citizens to save fuel, gold and foreign exchange.",
+    indiaImpact: "OMCs, aviation, tyres, paints, jewellery, USD/INR and Bank Nifty are the first India checks; broad Nifty needs breadth confirmation.",
+    watchFor: "Watch Brent, USD/INR, OMCs, aviation and Bank Nifty breadth.",
+    sourceName: "The Week Business",
+    sourceId: "the-week-business",
+    sourceUrl: "https://www.theweek.in/wire-updates/business/2026/05/11/stock-markets-slump-in-early-trade-amid-rising-crude-oil-prices.html",
+    category: "macro_negative",
+    entityName: "India fuel / forex",
+    publishedAt: "2026-05-11T04:54:00.000Z",
+    indiaViewCount: 90000
+  };
+  const lead = dailyLeadForDigest("2026-05-11", [stockLiveblog, crudePolicy], {
+    marketSnapshots: [
+      { name: "Brent Crude", changePercent: 4.32 },
+      { name: "Nifty 50", changePercent: -1.2 },
+      { name: "Bank Nifty", changePercent: -1.4 }
+    ]
+  });
+  assert.match(lead.sourceArticleId, /^the-week-business:/);
+  assert.equal(lead.label, "India fuel / forex stress");
+  assert.equal(lead.driverType, "crude");
+  assert.match(lead.headline, /Trump rejects Iran|Modi urges fuel/i);
+});
+
+await test("premarket publish window blocks stale scheduled runs", () => {
+  const onTime = premarketPublishWindowStatus({
+    date: "2026-05-11",
+    scheduledTime: "07:15",
+    now: new Date("2026-05-11T01:55:00.000Z")
+  });
+  assert.equal(onTime.isLate, false);
+  const late = premarketPublishWindowStatus({
+    date: "2026-05-11",
+    scheduledTime: "07:15",
+    now: new Date("2026-05-11T04:58:49.000Z")
+  });
+  assert.equal(late.isLate, true);
+  assert.match(late.reason, /minutes after 07:15 IST/);
+  assert.throws(() => assertPremarketPublishWindow({
+    date: "2026-05-11",
+    scheduledTime: "07:15",
+    now: new Date("2026-05-11T04:58:49.000Z")
+  }), /Premarket publish blocked/);
 });
 
 await test("public source selection excludes no-direct India stories when direct reads are available", () => {
@@ -1882,9 +1964,11 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(componentsPage.includes("Private Studio and Reel Script"));
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
-  assert.ok(workflow.includes("cancel-in-progress: true"));
-  assert.ok(workflow.includes('cron: "*/5 1-21 * * 1-5"'), "workflow should refresh market data every 5 minutes during weekday market windows");
+  assert.ok(workflow.includes("cancel-in-progress: false"));
+  assert.ok(workflow.includes('cron: "45,55 1 * * 1-5"'), "workflow should publish at 07:15 IST with a same-workflow backup");
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
+  assert.ok(workflow.includes("--enforce-publish-window"));
+  assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
@@ -1900,6 +1984,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(dailyGenerator.includes('?? "07:15"'));
   assert.ok(dailyGenerator.includes("marketCalendarState"));
   assert.ok(dailyGenerator.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
+  assert.ok(dailyGenerator.includes("assertPremarketPublishWindow"));
+  assert.ok(dailyGenerator.includes("ALLOW_LATE_PREMARKET_PUBLISH"));
 
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
   assert.ok(importer.includes("archive.digests"));

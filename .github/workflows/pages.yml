@@ -6,9 +6,9 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    # Refresh every 5 minutes across Indian and US market windows on weekdays.
-    # 01:45 UTC includes the 07:15 IST pre-market publish.
-    - cron: "*/5 1-21 * * 1-5"
+    # Weekday 07:15 IST publish. The 07:25 IST backup is the same workflow
+    # and exits once the verified archive is already committed.
+    - cron: "45,55 1 * * 1-5"
 
 permissions:
   contents: write
@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -34,15 +34,32 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Compute IST summary date
+        run: echo "SUMMARY_DATE=$(TZ=Asia/Kolkata date +%F)" >> "$GITHUB_ENV"
+
+      - name: Check existing verified archive
+        run: |
+          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0715-digest.json"
+          if git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
+            echo "ARCHIVE_ALREADY_TRACKED=true" >> "$GITHUB_ENV"
+            echo "Verified archive already tracked: $ARCHIVE_FILE"
+          else
+            echo "ARCHIVE_ALREADY_TRACKED=false" >> "$GITHUB_ENV"
+          fi
+
       - name: Test generator
         run: npm test
 
       - name: Generate daily 7:15 IST summary
+        if: env.ARCHIVE_ALREADY_TRACKED != 'true'
         env:
           MARKET_DATA_MODE: live
         run: |
-          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live
+          PUBLISH_ARGS=(--date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live)
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            PUBLISH_ARGS+=(--enforce-publish-window)
+          fi
+          npm run daily:generate -- "${PUBLISH_ARGS[@]}"
 
       - name: Import previous deployed archive
         run: |
@@ -52,7 +69,6 @@ jobs:
 
       - name: Publish static archive site
         run: |
-          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
           npm run site:publish -- --date "$SUMMARY_DATE" --scheduled-time 07:15
 
       - name: Public copy QA
@@ -61,7 +77,6 @@ jobs:
       - name: Commit verified daily archive for Vercel
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
           ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0715-digest.json"
           if git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
             echo "Verified archive already tracked: $ARCHIVE_FILE"
