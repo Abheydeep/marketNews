@@ -81,12 +81,14 @@ jobs:
           SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}
         run: |
           PUBLISH_DATE="$SUMMARY_DATE"
+          SKIP_ARCHIVE_WRITE_VALUE="$ARCHIVE_ALREADY_TRACKED"
           if [ "${{ github.event_name }}" = "push" ] && [ "$ARCHIVE_ALREADY_TRACKED" != "true" ]; then
             LATEST_ARCHIVE="$(ls archive/daily/*-0715-digest.json | sort | tail -n 1)"
             PUBLISH_DATE="$(basename "$LATEST_ARCHIVE" -0715-digest.json)"
+            SKIP_ARCHIVE_WRITE_VALUE="true"
             echo "Code push has no verified archive for $SUMMARY_DATE; publishing latest tracked archive $PUBLISH_DATE."
           fi
-          PUBLIC_BUILD_DATE="$SUMMARY_DATE" npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time 07:15
+          PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time 07:15
 
       - name: Public copy QA
         run: npm run public:copy:qa -- out/site
