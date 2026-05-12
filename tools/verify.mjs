@@ -2002,6 +2002,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("enforce_publish_window"));
   assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
+  assert.ok(workflow.includes("(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
   assert.ok(workflow.includes("SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}"));
