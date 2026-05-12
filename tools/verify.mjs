@@ -1999,6 +1999,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: false"));
   assert.ok(workflow.includes('cron: "45,55 1 * * 1-5"'), "workflow should publish at 07:15 IST with a same-workflow backup");
+  assert.ok(workflow.includes("enforce_publish_window"));
+  assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
@@ -2131,11 +2133,26 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
   assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  assert.deepEqual(vercelConfig.crons, [
+    {
+      path: "/api/cron/premarket-publish",
+      schedule: "43 1 * * 1-5"
+    },
+    {
+      path: "/api/cron/premarket-publish",
+      schedule: "53 1 * * 1-5"
+    }
+  ]);
   assert.equal(
     (vercelConfig.redirects ?? []).some((redirect) => String(redirect.source ?? "").startsWith("/latest")),
     false,
     "Vercel config must not hard-code /latest redirects; static generated /latest pages own freshness"
   );
+  const premarketCron = await readFile(join(rootDir, "api", "cron", "premarket-publish.js"), "utf8");
+  assert.ok(premarketCron.includes("actions/workflows/${WORKFLOW_ID}/dispatches"));
+  assert.ok(premarketCron.includes("GITHUB_WORKFLOW_TOKEN"));
+  assert.ok(premarketCron.includes('enforce_publish_window: "true"'));
+  assert.ok(premarketCron.includes('triggered_by: "vercel-cron"'));
   const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
   const productionQaGate = await readFile(join(rootDir, "tools", "production-qa-gate.mjs"), "utf8");
   const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");

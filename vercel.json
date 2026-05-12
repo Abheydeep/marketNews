@@ -2,5 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install",
   "buildCommand": "npm run vercel:build",
-  "outputDirectory": "out/vercel"
+  "outputDirectory": "out/vercel",
+  "crons": [
+    {
+      "path": "/api/cron/premarket-publish",
+      "schedule": "43 1 * * 1-5"
+    },
+    {
+      "path": "/api/cron/premarket-publish",
+      "schedule": "53 1 * * 1-5"
+    }
+  ]
 }
