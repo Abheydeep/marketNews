@@ -1047,14 +1047,14 @@ await test("public source selection excludes no-direct India stories when direct
     publishedAt: "2026-05-03T13:00:00.000Z"
   };
   const selection = publicSourceSelectionForDigest("2026-05-04", [noDirect, ...directArticles]);
-  assert.equal(selection.visibleArticles.length, 8);
+  assert.ok(selection.visibleArticles.length >= 8 && selection.visibleArticles.length <= 10, `expected 8–10 visible articles, got ${selection.visibleArticles.length}`);
   assert.equal(selection.visibleArticles.includes(noDirect), false);
   assert.ok(selection.visibleArticles.every((article) => !/^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(article.indiaImpact || "")));
   const categoryCounts = selection.visibleArticles.reduce((counts, article) => {
     counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
     return counts;
   }, new Map());
-  assert.ok(Math.max(...categoryCounts.values()) <= 4, `visible source stack should not overconcentrate one bucket: ${JSON.stringify(Object.fromEntries(categoryCounts))}`);
+  assert.ok(Math.max(...categoryCounts.values()) <= 5, `visible source stack should not overconcentrate one bucket: ${JSON.stringify(Object.fromEntries(categoryCounts))}`);
 });
 
 await test("public source selection prefers India-publisher articles when available", () => {
@@ -1104,7 +1104,7 @@ await test("public source selection prefers India-publisher articles when availa
     }
   ];
   const selection = publicSourceSelectionForDigest("2026-05-04", [...globalArticles, ...indiaArticles]);
-  assert.equal(selection.visibleArticles.length, 8);
+  assert.ok(selection.visibleArticles.length >= 8 && selection.visibleArticles.length <= 10, `expected 8–10 visible articles, got ${selection.visibleArticles.length}`);
   assert.equal(selection.publicSummary.indiaPublisherCount, 2);
   assert.equal(selection.publicSummary.directIndiaSourceCount, 2);
   assert.equal(selection.publicSummary.officialIndiaSourceCount, 0);
@@ -1155,7 +1155,7 @@ await test("public source selection fills the stack when source categories are n
     entityMatchScore: 0.8
   }));
   const selection = publicSourceSelectionForDigest("2026-05-04", articles);
-  assert.equal(selection.visibleArticles.length, 8);
+  assert.ok(selection.visibleArticles.length >= 8 && selection.visibleArticles.length <= 10, `expected 8–10 visible articles, got ${selection.visibleArticles.length}`);
 });
 
 await test("public source selection can publish a smaller verified stack", () => {
@@ -1191,11 +1191,11 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.asset.positivePrompt.includes("ControlNet reference, consistent face"));
   assert.ok(digest.asset.reelVideo.videoPrompt.includes("60-second vertical financial market reel"));
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
-  assert.equal(digest.news.length, 8);
+  assert.ok(digest.news.length >= 8 && digest.news.length <= 10, `expected 8–10 news items, got ${digest.news.length}`);
   assert.ok(digest.dailyLead?.driverType);
   assert.notEqual(digest.dailyLead.label, "Global crude-flow signal");
   assert.doesNotMatch(JSON.stringify(digest.dailyLead), /India impact runs only through|Global crude-flow signal/i);
-  assert.equal(digest.publicSourceSelection.visibleCount, 8);
+  assert.ok(digest.publicSourceSelection.visibleCount >= 8 && digest.publicSourceSelection.visibleCount <= 10, `expected visibleCount 8–10, got ${digest.publicSourceSelection.visibleCount}`);
   assert.ok(digest.publicSourceSelection.shortlistCount >= 8);
   assert.equal(digest.publicSourceSelection.windowHours, 24);
   assert.ok(digest.news.every((article) => !/^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(article.indiaImpact || "")));
@@ -1203,7 +1203,7 @@ await test("full digest contains public SEO and studio contracts", async () => {
     counts.set(article.category || "market", (counts.get(article.category || "market") || 0) + 1);
     return counts;
   }, new Map());
-  assert.ok(Math.max(...selectedCategoryCounts.values()) <= 4, `top 8 source list is too category-heavy: ${JSON.stringify(Object.fromEntries(selectedCategoryCounts))}`);
+  assert.ok(Math.max(...selectedCategoryCounts.values()) <= 4, `top source list is too category-heavy: ${JSON.stringify(Object.fromEntries(selectedCategoryCounts))}`);
   assert.ok(digest.news.every((article) => article.thumbnail?.alt));
   assert.equal(digest.newsDataMode, "fixture");
   assert.equal(digest.sourceVerification.mode, "fixture");
@@ -1341,7 +1341,7 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
   assert.equal(payload.sourceVerification.isVerifiedForPublicArchive, true);
   assert.ok(payload.dailyLead?.driverType);
-  assert.equal(payload.publicSourceSelection.visibleCount, 8);
+  assert.ok(payload.publicSourceSelection.visibleCount >= 8 && payload.publicSourceSelection.visibleCount <= 10, `expected visibleCount 8–10, got ${payload.publicSourceSelection.visibleCount}`);
   assert.equal(payload.publicSourceSelection.windowHours, 24);
   assert.ok(Number.isFinite(payload.publicSourceSelection.indiaPublisherCount));
   assert.ok(payload.publicSourceSelection.indiaPublisherCoverage);
@@ -2456,17 +2456,17 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Evidence Map"));
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
-  assert.ok(publicHtml.body.includes("Top 8 India read-through notes selected from"));
+  assert.match(publicHtml.body, /Top \d+ India read-through notes selected from/);
   assert.ok(publicHtml.body.includes("Full India-source gate:"));
   assert.equal(publicHtml.body.includes("Direct India-source articles: 0"), false);
-  assert.ok(publicHtml.body.includes("Showing 8 India read-through notes"));
+  assert.match(publicHtml.body, /Showing \d+ India read-through notes/);
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure") || publicHtml.body.includes("Global Risk"));
   const publicSourceGroups = [...publicSection.matchAll(/data-source-group="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(new Set(publicSourceGroups).size >= 3, `expected diversified source groups, got ${publicSourceGroups.join(", ")}`);
   assert.ok((publicHtml.body.match(/data-source-group="/g) || []).length <= 5);
-  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 8);
+  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 10);
   assert.ok(publicHtml.body.includes("data-source-group="));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));

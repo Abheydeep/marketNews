@@ -14,7 +14,7 @@ const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|mlb|yanke
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
 const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|best artificial intelligence .*growth stocks|ai growth stocks|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|how to invest|is this a good time to invest|good time to invest|best etf|dividend stock|passive income|bitcoin|crypto|nft|defi|web3|blockchain wallet|us housing|home prices|mortgage rates|real estate agent|homebuilders staying asset-light|millrose|clean harbors|pfas momentum|debt ceiling|government shutdown|us budget|senate vote|warren buffett quotes?|charlie munger|munger|greg abel|berkshire|chipotle|paypal|venmo|dunkin|inspire brands|arby's|buffalo wild wings|baskin robbins|sonic drive-in|restaurant company owns|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|prior authorization|doctors say|us health provider|world['’]s oldest doctor|long, happy life|happy life|longevity|wellness|all my patients|youtube whisperers?|mrbeast|million-dollar channels?|creator economy|content creators?|jim cramer|investing club subscribers|start buying .*winners|red-hot ai stocks|claude has feelings|claude to be conscious|large language model .*conscious|mythos|cybersecurity hysteria|fitness wearable|whoop|on-demand clinician|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
-const LOW_SIGNAL_LIVE_HEADLINE_PATTERN = /\b(too late to buy|should you buy|post-earnings dip|12-month gain|trump['’]s? .*gold card|gold card.*wealthy|world['’]s wealthy|wealthy investors|qualified small business stock|qsbs|tax break for wealthy|trump accounts?|buy a dell|fanduel|sports betting|data center outage hits trading|coinbase|maintains buy rating|upgrades .* stock|downgrades .* stock|raises pt|lowers pt|initiates coverage|price target|analyst rating|stocks? to buy|unstoppable stocks? to buy|top .*stock pick|cathie wood|most undervalued .*stock|high quality stock|wall street bullish on|legendary investor|negative 10-year returns|family office deal-making|best cd rates|cd rates today|apy|high-yield savings|savings interest rates|mortgage and refinance|refinance interest rates|heloc|home equity loan|home equity rates|gold and silver prices today|wearable patches?|supplement industry|lactose intolerance patch|barri[eè]re|restaurant brands international|burger king|qsr q[1-4]|apollo ceo|rival insurers|stock lagging the s&p|real estate fund made .* bet|inventrust)\b/i;
+const LOW_SIGNAL_LIVE_HEADLINE_PATTERN = /\b(too late to buy|should you buy|post-earnings dip|12-month gain|trump[‘’]s? .*gold card|gold card.*wealthy|world[‘’]s wealthy|wealthy investors|qualified small business stock|qsbs|tax break for wealthy|trump accounts?|buy a dell|fanduel|sports betting|data center outage hits trading|coinbase|maintains buy rating|upgrades .* stock|downgrades .* stock|raises pt|lowers pt|initiates coverage|price target|analyst rating|stocks? to buy|unstoppable stocks? to buy|top .*stock pick|cathie wood|most undervalued .*stock|high quality stock|wall street bullish on|legendary investor|negative 10-year returns|family office deal-making|best cd rates|cd rates today|apy|high-yield savings|savings interest rates|mortgage and refinance|refinance interest rates|heloc|home equity loan|home equity rates|gold and silver prices today(?! (?:rise|fall|surge|slump|jump|drop|tariff|duty|import|tax|policy|ban|levy))|wearable patches?|supplement industry|lactose intolerance patch|barri[eè]re|restaurant brands international|burger king|qsr q[1-4]|apollo ceo|rival insurers|stock lagging the s&p|real estate fund made .* bet|inventrust)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -121,6 +121,55 @@ const LIVE_FEEDS = [
     type: "moneycontrol-source-page",
     categoryHint: "sector_positive",
     url: "https://www.moneycontrol.com/features/rss/"
+  },
+  {
+    sourceName: "Business Standard Markets",
+    sourceId: "business-standard-markets",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://www.business-standard.com/rss/markets-106.rss"
+  },
+  {
+    sourceName: "Business Standard Economy",
+    sourceId: "business-standard-economy",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://www.business-standard.com/rss/economy-policy-102.rss"
+  },
+  {
+    sourceName: "NDTV Profit Markets",
+    sourceId: "ndtv-profit-markets",
+    type: "rss",
+    categoryHint: "macro_positive",
+    url: "https://feeds.feedburner.com/ndtvprofit-latest"
+  },
+  {
+    sourceName: "Financial Express Markets",
+    sourceId: "financial-express-markets",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://www.financialexpress.com/market/feed/"
+  },
+  {
+    sourceName: "Reuters Business",
+    sourceId: "reuters-business",
+    type: "rss",
+    categoryHint: "global_risk",
+    url: "https://feeds.reuters.com/reuters/businessNews"
+  },
+  {
+    sourceName: "PIB Finance Ministry",
+    sourceId: "pib-finance",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"
+  },
+  {
+    sourceName: "BQ Prime",
+    sourceId: "bq-prime",
+    type: "rss",
+    categoryHint: "macro_negative",
+    url: "https://www.bqprime.com/feeds/rss-all"
   }
 ];
 
@@ -249,7 +298,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
     .filter(articleLooksMarketRelevant)
     .filter((article) => articleIsFreshForDigest(article, date));
-  const selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 24);
+  const selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
   return enrichArticlesWithEditorialLLM(selectedArticles, options);
 }
 
@@ -488,6 +537,9 @@ function articleReadthroughTemplateSignature(article) {
     if (/\b(rises?|gains?|jumps?|surges?|spikes?|soars?|higher|up)\b/.test(lower)) return "oil:higher";
     return "oil:general";
   }
+  if (isIndiaPreciousMetalsPolicyStory(lower)) {
+    return "india:precious-metals-policy";
+  }
   if (/\b(fed|yields?|bonds?|rates?|inflation|powell|boe|bank of england|central bank|governor bailey)\b/.test(lower) && !isIndiaPolicyStory(lower)) {
     if (/\b(boe|bank of england|uk rate|sterling)\b/.test(lower)) return "rates:boe";
     if (/\b(fed|powell|fomc)\b/.test(lower)) return "rates:fed";
@@ -525,6 +577,7 @@ function articleEntityMatchesText(entityName, lower) {
   const checks = [
     [/nifty open/, /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/],
     [/options tape/, /\b(vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/],
+    [/mcx gold|jeweller/, /\b(gold|silver|bullion|mcx gold|mcx silver|sovereign gold bond|sgb|gold etf|jeweller(?:y|s)?|titan|kalyan|senco|tanishq)\b/],
     [/geopolitical risk/, /\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/],
     [/india policy/, /\b(gst|sebi|pli|production[-\s]?linked incentive|budget|finance ministry|mpc|monetary policy committee)\b/],
     [/market infrastructure/, /\b(mcx|multi commodity exchange|commodity exchange|exchange revenue|trading volume|clearing corporation)\b/],
@@ -721,7 +774,8 @@ function isWeakNeutralVolatileArticle(article, text) {
 function hasSpecificMarketDriverText(value) {
   const text = String(value || "").toLowerCase();
   if (isPrivateMarketStory(text) || isIndiaEnergyStory(text) || isOilStory(text) ||
-      isGeopoliticalRiskStory(text) || isIndiaFuelForexPolicyStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
+      isGeopoliticalRiskStory(text) || isIndiaPreciousMetalsPolicyStory(text) ||
+      isIndiaFuelForexPolicyStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
       isIndiaInfrastructureStory(text) || isFuelInflationStory(text) ||
       isIndiaTelecomStory(text) || isCorporateActionStory(text) ||
       isTradePolicyStory(text)) {
@@ -927,6 +981,9 @@ function categoryFromText(text, fallback) {
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance)\b/.test(value)) {
     return "neutral_volatile";
   }
+  if (isIndiaPreciousMetalsPolicyStory(value)) {
+    return "macro_negative";
+  }
   if (isIndiaFuelForexPolicyStory(value)) {
     return "macro_negative";
   }
@@ -1004,13 +1061,19 @@ function isIndiaPolicyStory(value) {
   if (isIndiaFuelForexPolicyStory(lower)) {
     return true;
   }
-  return /\b(gst|goods and services tax|sebi|pli|production[-\s]?linked incentive|union budget|india budget|budget 2026|finance ministry|ministry of finance|mpc|monetary policy committee|rbi policy|securities transaction tax|stt|capital gains tax|tax rule|government capex|disinvestment|psu divestment)\b/.test(lower);
+  return /\b(gst|goods and services tax|sebi|pli|production[-\s]?linked incentive|union budget|india budget|budget 2026|finance ministry|ministry of finance|mpc|monetary policy committee|rbi policy|securities transaction tax|stt|capital gains tax|tax rule|government capex|disinvestment|psu divestment|import duty|customs duty|basic customs duty|bcd|import tariff|import levy|import tax|export duty|anti-dumping|safeguard duty)\b/.test(lower);
+}
+
+function isIndiaPreciousMetalsPolicyStory(value) {
+  const lower = String(value || "");
+  return /\b(gold|silver|bullion|precious metal|sovereign gold bond|sgb|gold etf|mcx gold|mcx silver|jeweller(?:y|s)?)\b/.test(lower) &&
+    /\b(tariff|import duty|customs duty|basic customs duty|bcd|import tax|import levy|import on gold|gold duty|silver duty|import on silver|tax on gold|tax on silver|export duty)\b/.test(lower);
 }
 
 function isIndiaFuelForexPolicyStory(value) {
   const lower = String(value || "");
   return /\b(modi|narendra modi|pm modi|prime minister modi|indian prime minister|pmo|petroleum minister|hardeep singh puri|ministry of petroleum|government of india|indian government|centre)\b/.test(lower) &&
-    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(lower);
+    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|silver|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(lower);
 }
 
 function isGeopoliticalRiskStory(value) {
@@ -1084,6 +1147,9 @@ function takeawayFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return compactWords(`${fact}; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.`, 35);
   }
+  if (isIndiaPreciousMetalsPolicyStory(lower) && thematic.takeaway) {
+    return compactWords(`${fact}; ${thematic.takeaway}`, 35);
+  }
   if (isIndiaPolicyStory(lower) && thematic.takeaway) {
     return compactWords(`${fact}; ${thematic.takeaway}`, 35);
   }
@@ -1143,6 +1209,9 @@ function whyItMattersFromArticle(headline, summary, category, entityName) {
   const thematic = thematicFallbackReadthrough(lower, category, entityName);
   if (isIndiaEnergyStory(lower)) {
     return "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.";
+  }
+  if (isIndiaPreciousMetalsPolicyStory(lower) && thematic.whyItMatters) {
+    return thematic.whyItMatters;
   }
   if (isIndiaPolicyStory(lower) && thematic.whyItMatters) {
     return thematic.whyItMatters;
@@ -1212,6 +1281,9 @@ function indiaImpactFromArticle(headline, summary, category, entityName) {
   }
   if (isIndiaEnergyStory(lower)) {
     return "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.";
+  }
+  if (isIndiaPreciousMetalsPolicyStory(lower) && thematic.indiaImpact) {
+    return thematic.indiaImpact;
   }
   if (isIndiaPolicyStory(lower) && thematic.indiaImpact) {
     return thematic.indiaImpact;
@@ -1300,6 +1372,9 @@ function watchForFromArticle(headline, summary, category, entityName) {
   if (isIndiaEnergyStory(lower)) {
     return "Watch power, energy and industrial breadth after the open; broad-index bias needs confirmation outside the headline.";
   }
+  if (isIndiaPreciousMetalsPolicyStory(lower) && thematic.watchFor) {
+    return thematic.watchFor;
+  }
   if (isIndiaPolicyStory(lower) && thematic.watchFor) {
     return thematic.watchFor;
   }
@@ -1356,6 +1431,14 @@ function watchForFromArticle(headline, summary, category, entityName) {
 
 function thematicFallbackReadthrough(lower, category, entityName) {
   const text = String(lower || "");
+  if (isIndiaPreciousMetalsPolicyStory(text)) {
+    return {
+      takeaway: "India import duty change on gold or silver directly shifts domestic landed cost and MCX price discovery; the jewellery sector reprices immediately.",
+      whyItMatters: "A tariff on gold or silver imports changes MCX spot vs. international gold spread, landed cost for jewellers, and sovereign gold bond premiums — all before the equity open.",
+      indiaImpact: "MCX Gold, MCX Silver, listed jewellers (Titan, Kalyan, Senco), SGBs and gold ETFs need re-pricing; import cost change is immediate and measurable.",
+      watchFor: "Watch MCX Gold open vs. international spot gap, USD/INR for transmission magnitude, and jeweller breadth (Titan, Kalyan, Senco) by 9:45 AM IST."
+    };
+  }
   if (isIndiaFuelForexPolicyStory(text)) {
     return {
       takeaway: "India's fuel and forex conservation appeal is a domestic risk signal tied to crude, current account pressure and consumption.",
@@ -1962,6 +2045,9 @@ function entityForHeadline(headline, category) {
   }
   if (isIndiaInfrastructureStory(lower)) {
     return "Infrastructure";
+  }
+  if (isIndiaPreciousMetalsPolicyStory(lower)) {
+    return "MCX Gold / Jewellery";
   }
   if (isIndiaFuelForexPolicyStory(lower)) {
     return "India fuel / forex";

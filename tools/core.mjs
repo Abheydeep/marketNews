@@ -6,7 +6,7 @@ import { resolveNewsArticles } from "./news-sources.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
-const PUBLIC_SOURCE_LIMIT = 8;
+const PUBLIC_SOURCE_LIMIT = 10;
 const MIN_PUBLIC_SOURCE_COUNT = 3;
 
 export async function loadSeeds() {
@@ -1055,7 +1055,7 @@ function hasIndiaReadThrough(article) {
 
 function isIndiaPublisherArticle(article) {
   const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
-  return /\b(moneycontrol|livemint|mint|business-standard|financialexpress|economic-times|economictimes|etmarkets|nseindia|bseindia|rbi\.org|sebi\.gov|thehindubusinessline|businessline)\b/.test(text);
+  return /\b(moneycontrol|livemint|mint|business-standard|financialexpress|financial-express|economic-times|economictimes|etmarkets|nseindia|bseindia|rbi\.org|sebi\.gov|thehindubusinessline|businessline|ndtv.?profit|bqprime|bq-prime)\b/.test(text);
 }
 
 function isOfficialIndiaSourceArticle(article) {
@@ -1082,6 +1082,7 @@ function indiaSourceScore(article, date) {
   if (indiaAuthorityText(text)) score += 10;
   if (crudeGeopoliticalText(text)) score += 8;
   if (indiaFuelForexPolicyText(text)) score += 10;
+  if (indiaPreciousMetalsPolicyText(text)) score += 20;
   if (marketMoveMagnitudeText(text)) score += 6;
   if (marketwideStressText(text)) score += 7;
   if (isStockLiveblogArticle(article)) score -= hasMarketwideDriverText(text) ? 8 : 16;
@@ -1182,6 +1183,9 @@ function marketDriverSeverityScore(article, marketSnapshots = []) {
     score += 20;
     if (brentMove >= 2) score += 8;
   }
+  if (indiaPreciousMetalsPolicyText(text)) {
+    score += 22;
+  }
   if (marketMoveMagnitudeText(text)) {
     score += 8;
   }
@@ -1217,7 +1221,7 @@ function isWeakStockListArticle(article) {
 }
 
 function hasMarketwideDriverText(text) {
-  return crudeGeopoliticalText(text) || indiaFuelForexPolicyText(text) || marketwideStressText(text) ||
+  return crudeGeopoliticalText(text) || indiaFuelForexPolicyText(text) || indiaPreciousMetalsPolicyText(text) || marketwideStressText(text) ||
     /\b(gift nifty|nifty futures|sensex|bank nifty|fii|dii|rupee|usd\/inr|brent|crude|yield|dxy|inflation|current account)\b/i.test(text);
 }
 
@@ -1242,7 +1246,13 @@ function marketMoveMagnitudeText(text) {
 function indiaFuelForexPolicyText(text) {
   const value = String(text || "").toLowerCase();
   return /\b(modi|narendra modi|pm modi|prime minister modi|indian prime minister|pmo|petroleum minister|hardeep singh puri|ministry of petroleum|government of india|indian government|centre)\b/.test(value) &&
-    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(value);
+    /\b(fuel|petrol|diesel|gasoline|gas|lpg|crude|oil|energy|foreign exchange|forex|current account|gold|silver|foreign travel|work[-\s]?from[-\s]?home|remote work|conserve|conservation|import bill|oil imports?)\b/.test(value);
+}
+
+function indiaPreciousMetalsPolicyText(text) {
+  const value = String(text || "").toLowerCase();
+  return /\b(gold|silver|bullion|precious metal|sovereign gold bond|sgb|gold etf|mcx gold|mcx silver|jeweller(?:y|s)?)\b/.test(value) &&
+    /\b(tariff|import duty|customs duty|basic customs duty|bcd|import tax|import levy|import on gold|gold duty|silver duty|import on silver|tax on gold|tax on silver|export duty)\b/.test(value);
 }
 
 function marketwideStressText(text) {
@@ -1251,6 +1261,7 @@ function marketwideStressText(text) {
 
 function driverTypeForArticle(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""}`.toLowerCase();
+  if (indiaPreciousMetalsPolicyText(text)) return "precious_metals";
   if (indiaFuelForexPolicyText(text) || /\b(crude|oil|brent|opec|hormuz|pipeline|keystone|fuel|petrol|diesel|gasoline|lpg)\b/.test(text)) return "crude";
   if (/\b(fed|fomc|yield|yields|bond|bonds|rate|rates|inflation|boe)\b/.test(text)) return "rates";
   if (/\b(dollar|rupee|currency|dxy|usd\/inr|yen)\b/.test(text)) return "currency";
@@ -1263,6 +1274,7 @@ function driverTypeForArticle(article) {
 function driverLabelForType(type) {
   return {
     crude: "Crude / energy risk",
+    precious_metals: "Gold / precious metals policy",
     rates: "Rates / Fed path",
     currency: "Currency pressure",
     tech: "Global tech breadth",
