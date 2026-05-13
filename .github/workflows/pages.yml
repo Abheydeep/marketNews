@@ -18,6 +18,9 @@ on:
     # Weekday 07:15 IST publish. The 07:25 IST backup is the same workflow
     # and exits once the verified archive is already committed.
     - cron: "45,55 1 * * 1-5"
+    # 10:30 IST recovery run — publishes today's briefing if the 07:15 window
+    # run failed or was delayed beyond the publish window.
+    - cron: "0 5 * * 1-5"
 
 permissions:
   contents: write
@@ -63,6 +66,7 @@ jobs:
         if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'
         env:
           MARKET_DATA_MODE: live
+          ALLOW_LATE_PREMARKET_PUBLISH: "true"
         run: |
           PUBLISH_ARGS=(--date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live)
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.enforce_publish_window }}" = "true" ]; then

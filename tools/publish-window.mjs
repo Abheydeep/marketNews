@@ -1,4 +1,4 @@
-export const DEFAULT_PREMARKET_LATE_CUTOFF_MINUTES = 45;
+export const DEFAULT_PREMARKET_LATE_CUTOFF_MINUTES = 120;
 
 export function premarketPublishWindowStatus({
   date,
