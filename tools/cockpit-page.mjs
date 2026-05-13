@@ -1,5 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
-import { newsArticleJsonLd } from "./core.mjs";
+import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
@@ -7289,7 +7289,7 @@ function sourceConfidenceSummary(digest) {
   const verification = digest.sourceVerification;
   const selection = digest.publicSourceSelection;
   if (verification?.isVerifiedForPublicArchive) {
-    const visible = selection?.visibleCount ?? publicVisibleSourceArticles(digest, 8).length;
+    const visible = selection?.visibleCount ?? publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT).length;
     const profile = sourceEvidenceProfile(digest);
     if (selection?.evidenceGrade === "global_cue_only" || profile.directIndiaSourceCount === 0) {
       return {
@@ -7652,7 +7652,7 @@ function twoMinuteSummaryHtml(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const support = firstByCategory(digest.news, "sector_positive") || firstByCategory(digest.news, "macro_positive") || strongestStory(digest.news, "positive");
-  const topSources = publicVisibleSourceArticles(digest, 8);
+  const topSources = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
   const categoryMix = [...new Set(topSources.map((article) => sourceCategoryTitle(article.category)))]
     .slice(0, 4)
     .join(", ");
@@ -7892,7 +7892,7 @@ function watchItemsHtml(digest, setup) {
 
 function sourceNotesHtml(digest) {
   const totalArticles = digest.publicSourceSelection?.shortlistCount ?? (digest.news ?? []).length;
-  const articles = publicVisibleSourceArticles(digest, 8);
+  const articles = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
   const lead = weightedSourceArticles(articles)[0] ?? articles[0];
   const categories = sourceCategoryGroups(articles);
   const defaultFilter = categories[0]?.category || "all";
@@ -7957,7 +7957,7 @@ function sourceNotesHtml(digest) {
   `;
 }
 
-function publicVisibleSourceArticles(digest, limit = 8) {
+function publicVisibleSourceArticles(digest, limit = PUBLIC_DISPLAY_LIMIT) {
   const urls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? []);
   if (urls.size) {
     const selected = (digest.news ?? []).filter((article) => urls.has(article.sourceUrl));
@@ -8053,7 +8053,7 @@ function sourceEvidenceProfile(digest) {
   const directIndiaSourceCount = Number(selection.directIndiaSourceCount ?? selection.indiaPublisherCount ?? 0);
   const officialIndiaSourceCount = Number(selection.officialIndiaSourceCount ?? 0);
   const domesticCatalystCount = Number(selection.domesticCatalystCount ?? 0);
-  const visibleCount = Number(selection.visibleCount ?? publicVisibleSourceArticles(digest, 8).length);
+  const visibleCount = Number(selection.visibleCount ?? publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT).length);
   const globalContextCount = Number(selection.globalContextCount ?? Math.max(0, visibleCount - directIndiaSourceCount));
   const grade = verification.blockedReason
     ? "held"

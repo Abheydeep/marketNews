@@ -8,6 +8,7 @@ const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
 const PUBLIC_SOURCE_LIMIT = 10;
 const MIN_PUBLIC_SOURCE_COUNT = 3;
+export const PUBLIC_DISPLAY_LIMIT = 5;
 
 export async function loadSeeds() {
   const [marketSnapshots, news, priceSeries, creator] = await Promise.all([

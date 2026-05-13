@@ -2466,7 +2466,7 @@ await test("demo app serves public and admin flows without external packages", a
   const publicSourceGroups = [...publicSection.matchAll(/data-source-group="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(new Set(publicSourceGroups).size >= 3, `expected diversified source groups, got ${publicSourceGroups.join(", ")}`);
   assert.ok((publicHtml.body.match(/data-source-group="/g) || []).length <= 5);
-  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 10);
+  assert.ok((publicHtml.body.match(/class="info-card source-card source-evidence-card"/g) || []).length <= 5);
   assert.ok(publicHtml.body.includes("data-source-group="));
   assert.ok(publicHtml.body.includes("source-filter-row"));
   assert.ok(publicHtml.body.includes("data-source-filter=\"all\""));
