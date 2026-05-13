@@ -998,6 +998,43 @@ await test("daily lead promotes India authority and move magnitude even without 
   assert.match(lead.headline, /Brent crude surges 4\.8%/i);
 });
 
+await test("daily lead prefers confirmed large tech move over generic crude inflation watch", () => {
+  const qualcommDrop = {
+    headline: "Qualcomm drops 11% after weak guidance weighs on chip sector",
+    summary: "Qualcomm fell sharply after guidance disappointed. Nifty IT and IT exporters face Nasdaq chip breadth headwind at India open.",
+    takeaway: "Large-cap chip move signals tech sector weakness heading into Asia.",
+    indiaImpact: "Nifty IT and IT exporter stocks need breadth confirmation; USD/INR also in focus as dollar strength follows chip risk-off.",
+    watchFor: "Watch Nifty IT gap and Infosys, TCS opening prints.",
+    sourceName: "CNBC World",
+    sourceId: "cnbc-world",
+    sourceUrl: "https://www.cnbc.com/2026/05/13/qualcomm-drops-11-chip-sector.html",
+    category: "global_risk",
+    entityName: "Nifty IT",
+    publishedAt: "2026-05-13T00:45:00.000Z",
+    sentimentScore: -0.6
+  };
+  const crudeInflationWatch = {
+    headline: "Iran and oil raising inflation, prices reaccelerating globally",
+    summary: "Iran tensions and rising crude oil prices are pushing inflation expectations higher globally, analysts say.",
+    takeaway: "Crude geopolitical risk sets a cautious tone for inflation-sensitive sectors.",
+    indiaImpact: "Brent crude pressure conditional on Iran escalation; OMCs, aviation face margin headwind if prices stay elevated.",
+    watchFor: "Watch Brent above $90 and USD/INR for OMC confirmation.",
+    sourceName: "Reuters",
+    sourceId: "reuters",
+    sourceUrl: "https://www.reuters.com/markets/commodities/iran-oil-inflation-2026-05-13.html",
+    category: "global_risk",
+    entityName: "Brent Crude",
+    publishedAt: "2026-05-13T00:30:00.000Z",
+    sentimentScore: -0.5
+  };
+  const lead = dailyLeadForDigest("2026-05-13", [qualcommDrop, crudeInflationWatch], {
+    marketSnapshots: []
+  });
+  assert.match(lead.sourceArticleId, /^cnbc-world:/);
+  assert.equal(lead.driverType, "tech_move");
+  assert.match(lead.headline, /Qualcomm drops 11%/i);
+});
+
 await test("premarket publish window blocks stale scheduled runs", () => {
   const onTime = premarketPublishWindowStatus({
     date: "2026-05-11",

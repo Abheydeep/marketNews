@@ -14,7 +14,7 @@ const OFF_TOPIC_ALWAYS_PATTERN = /\b(kentucky derby|pickleball|nfl|nba|mlb|yanke
 const LEGAL_POLITICAL_WITHOUT_POLICY_PATTERN = /\b(attorney|lawsuit|legal strateg(?:y|ies)|probe|investigation|deadline|subpoena|court|criminal|civil case)\b/i;
 const MARKET_POLICY_PATTERN = /\b(rate|rates|yield|yields|bond|bonds|inflation|policy|fomc|cut|hike|guidance|liquidity|market|markets|stocks?|futures)\b/i;
 const LOW_SIGNAL_MARKET_CONTENT_PATTERN = /\b(good stock to buy now|stock pick with huge upside|billionaire .* stock pick|best artificial intelligence .*growth stocks|ai growth stocks|social security|honey pot|numbers don['’]t lie|scotch whisky|king charles|spirit airlines|lawyers? to the wealthy|lazy millionaire|retirement|top wall street analysts|long-term prospects|how to invest|is this a good time to invest|good time to invest|best etf|dividend stock|passive income|bitcoin|crypto|nft|defi|web3|blockchain wallet|us housing|home prices|mortgage rates|real estate agent|homebuilders staying asset-light|millrose|clean harbors|pfas momentum|debt ceiling|government shutdown|us budget|senate vote|warren buffett quotes?|charlie munger|munger|greg abel|berkshire|chipotle|paypal|venmo|dunkin|inspire brands|arby's|buffalo wild wings|baskin robbins|sonic drive-in|restaurant company owns|plane tickets?|air travelers?|credit score|medical appointments?|patients who died|prior authorization|doctors say|us health provider|world['’]s oldest doctor|long, happy life|happy life|longevity|wellness|all my patients|youtube whisperers?|mrbeast|million-dollar channels?|creator economy|content creators?|jim cramer|investing club subscribers|start buying .*winners|red-hot ai stocks|claude has feelings|claude to be conscious|large language model .*conscious|mythos|cybersecurity hysteria|fitness wearable|whoop|on-demand clinician|sell in may|flip a coin|paramount|hollywood|films annually|anthropic is still blacklisted|weight loss|weight-loss|obesity assets?|glp-?1|wegovy)\b/i;
-const LOW_SIGNAL_LIVE_HEADLINE_PATTERN = /\b(too late to buy|should you buy|post-earnings dip|12-month gain|trump[‘’]s? .*gold card|gold card.*wealthy|world[‘’]s wealthy|wealthy investors|qualified small business stock|qsbs|tax break for wealthy|trump accounts?|buy a dell|fanduel|sports betting|data center outage hits trading|coinbase|maintains buy rating|upgrades .* stock|downgrades .* stock|raises pt|lowers pt|initiates coverage|price target|analyst rating|stocks? to buy|unstoppable stocks? to buy|top .*stock pick|cathie wood|most undervalued .*stock|high quality stock|wall street bullish on|legendary investor|negative 10-year returns|family office deal-making|best cd rates|cd rates today|apy|high-yield savings|savings interest rates|mortgage and refinance|refinance interest rates|heloc|home equity loan|home equity rates|gold and silver prices today(?! (?:rise|fall|surge|slump|jump|drop|tariff|duty|import|tax|policy|ban|levy))|wearable patches?|supplement industry|lactose intolerance patch|barri[eè]re|restaurant brands international|burger king|qsr q[1-4]|apollo ceo|rival insurers|stock lagging the s&p|real estate fund made .* bet|inventrust)\b/i;
+const LOW_SIGNAL_LIVE_HEADLINE_PATTERN = /\b(too late to buy|should you buy|post-earnings dip|12-month gain|trump[‘’]s? .*gold card|gold card.*wealthy|world[‘’]s wealthy|wealthy investors|qualified small business stock|qsbs|tax break for wealthy|trump accounts?|buy a dell|fanduel|sports betting|data center outage hits trading|coinbase|maintains buy rating|upgrades .* stock|downgrades .* stock|raises pt|lowers pt|initiates coverage|price target|analyst rating|stocks? to buy|unstoppable stocks? to buy|top .*stock pick|cathie wood|most undervalued .*stock|high quality stock|wall street bullish on|legendary investor|negative 10-year returns|family office deal-making|best cd rates|cd rates today|apy|high-yield savings|savings interest rates|mortgage and refinance|refinance interest rates|heloc|home equity loan|home equity rates|gold and silver prices today(?! (?:rise|fall|surge|slump|jump|drop|tariff|duty|import|tax|policy|ban|levy))|wearable patches?|supplement industry|lactose intolerance patch|barri[eè]re|restaurant brands international|burger king|qsr q[1-4]|apollo ceo|rival insurers|stock lagging the s&p|real estate fund made .* bet|inventrust|(?:tv|advertising|media|ad)\s+upfronts?|upfront\s+(?:advertising|season|week|showcase|presentations?)|corporate shuffles? (?:reshaping|are reshaping)|awards? (?:season|show|ceremony)|grammy|emmy|oscar|golden globe|cannes film|sundance|box office|theatrical release)\b/i;
 
 const LIVE_FEEDS = [
   {
@@ -754,6 +754,9 @@ export function articleLooksMarketRelevant(article) {
   if (isLowRelevanceUsSingleStockStory(text)) {
     return false;
   }
+  if (isIndiaStartupFundingStory(text)) {
+    return false;
+  }
   if (isGenericEarningsCallSummary(text) && !isImportantEarningsStory(text)) {
     return false;
   }
@@ -1030,11 +1033,32 @@ function categoryFromText(text, fallback) {
 }
 
 function isPrivateMarketStory(value) {
-  return /\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(String(value || ""));
+  const text = String(value || "").toLowerCase();
+  if (/\b(blue owl|spacex|private credit deal|private-market|private market)\b/.test(text)) return true;
+  // Indian startup seed / angel / early-stage raises (≤2-digit crore = startup territory)
+  // Guard: skip if it's a listed-company capital-market action (QIP, bond, rights issue, IPO)
+  if (
+    /\braises?\s+rs\.?\s*\d{1,2}\s+crore\b/.test(text) &&
+    !/\b(ipo|qip|fpo|bond|ncd|debenture|rights\s+issue|public\s+issue|listed|sebi|stock\s+exchange)\b/.test(text)
+  ) return true;
+  // Explicit early-stage funding language regardless of amount
+  if (/\b(seed\s+(?:round|funding)|angel\s+(?:round|funding|investment)|pre.?seed\s+(?:round|funding)|venture\s+(?:round|seed)|startup\s+(?:raises?|secures?|bags?|gets?\s+funding))\b/.test(text)) return true;
+  return false;
 }
 
 function isLowRelevanceUsSingleStockStory(value) {
   return /\b(carvana|used car retailer|used cars?|chipotle|paypal|venmo|netflix|paramount|hollywood|streaming wars?|disney|peloton|mcdonald['’]?s?|grindr|grove collaborative|plane tickets?|air travelers?|medical appointments?|patients who died|obesity assets?|glp-?1|wegovy)\b/i.test(String(value || ""));
+}
+
+function isIndiaStartupFundingStory(value) {
+  const text = String(value || "").toLowerCase();
+  // Small crore raises (≤2 digits before "crore") = seed/angel territory, not listed-co actions
+  const isSmallCroreRaise = /\braises?\s+rs\.?\s*\d{1,2}\s+crore\b/.test(text);
+  // Explicit early-stage language regardless of amount
+  const hasStartupFundingLanguage = /\b(seed\s+(?:round|funding)|angel\s+(?:round|funding|investment)|pre.?seed\s+(?:round|funding)?|startup\s+(?:raises?|secures?|bags?|gets?\s+funding)|early.stage\s+(?:funding|capital|investment))\b/.test(text);
+  if (!isSmallCroreRaise && !hasStartupFundingLanguage) return false;
+  // Allow through if it's a listed-company capital-market action
+  return !/\b(ipo|qip|fpo|bond|ncd|debenture|rights\s+issue|public\s+issue|stock\s+exchange|nse|bse|sebi|listed)\b/.test(text);
 }
 
 function isGenericEarningsCallSummary(value) {
