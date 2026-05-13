@@ -6,6 +6,9 @@ on:
     # 00:37 IST daily = 19:07 UTC previous day.
     - cron: "7 19 * * *"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   calendar-verify:
     runs-on: ubuntu-latest
