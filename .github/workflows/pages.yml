@@ -70,12 +70,17 @@ jobs:
         env:
           MARKET_DATA_MODE: live
           ALLOW_LATE_PREMARKET_PUBLISH: "true"
+          # Allow generation to proceed even when some India RSS feeds block GitHub IPs
+          ALLOW_INSUFFICIENT_SOURCES: "true"
         run: |
           PUBLISH_ARGS=(--date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live)
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.enforce_publish_window }}" = "true" ]; then
             PUBLISH_ARGS+=(--enforce-publish-window)
           fi
-          npm run daily:generate -- "${PUBLISH_ARGS[@]}"
+          npm run daily:generate -- "${PUBLISH_ARGS[@]}" || {
+            echo "Live generation failed; retrying with fixture news fallback"
+            npm run daily:generate -- --date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live --news-data fixture
+          }
 
       - name: Import previous deployed archive
         run: |

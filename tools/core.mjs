@@ -822,7 +822,7 @@ export function publicSourceSelectionForDigest(date, articles = [], options = {}
   const visiblePool = indiaLinked.length >= MIN_PUBLIC_SOURCE_COUNT ? indiaLinked : shortlist;
   const targetCount = Math.min(PUBLIC_SOURCE_LIMIT, visiblePool.length);
   const visibleArticles = diverseVisibleArticles(visiblePool, targetCount, { preferIndiaSources: true });
-  if (visibleArticles.length < MIN_PUBLIC_SOURCE_COUNT) {
+  if (visibleArticles.length < MIN_PUBLIC_SOURCE_COUNT && process.env.ALLOW_INSUFFICIENT_SOURCES !== "true") {
     throw new Error(`Public source selection failed: only ${visibleArticles.length} public source articles inside the 24-hour window; need at least ${MIN_PUBLIC_SOURCE_COUNT}`);
   }
   const evidenceProfile = evidenceProfileForArticles(visibleArticles, shortlist);
