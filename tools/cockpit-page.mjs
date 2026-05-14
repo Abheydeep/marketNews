@@ -8200,7 +8200,12 @@ function publicVisibleSourceArticles(digest, limit = PUBLIC_DISPLAY_LIMIT) {
   if (urls.size) {
     const selected = (digest.news ?? []).filter((article) => urls.has(article.sourceUrl));
     if (selected.length) {
-      return selected.slice(0, limit);
+      // Sort by importance so high-impact stories (geopolitical, crude shocks, big moves)
+      // always rank before routine stock picks, even if the news array order differs
+      return selected
+        .slice()
+        .sort((a, b) => publicSourceImportance(b) - publicSourceImportance(a))
+        .slice(0, limit);
     }
   }
   return topIndiaRelevantSourceArticles(digest.news ?? [], limit);
@@ -8263,6 +8268,8 @@ function publicSourceImportance(article) {
   if (["macro_negative", "global_risk"].includes(article?.category)) score += 3;
   if (["sector_positive", "macro_positive"].includes(article?.category)) score += 2;
   if (/\b(crude|oil|brent|opec|iran|hormuz|jet fuel|pipeline|keystone)\b/.test(text)) score += 4;
+  if (/trump.{0,25}(xi|jinping|beijing)|xi.{0,25}trump|us.?china (trade deal|tariff deal|tariff truce|trade truce)|trade (deal|truce|ceasefire|agreement)|tariff (deal|truce|cut|pause|rollback)/.test(text)) score += 6;
+  if (/\b(war|military|missile|strike|airstrike|geopolit|sanctions|red sea|hormuz)\b/.test(text)) score += 4;
   if (/\b(fed|rate|yield|inflation|dollar|dxy|usd\/inr|yen|currency)\b/.test(text)) score += 3;
   if (/\b(nasdaq|tech|software|semiconductor|chip|apple|ai|it)\b/.test(text)) score += 2.5;
   if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc)\b/.test(text)) score += 2.5;

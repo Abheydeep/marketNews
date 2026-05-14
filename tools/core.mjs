@@ -8,7 +8,7 @@ const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
 const PUBLIC_SOURCE_LIMIT = 10;
 const MIN_PUBLIC_SOURCE_COUNT = 3;
-export const PUBLIC_DISPLAY_LIMIT = 5;
+export const PUBLIC_DISPLAY_LIMIT = 10;
 
 export async function loadSeeds() {
   const [marketSnapshots, news, priceSeries, creator] = await Promise.all([
@@ -963,6 +963,9 @@ function defaultRiskSide(driverType, leadImpact) {
   if (driverType === "tech") {
     return "Weak Nasdaq futures or poor IT breadth would turn the global tech cue into risk, not support.";
   }
+  if (driverType === "geopolitical") {
+    return "Any breakdown in talks or re-escalation would hit IT exports, metals demand, and FII risk appetite — watch USD/INR and India VIX.";
+  }
   return cleanSentence(leadImpact || "The first range must confirm whether the source risk matters for India.");
 }
 
@@ -975,6 +978,9 @@ function defaultSupportSide(driverType) {
   }
   if (driverType === "tech") {
     return "Nasdaq futures, USD/INR, and Nifty IT breadth must confirm the offset.";
+  }
+  if (driverType === "geopolitical") {
+    return "A positive outcome lifts global risk appetite — Nifty IT, metals and mid-caps are the India plays; FII flows confirm.";
   }
   return "Support needs Indian breadth, sector leadership, or softer macro confirmation.";
 }
@@ -1285,6 +1291,10 @@ function driverTypeForArticle(article) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""}`.toLowerCase();
   if (indiaPreciousMetalsPolicyText(text)) return "precious_metals";
   if (largeTechSectorMoveText(text)) return "tech_move";
+  // Geopolitical / trade-deal check BEFORE crude — Trump-Xi bilateral summit or US-China
+  // trade deal articles mention oil as context but the primary driver is diplomacy.
+  // Iran/war/conflict stays as crude (those stories drive Brent, not risk-on for IT/metals).
+  if (/trump.{0,25}(xi|jinping|beijing)|xi.{0,25}(trump|beijing)|us.?china (trade deal|tariff deal|tariff truce|trade truce)|trade (deal|truce|ceasefire|agreement) .{0,40}(china|tariff|trump|xi)|tariff (deal|truce|cut|pause|rollback) .{0,40}(china|trump|xi)|bilateral (summit|talks?|meeting) .{0,40}(china|trump|xi|us)/.test(text)) return "geopolitical";
   if (indiaFuelForexPolicyText(text) || /\b(crude|oil|brent|opec|hormuz|pipeline|keystone|fuel|petrol|diesel|gasoline|lpg)\b/.test(text)) return "crude";
   if (/\b(fed|fomc|yield|yields|bond|bonds|rate|rates|inflation|boe)\b/.test(text)) return "rates";
   if (/\b(dollar|rupee|currency|dxy|usd\/inr|yen)\b/.test(text)) return "currency";
@@ -1304,6 +1314,7 @@ function driverLabelForType(type) {
     tech: "Global tech breadth",
     banks: "Bank Nifty breadth",
     asia: "Asia risk appetite",
+    geopolitical: "Geopolitical / trade diplomacy",
     market: "Market breadth"
   }[type] || "Market breadth";
 }
@@ -1440,6 +1451,7 @@ function marketLeadScore(article) {
   if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(text)) score += 9;
   if (/\b(crude|oil|brent|strait of hormuz)\b/.test(text)) score += 8;
   if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) score += 8;
+  if (/trump.{0,25}(xi|jinping|beijing)|xi.{0,25}trump|us.?china (trade|talks?|deal|truce|tariff)|trade (deal|truce|ceasefire|agreement)|tariff (deal|truce|cut|pause|rollback)|bilateral (summit|talks?|meeting)/.test(text)) score += 10;
   if (/\b(yield|bond|fed|rate|inflation)\b/.test(text)) score += 7;
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) score += 7;
   if (/\b(opec|production|output cut|output boost)\b/.test(text)) score += 7;
@@ -1565,6 +1577,9 @@ function editorialLeadSentence(article) {
   }
   if (/\b(crude|oil|brent)\b/.test(text)) {
     return "Crude remains the key transmission line for import costs, aviation fuel, OMC margins and inflation expectations";
+  }
+  if (/trump.{0,25}(xi|jinping|beijing)|xi.{0,25}trump|us.?china (trade|talks?|deal|truce|tariff)|trade (deal|truce|ceasefire|agreement)|tariff (deal|truce|cut|pause|rollback)/.test(text)) {
+    return "US-China diplomacy is the single largest global risk variable right now — a positive outcome is risk-on for IT exports, metals and mid-cap India; watch FII flows and USD/INR to confirm";
   }
   if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) {
     return "Geopolitical escalation is a risk-off cue that India must verify through crude, gold, USD/INR, FII flow and breadth";
