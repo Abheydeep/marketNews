@@ -117,6 +117,30 @@ export const LIVE_MARKET_SYMBOLS = [
     tradingViewSymbol: "TVC:UKOIL",
     marketRegion: "Macro Hedges",
     session: "macro"
+  },
+  {
+    symbol: "USDINR",
+    name: "USD/INR",
+    yahooSymbol: "USDINR=X",
+    tradingViewSymbol: "FX:USDINR",
+    marketRegion: "Macro Hedges",
+    session: "macro"
+  },
+  {
+    symbol: "GOLD",
+    name: "Gold (COMEX)",
+    yahooSymbol: "GC=F",
+    tradingViewSymbol: "TVC:GOLD",
+    marketRegion: "Macro Hedges",
+    session: "macro"
+  },
+  {
+    symbol: "INDIAVIX",
+    name: "India VIX",
+    yahooSymbol: "^INDIAVIX",
+    tradingViewSymbol: "NSE:INDIAVIX",
+    marketRegion: "India Open",
+    session: "india"
   }
 ];
 
@@ -137,6 +161,54 @@ export async function fetchLiveMarketSnapshots({ timeoutMs = 8_000 } = {}) {
   }
 
   return snapshots;
+}
+
+/**
+ * Fetch FII/DII provisional cash-market flows from NSE India.
+ * Returns null on any failure so callers degrade gracefully.
+ * @returns {Promise<{fiiNet: number, diiNet: number, fiiBuy: number, fiiSell: number, diiBuy: number, diiSell: number, date: string} | null>}
+ */
+export async function fetchFiiDiiFlows({ timeoutMs = 6_000 } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    // NSE requires a Referer + cookie from the main site; a single pre-flight
+    // often seeds enough session state to allow the API call through.
+    const cookieRes = await fetch("https://www.nseindia.com/market-data/fii-dii-activity", {
+      signal: controller.signal,
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "text/html"
+      }
+    });
+    const rawCookie = (cookieRes.headers.get("set-cookie") || "").split(";")[0];
+    const dataRes = await fetch("https://www.nseindia.com/api/fiidiiTradeReact", {
+      signal: controller.signal,
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "application/json",
+        Referer: "https://www.nseindia.com/market-data/fii-dii-activity",
+        ...(rawCookie ? { Cookie: rawCookie } : {})
+      }
+    });
+    if (!dataRes.ok) return null;
+    const rows = await dataRes.json();
+    const latest = Array.isArray(rows) ? rows[0] : null;
+    if (!latest) return null;
+    return {
+      date: String(latest.date ?? ""),
+      fiiNet: Number(latest.fiiNet ?? 0),
+      fiiBuy: Number(latest.fiiBuy ?? 0),
+      fiiSell: Number(latest.fiiSell ?? 0),
+      diiNet: Number(latest.diiNet ?? 0),
+      diiBuy: Number(latest.diiBuy ?? 0),
+      diiSell: Number(latest.diiSell ?? 0)
+    };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 export async function fetchYahooChartQuote(definition, timeoutMs) {

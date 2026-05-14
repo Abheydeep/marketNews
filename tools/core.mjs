@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
+import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -29,7 +29,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
   ]);
   const marketDataMode = options.marketDataMode ?? process.env.MARKET_DATA_MODE ?? "mock";
   const newsDataMode = options.newsDataMode ?? process.env.NEWS_DATA_MODE ?? "fixture";
-  const { marketSnapshots, marketDataError } = await resolveMarketSnapshots(seedMarketSnapshots, marketDataMode);
+  const { marketSnapshots, marketDataError, fiiDiiFlows } = await resolveMarketSnapshots(seedMarketSnapshots, marketDataMode);
   const { articles, sourceVerification } = await resolveNewsArticles(date, {
     mode: newsDataMode,
     seedNews: news.map((article) => ({
@@ -89,6 +89,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     reelScript: script.reelScript,
     publishedAt: null,
     marketSnapshots,
+    fiiDiiFlows: fiiDiiFlows ?? null,
     news: publicArticles,
     themes,
     tradeSetups,
@@ -104,20 +105,25 @@ export async function buildDigest(date = todayIso(), options = {}) {
 
 async function resolveMarketSnapshots(seedMarketSnapshots, marketDataMode) {
   if (marketDataMode !== "live") {
-    return { marketSnapshots: seedMarketSnapshots, marketDataError: null };
+    return { marketSnapshots: seedMarketSnapshots, marketDataError: null, fiiDiiFlows: null };
   }
 
-  try {
-    return {
-      marketSnapshots: await fetchLiveMarketSnapshots(),
-      marketDataError: null
-    };
-  } catch (error) {
-    return {
-      marketSnapshots: markSnapshotsAsFallback(seedMarketSnapshots, error.message),
-      marketDataError: error.message
-    };
+  const [snapshotResult, fiiDiiFlows] = await Promise.all([
+    fetchLiveMarketSnapshots().then(
+      (snapshots) => ({ snapshots, error: null }),
+      (error) => ({ snapshots: null, error: error.message })
+    ),
+    fetchFiiDiiFlows()
+  ]);
+
+  if (snapshotResult.snapshots) {
+    return { marketSnapshots: snapshotResult.snapshots, marketDataError: null, fiiDiiFlows };
   }
+  return {
+    marketSnapshots: markSnapshotsAsFallback(seedMarketSnapshots, snapshotResult.error),
+    marketDataError: snapshotResult.error,
+    fiiDiiFlows
+  };
 }
 
 export function scanPriceSeries(date, priceSeriesSeed) {

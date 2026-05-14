@@ -831,6 +831,111 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #f8fafc;
     }
 
+    .india-preopen-panel {
+      margin-top: 20px;
+      background: #0c1a2e;
+      border: 1px solid rgba(99,179,237,0.18);
+      border-radius: 12px;
+      padding: 18px 20px 14px;
+    }
+    .preopen-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .preopen-header h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin: 4px 0 0;
+    }
+    .preopen-flow-badge {
+      font-size: 11px;
+      background: rgba(99,179,237,0.12);
+      color: #90cdf4;
+      border-radius: 6px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .preopen-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .preopen-tile {
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: border-color 0.15s;
+      cursor: pointer;
+    }
+    .preopen-tile:hover { border-color: rgba(99,179,237,0.3); }
+    .preopen-tile span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+    }
+    .preopen-tile strong {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .preopen-tile.up strong { color: #34d399; }
+    .preopen-tile.down strong { color: #fb7185; }
+    .preopen-tile.flat strong { color: #fbbf24; }
+    .preopen-tile strong, .preopen-tile:not(.up):not(.down):not(.flat) strong { color: #e2e8f0; }
+    .preopen-tile small {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.3;
+    }
+    .preopen-flows {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 10px;
+      flex-wrap: wrap;
+    }
+    .preopen-flow-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 200px;
+    }
+    .flow-label {
+      font-size: 11px;
+      color: #64748b;
+      white-space: nowrap;
+    }
+    .preopen-flow {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .preopen-flow.up { color: #34d399; }
+    .preopen-flow.down { color: #fb7185; }
+    .preopen-flow-row small {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .preopen-flows--pending {
+      font-size: 12px;
+      color: #64748b;
+      font-style: italic;
+    }
+    @media (max-width: 600px) {
+      .preopen-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     .opening-nerve-card {
       position: relative;
       margin-top: 18px;
@@ -4798,6 +4903,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${evidenceGradeBadgeHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
         ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
+        ${indiaPreOpenHtml(digest)}
         ${followBriefingCtaHtml()}
         ${readerPathHtml(digest)}
 
@@ -5963,14 +6069,17 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         STI: 'TVC:STI',
         ASX200: 'ASX:XJO',
         DXY: 'TVC:DXY',
-        BRENT: 'TVC:UKOIL'
+        BRENT: 'TVC:UKOIL',
+        USDINR: 'FX:USDINR',
+        GOLD: 'TVC:GOLD',
+        INDIAVIX: 'NSE:INDIAVIX'
       }[symbol] ?? 'SP:SPX';
     }
 
     function regionForSymbol(symbol) {
       if (symbol === 'SPX' || symbol === 'NDX' || symbol === 'DJI') return 'US Overnight';
-      if (symbol === 'NIFTY' || symbol === 'BANKNIFTY' || symbol === 'GIFTNIFTY') return 'India Open';
-      if (symbol === 'DXY' || symbol === 'BRENT') return 'Macro Hedges';
+      if (symbol === 'NIFTY' || symbol === 'BANKNIFTY' || symbol === 'GIFTNIFTY' || symbol === 'INDIAVIX') return 'India Open';
+      if (symbol === 'DXY' || symbol === 'BRENT' || symbol === 'USDINR' || symbol === 'GOLD') return 'Macro Hedges';
       if (['NIKKEI', 'HSI', 'SHCOMP', 'KOSPI', 'TAIEX', 'STI', 'ASX200'].includes(symbol)) return 'Asia Watch';
       return 'Other Markets';
     }
@@ -6042,7 +6151,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         STI: 'singapore',
         ASX200: 'sydney',
         DXY: 'macro',
-        BRENT: 'macro'
+        BRENT: 'macro',
+        USDINR: 'macro',
+        GOLD: 'macro',
+        INDIAVIX: 'india'
       }[symbol] || 'macro';
     }
 
@@ -7081,7 +7193,10 @@ function tradingViewUrlForSnapshot(snapshot) {
     BANKNIFTY: "NSE:BANKNIFTY",
     GIFTNIFTY: "NSEIX:NIFTY1!",
     BRENT: "TVC:UKOIL",
-    DXY: "TVC:DXY"
+    DXY: "TVC:DXY",
+    USDINR: "FX:USDINR",
+    GOLD: "TVC:GOLD",
+    INDIAVIX: "NSE:INDIAVIX"
   }[snapshot.symbol] || "NSE:NIFTY";
   return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
 }
@@ -7142,6 +7257,129 @@ function marketMoodRailHtml(digest) {
         <strong>${escapeHtml(indexLine ? `Prev close: ${indexLine}` : "Indian quotes awaiting refresh")}</strong>
         <small>Daily briefing shows market context only; execution levels live in the Trading Guide.</small>
       </article>
+    </section>
+  `;
+}
+
+function indiaPreOpenHtml(digest) {
+  const snapshots = digest.marketSnapshots ?? [];
+  const fii = digest.fiiDiiFlows ?? null;
+
+  const gift = snapshots.find((s) => s.symbol === "GIFTNIFTY");
+  const nifty = snapshots.find((s) => s.symbol === "NIFTY");
+  const usdinr = snapshots.find((s) => s.symbol === "USDINR");
+  const vix = snapshots.find((s) => s.symbol === "INDIAVIX");
+  const gold = snapshots.find((s) => s.symbol === "GOLD");
+
+  // GIFT Nifty gap: how far GIFT is trading from Nifty's previous close
+  const giftGapPct = gift && nifty
+    ? ((gift.closeValue - (nifty.previousClose ?? nifty.closeValue)) / (nifty.previousClose ?? nifty.closeValue)) * 100
+    : null;
+  const giftGapSign = giftGapPct === null ? "" : giftGapPct >= 0 ? "▲" : "▼";
+  const giftGapClass = giftGapPct === null ? "" : giftGapPct >= 0.15 ? "up" : giftGapPct <= -0.15 ? "down" : "flat";
+
+  // VIX zone
+  function vixZone(v) {
+    if (!v) return { label: "—", cls: "" };
+    if (v < 14) return { label: "Calm — options cheap", cls: "up" };
+    if (v < 20) return { label: "Normal range", cls: "flat" };
+    if (v < 26) return { label: "Elevated — hedge cost rising", cls: "down" };
+    return { label: "Fear zone — wide stops", cls: "down" };
+  }
+  const vixData = vixZone(vix?.closeValue);
+
+  // USD/INR read
+  function rupeeBias(pct) {
+    if (!Number.isFinite(pct)) return { label: "—", cls: "" };
+    if (pct > 0.2) return { label: "Rupee under pressure", cls: "down" };
+    if (pct < -0.2) return { label: "Rupee strengthening", cls: "up" };
+    return { label: "Rupee stable", cls: "flat" };
+  }
+  const rupeeData = rupeeBias(usdinr?.changePercent);
+
+  // FII/DII formatted — treat all-zero response as "awaiting" (NSE publishes end-of-day)
+  const flowsAvailable = fii && (Math.abs(fii.fiiNet) > 0 || Math.abs(fii.diiNet) > 0);
+  function flowCrore(value) {
+    if (!Number.isFinite(value)) return "—";
+    const abs = Math.abs(value).toFixed(0);
+    return `${value >= 0 ? "▲" : "▼"} ₹${Number(abs).toLocaleString("en-IN")} cr`;
+  }
+  const fiiFormatted = flowsAvailable ? flowCrore(fii.fiiNet) : null;
+  const diiFormatted = flowsAvailable ? flowCrore(fii.diiNet) : null;
+  const fiiClass = flowsAvailable ? (fii.fiiNet >= 0 ? "up" : "down") : "";
+  const diiClass = flowsAvailable ? (fii.diiNet >= 0 ? "up" : "down") : "";
+  const flowDate = fii?.date ? ` (${fii.date})` : " (provisional)";
+
+  const tvLink = (sym, tv) =>
+    `href="${escapeHtml(`https://www.tradingview.com/chart/?symbol=${encodeURIComponent(tv)}`)}"` +
+    ` target="_blank" rel="noopener"`;
+
+  return `
+    <section class="india-preopen-panel" aria-label="India Pre-Open Nerve">
+      <div class="preopen-header">
+        <div>
+          <span class="summary-label">India Pre-Open</span>
+          <h2>Key reads before 9:15 AM IST</h2>
+        </div>
+        ${fii ? `<span class="preopen-flow-badge">Flows${escapeHtml(flowDate)}</span>` : ""}
+      </div>
+      <div class="preopen-grid">
+
+        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${gift ? tvLink("GIFTNIFTY", "NSEIX:NIFTY1!") : ""}>
+          <span>GIFT Nifty Gap</span>
+          <strong>
+            ${gift ? escapeHtml(formatNumber(gift.closeValue)) : "—"}
+          </strong>
+          <small>
+            ${giftGapPct !== null
+    ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% implied open`
+    : "Awaiting data"}
+          </small>
+        </a>
+
+        <a class="preopen-tile ${escapeHtml(rupeeData.cls)}" aria-label="USD/INR" ${usdinr ? tvLink("USDINR", "FX:USDINR") : ""}>
+          <span>USD / INR</span>
+          <strong>${usdinr ? escapeHtml(String(usdinr.closeValue)) : "—"}</strong>
+          <small>
+            ${usdinr
+    ? `${escapeHtml(usdinr.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(usdinr.changePercent).toFixed(3))}% · ${escapeHtml(rupeeData.label)}`
+    : "Awaiting data"}
+          </small>
+        </a>
+
+        <a class="preopen-tile ${escapeHtml(vixData.cls)}" aria-label="India VIX" ${vix ? tvLink("INDIAVIX", "NSE:INDIAVIX") : ""}>
+          <span>India VIX</span>
+          <strong>${vix ? escapeHtml(String(vix.closeValue)) : "—"}</strong>
+          <small>${vix ? escapeHtml(vixData.label) : "Awaiting data"}</small>
+        </a>
+
+        <a class="preopen-tile ${gold && gold.changePercent >= 0 ? "up" : "down"}" aria-label="Gold" ${gold ? tvLink("GOLD", "TVC:GOLD") : ""}>
+          <span>Gold (MCX proxy)</span>
+          <strong>${gold ? `$${escapeHtml(formatNumber(gold.closeValue))}` : "—"}</strong>
+          <small>
+            ${gold
+    ? `${escapeHtml(gold.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(gold.changePercent).toFixed(2))}% · duty-hike read: ${gold.changePercent > 1 ? "Jewellery sector in play" : "Watch MCX open"}`
+    : "Awaiting data"}
+          </small>
+        </a>
+
+      </div>
+      ${flowsAvailable ? `
+      <div class="preopen-flows">
+        <div class="preopen-flow-row">
+          <span class="flow-label">FII (Cash)</span>
+          <strong class="preopen-flow ${escapeHtml(fiiClass)}">${escapeHtml(fiiFormatted)}</strong>
+          <small>B ₹${escapeHtml(Number(fii.fiiBuy.toFixed(0)).toLocaleString("en-IN"))} cr · S ₹${escapeHtml(Number(fii.fiiSell.toFixed(0)).toLocaleString("en-IN"))} cr</small>
+        </div>
+        <div class="preopen-flow-row">
+          <span class="flow-label">DII (Cash)</span>
+          <strong class="preopen-flow ${escapeHtml(diiClass)}">${escapeHtml(diiFormatted)}</strong>
+          <small>B ₹${escapeHtml(Number(fii.diiBuy.toFixed(0)).toLocaleString("en-IN"))} cr · S ₹${escapeHtml(Number(fii.diiSell.toFixed(0)).toLocaleString("en-IN"))} cr</small>
+        </div>
+      </div>` : `
+      <div class="preopen-flows preopen-flows--pending">
+        <span>FII/DII provisional flows: NSE India publishes after 3:30 PM IST — check back post-market</span>
+      </div>`}
     </section>
   `;
 }
@@ -8384,8 +8622,8 @@ function topAsiaSymbols() {
 
 function regionForSnapshot(snapshot) {
   if (["SPX", "NDX", "DJI"].includes(snapshot.symbol)) return "US Overnight";
-  if (["NIFTY", "BANKNIFTY", "GIFTNIFTY"].includes(snapshot.symbol)) return "India Open";
-  if (["DXY", "BRENT"].includes(snapshot.symbol)) return "Macro Hedges";
+  if (["NIFTY", "BANKNIFTY", "GIFTNIFTY", "INDIAVIX"].includes(snapshot.symbol)) return "India Open";
+  if (["DXY", "BRENT", "USDINR", "GOLD"].includes(snapshot.symbol)) return "Macro Hedges";
   if (["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"].includes(snapshot.symbol)) return "Asia Watch";
   return "Other Markets";
 }

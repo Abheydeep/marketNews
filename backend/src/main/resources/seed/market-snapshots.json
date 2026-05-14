@@ -155,5 +155,35 @@
     "marketRegion": "Macro Hedges",
     "session": "macro",
     "tradingViewSymbol": "TVC:UKOIL"
+  },
+  {
+    "symbol": "USDINR",
+    "name": "USD/INR",
+    "closeValue": 83.52,
+    "changePercent": 0.08,
+    "source": "Exchange Mock",
+    "marketRegion": "Macro Hedges",
+    "session": "macro",
+    "tradingViewSymbol": "FX:USDINR"
+  },
+  {
+    "symbol": "GOLD",
+    "name": "Gold (COMEX)",
+    "closeValue": 2338.40,
+    "changePercent": 1.18,
+    "source": "Yahoo Finance Mock",
+    "marketRegion": "Macro Hedges",
+    "session": "macro",
+    "tradingViewSymbol": "TVC:GOLD"
+  },
+  {
+    "symbol": "INDIAVIX",
+    "name": "India VIX",
+    "closeValue": 14.82,
+    "changePercent": -3.21,
+    "source": "Exchange Mock",
+    "marketRegion": "India Open",
+    "session": "india",
+    "tradingViewSymbol": "NSE:INDIAVIX"
   }
 ]
