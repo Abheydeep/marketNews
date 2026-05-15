@@ -2,7 +2,7 @@
   "scriptId": 1,
   "digestDate": "2026-05-14",
   "title": "Crude / energy risk Tests Bank Nifty Open",
-  "status": "DRAFT",
+  "status": "PUBLISHED",
   "generatedAt": "2026-05-14T04:04:50.661Z",
   "dailyLead": {
     "label": "Crude / energy risk",
@@ -51,8 +51,6 @@
   "overallSentiment": -0.032,
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.585%, Nasdaq 100 +1.04%, Dow Jones -0.135%, Nifty 50 +0.663%, Bank Nifty +0.772%, Nikkei 225 +0.076%, Hang Seng +0.422%, Shanghai Composite -0.363%, KOSPI +0.338%, Taiwan Weighted +0.773%, Straits Times -0.388%, ASX 200 -0.178%, US Dollar Index -0.044%, Brent Crude +0.322%, USD/INR +0.154%, Gold (COMEX) -0.548%, India VIX -3.912%\n\nNarrative Themes:\n- Negative Macro Impact: Gold and silver MCX rates jumped 6% following duty hike announcement. Get all updates on gold and silver here.\n- Sector-Specific Pressure: European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday.\n- Global Risk-Off Cue: Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain elevated.\n- Volatile Opening Bias: OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day.\n- Global Earnings & Risk Appetite: Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%. Analysts predict a positive market start today and recommend buying shares from companies like NLC India and Rossari Biotech amid improving global conditions.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
-  "teleprompterScript": "[OPENING]\nGood morning. Nifty reference is 23,567.75 (+0.663%); Bank Nifty reference is 53,868.85 (+0.772%). The tape is balanced, and the first range should define direction.\n\n[GLOBAL CUES]\nS&P 500 closed +0.585%. Nasdaq 100 closed +1.04%. Dow Jones closed -0.135%. Nifty 50 closed +0.663%. Bank Nifty closed +0.772%. Nikkei 225 closed +0.076%. Hang Seng closed +0.422%. Shanghai Composite closed -0.363%. KOSPI closed +0.338%. Taiwan Weighted closed +0.773%. Straits Times closed -0.388%. ASX 200 closed -0.178%. US Dollar Index closed -0.044%. Brent Crude closed +0.322%. USD/INR closed +0.154%. Gold (COMEX) closed -0.548%. India VIX closed -3.912%.\n\n[NARRATIVE THEMES]\nTheme: Negative Macro Impact. Gold and silver MCX rates jumped 6% following duty hike announcement. Get all updates on gold and silver here.\n\nTheme: Sector-Specific Pressure. European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday.\n\nTheme: Global Risk-Off Cue. Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain elevated.\n\nTheme: Volatile Opening Bias. OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day.\n\nTheme: Global Earnings & Risk Appetite. Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%. Analysts predict a positive market start today and recommend buying shares from companies like NLC India and Rossari Biotech amid improving global conditions.\n\n[NIFTY AND BANK NIFTY VIEW]\nLet price confirm the opening bias. Do not chase the first candle; wait for acceptance around the levels.\n\n[VALIDATED SETUPS]\nNo clean 1:2 setup is active yet; wait for the opening range to confirm direction.\n\n[RISK DISCLAIMER]\nEducational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
-  "reelScript": "[REEL SCRIPT | 2026-05-14 | 45-60 sec]\n\nFORMAT: 9:16 vertical reel. Delivery should be sharp, conversational, and calm. Do not read the bracketed directions out loud.\n\n[0-03s | HOOK]\nON SCREEN: NEUTRAL pre-market read\nVOICEOVER: Do not trade the open like a simple green-or-red signal. The market is balanced enough that the first thirty minutes can change the whole read.\n\n[03-14s | OVERNIGHT STORY]\nON SCREEN: US, Asia, crude, banks\nVOICEOVER: US markets are mixed: Nasdaq 100 up 1.04%, while Dow Jones down 0.14%. Asia is mixed: Taiwan Taiwan Weighted up 0.77%, while Singapore Straits Times down 0.39%. Macro hedges are mixed: Gold (COMEX) down 0.55%, while Brent Crude up 0.32%.\n\n[14-28s | WHY INDIA CARES]\nON SCREEN: negative macro impact\nVOICEOVER: Gold and silver MCX rates jumped 6% following duty hike announcement; market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves. That is the pressure point to respect. Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%; risk appetite is supportive only if Indian breadth confirms beyond the first range. That is the counterweight if breadth improves. India sector at stake: private banks, NBFCs, and Bank Nifty breadth. This read is backed by NDTV Profit Markets and Mint Markets.\n\n[28-40s | INDIA OPEN]\nON SCREEN: Nifty + Bank Nifty game plan\nVOICEOVER: India is mixed: India VIX down 3.91%, while Bank Nifty up 0.77%. If banks hold VWAP and breadth improves, dips can stay selective. If breadth breaks, reduce size and wait.\n\n[40-52s | TRADE PLAN]\nON SCREEN: No chase. Only 1:2+ setups.\nVOICEOVER: No forced trade at the open. Let the first-hour range form, then only take a setup that gives at least twice the reward for the risk. Bank Nifty confirmation is the filter: hold 53,868.85 and VWAP for risk-on; lose it and keep the Nifty plan defensive.\n\n[52-58s | WATCH NEXT]\nON SCREEN: Watch this after 9:15\nVOICEOVER: The next tell is this: Watch MCX volume reaction, broker/exchange peer breadth and Bank Nifty VWAP after the open.\n\n[58-60s | CLOSE]\nON SCREEN: Save before the open\nVOICEOVER: This is the Market Narrative pre-open map. Save it, respect the first range, and trade only your own risk plan.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -7746,228 +7744,6 @@
     "diiBuy": 0,
     "diiSell": 0
   },
-  "news": [
-    {
-      "publishedAt": "2026-05-14T00:31:08.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll",
-      "summary": "Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain elevated.",
-      "takeaway": "Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain; lower crude eases India import-cost pressure if the move survives the morning handoff.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Rupee May",
-        "accent": "#7c3aed",
-        "alt": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll source thumbnail"
-      },
-      "sourceUrl": "https://www.livemint.com/market/rupee-may-slide-to-96-98-by-december-end-amid-oil-shock-mint-poll-11778659684263.html",
-      "sentimentScore": -0.55,
-      "entityName": "Bank Nifty",
-      "entityMatchScore": 0.84,
-      "category": "global_risk"
-    },
-    {
-      "publishedAt": "2026-05-14T02:25:47.000Z",
-      "sourceId": "ndtv-profit-markets",
-      "sourceName": "NDTV Profit Markets",
-      "headline": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14?",
-      "summary": "Gold and silver MCX rates jumped 6% following duty hike announcement. Get all updates on gold and silver here.",
-      "takeaway": "Gold and silver MCX rates jumped 6% following duty hike announcement; market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves.",
-      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
-      "indiaImpact": "Watch MCX, exchanges, brokers and capital-market infrastructure peers; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
-      "watchFor": "Watch MCX volume reaction, broker/exchange peer breadth and Bank Nifty VWAP after the open.",
-      "thumbnail": {
-        "label": "Infrastructure",
-        "theme": "Silver Rates",
-        "accent": "#dc2626",
-        "alt": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14? source thumbnail"
-      },
-      "sourceUrl": "https://www.ndtvprofit.com/markets/gold-silver-rates-today-live-updates-latest-22-and-24-carat-gold-price-news-import-duty-hike-mcx-gold-rate-live-blog-11492408",
-      "sentimentScore": -0.65,
-      "entityName": "Market infrastructure",
-      "entityMatchScore": 0.74,
-      "category": "macro_negative"
-    },
-    {
-      "publishedAt": "2026-05-14T02:19:47.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May",
-      "summary": "Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%. Analysts predict a positive market start today and recommend buying shares from companies like NLC India and Rossari Biotech amid improving global conditions.",
-      "takeaway": "Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Raja Marketsmith",
-        "accent": "#059669",
-        "alt": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May source thumbnail"
-      },
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-14-may-11778722804780.html",
-      "sentimentScore": 0.4,
-      "entityName": "Nifty 50",
-      "entityMatchScore": 0.84,
-      "category": "macro_positive"
-    },
-    {
-      "publishedAt": "2026-05-13T15:50:58.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer",
-      "summary": "European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday.",
-      "takeaway": "European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday; consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
-      "whyItMatters": "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
-      "indiaImpact": "FMCG, autos, retail lenders and discretionary names are the India checks; Nifty bias needs breadth outside defensives.",
-      "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag.",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "European Close",
-        "accent": "#b45309",
-        "alt": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer source thumbnail"
-      },
-      "sourceUrl": "https://www.cnbc.com/2026/05/13/european-markets-stoxx-600-ftse-dax-iran-news-uk-starmer-latest.html",
-      "sentimentScore": -0.48,
-      "entityName": "Market",
-      "entityMatchScore": 0.66,
-      "category": "sector_negative"
-    },
-    {
-      "publishedAt": "2026-05-14T01:51:02.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast",
-      "summary": "OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day.",
-      "takeaway": "OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
-      "thumbnail": {
-        "label": "OPEC",
-        "theme": "Oil Supply",
-        "accent": "#f97316",
-        "alt": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast source thumbnail"
-      },
-      "sourceUrl": "https://www.cnbc.com/2026/05/14/oil-prices-today-wti-brent-hormuz-trump-xi-meeting.html",
-      "sentimentScore": -0.39,
-      "entityName": "Options tape",
-      "entityMatchScore": 0.74,
-      "category": "neutral_volatile"
-    },
-    {
-      "publishedAt": "2026-05-14T02:35:51.000Z",
-      "sourceId": "ndtv-profit-markets",
-      "sourceName": "NDTV Profit Markets",
-      "headline": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair",
-      "summary": "Kevin Warsh will be the wealthiest Fed chair ever, with holdings well north of $100 million.",
-      "takeaway": "Kevin Warsh will be the wealthiest Fed chair ever, with holdings well north of $100 million; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Who Kevin",
-        "accent": "#7c3aed",
-        "alt": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair source thumbnail"
-      },
-      "sourceUrl": "https://www.ndtvprofit.com/world/who-is-kevin-warsh-all-you-need-to-know-new-us-federal-reserve-chair-early-life-career-trump-connection-11492295",
-      "sentimentScore": -0.42,
-      "entityName": "Rates",
-      "entityMatchScore": 0.84,
-      "category": "global_risk"
-    },
-    {
-      "publishedAt": "2026-05-14T02:37:00.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here",
-      "summary": "Q4 results 2026: More than 145 companies are scheduled to release their Q4 results today. Here's preview and full list companies to declare earnings on Thursday.",
-      "takeaway": "HAL to IRFC among companies to declare Q4 results today; full list here; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Results Hal",
-        "accent": "#059669",
-        "alt": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here source thumbnail"
-      },
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/q4-results-2026-hal-to-irfc-among-companies-to-declare-q4-results-today-full-list-here-11778723446951.html",
-      "sentimentScore": 0.43,
-      "entityName": "Market",
-      "entityMatchScore": 0.72,
-      "category": "macro_positive"
-    },
-    {
-      "publishedAt": "2026-05-14T01:03:53.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up",
-      "summary": "Asia markets were mixed ahead of the highly anticipated Trump-Xi talks.",
-      "takeaway": "Asia markets were mixed ahead of the highly anticipated Trump-Xi talks; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Cnbc Daily",
-        "accent": "#dc2626",
-        "alt": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up source thumbnail"
-      },
-      "sourceUrl": "https://www.cnbc.com/2026/05/14/cnbc-daily-open-trump-touches-down-in-beijing-as-us-prices-heat-up.html",
-      "sentimentScore": -0.6,
-      "entityName": "Rates",
-      "entityMatchScore": 0.74,
-      "category": "macro_negative"
-    },
-    {
-      "publishedAt": "2026-05-14T01:37:33.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight",
-      "summary": "Gift Nifty was trading around 23,540 level, a premium of nearly 78 points from the Nifty futures’ previous close, indicating a positive start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,540 level, a premium of nearly 78 points from the Nifty futures’ previous; China cues matter for India through metals, chemicals, commodities and regional risk appetite.",
-      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
-      "indiaImpact": "Nifty Metal, chemicals and capital-goods suppliers are the direct checks; broad conviction needs banks to join.",
-      "watchFor": "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP through the first range.",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight source thumbnail"
-      },
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-donald-trump-s-china-visit-to-nasdaq-rally-10-things-that-changed-for-indian-stock-market-overnight-11778722266619.html",
-      "sentimentScore": 0.04,
-      "entityName": "Nifty Open",
-      "entityMatchScore": 0.84,
-      "category": "neutral_volatile"
-    },
-    {
-      "publishedAt": "2026-05-13T12:12:32.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\"",
-      "summary": "The IEA's oil market report for May noted that global oil supply declined by a further 1.8 million barrels per day in April.",
-      "takeaway": "The IEA's oil market report for May noted that global oil supply declined by a further 1.8 million; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
-      "thumbnail": {
-        "label": "Brent Crude",
-        "theme": "Oil Price",
-        "accent": "#7c3aed",
-        "alt": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\" source thumbnail"
-      },
-      "sourceUrl": "https://www.cnbc.com/2026/05/13/oil-price-spike-turmoil-iea-iran-war.html",
-      "sentimentScore": -0.3,
-      "entityName": "Brent Crude",
-      "entityMatchScore": 0.74,
-      "category": "global_risk"
-    }
-  ],
   "themes": [
     {
       "digestDate": "2026-05-14",
@@ -8011,108 +7787,6 @@
     }
   ],
   "tradeSetups": [],
-  "setupAudit": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 22705,
-      "stopLoss": 22180.26,
-      "target": 23859.42,
-      "riskReward": 2.2,
-      "setup": {
-        "symbol": "NIFTY",
-        "direction": "BULLISH",
-        "entry": 22705,
-        "stopLoss": 22180.26,
-        "target": 23859.42,
-        "riskReward": 2.2,
-        "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-        "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
-        "digestDate": "2026-05-14"
-      },
-      "status": "RISK_REWARD_COMPRESSED",
-      "reason": "NIFTY moved away from the entry zone; the reward left is only 0.21R.",
-      "currentPrice": 23567.75,
-      "remainingRiskReward": 0.21
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "direction": "BULLISH",
-      "entry": 50960,
-      "stopLoss": 49292.6,
-      "target": 54628.28,
-      "riskReward": 2.2,
-      "setup": {
-        "symbol": "BANKNIFTY",
-        "direction": "BULLISH",
-        "entry": 50960,
-        "stopLoss": 49292.6,
-        "target": 54628.28,
-        "riskReward": 2.2,
-        "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-        "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
-        "digestDate": "2026-05-14"
-      },
-      "status": "RISK_REWARD_COMPRESSED",
-      "reason": "BANKNIFTY moved away from the entry zone; the reward left is only 0.17R.",
-      "currentPrice": 53868.85,
-      "remainingRiskReward": 0.166
-    }
-  ],
-  "asset": {
-    "sentimentLabel": "NEUTRAL",
-    "positivePrompt": "photorealistic Indian male financial creator portrait, ControlNet reference, consistent face, NSE and BSE style market boards, Nifty and Bank Nifty ticker wall, balanced chart grid, opening-range levels, composed financial presenter, cinematic studio lighting, sharp facial features, realistic skin texture, 8k editorial detail",
-    "negativePrompt": "plastic skin, distorted eyes, extra fingers, cartoonish, low resolution, blurry text, deformed hands, generic Wall Street floor, NYSE trading pit, US flag backdrop, suit-and-tie corporate headshot, unreadable ticker text",
-    "palette": "steel, white, muted green",
-    "referenceImageId": "creator-ref-001",
-    "controlNetMode": "ControlNet Canny + Depth identity lock",
-    "assetUrl": "/assets/generated/daily-thumbnail-2026-05-14.webp",
-    "reelVideo": {
-      "durationSeconds": 60,
-      "aspectRatio": "9:16",
-      "style": "premium dark glassmorphism financial reel",
-      "captionStack": [
-        "Opening range decides",
-        "Macro hedges are mixed: Gold (COMEX) down 0.55%, while Brent Crude up 0.32%.",
-        "India is mixed: India VIX down 3.91%, while Bank Nifty up 0.77%.",
-        "No chase: wait for first-hour range",
-        "Save before the open"
-      ],
-      "scenes": [
-        {
-          "time": "0-03s",
-          "title": "Hook",
-          "caption": "Opening range decides",
-          "visual": "Creator close-up, dark glass trading wall, bold sentiment badge."
-        },
-        {
-          "time": "03-14s",
-          "title": "Global Cue",
-          "caption": "Macro hedges are mixed: Gold (COMEX) down 0.55%, while Brent Crude up 0.32%.",
-          "visual": "US futures, Asia map, crude and dollar tiles moving behind the creator."
-        },
-        {
-          "time": "14-34s",
-          "title": "India Read",
-          "caption": "India is mixed: India VIX down 3.91%, while Bank Nifty up 0.77%.",
-          "visual": "Nifty and Bank Nifty cards, VWAP line, breadth meter."
-        },
-        {
-          "time": "34-52s",
-          "title": "Trade Plan",
-          "caption": "No chase: wait for first-hour range",
-          "visual": "Entry, stop, target cards with 1:2 risk-reward emphasis."
-        },
-        {
-          "time": "52-60s",
-          "title": "Close",
-          "caption": "Save before the open",
-          "visual": "Clean closing card with disclaimer microcopy."
-        }
-      ],
-      "videoPrompt": "Create a 60-second vertical financial market reel for 2026-05-14. Mood: NEUTRAL. Style: premium dark glassmorphism, sharp typography, Indian market desk energy. Use a photorealistic Indian male financial creator as presenter with a ControlNet reference and consistent face. Set the scene in an Indian market studio with NSE/BSE-style boards, Nifty, Bank Nifty, GIFT Nifty, rupee, DXY, Brent, PCR and OI visual tiles where relevant. Main story: Gold and silver MCX rates jumped 6% following duty hike announcement; market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves. Trade framing: No chase: wait for first-hour range. No exaggerated profit claims, no guaranteed calls, no investment advice."
-    }
-  },
   "marketDataMode": "live",
   "marketDataError": null,
   "newsDataMode": "live",
@@ -8127,5 +7801,349 @@
   },
   "durationMillis": 11547,
   "scheduledFor": "2026-05-14T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data"
+  "runMode": "scheduled-verified-source-data",
+  "news": [
+    {
+      "publishedAt": "2026-05-14T00:31:08.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll",
+      "summary": "Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain elevated.",
+      "takeaway": "Most economists expect the rupee to depreciate 3-4% in the current financial year if crude oil prices remain; lower crude eases India import-cost pressure if the move survives the morning handoff.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
+      "sourceUrl": "https://www.livemint.com/market/rupee-may-slide-to-96-98-by-december-end-amid-oil-shock-mint-poll-11778659684263.html",
+      "sentimentLabel": "negative",
+      "entityName": "Bank Nifty",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Bank",
+        "theme": "Rupee May",
+        "accent": "#7c3aed",
+        "alt": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T02:25:47.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14?",
+      "summary": "Gold and silver MCX rates jumped 6% following duty hike announcement. Get all updates on gold and silver here.",
+      "takeaway": "Gold and silver MCX rates jumped 6% following duty hike announcement; market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves.",
+      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
+      "indiaImpact": "Watch MCX, exchanges, brokers and capital-market infrastructure peers; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
+      "watchFor": "Watch MCX volume reaction, broker/exchange peer breadth and Bank Nifty VWAP after the open.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gold-silver-rates-today-live-updates-latest-22-and-24-carat-gold-price-news-import-duty-hike-mcx-gold-rate-live-blog-11492408",
+      "sentimentLabel": "negative",
+      "entityName": "Market infrastructure",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Infrastructure",
+        "theme": "Silver Rates",
+        "accent": "#dc2626",
+        "alt": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T02:19:47.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May",
+      "summary": "Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%. Analysts predict a positive market start today and recommend buying shares from companies like NLC India and Rossari Biotech amid improving global conditions.",
+      "takeaway": "Indian stocks gained on May 13, ending a four-day decline, with the Nifty 50 rising 0.14%; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-14-may-11778722804780.html",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty 50",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "50",
+        "theme": "Raja Marketsmith",
+        "accent": "#059669",
+        "alt": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-13T15:50:58.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer",
+      "summary": "European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday.",
+      "takeaway": "European stocks bucked the negative sentiment seen in Tuesday's session by closing higher on Wednesday; consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
+      "whyItMatters": "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
+      "indiaImpact": "FMCG, autos, retail lenders and discretionary names are the India checks; Nifty bias needs breadth outside defensives.",
+      "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/13/european-markets-stoxx-600-ftse-dax-iran-news-uk-starmer-latest.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "sector_negative",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "European Close",
+        "accent": "#b45309",
+        "alt": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T01:51:02.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast",
+      "summary": "OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day.",
+      "takeaway": "OPEC cut its demand growth estimates for 2026 to about 1.2 million barrels per day; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/14/oil-prices-today-wti-brent-hormuz-trump-xi-meeting.html",
+      "sentimentLabel": "negative",
+      "entityName": "Options tape",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "OPEC",
+        "theme": "Oil Supply",
+        "accent": "#f97316",
+        "alt": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T02:35:51.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair",
+      "summary": "Kevin Warsh will be the wealthiest Fed chair ever, with holdings well north of $100 million.",
+      "takeaway": "Kevin Warsh will be the wealthiest Fed chair ever, with holdings well north of $100 million; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
+      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
+      "sourceUrl": "https://www.ndtvprofit.com/world/who-is-kevin-warsh-all-you-need-to-know-new-us-federal-reserve-chair-early-life-career-trump-connection-11492295",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Who Kevin",
+        "accent": "#7c3aed",
+        "alt": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T02:37:00.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here",
+      "summary": "Q4 results 2026: More than 145 companies are scheduled to release their Q4 results today. Here's preview and full list companies to declare earnings on Thursday.",
+      "takeaway": "HAL to IRFC among companies to declare Q4 results today; full list here; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/q4-results-2026-hal-to-irfc-among-companies-to-declare-q4-results-today-full-list-here-11778723446951.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Results Hal",
+        "accent": "#059669",
+        "alt": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T01:03:53.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up",
+      "summary": "Asia markets were mixed ahead of the highly anticipated Trump-Xi talks.",
+      "takeaway": "Asia markets were mixed ahead of the highly anticipated Trump-Xi talks; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/14/cnbc-daily-open-trump-touches-down-in-beijing-as-us-prices-heat-up.html",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Cnbc Daily",
+        "accent": "#dc2626",
+        "alt": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-14T01:37:33.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight",
+      "summary": "Gift Nifty was trading around 23,540 level, a premium of nearly 78 points from the Nifty futures’ previous close, indicating a positive start for the Indian stock market indices.",
+      "takeaway": "Gift Nifty was trading around 23,540 level, a premium of nearly 78 points from the Nifty futures’ previous; China cues matter for India through metals, chemicals, commodities and regional risk appetite.",
+      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
+      "indiaImpact": "Nifty Metal, chemicals and capital-goods suppliers are the direct checks; broad conviction needs banks to join.",
+      "watchFor": "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP through the first range.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-donald-trump-s-china-visit-to-nasdaq-rally-10-things-that-changed-for-indian-stock-market-overnight-11778722266619.html",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-05-13T12:12:32.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\"",
+      "summary": "The IEA's oil market report for May noted that global oil supply declined by a further 1.8 million barrels per day in April.",
+      "takeaway": "The IEA's oil market report for May noted that global oil supply declined by a further 1.8 million; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.cnbc.com/2026/05/13/oil-price-spike-turmoil-iea-iran-war.html",
+      "sentimentLabel": "negative",
+      "entityName": "Brent Crude",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Brent Crude",
+        "theme": "Oil Price",
+        "accent": "#7c3aed",
+        "alt": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\" source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-14T00:31:08.000Z",
+      "sourceUrl": "https://www.livemint.com/market/rupee-may-slide-to-96-98-by-december-end-amid-oil-shock-mint-poll-11778659684263.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERupee%20May%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Rupee may slide to 96-98 by December-end amid oil shock: Mint poll source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14?",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-05-14T02:25:47.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gold-silver-rates-today-live-updates-latest-22-and-24-carat-gold-price-news-import-duty-hike-mcx-gold-rate-live-blog-11492408",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESilver%20Rates%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInfrastructure%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold, Silver Rates Today Live: Gold Above Rs 1.6 Lakh, Silver Crosses Rs 3 Lakh — Will Prices Rise Even More On May 14? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-14T02:19:47.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-14-may-11778722804780.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERaja%20Marketsmith%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Raja Venkatraman, MarketSmith recommend five stocks for 14 May source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-13T15:50:58.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/13/european-markets-stoxx-600-ftse-dax-iran-news-uk-starmer-latest.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EEuropean%20Close%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "European markets close higher, UK gilts volatile as pressure mounts on PM Starmer source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "sector_negative"
+    },
+    {
+      "title": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-14T01:51:02.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/14/oil-prices-today-wti-brent-hormuz-trump-xi-meeting.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOPEC%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil struggles for direction as IEA flags greater volatility ahead, OPEC cuts demand forecast source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-05-14T02:35:51.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/who-is-kevin-warsh-all-you-need-to-know-new-us-federal-reserve-chair-early-life-career-trump-connection-11492295",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWho%20Kevin%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Who Is Kevin Warsh? Inside Early Life, Career, Trump Connection & Policy Vision Of Next Fed Chair source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-14T02:37:00.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/q4-results-2026-hal-to-irfc-among-companies-to-declare-q4-results-today-full-list-here-11778723446951.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EResults%20Hal%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Q4 results 2026: HAL to IRFC among companies to declare Q4 results today; full list here source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-14T01:03:53.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/14/cnbc-daily-open-trump-touches-down-in-beijing-as-us-prices-heat-up.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECnbc%20Daily%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC Daily Open: Trump touches down in Beijing as U.S. inflation heats up source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-14T01:37:33.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-donald-trump-s-china-visit-to-nasdaq-rally-10-things-that-changed-for-indian-stock-market-overnight-11778722266619.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "From Gift Nifty, Donald Trump’s China visit to Nasdaq rally: 10 things that changed for Indian stock market overnight source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\"",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-13T12:12:32.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/13/oil-price-spike-turmoil-iea-iran-war.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Price%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil price spike turmoil far from over, IEA says as inventories are depleted at “record pace\" source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "RISK_REWARD_COMPRESSED",
+      "reason": "NIFTY moved away from the entry zone; the reward left is only 0.21R.",
+      "currentPrice": 23567.75,
+      "entry": 22705,
+      "stopLoss": 22180.26,
+      "target": 23859.42,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0.21
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "RISK_REWARD_COMPRESSED",
+      "reason": "BANKNIFTY moved away from the entry zone; the reward left is only 0.17R.",
+      "currentPrice": 53868.85,
+      "entry": 50960,
+      "stopLoss": 49292.6,
+      "target": 54628.28,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0.166
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-05-14.webp"
+  }
 }
