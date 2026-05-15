@@ -216,14 +216,22 @@ function redirectPage(targetHref, label) {
   <meta name="robots" content="noindex,follow">
   <meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}">
   <link rel="canonical" href="${escapeHtml(targetUrl)}">
-  <title>Market Narrative ${escapeHtml(label)} redirect</title>
+  <title>Market Narrative ${escapeHtml(label)}</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:#050816;color:#f8fafc;font-family:system-ui,sans-serif}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .redir{text-align:center;padding:24px}
+    .redir p{color:#b8c4d8;font-size:.9rem;margin-top:8px}
+    .redir a{color:#60a5fa;text-decoration:none;font-size:.85rem;display:block;margin-top:16px}
+  </style>
+  <script>location.replace(${JSON.stringify(targetHref)});</script>
 </head>
 <body>
-  <main>
-    <h1>Market Narrative ${escapeHtml(label)}</h1>
-    <p>Redirecting to the latest Nifty and Bank Nifty market briefing.</p>
+  <div class="redir">
+    <p>Redirecting…</p>
     <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
-  </main>
+  </div>
 </body>
 </html>`;
 }
