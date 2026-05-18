@@ -1362,6 +1362,119 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding-top: 12px;
     }
 
+    /* ── Top Stories strip ─────────────────────────────────── */
+    .top-stories-section {
+      margin-top: 28px;
+    }
+    .top-stories-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+    .top-stories-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin: 0 0 2px;
+    }
+    .top-stories-sub {
+      font-size: 13px;
+      color: #64748b;
+      margin: 0 0 16px;
+    }
+    .top-stories-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .top-story-card {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .top-story-card:first-child {
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .top-story-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .top-story-publisher {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+    .top-story-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .top-story-badge.pressure {
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+    }
+    .top-story-badge.support {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+    .top-story-badge.neutral {
+      background: rgba(148,163,184,0.12);
+      color: #94a3b8;
+    }
+    .top-story-headline {
+      margin: 0 0 9px;
+      line-height: 1.35;
+    }
+    .top-story-headline a {
+      font-size: 17px;
+      font-weight: 700;
+      color: #f1f5f9;
+      text-decoration: none;
+    }
+    .top-story-headline a:hover {
+      color: #63b3ed;
+      text-decoration: underline;
+    }
+    .top-story-india {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #94a3b8;
+      margin: 0 0 6px;
+    }
+    .top-story-india strong {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .top-story-watch {
+      font-size: 12.5px;
+      color: #63b3ed;
+      font-weight: 500;
+    }
+    .top-story-watch::before {
+      content: "Watch → ";
+      font-weight: 700;
+    }
+    .top-stories-footer {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: #475569;
+    }
+    .top-stories-footer a {
+      color: #63b3ed;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .top-stories-footer a:hover { text-decoration: underline; }
+
     .source-section-copy {
       margin: 8px 0 0;
       max-width: 680px;
@@ -4987,6 +5100,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         </section>
 
         ${todaysReadHtml(digest)}
+        ${topStoriesHtml(digest)}
         ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
@@ -8433,6 +8547,69 @@ function positiveAsianCount(snapshots) {
   const asianSymbols = ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"];
   const positives = snapshots.filter((s) => asianSymbols.includes(s.symbol) && Number(s.changePercent) > 0);
   return `${positives.length} of ${asianSymbols.filter((sym) => snapshots.some((s) => s.symbol === sym)).length}`;
+}
+
+function topStoriesHtml(digest) {
+  const articles = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
+  if (!articles.length) return "";
+
+  // Lead article first (driver-matched), then top 2 by weight — no duplicates
+  const dailyLeadHeadline = digest.dailyLead?.headline ?? "";
+  const lead = dailyLeadHeadline
+    ? (articles.find((a) => a.headline === dailyLeadHeadline) ?? null)
+    : null;
+  const rest = weightedSourceArticles(articles.filter((a) => a !== lead));
+  const top3 = [lead, ...rest].filter(Boolean).slice(0, 3);
+  if (!top3.length) return "";
+
+  function storyBadge(article) {
+    const tone = articleTone(article);
+    if (tone > 0.1) return `<span class="top-story-badge support">Supportive</span>`;
+    if (tone < -0.1) return `<span class="top-story-badge pressure">Pressure</span>`;
+    return `<span class="top-story-badge neutral">Context</span>`;
+  }
+
+  function truncate(text, maxLen) {
+    if (!text) return "";
+    const s = String(text).trim();
+    return s.length <= maxLen ? s : s.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
+  }
+
+  const cards = top3.map((article) => {
+    const headline = escapeHtml(article.headline ?? "");
+    const url = article.sourceUrl ?? "#";
+    const publisher = escapeHtml(article.sourceName ?? "Source");
+    const indiaLine = escapeHtml(truncate(article.indiaImpact || article.takeaway || "", 160));
+    const watchLine = escapeHtml(truncate(article.watchFor || "", 120));
+
+    return `
+      <li class="top-story-card">
+        <div class="top-story-meta">
+          <span class="top-story-publisher">${publisher}</span>
+          ${storyBadge(article)}
+        </div>
+        <h3 class="top-story-headline">
+          <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${headline}</a>
+        </h3>
+        ${indiaLine ? `<p class="top-story-india">${indiaLine}</p>` : ""}
+        ${watchLine ? `<p class="top-story-watch">${watchLine}</p>` : ""}
+      </li>`;
+  }).join("");
+
+  const totalVisible = articles.length;
+  const moreCount = totalVisible - top3.length;
+
+  return `
+    <section class="top-stories-section" aria-label="Top stories for today's session">
+      <div class="top-stories-kicker">Top Stories</div>
+      <h2 class="top-stories-heading">What the sources are saying</h2>
+      <p class="top-stories-sub">India read-through on each story — click any headline to read the full article.</p>
+      <ul class="top-stories-list" aria-label="Top 3 stories">
+        ${cards}
+      </ul>
+      ${moreCount > 0 ? `<p class="top-stories-footer">${moreCount} more article${moreCount === 1 ? "" : "s"} in the <a href="#sourceLedger">full source ledger</a> below.</p>` : ""}
+    </section>
+  `;
 }
 
 function sourceNotesHtml(digest) {
