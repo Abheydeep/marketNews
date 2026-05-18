@@ -8630,15 +8630,14 @@ function sourceEvidenceProfile(digest) {
   };
   const className = String(grade).replaceAll("_", "-");
   function pl(n, singular, plural) { return `${n} ${n === 1 ? singular : plural}`; }
-  const summary = selection.indiaPublisherCoverage || (
+  const summary =
     grade === "full"
       ? `${pl(directIndiaSourceCount, "India article", "India articles")}, ${pl(officialIndiaSourceCount, "official filing", "official filings")}, ${pl(domesticCatalystCount, "domestic catalyst", "domestic catalysts")} — full coverage.`
       : grade === "limited"
         ? `${pl(directIndiaSourceCount, "India article", "India articles")} and ${pl(domesticCatalystCount, "domestic catalyst", "domestic catalysts")} reviewed. ${officialIndiaSourceCount === 0 ? "No exchange or regulator filings in today's stack." : `${pl(officialIndiaSourceCount, "official filing", "official filings")} included.`}`
         : grade === "held"
           ? "This edition is held — check back for the next verified public run."
-          : "No direct India articles in today's stack — this briefing draws on global cues only."
-  );
+          : "No direct India articles in today's stack — this briefing draws on global cues only.";
   return {
     className,
     label: labels[grade] || "Limited",
