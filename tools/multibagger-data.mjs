@@ -1,7 +1,7 @@
 const MODEL_CAPITAL_INR = 500_000;
 const MODEL_ENTRY_DATE = "2026-04-27";
 const MODEL_BASELINE_ENTRY_AT = "2026-05-04T14:12:00+05:30";
-const STATIC_PRICE_REFRESH_AT = "2026-05-01T15:30:00+05:30";
+const STATIC_PRICE_REFRESH_AT = "2026-05-18T08:36:03.000Z";
 const QUOTE_FRESHNESS_HOURS = 120;
 const FILLS_PUBLISHED = true;
 
@@ -14,54 +14,54 @@ const trackingBasis = {
 const priceSnapshots = {
   KPEL: {
     entryPrice: 369.85,
-    lastPrice: null,
-    previousClose: null,
-    lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Awaiting verified live quote",
-    isStale: true
+    lastPrice: 335.9,
+    previousClose: 349.25,
+    lastPriceAt: "2026-05-18T08:16:09.000Z",
+    priceSource: "Yahoo Finance (KPEL.BO)",
+    isStale: false
   },
   DHABRIYA: {
     entryPrice: 379.55,
-    lastPrice: null,
-    previousClose: null,
-    lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Awaiting verified live quote",
-    isStale: true
+    lastPrice: 358.95,
+    previousClose: 362.35,
+    lastPriceAt: "2026-05-18T08:16:07.000Z",
+    priceSource: "Yahoo Finance (DHABRIYA.BO)",
+    isStale: false
   },
   DYCL: {
     entryPrice: 392.0,
-    lastPrice: null,
-    previousClose: null,
-    lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Awaiting verified live quote",
-    isStale: true
+    lastPrice: 291.5,
+    previousClose: 307.95,
+    lastPriceAt: "2026-05-18T08:35:56.000Z",
+    priceSource: "Yahoo Finance (DYCL.NS)",
+    isStale: false
   },
   SHARDAMOTR: {
     entryPrice: 882.03,
-    lastPrice: null,
-    previousClose: null,
-    lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Awaiting verified live quote",
-    isStale: true
+    lastPrice: 872.3,
+    previousClose: 873.4,
+    lastPriceAt: "2026-05-18T08:33:55.000Z",
+    priceSource: "Yahoo Finance (SHARDAMOTR.NS)",
+    isStale: false
   },
   JNKINDIA: {
     entryPrice: 378.0,
-    lastPrice: null,
-    previousClose: null,
-    lastPriceAt: STATIC_PRICE_REFRESH_AT,
-    priceSource: "Awaiting verified live quote",
-    isStale: true
+    lastPrice: 325.25,
+    previousClose: 329.95,
+    lastPriceAt: "2026-05-18T08:34:11.000Z",
+    priceSource: "Yahoo Finance (JNKINDIA.NS)",
+    isStale: false
   }
 };
 
 const benchmarkSnapshot = {
   symbol: "NIFTY 50",
   entryPrice: 24_203.35,
-  lastPrice: null,
-  previousClose: null,
-  lastPriceAt: STATIC_PRICE_REFRESH_AT,
-  source: "Awaiting verified live quote",
-  isStale: true
+  lastPrice: 23636.25,
+  previousClose: 23643.5,
+  lastPriceAt: "2026-05-18T08:36:03.000Z",
+  source: "Yahoo Finance (^NSEI)",
+  isStale: false
 };
 
 const yahooSymbols = {

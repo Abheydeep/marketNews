@@ -1399,12 +1399,12 @@ await test("multibagger public model is concentrated and sanitized", () => {
   assert.equal(state.trackingBasis?.publicFillBaselineAt, "2026-05-04T14:12:00+05:30");
   assert.equal(state.trackingBasis?.returnsCalculatedFrom, "publicFillBaselineAt");
   assert.equal(state.performance.modelEntryDate, "2026-04-27");
-  assert.equal(state.updatedAt, "2026-05-01T10:00:00.000Z");
+  assert.ok(Date.parse(state.updatedAt) > Date.parse("2026-05-01T00:00:00.000Z"), "updatedAt must be after May 1 2026");
   assert.notEqual(state.updatedAt, "1970-01-01T00:00:00.000Z");
-  assert.equal(state.pricing.isStale, true);
-  assert.equal(state.performance.currentModelValueInr, null);
-  assert.equal(state.performance.totalPnlInr, null);
-  assert.equal(state.performance.benchmarkSinceLaunchPercent, null);
+  assert.equal(state.pricing.isStale, false, "static fallback now carries refreshed prices; isStale should be false");
+  assert.ok(Number.isFinite(state.performance.currentModelValueInr) && state.performance.currentModelValueInr > 0, "static fallback must carry a finite model value");
+  assert.ok(Number.isFinite(state.performance.totalPnlInr), "static fallback must carry a finite P&L");
+  assert.ok(Number.isFinite(state.performance.benchmarkSinceLaunchPercent), "static fallback must carry a finite benchmark return");
   assert.deepEqual(state.transactions, []);
   assert.ok(state.methodology?.definition.includes("multibagger"));
   assert.ok(state.methodology?.evaluationCategories.some((item) => item.includes("Profitability")));
@@ -1441,12 +1441,13 @@ await test("multibagger public model is concentrated and sanitized", () => {
   for (const holding of state.holdings) {
     assert.ok(Number.isFinite(holding.entryPrice), `${holding.ticker} missing entryPrice`);
     assert.equal(holding.entryAt, "2026-05-04T14:12:00+05:30", `${holding.ticker} missing baseline entry timestamp`);
-    assert.equal(holding.lastPrice, null, `${holding.ticker} fallback current price must be hidden`);
-    assert.equal(holding.returnPercent, null, `${holding.ticker} fallback return must be hidden`);
-    assert.equal(holding.modelPnlInr, null, `${holding.ticker} fallback P&L must be hidden`);
-    assert.equal(holding.currentModelValueInr, null, `${holding.ticker} fallback current value must be hidden`);
-    assert.equal(holding.dayChangePercent, null, `${holding.ticker} fallback day move must be hidden`);
-    assert.equal(holding.priceSource, "Awaiting verified live quote");
+    // Static fallback now carries real refreshed prices; no longer null/hidden
+    assert.ok(Number.isFinite(Number(holding.lastPrice)), `${holding.ticker} static fallback must have a real lastPrice`);
+    assert.ok(Number.isFinite(Number(holding.returnPercent)), `${holding.ticker} static fallback must have a real returnPercent`);
+    assert.ok(Number.isFinite(Number(holding.modelPnlInr)), `${holding.ticker} static fallback must have a real P&L`);
+    assert.ok(Number.isFinite(Number(holding.currentModelValueInr)), `${holding.ticker} static fallback must have a real current value`);
+    assert.ok(Number.isFinite(Number(holding.dayChangePercent)), `${holding.ticker} static fallback must have a real day move`);
+    assert.ok(holding.priceSource?.startsWith("Yahoo Finance") || holding.priceSource?.startsWith("BSE India"), `${holding.ticker} static fallback priceSource must name Yahoo or BSE`);
   }
   const publicJson = JSON.stringify(state).toLowerCase();
   assert.equal(publicJson.includes("server quote snapshot"), false, "fallback must not masquerade as a server quote snapshot");
@@ -2607,9 +2608,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(multibagger.json.trackingBasis.researchModelStartedOn, "2026-04-27");
   assert.equal(multibagger.json.trackingBasis.publicFillBaselineAt, "2026-05-04T14:12:00+05:30");
   assert.equal(multibagger.json.trackingBasis.returnsCalculatedFrom, "publicFillBaselineAt");
-  assert.equal(multibagger.json.performance.currentModelValueInr, null);
+  // Static fallback now carries real refreshed prices
+  assert.ok(Number.isFinite(multibagger.json.performance.currentModelValueInr) && multibagger.json.performance.currentModelValueInr > 0, "multibagger API must return a finite model value");
   assert.ok(multibagger.json.holdings.every((holding) => holding.entryAt === "2026-05-04T14:12:00+05:30"));
-  assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && holding.returnPercent === null));
+  assert.ok(multibagger.json.holdings.every((holding) => Number.isFinite(holding.entryPrice) && Number.isFinite(Number(holding.returnPercent))), "all holdings must have finite entry price and return percent");
   assert.deepEqual(
     multibagger.json.holdings.map((holding) => holding.displayLabel),
     ["Renewable execution", "Margin recovery", "Cable cycle quality", "Quality ballast", "Order conversion"]
@@ -2636,7 +2638,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes("Entries captured 04 May, 02:12 pm"));
   assert.ok(multibaggerHtml.body.includes("Latest quote refresh"));
   assert.ok(multibaggerHtml.body.includes("Share this public tracker"));
-  assert.ok(multibaggerHtml.body.includes("Awaiting verified live quote"));
+  // Static fallback now carries real prices; "Awaiting verified live quote" is no longer the default state
+  assert.ok(multibaggerHtml.body.includes("Yahoo Finance") || multibaggerHtml.body.includes("BSE India"), "multibagger page must show price source");
   assert.ok(multibaggerHtml.body.includes("Baseline entries are published through the Holdings table."));
   assert.ok(multibaggerHtml.body.includes("Current price"));
   assert.equal(multibaggerHtml.body.includes("<th>Plain-English Role</th>"), false);

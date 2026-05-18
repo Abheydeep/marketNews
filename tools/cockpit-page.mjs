@@ -4868,10 +4868,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <header class="page-header">
           <div class="briefing-topline">
             <div>
-              <p class="eyebrow">Daily Pre-Market Summary</p>
+              <p class="eyebrow">${escapeHtml(heroEyebrowLabel(digest))}</p>
             </div>
             <div class="briefing-date">
-              <span>Daily Briefing</span>
+              <span>${escapeHtml(briefingSignalLabel(digest))}</span>
               <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
           </div>
@@ -6923,6 +6923,63 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </script>
 </body>
 </html>`;
+}
+
+/** Replaces generic "Daily Pre-Market Summary" eyebrow with a market-specific signal label. */
+function heroEyebrowLabel(digest) {
+  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
+  const sentiment = Number(digest.overallSentiment ?? 0);
+  const bias = digest.giftNiftyBias;
+
+  // GIFT Nifty gap takes priority when real data is available
+  if (bias?.bias === "gap_up" && Math.abs(bias.gapPts) >= 40) {
+    return `GIFT Nifty +${Math.abs(bias.gapPts)} pts — Gap-Up Signal`;
+  }
+  if (bias?.bias === "gap_down" && Math.abs(bias.gapPts) >= 40) {
+    return `GIFT Nifty −${Math.abs(bias.gapPts)} pts — Gap-Down Watch`;
+  }
+
+  // Driver-specific labels
+  if (driver === "geopolitical") return sentiment >= 0 ? "Diplomacy Tailwind — Risk-On Watch" : "Geopolitical Risk — Confirm Before You Trade";
+  if (driver === "crude")        return sentiment >= 0 ? "Crude Easing — Watch Breadth" : "Crude Pressure — Energy Risk in Play";
+  if (driver === "rates")        return sentiment >= 0 ? "Yield Relief — Risk Assets Watch" : "Yield Squeeze — Dollar Pressure Watch";
+  if (driver === "tech_move" || driver === "tech") return sentiment >= 0 ? "Tech Strength — Nifty IT in Play" : "Tech Pressure — IT Sector Watch";
+  if (driver === "banks")        return sentiment >= 0 ? "Banks Leading — Breadth Positive" : "Bank Stress — Watch VWAP Holds";
+  if (driver === "precious_metals") return "Gold / Metals Signal — Safe-Haven Read";
+  if (driver === "currency")     return sentiment >= 0 ? "Rupee Stable — Exporter Tailwind" : "Rupee Pressure — Importer Cost Watch";
+  if (driver === "asia")         return "Asia Moves First — India Read-Through Below";
+
+  // Sentiment fallback
+  if (sentiment >= 0.3) return "Risk-On Setup — Follow the Breadth";
+  if (sentiment <= -0.3) return "Risk-Off Tone — Wait for Confirmation";
+  return "Mixed Cues — Read Before You Trade";
+}
+
+/** Replaces generic "Daily Briefing" date-panel label with a driver/FII signal. */
+function briefingSignalLabel(digest) {
+  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
+  const fii = digest.fiiDiiFlows;
+  const fiiNet = Number(fii?.fiiNet ?? 0);
+  const hasFlow = Math.abs(fiiNet) > 50;
+
+  // FII flow is the most actionable pre-open signal if available
+  if (hasFlow) {
+    const dir = fiiNet >= 0 ? "FII Net Buy" : "FII Net Sell";
+    const abs = Math.abs(fiiNet);
+    const cr = abs >= 1000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${abs.toFixed(0)} Cr`;
+    return `${dir} ${cr}`;
+  }
+
+  // Driver label fallback
+  if (driver === "geopolitical")  return "Geopolitical Watch";
+  if (driver === "crude")         return "Crude / Energy Read";
+  if (driver === "rates")         return "Rates & Yields Read";
+  if (driver === "tech_move" || driver === "tech") return "Tech & Nasdaq Read";
+  if (driver === "banks")         return "Banks / Financials Read";
+  if (driver === "precious_metals") return "Gold & Metals Read";
+  if (driver === "currency")      return "Currency & DXY Read";
+  if (driver === "asia")          return "Asia & Global Open";
+  return "India Pre-Open";
 }
 
 function compactSummaryText(digest) {

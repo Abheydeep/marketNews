@@ -193,17 +193,24 @@ export async function fetchFiiDiiFlows({ timeoutMs = 6_000 } = {}) {
     });
     if (!dataRes.ok) return null;
     const rows = await dataRes.json();
-    const latest = Array.isArray(rows) ? rows[0] : null;
-    if (!latest) return null;
-    return {
-      date: String(latest.date ?? ""),
-      fiiNet: Number(latest.fiiNet ?? 0),
-      fiiBuy: Number(latest.fiiBuy ?? 0),
-      fiiSell: Number(latest.fiiSell ?? 0),
-      diiNet: Number(latest.diiNet ?? 0),
-      diiBuy: Number(latest.diiBuy ?? 0),
-      diiSell: Number(latest.diiSell ?? 0)
-    };
+    if (!Array.isArray(rows) || !rows.length) return null;
+
+    // NSE API returns one row per category: { category, date, buyValue, sellValue, netValue }
+    // Older API used flat fields (fiiNet, fiiBuy…); current API uses buyValue/sellValue/netValue per row.
+    const fiiRow = rows.find((r) => /fii|fpi/i.test(String(r.category ?? "")));
+    const diiRow = rows.find((r) => /dii/i.test(String(r.category ?? "")));
+    const latest = rows[0];
+
+    // Support both API shapes: prefer per-row buyValue/sellValue, fall back to flat fiiNet/diiNet
+    const fiiBuy  = Number(fiiRow?.buyValue  ?? fiiRow?.fiiBuy  ?? latest?.fiiBuy  ?? 0);
+    const fiiSell = Number(fiiRow?.sellValue ?? fiiRow?.fiiSell ?? latest?.fiiSell ?? 0);
+    const fiiNet  = Number(fiiRow?.netValue  ?? fiiRow?.fiiNet  ?? latest?.fiiNet  ?? (fiiBuy - fiiSell));
+    const diiBuy  = Number(diiRow?.buyValue  ?? diiRow?.diiBuy  ?? latest?.diiBuy  ?? 0);
+    const diiSell = Number(diiRow?.sellValue ?? diiRow?.diiSell ?? latest?.diiSell ?? 0);
+    const diiNet  = Number(diiRow?.netValue  ?? diiRow?.diiNet  ?? latest?.diiNet  ?? (diiBuy - diiSell));
+    const date    = String((fiiRow ?? diiRow ?? latest)?.date ?? "");
+    if (!date) return null;
+    return { date, fiiNet, fiiBuy, fiiSell, diiNet, diiBuy, diiSell };
   } catch {
     return null;
   } finally {
