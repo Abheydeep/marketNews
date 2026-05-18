@@ -7752,13 +7752,13 @@ function sourceConfidenceSummary(digest) {
     }
     if (selection?.evidenceGrade === "limited") {
       return {
-        label: `${profile.directIndiaSourceCount} articles reviewed`,
-        detail: `${profile.directIndiaSourceCount} India articles and ${profile.domesticCatalystCount} domestic catalysts reviewed. ${profile.officialIndiaSourceCount === 0 ? "No official exchange/regulator filings in today's stack." : `${profile.officialIndiaSourceCount} official filings included.`}`
+        label: `${profile.directIndiaSourceCount} ${profile.directIndiaSourceCount === 1 ? "article" : "articles"} reviewed`,
+        detail: `${profile.directIndiaSourceCount} India ${profile.directIndiaSourceCount === 1 ? "article" : "articles"} and ${profile.domesticCatalystCount} domestic ${profile.domesticCatalystCount === 1 ? "catalyst" : "catalysts"} reviewed. ${profile.officialIndiaSourceCount === 0 ? "No official exchange/regulator filings in today's stack." : `${profile.officialIndiaSourceCount} official ${profile.officialIndiaSourceCount === 1 ? "filing" : "filings"} included.`}`
       };
     }
     return {
-      label: `${visible} articles verified`,
-      detail: `${visible} India read-through notes from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
+      label: `${visible} ${visible === 1 ? "article" : "articles"} verified`,
+      detail: `${visible} India read-through ${visible === 1 ? "note" : "notes"} from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
     };
   }
   if (verification?.verifiedArticleCount) {
@@ -8618,7 +8618,7 @@ function sourceEvidenceProfile(digest) {
     );
   const labels = {
     full: "Full coverage",
-    limited: `${directIndiaSourceCount} articles reviewed`,
+    limited: `${directIndiaSourceCount} ${directIndiaSourceCount === 1 ? "article" : "articles"} reviewed`,
     global_cue_only: "Global cues only",
     held: "Held"
   };
