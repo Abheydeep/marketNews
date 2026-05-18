@@ -7746,8 +7746,8 @@ function sourceConfidenceSummary(digest) {
     const profile = sourceEvidenceProfile(digest);
     if (selection?.evidenceGrade === "global_cue_only" || profile.directIndiaSourceCount === 0) {
       return {
-        label: "Global cue only",
-        detail: "Full India-source gate is not cleared; use this edition as global context until domestic evidence improves."
+        label: "Global cues only",
+        detail: "No direct India articles in today's stack — this briefing draws on global cues only."
       };
     }
     if (selection?.evidenceGrade === "limited") {
@@ -8438,7 +8438,13 @@ function positiveAsianCount(snapshots) {
 function sourceNotesHtml(digest) {
   const totalArticles = digest.publicSourceSelection?.shortlistCount ?? (digest.news ?? []).length;
   const articles = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
-  const lead = weightedSourceArticles(articles)[0] ?? articles[0];
+  // Prefer the article that was chosen as today's daily lead driver — keeps the
+  // lead card aligned with the H1 headline. Fall back to highest-weighted article.
+  const dailyLeadHeadline = digest.dailyLead?.headline ?? "";
+  const driverMatchedLead = dailyLeadHeadline
+    ? (articles.find((a) => a.headline === dailyLeadHeadline) ?? null)
+    : null;
+  const lead = driverMatchedLead ?? weightedSourceArticles(articles)[0] ?? articles[0];
   const categories = sourceCategoryGroups(articles);
   const defaultFilter = categories[0]?.category || "all";
   const defaultCount = categories[0]?.count || articles.length;
@@ -8623,14 +8629,15 @@ function sourceEvidenceProfile(digest) {
     held: "Held"
   };
   const className = String(grade).replaceAll("_", "-");
+  function pl(n, singular, plural) { return `${n} ${n === 1 ? singular : plural}`; }
   const summary = selection.indiaPublisherCoverage || (
     grade === "full"
-      ? `${directIndiaSourceCount} India sources · ${officialIndiaSourceCount} official · ${domesticCatalystCount} domestic catalysts — full source coverage.`
+      ? `${pl(directIndiaSourceCount, "India article", "India articles")}, ${pl(officialIndiaSourceCount, "official filing", "official filings")}, ${pl(domesticCatalystCount, "domestic catalyst", "domestic catalysts")} — full coverage.`
       : grade === "limited"
-        ? `${directIndiaSourceCount} India sources reviewed (${domesticCatalystCount} domestic catalysts). ${officialIndiaSourceCount === 0 ? "No official exchange filings today." : `${officialIndiaSourceCount} official sources.`}`
+        ? `${pl(directIndiaSourceCount, "India article", "India articles")} and ${pl(domesticCatalystCount, "domestic catalyst", "domestic catalysts")} reviewed. ${officialIndiaSourceCount === 0 ? "No exchange or regulator filings in today's stack." : `${pl(officialIndiaSourceCount, "official filing", "official filings")} included.`}`
         : grade === "held"
-          ? "Source gate held; this edition is not a full public briefing."
-          : "Global cues only — no direct India-source filings in today's stack."
+          ? "This edition is held — check back for the next verified public run."
+          : "No direct India articles in today's stack — this briefing draws on global cues only."
   );
   return {
     className,
