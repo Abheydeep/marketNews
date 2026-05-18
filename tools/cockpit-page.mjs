@@ -24,7 +24,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
-    : `${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
+    : `${hookTitle(digest)} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = isTradingGuidePage
     ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
     : "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
@@ -1313,6 +1313,53 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .sources-section {
       margin-top: 34px;
+    }
+
+    /* Today's Read prose section */
+    .todays-read-section {
+      margin-top: 36px;
+      padding: 28px 32px 28px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+    }
+    .todays-read-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #63b3ed;
+      margin-bottom: 8px;
+    }
+    .todays-read-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin: 0 0 16px;
+      line-height: 1.3;
+    }
+    .todays-read-body {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #cbd5e1;
+      max-width: 760px;
+    }
+    .todays-read-body p {
+      margin: 0 0 14px;
+    }
+    .todays-read-body p:last-child {
+      margin-bottom: 0;
+    }
+    .todays-read-body strong {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .todays-read-footer {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #64748b;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 12px;
     }
 
     .source-section-copy {
@@ -4939,6 +4986,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
         </section>
 
+        ${todaysReadHtml(digest)}
         ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
@@ -7428,7 +7476,11 @@ function indiaPreOpenHtml(digest) {
   const snapshots = digest.marketSnapshots ?? [];
   const fii = digest.fiiDiiFlows ?? null;
 
-  const gift = snapshots.find((s) => s.symbol === "GIFTNIFTY");
+  const giftRaw = snapshots.find((s) => s.symbol === "GIFTNIFTY");
+  // Only use GIFT Nifty when it's a live quote — seed/mock values would show a
+  // misleading gap vs the current Nifty close
+  const gift = (giftRaw && giftRaw.dataQuality !== "seed-merged" && giftRaw.dataQuality !== "mock-fallback" && !giftRaw.source?.includes("Mock"))
+    ? giftRaw : null;
   const nifty = snapshots.find((s) => s.symbol === "NIFTY");
   const usdinr = snapshots.find((s) => s.symbol === "USDINR");
   const vix = snapshots.find((s) => s.symbol === "INDIAVIX");
@@ -7488,15 +7540,15 @@ function indiaPreOpenHtml(digest) {
       </div>
       <div class="preopen-grid">
 
-        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${gift ? tvLink("GIFTNIFTY", "NSEIX:NIFTY1!") : ""}>
+        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${gift ? tvLink("GIFTNIFTY", "NSEIX:NIFTY1!") : `href="https://www.tradingview.com/chart/?symbol=NSEIX%3ANIFTY1!" target="_blank" rel="noopener"`}>
           <span>GIFT Nifty Gap</span>
           <strong>
-            ${gift ? escapeHtml(formatNumber(gift.closeValue)) : "—"}
+            ${gift ? escapeHtml(formatNumber(gift.closeValue)) : nifty ? escapeHtml(formatNumber(nifty.closeValue)) : "—"}
           </strong>
           <small>
             ${giftGapPct !== null
     ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% implied open`
-    : "Awaiting data"}
+    : "Check TradingView for live gap"}
           </small>
         </a>
 
@@ -7700,13 +7752,13 @@ function sourceConfidenceSummary(digest) {
     }
     if (selection?.evidenceGrade === "limited") {
       return {
-        label: "Limited India stack",
-        detail: `${profile.directIndiaSourceCount} direct India sources and ${profile.officialIndiaSourceCount} official sources in the public stack.`
+        label: `${profile.directIndiaSourceCount} articles reviewed`,
+        detail: `${profile.directIndiaSourceCount} India articles and ${profile.domesticCatalystCount} domestic catalysts reviewed. ${profile.officialIndiaSourceCount === 0 ? "No official exchange/regulator filings in today's stack." : `${profile.officialIndiaSourceCount} official filings included.`}`
       };
     }
     return {
-      label: "Verified stack",
-      detail: `${visible} read-through notes from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
+      label: `${visible} articles verified`,
+      detail: `${visible} India read-through notes from ${verification.verifiedArticleCount} article links across ${verification.publisherCount} publishers.`
     };
   }
   if (verification?.verifiedArticleCount) {
@@ -8291,6 +8343,98 @@ function watchItemsHtml(digest, setup) {
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 }
 
+function todaysReadHtml(digest) {
+  const driver = digest.dailyLead ?? {};
+  const driverType = (driver.driverType ?? "").toLowerCase();
+  const driverTitle = driver.label ?? driver.headline ?? "";
+  const indiaImpact = driver.indiaImpact ?? "";
+  const sentiment = Number(digest.overallSentiment ?? 0);
+  const sentimentLabel = String(digest.sentimentLabel ?? "NEUTRAL").toUpperCase();
+  const fii = digest.fiiDiiFlows;
+  const fiiNet = Number(fii?.fiiNet ?? 0);
+  const diiNet = Number(fii?.diiNet ?? 0);
+  const hasFlow = Math.abs(fiiNet) > 50 && fii?.date;
+
+  const snapshots = digest.marketSnapshots ?? [];
+  const nifty = snapshots.find((s) => s.symbol === "NIFTY");
+  const bankNifty = snapshots.find((s) => s.symbol === "BANKNIFTY");
+  const brent = snapshots.find((s) => s.symbol === "BRENT");
+  const usdinr = snapshots.find((s) => s.symbol === "USDINR");
+
+  // Format helpers
+  function cr(v) {
+    const abs = Math.abs(v);
+    return abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
+  }
+  function pct(v) {
+    if (!Number.isFinite(v)) return "";
+    return `${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
+  }
+
+  // Build paragraph 1: set the scene
+  const niftyLine = nifty
+    ? `Nifty 50 closed at <strong>${formatNumber(nifty.closeValue)}</strong> (${pct(nifty.changePercent)}) while Bank Nifty settled at <strong>${formatNumber(bankNifty?.closeValue ?? 0)}</strong> (${pct(bankNifty?.changePercent ?? 0)}).`
+    : "Indian indices are entering the session with cautious global cues.";
+
+  // Build paragraph 2: the driver
+  let driverPara = "";
+  if (driverType === "crude") {
+    const brentVal = brent ? `Brent crude is at <strong>$${brent.closeValue}</strong> (${pct(brent.changePercent)})` : "Crude prices";
+    driverPara = `${brentVal}, and that one number shapes the entire India read today. Firms that import energy — OMCs, aviation, paints, tyres — are directly exposed. ${indiaImpact || "Softer crude supports margin relief; firm crude pressures the inflation narrative."}`;
+  } else if (driverType === "geopolitical") {
+    driverPara = `Geopolitical risk is the session driver. ${indiaImpact || "Equity markets are pricing uncertainty — watch if the risk-off mood lingers through the Asian handoff or fades before 9:15 AM IST."}`;
+  } else if (driverType === "rates") {
+    driverPara = `Bond yields are the macro anchor today. ${indiaImpact || "Rate-sensitive sectors — banks, NBFCs, real estate — will take their cue from how US yields behave overnight."}`;
+  } else if (driverType === "tech_move") {
+    driverPara = `Tech is leading global sentiment. ${indiaImpact || "Nifty IT and midcap tech stocks will likely mirror the overnight direction — watch the opening range before assuming continuation."}`;
+  } else {
+    driverPara = indiaImpact || `The day's primary theme is <strong>${escapeHtml(driverTitle)}</strong>. Monitor whether the narrative holds through the opening session.`;
+  }
+
+  // Build paragraph 3: FII/DII flows + sentiment synthesis
+  let flowPara = "";
+  if (hasFlow) {
+    const fiiDir = fiiNet > 0 ? "net bought" : "net sold";
+    const diiDir = diiNet > 0 ? "absorbed" : "sold";
+    const counterNote = (fiiNet > 0 && diiNet < 0)
+      ? `DIIs, which ${diiDir} ${cr(diiNet)}, are trimming into foreign buying — a healthy rotation signal.`
+      : (fiiNet < 0 && diiNet > 0)
+        ? `DIIs provided a ${cr(diiNet)} cushion, absorbing some of the foreign outflow.`
+        : "";
+    flowPara = `On the flows front (${fii.date}), FIIs ${fiiDir} <strong>${cr(fiiNet)}</strong> in the cash market. ${counterNote} Foreign flows at this scale tend to reinforce the directional bias — provided breadth confirms at the open.`;
+  } else {
+    flowPara = sentimentLabel === "BULLISH"
+      ? "Overnight cues lean positive. The session needs broad participation — not just index heavyweights — to validate the constructive setup."
+      : sentimentLabel === "BEARISH"
+        ? "Risk appetite is cautious overnight. Breadth and the advance-decline ratio will tell whether this is a shallow pull-back or something that needs wider stops."
+        : "The overnight read is mixed. Let the opening range define direction — neither side has enough conviction to chase before price confirms.";
+  }
+
+  // Build paragraph 4: what to actually watch
+  const rupeeLine = usdinr ? `The rupee is at <strong>${usdinr.closeValue}</strong> (${pct(usdinr.changePercent)}${Math.abs(usdinr.changePercent ?? 0) > 0.3 ? " — worth watching for FII cost translation" : ""}).` : "";
+  const watchLine = `${rupeeLine} Keep the 2-Minute Summary on top and cross-check levels in the Trading Guide before the cash open.`;
+
+  return `
+    <section class="todays-read-section" aria-label="Today's narrative read">
+      <div class="todays-read-kicker">Today's Read</div>
+      <h2>${escapeHtml(hookTitle(digest))}</h2>
+      <div class="todays-read-body">
+        <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
+        <p>${driverPara}</p>
+        <p>${flowPara}</p>
+        <p>${watchLine}</p>
+      </div>
+      <div class="todays-read-footer">Prepared for the 7:15 AM IST briefing · Educational market context only — not investment advice</div>
+    </section>
+  `;
+}
+
+function positiveAsianCount(snapshots) {
+  const asianSymbols = ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"];
+  const positives = snapshots.filter((s) => asianSymbols.includes(s.symbol) && Number(s.changePercent) > 0);
+  return `${positives.length} of ${asianSymbols.filter((sym) => snapshots.some((s) => s.symbol === sym)).length}`;
+}
+
 function sourceNotesHtml(digest) {
   const totalArticles = digest.publicSourceSelection?.shortlistCount ?? (digest.news ?? []).length;
   const articles = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
@@ -8473,20 +8617,20 @@ function sourceEvidenceProfile(digest) {
           : "global_cue_only"
     );
   const labels = {
-    full: "Full",
-    limited: "Limited",
-    global_cue_only: "Global cue only",
+    full: "Full coverage",
+    limited: `${directIndiaSourceCount} articles reviewed`,
+    global_cue_only: "Global cues only",
     held: "Held"
   };
   const className = String(grade).replaceAll("_", "-");
   const summary = selection.indiaPublisherCoverage || (
     grade === "full"
-      ? `Full India-source gate: Cleared; ${directIndiaSourceCount} direct India sources, ${officialIndiaSourceCount} official sources, ${domesticCatalystCount} domestic catalysts.`
+      ? `${directIndiaSourceCount} India sources · ${officialIndiaSourceCount} official · ${domesticCatalystCount} domestic catalysts — full source coverage.`
       : grade === "limited"
-        ? `Full India-source gate: Limited; ${directIndiaSourceCount} direct India sources, ${officialIndiaSourceCount} official sources, ${domesticCatalystCount} domestic catalysts.`
+        ? `${directIndiaSourceCount} India sources reviewed (${domesticCatalystCount} domestic catalysts). ${officialIndiaSourceCount === 0 ? "No official exchange filings today." : `${officialIndiaSourceCount} official sources.`}`
         : grade === "held"
           ? "Source gate held; this edition is not a full public briefing."
-          : "Full India-source gate: Not cleared; this edition is global-cue context, not a full India-source briefing."
+          : "Global cues only — no direct India-source filings in today's stack."
   );
   return {
     className,
@@ -9601,4 +9745,42 @@ function absoluteSiteUrl(path, origin = siteOrigin) {
   }
   const normalizedPath = String(path ?? "/").startsWith("/") ? String(path ?? "/") : `/${path}`;
   return `${origin}${normalizedPath}`;
+}
+
+/**
+ * Public export for the homepage hero block.
+ * Returns { eyebrow, h1, subheadline } derived from the latest digest.
+ * Import this in publish-site.mjs to make the homepage banner dynamic.
+ */
+export function homepageHeroContent(digest) {
+  if (!digest) {
+    return {
+      eyebrow: "Market Nerve Before The Open",
+      h1: "Market Narrative: Nifty, Bank Nifty, And The One Thing To Watch First",
+      subheadline: "Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow."
+    };
+  }
+  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
+  const driverSummary = digest.dailyLead?.summary ?? "";
+  const fii = digest.fiiDiiFlows;
+  const fiiNet = Number(fii?.fiiNet ?? 0);
+  const hasFii = Math.abs(fiiNet) > 50 && fii?.date;
+
+  // Sub-headline: driver summary if available, otherwise a generic line
+  let subheadline = driverSummary
+    ? `Today's driver: ${driverSummary}`
+    : "Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.";
+
+  if (hasFii) {
+    const abs = Math.abs(fiiNet);
+    const cr = abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
+    const dir = fiiNet > 0 ? "bought" : "sold";
+    subheadline = `FII ${dir} ${cr} (${fii.date}) · ${driverSummary || "Read the full pre-market brief before the open."}`;
+  }
+
+  return {
+    eyebrow: heroEyebrowLabel(digest),
+    h1: hookTitle(digest),
+    subheadline
+  };
 }

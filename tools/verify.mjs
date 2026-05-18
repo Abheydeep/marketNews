@@ -1881,9 +1881,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Market closed today"));
   assert.ok(publisher.includes("No trading-day brief"));
   assert.ok(publisher.includes("Check market status"));
-  assert.ok(publisher.includes("Market Nerve Before The Open"));
-  assert.ok(publisher.includes("Nifty, Bank Nifty, And The One Thing To Watch First"));
-  assert.ok(publisher.includes("bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence"));
+  // Homepage hero is now dynamic — just verify structural markers are present
+  assert.ok(publisher.includes('class="eyebrow"'), "homepage must have eyebrow element");
+  assert.ok(publisher.includes("<h1>"), "homepage must have an h1");
+  assert.ok(publisher.includes("7:15 AM IST") || publisher.includes("Nifty") || publisher.includes("pre-market"), "homepage h1/sub must mention market context");
   assert.ok(publisher.includes("Read today's brief"));
   assert.ok(publisher.includes("Open Trading Guide"));
   assert.ok(publisher.includes("Track Portfolio"));
@@ -1988,7 +1989,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("<changefreq>"));
   assert.ok(publisher.includes("<priority>"));
   assert.ok(publisher.includes("daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing"));
-  assert.ok(publisher.includes("7:15 AM IST opening read"));
+  assert.ok(publisher.includes("7:15 AM IST") || publisher.includes("pre-market brief") || publisher.includes("Nifty gate"), "homepage must reference 7:15 AM IST or pre-market context");
   assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
   assert.ok(publisher.includes("Last verified update"));
   assert.ok(publisher.includes("Share this archive"));

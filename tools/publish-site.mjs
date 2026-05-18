@@ -2,7 +2,7 @@ import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
-import { cockpitPage } from "./cockpit-page.mjs";
+import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
@@ -800,6 +800,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const latestState = homepageLatestState(latest);
   const primaryAction = homepagePrimaryAction(latestState, latest);
+  const heroContent = homepageHeroContent(latest);
   const jsonLdDigests = digests.filter(isVerifiedPublicDigest);
   const cards = digests
     .map((digest) => {
@@ -1747,9 +1748,9 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   </nav>
   <main class="shell">
     <section class="hero">
-      <p class="eyebrow">Market Nerve Before The Open</p>
-      <h1>Market Narrative: Nifty, Bank Nifty, And The One Thing To Watch First</h1>
-      <p>Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.</p>
+      <p class="eyebrow">${escapeHtml(heroContent.eyebrow)}</p>
+      <h1>${escapeHtml(heroContent.h1)}</h1>
+      <p>${escapeHtml(heroContent.subheadline)}</p>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       ${homepageFreshnessBannerHtml(latestState)}
       <div class="hero-actions" aria-label="Primary actions">
