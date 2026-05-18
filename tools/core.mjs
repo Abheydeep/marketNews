@@ -90,6 +90,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     publishedAt: null,
     marketSnapshots,
     fiiDiiFlows: fiiDiiFlows ?? null,
+    giftNiftyBias: dailyLead.giftNiftyBias ?? null,
     news: publicArticles,
     themes,
     tradeSetups,
@@ -117,7 +118,14 @@ async function resolveMarketSnapshots(seedMarketSnapshots, marketDataMode) {
   ]);
 
   if (snapshotResult.snapshots) {
-    return { marketSnapshots: snapshotResult.snapshots, marketDataError: null, fiiDiiFlows };
+    // Merge seed-only symbols (GIFTNIFTY isn't on Yahoo Finance) into the live set
+    // so GIFT Nifty gap computation always has data.
+    const liveSymbols = new Set(snapshotResult.snapshots.map((s) => s.symbol));
+    const seedOnlyExtras = seedMarketSnapshots.filter((s) => !liveSymbols.has(s.symbol));
+    const merged = seedOnlyExtras.length > 0
+      ? [...snapshotResult.snapshots, ...seedOnlyExtras.map((s) => ({ ...s, dataQuality: "seed-merged" }))]
+      : snapshotResult.snapshots;
+    return { marketSnapshots: merged, marketDataError: null, fiiDiiFlows };
   }
   return {
     marketSnapshots: markSnapshotsAsFallback(seedMarketSnapshots, snapshotResult.error),
@@ -818,9 +826,13 @@ function titleConsequence(article, sentimentLabel) {
 
 export function publicSourceSelectionForDigest(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
-  const scored = uniqueSourceArticles(articles)
-    .filter((article) => isWithinDigestWindow(article, date, 24))
-    .sort((left, right) => sourceSelectionScore(right, date, marketSnapshots) - sourceSelectionScore(left, date, marketSnapshots));
+  const allUnique = uniqueSourceArticles(articles).filter((article) => isWithinDigestWindow(article, date, 24));
+  // Garbage rejection first — remove clearly irrelevant articles before any scoring
+  const cleaned = allUnique.filter((article) => !isGarbageArticle(article));
+  const pool = cleaned.length >= MIN_PUBLIC_SOURCE_COUNT ? cleaned : allUnique; // fallback to unfiltered if too few remain
+  const scored = pool
+    .slice()
+    .sort((left, right) => tractionScore(right, date, pool, marketSnapshots) - tractionScore(left, date, pool, marketSnapshots));
   // Guarantee up to 3 India publisher articles reach the shortlist even on global-heavy days
   const indiaPublisherGuarantee = scored.filter(isIndiaPublisherArticle).slice(0, 3);
   const shortlist = uniqueSourceArticles([...indiaPublisherGuarantee, ...scored]).slice(0, 25);
@@ -901,11 +913,12 @@ function sourceGateSummary(profile) {
 
 export function dailyLeadForDigest(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
-  const ranked = uniqueSourceArticles(articles)
+  const allArticles = uniqueSourceArticles(articles);
+  const ranked = allArticles
     .map((article, index) => ({
       article,
       index,
-      score: dailyLeadScore(article, date, marketSnapshots)
+      score: tractionScore(article, date, allArticles, marketSnapshots)
     }))
     .sort((left, right) => right.score - left.score || left.index - right.index);
   const lead = ranked.find((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article))?.article
@@ -918,16 +931,42 @@ export function dailyLeadForDigest(date, articles = [], options = {}) {
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
   const leadText = articleTextForLead(lead);
+  const giftBias = computeGiftNiftyBias(marketSnapshots);
+
+  // GIFT Nifty as the primary label when live; fall back to Nifty overnight change otherwise
+  const niftySnap = marketSnapshots.find((s) => s.symbol === "NIFTY");
+  const niftyChangePct = Number(niftySnap?.changePercent) || 0;
+  const niftyBiasLabel = niftyChangePct > 0.3
+    ? `Nifty overnight: +${round(Math.abs(niftyChangePct), 2)}% — gap-up bias`
+    : niftyChangePct < -0.3
+    ? `Nifty overnight: -${round(Math.abs(niftyChangePct), 2)}% — gap-down bias`
+    : null;
+
+  const giftLabel = giftBias
+    ? `GIFT Nifty: ${giftBias.biasLabel}`
+    : niftyBiasLabel;
+  const fallbackLabel = indiaFuelForexPolicyText(leadText)
+    ? "India fuel / forex stress"
+    : indirectLead && driverType === "crude" ? "Crude supply watch" : driverLabelForType(driverType);
+
+  // Prepend GIFT Nifty context to the India impact when gap is meaningful
+  let enrichedImpact = leadImpact;
+  if (giftBias && giftBias.bias !== "flat") {
+    const giftCtx = giftBias.bias === "gap_up"
+      ? `GIFT Nifty at ${giftBias.giftPrice} (+${giftBias.gapPts} pts, +${giftBias.gapPct}%) signals gap-up open. `
+      : `GIFT Nifty at ${giftBias.giftPrice} (${giftBias.gapPts} pts, ${giftBias.gapPct}%) signals gap-down open. `;
+    enrichedImpact = giftCtx + (leadImpact || "Confirm with Bank Nifty breadth and advance-decline before adding positions.");
+  }
+
   return {
-    label: indiaFuelForexPolicyText(leadText)
-      ? "India fuel / forex stress"
-      : indirectLead && driverType === "crude" ? "Crude supply watch" : driverLabelForType(driverType),
+    label: giftLabel ?? fallbackLabel,
     sourceArticleId: articleLeadId(lead),
     driverType,
     headline: lead?.headline || "Source-led market cue",
-    indiaImpact: leadImpact,
+    indiaImpact: enrichedImpact,
     riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : defaultRiskSide(driverType, leadImpact),
-    supportSide: cleanSentence(support?.indiaImpact || defaultSupportSide(driverType))
+    supportSide: cleanSentence(support?.indiaImpact || defaultSupportSide(driverType)),
+    giftNiftyBias: giftBias ?? null
   };
 }
 
@@ -1071,6 +1110,103 @@ function hasIndiaReadThrough(article) {
 function isIndiaPublisherArticle(article) {
   const text = `${article?.sourceName || ""} ${article?.sourceId || ""} ${article?.sourceUrl || ""}`.toLowerCase();
   return /\b(moneycontrol|livemint|mint|business-standard|financialexpress|financial-express|economic-times|economictimes|etmarkets|nseindia|bseindia|rbi\.org|sebi\.gov|thehindubusinessline|businessline|ndtv.?profit|bqprime|bq-prime|pib-finance|pib\.gov)\b/.test(text);
+}
+
+/**
+ * Reject articles that are clearly irrelevant to the Indian pre-market briefing.
+ * Applied before scoring so garbage doesn't pollute the ranking.
+ */
+export function isGarbageArticle(article) {
+  const text = `${article?.headline || ""} ${article?.summary || ""}`.toLowerCase();
+  // Hard reject: entertainment / lifestyle / non-finance
+  if (/\b(artwork?s?|auction house|Christie's|Sotheby's|celebrity|fashion week|lifestyle|travel tips?|recipe|home improvement|real estate listing|interior design|movie|film review|gaming|esport|sports score|nfl|nba|mlb|cricket score|tennis|golf score)\b/i.test(text)) return true;
+  // Soft reject: no market-relevant keyword at all
+  const hasMarketKeyword = /\b(nifty|sensex|bank nifty|rupee|rbi|sebi|crude|oil|brent|fed|yield|rate|inflation|nasdaq|s&p|dow|gift nifty|fii|dii|earnings|profit|revenue|ipo|gdp|cpi|opec|trump|tariff|china|india|market|stock|share|equity|dollar|gold|silver|interest rate|bond|currency|semiconductor|chip|ai model|llm|tech earnings)\b/i.test(text);
+  return !hasMarketKeyword;
+}
+
+/**
+ * Traction score: how many OTHER articles in the same batch share 2+ significant
+ * words from this article's headline. Cross-source coverage = genuine news signal.
+ */
+function crossSourceTractionScore(article, allArticles) {
+  const STOPWORDS = new Set(["the","and","of","in","a","an","to","for","on","at","is","are","was","were","as","by","with","from","that","this","be","or","it","its","he","she","they","we","you","but","not","have","has","had","will","would","could","should","may","might","do","did","does","after","before","when","over","under","up","down","out","into","than","then","so","if","while","about","against","between","through","during","about","after","before","some","more","most","such","no","what","which","who","whom","been","being","their","there","these","those","here","how","why","all","both","each","few","very","just","also","other","own","same","than","too","can","per","new","says","say","said"]);
+  const words = (article?.headline || "").toLowerCase().split(/\W+/).filter((w) => w.length > 3 && !STOPWORDS.has(w));
+  if (words.length < 2) return 0;
+  let matches = 0;
+  for (const other of allArticles) {
+    if (other === article || other?.sourceId === article?.sourceId) continue;
+    const otherText = `${other?.headline || ""} ${other?.summary || ""}`.toLowerCase();
+    const sharedWords = words.filter((w) => otherText.includes(w));
+    if (sharedWords.length >= 2) matches++;
+  }
+  return matches * 8;
+}
+
+/**
+ * Traction-based article score.
+ * Replaces the regex-heavy dailyLeadScore as the primary ranking signal.
+ */
+function tractionScore(article, date, allArticles = [], marketSnapshots = []) {
+  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.indiaImpact || ""} ${article?.takeaway || ""}`.toLowerCase();
+  let score = 0;
+  // Cross-source coverage is the strongest traction proxy
+  score += crossSourceTractionScore(article, allArticles);
+  // India-specific direct mentions (trader relevance)
+  if (/\b(nifty|bank nifty|gift nifty|sensex)\b/.test(text)) score += 15;
+  if (/\b(fii|dii|provisional flow)\b/.test(text)) score += 12;
+  if (/\b(rbi|sebi|mpc|repo rate)\b/.test(text)) score += 10;
+  // India publisher premium — ET/Mint/NDTV Profit beat global feeds
+  if (isIndiaPublisherArticle(article)) score += 10;
+  // Market magnitude: specific % moves mentioned
+  if (marketMoveMagnitudeText(text)) score += 8;
+  if (largeTechSectorMoveText(text)) score += 12;
+  // Geopolitical / macro events with high India transmission
+  if (/trump.{0,25}(xi|jinping|beijing)|us.?china (trade deal|tariff truce)/.test(text)) score += 10;
+  if (/\b(crude|brent|opec|hormuz)\b/.test(text)) score += 6;
+  if (/\b(fed|yield|inflation|rate cut|rate hike)\b/.test(text)) score += 5;
+  // Freshness
+  score += freshnessScore(article, date);
+  // Entity match quality from LLM enrichment
+  score += (Number(article?.entityMatchScore) || 0) * 6;
+  // India view count (when populated)
+  const vc = Number(article?.indiaViewCount) || 0;
+  if (vc > 50000) score += 20;
+  else if (vc > 20000) score += 12;
+  else if (vc > 5000) score += 6;
+  // Penalties
+  if (isLeadSuppressedArticle(article)) score -= 24;
+  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(text)) score -= 18;
+  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(text)) score -= 12;
+  if (isGarbageArticle(article)) score -= 40;
+  if (!hasIndiaReadThrough(article)) score -= 8;
+  return score;
+}
+
+/**
+ * GIFT Nifty bias: computes the implied gap for the opening session.
+ */
+export function computeGiftNiftyBias(marketSnapshots = []) {
+  const gift = marketSnapshots.find((s) => s.symbol === "GIFTNIFTY");
+  const nifty = marketSnapshots.find((s) => s.symbol === "NIFTY");
+  if (!gift || !nifty) return null;
+  // Skip if GIFTNIFTY is seed/stale — gap would be meaningless
+  if (gift.dataQuality === "seed-merged" || gift.dataQuality === "mock-fallback" || gift.source?.includes("Mock")) return null;
+  const niftyClose = Number(nifty.previousClose ?? nifty.closeValue);
+  const giftPrice = Number(gift.closeValue);
+  if (!Number.isFinite(niftyClose) || !Number.isFinite(giftPrice) || niftyClose === 0) return null;
+  const gapPts = Math.round(giftPrice - niftyClose);
+  const gapPct = round(((giftPrice - niftyClose) / niftyClose) * 100, 2);
+  const bias = gapPct > 0.3 ? "gap_up" : gapPct < -0.3 ? "gap_down" : "flat";
+  const sign = gapPts > 0 ? "+" : "";
+  return {
+    giftPrice,
+    niftyClose,
+    gapPts,
+    gapPct,
+    bias,
+    biasLabel: bias === "flat" ? "flat open" : `${sign}${gapPts} pt gap-${bias === "gap_up" ? "up" : "down"}`
+  };
 }
 
 function isOfficialIndiaSourceArticle(article) {
