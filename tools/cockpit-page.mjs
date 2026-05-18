@@ -4875,7 +4875,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
           </div>
-          <h1>${escapeHtml(digest.title)}</h1>
+          <h1>${escapeHtml(hookTitle(digest))}</h1>
         </header>
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card" open>
@@ -6923,6 +6923,112 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </script>
 </body>
 </html>`;
+}
+
+/**
+ * Generates a punchy, data-driven H1 headline for the briefing page.
+ * Replaces the formula-generated archive title (e.g. "Crude Sets India Inflation Watch")
+ * with something that leads with the most interesting data point available.
+ * The original digest.title is preserved for SEO/meta — this is display-only.
+ */
+function hookTitle(digest) {
+  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
+  const sentiment = Number(digest.overallSentiment ?? 0);
+  const fii = digest.fiiDiiFlows;
+  const fiiNet = Number(fii?.fiiNet ?? 0);
+  const hasFlow = Math.abs(fiiNet) > 50 && fii?.date;
+  const bias = digest.giftNiftyBias;
+  const sentimentLabel = String(digest.sentimentLabel ?? "").toUpperCase();
+
+  // Helper: short FII phrase e.g. "FII Bought ₹1,329 Cr"
+  function fiiPhrase() {
+    const abs = Math.abs(fiiNet);
+    const cr = abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
+    return fiiNet > 0 ? `FII Bought ${cr}` : `FII Sold ${cr}`;
+  }
+
+  // GIFT Nifty gap is the sharpest pre-open signal when it's real
+  if (bias?.bias === "gap_up" && Math.abs(bias.gapPts) >= 50) {
+    const lead = hasFlow ? `${fiiPhrase()} + Gap-Up Open — Here's the India Read` : `Gap-Up ${Math.abs(bias.gapPts)} Pts — Watch the First 15 Minutes`;
+    return lead;
+  }
+  if (bias?.bias === "gap_down" && Math.abs(bias.gapPts) >= 50) {
+    const lead = hasFlow ? `${fiiPhrase()} + Gap-Down — Support Watch Before You Trade` : `Gap-Down ${Math.abs(bias.gapPts)} Pts — Where India Finds Support`;
+    return lead;
+  }
+
+  // Driver + FII combos — the most engagement-worthy headlines
+  if (driver === "geopolitical") {
+    if (hasFlow) return sentiment >= 0
+      ? `Trade Diplomacy Tailwind + ${fiiPhrase()} — India's Pre-Open Edge`
+      : `Geopolitical Risk + ${fiiPhrase()} — What India Must Confirm First`;
+    return sentiment >= 0
+      ? "Trade Diplomacy Shifts the Risk Map — India in Play"
+      : "Geopolitical Risk Builds — Crude and USD/INR Are the India Checks";
+  }
+
+  if (driver === "crude") {
+    if (hasFlow) return sentiment >= 0
+      ? `Crude Eases + ${fiiPhrase()} — OMC and Aviation Get a Breather`
+      : `Crude Pressure + ${fiiPhrase()} — India Open Needs Breadth to Hold`;
+    return sentiment >= 0
+      ? "Crude Softens — OMC Margins and Aviation Get Relief"
+      : "Crude Firm — Inflation Risk and OMC Margins Are the India Read";
+  }
+
+  if (driver === "rates") {
+    if (hasFlow) return sentiment >= 0
+      ? `Yield Relief + ${fiiPhrase()} — Banks and Real Estate in Focus`
+      : `Yield Pressure + ${fiiPhrase()} — Dollar Strength Squeezes Imports`;
+    return sentiment >= 0
+      ? "Yields Ease — Banks, Realty and Autos Get a Rate Tailwind"
+      : "Yields Rise — Dollar Pressure Hits Importers; Watch USD/INR";
+  }
+
+  if (driver === "tech_move" || driver === "tech") {
+    if (hasFlow) return sentiment >= 0
+      ? `Tech Strength + ${fiiPhrase()} — Nifty IT Leads the Watch List`
+      : `Tech Pressure + ${fiiPhrase()} — IT Sector Gets a Valuation Check`;
+    return sentiment >= 0
+      ? "Nasdaq Lifts Tech — Nifty IT and Exporters Are the India Play"
+      : "Tech Sector Pressure — Nifty IT Breadth Is the Confirmation Check";
+  }
+
+  if (driver === "banks") {
+    if (hasFlow) return sentiment >= 0
+      ? `Banks Lead + ${fiiPhrase()} — Bank Nifty VWAP Is Today's Anchor`
+      : `Bank Stress + ${fiiPhrase()} — Confirmation Needed Before Direction`;
+    return sentiment >= 0
+      ? "Banks Stabilise — Bank Nifty Breadth Leads the Open"
+      : "Bank Sector Under Pressure — Watch VWAP and Advance-Decline";
+  }
+
+  if (driver === "precious_metals") {
+    if (hasFlow) return `Gold Surge + ${fiiPhrase()} — Safe-Haven Demand Tests India Risk Appetite`;
+    return sentiment >= 0
+      ? "Gold Firm — MCX Open and Jewellery Sector in Focus"
+      : "Gold Rallying — Equity Risk Appetite Under Pressure";
+  }
+
+  if (driver === "currency") {
+    if (hasFlow) return sentiment >= 0
+      ? `Rupee Stable + ${fiiPhrase()} — Exporters Get the Edge Today`
+      : `Rupee Pressure + ${fiiPhrase()} — Importers Watch the First-Hour Range`;
+    return "Currency Move in Play — Watch USD/INR Through the First Hour";
+  }
+
+  // Generic: lead with FII if available, else use a cleaner title
+  if (hasFlow) {
+    if (sentimentLabel === "BULLISH") return `${fiiPhrase()} + Positive Global Cues — India Has a Running Start`;
+    if (sentimentLabel === "BEARISH") return `${fiiPhrase()} + Caution — Mixed Cues Demand Opening-Range Confirmation`;
+    return `${fiiPhrase()} on ${fii.date} — Check the Opening Range Before Taking a View`;
+  }
+
+  // Last resort: clean up the archive title (remove robotic formula words)
+  return String(digest.title ?? "India Pre-Open Market Briefing")
+    .replace(/\bshape\b/gi, "sets")
+    .replace(/\bSets India\b/g, "in Focus —")
+    .replace(/\bWatch\b$/, "Watch Before the Open");
 }
 
 /** Replaces generic "Daily Pre-Market Summary" eyebrow with a market-specific signal label. */

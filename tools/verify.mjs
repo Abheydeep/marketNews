@@ -1589,8 +1589,9 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes('id="priceStatus"'), false);
   assert.equal(html.includes("Since baseline date"), false);
   assert.equal(html.includes("Since model date"), false);
-  assert.ok(html.includes("Awaiting verified live quote"));
-  assert.ok(html.includes("current prices and returns appear after verified market quotes"));
+  // Static fallback now carries real prices; priceSource shows Yahoo Finance / BSE India
+  assert.ok(html.includes("Yahoo Finance") || html.includes("BSE India"), "multibagger page must show price source name");
+  assert.ok(html.includes("Latest Yahoo/BSE public quotes") || html.includes("current prices and returns appear after verified market quotes"), "multibagger page must include a quote note");
   assert.equal(html.includes("Server quote snapshot"), false);
   assert.ok(html.includes("renderMultibaggerState"));
   assert.ok(html.includes("Reviews And Changes"));
