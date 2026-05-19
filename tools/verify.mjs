@@ -1282,16 +1282,8 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.equal((publicHtml.match(/<h1/g) || []).length, 1, "public briefing should render exactly one h1");
   assert.equal(publicHtml.includes("Today's Trade Map"), false);
   assert.match(publicHtml, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/);
-  assert.ok(publicHtml.includes("Opening Nerve"));
-  assert.ok(publicHtml.includes("What matters before the first range"));
-  assert.ok(publicHtml.includes("Nifty gate"));
-  assert.ok(publicHtml.includes("Bank filter"));
-  assert.ok(publicHtml.includes("Sector nerve"));
-  assert.ok(publicHtml.includes("Stand-down trigger"));
-  assert.ok(publicHtml.includes("Source confidence"));
-  assert.ok(publicHtml.includes("9:45-10:00 AM IST"));
-  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Opening Nerve"));
-  assert.ok(publicHtml.indexOf("Opening Nerve") < publicHtml.indexOf("The Overnight Pulse"));
+  // Opening Nerve lives on the trading guide only — not on the public briefing page
+  assert.equal(publicHtml.includes("Opening Nerve"), false, "Opening Nerve must not appear on public briefing page");
   assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'));
   assert.equal(guideHtml.includes('id="public-view"'), false);
   assert.equal((guideHtml.match(/<h1/g) || []).length, 1, "trading guide should render exactly one h1");
@@ -1305,13 +1297,11 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
   assert.ok(publicHtml.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.includes("Get the next trading-day 7:15 AM brief"));
   assert.ok(publicHtml.includes("Evidence grade:"));
-  assert.ok(publicHtml.includes("Full India-source gate:"));
-  assert.ok(publicHtml.includes("India-source"));
-  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share/mood modules");
-  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Market Mood"), "2-minute summary should appear before market mood rail");
-  assert.ok(publicHtml.includes("Previous Close Quote Board") || publicHtml.includes("Market Quote Board"));
+  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share row");
+  // Today's Read and Top Stories must be present on the public briefing
+  assert.ok(publicHtml.includes("todays-read-section"), "Today's Read section must be present");
+  assert.ok(publicHtml.includes("top-stories-section"), "Top Stories section must be present");
   assert.equal(publicHtml.includes("Live Quote Board"), false);
   assert.equal(publicHtml.includes("live refresh pending"), false);
   assert.equal(publicHtml.includes("Waiting for chart data"), false);
@@ -2397,8 +2387,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Share this briefing"));
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
   assert.ok(publicHtml.body.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.body.includes("Get the next trading-day 7:15 AM brief"));
-  assert.ok(publicHtml.body.includes("Previous close/reference quotes") || publicHtml.body.includes("Market quote context"));
+  // follow-briefing CTA and Market Quote Board removed from public page (redesign)
+  assert.ok(publicHtml.body.includes("todays-read-section"), "Today's Read must be present in public briefing");
   assert.equal(publicHtml.body.includes("live refresh pending"), false);
   assert.equal(publicHtml.body.includes("Last available close"), false);
   assert.equal(publicHtml.body.includes("live data not yet available"), false);
@@ -2433,9 +2423,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Engine Architecture"));
   assert.ok(!publicHtml.body.includes("Project Components"));
   assert.ok(!publicHtml.body.includes('id="architecture-view"'));
-  assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'));
+  // Redesign: 2-min summary defaults to closed (no `open` attribute) — reader sees the summary, expands for breakdown
+  assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card"'));
+  assert.equal(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'), false, "2-min summary must default to collapsed");
   assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("Share this briefing"), "2-minute summary should render before share controls");
-  assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("Market Mood"), "2-minute summary should render before mood cards");
   assert.ok(publicHtml.body.includes("2 Minute Summary"));
   assert.equal(/[A-Za-z0-9][,;:]\./.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs,.");
   assert.equal(/[A-Za-z0-9]\.[;:]/.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs.;");
@@ -2446,7 +2437,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("<strong>India read:</strong>"));
   assert.ok(publicHtml.body.includes("<strong>Source mix:</strong>"));
   assert.ok(publicHtml.body.includes("disclosure-action summary-disclosure-action"));
-  assert.ok(publicHtml.body.includes("disclosure-action quote-board-action"));
+  // quote-board-action removed from public briefing page (moved to trading guide)
   assert.ok(publicHtml.body.includes("disclosure-action source-ledger-action"));
   assert.equal(publicHtml.body.includes("summary-expand-action"), false);
   assert.equal(publicHtml.body.includes("quote-board-chev"), false);
@@ -2478,16 +2469,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Read the full desk note"));
   assert.ok(!publicHtml.body.includes("Pre-market desk note"));
   assert.equal(/Bank Nifty is the pressure; Bank Nifty is the cushion/i.test(publicHtml.body), false);
-  assert.ok(publicHtml.body.includes("The Overnight Pulse"));
+  // Overnight Pulse / regional breadth section moved to trading guide; Asia numbers still in collapsed 2-min summary
   assert.ok(publicHtml.body.includes("Asia Watch"));
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
   assert.ok(publicHtml.body.includes("Hong Kong - Hang Seng"));
-  assert.ok(publicHtml.body.includes("Mainland China - Shanghai Composite"));
-  assert.ok(publicHtml.body.includes("South Korea - KOSPI"));
-  assert.ok(publicHtml.body.includes("Taiwan - Taiwan Weighted"));
-  assert.ok(publicHtml.body.includes("Top 5 countries"));
-  assert.ok(publicHtml.body.includes("up <em>/"));
-  assert.ok(publicHtml.body.includes("Avg move"));
   assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
   assert.ok(publicHtml.body.includes("Evidence ledger behind the briefing"));
   assert.ok(publicHtml.body.includes("Open categorized source ledger"));
@@ -2497,7 +2482,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
   assert.match(publicHtml.body, /Top \d+ India read-through notes selected from/);
-  assert.ok(publicHtml.body.includes("Full India-source gate:"));
+  // Evidence grade jargon removed — plain English summaries now used instead
   assert.equal(publicHtml.body.includes("Direct India-source articles: 0"), false);
   assert.match(publicHtml.body, /Showing \d+ India read-through notes/);
   assert.ok(publicHtml.body.includes("verified article links"));
@@ -2515,7 +2500,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Moneycontrol Markets"));
   assert.ok(publicHtml.body.includes("CNBC Markets"));
   assert.ok(publicHtml.body.includes("Wed, 29 Apr, 2026"));
-  assert.ok(publicHtml.body.includes("sentiment-pin"));
+  // Sentiment pin / Overnight Pulse removed from public briefing (trading guide only)
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
   assert.equal(publicHtml.body.includes("Active Game Plan"), false);
   assert.equal(publicHtml.body.includes("Completed Setups"), false);
@@ -2525,13 +2510,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));
   assert.ok(!publicHtml.body.includes("Key News & Sources"));
   assert.equal(publicHtml.body.includes("Stop Loss"), false);
-  assert.ok(publicHtml.body.includes("Previous Close Quote Board") || publicHtml.body.includes("Market Quote Board"));
+  // Market Quote Board removed from public briefing page (trading guide only)
   assert.equal(publicHtml.body.includes("Live Quote Board"), false);
-  assert.ok(publicHtml.body.includes('id="quoteBoardToggle"'));
-  assert.ok(publicHtml.body.includes('aria-expanded="false"'));
-  assert.ok(publicHtml.body.includes('id="quoteBoardBody" class="quote-board-body" hidden'));
-  assert.ok(publicHtml.body.includes("bindQuoteBoardToggle"));
-  assert.ok(publicHtml.body.includes("window.__QUOTE_BOARD_EXPANDED__"));
   assert.ok(!publicHtml.body.includes("live-board-header"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));

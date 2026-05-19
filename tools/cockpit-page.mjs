@@ -5038,7 +5038,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(hookTitle(digest))}</h1>
         </header>
 
-        <details id="summaryExpand" class="info-card executive-card briefing-expand-card" open>
+        <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
             <div>
               <span class="summary-label">Start Here</span>
@@ -5056,51 +5056,16 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           </div>
         </details>
 
-        ${openingNerveHtml(digest, { guideHref: "./trading-guide/" })}
         ${legacyAuditBannerHtml(digest)}
         ${editionNavHtml(digest)}
         ${briefingFreshnessNoticeHtml(digest)}
-        ${evidenceGradeBadgeHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
-        ${themeClass === "glass-v2" ? marketMoodRailHtml(digest) : ""}
         ${indiaPreOpenHtml(digest)}
-        ${followBriefingCtaHtml()}
-        ${readerPathHtml(digest)}
-
-        <section class="pulse-section">
-          <div class="section-kicker">
-            <h2>The Overnight Pulse</h2>
-            <div class="sentiment-meter" aria-label="Daily sentiment meter">
-              <div class="sentiment-scale">
-                <span>Bearish</span>
-                <span>Neutral</span>
-                <span>Bullish</span>
-              </div>
-              <div class="sentiment-bar">
-                <div class="sentiment-pin" style="left: ${sentimentPinPosition(digest.overallSentiment)}%"></div>
-              </div>
-            </div>
-          </div>
-          <div class="quote-board-card">
-            <button id="quoteBoardToggle" class="quote-board-toggle" type="button" aria-expanded="false" aria-controls="quoteBoardBody">
-              <span class="quote-board-title">
-                <strong>${escapeHtml(quoteBoardTitle(digest))}</strong>
-                <small>${escapeHtml(quoteBoardSubtitle(digest))}</small>
-              </span>
-              <span id="liveClock" class="live-clock">${escapeHtml(quoteSessionLabel(digest))}</span>
-              <span class="disclosure-action quote-board-action"><span id="quoteBoardState">Show details</span><span class="disclosure-icon" aria-hidden="true"></span></span>
-            </button>
-            <div id="quoteBoardBody" class="quote-board-body" hidden>
-              <div id="regionalBreadth" class="regional-breadth">
-                ${regionalBreadthHtml(digest)}
-              </div>
-              <div id="indexBoard" aria-label="Clickable live index quotes"></div>
-            </div>
-          </div>
-        </section>
 
         ${todaysReadHtml(digest)}
         ${topStoriesHtml(digest)}
+
+        ${evidenceGradeBadgeHtml(digest)}
         ${sourceNotesHtml(digest)}
 
         <footer class="public-footer">
