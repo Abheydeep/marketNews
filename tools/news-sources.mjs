@@ -151,11 +151,11 @@ const LIVE_FEEDS = [
     url: "https://www.financialexpress.com/market/feed/"
   },
   {
-    sourceName: "Reuters Business",
-    sourceId: "reuters-business",
+    sourceName: "Bloomberg Markets",
+    sourceId: "bloomberg-markets",
     type: "rss",
     categoryHint: "global_risk",
-    url: "https://feeds.reuters.com/reuters/businessNews"
+    url: "https://feeds.bloomberg.com/markets/news.rss"
   },
   {
     sourceName: "PIB Finance Ministry",
@@ -2160,8 +2160,10 @@ async function fetchText(url, fetcher) {
   try {
     const response = await fetcher(url, {
       headers: {
-        "User-Agent": "MarketNarrativeSourceVerifier/1.0 (+https://marketnarrative.in)",
-        Accept: "application/rss+xml, application/xml, text/xml, text/html;q=0.9, */*;q=0.8"
+        // Browser-like UA required — Moneycontrol, PIB and others actively block bot/custom UA strings
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        Accept: "application/rss+xml, application/xml, text/xml, text/html;q=0.9, */*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"
       },
       signal: controller.signal
     });
