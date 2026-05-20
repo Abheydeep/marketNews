@@ -147,14 +147,26 @@ class TradingState:
             for index in ("NIFTY", "BANKNIFTY"):
                 spot = spots[index]
                 snapshots = self._option_snapshots(selected_contracts[index], option_quotes, now)
-                if quote_failed and not snapshots:
+                # Fall back to historical minute bars whenever live quotes are absent —
+                # covers both API errors and empty responses (e.g. market closed after hours).
+                if not snapshots:
                     snapshots = await self._historical_option_snapshots(kite_client, selected_contracts[index], spot, now)
+                    if snapshots:
+                        notes.append(f"{index} options: using historical bar fallback")
                 if snapshots:
                     spot_delta = spot - self.last_spots.get(index, spot)
                     self.option_chains[index] = self.options_engine.build_chain(index, spot, snapshots, spot_delta=spot_delta, ts=now)
-                    technical = self.technicals.get(index)
-                    if technical:
-                        self.signals[index] = self.signal_generator.generate(index, spot, technical, self.option_chains[index], avg_sentiment)
+                else:
+                    # No option data at all — keep last known chain or seed a neutral mock so
+                    # the signals dict is always populated and the frontend never gets a KeyError.
+                    if index not in self.option_chains:
+                        self.option_chains[index] = self._mock_chain(index, spot, now)
+                    notes.append(f"{index} options: no data, using last/mock chain for signal baseline")
+                technical = self.technicals.get(index)
+                if technical:
+                    self.signals[index] = self.signal_generator.generate(
+                        index, spot, technical, self.option_chains[index], avg_sentiment
+                    )
                 self.last_spots[index] = spot
 
             self.last_refresh_at = now

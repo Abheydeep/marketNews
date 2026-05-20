@@ -80,7 +80,10 @@ async def option_chain(index: IndexSymbol) -> object:
 
 @router.get("/api/signals/latest", dependencies=admin_only)
 async def latest_signal(index: IndexSymbol) -> object:
-    return trading_state.signals[index]
+    signal = trading_state.signals.get(index)
+    if signal is None:
+        raise HTTPException(status_code=503, detail=f"Signal for {index} not yet available — Kite session may still be loading")
+    return signal
 
 
 @router.get("/api/market/envelope", dependencies=admin_only)
