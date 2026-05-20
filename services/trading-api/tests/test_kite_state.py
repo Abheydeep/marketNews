@@ -1,7 +1,15 @@
 import asyncio
+from datetime import datetime, timedelta, timezone
 
 from app.config import Settings
 from app.state import TradingState
+
+# Always use a Thursday that is at least 7 days in the future so the
+# InstrumentMasterParser never filters contracts as expired.
+def _next_expiry() -> str:
+    today = datetime.now(timezone.utc).date()
+    days_ahead = (3 - today.weekday()) % 7 or 7   # next Thursday
+    return (today + timedelta(days=days_ahead + 7)).strftime("%Y-%m-%d")
 
 
 class TokenStore:
@@ -26,13 +34,14 @@ class FakeKiteClient:
         self.quote_oi = 100000.0
 
     async def instruments(self):
+        expiry = _next_expiry()
         return "\n".join(
             [
                 "instrument_token,exchange,tradingsymbol,name,segment,instrument_type,expiry,strike,lot_size",
-                "101,NFO,NIFTY05MAY2622500CE,NIFTY,NFO-OPT,CE,2026-05-05,22500,25",
-                "102,NFO,NIFTY05MAY2622500PE,NIFTY,NFO-OPT,PE,2026-05-05,22500,25",
-                "201,NFO,BANKNIFTY05MAY2648500CE,BANKNIFTY,NFO-OPT,CE,2026-05-05,48500,15",
-                "202,NFO,BANKNIFTY05MAY2648500PE,BANKNIFTY,NFO-OPT,PE,2026-05-05,48500,15",
+                f"101,NFO,NIFTY22500CE,NIFTY,NFO-OPT,CE,{expiry},22500,25",
+                f"102,NFO,NIFTY22500PE,NIFTY,NFO-OPT,PE,{expiry},22500,25",
+                f"201,NFO,BANKNIFTY48500CE,BANKNIFTY,NFO-OPT,CE,{expiry},48500,15",
+                f"202,NFO,BANKNIFTY48500PE,BANKNIFTY,NFO-OPT,PE,{expiry},48500,15",
             ]
         )
 

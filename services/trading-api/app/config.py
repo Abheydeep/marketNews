@@ -34,6 +34,8 @@ class Settings:
     banknifty_index_token: int = int(os.getenv("BANKNIFTY_INDEX_TOKEN", "260105"))
     token_store_path: Path = Path(os.getenv("KITE_TOKEN_STORE", ".local/kite-session.json"))
     token_encryption_key: str = os.getenv("TRADING_TOKEN_KEY", "")
+    kite_token_backend: str = os.getenv("KITE_TOKEN_BACKEND", "file").strip().lower()
+    kite_token_redis_key: str = os.getenv("KITE_TOKEN_REDIS_KEY", "trading:kite:session:v1")
     enable_live_orders: bool = _bool_env("ENABLE_LIVE_ORDERS", False)
     daily_loss_limit: float = float(os.getenv("TRADING_DAILY_LOSS_LIMIT", "2500"))
     max_open_positions_per_index: int = int(os.getenv("TRADING_MAX_OPEN_POSITIONS_PER_INDEX", "1"))
