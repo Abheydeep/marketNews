@@ -1,9 +1,15 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from app.domain.options import OI_LONG_BUILDUP, OI_SHORT_BUILDUP
 from app.schemas import IndexSymbol, OptionChain, PriceZone, TechnicalSnapshot, TradingSignal
+
+_IST = timedelta(hours=5, minutes=30)
+_SESSION_START = (9, 45)   # 9:45 AM IST — skip opening noise
+_SESSION_END   = (15, 0)   # 3:00 PM IST
+_EXPIRY_CUTOFF = (11, 0)   # Thursday before 11 AM IST — near-expiry gamma noise
+_VOLUME_MULT   = 1.5       # bar volume must exceed 1.5× 20-bar average
 
 
 class SignalGenerator:
@@ -17,10 +23,49 @@ class SignalGenerator:
         technical: TechnicalSnapshot,
         option_chain: OptionChain,
         sentiment_score: float,
+        *,
+        current_volume: float = 0.0,
+        avg_volume_20: float = 0.0,
+        ts: datetime | None = None,
+        is_expiry_day: bool = False,
     ) -> TradingSignal:
         support = self._nearest_zone(price, technical.kde_zones, "support")
         resistance = self._nearest_zone(price, technical.kde_zones, "resistance")
         reasons: list[str] = []
+
+        # ── Filter 1: time-of-day ───────────────────────────────────────────
+        if ts is not None:
+            ist = ts.astimezone(timezone.utc) + _IST
+            hm = (ist.hour, ist.minute)
+            if hm < _SESSION_START or hm >= _SESSION_END:
+                reasons.append(
+                    f"WAIT: outside session window "
+                    f"({ist.strftime('%H:%M')} IST — trade only {_SESSION_START[0]:02d}:{_SESSION_START[1]:02d}–"
+                    f"{_SESSION_END[0]:02d}:{_SESSION_END[1]:02d})"
+                )
+                return TradingSignal(index=index, action="WAIT", confidence=0.0,
+                                     reasons=reasons[:3], generated_at=datetime.now(timezone.utc))
+
+        # ── Filter 2: expiry proximity (Thursday pre-11 AM) ────────────────
+        if ts is not None and is_expiry_day:
+            ist = ts.astimezone(timezone.utc) + _IST
+            if (ist.hour, ist.minute) < _EXPIRY_CUTOFF:
+                reasons.append(
+                    f"WAIT: expiry-day gamma noise before "
+                    f"{_EXPIRY_CUTOFF[0]:02d}:{_EXPIRY_CUTOFF[1]:02d} IST — skipping"
+                )
+                return TradingSignal(index=index, action="WAIT", confidence=0.0,
+                                     reasons=reasons[:3], generated_at=datetime.now(timezone.utc))
+
+        # ── Filter 3: volume confirmation ───────────────────────────────────
+        if current_volume > 0 and avg_volume_20 > 0:
+            if current_volume < _VOLUME_MULT * avg_volume_20:
+                reasons.append(
+                    f"WAIT: thin volume ({current_volume:,.0f} < "
+                    f"{_VOLUME_MULT}× avg {avg_volume_20:,.0f}) — waiting for confirmation"
+                )
+                return TradingSignal(index=index, action="WAIT", confidence=0.0,
+                                     reasons=reasons[:3], generated_at=datetime.now(timezone.utc))
 
         buy_checks = [
             (support is not None and self._near(price, support), "price is near a KDE support zone"),

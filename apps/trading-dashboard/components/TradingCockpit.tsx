@@ -6,6 +6,7 @@ import type { TradingIndex } from "@market-narrative/api-client";
 import { BrandMark } from "./BrandMark";
 import { useMarketStore } from "../store/marketStore";
 import { CandleChart } from "./CandleChart";
+import { FvgPaperPanel } from "./FvgPaperPanel";
 import { NewsTicker } from "./NewsTicker";
 import { OptionsHeatmap } from "./OptionsHeatmap";
 import { OrderConfirmationModal } from "./OrderConfirmationModal";
@@ -40,6 +41,7 @@ export function TradingCockpit() {
 
   const chain = envelope?.option_chains[selectedIndex];
   const signal = envelope?.signals[selectedIndex];
+  const fvgObservation = envelope?.fvg_observations?.[selectedIndex];
   const candles = envelope?.candles[selectedIndex] ?? [];
   const technical = envelope?.technicals[selectedIndex];
   const status = envelope?.status;
@@ -154,6 +156,7 @@ export function TradingCockpit() {
 
         <aside className="grid content-start gap-3">
           <SignalModule index={selectedIndex} signal={signal ?? null} chain={chain ?? null} />
+          <FvgPaperPanel index={selectedIndex} observation={fvgObservation ?? null} />
           <PcrStrip chain={chain ?? null} />
           <RiskPanel risk={envelope?.risk ?? null} />
         </aside>

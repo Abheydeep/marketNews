@@ -253,6 +253,8 @@ export type TradingMarketEnvelope = {
   option_chains: Record<TradingIndex, OptionChain>;
   news: TradingNewsEvent[];
   signals: Record<TradingIndex, TradingSignal>;
+  /** Observe-only FVG paper signals — recorded for live validation, never traded. */
+  fvg_observations?: Partial<Record<TradingIndex, TradingSignal>>;
   risk: TradingRiskState;
   server_ts?: string;
 };

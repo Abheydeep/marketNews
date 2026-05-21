@@ -178,4 +178,6 @@ class MarketEnvelope(BaseModel):
     option_chains: dict[IndexSymbol, OptionChain]
     news: list[NewsEvent]
     signals: dict[IndexSymbol, TradingSignal]
+    # Observe-only FVG paper signals — recorded for live validation, never traded.
+    fvg_observations: dict[IndexSymbol, TradingSignal] = Field(default_factory=dict)
     risk: RiskState

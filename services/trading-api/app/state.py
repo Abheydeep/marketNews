@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timedelta, timezone
 from random import Random
 from typing import Any, Protocol
 
 from app.config import settings
+from app.domain.fvg import FVGPaperStrategy
 from app.domain.options import InstrumentMasterParser, OptionsMicrostructureEngine
 from app.domain.risk import RiskManager
 from app.domain.sentiment import MockNewsProvider, SentimentAnalysisService
@@ -21,6 +23,8 @@ from app.schemas import (
     OrderProposal,
     TradingSignal,
 )
+
+logger = logging.getLogger("trading.fvg")
 
 
 class KiteClientProtocol(Protocol):
@@ -51,12 +55,18 @@ class TradingState:
         self.instrument_parser = InstrumentMasterParser()
         self.sentiment_service = SentimentAnalysisService(enable_finbert=self.settings.enable_finbert)
         self.signal_generator = SignalGenerator()
+        self.fvg_strategy = FVGPaperStrategy()
         self.risk_manager = RiskManager(self.settings)
         self.candles: dict[IndexSymbol, list[Candle]] = {"NIFTY": [], "BANKNIFTY": []}
+        self.candles_5m: dict[IndexSymbol, list[Candle]] = {"NIFTY": [], "BANKNIFTY": []}
         self.technicals = {}
         self.option_chains: dict[IndexSymbol, OptionChain] = {}
         self.news = []
         self.signals: dict[IndexSymbol, TradingSignal] = {}
+        # Observe-only FVG paper signals — kept entirely separate from
+        # self.signals so they can never reach the order-proposal path.
+        self.fvg_observations: dict[IndexSymbol, TradingSignal] = {}
+        self._fvg_last_logged: dict[IndexSymbol, str] = {}
         self.proposals: dict[str, OrderProposal] = {}
         self.contracts: list[OptionContract] = []
         self.previous_option_oi: dict[int, float] = {}
@@ -133,6 +143,14 @@ class TradingState:
                     self.technicals[index] = self.technical_engine.analyze(self.candles[index])
                     notes.append(f"{index} seeded from index LTP until historical candles arrive")
 
+                # 5-minute candles drive the observe-only FVG paper strategy.
+                try:
+                    candles_5m = await self._kite_candles_5m(kite_client, index, now)
+                    if candles_5m:
+                        self.candles_5m[index] = candles_5m
+                except Exception as exc:
+                    notes.append(f"{index} 5-min candle fetch failed: {exc}")
+
             option_quotes: dict[str, Any] = {}
             quote_failed = False
             if all_quote_keys:
@@ -164,10 +182,29 @@ class TradingState:
                     notes.append(f"{index} options: no data, using last/mock chain for signal baseline")
                 technical = self.technicals.get(index)
                 if technical:
+                    candles_for_index = self.candles.get(index, [])
+                    current_vol = candles_for_index[-1].volume if candles_for_index else 0.0
+                    recent_vols = [c.volume for c in candles_for_index[-20:] if c.volume > 0]
+                    avg_vol_20 = sum(recent_vols) / len(recent_vols) if recent_vols else 0.0
+                    ist_offset = timedelta(hours=5, minutes=30)
+                    is_expiry = now.weekday() == 3  # Thursday
                     self.signals[index] = self.signal_generator.generate(
-                        index, spot, technical, self.option_chains[index], avg_sentiment
+                        index, spot, technical, self.option_chains[index], avg_sentiment,
+                        current_volume=current_vol,
+                        avg_volume_20=avg_vol_20,
+                        ts=now,
+                        is_expiry_day=is_expiry,
                     )
                 self.last_spots[index] = spot
+
+                # ── FVG paper strategy: observe-only, never touches the order path ──
+                candles_5m = self.candles_5m.get(index, [])
+                if candles_5m:
+                    observation = self.fvg_strategy.evaluate(
+                        index, candles_5m, now, is_expiry_day=(now.weekday() == 3),
+                    )
+                    self.fvg_observations[index] = observation
+                    self._log_fvg_observation(index, observation)
 
             self.last_refresh_at = now
             message = "Live Kite market data is active."
@@ -199,6 +236,7 @@ class TradingState:
             option_chains=self.option_chains,
             news=self.news,
             signals=self.signals,
+            fvg_observations=self.fvg_observations,
             risk=self.risk_manager.state,
         )
 
@@ -206,10 +244,12 @@ class TradingState:
         if keep_last and any(self.candles.values()):
             return
         self.candles = {"NIFTY": [], "BANKNIFTY": []}
+        self.candles_5m = {"NIFTY": [], "BANKNIFTY": []}
         self.technicals = {}
         self.option_chains = {}
         self.news = []
         self.signals = {}
+        self.fvg_observations = {}
 
     def _status(
         self,
@@ -269,6 +309,46 @@ class TradingState:
                 )
             )
         return candles
+
+    async def _kite_candles_5m(self, kite_client: KiteClientProtocol, index: IndexSymbol, now: datetime) -> list[Candle]:
+        """5-minute index candles for the observe-only FVG paper strategy."""
+        token = self.settings.banknifty_index_token if index == "BANKNIFTY" else self.settings.nifty_index_token
+        payload = await kite_client.historical(token, "5minute", now - timedelta(days=12), now)
+        rows = payload.get("candles", []) if isinstance(payload, dict) else []
+        candles: list[Candle] = []
+        for row in rows[-200:]:
+            if len(row) < 6:
+                continue
+            candles.append(
+                Candle(
+                    ts=self._parse_kite_ts(row[0]),
+                    open=float(row[1]),
+                    high=float(row[2]),
+                    low=float(row[3]),
+                    close=float(row[4]),
+                    volume=float(row[5]),
+                    oi=float(row[6]) if len(row) > 6 and row[6] is not None else None,
+                )
+            )
+        return candles
+
+    def _log_fvg_observation(self, index: IndexSymbol, observation: TradingSignal) -> None:
+        """Record a fresh FVG paper signal. Logging only — no order is placed."""
+        if observation.action == "WAIT":
+            return
+        key = observation.generated_at.isoformat()
+        if self._fvg_last_logged.get(index) == key:
+            return
+        self._fvg_last_logged[index] = key
+        logger.info(
+            "FVG PAPER SIGNAL [%s] %s entry=%.2f stop=%.2f target=%.2f bar=%s "
+            "— observe-only, no order placed",
+            index, observation.action,
+            observation.entry_price or 0.0,
+            observation.stop_loss or 0.0,
+            observation.target_price or 0.0,
+            key,
+        )
 
     def _option_snapshots(
         self,
