@@ -34,7 +34,7 @@ services:
     plan: free
     region: singapore
     repo: https://github.com/Abheydeep/marketNews
-    branch: codex/fix-vercel-public-config
+    branch: main
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     healthCheckPath: /actuator/health
@@ -80,7 +80,7 @@ services:
     plan: free
     region: singapore
     repo: https://github.com/Abheydeep/marketNews
-    branch: codex/fix-vercel-public-config
+    branch: main
     dockerfilePath: ./services/trading-api/Dockerfile
     dockerContext: ./services/trading-api
     healthCheckPath: /health
