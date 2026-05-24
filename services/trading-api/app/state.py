@@ -135,12 +135,21 @@ class TradingState:
                     notes.append(f"{index} candle fallback active: {exc}")
                 if candles:
                     self.candles[index] = candles
-                    self.technicals[index] = self.technical_engine.analyze(candles)
+                    try:
+                        self.technicals[index] = self.technical_engine.analyze(candles)
+                    except ValueError as exc:
+                        # NSE indices return zero-volume bars; don't bring the whole
+                        # refresh down — leave technicals stale and keep going so
+                        # signals and FVG paper observations can still populate.
+                        notes.append(f"{index} technicals unavailable: {exc}")
                 elif self.candles[index]:
                     notes.append(f"{index} using last good candles")
                 else:
                     self.candles[index] = self._spot_seed_candles(now, spot)
-                    self.technicals[index] = self.technical_engine.analyze(self.candles[index])
+                    try:
+                        self.technicals[index] = self.technical_engine.analyze(self.candles[index])
+                    except ValueError as exc:
+                        notes.append(f"{index} technicals unavailable: {exc}")
                     notes.append(f"{index} seeded from index LTP until historical candles arrive")
 
                 # 5-minute candles drive the observe-only FVG paper strategy.
@@ -283,7 +292,11 @@ class TradingState:
                 candles = await self._kite_candles(kite_client, index, now)
                 if candles:
                     self.candles[index] = candles
-                    self.technicals[index] = self.technical_engine.analyze(candles)
+                    try:
+                        self.technicals[index] = self.technical_engine.analyze(candles)
+                    except ValueError:
+                        # zero-volume index bars — keep candles, skip indicators
+                        pass
                     spots[index] = candles[-1].close
             if set(spots) != {"NIFTY", "BANKNIFTY"}:
                 raise RuntimeError("Kite quote and historical fallbacks both failed for index spots") from exc
