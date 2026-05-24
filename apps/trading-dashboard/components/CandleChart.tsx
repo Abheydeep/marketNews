@@ -77,6 +77,17 @@ export function CandleChart({ index, candles, zones, signal }: Props) {
     chartRef.current?.timeScale().fitContent();
   }, [candles]);
 
+  // When the selected index changes, NIFTY (~24k) and BANKNIFTY (~54k) live on
+  // very different price scales — without this, the manual price-zoom from the
+  // previous index leaves the new candles way off-screen.
+  useEffect(() => {
+    if (!chartRef.current) {
+      return;
+    }
+    chartRef.current.priceScale("right").applyOptions({ autoScale: true });
+    chartRef.current.timeScale().fitContent();
+  }, [index]);
+
   useEffect(() => {
     const series = seriesRef.current;
     if (!series) {
