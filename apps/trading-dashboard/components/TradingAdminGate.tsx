@@ -12,8 +12,10 @@ export function TradingAdminGate() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("Abhey trading admin required");
   const [busy, setBusy] = useState(false);
+  const [displayAuthApiBase, setDisplayAuthApiBase] = useState<string | null>(null);
 
   useEffect(() => {
+    setDisplayAuthApiBase(authApiBase);
     const stored = window.localStorage.getItem(tokenStorageKey);
     if (stored) {
       setAuthToken(stored);
@@ -68,7 +70,7 @@ export function TradingAdminGate() {
             <LogIn className="h-4 w-4" aria-hidden="true" />
             Login as Abhey Admin
           </button>
-          <p className="text-[11px] font-semibold text-slate-500">Auth API: {authApiBase}</p>
+          {displayAuthApiBase ? <p className="text-[11px] font-semibold text-slate-500">Auth API: {displayAuthApiBase}</p> : null}
         </div>
       </section>
     </main>

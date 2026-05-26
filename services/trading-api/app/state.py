@@ -69,7 +69,16 @@ class TradingState:
         self._fvg_last_logged: dict[IndexSymbol, str] = {}
         self.proposals: dict[str, OrderProposal] = {}
         self.contracts: list[OptionContract] = []
+        self.contracts_by_token: dict[int, OptionContract] = {}
         self.previous_option_oi: dict[int, float] = {}
+        self.last_ticks_by_token: dict[int, datetime] = {}
+        self.last_volume_by_token: dict[int, float] = {}
+        self.websocket_started_at: datetime | None = None
+        self.websocket_error: str | None = None
+        self._ticker_bridge = None
+        self._ticker_tokens: set[int] = set()
+        self._ticker_access_token: str | None = None
+        self._last_ticker_restart_at: datetime | None = None
         self.last_refresh_at: datetime | None = None
         self.last_spots: dict[IndexSymbol, float] = {}
         self.status = self._status("mock" if self.settings.trading_market_mode != "kite" else "kite", False, "Starting trading data service")
@@ -89,10 +98,12 @@ class TradingState:
         self.news = await self.sentiment_service.ingest([MockNewsProvider()])
         for index, spot in (("NIFTY", self.candles["NIFTY"][-1].close), ("BANKNIFTY", self.candles["BANKNIFTY"][-1].close)):
             self.option_chains[index] = self._mock_chain(index, spot, now)  # type: ignore[index]
+            self.candles_5m[index] = self._mock_candles(now, spot, 85 if index == "NIFTY" else 190)  # type: ignore[index]
             technical = self.technical_engine.analyze(self.candles[index])  # type: ignore[index]
             self.technicals[index] = technical
             avg_sentiment = sum(event.sentiment_score for event in self.news) / len(self.news)
             self.signals[index] = self.signal_generator.generate(index, spot, technical, self.option_chains[index], avg_sentiment)  # type: ignore[index]
+            self.fvg_observations[index] = self.fvg_strategy.evaluate(index, self.candles_5m[index], now)  # type: ignore[index]
         self.last_refresh_at = now
 
     async def refresh_if_due(self, kite_client: KiteClientProtocol) -> None:
@@ -159,6 +170,8 @@ class TradingState:
                         self.candles_5m[index] = candles_5m
                 except Exception as exc:
                     notes.append(f"{index} 5-min candle fetch failed: {exc}")
+
+            await self._ensure_ticker(kite_client, selected_contracts, notes)
 
             option_quotes: dict[str, Any] = {}
             quote_failed = False
@@ -235,7 +248,255 @@ class TradingState:
         payload = await kite_client.instruments()
         records = self.instrument_parser.parse_csv(payload)
         self.contracts = self.instrument_parser.contracts_from_records(records)
+        self.contracts_by_token = {contract.instrument_token: contract for contract in self.contracts}
         return self.contracts
+
+    async def _ensure_ticker(
+        self,
+        kite_client: KiteClientProtocol,
+        selected_contracts: dict[IndexSymbol, list[OptionContract]],
+        notes: list[str],
+    ) -> None:
+        if not self.settings.kite_websocket_enabled:
+            if self._ticker_bridge is not None:
+                self._stop_ticker("Kite WebSocket is disabled")
+            return
+        access_token_fn = getattr(kite_client.auth.token_store, "access_token", None)
+        access_token = access_token_fn() if callable(access_token_fn) else None
+        if not access_token:
+            self._stop_ticker("Kite access token is missing")
+            notes.append("Kite WebSocket not started: access token is missing")
+            return
+        tokens = {self.settings.nifty_index_token, self.settings.banknifty_index_token}
+        for contracts in selected_contracts.values():
+            tokens.update(contract.instrument_token for contract in contracts)
+        now = datetime.now(timezone.utc)
+        restart_reason = self._ticker_restart_reason(tokens, access_token, now)
+        if restart_reason is None:
+            return
+        try:
+            if self._ticker_bridge is not None:
+                notes.append(f"Kite WebSocket restarting: {restart_reason}")
+                self._stop_ticker(restart_reason)
+            from app.adapters.kite.ticker import KiteTickerBridge
+
+            bridge = KiteTickerBridge(self.settings.kite_api_key, access_token, self.handle_kite_ticks, self._record_ticker_status)
+            bridge.start(sorted(tokens))
+            self._ticker_bridge = bridge
+            self._ticker_tokens = set(tokens)
+            self._ticker_access_token = access_token
+            self._last_ticker_restart_at = now
+            self.websocket_started_at = now
+            self.websocket_error = None
+            notes.append(f"Kite WebSocket starting: {restart_reason}")
+        except Exception as exc:
+            self._stop_ticker("Kite WebSocket start failed")
+            self.websocket_error = str(exc)
+            notes.append(f"Kite WebSocket not active: {exc}")
+
+    def _ticker_restart_reason(self, tokens: set[int], access_token: str, now: datetime) -> str | None:
+        if self._ticker_bridge is None:
+            return "not started"
+        if self._ticker_access_token != access_token:
+            return "Kite access token changed"
+        if self._ticker_tokens != tokens:
+            return "subscription universe changed"
+
+        cooldown_active = (
+            self._last_ticker_restart_at is not None
+            and (now - self._last_ticker_restart_at).total_seconds() < 30
+        )
+        if self.websocket_error and not cooldown_active:
+            return f"Kite WebSocket reported {self.websocket_error}"
+        if self.websocket_started_at is None:
+            return "Kite WebSocket start time is missing"
+        if (now - self.websocket_started_at).total_seconds() < 30 or cooldown_active:
+            return None
+
+        stale_cutoff = max(float(self.settings.stale_tick_seconds) * 2.0, 30.0)
+        fresh_ticks = {
+            token
+            for token in tokens
+            if token in self.last_ticks_by_token and (now - self.last_ticks_by_token[token]).total_seconds() <= stale_cutoff
+        }
+        if not fresh_ticks:
+            return "Kite WebSocket is connected but silent"
+        required_index_tokens = {self.settings.nifty_index_token, self.settings.banknifty_index_token} & tokens
+        missing_index_tokens = required_index_tokens - fresh_ticks
+        if missing_index_tokens:
+            missing = ", ".join(str(token) for token in sorted(missing_index_tokens))
+            return f"Kite WebSocket is missing fresh index ticks for {missing}"
+        option_tokens = tokens - {self.settings.nifty_index_token, self.settings.banknifty_index_token}
+        if option_tokens and not (option_tokens & fresh_ticks):
+            return "Kite WebSocket is missing fresh option ticks"
+        return None
+
+    def _record_ticker_status(self, message: str) -> None:
+        if message.startswith("connected"):
+            self.websocket_error = None
+            return
+        self.websocket_error = message
+
+    def _stop_ticker(self, reason: str) -> None:
+        if self._ticker_bridge is not None:
+            try:
+                self._ticker_bridge.stop()
+            except Exception as exc:
+                self.websocket_error = f"Kite WebSocket stop failed after {reason}: {exc}"
+        self._ticker_bridge = None
+        self._ticker_tokens = set()
+        self._ticker_access_token = None
+
+    async def handle_kite_ticks(self, ticks: list[dict[str, Any]]) -> None:
+        now = datetime.now(timezone.utc)
+        affected: set[IndexSymbol] = set()
+        for tick in ticks:
+            token = int(tick.get("instrument_token") or tick.get("instrumentToken") or 0)
+            if not token:
+                continue
+            ts = self._parse_kite_ts(tick.get("exchange_timestamp") or tick.get("timestamp") or now)
+            self.last_ticks_by_token[token] = ts
+            price = float(tick.get("last_price") or tick.get("last_traded_price") or 0.0)
+            if price <= 0:
+                continue
+            index = self._index_for_token(token)
+            if index:
+                cumulative_volume = float(tick.get("volume_traded") or tick.get("volume") or 1.0)
+                self._append_tick_candle(index, ts, price, self._volume_delta(token, cumulative_volume))
+                self.last_spots[index] = price
+                affected.add(index)
+                continue
+            contract = self.contracts_by_token.get(token)
+            if contract:
+                self._apply_option_tick(contract, tick, ts, price)
+                affected.add(contract.name)
+
+        for index in affected:
+            self._refresh_live_outputs(index, now)
+
+    def _refresh_live_outputs(self, index: IndexSymbol, now: datetime) -> None:
+        candles = self.candles.get(index, [])
+        if candles:
+            try:
+                self.technicals[index] = self.technical_engine.analyze(candles)
+            except ValueError as exc:
+                self.status = self._status(
+                    "kite",
+                    True,
+                    f"Kite live ticks active, but {index} technicals are waiting: {exc}",
+                    kite_session_valid=True,
+                    last_refresh_at=self.last_refresh_at,
+                )
+        technical = self.technicals.get(index)
+        chain = self.option_chains.get(index)
+        spot = self.last_spots.get(index, candles[-1].close if candles else 0.0)
+        if technical and chain and spot > 0:
+            current_vol = candles[-1].volume if candles else 0.0
+            recent_vols = [c.volume for c in candles[-20:] if c.volume > 0]
+            avg_vol_20 = sum(recent_vols) / len(recent_vols) if recent_vols else 0.0
+            self.signals[index] = self.signal_generator.generate(
+                index,
+                spot,
+                technical,
+                chain,
+                0.0,
+                current_volume=current_vol,
+                avg_volume_20=avg_vol_20,
+                ts=now,
+                is_expiry_day=now.weekday() == 3,
+            )
+        candles_5m = self._best_fvg_candles(index)
+        if candles_5m:
+            observation = self.fvg_strategy.evaluate(index, candles_5m, now, is_expiry_day=now.weekday() == 3)
+            self.fvg_observations[index] = observation
+            self._log_fvg_observation(index, observation)
+
+    def _volume_delta(self, token: int, cumulative_volume: float) -> float:
+        previous = self.last_volume_by_token.get(token)
+        self.last_volume_by_token[token] = cumulative_volume
+        if previous is None:
+            return 1.0
+        return max(cumulative_volume - previous, 1.0)
+
+    def _index_for_token(self, token: int) -> IndexSymbol | None:
+        if token == self.settings.nifty_index_token:
+            return "NIFTY"
+        if token == self.settings.banknifty_index_token:
+            return "BANKNIFTY"
+        return None
+
+    def _append_tick_candle(self, index: IndexSymbol, ts: datetime, price: float, volume: float) -> None:
+        bucket = ts.astimezone(timezone.utc).replace(second=0, microsecond=0)
+        existing = self.candles[index][-1] if self.candles[index] else None
+        if existing and existing.ts.astimezone(timezone.utc).replace(second=0, microsecond=0) == bucket:
+            existing.high = max(existing.high, price)
+            existing.low = min(existing.low, price)
+            existing.close = price
+            existing.volume += max(volume, 1.0)
+        else:
+            self.candles[index].append(Candle(ts=bucket, open=price, high=price, low=price, close=price, volume=max(volume, 1.0)))
+            self.candles[index] = self.candles[index][-240:]
+        live_five = self._aggregate_intraday(self.candles[index], 5)
+        if live_five:
+            self.candles_5m[index] = self._merge_candles(self.candles_5m.get(index, []), live_five)[-200:]
+
+    def _apply_option_tick(self, contract: OptionContract, tick: dict[str, Any], ts: datetime, price: float) -> None:
+        chain = self.option_chains.get(contract.name)
+        if chain is None:
+            return
+        previous = next((snapshot for snapshot in chain.snapshots if snapshot.contract.instrument_token == contract.instrument_token), None)
+        oi = float(tick.get("oi") or (previous.open_interest if previous else 0.0))
+        cumulative_volume = float(tick.get("volume_traded") or tick.get("volume") or (previous.volume if previous else 0.0))
+        updated = OptionSnapshot(
+            contract=contract,
+            last_price=price,
+            open_interest=oi,
+            oi_delta=oi - previous.open_interest if previous else 0.0,
+            price_delta=price - previous.last_price if previous else 0.0,
+            volume=cumulative_volume,
+            ts=ts,
+        )
+        snapshots = [updated if snapshot.contract.instrument_token == contract.instrument_token else snapshot for snapshot in chain.snapshots]
+        spot = self.last_spots.get(contract.name, chain.spot)
+        self.option_chains[contract.name] = self.options_engine.build_chain(
+            contract.name,
+            spot,
+            snapshots,
+            spot_delta=spot - chain.spot,
+            ts=ts,
+        )
+
+    def _aggregate_intraday(self, candles: list[Candle], minutes: int) -> list[Candle]:
+        buckets: dict[datetime, list[Candle]] = {}
+        for candle in candles:
+            local = candle.ts.astimezone(timezone.utc)
+            minute = (local.minute // minutes) * minutes
+            key = local.replace(minute=minute, second=0, microsecond=0)
+            buckets.setdefault(key, []).append(candle)
+        rows: list[Candle] = []
+        for key, bucket in sorted(buckets.items()):
+            ordered = sorted(bucket, key=lambda candle: candle.ts)
+            rows.append(
+                Candle(
+                    ts=key,
+                    open=ordered[0].open,
+                    high=max(candle.high for candle in ordered),
+                    low=min(candle.low for candle in ordered),
+                    close=ordered[-1].close,
+                    volume=sum(candle.volume for candle in ordered),
+                )
+            )
+        return rows
+
+    def _merge_candles(self, old: list[Candle], new: list[Candle]) -> list[Candle]:
+        merged = {candle.ts.astimezone(timezone.utc): candle for candle in old}
+        for candle in new:
+            merged[candle.ts.astimezone(timezone.utc)] = candle
+        return [merged[key] for key in sorted(merged)]
+
+    def _best_fvg_candles(self, index: IndexSymbol) -> list[Candle]:
+        live_five = self._aggregate_intraday(self.candles.get(index, []), 5)
+        return self._merge_candles(self.candles_5m.get(index, []), live_five)[-200:]
 
     def envelope(self) -> MarketEnvelope:
         return MarketEnvelope(
@@ -259,6 +520,8 @@ class TradingState:
         self.news = []
         self.signals = {}
         self.fvg_observations = {}
+        self.last_ticks_by_token = {}
+        self.last_volume_by_token = {}
 
     def _status(
         self,
@@ -317,7 +580,7 @@ class TradingState:
                     high=float(row[2]),
                     low=float(row[3]),
                     close=float(row[4]),
-                    volume=float(row[5]),
+                    volume=self._normalized_volume(token, row[5]),
                     oi=float(row[6]) if len(row) > 6 and row[6] is not None else None,
                 )
             )
@@ -339,11 +602,17 @@ class TradingState:
                     high=float(row[2]),
                     low=float(row[3]),
                     close=float(row[4]),
-                    volume=float(row[5]),
+                    volume=self._normalized_volume(token, row[5]),
                     oi=float(row[6]) if len(row) > 6 and row[6] is not None else None,
                 )
             )
         return candles
+
+    def _normalized_volume(self, instrument_token: int, raw_volume: object) -> float:
+        volume = float(raw_volume)
+        if instrument_token in {self.settings.nifty_index_token, self.settings.banknifty_index_token} and volume <= 0:
+            return 1.0
+        return volume
 
     def _log_fvg_observation(self, index: IndexSymbol, observation: TradingSignal) -> None:
         """Record a fresh FVG paper signal. Logging only — no order is placed."""

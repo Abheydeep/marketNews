@@ -1,4 +1,6 @@
 import asyncio
+import sys
+from types import SimpleNamespace
 from datetime import datetime, timedelta, timezone
 
 from app.config import Settings
@@ -26,11 +28,12 @@ class Auth:
 
 
 class FakeKiteClient:
-    def __init__(self, valid=True, fail_ltp=False, fail_quote=False, empty_nifty_history=False):
+    def __init__(self, valid=True, fail_ltp=False, fail_quote=False, empty_nifty_history=False, zero_index_volume=False):
         self.auth = Auth(valid)
         self.fail_ltp = fail_ltp
         self.fail_quote = fail_quote
         self.empty_nifty_history = empty_nifty_history
+        self.zero_index_volume = zero_index_volume
         self.quote_oi = 100000.0
 
     async def instruments(self):
@@ -57,9 +60,10 @@ class FakeKiteClient:
         if self.empty_nifty_history and instrument_token == 256265:
             return {"candles": []}
         base = 22500 if instrument_token == 256265 else 48500 if instrument_token == 260105 else 100
+        zero_volume = self.zero_index_volume and instrument_token in {256265, 260105}
         return {
             "candles": [
-                ["2026-05-02T09:15:00+0530", base + i, base + 4 + i, base - 2 + i, base + 2 + i, 1000 + i, 100000 + i]
+                ["2026-05-02T09:15:00+0530", base + i, base + 4 + i, base - 2 + i, base + 2 + i, 0 if zero_volume else 1000 + i, 100000 + i]
                 for i in range(30)
             ]
         }
@@ -143,6 +147,22 @@ async def _kite_refresh_seeds_nifty_chart_when_history_is_empty():
     assert "NIFTY seeded" in envelope.status.message
 
 
+def test_kite_refresh_normalizes_zero_volume_index_candles_for_signals():
+    asyncio.run(_kite_refresh_normalizes_zero_volume_index_candles_for_signals())
+
+
+async def _kite_refresh_normalizes_zero_volume_index_candles_for_signals():
+    state = TradingState(Settings(trading_market_mode="kite", kite_api_key="key", kite_refresh_seconds=0))
+    await state.bootstrap()
+    await state.refresh_from_kite(FakeKiteClient(valid=True, zero_index_volume=True))
+    envelope = state.envelope()
+    assert envelope.status.is_live
+    assert envelope.technicals["NIFTY"]
+    assert envelope.technicals["BANKNIFTY"]
+    assert envelope.signals["NIFTY"]
+    assert envelope.signals["BANKNIFTY"]
+
+
 def test_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
     asyncio.run(_kite_refresh_falls_back_when_ltp_and_quote_are_forbidden())
 
@@ -164,3 +184,61 @@ async def _kite_refresh_falls_back_when_ltp_and_quote_are_forbidden():
     assert envelope.candles["NIFTY"]
     assert envelope.option_chains["NIFTY"].snapshots
     assert any(snapshot.oi_delta != 0 for snapshot in envelope.option_chains["NIFTY"].snapshots)
+
+
+def test_kite_websocket_ticks_update_chart_candles_and_fvg_observation(monkeypatch):
+    asyncio.run(_kite_websocket_ticks_update_chart_candles_and_fvg_observation(monkeypatch))
+
+
+async def _kite_websocket_ticks_update_chart_candles_and_fvg_observation(monkeypatch):
+    starts = []
+
+    class FakeBridge:
+        def __init__(self, api_key, access_token, on_ticks, on_status=None):
+            self.api_key = api_key
+            self.access_token = access_token
+            self.on_ticks = on_ticks
+            self.on_status = on_status
+
+        def start(self, tokens):
+            starts.append(tokens)
+            if self.on_status:
+                self.on_status(f"connected: subscribed {len(tokens)} instruments in full mode")
+
+        def stop(self):
+            pass
+
+    monkeypatch.setitem(sys.modules, "app.adapters.kite.ticker", SimpleNamespace(KiteTickerBridge=FakeBridge))
+
+    class AccessTokenStore(TokenStore):
+        def access_token(self):
+            return "kite-token"
+
+    class AccessAuth:
+        token_store = AccessTokenStore(True)
+
+    class AccessClient(FakeKiteClient):
+        def __init__(self):
+            super().__init__(valid=True)
+            self.auth = AccessAuth()
+
+    state = TradingState(Settings(trading_market_mode="kite", kite_api_key="key", kite_refresh_seconds=0))
+    await state.bootstrap()
+    await state.refresh_from_kite(AccessClient())
+    before = state.candles["BANKNIFTY"][-1].close
+
+    await state.handle_kite_ticks(
+        [
+            {
+                "instrument_token": 260105,
+                "last_price": before + 50,
+                "volume_traded": 100,
+                "exchange_timestamp": datetime.now(timezone.utc).isoformat(),
+            }
+        ]
+    )
+
+    assert starts
+    assert state.candles["BANKNIFTY"][-1].close == before + 50
+    assert state.candles_5m["BANKNIFTY"]
+    assert state.fvg_observations["BANKNIFTY"].reasons
