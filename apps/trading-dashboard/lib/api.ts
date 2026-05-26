@@ -4,6 +4,20 @@ const productionTradingApiBase = "https://trade-api.marketnarrative.in";
 
 export const tradingApiBase = normalizeApiBase(resolveTradingApiBase(process.env.NEXT_PUBLIC_TRADING_API_BASE_URL));
 
+export class TradingApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number
+  ) {
+    super(message);
+    this.name = "TradingApiError";
+  }
+}
+
+export function isTradingAuthError(error: unknown): boolean {
+  return error instanceof TradingApiError && (error.status === 401 || error.status === 403);
+}
+
 function authHeaders(token: string): HeadersInit {
   return { Authorization: `Bearer ${token}` };
 }
@@ -14,7 +28,7 @@ export async function fetchMarketEnvelope(token: string): Promise<TradingMarketE
     headers: authHeaders(token)
   });
   if (!response.ok) {
-    throw new Error(`Unable to load market envelope: HTTP ${response.status}`);
+    throw new TradingApiError(`Unable to load market envelope: HTTP ${response.status}`, response.status);
   }
   return response.json() as Promise<TradingMarketEnvelope>;
 }
@@ -30,7 +44,7 @@ export async function createOrderProposal(index: TradingIndex, token: string): P
     body: JSON.stringify({ index })
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    throw new TradingApiError(await response.text(), response.status);
   }
   return response.json() as Promise<OrderProposal>;
 }
@@ -42,7 +56,7 @@ export async function confirmOrder(proposalId: string, token: string): Promise<O
     body: JSON.stringify({ proposal_id: proposalId, manual_confirm: true })
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    throw new TradingApiError(await response.text(), response.status);
   }
   return response.json() as Promise<OrderResult>;
 }
@@ -54,7 +68,7 @@ export async function setKillSwitch(enabled: boolean, token: string) {
     body: JSON.stringify({ enabled })
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    throw new TradingApiError(await response.text(), response.status);
   }
   return response.json();
 }
@@ -65,7 +79,7 @@ export async function fetchKiteLoginUrl(token: string): Promise<string> {
     headers: authHeaders(token)
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    throw new TradingApiError(await response.text(), response.status);
   }
   const payload = (await response.json()) as { login_url: string };
   return payload.login_url;
@@ -77,7 +91,7 @@ export async function refreshMarketData(token: string): Promise<MarketDataStatus
     headers: authHeaders(token)
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    throw new TradingApiError(await response.text(), response.status);
   }
   return response.json() as Promise<MarketDataStatus>;
 }

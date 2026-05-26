@@ -8,6 +8,7 @@ import { useMarketStore } from "../store/marketStore";
 
 export function TradingAdminGate() {
   const setAuthToken = useMarketStore((state) => state.setAuthToken);
+  const authError = useMarketStore((state) => state.error);
   const [email, setEmail] = useState(tradingAdminEmail);
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("Abhey trading admin required");
@@ -21,6 +22,12 @@ export function TradingAdminGate() {
       setAuthToken(stored);
     }
   }, [setAuthToken]);
+
+  useEffect(() => {
+    if (authError) {
+      setMessage(authError);
+    }
+  }, [authError]);
 
   async function login() {
     setBusy(true);

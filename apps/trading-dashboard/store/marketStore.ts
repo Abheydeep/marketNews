@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import type { OrderProposal, TradingIndex, TradingMarketEnvelope } from "@market-narrative/api-client";
-import { fetchMarketEnvelope, marketSocketUrl } from "../lib/api";
+import { fetchMarketEnvelope, isTradingAuthError, marketSocketUrl } from "../lib/api";
 import { decodeToken, isTradingAdmin, tokenStorageKey, type TradingClaims } from "../lib/auth";
 
 type MarketStore = {
@@ -24,6 +24,18 @@ let socket: WebSocket | null = null;
 let pollTimer: ReturnType<typeof setInterval> | null = null;
 
 export const useMarketStore = create<MarketStore>((set) => {
+  const clearSession = (message: string) => {
+    window.localStorage.removeItem(tokenStorageKey);
+    if (socket) {
+      socket.onclose = null;
+      socket.onerror = null;
+      socket.close();
+      socket = null;
+    }
+    stopPolling();
+    set({ token: null, admin: null, envelope: null, connected: false, pendingProposal: null, error: message });
+  };
+
   const stopPolling = () => {
     if (pollTimer) {
       clearInterval(pollTimer);
@@ -45,6 +57,10 @@ export const useMarketStore = create<MarketStore>((set) => {
         const envelope = await fetchMarketEnvelope(token);
         set({ envelope, connected: false, error: null });
       } catch (error) {
+        if (isTradingAuthError(error)) {
+          clearSession("Trading session expired. Please login again.");
+          return;
+        }
         set({ error: error instanceof Error ? error.message : "Unable to load market data", connected: false });
       }
     };
@@ -87,6 +103,10 @@ export const useMarketStore = create<MarketStore>((set) => {
         const envelope = await fetchMarketEnvelope(token);
         set({ envelope, error: null });
       } catch (error) {
+        if (isTradingAuthError(error)) {
+          clearSession("Trading session expired. Please login again.");
+          return;
+        }
         set({ error: error instanceof Error ? error.message : "Unable to load market data" });
       }
     },
