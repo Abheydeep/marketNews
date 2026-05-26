@@ -27,13 +27,13 @@ class KiteTickerBridge:
         self.instrument_tokens: list[int] = []
         self._ticker = None
 
-    def start(self, instrument_tokens: list[int]) -> None:
+    def start(self, instrument_tokens: list[int], loop: asyncio.AbstractEventLoop | None = None) -> None:
         try:
             from kiteconnect import KiteTicker  # type: ignore
         except ImportError as exc:
             raise RuntimeError("kiteconnect is required for live ticker streaming") from exc
 
-        loop = asyncio.get_running_loop()
+        loop = loop or asyncio.get_running_loop()
         ticker = KiteTicker(self.api_key, self.access_token)
         self.instrument_tokens = list(instrument_tokens)
 

@@ -326,7 +326,10 @@ class TradingState:
             from app.adapters.kite.ticker import KiteTickerBridge
 
             bridge = KiteTickerBridge(self.settings.kite_api_key, access_token, self.handle_kite_ticks, self._record_ticker_status)
-            bridge.start(sorted(tokens))
+            try:
+                await asyncio.to_thread(bridge.start, sorted(tokens), asyncio.get_running_loop())
+            except TypeError:
+                await asyncio.to_thread(bridge.start, sorted(tokens))
             self._ticker_bridge = bridge
             self._ticker_tokens = set(tokens)
             self._ticker_access_token = access_token
