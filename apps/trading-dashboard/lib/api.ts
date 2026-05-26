@@ -1,6 +1,6 @@
 import type { MarketDataStatus, OrderProposal, OrderResult, TradingIndex, TradingMarketEnvelope } from "@market-narrative/api-client";
 
-const renderTradingApiBase = "https://marketnarrative-trade-api.onrender.com";
+const productionTradingApiBase = "https://trade-api.marketnarrative.in";
 
 export const tradingApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? defaultTradingApiBase());
 
@@ -84,13 +84,13 @@ export async function refreshMarketData(token: string): Promise<MarketDataStatus
 
 function defaultTradingApiBase(): string {
   if (typeof window === "undefined") {
-    return renderTradingApiBase;
+    return productionTradingApiBase;
   }
   const host = window.location.hostname;
   if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
     return "http://localhost:8090";
   }
-  return renderTradingApiBase;
+  return productionTradingApiBase;
 }
 
 function normalizeApiBase(value: string): string {

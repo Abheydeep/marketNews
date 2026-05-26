@@ -1,6 +1,6 @@
 import type { Permission } from "@market-narrative/api-client";
 
-const renderAuthApiBase = "https://marketnarrative-api.onrender.com";
+const productionAuthApiBase = "https://api.marketnarrative.in";
 
 export const authApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? defaultAuthApiBase());
 export const tradingAdminEmail = process.env.NEXT_PUBLIC_TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in";
@@ -72,13 +72,13 @@ export async function loginTradingAdmin(email: string, password: string): Promis
 
 function defaultAuthApiBase(): string {
   if (typeof window === "undefined") {
-    return renderAuthApiBase;
+    return productionAuthApiBase;
   }
   const host = window.location.hostname;
   if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
     return "http://localhost:8080";
   }
-  return renderAuthApiBase;
+  return productionAuthApiBase;
 }
 
 function normalizeApiBase(value: string): string {
