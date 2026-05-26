@@ -2,7 +2,7 @@ import type { MarketDataStatus, OrderProposal, OrderResult, TradingIndex, Tradin
 
 const productionTradingApiBase = "https://trade-api.marketnarrative.in";
 
-export const tradingApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_TRADING_API_BASE_URL ?? defaultTradingApiBase());
+export const tradingApiBase = normalizeApiBase(resolveTradingApiBase(process.env.NEXT_PUBLIC_TRADING_API_BASE_URL));
 
 function authHeaders(token: string): HeadersInit {
   return { Authorization: `Bearer ${token}` };
@@ -82,15 +82,18 @@ export async function refreshMarketData(token: string): Promise<MarketDataStatus
   return response.json() as Promise<MarketDataStatus>;
 }
 
-function defaultTradingApiBase(): string {
+function resolveTradingApiBase(configuredBase: string | undefined): string {
   if (typeof window === "undefined") {
-    return productionTradingApiBase;
+    return configuredBase ?? productionTradingApiBase;
   }
   const host = window.location.hostname;
-  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
-    return "http://localhost:8090";
+  if (host === "trade.marketnarrative.in") {
+    return productionTradingApiBase;
   }
-  return productionTradingApiBase;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
+    return configuredBase ?? "http://localhost:8090";
+  }
+  return configuredBase ?? productionTradingApiBase;
 }
 
 function normalizeApiBase(value: string): string {

@@ -2,7 +2,7 @@ import type { Permission } from "@market-narrative/api-client";
 
 const productionAuthApiBase = "https://api.marketnarrative.in";
 
-export const authApiBase = normalizeApiBase(process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? defaultAuthApiBase());
+export const authApiBase = normalizeApiBase(resolveAuthApiBase(process.env.NEXT_PUBLIC_AUTH_API_BASE_URL));
 export const tradingAdminEmail = process.env.NEXT_PUBLIC_TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in";
 export const tokenStorageKey = "marketNarrativeTradingToken";
 
@@ -70,15 +70,18 @@ export async function loginTradingAdmin(email: string, password: string): Promis
   return payload;
 }
 
-function defaultAuthApiBase(): string {
+function resolveAuthApiBase(configuredBase: string | undefined): string {
   if (typeof window === "undefined") {
-    return productionAuthApiBase;
+    return configuredBase ?? productionAuthApiBase;
   }
   const host = window.location.hostname;
-  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
-    return "http://localhost:8080";
+  if (host === "trade.marketnarrative.in") {
+    return productionAuthApiBase;
   }
-  return productionAuthApiBase;
+  if (host === "localhost" || host === "127.0.0.1" || host === "::1") {
+    return configuredBase ?? "http://localhost:8080";
+  }
+  return configuredBase ?? productionAuthApiBase;
 }
 
 function normalizeApiBase(value: string): string {
