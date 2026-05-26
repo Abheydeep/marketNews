@@ -29,6 +29,7 @@ class Settings:
     kite_login_url: str = os.getenv("KITE_LOGIN_URL", "https://kite.zerodha.com/connect/login")
     trading_market_mode: str = os.getenv("TRADING_MARKET_MODE", "mock").strip().lower()
     kite_refresh_seconds: int = int(os.getenv("KITE_REFRESH_SECONDS", "60"))
+    kite_refresh_timeout_seconds: int = int(os.getenv("KITE_REFRESH_TIMEOUT_SECONDS", "45"))
     kite_websocket_enabled: bool = _bool_env("KITE_WEBSOCKET_ENABLED", True)
     kite_option_history_fallback_limit: int = int(os.getenv("KITE_OPTION_HISTORY_FALLBACK_LIMIT", "12"))
     nifty_index_token: int = int(os.getenv("NIFTY_INDEX_TOKEN", "256265"))

@@ -81,6 +81,7 @@ class TradingState:
         self._ticker_access_token: str | None = None
         self._last_ticker_restart_at: datetime | None = None
         self._refresh_lock = asyncio.Lock()
+        self._refresh_task: asyncio.Task[None] | None = None
         self.last_refresh_at: datetime | None = None
         self.last_spots: dict[IndexSymbol, float] = {}
         self.status = self._status("mock" if self.settings.trading_market_mode != "kite" else "kite", False, "Starting trading data service")
@@ -120,7 +121,43 @@ class TradingState:
             now = datetime.now(timezone.utc)
             if self.last_refresh_at and (now - self.last_refresh_at).total_seconds() < self.settings.kite_refresh_seconds:
                 return
-            await self.refresh_from_kite(kite_client)
+            await self._refresh_from_kite_with_timeout(kite_client)
+
+    def schedule_refresh_if_due(self, kite_client: KiteClientProtocol) -> None:
+        if self.settings.trading_market_mode != "kite":
+            return
+        now = datetime.now(timezone.utc)
+        if self.last_refresh_at and (now - self.last_refresh_at).total_seconds() < self.settings.kite_refresh_seconds:
+            return
+        if self._refresh_lock.locked():
+            return
+        if self._refresh_task and not self._refresh_task.done():
+            return
+        self._refresh_task = asyncio.create_task(self.refresh_if_due(kite_client))
+        self._refresh_task.add_done_callback(self._handle_refresh_task_done)
+
+    async def _refresh_from_kite_with_timeout(self, kite_client: KiteClientProtocol) -> MarketDataStatus:
+        try:
+            return await asyncio.wait_for(
+                self.refresh_from_kite(kite_client),
+                timeout=self.settings.kite_refresh_timeout_seconds,
+            )
+        except asyncio.TimeoutError:
+            self.status = self._status(
+                "kite",
+                False,
+                f"Kite refresh timed out after {self.settings.kite_refresh_timeout_seconds}s; keeping last market snapshot.",
+                kite_session_valid=True,
+                last_refresh_at=self.last_refresh_at,
+            )
+            logger.warning("Kite refresh timed out after %ss", self.settings.kite_refresh_timeout_seconds)
+            return self.status
+
+    def _handle_refresh_task_done(self, task: asyncio.Task[None]) -> None:
+        try:
+            task.result()
+        except Exception as exc:  # pragma: no cover - defensive background guard
+            logger.warning("Kite background refresh failed: %s", exc)
 
     async def refresh_from_kite(self, kite_client: KiteClientProtocol) -> MarketDataStatus:
         if self.settings.trading_market_mode != "kite":

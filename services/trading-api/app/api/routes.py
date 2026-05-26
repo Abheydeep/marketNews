@@ -88,7 +88,7 @@ async def latest_signal(index: IndexSymbol) -> object:
 
 @router.get("/api/market/envelope", dependencies=admin_only)
 async def market_envelope() -> object:
-    await trading_state.refresh_if_due(kite_client)
+    trading_state.schedule_refresh_if_due(kite_client)
     return trading_state.envelope()
 
 
@@ -171,10 +171,7 @@ async def market_socket(websocket: WebSocket) -> None:
             envelope = trading_state.envelope().model_dump(mode="json")
             envelope["server_ts"] = datetime.now(timezone.utc).isoformat()
             await websocket.send_json(envelope)
-            await trading_state.refresh_if_due(kite_client)
-            envelope = trading_state.envelope().model_dump(mode="json")
-            envelope["server_ts"] = datetime.now(timezone.utc).isoformat()
-            await websocket.send_json(envelope)
+            trading_state.schedule_refresh_if_due(kite_client)
             await asyncio.sleep(1)
     except WebSocketDisconnect:
         return
