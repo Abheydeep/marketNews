@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 from datetime import datetime, timedelta, timezone
 from random import Random
@@ -79,6 +80,7 @@ class TradingState:
         self._ticker_tokens: set[int] = set()
         self._ticker_access_token: str | None = None
         self._last_ticker_restart_at: datetime | None = None
+        self._refresh_lock = asyncio.Lock()
         self.last_refresh_at: datetime | None = None
         self.last_spots: dict[IndexSymbol, float] = {}
         self.status = self._status("mock" if self.settings.trading_market_mode != "kite" else "kite", False, "Starting trading data service")
@@ -112,7 +114,13 @@ class TradingState:
         now = datetime.now(timezone.utc)
         if self.last_refresh_at and (now - self.last_refresh_at).total_seconds() < self.settings.kite_refresh_seconds:
             return
-        await self.refresh_from_kite(kite_client)
+        if self._refresh_lock.locked():
+            return
+        async with self._refresh_lock:
+            now = datetime.now(timezone.utc)
+            if self.last_refresh_at and (now - self.last_refresh_at).total_seconds() < self.settings.kite_refresh_seconds:
+                return
+            await self.refresh_from_kite(kite_client)
 
     async def refresh_from_kite(self, kite_client: KiteClientProtocol) -> MarketDataStatus:
         if self.settings.trading_market_mode != "kite":
@@ -246,8 +254,8 @@ class TradingState:
 
     async def refresh_instruments(self, kite_client: KiteClientProtocol) -> list[OptionContract]:
         payload = await kite_client.instruments()
-        records = self.instrument_parser.parse_csv(payload)
-        self.contracts = self.instrument_parser.contracts_from_records(records)
+        records = await asyncio.to_thread(self.instrument_parser.parse_csv, payload)
+        self.contracts = await asyncio.to_thread(self.instrument_parser.contracts_from_records, records)
         self.contracts_by_token = {contract.instrument_token: contract for contract in self.contracts}
         return self.contracts
 

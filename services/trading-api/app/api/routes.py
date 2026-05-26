@@ -168,6 +168,9 @@ async def market_socket(websocket: WebSocket) -> None:
     await websocket.accept()
     try:
         while True:
+            envelope = trading_state.envelope().model_dump(mode="json")
+            envelope["server_ts"] = datetime.now(timezone.utc).isoformat()
+            await websocket.send_json(envelope)
             await trading_state.refresh_if_due(kite_client)
             envelope = trading_state.envelope().model_dump(mode="json")
             envelope["server_ts"] = datetime.now(timezone.utc).isoformat()

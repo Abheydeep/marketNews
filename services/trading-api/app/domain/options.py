@@ -24,7 +24,15 @@ class InstrumentMasterParser:
     max_strikes: int = 10
 
     def parse_csv(self, payload: str) -> list[dict[str, str]]:
-        return list(csv.DictReader(StringIO(payload)))
+        records: list[dict[str, str]] = []
+        for record in csv.DictReader(StringIO(payload)):
+            if (
+                record.get("segment") == "NFO-OPT"
+                and record.get("instrument_type") in {"CE", "PE"}
+                and (record.get("name") or "").upper() in {"NIFTY", "BANKNIFTY"}
+            ):
+                records.append(record)
+        return records
 
     def contracts_from_records(self, records: Iterable[dict[str, object]], today: datetime | None = None) -> list[OptionContract]:
         now = today or datetime.now(timezone.utc)
@@ -149,4 +157,3 @@ class OptionsMicrostructureEngine:
         oi_status = classify_oi(spot_delta, total_oi_delta)
         expiry = min(snapshot.contract.expiry for snapshot in snapshots) if snapshots else ts
         return OptionChain(index=index, spot=spot, expiry=expiry, snapshots=snapshots, pcr=pcr, oi_status=oi_status)
-
