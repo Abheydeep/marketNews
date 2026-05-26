@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { IChartApi, ISeriesApi, Time, UTCTimestamp } from "lightweight-charts";
+import type { IChartApi, ISeriesApi, SeriesMarker, Time, UTCTimestamp } from "lightweight-charts";
 import type { PriceZone, TradingCandle, TradingIndex, TradingSignal } from "@market-narrative/api-client";
 
 type Props = {
@@ -9,11 +9,12 @@ type Props = {
   candles: TradingCandle[];
   zones: PriceZone[];
   signal: TradingSignal | null;
+  paperSignal?: TradingSignal | null;
 };
 
 const IST_OFFSET_SECONDS = 5.5 * 60 * 60;
 
-export function CandleChart({ index, candles, zones, signal }: Props) {
+export function CandleChart({ index, candles, zones, signal, paperSignal = null }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
@@ -121,7 +122,56 @@ export function CandleChart({ index, candles, zones, signal }: Props) {
         })
       );
     }
-  }, [signal?.entry_price, zones]);
+    const activePaperSignal = paperSignal?.action && paperSignal.action !== "WAIT" ? paperSignal : null;
+    if (activePaperSignal?.entry_price) {
+      priceLinesRef.current.push(
+        series.createPriceLine({
+          price: activePaperSignal.entry_price,
+          color: "#60a5fa",
+          lineWidth: 2,
+          lineStyle: 2,
+          axisLabelVisible: true,
+          title: `FVG PAPER ${activePaperSignal.action}`
+        })
+      );
+    }
+    if (activePaperSignal?.target_price) {
+      priceLinesRef.current.push(
+        series.createPriceLine({
+          price: activePaperSignal.target_price,
+          color: "#22c55e",
+          lineWidth: 1,
+          lineStyle: 2,
+          axisLabelVisible: true,
+          title: "FVG TARGET"
+        })
+      );
+    }
+    if (activePaperSignal?.stop_loss) {
+      priceLinesRef.current.push(
+        series.createPriceLine({
+          price: activePaperSignal.stop_loss,
+          color: "#f97316",
+          lineWidth: 1,
+          lineStyle: 2,
+          axisLabelVisible: true,
+          title: "FVG STOP"
+        })
+      );
+    }
+    const markers: SeriesMarker<UTCTimestamp>[] = activePaperSignal?.entry_price
+      ? [
+          {
+            time: toIstChartTimestamp(activePaperSignal.generated_at),
+            position: activePaperSignal.action === "BUY" ? "belowBar" : "aboveBar",
+            shape: activePaperSignal.action === "BUY" ? "arrowUp" : "arrowDown",
+            color: activePaperSignal.action === "BUY" ? "#22c55e" : "#f97316",
+            text: `FVG PAPER ${activePaperSignal.action}`
+          }
+        ]
+      : [];
+    series.setMarkers(markers);
+  }, [paperSignal, signal?.entry_price, zones]);
 
   const last = candles[candles.length - 1];
 
