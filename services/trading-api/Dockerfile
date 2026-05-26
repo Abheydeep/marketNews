@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 COPY sql ./sql
 EXPOSE 8090
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8090} --workers ${WEB_CONCURRENCY:-2}"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8090}"]
