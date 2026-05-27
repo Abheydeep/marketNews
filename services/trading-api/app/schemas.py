@@ -122,6 +122,26 @@ class TradingSignal(BaseModel):
     generated_at: datetime
 
 
+class FVGPaperTrade(BaseModel):
+    """A durable journal entry for an FVG paper signal.
+
+    Tracked from entry through stop/target/timeout against subsequent 5-min
+    candles. Observe-only — no broker orders are ever placed for these.
+    """
+    id: str
+    index: IndexSymbol
+    direction: Literal["BUY", "SELL"]
+    entry_price: float
+    stop_loss: float
+    target_price: float
+    entry_ts: datetime
+    status: Literal["OPEN", "WIN", "LOSS", "TIMEOUT"] = "OPEN"
+    exit_price: float | None = None
+    exit_ts: datetime | None = None
+    confidence: float = 0.0
+    reasons: list[str] = Field(default_factory=list)
+
+
 class RiskState(BaseModel):
     live_orders_enabled: bool
     kill_switch_enabled: bool = False
@@ -180,4 +200,6 @@ class MarketEnvelope(BaseModel):
     signals: dict[IndexSymbol, TradingSignal]
     # Observe-only FVG paper signals — recorded for live validation, never traded.
     fvg_observations: dict[IndexSymbol, TradingSignal] = Field(default_factory=dict)
+    # Durable history of FVG paper trades (entered, plus WIN/LOSS/TIMEOUT outcomes).
+    fvg_journal: list[FVGPaperTrade] = Field(default_factory=list)
     risk: RiskState

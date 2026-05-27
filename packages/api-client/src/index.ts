@@ -246,6 +246,21 @@ export type MarketDataStatus = {
   last_refresh_at?: string | null;
 };
 
+export type FVGPaperTrade = {
+  id: string;
+  index: TradingIndex;
+  direction: "BUY" | "SELL";
+  entry_price: number;
+  stop_loss: number;
+  target_price: number;
+  entry_ts: string;
+  status: "OPEN" | "WIN" | "LOSS" | "TIMEOUT";
+  exit_price?: number | null;
+  exit_ts?: string | null;
+  confidence: number;
+  reasons: string[];
+};
+
 export type TradingMarketEnvelope = {
   status: MarketDataStatus;
   candles: Record<TradingIndex, TradingCandle[]>;
@@ -255,6 +270,8 @@ export type TradingMarketEnvelope = {
   signals: Record<TradingIndex, TradingSignal>;
   /** Observe-only FVG paper signals — recorded for live validation, never traded. */
   fvg_observations?: Partial<Record<TradingIndex, TradingSignal>>;
+  /** Durable history of FVG paper trades (entered, plus WIN/LOSS/TIMEOUT outcomes). */
+  fvg_journal?: FVGPaperTrade[];
   risk: TradingRiskState;
   server_ts?: string;
 };

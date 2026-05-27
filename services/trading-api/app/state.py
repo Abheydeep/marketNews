@@ -8,6 +8,7 @@ from typing import Any, Protocol
 
 from app.config import settings
 from app.domain.fvg import FVGPaperStrategy
+from app.domain.fvg_journal import FVGJournal
 from app.domain.options import InstrumentMasterParser, OptionsMicrostructureEngine
 from app.domain.risk import RiskManager
 from app.domain.sentiment import MockNewsProvider, SentimentAnalysisService
@@ -15,6 +16,7 @@ from app.domain.signals import SignalGenerator
 from app.domain.technical import TechnicalAnalysisEngine
 from app.schemas import (
     Candle,
+    FVGPaperTrade,
     IndexSymbol,
     MarketEnvelope,
     MarketDataStatus,
@@ -57,6 +59,11 @@ class TradingState:
         self.sentiment_service = SentimentAnalysisService(enable_finbert=self.settings.enable_finbert)
         self.signal_generator = SignalGenerator()
         self.fvg_strategy = FVGPaperStrategy()
+        self.fvg_journal = FVGJournal(
+            redis_url=self.settings.redis_url,
+            redis_key=self.settings.fvg_journal_redis_key,
+            limit=self.settings.fvg_journal_limit,
+        )
         self.risk_manager = RiskManager(self.settings)
         self.candles: dict[IndexSymbol, list[Candle]] = {"NIFTY": [], "BANKNIFTY": []}
         self.candles_5m: dict[IndexSymbol, list[Candle]] = {"NIFTY": [], "BANKNIFTY": []}
@@ -106,7 +113,9 @@ class TradingState:
             self.technicals[index] = technical
             avg_sentiment = sum(event.sentiment_score for event in self.news) / len(self.news)
             self.signals[index] = self.signal_generator.generate(index, spot, technical, self.option_chains[index], avg_sentiment)  # type: ignore[index]
-            self.fvg_observations[index] = self.fvg_strategy.evaluate(index, self.candles_5m[index], now)  # type: ignore[index]
+            observation = self.fvg_strategy.evaluate(index, self.candles_5m[index], now)  # type: ignore[index]
+            self.fvg_observations[index] = observation  # type: ignore[index]
+            self.fvg_journal.record(index, observation)  # type: ignore[index]
         self.last_refresh_at = now
 
     async def refresh_if_due(self, kite_client: KiteClientProtocol) -> None:
@@ -271,8 +280,11 @@ class TradingState:
                         index, candles_5m, now, is_expiry_day=(now.weekday() == 3),
                     )
                     self.fvg_observations[index] = observation
+                    self.fvg_journal.record(index, observation)
                     self._log_fvg_observation(index, observation)
 
+            # Resolve any open paper trades against the latest candles.
+            self.fvg_journal.update_open(self.candles_5m)
             self.last_refresh_at = now
             message = "Live Kite market data is active."
             if notes:
@@ -457,6 +469,7 @@ class TradingState:
         if candles_5m:
             observation = self.fvg_strategy.evaluate(index, candles_5m, now, is_expiry_day=now.weekday() == 3)
             self.fvg_observations[index] = observation
+            self.fvg_journal.record(index, observation)
             self._log_fvg_observation(index, observation)
 
     def _volume_delta(self, token: int, cumulative_volume: float) -> float:
@@ -555,6 +568,7 @@ class TradingState:
             news=self.news,
             signals=self.signals,
             fvg_observations=self.fvg_observations,
+            fvg_journal=self.fvg_journal.recent(50),
             risk=self.risk_manager.state,
         )
 

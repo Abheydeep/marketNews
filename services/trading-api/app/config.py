@@ -50,6 +50,9 @@ class Settings:
         "postgresql://narrative:narrative@localhost:5432/market_narrative",
     )
     redis_url: str = os.getenv("TRADING_REDIS_URL", "redis://localhost:6379/1")
+    # Durable journal of FVG paper signals (observe-only — no orders).
+    fvg_journal_redis_key: str = os.getenv("FVG_JOURNAL_REDIS_KEY", "trading:fvg:journal:v1")
+    fvg_journal_limit: int = int(os.getenv("FVG_JOURNAL_LIMIT", "500"))
 
 
 settings = Settings()
