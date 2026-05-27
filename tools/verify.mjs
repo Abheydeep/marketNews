@@ -645,6 +645,127 @@ await test("live news pipeline can polish source cards with Gemini when other LL
   assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
 
+await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
+      return testRssXml([
+        {
+          title: `Generic source context from ${sourceSlug}`,
+          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "nvidia-generic-source-context"),
+          description: "Market context changed before the India open without a clean sector keyword."
+        }
+      ]);
+    }
+  });
+  let nvidiaCalls = 0;
+  const llmFetcher = async (url, request = {}) => {
+    nvidiaCalls += 1;
+    assert.equal(url, "https://integrate.api.nvidia.com/v1/chat/completions");
+    assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
+    assert.equal(request.headers.Accept, "application/json");
+    const body = JSON.parse(request.body);
+    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.response_format.type, "json_object");
+    assert.equal(body.stream, false);
+    assert.equal(body.messages[0].role, "system");
+    assert.equal(body.messages[0].content, ARTICLE_ENRICHMENT_PROMPT);
+    assert.ok(body.messages[1].content.includes("Rank this article like an Indian pre-market desk editor"));
+    return {
+      ok: true,
+      json: async () => ({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              takeaway: "NVIDIA desk agent turns the loose headline into a specific pre-open breadth check",
+              indiaImpact: "Bank Nifty and Nifty breadth need confirmation before this source gets India trading weight",
+              watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
+            })
+          }
+        }]
+      })
+    };
+  };
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    llmFetcher,
+    anthropicApiKey: "",
+    openaiApiKey: "",
+    nvidiaApiKey: "test-nvidia-key",
+    geminiApiKey: "test-gemini-key"
+  });
+
+  assert.ok(nvidiaCalls > 0, "NVIDIA should run when NVIDIA_API_KEY is available before Gemini fallback");
+  assert.ok(articles.some((article) => /NVIDIA desk agent turns/i.test(article.takeaway)));
+  assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
+});
+
+await test("NVIDIA agent mode passes used India angles to avoid repetition", async () => {
+  const fetcher = async (url) => ({
+    ok: true,
+    text: async () => {
+      if (String(url).includes("/features/rss/")) {
+        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
+      }
+      const sourceSlug = slugForTestUrl(url);
+      const publisher = String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc";
+      return testRssXml([
+        {
+          title: `OPEC output talks keep Brent supply risk alive ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "nvidia-opec-agent-memory"),
+          description: "OPEC production and supply discipline can keep Brent bid as traders price tighter barrels."
+        },
+        {
+          title: `Fed rate guidance keeps bond yields firm ${sourceSlug}`,
+          link: testArticleUrl(publisher, sourceSlug, "nvidia-rates-agent-memory"),
+          description: "Fed policy guidance and bond yields stayed firm as traders debated inflation persistence."
+        }
+      ]);
+    }
+  });
+  const userPrompts = [];
+  const llmFetcher = async (url, request = {}) => {
+    assert.equal(url, "https://integrate.api.nvidia.com/v1/chat/completions");
+    const body = JSON.parse(request.body);
+    const userPrompt = body.messages[1].content;
+    userPrompts.push(userPrompt);
+    const isRates = /Fed rate guidance/i.test(userPrompt);
+    return {
+      ok: true,
+      json: async () => ({
+        choices: [{
+          message: {
+            content: JSON.stringify(isRates ? {
+              takeaway: "Rate guidance keeps the open tied to dollar-yield pressure rather than another crude frame",
+              indiaImpact: "Bank Nifty, realty and autos need yield stability before the index can trust risk appetite",
+              watchFor: "Watch US 10Y and Bank Nifty VWAP through 9:45 AM"
+            } : {
+              takeaway: "OPEC supply discipline keeps import-cost pressure alive for the India open",
+              indiaImpact: "OMCs, aviation, paints and tyres are the first checks if Brent stays bid",
+              watchFor: "Watch Brent and OMC breadth through 9:45 AM"
+            })
+          }
+        }]
+      })
+    };
+  };
+  const articles = await fetchLiveNewsArticles("2026-05-04", {
+    fetcher,
+    llmFetcher,
+    nvidiaApiKey: "test-nvidia-key",
+    maxArticleEditorialEnrichmentCalls: 30
+  });
+
+  assert.ok(userPrompts.length >= 2, "agent mode should enrich more than one market article");
+  assert.ok(userPrompts.slice(1).some((prompt) => /Already used India angles/i.test(prompt)), "later agent calls should receive prior India angles");
+  assert.ok(userPrompts.slice(1).some((prompt) => /OMCs, aviation, paints and tyres/i.test(prompt)), "later prompts should include prior crude angle");
+  assert.ok(articles.some((article) => /Rate guidance keeps/i.test(article.takeaway)));
+});
+
 await test("repeated deterministic oil and rates templates route later cards through enrichment", async () => {
   const fetcher = async (url) => ({
     ok: true,
@@ -2032,6 +2153,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes("enforce_publish_window"));
   assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
+  assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
+  assert.ok(workflow.includes("GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"));
   assert.ok(workflow.includes("(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));

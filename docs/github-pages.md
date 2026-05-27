@@ -34,9 +34,14 @@ Add any one of these under **Settings → Secrets and variables → Actions → 
 
 - `OPENAI_API_KEY` for OpenAI polishing.
 - `ANTHROPIC_API_KEY` for Anthropic polishing.
+- `NVIDIA_API_KEY` for NVIDIA/OpenAI-compatible desk-agent polishing.
 - `GEMINI_API_KEY` for Gemini polishing.
 
-Provider priority is Anthropic, then OpenAI, then Gemini. To choose a specific Gemini model, add `GEMINI_MODEL`; otherwise the generator uses `gemini-flash-latest`.
+Provider priority is Anthropic, then OpenAI, then NVIDIA, then Gemini. To choose a specific NVIDIA model, add `NVIDIA_MODEL`; otherwise the generator uses `meta/llama-4-maverick-17b-128e-instruct`. To choose a specific Gemini model, add `GEMINI_MODEL`; otherwise the generator uses `gemini-flash-latest`.
+
+When `NVIDIA_API_KEY` is present, the article-card enricher runs in desk-agent mode: it sees prior India angles from earlier source cards and uses the editorial guardrails as reasoning context, while the deterministic source filters and public-copy QA remain the publish fallback and safety net.
+
+The scheduled Pages workflow passes these secrets only to the `daily:generate` step. The static publisher and public pages never receive or expose provider keys. Add the same key to Vercel project environment variables if Vercel is generating fresh public artifacts instead of publishing checked-in archives.
 
 ## Data Behavior
 

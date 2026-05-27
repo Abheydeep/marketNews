@@ -70,6 +70,10 @@ jobs:
         env:
           MARKET_DATA_MODE: live
           ALLOW_LATE_PREMARKET_PUBLISH: "true"
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Allow generation to proceed even when some India RSS feeds block GitHub IPs
           ALLOW_INSUFFICIENT_SOURCES: "true"
         run: |

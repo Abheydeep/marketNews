@@ -307,15 +307,18 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
   if (typeof enricher !== "function") {
     return articles;
   }
+  const agentMode = shouldUseAgentArticleEnrichment(options);
   const maxEnrichmentCalls = Number.isFinite(Number(options.maxArticleEditorialEnrichmentCalls))
     ? Number(options.maxArticleEditorialEnrichmentCalls)
-    : 12;
+    : agentMode ? 24 : 12;
   const enriched = [];
   const seenTemplateSignatures = new Map();
+  const usedEditorialAngles = [];
   let enrichmentCalls = 0;
   for (const article of articles) {
-    if (!articleShouldUseEditorialEnrichment(article, seenTemplateSignatures) || enrichmentCalls >= maxEnrichmentCalls) {
+    if ((!agentMode && !articleShouldUseEditorialEnrichment(article, seenTemplateSignatures)) || enrichmentCalls >= maxEnrichmentCalls) {
       enriched.push(article);
+      rememberArticleEditorialAngles(article, usedEditorialAngles);
       continue;
     }
     try {
@@ -323,21 +326,47 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
       const patch = await enricher({
         article: articleForEditorialEnrichment(article),
         prompt: ARTICLE_ENRICHMENT_PROMPT,
+        usedAngles: usedEditorialAngles.slice(-8),
         schema: {
           takeaway: "max 30 words, do not restate the headline",
           indiaImpact: "max 35 words, specific India sector/index/instrument or global-only context",
           watchFor: "max 20 words, one tradable confirmation input"
         }
       });
-      enriched.push(sanitizeArticleEditorialPatch(article, patch));
+      const patchedArticle = sanitizeArticleEditorialPatch(article, patch);
+      enriched.push(patchedArticle);
+      rememberArticleEditorialAngles(patchedArticle, usedEditorialAngles);
     } catch (error) {
       if (options.strictEditorialEnrichment) {
         throw error;
       }
       enriched.push(article);
+      rememberArticleEditorialAngles(article, usedEditorialAngles);
     }
   }
   return enriched;
+}
+
+function shouldUseAgentArticleEnrichment(options = {}) {
+  if (options.agentArticleEnrichment === true || process.env.PUBLIC_BRIEFING_AGENT_MODE === "true") {
+    return true;
+  }
+  if (options.agentArticleEnrichment === false || process.env.PUBLIC_BRIEFING_AGENT_MODE === "false") {
+    return false;
+  }
+  return Boolean(options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY);
+}
+
+function rememberArticleEditorialAngles(article, usedEditorialAngles) {
+  const angle = cleanText([
+    article?.entityName,
+    article?.takeaway,
+    article?.indiaImpact,
+    article?.watchFor
+  ].filter(Boolean).join(" | "));
+  if (angle && angle.length >= 20) {
+    usedEditorialAngles.push(angle.slice(0, 360));
+  }
 }
 
 function configuredArticleEditorialEnricher(options = {}) {
@@ -354,6 +383,10 @@ function configuredArticleEditorialEnricher(options = {}) {
   const openaiApiKey = options.openaiApiKey ?? process.env.OPENAI_API_KEY;
   if (openaiApiKey) {
     return configuredOpenAiArticleEditorialEnricher({ ...options, apiKey: openaiApiKey, fetcher });
+  }
+  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  if (nvidiaApiKey) {
+    return configuredNvidiaArticleEditorialEnricher({ ...options, apiKey: nvidiaApiKey, fetcher });
   }
   const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
   if (geminiApiKey) {
@@ -422,6 +455,46 @@ function configuredOpenAiArticleEditorialEnricher(options = {}) {
     const data = await response.json();
     return parseArticleEditorialResponse(openAiResponseText(data));
   };
+}
+
+function configuredNvidiaArticleEditorialEnricher(options = {}) {
+  const { apiKey, fetcher } = options;
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+  return async ({ article, prompt, schema, usedAngles = [] }) => {
+    const response = await fetcher(`${baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          { role: "system", content: prompt },
+          { role: "user", content: articleEditorialUserPrompt(article, schema, usedAngles) }
+        ],
+        response_format: { type: "json_object" },
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 360),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.25),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.9),
+        stream: false
+      })
+    });
+    if (!response?.ok) {
+      throw new Error(`NVIDIA article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
+    }
+    const data = await response.json();
+    return parseArticleEditorialResponse(nvidiaResponseText(data));
+  };
+}
+
+function nvidiaResponseText(data) {
+  return (data?.choices ?? [])
+    .map((choice) => choice?.message?.content ?? "")
+    .filter(Boolean)
+    .join("\n");
 }
 
 function articleEditorialJsonSchema() {
@@ -616,7 +689,10 @@ function sanitizeArticleEditorialPatch(article, patch) {
   return next;
 }
 
-function articleEditorialUserPrompt(article, schema) {
+function articleEditorialUserPrompt(article, schema, usedAngles = []) {
+  const priorAngles = (usedAngles ?? []).length
+    ? `\nAlready used India angles in earlier cards. Do not repeat these frames:\n${usedAngles.map((angle, index) => `${index + 1}. ${angle}`).join("\n")}\n`
+    : "";
   return `Article headline: ${article?.headline || ""}
 Publisher: ${article?.sourceName || article?.publisher || ""}
 Published: ${article?.publishedAt || ""}
@@ -626,6 +702,8 @@ Entity: ${article?.entityName || "Market"}
 Existing takeaway: ${article?.takeaway || ""}
 Existing India impact: ${article?.indiaImpact || ""}
 Existing watch: ${article?.watchFor || ""}
+${priorAngles}
+Rank this article like an Indian pre-market desk editor. PM/RBI/SEBI/finance-ministry policy, Brent moves above 2%, GIFT Nifty, FII/DII flows, US-China trade, and geopolitical commodity shocks outrank single-stock liveblogs or analyst-target articles.
 
 Generate JSON only:
 {

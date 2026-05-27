@@ -84,6 +84,17 @@ Rules:
   when the article supports that link.
 - If the story has no direct India read-through, do not invent one. Mark it as
   global-only context in natural public language.
+- Rank like a morning Indian market desk: PM/RBI/SEBI/finance-ministry policy,
+  Brent moves above 2%, GIFT Nifty, FII/DII flows, US-China trade, and
+  geopolitical commodity shocks outrank single-stock liveblogs, analyst
+  targets, and isolated stock-price updates.
+- Use these transmission lines as judgment, not templates:
+  crude/Brent -> OMCs, aviation, paints, tyres, upstream energy, inflation;
+  rates/yields -> Bank Nifty, realty, autos, high-PE growth, USD/INR;
+  geopolitics -> Brent, gold, USD/INR, FII risk appetite, India VIX;
+  US mega-cap tech -> Nifty IT only when Nasdaq/exporter breadth confirms;
+  China demand/trade -> metals, exporters, autos, chemicals, capital goods;
+  domestic policy -> affected sectors first, then Nifty/Bank Nifty breadth.
 - Do not use repeated fallback phrases such as "conditional India input",
   "watch input only", "require first-range breadth", "macro checklist", or
   "no index bias unless".
