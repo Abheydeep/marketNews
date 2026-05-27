@@ -691,9 +691,10 @@ function sanitizeArticleEditorialPatch(article, patch) {
 
 function articleEditorialUserPrompt(article, schema, usedAngles = []) {
   const priorAngles = (usedAngles ?? []).length
-    ? `\nAlready used India angles in earlier cards. Do not repeat these frames:\n${usedAngles.map((angle, index) => `${index + 1}. ${angle}`).join("\n")}\n`
+    ? `\nPrior India angles from earlier cards, for repetition avoidance only. Do not classify the current article from these prior angles:\n${usedAngles.map((angle, index) => `${index + 1}. ${angle}`).join("\n")}\n`
     : "";
-  return `Article headline: ${article?.headline || ""}
+  return `Current article:
+Article headline: ${article?.headline || ""}
 Publisher: ${article?.sourceName || article?.publisher || ""}
 Published: ${article?.publishedAt || ""}
 Article summary: ${article?.summary || ""}
@@ -704,6 +705,7 @@ Existing India impact: ${article?.indiaImpact || ""}
 Existing watch: ${article?.watchFor || ""}
 ${priorAngles}
 Rank this article like an Indian pre-market desk editor. PM/RBI/SEBI/finance-ministry policy, Brent moves above 2%, GIFT Nifty, FII/DII flows, US-China trade, and geopolitical commodity shocks outrank single-stock liveblogs or analyst-target articles.
+Use only the current article to decide the entity and India transmission line. Use prior angles only to avoid repeating wording.
 
 Generate JSON only:
 {
