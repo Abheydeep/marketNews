@@ -1,7 +1,7 @@
-//@version=5
+//@version=6
 // FVG + Gate + Confluence — Paper Signals
 // =========================================
-// Pine Script implementation of the strategy validated under
+// Pine Script v6 implementation of the strategy validated under
 // services/trading-api/backtest/ (FVG retrace + Kaufman efficiency-ratio
 // regime gate + fill-direction confluence + 2.0R target). Backtest result on
 // 60 days of NIFTY + BANKNIFTY 5-min data: ~58% win, profit factor ~2.86,
@@ -21,40 +21,40 @@ indicator("FVG + Gate + Confluence — Paper Signals (Abhey)",
           overlay=true, max_labels_count=500, max_lines_count=500)
 
 // ── inputs ─────────────────────────────────────────────────────────────────
-gap_pct_in  = input.float(0.03,  "Min FVG gap (%)",         step=0.01,  group="FVG")
-expiry_bars = input.int(12,      "FVG fill window (bars)",  minval=2, maxval=20, group="FVG")
-eff_window  = input.int(48,      "Efficiency lookback (bars)", minval=10, group="Regime gate")
-eff_max     = input.float(0.20,  "Skip if efficiency >=",   step=0.05,  group="Regime gate")
-target_rr   = input.float(2.0,   "Target R-multiple",       step=0.5,   group="Risk")
-stop_buf_in = input.float(0.10,  "Stop buffer beyond gap (%)", step=0.05, group="Risk")
-sess        = input.session("0945-1500", "Trade window (IST)", group="Filters")
+float gap_pct_in  = input.float(0.03,  "Min FVG gap (%)",            step=0.01,  group="FVG")
+int   expiry_bars = input.int(12,      "FVG fill window (bars)",     minval=2, maxval=20, group="FVG")
+int   eff_window  = input.int(48,      "Efficiency lookback (bars)", minval=10, group="Regime gate")
+float eff_max     = input.float(0.20,  "Skip if efficiency >=",      step=0.05,  group="Regime gate")
+float target_rr   = input.float(2.0,   "Target R-multiple",          step=0.5,   group="Risk")
+float stop_buf_in = input.float(0.10,  "Stop buffer beyond gap (%)", step=0.05,  group="Risk")
+string sess       = input.session("0945-1500", "Trade window (IST)", group="Filters")
 
-gap_pct     = gap_pct_in  / 100.0
-stop_buffer = stop_buf_in / 100.0
+float gap_pct     = gap_pct_in  / 100.0
+float stop_buffer = stop_buf_in / 100.0
 
 // ── Kaufman efficiency ratio: net / total-path over `eff_window` bars ─────
-abs_step = math.abs(close - close[1])
-path     = ta.sma(abs_step, eff_window) * eff_window
-net      = math.abs(close - close[eff_window])
-eff      = path > 0 ? net / path : 0.0
-gate_ok  = eff < eff_max
+float abs_step = math.abs(close - close[1])
+float path     = ta.sma(abs_step, eff_window) * eff_window
+float net      = math.abs(close - close[eff_window])
+float eff      = path > 0 ? net / path : 0.0
+bool  gate_ok  = eff < eff_max
 
 // ── bar metrics ───────────────────────────────────────────────────────────
-rng        = high - low
-close_pos  = rng > 0 ? (close - low) / rng : 0.5
-in_session = not na(time(timeframe.period, sess, "Asia/Kolkata"))
+float rng       = high - low
+float close_pos = rng > 0 ? (close - low) / rng : 0.5
+bool  in_session = not na(time(timeframe.period, sess, "Asia/Kolkata"))
 
 // ── bullish FVG fresh first-fill on the current bar ───────────────────────
-bull_fill = false
-bull_prox = 0.0
-bull_dist = 0.0
-for k = 1 to expiry_bars
-    p = low[k]
-    d = high[k + 2]
+bool  bull_fill = false
+float bull_prox = 0.0
+float bull_dist = 0.0
+for int k = 1 to expiry_bars
+    float p = low[k]
+    float d = high[k + 2]
     if d < p and (p - d) / p >= gap_pct
         if low <= p
-            already = false
-            for j = 1 to k - 1
+            bool already = false
+            for int j = 1 to k - 1
                 if low[j] <= p
                     already := true
                     break
@@ -65,16 +65,16 @@ for k = 1 to expiry_bars
                 break
 
 // ── bearish FVG fresh first-fill on the current bar ───────────────────────
-bear_fill = false
-bear_prox = 0.0
-bear_dist = 0.0
-for k = 1 to expiry_bars
-    p = high[k]
-    d = low[k + 2]
+bool  bear_fill = false
+float bear_prox = 0.0
+float bear_dist = 0.0
+for int k = 1 to expiry_bars
+    float p = high[k]
+    float d = low[k + 2]
     if d > p and (d - p) / p >= gap_pct
         if high >= p
-            already = false
-            for j = 1 to k - 1
+            bool already = false
+            for int j = 1 to k - 1
                 if high[j] >= p
                     already := true
                     break
@@ -85,31 +85,31 @@ for k = 1 to expiry_bars
                 break
 
 // ── combined signal conditions ────────────────────────────────────────────
-bull_signal = bull_fill and gate_ok and close_pos >= 0.50 and in_session
-bear_signal = bear_fill and gate_ok and close_pos <= 0.50 and in_session
+bool bull_signal = bull_fill and gate_ok and close_pos >= 0.50 and in_session
+bool bear_signal = bear_fill and gate_ok and close_pos <= 0.50 and in_session
 
 // ── plot signals ──────────────────────────────────────────────────────────
 if bull_signal
-    stop   = bull_dist * (1 - stop_buffer)
-    risk   = bull_prox - stop
-    target = bull_prox + risk * target_rr
-    txt = "BUY\nE " + str.tostring(bull_prox, "#.##")
-         + "\nT "  + str.tostring(target,    "#.##")
-         + "\nS "  + str.tostring(stop,      "#.##")
+    float stop   = bull_dist * (1.0 - stop_buffer)
+    float risk   = bull_prox - stop
+    float target = bull_prox + risk * target_rr
+    string txt   = "BUY\nE " + str.tostring(bull_prox, "#.##")
+                 + "\nT "    + str.tostring(target,    "#.##")
+                 + "\nS "    + str.tostring(stop,      "#.##")
     label.new(bar_index, low - rng * 0.3, txt,
               color=color.new(color.green, 0), style=label.style_label_up,
               textcolor=color.white, size=size.small)
     line.new(bar_index, stop,   bar_index + 12, stop,   color=color.red,   style=line.style_dashed)
     line.new(bar_index, target, bar_index + 12, target, color=color.green, style=line.style_dashed)
-    alert("FVG BUY @ "  + str.tostring(bull_prox, "#.##"), alert.freq_once_per_bar)
+    alert("FVG BUY @ " + str.tostring(bull_prox, "#.##"), alert.freq_once_per_bar)
 
 if bear_signal
-    stop   = bear_dist * (1 + stop_buffer)
-    risk   = stop - bear_prox
-    target = bear_prox - risk * target_rr
-    txt = "SELL\nE " + str.tostring(bear_prox, "#.##")
-         + "\nT "    + str.tostring(target,    "#.##")
-         + "\nS "    + str.tostring(stop,      "#.##")
+    float stop   = bear_dist * (1.0 + stop_buffer)
+    float risk   = stop - bear_prox
+    float target = bear_prox - risk * target_rr
+    string txt   = "SELL\nE " + str.tostring(bear_prox, "#.##")
+                 + "\nT "     + str.tostring(target,    "#.##")
+                 + "\nS "     + str.tostring(stop,      "#.##")
     label.new(bar_index, high + rng * 0.3, txt,
               color=color.new(color.red, 0), style=label.style_label_down,
               textcolor=color.white, size=size.small)
