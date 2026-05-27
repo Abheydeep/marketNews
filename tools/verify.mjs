@@ -6,6 +6,7 @@ import { cockpitPage } from "./cockpit-page.mjs";
 import { createDemoApp } from "./demo-app.mjs";
 import {
   ARTICLE_ENRICHMENT_PROMPT,
+  DAILY_LEAD_RERANK_PROMPT,
   PUBLIC_BRIEFING_EDITORIAL_PROMPT,
   REEL_SCRIPT_EDITORIAL_PROMPT,
   assertPublicBriefingCopy,
@@ -18,6 +19,7 @@ import {
   bullishRiskReward,
   clusterThemes,
   dailyLeadForDigest,
+  dailyLeadForDigestWithAgent,
   evaluateSeries,
   labelFromScore,
   loadSeeds,
@@ -1158,6 +1160,173 @@ await test("daily lead prefers confirmed large tech move over generic crude infl
   assert.match(lead.headline, /Qualcomm drops 11%/i);
 });
 
+await test("daily lead agent reranker can promote stronger macro lead from deterministic shortlist", async () => {
+  const niftyPrediction = {
+    headline: "Nifty 50, Sensex prediction today: market opens with stock-specific breadth",
+    summary: "Nifty and Sensex prediction live before the open with broad market commentary.",
+    indiaImpact: "Nifty and Bank Nifty breadth need confirmation before the opening prediction gets trading weight.",
+    watchFor: "Watch Nifty VWAP and Bank Nifty breadth.",
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/news/nifty-sensex-prediction-11-may-2026/articleshow/131002000.cms",
+    category: "macro_positive",
+    entityName: "Nifty",
+    publishedAt: "2026-05-11T00:30:00.000Z",
+    indiaViewCount: 120000
+  };
+  const tradeTruce = {
+    headline: "US-China tariff truce lifts Nasdaq, KOSPI and metals risk appetite",
+    summary: "The US and China agreed to cut tariffs for 90 days, lifting Nasdaq futures, KOSPI and Brent before the Asia open.",
+    indiaImpact: "Nifty IT, metals, exporters and China-linked cyclicals are the India checks; broad Nifty needs opening breadth.",
+    watchFor: "Watch Nifty Metal, Nifty IT and Hang Seng through the first range.",
+    sourceName: "Reuters",
+    sourceId: "reuters",
+    sourceUrl: "https://www.reuters.com/world/china/us-china-tariff-truce-90-days-2026-05-11/",
+    category: "global_risk",
+    entityName: "US-China trade",
+    publishedAt: "2026-05-11T00:45:00.000Z",
+    sentimentScore: 0.65
+  };
+  const deterministic = dailyLeadForDigest("2026-05-11", [niftyPrediction, tradeTruce], { marketSnapshots: [] });
+  assert.match(deterministic.sourceArticleId, /^economic-times-markets:/);
+
+  const lead = await dailyLeadForDigestWithAgent("2026-05-11", [niftyPrediction, tradeTruce], {
+    marketSnapshots: [],
+    dailyLeadReranker: async ({ candidates, prompt, userPrompt, deterministicLeadId }) => {
+      assert.equal(prompt, DAILY_LEAD_RERANK_PROMPT);
+      assert.ok(userPrompt.includes("deterministicScore"));
+      assert.match(deterministicLeadId, /^economic-times-markets:/);
+      const tradeCandidate = candidates.find((candidate) => /tariff truce/i.test(candidate.headline));
+      assert.ok(tradeCandidate, "agent shortlist should include the US-China trade candidate");
+      return {
+        rankedIds: [tradeCandidate.id, ...candidates.map((candidate) => candidate.id).filter((id) => id !== tradeCandidate.id)],
+        leadReason: "The tariff truce explains Asia risk-on breadth better than the generic Nifty prediction.",
+        driverType: "trade",
+        confidence: 0.86
+      };
+    }
+  });
+
+  assert.match(lead.sourceArticleId, /^reuters:/);
+  assert.equal(lead.driverType, "geopolitical");
+  assert.equal(lead.selectionMethod, "agent_rerank");
+  assert.match(lead.deterministicSourceArticleId, /^economic-times-markets:/);
+  assert.match(lead.selectionReason, /tariff truce/i);
+});
+
+await test("daily lead agent reranker falls back when response uses unknown ids", async () => {
+  const niftyPrediction = {
+    headline: "Nifty 50, Sensex prediction today: market opens with stock-specific breadth",
+    summary: "Nifty and Sensex prediction live before the open with broad market commentary.",
+    indiaImpact: "Nifty and Bank Nifty breadth need confirmation before the opening prediction gets trading weight.",
+    watchFor: "Watch Nifty VWAP and Bank Nifty breadth.",
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/news/nifty-sensex-prediction-11-may-2026/articleshow/131002000.cms",
+    category: "macro_positive",
+    entityName: "Nifty",
+    publishedAt: "2026-05-11T00:30:00.000Z",
+    indiaViewCount: 120000
+  };
+  const tradeTruce = {
+    headline: "US-China tariff truce lifts Nasdaq, KOSPI and metals risk appetite",
+    summary: "The US and China agreed to cut tariffs for 90 days, lifting Nasdaq futures, KOSPI and Brent before the Asia open.",
+    indiaImpact: "Nifty IT, metals, exporters and China-linked cyclicals are the India checks; broad Nifty needs opening breadth.",
+    watchFor: "Watch Nifty Metal, Nifty IT and Hang Seng through the first range.",
+    sourceName: "Reuters",
+    sourceId: "reuters",
+    sourceUrl: "https://www.reuters.com/world/china/us-china-tariff-truce-90-days-2026-05-11/",
+    category: "global_risk",
+    entityName: "US-China trade",
+    publishedAt: "2026-05-11T00:45:00.000Z",
+    sentimentScore: 0.65
+  };
+  const deterministic = dailyLeadForDigest("2026-05-11", [niftyPrediction, tradeTruce], { marketSnapshots: [] });
+  const lead = await dailyLeadForDigestWithAgent("2026-05-11", [niftyPrediction, tradeTruce], {
+    marketSnapshots: [],
+    dailyLeadReranker: async () => ({
+      rankedIds: ["made-up-source:123"],
+      leadReason: "Unknown ids must not be trusted.",
+      driverType: "trade",
+      confidence: 0.99
+    })
+  });
+
+  assert.equal(lead.sourceArticleId, deterministic.sourceArticleId);
+  assert.equal(Object.hasOwn(lead, "selectionMethod"), false);
+});
+
+await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async () => {
+  const niftyPrediction = {
+    headline: "Nifty 50, Sensex prediction today: market opens with stock-specific breadth",
+    summary: "Nifty and Sensex prediction live before the open with broad market commentary.",
+    indiaImpact: "Nifty and Bank Nifty breadth need confirmation before the opening prediction gets trading weight.",
+    watchFor: "Watch Nifty VWAP and Bank Nifty breadth.",
+    sourceName: "Economic Times Markets",
+    sourceId: "economic-times-markets",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/news/nifty-sensex-prediction-11-may-2026/articleshow/131002000.cms",
+    category: "macro_positive",
+    entityName: "Nifty",
+    publishedAt: "2026-05-11T00:30:00.000Z",
+    indiaViewCount: 120000
+  };
+  const crudeShock = {
+    headline: "Brent crude surges 4.8% after Trump rejects Iran peace proposal",
+    summary: "Oil prices jumped as geopolitical risk rose before the India open.",
+    indiaImpact: "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
+    watchFor: "Watch Brent and USD/INR.",
+    sourceName: "CNBC World",
+    sourceId: "cnbc-world",
+    sourceUrl: "https://www.cnbc.com/2026/05/11/cnbc-daily-open-iran-proposes-trump-opposes-xi-watches.html",
+    category: "global_risk",
+    entityName: "Geopolitical risk",
+    publishedAt: "2026-05-11T00:45:00.000Z"
+  };
+  let nvidiaCalls = 0;
+  const llmFetcher = async (url, request = {}) => {
+    nvidiaCalls += 1;
+    assert.equal(url, "https://integrate.api.nvidia.com/v1/chat/completions");
+    assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
+    assert.equal(request.headers.Accept, "application/json");
+    const body = JSON.parse(request.body);
+    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.response_format.type, "json_object");
+    assert.equal(body.stream, false);
+    assert.equal(body.messages[0].content, DAILY_LEAD_RERANK_PROMPT);
+    assert.ok(body.messages[1].content.includes("deterministicLeadId"));
+    assert.ok(body.messages[1].content.includes("deterministicScore"));
+    const payload = JSON.parse(body.messages[1].content.slice(body.messages[1].content.indexOf("{")));
+    const crudeCandidate = payload.candidates.find((candidate) => /Brent crude surges/i.test(candidate.headline));
+    assert.ok(crudeCandidate, "NVIDIA prompt should include crude candidate");
+    return {
+      ok: true,
+      json: async () => ({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              rankedIds: [crudeCandidate.id],
+              leadReason: "The crude shock is the clearest pre-open India risk driver.",
+              driverType: "crude",
+              confidence: 0.91
+            })
+          }
+        }]
+      })
+    };
+  };
+
+  const lead = await dailyLeadForDigestWithAgent("2026-05-11", [niftyPrediction, crudeShock], {
+    marketSnapshots: [],
+    llmFetcher,
+    nvidiaApiKey: "test-nvidia-key"
+  });
+
+  assert.equal(nvidiaCalls, 1);
+  assert.match(lead.sourceArticleId, /^cnbc-world:/);
+  assert.equal(lead.driverType, "crude");
+  assert.equal(lead.selectionMethod, "agent_rerank");
+});
+
 await test("premarket publish window blocks stale scheduled runs", () => {
   const onTime = premarketPublishWindowStatus({
     date: "2026-05-11",
@@ -1454,6 +1623,13 @@ await test("trading guide level copy is directionally consistent", async () => {
 
 await test("public digest payload ships compact display DTOs", async () => {
   const digest = await buildDigest("2026-04-29");
+  digest.dailyLead = {
+    ...digest.dailyLead,
+    selectionMethod: "agent_rerank",
+    selectionReason: "Internal rerank reason should stay out of public payloads.",
+    selectionConfidence: 0.9,
+    deterministicSourceArticleId: "fixture:deterministic"
+  };
   const payload = publicDigestPayload(digest);
   const redactedPayload = redactedDigestPayload(digest);
   const newsKeys = Object.keys(payload.news[0]).sort();
@@ -1491,6 +1667,9 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
   assert.equal(payload.sourceVerification.isVerifiedForPublicArchive, true);
   assert.ok(payload.dailyLead?.driverType);
+  assert.equal(JSON.stringify(payload.dailyLead).includes("agent_rerank"), false);
+  assert.equal(JSON.stringify(payload.dailyLead).includes("selectionReason"), false);
+  assert.equal(JSON.stringify(redactedPayload.dailyLead).includes("agent_rerank"), false);
   assert.ok(payload.publicSourceSelection.visibleCount >= 8 && payload.publicSourceSelection.visibleCount <= 10, `expected visibleCount 8–10, got ${payload.publicSourceSelection.visibleCount}`);
   assert.equal(payload.publicSourceSelection.windowHours, 24);
   assert.ok(Number.isFinite(payload.publicSourceSelection.indiaPublisherCount));

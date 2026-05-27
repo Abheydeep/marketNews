@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
-import { dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
+import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
@@ -548,7 +548,10 @@ function enrichPublicDigest(digest) {
   const themes = verified ? publicThemesForNews(digest.digestDate, news) : (digest.themes ?? []);
   const overallSentiment = verified ? publicWeightedSentiment(news) : digest.overallSentiment;
   const sentimentLabel = verified ? publicLabelFromScore(overallSentiment) : digest.sentimentLabel;
-  const dailyLead = verified ? dailyLeadForDigest(digest.digestDate, news, { marketSnapshots: digest.marketSnapshots ?? [] }) : digest.dailyLead;
+  const recomputedDailyLead = verified ? dailyLeadForDigest(digest.digestDate, news, { marketSnapshots: digest.marketSnapshots ?? [] }) : digest.dailyLead;
+  const dailyLead = verified && digestDailyLeadIsVisible(digest.dailyLead, news)
+    ? digest.dailyLead
+    : recomputedDailyLead;
   const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead) : digest.title;
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
@@ -586,6 +589,11 @@ function enrichPublicDigest(digest) {
       : fallbackWatchItems({ ...digest, news }),
     generatedAt: digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`
   };
+}
+
+function digestDailyLeadIsVisible(dailyLead, news = []) {
+  return dailyLead?.selectionMethod === "agent_rerank" &&
+    news.some((article) => articleLeadId(article) === dailyLead.sourceArticleId);
 }
 
 function sanitizePublicArticleCopy(article) {

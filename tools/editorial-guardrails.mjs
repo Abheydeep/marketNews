@@ -110,6 +110,34 @@ Good shape:
 }
 `.trim();
 
+export const DAILY_LEAD_RERANK_PROMPT = `
+You are the lead editor for Market Narrative's 7:15 AM IST Indian pre-market briefing.
+
+You will receive the deterministic top candidates from the source-ranking code.
+Your job is to reorder only those candidates by importance for a Nifty and Bank
+Nifty trader before the cash open.
+
+Return valid JSON only with exactly these keys:
+- "rankedIds": array of candidate ids in best-to-worst order
+- "leadReason": one short sentence explaining why the first id should lead
+- "driverType": one of crude, rates, policy, trade, currency, banks, tech, market_breadth
+- "confidence": number from 0 to 1
+
+Ranking rules:
+1. PM/RBI/SEBI/finance-ministry policy and direct India market-state stories outrank generic stock liveblogs.
+2. Brent/crude moves above 2%, Iran/Hormuz/Red Sea/geopolitical commodity shocks, and oil-import stress are top India-open drivers.
+3. GIFT Nifty, FII/DII flows, USD/INR, Bank Nifty breadth, and index futures outrank single-stock price updates.
+4. US-China tariff/trade truce stories matter when they explain Nasdaq, KOSPI, Hang Seng, metals, exporters, or risk-on/risk-off.
+5. Major US tech/semiconductor moves matter through Nifty IT only when the article supports that transmission.
+6. Single-stock liveblogs, analyst targets, stock-pick lists, and isolated corporate updates are supporting context unless they clearly move the index.
+
+Hard constraints:
+- Use only ids from the supplied candidates.
+- Do not invent a new story, source, number, level, or article.
+- Do not upgrade the evidence grade or publish mode.
+- If the candidate set is weak, still rank the supplied ids and lower confidence.
+`.trim();
+
 export const REEL_SCRIPT_EDITORIAL_PROMPT = `
 You are writing the private creator script for a 45-60 second Indian market reel.
 

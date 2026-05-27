@@ -19,6 +19,7 @@ export function publicDigestPayload(digest) {
 
   return {
     ...publicFields,
+    dailyLead: publicDailyLeadDto(publicFields.dailyLead),
     status: "PUBLISHED",
     marketSnapshots: (marketSnapshots ?? []).map(publicMarketSnapshotDto),
     news: newsCards,
@@ -52,6 +53,7 @@ export function redactedDigestPayload(digest) {
 
   return {
     ...publicFields,
+    dailyLead: publicDailyLeadDto(publicFields.dailyLead),
     status: "PUBLISHED",
     news: (news ?? []).map(publicSourceArticleDto),
     newsCards,
@@ -64,6 +66,20 @@ export function redactedDigestPayload(digest) {
       }
       : null
   };
+}
+
+function publicDailyLeadDto(dailyLead) {
+  if (!dailyLead || typeof dailyLead !== "object" || Array.isArray(dailyLead)) {
+    return dailyLead;
+  }
+  const {
+    selectionMethod,
+    selectionReason,
+    selectionConfidence,
+    deterministicSourceArticleId,
+    ...publicLead
+  } = dailyLead;
+  return publicLead;
 }
 
 function publicSourceVerification(verification) {

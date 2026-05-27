@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
@@ -38,12 +39,40 @@ export async function buildDigest(date = todayIso(), options = {}) {
     })),
     previousDigest: options.previousDigest,
     fetcher: options.fetcher,
-    strictFetch: options.strictFetch
+    strictFetch: options.strictFetch,
+    llmFetcher: options.llmFetcher,
+    articleEditorialEnricher: options.articleEditorialEnricher,
+    llmArticleEnrichment: options.llmArticleEnrichment,
+    agentArticleEnrichment: options.agentArticleEnrichment,
+    maxArticleEditorialEnrichmentCalls: options.maxArticleEditorialEnrichmentCalls,
+    anthropicApiKey: options.anthropicApiKey,
+    anthropicModel: options.anthropicModel,
+    openaiApiKey: options.openaiApiKey,
+    openaiModel: options.openaiModel,
+    geminiApiKey: options.geminiApiKey,
+    geminiModel: options.geminiModel,
+    nvidiaApiKey: options.nvidiaApiKey,
+    nvidiaModel: options.nvidiaModel,
+    nvidiaBaseUrl: options.nvidiaBaseUrl,
+    nvidiaMaxTokens: options.nvidiaMaxTokens,
+    nvidiaTemperature: options.nvidiaTemperature,
+    nvidiaTopP: options.nvidiaTopP
   });
   const sourceSelection = publicSourceSelectionForDigest(date, articles, { marketSnapshots });
   const publicArticles = sourceSelection.visibleArticles;
   const publicSourceSelection = sourceSelection.publicSummary;
-  const dailyLead = dailyLeadForDigest(date, publicArticles, { marketSnapshots });
+  const dailyLead = await dailyLeadForDigestWithAgent(date, publicArticles, {
+    marketSnapshots,
+    dailyLeadReranker: options.dailyLeadReranker,
+    llmFetcher: options.llmFetcher,
+    agentLeadRerank: options.agentLeadRerank,
+    nvidiaApiKey: options.nvidiaApiKey,
+    nvidiaModel: options.nvidiaModel,
+    nvidiaBaseUrl: options.nvidiaBaseUrl,
+    nvidiaMaxTokens: options.nvidiaMaxTokens,
+    nvidiaTemperature: options.nvidiaTemperature,
+    nvidiaTopP: options.nvidiaTopP
+  });
   const themes = clusterThemes(date, publicArticles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
   const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
@@ -913,21 +942,82 @@ function sourceGateSummary(profile) {
 
 export function dailyLeadForDigest(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
+  const ranked = rankedDailyLeadCandidates(date, articles, marketSnapshots);
+  const lead = deterministicLeadArticleFromRanked(ranked);
+  return dailyLeadFromArticle(date, lead, ranked, marketSnapshots);
+}
+
+export async function dailyLeadForDigestWithAgent(date, articles = [], options = {}) {
+  const marketSnapshots = options.marketSnapshots ?? [];
+  const ranked = rankedDailyLeadCandidates(date, articles, marketSnapshots);
+  const deterministicLead = deterministicLeadArticleFromRanked(ranked);
+  const deterministicDailyLead = dailyLeadFromArticle(date, deterministicLead, ranked, marketSnapshots);
+  const candidates = dailyLeadRerankCandidates(ranked).slice(0, 8);
+  const reranker = options.dailyLeadReranker ?? configuredDailyLeadReranker(options);
+
+  if (typeof reranker !== "function" || candidates.length < 2) {
+    return deterministicDailyLead;
+  }
+
+  try {
+    const deterministicLeadId = articleLeadId(deterministicLead);
+    const userPrompt = dailyLeadRerankUserPrompt({
+      date,
+      candidates,
+      deterministicLeadId,
+      marketSnapshots
+    });
+    const rawRerank = await reranker({
+      date,
+      prompt: DAILY_LEAD_RERANK_PROMPT,
+      userPrompt,
+      candidates: candidates.map(candidateForAgent),
+      deterministicLeadId,
+      marketSnapshots: dailyLeadMarketContext(marketSnapshots)
+    });
+    const rerank = parseDailyLeadRerank(rawRerank);
+    const selection = validateDailyLeadRerank(rerank, candidates, deterministicLead);
+    if (!selection) {
+      return deterministicDailyLead;
+    }
+    return dailyLeadFromArticle(date, selection.article, ranked, marketSnapshots, {
+      selectionMethod: "agent_rerank",
+      selectionReason: selection.leadReason,
+      selectionConfidence: selection.confidence,
+      deterministicSourceArticleId: deterministicLeadId,
+      driverType: selection.driverType
+    });
+  } catch (error) {
+    if (options.strictLeadRerank) {
+      throw error;
+    }
+    return deterministicDailyLead;
+  }
+}
+
+function rankedDailyLeadCandidates(date, articles = [], marketSnapshots = []) {
   const allArticles = uniqueSourceArticles(articles);
-  const ranked = allArticles
+  return allArticles
     .map((article, index) => ({
       article,
       index,
       score: tractionScore(article, date, allArticles, marketSnapshots)
     }))
     .sort((left, right) => right.score - left.score || left.index - right.index);
+}
+
+function deterministicLeadArticleFromRanked(ranked = []) {
   const lead = ranked.find((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article))?.article
     ?? ranked.find((item) => hasIndiaReadThrough(item.article))?.article
     ?? ranked[0]?.article
     ?? null;
+  return lead;
+}
+
+function dailyLeadFromArticle(date, lead, ranked = [], marketSnapshots = [], selection = {}) {
   const support = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) > 0.05 && hasIndiaReadThrough(item.article))?.article;
   const risk = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) < -0.05 && hasIndiaReadThrough(item.article))?.article;
-  const driverType = driverTypeForArticle(lead);
+  const driverType = normalizeAgentLeadDriverType(selection.driverType, driverTypeForArticle(lead));
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
   const leadText = articleTextForLead(lead);
@@ -966,8 +1056,196 @@ export function dailyLeadForDigest(date, articles = [], options = {}) {
     indiaImpact: enrichedImpact,
     riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : defaultRiskSide(driverType, leadImpact),
     supportSide: cleanSentence(support?.indiaImpact || defaultSupportSide(driverType)),
-    giftNiftyBias: giftBias ?? null
+    giftNiftyBias: giftBias ?? null,
+    ...dailyLeadSelectionMetadata(selection)
   };
+}
+
+function dailyLeadSelectionMetadata(selection = {}) {
+  if (selection.selectionMethod !== "agent_rerank") {
+    return {};
+  }
+  const confidence = Number(selection.selectionConfidence);
+  return {
+    selectionMethod: "agent_rerank",
+    selectionReason: compactWords(selection.selectionReason || "Agent reranked the deterministic source shortlist.", 24),
+    selectionConfidence: Number.isFinite(confidence) ? round(confidence, 2) : null,
+    deterministicSourceArticleId: selection.deterministicSourceArticleId || ""
+  };
+}
+
+function dailyLeadRerankCandidates(ranked = []) {
+  return ranked
+    .filter((item) => item?.article)
+    .map((item, index) => ({
+      ...item,
+      deterministicRank: index + 1,
+      id: articleLeadId(item.article),
+      driverType: driverTypeForArticle(item.article),
+      hasIndiaReadThrough: hasIndiaReadThrough(item.article),
+      leadSuppressed: isLeadSuppressedArticle(item.article),
+      indiaPublisher: isIndiaPublisherArticle(item.article)
+    }))
+    .filter((item) => item.id);
+}
+
+function candidateForAgent(item) {
+  const article = item.article;
+  return {
+    id: item.id,
+    deterministicRank: item.deterministicRank,
+    deterministicScore: round(item.score, 2),
+    headline: cleanSentence(article?.headline || ""),
+    publisher: cleanSentence(article?.sourceName || article?.sourceId || ""),
+    category: article?.category || "",
+    entityName: article?.entityName || "",
+    driverType: item.driverType,
+    indiaImpact: compactWords(article?.indiaImpact || "", 34),
+    takeaway: compactWords(article?.takeaway || article?.summary || "", 28),
+    watchFor: compactWords(article?.watchFor || "", 20),
+    sentimentScore: Number(article?.sentimentScore) || 0,
+    indiaViewCount: Number(article?.indiaViewCount) || 0,
+    hasIndiaReadThrough: item.hasIndiaReadThrough,
+    indiaPublisher: item.indiaPublisher,
+    leadSuppressed: item.leadSuppressed,
+    sourceUrl: article?.sourceUrl || ""
+  };
+}
+
+function dailyLeadRerankUserPrompt({ date, candidates, deterministicLeadId, marketSnapshots }) {
+  const payload = {
+    date,
+    deterministicLeadId,
+    marketContext: dailyLeadMarketContext(marketSnapshots),
+    instruction: "Return the best lead order for the India cash-market open. Keep all ids exact.",
+    candidates: candidates.map(candidateForAgent)
+  };
+  return `Re-rank these candidate source cards for the Market Narrative daily lead.\n${JSON.stringify(payload, null, 2)}`;
+}
+
+function dailyLeadMarketContext(marketSnapshots = []) {
+  const keep = /\b(gift|nifty|banknifty|bank nifty|sensex|brent|crude|dxy|usd|inr|rupee|vix|nasdaq|s&p|dow|kospi|hang seng)\b/i;
+  return (marketSnapshots ?? [])
+    .filter((snapshot) => keep.test(`${snapshot?.symbol || ""} ${snapshot?.name || ""}`))
+    .slice(0, 12)
+    .map((snapshot) => ({
+      symbol: snapshot?.symbol || "",
+      name: snapshot?.name || "",
+      closeValue: snapshot?.closeValue ?? snapshot?.price ?? null,
+      changePercent: snapshot?.changePercent ?? snapshot?.changePct ?? snapshot?.percentChange ?? null
+    }));
+}
+
+function parseDailyLeadRerank(value) {
+  if (!value) {
+    return null;
+  }
+  if (typeof value === "object" && !Array.isArray(value)) {
+    return value;
+  }
+  const text = String(value || "")
+    .trim()
+    .replace(/^```(?:json)?/i, "")
+    .replace(/```$/i, "")
+    .trim();
+  return JSON.parse(text);
+}
+
+function validateDailyLeadRerank(rerank, candidates = [], deterministicLead = null) {
+  const ids = new Set(candidates.map((candidate) => candidate.id));
+  const validRankedIds = (Array.isArray(rerank?.rankedIds) ? rerank.rankedIds : [])
+    .map((id) => String(id || "").trim())
+    .filter((id, index, list) => ids.has(id) && list.indexOf(id) === index);
+  const selectedId = validRankedIds[0];
+  if (!selectedId) {
+    return null;
+  }
+  const selected = candidates.find((candidate) => candidate.id === selectedId);
+  if (!selected?.article) {
+    return null;
+  }
+  const hasCleanIndiaCandidate = candidates.some((candidate) => candidate.hasIndiaReadThrough && !candidate.leadSuppressed);
+  if (hasCleanIndiaCandidate && (!selected.hasIndiaReadThrough || selected.leadSuppressed)) {
+    return null;
+  }
+  const deterministicId = articleLeadId(deterministicLead);
+  const confidence = Number(rerank?.confidence);
+  return {
+    article: selected.article,
+    leadReason: cleanSentence(rerank?.leadReason || (selectedId === deterministicId
+      ? "The deterministic lead remains the strongest pre-open driver."
+      : "The reranker promoted a stronger India-open driver from the shortlist.")),
+    confidence: Number.isFinite(confidence) ? Math.max(0, Math.min(1, confidence)) : null,
+    driverType: normalizeAgentLeadDriverType(rerank?.driverType, selected.driverType)
+  };
+}
+
+function configuredDailyLeadReranker(options = {}) {
+  if (!shouldUseAgentLeadRerank(options)) {
+    return null;
+  }
+  const apiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  const fetcher = options.llmFetcher ?? fetch;
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+  return async ({ prompt, userPrompt }) => {
+    const response = await fetcher(`${baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          { role: "system", content: prompt },
+          { role: "user", content: userPrompt }
+        ],
+        response_format: { type: "json_object" },
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 500),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.2),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.9),
+        stream: false
+      })
+    });
+    if (!response?.ok) {
+      throw new Error(`NVIDIA daily lead rerank failed with status ${response?.status ?? "unknown"}`);
+    }
+    const data = await response.json();
+    return nvidiaChatResponseText(data);
+  };
+}
+
+function shouldUseAgentLeadRerank(options = {}) {
+  if (options.agentLeadRerank === true || process.env.PUBLIC_BRIEFING_AGENT_RERANK === "true") {
+    return true;
+  }
+  if (options.agentLeadRerank === false || process.env.PUBLIC_BRIEFING_AGENT_RERANK === "false") {
+    return false;
+  }
+  return Boolean(options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY);
+}
+
+function nvidiaChatResponseText(data) {
+  return (data?.choices ?? [])
+    .map((choice) => choice?.message?.content ?? "")
+    .filter(Boolean)
+    .join("\n");
+}
+
+function normalizeAgentLeadDriverType(value, fallback = "market") {
+  const driver = String(value || "").toLowerCase().replace(/[^a-z_]+/g, "_");
+  if (driver === "trade") return "geopolitical";
+  if (driver === "market_breadth") return "market";
+  if (driver === "policy") return fallback && fallback !== "market" ? fallback : "market";
+  if (["crude", "rates", "currency", "banks", "tech", "tech_move", "asia", "geopolitical", "precious_metals", "market"].includes(driver)) {
+    return driver;
+  }
+  return fallback || "market";
 }
 
 function hasIndirectIndiaImpact(article) {
@@ -1455,7 +1733,7 @@ function driverLabelForType(type) {
   }[type] || "Market breadth";
 }
 
-function articleLeadId(article) {
+export function articleLeadId(article) {
   if (!article) {
     return "";
   }
