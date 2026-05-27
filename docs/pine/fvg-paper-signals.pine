@@ -1,34 +1,59 @@
 //@version=6
-// FVG + Efficiency Gate + Fill-Direction Confluence
-// ===================================================
+// FVG v2 — Trend + Session + VWAP — Abhey
+// ==========================================
+// v1 baseline (Feb–May 2026): 54% WR · PF 2.02 · 24 trades · 0.80% DD
+//
+// v2 additions:
+//   1. EMA-21 trend filter  — only trade with the short-term trend
+//   2. VWAP bias            — BUY only when price is above prev-bar VWAP
+//                             SELL only when below (confirms institutional flow)
+//   3. Session split        — morning open (9:45–11:30) + power hour (14:00–15:00)
+//                             skip midday chop (11:30–14:00)
+//   4. ATR stop floor       — stop can't be less than 0.5× ATR(14) away from
+//                             entry (prevents unrealistically tight stops on
+//                             tiny FVG gaps on quiet bars)
+//   All new filters are individually toggleable — turn off to compare v1 vs v2.
+//
 // USE ON : NIFTY or BANKNIFTY · 5-minute chart
-// Backtest result on 60 days NIFTY+BANKNIFTY: ~58% win, PF ~2.86, ROBUST
 
-strategy("FVG + Gate + Confluence — Abhey",
+strategy("FVG v2 — Trend + Session + VWAP — Abhey",
          overlay            = true,
          initial_capital    = 100000,
          currency           = currency.INR,
-         default_qty_type   = strategy.fixed,   // ← fixed=1 lot; percent_of_equity on a 55k
-         default_qty_value  = 1,                //   index gives qty=0 → no trades recorded
+         default_qty_type   = strategy.fixed,
+         default_qty_value  = 1,
          commission_type    = strategy.commission.percent,
          commission_value   = 0.01,
          slippage           = 2,
-         pyramiding         = 0,                // no re-entry while in a trade
+         pyramiding         = 0,
          calc_on_every_tick = false,
          max_labels_count   = 500,
          max_lines_count    = 500)
 
-// ── inputs ───────────────────────────────────────────────────────────────────
-float  gap_pct_in  = input.float(0.03,  "Min FVG gap (%)",            step=0.01,           group="FVG")
-int    expiry_bars = input.int  (12,    "FVG fill window (bars)",      minval=2, maxval=30, group="FVG")
-int    eff_window  = input.int  (48,    "Efficiency lookback (bars)",  minval=10,           group="Regime Gate")
-float  eff_max     = input.float(0.20,  "Skip if efficiency >=",       step=0.05,           group="Regime Gate")
-float  target_rr   = input.float(2.0,   "Target R-multiple",           step=0.5,            group="Risk")
-float  stop_buf_in = input.float(0.10,  "Stop buffer beyond gap (%)",  step=0.05,           group="Risk")
-string sess        = input.session("0945-1500", "Trade window (IST)",                        group="Filters")
+// ── core FVG inputs ───────────────────────────────────────────────────────────
+float  gap_pct_in  = input.float(0.03, "Min FVG gap (%)",           step=0.01,           group="FVG")
+int    expiry_bars = input.int  (12,   "FVG fill window (bars)",    minval=2, maxval=30,  group="FVG")
+int    eff_window  = input.int  (48,   "Efficiency lookback",       minval=10,            group="FVG")
+float  eff_max     = input.float(0.20, "Skip if efficiency >=",     step=0.05,            group="FVG")
+float  target_rr   = input.float(2.0,  "Target R-multiple",         step=0.5,             group="Risk")
+float  stop_buf_in = input.float(0.10, "Stop buffer beyond gap (%)",step=0.05,            group="Risk")
+
+// ── v2 filter toggles ─────────────────────────────────────────────────────────
+bool   use_ema_filter  = input.bool(true,  "EMA-21 trend filter (trade with trend)", group="v2 Filters")
+bool   use_vwap_filter = input.bool(true,  "VWAP bias (buy>VWAP, sell<VWAP)",        group="v2 Filters")
+bool   use_atr_floor   = input.bool(true,  "ATR stop floor (0.5× ATR-14 minimum)",   group="v2 Filters")
+bool   split_sessions  = input.bool(true,  "Morning + Power Hour only (skip midday)", group="v2 Filters")
+string sess_morning    = input.session("0945-1130", "Morning window (IST)",           group="v2 Filters")
+string sess_afternoon  = input.session("1400-1500", "Power-hour window (IST)",        group="v2 Filters")
+string sess_full       = input.session("0945-1500", "Full session (if split OFF)",    group="v2 Filters")
 
 float gap_pct     = gap_pct_in  / 100.0
 float stop_buffer = stop_buf_in / 100.0
+
+// ── indicators ────────────────────────────────────────────────────────────────
+float ema21  = ta.ema(close, 21)
+float vwap_v = ta.vwap(hlc3)
+float atr14  = ta.atr(14)
 
 // ── Kaufman efficiency ratio ──────────────────────────────────────────────────
 float abs_step = math.abs(close - close[1])
@@ -37,15 +62,23 @@ float net      = math.abs(close - close[eff_window])
 float er       = path > 0.0 ? net / path : 0.0
 bool  gate_ok  = er < eff_max
 
-// ── bar helpers ───────────────────────────────────────────────────────────────
-float rng        = high - low
-float close_pos  = rng > 0.0 ? (close - low) / rng : 0.5
-bool  in_session = not na(time(timeframe.period, sess, "Asia/Kolkata"))
+// ── session ───────────────────────────────────────────────────────────────────
+bool in_morning   = not na(time(timeframe.period, sess_morning,   "Asia/Kolkata"))
+bool in_afternoon = not na(time(timeframe.period, sess_afternoon, "Asia/Kolkata"))
+bool in_full      = not na(time(timeframe.period, sess_full,      "Asia/Kolkata"))
+bool in_session   = split_sessions ? (in_morning or in_afternoon) : in_full
 
-// ── bullish FVG detection ─────────────────────────────────────────────────────
-// gap  : high[k+2] < low[k]  (3-candle imbalance, k bars ago)
-// fill : current bar's low touches low[k]
-// dedup: no bar between the gap and now already touched it
+// ── trend + VWAP filters ──────────────────────────────────────────────────────
+bool ema_ok_bull  = not use_ema_filter  or close > ema21
+bool ema_ok_bear  = not use_ema_filter  or close < ema21
+bool vwap_ok_bull = not use_vwap_filter or close > vwap_v
+bool vwap_ok_bear = not use_vwap_filter or close < vwap_v
+
+// ── bar helpers ───────────────────────────────────────────────────────────────
+float rng       = high - low
+float close_pos = rng > 0.0 ? (close - low) / rng : 0.5
+
+// ── bullish FVG ───────────────────────────────────────────────────────────────
 bool  bull_fill = false
 float bull_prox = 0.0
 float bull_dist = 0.0
@@ -65,7 +98,7 @@ for int k = 1 to expiry_bars
                 bull_dist := d
                 break
 
-// ── bearish FVG detection ─────────────────────────────────────────────────────
+// ── bearish FVG ───────────────────────────────────────────────────────────────
 bool  bear_fill = false
 float bear_prox = 0.0
 float bear_dist = 0.0
@@ -85,7 +118,7 @@ for int k = 1 to expiry_bars
                 bear_dist := d
                 break
 
-// ── level-dedup: skip if the same proximal level just fired ──────────────────
+// ── level dedup ───────────────────────────────────────────────────────────────
 var float last_bull_prox_fired = na
 var float last_bear_prox_fired = na
 var int   last_bull_bar        = -999
@@ -101,20 +134,25 @@ bool bear_new = bear_fill and
       math.abs(bear_prox - last_bear_prox_fired) > close * 0.0003 or
       bar_index - last_bear_bar > expiry_bars)
 
-// ── final signal  (NO strategy.position_size check — pyramiding=0 handles it)
-bool bull_signal = bull_new and gate_ok and close_pos >= 0.50 and in_session
-bool bear_signal = bear_new and gate_ok and close_pos <= 0.50 and in_session
+// ── final signals (all confluence layers) ────────────────────────────────────
+bool bull_signal = bull_new and gate_ok and close_pos >= 0.50 and in_session and ema_ok_bull and vwap_ok_bull
+bool bear_signal = bear_new and gate_ok and close_pos <= 0.50 and in_session and ema_ok_bear and vwap_ok_bear
+
+// ── ATR stop floor helper ─────────────────────────────────────────────────────
+// Ensures stop is at least 0.5× ATR away so tiny gaps don't produce risk=0
+float atr_floor = atr14 * 0.5
 
 // ── entries + exits ───────────────────────────────────────────────────────────
 if bull_signal
-    float stop_lvl = bull_dist * (1.0 - stop_buffer)
-    float risk     = bull_prox - stop_lvl
-    float tgt      = bull_prox + risk * target_rr
+    float gap_stop  = bull_dist * (1.0 - stop_buffer)
+    float atr_stop  = bull_prox - atr_floor
+    float stop_lvl  = use_atr_floor ? math.min(gap_stop, atr_stop) : gap_stop
+    float risk      = bull_prox - stop_lvl
+    float tgt       = bull_prox + risk * target_rr
 
     strategy.entry("Long", strategy.long, comment="FVG BUY")
     strategy.exit ("Long Exit", from_entry="Long", limit=tgt, stop=stop_lvl)
 
-    // stop + target lines extending right until the price exits or 80 bars pass
     line.new(bar_index, stop_lvl, bar_index + 80, stop_lvl,
              color=color.new(color.red,   30), style=line.style_dashed, width=1)
     line.new(bar_index, tgt,      bar_index + 80, tgt,
@@ -125,43 +163,42 @@ if bull_signal
               "\nT  "           + str.tostring(tgt,       format.mintick) +
               "\nS  "           + str.tostring(stop_lvl,  format.mintick) +
               "\nER "           + str.tostring(er,        "#.##"),
-              yloc      = yloc.belowbar,
-              color     = color.new(color.green, 10),
-              style     = label.style_label_up,
-              textcolor = color.white,
-              size      = size.small)
+              yloc=yloc.belowbar, color=color.new(color.green, 10),
+              style=label.style_label_up, textcolor=color.white, size=size.small)
 
     last_bull_prox_fired := bull_prox
     last_bull_bar        := bar_index
 
 if bear_signal
-    float stop_lvl = bear_dist * (1.0 + stop_buffer)
-    float risk     = stop_lvl - bear_prox
-    float tgt      = bear_prox - risk * target_rr
+    float gap_stop  = bear_dist * (1.0 + stop_buffer)
+    float atr_stop  = bear_prox + atr_floor
+    float stop_lvl  = use_atr_floor ? math.max(gap_stop, atr_stop) : gap_stop
+    float risk      = stop_lvl - bear_prox
+    float tgt       = bear_prox - risk * target_rr
 
     strategy.entry("Short", strategy.short, comment="FVG SELL")
     strategy.exit ("Short Exit", from_entry="Short", limit=tgt, stop=stop_lvl)
 
     line.new(bar_index, stop_lvl, bar_index + 80, stop_lvl,
-             color=color.new(color.red,   30), style=line.style_dashed, width=1)
+             color=color.new(color.red,  30), style=line.style_dashed, width=1)
     line.new(bar_index, tgt,      bar_index + 80, tgt,
-             color=color.new(color.lime,  30), style=line.style_dashed, width=1)
+             color=color.new(color.lime, 30), style=line.style_dashed, width=1)
 
     label.new(bar_index, high,
               "▼ FVG SELL\nE  " + str.tostring(bear_prox, format.mintick) +
               "\nT  "            + str.tostring(tgt,       format.mintick) +
               "\nS  "            + str.tostring(stop_lvl,  format.mintick) +
               "\nER "            + str.tostring(er,        "#.##"),
-              yloc      = yloc.abovebar,
-              color     = color.new(color.red, 10),
-              style     = label.style_label_down,
-              textcolor = color.white,
-              size      = size.small)
+              yloc=yloc.abovebar, color=color.new(color.red, 10),
+              style=label.style_label_down, textcolor=color.white, size=size.small)
 
     last_bear_prox_fired := bear_prox
     last_bear_bar        := bar_index
 
-// ── background + markers ──────────────────────────────────────────────────────
+// ── overlay plots ─────────────────────────────────────────────────────────────
+plot(ema21,  "EMA 21",  color=color.new(color.orange, 40), linewidth=1)
+plot(vwap_v, "VWAP",    color=color.new(color.blue,   40), linewidth=1)
+
 bgcolor(not in_session ? color.new(color.gray, 92) : na, title="Out of session")
 
 plotshape(bull_signal, title="BUY",  style=shape.triangleup,
@@ -172,5 +209,5 @@ plotshape(bear_signal, title="SELL", style=shape.triangledown,
 plot(er, "Efficiency Ratio", color=color.new(color.aqua, 70), display=display.pane)
 
 // ── alerts ────────────────────────────────────────────────────────────────────
-alertcondition(bull_signal, "FVG BUY",  "FVG BUY signal fired — check chart")
-alertcondition(bear_signal, "FVG SELL", "FVG SELL signal fired — check chart")
+alertcondition(bull_signal, "FVG v2 BUY",  "FVG v2 BUY signal — check chart")
+alertcondition(bear_signal, "FVG v2 SELL", "FVG v2 SELL signal — check chart")
