@@ -34,7 +34,7 @@ stop_buffer = stop_buf_in / 100.0
 
 // ── Kaufman efficiency ratio: net / total-path over `eff_window` bars ─────
 abs_step = math.abs(close - close[1])
-path     = ta.sum(abs_step, eff_window)
+path     = ta.sma(abs_step, eff_window) * eff_window
 net      = math.abs(close - close[eff_window])
 eff      = path > 0 ? net / path : 0.0
 gate_ok  = eff < eff_max
