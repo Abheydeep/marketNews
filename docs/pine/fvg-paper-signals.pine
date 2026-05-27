@@ -1,53 +1,56 @@
 //@version=6
-// FVG + Gate + Confluence — Paper Signals
-// =========================================
-// Pine Script v6 implementation of the strategy validated under
-// services/trading-api/backtest/ (FVG retrace + Kaufman efficiency-ratio
-// regime gate + fill-direction confluence + 2.0R target). Backtest result on
-// 60 days of NIFTY + BANKNIFTY 5-min data: ~58% win, profit factor ~2.86,
-// every fold of a 3-fold walk-forward PF >= 1.0.
+// FVG + Efficiency Gate + Fill-Direction Confluence
+// ===================================================
+// Strategy version — works in both the chart overlay AND the Strategy Tester.
+// Validated on 60 days NIFTY + BANKNIFTY 5-min: ~58% win, PF ~2.86,
+// every fold of a 3-fold walk-forward PF ≥ 1.0.
 //
-// USE ON: NIFTY or BANKNIFTY, 5-minute timeframe. Indian NSE intraday data
-// in real time requires a TradingView paid plan; the free plan gives a
-// 15-min delay (fine for visualisation, not for live alerts).
-//
-// HOW TO INSTALL:
-//   1. TradingView → Pine Editor → New blank script
-//   2. Paste this whole file → Save → Add to chart
-//   3. (Optional) Right-click a label → "Add alert on FVG …" to fire push /
-//      email / webhook alerts when fresh signals print.
+// USE ON : NIFTY or BANKNIFTY · 5-minute chart
+// PLAN   : TradingView paid plan for real-time NSE data (free = 15-min delay)
 
-indicator("FVG + Gate + Confluence — Paper Signals (Abhey)",
-          overlay=true, max_labels_count=500, max_lines_count=500)
+strategy("FVG + Gate + Confluence — Abhey",
+         overlay               = true,
+         initial_capital       = 100000,
+         currency              = currency.INR,
+         default_qty_type      = strategy.percent_of_equity,
+         default_qty_value     = 2,
+         commission_type       = strategy.commission.percent,
+         commission_value      = 0.01,
+         slippage              = 2,
+         calc_on_every_tick    = false,
+         max_labels_count      = 500,
+         max_lines_count       = 500)
 
-// ── inputs ─────────────────────────────────────────────────────────────────
-float gap_pct_in  = input.float(0.03,  "Min FVG gap (%)",            step=0.01,  group="FVG")
-int   expiry_bars = input.int(12,      "FVG fill window (bars)",     minval=2, maxval=20, group="FVG")
-int   eff_window  = input.int(48,      "Efficiency lookback (bars)", minval=10, group="Regime gate")
-float eff_max     = input.float(0.20,  "Skip if efficiency >=",      step=0.05,  group="Regime gate")
-float target_rr   = input.float(2.0,   "Target R-multiple",          step=0.5,   group="Risk")
-float stop_buf_in = input.float(0.10,  "Stop buffer beyond gap (%)", step=0.05,  group="Risk")
-string sess       = input.session("0945-1500", "Trade window (IST)", group="Filters")
+// ── inputs ──────────────────────────────────────────────────────────────────
+float  gap_pct_in  = input.float(0.03,  "Min FVG gap (%)",            step=0.01,          group="FVG")
+int    expiry_bars = input.int  (12,    "FVG fill window (bars)",      minval=2, maxval=30, group="FVG")
+int    eff_window  = input.int  (48,    "Efficiency lookback (bars)",  minval=10,           group="Regime Gate")
+float  eff_max     = input.float(0.20,  "Skip if efficiency ≥",        step=0.05,           group="Regime Gate")
+float  target_rr   = input.float(2.0,   "Target R-multiple",           step=0.5,            group="Risk")
+float  stop_buf_in = input.float(0.10,  "Stop buffer beyond gap (%)",  step=0.05,           group="Risk")
+string sess        = input.session("0945-1500", "Trade window (IST)",                        group="Filters")
+bool   show_er     = input.bool(true,   "Show efficiency-ratio line",                        group="Display")
 
 float gap_pct     = gap_pct_in  / 100.0
 float stop_buffer = stop_buf_in / 100.0
 
-// ── Kaufman efficiency ratio: net / total-path over `eff_window` bars ─────
+// ── Kaufman efficiency ratio ─────────────────────────────────────────────────
 float abs_step = math.abs(close - close[1])
 float path     = ta.sma(abs_step, eff_window) * eff_window
 float net      = math.abs(close - close[eff_window])
-float eff      = path > 0 ? net / path : 0.0
-bool  gate_ok  = eff < eff_max
+float er       = path > 0.0 ? net / path : 0.0
+bool  gate_ok  = er < eff_max
 
-// ── bar metrics ───────────────────────────────────────────────────────────
-float rng       = high - low
-float close_pos = rng > 0 ? (close - low) / rng : 0.5
+// ── bar helpers ──────────────────────────────────────────────────────────────
+float rng        = high - low
+float close_pos  = rng > 0.0 ? (close - low) / rng : 0.5
 bool  in_session = not na(time(timeframe.period, sess, "Asia/Kolkata"))
 
-// ── bullish FVG fresh first-fill on the current bar ───────────────────────
+// ── bullish FVG: gap = high[k+2] < low[k], fill = current low ≤ low[k] ──────
 bool  bull_fill = false
-float bull_prox = 0.0
-float bull_dist = 0.0
+float bull_prox = 0.0   // proximal edge of the gap (entry level)
+float bull_dist = 0.0   // distal edge (stop anchor)
+
 for int k = 1 to expiry_bars
     float p = low[k]
     float d = high[k + 2]
@@ -64,10 +67,11 @@ for int k = 1 to expiry_bars
                 bull_dist := d
                 break
 
-// ── bearish FVG fresh first-fill on the current bar ───────────────────────
+// ── bearish FVG: gap = low[k+2] > high[k], fill = current high ≥ high[k] ───
 bool  bear_fill = false
 float bear_prox = 0.0
 float bear_dist = 0.0
+
 for int k = 1 to expiry_bars
     float p = high[k]
     float d = low[k + 2]
@@ -84,39 +88,99 @@ for int k = 1 to expiry_bars
                 bear_dist := d
                 break
 
-// ── combined signal conditions ────────────────────────────────────────────
-bool bull_signal = bull_fill and gate_ok and close_pos >= 0.50 and in_session
-bool bear_signal = bear_fill and gate_ok and close_pos <= 0.50 and in_session
+// ── dedup: skip if same proximal level fired within the last expiry_bars ────
+var float last_bull_prox_fired = na
+var float last_bear_prox_fired = na
+var int   last_bull_bar        = -999
+var int   last_bear_bar        = -999
 
-// ── plot signals ──────────────────────────────────────────────────────────
+bool bull_new = bull_fill and (na(last_bull_prox_fired) or
+                math.abs(bull_prox - last_bull_prox_fired) > close * 0.0003 or
+                bar_index - last_bull_bar > expiry_bars)
+bool bear_new = bear_fill and (na(last_bear_prox_fired) or
+                math.abs(bear_prox - last_bear_prox_fired) > close * 0.0003 or
+                bar_index - last_bear_bar > expiry_bars)
+
+// ── combined entry conditions ────────────────────────────────────────────────
+bool bull_signal = bull_new and gate_ok and close_pos >= 0.50 and in_session and strategy.position_size == 0
+bool bear_signal = bear_new and gate_ok and close_pos <= 0.50 and in_session and strategy.position_size == 0
+
+// ── execute trades (strategy tester) + draw levels ──────────────────────────
 if bull_signal
-    float stop   = bull_dist * (1.0 - stop_buffer)
-    float risk   = bull_prox - stop
-    float target = bull_prox + risk * target_rr
-    string txt   = "BUY\nE " + str.tostring(bull_prox, "#.##")
-                 + "\nT "    + str.tostring(target,    "#.##")
-                 + "\nS "    + str.tostring(stop,      "#.##")
-    label.new(bar_index, low - rng * 0.3, txt,
-              color=color.new(color.green, 0), style=label.style_label_up,
-              textcolor=color.white, size=size.small)
-    line.new(bar_index, stop,   bar_index + 12, stop,   color=color.red,   style=line.style_dashed)
-    line.new(bar_index, target, bar_index + 12, target, color=color.green, style=line.style_dashed)
-    alert("FVG BUY @ " + str.tostring(bull_prox, "#.##"), alert.freq_once_per_bar)
+    float stop_lvl = bull_dist * (1.0 - stop_buffer)
+    float risk     = bull_prox - stop_lvl
+    float tgt      = bull_prox + risk * target_rr
+
+    strategy.entry("Long", strategy.long, comment="FVG BUY")
+    strategy.exit ("Long Exit", from_entry="Long", limit=tgt, stop=stop_lvl,
+                   comment="FVG Exit")
+
+    // persistent lines so they don't disappear after 12 bars
+    line.new(bar_index, stop_lvl, bar_index + 60, stop_lvl,
+             color=color.new(color.red,   20), style=line.style_dashed, width=1)
+    line.new(bar_index, tgt,      bar_index + 60, tgt,
+             color=color.new(color.green, 20), style=line.style_dashed, width=1)
+
+    label.new(bar_index, low - syminfo.mintick * 30,
+              "▲ FVG BUY\nE  " + str.tostring(bull_prox, format.mintick) +
+              "\nT  "           + str.tostring(tgt,       format.mintick) +
+              "\nS  "           + str.tostring(stop_lvl,  format.mintick) +
+              "\nER " + str.tostring(er, "#.##"),
+              yloc    = yloc.belowbar,
+              color   = color.new(color.green, 10),
+              style   = label.style_label_up,
+              textcolor = color.white,
+              size    = size.small)
+
+    last_bull_prox_fired := bull_prox
+    last_bull_bar        := bar_index
 
 if bear_signal
-    float stop   = bear_dist * (1.0 + stop_buffer)
-    float risk   = stop - bear_prox
-    float target = bear_prox - risk * target_rr
-    string txt   = "SELL\nE " + str.tostring(bear_prox, "#.##")
-                 + "\nT "     + str.tostring(target,    "#.##")
-                 + "\nS "     + str.tostring(stop,      "#.##")
-    label.new(bar_index, high + rng * 0.3, txt,
-              color=color.new(color.red, 0), style=label.style_label_down,
-              textcolor=color.white, size=size.small)
-    line.new(bar_index, stop,   bar_index + 12, stop,   color=color.red,   style=line.style_dashed)
-    line.new(bar_index, target, bar_index + 12, target, color=color.green, style=line.style_dashed)
-    alert("FVG SELL @ " + str.tostring(bear_prox, "#.##"), alert.freq_once_per_bar)
+    float stop_lvl = bear_dist * (1.0 + stop_buffer)
+    float risk     = stop_lvl - bear_prox
+    float tgt      = bear_prox - risk * target_rr
 
-// ── housekeeping ──────────────────────────────────────────────────────────
+    strategy.entry("Short", strategy.short, comment="FVG SELL")
+    strategy.exit ("Short Exit", from_entry="Short", limit=tgt, stop=stop_lvl,
+                   comment="FVG Exit")
+
+    line.new(bar_index, stop_lvl, bar_index + 60, stop_lvl,
+             color=color.new(color.red,   20), style=line.style_dashed, width=1)
+    line.new(bar_index, tgt,      bar_index + 60, tgt,
+             color=color.new(color.lime,  20), style=line.style_dashed, width=1)
+
+    label.new(bar_index, high + syminfo.mintick * 30,
+              "▼ FVG SELL\nE  " + str.tostring(bear_prox, format.mintick) +
+              "\nT  "            + str.tostring(tgt,       format.mintick) +
+              "\nS  "            + str.tostring(stop_lvl,  format.mintick) +
+              "\nER " + str.tostring(er, "#.##"),
+              yloc    = yloc.abovebar,
+              color   = color.new(color.red, 10),
+              style   = label.style_label_down,
+              textcolor = color.white,
+              size    = size.small)
+
+    last_bear_prox_fired := bear_prox
+    last_bear_bar        := bar_index
+
+// ── background shading + efficiency overlay ──────────────────────────────────
 bgcolor(not in_session ? color.new(color.gray, 92) : na, title="Out of session")
-plotchar(eff, "Efficiency ratio", "•", location.bottom, color=color.aqua, size=size.tiny)
+
+// efficiency ratio in a secondary pane — add via "Add indicator" → "From script"
+// or uncomment the plot below to overlay it on price (0–1 scale, hard to read):
+plot(show_er ? er : na, "Efficiency Ratio", color=color.new(color.aqua, 60),
+     display=display.pane)
+
+// quick shape markers so signals are visible even when zoomed out
+plotshape(bull_signal, title="BUY marker",  style=shape.triangleup,
+          location=location.belowbar, color=color.new(color.green, 0),
+          size=size.tiny)
+plotshape(bear_signal, title="SELL marker", style=shape.triangledown,
+          location=location.abovebar, color=color.new(color.red, 0),
+          size=size.tiny)
+
+// ── alerts ───────────────────────────────────────────────────────────────────
+alertcondition(bull_signal, "FVG BUY signal",
+               "FVG BUY @ {{close}} — E {{plot_0}} strategy firing")
+alertcondition(bear_signal, "FVG SELL signal",
+               "FVG SELL @ {{close}} — E {{plot_0}} strategy firing")
