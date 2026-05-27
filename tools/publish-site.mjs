@@ -1065,9 +1065,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     .freshness-banner a {
+      border: 1px solid rgba(103, 232, 249, 0.26);
       border-radius: 8px;
-      background: rgba(248, 250, 252, 0.92);
-      color: #0f172a;
+      background: rgba(15, 23, 42, 0.72);
+      color: #f8fafc;
       flex: 0 0 auto;
       font-size: 13px;
       font-weight: 950;
@@ -1174,9 +1175,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     .subscribe-strip a {
+      border: 1px solid rgba(187, 247, 208, 0.32);
       border-radius: 8px;
-      background: #d1fae5;
-      color: #052e16;
+      background: rgba(5, 46, 22, 0.66);
+      color: #f0fdf4;
       flex: 0 0 auto;
       font-size: 13px;
       font-weight: 950;

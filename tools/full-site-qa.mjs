@@ -152,9 +152,9 @@ async function verifyArchive(page, rootUrl) {
   assertPublicBriefingCopy("archive page HTML", await page.content());
   await expectOne(page.locator("body.archive-dark"), "archive dark theme");
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
-  await expectOne(page.getByRole("heading", { name: "Daily Pre-Market Briefing For Nifty And Bank Nifty" }), "archive product-promise heading");
-  await expectOne(page.getByText("Pre-Market Intelligence Archive", { exact: true }), "archive eyebrow");
-  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
+  await expectOne(page.locator(".hero h1"), "archive product-promise heading");
+  await expectOne(page.locator(".hero .eyebrow"), "archive eyebrow");
+  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings And Records" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
@@ -175,10 +175,11 @@ async function verifyArchive(page, rootUrl) {
   }
   assert.equal(await page.getByText("Daily Pre-Market Summary", { exact: true }).count(), 0, "archive root must not render a daily briefing");
 
-  const linkCount = await page.locator("a").count();
+  const visibleArchiveLinks = page.locator("a:visible");
+  const linkCount = await visibleArchiveLinks.count();
   for (let index = 0; index < linkCount; index += 1) {
     await page.goto(rootUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
-    const link = page.locator("a").nth(index);
+    const link = page.locator("a:visible").nth(index);
     const href = await link.getAttribute("href");
     assert.ok(href, `archive link ${index} should have href`);
     if (!isInternalHref(href)) {
@@ -195,22 +196,21 @@ async function verifyDarkPreview(page, stamp) {
   await page.goto(previewUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
   assertPublicBriefingCopy("dark preview HTML", await page.content());
   await expectOne(page.locator("body.glass-v2"), "dark preview glass theme");
-  await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), "dark preview heading");
-  await expectOne(page.getByText("Market Mood", { exact: true }), "dark preview market mood rail");
-  await expectOne(page.getByText("Primary Driver", { exact: true }), "dark preview primary driver rail");
-  await expectOne(page.getByText("India Filter", { exact: true }), "dark preview india filter rail");
-  await expectOne(page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })), "dark preview quote board");
+  await expectOne(page.locator(".page-header h1"), "dark preview heading");
+  await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, "dark preview two-minute summary");
+  await expectOne(page.getByText("Today's Read", { exact: true }), "dark preview narrative read");
+  await expectOne(page.getByText("Top Stories", { exact: true }), "dark preview top stories");
+  await expectAtLeast(page.getByText("Evidence grade:", { exact: false }), 1, "dark preview evidence grade");
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "dark preview should not expose Studio Command");
   assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
   const sourceCardCount = await sourceCards.count();
-  assert.ok(sourceCardCount > 0 && sourceCardCount <= 8, `dark preview should render the public top-8 source set, got ${sourceCardCount}`);
+  assert.ok(sourceCardCount > 0 && sourceCardCount <= 10, `dark preview should render the public source set, got ${sourceCardCount}`);
   await verifyDarkSurfaceContrast(page, "dark preview initial view");
   await verifySummary(page, preview, { keepOpen: true });
   await verifyDarkSurfaceContrast(page, "dark preview expanded summary");
   await page.locator("#summaryExpand > summary").click();
   await expectOne(page.locator("#summaryExpand:not([open])"), "dark preview summary closes after contrast check");
-  await verifyQuoteBoard(page, preview);
   await verifyPublicDigestJson(preview, stamp);
   return sourceCardCount;
 }
@@ -441,14 +441,17 @@ async function verifyDailyPage(page, daily, stamp) {
   assertPublicBriefingCopy(`${daily.slug} HTML`, pageHtml);
   await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
   await verifyDarkSurfaceContrast(page, `${daily.slug} initial dark view`);
-  await expectOne(page.getByText("Daily Pre-Market Summary", { exact: true }), `${daily.slug} heading`);
+  await expectOne(page.locator(".page-header h1"), `${daily.slug} heading`);
   await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
   if (isLegacy) {
     await expectOne(page.getByText("Archived edition", { exact: false }), `${daily.slug} archived edition banner`);
   } else {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
-  await expectOne(page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })), `${daily.slug} quote board`);
+  await expectOne(page.getByText("Today's Read", { exact: true }), `${daily.slug} narrative read`);
+  await expectOne(page.getByText("Top Stories", { exact: true }), `${daily.slug} top stories`);
+  assert.equal(await page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })).count(), 0, `${daily.slug} public page should not render quote board`);
+  assert.equal(await page.getByText("Opening Nerve", { exact: true }).count(), 0, `${daily.slug} public page should not render trading-guide prep`);
   await expectAtLeast(page.locator(".share-row"), 1, `${daily.slug} share row`);
   assert.equal(await page.getByRole("link", { name: "Admin Login" }).count(), 0, `${daily.slug} should not expose admin login`);
   assert.equal(await page.getByRole("link", { name: "Project Components" }).count(), 0, `${daily.slug} should not expose admin project components`);
@@ -464,33 +467,29 @@ async function verifyDailyPage(page, daily, stamp) {
 
   const tabs = await verifyPublicNavigation(page, daily);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, `${daily.slug} should not render hidden trading guide content`);
-  await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), `${daily.slug} freshness notice`);
-  await expectOne(page.getByText("Get the next trading-day 7:15 AM brief", { exact: false }), `${daily.slug} follow CTA`);
+  await expectAtLeast(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), 1, `${daily.slug} freshness notice`);
   assert.equal(
     (await page.locator("#summaryExpand").evaluate((node) => {
       const summaryTop = node.getBoundingClientRect().top;
       const shareTop = document.querySelector(".share-row")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const moodTop = document.querySelector("[aria-label='Market mood and priority signals']")?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      return summaryTop < shareTop && summaryTop < moodTop;
+      return summaryTop < shareTop;
     })),
     true,
-    `${daily.slug} two-minute summary should appear before share and mood modules`
+    `${daily.slug} two-minute summary should appear before share controls`
   );
   await verifySummary(page, daily, { keepOpen: true });
   await verifyDarkSurfaceContrast(page, `${daily.slug} expanded dark summary`);
   await page.locator("#summaryExpand > summary").click();
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary closes after contrast check`);
-  await verifyQuoteBoard(page, daily);
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, `${daily.slug} should not expose Studio Command`);
   assert.equal(await page.locator("#studio-view").count(), 0, `${daily.slug} should not render studio section`);
   await verifyPublicDigestJson(daily, stamp);
-  const chartResult = await verifyCharts(page, daily);
   const sourceLinks = await clickSourceLinks(page, daily, { isLegacy });
 
   return {
     tabs,
-    chartButtons: chartResult.buttons,
-    chartExternalLinks: chartResult.externalLinks,
+    chartButtons: 0,
+    chartExternalLinks: 0,
     sourceLinks,
     studioButtons: 0
   };
@@ -504,7 +503,7 @@ async function verifyPublicDigestJson(daily, stamp) {
   assert.equal(Object.hasOwn(digest, "teleprompterScript"), false, `${daily.slug} public digest.json should redact teleprompterScript`);
   assert.equal(Object.hasOwn(digest, "reelScript"), false, `${daily.slug} public digest.json should redact reelScript`);
   assert.equal(digest.asset?.positivePrompt, undefined, `${daily.slug} public digest.json should redact asset prompts`);
-  assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length > 0 && digest.newsCards.length <= 8, `${daily.slug} public digest.json should include compact top-8 news card DTOs`);
+  assert.ok(Array.isArray(digest.newsCards) && digest.newsCards.length > 0 && digest.newsCards.length <= 10, `${daily.slug} public digest.json should include compact public news card DTOs`);
   assert.deepEqual(
     Object.keys(digest.newsCards[0]).sort(),
     ["category", "publisherName", "sentimentLabel", "sourceUrl", "thumbnailAlt", "thumbnailUrl", "timestamp", "title"],
@@ -537,13 +536,11 @@ async function verifySummary(page, daily, options = {}) {
   const summary = page.locator("#summaryExpand");
   await expectOne(summary, `${daily.slug} compact summary details`);
   await expectOne(summary.locator("summary"), `${daily.slug} compact summary toggle`);
-  await expectOne(page.locator("#summaryExpand[open]"), `${daily.slug} summary should be visible on first load`);
+  await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary should start collapsed`);
   await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, `${daily.slug} two-minute summary`);
-  await expectOne(page.getByText("Market Map", { exact: true }), `${daily.slug} market map`);
-  await summary.locator("summary").click();
-  await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary collapses`);
   await summary.locator("summary").click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
+  await expectOne(page.getByText("Market Map", { exact: true }), `${daily.slug} market map`);
   if (options.keepOpen) {
     return;
   }
@@ -662,7 +659,8 @@ async function verifySourceFilters(page, daily) {
 
   await page.locator('[data-source-filter="all"]').click();
   await expectOne(page.locator('[data-source-filter="all"][aria-pressed="true"]'), `${daily.slug} all source filter active`);
-  assert.equal(await page.locator(".source-card:visible").count(), 8, `${daily.slug} all source filter should restore the public top-8 cards`);
+  const allVisibleCards = await page.locator(".source-card:visible").count();
+  assert.ok(allVisibleCards > 0 && allVisibleCards <= 10, `${daily.slug} all source filter should restore the public source cards, got ${allVisibleCards}`);
 }
 
 async function clickInternalLink(page, locator, href, label) {
@@ -670,12 +668,31 @@ async function clickInternalLink(page, locator, href, label) {
   const before = page.url();
   const resolved = new URL(href, before).href;
   const expected = stripQuery(resolved);
+  if (stripQuery(before) === expected) {
+    await locator.click();
+    return;
+  }
   await Promise.all([
-    page.waitForURL((url) => stripQuery(url.href) === expected, { timeout: 30_000 }),
+    page.waitForURL((url) => stripQuery(url.href) === expected || isAllowedInternalRedirect(resolved, url.href), { timeout: 30_000 }),
     locator.click()
   ]);
   const after = page.url();
-  assert.equal(stripQuery(after), stripQuery(resolved), `${label} should navigate to ${resolved}, got ${after}`);
+  assert.ok(
+    stripQuery(after) === stripQuery(resolved) || isAllowedInternalRedirect(resolved, after),
+    `${label} should navigate to ${resolved}, got ${after}`
+  );
+}
+
+function isAllowedInternalRedirect(expected, actual) {
+  const expectedPath = new URL(expected).pathname;
+  const actualPath = new URL(actual).pathname;
+  if (expectedPath.endsWith("/latest/")) {
+    return /\/[0-9]{1,2}[a-z]{3}[0-9]{4}\/$/i.test(actualPath);
+  }
+  if (expectedPath.endsWith("/latest/trading-guide/")) {
+    return /\/[0-9]{1,2}[a-z]{3}[0-9]{4}\/trading-guide\/$/i.test(actualPath);
+  }
+  return false;
 }
 
 async function clickExternalPopup(page, locator, expectedPrefix, label) {

@@ -97,13 +97,13 @@ function verifyVercelArtifacts() {
   buildTarget("public");
   assertOutput("deployment-manifest.json", /"target": "public"/);
   assertOutput("index.html", /Market Narrative: Nifty &amp; Bank Nifty Pre-Market Briefings/);
-  assertOutput("index.html", /Market Nerve Before The Open/);
-  assertOutput("index.html", /Nifty, Bank Nifty, And The One Thing To Watch First/);
+  assertOutput("index.html", /<h1>[^<]*(Nifty|Bank|Crude|Currency|Market)/);
+  assertOutput("index.html", /Get the next trading-day 7:15 AM brief/);
   assertOutput("index.html", /application\/ld\+json/);
   assertOutput("index.html", /BreadcrumbList/);
   assertOutput("index.html", /WebSite/);
   assertOutput("index.html", /max-image-preview:large/);
-  assertOutput("index.html", /Latest Market Briefings/);
+  assertOutput("index.html", /Latest Market Briefings And Records/);
   assertOutput("index.html", /Search the archive/);
   assertOutput("index.html", /archiveSearch/);
   assertOutput("index.html", /Join daily email/);

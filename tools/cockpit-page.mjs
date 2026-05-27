@@ -914,7 +914,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .flow-label {
       font-size: 11px;
-      color: #64748b;
+      color: #94a3b8;
       white-space: nowrap;
     }
     .preopen-flow {
@@ -925,11 +925,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .preopen-flow.down { color: #fb7185; }
     .preopen-flow-row small {
       font-size: 11px;
-      color: #64748b;
+      color: #94a3b8;
     }
     .preopen-flows--pending {
       font-size: 12px;
-      color: #64748b;
+      color: #94a3b8;
       font-style: italic;
     }
     @media (max-width: 600px) {
@@ -1357,7 +1357,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .todays-read-footer {
       margin-top: 16px;
       font-size: 12px;
-      color: #64748b;
+      color: #94a3b8;
       border-top: 1px solid rgba(255,255,255,0.06);
       padding-top: 12px;
     }
@@ -1382,7 +1382,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .top-stories-sub {
       font-size: 13px;
-      color: #64748b;
+      color: #94a3b8;
       margin: 0 0 16px;
     }
     .top-stories-list {
@@ -1466,7 +1466,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .top-stories-footer {
       margin-top: 14px;
       font-size: 12.5px;
-      color: #475569;
+      color: #94a3b8;
     }
     .top-stories-footer a {
       color: #63b3ed;
