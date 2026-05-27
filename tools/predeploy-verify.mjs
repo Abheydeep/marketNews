@@ -113,7 +113,7 @@ function verifyVercelArtifacts() {
   assertOutput("index.html", /Read market briefing/);
   assertOutput("index.html", /Why it mattered for India/);
   assertOutput("index.html", /sentiment-sparkline/);
-  assertOutput("index.html", /7:15 AM IST opening read/);
+  assertOutput("index.html", /7:15 AM IST Nifty and Bank Nifty pre-market briefing/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
   assertOutput("index.html", /Daily trader workflow/);
@@ -147,13 +147,16 @@ function verifyVercelArtifacts() {
   assertOutputNot("subscribe/index.html", /name="_captcha" value="false"/);
   assertOutput("latest/index.html", /Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/);
   assertOutput("latest/trading-guide/index.html", /Market Narrative latest trading guide|No pre-market briefing|briefing was not published as latest/);
-  assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification/);
-  assertOutput("4may2026/index.html", /Opening Nerve/);
+  assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification|Latest verified trading-day edition/);
+  assertOutput("4may2026/index.html", /2 Minute Summary/);
+  assertOutput("4may2026/index.html", /Today's Read/);
+  assertOutput("4may2026/index.html", /Top Stories/);
   assertOutput("4may2026/index.html", /Evidence grade:/);
   assertOutput("4may2026/index.html", /Full India-source gate:/);
-  assertOutput("4may2026/index.html", /Stand-down trigger/);
+  assertOutputNot("4may2026/index.html", /Opening Nerve|Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);
   assertOutput("4may2026/trading-guide/index.html", /Opening Nerve/);
+  assertOutput("4may2026/trading-guide/index.html", /Stand-down trigger/);
   assertOutput("multibagger/index.html", /Research model started 27 Apr 2026/);
   assertOutput("multibagger/index.html", /Entries captured 04 May, 02:12 pm/);
   assertOutput("multibagger/index.html", /Latest quote refresh/);
