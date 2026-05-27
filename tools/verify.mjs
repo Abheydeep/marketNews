@@ -1327,6 +1327,16 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
   assert.equal(lead.selectionMethod, "agent_rerank");
 });
 
+await test("daily generation entry point routes leads through agent reranker path", async () => {
+  const generatorSource = await readFile(join(rootDir, "tools", "generate-daily-summary.mjs"), "utf8");
+  const coreSource = await readFile(join(rootDir, "tools", "core.mjs"), "utf8");
+
+  assert.match(generatorSource, /await buildDigest\(/, "daily generator should use buildDigest()");
+  assert.doesNotMatch(generatorSource, /\bdailyLeadForDigest\(/, "daily generator must not call the deterministic lead helper directly");
+  assert.match(coreSource, /const dailyLead = await dailyLeadForDigestWithAgent\(/, "buildDigest must call the agent-aware daily lead helper");
+  assert.match(coreSource, /NVIDIA_API_KEY/, "agent-aware lead helper must read the configured NVIDIA key path");
+});
+
 await test("premarket publish window blocks stale scheduled runs", () => {
   const onTime = premarketPublishWindowStatus({
     date: "2026-05-11",
