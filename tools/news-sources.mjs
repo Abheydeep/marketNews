@@ -861,7 +861,7 @@ function hasSpecificMarketDriverText(value) {
       isIndiaFuelForexPolicyStory(text) || isIndiaPolicyStory(text) || isMarketInfrastructureStory(text) ||
       isIndiaInfrastructureStory(text) || isFuelInflationStory(text) ||
       isIndiaTelecomStory(text) || isCorporateActionStory(text) ||
-      isTradePolicyStory(text)) {
+      isTradePolicyStory(text) || isIndexRebalancingStory(text) || isMonsoonStory(text)) {
     return true;
   }
   return /\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount|vix|volatility|options?|pcr|oi buildup|put writing|call resistance|fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow|rbi|repo rate|monetary policy|liquidity|g-sec|gsec|monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er|ipo|listing|primary market|new issue|china|hong kong|shanghai|beijing|yuan|pboc|metal|metals|steel|copper|aluminium|aluminum|iron ore|consumer spending|retail sales|consumer confidence|personal consumption|pmi|manufacturing|factory orders|industrial production|capex|deficit|fiscal|treasury borrowing|sovereign debt|bond supply)\b/.test(text);
@@ -1185,7 +1185,15 @@ function isGeopoliticalRiskStory(value) {
 }
 
 function isMarketInfrastructureStory(value) {
-  return /\b(mcx|multi commodity exchange|commodity exchange|exchange revenue|trading volume|clearing corporation|depository|capital-market infrastructure)\b/i.test(String(value || ""));
+  return /\b(mcx|multi commodity exchange|commodity exchange|exchange revenue|trading volume|clearing corporation|depository|capital-market infrastructure|msci|msci rebalanc|msci index|msci inclusion|msci exclusion|msci weight|msci review|msci semi-annual|morgan stanley capital international|index rebalanc|index reshuffle|index reconstitut|passive fund|etf rebalanc|benchmark rebalanc|ftse rebalanc|nifty50 rebalanc|sensex rebalanc|index weight change|index reshuffle|block deal|bulk deal.*index|index.*bulk deal)\b/i.test(String(value || ""));
+}
+
+function isIndexRebalancingStory(value) {
+  return /\b(msci|ftse|s&p.*index|nifty.*reshuffle|index.*inclusion|index.*exclusion|index.*weight|rebalanc|reconstitut|index review|passive.*outflow|passive.*inflow|etf.*flow)\b/i.test(String(value || ""));
+}
+
+function isMonsoonStory(value) {
+  return /\b(monsoon|imd|india meteorological|rainfall|kharif|rabi|el ni[nñ]o|la ni[nñ]a|southwest monsoon|below.?normal|above.?normal|monsoon.*forecast|monsoon.*predict|monsoon.*deficit|monsoon.*progress|monsoon.*arrival|delayed monsoon|weak monsoon)\b/i.test(String(value || ""));
 }
 
 function isIndiaInfrastructureStory(value) {
@@ -1629,6 +1637,22 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       whyItMatters: "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
       indiaImpact: "Watch MCX, exchanges, brokers and capital-market infrastructure peers; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
       watchFor: "Watch MCX volume reaction, broker/exchange peer breadth and Bank Nifty VWAP after the open."
+    };
+  }
+  if (isIndexRebalancingStory(text)) {
+    return {
+      takeaway: "index rebalancing triggers large, pre-scheduled passive fund flows — these move prices on the rebalancing date independent of fundamentals.",
+      whyItMatters: "MSCI and FTSE reviews force global ETFs and passive funds to buy or sell exact quantities by close on the effective date. This can cause 1–3% intraday swings in individual stocks and distort Nifty in the last 30–60 minutes of trade.",
+      indiaImpact: "Check which stocks are added or removed and their index weights. Heavy selling on a green day or an inexplicable late-session Nifty drop often traces to passive rebalancing outflows, not a fundamental change in outlook.",
+      watchFor: "Watch the stocks named in the rebalancing announcement, particularly in the final hour. Large block deals and divergence between futures and cash are the live tells."
+    };
+  }
+  if (isMonsoonStory(text)) {
+    return {
+      takeaway: "monsoon forecast and progress are India's single biggest domestic macro variable — a below-normal monsoon raises food inflation, hits rural demand and pressures RBI on rate cuts.",
+      whyItMatters: "India's agriculture depends on the southwest monsoon (June–September). A weak or delayed monsoon lifts vegetable and food prices, reduces kharif crop output, squeezes rural wages and delays consumption recovery in FMCG and rural-focused sectors.",
+      indiaImpact: "FMCG, agri-input companies, rural NBFCs and two-wheeler companies are most exposed to monsoon risk. A below-normal forecast typically causes Nifty FMCG and auto to underperform and reduces the probability of an RBI rate cut.",
+      watchFor: "Track IMD's weekly monsoon progress reports and the June 1 onset date. A 10%+ rainfall deficit by July is the threshold where market pricing starts to shift materially."
     };
   }
   if (isCorporateActionStory(text)) {

@@ -112,8 +112,8 @@ ${topArticles}`;
   );
   const reelScript = await nimCall(
     systemPrompt,
-    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | INDIA OPEN], [40-52s | TRADE PLAN], [52-58s | WATCH NEXT], [58-60s | CLOSE].\n\nCRITICAL: This is a social media reel, not a briefing. Every line must make the viewer want to hear the next line. Tell a story — connect events as cause and effect. Never list numbers without saying what they mean. Use natural Hinglish. VOICEOVER lines max 12 words each. Hook must create a "wait, what?" moment — no greeting, drop straight into the tension.\n\nEnd the CLOSE with: "Full map is live at marketnarrative.in. Follow so you never miss the open."\n\n${context}`,
-    { maxTokens: 700 }
+    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | WHAT TO WATCH], [40-52s | BIGGER PICTURE], [52-58s | FOLLOW CTA], [58-60s | CLOSE].\n\nRULES:\n- This is a FINANCIAL NEWS STORY reel, not a trading brief. Zero trading advice, zero entry/exit levels, zero buy/sell calls.\n- Every line must make the viewer want to hear the next line.\n- Find the most counterintuitive or surprising fact in the data — lead with that.\n- Tell a story: connect events as cause → effect → India impact.\n- Numbers only appear after you explain why they matter.\n- Natural Hinglish throughout. Group chat energy, not newsreader.\n- VOICEOVER lines max 12 words each.\n- End CLOSE with: "Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo."\n- If MSCI rebalancing, index reshuffle, or passive fund flows appear in the data — LEAD WITH THAT. It is the most important explainer when markets move without an obvious reason.\n- If monsoon forecast or IMD data appears — include it in WHY INDIA CARES.\n\n${context}`,
+    { maxTokens: 800 }
   );
 
   if (!teleprompterScript && !onePageSummary && !reelScript) return null;

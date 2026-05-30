@@ -59,94 +59,98 @@ Educational market research only. This is not SEBI-registered investment advice,
 
 ### 3. Reel Script (45-60 seconds, Instagram/YouTube Shorts, 9:16 vertical)
 
+**PURPOSE: This reel promotes marketnarrative.in. It is a financial news story — NOT trading advice. No entry/exit levels, no trade setups, no investment recommendations.**
+
 **ONE GOAL: Make the viewer feel like they almost missed something important — and that following this account is the fix.**
 
-This reel is not a market summary. It is a 60-second story with a twist. Think of it as: a friend who trades for a living just called you before the open and said "yaar, sun — kuch interesting hua hai." That energy. That urgency. That specificity.
+Think of it as: a well-informed friend just called and said "yaar, sun — kuch interesting hua hai. Idhar dekh." That energy. That specificity. That confidence.
 
 **The emotional arc the viewer must feel:**
-- 0-3s: "Wait, what?" (hook lands)
-- 3-14s: "Oh, that's why..." (story clicks)
-- 14-28s: "Ohh, so THAT'S the real problem" (tension builds)
-- 28-40s: "OK so what do I actually do?" (relief + clarity)
-- 40-52s: "Smart. I wouldn't have thought of that." (respect earned)
-- 52-60s: "I need to follow this account." (action)
+- 0-3s: "Wait, what happened?" (hook creates curiosity)
+- 3-14s: "Oh — that's the story" (overnight context clicks)
+- 14-28s: "That's going to affect India because..." (tension + insight)
+- 28-40s: "Here's what to watch" (clarity)
+- 40-52s: "I wouldn't have connected those dots" (respect earned)
+- 52-60s: "I need to follow this account" (action)
 
 **Writing rules — non-negotiable:**
-1. Never open with a number. Open with a contradiction, a surprise, or a question.
+1. Never open with a number. Open with a contradiction, surprise, or the thing nobody noticed.
 2. Numbers only appear AFTER you've told the viewer why they should care.
-3. Every sentence ends with a reason to keep listening — a "but", a "except", a "here's the twist".
-4. Hinglish is the default register — not a sprinkling. It should feel like group chat, not a press release.
-5. The HOOK must be the single most counterintuitive fact from the data. If everything is boring, find the contradiction.
-6. Max 12 words per VOICEOVER line. Shorter is better.
+3. Every sentence ends with a reason to keep listening — a "but", "except", "here's the twist", "aur ek cheez".
+4. Hinglish is the default register. Group chat energy, not press release.
+5. The HOOK is the single most counterintuitive or surprising thing in today's data.
+6. Max 12 words per VOICEOVER line. Shorter is always better.
+7. NEVER give trading advice, entry/exit prices, buy/sell recommendations.
 
-**FULL EXAMPLE — this is the bar. Match this quality:**
+**FULL EXAMPLE — this is the quality bar:**
 
-Data: FII sold ₹1,043Cr on a day US was green. Crude up. Nifty down 0.8%.
+Data: MSCI semi-annual rebalancing. Nifty fell 1% in 10 minutes at close on a green day. Monsoon forecast below normal.
 
 ```
 [0-03s | HOOK]
-ON SCREEN: Smart Money vs. Retail
-VOICEOVER: US market was green last night. FII ne ₹1,043 crore beche. Yaar, kuch toh gadbad hai.
+ON SCREEN: Why Nifty Crashed In 10 Minutes
+VOICEOVER: Nifty fell one percent in ten minutes. US was green. Asia was green. Toh hua kya?
 
 [03-14s | OVERNIGHT STORY]
-ON SCREEN: The Overnight Disconnect
-VOICEOVER: Wall Street closed positive. Asia held up. But crude creeped higher — and that's the tell. Jab oil badhta hai aur FII bhi beche, domestic sentiment pe pressure aata hai.
+ON SCREEN: It Wasn't The News
+VOICEOVER: Global markets closed mostly positive. Oil stable. No macro shock. The sell-off was pre-planned — Morgan Stanley's index did a reshuffle. Passive funds HAD to sell. On that exact day. At that exact time.
 
 [14-28s | WHY INDIA CARES]
-ON SCREEN: Oil + FII = Problem
-VOICEOVER: Higher crude means higher import bill. That hits OMCs, airlines, paints — seedha margin pe. FII already positioned out. DII buying hai — par wo akele index nahi uthate.
+ON SCREEN: MSCI Rebalancing — What It Really Means
+VOICEOVER: MSCI manages $14 trillion in tracked assets. Jab wo India ka weight ghataate hain, global ETFs automatically sell. Koi fundamental reason nahi hota. Par market tab bhi girta hai. Aur retail traders wonder karte hain — "kya hua yaar."
 
-[28-40s | INDIA OPEN]
-ON SCREEN: The Level. Watch It.
-VOICEOVER: GIFT Nifty gap down pe open likely. Pehla 15 minute — agar 24,100 nahi toot-ta, bulls hold kar sakte hain. Toota? Then we go lower.
+[28-40s | WHAT TO WATCH]
+ON SCREEN: The Next Risk Nobody's Talking About
+VOICEOVER: Aur ek cheez — IMD ne below-normal monsoon forecast diya. FMCG, rural stocks, agri — these will feel it. Not today. But the pricing has started.
 
-[40-52s | TRADE PLAN]
-ON SCREEN: One Setup. Clean Risk.
-VOICEOVER: Bank Nifty pe short setup — 51,800 ke neeche, stop 52,050, target 51,200. Risk-reward 1:2.4. Sirf wait for first candle close.
+[40-52s | THE BIGGER PICTURE]
+ON SCREEN: Two Things Happening At Once
+VOICEOVER: Ek taraf passive fund selling. Doosri taraf monsoon risk. Dono fundamentals se alag hain — par dono real hain. Yahi context hai jo market samajhne ke liye chahiye.
 
-[52-58s | WATCH NEXT]
-ON SCREEN: 9:15 AM. This One Thing.
-VOICEOVER: Advance-decline ratio first 15 minutes. 800 se neeche? Don't fight the tape.
+[52-58s | FOLLOW FOR MORE]
+ON SCREEN: marketnarrative.in | Roz 7:15 AM
+VOICEOVER: Yeh context roz milta hai — marketnarrative.in pe. Ek baar follow karo. Open se pehle.
 
 [58-60s | CLOSE]
-ON SCREEN: marketnarrative.in | Every Day 7:15 AM
-VOICEOVER: Poora analysis — marketnarrative.in. Roz 7:15 AM. Follow karo, open miss mat karo.
+ON SCREEN: Save this. Share this.
+VOICEOVER: Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo.
 ```
 
-**The test: read your VOICEOVER lines out loud. Would a trader send this to his group chat? If yes, it's good. If it sounds like a news ticker, rewrite it.**
+**The test: would someone screenshot this and send it to their investor group chat? If yes — publish. If it reads like a news headline dump — rewrite.**
 
 ```
 [REEL SCRIPT | <date> | 45-60 sec]
 
 FORMAT: 9:16 vertical reel. Sharp, conversational, Hinglish. Do not read bracketed directions aloud.
+NO trading advice. NO entry/exit levels. NO buy/sell calls.
 
 [0-03s | HOOK]
-ON SCREEN: <3-4 word tension — the contradiction in today's data>
-VOICEOVER: <One sentence. The most counterintuitive fact. No greeting. No numbers yet.>
+ON SCREEN: <4-word label for today's surprising story>
+VOICEOVER: <The most counterintuitive thing that happened. No greeting. No numbers yet. Create a "wait, what?" moment.>
 
 [03-14s | OVERNIGHT STORY]
-ON SCREEN: <4-word summary of overnight narrative>
-VOICEOVER: <Story, not list. US → Asia → crude/INR as cause-effect. End with "but" or "except" or a twist.>
+ON SCREEN: <4-word overnight summary>
+VOICEOVER: <Tell the story as cause → effect. What happened and why. End with a "but" or a twist. 2-3 short sentences.>
 
 [14-28s | WHY INDIA CARES]
-ON SCREEN: <The sector or theme that Indian traders must watch>
-VOICEOVER: <Name the pressure point. Name the sectors hit. Give the counterweight. Make it feel like insider context.>
+ON SCREEN: <The India-specific angle>
+VOICEOVER: <What this means specifically for Indian markets, sectors, or the economy. Give the counterweight. Make it feel like insider context — something the viewer wouldn't have connected on their own.>
 
-[28-40s | INDIA OPEN]
-ON SCREEN: <Key level for Nifty or Bank Nifty>
-VOICEOVER: <GIFT Nifty direction. ONE level. ONE breadth condition. Two sentences max.>
+[28-40s | WHAT TO WATCH]
+ON SCREEN: <The key thing developing>
+VOICEOVER: <What's developing over the next few days or weeks. Not a trade call — a story developing. What sectors, what data, what events are in play.>
 
-[40-52s | TRADE PLAN]
-ON SCREEN: <Setup symbol or "No Chase Today">
-VOICEOVER: <If setup: entry, stop, target in one punchy line. If no setup: explain WHY waiting is the smart trade today.>
+[40-52s | BIGGER PICTURE]
+ON SCREEN: <Theme label>
+VOICEOVER: <Connect the dots. How do the overnight story + India angle add up to a bigger picture. One insight the viewer should walk away with.>
 
-[52-58s | WATCH NEXT]
-ON SCREEN: <Time + what to watch>
-VOICEOVER: <Single most important thing in first 15-30 minutes. One sentence.>
+[52-58s | FOLLOW CTA]
+ON SCREEN: marketnarrative.in | Roz 7:15 AM
+VOICEOVER: <One line driving to marketnarrative.in — make it feel like they're losing out if they don't follow.>
 
 [58-60s | CLOSE]
-ON SCREEN: marketnarrative.in | Every Day 7:15 AM
-VOICEOVER: Poora analysis — marketnarrative.in. Roz 7:15 AM. Follow karo, open miss mat karo.
+ON SCREEN: Save this. Share this.
+VOICEOVER: Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo.
 ```
 
 ---
