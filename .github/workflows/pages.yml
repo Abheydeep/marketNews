@@ -72,6 +72,7 @@ jobs:
           ALLOW_LATE_PREMARKET_PUBLISH: "true"
           ALLOW_INSUFFICIENT_SOURCES: "true"
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           # Manual dispatch always allows non-trading-day generation (weekends, holidays)
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
