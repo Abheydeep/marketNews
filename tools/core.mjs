@@ -20,33 +20,50 @@ async function loadSkills() {
   return _skillsCache;
 }
 
-async function nimCall(systemPrompt, userPrompt) {
+async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
-  try {
-    const response = await fetch(NIM_API_URL, {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: NIM_MODEL,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt }
-        ],
-        max_tokens: 2048,
-        temperature: 0.75
-      })
-    });
-    if (!response.ok) {
-      process.stderr.write(`[agent] NIM ${response.status}: ${await response.text()}\n`);
-      return null;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
+      const response = await fetch(NIM_API_URL, {
+        method: "POST",
+        headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: NIM_MODEL,
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt }
+          ],
+          max_tokens: maxTokens,
+          temperature: 0.65
+        })
+      });
+      if (response.status === 429 || response.status >= 500) {
+        process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);
+        continue;
+      }
+      if (!response.ok) {
+        process.stderr.write(`[agent] NIM ${response.status}: ${await response.text()}\n`);
+        return null;
+      }
+      const data = await response.json();
+      const raw = data?.choices?.[0]?.message?.content?.trim() ?? null;
+      return raw ? cleanAIOutput(raw) : null;
+    } catch (err) {
+      process.stderr.write(`[agent] NIM fetch failed (attempt ${attempt + 1}): ${err.message}\n`);
     }
-    const data = await response.json();
-    return data?.choices?.[0]?.message?.content?.trim() ?? null;
-  } catch (err) {
-    process.stderr.write(`[agent] NIM fetch failed: ${err.message}\n`);
-    return null;
   }
+  return null;
+}
+
+function cleanAIOutput(text) {
+  // Strip conversational preamble lines the model adds before the actual format
+  const preamblePattern = /^(here is|below is|sure[,!]|certainly[,!]|of course[,!]|here's|i've|i have|as requested)[^\n]*\n+/i;
+  let cleaned = text.replace(preamblePattern, "").trimStart();
+  // Strip trailing sign-off lines ("Let me know if...", "Feel free to...")
+  cleaned = cleaned.replace(/\n+(let me know if[^\n]*|feel free to[^\n]*|hope this helps[^\n]*)$/i, "");
+  return cleaned.trim();
 }
 
 async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, themes, setups, articles, overallSentiment }) {
@@ -80,12 +97,24 @@ TOP NEWS (${articles.length} total articles):
 ${topArticles}`;
 
   const systemPrompt = skills || "You are the Market Narrative daily briefing agent for Indian retail traders.";
+  const noWrap = "Output ONLY the formatted content. Do NOT write any introduction, preamble, or sign-off. Start your response directly with the first line of the format.";
 
-  const [teleprompterScript, onePageSummary, reelScript] = await Promise.all([
-    nimCall(systemPrompt, `Write the Teleprompter Script for today's pre-market briefing.\n\nUse EXACTLY the format from the skills (sections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER]).\n\n${context}`),
-    nimCall(systemPrompt, `Write the One-Page Summary for today's pre-market briefing.\n\nUse EXACTLY the format from the skills (sections: Market Mood, Global Cues, Narrative Themes, Validated Trading Setups, Educational note).\n\n${context}`),
-    nimCall(systemPrompt, `Write the Reel Script for today's pre-market briefing.\n\nUse EXACTLY the reel script format from the skills (sections: [HOOK], [OVERNIGHT STORY], [WHY INDIA CARES], [INDIA OPEN], [TRADE PLAN], [WATCH NEXT], [CLOSE]). Keep VOICEOVER lines under 12 words each. Use natural Hinglish.\n\n${context}`)
-  ]);
+  // Sequential calls — parallel hits NVIDIA NIM rate limits and silently drops 2 of 3
+  const onePageSummary = await nimCall(
+    systemPrompt,
+    `${noWrap}\n\nWrite the One-Page Summary. Start directly with "Market Mood:".\nFormat: Market Mood, Global Cues, Narrative Themes (sharp specific titles, not generic labels), Validated Trading Setups, Educational note.\n\n${context}`,
+    { maxTokens: 512 }
+  );
+  const teleprompterScript = await nimCall(
+    systemPrompt,
+    `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\n\n${context}`,
+    { maxTokens: 900 }
+  );
+  const reelScript = await nimCall(
+    systemPrompt,
+    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | INDIA OPEN], [40-52s | TRADE PLAN], [52-58s | WATCH NEXT], [58-60s | CLOSE].\nVOICEOVER lines: max 12 words each. Natural Hinglish in delivery.\n\n${context}`,
+    { maxTokens: 700 }
+  );
 
   if (!teleprompterScript && !onePageSummary && !reelScript) return null;
   return { teleprompterScript, onePageSummary, reelScript };
