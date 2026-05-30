@@ -2603,7 +2603,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "Why it mattered for India",
     "trade-mn-signal",
     "lucide-lock-keyhole",
-    "Auth API:",
+    "Login as Abhey Admin",
     "api.marketnarrative.in",
     "actuator/health",
     "trade-api.marketnarrative.in",

@@ -5060,6 +5060,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${editionNavHtml(digest)}
         ${briefingFreshnessNoticeHtml(digest)}
         ${shareRowHtml(canonicalUrl, digest.title)}
+        ${followBriefingCtaHtml()}
         ${indiaPreOpenHtml(digest)}
 
         ${todaysReadHtml(digest)}
