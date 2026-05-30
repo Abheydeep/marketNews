@@ -34,11 +34,28 @@ await mkdir(archiveDir, { recursive: true });
 const sourceDigest = await loadSourceDigest();
 const existingDigests = await loadArchivedDigests();
 if (!skipArchiveWrite) {
-  const sourceVerification = assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests));
+  const sourceVerification = publicArchiveVerificationForDigest(
+    sourceDigest,
+    assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests))
+  );
   const archivedDigest = redactedDigestPayload(sourceVerification
     ? { ...sourceDigest, sourceVerification }
     : sourceDigest);
   await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
+}
+
+function publicArchiveVerificationForDigest(digest, verification) {
+  if (!verification) {
+    return verification;
+  }
+  const calendar = marketCalendarState(digest.digestDate);
+  if (calendar.isTradingSession) {
+    return verification;
+  }
+  return {
+    ...verification,
+    isVerifiedForPublicArchive: false
+  };
 }
 
 const digests = (await loadArchivedDigests()).map(enrichPublicDigest);

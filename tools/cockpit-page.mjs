@@ -76,7 +76,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
   <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief">
-  <meta name="robots" content="${requireAuth ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"}">
+  <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
   <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   <meta property="og:type" content="article">
@@ -7291,6 +7291,14 @@ function legacyAuditBannerHtml(digest) {
   if (isVerifiedPublicDigest(digest)) {
     return "";
   }
+  if (digest?.nonTradingSession) {
+    const reason = digest.nonTradingSession.reason || "market closed";
+    return `
+    <div class="legacy-audit-banner" role="note">
+      Manual non-trading edition. ${escapeHtml(reason)} was not a regular NSE cash-market session, so this page is preserved for review but is not used as the latest verified pre-market brief.
+    </div>
+  `;
+  }
   return `
     <div class="legacy-audit-banner" role="note">
       Archived edition. This older briefing is preserved for continuity; newer editions use the verified article-link source ledger.
@@ -7493,6 +7501,15 @@ function tradingViewUrlForSnapshot(snapshot) {
 
 function isVerifiedPublicDigest(digest) {
   return Boolean(digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
+}
+
+function pageRobotsMeta(digest, requireAuth) {
+  if (requireAuth) {
+    return "noindex,nofollow";
+  }
+  return isVerifiedPublicDigest(digest)
+    ? "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    : "noindex,follow";
 }
 
 function deskNoteHtml(digest) {

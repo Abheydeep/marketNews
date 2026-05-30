@@ -1335,6 +1335,28 @@ await test("daily generation entry point routes leads through agent reranker pat
   assert.doesNotMatch(generatorSource, /\bdailyLeadForDigest\(/, "daily generator must not call the deterministic lead helper directly");
   assert.match(coreSource, /const dailyLead = await dailyLeadForDigestWithAgent\(/, "buildDigest must call the agent-aware daily lead helper");
   assert.match(coreSource, /NVIDIA_API_KEY/, "agent-aware lead helper must read the configured NVIDIA key path");
+  assert.match(generatorSource, /manual-non-trading-source-data/, "manual closed-market digests must be labelled separately");
+  assert.match(generatorSource, /isVerifiedForPublicArchive: false/, "manual closed-market digests must not become latest verified archives");
+});
+
+await test("daily lead cannot be laundered by enriched single-stock liveblog copy", async () => {
+  const archive = JSON.parse(await readFile(join(rootDir, "archive", "daily", "2026-05-29-0715-digest.json"), "utf8"));
+  const lead = dailyLeadForDigest(archive.digestDate, archive.news, { marketSnapshots: archive.marketSnapshots });
+
+  assert.doesNotMatch(lead.headline, /Share Price Live Updates|stock-liveblog/i);
+  assert.match(lead.headline, /Gift Nifty|oil prices|overnight|Indian stock market/i);
+  assert.equal(lead.driverType, "crude");
+});
+
+await test("manual non-trading archive is retained but not indexable or latest-verified", async () => {
+  const digest = JSON.parse(await readFile(join(rootDir, "archive", "daily", "2026-05-30-0715-digest.json"), "utf8"));
+  assert.equal(digest.runMode, "manual-non-trading-source-data");
+  assert.equal(digest.sourceVerification?.isVerifiedForPublicArchive, false);
+  assert.equal(marketCalendarState(digest.digestDate).isTradingSession, false);
+
+  const html = cockpitPage({ ...digest, canonicalPath: "/30may2026/" }, "public-view", { includeStudio: false, theme: "glass-v2" });
+  assert.match(html, /<meta name="robots" content="noindex,follow">/);
+  assert.match(html, /Manual non-trading edition/);
 });
 
 await test("premarket publish window blocks stale scheduled runs", () => {
@@ -2383,6 +2405,11 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
 
   for (const fileName of archiveFiles.filter((fileName) => fileName.endsWith(".json"))) {
     const archiveDigest = await readFile(join(rootDir, "archive", "daily", fileName), "utf8");
+    const parsedArchiveDigest = JSON.parse(archiveDigest);
+    if (parsedArchiveDigest?.sourceVerification?.isVerifiedForPublicArchive === true) {
+      const calendar = marketCalendarState(parsedArchiveDigest.digestDate);
+      assert.equal(calendar.isTradingSession, true, `${fileName} is verified for public archive on a closed-market date: ${calendar.reason}`);
+    }
     assert.ok(!archiveDigest.includes("teleprompterScript"), `${fileName} should not archive private teleprompterScript`);
     assert.ok(!archiveDigest.includes("reelScript"), `${fileName} should not archive private reelScript`);
     assert.ok(!archiveDigest.includes("positivePrompt"), `${fileName} should not archive private asset prompt`);

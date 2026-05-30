@@ -1519,6 +1519,7 @@ function crossSourceTractionScore(article, allArticles) {
  */
 function tractionScore(article, date, allArticles = [], marketSnapshots = []) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.indiaImpact || ""} ${article?.takeaway || ""}`.toLowerCase();
+  const sourceText = articleSourceTextForLeadSuppression(article);
   let score = 0;
   // Cross-source coverage is the strongest traction proxy
   score += crossSourceTractionScore(article, allArticles);
@@ -1546,8 +1547,8 @@ function tractionScore(article, date, allArticles = [], marketSnapshots = []) {
   else if (vc > 5000) score += 6;
   // Penalties
   if (isLeadSuppressedArticle(article)) score -= 24;
-  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(text)) score -= 18;
-  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(text)) score -= 12;
+  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(sourceText)) score -= 18;
+  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(sourceText)) score -= 12;
   if (isGarbageArticle(article)) score -= 40;
   if (!hasIndiaReadThrough(article)) score -= 8;
   return score;
@@ -1593,6 +1594,7 @@ function isDomesticCatalystArticle(article) {
 
 function indiaSourceScore(article, date) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""}`.toLowerCase();
+  const sourceText = articleSourceTextForLeadSuppression(article);
   let score = Math.abs(Number(article?.sentimentScore) || 0) * 5 + (Number(article?.entityMatchScore) || 0);
   if (isIndiaPublisherArticle(article)) score += 16;
   if (hasIndiaReadThrough(article)) score += 8;
@@ -1607,7 +1609,7 @@ function indiaSourceScore(article, date) {
   if (marketMoveMagnitudeText(text)) score += 6;
   if (largeTechSectorMoveText(text)) score += 10;
   if (marketwideStressText(text)) score += 7;
-  if (isStockLiveblogArticle(article)) score -= hasMarketwideDriverText(text) ? 8 : 16;
+  if (isStockLiveblogArticle(article)) score -= hasMarketwideDriverText(sourceText) ? 8 : 16;
   if (isWeakStockListArticle(article)) score -= 8;
   if (/\b(carvana|private market|spacex|used car|single-stock)\b/.test(text)) score -= 8;
   if (!hasIndiaReadThrough(article)) score -= 10;
@@ -1623,14 +1625,15 @@ function sourceSelectionScore(article, date, marketSnapshots = []) {
 
 function dailyLeadScore(article, date, marketSnapshots = []) {
   const text = articleTextForLead(article);
+  const sourceText = articleSourceTextForLeadSuppression(article);
   let score = indiaSourceScore(article, date)
     + marketLeadScore(article) * 1.35
     + indiaAudienceScore(article) * 1.4
     + marketDriverSeverityScore(article, marketSnapshots)
     + sourceQualityScore(article);
   if (isLeadSuppressedArticle(article)) score -= 24;
-  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(text)) score -= 18;
-  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(text)) score -= 12;
+  if (isStockLiveblogArticle(article) && !hasMarketwideDriverText(sourceText)) score -= 18;
+  if (isWeakStockListArticle(article) && !hasMarketwideDriverText(sourceText)) score -= 12;
   return score;
 }
 
@@ -1731,8 +1734,18 @@ function snapshotChangePercent(snapshots = [], pattern) {
 }
 
 function isLeadSuppressedArticle(article) {
-  const text = articleTextForLead(article);
+  const text = articleSourceTextForLeadSuppression(article);
   return (isStockLiveblogArticle(article) || isWeakStockListArticle(article)) && !hasMarketwideDriverText(text);
+}
+
+function articleSourceTextForLeadSuppression(article) {
+  return [
+    article?.headline,
+    article?.summary,
+    article?.sourceName,
+    article?.sourceId,
+    article?.sourceUrl
+  ].filter(Boolean).join(" ").toLowerCase();
 }
 
 function isStockLiveblogArticle(article) {

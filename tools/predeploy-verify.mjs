@@ -209,7 +209,7 @@ function verifyVercelArtifacts() {
   assertOutput("deployment-manifest.json", /"target": "trade"/);
   assertOutput("icon.svg", /mn-signal/);
   assertOutput("index.html", /_next\/static/);
-  assertOutputTree("_next/static", /marketnarrative-trade-api\.onrender\.com/);
+  assertOutputTree("_next/static", /trade-api\.marketnarrative\.in/);
   assertOutputTreeNot("_next/static", /Market WebSocket connection failed/);
   assertOutputTree("_next/static", /Waiting for live/);
   assertOutputTree("_next/static", /OI Δ warming up/);

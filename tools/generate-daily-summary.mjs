@@ -35,11 +35,29 @@ if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH
   }
 }
 
+const generatedDigest = await buildDigest(date, { marketDataMode, newsDataMode });
+const nonTradingSession = !calendarState.isTradingSession
+  ? {
+    state: calendarState.state,
+    reason: calendarState.reason,
+    source: calendarState.source
+  }
+  : null;
+if (nonTradingSession && generatedDigest.sourceVerification) {
+  generatedDigest.sourceVerification = {
+    ...generatedDigest.sourceVerification,
+    isVerifiedForPublicArchive: false
+  };
+}
+
 const digest = {
-  ...(await buildDigest(date, { marketDataMode, newsDataMode })),
+  ...generatedDigest,
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
-  runMode: marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule"
+  runMode: nonTradingSession
+    ? "manual-non-trading-source-data"
+    : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
+  ...(nonTradingSession ? { nonTradingSession } : {})
 };
 
 await mkdir(outputDir, { recursive: true });
