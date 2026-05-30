@@ -7341,6 +7341,7 @@ function briefingFreshnessNoticeHtml(digest) {
     <div class="session-notice" role="note" aria-label="Briefing freshness">
       <strong>Prepared for the 7:15 AM IST briefing</strong>
       <span>Source stack verified at ${escapeHtml(formatGeneratedTime(generated))}. This is pre-market context, not an intraday update.</span>
+      <span>Market quote context: ${escapeHtml(quoteSessionLabel(digest))}.</span>
     </div>
   `;
 }
