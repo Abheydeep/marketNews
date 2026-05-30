@@ -1641,10 +1641,10 @@ function thematicFallbackReadthrough(lower, category, entityName) {
   }
   if (isIndexRebalancingStory(text)) {
     return {
-      takeaway: "index rebalancing triggers large, pre-scheduled passive fund flows — these move prices on the rebalancing date independent of fundamentals.",
-      whyItMatters: "MSCI and FTSE reviews force global ETFs and passive funds to buy or sell exact quantities by close on the effective date. This can cause 1–3% intraday swings in individual stocks and distort Nifty in the last 30–60 minutes of trade.",
-      indiaImpact: "Check which stocks are added or removed and their index weights. Heavy selling on a green day or an inexplicable late-session Nifty drop often traces to passive rebalancing outflows, not a fundamental change in outlook.",
-      watchFor: "Watch the stocks named in the rebalancing announcement, particularly in the final hour. Large block deals and divergence between futures and cash are the live tells."
+      takeaway: "index rebalancing is a pre-scheduled, mechanical event — passive funds must buy or sell on a fixed date regardless of market conditions. The selling pressure is temporary and ends once the rebalancing date passes.",
+      whyItMatters: "MSCI conducts 4 reviews a year — 2 quarterly (February, August) and 2 major semi-annual (May, November). The May and November reviews are the large ones where index weights change significantly. Global ETFs tracking MSCI must execute trades by the close on the effective date, regardless of fundamentals. This can move Nifty 1–2% in the final 30–60 minutes. Once the date passes, the mechanical selling stops and markets typically stabilize or recover.",
+      indiaImpact: "An MSCI-driven drop is NOT a signal of deteriorating fundamentals — it is a flow event with a known end date. Once the rebalancing is complete, the artificial selling pressure disappears. Stocks added to the index often recover quickly as the same passive funds that sold other names must now hold the new additions.",
+      watchFor: "The trading day after the effective rebalancing date is often calmer or even a relief bounce. Watch for block deals and late-session divergence between futures and cash as the live tell that rebalancing flows are active."
     };
   }
   if (isMonsoonStory(text)) {

@@ -97,7 +97,7 @@ VOICEOVER: Global markets closed mostly positive. Oil stable. No macro shock. Th
 
 [14-28s | WHY INDIA CARES]
 ON SCREEN: MSCI Rebalancing — What It Really Means
-VOICEOVER: MSCI manages $14 trillion in tracked assets. Jab wo India ka weight ghataate hain, global ETFs automatically sell. Koi fundamental reason nahi hota. Par market tab bhi girta hai. Aur retail traders wonder karte hain — "kya hua yaar."
+VOICEOVER: MSCI manages $14 trillion in tracked assets. Jab wo India ka weight ghataate hain, global ETFs automatically sell. Koi fundamental reason nahi hota. Aur yeh temporary hai — rebalancing date ke baad selling band ho jaati hai. Par retail traders wonder karte hain — "kya hua yaar."
 
 [28-40s | WHAT TO WATCH]
 ON SCREEN: The Next Risk Nobody's Talking About
