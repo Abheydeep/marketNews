@@ -112,7 +112,7 @@ ${topArticles}`;
   );
   const reelScript = await nimCall(
     systemPrompt,
-    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | INDIA OPEN], [40-52s | TRADE PLAN], [52-58s | WATCH NEXT], [58-60s | CLOSE].\nVOICEOVER lines: max 12 words each. Natural Hinglish in delivery.\n\n${context}`,
+    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | INDIA OPEN], [40-52s | TRADE PLAN], [52-58s | WATCH NEXT], [58-60s | CLOSE].\n\nCRITICAL: This is a social media reel, not a briefing. Every line must make the viewer want to hear the next line. Tell a story — connect events as cause and effect. Never list numbers without saying what they mean. Use natural Hinglish. VOICEOVER lines max 12 words each. Hook must create a "wait, what?" moment — no greeting, drop straight into the tension.\n\nEnd the CLOSE with: "Full map is live at marketnarrative.in. Follow so you never miss the open."\n\n${context}`,
     { maxTokens: 700 }
   );
 
