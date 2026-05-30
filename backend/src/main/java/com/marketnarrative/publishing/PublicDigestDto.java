@@ -16,6 +16,7 @@ public record PublicDigestDto(
     SentimentLabel sentimentLabel,
     String onePageSummary,
     String teleprompterScript,
+    String reelScript,
     OffsetDateTime publishedAt,
     List<MarketSnapshotView> marketSnapshots,
     List<NewsCardView> news,

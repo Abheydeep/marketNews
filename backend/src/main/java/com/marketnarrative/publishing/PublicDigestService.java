@@ -67,6 +67,7 @@ public class PublicDigestService {
             SentimentLabel.fromScore(script.getOverallSentiment()),
             script.getOnePageSummary(),
             script.getTeleprompterScript(),
+            script.getReelScript(),
             script.getPublishedAt(),
             marketSnapshotRepository.findByTradingDateOrderBySymbol(digestDate).stream()
                 .map(snapshot -> new PublicDigestDto.MarketSnapshotView(

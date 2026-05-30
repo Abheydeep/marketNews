@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ImagePlus, LogIn, PlayCircle, Radio, Save, UploadCloud } from "lucide-react";
+import { ImagePlus, LogIn, PlayCircle, Radio, RefreshCw, Save, UploadCloud } from "lucide-react";
 import { API_BASE } from "@/lib/api";
 import { mockDigest } from "@/lib/mockDigest";
 import type { PublicDigest } from "@/lib/types";
@@ -111,7 +111,8 @@ export function AdminStudio() {
         method: "PUT",
         body: JSON.stringify({
           onePageSummary: digest.onePageSummary,
-          teleprompterScript: digest.teleprompterScript
+          teleprompterScript: digest.teleprompterScript,
+          reelScript: digest.reelScript
         })
       });
       if (!response.ok) {
@@ -120,6 +121,24 @@ export function AdminStudio() {
       setMessage("Script saved");
     } catch {
       setMessage("Save failed; run the backend and sign in first");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function regenerateReel() {
+    setBusy(true);
+    setMessage("Regenerating reel script via Llama 4...");
+    try {
+      const response = await authedFetch(`/api/admin/scripts/${digest.scriptId}/reel`, { method: "POST" });
+      if (!response.ok) {
+        throw new Error("Reel regeneration failed");
+      }
+      const updated = await response.json() as { reelScript?: string };
+      setDigest((prev) => ({ ...prev, reelScript: updated.reelScript ?? prev.reelScript }));
+      setMessage("Reel script regenerated");
+    } catch {
+      setMessage("Reel regeneration failed; check NVIDIA_API_KEY on backend");
     } finally {
       setBusy(false);
     }
@@ -213,6 +232,36 @@ export function AdminStudio() {
           </button>
         </div>
       </header>
+
+      <section className="rounded border border-line bg-ink p-4 shadow-panel">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-lg font-black text-white">Reel Script (45–60 sec)</h2>
+          <div className="flex gap-2">
+            <button
+              className="inline-flex h-9 items-center gap-2 rounded border border-white/20 bg-white/10 px-3 text-sm font-bold text-white hover:bg-white/20"
+              onClick={regenerateReel}
+              disabled={busy}
+              title="Regenerate with Llama 4 Maverick"
+            >
+              <RefreshCw size={14} /> Regenerate
+            </button>
+            <button
+              className="inline-flex h-9 items-center gap-2 rounded border border-white/20 bg-white/10 px-3 text-sm font-bold text-white hover:bg-white/20"
+              onClick={saveScript}
+              disabled={busy}
+              title="Save reel script"
+            >
+              <Save size={14} /> Save
+            </button>
+          </div>
+        </div>
+        <textarea
+          className="mt-4 h-64 w-full resize-y rounded border border-white/10 bg-white/5 p-3 text-sm leading-7 text-white/90 font-mono placeholder:text-white/30"
+          value={digest.reelScript ?? ""}
+          placeholder="Run the digest or click Regenerate to generate a reel script."
+          onChange={(event) => setDigest({ ...digest, reelScript: event.target.value })}
+        />
+      </section>
 
       <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="grid gap-4">

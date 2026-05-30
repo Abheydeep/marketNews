@@ -16,6 +16,7 @@ import com.marketnarrative.narrative.DailyScriptRepository;
 import com.marketnarrative.narrative.NarrativeClusterer;
 import com.marketnarrative.narrative.NarrativeTheme;
 import com.marketnarrative.narrative.NarrativeThemeRepository;
+import com.marketnarrative.narrative.ReelScriptGenerator;
 import com.marketnarrative.narrative.ScriptGenerator;
 import com.marketnarrative.news.MarketNews;
 import com.marketnarrative.news.MarketNewsRepository;
@@ -50,6 +51,7 @@ public class DigestOrchestrator {
     private final NarrativeClusterer narrativeClusterer;
     private final TechnicalSetupScanner technicalSetupScanner;
     private final ScriptGenerator scriptGenerator;
+    private final ReelScriptGenerator reelScriptGenerator;
     private final AssetPromptService assetPromptService;
     private final Executor digestExecutor;
 
@@ -66,6 +68,7 @@ public class DigestOrchestrator {
         NarrativeClusterer narrativeClusterer,
         TechnicalSetupScanner technicalSetupScanner,
         ScriptGenerator scriptGenerator,
+        ReelScriptGenerator reelScriptGenerator,
         AssetPromptService assetPromptService,
         @Qualifier("digestExecutor") Executor digestExecutor
     ) {
@@ -81,6 +84,7 @@ public class DigestOrchestrator {
         this.narrativeClusterer = narrativeClusterer;
         this.technicalSetupScanner = technicalSetupScanner;
         this.scriptGenerator = scriptGenerator;
+        this.reelScriptGenerator = reelScriptGenerator;
         this.assetPromptService = assetPromptService;
         this.digestExecutor = digestExecutor;
     }
@@ -116,6 +120,11 @@ public class DigestOrchestrator {
         DailyScript script = dailyScriptRepository.save(
             scriptGenerator.generate(digestDate, savedSnapshots, themes, setups, overallSentiment)
         );
+        String reelScript = reelScriptGenerator.generate(
+            digestDate, savedSnapshots, themes, setups, overallSentiment
+        );
+        script.replaceReelScript(reelScript);
+        script = dailyScriptRepository.save(script);
         AssetGeneration asset = assetGenerationRepository.save(
             assetPromptService.generatePromptPackage(digestDate, overallSentiment)
         );
@@ -130,6 +139,20 @@ public class DigestOrchestrator {
             script.getId(),
             asset.getId()
         );
+    }
+
+    @Transactional
+    @CacheEvict(cacheNames = "publicDigest", allEntries = true)
+    public DailyScript regenerateReelScript(DailyScript script) {
+        LocalDate date = script.getDigestDate();
+        List<MarketSnapshot> snapshots = marketSnapshotRepository.findByTradingDateOrderBySymbol(date);
+        List<NarrativeTheme> themes = narrativeThemeRepository.findByDigestDateOrderBySentimentScoreAsc(date);
+        List<TradeSetup> setups = tradeSetupRepository.findByDigestDateOrderBySymbol(date);
+        String reelScript = reelScriptGenerator.generate(
+            date, snapshots, themes, setups, script.getOverallSentiment()
+        );
+        script.replaceReelScript(reelScript);
+        return dailyScriptRepository.save(script);
     }
 
     private void clearExistingDigest(LocalDate digestDate) {

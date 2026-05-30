@@ -32,6 +32,9 @@ public class DailyScript {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String teleprompterScript;
 
+    @Column(columnDefinition = "TEXT")
+    private String reelScript;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private DigestStatus status;
@@ -66,6 +69,11 @@ public class DailyScript {
     public void replaceScript(String onePageSummary, String teleprompterScript) {
         this.onePageSummary = onePageSummary;
         this.teleprompterScript = teleprompterScript;
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    public void replaceReelScript(String reelScript) {
+        this.reelScript = reelScript;
         this.updatedAt = OffsetDateTime.now();
     }
 
@@ -105,6 +113,10 @@ public class DailyScript {
 
     public OffsetDateTime getPublishedAt() {
         return publishedAt;
+    }
+
+    public String getReelScript() {
+        return reelScript;
     }
 
     public OffsetDateTime getUpdatedAt() {

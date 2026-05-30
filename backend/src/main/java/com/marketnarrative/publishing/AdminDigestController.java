@@ -74,7 +74,19 @@ public class AdminDigestController {
         DailyScript script = dailyScriptRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Script not found"));
         script.replaceScript(request.onePageSummary(), request.teleprompterScript());
+        if (request.reelScript() != null && !request.reelScript().isBlank()) {
+            script.replaceReelScript(request.reelScript());
+        }
         return dailyScriptRepository.save(script);
+    }
+
+    @PostMapping("/scripts/{id}/reel")
+    @PreAuthorize("hasAuthority('create:script')")
+    @CacheEvict(cacheNames = "publicDigest", allEntries = true)
+    public DailyScript regenerateReelScript(@PathVariable Long id) {
+        DailyScript script = dailyScriptRepository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Script not found"));
+        return digestOrchestrator.regenerateReelScript(script);
     }
 
     @PostMapping("/scripts/{id}/regenerate")
@@ -114,7 +126,8 @@ public class AdminDigestController {
 
     public record UpdateScriptRequest(
         @NotBlank String onePageSummary,
-        @NotBlank String teleprompterScript
+        @NotBlank String teleprompterScript,
+        String reelScript
     ) {
     }
 }

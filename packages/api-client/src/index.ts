@@ -10,10 +10,13 @@ export type Permission =
   | "trade:execute";
 
 export type PublicDigest = {
+  scriptId: number;
   digestDate: string;
   title: string;
   sentimentLabel: "BULLISH" | "BEARISH" | "VOLATILE" | "NEUTRAL";
   onePageSummary: string;
+  teleprompterScript: string;
+  reelScript: string | null;
   publishedAt: string | null;
 };
 

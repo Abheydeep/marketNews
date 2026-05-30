@@ -5,6 +5,92 @@ import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
+const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
+const NIM_MODEL = "meta/llama-4-maverick-17b-128e-instruct";
+
+let _skillsCache = null;
+async function loadSkills() {
+  if (_skillsCache) return _skillsCache;
+  try {
+    const skillsPath = join(rootDir, "tools", "skills.md");
+    _skillsCache = await readFile(skillsPath, "utf8");
+  } catch {
+    _skillsCache = "";
+  }
+  return _skillsCache;
+}
+
+async function nimCall(systemPrompt, userPrompt) {
+  const apiKey = process.env.NVIDIA_API_KEY;
+  if (!apiKey) return null;
+  try {
+    const response = await fetch(NIM_API_URL, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: NIM_MODEL,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt }
+        ],
+        max_tokens: 2048,
+        temperature: 0.75
+      })
+    });
+    if (!response.ok) {
+      process.stderr.write(`[agent] NIM ${response.status}: ${await response.text()}\n`);
+      return null;
+    }
+    const data = await response.json();
+    return data?.choices?.[0]?.message?.content?.trim() ?? null;
+  } catch (err) {
+    process.stderr.write(`[agent] NIM fetch failed: ${err.message}\n`);
+    return null;
+  }
+}
+
+async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, themes, setups, articles, overallSentiment }) {
+  if (!process.env.NVIDIA_API_KEY) return null;
+  const skills = await loadSkills();
+
+  const marketSummary = snapshots
+    .map((s) => `${s.name} ${s.changePercent >= 0 ? "+" : ""}${s.changePercent}%`)
+    .join(", ");
+  const themesSummary = themes
+    .map((t) => `- ${t.title}: ${t.summary}`)
+    .join("\n");
+  const setupsSummary = setups.length === 0
+    ? "No active setups today."
+    : setups.map((s) => `${s.symbol} ${s.direction} — entry ${s.entry}, stop ${s.stopLoss}, target ${s.target} (RR ${s.riskReward}) — ${s.confidenceReason}`).join("\n");
+  const topArticles = articles.slice(0, 6)
+    .map((a) => `[${a.sentimentScore > 0 ? "+" : ""}${a.sentimentScore?.toFixed(2)}] ${a.headline} — ${a.summary || a.takeaway || ""}`)
+    .join("\n");
+
+  const context = `DATE: ${date}
+SENTIMENT: ${sentimentLabel} (score: ${overallSentiment})
+MARKETS: ${marketSummary}
+
+KEY THEMES:
+${themesSummary}
+
+SETUPS:
+${setupsSummary}
+
+TOP NEWS (${articles.length} total articles):
+${topArticles}`;
+
+  const systemPrompt = skills || "You are the Market Narrative daily briefing agent for Indian retail traders.";
+
+  const [teleprompterScript, onePageSummary, reelScript] = await Promise.all([
+    nimCall(systemPrompt, `Write the Teleprompter Script for today's pre-market briefing.\n\nUse EXACTLY the format from the skills (sections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER]).\n\n${context}`),
+    nimCall(systemPrompt, `Write the One-Page Summary for today's pre-market briefing.\n\nUse EXACTLY the format from the skills (sections: Market Mood, Global Cues, Narrative Themes, Validated Trading Setups, Educational note).\n\n${context}`),
+    nimCall(systemPrompt, `Write the Reel Script for today's pre-market briefing.\n\nUse EXACTLY the reel script format from the skills (sections: [HOOK], [OVERNIGHT STORY], [WHY INDIA CARES], [INDIA OPEN], [TRADE PLAN], [WATCH NEXT], [CLOSE]). Keep VOICEOVER lines under 12 words each. Use natural Hinglish.\n\n${context}`)
+  ]);
+
+  if (!teleprompterScript && !onePageSummary && !reelScript) return null;
+  return { teleprompterScript, onePageSummary, reelScript };
+}
+
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const seedDir = join(rootDir, "backend", "src", "main", "resources", "seed");
 const PUBLIC_SOURCE_LIMIT = 10;
@@ -82,6 +168,12 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, publicArticles, options.previousDigest, dailyLead);
+  const aiScript = await generateFullScriptWithAI({ date, sentimentLabel, snapshots: marketSnapshots, themes, setups: tradeSetups, articles: publicArticles, overallSentiment });
+  if (aiScript) {
+    if (aiScript.teleprompterScript) script.teleprompterScript = aiScript.teleprompterScript;
+    if (aiScript.onePageSummary) script.onePageSummary = aiScript.onePageSummary;
+    if (aiScript.reelScript) script.reelScript = aiScript.reelScript;
+  }
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(date, publicArticles, themes, options.previousDigest, dailyLead);
   const deskNote = deskNoteForDigest(date, publicArticles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest, dailyLead);

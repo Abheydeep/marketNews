@@ -76,6 +76,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Allow generation to proceed even when some India RSS feeds block GitHub IPs
           ALLOW_INSUFFICIENT_SOURCES: "true"
+          # Manual dispatch can run on weekends / holidays for testing
+          ALLOW_NON_TRADING_DAY_DIGEST: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
         run: |
           PUBLISH_ARGS=(--date "$SUMMARY_DATE" --scheduled-time 07:15 --market-data live)
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.enforce_publish_window }}" = "true" ]; then
