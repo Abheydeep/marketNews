@@ -759,7 +759,10 @@ await test("NVIDIA agent mode passes used India angles to avoid repetition", asy
   const articles = await fetchLiveNewsArticles("2026-05-04", {
     fetcher,
     llmFetcher,
+    anthropicApiKey: "",
+    openaiApiKey: "",
     nvidiaApiKey: "test-nvidia-key",
+    geminiApiKey: "",
     maxArticleEditorialEnrichmentCalls: 30
   });
 
