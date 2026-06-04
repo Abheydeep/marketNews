@@ -22,9 +22,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
+  // Single source of truth for the H1, <title>, and JSON-LD headline so Google News
+  // does not flag a mismatch between the structured data and the on-page H1.
+  const pageH1 = isTradingGuidePage
+    ? (digest.title ?? "Daily Pre-Market Briefing")
+    : hookTitle(digest);
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
-    : `${hookTitle(digest)} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
+    : `${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = isTradingGuidePage
     ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
     : "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
@@ -69,16 +74,28 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
   ${brandHeadLinks(pageOrigin)}
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <link rel="preconnect" href="https://marketnarrative.in" crossorigin>
+  <link rel="dns-prefetch" href="https://marketnarrative.in">
+  <link rel="preload" as="image" href="${escapeHtml(previewImageUrl)}" fetchpriority="high">
+  <meta http-equiv="Cache-Control" content="private, max-age=0, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
   <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief">
   <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
-  <meta name="theme-color" content="#050816">
+  <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
+  ${digest.nextEditionPath ? `<link rel="next" href="${escapeHtml(absoluteSiteUrl(digest.nextEditionPath, pageOrigin))}">` : ""}
+  ${digest.previousEditionPath ? `<link rel="prev" href="${escapeHtml(absoluteSiteUrl(digest.previousEditionPath, pageOrigin))}">` : ""}
+  <link rel="alternate" hreflang="en-IN" href="${escapeHtml(canonicalUrl)}">
+  <link rel="alternate" hreflang="x-default" href="${escapeHtml(canonicalUrl)}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Market Narrative daily pre-market briefing cover card">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
@@ -91,7 +108,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
-  <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest))}</script>
+  <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
   <style>
     :root {
       --paper: #f4f5f7;
@@ -5035,7 +5052,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
           </div>
-          <h1>${escapeHtml(hookTitle(digest))}</h1>
+          <h1>${escapeHtml(pageH1)}</h1>
         </header>
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">

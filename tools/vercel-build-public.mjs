@@ -187,7 +187,11 @@ function latestStatusPage({ date, failedStep, fallback, status, calendarState, i
 }
 
 function slugForDate(value) {
-  const [year, month, day] = String(value).split("-");
+  const date = String(value);
+  if (String(process.env.PUBLIC_SLUG_FORMAT ?? "compact").toLowerCase() === "iso" && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return date;
+  }
+  const [year, month, day] = date.split("-");
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   return `${Number(day)}${monthName}${year}`;
 }

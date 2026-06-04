@@ -6,7 +6,11 @@ export async function updateLatestRedirect(options = {}) {
 }
 
 function slugForDate(date) {
-  const [year, month, day] = String(date).split("-");
+  const value = String(date);
+  if (String(process.env.PUBLIC_SLUG_FORMAT ?? "compact").toLowerCase() === "iso" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+  const [year, month, day] = value.split("-");
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   if (!year || !monthName || !day) {
     throw new Error(`Cannot build latest redirect slug from date: ${date}`);

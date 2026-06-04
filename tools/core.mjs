@@ -830,16 +830,24 @@ function normalizeArticleThumbnail(article) {
   };
 }
 
-export function newsArticleJsonLd(digest) {
+export function newsArticleJsonLd(digest, options = {}) {
   const canonicalPath = String(digest.canonicalPath || `/${digest.digestDate}/`);
   const canonicalUrl = `https://marketnarrative.in${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
   const description = digest.archiveSummary || digest.deskNote || "Daily Market Narrative pre-market briefing for Nifty, Bank Nifty, global cues, and India read-through.";
+  // JSON-LD headline MUST equal the page <h1> (hookTitle) — Google News and the Article
+  // rich-result explicitly compare them and will demote mismatched signals. Fall back to
+  // digest.title only when the caller has not computed a hook title yet.
+  const headline = options.h1Override || digest.title;
+  // Real raster ≥ 1200×675 is required for Google News discoverability. SVG OG cards
+  // are fine for social but are ignored by the News image picker.
+  const image = "https://marketnarrative.in/og-card-1200x675.png";
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    headline: digest.title,
+    headline,
+    alternativeHeadline: digest.title,
     description,
-    image: "https://marketnarrative.in/og-card.svg",
+    image: [image, "https://marketnarrative.in/og-card.svg"],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonicalUrl
