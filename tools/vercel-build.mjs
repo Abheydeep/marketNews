@@ -4,7 +4,10 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const outputDir = join(rootDir, "out", "vercel");
+// Vercel's default static output directory. Writing here lets the deploy
+// proceed without `outputDirectory` in vercel.json (the current CLI schema
+// rejects that property).
+const outputDir = join(rootDir, "public");
 const explicitTarget = process.env.MARKET_NARRATIVE_DEPLOY_TARGET;
 const inferredTarget = explicitTarget ? null : inferVercelTarget();
 
@@ -26,19 +29,19 @@ if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
   await writeManifest(target, ["/", "/latest/", "/latest/trading-guide/", "/multibagger/", "/about/", "/subscribe/"]);
-  run("node", ["tools/public-copy-qa.mjs", "out/vercel"]);
-  console.log("Prepared Vercel public output in out/vercel");
+  run("node", ["tools/public-copy-qa.mjs", "public"]);
+  console.log("Prepared Vercel public output in public");
 } else if (target === "admin") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site", "admin"));
   await writeFile(join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n", "utf8");
   await writeManifest(target, ["/", "/components/", "/multibagger/"]);
-  console.log("Prepared Vercel admin studio output in out/vercel");
+  console.log("Prepared Vercel admin studio output in public");
 } else if (target === "trade") {
   run("npm", ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]);
   await copyOutput(join(rootDir, "apps", "trading-dashboard", "out"));
   await writeManifest(target, ["/", "/kite/callback/"]);
-  console.log("Prepared Vercel trading cockpit output in out/vercel");
+  console.log("Prepared Vercel trading cockpit output in public");
 } else {
   console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public", "admin", or "trade".`);
   process.exit(1);

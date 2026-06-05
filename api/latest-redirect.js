@@ -1,17 +1,23 @@
 /**
  * /latest/ → server-side 301 redirect to the latest verified daily brief.
  *
- * Reads the build's out/site/digest.json (a static artifact present in
- * the Vercel deployment at /digest.json) to discover today's slug, then
- * redirects with a permanent 301 so search engines transfer equity.
+ * Slug resolution order:
+ *   1. LATEST_DIGEST_SLUG env var (e.g. "5jun2026") — set by the deploy
+ *      pipeline whenever a new briefing is published. Zero runtime cost.
+ *   2. /digest.json fetch from the deployed origin — fallback for local dev
+ *      and for environments where the env var is not configured.
+ *   3. Previous in-memory cached slug — soft degrade across requests.
+ *   4. 302 to / — last-resort, never 500.
  *
- * Falls back gracefully if digest.json is missing or malformed:
- * - 5 minute edge cache to absorb traffic spikes
- * - Returns 302 to / on parse error (degrades to homepage, never 500)
+ * In this static+functions project the static meta-refresh fallback at
+ * public/latest/index.html is still the primary /latest/ handler (it wins
+ * the route). The function remains registered for environments that route
+ * the function first, and as a safety net if the meta-refresh page is ever
+ * removed.
  */
 
 export const config = {
-  runtime: "nodejs20.x",
+  runtime: "nodejs",
   regions: ["bom1"], // closest edge to IST primary audience
 };
 
@@ -19,28 +25,46 @@ const SLUG_CACHE_MS = 5 * 60 * 1000;
 let cachedSlug = null;
 let cachedAt = 0;
 
+function slugFromEnv() {
+  const raw = String(process.env.LATEST_DIGEST_SLUG || "").trim().toLowerCase();
+  if (!raw) return null;
+  if (!/^\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4}$/.test(raw)) {
+    console.warn(`latest-redirect: ignoring malformed LATEST_DIGEST_SLUG=${raw}`);
+    return null;
+  }
+  return raw;
+}
+
+async function slugFromDigest() {
+  const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://marketnarrative.in";
+  const res = await fetch(`${origin}/digest.json`, {
+    headers: { "user-agent": "MarketNarrativeLatestRedirect/1.0" },
+    signal: AbortSignal.timeout(4000),
+  });
+  if (!res.ok) throw new Error(`digest.json status=${res.status}`);
+  const json = await res.json();
+  const date = String(json.digestDate || "").trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`bad digestDate=${date}`);
+  return dateToSlug(date);
+}
+
 async function readLatestSlug() {
+  const envSlug = slugFromEnv();
+  if (envSlug) {
+    cachedSlug = envSlug;
+    cachedAt = Date.now();
+    return envSlug;
+  }
+
   const now = Date.now();
   if (cachedSlug && now - cachedAt < SLUG_CACHE_MS) return cachedSlug;
 
-  // digest.json is emitted as a static asset at the site root.
-  // On Vercel we fetch the deployed copy via the request's own origin.
-  const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://marketnarrative.in";
   try {
-    const res = await fetch(`${origin}/digest.json`, {
-      headers: { "user-agent": "MarketNarrativeLatestRedirect/1.0" },
-      signal: AbortSignal.timeout(4000),
-    });
-    if (!res.ok) throw new Error(`digest.json status=${res.status}`);
-    const json = await res.json();
-    const date = String(json.digestDate || "").trim();
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`bad digestDate=${date}`);
-    cachedSlug = dateToSlug(date);
+    const slug = await slugFromDigest();
+    cachedSlug = slug;
     cachedAt = now;
-    return cachedSlug;
+    return slug;
   } catch (err) {
-    // Soft degrade: keep serving the previous cached slug if we had one,
-    // otherwise bubble up so the caller can 302 to /.
     if (cachedSlug) return cachedSlug;
     throw err;
   }

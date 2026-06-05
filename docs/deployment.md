@@ -20,7 +20,9 @@ Open a PR to `main` after the verification commands pass.
 
 ## Vercel Projects
 
-Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `out/vercel`; the deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`. The build script can also infer the target from unmistakable Vercel project/deployment URLs such as `market-news-admin-studio` or `admin.marketnarrative.in`, but the explicit env var remains the preferred production setting.
+Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `./public` (Vercel's default static output directory). The deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`. The build script can also infer the target from unmistakable Vercel project/deployment URLs such as `market-news-admin-studio` or `admin.marketnarrative.in`, but the explicit env var remains the preferred production setting.
+
+The committed `vercel.json` sets `framework: null` and explicit `installCommand` / `buildCommand`. Do **not** add `outputDirectory` to `vercel.json` — the current Vercel CLI schema rejects it. The build writes to `./public` because that is Vercel's default, and the only one the CLI accepts without an override.
 
 Do not attach `admin.marketnarrative.in` to the public project, and do not attach `marketnarrative.in` or `www.marketnarrative.in` to the admin project. If a deployment summary lists repository source files like `/apps/...` as static assets, the build settings are wrong and the project is publishing the repository root.
 
@@ -31,11 +33,11 @@ Public project:
 - Framework preset: Other
 - Install command: `npm install`
 - Build command: `npm run vercel:build`
-- Output directory: `out/vercel`
 - Domains: `marketnarrative.in`, `www.marketnarrative.in`
 - Env:
   - `MARKET_NARRATIVE_DEPLOY_TARGET=public`
   - `MARKET_DATA_MODE=live`
+  - `LATEST_DIGEST_SLUG` (e.g. `5jun2026`, set by the publish pipeline — read by `api/latest-redirect.js`)
 
 Admin project:
 
@@ -44,7 +46,6 @@ Admin project:
 - Framework preset: Other
 - Install command: `npm install`
 - Build command: `npm run vercel:build`
-- Output directory: `out/vercel`
 - Domains: `admin.marketnarrative.in`
 - Env:
   - `MARKET_NARRATIVE_DEPLOY_TARGET=admin`
@@ -68,7 +69,6 @@ Trade project:
 - Framework preset: Other
 - Install command: `npm install`
 - Build command: `npm run vercel:build`
-- Output directory: `out/vercel`
 - Domains: `trade.marketnarrative.in`
 - Env:
   - `MARKET_NARRATIVE_DEPLOY_TARGET=trade`
@@ -77,6 +77,40 @@ Trade project:
   - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`
 
 Reference settings are stored in `deploy/vercel/`.
+
+### `vercel.json` Header Rules
+
+The current Vercel CLI schema **does not support `:path*` wildcards in header sources** — the engine switched from regex to path-to-regexp v6+, and `:path*` silently fails to match any path. Every `headers[].source` must be either an exact path (e.g. `"/about/"`) or use the new path-to-regexp placeholder syntax. The committed `vercel.json` follows this constraint:
+
+- One exact-match rule per top-level page (`/about/`, `/multibagger/`, `/subscribe/`, `/latest/`, `/admin/`, `/dark-preview/`).
+- One exact-match rule per dated briefing slug (e.g. `/5jun2026/`). 28 rules are committed for the current archive; add a new rule per published digest. A build-time generator is tracked as a follow-up.
+- Root rule (`/`) for the homepage.
+- Asset rules (`/(.*)\\.svg`, `/(.*)\\.(png|...)`) are **deliberately omitted** — Vercel default static-asset caching is acceptable, and the legacy `/(.*)` syntax is unverified against the current CLI.
+
+If you see `cache-control: public, max-age=0, must-revalidate` on a path that should have a custom header, the rule source isn't matching. Curl the path and check the source shape.
+
+### Stage Project Setup
+
+A stage project lets you verify deploys before promoting to production. To create one:
+
+1. In the Vercel dashboard, **Import Project** from `Abheydeep/marketNews`.
+2. Set the project name to `marketnarrative-public-stage` (or any `-stage` suffix).
+3. Leave **Framework Preset** as auto-detected briefly, watch what Vercel picks. The CLI's auto-detect will set the framework to **Services** because the repo has multiple workspaces. This is the wrong preset — it makes Vercel look for per-service build configs and will fail with a "no Output Directory named 'public' found" error.
+4. Change **Framework Preset** to **Other** and set the same Install / Build commands as the production public project (above).
+5. The committed `vercel.json` will then take over: `framework: null` survives even if the dashboard shows Services, the build runs `npm run vercel:build`, and the output is uploaded from `./public`.
+6. Add the same env vars as the production public project. Set `MARKET_NARRATIVE_DEPLOY_TARGET=public` so the build picks the public surface. Optionally set `LATEST_DIGEST_SLUG` so the `/api/latest-redirect/` function returns a true 301 (otherwise it falls back to fetching `/digest.json`).
+7. Deploy with `vercel deploy --prod` from the linked local checkout, or push to the linked branch and let Vercel build.
+
+The CLI cannot change a project's framework preset after creation — only the dashboard or the Vercel API can. If the dashboard is unavailable, use the Vercel API:
+
+```bash
+curl -X PATCH "https://api.vercel.com/v9/projects/<project-id>" \
+  -H "Authorization: Bearer $VERCEL_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"framework": null, "buildCommand": "npm run vercel:build", "installCommand": "npm install"}'
+```
+
+Note: `framework: null` in this payload is the API equivalent of selecting **Other** in the dashboard.
 
 ## DigitalOcean VPS
 

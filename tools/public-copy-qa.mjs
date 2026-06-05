@@ -2,7 +2,7 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, relative } from "node:path";
 import { findPublicBriefingViolations } from "./editorial-guardrails.mjs";
 
-const defaultTargets = ["out/site", "out/vercel"];
+const defaultTargets = ["out/site", "public"];
 const targets = process.argv.slice(2).length ? process.argv.slice(2) : defaultTargets;
 const scanExtensions = new Set([".html", ".json", ".txt"]);
 const adminLabelPatterns = [
@@ -111,7 +111,7 @@ function shouldSkipFile(path) {
 
 function isArchiveHome(path) {
   const normalized = normalize(path).replaceAll("\\", "/");
-  return normalized.endsWith("out/site/index.html") || normalized.endsWith("out/vercel/index.html");
+  return normalized.endsWith("out/site/index.html") || normalized.endsWith("public/index.html");
 }
 
 function slash() {

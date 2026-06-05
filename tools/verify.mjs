@@ -2511,7 +2511,12 @@ await test("frontend workspace separates public portal, admin studio, and shared
 await test("Vercel projects select public, admin, or trade output by deploy target", async () => {
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
-  assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  // outputDirectory is intentionally absent from vercel.json: the current Vercel
+  // CLI schema rejects the property, and the build writes directly to ./public
+  // (Vercel's default static output dir) instead. See tools/vercel-build.mjs.
+  assert.equal(vercelConfig.outputDirectory, undefined);
+  const vercelBuildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
+  assert.match(vercelBuildScript, /outputDir\s*=\s*join\(rootDir,\s*"public"\)/);
   assert.deepEqual(vercelConfig.crons, [
     {
       path: "/api/cron/premarket-publish",
@@ -2572,15 +2577,15 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
   const tradeProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
   assert.equal(publicProject.buildCommand, "npm run vercel:build");
-  assert.equal(publicProject.outputDirectory, "out/vercel");
+  assert.equal(publicProject.outputDirectory, "public");
   assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
   assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
   assert.equal(adminProject.buildCommand, "npm run vercel:build");
-  assert.equal(adminProject.outputDirectory, "out/vercel");
+  assert.equal(adminProject.outputDirectory, "public");
   assert.equal(adminProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "admin");
   assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
   assert.equal(tradeProject.buildCommand, "npm run vercel:build");
-  assert.equal(tradeProject.outputDirectory, "out/vercel");
+  assert.equal(tradeProject.outputDirectory, "public");
   assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
   assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
   for (const route of [
