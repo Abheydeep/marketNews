@@ -7,7 +7,7 @@ import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } fro
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -1803,6 +1803,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       }
     }
     ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>
@@ -2245,6 +2246,7 @@ function aboutPage(latest, archiveDigests = []) {
       }
     }
     ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>
@@ -2565,6 +2567,7 @@ function subscribePage() {
       }
     }
     ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>

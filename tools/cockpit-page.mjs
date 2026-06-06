@@ -1,6 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
@@ -5083,6 +5083,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
     }
     ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>

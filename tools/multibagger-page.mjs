@@ -1,5 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -1624,6 +1624,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       }
     }
     ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>

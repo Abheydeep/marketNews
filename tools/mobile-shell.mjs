@@ -73,8 +73,11 @@ export function mobileCtaCss() {
 export function proPolishCss() {
   return `
     /* === Pro polish (Tier 3) === */
+    /* Mobile-first root: 15px on phones, 16px on small tablets, 17px on
+       desktop. Tighter than the OS default so a lot of rem-based sizing
+       (cards, panels, hero) doesn't blow up on small viewports. */
     html {
-      font-size: clamp(15px, 0.94rem + 0.4vw, 17px);
+      font-size: clamp(15px, 0.5vw + 14px, 17px);
     }
     input, select, textarea, button {
       font-size: 16px;
@@ -113,6 +116,56 @@ export function bottomTabBarHtml(activeKey) {
         ${cells}
       </div>
     </nav>`;
+}
+
+/**
+ * Returns CSS that tightens the typography scale for small viewports.
+ * Drops into the same <style> as the bar; covers 1) oversized h1,
+ * 2) oversized body paragraphs (18px → 15px on phones), 3) tag/kicker
+ * labels that were 11-12px and now look fine. Pages that already opt
+ * into a tighter prose class (e.g. briefing-prose) are left alone.
+ */
+export function mobileTypographyCss() {
+  return `
+    /* === Mobile typography (overrides) === */
+    @media (max-width: 760px) {
+      h1 {
+        font-size: clamp(26px, 8vw, 36px) !important;
+        line-height: 1.12 !important;
+      }
+      h2 {
+        font-size: clamp(20px, 6vw, 26px) !important;
+        line-height: 1.2 !important;
+      }
+      h3 {
+        font-size: clamp(17px, 5vw, 20px) !important;
+      }
+      /* Body and panel copy on small screens. */
+      p, li, .panel p, .panel li, .briefing-block p {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+      }
+      .source-card p, .source-card li, .section-copy, .watch-grid p {
+        font-size: 14px !important;
+      }
+      .eyebrow, .section-kicker, .panel span, .source-card span, .section-label {
+        font-size: 11px !important;
+      }
+      .hero-action strong, .workflow-step strong, .two-minute-summary strong {
+        font-size: 15px !important;
+      }
+      .hero-action span {
+        font-size: 12px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+      }
+    }
+    /* === End mobile typography === */
+  `;
 }
 
 /**
@@ -156,7 +209,7 @@ export function bottomTabBarCss() {
         min-height: 56px;
         padding: 6px 4px 4px;
         color: #b8c4d8;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         text-decoration: none;
         letter-spacing: 0.02em;
