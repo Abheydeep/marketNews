@@ -1,5 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
@@ -125,6 +126,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     * { box-sizing: border-box; }
 
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
+
     body {
       margin: 0;
       background-color: var(--paper);
@@ -179,6 +205,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
+      padding-top: env(safe-area-inset-top, 0px);
     }
 
     .shell {
@@ -259,6 +286,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     main.shell {
       padding-top: 32px;
       padding-bottom: 64px;
+    }
+
+    /* Long-form reading width on small screens. */
+    .briefing-prose,
+    .glass-v2 .briefing-block p,
+    .glass-v2 .panel p,
+    .glass-v2 .two-minute-summary p {
+      max-width: 65ch;
     }
 
     .hidden {
@@ -409,7 +444,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .summary-chip span {
       display: block;
       color: var(--stone);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -499,7 +534,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-bottom: 8px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -713,7 +748,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 6px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.45;
       text-transform: uppercase;
@@ -869,7 +904,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 4px 0 0;
     }
     .preopen-flow-badge {
-      font-size: 11px;
+      font-size: 12px;
       background: rgba(99,179,237,0.12);
       color: #90cdf4;
       border-radius: 6px;
@@ -912,7 +947,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .preopen-tile.flat strong { color: #fbbf24; }
     .preopen-tile strong, .preopen-tile:not(.up):not(.down):not(.flat) strong { color: #e2e8f0; }
     .preopen-tile small {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
       line-height: 1.3;
     }
@@ -930,7 +965,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       flex: 1 1 200px;
     }
     .flow-label {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
       white-space: nowrap;
     }
@@ -941,7 +976,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .preopen-flow.up { color: #34d399; }
     .preopen-flow.down { color: #fb7185; }
     .preopen-flow-row small {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
     }
     .preopen-flows--pending {
@@ -951,6 +986,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     @media (max-width: 600px) {
       .preopen-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .preopen-grid { grid-template-columns: 1fr; }
+      .preopen-tile { min-height: 64px; padding: 12px 14px; }
     }
 
     .opening-nerve-card {
@@ -1004,7 +1044,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .opening-nerve-tile span {
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.09em;
       text-transform: uppercase;
@@ -1120,7 +1160,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .trade-map-tile span {
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.09em;
       text-transform: uppercase;
@@ -1297,7 +1337,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-bottom: 6px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1324,7 +1364,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 5px;
       color: #cbd5e1;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
     }
 
@@ -1341,7 +1381,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-radius: 14px;
     }
     .todays-read-kicker {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1384,7 +1424,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 28px;
     }
     .top-stories-kicker {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1421,7 +1461,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-bottom: 7px;
     }
     .top-story-publisher {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1529,7 +1569,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: #fff;
       padding: 8px 10px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1650,7 +1690,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-evidence-map > span {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1691,14 +1731,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 3px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
     }
 
     .source-theme-score {
       border-radius: 6px;
       padding: 6px 7px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
     }
@@ -1866,7 +1906,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-category-label small {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1996,7 +2036,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-thumb span {
       bottom: 44px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -2025,7 +2065,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .news-badge {
       border-radius: 5px;
       padding: 5px 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -2116,7 +2156,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-entity {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -2125,6 +2165,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .public-footer {
       margin-top: 42px;
       padding-top: 24px;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
       border-top: 1px solid var(--line);
       text-align: center;
     }
@@ -2220,7 +2261,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(2, 6, 23, 0.28);
       padding: 8px 10px;
       color: #cbd5e1;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -2570,13 +2611,27 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid rgba(226, 232, 240, 0.9);
       border-radius: 10px;
+      position: relative;
+    }
+
+    /* Faded right edge hints at horizontal scroll on small screens. */
+    .table-wrap::after {
+      content: "";
+      position: sticky;
+      top: 0;
+      right: 0;
+      width: 24px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(244, 245, 247, 0.95), rgba(244, 245, 247, 0));
+      pointer-events: none;
     }
 
     table {
       width: 100%;
-      min-width: 680px;
+      min-width: max-content;
       border-collapse: collapse;
     }
 
@@ -2591,10 +2646,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     th {
       background: rgba(241, 245, 249, 0.92);
       color: #334155;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
 
     td {
@@ -2835,7 +2893,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 7px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -3281,7 +3339,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .studio-run-card span {
       display: block;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -3323,7 +3381,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .studio-metric span {
       display: block;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -3641,7 +3699,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .theme-review-top span {
       color: #64748b;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
     }
@@ -3703,7 +3761,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 4px;
       color: #64748b;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -4032,7 +4090,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .scene-card small {
       display: block;
       color: #4b5563;
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.35;
     }
 
@@ -4471,7 +4529,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-radius: 999px;
       padding: 5px 9px;
       color: #475569;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -4825,18 +4883,27 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .nav-inner {
         align-items: start;
         flex-direction: column;
-        padding: 14px 0 0;
+        padding: 10px 0 0;
+        min-height: 52px;
       }
 
       .tabs {
         width: 100%;
-        min-height: 48px;
+        min-height: 44px;
         gap: 16px;
         overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
       }
 
       .tab-btn {
         white-space: nowrap;
+        scroll-snap-align: start;
       }
 
       .grid-main,
@@ -5015,6 +5082,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         justify-content: center;
       }
     }
+    ${bottomTabBarCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -7066,6 +7135,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
     });
   </script>
+  ${bottomTabBarHtml("latest")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }

@@ -6,8 +6,13 @@
  *      pipeline whenever a new briefing is published. Zero runtime cost.
  *   2. /digest.json fetch from the deployed origin — fallback for local dev
  *      and for environments where the env var is not configured.
- *   3. Previous in-memory cached slug — soft degrade across requests.
- *   4. 302 to / — last-resort, never 500.
+ *   3. Static ../latest-slug.txt baked into the deployment at build time —
+ *      survives cold starts and digest.json fetch failures. This is what
+ *      the in-memory cache used to claim to be, but never actually was on
+ *      Vercel serverless.
+ *   4. Previous in-memory cached slug — soft degrade across requests in
+ *      the same warm instance. Best-effort, not load-bearing.
+ *   5. 302 to / — last-resort, never 500.
  *
  * In this static+functions project the static meta-refresh fallback at
  * public/latest/index.html is still the primary /latest/ handler (it wins
@@ -16,23 +21,59 @@
  * removed.
  */
 
+import { readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 export const config = {
   runtime: "nodejs",
   regions: ["bom1"], // closest edge to IST primary audience
 };
 
 const SLUG_CACHE_MS = 5 * 60 * 1000;
+const COMPACT_SLUG_RE = /^\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4}$/i;
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 let cachedSlug = null;
 let cachedAt = 0;
 
 function slugFromEnv() {
   const raw = String(process.env.LATEST_DIGEST_SLUG || "").trim().toLowerCase();
   if (!raw) return null;
-  if (!/^\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4}$/.test(raw)) {
+  if (!COMPACT_SLUG_RE.test(raw)) {
     console.warn(`latest-redirect: ignoring malformed LATEST_DIGEST_SLUG=${raw}`);
     return null;
   }
   return raw;
+}
+
+function slugFromStaticFile() {
+  // Project-root file written by tools/vercel-build.mjs at deploy time.
+  // In Vercel's runtime, api/*.js sees __dirname under /var/task/api, so
+  // ../latest-slug.txt resolves to /var/task/latest-slug.txt. We also try
+  // process.cwd() for local dev where __dirname is not relative to root.
+  const candidates = [
+    join(dirname(fileURLToPath(import.meta.url)), "..", "latest-slug.txt"),
+    join(process.cwd(), "latest-slug.txt"),
+  ];
+  for (const candidate of candidates) {
+    if (!existsSync(candidate)) continue;
+    try {
+      const raw = readFileSync(candidate, "utf8").trim().toLowerCase();
+      if (COMPACT_SLUG_RE.test(raw)) return raw;
+      if (ISO_DATE_RE.test(raw)) return isoToCompactSlug(raw);
+      console.warn(`latest-redirect: ${candidate} contains an unrecognized slug "${raw}"`);
+    } catch (err) {
+      console.warn(`latest-redirect: failed to read ${candidate}: ${err.message}`);
+    }
+  }
+  return null;
+}
+
+function isoToCompactSlug(isoDate) {
+  const [year, month, day] = isoDate.split("-");
+  const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
+  if (!monthName) throw new Error(`bad month=${month}`);
+  return `${Number(day)}${monthName}${year}`;
 }
 
 async function slugFromDigest() {
@@ -65,7 +106,15 @@ async function readLatestSlug() {
     cachedAt = now;
     return slug;
   } catch (err) {
-    if (cachedSlug) return cachedSlug;
+    // Network/JSON failure. The in-memory cache is empty on a cold start,
+    // so it cannot help here. Fall through to the static-file fallback
+    // before giving up entirely.
+    const fileSlug = slugFromStaticFile();
+    if (fileSlug) {
+      cachedSlug = fileSlug;
+      cachedAt = now;
+      return fileSlug;
+    }
     throw err;
   }
 }

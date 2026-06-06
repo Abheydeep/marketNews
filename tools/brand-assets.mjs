@@ -6,7 +6,12 @@ export function brandHeadLinks(origin = "") {
   const base = String(origin || "").replace(/\/$/, "");
   return [
     `<link rel="icon" href="${escapeHtml(`${base}/favicon.svg`)}" type="image/svg+xml">`,
-    `<link rel="apple-touch-icon" href="${escapeHtml(`${base}/apple-touch-icon.svg`)}">`
+    `<link rel="apple-touch-icon" href="${escapeHtml(`${base}/apple-touch-icon.svg`)}">`,
+    `<link rel="manifest" href="${escapeHtml(`${base}/manifest.json`)}">`,
+    `<meta name="theme-color" content="#050816">`,
+    `<meta name="apple-mobile-web-app-capable" content="yes">`,
+    `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">`,
+    `<meta name="apple-mobile-web-app-title" content="Market Narrative">`,
   ].join("\n  ");
 }
 

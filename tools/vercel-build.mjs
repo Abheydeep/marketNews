@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
-import { cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -29,6 +30,11 @@ if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
   await writeManifest(target, ["/", "/latest/", "/latest/trading-guide/", "/multibagger/", "/about/", "/subscribe/"]);
+  // Mirror out/site/latest-slug.txt to the project root so api/latest-redirect.js
+  // can read it as a last-resort fallback on cold start when the env var and
+  // the /digest.json fetch are both unavailable. Vercel deploys the project
+  // root alongside api/, making ../latest-slug.txt readable from the function.
+  await copyLatestSlugFallback(join(rootDir, "out", "site", "latest-slug.txt"));
   run("node", ["tools/public-copy-qa.mjs", "public"]);
   console.log("Prepared Vercel public output in public");
 } else if (target === "admin") {
@@ -87,6 +93,16 @@ async function copyOutput(sourceDir, options = {}) {
     }
     await cp(join(sourceDir, entry.name), join(outputDir, entry.name), { recursive: true });
   }
+}
+
+async function copyLatestSlugFallback(sourcePath) {
+  if (!existsSync(sourcePath)) {
+    console.warn(`copyLatestSlugFallback: source not found at ${sourcePath}; /latest/ will rely on env + /digest.json only.`);
+    return;
+  }
+  const dest = join(rootDir, "latest-slug.txt");
+  await copyFile(sourcePath, dest);
+  console.log(`Mirrored ${sourcePath} → ${dest} for api/latest-redirect.js fallback.`);
 }
 
 async function writeManifest(targetName, routes) {

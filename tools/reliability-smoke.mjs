@@ -89,7 +89,12 @@ function findNewsArticle(nodes) {
 
 async function probeLatestSlugFromSitemap(sitemapXml) {
   const urls = extractMatches(sitemapXml, /<loc>([^<]+)<\/loc>/g).map((m) => m[1]);
-  const briefs = urls.filter((u) => /\/(\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4})\/?$/.test(u));
+  // Accept both compact (3jun2026) and ISO (2026-06-03) slug formats. The Day 7
+  // PUBLIC_SLUG_FORMAT=iso flip will repoint sitemap entries to ISO form.
+  const briefs = urls.filter((u) =>
+    /\/(\d{1,2}(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d{4})\/?$/.test(u) ||
+    /\/(\d{4}-\d{2}-\d{2})\/?$/.test(u)
+  );
   if (!briefs.length) return null;
   briefs.sort();
   return briefs.at(-1);
@@ -123,17 +128,22 @@ async function main() {
   record("sitemap parses and has at least one daily brief", Boolean(latestUrl), latestUrl || "no briefs in sitemap");
 
   // 3. /latest/ eventually resolves to the latest verified brief
-  const latestRes = await fetchText(`${SITE_ORIGIN}/latest/`, { redirect: "follow" });
-  const latestBody = await latestRes.text();
-  record("/latest/ resolves 200", latestRes.ok, `status=${latestRes.status}`);
+  // Production routes /latest/ → /api/latest-redirect (vercel.json rewrites),
+  // which issues a real 301. Probe with redirect: "manual" so we observe the
+  // redirect itself and its Location header rather than the followed-redirect
+  // body (which is the brief HTML and contains no redirect signal).
+  const latestRes = await fetchText(`${SITE_ORIGIN}/latest/`, { redirect: "manual" });
+  const latestStatus = latestRes.status;
+  const latestLocation = latestRes.headers.get("location");
+  record("/latest/ responds with 301", latestStatus === 301, `status=${latestStatus}`);
   if (latestUrl) {
-    // /latest/ uses a <meta http-equiv="refresh"> soft redirect, so fetch won't follow it.
-    // Read the body, parse the refresh target, and compare.
-    const refreshMatch = /<meta\s+http-equiv="refresh"[^>]+url=([^"\s>]+)/i.exec(latestBody);
-    const finalTarget = refreshMatch ? refreshMatch[1] : null;
     const normalizedLatest = latestUrl.replace(/\/+$/, "");
-    const matches = finalTarget && finalTarget.replace(/\/+$/, "") === normalizedLatest;
-    record("/latest/ meta-refresh target matches sitemap's latest brief", Boolean(matches), `target=${finalTarget || "?"} expected=${normalizedLatest}`);
+    const normalizedLocation = (latestLocation || "").replace(/\/+$/, "");
+    // Location may be a relative path ("/5jun2026/") or absolute
+    // ("https://www.marketnarrative.in/5jun2026/"). Compare on the path tail.
+    const locationTail = normalizedLocation.replace(/^https?:\/\/[^/]+/, "");
+    const matches = locationTail && locationTail === normalizedLatest;
+    record("/latest/ Location header matches sitemap's latest brief", Boolean(matches), `location=${latestLocation || "?"} expected=${normalizedLatest}`);
   }
 
   // 4. JSON-LD headline ↔ H1 parity on the latest daily brief

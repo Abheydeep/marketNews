@@ -7,6 +7,7 @@ import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } fro
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -913,6 +914,31 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     * { box-sizing: border-box; }
 
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -1071,7 +1097,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .freshness-banner span {
       color: #bae6fd;
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1287,7 +1313,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .summary-chip span {
       display: block;
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1319,7 +1345,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .workflow-step span {
       color: #67e8f9;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1607,7 +1633,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .archive-source-row span {
       display: block;
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1632,7 +1658,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .session-driver span {
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1678,7 +1704,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .recent-archive-link span {
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1699,6 +1725,18 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .recent-status.archived {
       color: #94a3b8;
+    }
+
+    @media (max-width: 760px) {
+      .hero-actions,
+      .workflow-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .workflow-step {
+        min-height: auto;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1764,6 +1802,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         display: none;
       }
     }
+    ${bottomTabBarCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body class="archive-dark">
@@ -1905,6 +1945,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     archiveTagFilter?.addEventListener('change', applyArchiveFilter);
     applyArchiveFilter();
   </script>
+  ${bottomTabBarHtml("archive")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -1951,6 +1993,31 @@ function aboutPage(latest, archiveDigests = []) {
     }
 
     * { box-sizing: border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
 
     body {
       margin: 0;
@@ -2177,6 +2244,8 @@ function aboutPage(latest, archiveDigests = []) {
         grid-template-columns: 1fr;
       }
     }
+    ${bottomTabBarCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body>
@@ -2239,6 +2308,8 @@ function aboutPage(latest, archiveDigests = []) {
       </article>
     </section>
   </main>
+  ${bottomTabBarHtml("about")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -2281,6 +2352,31 @@ function subscribePage() {
     }
 
     * { box-sizing: border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
 
     body {
       margin: 0;
@@ -2468,6 +2564,8 @@ function subscribePage() {
         width: 100%;
       }
     }
+    ${bottomTabBarCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body>
@@ -2525,6 +2623,8 @@ function subscribePage() {
       }
     }
   </script>
+  ${bottomTabBarHtml("subscribe")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }

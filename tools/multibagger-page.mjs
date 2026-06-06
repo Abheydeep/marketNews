@@ -1,4 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -297,7 +298,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .metric span {
       color: var(--muted);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -557,7 +558,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .donut-center span {
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -806,7 +807,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       background: rgba(2, 6, 23, 0.32);
       color: #d7e0ee;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 850;
       line-height: 1;
       padding: 7px 9px;
@@ -842,7 +843,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     th {
       color: #dbeafe;
       background: rgba(30, 41, 59, 0.76);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1197,7 +1198,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .allocation-status {
       color: var(--muted);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1296,7 +1297,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .evidence-card span {
       color: var(--cyan);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1412,7 +1413,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .watch-pressure {
       border-radius: 999px;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       line-height: 1;
       margin: 0 0 10px;
@@ -1461,7 +1462,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       border-radius: 999px;
       color: #fff;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       line-height: 1;
       padding: 6px 8px;
@@ -1622,6 +1623,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         text-transform: uppercase;
       }
     }
+    ${bottomTabBarCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body class="glass-v2">
@@ -2304,6 +2307,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
     }
   </script>
+  ${bottomTabBarHtml("portfolio")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -2388,6 +2393,28 @@ function adminCss() {
   return `
     :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.76); --cyan:#22d3ee; }
     * { box-sizing:border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
+
     body { margin:0; min-height:100vh; background:linear-gradient(135deg,#030712,#0f172a); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
     a { color:inherit; text-decoration:none; }
     .shell { width:min(1120px,calc(100% - 36px)); margin:0 auto; }
