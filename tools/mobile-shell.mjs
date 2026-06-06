@@ -165,6 +165,27 @@ export function mobileTypographyCss() {
       }
     }
     /* === End mobile typography === */
+
+    /* === Top-nav override (hide on mobile, leave brand) === */
+    @media (max-width: 760px) {
+      /* Shrink the topbar to a single brand row on mobile. The bottom tab
+         bar carries the navigation. */
+      .nav-inner {
+        min-height: 52px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+      }
+      /* Hide every link group inside the top nav on mobile. Brand stays. */
+      .nav-actions,
+      .tabs {
+        display: none !important;
+      }
+    }
+    /* === End top-nav override === */
   `;
 }
 
