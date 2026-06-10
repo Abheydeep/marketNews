@@ -1318,9 +1318,11 @@ function configuredDailyLeadReranker(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "mistralai/mistral-medium-3.5-128b";
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ prompt, userPrompt }) => {
+    console.log(`[Lead Reranker] Requesting NVIDIA API (Model: ${model})...`);
+    const startTime = Date.now();
     const response = await fetcher(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -1330,18 +1332,20 @@ function configuredDailyLeadReranker(options = {}) {
       },
       body: JSON.stringify({
         model,
-        reasoning_effort: "high",
         messages: [
           { role: "system", content: prompt },
           { role: "user", content: userPrompt }
         ],
         response_format: { type: "json_object" },
         max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.70),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 1.00),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
+        chat_template_kwargs: { enable_thinking: true },
+        reasoning_budget: 16384,
         stream: false
       })
     });
+    console.log(`[Lead Reranker] Received response with status ${response?.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
       throw new Error(`NVIDIA daily lead rerank failed with status ${response?.status ?? "unknown"}`);
     }

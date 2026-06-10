@@ -483,9 +483,11 @@ function configuredOpenAiArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "mistralai/mistral-medium-3.5-128b";
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ article, prompt, schema, usedAngles = [] }) => {
+    console.log(`[Editorial Enricher] Requesting NVIDIA API (Model: ${model}) for: ${article?.headline?.slice(0, 30)}...`);
+    const startTime = Date.now();
     const response = await fetcher(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -495,18 +497,20 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
       },
       body: JSON.stringify({
         model,
-        reasoning_effort: "high",
         messages: [
           { role: "system", content: prompt },
           { role: "user", content: articleEditorialUserPrompt(article, schema, usedAngles) }
         ],
         response_format: { type: "json_object" },
         max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.70),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 1.00),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
+        chat_template_kwargs: { enable_thinking: true },
+        reasoning_budget: 16384,
         stream: false
       })
     });
+    console.log(`[Editorial Enricher] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
       throw new Error(`NVIDIA article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
     }
@@ -2679,6 +2683,8 @@ important to least important. The first index in your array becomes the lead sto
 Return nothing else — no explanation, no markdown, no preamble.
 Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
 
+      console.log(`[Pulse Agent] Requesting NVIDIA API (Model: ${model})...`);
+      const startTime = Date.now();
       const response = await fetcher(`${baseUrl}/chat/completions`, {
         method: "POST",
         headers: {
@@ -2698,6 +2704,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
           extra_body: { chat_template_kwargs: { thinking: false } }
         })
       });
+      console.log(`[Pulse Agent] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
 
       if (!response.ok) {
         throw new Error(`NVIDIA API failed with status ${response.status}`);
