@@ -5235,10 +5235,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${indiaPreOpenHtml(digest)}
 
         ${todaysReadHtml(digest)}
-        ${topStoriesHtml(digest)}
-
-        ${evidenceGradeBadgeHtml(digest)}
-        ${sourceNotesHtml(digest)}
+        ${unifiedSourceSectionHtml(digest)}
 
         <footer class="public-footer">
           <p>Prepared from live market data and linked source notes. Educational market research only, not investment advice.</p>
@@ -7377,6 +7374,8 @@ function compactSupportClause(text) {
 
 function humanizeLeadCopy(value) {
   return String(value || "")
+    .replace(/^Direct\s+(index|India)\s+read-through:\s*/i, "")
+    .replace(/^Direct India read-through:\s*/i, "")
     .replace(/\bGlobal crude-flow signal\b/gi, "Crude supply")
     .replace(/\bIndia impact runs only through\b/gi, "India only cares through")
     .replace(/\bNot a direct India trade;\s*/gi, "")
@@ -7614,20 +7613,13 @@ function pageRobotsMeta(digest, requireAuth) {
 }
 
 function deskNoteHtml(digest) {
-  const pressureStory = strongestStory(digest.news, "negative");
-  const supportStory = strongestStory(digest.news, "positive");
-  const setup = niftySetup(digest);
-  const pressure = pressureStory?.takeaway || pressureStory?.summary || "macro cues are not clean enough to chase blindly";
-  const support = supportStory?.takeaway || supportStory?.summary || "banks and breadth need to prove the open";
-  const setupLine = setup
-    ? `The only trade I would respect is around ${formatNumber(setup.entry)}, with ${formatNumber(setup.stopLoss)} as the line in the sand.`
-    : "No forced trade at the bell. Let the first range print, then decide.";
-  const note = digest.deskNote || `${pressure} ${support} ${setupLine}`;
+  const note = humanizeLeadCopy(digest.deskNote || "");
+  if (!note) return "";
   return `
     <aside class="desk-note" aria-label="Creator desk note">
       <div class="desk-note-mark">Desk<br>Note</div>
       <div class="desk-note-copy">
-        <span>Creator read - Abhey Deep</span>
+        <span>Abhey Deep</span>
         <p>${escapeHtml(editorialSentence(note))}</p>
         <small>Human rule for the open: do not let the headline candle do your thinking. Confirm breadth, VWAP, and the first clean level.</small>
       </div>
@@ -8305,9 +8297,13 @@ function twoMinuteSummaryHtml(digest) {
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const pressure = macro || globalRisk;
-  const leadCopy = cleanBriefingText(digest.dailyLead?.takeaway || driver.summary);
-  const pressureCopy = cleanBriefingText(sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."));
-  const supportCopy = cleanBriefingText(sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."));
+  const leadCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.takeaway || driver.summary));
+  const pressureCopy = cleanBriefingText(
+    humanizeLeadCopy(pressure?.takeaway || pressure?.summary || "Macro cues set the risk bar for the morning.")
+  );
+  const supportCopy = cleanBriefingText(
+    humanizeLeadCopy(support?.indiaImpact || support?.takeaway || "Breadth and sector leadership are the confirmation check.")
+  );
 
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal);">
@@ -8329,7 +8325,7 @@ function sourceSummaryForTwoMinute(article, fallback) {
   const line = article.indiaImpact && !noDirectIndiaCopy(article.indiaImpact)
     ? article.indiaImpact
     : article.takeaway || article.whyItMatters || article.summary || fallback;
-  return conciseSentence(line, 28);
+  return conciseSentence(humanizeLeadCopy(line), 28);
 }
 
 function executiveSummaryHtml(digest) {
@@ -8622,6 +8618,113 @@ function topStoriesHtml(digest) {
         ${cards}
       </ul>
       ${moreCount > 0 ? `<p class="top-stories-footer">${moreCount} more article${moreCount === 1 ? "" : "s"} in the <a href="#sourceLedger">full source ledger</a> below.</p>` : ""}
+    </section>
+  `;
+}
+function unifiedSourceSectionHtml(digest) {
+  const totalArticles = digest.publicSourceSelection?.shortlistCount ?? (digest.news ?? []).length;
+  const articles = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
+  if (!articles.length) return "";
+
+  // Lead article first (driver-matched), then top 2 by weight — no duplicates
+  const dailyLeadHeadline = digest.dailyLead?.headline ?? "";
+  const lead = dailyLeadHeadline
+    ? (articles.find((a) => a.headline === dailyLeadHeadline) ?? null)
+    : null;
+  const rest = weightedSourceArticles(articles.filter((a) => a !== lead));
+  const top3 = [lead, ...rest].filter(Boolean).slice(0, 3);
+
+  const categories = sourceCategoryGroups(articles);
+  const defaultFilter = categories[0]?.category || "all";
+  const defaultCount = categories[0]?.count || articles.length;
+  const sourceCount = new Set(articles.map((article) => article.sourceName)).size;
+  const negativeCount = articles.filter((article) => articleTone(article) < -0.1).length;
+  const positiveCount = articles.filter((article) => articleTone(article) > 0.1).length;
+
+  function storyBadge(article) {
+    const tone = articleTone(article);
+    if (tone > 0.1) return `<span class="top-story-badge support">Supportive</span>`;
+    if (tone < -0.1) return `<span class="top-story-badge pressure">Pressure</span>`;
+    return `<span class="top-story-badge neutral">Context</span>`;
+  }
+
+  function truncate(text, maxLen) {
+    if (!text) return "";
+    const s = String(text).trim();
+    return s.length <= maxLen ? s : s.slice(0, maxLen).replace(/\\s+\\S*$/, "") + "…";
+  }
+
+  const cards = top3.map((article) => {
+    const headline = escapeHtml(article.headline ?? "");
+    const url = article.sourceUrl ?? "#";
+    const publisher = escapeHtml(article.sourceName ?? "Source");
+    const indiaLine = escapeHtml(truncate(humanizeLeadCopy(article.indiaImpact || article.takeaway || ""), 160));
+    const watchLine = escapeHtml(truncate(article.watchFor || "", 120));
+
+    return `
+      <li class="top-story-card">
+        <div class="top-story-meta">
+          <span class="top-story-publisher">${publisher}</span>
+          ${storyBadge(article)}
+        </div>
+        <h3 class="top-story-headline">
+          <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${headline}</a>
+        </h3>
+        ${indiaLine ? `<p class="top-story-india">${indiaLine}</p>` : ""}
+        ${watchLine ? `<p class="top-story-watch">${watchLine}</p>` : ""}
+      </li>`;
+  }).join("");
+
+  const remainingCount = articles.length - top3.length;
+
+  const toneStats = negativeCount || positiveCount
+    ? `
+          <span title="Bearish India read-through">Pressure<strong>${escapeHtml(negativeCount)}</strong></span>
+          <span title="Supportive India read-through">Support<strong>${escapeHtml(positiveCount)}</strong></span>`
+    : `
+          <span>Tone<strong>Neutral</strong></span>`;
+
+  return `
+    <section class="sources-section" aria-label="Evidence and sources">
+      <div class="section-kicker">
+        <div>
+          <h2>Evidence & Sources</h2>
+          <p class="source-section-copy">${escapeHtml(sourceQualityLine(digest))} ${escapeHtml(`${articles.length} India read-through notes from a ${totalArticles}-article shortlist.`)}</p>
+        </div>
+        <div class="source-stat-strip" aria-label="Source statistics">
+          <span>Articles<strong>${escapeHtml(articles.length)}</strong></span>
+          <span>Publishers<strong>${escapeHtml(sourceCount)}</strong></span>
+          ${toneStats}
+        </div>
+      </div>
+
+      <ul class="top-stories-list" aria-label="Top stories">
+        ${cards}
+      </ul>
+
+      <details id="sourceLedger" class="source-ledger-details" data-default-source-filter="${escapeHtml(defaultFilter)}">
+        <summary>
+          <div>
+            <h3>View all ${escapeHtml(articles.length)} verified articles</h3>
+            <p>Category-filtered source ledger with India read-through notes.</p>
+          </div>
+          <span class="disclosure-action source-ledger-action" aria-hidden="true">
+            <span class="label-closed">Show details</span>
+            <span class="label-open">Hide details</span>
+            <span class="disclosure-icon"></span>
+          </span>
+        </summary>
+        <div class="source-ledger-body">
+          <div class="source-filter-row" aria-label="Source category filters">
+            ${sourceFilterButtonsHtml(categories, articles.length, defaultFilter)}
+            <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(defaultCount)} shown</span>
+          </div>
+
+          <div class="source-category-board" aria-label="Categorized source notes">
+            ${categories.map((group) => sourceCategorySectionHtml(group, defaultFilter)).join("")}
+          </div>
+        </div>
+      </details>
     </section>
   `;
 }
@@ -8970,7 +9073,7 @@ function sourceEvidenceCardHtml(article) {
         <details class="source-card-detail">
           <summary>Read-through</summary>
           <p><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
-          <p><strong>India impact:</strong> ${escapeHtml(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
+          <p><strong>India impact:</strong> ${escapeHtml(humanizeLeadCopy(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance."))}</p>
           <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</p>
         </details>
         <div class="source-card-footer">

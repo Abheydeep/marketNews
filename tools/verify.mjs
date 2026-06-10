@@ -1625,8 +1625,8 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
   assert.ok(publicHtml.includes("Abhey Deep"));
   assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("compact-meta-strip"), "2-minute summary should appear before share row");
-  // Today's Read section was replaced by desk note
-  assert.ok(publicHtml.includes("top-stories-section"), "Top Stories section must be present");
+  // Top Stories merged into unified Evidence & Sources section
+  assert.ok(publicHtml.includes("sources-section"), "Evidence & Sources section must be present");
   assert.equal(publicHtml.includes("Live Quote Board"), false);
   assert.equal(publicHtml.includes("live refresh pending"), false);
   assert.equal(publicHtml.includes("Waiting for chart data"), false);
@@ -2811,18 +2811,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Asia Watch"));
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
   assert.ok(publicHtml.body.includes("Hong Kong - Hang Seng"));
-  assert.ok(publicHtml.body.includes("Source Notes & Attribution"));
-  assert.ok(publicHtml.body.includes("Evidence ledger behind the briefing"));
-  assert.ok(publicHtml.body.includes("Open categorized source ledger"));
+  assert.ok(publicHtml.body.includes("Evidence & Sources") || publicHtml.body.includes("Evidence &amp; Sources"));
+  assert.ok(publicHtml.body.includes("India read-through notes from a"));
+  assert.ok(publicHtml.body.includes("verified articles"));
   assert.ok(publicHtml.body.includes("source-ledger-details"));
   assert.ok(publicHtml.body.includes("data-default-source-filter"));
-  assert.ok(publicHtml.body.includes("Evidence Map"));
-  assert.ok(publicHtml.body.includes("Lead evidence"));
   assert.ok(publicHtml.body.includes("Source quality:"));
-  assert.match(publicHtml.body, /Top \d+ India read-through notes selected from/);
+  assert.match(publicHtml.body, /\d+ India read-through notes/);
   // Evidence grade jargon removed — plain English summaries now used instead
   assert.equal(publicHtml.body.includes("Direct India-source articles: 0"), false);
-  assert.match(publicHtml.body, /Showing \d+ India read-through notes/);
+  assert.match(publicHtml.body, /India read-through notes/);
   assert.ok(publicHtml.body.includes("verified article links"));
   assert.ok(publicHtml.body.includes("Category Board") || publicHtml.body.includes("Categorized source notes"));
   assert.ok(publicHtml.body.includes("Macro Pressure") || publicHtml.body.includes("Global Risk"));
