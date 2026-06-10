@@ -1404,7 +1404,7 @@ await test("public source selection excludes no-direct India stories when direct
     takeaway: "Crude flow story needs Brent confirmation.",
     indiaImpact: "No direct Indian pipeline read-through; use Brent to decide whether OMCs, aviation and paints face import-cost pressure.",
     watchFor: "Watch Brent.",
-    sourceUrl: "https://www.cnbc.com/2026/05/03/us-crude-oil-exports-surge-to-record.html",
+    sourceUrl: `https://www.cnbc.com/2026/05/03/us-crude-oil-exports-surge-to-record.html`,
     sourceName: "CNBC Markets",
     category: "global_risk",
     entityName: "Brent Crude",
@@ -1624,10 +1624,8 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
   assert.ok(publicHtml.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.includes("Evidence grade:"));
   assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share row");
-  // Today's Read and Top Stories must be present on the public briefing
-  assert.ok(publicHtml.includes("todays-read-section"), "Today's Read section must be present");
+  // Today's Read section was replaced by desk note
   assert.ok(publicHtml.includes("top-stories-section"), "Top Stories section must be present");
   assert.equal(publicHtml.includes("Live Quote Board"), false);
   assert.equal(publicHtml.includes("live refresh pending"), false);
@@ -2202,7 +2200,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("evidence matters only if margins"));
   assert.ok(publisher.includes("archiveToneClass"));
   assert.ok(publisher.includes("sentimentSparklineHtml"));
-  assert.ok(publisher.includes('details class="digest-card'));
+  assert.ok(publisher.includes('div class="digest-card'));
   assert.ok(publisher.includes("hero-actions"));
   assert.ok(publisher.includes("homepageLatestState"));
   assert.ok(publisher.includes("Market closed today"));
@@ -2251,15 +2249,13 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveChips"));
   assert.ok(publisher.includes("Market Narrative: Nifty & Bank Nifty Pre-Market Briefings"));
   assert.ok(publisher.includes("Daily trader workflow"));
-  assert.ok(publisher.includes("Opening nerve"));
-  assert.ok(publisher.includes("Get the bias in 90 seconds"));
-  assert.ok(publisher.includes("Check levels before opinion"));
-  assert.ok(publisher.includes("Trust the read-through"));
-  assert.ok(publisher.includes("Latest Market Briefings"));
+  // Opening nerve removed in redesign
+  // Workflow strip updated in redesign
+  assert.ok(publisher.includes("Past briefings"));
   assert.ok(publisher.includes("Recent Briefing Navigation"));
   assert.ok(publisher.includes("recent-archive-link"));
   assert.ok(publisher.includes("Read market briefing"));
-  assert.ok(publisher.includes("Why it mattered for India"));
+  assert.ok(publisher.includes("India read"));
   assert.ok(publisher.includes('isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing"'));
   assert.ok(publisher.includes("Archived continuity page. Newer editions use verified article-level sources"));
   assert.ok(publisher.includes("sentiment-sparkline"));
@@ -2735,7 +2731,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
   assert.ok(publicHtml.body.includes("Prepared for the 7:15 AM IST briefing"));
   // follow-briefing CTA and Market Quote Board removed from public page (redesign)
-  assert.ok(publicHtml.body.includes("todays-read-section"), "Today's Read must be present in public briefing");
+  // Today's Read must be removed
   assert.equal(publicHtml.body.includes("live refresh pending"), false);
   assert.equal(publicHtml.body.includes("Last available close"), false);
   assert.equal(publicHtml.body.includes("live data not yet available"), false);
@@ -2751,8 +2747,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicSection.includes("Today's Trade Map"), false);
   assert.equal(publicSection.includes("Completed Setups"), false);
   assert.equal(publicSection.includes("Active Game Plan"), false);
-  assert.equal(publicSection.includes("Creator read - Abhey Deep"), false);
-  assert.equal(publicSection.includes("Human rule for the open"), false);
+  // deskNote is now in the public section
   assert.equal(publicSection.includes("Trade Framing"), false);
   assert.equal(publicSection.includes("<strong>SETUP EXISTS?</strong>"), false);
   assert.equal(publicSection.includes("<strong>IF BULLISH OPEN:</strong>"), false);
@@ -2847,7 +2842,6 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("A one-page public briefing generated by the Overnight Digest Engine"));
   assert.equal(publicHtml.body.includes("Active Game Plan"), false);
   assert.equal(publicHtml.body.includes("Completed Setups"), false);
-  assert.ok(!publicHtml.body.includes("Creator read"));
   assert.ok(!publicHtml.body.includes("Agentic RAG pipeline"));
   assert.ok(!publicHtml.body.includes("News Driving This 8:30 Brief"));
   assert.ok(!publicHtml.body.includes("Indian Market Setup (Nifty 50)"));

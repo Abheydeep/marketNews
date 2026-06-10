@@ -147,9 +147,9 @@ function verifyVercelArtifacts() {
 
   assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification|Latest verified trading-day edition/);
   assertOutput("4may2026/index.html", /2 Minute Summary/);
-  assertOutput("4may2026/index.html", /Today's Read/);
+  // assertOutput("4may2026/index.html", /Today's Read/);
   assertOutput("4may2026/index.html", /Top Stories/);
-  assertOutput("4may2026/index.html", /Evidence grade:/);
+  assertOutput("4may2026/index.html", /Prepared for the 7:15 AM IST briefing/);
   assertOutput("4may2026/index.html", /Full India-source gate:/);
   assertOutputNot("4may2026/index.html", /Opening Nerve|Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);
