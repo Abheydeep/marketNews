@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
@@ -18,6 +18,18 @@ const enforcePublishWindow = readFlag("--enforce-publish-window") || process.env
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
+
+if (liveMode) {
+  try {
+    const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);
+    await access(archiveFile);
+    process.stdout.write(`Verified archive already exists for ${date} (${archiveFile}). Skipping generation.\n`);
+    process.exit(0);
+  } catch {
+    // File does not exist, proceed.
+  }
+}
+
 const calendarState = marketCalendarState(date);
 
 if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {

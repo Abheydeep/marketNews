@@ -3221,7 +3221,9 @@ function robotsTxt() {
   ].join("\n");
 }
 
-function sitemapXml(digests) {
+function sitemapXml(allDigests) {
+  // Only include digests that actually have content, plus the latest digest to keep the crawler fresh
+  const digests = allDigests.filter((d) => d.briefing || d === allDigests[0]);
   const urls = [
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "1.0" },
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },

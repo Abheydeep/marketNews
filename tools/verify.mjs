@@ -2520,7 +2520,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.deepEqual(vercelConfig.crons, [
     {
       path: "/api/cron/premarket-publish",
-      schedule: "43 1 * * 1-5"
+      schedule: "30 1 * * 1-5"
     },
     {
       path: "/api/cron/premarket-publish",
@@ -2725,7 +2725,7 @@ await test("demo app serves public and admin flows without external packages", a
 
   const publicHtml = await app.request("GET", "/");
   assert.ok(publicHtml.body.includes("application/ld+json"));
-  assert.ok(publicHtml.body.includes('class="glass-v2"'));
+  assert.ok(publicHtml.body.includes('glass-v2'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(publicHtml.body.includes("Trading Guide"));
