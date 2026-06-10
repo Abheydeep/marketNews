@@ -320,10 +320,35 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   let selectedArticles;
   if (isPulseMode) {
     selectedArticles = await agentSelectPulseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), options);
+    const top3 = selectedArticles.slice(0, 3);
+    await Promise.all(top3.map(a => enrichPulseArticleWithContent(a, fetcher)));
   } else {
     selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
   }
   return enrichArticlesWithEditorialLLM(selectedArticles, options);
+}
+
+async function enrichPulseArticleWithContent(article, fetcher) {
+  if (!article.sourceUrl || !article.sourceUrl.startsWith('http')) return article;
+  
+  try {
+    const html = await fetchText(article.sourceUrl, fetcher);
+    const paragraphs = [];
+    const pRegex = /<p[^>]*>(.*?)<\/p>/gi;
+    let match;
+    while ((match = pRegex.exec(html)) !== null) {
+      const text = match[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+      if (text.length > 50) paragraphs.push(text);
+      if (paragraphs.length >= 3) break;
+    }
+    
+    if (paragraphs.length > 0) {
+       article.summary = paragraphs.join('\n\n'); 
+    }
+  } catch (e) {
+    console.warn(`[news-source] Failed to scrape pulse body for ${article.sourceUrl}: ${e.message}`);
+  }
+  return article;
 }
 
 async function enrichArticlesWithEditorialLLM(articles, options = {}) {
@@ -2022,10 +2047,18 @@ function specificCompanyOrTheme(lower, fallback) {
 function extractMarketLevel(lower, unit) {
   const escapedUnit = unit === "$" ? "\\$" : unit;
   const pattern = unit === "$"
-    ? new RegExp(`${escapedUnit}\\s?\\d+(?:\\.\\d+)?`, "i")
-    : new RegExp(`\\d+(?:\\.\\d+)?\\s?${escapedUnit}`, "i");
+    ? new RegExp(`${escapedUnit}\\s?(\\d+(?:\\.\\d+)?)`, "i")
+    : new RegExp(`(\\d+(?:\\.\\d+)?)\\s?${escapedUnit}`, "i");
   const match = String(lower || "").match(pattern);
-  return match?.[0]?.replace(/\s+/g, "") || "";
+  if (match) {
+    if (unit === "$") {
+       const val = Number(match[1]);
+       // Crude trades $40-150. Above $200 is definitely an error
+       if (val > 200 || val < 40) return ""; 
+    }
+    return match[0].replace(/\s+/g, "");
+  }
+  return "";
 }
 
 function articleFactSentence(headline, summary) {
@@ -2082,7 +2115,15 @@ function fallbackFactFromHeadline(headline) {
     .replace(/\s*-\s*[^-]+$/i, "")
     .replace(/\s+/g, " ")
     .trim(), 14);
-  return cleaned ? `The source flags ${cleaned.charAt(0).toLowerCase()}${cleaned.slice(1)}` : "The source flags a market context cue";
+  
+  if (!cleaned) return "Global cues dominate the pre-market setup";
+
+  const parts = cleaned.split(/[:;.,-]/).map(p => p.trim()).filter(p => p.length > 10);
+  const bestPart = parts.length > 0 
+      ? parts.sort((a, b) => b.length - a.length)[0] 
+      : cleaned;
+
+  return bestPart.charAt(0).toUpperCase() + bestPart.slice(1);
 }
 
 function firstUsefulSentence(value) {
@@ -2619,9 +2660,8 @@ export async function agentSelectPulseArticles(articles, options = {}) {
   
   const fetcher = options.llmFetcher ?? fetch;
   const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
-  const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
   
-  if (!nvidiaApiKey && !geminiApiKey) {
+  if (!nvidiaApiKey) {
      return articles;
   }
 
@@ -2711,36 +2751,13 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
       }
       const data = await response.json();
       const text = data?.choices?.[0]?.message?.content?.trim() ?? "[]";
-      // Clean up potential markdown formatting block
-      const cleanText = text.replace(/```json\n?/, "").replace(/```\n?$/, "");
-      indices = JSON.parse(cleanText);
-    } else if (geminiApiKey) {
-      const prompt = "You are a pre-market desk editor.\nSelect the most important market-moving articles from the following list.\nExclude noise, generic opinion pieces, and non-market news.\nReturn a JSON array of the IDs (indices) of the selected articles.\nExample output: [0, 3, 5]";
-      
-      const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-goog-api-key": geminiApiKey
-          },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: prompt }] },
-            contents: [{ role: "user", parts: [{ text: inputList }] }],
-            generationConfig: {
-              responseMimeType: "application/json",
-              responseSchema: {
-                type: "ARRAY",
-                items: { type: "INTEGER" }
-              }
-            }
-          })
-      });
-      if (!response.ok) {
-        throw new Error(`Gemini API failed with status ${response.status}`);
+      // Ensure we extract the array even if there is markdown or conversational preamble
+      const match = text.match(/\[[\d,\s]*\]/);
+      if (match) {
+        indices = JSON.parse(match[0]);
+      } else {
+        indices = [];
       }
-      const data = await response.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
-      indices = JSON.parse(text);
     }
 
     if (Array.isArray(indices) && indices.length > 0) {

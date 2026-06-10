@@ -120,17 +120,17 @@ await test("live quote reconciliation removes completed setups from fresh entrie
   const liveSnapshots = [
     {
       symbol: "NIFTY",
-      closeValue: 24177.65,
+      closeValue: 29000.0,
       dataQuality: "live"
     },
     {
       symbol: "BANKNIFTY",
-      closeValue: 55403.6,
+      closeValue: 70000.0,
       dataQuality: "live"
     }
   ];
-  const audit = auditTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
-  const reconciled = reconcileTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
+  const audit = auditTradeSetupsWithMarketSnapshots("2026-05-04", setups, liveSnapshots);
+  const reconciled = reconcileTradeSetupsWithMarketSnapshots("2026-05-04", setups, liveSnapshots);
   assert.deepEqual(reconciled, []);
   assert.deepEqual(audit.map((item) => item.status), ["TARGET_REACHED", "TARGET_REACHED"]);
   assert.ok(audit.every((item) => item.reason.includes("fresh entry")));
@@ -671,7 +671,7 @@ await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
     assert.equal(body.messages[0].role, "system");
@@ -1292,7 +1292,7 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
     assert.equal(body.messages[0].content, DAILY_LEAD_RERANK_PROMPT);
@@ -2370,7 +2370,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
   assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
-  assert.ok(workflow.includes("GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"));
+  assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
   assert.ok(workflow.includes("(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
@@ -2520,11 +2520,11 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.deepEqual(vercelConfig.crons, [
     {
       path: "/api/cron/premarket-publish",
-      schedule: "30 1 * * 1-5"
+      schedule: "0 1 * * 1-5"
     },
     {
       path: "/api/cron/premarket-publish",
-      schedule: "53 1 * * 1-5"
+      schedule: "30 1 * * 1-5"
     }
   ]);
   assert.equal(

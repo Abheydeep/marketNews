@@ -2181,12 +2181,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .legacy-audit-banner,
     .edition-nav,
-    .share-row,
     .reader-path,
-    .session-notice,
     .evidence-grade-card,
-    .follow-briefing-cta,
-    .chart-cta-panel {
+    .chart-cta-panel,
+    .footer-actions-card {
       border: 1px solid rgba(148, 163, 184, 0.24);
       border-radius: 14px;
       background: rgba(15, 23, 42, 0.58);
@@ -2201,20 +2199,34 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-weight: 900;
     }
 
-    .edition-nav,
+    .footer-actions-card {
+      padding: 0;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .footer-actions-divider {
+      margin: 0;
+      border: none;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .session-notice,
     .share-row,
-    .reader-path {
+    .follow-briefing-cta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
       justify-content: space-between;
-      margin: 14px 0;
+      padding: 16px;
+      margin: 0;
+      border: none;
+      background: transparent;
+      border-radius: 0;
     }
 
-    .session-notice,
-    .evidence-grade-card,
-    .follow-briefing-cta {
+    .evidence-grade-card {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -4588,9 +4600,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #dbeafe;
     }
 
-    .glass-v2 .session-notice,
-    .glass-v2 .evidence-grade-card,
-    .glass-v2 .follow-briefing-cta {
+    .glass-v2 .footer-actions-card,
+    .glass-v2 .evidence-grade-card {
       border-color: rgba(103, 232, 249, 0.24);
       background: rgba(15, 23, 42, 0.66);
     }
@@ -5083,6 +5094,71 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         justify-content: center;
       }
     }
+    .market-map-details {
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .market-map-details summary {
+      cursor: pointer;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 1.1em;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .market-map-details summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-map-details summary::after {
+      content: "▼";
+      font-size: 0.8em;
+      color: var(--stone);
+      transition: transform 0.2s;
+    }
+    .market-map-details[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .market-map-details summary h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .market-map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      padding: 0 16px 16px 16px;
+    }
+    .market-map-card {
+      background: var(--paper);
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+    }
+    .market-map-card h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.9em;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .market-map-card p {
+      margin: 0 0 8px 0;
+      font-size: 1em;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .market-map-card small {
+      display: block;
+      color: var(--stone);
+      font-size: 0.85em;
+      line-height: 1.4;
+    }
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
@@ -5146,9 +5222,15 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
         ${legacyAuditBannerHtml(digest)}
         ${editionNavHtml(digest)}
-        ${briefingFreshnessNoticeHtml(digest)}
-        ${shareRowHtml(canonicalUrl, digest.title)}
-        ${followBriefingCtaHtml()}
+        
+        <div class="footer-actions-card">
+          ${briefingFreshnessNoticeHtml(digest)}
+          <hr class="footer-actions-divider">
+          ${shareRowHtml(canonicalUrl, digest.title)}
+          <hr class="footer-actions-divider">
+          ${followBriefingCtaHtml()}
+        </div>
+        
         ${indiaPreOpenHtml(digest)}
 
         ${todaysReadHtml(digest)}
@@ -7150,103 +7232,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
  * The original digest.title is preserved for SEO/meta — this is display-only.
  */
 function hookTitle(digest) {
-  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
-  const sentiment = Number(digest.overallSentiment ?? 0);
   const fii = digest.fiiDiiFlows;
   const fiiNet = Number(fii?.fiiNet ?? 0);
   const hasFlow = Math.abs(fiiNet) > 50 && fii?.date;
-  const bias = digest.giftNiftyBias;
-  const sentimentLabel = String(digest.sentimentLabel ?? "").toUpperCase();
-
-  // Helper: short FII phrase e.g. "FII Bought ₹1,329 Cr"
+  
   function fiiPhrase() {
     const abs = Math.abs(fiiNet);
     const cr = abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
     return fiiNet > 0 ? `FII Bought ${cr}` : `FII Sold ${cr}`;
   }
 
-  // GIFT Nifty gap is the sharpest pre-open signal when it's real
-  if (bias?.bias === "gap_up" && Math.abs(bias.gapPts) >= 50) {
-    const lead = hasFlow ? `${fiiPhrase()} + Gap-Up Open — Here's the India Read` : `Gap-Up ${Math.abs(bias.gapPts)} Pts — Watch the First 15 Minutes`;
-    return lead;
-  }
-  if (bias?.bias === "gap_down" && Math.abs(bias.gapPts) >= 50) {
-    const lead = hasFlow ? `${fiiPhrase()} + Gap-Down — Support Watch Before You Trade` : `Gap-Down ${Math.abs(bias.gapPts)} Pts — Where India Finds Support`;
-    return lead;
-  }
-
-  // Driver + FII combos — the most engagement-worthy headlines
-  if (driver === "geopolitical") {
-    if (hasFlow) return sentiment >= 0
-      ? `Trade Diplomacy Tailwind + ${fiiPhrase()} — India's Pre-Open Edge`
-      : `Geopolitical Risk + ${fiiPhrase()} — What India Must Confirm First`;
-    return sentiment >= 0
-      ? "Trade Diplomacy Shifts the Risk Map — India in Play"
-      : "Geopolitical Risk Builds — Crude and USD/INR Are the India Checks";
+  const leadHeadline = digest.dailyLead?.headline;
+  if (leadHeadline) {
+     const cleanHeadline = leadHeadline.replace(/^[^:|—-]+[:|—-]\s*/, '').trim(); 
+     if (cleanHeadline.length > 10) {
+        if (hasFlow) {
+           return `${cleanHeadline} — ${fiiPhrase()}`;
+        }
+        return cleanHeadline;
+     }
   }
 
-  if (driver === "crude") {
-    if (hasFlow) return sentiment >= 0
-      ? `Crude Eases + ${fiiPhrase()} — OMC and Aviation Get a Breather`
-      : `Crude Pressure + ${fiiPhrase()} — India Open Needs Breadth to Hold`;
-    return sentiment >= 0
-      ? "Crude Softens — OMC Margins and Aviation Get Relief"
-      : "Crude Firm — Inflation Risk and OMC Margins Are the India Read";
-  }
-
-  if (driver === "rates") {
-    if (hasFlow) return sentiment >= 0
-      ? `Yield Relief + ${fiiPhrase()} — Banks and Real Estate in Focus`
-      : `Yield Pressure + ${fiiPhrase()} — Dollar Strength Squeezes Imports`;
-    return sentiment >= 0
-      ? "Yields Ease — Banks, Realty and Autos Get a Rate Tailwind"
-      : "Yields Rise — Dollar Pressure Hits Importers; Watch USD/INR";
-  }
-
-  if (driver === "tech_move" || driver === "tech") {
-    if (hasFlow) return sentiment >= 0
-      ? `Tech Strength + ${fiiPhrase()} — Nifty IT Leads the Watch List`
-      : `Tech Pressure + ${fiiPhrase()} — IT Sector Gets a Valuation Check`;
-    return sentiment >= 0
-      ? "Nasdaq Lifts Tech — Nifty IT and Exporters Are the India Play"
-      : "Tech Sector Pressure — Nifty IT Breadth Is the Confirmation Check";
-  }
-
-  if (driver === "banks") {
-    if (hasFlow) return sentiment >= 0
-      ? `Banks Lead + ${fiiPhrase()} — Bank Nifty VWAP Is Today's Anchor`
-      : `Bank Stress + ${fiiPhrase()} — Confirmation Needed Before Direction`;
-    return sentiment >= 0
-      ? "Banks Stabilise — Bank Nifty Breadth Leads the Open"
-      : "Bank Sector Under Pressure — Watch VWAP and Advance-Decline";
-  }
-
-  if (driver === "precious_metals") {
-    if (hasFlow) return `Gold Surge + ${fiiPhrase()} — Safe-Haven Demand Tests India Risk Appetite`;
-    return sentiment >= 0
-      ? "Gold Firm — MCX Open and Jewellery Sector in Focus"
-      : "Gold Rallying — Equity Risk Appetite Under Pressure";
-  }
-
-  if (driver === "currency") {
-    if (hasFlow) return sentiment >= 0
-      ? `Rupee Stable + ${fiiPhrase()} — Exporters Get the Edge Today`
-      : `Rupee Pressure + ${fiiPhrase()} — Importers Watch the First-Hour Range`;
-    return "Currency Move in Play — Watch USD/INR Through the First Hour";
-  }
-
-  // Generic: lead with FII if available, else use a cleaner title
   if (hasFlow) {
-    if (sentimentLabel === "BULLISH") return `${fiiPhrase()} + Positive Global Cues — India Has a Running Start`;
-    if (sentimentLabel === "BEARISH") return `${fiiPhrase()} + Caution — Mixed Cues Demand Opening-Range Confirmation`;
     return `${fiiPhrase()} on ${fii.date} — Check the Opening Range Before Taking a View`;
   }
-
-  // Last resort: clean up the archive title (remove robotic formula words)
-  return String(digest.title ?? "India Pre-Open Market Briefing")
-    .replace(/\bshape\b/gi, "sets")
-    .replace(/\bSets India\b/g, "in Focus —")
-    .replace(/\bWatch\b$/, "Watch Before the Open");
+  return String(digest.title ?? "India Pre-Open Market Briefing");
 }
 
 /** Replaces generic "Daily Pre-Market Summary" eyebrow with a market-specific signal label. */
@@ -7264,14 +7274,9 @@ function heroEyebrowLabel(digest) {
   }
 
   // Driver-specific labels
-  if (driver === "geopolitical") return sentiment >= 0 ? "Diplomacy Tailwind — Risk-On Watch" : "Geopolitical Risk — Confirm Before You Trade";
-  if (driver === "crude")        return sentiment >= 0 ? "Crude Easing — Watch Breadth" : "Crude Pressure — Energy Risk in Play";
-  if (driver === "rates")        return sentiment >= 0 ? "Yield Relief — Risk Assets Watch" : "Yield Squeeze — Dollar Pressure Watch";
-  if (driver === "tech_move" || driver === "tech") return sentiment >= 0 ? "Tech Strength — Nifty IT in Play" : "Tech Pressure — IT Sector Watch";
-  if (driver === "banks")        return sentiment >= 0 ? "Banks Leading — Breadth Positive" : "Bank Stress — Watch VWAP Holds";
-  if (driver === "precious_metals") return "Gold / Metals Signal — Safe-Haven Read";
-  if (driver === "currency")     return sentiment >= 0 ? "Rupee Stable — Exporter Tailwind" : "Rupee Pressure — Importer Cost Watch";
-  if (driver === "asia")         return "Asia Moves First — India Read-Through Below";
+  if (driver) {
+     return `${driver.charAt(0).toUpperCase() + driver.slice(1)} Driver — Watch the First 15 Minutes`;
+  }
 
   // Sentiment fallback
   if (sentiment >= 0.3) return "Risk-On Setup — Follow the Breadth";
@@ -8171,7 +8176,7 @@ function driverLabelForArticle(article) {
   if (/\b(nasdaq|dow|s&p|wall street|futures)\b/.test(text)) return "Global risk appetite";
   if (/\b(bank|banks|credit|financial)\b/.test(text)) return "Financial breadth";
   if (/\b(earnings|guidance|revenue|profit)\b/.test(text)) return "Earnings read-through";
-  if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) return "Trade-policy risk";
+  if (/\b(tariff|trade|export|import)\b/.test(text)) return "Trade-policy risk";
   return compactEntityName(article?.entityName || article?.category || "Market driver");
 }
 
@@ -8293,25 +8298,19 @@ function twoMinuteSummaryHtml(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const support = firstByCategory(digest.news, "sector_positive") || firstByCategory(digest.news, "macro_positive") || strongestStory(digest.news, "positive");
-  const topSources = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
-  const categoryMix = [...new Set(topSources.map((article) => sourceCategoryTitle(article.category)))]
-    .slice(0, 4)
-    .join(", ");
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const pressure = macro || globalRisk;
-  const bullets = [
-    ["Lead driver", `${driver.title}: ${driver.summary}`],
-    ["Pressure", humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."))],
-    ["Support / offset", humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."))],
-    ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
-    ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India read-through articles."]
-  ];
+  
+  const leadCopy = cleanBriefingText(driver.summary);
+  const pressureCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")));
+  const supportCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")));
+
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary">
-      <ul class="brief-list">
-        ${bullets.map(([label, text]) => `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(cleanBriefingText(text))}</li>`).join("")}
-      </ul>
+      <p class="summary-paragraph"><strong>The Setup:</strong> ${escapeHtml(leadCopy)}</p>
+      <p class="summary-paragraph"><strong>Pressure & Support:</strong> ${escapeHtml(pressureCopy)} Meanwhile, ${escapeHtml(supportCopy)}</p>
+      <p class="summary-paragraph"><strong>Regional Context:</strong> ${indiaLine ? escapeHtml(`Heading into the open, previous closes were: ${indiaLine}. `) : ""}${asiaLine ? escapeHtml(`In early trade, ${asiaLine}. `) : ""}This brief provides market context; execution levels sit in the Trading Guide.</p>
     </div>
   `;
 }
@@ -8334,15 +8333,31 @@ function executiveSummaryHtml(digest) {
   const globalRisk = firstByCategory(digest.news, "global_risk");
 
   return `
-    <div class="brief-section">
-      <h3>Market Map</h3>
-      <ul class="brief-list">
-        <li><strong>US:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. ${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</li>
-        <li><strong>Asia:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Regional breadth sets the sentiment backdrop for the India open.</li>
-        <li><strong>Macro:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</li>
-        <li><strong>India:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Prior-session closes set the reference point for today's source read.</li>
-      </ul>
-    </div>
+    <details class="market-map-details">
+      <summary><h3>Market Map</h3></summary>
+      <div class="market-map-grid">
+        <div class="market-map-card">
+          <h4>US Markets</h4>
+          <p>${escapeHtml(usLine || "US index data is awaiting refresh")}</p>
+          <small>${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</small>
+        </div>
+        <div class="market-map-card">
+          <h4>Asia Watch</h4>
+          <p>${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}</p>
+          <small>Regional breadth sets the sentiment backdrop for the India open.</small>
+        </div>
+        <div class="market-map-card">
+          <h4>Macro Hedges</h4>
+          <p>${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}</p>
+          <small>Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</small>
+        </div>
+        <div class="market-map-card">
+          <h4>India Reference</h4>
+          <p>${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}</p>
+          <small>Prior-session closes set the reference point for today's source read.</small>
+        </div>
+      </div>
+    </details>
   `;
 }
 
@@ -8602,15 +8617,34 @@ function todaysReadHtml(digest) {
   const rupeeLine = usdinr ? `The rupee is at <strong>${usdinr.closeValue}</strong> (${pct(usdinr.changePercent)}${Math.abs(usdinr.changePercent ?? 0) > 0.3 ? " — worth watching for FII cost translation" : ""}).` : "";
   const watchLine = `${rupeeLine} Keep the 2-Minute Summary on top and cross-check levels in the Trading Guide before the cash open.`;
 
+  let articleHtml = "";
+  if (digest.todaysReadArticle) {
+    articleHtml = digest.todaysReadArticle
+      .split(/\n\n+/)
+      .map(p => {
+        // Apply bold markdown BEFORE escaping, so ** markers aren't entity-encoded
+        const withBold = p.trim().replace(/\*\*(.*?)\*\*/g, '\x00BOLD_START\x00$1\x00BOLD_END\x00');
+        const escaped = escapeHtml(withBold)
+          .replace(/\x00BOLD_START\x00/g, '<strong>')
+          .replace(/\x00BOLD_END\x00/g, '</strong>');
+        return `<p>${escaped}</p>`;
+      })
+      .join("\n");
+  } else {
+    articleHtml = `
+      <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
+      <p>${driverPara}</p>
+      <p>${flowPara}</p>
+      <p>${watchLine}</p>
+    `;
+  }
+
   return `
     <section class="todays-read-section" aria-label="Today's narrative read">
       <div class="todays-read-kicker">Today's Read</div>
       <h2>${escapeHtml(hookTitle(digest))}</h2>
       <div class="todays-read-body">
-        <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
-        <p>${driverPara}</p>
-        <p>${flowPara}</p>
-        <p>${watchLine}</p>
+        ${articleHtml}
       </div>
       <div class="todays-read-footer">Prepared for the 7:15 AM IST briefing · Educational market context only — not investment advice</div>
     </section>

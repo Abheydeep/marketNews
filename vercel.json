@@ -6,11 +6,11 @@
   "crons": [
     {
       "path": "/api/cron/premarket-publish",
-      "schedule": "30 1 * * 1-5"
+      "schedule": "0 1 * * 1-5"
     },
     {
       "path": "/api/cron/premarket-publish",
-      "schedule": "53 1 * * 1-5"
+      "schedule": "30 1 * * 1-5"
     }
   ],
   "cleanUrls": false,
