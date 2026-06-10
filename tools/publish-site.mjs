@@ -1812,7 +1812,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     <section class="hero">
       <p class="eyebrow">${escapeHtml(heroContent.eyebrow)}</p>
       <h1>${escapeHtml(heroContent.h1)}</h1>
-      <p>${escapeHtml(heroContent.subheadline)}</p>
+      <h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px; font-weight: 500;">${escapeHtml(heroContent.subheadline)}</h2>
       <p class="byline">By Abhey Deep / Market Narrative</p>
       ${homepageFreshnessBannerHtml(latestState)}
       <div class="hero-actions" aria-label="Primary actions">
