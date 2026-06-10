@@ -142,8 +142,9 @@ async function main() {
     // Location may be a relative path ("/5jun2026/") or absolute
     // ("https://www.marketnarrative.in/5jun2026/"). Compare on the path tail.
     const locationTail = normalizedLocation.replace(/^https?:\/\/[^/]+/, "");
-    const matches = locationTail && locationTail === normalizedLatest;
-    record("/latest/ Location header matches sitemap's latest brief", Boolean(matches), `location=${latestLocation || "?"} expected=${normalizedLatest}`);
+    const latestTail = normalizedLatest.replace(/^https?:\/\/[^/]+/, "");
+    const matches = locationTail && locationTail === latestTail;
+    record("/latest/ Location header matches sitemap's latest brief", Boolean(matches), `location=${latestLocation || "?"} expected=${latestTail}`);
   }
 
   // 4. JSON-LD headline ↔ H1 parity on the latest daily brief
