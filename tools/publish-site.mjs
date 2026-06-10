@@ -1807,7 +1807,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     ${proPolishCss()}
   </style>
 </head>
-<body class="archive-dark">
+<body class="archive-dark has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2250,7 +2250,7 @@ function aboutPage(latest, archiveDigests = []) {
     ${proPolishCss()}
   </style>
 </head>
-<body>
+<body class="has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2571,7 +2571,7 @@ function subscribePage() {
     ${proPolishCss()}
   </style>
 </head>
-<body>
+<body class="has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">

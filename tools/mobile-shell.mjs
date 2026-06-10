@@ -129,39 +129,66 @@ export function mobileTypographyCss() {
   return `
     /* === Mobile typography (overrides) === */
     @media (max-width: 760px) {
+      .shell {
+        padding: 0 14px !important;
+      }
+      main.shell {
+        padding-top: 24px !important;
+      }
+      .glass-v2 .executive-card,
+      .glass-v2 .trade-map-card,
+      .glass-v2 .opening-nerve-card,
+      .glass-v2 .expanded-briefing-page,
+      .glass-v2 .reel-script-panel {
+        padding: 16px !important;
+        border-radius: 14px !important;
+      }
+      .cockpit-grid,
+      .admin-grid,
+      .multibagger-shell {
+        gap: 16px !important;
+      }
       h1 {
-        font-size: clamp(26px, 8vw, 36px) !important;
-        line-height: 1.12 !important;
+        font-size: clamp(24px, 7vw, 32px) !important;
+        line-height: 1.15 !important;
       }
       h2 {
-        font-size: clamp(20px, 6vw, 26px) !important;
-        line-height: 1.2 !important;
+        font-size: clamp(18px, 5vw, 22px) !important;
+        line-height: 1.25 !important;
       }
       h3 {
-        font-size: clamp(17px, 5vw, 20px) !important;
+        font-size: clamp(15px, 4.5vw, 18px) !important;
       }
       /* Body and panel copy on small screens. */
       p, li, .panel p, .panel li, .briefing-block p {
-        font-size: 15px !important;
-        line-height: 1.6 !important;
+        font-size: 14px !important;
+        line-height: 1.55 !important;
       }
       .source-card p, .source-card li, .section-copy, .watch-grid p {
-        font-size: 14px !important;
+        font-size: 13px !important;
       }
       .eyebrow, .section-kicker, .panel span, .source-card span, .section-label {
-        font-size: 11px !important;
+        font-size: 10px !important;
       }
       .hero-action strong, .workflow-step strong, .two-minute-summary strong {
-        font-size: 15px !important;
+        font-size: 14px !important;
       }
       .hero-action span {
-        font-size: 12px !important;
+        font-size: 11px !important;
+      }
+      .summary-card-title {
+        font-size: 24px !important;
+      }
+      .briefing-expand-card summary p {
+        font-size: 16px !important;
       }
     }
     @media (max-width: 480px) {
       h1 {
-        font-size: 24px !important;
-        line-height: 1.15 !important;
+        font-size: 22px !important;
+      }
+      .summary-card-title {
+        font-size: 20px !important;
       }
     }
     /* === End mobile typography === */
@@ -170,7 +197,7 @@ export function mobileTypographyCss() {
     @media (max-width: 760px) {
       /* Shrink the topbar to a single brand row on mobile. The bottom tab
          bar carries the navigation. */
-      .nav-inner {
+      body:not(.admin-auth-required) .nav-inner {
         min-height: 52px !important;
         padding-top: 8px !important;
         padding-bottom: 8px !important;
@@ -180,9 +207,31 @@ export function mobileTypographyCss() {
         gap: 0 !important;
       }
       /* Hide every link group inside the top nav on mobile. Brand stays. */
-      .nav-actions,
-      .tabs {
+      body:not(.admin-auth-required) .nav-actions,
+      body:not(.admin-auth-required) .tabs {
         display: none !important;
+      }
+      
+      /* Admin-specific mobile nav overrides to keep tabs visible */
+      body.admin-auth-required .nav-inner {
+        align-items: flex-start !important;
+        flex-direction: column !important;
+        padding: 13px 0 !important;
+        gap: 12px !important;
+      }
+      body.admin-auth-required .tabs {
+        width: 100%;
+        min-height: 48px;
+        gap: 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+      }
+      body.admin-auth-required .tab-link,
+      body.admin-auth-required .tab-btn {
+        white-space: nowrap;
+        padding: 8px 4px;
+        min-height: 44px;
       }
     }
     /* === End top-nav override === */

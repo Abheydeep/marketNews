@@ -16,7 +16,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
   const requireAuth = Boolean(options.requireAuth);
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
-  const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
+  const bodyClass = [themeClass, "has-btb", requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
   const publicTabs = new Set(["public-view", "trading-guide-view"]);
   const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
@@ -563,10 +563,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       gap: 8px;
       justify-content: center;
       min-width: 104px;
+      min-height: 44px;
       border-radius: 999px;
       background: #111827;
       color: #fff;
-      padding: 9px 12px;
+      padding: 0 16px;
       font-size: 13px;
       font-weight: 900;
       line-height: 1;

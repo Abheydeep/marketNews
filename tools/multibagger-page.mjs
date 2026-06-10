@@ -1512,18 +1512,21 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .module-grid,
       .allocation-grid,
       .orientation-steps,
-      .holding-card-grid,
       .holding-card-closed-metrics,
       .holding-card-key-metrics,
       .holding-card-metrics,
-      .holding-card-secondary,
+      .holding-card-secondary {
+        grid-template-columns: 1fr;
+      }
+
+      .holding-card-grid,
       .role-legend,
       .method-snapshot-grid,
       .method-strip-grid,
       .regime-snapshot-grid,
       .discipline-grid,
       .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .allocation-legend {
@@ -1543,6 +1546,18 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .regime-snapshot-head strong,
       .discipline-snapshot-head strong {
         text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .holding-card-grid,
+      .role-legend,
+      .method-snapshot-grid,
+      .method-strip-grid,
+      .regime-snapshot-grid,
+      .discipline-grid,
+      .cards {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1576,59 +1591,13 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .panel-body {
         padding: 16px;
       }
-
-      .holdings-table {
-        min-width: 0;
-      }
-
-      .holdings-table thead {
-        display: none;
-      }
-
-      .holdings-table,
-      .holdings-table tbody,
-      .holdings-table tr,
-      .holdings-table td {
-        display: block;
-        width: 100%;
-      }
-
-      .holdings-table tr {
-        background: rgba(2, 6, 23, 0.30);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 14px;
-      }
-
-      .holdings-table tr:last-child {
-        border-bottom: 0;
-      }
-
-      .holdings-table td {
-        border: 0;
-        padding: 0 0 10px;
-      }
-
-      .holdings-table td:last-child {
-        padding-bottom: 0;
-      }
-
-      .holdings-table td[data-label]::before {
-        color: var(--muted);
-        content: attr(data-label);
-        display: block;
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
-        margin: 0 0 4px;
-        text-transform: uppercase;
-      }
     }
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>
-<body class="glass-v2">
+<body class="glass-v2 has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2325,7 +2294,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
   <title>Market Narrative | Multibagger Admin Review</title>
   <style>${adminCss()}</style>
 </head>
-<body class="admin-auth-required auth-pending">
+<body class="admin-auth-required auth-pending has-btb">
   ${adminAuthGateHtml()}
   <nav class="topbar">
     <div class="shell nav-inner">

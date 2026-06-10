@@ -170,6 +170,13 @@ const LIVE_FEEDS = [
     type: "rss",
     categoryHint: "macro_negative",
     url: "https://www.bqprime.com/feeds/rss-all"
+  },
+  {
+    sourceName: "Zerodha Pulse",
+    sourceId: "zerodha-pulse",
+    type: "html-index",
+    categoryHint: "neutral_volatile",
+    url: "https://pulse.zerodha.com/"
   }
 ];
 
@@ -249,7 +256,8 @@ export async function resolveNewsArticles(date, options = {}) {
     : fixtureNewsArticles(date, options.seedNews ?? []);
   const verification = verifySourceArticles(articles, {
     mode,
-    previousDigest: options.previousDigest
+    previousDigest: options.previousDigest,
+    isPulseMode: process.env.PULSE_MODE === "true" || options.pulseMode === true
   });
   assertSourceVerification(verification);
   return { articles, sourceVerification: publicSourceVerification(verification) };
@@ -265,12 +273,17 @@ export function normalizeNewsMode(value) {
 
 export async function fetchLiveNewsArticles(date, options = {}) {
   const fetcher = options.fetcher ?? fetch;
+  const isPulseMode = process.env.PULSE_MODE === "true" || options.pulseMode === true;
+  const activeFeeds = isPulseMode ? LIVE_FEEDS.filter(f => f.sourceId === "zerodha-pulse") : LIVE_FEEDS;
   const feedResults = [];
-  for (const feed of LIVE_FEEDS) {
+  for (const feed of activeFeeds) {
     try {
       if (feed.type === "rss") {
         const xml = await fetchText(feed.url, fetcher);
         feedResults.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, feed, item)));
+      } else if (feed.sourceId === "zerodha-pulse" && feed.type === "html-index") {
+        const html = await fetchText(feed.url, fetcher);
+        feedResults.push(...parsePulseHtmlItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.type === "html-index") {
         const html = await fetchText(feed.url, fetcher);
         feedResults.push(...parseHtmlIndexItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
@@ -294,11 +307,22 @@ export async function fetchLiveNewsArticles(date, options = {}) {
       console.warn(`[news-source] ${feed.sourceName} skipped: ${error.message}`);
     }
   }
-  const verifiedArticles = dedupeArticles(feedResults)
-    .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
-    .filter(articleLooksMarketRelevant)
-    .filter((article) => articleIsFreshForDigest(article, date));
-  const selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
+  
+  let verifiedArticles = dedupeArticles(feedResults)
+    .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl));
+    
+  if (!isPulseMode) {
+    verifiedArticles = verifiedArticles.filter(articleLooksMarketRelevant);
+  }
+  
+  verifiedArticles = verifiedArticles.filter((article) => articleIsFreshForDigest(article, date, isPulseMode));
+  
+  let selectedArticles;
+  if (isPulseMode) {
+    selectedArticles = await agentSelectPulseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), options);
+  } else {
+    selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
+  }
   return enrichArticlesWithEditorialLLM(selectedArticles, options);
 }
 
@@ -759,8 +783,9 @@ export function fixtureNewsArticles(date, seedNews = []) {
 
 export function verifySourceArticles(articles, options = {}) {
   const mode = normalizeNewsMode(options.mode ?? "fixture");
+  const isPulseMode = options.isPulseMode === true;
   const verified = (articles ?? []).filter((article) =>
-    sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article)
+    sourceUrlLooksArticleLevel(article.sourceUrl) && (isPulseMode || articleLooksMarketRelevant(article))
   );
   const publisherCount = new Set(verified.map((article) => article.sourceName).filter(Boolean)).size;
   const categoryCount = new Set(verified.map((article) => article.category).filter(Boolean)).size;
@@ -771,6 +796,7 @@ export function verifySourceArticles(articles, options = {}) {
   const duplicateWithinCurrentPercent = duplicateWithinCurrentPercentForArticles(verified);
 
   const blockedReason = firstBlockedReason({
+    isPulseMode,
     verifiedArticleCount: verified.length,
     sourceCategoryBucketCount,
     duplicateWithPreviousPercent,
@@ -927,11 +953,11 @@ export function normalizedSourceFingerprint(article) {
   return `${title}::${urlKey}`;
 }
 
-function firstBlockedReason({ verifiedArticleCount, sourceCategoryBucketCount, duplicateWithPreviousPercent, duplicateWithinCurrentPercent }) {
+function firstBlockedReason({ isPulseMode, verifiedArticleCount, sourceCategoryBucketCount, duplicateWithPreviousPercent, duplicateWithinCurrentPercent }) {
   if (verifiedArticleCount < MIN_VERIFIED_ARTICLES) {
     return `only ${verifiedArticleCount} verified article links; need at least ${MIN_VERIFIED_ARTICLES}`;
   }
-  if (sourceCategoryBucketCount < MIN_SOURCE_CATEGORY_BUCKETS) {
+  if (!isPulseMode && sourceCategoryBucketCount < MIN_SOURCE_CATEGORY_BUCKETS) {
     return `only ${sourceCategoryBucketCount} source/category buckets; need at least ${MIN_SOURCE_CATEGORY_BUCKETS}`;
   }
   if (duplicateWithPreviousPercent > MAX_DUPLICATE_WITH_PREVIOUS_PERCENT) {
@@ -1212,13 +1238,16 @@ function isCorporateActionStory(value) {
   return /\b(corporate actions?|bonus issues?|stock splits?|split shares?|dividends?|ex-date|ex date|record date|turning ex-date|buyback|rights issue)\b/.test(String(value || ""));
 }
 
-function articleIsFreshForDigest(article, digestDate) {
+function articleIsFreshForDigest(article, digestDate, isPulseMode = false) {
   const published = Date.parse(article.publishedAt);
   const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
   if (!Number.isFinite(published) || !Number.isFinite(digestTime)) {
     return true;
   }
   const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  if (isPulseMode) {
+    return ageHours <= 20 && ageHours >= -48;
+  }
   return ageHours <= 120 && ageHours >= -48;
 }
 
@@ -2534,4 +2563,95 @@ function round(value, places = 1) {
     return 0;
   }
   return Number(number.toFixed(places));
+}
+
+
+function parsePulseHtmlItems(html, baseUrl) {
+  const seen = new Set();
+  const items = [];
+  const listItems = [...String(html).matchAll(/<li\b[^>]*class=["'][^"']*box item[^"']*["'][^>]*>([\s\S]*?)<\/li>/gi)];
+  
+  for (const liMatch of listItems) {
+    const liHtml = liMatch[1];
+    const linkMatch = liHtml.match(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i);
+    const dateMatch = liHtml.match(/<span\b[^>]*class=["'][^"']*date[^"']*["'][^>]*title=["']([^"']+)["'][^>]*>/i);
+    
+    if (!linkMatch) continue;
+    
+    const title = cleanText(linkMatch[2]);
+    if (!title || title.length < 18 || title.length > 180) continue;
+    
+    const link = absoluteUrl(linkMatch[1], baseUrl);
+    if (!link || seen.has(link) || !sourceUrlLooksArticleLevel(link)) continue;
+    
+    seen.add(link);
+    
+    let publishedAt = "";
+    if (dateMatch) {
+      const rawDate = cleanText(dateMatch[1]);
+      const parts = rawDate.split(", ");
+      if (parts.length === 2) {
+        const [time, dateStr] = parts;
+        const parsed = new Date(`${dateStr} ${time} UTC+05:30`);
+        if (!isNaN(parsed.getTime())) {
+          publishedAt = parsed.toISOString();
+        }
+      }
+    }
+    
+    items.push({ title, link, publishedAt, summary: title });
+  }
+  return items;
+}
+
+export async function agentSelectPulseArticles(articles, options = {}) {
+  const agentMode = shouldUseAgentArticleEnrichment(options);
+  if (!agentMode) {
+    return articles;
+  }
+  const fetcher = options.llmFetcher ?? fetch;
+  const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
+  if (!geminiApiKey) {
+     return articles;
+  }
+  
+  if (articles.length === 0) return [];
+
+  const prompt = "You are a pre-market desk editor.\nSelect the most important market-moving articles from the following list.\nExclude noise, generic opinion pieces, and non-market news.\nReturn a JSON array of the IDs (indices) of the selected articles.\nExample output: [0, 3, 5]";
+
+  const inputList = articles.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}`).join("\n");
+
+  try {
+    const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-goog-api-key": geminiApiKey
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: prompt }] },
+          contents: [{ role: "user", parts: [{ text: inputList }] }],
+          generationConfig: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: "ARRAY",
+              items: { type: "INTEGER" }
+            }
+          }
+        })
+    });
+    if (!response?.ok) {
+      console.warn("Agent selection failed, falling back to all articles");
+      return articles;
+    }
+    const data = await response.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
+    const indices = JSON.parse(text);
+    if (Array.isArray(indices) && indices.length > 0) {
+      return indices.map(i => articles[i]).filter(Boolean);
+    }
+  } catch (e) {
+    console.warn("Agent selection parsing failed", e.message);
+  }
+  return articles;
 }

@@ -2560,7 +2560,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("tools/public-copy-qa.mjs"));
   assert.ok(buildScript.includes('"out", "site", "admin"'));
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
-  assert.ok(buildScript.includes("out\", \"vercel"));
+  assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
   assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
