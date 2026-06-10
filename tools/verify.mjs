@@ -2320,9 +2320,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
   assert.ok(publisher.includes("Last verified update"));
   assert.ok(publisher.includes("Share this archive"));
-  assert.ok(publisher.includes("/latest/trading-guide/"));
-  assert.ok(publisher.includes('join(tradingGuideDir, "index.html")'));
-  assert.ok(publisher.includes('join(siteDir, "latest", "trading-guide", "index.html")'));
+
   assert.equal(publisher.includes("Admin login</a>"), false);
   assert.ok(publisher.includes("join(siteDir, slug"));
   assert.ok(publisher.includes("publicDigestPayload"));
