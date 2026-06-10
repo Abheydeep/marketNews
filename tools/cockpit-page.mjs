@@ -9970,7 +9970,7 @@ export function homepageHeroContent(digest) {
 
   return {
     eyebrow: heroEyebrowLabel(digest),
-    h1: hookTitle(digest),
-    subheadline
+    h1: digest.title || "India Pre-Open Market Briefing",
+    subheadline: hookTitle(digest)
   };
 }
