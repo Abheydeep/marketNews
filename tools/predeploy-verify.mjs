@@ -190,7 +190,7 @@ function verifyVercelArtifacts() {
   assertOutput("multibagger/state.json", /"entryPrice"/);
   assertOutput("multibagger/state.json", /"returnPercent"/);
   assertOutput("multibagger/state.json", /"currentModelValueInr"/);
-  runPublicCopyQa("out/vercel");
+  runPublicCopyQa("public");
   assertOutputNot("index.html", /Admin login|admin\.marketnarrative\.in/);
   assertOutputAbsent("components/index.html");
   assertOutput("robots.txt", /Disallow: \/dark-preview\//);
@@ -246,7 +246,7 @@ function runPublicCopyQa(target) {
 }
 
 function assertOutput(relativePath, pattern) {
-  const filePath = join("out", "vercel", relativePath);
+  const filePath = join("public", relativePath);
   if (!existsSync(filePath)) {
     throw new Error(`expected ${filePath} to exist`);
   }
@@ -257,7 +257,7 @@ function assertOutput(relativePath, pattern) {
 }
 
 function assertOutputNot(relativePath, pattern) {
-  const filePath = join("out", "vercel", relativePath);
+  const filePath = join("public", relativePath);
   if (!existsSync(filePath)) {
     throw new Error(`expected ${filePath} to exist`);
   }
@@ -268,14 +268,14 @@ function assertOutputNot(relativePath, pattern) {
 }
 
 function assertOutputAbsent(relativePath) {
-  const filePath = join("out", "vercel", relativePath);
+  const filePath = join("public", relativePath);
   if (existsSync(filePath)) {
     throw new Error(`expected ${filePath} to be absent`);
   }
 }
 
 function assertOutputTree(relativePath, pattern) {
-  const filePath = join("out", "vercel", relativePath);
+  const filePath = join("public", relativePath);
   const content = readTree(filePath);
   if (!pattern.test(content)) {
     throw new Error(`${filePath} tree did not match ${pattern}`);
@@ -283,7 +283,7 @@ function assertOutputTree(relativePath, pattern) {
 }
 
 function assertOutputTreeNot(relativePath, pattern) {
-  const filePath = join("out", "vercel", relativePath);
+  const filePath = join("public", relativePath);
   const content = readTree(filePath);
   if (pattern.test(content)) {
     throw new Error(`${filePath} tree unexpectedly matched ${pattern}`);
