@@ -5230,15 +5230,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         </details>
 
         ${legacyAuditBannerHtml(digest)}
-        ${editionNavHtml(digest)}
-        
-        <div class="footer-actions-card">
-          ${briefingFreshnessNoticeHtml(digest)}
-          <hr class="footer-actions-divider">
-          ${shareRowHtml(canonicalUrl, digest.title)}
-          <hr class="footer-actions-divider">
-          ${followBriefingCtaHtml()}
-        </div>
+        ${compactMetaStripHtml(digest, canonicalUrl)}
         
         ${indiaPreOpenHtml(digest)}
 
@@ -7439,13 +7431,30 @@ function readerPathHtml(digest) {
   `;
 }
 
-function briefingFreshnessNoticeHtml(digest) {
+function compactMetaStripHtml(digest, canonicalUrl) {
   const generated = digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`;
+  const shareText = `${digest.title} - Market Narrative`;
+  const encodedUrl = encodeURIComponent(canonicalUrl);
+  const encodedText = encodeURIComponent(shareText);
+  const prevLink = digest.previousEditionPath ? `<a href="${escapeHtml(digest.previousEditionPath)}" style="color: var(--chalk); text-decoration: none;">&#8592; Prev</a>` : "";
+  const nextLink = digest.nextEditionPath ? `<a href="${escapeHtml(digest.nextEditionPath)}" style="color: var(--chalk); text-decoration: none;">Next &#8594;</a>` : "";
+
   return `
-    <div class="session-notice" role="note" aria-label="Briefing freshness">
-      <strong>Prepared for the 7:15 AM IST briefing</strong>
-      <span>Source stack verified at ${escapeHtml(formatGeneratedTime(generated))}. This is pre-market context, not an intraday update.</span>
-      <span>Market quote context: ${escapeHtml(quoteSessionLabel(digest))}.</span>
+    <div class="compact-meta-strip" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 0.85em;">
+      <div style="display: flex; align-items: center; gap: 10px; color: var(--stone); flex-wrap: wrap;">
+        ${prevLink || nextLink ? `<span style="font-weight: 500;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span><span style="opacity: 0.3;">•</span>` : ""}
+        <span><strong style="color: var(--chalk);">Abhey Deep</strong> / 7:15 AM</span>
+        <span style="opacity: 0.3; display: none;">•</span>
+        <time datetime="${generated}" style="display: none;">Verified ${escapeHtml(formatGeneratedTime(generated))}</time>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="${escapeHtml(subscribeUrl)}" style="color: var(--teal); font-weight: 600; text-decoration: none;">Join Email</a>
+        <div style="display: flex; gap: 8px; align-items: center; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 12px;">
+           <a href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("whatsapp")}</a>
+           <a href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("x")}</a>
+           <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("linkedin")}</a>
+        </div>
+      </div>
     </div>
   `;
 }
@@ -7729,7 +7738,7 @@ function indiaPreOpenHtml(digest) {
       <div class="preopen-grid">
 
         <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${gift ? tvLink("GIFTNIFTY", "NSEIX:NIFTY1!") : `href="https://www.tradingview.com/chart/?symbol=NSEIX%3ANIFTY1!" target="_blank" rel="noopener"`}>
-          <span>GIFT Nifty Gap</span>
+          <span>${gift ? "GIFT Nifty Gap" : "Nifty Close (No GIFT)"}</span>
           <strong>
             ${gift ? escapeHtml(formatNumber(gift.closeValue)) : nifty ? escapeHtml(formatNumber(nifty.closeValue)) : "—"}
           </strong>
