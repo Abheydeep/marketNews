@@ -10062,7 +10062,7 @@ export function homepageHeroContent(digest) {
     return {
       eyebrow: "Market Nerve Before The Open",
       h1: "Market Narrative: Nifty, Bank Nifty, And The One Thing To Watch First",
-      subheadline: "Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow."
+      subheadline: "Daily pre-market briefing for Nifty and Bank Nifty traders. Published at 7:15 AM IST every trading day."
     };
   }
   const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
@@ -10074,7 +10074,7 @@ export function homepageHeroContent(digest) {
   // Sub-headline: driver summary if available, otherwise a generic line
   let subheadline = driverSummary
     ? `Today's driver: ${driverSummary}`
-    : "Market Narrative turns overnight sources into a 7:15 AM IST opening read: bias, Nifty gate, Bank Nifty filter, sector nerve, and source evidence in one public workflow.";
+    : "Daily pre-market briefing for Nifty and Bank Nifty traders. Published at 7:15 AM IST every trading day.";
 
   if (hasFii) {
     const abs = Math.abs(fiiNet);

@@ -845,32 +845,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       const searchText = archiveSearchText(digest, chipValues);
       const tags = archiveTagValues(digest, chipValues);
       return `
-        <details class="digest-card ${toneClass}" data-archive-card data-archive-search="${escapeHtml(searchText)}" data-archive-tags="${escapeHtml(tags.join("|"))}"${digest === latest ? " open" : ""}>
-          <summary>
-            <div class="card-summary-head">
-              <div class="card-topline">
-                <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
-                ${sentimentSparklineHtml(digest)}
-              </div>
-              <h2>${escapeHtml(archiveCardTitle(digest))}</h2>
-              <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
-              <div class="archive-chips">
-                ${chips}
-              </div>
+        <div class="digest-card ${toneClass}" data-archive-card data-archive-search="${escapeHtml(searchText)}" data-archive-tags="${escapeHtml(tags.join("|"))}">
+          <div class="card-summary-head">
+            <div class="card-topline">
+              <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
+              ${sentimentSparklineHtml(digest)}
             </div>
-            <span class="card-disclosure" aria-hidden="true"></span>
-          </summary>
-          <div class="archive-card-details">
-            <div class="source-quality-pill">${escapeHtml(archiveSourceQualityLine(digest))}</div>
-            <div class="session-driver">
-              <span>Why it mattered for India</span>
-              <strong>${escapeHtml(previousSessionDriver(digest))}</strong>
-            </div>
-            ${archiveMarketSnapshotHtml(digest)}
-            ${archiveSourcePreviewHtml(digest)}
-            <a class="open-link" href="./${slug}/">${escapeHtml(archiveOpenLabel(digest))}</a>
+            <h2>${escapeHtml(archiveCardTitle(digest))}</h2>
+            <p class="card-summary">${escapeHtml(archiveCardSummary(digest))}</p>
           </div>
-        </details>
+          <div class="archive-card-details">
+            ${archiveMarketSnapshotHtml(digest)}
+            <a class="open-link" href="./${slug}/">Open briefing &rarr;</a>
+          </div>
+        </div>
       `;
     })
     .join("");
@@ -1843,8 +1831,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
-          <strong>Get the next trading-day 7:15 AM brief</strong>
-          <span>Join the daily email flow so the pre-market read reaches you before the cash open.</span>
+          <strong>Get tomorrow's brief at 7:15 AM — straight to your inbox before the market opens.</strong>
         </div>
         <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
       </div>
@@ -1853,27 +1840,24 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     <section class="summary-row" aria-label="Archive summary">
       <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
       <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
-      <div class="summary-chip"><span>Current focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
+      <div class="summary-chip"><span>Today's focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
       <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
     </section>
     <section class="workflow-strip" aria-label="Daily trader workflow">
       <article class="workflow-step">
-        <span>1. Opening nerve</span>
-        <strong>Get the bias in 90 seconds</strong>
-        <p>Start with the latest briefing card: Nifty gate, Bank filter, sector nerve, and stand-down trigger.</p>
+        <span>1. Today's brief</span>
+        <strong>Bias, Nifty level, Bank Nifty signal in 90 seconds</strong>
       </article>
       <article class="workflow-step">
         <span>2. Trading Guide</span>
-        <strong>Check levels before opinion</strong>
-        <p>Use the guide for the no-trade zone, Bank Nifty confirmation, and first-range risk gates.</p>
+        <strong>Specific levels, no-trade zone, stop logic</strong>
       </article>
       <article class="workflow-step">
-        <span>3. Source Ledger</span>
-        <strong>Trust the read-through</strong>
-        <p>Open source cards only when you want the evidence behind the India impact and sector watch.</p>
+        <span>3. Sources</span>
+        <strong>The articles behind every India read</strong>
       </article>
     </section>
-    <h2 class="archive-title">Latest Market Briefings And Records</h2>
+    <h2 class="archive-title">Past briefings</h2>
     <section class="archive-filter" aria-label="Search archived briefings">
       <div class="archive-filter-head">
         <strong>Search the archive</strong>
@@ -1882,8 +1866,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <div class="archive-filter-controls">
         <input id="archiveSearch" type="search" aria-label="Search archive by keyword">
         <select id="archiveTagFilter" aria-label="Filter archive by driver">
-          <option value="all">All drivers</option>
-          ${archiveFilterOptions(digests)}
+          <option value="all">All</option>
+          <option value="crude-energy">Crude / Energy</option>
+          <option value="banks">Banks</option>
+          <option value="rates">Rates</option>
+          <option value="global-tech">Global Tech</option>
+          <option value="currency">Currency</option>
+          <option value="geopolitical">Geopolitical</option>
         </select>
       </div>
     </section>
@@ -2842,9 +2831,9 @@ function homepageLatestState(latest) {
   return {
     kind: "verification-hold",
     className: "hold",
-    label: "Latest under verification",
-    title: `No verified brief for ${formatDigestDate(buildDate)}`,
-    detail: `Latest verified trading-day edition: ${formatDigestDate(latestDate)}. The archive is not being presented as today's live read.`,
+    label: "Under Verification",
+    title: "Today's brief is being verified — check back shortly.",
+    detail: `Last published: ${formatDigestDate(latestDate)}.`,
     ctaLabel: "Review latest status",
     ctaHref: "./latest/"
   };
@@ -2882,10 +2871,8 @@ function verifiedEditionCount(digests) {
 }
 
 function archiveFilterOptions(digests) {
-  const values = [...new Set((digests ?? []).flatMap((digest) => archiveTagValues(digest, archiveChips(digest))))]
-    .filter(Boolean)
-    .sort((left, right) => left.localeCompare(right));
-  return values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(titleCaseTag(value))}</option>`).join("");
+  // Unused now since we have a hardcoded list, but kept for compatibility if needed elsewhere
+  return "";
 }
 
 function archiveSearchText(digest, chips = archiveChips(digest)) {
@@ -2912,12 +2899,24 @@ function archiveSearchText(digest, chips = archiveChips(digest)) {
 }
 
 function archiveTagValues(digest, chips = archiveChips(digest)) {
-  return [...new Set([
+  const text = [
     digest.dailyLead?.driverType,
     digest.dailyLead?.label,
-    archiveFocus(digest),
-    ...chips
-  ].filter(Boolean).map(slugifyTag))];
+    digest.dailyLead?.summary,
+    ...chips,
+    ...digest.marketSnapshots?.map(s => s.symbol) || [],
+    ...(digest.news || []).map(n => n.category + " " + n.takeaway)
+  ].join(" ").toLowerCase();
+
+  const tags = [];
+  if (text.match(/crude|energy|brent|oil|opec/)) tags.push("crude-energy");
+  if (text.match(/bank|bnf|hdfc|icici/)) tags.push("banks");
+  if (text.match(/rate|yield|bond|fed |rbi /)) tags.push("rates");
+  if (text.match(/tech|nasdaq|it |tcs|infosys/)) tags.push("global-tech");
+  if (text.match(/currenc|usdinr|rupee|dxy/)) tags.push("currency");
+  if (text.match(/geopolitic|war|israel|iran|russia/)) tags.push("geopolitical");
+
+  return tags;
 }
 
 function slugifyTag(value) {
@@ -3057,7 +3056,9 @@ function archiveCardSummary(digest) {
     return "Archived continuity page. Newer editions use verified article-level sources and India read-through selection.";
   }
   if (digest.dailyLead?.indiaImpact) {
-    return compactWords(`${digest.dailyLead.label}: ${digest.dailyLead.indiaImpact}`, 38);
+    let summary = digest.dailyLead.indiaImpact;
+    summary = summary.replace(/^[^:]+:\s*/i, ""); // Remove any leading label like "Direct index read-through:"
+    return compactWords(summary, 38);
   }
   if (digest.archiveSummary) {
     return digest.archiveSummary;
@@ -3155,7 +3156,8 @@ function archiveFocus(digest) {
     return isBackfilledEvent(digest) ? "Backfilled context" : "Publication record";
   }
   if (digest.dailyLead?.label) {
-    return compactWords(cleanArchiveSentence(digest.dailyLead.label), 4);
+    let focusLabel = digest.dailyLead.label.replace(/breadth/ig, "confirmation");
+    return compactWords(cleanArchiveSentence(focusLabel), 4);
   }
   const driver = highestImpactArticle(digest);
   if (driver) {
