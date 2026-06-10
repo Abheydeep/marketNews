@@ -1,4 +1,4 @@
-import { access, mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
@@ -25,6 +25,8 @@ if (liveMode) {
     const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);
     await access(archiveFile);
     process.stdout.write(`Verified archive already exists for ${date} (${archiveFile}). Skipping generation.\n`);
+    await mkdir(join(rootDir, "out", "daily"), { recursive: true });
+    await writeFile(join(rootDir, "out", "daily", `${date}-${label}-digest.json`), await readFile(archiveFile, "utf8"), "utf8");
     process.exit(0);
   } catch {
     // File does not exist, check lock
