@@ -210,13 +210,9 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
 }
 
 async function writeLatestStatusPages({ date, failedStep = "", fallback, status, calendarState = marketCalendarState(date) }) {
-  const latestDir = join(rootDir, "out", "site", "latest");
-  const guideDir = join(latestDir, "trading-guide");
-  const html = latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide: false });
-  const guideHtml = latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide: true });
-  await mkdir(guideDir, { recursive: true });
-  await writeFile(join(latestDir, "index.html"), html, "utf8");
-  await writeFile(join(guideDir, "index.html"), guideHtml, "utf8");
+  // We no longer write static fallback pages to /latest/ because it breaks the SEO
+  // requirement of returning a 301 redirect. The Vercel rewrite to api/latest-redirect.js
+  // will handle the fallback logic.
 }
 
 function latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide }) {
