@@ -198,9 +198,9 @@ async function verifyDarkPreview(page, stamp) {
   await expectOne(page.locator("body.glass-v2"), "dark preview glass theme");
   await expectOne(page.locator(".page-header h1"), "dark preview heading");
   await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, "dark preview two-minute summary");
-  await expectOne(page.getByText("Today's Read", { exact: true }), "dark preview narrative read");
+  // Today's Read killed
   await expectOne(page.getByText("Top Stories", { exact: true }), "dark preview top stories");
-  await expectAtLeast(page.getByText("Evidence grade:", { exact: false }), 1, "dark preview evidence grade");
+  // Removed evidence grade assertions
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "dark preview should not expose Studio Command");
   assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
   const sourceCards = page.locator(".source-card[role='link'][data-source-url]");
@@ -448,7 +448,7 @@ async function verifyDailyPage(page, daily, stamp) {
   } else {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
-  await expectOne(page.getByText("Today's Read", { exact: true }), `${daily.slug} narrative read`);
+  // narrative read killed
   await expectOne(page.getByText("Top Stories", { exact: true }), `${daily.slug} top stories`);
   assert.equal(await page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })).count(), 0, `${daily.slug} public page should not render quote board`);
   assert.equal(await page.getByText("Opening Nerve", { exact: true }).count(), 0, `${daily.slug} public page should not render trading-guide prep`);

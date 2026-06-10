@@ -25,11 +25,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
   // Single source of truth for the H1, <title>, and JSON-LD headline so Google News
   // does not flag a mismatch between the structured data and the on-page H1.
-  const pageH1 = isTradingGuidePage
-    ? (digest.title ?? "Daily Pre-Market Briefing")
-    : hookTitle(digest);
+  const pageH1 = digest.title || "Daily Pre-Market Briefing";
   const pageTitle = isTradingGuidePage
-    ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
+    ? `Trading Guide: ${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
     : `${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = isTradingGuidePage
     ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
@@ -5210,6 +5208,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             </div>
           </div>
           <h1>${escapeHtml(pageH1)}</h1>
+          ${digest.dailyLead?.headline ? `<h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px;">${escapeHtml(digest.dailyLead.headline)}</h2>` : ""}
         </header>
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
@@ -7452,21 +7451,7 @@ function briefingFreshnessNoticeHtml(digest) {
 }
 
 function evidenceGradeBadgeHtml(digest) {
-  const profile = sourceEvidenceProfile(digest);
-  return `
-    <section class="evidence-grade-card ${escapeHtml(profile.className)}" aria-label="Briefing quality badge">
-      <div>
-        <strong>Evidence grade: ${escapeHtml(profile.label)}</strong>
-        <span>${escapeHtml(profile.summary)}</span>
-      </div>
-      <div class="evidence-grade-grid" aria-label="Source quality counts">
-        <span>India sources<b>${escapeHtml(profile.directIndiaSourceCount)}</b></span>
-        <span>Official sources<b>${escapeHtml(profile.officialIndiaSourceCount)}</b></span>
-        <span>Domestic catalysts<b>${escapeHtml(profile.domesticCatalystCount)}</b></span>
-        <span>Global context<b>${escapeHtml(profile.globalContextCount)}</b></span>
-      </div>
-    </section>
-  `;
+  return "";
 }
 
 function followBriefingCtaHtml() {
@@ -8311,10 +8296,9 @@ function twoMinuteSummaryHtml(digest) {
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const pressure = macro || globalRisk;
-  
-  const leadCopy = cleanBriefingText(driver.summary);
-  const pressureCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")));
-  const supportCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")));
+  const leadCopy = cleanBriefingText(digest.dailyLead?.takeaway || driver.summary);
+  const pressureCopy = cleanBriefingText(sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."));
+  const supportCopy = cleanBriefingText(sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."));
 
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal);">
@@ -8561,108 +8545,7 @@ function watchItemsHtml(digest, setup) {
 }
 
 function todaysReadHtml(digest) {
-  const driver = digest.dailyLead ?? {};
-  const driverType = (driver.driverType ?? "").toLowerCase();
-  const driverTitle = driver.label ?? driver.headline ?? "";
-  const indiaImpact = driver.indiaImpact ?? "";
-  const sentiment = Number(digest.overallSentiment ?? 0);
-  const sentimentLabel = String(digest.sentimentLabel ?? "NEUTRAL").toUpperCase();
-  const fii = digest.fiiDiiFlows;
-  const fiiNet = Number(fii?.fiiNet ?? 0);
-  const diiNet = Number(fii?.diiNet ?? 0);
-  const hasFlow = Math.abs(fiiNet) > 50 && fii?.date;
-
-  const snapshots = digest.marketSnapshots ?? [];
-  const nifty = snapshots.find((s) => s.symbol === "NIFTY");
-  const bankNifty = snapshots.find((s) => s.symbol === "BANKNIFTY");
-  const brent = snapshots.find((s) => s.symbol === "BRENT");
-  const usdinr = snapshots.find((s) => s.symbol === "USDINR");
-
-  // Format helpers
-  function cr(v) {
-    const abs = Math.abs(v);
-    return abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
-  }
-  function pct(v) {
-    if (!Number.isFinite(v)) return "";
-    return `${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
-  }
-
-  // Build paragraph 1: set the scene
-  const niftyLine = nifty
-    ? `Nifty 50 closed at <strong>${formatNumber(nifty.closeValue)}</strong> (${pct(nifty.changePercent)}) while Bank Nifty settled at <strong>${formatNumber(bankNifty?.closeValue ?? 0)}</strong> (${pct(bankNifty?.changePercent ?? 0)}).`
-    : "Indian indices are entering the session with cautious global cues.";
-
-  // Build paragraph 2: the driver
-  let driverPara = "";
-  if (driverType === "crude") {
-    const brentVal = brent ? `Brent crude is at <strong>$${brent.closeValue}</strong> (${pct(brent.changePercent)})` : "Crude prices";
-    driverPara = `${brentVal}, and that one number shapes the entire India read today. Firms that import energy — OMCs, aviation, paints, tyres — are directly exposed. ${indiaImpact || "Softer crude supports margin relief; firm crude pressures the inflation narrative."}`;
-  } else if (driverType === "geopolitical") {
-    driverPara = `Geopolitical risk is the session driver. ${indiaImpact || "Equity markets are pricing uncertainty — watch if the risk-off mood lingers through the Asian handoff or fades before 9:15 AM IST."}`;
-  } else if (driverType === "rates") {
-    driverPara = `Bond yields are the macro anchor today. ${indiaImpact || "Rate-sensitive sectors — banks, NBFCs, real estate — will take their cue from how US yields behave overnight."}`;
-  } else if (driverType === "tech_move") {
-    driverPara = `Tech is leading global sentiment. ${indiaImpact || "Nifty IT and midcap tech stocks will likely mirror the overnight direction — watch the opening range before assuming continuation."}`;
-  } else {
-    driverPara = indiaImpact || `The day's primary theme is <strong>${escapeHtml(driverTitle)}</strong>. Monitor whether the narrative holds through the opening session.`;
-  }
-
-  // Build paragraph 3: FII/DII flows + sentiment synthesis
-  let flowPara = "";
-  if (hasFlow) {
-    const fiiDir = fiiNet > 0 ? "net bought" : "net sold";
-    const diiDir = diiNet > 0 ? "absorbed" : "sold";
-    const counterNote = (fiiNet > 0 && diiNet < 0)
-      ? `DIIs, which ${diiDir} ${cr(diiNet)}, are trimming into foreign buying — a healthy rotation signal.`
-      : (fiiNet < 0 && diiNet > 0)
-        ? `DIIs provided a ${cr(diiNet)} cushion, absorbing some of the foreign outflow.`
-        : "";
-    flowPara = `On the flows front (${fii.date}), FIIs ${fiiDir} <strong>${cr(fiiNet)}</strong> in the cash market. ${counterNote} Foreign flows at this scale tend to reinforce the directional bias — provided breadth confirms at the open.`;
-  } else {
-    flowPara = sentimentLabel === "BULLISH"
-      ? "Overnight cues lean positive. The session needs broad participation — not just index heavyweights — to validate the constructive setup."
-      : sentimentLabel === "BEARISH"
-        ? "Risk appetite is cautious overnight. Breadth and the advance-decline ratio will tell whether this is a shallow pull-back or something that needs wider stops."
-        : "The overnight read is mixed. Let the opening range define direction — neither side has enough conviction to chase before price confirms.";
-  }
-
-  // Build paragraph 4: what to actually watch
-  const rupeeLine = usdinr ? `The rupee is at <strong>${usdinr.closeValue}</strong> (${pct(usdinr.changePercent)}${Math.abs(usdinr.changePercent ?? 0) > 0.3 ? " — worth watching for FII cost translation" : ""}).` : "";
-  const watchLine = `${rupeeLine} Keep the 2-Minute Summary on top and cross-check levels in the Trading Guide before the cash open.`;
-
-  let articleHtml = "";
-  if (digest.todaysReadArticle) {
-    articleHtml = digest.todaysReadArticle
-      .split(/\n\n+/)
-      .map(p => {
-        // Apply bold markdown BEFORE escaping, so ** markers aren't entity-encoded
-        const withBold = p.trim().replace(/\*\*(.*?)\*\*/g, '\x00BOLD_START\x00$1\x00BOLD_END\x00');
-        const escaped = escapeHtml(withBold)
-          .replace(/\x00BOLD_START\x00/g, '<strong>')
-          .replace(/\x00BOLD_END\x00/g, '</strong>');
-        return `<p>${escaped}</p>`;
-      })
-      .join("\n");
-  } else {
-    articleHtml = `
-      <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
-      <p>${driverPara}</p>
-      <p>${flowPara}</p>
-      <p>${watchLine}</p>
-    `;
-  }
-
-  return `
-    <section class="todays-read-section" aria-label="Today's narrative read">
-      <div class="todays-read-kicker">Today's Read</div>
-      <h2>${escapeHtml(hookTitle(digest))}</h2>
-      <div class="todays-read-body">
-        ${articleHtml}
-      </div>
-      <div class="todays-read-footer">Prepared for the 7:15 AM IST briefing · Educational market context only — not investment advice</div>
-    </section>
-  `;
+  return deskNoteHtml(digest);
 }
 
 function positiveAsianCount(snapshots) {
@@ -8808,19 +8691,21 @@ function sourceNotesHtml(digest) {
 }
 
 function publicVisibleSourceArticles(digest, limit = PUBLIC_DISPLAY_LIMIT) {
+  const filterPulse = (articles) => articles.filter(a => !(a.sourceName || "").toLowerCase().includes("pulse"));
+  
   const urls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? []);
   if (urls.size) {
     const selected = (digest.news ?? []).filter((article) => urls.has(article.sourceUrl));
     if (selected.length) {
       // Sort by importance so high-impact stories (geopolitical, crude shocks, big moves)
       // always rank before routine stock picks, even if the news array order differs
-      return selected
+      return filterPulse(selected)
         .slice()
         .sort((a, b) => publicSourceImportance(b) - publicSourceImportance(a))
         .slice(0, limit);
     }
   }
-  return topIndiaRelevantSourceArticles(digest.news ?? [], limit);
+  return filterPulse(topIndiaRelevantSourceArticles(digest.news ?? [], limit));
 }
 
 function topIndiaRelevantSourceArticles(articles, limit = 5) {
