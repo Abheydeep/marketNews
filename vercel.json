@@ -15,18 +15,16 @@
   ],
   "cleanUrls": false,
   "trailingSlash": true,
-  "rewrites": {
-    "beforeFiles": [
-      {
-        "source": "/latest",
-        "destination": "/api/latest-redirect"
-      },
-      {
-        "source": "/latest/",
-        "destination": "/api/latest-redirect"
-      }
-    ]
-  },
+  "rewrites": [
+    {
+      "source": "/latest",
+      "destination": "/api/latest-redirect"
+    },
+    {
+      "source": "/latest/",
+      "destination": "/api/latest-redirect"
+    }
+  ],
   "headers": [
     {
       "source": "/:slug([0-9]{1,2}[a-z]{3}[0-9]{4})/",

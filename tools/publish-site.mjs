@@ -146,10 +146,7 @@ await mkdir(aboutDir, { recursive: true });
 await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest, publicArchiveDigests.length ? publicArchiveDigests : archiveHomeDigests));
 await mkdir(subscribeDir, { recursive: true });
 await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
-await mkdir(join(siteDir, "latest"), { recursive: true });
-await writeGuardedFile(join(siteDir, "latest", "index.html"), redirectPage(`/${slugForDigest(latest)}/`, "latest briefing"));
-await mkdir(join(siteDir, "latest", "trading-guide"), { recursive: true });
-await writeGuardedFile(join(siteDir, "latest", "trading-guide", "index.html"), redirectPage(`/${slugForDigest(latest)}/trading-guide/`, "latest trading guide"));
+
 await mkdir(join(adminDir, "components"), { recursive: true });
 await mkdir(join(adminDir, "multibagger"), { recursive: true });
 await writeFile(
