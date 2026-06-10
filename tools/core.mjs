@@ -2491,9 +2491,9 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const fetcher = options.llmFetcher ?? fetch;
 
-  const systemPrompt = `You are a senior market analyst writing the "Today's Read" section of an India pre-open briefing at 7:15 AM IST. Write direct, authoritative prose — like an analyst who read every wire overnight. No bullet points, no headers, no markdown. Three tight paragraphs separated by a blank line.`;
+  const systemPrompt = `You are a senior financial journalist writing the "Today's Read" feature article for an India pre-open briefing. Write a highly detailed, engaging, and narrative-driven market article that synthesizes the last 20 hours of news into a cohesive story. Use direct, authoritative prose. No bullet points, no headers, no markdown. Write exactly three substantial paragraphs separated by a blank line.`;
 
-  const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite exactly three paragraphs:\nParagraph 1: What happened overnight globally — the dominant theme and its magnitude. Be specific about indices, moves, and why it matters.\nParagraph 2: How this feeds into the India open — which sectors, indices, or macro variables are directly exposed. Name them.\nParagraph 3: What to watch at the open — what confirms direction, what would change the read, what levels matter.\nNo preamble, no sign-off. Return only the three paragraphs.`;
+  const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite a cohesive 3-paragraph article weaving these events together. Find the hidden connections between global macro shifts, corporate earnings, and Indian market implications. Do not simply list events or repeat a standard summary structure. Instead, tell the story of what is driving the market today, highlighting the most critical themes, how they interact, and what the key battlegrounds will be for traders. Be highly detailed and analytical. No preamble, no sign-off. Return exactly three paragraphs.`;
 
   console.log(`[Desk Editor] Synthesizing Today's Read (${model})...`);
   const startTime = Date.now();

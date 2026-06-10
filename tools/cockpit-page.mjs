@@ -5135,15 +5135,25 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       padding: 0 16px 16px 16px;
     }
     .market-map-card {
-      background: var(--paper);
+      background: rgba(255, 255, 255, 0.03);
       padding: 16px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .market-map-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
     }
     .market-map-card h4 {
-      margin: 0 0 8px 0;
+      margin: 0;
+      color: var(--teal);
       font-size: 0.9em;
-      color: var(--stone);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -8307,10 +8317,14 @@ function twoMinuteSummaryHtml(digest) {
   const supportCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")));
 
   return `
-    <div class="brief-section two-minute-summary" aria-label="2 Minute Summary">
-      <p class="summary-paragraph"><strong>The Setup:</strong> ${escapeHtml(leadCopy)}</p>
-      <p class="summary-paragraph"><strong>Pressure & Support:</strong> ${escapeHtml(pressureCopy)} Meanwhile, ${escapeHtml(supportCopy)}</p>
-      <p class="summary-paragraph"><strong>Regional Context:</strong> ${indiaLine ? escapeHtml(`Heading into the open, previous closes were: ${indiaLine}. `) : ""}${asiaLine ? escapeHtml(`In early trade, ${asiaLine}. `) : ""}This brief provides market context; execution levels sit in the Trading Guide.</p>
+    <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal);">
+      <p class="summary-paragraph" style="margin: 0; line-height: 1.6;">
+        <strong>The Setup:</strong> ${escapeHtml(leadCopy)}
+        <span style="margin: 0 8px; color: var(--stone);">|</span>
+        <strong>Pressure & Support:</strong> ${escapeHtml(pressureCopy)} Meanwhile, ${escapeHtml(supportCopy)}
+        <span style="margin: 0 8px; color: var(--stone);">|</span>
+        <strong>Regional Context:</strong> ${indiaLine ? escapeHtml(`Previous closes were: ${indiaLine}. `) : ""}${asiaLine ? escapeHtml(`In early trade, ${asiaLine}. `) : ""}This brief provides market context; execution levels sit in the Trading Guide.
+      </p>
     </div>
   `;
 }
