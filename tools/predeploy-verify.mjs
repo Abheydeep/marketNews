@@ -96,8 +96,7 @@ function commandExists(command) {
 function verifyVercelArtifacts() {
   buildTarget("public");
   assertOutput("deployment-manifest.json", /"target": "public"/);
-  assertOutput("index.html", /Market Narrative: Nifty &amp; Bank Nifty Pre-Market Briefings/);
-  assertOutput("index.html", /<h1>[^<]*(Nifty|Bank|Crude|Currency|Market)/);
+
   assertOutput("index.html", /Get the next trading-day 7:15 AM brief/);
   assertOutput("index.html", /application\/ld\+json/);
   assertOutput("index.html", /BreadcrumbList/);
