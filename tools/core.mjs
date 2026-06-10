@@ -1947,7 +1947,8 @@ function archiveSummaryForDigest(date, articles, themes, previousDigest, dailyLe
     ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
     ?? articles[0];
   const force = dailyLead?.label || dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
-  const text = dailyLead?.indiaImpact || editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
+  const rawText = dailyLead?.indiaImpact || editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
+  const text = rawText.replace(/^Direct\s+(index|India)\s+read-through:\s*/i, "");
   const summary = compactWords(cleanSentence(`${force}: ${text}`), 20);
   if (summary && normalizeEditorial(summary) !== normalizeEditorial(previousDigest?.archiveSummary)) {
     return summary;

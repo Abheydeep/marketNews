@@ -580,9 +580,10 @@ function enrichPublicDigest(digest) {
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
     : (digest.archiveSummary || archiveCardSummary({ ...digest, news }));
-  const coherentDeskNote = verified && dailyLead
-    ? `${dailyLead.label} is the lead read for the India open. ${dailyLead.indiaImpact} ${dailyLead.supportSide}`
-    : (digest.deskNote || legacyDeskNote({ ...digest, news }));
+  const coherentDeskNote = digest.deskNote
+    || (verified && dailyLead
+      ? legacyDeskNote({ ...digest, news, dailyLead })
+      : legacyDeskNote({ ...digest, news }));
   return {
     ...digest,
     title: coherentTitle,
