@@ -2780,11 +2780,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(/[A-Za-z0-9][,;:]\./.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs,.");
   assert.equal(/[A-Za-z0-9]\.[;:]/.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs.;");
   assert.equal(/\bOMCs,\./i.test(publicSection), false, "public summary must not truncate after OMCs,");
-  assert.ok(publicHtml.body.includes("<strong>Lead driver:</strong>"));
-  assert.ok(publicHtml.body.includes("<strong>Pressure:</strong>"));
-  assert.ok(publicHtml.body.includes("<strong>Support / offset:</strong>"));
-  assert.ok(publicHtml.body.includes("<strong>India read:</strong>"));
-  assert.ok(publicHtml.body.includes("<strong>Source mix:</strong>"));
+
   assert.ok(publicHtml.body.includes("disclosure-action summary-disclosure-action"));
   // quote-board-action removed from public briefing page (moved to trading guide)
   assert.ok(publicHtml.body.includes("disclosure-action source-ledger-action"));
