@@ -896,7 +896,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
   <meta property="og:url" content="${escapeHtml(siteOrigin)}/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
@@ -1975,7 +1975,7 @@ function aboutPage(latest, archiveDigests = []) {
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
   <meta property="og:url" content="${escapeHtml(siteOrigin)}/about/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
@@ -2336,7 +2336,7 @@ function subscribePage() {
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
   <meta property="og:url" content="${escapeHtml(siteOrigin)}/subscribe/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
