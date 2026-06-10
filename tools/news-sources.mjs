@@ -483,7 +483,7 @@ function configuredOpenAiArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "mistralai/mistral-medium-3.5-128b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ article, prompt, schema, usedAngles = [] }) => {
     const response = await fetcher(`${baseUrl}/chat/completions`, {
@@ -495,14 +495,15 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
       },
       body: JSON.stringify({
         model,
+        reasoning_effort: "high",
         messages: [
           { role: "system", content: prompt },
           { role: "user", content: articleEditorialUserPrompt(article, schema, usedAngles) }
         ],
         response_format: { type: "json_object" },
-        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 360),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.25),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.9),
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.70),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 1.00),
         stream: false
       })
     });
@@ -2575,6 +2576,7 @@ function parsePulseHtmlItems(html, baseUrl) {
     const liHtml = liMatch[1];
     const linkMatch = liHtml.match(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i);
     const dateMatch = liHtml.match(/<span\b[^>]*class=["'][^"']*date[^"']*["'][^>]*title=["']([^"']+)["'][^>]*>/i);
+    const descMatch = liHtml.match(/<div\b[^>]*class=["'][^"']*desc[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
     
     if (!linkMatch) continue;
     
@@ -2599,54 +2601,141 @@ function parsePulseHtmlItems(html, baseUrl) {
       }
     }
     
-    items.push({ title, link, publishedAt, summary: title });
+    const summary = descMatch ? cleanText(descMatch[1]) : title;
+    items.push({ title, link, publishedAt, summary });
   }
   return items;
 }
 
 export async function agentSelectPulseArticles(articles, options = {}) {
   const agentMode = shouldUseAgentArticleEnrichment(options);
-  if (!agentMode) {
+  if (!agentMode || articles.length === 0) {
     return articles;
   }
+  
   const fetcher = options.llmFetcher ?? fetch;
+  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
   const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
-  if (!geminiApiKey) {
+  
+  if (!nvidiaApiKey && !geminiApiKey) {
      return articles;
   }
-  
-  if (articles.length === 0) return [];
 
-  const prompt = "You are a pre-market desk editor.\nSelect the most important market-moving articles from the following list.\nExclude noise, generic opinion pieces, and non-market news.\nReturn a JSON array of the IDs (indices) of the selected articles.\nExample output: [0, 3, 5]";
-
-  const inputList = articles.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}`).join("\n");
+  const inputList = articles.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}\nSummary: ${a.summary}`).join("\n\n");
+  let indices = [];
 
   try {
-    const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`, {
+    if (nvidiaApiKey) {
+      const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "deepseek-ai/deepseek-v4-pro";
+      const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+      const prompt = `You are the pre-market desk editor at Market Narrative. Your briefing reaches Indian 
+retail and semi-professional traders before NSE opens at 9:15 AM IST. You are reading 
+Zerodha Pulse — already a curated Indian market feed — and selecting the 8 to 12 
+stories that give a trader the clearest picture of what will drive Nifty 50 and 
+Bank Nifty in today's session.
+
+SELECTION MINDSET
+Ask one question per article: "Does knowing this change what a trader should do in 
+the first 30 minutes?" If yes, include it. If it merely confirms something already 
+obvious or adds colour without changing action, leave it out.
+
+TIER 1 — Always include if present (index-moving, non-negotiable)
+- Gift Nifty premium or discount versus last close
+- Brent crude direction, especially if move is above 1.5% or linked to Iran/Hormuz/OPEC
+- FII or DII provisional net flow data
+- USD/INR morning range or a sharp rupee move
+- RBI, SEBI, Finance Ministry or PM statement with a direct market consequence
+- US Fed or Treasury yield move that crosses a level (e.g. 10Y above 4.5%)
+- A geopolitical event with a clear commodity or currency transmission line to India
+
+TIER 2 — Include when they add a sector or breadth signal not covered by Tier 1
+- Asia open direction: KOSPI, Hang Seng, Nikkei, SGX — only if the move is above 0.8%
+- Major US earnings result (Apple, Nvidia, Microsoft, Meta, Alphabet) and Nifty IT read
+- India-specific corporate result or guidance that is large enough to move a sector index
+- Monsoon, crop or agri data with an FMCG or rural-lender read
+- India policy: GST, PLI scheme, tariff, capital gains, STT with a named sector impact
+- China PMI or credit data with a Nifty Metal or FII flow read
+- Nifty 50 or Bank Nifty technical level article from a credible source if it names 
+  the level and the consequence (e.g. "Bank Nifty below 54,200 opens 53,800")
+
+TIER 3 — Exclude even if the headline looks interesting
+- Any article whose only India read is "markets may be volatile" or "watch for cues"
+- Single-stock analyst calls, price targets, upgrades or downgrades for one company
+- "Top stocks to buy today" or any list-format stock-pick article
+- US consumer, housing, healthcare, or lifestyle stories with no commodity or FII link
+- Crypto, NFT, web3 with no RBI or SEBI regulatory angle
+- Political news — India or global — with no named market consequence
+- Any story that duplicates a Tier 1 story already selected (keep the more specific one)
+
+EDGE CASES
+- If two articles cover the same driver (e.g. two crude oil pieces), include only the 
+  one with the more specific India angle or the fresher timestamp.
+- A "markets live" or "open bell" article that contains Gift Nifty data counts as Tier 1.
+- If the article count in Tier 1 alone reaches 8, do not add Tier 2 stories.
+
+OUTPUT
+Return a JSON array of the integer indices of selected articles, ordered from most 
+important to least important. The first index in your array becomes the lead story.
+Return nothing else — no explanation, no markdown, no preamble.
+Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
+
+      const response = await fetcher(`${baseUrl}/chat/completions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-goog-api-key": geminiApiKey
+          Accept: "application/json",
+          Authorization: `Bearer ${nvidiaApiKey}`
         },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: prompt }] },
-          contents: [{ role: "user", parts: [{ text: inputList }] }],
-          generationConfig: {
-            responseMimeType: "application/json",
-            responseSchema: {
-              type: "ARRAY",
-              items: { type: "INTEGER" }
-            }
-          }
+          model,
+          messages: [
+            { role: "system", content: prompt },
+            { role: "user", content: inputList }
+          ],
+          temperature: 1,
+          top_p: 0.95,
+          max_tokens: 16384,
+          extra_body: { chat_template_kwargs: { thinking: false } }
         })
-    });
-    if (!response?.ok) {
-      console.warn("Agent selection failed, falling back to all articles");
-      return articles;
+      });
+
+      if (!response.ok) {
+        throw new Error(`NVIDIA API failed with status ${response.status}`);
+      }
+      const data = await response.json();
+      const text = data?.choices?.[0]?.message?.content?.trim() ?? "[]";
+      // Clean up potential markdown formatting block
+      const cleanText = text.replace(/```json\n?/, "").replace(/```\n?$/, "");
+      indices = JSON.parse(cleanText);
+    } else if (geminiApiKey) {
+      const prompt = "You are a pre-market desk editor.\nSelect the most important market-moving articles from the following list.\nExclude noise, generic opinion pieces, and non-market news.\nReturn a JSON array of the IDs (indices) of the selected articles.\nExample output: [0, 3, 5]";
+      
+      const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-goog-api-key": geminiApiKey
+          },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: prompt }] },
+            contents: [{ role: "user", parts: [{ text: inputList }] }],
+            generationConfig: {
+              responseMimeType: "application/json",
+              responseSchema: {
+                type: "ARRAY",
+                items: { type: "INTEGER" }
+              }
+            }
+          })
+      });
+      if (!response.ok) {
+        throw new Error(`Gemini API failed with status ${response.status}`);
+      }
+      const data = await response.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
+      indices = JSON.parse(text);
     }
-    const data = await response.json();
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
-    const indices = JSON.parse(text);
+
     if (Array.isArray(indices) && indices.length > 0) {
       return indices.map(i => articles[i]).filter(Boolean);
     }
