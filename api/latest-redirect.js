@@ -138,10 +138,15 @@ export default async function handler(request, response) {
     // dated brief URL, which is the canonical SEO target.
     response.setHeader("Cache-Control", "public, max-age=60, s-maxage=300, stale-while-revalidate=86400");
     response.setHeader("X-Robots-Tag", "noindex, follow");
-    return response.redirect(301, `/${slug}/`);
+    const proto = request.headers["x-forwarded-proto"] || "https";
+    const host = request.headers.host || process.env.VERCEL_URL || "marketnarrative.in";
+    const baseUrl = `${proto}://${host}`;
+    return response.redirect(301, `${baseUrl}/${slug}/`);
   } catch (err) {
     // Last-resort: send users to the archive homepage so they always land
     // on a working page. Search engines will retry the redirect later.
-    return response.redirect(302, "/");
+    const proto = request.headers["x-forwarded-proto"] || "https";
+    const host = request.headers.host || process.env.VERCEL_URL || "marketnarrative.in";
+    return response.redirect(302, `${proto}://${host}/`);
   }
 }
