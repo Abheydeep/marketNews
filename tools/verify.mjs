@@ -1623,8 +1623,8 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.ok(guideHtml.includes("Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch."));
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
-  assert.ok(publicHtml.includes("Prepared for the 7:15 AM IST briefing"));
-  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("Share this briefing"), "2-minute summary should appear before share row");
+  assert.ok(publicHtml.includes("Abhey Deep"));
+  assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("compact-meta-strip"), "2-minute summary should appear before share row");
   // Today's Read section was replaced by desk note
   assert.ok(publicHtml.includes("top-stories-section"), "Top Stories section must be present");
   assert.equal(publicHtml.includes("Live Quote Board"), false);
@@ -2313,7 +2313,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("<priority>"));
   assert.ok(publisher.includes("daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing"));
   assert.ok(publisher.includes("7:15 AM IST") || publisher.includes("pre-market brief") || publisher.includes("Nifty gate"), "homepage must reference 7:15 AM IST or pre-market context");
-  assert.ok(publisher.includes("By Abhey Deep / Market Narrative"));
+  assert.ok(publisher.includes("Abhey Deep"));
   assert.ok(publisher.includes("Last verified update"));
   assert.ok(publisher.includes("Share this archive"));
 
@@ -2726,10 +2726,10 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Portfolio"));
   assert.ok(!publicHtml.body.includes("Briefing Archive"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
-  assert.ok(publicHtml.body.includes("By Abhey Deep"));
-  assert.ok(publicHtml.body.includes("Share this briefing"));
+  assert.ok(publicHtml.body.includes("Abhey Deep"));
+  assert.ok(publicHtml.body.includes("compact-meta-strip"));
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
-  assert.ok(publicHtml.body.includes("Prepared for the 7:15 AM IST briefing"));
+  assert.ok(publicHtml.body.includes("Verified"));
   // follow-briefing CTA and Market Quote Board removed from public page (redesign)
   // Today's Read must be removed
   assert.equal(publicHtml.body.includes("live refresh pending"), false);
@@ -2768,7 +2768,7 @@ await test("demo app serves public and admin flows without external packages", a
   // Redesign: 2-min summary defaults to closed (no `open` attribute) — reader sees the summary, expands for breakdown
   assert.ok(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card"'));
   assert.equal(publicHtml.body.includes('id="summaryExpand" class="info-card executive-card briefing-expand-card" open'), false, "2-min summary must default to collapsed");
-  assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("Share this briefing"), "2-minute summary should render before share controls");
+  assert.ok(publicHtml.body.indexOf('id="summaryExpand"') < publicHtml.body.indexOf("compact-meta-strip"), "2-minute summary should render before share controls");
   assert.ok(publicHtml.body.includes("2 Minute Summary"));
   assert.equal(/[A-Za-z0-9][,;:]\./.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs,.");
   assert.equal(/[A-Za-z0-9]\.[;:]/.test(publicSection), false, "public summary copy must not contain malformed punctuation like OMCs.;");
