@@ -1,5 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
@@ -15,16 +16,21 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
   const requireAuth = Boolean(options.requireAuth);
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
-  const bodyClass = [themeClass, requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
+  const bodyClass = [themeClass, "has-btb", requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
   const publicTabs = new Set(["public-view", "trading-guide-view"]);
   const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
+  // Single source of truth for the H1, <title>, and JSON-LD headline so Google News
+  // does not flag a mismatch between the structured data and the on-page H1.
+  const pageH1 = isTradingGuidePage
+    ? (digest.title ?? "Daily Pre-Market Briefing")
+    : hookTitle(digest);
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${digest.title ?? "Daily Pre-Market Briefing"} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
-    : `${hookTitle(digest)} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
+    : `${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
   const pageDescription = isTradingGuidePage
     ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
     : "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
@@ -69,16 +75,28 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
   ${brandHeadLinks(pageOrigin)}
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <link rel="preconnect" href="https://marketnarrative.in" crossorigin>
+  <link rel="dns-prefetch" href="https://marketnarrative.in">
+  <link rel="preload" as="image" href="${escapeHtml(previewImageUrl)}" fetchpriority="high">
+  <meta http-equiv="Cache-Control" content="private, max-age=0, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
   <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief">
   <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
-  <meta name="theme-color" content="#050816">
+  <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
+  ${digest.nextEditionPath ? `<link rel="next" href="${escapeHtml(absoluteSiteUrl(digest.nextEditionPath, pageOrigin))}">` : ""}
+  ${digest.previousEditionPath ? `<link rel="prev" href="${escapeHtml(absoluteSiteUrl(digest.previousEditionPath, pageOrigin))}">` : ""}
+  <link rel="alternate" hreflang="en-IN" href="${escapeHtml(canonicalUrl)}">
+  <link rel="alternate" hreflang="x-default" href="${escapeHtml(canonicalUrl)}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Market Narrative daily pre-market briefing cover card">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
@@ -91,7 +109,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
-  <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest))}</script>
+  <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
   <style>
     :root {
       --paper: #f4f5f7;
@@ -107,6 +125,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     * { box-sizing: border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
 
     body {
       margin: 0;
@@ -162,6 +205,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
+      padding-top: env(safe-area-inset-top, 0px);
     }
 
     .shell {
@@ -242,6 +286,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     main.shell {
       padding-top: 32px;
       padding-bottom: 64px;
+    }
+
+    /* Long-form reading width on small screens. */
+    .briefing-prose,
+    .glass-v2 .briefing-block p,
+    .glass-v2 .panel p,
+    .glass-v2 .two-minute-summary p {
+      max-width: 65ch;
     }
 
     .hidden {
@@ -392,7 +444,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .summary-chip span {
       display: block;
       color: var(--stone);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -482,7 +534,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-bottom: 8px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -511,10 +563,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       gap: 8px;
       justify-content: center;
       min-width: 104px;
+      min-height: 44px;
       border-radius: 999px;
       background: #111827;
       color: #fff;
-      padding: 9px 12px;
+      padding: 0 16px;
       font-size: 13px;
       font-weight: 900;
       line-height: 1;
@@ -696,7 +749,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 6px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.45;
       text-transform: uppercase;
@@ -852,7 +905,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 4px 0 0;
     }
     .preopen-flow-badge {
-      font-size: 11px;
+      font-size: 12px;
       background: rgba(99,179,237,0.12);
       color: #90cdf4;
       border-radius: 6px;
@@ -895,7 +948,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .preopen-tile.flat strong { color: #fbbf24; }
     .preopen-tile strong, .preopen-tile:not(.up):not(.down):not(.flat) strong { color: #e2e8f0; }
     .preopen-tile small {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
       line-height: 1.3;
     }
@@ -913,7 +966,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       flex: 1 1 200px;
     }
     .flow-label {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
       white-space: nowrap;
     }
@@ -924,7 +977,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .preopen-flow.up { color: #34d399; }
     .preopen-flow.down { color: #fb7185; }
     .preopen-flow-row small {
-      font-size: 11px;
+      font-size: 12px;
       color: #94a3b8;
     }
     .preopen-flows--pending {
@@ -934,6 +987,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     @media (max-width: 600px) {
       .preopen-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .preopen-grid { grid-template-columns: 1fr; }
+      .preopen-tile { min-height: 64px; padding: 12px 14px; }
     }
 
     .opening-nerve-card {
@@ -987,7 +1045,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .opening-nerve-tile span {
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.09em;
       text-transform: uppercase;
@@ -1103,7 +1161,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .trade-map-tile span {
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.09em;
       text-transform: uppercase;
@@ -1280,7 +1338,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-bottom: 6px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1307,7 +1365,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 5px;
       color: #cbd5e1;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
     }
 
@@ -1324,7 +1382,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-radius: 14px;
     }
     .todays-read-kicker {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1367,7 +1425,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-top: 28px;
     }
     .top-stories-kicker {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1404,7 +1462,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin-bottom: 7px;
     }
     .top-story-publisher {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1512,7 +1570,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: #fff;
       padding: 8px 10px;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1633,7 +1691,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-evidence-map > span {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1674,14 +1732,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 3px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
     }
 
     .source-theme-score {
       border-radius: 6px;
       padding: 6px 7px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
     }
@@ -1849,7 +1907,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-category-label small {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1979,7 +2037,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-thumb span {
       bottom: 44px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -2008,7 +2066,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .news-badge {
       border-radius: 5px;
       padding: 5px 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -2099,7 +2157,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-entity {
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -2108,6 +2166,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .public-footer {
       margin-top: 42px;
       padding-top: 24px;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
       border-top: 1px solid var(--line);
       text-align: center;
     }
@@ -2122,12 +2181,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .legacy-audit-banner,
     .edition-nav,
-    .share-row,
     .reader-path,
-    .session-notice,
     .evidence-grade-card,
-    .follow-briefing-cta,
-    .chart-cta-panel {
+    .chart-cta-panel,
+    .footer-actions-card {
       border: 1px solid rgba(148, 163, 184, 0.24);
       border-radius: 14px;
       background: rgba(15, 23, 42, 0.58);
@@ -2142,20 +2199,34 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-weight: 900;
     }
 
-    .edition-nav,
+    .footer-actions-card {
+      padding: 0;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .footer-actions-divider {
+      margin: 0;
+      border: none;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .session-notice,
     .share-row,
-    .reader-path {
+    .follow-briefing-cta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
       justify-content: space-between;
-      margin: 14px 0;
+      padding: 16px;
+      margin: 0;
+      border: none;
+      background: transparent;
+      border-radius: 0;
     }
 
-    .session-notice,
-    .evidence-grade-card,
-    .follow-briefing-cta {
+    .evidence-grade-card {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -2203,7 +2274,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(2, 6, 23, 0.28);
       padding: 8px 10px;
       color: #cbd5e1;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -2553,13 +2624,27 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid rgba(226, 232, 240, 0.9);
       border-radius: 10px;
+      position: relative;
+    }
+
+    /* Faded right edge hints at horizontal scroll on small screens. */
+    .table-wrap::after {
+      content: "";
+      position: sticky;
+      top: 0;
+      right: 0;
+      width: 24px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(244, 245, 247, 0.95), rgba(244, 245, 247, 0));
+      pointer-events: none;
     }
 
     table {
       width: 100%;
-      min-width: 680px;
+      min-width: max-content;
       border-collapse: collapse;
     }
 
@@ -2574,10 +2659,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     th {
       background: rgba(241, 245, 249, 0.92);
       color: #334155;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
 
     td {
@@ -2818,7 +2906,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 7px;
       color: #9ca3af;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -3264,7 +3352,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .studio-run-card span {
       display: block;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -3306,7 +3394,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .studio-metric span {
       display: block;
       color: #6b7280;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -3624,7 +3712,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .theme-review-top span {
       color: #64748b;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
     }
@@ -3686,7 +3774,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: block;
       margin-top: 4px;
       color: #64748b;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -4015,7 +4103,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .scene-card small {
       display: block;
       color: #4b5563;
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.35;
     }
 
@@ -4454,7 +4542,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       border-radius: 999px;
       padding: 5px 9px;
       color: #475569;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -4512,9 +4600,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #dbeafe;
     }
 
-    .glass-v2 .session-notice,
-    .glass-v2 .evidence-grade-card,
-    .glass-v2 .follow-briefing-cta {
+    .glass-v2 .footer-actions-card,
+    .glass-v2 .evidence-grade-card {
       border-color: rgba(103, 232, 249, 0.24);
       background: rgba(15, 23, 42, 0.66);
     }
@@ -4808,18 +4895,27 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .nav-inner {
         align-items: start;
         flex-direction: column;
-        padding: 14px 0 0;
+        padding: 10px 0 0;
+        min-height: 52px;
       }
 
       .tabs {
         width: 100%;
-        min-height: 48px;
+        min-height: 44px;
         gap: 16px;
         overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
       }
 
       .tab-btn {
         white-space: nowrap;
+        scroll-snap-align: start;
       }
 
       .grid-main,
@@ -4998,6 +5094,74 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         justify-content: center;
       }
     }
+    .market-map-details {
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .market-map-details summary {
+      cursor: pointer;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 1.1em;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .market-map-details summary::-webkit-details-marker {
+      display: none;
+    }
+    .market-map-details summary::after {
+      content: "▼";
+      font-size: 0.8em;
+      color: var(--stone);
+      transition: transform 0.2s;
+    }
+    .market-map-details[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .market-map-details summary h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .market-map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      padding: 0 16px 16px 16px;
+    }
+    .market-map-card {
+      background: var(--paper);
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+    }
+    .market-map-card h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.9em;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .market-map-card p {
+      margin: 0 0 8px 0;
+      font-size: 1em;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .market-map-card small {
+      display: block;
+      color: var(--stone);
+      font-size: 0.85em;
+      line-height: 1.4;
+    }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -5035,7 +5199,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
               <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
           </div>
-          <h1>${escapeHtml(hookTitle(digest))}</h1>
+          <h1>${escapeHtml(pageH1)}</h1>
         </header>
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
@@ -5058,9 +5222,15 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
         ${legacyAuditBannerHtml(digest)}
         ${editionNavHtml(digest)}
-        ${briefingFreshnessNoticeHtml(digest)}
-        ${shareRowHtml(canonicalUrl, digest.title)}
-        ${followBriefingCtaHtml()}
+        
+        <div class="footer-actions-card">
+          ${briefingFreshnessNoticeHtml(digest)}
+          <hr class="footer-actions-divider">
+          ${shareRowHtml(canonicalUrl, digest.title)}
+          <hr class="footer-actions-divider">
+          ${followBriefingCtaHtml()}
+        </div>
+        
         ${indiaPreOpenHtml(digest)}
 
         ${todaysReadHtml(digest)}
@@ -7049,6 +7219,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
     });
   </script>
+  ${bottomTabBarHtml("latest")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -7060,103 +7232,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
  * The original digest.title is preserved for SEO/meta — this is display-only.
  */
 function hookTitle(digest) {
-  const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
-  const sentiment = Number(digest.overallSentiment ?? 0);
   const fii = digest.fiiDiiFlows;
   const fiiNet = Number(fii?.fiiNet ?? 0);
   const hasFlow = Math.abs(fiiNet) > 50 && fii?.date;
-  const bias = digest.giftNiftyBias;
-  const sentimentLabel = String(digest.sentimentLabel ?? "").toUpperCase();
-
-  // Helper: short FII phrase e.g. "FII Bought ₹1,329 Cr"
+  
   function fiiPhrase() {
     const abs = Math.abs(fiiNet);
     const cr = abs >= 10000 ? `₹${(abs / 100).toFixed(0)}B` : `₹${Number(abs.toFixed(0)).toLocaleString("en-IN")} Cr`;
     return fiiNet > 0 ? `FII Bought ${cr}` : `FII Sold ${cr}`;
   }
 
-  // GIFT Nifty gap is the sharpest pre-open signal when it's real
-  if (bias?.bias === "gap_up" && Math.abs(bias.gapPts) >= 50) {
-    const lead = hasFlow ? `${fiiPhrase()} + Gap-Up Open — Here's the India Read` : `Gap-Up ${Math.abs(bias.gapPts)} Pts — Watch the First 15 Minutes`;
-    return lead;
-  }
-  if (bias?.bias === "gap_down" && Math.abs(bias.gapPts) >= 50) {
-    const lead = hasFlow ? `${fiiPhrase()} + Gap-Down — Support Watch Before You Trade` : `Gap-Down ${Math.abs(bias.gapPts)} Pts — Where India Finds Support`;
-    return lead;
-  }
-
-  // Driver + FII combos — the most engagement-worthy headlines
-  if (driver === "geopolitical") {
-    if (hasFlow) return sentiment >= 0
-      ? `Trade Diplomacy Tailwind + ${fiiPhrase()} — India's Pre-Open Edge`
-      : `Geopolitical Risk + ${fiiPhrase()} — What India Must Confirm First`;
-    return sentiment >= 0
-      ? "Trade Diplomacy Shifts the Risk Map — India in Play"
-      : "Geopolitical Risk Builds — Crude and USD/INR Are the India Checks";
+  const leadHeadline = digest.dailyLead?.headline;
+  if (leadHeadline) {
+     const cleanHeadline = leadHeadline.replace(/^[^:|—-]+[:|—-]\s*/, '').trim(); 
+     if (cleanHeadline.length > 10) {
+        if (hasFlow) {
+           return `${cleanHeadline} — ${fiiPhrase()}`;
+        }
+        return cleanHeadline;
+     }
   }
 
-  if (driver === "crude") {
-    if (hasFlow) return sentiment >= 0
-      ? `Crude Eases + ${fiiPhrase()} — OMC and Aviation Get a Breather`
-      : `Crude Pressure + ${fiiPhrase()} — India Open Needs Breadth to Hold`;
-    return sentiment >= 0
-      ? "Crude Softens — OMC Margins and Aviation Get Relief"
-      : "Crude Firm — Inflation Risk and OMC Margins Are the India Read";
-  }
-
-  if (driver === "rates") {
-    if (hasFlow) return sentiment >= 0
-      ? `Yield Relief + ${fiiPhrase()} — Banks and Real Estate in Focus`
-      : `Yield Pressure + ${fiiPhrase()} — Dollar Strength Squeezes Imports`;
-    return sentiment >= 0
-      ? "Yields Ease — Banks, Realty and Autos Get a Rate Tailwind"
-      : "Yields Rise — Dollar Pressure Hits Importers; Watch USD/INR";
-  }
-
-  if (driver === "tech_move" || driver === "tech") {
-    if (hasFlow) return sentiment >= 0
-      ? `Tech Strength + ${fiiPhrase()} — Nifty IT Leads the Watch List`
-      : `Tech Pressure + ${fiiPhrase()} — IT Sector Gets a Valuation Check`;
-    return sentiment >= 0
-      ? "Nasdaq Lifts Tech — Nifty IT and Exporters Are the India Play"
-      : "Tech Sector Pressure — Nifty IT Breadth Is the Confirmation Check";
-  }
-
-  if (driver === "banks") {
-    if (hasFlow) return sentiment >= 0
-      ? `Banks Lead + ${fiiPhrase()} — Bank Nifty VWAP Is Today's Anchor`
-      : `Bank Stress + ${fiiPhrase()} — Confirmation Needed Before Direction`;
-    return sentiment >= 0
-      ? "Banks Stabilise — Bank Nifty Breadth Leads the Open"
-      : "Bank Sector Under Pressure — Watch VWAP and Advance-Decline";
-  }
-
-  if (driver === "precious_metals") {
-    if (hasFlow) return `Gold Surge + ${fiiPhrase()} — Safe-Haven Demand Tests India Risk Appetite`;
-    return sentiment >= 0
-      ? "Gold Firm — MCX Open and Jewellery Sector in Focus"
-      : "Gold Rallying — Equity Risk Appetite Under Pressure";
-  }
-
-  if (driver === "currency") {
-    if (hasFlow) return sentiment >= 0
-      ? `Rupee Stable + ${fiiPhrase()} — Exporters Get the Edge Today`
-      : `Rupee Pressure + ${fiiPhrase()} — Importers Watch the First-Hour Range`;
-    return "Currency Move in Play — Watch USD/INR Through the First Hour";
-  }
-
-  // Generic: lead with FII if available, else use a cleaner title
   if (hasFlow) {
-    if (sentimentLabel === "BULLISH") return `${fiiPhrase()} + Positive Global Cues — India Has a Running Start`;
-    if (sentimentLabel === "BEARISH") return `${fiiPhrase()} + Caution — Mixed Cues Demand Opening-Range Confirmation`;
     return `${fiiPhrase()} on ${fii.date} — Check the Opening Range Before Taking a View`;
   }
-
-  // Last resort: clean up the archive title (remove robotic formula words)
-  return String(digest.title ?? "India Pre-Open Market Briefing")
-    .replace(/\bshape\b/gi, "sets")
-    .replace(/\bSets India\b/g, "in Focus —")
-    .replace(/\bWatch\b$/, "Watch Before the Open");
+  return String(digest.title ?? "India Pre-Open Market Briefing");
 }
 
 /** Replaces generic "Daily Pre-Market Summary" eyebrow with a market-specific signal label. */
@@ -7174,14 +7274,9 @@ function heroEyebrowLabel(digest) {
   }
 
   // Driver-specific labels
-  if (driver === "geopolitical") return sentiment >= 0 ? "Diplomacy Tailwind — Risk-On Watch" : "Geopolitical Risk — Confirm Before You Trade";
-  if (driver === "crude")        return sentiment >= 0 ? "Crude Easing — Watch Breadth" : "Crude Pressure — Energy Risk in Play";
-  if (driver === "rates")        return sentiment >= 0 ? "Yield Relief — Risk Assets Watch" : "Yield Squeeze — Dollar Pressure Watch";
-  if (driver === "tech_move" || driver === "tech") return sentiment >= 0 ? "Tech Strength — Nifty IT in Play" : "Tech Pressure — IT Sector Watch";
-  if (driver === "banks")        return sentiment >= 0 ? "Banks Leading — Breadth Positive" : "Bank Stress — Watch VWAP Holds";
-  if (driver === "precious_metals") return "Gold / Metals Signal — Safe-Haven Read";
-  if (driver === "currency")     return sentiment >= 0 ? "Rupee Stable — Exporter Tailwind" : "Rupee Pressure — Importer Cost Watch";
-  if (driver === "asia")         return "Asia Moves First — India Read-Through Below";
+  if (driver) {
+     return `${driver.charAt(0).toUpperCase() + driver.slice(1)} Driver — Watch the First 15 Minutes`;
+  }
 
   // Sentiment fallback
   if (sentiment >= 0.3) return "Risk-On Setup — Follow the Breadth";
@@ -8081,7 +8176,7 @@ function driverLabelForArticle(article) {
   if (/\b(nasdaq|dow|s&p|wall street|futures)\b/.test(text)) return "Global risk appetite";
   if (/\b(bank|banks|credit|financial)\b/.test(text)) return "Financial breadth";
   if (/\b(earnings|guidance|revenue|profit)\b/.test(text)) return "Earnings read-through";
-  if (/\b(tariff|trade|exports?|imports?)\b/.test(text)) return "Trade-policy risk";
+  if (/\b(tariff|trade|export|import)\b/.test(text)) return "Trade-policy risk";
   return compactEntityName(article?.entityName || article?.category || "Market driver");
 }
 
@@ -8203,25 +8298,19 @@ function twoMinuteSummaryHtml(digest) {
   const macro = firstByCategory(digest.news, "macro_negative");
   const globalRisk = firstByCategory(digest.news, "global_risk");
   const support = firstByCategory(digest.news, "sector_positive") || firstByCategory(digest.news, "macro_positive") || strongestStory(digest.news, "positive");
-  const topSources = publicVisibleSourceArticles(digest, PUBLIC_DISPLAY_LIMIT);
-  const categoryMix = [...new Set(topSources.map((article) => sourceCategoryTitle(article.category)))]
-    .slice(0, 4)
-    .join(", ");
   const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
   const asiaLine = compactAsiaLine(snapshotsForRegion(digest, "Asia Watch"));
   const pressure = macro || globalRisk;
-  const bullets = [
-    ["Lead driver", `${driver.title}: ${driver.summary}`],
-    ["Pressure", humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read."))],
-    ["Support / offset", humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape."))],
-    ["India read", [indiaLine ? `Prev close: ${indiaLine}.` : "", asiaLine, "This public brief is market context only; execution levels sit in the Trading Guide."].filter(Boolean).join(" ")],
-    ["Source mix", categoryMix ? `The visible source stack is diversified across ${categoryMix}.` : "The visible source stack uses the highest-impact India read-through articles."]
-  ];
+  
+  const leadCopy = cleanBriefingText(driver.summary);
+  const pressureCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.riskSide || sourceSummaryForTwoMinute(pressure, "Macro and global-risk stories are the pressure side of the morning read.")));
+  const supportCopy = cleanBriefingText(humanizeLeadCopy(digest.dailyLead?.supportSide || sourceSummaryForTwoMinute(support, "Support has to come from Indian breadth, sector leadership, or a softer macro tape.")));
+
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary">
-      <ul class="brief-list">
-        ${bullets.map(([label, text]) => `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(cleanBriefingText(text))}</li>`).join("")}
-      </ul>
+      <p class="summary-paragraph"><strong>The Setup:</strong> ${escapeHtml(leadCopy)}</p>
+      <p class="summary-paragraph"><strong>Pressure & Support:</strong> ${escapeHtml(pressureCopy)} Meanwhile, ${escapeHtml(supportCopy)}</p>
+      <p class="summary-paragraph"><strong>Regional Context:</strong> ${indiaLine ? escapeHtml(`Heading into the open, previous closes were: ${indiaLine}. `) : ""}${asiaLine ? escapeHtml(`In early trade, ${asiaLine}. `) : ""}This brief provides market context; execution levels sit in the Trading Guide.</p>
     </div>
   `;
 }
@@ -8244,15 +8333,31 @@ function executiveSummaryHtml(digest) {
   const globalRisk = firstByCategory(digest.news, "global_risk");
 
   return `
-    <div class="brief-section">
-      <h3>Market Map</h3>
-      <ul class="brief-list">
-        <li><strong>US:</strong> ${escapeHtml(usLine || "US index data is awaiting refresh")}. ${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</li>
-        <li><strong>Asia:</strong> ${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}. Regional breadth sets the sentiment backdrop for the India open.</li>
-        <li><strong>Macro:</strong> ${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}. Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</li>
-        <li><strong>India:</strong> ${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}. Prior-session closes set the reference point for today's source read.</li>
-      </ul>
-    </div>
+    <details class="market-map-details">
+      <summary><h3>Market Map</h3></summary>
+      <div class="market-map-grid">
+        <div class="market-map-card">
+          <h4>US Markets</h4>
+          <p>${escapeHtml(usLine || "US index data is awaiting refresh")}</p>
+          <small>${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</small>
+        </div>
+        <div class="market-map-card">
+          <h4>Asia Watch</h4>
+          <p>${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}</p>
+          <small>Regional breadth sets the sentiment backdrop for the India open.</small>
+        </div>
+        <div class="market-map-card">
+          <h4>Macro Hedges</h4>
+          <p>${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}</p>
+          <small>Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</small>
+        </div>
+        <div class="market-map-card">
+          <h4>India Reference</h4>
+          <p>${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}</p>
+          <small>Prior-session closes set the reference point for today's source read.</small>
+        </div>
+      </div>
+    </details>
   `;
 }
 
@@ -8512,15 +8617,34 @@ function todaysReadHtml(digest) {
   const rupeeLine = usdinr ? `The rupee is at <strong>${usdinr.closeValue}</strong> (${pct(usdinr.changePercent)}${Math.abs(usdinr.changePercent ?? 0) > 0.3 ? " — worth watching for FII cost translation" : ""}).` : "";
   const watchLine = `${rupeeLine} Keep the 2-Minute Summary on top and cross-check levels in the Trading Guide before the cash open.`;
 
+  let articleHtml = "";
+  if (digest.todaysReadArticle) {
+    articleHtml = digest.todaysReadArticle
+      .split(/\n\n+/)
+      .map(p => {
+        // Apply bold markdown BEFORE escaping, so ** markers aren't entity-encoded
+        const withBold = p.trim().replace(/\*\*(.*?)\*\*/g, '\x00BOLD_START\x00$1\x00BOLD_END\x00');
+        const escaped = escapeHtml(withBold)
+          .replace(/\x00BOLD_START\x00/g, '<strong>')
+          .replace(/\x00BOLD_END\x00/g, '</strong>');
+        return `<p>${escaped}</p>`;
+      })
+      .join("\n");
+  } else {
+    articleHtml = `
+      <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
+      <p>${driverPara}</p>
+      <p>${flowPara}</p>
+      <p>${watchLine}</p>
+    `;
+  }
+
   return `
     <section class="todays-read-section" aria-label="Today's narrative read">
       <div class="todays-read-kicker">Today's Read</div>
       <h2>${escapeHtml(hookTitle(digest))}</h2>
       <div class="todays-read-body">
-        <p>${niftyLine} Asian markets handed a mixed baton overnight, with ${positiveAsianCount(snapshots)} of the major regional indices closing higher.</p>
-        <p>${driverPara}</p>
-        <p>${flowPara}</p>
-        <p>${watchLine}</p>
+        ${articleHtml}
       </div>
       <div class="todays-read-footer">Prepared for the 7:15 AM IST briefing · Educational market context only — not investment advice</div>
     </section>

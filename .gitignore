@@ -18,3 +18,5 @@ __pycache__/
 .pytest_cache/
 *.tsbuildinfo
 .vercel
+public/
+latest-slug.txt

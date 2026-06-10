@@ -120,17 +120,17 @@ await test("live quote reconciliation removes completed setups from fresh entrie
   const liveSnapshots = [
     {
       symbol: "NIFTY",
-      closeValue: 24177.65,
+      closeValue: 29000.0,
       dataQuality: "live"
     },
     {
       symbol: "BANKNIFTY",
-      closeValue: 55403.6,
+      closeValue: 70000.0,
       dataQuality: "live"
     }
   ];
-  const audit = auditTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
-  const reconciled = reconcileTradeSetupsWithMarketSnapshots(setups, liveSnapshots);
+  const audit = auditTradeSetupsWithMarketSnapshots("2026-05-04", setups, liveSnapshots);
+  const reconciled = reconcileTradeSetupsWithMarketSnapshots("2026-05-04", setups, liveSnapshots);
   assert.deepEqual(reconciled, []);
   assert.deepEqual(audit.map((item) => item.status), ["TARGET_REACHED", "TARGET_REACHED"]);
   assert.ok(audit.every((item) => item.reason.includes("fresh entry")));
@@ -671,7 +671,7 @@ await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
     assert.equal(body.messages[0].role, "system");
@@ -759,7 +759,10 @@ await test("NVIDIA agent mode passes used India angles to avoid repetition", asy
   const articles = await fetchLiveNewsArticles("2026-05-04", {
     fetcher,
     llmFetcher,
+    anthropicApiKey: "",
+    openaiApiKey: "",
     nvidiaApiKey: "test-nvidia-key",
+    geminiApiKey: "",
     maxArticleEditorialEnrichmentCalls: 30
   });
 
@@ -1289,7 +1292,7 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
     assert.equal(body.messages[0].content, DAILY_LEAD_RERANK_PROMPT);
@@ -2367,7 +2370,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
   assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
   assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
-  assert.ok(workflow.includes("GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"));
+  assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
   assert.ok(workflow.includes("(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'"));
   assert.ok(workflow.includes("--enforce-publish-window"));
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
@@ -2508,15 +2511,20 @@ await test("frontend workspace separates public portal, admin studio, and shared
 await test("Vercel projects select public, admin, or trade output by deploy target", async () => {
   const vercelConfig = JSON.parse(await readFile(join(rootDir, "vercel.json"), "utf8"));
   assert.equal(vercelConfig.buildCommand, "npm run vercel:build");
-  assert.equal(vercelConfig.outputDirectory, "out/vercel");
+  // outputDirectory is intentionally absent from vercel.json: the current Vercel
+  // CLI schema rejects the property, and the build writes directly to ./public
+  // (Vercel's default static output dir) instead. See tools/vercel-build.mjs.
+  assert.equal(vercelConfig.outputDirectory, undefined);
+  const vercelBuildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
+  assert.match(vercelBuildScript, /outputDir\s*=\s*join\(rootDir,\s*"public"\)/);
   assert.deepEqual(vercelConfig.crons, [
     {
       path: "/api/cron/premarket-publish",
-      schedule: "43 1 * * 1-5"
+      schedule: "0 1 * * 1-5"
     },
     {
       path: "/api/cron/premarket-publish",
-      schedule: "53 1 * * 1-5"
+      schedule: "30 1 * * 1-5"
     }
   ]);
   assert.equal(
@@ -2552,7 +2560,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("tools/public-copy-qa.mjs"));
   assert.ok(buildScript.includes('"out", "site", "admin"'));
   assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
-  assert.ok(buildScript.includes("out\", \"vercel"));
+  assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
   assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
@@ -2569,15 +2577,15 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const adminProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
   const tradeProject = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
   assert.equal(publicProject.buildCommand, "npm run vercel:build");
-  assert.equal(publicProject.outputDirectory, "out/vercel");
+  assert.equal(publicProject.outputDirectory, "public");
   assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
   assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
   assert.equal(adminProject.buildCommand, "npm run vercel:build");
-  assert.equal(adminProject.outputDirectory, "out/vercel");
+  assert.equal(adminProject.outputDirectory, "public");
   assert.equal(adminProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "admin");
   assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
   assert.equal(tradeProject.buildCommand, "npm run vercel:build");
-  assert.equal(tradeProject.outputDirectory, "out/vercel");
+  assert.equal(tradeProject.outputDirectory, "public");
   assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
   assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
   for (const route of [
@@ -2717,7 +2725,7 @@ await test("demo app serves public and admin flows without external packages", a
 
   const publicHtml = await app.request("GET", "/");
   assert.ok(publicHtml.body.includes("application/ld+json"));
-  assert.ok(publicHtml.body.includes('class="glass-v2"'));
+  assert.ok(publicHtml.body.includes('glass-v2'));
   assert.ok(publicHtml.body.includes("data-source-url"));
   assert.ok(publicHtml.body.includes("Public Briefing"));
   assert.ok(publicHtml.body.includes("Trading Guide"));

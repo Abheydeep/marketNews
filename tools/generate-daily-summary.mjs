@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
@@ -18,6 +18,27 @@ const enforcePublishWindow = readFlag("--enforce-publish-window") || process.env
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
+
+const lockFile = join(rootDir, `out`, `daily`, `publish-lock-${date}.lock`);
+if (liveMode) {
+  try {
+    const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);
+    await access(archiveFile);
+    process.stdout.write(`Verified archive already exists for ${date} (${archiveFile}). Skipping generation.\n`);
+    process.exit(0);
+  } catch {
+    // File does not exist, check lock
+    try {
+      await access(lockFile);
+      process.stdout.write(`Lock file exists for ${date} (${lockFile}). Already running. Skipping.\n`);
+      process.exit(0);
+    } catch {
+      await mkdir(dirname(lockFile), { recursive: true });
+      await writeFile(lockFile, new Date().toISOString(), "utf8");
+    }
+  }
+}
+
 const calendarState = marketCalendarState(date);
 
 if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
@@ -35,7 +56,12 @@ if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH
   }
 }
 
-const generatedDigest = await buildDigest(date, { marketDataMode, newsDataMode });
+const generatedDigest = await buildDigest(date, {
+  marketDataMode,
+  newsDataMode,
+  nvidiaApiKey: process.env.NVIDIA_API_KEY,
+  agentLeadRerank: Boolean(process.env.NVIDIA_API_KEY)
+});
 const nonTradingSession = !calendarState.isTradingSession
   ? {
     state: calendarState.state,

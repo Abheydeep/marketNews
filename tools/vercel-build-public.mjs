@@ -5,6 +5,82 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
 
+// Read by api/latest-redirect.js as a last-resort fallback when both the
+// LATEST_DIGEST_SLUG env var and the /digest.json fetch fail. Written here
+// at the end of the build so the value matches the artifact we just shipped.
+async function writeLatestSlugArtifact(slug) {
+  const outPath = join(rootDir, "out", "site", "latest-slug.txt");
+  await writeFile(outPath, `${slug}\n`, "utf8");
+  return outPath;
+}
+
+// PWA manifest + tiny offline service worker. Enables "Add to Home Screen"
+// on iOS/Android, gives the site an icon and theme color, and serves a
+// cached version of the latest digest when the user is offline.
+async function writePwaArtifacts() {
+  const manifest = {
+    name: "Market Narrative",
+    short_name: "Market Narrative",
+    description: "Pre-market briefings and the Multibagger research model from Market Narrative.",
+    start_url: "/",
+    scope: "/",
+    display: "standalone",
+    background_color: "#050816",
+    theme_color: "#050816",
+    orientation: "portrait",
+    icons: [
+      { src: "/favicon.svg",       sizes: "any",     type: "image/svg+xml", purpose: "any" },
+      { src: "/apple-touch-icon.svg", sizes: "180x180", type: "image/svg+xml", purpose: "any" },
+    ],
+  };
+  await writeFile(join(rootDir, "out", "site", "manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
+
+  // Service worker: cache the homepage and the latest slug for offline use.
+  // Use a JS literal so it works with file:// in dev and https in prod.
+  const sw = `// Market Narrative service worker. Caches the home page and the
+// most recent briefing so the app is usable on a flaky network.
+const CACHE = "mn-shell-v1";
+const PRECACHE_URLS = ["/", "/manifest.json", "/favicon.svg"];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE_URLS)).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  const req = event.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith("/api/")) return; // never cache functions
+  event.respondWith(
+    caches.match(req).then((cached) => {
+      const network = fetch(req)
+        .then((res) => {
+          if (res && res.ok && (res.type === "basic" || res.type === "default")) {
+            const copy = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, copy));
+          }
+          return res;
+        })
+        .catch(() => cached);
+      return cached || network;
+    })
+  );
+});
+`;
+  await writeFile(join(rootDir, "out", "site", "sw.js"), sw, "utf8");
+}
+
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const parts = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Kolkata",
@@ -45,6 +121,8 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     process.exit(fallbackPublish.status ?? 1);
   }
   await writeLatestStatusPages({ date, fallback, status: "market-closed", calendarState });
+  await writeLatestSlugArtifact(slugForDate(fallback.date));
+  await writePwaArtifacts();
   process.exit(0);
 } else {
   const generated = run("npm", [
@@ -63,6 +141,8 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
   if (generated.status === 0) {
     const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], { exitOnFailure: false });
     if (published.status === 0) {
+      await writeLatestSlugArtifact(slugForDate(date));
+      await writePwaArtifacts();
       process.exit(0);
     }
     await handleFreshBuildFailure({
@@ -80,6 +160,8 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
   });
 }
 run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", scheduledTime]);
+await writeLatestSlugArtifact(slugForDate(date));
+await writePwaArtifacts();
 
 async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
   const fallback = latestArchivedDigest();
@@ -122,6 +204,8 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
     process.exit(fallbackPublish.status ?? (exitStatus === 0 ? 1 : exitStatus));
   }
   await writeLatestStatusPages({ date, failedStep, fallback, status: "verification-hold" });
+  await writeLatestSlugArtifact(slugForDate(fallback.date));
+  await writePwaArtifacts();
   process.exit(0);
 }
 
@@ -187,7 +271,11 @@ function latestStatusPage({ date, failedStep, fallback, status, calendarState, i
 }
 
 function slugForDate(value) {
-  const [year, month, day] = String(value).split("-");
+  const date = String(value);
+  if (String(process.env.PUBLIC_SLUG_FORMAT ?? "compact").toLowerCase() === "iso" && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return date;
+  }
+  const [year, month, day] = date.split("-");
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   return `${Number(day)}${monthName}${year}`;
 }

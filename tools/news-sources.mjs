@@ -170,6 +170,13 @@ const LIVE_FEEDS = [
     type: "rss",
     categoryHint: "macro_negative",
     url: "https://www.bqprime.com/feeds/rss-all"
+  },
+  {
+    sourceName: "Zerodha Pulse",
+    sourceId: "zerodha-pulse",
+    type: "html-index",
+    categoryHint: "neutral_volatile",
+    url: "https://pulse.zerodha.com/"
   }
 ];
 
@@ -249,7 +256,8 @@ export async function resolveNewsArticles(date, options = {}) {
     : fixtureNewsArticles(date, options.seedNews ?? []);
   const verification = verifySourceArticles(articles, {
     mode,
-    previousDigest: options.previousDigest
+    previousDigest: options.previousDigest,
+    isPulseMode: process.env.PULSE_MODE === "true" || options.pulseMode === true
   });
   assertSourceVerification(verification);
   return { articles, sourceVerification: publicSourceVerification(verification) };
@@ -265,12 +273,17 @@ export function normalizeNewsMode(value) {
 
 export async function fetchLiveNewsArticles(date, options = {}) {
   const fetcher = options.fetcher ?? fetch;
+  const isPulseMode = process.env.PULSE_MODE === "true" || options.pulseMode === true;
+  const activeFeeds = isPulseMode ? LIVE_FEEDS.filter(f => f.sourceId === "zerodha-pulse") : LIVE_FEEDS;
   const feedResults = [];
-  for (const feed of LIVE_FEEDS) {
+  for (const feed of activeFeeds) {
     try {
       if (feed.type === "rss") {
         const xml = await fetchText(feed.url, fetcher);
         feedResults.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, feed, item)));
+      } else if (feed.sourceId === "zerodha-pulse" && feed.type === "html-index") {
+        const html = await fetchText(feed.url, fetcher);
+        feedResults.push(...parsePulseHtmlItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.type === "html-index") {
         const html = await fetchText(feed.url, fetcher);
         feedResults.push(...parseHtmlIndexItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
@@ -294,12 +307,48 @@ export async function fetchLiveNewsArticles(date, options = {}) {
       console.warn(`[news-source] ${feed.sourceName} skipped: ${error.message}`);
     }
   }
-  const verifiedArticles = dedupeArticles(feedResults)
-    .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
-    .filter(articleLooksMarketRelevant)
-    .filter((article) => articleIsFreshForDigest(article, date));
-  const selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
+  
+  let verifiedArticles = dedupeArticles(feedResults)
+    .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl));
+    
+  if (!isPulseMode) {
+    verifiedArticles = verifiedArticles.filter(articleLooksMarketRelevant);
+  }
+  
+  verifiedArticles = verifiedArticles.filter((article) => articleIsFreshForDigest(article, date, isPulseMode));
+  
+  let selectedArticles;
+  if (isPulseMode) {
+    selectedArticles = await agentSelectPulseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), options);
+    const top3 = selectedArticles.slice(0, 3);
+    await Promise.all(top3.map(a => enrichPulseArticleWithContent(a, fetcher)));
+  } else {
+    selectedArticles = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 60);
+  }
   return enrichArticlesWithEditorialLLM(selectedArticles, options);
+}
+
+async function enrichPulseArticleWithContent(article, fetcher) {
+  if (!article.sourceUrl || !article.sourceUrl.startsWith('http')) return article;
+  
+  try {
+    const html = await fetchText(article.sourceUrl, fetcher);
+    const paragraphs = [];
+    const pRegex = /<p[^>]*>(.*?)<\/p>/gi;
+    let match;
+    while ((match = pRegex.exec(html)) !== null) {
+      const text = match[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+      if (text.length > 50) paragraphs.push(text);
+      if (paragraphs.length >= 3) break;
+    }
+    
+    if (paragraphs.length > 0) {
+       article.summary = paragraphs.join('\n\n'); 
+    }
+  } catch (e) {
+    console.warn(`[news-source] Failed to scrape pulse body for ${article.sourceUrl}: ${e.message}`);
+  }
+  return article;
 }
 
 async function enrichArticlesWithEditorialLLM(articles, options = {}) {
@@ -459,9 +508,11 @@ function configuredOpenAiArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ article, prompt, schema, usedAngles = [] }) => {
+    console.log(`[Editorial Enricher] Requesting NVIDIA API (Model: ${model}) for: ${article?.headline?.slice(0, 30)}...`);
+    const startTime = Date.now();
     const response = await fetcher(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -476,12 +527,15 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
           { role: "user", content: articleEditorialUserPrompt(article, schema, usedAngles) }
         ],
         response_format: { type: "json_object" },
-        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 360),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.25),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.9),
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
+        chat_template_kwargs: { enable_thinking: true },
+        reasoning_budget: 16384,
         stream: false
       })
     });
+    console.log(`[Editorial Enricher] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
       throw new Error(`NVIDIA article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
     }
@@ -759,8 +813,9 @@ export function fixtureNewsArticles(date, seedNews = []) {
 
 export function verifySourceArticles(articles, options = {}) {
   const mode = normalizeNewsMode(options.mode ?? "fixture");
+  const isPulseMode = options.isPulseMode === true;
   const verified = (articles ?? []).filter((article) =>
-    sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article)
+    sourceUrlLooksArticleLevel(article.sourceUrl) && (isPulseMode || articleLooksMarketRelevant(article))
   );
   const publisherCount = new Set(verified.map((article) => article.sourceName).filter(Boolean)).size;
   const categoryCount = new Set(verified.map((article) => article.category).filter(Boolean)).size;
@@ -771,6 +826,7 @@ export function verifySourceArticles(articles, options = {}) {
   const duplicateWithinCurrentPercent = duplicateWithinCurrentPercentForArticles(verified);
 
   const blockedReason = firstBlockedReason({
+    isPulseMode,
     verifiedArticleCount: verified.length,
     sourceCategoryBucketCount,
     duplicateWithPreviousPercent,
@@ -927,11 +983,11 @@ export function normalizedSourceFingerprint(article) {
   return `${title}::${urlKey}`;
 }
 
-function firstBlockedReason({ verifiedArticleCount, sourceCategoryBucketCount, duplicateWithPreviousPercent, duplicateWithinCurrentPercent }) {
+function firstBlockedReason({ isPulseMode, verifiedArticleCount, sourceCategoryBucketCount, duplicateWithPreviousPercent, duplicateWithinCurrentPercent }) {
   if (verifiedArticleCount < MIN_VERIFIED_ARTICLES) {
     return `only ${verifiedArticleCount} verified article links; need at least ${MIN_VERIFIED_ARTICLES}`;
   }
-  if (sourceCategoryBucketCount < MIN_SOURCE_CATEGORY_BUCKETS) {
+  if (!isPulseMode && sourceCategoryBucketCount < MIN_SOURCE_CATEGORY_BUCKETS) {
     return `only ${sourceCategoryBucketCount} source/category buckets; need at least ${MIN_SOURCE_CATEGORY_BUCKETS}`;
   }
   if (duplicateWithPreviousPercent > MAX_DUPLICATE_WITH_PREVIOUS_PERCENT) {
@@ -1212,13 +1268,16 @@ function isCorporateActionStory(value) {
   return /\b(corporate actions?|bonus issues?|stock splits?|split shares?|dividends?|ex-date|ex date|record date|turning ex-date|buyback|rights issue)\b/.test(String(value || ""));
 }
 
-function articleIsFreshForDigest(article, digestDate) {
+function articleIsFreshForDigest(article, digestDate, isPulseMode = false) {
   const published = Date.parse(article.publishedAt);
   const digestTime = Date.parse(`${digestDate}T07:15:00+05:30`);
   if (!Number.isFinite(published) || !Number.isFinite(digestTime)) {
     return true;
   }
   const ageHours = (digestTime - published) / (60 * 60 * 1000);
+  if (isPulseMode) {
+    return ageHours <= 20 && ageHours >= -48;
+  }
   return ageHours <= 120 && ageHours >= -48;
 }
 
@@ -1988,10 +2047,18 @@ function specificCompanyOrTheme(lower, fallback) {
 function extractMarketLevel(lower, unit) {
   const escapedUnit = unit === "$" ? "\\$" : unit;
   const pattern = unit === "$"
-    ? new RegExp(`${escapedUnit}\\s?\\d+(?:\\.\\d+)?`, "i")
-    : new RegExp(`\\d+(?:\\.\\d+)?\\s?${escapedUnit}`, "i");
+    ? new RegExp(`${escapedUnit}\\s?(\\d+(?:\\.\\d+)?)`, "i")
+    : new RegExp(`(\\d+(?:\\.\\d+)?)\\s?${escapedUnit}`, "i");
   const match = String(lower || "").match(pattern);
-  return match?.[0]?.replace(/\s+/g, "") || "";
+  if (match) {
+    if (unit === "$") {
+       const val = Number(match[1]);
+       // Crude trades $40-150. Above $200 is definitely an error
+       if (val > 200 || val < 40) return ""; 
+    }
+    return match[0].replace(/\s+/g, "");
+  }
+  return "";
 }
 
 function articleFactSentence(headline, summary) {
@@ -2048,7 +2115,15 @@ function fallbackFactFromHeadline(headline) {
     .replace(/\s*-\s*[^-]+$/i, "")
     .replace(/\s+/g, " ")
     .trim(), 14);
-  return cleaned ? `The source flags ${cleaned.charAt(0).toLowerCase()}${cleaned.slice(1)}` : "The source flags a market context cue";
+  
+  if (!cleaned) return "Global cues dominate the pre-market setup";
+
+  const parts = cleaned.split(/[:;.,-]/).map(p => p.trim()).filter(p => p.length > 10);
+  const bestPart = parts.length > 0 
+      ? parts.sort((a, b) => b.length - a.length)[0] 
+      : cleaned;
+
+  return bestPart.charAt(0).toUpperCase() + bestPart.slice(1);
 }
 
 function firstUsefulSentence(value) {
@@ -2534,4 +2609,162 @@ function round(value, places = 1) {
     return 0;
   }
   return Number(number.toFixed(places));
+}
+
+
+function parsePulseHtmlItems(html, baseUrl) {
+  const seen = new Set();
+  const items = [];
+  const listItems = [...String(html).matchAll(/<li\b[^>]*class=["'][^"']*box item[^"']*["'][^>]*>([\s\S]*?)<\/li>/gi)];
+  
+  for (const liMatch of listItems) {
+    const liHtml = liMatch[1];
+    const linkMatch = liHtml.match(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i);
+    const dateMatch = liHtml.match(/<span\b[^>]*class=["'][^"']*date[^"']*["'][^>]*title=["']([^"']+)["'][^>]*>/i);
+    const descMatch = liHtml.match(/<div\b[^>]*class=["'][^"']*desc[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+    
+    if (!linkMatch) continue;
+    
+    const title = cleanText(linkMatch[2]);
+    if (!title || title.length < 18 || title.length > 180) continue;
+    
+    const link = absoluteUrl(linkMatch[1], baseUrl);
+    if (!link || seen.has(link) || !sourceUrlLooksArticleLevel(link)) continue;
+    
+    seen.add(link);
+    
+    let publishedAt = "";
+    if (dateMatch) {
+      const rawDate = cleanText(dateMatch[1]);
+      const parts = rawDate.split(", ");
+      if (parts.length === 2) {
+        const [time, dateStr] = parts;
+        const parsed = new Date(`${dateStr} ${time} UTC+05:30`);
+        if (!isNaN(parsed.getTime())) {
+          publishedAt = parsed.toISOString();
+        }
+      }
+    }
+    
+    const summary = descMatch ? cleanText(descMatch[1]) : title;
+    items.push({ title, link, publishedAt, summary });
+  }
+  return items;
+}
+
+export async function agentSelectPulseArticles(articles, options = {}) {
+  const agentMode = shouldUseAgentArticleEnrichment(options);
+  if (!agentMode || articles.length === 0) {
+    return articles;
+  }
+  
+  const fetcher = options.llmFetcher ?? fetch;
+  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  
+  if (!nvidiaApiKey) {
+     return articles;
+  }
+
+  const inputList = articles.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}\nSummary: ${a.summary}`).join("\n\n");
+  let indices = [];
+
+  try {
+    if (nvidiaApiKey) {
+      const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "deepseek-ai/deepseek-v4-pro";
+      const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+      const prompt = `You are the pre-market desk editor at Market Narrative. Your briefing reaches Indian 
+retail and semi-professional traders before NSE opens at 9:15 AM IST. You are reading 
+Zerodha Pulse — already a curated Indian market feed — and selecting the 8 to 12 
+stories that give a trader the clearest picture of what will drive Nifty 50 and 
+Bank Nifty in today's session.
+
+SELECTION MINDSET
+Ask one question per article: "Does knowing this change what a trader should do in 
+the first 30 minutes?" If yes, include it. If it merely confirms something already 
+obvious or adds colour without changing action, leave it out.
+
+TIER 1 — Always include if present (index-moving, non-negotiable)
+- Gift Nifty premium or discount versus last close
+- Brent crude direction, especially if move is above 1.5% or linked to Iran/Hormuz/OPEC
+- FII or DII provisional net flow data
+- USD/INR morning range or a sharp rupee move
+- RBI, SEBI, Finance Ministry or PM statement with a direct market consequence
+- US Fed or Treasury yield move that crosses a level (e.g. 10Y above 4.5%)
+- A geopolitical event with a clear commodity or currency transmission line to India
+
+TIER 2 — Include when they add a sector or breadth signal not covered by Tier 1
+- Asia open direction: KOSPI, Hang Seng, Nikkei, SGX — only if the move is above 0.8%
+- Major US earnings result (Apple, Nvidia, Microsoft, Meta, Alphabet) and Nifty IT read
+- India-specific corporate result or guidance that is large enough to move a sector index
+- Monsoon, crop or agri data with an FMCG or rural-lender read
+- India policy: GST, PLI scheme, tariff, capital gains, STT with a named sector impact
+- China PMI or credit data with a Nifty Metal or FII flow read
+- Nifty 50 or Bank Nifty technical level article from a credible source if it names 
+  the level and the consequence (e.g. "Bank Nifty below 54,200 opens 53,800")
+
+TIER 3 — Exclude even if the headline looks interesting
+- Any article whose only India read is "markets may be volatile" or "watch for cues"
+- Single-stock analyst calls, price targets, upgrades or downgrades for one company
+- "Top stocks to buy today" or any list-format stock-pick article
+- US consumer, housing, healthcare, or lifestyle stories with no commodity or FII link
+- Crypto, NFT, web3 with no RBI or SEBI regulatory angle
+- Political news — India or global — with no named market consequence
+- Any story that duplicates a Tier 1 story already selected (keep the more specific one)
+
+EDGE CASES
+- If two articles cover the same driver (e.g. two crude oil pieces), include only the 
+  one with the more specific India angle or the fresher timestamp.
+- A "markets live" or "open bell" article that contains Gift Nifty data counts as Tier 1.
+- If the article count in Tier 1 alone reaches 8, do not add Tier 2 stories.
+
+OUTPUT
+Return a JSON array of the integer indices of selected articles, ordered from most 
+important to least important. The first index in your array becomes the lead story.
+Return nothing else — no explanation, no markdown, no preamble.
+Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
+
+      console.log(`[Pulse Agent] Requesting NVIDIA API (Model: ${model})...`);
+      const startTime = Date.now();
+      const response = await fetcher(`${baseUrl}/chat/completions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${nvidiaApiKey}`
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: "system", content: prompt },
+            { role: "user", content: inputList }
+          ],
+          temperature: 1,
+          top_p: 0.95,
+          max_tokens: 16384,
+          extra_body: { chat_template_kwargs: { thinking: false } }
+        })
+      });
+      console.log(`[Pulse Agent] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
+
+      if (!response.ok) {
+        throw new Error(`NVIDIA API failed with status ${response.status}`);
+      }
+      const data = await response.json();
+      const text = data?.choices?.[0]?.message?.content?.trim() ?? "[]";
+      // Ensure we extract the array even if there is markdown or conversational preamble
+      const match = text.match(/\[[\d,\s]*\]/);
+      if (match) {
+        indices = JSON.parse(match[0]);
+      } else {
+        indices = [];
+      }
+    }
+
+    if (Array.isArray(indices) && indices.length > 0) {
+      return indices.map(i => articles[i]).filter(Boolean);
+    }
+  } catch (e) {
+    console.warn("Agent selection parsing failed", e.message);
+  }
+  return articles;
 }

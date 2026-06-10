@@ -1,16 +1,207 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
   "installCommand": "npm install",
   "buildCommand": "npm run vercel:build",
-  "outputDirectory": "out/vercel",
   "crons": [
     {
       "path": "/api/cron/premarket-publish",
-      "schedule": "43 1 * * 1-5"
+      "schedule": "0 1 * * 1-5"
     },
     {
       "path": "/api/cron/premarket-publish",
-      "schedule": "53 1 * * 1-5"
+      "schedule": "30 1 * * 1-5"
+    }
+  ],
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/latest", "destination": "/api/latest-redirect" },
+    { "source": "/latest/", "destination": "/api/latest-redirect" }
+  ],
+  "headers": [
+    { "source": "/11may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/13may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/14may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/15may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/18may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/19may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/1jun2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/1may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/20may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/21may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/22may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/25may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/26may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/27may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/29apr2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/29may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/2jun2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/30apr2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/30may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/3jun2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/4jun2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/4may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/5jun2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/5may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/6may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/7may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/8may2026/", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    {
+      "source": "/about/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/multibagger/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/subscribe/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/latest/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=30, s-maxage=180, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/admin/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, private" }
+      ]
+    },
+    {
+      "source": "/dark-preview/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
     }
   ]
 }

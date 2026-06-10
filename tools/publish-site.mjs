@@ -7,6 +7,7 @@ import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } fro
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -199,7 +200,11 @@ await writeGuardedFile(
   }, null, 2)}\n`
 );
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
-await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(archiveHomeDigests), "utf8");
+// Sitemap must include the most recent published URL even when source verification
+// held (otherwise the sitemap drifts behind the live /latest/ redirect and Google
+// stops crawling fresh pages). Verified status still gates the in-page JSON-LD
+// NewsArticle eligibility; the URL itself is indexable whenever the page exists.
+await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(allArchiveTimelineEntries), "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -217,22 +222,27 @@ process.stdout.write(`Static site ready: ${siteDir}\n`);
 process.stdout.write(`Archive entry point: ${join(siteDir, "index.html")}\n`);
 process.stdout.write(`Latest daily page: ${join(siteDir, slugForDigest(latest), "index.html")}\n`);
 
+await writeSlugRedirects(digests);
+
 async function writeGuardedFile(path, contents) {
   assertPublicBriefingCopy(path, contents);
   await writeFile(path, contents, "utf8");
 }
 
 function redirectPage(targetHref, label) {
-  const targetUrl = absoluteUrl(targetHref);
+  // The canonical stays on /latest/ — search engines that resolve the meta-refresh
+  // will treat the destination as a duplicate, not the canonical. The previous
+  // implementation pointed canonical at the destination and added noindex, which
+  // leaked link equity and made /latest/ unindexable.
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${brandHeadLinks(siteOrigin)}
-  <meta name="robots" content="noindex,follow">
+  <meta name="robots" content="index,follow">
   <meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}">
-  <link rel="canonical" href="${escapeHtml(targetUrl)}">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}/${label === "latest trading guide" ? "latest/trading-guide/" : "latest/"}">
   <title>Market Narrative ${escapeHtml(label)}</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -904,6 +914,31 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     * { box-sizing: border-box; }
 
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -1062,7 +1097,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .freshness-banner span {
       color: #bae6fd;
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1278,7 +1313,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .summary-chip span {
       display: block;
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1310,7 +1345,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .workflow-step span {
       color: #67e8f9;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1598,7 +1633,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .archive-source-row span {
       display: block;
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1623,7 +1658,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .session-driver span {
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1669,7 +1704,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .recent-archive-link span {
       color: #9fb0c8;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1690,6 +1725,18 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .recent-status.archived {
       color: #94a3b8;
+    }
+
+    @media (max-width: 760px) {
+      .hero-actions,
+      .workflow-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .workflow-step {
+        min-height: auto;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1755,9 +1802,12 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         display: none;
       }
     }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
-<body class="archive-dark">
+<body class="archive-dark has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -1896,6 +1946,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     archiveTagFilter?.addEventListener('change', applyArchiveFilter);
     applyArchiveFilter();
   </script>
+  ${bottomTabBarHtml("archive")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -1942,6 +1994,31 @@ function aboutPage(latest, archiveDigests = []) {
     }
 
     * { box-sizing: border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
 
     body {
       margin: 0;
@@ -2168,9 +2245,12 @@ function aboutPage(latest, archiveDigests = []) {
         grid-template-columns: 1fr;
       }
     }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
-<body>
+<body class="has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2230,6 +2310,8 @@ function aboutPage(latest, archiveDigests = []) {
       </article>
     </section>
   </main>
+  ${bottomTabBarHtml("about")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -2272,6 +2354,31 @@ function subscribePage() {
     }
 
     * { box-sizing: border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
 
     body {
       margin: 0;
@@ -2459,9 +2566,12 @@ function subscribePage() {
         width: 100%;
       }
     }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
-<body>
+<body class="has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2516,6 +2626,8 @@ function subscribePage() {
       }
     }
   </script>
+  ${bottomTabBarHtml("subscribe")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -3109,7 +3221,9 @@ function robotsTxt() {
   ].join("\n");
 }
 
-function sitemapXml(digests) {
+function sitemapXml(allDigests) {
+  // Only include digests that actually have content, plus the latest digest to keep the crawler fresh
+  const digests = allDigests.filter((d) => d.briefing || d === allDigests[0]);
   const urls = [
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "1.0" },
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
@@ -3147,10 +3261,53 @@ function ogCardSvg() {
 }
 
 function slugForDigest(digest) {
+  return resolveSlugFormat() === "iso" ? slugForDigestIso(digest) : slugForDigestCompact(digest);
+}
+
+function slugForDigestCompact(digest) {
   const date = digest.digestDate;
   const [year, month, day] = date.split("-");
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   return `${Number(day)}${monthName}${year}`;
+}
+
+function slugForDigestIso(digest) {
+  // ISO 8601 date slug: 2026-06-03. Sorts naturally, matches sitemap lastmod, and
+  // reads unambiguously across locales. Kept opt-in via PUBLIC_SLUG_FORMAT=iso
+  // so existing inbound links don't break on the day it's enabled. Pair with
+  // the 301 redirect map emitted by writeSlugRedirects() before flipping.
+  const date = String(digest.digestDate ?? "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return slugForDigestCompact(digest);
+  }
+  return date;
+}
+
+function resolveSlugFormat() {
+  return String(process.env.PUBLIC_SLUG_FORMAT ?? "compact").toLowerCase() === "iso" ? "iso" : "compact";
+}
+
+async function writeSlugRedirects(digests) {
+  // When PUBLIC_SLUG_FORMAT=iso, write a static _redirects file that maps the
+  // old /3jun2026/ paths to /2026-06-03/ with 301s. The file lives at the site
+  // root; Vercel picks it up automatically for static hosting.
+  if (resolveSlugFormat() !== "iso") {
+    return;
+  }
+  const lines = [
+    "# Auto-generated by tools/publish-site.mjs — old compact slugs -> new ISO slugs",
+    "# Remove this file once crawlers have re-indexed (typically 2-4 weeks)."
+  ];
+  for (const digest of digests) {
+    const compact = slugForDigestCompact(digest);
+    const iso = slugForDigestIso(digest);
+    if (compact !== iso) {
+      lines.push(`/${compact}/ /${iso}/ 301`);
+      lines.push(`/${compact}/trading-guide/ /${iso}/trading-guide/ 301`);
+    }
+  }
+  await writeFile(join(siteDir, "_redirects"), `${lines.join("\n")}\n`, "utf8");
+  process.stdout.write(`Wrote ${lines.length - 2} slug redirects to ${join(siteDir, "_redirects")}\n`);
 }
 
 function scheduledLabelForDigest(digest) {

@@ -1,10 +1,14 @@
 import { spawnSync } from "node:child_process";
-import { cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const outputDir = join(rootDir, "out", "vercel");
+// Vercel's default static output directory. Writing here lets the deploy
+// proceed without `outputDirectory` in vercel.json (the current CLI schema
+// rejects that property).
+const outputDir = join(rootDir, "public");
 const explicitTarget = process.env.MARKET_NARRATIVE_DEPLOY_TARGET;
 const inferredTarget = explicitTarget ? null : inferVercelTarget();
 
@@ -26,19 +30,24 @@ if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
   await writeManifest(target, ["/", "/latest/", "/latest/trading-guide/", "/multibagger/", "/about/", "/subscribe/"]);
-  run("node", ["tools/public-copy-qa.mjs", "out/vercel"]);
-  console.log("Prepared Vercel public output in out/vercel");
+  // Mirror out/site/latest-slug.txt to the project root so api/latest-redirect.js
+  // can read it as a last-resort fallback on cold start when the env var and
+  // the /digest.json fetch are both unavailable. Vercel deploys the project
+  // root alongside api/, making ../latest-slug.txt readable from the function.
+  await copyLatestSlugFallback(join(rootDir, "out", "site", "latest-slug.txt"));
+  run("node", ["tools/public-copy-qa.mjs", "public"]);
+  console.log("Prepared Vercel public output in public");
 } else if (target === "admin") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site", "admin"));
   await writeFile(join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n", "utf8");
   await writeManifest(target, ["/", "/components/", "/multibagger/"]);
-  console.log("Prepared Vercel admin studio output in out/vercel");
+  console.log("Prepared Vercel admin studio output in public");
 } else if (target === "trade") {
   run("npm", ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]);
   await copyOutput(join(rootDir, "apps", "trading-dashboard", "out"));
   await writeManifest(target, ["/", "/kite/callback/"]);
-  console.log("Prepared Vercel trading cockpit output in out/vercel");
+  console.log("Prepared Vercel trading cockpit output in public");
 } else {
   console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public", "admin", or "trade".`);
   process.exit(1);
@@ -84,6 +93,16 @@ async function copyOutput(sourceDir, options = {}) {
     }
     await cp(join(sourceDir, entry.name), join(outputDir, entry.name), { recursive: true });
   }
+}
+
+async function copyLatestSlugFallback(sourcePath) {
+  if (!existsSync(sourcePath)) {
+    console.warn(`copyLatestSlugFallback: source not found at ${sourcePath}; /latest/ will rely on env + /digest.json only.`);
+    return;
+  }
+  const dest = join(rootDir, "latest-slug.txt");
+  await copyFile(sourcePath, dest);
+  console.log(`Mirrored ${sourcePath} → ${dest} for api/latest-redirect.js fallback.`);
 }
 
 async function writeManifest(targetName, routes) {

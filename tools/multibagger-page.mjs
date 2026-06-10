@@ -1,4 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -297,7 +298,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .metric span {
       color: var(--muted);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -557,7 +558,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .donut-center span {
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -806,7 +807,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       background: rgba(2, 6, 23, 0.32);
       color: #d7e0ee;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 850;
       line-height: 1;
       padding: 7px 9px;
@@ -842,7 +843,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     th {
       color: #dbeafe;
       background: rgba(30, 41, 59, 0.76);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1197,7 +1198,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .allocation-status {
       color: var(--muted);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1296,7 +1297,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .evidence-card span {
       color: var(--cyan);
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1412,7 +1413,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     .watch-pressure {
       border-radius: 999px;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       line-height: 1;
       margin: 0 0 10px;
@@ -1461,7 +1462,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       border-radius: 999px;
       color: #fff;
       display: inline-flex;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 900;
       line-height: 1;
       padding: 6px 8px;
@@ -1511,18 +1512,21 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .module-grid,
       .allocation-grid,
       .orientation-steps,
-      .holding-card-grid,
       .holding-card-closed-metrics,
       .holding-card-key-metrics,
       .holding-card-metrics,
-      .holding-card-secondary,
+      .holding-card-secondary {
+        grid-template-columns: 1fr;
+      }
+
+      .holding-card-grid,
       .role-legend,
       .method-snapshot-grid,
       .method-strip-grid,
       .regime-snapshot-grid,
       .discipline-grid,
       .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .allocation-legend {
@@ -1542,6 +1546,18 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .regime-snapshot-head strong,
       .discipline-snapshot-head strong {
         text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .holding-card-grid,
+      .role-legend,
+      .method-snapshot-grid,
+      .method-strip-grid,
+      .regime-snapshot-grid,
+      .discipline-grid,
+      .cards {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1575,56 +1591,13 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       .panel-body {
         padding: 16px;
       }
-
-      .holdings-table {
-        min-width: 0;
-      }
-
-      .holdings-table thead {
-        display: none;
-      }
-
-      .holdings-table,
-      .holdings-table tbody,
-      .holdings-table tr,
-      .holdings-table td {
-        display: block;
-        width: 100%;
-      }
-
-      .holdings-table tr {
-        background: rgba(2, 6, 23, 0.30);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 14px;
-      }
-
-      .holdings-table tr:last-child {
-        border-bottom: 0;
-      }
-
-      .holdings-table td {
-        border: 0;
-        padding: 0 0 10px;
-      }
-
-      .holdings-table td:last-child {
-        padding-bottom: 0;
-      }
-
-      .holdings-table td[data-label]::before {
-        color: var(--muted);
-        content: attr(data-label);
-        display: block;
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 0.08em;
-        margin: 0 0 4px;
-        text-transform: uppercase;
-      }
     }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
-<body class="glass-v2">
+<body class="glass-v2 has-btb">
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -2304,6 +2277,8 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
     }
   </script>
+  ${bottomTabBarHtml("portfolio")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -2319,7 +2294,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
   <title>Market Narrative | Multibagger Admin Review</title>
   <style>${adminCss()}</style>
 </head>
-<body class="admin-auth-required auth-pending">
+<body class="admin-auth-required auth-pending has-btb">
   ${adminAuthGateHtml()}
   <nav class="topbar">
     <div class="shell nav-inner">
@@ -2388,6 +2363,28 @@ function adminCss() {
   return `
     :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.76); --cyan:#22d3ee; }
     * { box-sizing:border-box; }
+
+    /* === Global mobile base (Tier 1) === */
+    html, body { overflow-x: hidden; }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button { touch-action: manipulation; }
+    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
+    *:focus { outline: none; }
+    *:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* === End global mobile base === */
+
     body { margin:0; min-height:100vh; background:linear-gradient(135deg,#030712,#0f172a); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
     a { color:inherit; text-decoration:none; }
     .shell { width:min(1120px,calc(100% - 36px)); margin:0 auto; }

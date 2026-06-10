@@ -174,7 +174,13 @@ export async function buildDigest(date = todayIso(), options = {}) {
     nvidiaTopP: options.nvidiaTopP
   });
   const sourceSelection = publicSourceSelectionForDigest(date, articles, { marketSnapshots });
-  const publicArticles = sourceSelection.visibleArticles;
+  const PHANTOM_LABEL_PATTERN = /^(Negative Macro Impact|Global Risk-Off Cue|Volatile Opening Bias|Hook|Global Cue|India Read|Market Driver|Opening Bias|Sector Watch)$/i;
+  const publicArticles = sourceSelection.visibleArticles.filter(a => 
+    a.sourceUrl && 
+    a.headline && 
+    a.headline.length > 20 &&
+    !PHANTOM_LABEL_PATTERN.test(a.headline)
+  );
   const publicSourceSelection = sourceSelection.publicSummary;
   const dailyLead = await dailyLeadForDigestWithAgent(date, publicArticles, {
     marketSnapshots,
@@ -190,9 +196,11 @@ export async function buildDigest(date = todayIso(), options = {}) {
   });
   const themes = clusterThemes(date, publicArticles);
   const rawTradeSetups = scanPriceSeries(date, priceSeriesSeed);
-  const setupAudit = auditTradeSetupsWithMarketSnapshots(rawTradeSetups, marketSnapshots);
+  const setupAudit = auditTradeSetupsWithMarketSnapshots(date, rawTradeSetups, marketSnapshots);
   const tradeSetups = setupAudit
     .filter((item) => item.status === "ACTIVE")
+    .filter((item) => item.setup?.lastBarDate && 
+      (new Date(date) - new Date(item.setup.lastBarDate)) / 86400000 < 14)
     .map((item) => item.setup);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
@@ -221,7 +229,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     articles: publicArticles
   });
 
-  return {
+  const digest = {
     scriptId: 1,
     digestDate: date,
     title: script.title,
@@ -241,6 +249,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     marketSnapshots,
     fiiDiiFlows: fiiDiiFlows ?? null,
     giftNiftyBias: dailyLead.giftNiftyBias ?? null,
+    todaysReadArticle: null,
     news: publicArticles,
     themes,
     tradeSetups,
@@ -252,6 +261,10 @@ export async function buildDigest(date = todayIso(), options = {}) {
     sourceVerification,
     durationMillis: Math.round(performance.now() - started)
   };
+
+  digest.todaysReadArticle = await synthesizeTodaysReadArticle(date, publicArticles, marketSnapshots, options);
+
+  return digest;
 }
 
 async function resolveMarketSnapshots(seedMarketSnapshots, marketDataMode) {
@@ -291,18 +304,18 @@ export function scanPriceSeries(date, priceSeriesSeed) {
   });
 }
 
-export function reconcileTradeSetupsWithMarketSnapshots(setups, marketSnapshots) {
-  return auditTradeSetupsWithMarketSnapshots(setups, marketSnapshots)
+export function reconcileTradeSetupsWithMarketSnapshots(date, setups, marketSnapshots) {
+  return auditTradeSetupsWithMarketSnapshots(date, setups, marketSnapshots)
     .filter((item) => item.status === "ACTIVE")
     .map((item) => item.setup);
 }
 
-export function auditTradeSetupsWithMarketSnapshots(setups, marketSnapshots) {
+export function auditTradeSetupsWithMarketSnapshots(date, setups, marketSnapshots) {
   const snapshotsBySymbol = new Map(marketSnapshots.map((snapshot) => [snapshot.symbol, snapshot]));
-  return setups.map((setup) => setupAuditEntry(setup, snapshotsBySymbol.get(setup.symbol)));
+  return setups.map((setup) => setupAuditEntry(date, setup, snapshotsBySymbol.get(setup.symbol)));
 }
 
-function setupAuditEntry(setup, snapshot) {
+function setupAuditEntry(date, setup, snapshot) {
   const base = {
     symbol: setup.symbol,
     direction: setup.direction,
@@ -312,6 +325,21 @@ function setupAuditEntry(setup, snapshot) {
     riskReward: setup.riskReward,
     setup
   };
+
+  const lastBarDate = setup.lastBarDate;
+  const setupAgeInDays = lastBarDate
+    ? (new Date(date) - new Date(lastBarDate)) / 86400000
+    : 999;
+
+  if (setupAgeInDays > 14) {
+    return {
+      ...base,
+      status: "STALE",
+      reason: `${setup.symbol} setup is ${Math.floor(setupAgeInDays)} days old. Price-bars seed needs updating.`,
+      currentPrice: null,
+      remainingRiskReward: 0
+    };
+  }
 
   if (!snapshot || snapshot.dataQuality !== "live" || !Number.isFinite(Number(snapshot.closeValue))) {
     return {
@@ -446,7 +474,8 @@ export function evaluateSeries(date, symbol, bars) {
     riskReward: round(riskReward, 3),
     confidenceReason: "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
     invalidationReason: `Invalidate the setup if price closes below ${round(stopLoss, 2)}.`,
-    digestDate: date
+    digestDate: date,
+    lastBarDate: latest.date
   };
 }
 
@@ -830,16 +859,24 @@ function normalizeArticleThumbnail(article) {
   };
 }
 
-export function newsArticleJsonLd(digest) {
+export function newsArticleJsonLd(digest, options = {}) {
   const canonicalPath = String(digest.canonicalPath || `/${digest.digestDate}/`);
   const canonicalUrl = `https://marketnarrative.in${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
   const description = digest.archiveSummary || digest.deskNote || "Daily Market Narrative pre-market briefing for Nifty, Bank Nifty, global cues, and India read-through.";
+  // JSON-LD headline MUST equal the page <h1> (hookTitle) — Google News and the Article
+  // rich-result explicitly compare them and will demote mismatched signals. Fall back to
+  // digest.title only when the caller has not computed a hook title yet.
+  const headline = options.h1Override || digest.title;
+  // Real raster ≥ 1200×675 is required for Google News discoverability. SVG OG cards
+  // are fine for social but are ignored by the News image picker.
+  const image = "https://marketnarrative.in/og-card-1200x675.png";
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    headline: digest.title,
+    headline,
+    alternativeHeadline: digest.title,
     description,
-    image: "https://marketnarrative.in/og-card.svg",
+    image: [image, "https://marketnarrative.in/og-card.svg"],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonicalUrl
@@ -976,7 +1013,12 @@ function titleConsequence(article, sentimentLabel) {
 
 export function publicSourceSelectionForDigest(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
-  const allUnique = uniqueSourceArticles(articles).filter((article) => isWithinDigestWindow(article, date, 24));
+  const allUnique = uniqueSourceArticles(articles).map(a => {
+    if (hasPositiveIndiaReadthrough(a)) {
+      return { ...a, sentimentScore: Math.max(0.35, Number(a.sentimentScore) || 0) };
+    }
+    return a;
+  }).filter((article) => isWithinDigestWindow(article, date, 24));
   // Garbage rejection first — remove clearly irrelevant articles before any scoring
   const cleaned = allUnique.filter((article) => !isGarbageArticle(article));
   const pool = cleaned.length >= MIN_PUBLIC_SOURCE_COUNT ? cleaned : allUnique; // fallback to unfiltered if too few remain
@@ -1310,9 +1352,11 @@ function configuredDailyLeadReranker(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ prompt, userPrompt }) => {
+    console.log(`[Lead Reranker] Requesting NVIDIA API (Model: ${model})...`);
+    const startTime = Date.now();
     const response = await fetcher(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -1327,12 +1371,15 @@ function configuredDailyLeadReranker(options = {}) {
           { role: "user", content: userPrompt }
         ],
         response_format: { type: "json_object" },
-        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 500),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 0.2),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.9),
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
+        chat_template_kwargs: { enable_thinking: true },
+        reasoning_budget: 16384,
         stream: false
       })
     });
+    console.log(`[Lead Reranker] Received response with status ${response?.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
       throw new Error(`NVIDIA daily lead rerank failed with status ${response?.status ?? "unknown"}`);
     }
@@ -1621,12 +1668,24 @@ function isDomesticCatalystArticle(article) {
     /\b(nifty|bank nifty|nse|bse|sebi|rbi|fii|dii|fpi|rupee|usd\/inr|india|indian|banks?|nbfc|omc|bpcl|hpcl|iocl|tcs|infosys|wipro|hcltech|reliance|hdfc|icici|sbi|earnings|results|filing|policy|circular)\b/.test(text);
 }
 
+function hasPositiveIndiaReadthrough(article) {
+  const text = `${article?.headline || ""} ${article?.indiaImpact || ""}`.toLowerCase();
+  return (
+    /\b(inflows?|buying|net buy|fii.*buy|bullish|rally|surge|upside)\b/.test(text) &&
+    /\b(india|nifty|bank nifty|inr|rupee|sensex)\b/.test(text)
+  ) || (
+    /\b(rbi|rate cut|liquidity|repo)\b/.test(text) &&
+    /\b(positive|supportive|bullish|eases?)\b/.test(text)
+  );
+}
+
 function indiaSourceScore(article, date) {
   const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""} ${article?.watchFor || ""} ${article?.entityName || ""}`.toLowerCase();
   const sourceText = articleSourceTextForLeadSuppression(article);
   let score = Math.abs(Number(article?.sentimentScore) || 0) * 5 + (Number(article?.entityMatchScore) || 0);
   if (isIndiaPublisherArticle(article)) score += 16;
   if (hasIndiaReadThrough(article)) score += 8;
+  if (hasPositiveIndiaReadthrough(article)) score += 12;
   if (["macro_negative", "global_risk"].includes(article?.category)) score += 4;
   if (["sector_positive", "macro_positive", "sector_negative"].includes(article?.category)) score += 3;
   if (/\b(nifty|bank nifty|india|indian|rupee|omc|bpcl|hpcl|iocl|aviation|banks|nbfc|it exporters|nifty it)\b/.test(text)) score += 6;
@@ -2402,4 +2461,79 @@ async function readJson(path) {
 async function delayedRead(fileName, delayMs) {
   await new Promise((resolve) => setTimeout(resolve, delayMs));
   return readJson(join(seedDir, fileName));
+}
+
+export async function synthesizeTodaysReadArticle(date, articles, marketSnapshots, options = {}) {
+  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  if (!nvidiaApiKey) {
+    return null;
+  }
+
+  const topArticles = articles.slice(0, 8);
+  const articleContext = topArticles
+    .map((a, i) => `[${i + 1}] ${a.headline}\nTakeaway: ${a.takeaway || a.summary || ""}\nIndia angle: ${a.indiaImpact || ""}`)
+    .join("\n\n");
+
+  const nifty = marketSnapshots.find(s => s.symbol === "NIFTY");
+  const bankNifty = marketSnapshots.find(s => s.symbol === "BANKNIFTY");
+  const brent = marketSnapshots.find(s => s.symbol === "BRENT");
+  const usdinr = marketSnapshots.find(s => s.symbol === "USDINR");
+
+  const marketCtx = [
+    nifty ? `Nifty 50: ${nifty.closeValue} (${Number(nifty.changePercent) >= 0 ? "+" : ""}${nifty.changePercent}%)` : "",
+    bankNifty ? `Bank Nifty: ${bankNifty.closeValue} (${Number(bankNifty.changePercent) >= 0 ? "+" : ""}${bankNifty.changePercent}%)` : "",
+    brent ? `Brent crude: $${brent.closeValue} (${Number(brent.changePercent) >= 0 ? "+" : ""}${brent.changePercent}%)` : "",
+    usdinr ? `USD/INR: ${usdinr.closeValue}` : ""
+  ].filter(Boolean).join(", ");
+
+  // Use the fast NIM model — same HTTP pattern as nimCall which is proven to work locally
+  const model = options.deskEditorModel ?? process.env.NVIDIA_DESK_MODEL ?? NIM_MODEL;
+  const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+  const fetcher = options.llmFetcher ?? fetch;
+
+  const systemPrompt = `You are a senior market analyst writing the "Today's Read" section of an India pre-open briefing at 7:15 AM IST. Write direct, authoritative prose — like an analyst who read every wire overnight. No bullet points, no headers, no markdown. Three tight paragraphs separated by a blank line.`;
+
+  const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite exactly three paragraphs:\nParagraph 1: What happened overnight globally — the dominant theme and its magnitude. Be specific about indices, moves, and why it matters.\nParagraph 2: How this feeds into the India open — which sectors, indices, or macro variables are directly exposed. Name them.\nParagraph 3: What to watch at the open — what confirms direction, what would change the read, what levels matter.\nNo preamble, no sign-off. Return only the three paragraphs.`;
+
+  console.log(`[Desk Editor] Synthesizing Today's Read (${model})...`);
+  const startTime = Date.now();
+
+  for (let attempt = 0; attempt <= 1; attempt++) {
+    try {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 3000));
+      const response = await fetcher(`${baseUrl}/chat/completions`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${nvidiaApiKey}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt }
+          ],
+          max_tokens: 800,
+          temperature: 0.5
+        })
+      });
+
+      if (response.status === 429 || response.status >= 500) {
+        console.warn(`[Desk Editor] API ${response.status} on attempt ${attempt + 1}, retrying...`);
+        continue;
+      }
+      if (!response.ok) {
+        console.warn(`[Desk Editor] API returned ${response.status}`);
+        return null;
+      }
+      const data = await response.json();
+      const raw = (data?.choices ?? []).map(c => c?.message?.content ?? "").filter(Boolean).join("\n").trim();
+      const text = raw ? cleanAIOutput(raw) : null;
+      console.log(`[Desk Editor] Synthesized in ${((Date.now() - startTime) / 1000).toFixed(1)}s (${text?.length ?? 0} chars)`);
+      return text || null;
+    } catch (error) {
+      console.warn(`[Desk Editor] Attempt ${attempt + 1} failed: ${error.message}`);
+    }
+  }
+  return null;
 }
