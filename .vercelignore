@@ -1,1 +1,6 @@
 services/
+*.test.mjs
+*.spec.mjs
+test-*.mjs
+.github/
+.git/

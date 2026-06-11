@@ -226,7 +226,10 @@ export const PUBLIC_FORBIDDEN_PATTERNS = [
   /\bRobert Frank\b/i,
   /\bJohn Wilson\b/i,
   /\baudio tours?\b/i,
-  /\bvisually impaired\b/i
+  /\bvisually impaired\b/i,
+  /\bguaranteed\s+(profit|winner|call|direction)\b/i,
+  /\bsure shot\b/i,
+  /\bsure-shot\b/i
 ];
 
 export const REEL_FORBIDDEN_PATTERNS = [
@@ -237,11 +240,34 @@ export const REEL_FORBIDDEN_PATTERNS = [
   /Asia check:/i,
   /Macro hedge:/i,
   /For India,\s+India is/i,
-  /there is no fresh 1:2 setup yet\. That means no chasing/i
+  /there is no fresh 1:2 setup yet\. That means no chasing/i,
+  // Trading advice patterns — reels must never contain actionable trade calls
+  /\bentry price\b/i,
+  /\bstop loss\b/i,
+  /\bstoploss\b/i,
+  /\btarget price\b/i,
+  /\bbuy (this|now|today|here|at)\b/i,
+  /\bsell (this|now|today|here|at)\b/i,
+  /\bguaranteed\b/i,
+  /\bsure shot\b/i,
+  /\bsure-shot\b/i
 ];
 
 export function assertPublicBriefingCopy(label, value) {
   const violations = findPublicBriefingViolations(label, value);
+  // Enforce SEBI disclaimer presence on all public-facing HTML pages.
+  // Skip non-HTML content (JSON payloads, redirect pages, one-page summaries,
+  // archive hero text, and partial component strings) where the disclaimer
+  // is structurally absent.
+  const text = String(value ?? "");
+  const isFullHtmlPage = text.includes("<!DOCTYPE html>") && text.includes("</body>");
+  if (isFullHtmlPage && !text.includes("not SEBI-registered investment advice")) {
+    violations.push({
+      label,
+      pattern: "SEBI disclaimer",
+      excerpt: "missing required SEBI disclaimer: 'not SEBI-registered investment advice'"
+    });
+  }
   if (violations.length) {
     const details = violations
       .map((violation) => `- ${violation.label}: "${violation.excerpt}"`)

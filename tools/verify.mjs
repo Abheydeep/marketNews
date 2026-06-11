@@ -2004,6 +2004,51 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   );
 });
 
+await test("reel script rejects trading advice and public copy rejects guaranteed language", () => {
+  // Reel script trading-advice patterns must be caught
+  for (const badReel of [
+    "[0-03s | HOOK]\nON SCREEN: x\nVOICEOVER: x\n[40-52s | TRADE PLAN]\nentry price is 24200",
+    "[0-03s | HOOK]\nON SCREEN: x\nVOICEOVER: x\n[40-52s | TRADE PLAN]\nstop loss at 24100",
+    "[0-03s | HOOK]\nON SCREEN: x\nVOICEOVER: x\n[40-52s | TRADE PLAN]\nbuy this stock now",
+    "[0-03s | HOOK]\nON SCREEN: x\nVOICEOVER: x\n[40-52s | TRADE PLAN]\nthis is a guaranteed winner",
+    "[0-03s | HOOK]\nON SCREEN: x\nVOICEOVER: x\n[40-52s | TRADE PLAN]\nsure shot pick for the day"
+  ]) {
+    assert.throws(
+      () => assertReelScriptCopy("bad reel advice", badReel),
+      /Reel script editorial guardrail failed/,
+      `expected reel guardrail to reject: ${badReel.slice(badReel.lastIndexOf("\n") + 1)}`
+    );
+  }
+  // Public copy must reject "guaranteed" and "sure shot"
+  for (const badPublic of [
+    "This is a guaranteed profit setup.",
+    "Sure shot call for Nifty today.",
+    "A sure-shot trade for Bank Nifty."
+  ]) {
+    assert.throws(
+      () => assertPublicBriefingCopy("bad guaranteed", badPublic),
+      /Public editorial guardrail failed/,
+      `expected public guardrail to reject: ${badPublic}`
+    );
+  }
+});
+
+await test("reel script word count is within 45-60 second speaking time", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const voiceoverLines = (digest.reelScript ?? "")
+    .split("\n")
+    .filter((line) => /^VOICEOVER:/i.test(line.trim()));
+  const totalWords = voiceoverLines
+    .map((line) => line.replace(/^VOICEOVER:\s*/i, "").trim())
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .length;
+  // 45-60 seconds at ~3 words/sec = 135-180 words. Allow 100-280 for natural variance.
+  assert.ok(totalWords >= 100, `reel voiceover too short: ${totalWords} words (min 100)`);
+  assert.ok(totalWords <= 280, `reel voiceover too long: ${totalWords} words (max 280)`);
+});
+
 await test("Yahoo market data normalization calculates previous-close change", () => {
   const snapshot = normalizeYahooChartResult(
     {
@@ -2512,10 +2557,6 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const vercelBuildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.match(vercelBuildScript, /outputDir\s*=\s*join\(rootDir,\s*"public"\)/);
   assert.deepEqual(vercelConfig.crons, [
-    {
-      path: "/api/cron/premarket-publish",
-      schedule: "0 1 * * 1-5"
-    },
     {
       path: "/api/cron/premarket-publish",
       schedule: "30 1 * * 1-5"

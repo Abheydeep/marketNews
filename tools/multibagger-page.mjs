@@ -19,7 +19,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
@@ -2288,7 +2288,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(adminSiteOrigin)}
   <meta name="robots" content="noindex,nofollow">
   <title>Market Narrative | Multibagger Admin Review</title>
@@ -2408,7 +2408,7 @@ function adminCss() {
     input { width:100%; border:1px solid var(--line); border-radius:8px; background:#020617; color:var(--ink); padding:10px; margin:8px 0 12px; }
     .state-line { min-height:24px; margin:10px 0 0; }
     .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; margin-top:14px; }
-    table { width:100%; min-width:680px; border-collapse:collapse; }
+    table { width:100%; min-width:max-content; border-collapse:collapse; }
     th,td { text-align:left; border-bottom:1px solid rgba(255,255,255,.1); padding:11px 12px; font-size:14px; }
     th { color:#dbeafe; background:rgba(30,41,59,.76); }
     pre { overflow:auto; border:1px solid var(--line); border-radius:8px; background:#020617; color:#dbeafe; padding:14px; }
