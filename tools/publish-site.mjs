@@ -235,7 +235,7 @@ function redirectPage(targetHref, label) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="robots" content="index,follow">
   <meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}">
@@ -265,7 +265,7 @@ function notFoundPage() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="robots" content="noindex,follow">
   <title>Page Not Found | Market Narrative</title>
@@ -288,6 +288,7 @@ function publicationEventPage(event, latest, isTradingGuide) {
   const pageTitle = isBackfilledEvent(event)
     ? `${event.title} | Market Narrative`
     : `${formatDigestDate(event.digestDate)} publication record | Market Narrative`;
+  const pageDescription = event.dailyLead?.headline ?? event.title ?? `Archived pre-market briefing for ${formatDigestDate(event.digestDate)}.`;
   const heading = isTradingGuide
     ? `No live trading guide was archived for ${formatDigestDate(event.digestDate)}.`
     : isBackfilledEvent(event)
@@ -301,8 +302,11 @@ function publicationEventPage(event, latest, isTradingGuide) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}${escapeHtml(canonicalPath)}">
   <title>${escapeHtml(pageTitle)}</title>
@@ -868,7 +872,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
@@ -1948,7 +1952,7 @@ function aboutPage(latest, archiveDigests = []) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
@@ -2310,7 +2314,7 @@ function subscribePage() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
@@ -2999,10 +3003,10 @@ function archiveMarketSnapshotHtml(digest) {
   return `
     <div class="archive-snapshot-grid" aria-label="Market snapshot summary">
       ${snapshots.map((snapshot) => `
-        <div class="archive-snapshot">
+        <article class="archive-snapshot">
           <span>${escapeHtml(snapshot.symbol)}</span>
           <strong>${escapeHtml(formatSnapshotValue(snapshot))}</strong>
-        </div>
+        </article>
       `).join("")}
     </div>
   `;
@@ -3016,13 +3020,13 @@ function archiveSourcePreviewHtml(digest) {
   return `
     <div class="archive-source-preview" aria-label="Source headline preview">
       ${sources.map((article) => `
-        <div class="archive-source-row">
+        <article class="archive-source-row">
           <span>${escapeHtml(article.sourceName || "Source")}</span>
           <strong>${escapeHtml(compactWords(article.headline || article.title || "", 13))}</strong>
           ${sourceUrlLooksArticleLevel(article.sourceUrl)
             ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>`
             : ""}
-        </div>
+        </article>
       `).join("")}
     </div>
   `;
