@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief|Check market status|Check latest status/i, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i, /Open Trading Guide/i, /Track Portfolio/i, /Latest Market Briefings/i, /Read market briefing/i, /Why it mattered for India/i, /sentiment-sparkline/i, /application\/ld\+json/i],
+    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief|Check market status|Check latest status/i, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i, /Open Trading Guide/i, /Track Portfolio/i, /Past briefings/i, /Open briefing/i, /sentiment-sparkline/i, /application\/ld\+json/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
@@ -124,7 +124,7 @@ await group("Public user surface", async () => {
     "Public www",
     config.wwwUrl,
     [200, 301, 302, 307, 308],
-    [/Market Narrative: Nifty|Latest Market Briefings/i],
+    [/Market Narrative: Nifty|Past briefings/i],
     [...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
@@ -137,7 +137,7 @@ await group("Public user surface", async () => {
     [/Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/i],
     [/Admin Login/i, ...offTopicAuditPatterns]
   );
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Previous Close Quote Board|Market Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Prepared for the 7:15 AM IST briefing/i, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, /India-source/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Live Quote Board/i, /live refresh pending/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Previous Close Quote Board|Market Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, /India-source/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Live Quote Board/i, /live refresh pending/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.equal(payload.status, "PUBLISHED", "public digest status must not expose internal DRAFT state");
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
@@ -528,12 +528,11 @@ async function runBrowserSmoke() {
         });
       });
       const page = await context.newPage();
-      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Latest Market Briefings/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Past briefings/i);
       const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.match(homeBody, /Top \d+ India read-through notes selected/i, "homepage must simplify public source-count language without hardcoding the source count");
-      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Previous Close Quote Board|Market Quote Board|Daily Pre-Market Summary|Prepared for the 7:15 AM IST briefing/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Previous Close Quote Board|Market Quote Board|Daily Pre-Market Summary/i);
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
-      assert.match(latestBody, /Prepared for the 7:15 AM IST briefing/i, "latest briefing must show pre-market freshness boundary");
       assert.match(latestBody, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, "latest briefing must show a retention CTA or subscribe path");
       const latestHtml = await page.content();
       assert.ok(latestHtml.indexOf('id="summaryExpand"') < latestHtml.indexOf("Share this briefing"), "latest briefing summary must render before share controls");

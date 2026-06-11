@@ -3040,7 +3040,7 @@ function archiveCardTitle(digest) {
 }
 
 function archiveOpenLabel(digest) {
-  return isPublicationEvent(digest) ? "Read publication record" : "Read market briefing";
+  return isPublicationEvent(digest) ? "Read publication record" : "Open briefing";
 }
 
 function formatSnapshotValue(snapshot) {

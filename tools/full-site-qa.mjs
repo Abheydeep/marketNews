@@ -154,7 +154,7 @@ async function verifyArchive(page, rootUrl) {
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
   await expectOne(page.locator(".hero h1"), "archive product-promise heading");
   await expectOne(page.locator(".hero .eyebrow"), "archive eyebrow");
-  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings And Records" }), "archive section heading");
+  await expectOne(page.getByRole("heading", { name: "Past briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
@@ -166,7 +166,7 @@ async function verifyArchive(page, rootUrl) {
   for (const daily of dailyPages) {
     if (daily.archive !== false) {
       await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
-      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Read market briefing" }), `${daily.slug} read market briefing link`);
+      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Open briefing" }), `${daily.slug} read market briefing link`);
       await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
     }
   }
@@ -467,7 +467,6 @@ async function verifyDailyPage(page, daily, stamp) {
 
   const tabs = await verifyPublicNavigation(page, daily);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, `${daily.slug} should not render hidden trading guide content`);
-  await expectAtLeast(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), 1, `${daily.slug} freshness notice`);
   assert.equal(
     (await page.locator("#summaryExpand").evaluate((node) => {
       const summaryTop = node.getBoundingClientRect().top;

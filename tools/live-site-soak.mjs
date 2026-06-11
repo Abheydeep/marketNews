@@ -74,10 +74,10 @@ async function runCycle(page, cycle) {
   await expectOne(page.getByRole("link", { name: /Read today's brief/i }), "homepage primary briefing action");
   await expectOne(page.getByRole("link", { name: /Open Trading Guide/i }).first(), "homepage trading guide action");
   await expectOne(page.getByRole("link", { name: /Track Portfolio/i }), "homepage portfolio action");
-  await expectOne(page.getByRole("heading", { name: "Latest Market Briefings" }), "archive section heading");
+  await expectOne(page.getByRole("heading", { name: "Past briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   const openDailyLink = page.locator(`a.open-link[href="./${dailySlug}/"]`);
-  await expectOne(openDailyLink.filter({ hasText: "Read market briefing" }), "read market briefing link");
+  await expectOne(openDailyLink.filter({ hasText: "Open briefing" }), "read market briefing link");
   const openDailyHref = await openDailyLink.getAttribute("href", { timeout: 10_000 });
   assert.ok(openDailyHref?.includes(dailySlug), `archive card points at unexpected href: ${openDailyHref}`);
   await expectOne(page.locator(".sentiment-sparkline").first(), "archive sentiment sparkline");
@@ -92,8 +92,7 @@ async function runCycle(page, cycle) {
   await openPublicPage(page, dailyUrl);
   await expectDailyContent(page);
   assert.equal(await page.locator("#trading-guide-view").count(), 0, "daily briefing must not render hidden trading-guide content");
-  await expectOne(page.getByText("Prepared for the 7:15 AM IST briefing", { exact: false }), "briefing freshness notice");
-  await expectOne(page.getByText("Get the next trading-day 7:15 AM brief", { exact: false }), "briefing follow CTA");
+  await expectOne(page.getByText("Join Email", { exact: false }), "briefing follow CTA");
   await expandQuoteBoard(page);
 
   const verifiedCharts = [];

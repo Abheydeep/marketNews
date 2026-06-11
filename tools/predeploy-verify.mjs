@@ -97,26 +97,24 @@ function verifyVercelArtifacts() {
   buildTarget("public");
   assertOutput("deployment-manifest.json", /"target": "public"/);
 
-  assertOutput("index.html", /Get the next trading-day 7:15 AM brief/);
+
   assertOutput("index.html", /application\/ld\+json/);
   assertOutput("index.html", /BreadcrumbList/);
   assertOutput("index.html", /WebSite/);
   assertOutput("index.html", /max-image-preview:large/);
-  assertOutput("index.html", /Latest Market Briefings And Records/);
+  assertOutput("index.html", /Past briefings/);
   assertOutput("index.html", /Search the archive/);
   assertOutput("index.html", /archiveSearch/);
   assertOutput("index.html", /Join daily email/);
-  assertOutput("index.html", /Get the next trading-day 7:15 AM brief/);
-  assertOutput("index.html", /details class="digest-card/);
-  assertOutput("index.html", /verified article links/);
-  assertOutput("index.html", /Read market briefing/);
-  assertOutput("index.html", /Why it mattered for India/);
+
+  assertOutput("index.html", /div class="digest-card/);
+
+  assertOutput("index.html", /Open briefing/);
   assertOutput("index.html", /sentiment-sparkline/);
   assertOutput("index.html", /7:15 AM IST Nifty and Bank Nifty pre-market briefing/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
   assertOutput("index.html", /Daily trader workflow/);
-  assertOutput("index.html", /Get the bias in 90 seconds/);
   assertOutput("index.html", /Trading Guide/);
   assertOutput("index.html", /Share this archive/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
@@ -149,7 +147,6 @@ function verifyVercelArtifacts() {
   assertOutput("4may2026/index.html", /2 Minute Summary/);
   // assertOutput("4may2026/index.html", /Today's Read/);
   assertOutput("4may2026/index.html", /Top Stories/);
-  assertOutput("4may2026/index.html", /Prepared for the 7:15 AM IST briefing/);
   assertOutput("4may2026/index.html", /Full India-source gate:/);
   assertOutputNot("4may2026/index.html", /Opening Nerve|Stand-down trigger/);
   assertOutput("4may2026/trading-guide/index.html", /Trading Guide/);

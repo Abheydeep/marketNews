@@ -2254,7 +2254,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Past briefings"));
   assert.ok(publisher.includes("Recent Briefing Navigation"));
   assert.ok(publisher.includes("recent-archive-link"));
-  assert.ok(publisher.includes("Read market briefing"));
+  assert.ok(publisher.includes("Open briefing"));
   assert.ok(publisher.includes("India read"));
   assert.ok(publisher.includes('isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing"'));
   assert.ok(publisher.includes("Archived continuity page. Newer editions use verified article-level sources"));
@@ -2600,9 +2600,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "Open chart on TradingView",
     "Open Yahoo Chart",
     "Market Narrative: Nifty",
-    "Latest Market Briefings",
-    "Read market briefing",
-    "Why it mattered for India",
+    "Past briefings",
+    "Open briefing",
+    
     "trade-mn-signal",
     "lucide-lock-keyhole",
     "Login as Abhey Admin",

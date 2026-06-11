@@ -20,9 +20,10 @@ async function loadSkills() {
   return _skillsCache;
 }
 
-async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
+export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
+  console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
@@ -116,8 +117,31 @@ ${topArticles}`;
     { maxTokens: 800 }
   );
 
-  if (!teleprompterScript && !onePageSummary && !reelScript) return null;
-  return { teleprompterScript, onePageSummary, reelScript };
+  const editorialBriefing = await nimCall(
+    systemPrompt,
+    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 3 paragraphs.\n- Exactly 3 stories (one story per paragraph).\n- Facts only. No opinions.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
+    { maxTokens: 800 }
+  );
+
+  let twoMinuteSummary = null;
+  let deskNote = null;
+  if (editorialBriefing) {
+    const lines = editorialBriefing.split('\n');
+    let mode = null;
+    let tmsLines = [];
+    let dnLines = [];
+    for (const line of lines) {
+      if (line.includes('[TWO-MINUTE SUMMARY]')) { mode = 'tms'; continue; }
+      if (line.includes('[DESK NOTE]')) { mode = 'dn'; continue; }
+      if (mode === 'tms') tmsLines.push(line);
+      if (mode === 'dn') dnLines.push(line);
+    }
+    twoMinuteSummary = tmsLines.join('\n').trim();
+    deskNote = dnLines.join('\n').trim();
+  }
+
+  if (!teleprompterScript && !onePageSummary && !reelScript && !twoMinuteSummary && !deskNote) return null;
+  return { teleprompterScript, onePageSummary, reelScript, twoMinuteSummary, deskNote };
 }
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -206,14 +230,18 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const sentimentLabel = labelFromScore(overallSentiment);
   const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, publicArticles, options.previousDigest, dailyLead);
   const aiScript = await generateFullScriptWithAI({ date, sentimentLabel, snapshots: marketSnapshots, themes, setups: tradeSetups, articles: publicArticles, overallSentiment });
+  let twoMinuteSummary = null;
+  let aiDeskNote = null;
   if (aiScript) {
     if (aiScript.teleprompterScript) script.teleprompterScript = aiScript.teleprompterScript;
     if (aiScript.onePageSummary) script.onePageSummary = aiScript.onePageSummary;
     if (aiScript.reelScript) script.reelScript = aiScript.reelScript;
+    if (aiScript.twoMinuteSummary) twoMinuteSummary = aiScript.twoMinuteSummary;
+    if (aiScript.deskNote) aiDeskNote = aiScript.deskNote;
   }
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(date, publicArticles, themes, options.previousDigest, dailyLead);
-  const deskNote = deskNoteForDigest(date, publicArticles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest, dailyLead);
+  const deskNote = aiDeskNote || deskNoteForDigest(date, publicArticles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest, dailyLead);
   const watchItems = watchItemsForDigest(date, publicArticles, tradeSetups, options.previousDigest);
   assertDigestEditorialIntegrity({
     title: script.title,
@@ -238,6 +266,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     dailyLead,
     publicSourceSelection,
     archiveSummary,
+    twoMinuteSummary,
     deskNote,
     watchItems,
     overallSentiment: round(overallSentiment, 3),
