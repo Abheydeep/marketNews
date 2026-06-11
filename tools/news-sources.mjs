@@ -508,8 +508,9 @@ function configuredOpenAiArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
+  const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
+  const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING === "true";
   return async ({ article, prompt, schema, usedAngles = [] }) => {
     console.log(`[Editorial Enricher] Requesting NVIDIA API (Model: ${model}) for: ${article?.headline?.slice(0, 30)}...`);
     const startTime = Date.now();
@@ -527,13 +528,14 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
           { role: "user", content: articleEditorialUserPrompt(article, schema, usedAngles) }
         ],
         response_format: { type: "json_object" },
-        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
-        chat_template_kwargs: { enable_thinking: true },
-        reasoning_budget: 16384,
+        max_tokens: Number(options.nvidiaArticleMaxTokens ?? process.env.NVIDIA_ARTICLE_MAX_TOKENS ?? 900),
+        temperature: Number(options.nvidiaArticleTemperature ?? process.env.NVIDIA_ARTICLE_TEMPERATURE ?? 0.2),
+        top_p: Number(options.nvidiaArticleTopP ?? process.env.NVIDIA_ARTICLE_TOP_P ?? 0.9),
+        chat_template_kwargs: enableThinking ? { enable_thinking: true } : { thinking: false },
+        ...(enableThinking ? { reasoning_budget: Number(options.nvidiaArticleReasoningBudget ?? process.env.NVIDIA_ARTICLE_REASONING_BUDGET ?? 1024) } : {}),
         stream: false
-      })
+      }),
+      signal: AbortSignal.timeout(Number(options.nvidiaArticleTimeoutMs ?? process.env.NVIDIA_ARTICLE_TIMEOUT_MS ?? process.env.NVIDIA_TIMEOUT_MS ?? 15000))
     });
     console.log(`[Editorial Enricher] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
@@ -2659,9 +2661,13 @@ export async function agentSelectPulseArticles(articles, options = {}) {
   }
   
   const fetcher = options.llmFetcher ?? fetch;
-  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  const strictAgentSelection = options.strictAgentSelection ?? process.env.PUBLIC_BRIEFING_AGENT_STRICT === "true";
+  const nvidiaApiKey = options.nvidiaPulseApiKey ?? process.env.NVIDIA_PULSE_API_KEY ?? options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
   
   if (!nvidiaApiKey) {
+     if (strictAgentSelection) {
+       throw new Error("Pulse agent selection requires NVIDIA_PULSE_API_KEY or NVIDIA_API_KEY");
+     }
      return articles;
   }
 
@@ -2670,7 +2676,7 @@ export async function agentSelectPulseArticles(articles, options = {}) {
 
   try {
     if (nvidiaApiKey) {
-      const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "deepseek-ai/deepseek-v4-pro";
+      const model = options.nvidiaPulseModel ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
       const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
       const prompt = `You are the pre-market desk editor at Market Narrative. Your briefing reaches Indian 
 retail and semi-professional traders before NSE opens at 9:15 AM IST. You are reading 
@@ -2738,11 +2744,13 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
             { role: "system", content: prompt },
             { role: "user", content: inputList }
           ],
-          temperature: 1,
-          top_p: 0.95,
-          max_tokens: 16384,
-          extra_body: { chat_template_kwargs: { thinking: false } }
-        })
+          temperature: Number(options.nvidiaPulseTemperature ?? process.env.NVIDIA_PULSE_TEMPERATURE ?? 0.2),
+          top_p: Number(options.nvidiaPulseTopP ?? process.env.NVIDIA_PULSE_TOP_P ?? 0.9),
+          max_tokens: Number(options.nvidiaPulseMaxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 512),
+          chat_template_kwargs: { thinking: false },
+          stream: false
+        }),
+        signal: AbortSignal.timeout(Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 15000))
       });
       console.log(`[Pulse Agent] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
 
@@ -2763,7 +2771,13 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
     if (Array.isArray(indices) && indices.length > 0) {
       return indices.map(i => articles[i]).filter(Boolean);
     }
+    if (strictAgentSelection) {
+      throw new Error("Pulse agent selection returned no valid article indices");
+    }
   } catch (e) {
+    if (strictAgentSelection) {
+      throw e;
+    }
     console.warn("Agent selection parsing failed", e.message);
   }
   return articles;

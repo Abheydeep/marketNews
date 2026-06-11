@@ -19,7 +19,7 @@ const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
 
-const lockFile = join(rootDir, `out`, `daily`, `publish-lock-${date}.lock`);
+const lockFile = join(rootDir, `out`, `daily`, `publish-lock-${date}-${label}.lock`);
 if (liveMode) {
   try {
     const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);

@@ -23,6 +23,10 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
   };
 }
 
+function safeJsonScript(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
 /**
  * Generates the full HTML page for a move article.
  * @param {object} params
@@ -35,7 +39,7 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
 export function movePage({ date, slug, article, symbol, change }) {
   const pageTitle = `${symbol} ${change > 0 ? "surges" : "drops"} ${Math.abs(change).toFixed(1)}% – Market Move`;
   const description = article.summary?.slice(0, 150) ?? "";
-  const jsonLd = JSON.stringify(newsArticleJsonLd({ date, slug, article, symbol, change }));
+  const jsonLd = safeJsonScript(newsArticleJsonLd({ date, slug, article, symbol, change }));
   const thumbnailUrl = article.thumbnail?.url ?? "";
 
   return `<!DOCTYPE html>
@@ -63,6 +67,7 @@ export function movePage({ date, slug, article, symbol, change }) {
     <article class="compact-body">
       <p>${escapeHtml(article.summary ?? "")}</p>
     </article>
+    <footer class="compact-disclaimer">Educational market research only; not SEBI-registered investment advice, a recommendation, or a solicitation.</footer>
   </section>
   ${mobileShellScript()}
 </body>
@@ -101,6 +106,14 @@ function compactCardCss() {
     .compact-body p {
       line-height: 1.6;
       font-size: 1rem;
+    }
+    .compact-disclaimer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      color: #a0aec0;
+      font-size: 0.82rem;
+      line-height: 1.45;
     }
     @media (max-width: 760px) {
       .compact-card { margin: 60px 12px; padding: 20px; }

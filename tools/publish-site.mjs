@@ -80,6 +80,7 @@ await writeFile(join(siteDir, "favicon.ico"), "", "utf8");
 await writeFile(join(siteDir, "favicon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
+await writeFile(join(siteDir, "sw.js"), serviceWorkerJs(), "utf8");
 
 for (const digest of digests) {
   const slug = slugForDigest(digest);
@@ -112,6 +113,7 @@ for (const digest of digests) {
 }
 
 const latest = archiveHomeDigests[0];
+await writeLatestRedirects(latest);
 for (const event of publicationEvents) {
   const slug = slugForDigest(event);
   const eventDir = join(siteDir, slug);
@@ -226,6 +228,27 @@ async function writeGuardedFile(path, contents) {
   await writeFile(path, contents, "utf8");
 }
 
+async function writeLatestRedirects(latestDigest) {
+  const latestSlug = slugForDigest(latestDigest);
+  const latestDir = join(siteDir, "latest");
+  const latestGuideDir = join(latestDir, "trading-guide");
+  await mkdir(latestGuideDir, { recursive: true });
+  await writeGuardedFile(join(latestDir, "index.html"), redirectPage(`/${latestSlug}/`, "latest briefing"));
+  await writeGuardedFile(join(latestGuideDir, "index.html"), redirectPage(`/${latestSlug}/trading-guide/`, "latest trading guide"));
+}
+
+function serviceWorkerJs() {
+  return [
+    "self.addEventListener('install', (event) => {",
+    "  self.skipWaiting();",
+    "});",
+    "self.addEventListener('activate', (event) => {",
+    "  event.waitUntil(self.clients.claim());",
+    "});",
+    ""
+  ].join("\n");
+}
+
 function redirectPage(targetHref, label) {
   // The canonical stays on /latest/ — search engines that resolve the meta-refresh
   // will treat the destination as a duplicate, not the canonical. The previous
@@ -254,6 +277,7 @@ function redirectPage(targetHref, label) {
 <body>
   <div class="redir">
     <p>Redirecting…</p>
+    <p>Educational market research only; not SEBI-registered investment advice.</p>
     <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
   </div>
 </body>
@@ -1836,7 +1860,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
-          <strong>Get tomorrow's brief at 7:15 AM — straight to your inbox before the market opens.</strong>
+          <strong>Get the next trading-day 7:15 AM brief — straight to your inbox before the market opens.</strong>
+          <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
         </div>
         <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
       </div>
@@ -2604,7 +2629,7 @@ function subscribePage() {
         </label>
         <button type="submit">Join daily email</button>
       </form>
-      <p class="fine-print">Educational market research only. No spam, no trade calls, and no investment advice. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
+      <p class="fine-print">Educational market research only; this is not SEBI-registered investment advice. No spam, no trade calls, and no recommendation to buy or sell securities or derivatives. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
   </main>
   <script>

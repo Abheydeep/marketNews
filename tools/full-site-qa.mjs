@@ -159,7 +159,8 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
   assert.equal(await page.getByRole("link", { name: "Admin login" }).count(), 0, "archive should not expose admin login");
-  await expectAtLeast(page.getByText("Why it mattered for India", { exact: true }), 1, "archive India relevance driver");
+  await expectAtLeast(page.getByText("The articles behind every India read", { exact: true }), 1, "archive India evidence workflow");
+  await expectAtLeast(page.locator(".archive-snapshot-grid"), 1, "archive market snapshot previews");
   await expectAtLeast(page.locator(".sentiment-sparkline"), 1, "archive sentiment sparkline");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
@@ -198,8 +199,7 @@ async function verifyDarkPreview(page, stamp) {
   await expectOne(page.locator("body.glass-v2"), "dark preview glass theme");
   await expectOne(page.locator(".page-header h1"), "dark preview heading");
   await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, "dark preview two-minute summary");
-  // Today's Read killed
-  await expectOne(page.getByText("Top Stories", { exact: true }), "dark preview top stories");
+  await expectOne(page.getByRole("heading", { name: "Key reads before 9:15 AM IST" }), "dark preview key reads");
   // Removed evidence grade assertions
   assert.equal(await page.getByRole("button", { name: "Studio Command (Admin)" }).count(), 0, "dark preview should not expose Studio Command");
   assert.equal(await page.locator("#studio-view").count(), 0, "dark preview should not render studio section");
@@ -442,14 +442,18 @@ async function verifyDailyPage(page, daily, stamp) {
   await expectOne(page.locator("body.glass-v2"), `${daily.slug} dark glass theme`);
   await verifyDarkSurfaceContrast(page, `${daily.slug} initial dark view`);
   await expectOne(page.locator(".page-header h1"), `${daily.slug} heading`);
-  await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
+  if (daily.archive === false) {
+    await expectOne(page.locator(".briefing-date strong"), `${daily.slug} date`);
+  } else {
+    await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} date`);
+  }
   if (isLegacy) {
     await expectOne(page.getByText("Archived edition", { exact: false }), `${daily.slug} archived edition banner`);
   } else {
     await expectAtLeast(page.locator(".source-card[role='link'][data-source-url]"), 1, `${daily.slug} whole-card article source links`);
   }
   // narrative read killed
-  await expectOne(page.getByText("Top Stories", { exact: true }), `${daily.slug} top stories`);
+  await expectOne(page.getByRole("heading", { name: "Key reads before 9:15 AM IST" }), `${daily.slug} key reads`);
   assert.equal(await page.getByText("Previous Close Quote Board", { exact: true }).or(page.getByText("Market Quote Board", { exact: true })).count(), 0, `${daily.slug} public page should not render quote board`);
   assert.equal(await page.getByText("Opening Nerve", { exact: true }).count(), 0, `${daily.slug} public page should not render trading-guide prep`);
   await expectAtLeast(page.locator(".share-row"), 1, `${daily.slug} share row`);
@@ -533,17 +537,18 @@ async function clickTab(page, name, expectedHeading) {
 
 async function verifySummary(page, daily, options = {}) {
   const summary = page.locator("#summaryExpand");
+  const summaryToggle = page.locator("#summaryExpand > summary");
   await expectOne(summary, `${daily.slug} compact summary details`);
-  await expectOne(summary.locator("summary"), `${daily.slug} compact summary toggle`);
+  await expectOne(summaryToggle, `${daily.slug} compact summary toggle`);
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary should start collapsed`);
   await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, `${daily.slug} two-minute summary`);
-  await summary.locator("summary").click();
+  await summaryToggle.click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
   await expectOne(page.getByText("Market Map", { exact: true }), `${daily.slug} market map`);
   if (options.keepOpen) {
     return;
   }
-  await summary.locator("summary").click();
+  await summaryToggle.click();
   await expectOne(page.locator("#summaryExpand:not([open])"), `${daily.slug} summary closes`);
 }
 
@@ -619,7 +624,7 @@ async function clickSourceLinks(page, daily, options = {}) {
     assert.equal(count, 0, `${daily.slug} legacy page should suppress unaudited read-source links`);
     return 0;
   }
-  assert.ok(count >= 8, `${daily.slug} should render the public top-8 source links`);
+  assert.ok(count > 0 && count <= 10, `${daily.slug} should render the public curated source links, got ${count}`);
   for (let index = 0; index < count; index += 1) {
     const link = links.nth(index);
     const href = (await link.getAttribute("data-source-url")) || (await link.getAttribute("href"));
@@ -630,8 +635,8 @@ async function clickSourceLinks(page, daily, options = {}) {
 }
 
 async function verifySourceFilters(page, daily) {
-  await expectOne(page.getByText("Evidence Map", { exact: true }), `${daily.slug} source evidence map`);
-  await expectOne(page.getByText("Lead evidence", { exact: true }), `${daily.slug} lead source evidence`);
+  await expectOne(page.getByRole("heading", { name: "Evidence & Sources" }), `${daily.slug} source evidence section`);
+  await expectAtLeast(page.locator(".top-story-card"), 1, `${daily.slug} top source cards`);
   const ledger = page.locator("#sourceLedger");
   await expectOne(ledger, `${daily.slug} source ledger details`);
   await expectOne(page.locator("#sourceLedger:not([open])"), `${daily.slug} source ledger should start collapsed`);

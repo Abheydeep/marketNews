@@ -3,10 +3,12 @@
 
 import handler from "../api/move-detect.mjs";
 
+process.env.CRON_SECRET ||= "local-move-detect-secret";
+
 // Minimal mock request/response compatible with Vercel's API.
 const mockRequest = {
   method: "GET",
-  headers: {},
+  headers: { authorization: `Bearer ${process.env.CRON_SECRET}` },
   query: {},
 };
 

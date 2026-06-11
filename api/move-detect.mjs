@@ -12,19 +12,22 @@ export default async function handler(request, response) {
     return response.status(405).json({ ok: false, error: "method_not_allowed" });
   }
 
-  // Simple secret protection similar to other cron handlers.
-  const expectedSecret = process.env.CRON_SECRET || "";
+  // Fail closed. If Vercel is missing CRON_SECRET this endpoint must not be public.
+  const expectedSecret = process.env.CRON_SECRET;
+  if (!expectedSecret) {
+    return response.status(500).json({ ok: false, error: "missing_cron_secret" });
+  }
   const providedSecret =
     request.headers["authorization"]?.replace(/^Bearer\s+/i, "") ||
     request.query?.secret ||
     "";
-  if (expectedSecret && providedSecret !== expectedSecret) {
+  if (providedSecret !== expectedSecret) {
     return response.status(401).json({ ok: false, error: "unauthorized" });
   }
 
   try {
-    await generateMoves();
-    return response.status(200).json({ ok: true, message: "Move articles generated" });
+    const result = await generateMoves({ date: request.query?.date });
+    return response.status(200).json({ ok: true, message: "Move articles generated", ...result });
   } catch (e) {
     console.error("Error in move‑detect handler:", e);
     return response.status(500).json({ ok: false, error: "generation_failed", details: e.message });

@@ -21,6 +21,7 @@ import {
   dailyLeadForDigest,
   dailyLeadForDigestWithAgent,
   evaluateSeries,
+  isGarbageArticle,
   labelFromScore,
   loadSeeds,
   newsArticleJsonLd,
@@ -30,7 +31,10 @@ import {
   scanPriceSeries,
   weightedSentiment
 } from "./core.mjs";
+import moveDetectHandler from "../api/move-detect.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
+import { detectMoves, generateMoveArticle } from "./generate-move-articles.mjs";
+import { movePage } from "./move-page.mjs";
 import { marketCalendarState, verifyCalendarData } from "./market-calendar.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
@@ -70,6 +74,11 @@ await test("seed files are valid and complete", async () => {
   }
 });
 
+await test("public garbage filter keeps FPI flow and Asia breadth articles", () => {
+  assert.equal(isGarbageArticle({ headline: "FPI outflow crosses Rs 60,000 crore in June so far" }), false);
+  assert.equal(isGarbageArticle({ headline: "Asian markets today: KOSPI and Hang Seng pare losses" }), false);
+});
+
 await test("live symbol registry includes important Asian markets", () => {
   for (const symbol of ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"]) {
     const definition = LIVE_MARKET_SYMBOLS.find((item) => item.symbol === symbol);
@@ -79,6 +88,64 @@ await test("live symbol registry includes important Asian markets", () => {
     assert.ok(definition.yahooSymbol, `${symbol} missing Yahoo symbol`);
     assert.ok(definition.tradingViewSymbol, `${symbol} missing TradingView symbol`);
   }
+});
+
+await test("move-detect endpoint fails closed without cron secret", async () => {
+  const previousSecret = process.env.CRON_SECRET;
+  delete process.env.CRON_SECRET;
+  const result = await invokeMoveDetect({ method: "GET", headers: {}, query: {} });
+  assert.equal(result.status, 500);
+  assert.equal(result.body.error, "missing_cron_secret");
+  if (previousSecret === undefined) delete process.env.CRON_SECRET;
+  else process.env.CRON_SECRET = previousSecret;
+});
+
+await test("move-detect endpoint rejects wrong cron secret", async () => {
+  const previousSecret = process.env.CRON_SECRET;
+  process.env.CRON_SECRET = "expected-secret";
+  const result = await invokeMoveDetect({ method: "GET", headers: { authorization: "Bearer wrong-secret" }, query: {} });
+  assert.equal(result.status, 401);
+  assert.equal(result.body.error, "unauthorized");
+  if (previousSecret === undefined) delete process.env.CRON_SECRET;
+  else process.env.CRON_SECRET = previousSecret;
+});
+
+await test("move article pipeline detects live snapshot moves and requires valid LLM JSON", async () => {
+  const moves = await detectMoves({ index: 0.8, macro: 1.0 }, {
+    snapshots: [
+      { symbol: "NIFTY", name: "Nifty 50", changePercent: 1.1, closeValue: 25000, previousClose: 24728, marketRegion: "India Open", source: "test" },
+      { symbol: "BRENT", name: "Brent Crude", changePercent: -1.4, closeValue: 82, previousClose: 83.2, marketRegion: "Macro Hedges", source: "test" },
+      { symbol: "DXY", name: "US Dollar Index", changePercent: 0.2, closeValue: 104, previousClose: 103.8, marketRegion: "Macro Hedges", source: "test" }
+    ]
+  });
+  assert.deepEqual(moves.map((move) => move.symbol), ["BRENT", "NIFTY"]);
+  const article = await generateMoveArticle(moves[0], {
+    rawArticle: {
+      model: "meta/llama-4-maverick-17b-128e-instruct",
+      content: JSON.stringify({
+        headline: "Brent drop cools India import-cost pressure",
+        summary: "Brent moved sharply lower in the live snapshot, easing the first read for OMCs, aviation and inflation-sensitive pockets. Nifty still needs Bank Nifty breadth and USD/INR confirmation before the move becomes a broad index input."
+      })
+    }
+  });
+  assert.equal(article.llmProvider, "nvidia");
+  assert.equal(article.llmModel, "meta/llama-4-maverick-17b-128e-instruct");
+  assert.match(article.summary, /OMCs|aviation|USD\/INR/);
+  await assert.rejects(() => generateMoveArticle(moves[0], { rawArticle: { content: "not json" } }), /valid article JSON/);
+});
+
+await test("move page includes public disclaimer and safe JSON-LD", () => {
+  const html = movePage({
+    date: "2026-06-11",
+    slug: "brent-1-4-pct",
+    symbol: "BRENT",
+    change: -1.4,
+    article: { headline: "Brent drops <script>", summary: "A live move note for Indian market context without trade advice." }
+  });
+  assert.match(html, /not SEBI-registered investment advice/);
+  assert.doesNotMatch(html, /<script>\"/);
+  assert.match(html, /\\u003cscript>/);
+  assertPublicBriefingCopy("move page", html);
 });
 
 await test("risk-reward math enforces 1:2+ setups", () => {
@@ -671,9 +738,12 @@ await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
+    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
+    assert.equal(body.max_tokens, 900);
+    assert.equal(body.chat_template_kwargs.thinking, false);
+    assert.equal(body.reasoning_budget, undefined);
     assert.equal(body.messages[0].role, "system");
     assert.equal(body.messages[0].content, ARTICLE_ENRICHMENT_PROMPT);
     assert.ok(body.messages[1].content.includes("Rank this article like an Indian pre-market desk editor"));
@@ -1292,9 +1362,11 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
+    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
+    assert.equal(body.chat_template_kwargs.thinking, false);
+    assert.equal(body.reasoning_budget, undefined);
     assert.equal(body.messages[0].content, DAILY_LEAD_RERANK_PROMPT);
     assert.ok(body.messages[1].content.includes("deterministicLeadId"));
     assert.ok(body.messages[1].content.includes("deterministicScore"));
@@ -1522,6 +1594,89 @@ await test("public source selection fills the stack when source categories are n
   assert.ok(selection.visibleArticles.length >= 8 && selection.visibleArticles.length <= 10, `expected 8–10 visible articles, got ${selection.visibleArticles.length}`);
 });
 
+await test("public source selection diversifies repeated crude shocks with flow and policy drivers", () => {
+  const crudeArticles = Array.from({ length: 6 }, (_, index) => ({
+    headline: "Brent crude shock " + (index + 1) + ": Iran and Hormuz keep oil risk elevated",
+    summary: "Brent crude and Iran/Hormuz risk pressure India's import-cost sectors.",
+    takeaway: "Crude shock is the main global risk driver.",
+    indiaImpact: "OMCs, aviation, paints and tyres face pressure if Brent stays firm.",
+    watchFor: "Watch Brent crude direction at Asia handoff.",
+    sourceUrl: "https://economictimes.indiatimes.com/markets/commodities/news/brent-crude-shock-" + (index + 1) + "/articleshow/13200000" + index + ".cms",
+    sourceName: "Economic Times Markets",
+    category: "global_risk",
+    entityName: "Brent crude",
+    publishedAt: "2026-05-04T01:00:00.000Z",
+    sentimentScore: -0.45,
+    entityMatchScore: 0.9
+  }));
+  const driverArticles = [
+    {
+      headline: "FPI outflow crosses Rs 60,000 crore before India open",
+      summary: "FPI outflows are the domestic cash-market risk check for Nifty and Bank Nifty.",
+      takeaway: "Institutional flow can decide whether global cues are absorbed or rejected.",
+      indiaImpact: "Nifty and Bank Nifty need breadth confirmation if FPI selling persists.",
+      watchFor: "Watch FII/DII provisional flow and Bank Nifty VWAP.",
+      sourceUrl: "https://www.ndtvprofit.com/markets/fpi-outflow-crosses-rs-60000-crore-before-india-open",
+      sourceName: "NDTV Profit",
+      category: "macro_negative",
+      entityName: "FPI flows",
+      publishedAt: "2026-05-04T01:05:00.000Z",
+      sentimentScore: -0.35,
+      entityMatchScore: 0.9
+    },
+    {
+      headline: "Government waives excise duty on fuel exports to cool domestic price risk",
+      summary: "Government fuel policy affects forex, current account and energy-linked India sectors.",
+      takeaway: "Fuel policy is a domestic macro input, not a generic commodity headline.",
+      indiaImpact: "OMCs and inflation expectations need policy confirmation alongside Brent.",
+      watchFor: "Watch fuel policy details and USD/INR.",
+      sourceUrl: "https://www.livemint.com/market/stock-market-news/government-waives-excise-duty-on-fuel-exports",
+      sourceName: "Mint Markets",
+      category: "macro_positive",
+      entityName: "Fuel policy",
+      publishedAt: "2026-05-04T01:10:00.000Z",
+      sentimentScore: 0.2,
+      entityMatchScore: 0.8
+    },
+    {
+      headline: "Asian markets fall as KOSPI and Hang Seng track oil shock",
+      summary: "Asia breadth gives the regional risk check for the India open.",
+      takeaway: "Asia breadth tells whether the global risk-off cue is broad or isolated.",
+      indiaImpact: "Nifty IT, metals and broad breadth need Asia confirmation before the first range.",
+      watchFor: "Watch KOSPI, Hang Seng and Gift Nifty into 9:15 AM.",
+      sourceUrl: "https://economictimes.indiatimes.com/markets/us-stocks/news/asian-markets-fall-as-kospi-hang-seng-track-oil-shock/articleshow/132000100.cms",
+      sourceName: "Economic Times Markets",
+      category: "global_risk",
+      entityName: "Asia breadth",
+      publishedAt: "2026-05-04T01:15:00.000Z",
+      sentimentScore: -0.25,
+      entityMatchScore: 0.8
+    },
+    {
+      headline: "Gift Nifty signals a weak start as Nifty support sits near 23,100",
+      summary: "Gift Nifty and Nifty support define the opening range check.",
+      takeaway: "Gift Nifty sets the first range, but cash breadth decides follow-through.",
+      indiaImpact: "Nifty and Bank Nifty need VWAP confirmation through the first range.",
+      watchFor: "Watch Gift Nifty, Nifty VWAP and Bank Nifty breadth.",
+      sourceUrl: "https://economictimes.indiatimes.com/markets/stocks/news/gift-nifty-signals-weak-start-nifty-support-23100/articleshow/132000101.cms",
+      sourceName: "Economic Times Markets",
+      category: "neutral_volatile",
+      entityName: "Gift Nifty",
+      publishedAt: "2026-05-04T01:20:00.000Z",
+      sentimentScore: -0.2,
+      entityMatchScore: 0.9
+    }
+  ];
+  const selection = publicSourceSelectionForDigest("2026-05-04", [...crudeArticles, ...driverArticles]);
+  const visibleText = selection.visibleArticles.map((article) => article.headline).join("\n");
+  const crudeCount = selection.visibleArticles.filter((article) => /Brent crude shock/i.test(article.headline)).length;
+  assert.ok(crudeCount <= 2, "expected at most 2 repeated crude shock cards, got " + crudeCount);
+  assert.match(visibleText, /FPI outflow/i);
+  assert.match(visibleText, /Government waives excise/i);
+  assert.match(visibleText, /Asian markets fall/i);
+  assert.match(visibleText, /Gift Nifty signals/i);
+});
+
 await test("public source selection can publish a smaller verified stack", () => {
   const articles = Array.from({ length: 3 }, (_, index) => ({
     headline: `Limited verified source ${index + 1}`,
@@ -1542,6 +1697,63 @@ await test("public source selection can publish a smaller verified stack", () =>
   assert.equal(selection.publicSummary.visibleCount, 3);
 });
 
+await test("public source ledger keeps Pulse-carried real article links when they are the only visible stack", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const pulseArticles = Array.from({ length: 3 }, (_, index) => ({
+    headline: `Pulse-carried India source ${index + 1}`,
+    summary: "Real article URL carried through a feed aggregator with an explicit India market read-through.",
+    takeaway: "The article changes the opening checklist for Indian index traders.",
+    whyItMatters: "The source still carries article-level evidence even when the feed publisher label is an aggregator.",
+    indiaImpact: index === 0
+      ? "FPI flow and Bank Nifty breadth decide whether the Nifty open can hold."
+      : "Crude-sensitive OMCs, aviation and tyres need Brent confirmation.",
+    watchFor: "Watch Nifty VWAP and Bank Nifty breadth through 9:45 AM.",
+    sourceUrl: `https://www.ndtvprofit.com/markets/pulse-carried-india-source-${index + 1}.html`,
+    sourceName: "Zerodha Pulse",
+    category: index === 0 ? "neutral_volatile" : "global_risk",
+    entityName: index === 0 ? "FPI flows" : "Brent crude",
+    publishedAt: "2026-04-29T01:00:00.000Z",
+    sentimentScore: index === 0 ? -0.3 : -0.2,
+    entityMatchScore: 0.9,
+    thumbnail: articleThumbnailMeta({
+      headline: `Pulse-carried India source ${index + 1}`,
+      category: index === 0 ? "neutral_volatile" : "global_risk",
+      entityName: index === 0 ? "FPI flows" : "Brent crude",
+      sentimentScore: -0.2
+    })
+  }));
+  const pageDigest = {
+    ...digest,
+    news: pulseArticles,
+    sourceVerification: {
+      mode: "live",
+      verifiedArticleCount: pulseArticles.length,
+      publisherCount: 1,
+      categoryCount: 2,
+      duplicateWithPreviousPercent: 0,
+      blockedReason: null,
+      isVerifiedForPublicArchive: true
+    },
+    publicSourceSelection: {
+      visibleCount: pulseArticles.length,
+      shortlistCount: pulseArticles.length,
+      directIndiaSourceCount: pulseArticles.length,
+      officialIndiaSourceCount: 0,
+      domesticCatalystCount: pulseArticles.length,
+      globalContextCount: 0,
+      globalOnlySourceRatio: 0,
+      evidenceGrade: "limited",
+      publishMode: "limited_brief",
+      indiaPublisherCount: pulseArticles.length,
+      visibleSourceUrls: pulseArticles.map((article) => article.sourceUrl)
+    }
+  };
+  const html = cockpitPage(pageDigest, "public-view", { includeStudio: false, theme: "glass-v2" });
+  assert.match(html, /id="sourceLedger"/);
+  assert.equal((html.match(/data-source-url="/g) ?? []).length, pulseArticles.length);
+  assert.match(html, /Pulse-carried India source 1/);
+});
+
 await test("full digest contains public SEO and studio contracts", async () => {
   const digest = await buildDigest("2026-04-29");
   assert.ok(["BEARISH", "VOLATILE"].includes(digest.sentimentLabel));
@@ -1555,11 +1767,11 @@ await test("full digest contains public SEO and studio contracts", async () => {
   assert.ok(digest.asset.positivePrompt.includes("ControlNet reference, consistent face"));
   assert.ok(digest.asset.reelVideo.videoPrompt.includes("60-second vertical financial market reel"));
   assert.ok(digest.asset.reelVideo.scenes.length >= 5);
-  assert.ok(digest.news.length >= 8 && digest.news.length <= 10, `expected 8–10 news items, got ${digest.news.length}`);
+  assert.ok(digest.news.length >= 6 && digest.news.length <= 10, `expected 6–10 curated news items, got ${digest.news.length}`);
   assert.ok(digest.dailyLead?.driverType);
   assert.notEqual(digest.dailyLead.label, "Global crude-flow signal");
   assert.doesNotMatch(JSON.stringify(digest.dailyLead), /India impact runs only through|Global crude-flow signal/i);
-  assert.ok(digest.publicSourceSelection.visibleCount >= 8 && digest.publicSourceSelection.visibleCount <= 10, `expected visibleCount 8–10, got ${digest.publicSourceSelection.visibleCount}`);
+  assert.ok(digest.publicSourceSelection.visibleCount >= 6 && digest.publicSourceSelection.visibleCount <= 10, `expected visibleCount 6–10, got ${digest.publicSourceSelection.visibleCount}`);
   assert.ok(digest.publicSourceSelection.shortlistCount >= 8);
   assert.equal(digest.publicSourceSelection.windowHours, 24);
   assert.ok(digest.news.every((article) => !/^No direct Indian\b|^No direct India read-through|^Global-only context/i.test(article.indiaImpact || "")));
@@ -1703,7 +1915,7 @@ await test("public digest payload ships compact display DTOs", async () => {
   assert.equal(JSON.stringify(payload.dailyLead).includes("agent_rerank"), false);
   assert.equal(JSON.stringify(payload.dailyLead).includes("selectionReason"), false);
   assert.equal(JSON.stringify(redactedPayload.dailyLead).includes("agent_rerank"), false);
-  assert.ok(payload.publicSourceSelection.visibleCount >= 8 && payload.publicSourceSelection.visibleCount <= 10, `expected visibleCount 8–10, got ${payload.publicSourceSelection.visibleCount}`);
+  assert.ok(payload.publicSourceSelection.visibleCount >= 6 && payload.publicSourceSelection.visibleCount <= 10, `expected visibleCount 6–10, got ${payload.publicSourceSelection.visibleCount}`);
   assert.equal(payload.publicSourceSelection.windowHours, 24);
   assert.ok(Number.isFinite(payload.publicSourceSelection.indiaPublisherCount));
   assert.ok(payload.publicSourceSelection.indiaPublisherCoverage);
@@ -3065,6 +3277,27 @@ if (failed.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(`\n${results.length} tests passed.\n`);
+}
+
+async function invokeMoveDetect(request) {
+  const response = {
+    statusCode: 200,
+    body: null,
+    headers: {},
+    setHeader(name, value) {
+      this.headers[name] = value;
+    },
+    status(code) {
+      this.statusCode = code;
+      return this;
+    },
+    json(payload) {
+      this.body = payload;
+      return this;
+    }
+  };
+  await moveDetectHandler(request, response);
+  return { status: response.statusCode, body: response.body, headers: response.headers };
 }
 
 async function test(name, fn) {

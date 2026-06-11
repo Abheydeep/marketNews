@@ -1,4 +1,5 @@
 async function run() {
+  if (!process.env.NVIDIA_API_KEY) throw new Error("Set NVIDIA_API_KEY before running this scratch script.");
   console.log("Starting new Nemotron test...");
   const startTime = Date.now();
   try {
@@ -6,7 +7,7 @@ async function run() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"
+        Authorization: `Bearer ${process.env.NVIDIA_API_KEY}`
       },
       body: JSON.stringify({
         model: "nvidia/nemotron-3-ultra-550b-a55b",

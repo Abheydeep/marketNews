@@ -23,7 +23,6 @@ async function loadSkills() {
 export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
-  console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
@@ -38,7 +37,8 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
           ],
           max_tokens: maxTokens,
           temperature: 0.65
-        })
+        }),
+        signal: AbortSignal.timeout(Number(process.env.NVIDIA_TIMEOUT_MS ?? 20000))
       });
       if (response.status === 429 || response.status >= 500) {
         process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);
@@ -1381,7 +1381,7 @@ function configuredDailyLeadReranker(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const model = options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
+  const model = options.nvidiaLeadModel ?? process.env.NVIDIA_LEAD_MODEL ?? options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ prompt, userPrompt }) => {
     console.log(`[Lead Reranker] Requesting NVIDIA API (Model: ${model})...`);
@@ -1400,13 +1400,13 @@ function configuredDailyLeadReranker(options = {}) {
           { role: "user", content: userPrompt }
         ],
         response_format: { type: "json_object" },
-        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_MAX_TOKENS ?? 16384),
-        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_TEMPERATURE ?? 1.0),
-        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_TOP_P ?? 0.95),
-        chat_template_kwargs: { enable_thinking: true },
-        reasoning_budget: 16384,
+        max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_LEAD_MAX_TOKENS ?? 1200),
+        temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_LEAD_TEMPERATURE ?? 0.2),
+        top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_LEAD_TOP_P ?? 0.9),
+        chat_template_kwargs: { thinking: false },
         stream: false
-      })
+      }),
+      signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_LEAD_TIMEOUT_MS ?? 20000))
     });
     console.log(`[Lead Reranker] Received response with status ${response?.status} in ${Date.now() - startTime}ms`);
     if (!response?.ok) {
@@ -1548,7 +1548,80 @@ function diverseVisibleArticles(articles, limit, options = {}) {
       addVisibleSource(article, selected, selectedKeys, limit, categoryCount, limit);
     }
   }
-  return selected;
+  return rebalanceVisibleArticleDrivers(selected, articles, limit);
+}
+
+function rebalanceVisibleArticleDrivers(selected = [], articles = [], limit = PUBLIC_SOURCE_LIMIT) {
+  const caps = new Map([
+    ["crude_geo", 2],
+    ["index_setup", 2],
+    ["flows", 1],
+    ["policy", 1],
+    ["currency", 1],
+    ["asia", 1],
+    ["rates", 1],
+    ["sector", 2],
+    ["earnings", 1],
+    ["other", 1]
+  ]);
+  const priority = ["crude_geo", "index_setup", "flows", "policy", "currency", "asia", "rates", "sector", "earnings", "other"];
+  const byDriver = new Map();
+  for (const article of articles ?? []) {
+    const driver = visibleArticleDriver(article);
+    if (!byDriver.has(driver)) byDriver.set(driver, []);
+    byDriver.get(driver).push(article);
+  }
+  const output = [];
+  const seen = new Set();
+  const counts = new Map();
+  const add = (article, enforceCap = true) => {
+    if (!article || output.length >= limit) return false;
+    const key = article.sourceUrl || article.headline;
+    if (!key || seen.has(key)) return false;
+    const driver = visibleArticleDriver(article);
+    const cap = caps.get(driver) ?? 1;
+    if (enforceCap && (counts.get(driver) || 0) >= cap) return false;
+    output.push(article);
+    seen.add(key);
+    counts.set(driver, (counts.get(driver) || 0) + 1);
+    return true;
+  };
+  for (const article of selected) add(article, true);
+  for (const driver of priority) {
+    if (output.length >= limit) break;
+    if ((counts.get(driver) || 0) > 0) continue;
+    add((byDriver.get(driver) || [])[0], true);
+  }
+  for (const driver of priority) {
+    for (const article of byDriver.get(driver) || []) {
+      if (output.length >= limit) break;
+      add(article, true);
+    }
+  }
+  const driverUniverseSize = new Set((articles ?? []).map(visibleArticleDriver)).size;
+  const overfillTarget = driverUniverseSize >= 4 ? output.length : limit;
+  for (const article of articles ?? []) {
+    if (output.length >= overfillTarget) break;
+    add(article, false);
+  }
+  return output;
+}
+
+function visibleArticleDriver(article) {
+  const text = [article?.headline, article?.summary, article?.takeaway, article?.indiaImpact, article?.watchFor, article?.entityName]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  if (/\b(fii|dii|fpi|foreign portfolio|foreign institutional|institutional flow|provisional flow|outflow|inflow)\b/.test(text)) return "flows";
+  if (/\b(rbi|sebi|finance ministry|government|modi|pib|excise|gst|pli|policy|fuel conservation|forex|current account)\b/.test(text)) return "policy";
+  if (/\b(usd\/inr|rupee|dollar|dxy|currency)\b/.test(text)) return "currency";
+  if (/\b(gift nifty|trade setup|nifty.*support|nifty.*resistance|bank nifty|sensex today|inflection|vwap|opening range)\b/.test(text)) return "index_setup";
+  if (/\b(crude|brent|oil|opec|hormuz|iran|israel|missile|strike|war|geopolitical)\b/.test(text)) return "crude_geo";
+  if (/\b(kospi|hang seng|nikkei|asian markets|asia|china|korea|japan)\b/.test(text)) return "asia";
+  if (/\b(fed|yield|bond|rate cut|rate hike|inflation|cpi)\b/.test(text)) return "rates";
+  if (/\b(results|earnings|profit|revenue|guidance)\b/.test(text)) return "earnings";
+  if (/\b(bank|it |nifty it|auto|fmcg|metal|pharma|realty|energy|omc|aviation|tyres|paints)\b/.test(text)) return "sector";
+  return "other";
 }
 
 function addVisibleSource(article, selected, selectedKeys, limit, categoryCount = new Map(), maxPerCategory = limit) {
@@ -1596,7 +1669,7 @@ export function isGarbageArticle(article) {
   // Hard reject: entertainment / lifestyle / non-finance
   if (/\b(artwork?s?|auction house|Christie's|Sotheby's|celebrity|fashion week|lifestyle|travel tips?|recipe|home improvement|real estate listing|interior design|movie|film review|gaming|esport|sports score|nfl|nba|mlb|cricket score|tennis|golf score)\b/i.test(text)) return true;
   // Soft reject: no market-relevant keyword at all
-  const hasMarketKeyword = /\b(nifty|sensex|bank nifty|rupee|rbi|sebi|crude|oil|brent|fed|yield|rate|inflation|nasdaq|s&p|dow|gift nifty|fii|dii|earnings|profit|revenue|ipo|gdp|cpi|opec|trump|tariff|china|india|market|stock|share|equity|dollar|gold|silver|interest rate|bond|currency|semiconductor|chip|ai model|llm|tech earnings)\b/i.test(text);
+  const hasMarketKeyword = /\b(nifty|sensex|bank nifty|rupee|rbi|sebi|crude|oil|brent|fed|yield|rate|inflation|nasdaq|s&p|dow|gift nifty|fii|dii|fpi|foreign portfolio|earnings|profit|revenue|ipo|gdp|cpi|opec|trump|tariff|china|india|market|stock|share|equity|dollar|gold|silver|interest rate|bond|currency|kospi|hang seng|nikkei|asian markets|asia breadth|semiconductor|chip|ai model|llm|tech earnings)\b/i.test(text);
   return !hasMarketKeyword;
 }
 
@@ -2495,7 +2568,11 @@ async function delayedRead(fileName, delayMs) {
 
 export async function synthesizeTodaysReadArticle(date, articles, marketSnapshots, options = {}) {
   const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  const strictDeskEditor = options.strictDeskEditor ?? (process.env.PUBLIC_BRIEFING_DESK_STRICT === "true" || process.env.PUBLIC_BRIEFING_AGENT_STRICT === "true");
   if (!nvidiaApiKey) {
+    if (strictDeskEditor) {
+      throw new Error("Todays Read synthesis requires NVIDIA_API_KEY");
+    }
     return null;
   }
 
@@ -2517,7 +2594,7 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
   ].filter(Boolean).join(", ");
 
   // Use the fast NIM model — same HTTP pattern as nimCall which is proven to work locally
-  const model = options.deskEditorModel ?? process.env.NVIDIA_DESK_MODEL ?? NIM_MODEL;
+  const model = options.deskEditorModel ?? process.env.NVIDIA_DESK_MODEL ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? NIM_MODEL;
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const fetcher = options.llmFetcher ?? fetch;
 
@@ -2535,7 +2612,8 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
         method: "POST",
         headers: {
           "Authorization": `Bearer ${nvidiaApiKey}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           model,
@@ -2543,9 +2621,12 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
             { role: "system", content: systemPrompt },
             { role: "user", content: userPrompt }
           ],
-          max_tokens: 800,
-          temperature: 0.5
-        })
+          max_tokens: Number(options.deskEditorMaxTokens ?? process.env.NVIDIA_DESK_MAX_TOKENS ?? 900),
+          temperature: Number(options.deskEditorTemperature ?? process.env.NVIDIA_DESK_TEMPERATURE ?? 0.35),
+          top_p: Number(options.deskEditorTopP ?? process.env.NVIDIA_DESK_TOP_P ?? 0.9),
+          stream: false
+        }),
+        signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_DESK_TIMEOUT_MS ?? 25000))
       });
 
       if (response.status === 429 || response.status >= 500) {
@@ -2554,6 +2635,9 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
       }
       if (!response.ok) {
         console.warn(`[Desk Editor] API returned ${response.status}`);
+        if (strictDeskEditor) {
+          throw new Error(`Desk editor API returned ${response.status}`);
+        }
         return null;
       }
       const data = await response.json();
@@ -2564,6 +2648,9 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
     } catch (error) {
       console.warn(`[Desk Editor] Attempt ${attempt + 1} failed: ${error.message}`);
     }
+  }
+  if (strictDeskEditor) {
+    throw new Error("Todays Read synthesis failed after retries");
   }
   return null;
 }

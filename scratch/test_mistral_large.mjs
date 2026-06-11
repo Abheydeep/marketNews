@@ -1,4 +1,5 @@
 async function run() {
+  if (!process.env.NVIDIA_API_KEY) throw new Error("Set NVIDIA_API_KEY before running this scratch script.");
   console.log("Starting Mistral Large test...");
   const startTime = Date.now();
   try {
@@ -6,7 +7,7 @@ async function run() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"
+        Authorization: `Bearer ${process.env.NVIDIA_API_KEY}`
       },
       body: JSON.stringify({
         model: "mistralai/mistral-large-2407",

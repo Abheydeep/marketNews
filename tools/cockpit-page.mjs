@@ -7439,7 +7439,7 @@ function compactMetaStripHtml(digest, canonicalUrl) {
   const nextLink = digest.nextEditionPath ? `<a href="${escapeHtml(digest.nextEditionPath)}" style="color: var(--chalk); text-decoration: none;">Next &#8594;</a>` : "";
 
   return `
-    <div class="compact-meta-strip" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 0.85em;">
+    <div class="compact-meta-strip share-row" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 0.85em;">
       <div style="display: flex; align-items: center; gap: 10px; color: var(--stone); flex-wrap: wrap;">
         ${prevLink || nextLink ? `<span style="font-weight: 500;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span><span style="opacity: 0.3;">•</span>` : ""}
         <span><strong style="color: var(--chalk);">Abhey Deep</strong> / 7:15 AM</span>
@@ -8812,7 +8812,10 @@ function sourceNotesHtml(digest) {
 }
 
 function publicVisibleSourceArticles(digest, limit = PUBLIC_DISPLAY_LIMIT) {
-  const filterPulse = (articles) => articles.filter(a => !(a.sourceName || "").toLowerCase().includes("pulse"));
+  const filterPulse = (articles) => {
+    const filtered = articles.filter((article) => !(article.sourceName || "").toLowerCase().includes("pulse"));
+    return filtered.length ? filtered : articles;
+  };
   
   const urls = new Set(digest.publicSourceSelection?.visibleSourceUrls ?? []);
   if (urls.size) {
