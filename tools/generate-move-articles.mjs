@@ -22,7 +22,7 @@ const DEFAULT_THRESHOLDS = {
   smallCap: 5.0,
 };
 
-function parseThresholds() {
+export function parseThresholds() {
   const thresholds = { ...DEFAULT_THRESHOLDS };
   for (const key of Object.keys(DEFAULT_THRESHOLDS)) {
     const envKey = `MOVE_THRESHOLDS_${key.toUpperCase()}`;
@@ -34,7 +34,7 @@ function parseThresholds() {
   return thresholds;
 }
 
-async function detectMoves(thresholds) {
+export async function detectMoves(thresholds) {
   // Use the external market data service. For now we call marketDataFetch which should return an array of
   // objects: { symbol, index, priceChangePct, marketCapCategory }
   const data = await marketDataFetch();
