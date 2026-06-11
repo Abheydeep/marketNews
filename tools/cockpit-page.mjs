@@ -7615,13 +7615,13 @@ function pageRobotsMeta(digest, requireAuth) {
 function deskNoteHtml(digest) {
   const note = humanizeLeadCopy(digest.deskNote || "");
   if (!note) return "";
+  const paragraphs = note.split('\\n').filter(Boolean);
   return `
     <aside class="desk-note" aria-label="Creator desk note">
       <div class="desk-note-mark">Desk<br>Note</div>
       <div class="desk-note-copy">
         <span>Abhey Deep</span>
-        <p>${escapeHtml(editorialSentence(note))}</p>
-        <small>Human rule for the open: do not let the headline candle do your thinking. Confirm breadth, VWAP, and the first clean level.</small>
+        ${paragraphs.map(p => `<p>${escapeHtml(editorialSentence(p))}</p>`).join('\\n        ')}
       </div>
     </aside>
   `;
@@ -8304,6 +8304,15 @@ function twoMinuteSummaryHtml(digest) {
   const supportCopy = cleanBriefingText(
     humanizeLeadCopy(support?.indiaImpact || support?.takeaway || "Breadth and sector leadership are the confirmation check.")
   );
+
+  if (digest.twoMinuteSummary) {
+    const paragraphs = digest.twoMinuteSummary.split('\\n').filter(Boolean);
+    return `
+      <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal); display: flex; flex-direction: column; gap: 12px;">
+        ${paragraphs.map(p => `<p class="summary-paragraph" style="margin: 0; line-height: 1.6;">${escapeHtml(p)}</p>`).join('\\n')}
+      </div>
+    `;
+  }
 
   return `
     <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal);">
