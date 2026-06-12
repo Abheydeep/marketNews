@@ -521,6 +521,7 @@ async function verifyPublicNavigation(page, daily) {
   const nav = page.locator(".tabs");
   await expectOne(nav.getByText("Public Briefing", { exact: true }), `${daily.slug} active public nav`);
   await expectOne(nav.getByRole("link", { name: "Trading Guide" }), `${daily.slug} trading guide nav link`);
+  await expectOne(nav.getByRole("link", { name: "Indices" }), `${daily.slug} indices nav link`);
   return 1;
 }
 
@@ -544,7 +545,10 @@ async function verifySummary(page, daily, options = {}) {
   await expectAtLeast(page.getByText("2 Minute Summary", { exact: true }), 1, `${daily.slug} two-minute summary`);
   await summaryToggle.click();
   await page.locator("#summaryExpand[open]").waitFor({ state: "visible", timeout: 10_000 });
-  await expectOne(page.getByText("Market Map", { exact: true }), `${daily.slug} market map`);
+  await expectOne(page.getByText("Global Indices Watch", { exact: true }), `${daily.slug} global indices watch`);
+  await expectAtLeast(page.locator(".market-mini-row"), 4, `${daily.slug} compact index rows`);
+  await expectAtLeast(page.locator(".mini-sparkline"), 4, `${daily.slug} compact index sparklines`);
+  await expectOne(page.locator(".indices-page-link"), `${daily.slug} full indices board link`);
   if (options.keepOpen) {
     return;
   }
@@ -624,14 +628,16 @@ async function clickSourceLinks(page, daily, options = {}) {
     assert.equal(count, 0, `${daily.slug} legacy page should suppress unaudited read-source links`);
     return 0;
   }
-  assert.ok(count > 0 && count <= 10, `${daily.slug} should render the public curated source links, got ${count}`);
+  const sourceUrls = new Set();
   for (let index = 0; index < count; index += 1) {
     const link = links.nth(index);
     const href = (await link.getAttribute("data-source-url")) || (await link.getAttribute("href"));
     assert.ok(href?.startsWith("http"), `${daily.slug} source link ${index + 1} should use article URL, got ${href}`);
     assert.equal(isSectionHomepageUrl(href), false, `${daily.slug} source link ${index + 1} should not be a section homepage: ${href}`);
+    sourceUrls.add(href);
   }
-  return count;
+  assert.ok(sourceUrls.size > 0 && sourceUrls.size <= 10, `${daily.slug} should render the public curated source links, got ${sourceUrls.size} unique links`);
+  return sourceUrls.size;
 }
 
 async function verifySourceFilters(page, daily) {

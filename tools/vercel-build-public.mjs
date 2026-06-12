@@ -93,14 +93,20 @@ const today = `${byType.year}-${byType.month}-${byType.day}`;
 const latestArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
   ? { date: process.env.VERCEL_BUILD_FIXTURE_DATE, scheduledTime: process.env.VERCEL_BUILD_FIXTURE_TIME ?? "07:15" }
   : latestArchivedDigest();
-const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : today;
-const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
+const todayArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
+  ? null
+  : archivedDigestForDate(today);
+const shouldUseTrackedArchive =
+  process.env.SKIP_DAILY_GENERATE === "true" ||
+  (todayArchive && process.env.VERCEL_REGENERATE_TRACKED_ARCHIVE !== "true");
+const date = shouldUseTrackedArchive ? (todayArchive?.date ?? latestArchive.date) : today;
+const scheduledTime = shouldUseTrackedArchive ? (todayArchive?.scheduledTime ?? latestArchive.scheduledTime) : "07:15";
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
 const calendarState = marketCalendarState(date);
 
-if (process.env.SKIP_DAILY_GENERATE === "true") {
-  console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
+if (shouldUseTrackedArchive) {
+  console.log(`Publishing tracked archived digest ${date} ${scheduledTime}; set VERCEL_REGENERATE_TRACKED_ARCHIVE=true to force live generation.`);
 } else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
   const fallback = latestArchivedDigest();
   console.warn(
@@ -310,6 +316,18 @@ function latestArchivedDigest() {
     process.exit(1);
   }
   return latest;
+}
+
+function archivedDigestForDate(date) {
+  const archiveDir = join(rootDir, "archive", "daily");
+  const digests = readdirSync(archiveDir)
+    .map((fileName) => {
+      const match = fileName.match(new RegExp(`^${date}-(0715|0830)-digest\\.json$`));
+      return match ? { date, scheduledTime: `${match[1].slice(0, 2)}:${match[1].slice(2)}` } : null;
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.scheduledTime.localeCompare(right.scheduledTime));
+  return digests.at(-1) ?? null;
 }
 
 function run(command, args, options = {}) {

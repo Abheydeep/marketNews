@@ -132,6 +132,7 @@ const adminDir = join(siteDir, "admin");
 const multibaggerDir = join(siteDir, "multibagger");
 const aboutDir = join(siteDir, "about");
 const subscribeDir = join(siteDir, "subscribe");
+const indicesDir = join(siteDir, "indices");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
@@ -148,6 +149,8 @@ await mkdir(aboutDir, { recursive: true });
 await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest, publicArchiveDigests.length ? publicArchiveDigests : archiveHomeDigests));
 await mkdir(subscribeDir, { recursive: true });
 await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
+await mkdir(indicesDir, { recursive: true });
+await writeGuardedFile(join(indicesDir, "index.html"), indicesPage(latest));
 
 await mkdir(join(adminDir, "components"), { recursive: true });
 await mkdir(join(adminDir, "multibagger"), { recursive: true });
@@ -3115,8 +3118,12 @@ function previousSessionDriver(digest) {
 }
 
 function titleForDailyLead(dailyLead) {
+  const text = `${dailyLead?.label || ""} ${dailyLead?.headline || ""} ${dailyLead?.indiaImpact || ""}`.toLowerCase();
+  if (dailyLead?.driverType === "crude" && /\b(iran|hormuz|trump|strike|war|deal)\b/.test(text)) {
+    return "Iran Deal Hopes Pull Brent Below $90";
+  }
   return {
-    crude: "Crude Sets India Inflation Watch",
+    crude: "Brent Move Sets The Morning Risk",
     rates: "Rates Shape Opening Range",
     currency: "Currency Pressure Tests Nifty Open",
     tech: "Tech Breadth Tests Nifty Follow-Through",
@@ -3239,6 +3246,179 @@ function compactWords(value, maxWords) {
   return `${words.slice(0, maxWords).join(" ")}...`;
 }
 
+function indicesPage(digest) {
+  const groups = [
+    ["India", ["NIFTY", "BANKNIFTY", "GIFTNIFTY", "INDIAVIX"]],
+    ["US Overnight", ["SPX", "NDX", "DJI"]],
+    ["Asia", ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"]],
+    ["Macro", ["BRENT", "DXY", "USDINR", "GOLD"]]
+  ]
+    .map(([title, symbols]) => {
+      const snapshots = symbols
+        .map((symbol) => (digest.marketSnapshots ?? []).find((item) => item.symbol === symbol))
+        .filter(Boolean);
+      if (!snapshots.length) return "";
+      return `
+        <section class="indices-group">
+          <div class="indices-group-head">
+            <h2>${escapeHtml(title)}</h2>
+            <span>${escapeHtml(snapshots.length)} tracked</span>
+          </div>
+          <div class="indices-grid">
+            ${snapshots.map(indexSnapshotCard).join("")}
+          </div>
+        </section>
+      `;
+    })
+    .join("");
+  const lastUpdated = formatGeneratedTime(digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  ${brandHeadLinks(siteOrigin)}
+  <title>Global Indices Watch | Market Narrative</title>
+  <meta name="description" content="Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.">
+  <link rel="canonical" href="${escapeHtml(siteOrigin)}/indices/">
+  <style>
+    ${brandMarkCss()}
+    :root {
+      --bg: #050816;
+      --panel: #0b1220;
+      --panel-2: #111827;
+      --line: rgba(148, 163, 184, 0.22);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --up: #34d399;
+      --down: #fb7185;
+      --flat: #fbbf24;
+      --cyan: #67e8f9;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar { border-bottom: 1px solid var(--line); background: rgba(5, 8, 22, 0.86); position: sticky; top: 0; backdrop-filter: blur(16px); z-index: 10; }
+    .nav-inner { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 900; }
+    .tabs { display: flex; gap: 14px; overflow-x: auto; }
+    .tab-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .tab-link.active { color: var(--cyan); }
+    .hero { padding: 46px 0 26px; }
+    .eyebrow { margin: 0 0 10px; color: var(--cyan); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 780px; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: 0; }
+    .hero p { max-width: 760px; color: #cbd5e1; font-size: 17px; line-height: 1.7; }
+    .indices-group { margin: 24px 0; }
+    .indices-group-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 12px; }
+    .indices-group-head h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
+    .indices-group-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+    .indices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .index-card { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; }
+    .index-card:hover { border-color: rgba(103, 232, 249, .5); }
+    .index-card-top { display: flex; justify-content: space-between; gap: 12px; }
+    .index-card strong { font-size: 22px; }
+    .index-card small, .index-meta { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .move.up { color: var(--up); }
+    .move.down { color: var(--down); }
+    .move.flat { color: var(--flat); }
+    .index-spark { width: 100%; height: 58px; display: block; }
+    .index-spark path.area { opacity: .14; }
+    .index-spark path.line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="shell nav-inner">
+      <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
+      <div class="tabs">
+        <a class="tab-link" href="/latest/">Public Briefing</a>
+        <span class="tab-link active" aria-current="page">Indices</span>
+        <a class="tab-link" href="/multibagger/">Portfolio</a>
+        <a class="tab-link" href="/about/">About</a>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">Global Indices Watch</p>
+      <h1>Nifty, Bank Nifty, Asia, US futures context and macro hedges in one board.</h1>
+      <p>Captured from the same Yahoo price-series snapshots used in the daily briefing. Last briefing update: ${escapeHtml(lastUpdated)} IST. Use this as market context; the Trading Guide still owns execution levels.</p>
+    </header>
+    ${groups}
+    <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
+  </main>
+</body>
+</html>`;
+}
+
+function indexSnapshotCard(snapshot) {
+  const change = Number(snapshot.changePercent || 0);
+  const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
+  const href = tradingViewUrlForSnapshot(snapshot);
+  return `
+    <a class="index-card" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
+      <div class="index-card-top">
+        <div>
+          <small>${escapeHtml(snapshot.symbol)}</small>
+          <strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong>
+        </div>
+        <strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
+      </div>
+      ${snapshotSparklineSvgForPublish(snapshot)}
+      <div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(snapshot.source || "Yahoo Finance chart API")}</div>
+    </a>
+  `;
+}
+
+function snapshotSparklineSvgForPublish(snapshot) {
+  const points = Array.isArray(snapshot.chartPoints)
+    ? snapshot.chartPoints.map((point) => Number(point.close)).filter((value) => Number.isFinite(value))
+    : [];
+  const change = Number(snapshot.changePercent || 0);
+  const stroke = change > 0.05 ? "#34d399" : change < -0.05 ? "#fb7185" : "#fbbf24";
+  if (points.length < 2) {
+    return `<svg class="index-spark" viewBox="0 0 220 58" aria-hidden="true"><path class="line" d="M4 29 H216" stroke="${stroke}"></path></svg>`;
+  }
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = Math.max(1e-9, max - min);
+  const path = points.map((value, index) => {
+    const x = 4 + (index / Math.max(1, points.length - 1)) * 212;
+    const y = 52 - ((value - min) / range) * 46;
+    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const area = `${path} L216 56 L4 56 Z`;
+  return `<svg class="index-spark" viewBox="0 0 220 58" aria-hidden="true"><path class="area" d="${area}" fill="${stroke}"></path><path class="line" d="${path}" stroke="${stroke}"></path></svg>`;
+}
+
+function formatIndexValue(snapshot) {
+  const value = Number(snapshot.closeValue);
+  const close = Number.isFinite(value)
+    ? value.toLocaleString("en-IN", { maximumFractionDigits: 2 })
+    : "value unavailable";
+  const time = snapshot.dataTimestamp ? formatGeneratedTime(snapshot.dataTimestamp) : "";
+  return time ? `${close} at ${time} IST` : close;
+}
+
+function tradingViewUrlForSnapshot(snapshot) {
+  const symbol = snapshot.tradingViewSymbol || {
+    NIFTY: "NSE:NIFTY",
+    BANKNIFTY: "NSE:BANKNIFTY",
+    GIFTNIFTY: "NSEIX:NIFTY1!",
+    BRENT: "TVC:UKOIL",
+    DXY: "TVC:DXY",
+    USDINR: "FX:USDINR",
+    GOLD: "TVC:GOLD",
+    INDIAVIX: "NSE:INDIAVIX"
+  }[snapshot.symbol] || snapshot.yahooSymbol || "NSE:NIFTY";
+  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
+}
+
 function robotsTxt() {
   return [
     "User-agent: *",
@@ -3257,6 +3437,7 @@ function sitemapXml(allDigests) {
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "1.0" },
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
+    { loc: `${siteOrigin}/indices/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.7" },
     { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.7" },
     { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.6" },

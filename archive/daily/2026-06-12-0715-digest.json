@@ -1,17 +1,17 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-12",
-  "title": "Crude / energy risk Tests Risk Appetite",
+  "title": "Iran Deal Hopes Pull Brent Below $90",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-12T03:06:14.450Z",
   "dailyLead": {
-    "label": "Crude / energy risk",
+    "label": "Iran-Brent risk",
     "sourceArticleId": "zerodha-pulse:d1flws",
     "driverType": "crude",
     "headline": "Oil extends losses as Trump calls off planned strikes on Iran",
-    "indiaImpact": "OMCs and aviation are likely to ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-    "riskSide": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-    "supportSide": "Nifty and Bank Nifty are key; watch for gap direction and breadth confirmation to gauge trend.",
+    "indiaImpact": "Brent below $90 eases OMCs and aviation; Bank Nifty breadth decides whether the gap has follow-through.",
+    "riskSide": "A crude rebound or weak Bank Nifty breadth would turn the gap into news relief, not a trend.",
+    "supportSide": "OMCs, aviation, USD/INR and first-range VWAP are the confirmation checks.",
     "giftNiftyBias": null
   },
   "publicSourceSelection": {
@@ -40,9 +40,9 @@
       "https://www.ndtvprofit.com/markets/asian-markets-today-south-koreas-kospi-soars-7-japans-nikkei-climbs-3-as-trump-calls-off-planned-strikes-on-iran-11625414"
     ]
   },
-  "archiveSummary": "Crude / energy risk: OMCs and aviation are likely to ease if Brent stays below $90; upstream energy stocks could...",
-  "twoMinuteSummary": "US President Trump announced a near-complete deal to end the war with Iran, expected to be signed in Europe this weekend, after canceling planned military strikes. This development led to a decline in oil prices, with Brent crude falling to $89.17 a barrel and WTI crude dropping to $86.48. The news eased geopolitical tensions and boosted market sentiment.\n\nIndian benchmark indices saw profit-taking in the latter half of the session as rising geopolitical tensions led investors to trim overnight positions. Markets remained volatile, with sharp intraday fluctuations amplified by the weekly Sensex expiry. Analysts noted that the Nifty is still moving within the 23,000–23,550 range and expect this phase of consolidation to continue until a clear breakout sets the market's next direction.\n\nAsian stocks rallied on hopes of a Middle East peace deal, tempering inflation fears as oil prices fell to two-month lows. The market also anticipated Elon Musk's SpaceX IPO, which set a record $75 billion. President Trump's indication of a potential peace deal signing soon further boosted market sentiment.",
-  "deskNote": "The sudden détente between the US and Iran has sent shockwaves through global markets. While the news is undoubtedly positive for oil prices and geopolitical stability, it's essential to consider the potential implications for Indian markets. A decline in oil prices could lead to a decrease in inflationary pressures, potentially benefiting the Indian economy. However, the sudden shift in global sentiment may also lead to a revaluation of risk assets, potentially impacting FII flows and market volatility. As the situation continues to unfold, it's crucial to monitor the developments closely and assess their impact on the Indian market narrative.",
+  "archiveSummary": "Iran deal hopes cooled Brent below $90; India reads it through OMCs, aviation, USD/INR and first-hour breadth.",
+  "twoMinuteSummary": "US President Trump said a near-complete deal to end the war with Iran could be signed in Europe this weekend, after canceling planned military strikes. That headline pulled the risk premium out of crude: Brent slipped to $89.17 a barrel and WTI moved to $86.48. The first market read is simple: lower oil cools the immediate inflation scare, but traders still need to see whether the move holds through the Asia-to-Europe handoff.\n\nFor India, this is not just an oil headline. OMCs, aviation, tyres and paints get breathing room if Brent stays below $90, while upstream energy may lose some of the defensive bid. The broader Nifty read still depends on breadth because the index has been stuck inside the 23,000-23,550 zone, with recent sessions showing profit-taking and sharp intraday swings around expiry. A gap is useful only if Bank Nifty and first-range VWAP confirm it.\n\nAsia is treating the peace-deal signal as risk-on: Korean and Japanese equities rallied, and the crude decline eased imported-inflation anxiety. That gives Indian traders a better backdrop than yesterday, but not a free long signal. Watch Brent, USD/INR, India VIX, FII/DII flows and whether OMCs plus aviation actually lead after the cash open.",
+  "deskNote": "Iran deal hopes pulled Brent below $90 and turned Asia risk-on. For India, that gives OMCs and aviation relief, but the index still needs Bank Nifty breadth and first-range VWAP confirmation before the gap deserves trust.",
   "watchItems": [
     "Gift Nifty premium/discount versus the previous Nifty close, then Nifty VWAP and Bank Nifty breadth after 9:15 AM.",
     "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
@@ -10396,7 +10396,7 @@
     "diiSell": 12598.06
   },
   "giftNiftyBias": null,
-  "todaysReadArticle": "The sudden easing of geopolitical tensions between the US and Iran has sent shockwaves through global markets, with Brent crude prices plummeting to a two-month low of $89.17 as President Trump's unexpected pivot from military strikes to potential diplomatic talks has alleviated risk premium. This dramatic shift has far-reaching implications for Indian markets, particularly for oil marketing companies (OMCs) and aviation stocks that had been bracing for a potential spike in fuel costs. As Brent crude stabilizes below the $90 mark, these sectors are likely to ease, potentially offset by gains in upstream energy stocks that stand to benefit from the sustained direction in oil prices.\n\nThe reverberations of this geopolitical breakthrough are being felt across Asian markets, with South Korea's Kospi soaring 7% and Japan's Nikkei climbing 3% as risk-off flows reverse. The Gift Nifty has jumped nearly 200 points, indicating a potentially strong opening for Indian markets. However, the Nifty 50 remains within its established range of 23,000-23,550, awaiting a clear breakout or breakdown. The key battleground for traders will be the Nifty and Bank Nifty indices, where the direction of the gap and breadth confirmation will be crucial in gauging the trend. As the market navigates this new landscape, traders will be closely watching the interplay between commodity channels, currency flows, and corporate earnings to discern the underlying momentum.\n\nThe sustained direction in Brent crude prices will be a critical factor in shaping the Indian market narrative, with OMCs, aviation, and tyre stocks likely to remain sensitive to any further movements. Upstream energy stocks, on the other hand, could gain as an offset, potentially benefiting from the easing of geopolitical tensions. As the market adjusts to this new reality, traders will need to be nimble in responding to the evolving dynamics between global macro shifts, corporate earnings, and Indian market implications. The USD/INR exchange rate, currently hovering at 95.75, will also be a key indicator to watch, as currency flows respond to the shifting geopolitical landscape and its attendant impact on commodity prices.",
+  "todaysReadArticle": "The overnight market story is no longer “crude panic”; it is whether the Iran risk premium can unwind cleanly. Trump’s decision to cancel planned strikes and talk up a near-complete deal pushed Brent below $90, which immediately changes the India read-through. If crude stays soft, OMCs and aviation get relief from the fuel-cost scare, while tyres and paints also get a cleaner margin backdrop.\n\nThe catch is that India still needs confirmation from its own tape. Nifty has been consolidating inside 23,000-23,550, and the last session showed how quickly traders trim risk when geopolitical headlines move. A supportive Asia handoff helps, but the first 30 minutes matter more than the headline: Bank Nifty breadth, VWAP acceptance and advance-decline should decide whether the gap can hold.\n\nThe watchlist is therefore tighter than the old crude template made it sound. Start with Brent under $90, then USD/INR and India VIX, then OMCs, aviation and upstream energy. If those groups confirm while Bank Nifty stays firm, the open has follow-through potential. If crude rebounds or banks fade the gap, treat the move as news relief rather than a tradeable trend.",
   "themes": [
     {
       "digestDate": "2026-06-12",

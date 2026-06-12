@@ -1820,7 +1820,9 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.equal(publicHtml.includes('id="trading-guide-view"'), false);
   assert.equal((publicHtml.match(/<h1/g) || []).length, 1, "public briefing should render exactly one h1");
   assert.equal(publicHtml.includes("Today's Trade Map"), false);
-  assert.match(publicHtml, /Watch first: .*Nifty [0-9,]+\/[0-9,]+/);
+  assert.ok(publicHtml.includes("Global Indices Watch"), "public briefing should show the indices watch before source depth");
+  assert.ok(publicHtml.includes('href="/indices/"'), "public briefing should link to the full indices board");
+  assert.ok(publicHtml.includes("mini-sparkline"), "public briefing should render Yahoo-series mini charts in the indices watch");
   // Opening Nerve lives on the trading guide only — not on the public briefing page
   assert.equal(publicHtml.includes("Opening Nerve"), false, "Opening Nerve must not appear on public briefing page");
   assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'));
@@ -1843,7 +1845,7 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.equal(publicHtml.includes("live refresh pending"), false);
   assert.equal(publicHtml.includes("Waiting for chart data"), false);
   assert.equal(guideHtml.includes("Waiting for chart data"), false);
-  assert.ok(publicHtml.includes("Select a market card to inspect chart context"));
+  assert.ok(publicHtml.includes("Open full indices board"));
 });
 
 await test("trading guide level copy is directionally consistent", async () => {
@@ -2810,6 +2812,8 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
+  assert.ok(publicBuildScript.includes("archivedDigestForDate(today)"));
+  assert.ok(publicBuildScript.includes("VERCEL_REGENERATE_TRACKED_ARCHIVE"));
   assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
   assert.ok(publicBuildScript.includes("ALLOW_VERIFIED_ARCHIVE_FALLBACK"));
   assert.ok(publicBuildScript.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
@@ -3034,7 +3038,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.equal(publicHtml.body.includes("quote-board-chev"), false);
   assert.equal(publicHtml.body.includes('class="expanded-briefing-head"'), false);
   assert.ok(publicHtml.body.includes("Hide details"));
-  assert.ok(publicHtml.body.includes("Market Map"));
+  assert.ok(publicHtml.body.includes("Global Indices Watch"));
+  assert.ok(publicHtml.body.includes("/indices/"));
   assert.equal(publicSection.includes("Stories Driving The Open"), false);
   assert.equal(publicSection.includes("How It Lands In India"), false);
   assert.equal(publicSection.includes("What To Watch First"), false);

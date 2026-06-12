@@ -50,6 +50,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     : isTradingGuidePage
       ? '<span class="tab-link active" aria-current="page">Trading Guide</span>'
       : '<a class="tab-link" href="./trading-guide/">Trading Guide</a>';
+  const indicesLinkHtml = includeStudio
+    ? ""
+    : '<a class="tab-link" href="/indices/">Indices</a>';
   const adminArchitectureTabHtml = includeStudio
     ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
           <button class="tab-btn" data-target="components-view">Project Components</button>`
@@ -1973,7 +1976,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-category-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 12px;
       align-items: start;
     }
@@ -1981,10 +1984,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .source-card {
       cursor: pointer;
       display: grid;
-      grid-template-columns: 104px minmax(0, 1fr);
-      gap: 13px;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 11px;
       align-items: start;
-      padding: 13px;
+      padding: 12px;
     }
 
     .source-card[hidden] {
@@ -1993,7 +1996,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-thumb {
       position: relative;
-      min-height: 116px;
+      min-height: 86px;
       border-radius: 8px;
       overflow: hidden;
       background:
@@ -2034,8 +2037,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-thumb span {
-      bottom: 44px;
-      font-size: 12px;
+      bottom: 34px;
+      font-size: 10px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -2043,8 +2046,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-thumb strong {
-      bottom: 15px;
-      font-size: 19px;
+      bottom: 11px;
+      font-size: 14px;
       line-height: 1.05;
       text-transform: uppercase;
     }
@@ -2098,7 +2101,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .source-card h3 {
       margin: 0 0 8px;
       color: #111827;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.32;
       transition: color 160ms ease;
     }
@@ -2110,8 +2113,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     .source-card p {
       margin: 0;
       color: #4b5563;
-      font-size: 13px;
-      line-height: 1.52;
+      font-size: 12.5px;
+      line-height: 1.48;
     }
 
     .source-card a {
@@ -5106,8 +5109,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 1.1em;
       list-style: none;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 16px;
       user-select: none;
     }
     .market-map-details summary::-webkit-details-marker {
@@ -5126,22 +5130,27 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       margin: 0;
       font-size: 1rem;
     }
+    .market-map-details summary p {
+      margin: 5px 0 0;
+      color: var(--stone);
+      font-size: 12px;
+      line-height: 1.45;
+    }
     .market-map-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
       padding: 0 16px 16px 16px;
     }
     .market-map-card {
       background: rgba(255, 255, 255, 0.03);
-      padding: 16px;
+      padding: 13px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .market-map-card:hover {
       transform: translateY(-2px);
@@ -5167,6 +5176,84 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 0.85em;
       line-height: 1.4;
     }
+    .market-mini-list {
+      display: grid;
+      gap: 8px;
+    }
+    .market-mini-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 72px auto;
+      gap: 9px;
+      align-items: center;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.42);
+      padding: 8px;
+      color: inherit;
+      text-decoration: none;
+    }
+    .market-mini-row span {
+      display: block;
+      color: #e5e7eb;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .market-mini-row em {
+      display: block;
+      color: var(--stone);
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .market-mini-row strong {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .market-mini-row strong.up { color: #34d399; }
+    .market-mini-row strong.down { color: #fb7185; }
+    .market-mini-row strong.flat { color: #fbbf24; }
+    .mini-sparkline {
+      width: 72px;
+      height: 28px;
+      display: block;
+    }
+    .mini-sparkline path.area {
+      opacity: 0.13;
+    }
+    .mini-sparkline path.line {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .indices-page-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 16px 16px;
+      border: 1px solid rgba(103, 232, 249, 0.3);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #67e8f9;
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .preopen-sparkline {
+      width: 100%;
+      height: 26px;
+      margin-top: 4px;
+    }
+    .preopen-sparkline path.area {
+      opacity: 0.12;
+    }
+    .preopen-sparkline path.line {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
@@ -5181,6 +5268,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         <div class="tabs">
           ${publicBriefingNavHtml}
           ${tradingGuideTabHtml}
+          ${indicesLinkHtml}
           ${studioTabHtml}
           ${adminArchitectureTabHtml}
           ${multibaggerLinkHtml}
@@ -7260,6 +7348,7 @@ function hookTitle(digest) {
 /** Replaces generic "Daily Pre-Market Summary" eyebrow with a market-specific signal label. */
 function heroEyebrowLabel(digest) {
   const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
+  const leadText = `${digest.dailyLead?.label || ""} ${digest.dailyLead?.headline || ""} ${digest.dailyLead?.indiaImpact || ""}`.toLowerCase();
   const sentiment = Number(digest.overallSentiment ?? 0);
   const bias = digest.giftNiftyBias;
 
@@ -7272,8 +7361,11 @@ function heroEyebrowLabel(digest) {
   }
 
   // Driver-specific labels
+  if (driver === "crude" && /\b(iran|hormuz|trump|strike|war|deal|brent)\b/.test(leadText)) {
+    return "Brent below $90 — OMCs and aviation in focus";
+  }
   if (driver) {
-     return `${driver.charAt(0).toUpperCase() + driver.slice(1)} Driver — Watch the First 15 Minutes`;
+     return `${humanLeadTitle(digest.dailyLead)} — confirm with breadth`;
   }
 
   // Sentiment fallback
@@ -7317,6 +7409,14 @@ function compactSummaryText(digest) {
     : `${driver.summary}`;
   const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
   const watchFirst = compactWatchFirstLine(digest);
+  const leadText = `${digest.dailyLead?.label || ""} ${digest.dailyLead?.headline || ""} ${digest.dailyLead?.indiaImpact || ""}`.toLowerCase();
+  if (/\b(crude|oil|brent|iran|hormuz|trump)\b/.test(leadText)) {
+    return conciseSentence([
+      "Iran deal headlines pulled Brent under $90 and flipped Asia back to risk-on.",
+      "For India, the first read is OMCs, aviation, tyres, USD/INR and whether Nifty breadth confirms the gap.",
+      "Treat the opening move as tradable only after Bank Nifty and first-range VWAP agree."
+    ].join(" "), 58);
+  }
   return conciseSentence([
     headline
       ? `Before the open, ${headline}.`
@@ -7333,7 +7433,7 @@ function compactWatchFirstLine(digest) {
   const shortGate = formatLevelOrWait(levels.niftyBearishBreak);
   const driverText = `${digest?.dailyLead?.driverType || ""} ${digest?.dailyLead?.label || ""} ${digest?.dailyLead?.headline || ""}`.toLowerCase();
   if (/\b(crude|oil|brent|opec)\b/.test(driverText)) {
-    return `Watch first: Brent reaction, then Nifty ${longGate}/${shortGate}.`;
+    return `First check Brent; use Nifty ${longGate}/${shortGate} only after breadth confirms.`;
   }
   if (/\b(rate|fed|yield|bond)\b/.test(driverText)) {
     return `Watch first: US yields, then Nifty ${longGate}/${shortGate}.`;
@@ -7346,6 +7446,7 @@ function compactWatchFirstLine(digest) {
 
 function headlineLeadClause(headline) {
   const text = String(headline || "");
+  if (/\biran|hormuz|trump|strike|war|deal\b/i.test(text) && /\boil|crude|brent|iran|hormuz\b/i.test(text)) return "Iran deal headlines have cooled the crude-risk premium";
   if (/\bcrude oil exports?\b/i.test(text)) return "US crude exports are the overnight oil cue";
   if (/\bOPEC\b/i.test(text)) return "OPEC supply headlines are the oil cue";
   if (/\bjobs day|semiconductor earnings\b/i.test(text)) return "US jobs and chip earnings are the global-risk cue";
@@ -7613,17 +7714,18 @@ function pageRobotsMeta(digest, requireAuth) {
 }
 
 function deskNoteHtml(digest) {
-  const note = humanizeLeadCopy(digest.deskNote || "");
+  const note = humanizeLeadCopy(digest.todaysReadArticle || digest.twoMinuteSummary || digest.deskNote || "");
   if (!note) return "";
-  const paragraphs = note.split('\\n').filter(Boolean);
+  const paragraphs = note.split(/\n+/).map((part) => part.trim()).filter(Boolean).slice(0, 3);
   return `
-    <aside class="desk-note" aria-label="Creator desk note">
-      <div class="desk-note-mark">Desk<br>Note</div>
-      <div class="desk-note-copy">
-        <span>Abhey Deep</span>
-        ${paragraphs.map(p => `<p>${escapeHtml(editorialSentence(p))}</p>`).join('\\n        ')}
+    <section class="todays-read-section" aria-label="Today&apos;s Read">
+      <div class="todays-read-kicker">Abhey Deep</div>
+      <h2>Today&apos;s Read</h2>
+      <div class="todays-read-body">
+        ${paragraphs.map((p) => `<p>${escapeHtml(editorialSentence(p))}</p>`).join("\n        ")}
       </div>
-    </aside>
+      <p class="todays-read-footer">Market context only. Levels and execution checks remain in the Trading Guide.</p>
+    </section>
   `;
 }
 
@@ -7739,6 +7841,7 @@ function indiaPreOpenHtml(digest) {
     ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% implied open`
     : "Check TradingView for live gap"}
           </small>
+          ${snapshotSparklineHtml(gift || nifty, "preopen-sparkline")}
         </a>
 
         <a class="preopen-tile ${escapeHtml(rupeeData.cls)}" aria-label="USD/INR" ${usdinr ? tvLink("USDINR", "FX:USDINR") : ""}>
@@ -7749,12 +7852,14 @@ function indiaPreOpenHtml(digest) {
     ? `${escapeHtml(usdinr.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(usdinr.changePercent).toFixed(3))}% · ${escapeHtml(rupeeData.label)}`
     : "Awaiting data"}
           </small>
+          ${snapshotSparklineHtml(usdinr, "preopen-sparkline")}
         </a>
 
         <a class="preopen-tile ${escapeHtml(vixData.cls)}" aria-label="India VIX" ${vix ? tvLink("INDIAVIX", "NSE:INDIAVIX") : ""}>
           <span>India VIX</span>
           <strong>${vix ? escapeHtml(String(vix.closeValue)) : "—"}</strong>
           <small>${vix ? escapeHtml(vixData.label) : "Awaiting data"}</small>
+          ${snapshotSparklineHtml(vix, "preopen-sparkline")}
         </a>
 
         <a class="preopen-tile ${gold && gold.changePercent >= 0 ? "up" : "down"}" aria-label="Gold" ${gold ? tvLink("GOLD", "TVC:GOLD") : ""}>
@@ -7765,6 +7870,7 @@ function indiaPreOpenHtml(digest) {
     ? `${escapeHtml(gold.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(gold.changePercent).toFixed(2))}% · duty-hike read: ${gold.changePercent > 1 ? "Jewellery sector in play" : "Watch MCX open"}`
     : "Awaiting data"}
           </small>
+          ${snapshotSparklineHtml(gold, "preopen-sparkline")}
         </a>
 
       </div>
@@ -8149,7 +8255,8 @@ function primaryDriverForDigest(digest) {
 function humanLeadTitle(dailyLead) {
   const label = String(dailyLead?.label || "");
   const headline = String(dailyLead?.headline || "");
-  if (/crude|oil|opec|brent/i.test(`${label} ${headline}`)) return "Crude supply watch";
+  if (/iran|hormuz|trump|strike|war|deal/i.test(`${label} ${headline}`) && /crude|oil|opec|brent|iran|hormuz/i.test(`${label} ${headline}`)) return "Iran-Brent risk";
+  if (/crude|oil|opec|brent/i.test(`${label} ${headline}`)) return "Brent risk";
   if (/rates?|fed|yield/i.test(`${label} ${headline}`)) return "Rates watch";
   if (/tech|ai|semiconductor|software|nasdaq/i.test(`${label} ${headline}`)) return "Global tech breadth";
   if (/bank|credit|nbfc/i.test(`${label} ${headline}`)) return "Bank breadth";
@@ -8306,10 +8413,10 @@ function twoMinuteSummaryHtml(digest) {
   );
 
   if (digest.twoMinuteSummary) {
-    const paragraphs = digest.twoMinuteSummary.split('\\n').filter(Boolean);
+    const paragraphs = digest.twoMinuteSummary.split(/\n+/).filter(Boolean);
     return `
       <div class="brief-section two-minute-summary" aria-label="2 Minute Summary" style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 4px solid var(--teal); display: flex; flex-direction: column; gap: 12px;">
-        ${paragraphs.map(p => `<p class="summary-paragraph" style="margin: 0; line-height: 1.6;">${escapeHtml(p)}</p>`).join('\\n')}
+        ${paragraphs.map(p => `<p class="summary-paragraph" style="margin: 0; line-height: 1.6;">${escapeHtml(p)}</p>`).join("\n")}
       </div>
     `;
   }
@@ -8338,39 +8445,94 @@ function sourceSummaryForTwoMinute(article, fallback) {
 }
 
 function executiveSummaryHtml(digest) {
-  const usLine = formatSnapshotLine(snapshotsForRegion(digest, "US Overnight"));
-  const asiaLine = formatAsiaSnapshotLine(snapshotsForRegion(digest, "Asia Watch"));
-  const indiaLine = formatSnapshotLine(snapshotsForRegion(digest, "India Open"));
-  const macroLine = formatSnapshotLine(snapshotsForRegion(digest, "Macro Hedges"));
   const globalRisk = firstByCategory(digest.news, "global_risk");
+  const groups = [
+    {
+      title: "US Overnight",
+      symbols: ["SPX", "NDX", "DJI"],
+      note: globalRisk?.takeaway || "Use the US close as risk appetite context, then wait for India breadth."
+    },
+    {
+      title: "Asia Watch",
+      symbols: ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX"],
+      note: "Asia breadth is the handoff into GIFT Nifty and the cash open."
+    },
+    {
+      title: "Macro Hedges",
+      symbols: ["BRENT", "DXY", "USDINR", "GOLD"],
+      note: "Crude, dollar, rupee and gold decide how much macro weight to assign."
+    },
+    {
+      title: "India Reference",
+      symbols: ["NIFTY", "BANKNIFTY", "INDIAVIX", "GIFTNIFTY"],
+      note: "Previous close and GIFT context set the first range reference."
+    }
+  ];
 
   return `
     <details class="market-map-details">
-      <summary><h3>Market Map</h3></summary>
+      <summary>
+        <div>
+          <h3>Global Indices Watch</h3>
+          <p>Captured Yahoo price-series snapshots. Tap a row for the full chart context.</p>
+        </div>
+      </summary>
       <div class="market-map-grid">
-        <div class="market-map-card">
-          <h4>US Markets</h4>
-          <p>${escapeHtml(usLine || "US index data is awaiting refresh")}</p>
-          <small>${escapeHtml(globalRisk?.takeaway || "A firm close still needs confirmation from yields and tech breadth.")}</small>
-        </div>
-        <div class="market-map-card">
-          <h4>Asia Watch</h4>
-          <p>${escapeHtml(asiaLine || "Asian market data is awaiting refresh")}</p>
-          <small>Regional breadth sets the sentiment backdrop for the India open.</small>
-        </div>
-        <div class="market-map-card">
-          <h4>Macro Hedges</h4>
-          <p>${escapeHtml(macroLine || "Macro hedge data is awaiting refresh")}</p>
-          <small>Crude and the dollar matter most for inflation, rupee, and foreign-flow expectations.</small>
-        </div>
-        <div class="market-map-card">
-          <h4>India Reference</h4>
-          <p>${escapeHtml(indiaLine || "Indian index data is awaiting refresh")}</p>
-          <small>Prior-session closes set the reference point for today's source read.</small>
-        </div>
+        ${groups.map((group) => marketMapGroupCardHtml(digest, group)).join("")}
       </div>
+      <a class="indices-page-link" href="/indices/">Open full indices board</a>
     </details>
   `;
+}
+
+function marketMapGroupCardHtml(digest, group) {
+  const snapshots = group.symbols
+    .map((symbol) => (digest.marketSnapshots ?? []).find((item) => item.symbol === symbol))
+    .filter(Boolean);
+  return `
+    <div class="market-map-card">
+      <h4>${escapeHtml(group.title)}</h4>
+      <div class="market-mini-list">
+        ${snapshots.length
+          ? snapshots.map((snapshot) => marketMiniRowHtml(snapshot)).join("")
+          : `<div class="market-mini-row"><span>Awaiting data</span><em>Yahoo</em></div>`}
+      </div>
+      <small>${escapeHtml(group.note)}</small>
+    </div>
+  `;
+}
+
+function marketMiniRowHtml(snapshot) {
+  const change = Number(snapshot.changePercent || 0);
+  const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
+  return `
+    <a class="market-mini-row" href="${escapeHtml(tradingViewUrlForSnapshot(snapshot))}" target="_blank" rel="noopener noreferrer">
+      <span>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}<em>${escapeHtml(snapshot.symbol)}</em></span>
+      ${snapshotSparklineHtml(snapshot, "mini-sparkline")}
+      <strong class="${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
+    </a>
+  `;
+}
+
+function snapshotSparklineHtml(snapshot, className = "mini-sparkline") {
+  const points = Array.isArray(snapshot?.chartPoints)
+    ? snapshot.chartPoints.map((point) => Number(point.close)).filter((value) => Number.isFinite(value))
+    : [];
+  const change = Number(snapshot?.changePercent || 0);
+  const stroke = change > 0.05 ? "#34d399" : change < -0.05 ? "#fb7185" : "#fbbf24";
+  if (points.length < 2) {
+    return `<svg class="${escapeHtml(className)}" viewBox="0 0 220 58" aria-hidden="true"><path class="line" d="M4 29 H216" stroke="${stroke}"></path></svg>`;
+  }
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = Math.max(1e-9, max - min);
+  const path = points.map((value, index) => {
+    const x = 4 + (index / Math.max(1, points.length - 1)) * 212;
+    const y = 52 - ((value - min) / range) * 46;
+    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const area = `${path} L216 56 L4 56 Z`;
+  return `<svg class="${escapeHtml(className)}" viewBox="0 0 220 58" aria-hidden="true"><path class="area" d="${area}" fill="${stroke}"></path><path class="line" d="${path}" stroke="${stroke}"></path></svg>`;
 }
 
 function sourceExtractionRows(articles) {
