@@ -1823,6 +1823,8 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.ok(publicHtml.includes("Global Indices Watch"), "public briefing should show the indices watch before source depth");
   assert.ok(publicHtml.includes('href="/indices/"'), "public briefing should link to the full indices board");
   assert.ok(publicHtml.includes("mini-sparkline"), "public briefing should render Yahoo-series mini charts in the indices watch");
+  assert.ok(publicHtml.includes("source-card source-evidence-card"), "public briefing should render compact evidence cards");
+  assert.ok(publicHtml.includes("market-mini-row"), "public briefing should render compact market rows for mobile indices watch");
   // Opening Nerve lives on the trading guide only — not on the public briefing page
   assert.equal(publicHtml.includes("Opening Nerve"), false, "Opening Nerve must not appear on public briefing page");
   assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'));
@@ -2506,7 +2508,24 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveSourcePreviewHtml"));
   assert.ok(publisher.includes("assertNewDigestSourceIntegrity"));
   assert.ok(publisher.includes("archiveChips"));
-  assert.ok(publisher.includes("Market Narrative: Nifty & Bank Nifty Pre-Market Briefings"));
+  assert.ok(publisher.includes("Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative"));
+  assert.ok(publisher.includes("homepageSeoSectionHtml"));
+  assert.ok(publisher.includes("homepageFaqItems"));
+  assert.ok(publisher.includes("faqPageJsonLd"));
+  assert.ok(publisher.includes("moneyFlowPage"));
+  assert.ok(publisher.includes("marketStatisticsPage"));
+  assert.ok(publisher.includes("movesHubPage"));
+  assert.ok(publisher.includes("contactPage"));
+  assert.ok(publisher.includes("privacyPage"));
+  assert.ok(publisher.includes("termsPage"));
+  assert.ok(publisher.includes('join(siteDir, "money-flow", "fii-dii")'));
+  assert.ok(publisher.includes('join(siteDir, "market-statistics")'));
+  assert.ok(publisher.includes('join(siteDir, "moves")'));
+  assert.ok(publisher.includes('join(siteDir, "contact")'));
+  assert.ok(publisher.includes('join(siteDir, "privacy")'));
+  assert.ok(publisher.includes('join(siteDir, "terms")'));
+  assert.ok(publisher.includes("FII DII Data Today - Institutional Flow & F&O Positioning"));
+  assert.ok(publisher.includes("India Market Statistics Today - Nifty Breadth & Health Score"));
   assert.ok(publisher.includes("Daily trader workflow"));
   // Opening nerve removed in redesign
   // Workflow strip updated in redesign
@@ -2520,6 +2539,12 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("sentiment-sparkline"));
   assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected"));
   assert.ok(publisher.includes("overflow-x: auto"));
+  assert.ok(publisher.includes('aria-label="Search archive by keyword"'));
+  assert.ok(publisher.includes("staticPageActiveKey"));
+  assert.ok(publisher.includes("bottomTabBarHtml(staticPageActiveKey(path))"));
+  assert.ok(publisher.includes('body class="has-btb"'));
+  assert.ok(publisher.includes('bottomTabBarHtml("more")'));
+  assert.ok(publisher.includes(".indices-grid { grid-template-columns: 1fr; }"));
   assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");
   for (const roughCopy of [
     "All Market Narrative briefings",

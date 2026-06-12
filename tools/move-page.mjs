@@ -9,17 +9,37 @@ import { escapeHtml } from "./brand-assets.mjs"; // reuse utility for escaping H
  */
 function newsArticleJsonLd({ date, slug, article, symbol, change }) {
   const url = `${process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in"}/moves/${date}/${slug}/`;
+  const origin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+  const movement = change > 0 ? "rose" : "fell";
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": article.headline,
+    "headline": article.headline?.slice(0, 110) || `Why ${symbol} ${movement} today`,
     "description": article.summary ?? "",
+    "image": {
+      "@type": "ImageObject",
+      "url": article.thumbnail?.url ?? `${origin}/og-card.svg`,
+      "width": 1200,
+      "height": 630
+    },
     "datePublished": new Date().toISOString(),
-    "url": url,
-    "author": { "@type": "Organization", "name": "Market Narrative" },
-    "image": article.thumbnail?.url ?? null,
+    "dateModified": new Date().toISOString(),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+    "author": { "@type": "Organization", "name": "Market Narrative", "url": origin },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Market Narrative",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${origin}/favicon.svg`
+      }
+    },
+    "about": { "@type": "Thing", "name": symbol },
     "articleSection": symbol,
-    "keywords": `move,${symbol},${change > 0 ? "up" : "down"}`
+    "keywords": `why did ${symbol.toLowerCase()} ${movement} today, ${symbol.toLowerCase()} move reason, stock market today india, nifty fall reason today`
   };
 }
 
@@ -37,8 +57,9 @@ function safeJsonScript(value) {
  * @param {number} params.change   Percent change (positive or negative)
  */
 export function movePage({ date, slug, article, symbol, change }) {
-  const pageTitle = `${symbol} ${change > 0 ? "surges" : "drops"} ${Math.abs(change).toFixed(1)}% – Market Move`;
-  const description = article.summary?.slice(0, 150) ?? "";
+  const movement = change > 0 ? "rose" : "fell";
+  const pageTitle = `Why ${symbol} ${movement} ${Math.abs(change).toFixed(1)}% today - ${date} | Market Narrative`;
+  const description = compactMetaDescription(`${symbol} ${movement} ${Math.abs(change).toFixed(1)}% on ${date}. ${article.summary ?? ""}`);
   const jsonLd = safeJsonScript(newsArticleJsonLd({ date, slug, article, symbol, change }));
   const thumbnailUrl = article.thumbnail?.url ?? "";
 
@@ -49,7 +70,19 @@ export function movePage({ date, slug, article, symbol, change }) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(description)}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <link rel="canonical" href="${escapeHtml(`https://marketnarrative.in/moves/${date}/${slug}/`)}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:url" content="${escapeHtml(`https://marketnarrative.in/moves/${date}/${slug}/`)}">
+  <meta property="og:image" content="${escapeHtml(thumbnailUrl || "https://marketnarrative.in/og-card.svg")}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="${escapeHtml(thumbnailUrl || "https://marketnarrative.in/og-card.svg")}">
   <script type="application/ld+json">${jsonLd}</script>
   <style>
     ${compactCardCss()}
@@ -60,8 +93,8 @@ export function movePage({ date, slug, article, symbol, change }) {
 <body class="has-btb">
   <section class="compact-card">
     <header class="compact-header">
-      <h1>${escapeHtml(article.headline)}</h1>
-      <p class="compact-subtitle">${escapeHtml(symbol)} ${change > 0 ? "↑" : "↓"} ${Math.abs(change).toFixed(1)}%</p>
+      <h1>Why ${escapeHtml(symbol)} ${escapeHtml(movement)} ${escapeHtml(Math.abs(change).toFixed(1))}% today</h1>
+      <p class="compact-subtitle">${escapeHtml(article.headline || `${symbol} market move explained`)}</p>
     </header>
     ${thumbnailUrl ? `<img src="${escapeHtml(thumbnailUrl)}" alt="${escapeHtml(article.headline)}" class="compact-thumb"/>` : ""}
     <article class="compact-body">
@@ -125,3 +158,8 @@ function compactCardCss() {
  * Re‑use the existing mobile shell script for service‑worker registration and haptic taps.
  */
 import { mobileShellScript } from "./mobile-shell.mjs";
+
+function compactMetaDescription(value) {
+  const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  return normalized.length <= 170 ? normalized : `${normalized.slice(0, 167).replace(/\s+\S*$/, "")}...`;
+}

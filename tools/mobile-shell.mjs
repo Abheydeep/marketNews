@@ -73,6 +73,55 @@ export function mobileCtaCss() {
 export function proPolishCss() {
   return `
     /* === Pro polish (Tier 3) === */
+    :root {
+      --touch-min: 44px;
+      --mobile-gap: 12px;
+      --mobile-shell-pad: 14px;
+    }
+    .touch-target,
+    a,
+    button,
+    summary,
+    input,
+    select {
+      touch-action: manipulation;
+    }
+    a,
+    button,
+    summary,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+    a,
+    button,
+    summary {
+      min-height: var(--touch-min);
+    }
+    a,
+    button {
+      min-width: var(--touch-min);
+    }
+    summary {
+      min-width: 0;
+    }
+    .mobile-safe-scroll,
+    .table-wrap,
+    .tabs,
+    .nav-actions {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
     /* Mobile-first root: 15px on phones, 16px on small tablets, 17px on
        desktop. Tighter than the OS default so a lot of rem-based sizing
        (cards, panels, hero) doesn't blow up on small viewports. */
@@ -130,7 +179,7 @@ export function mobileTypographyCss() {
     /* === Mobile typography (overrides) === */
     @media (max-width: 760px) {
       .shell {
-        padding: 0 14px !important;
+        padding: 0 var(--mobile-shell-pad) !important;
       }
       main.shell {
         padding-top: 24px !important;
@@ -181,6 +230,22 @@ export function mobileTypographyCss() {
       }
       .briefing-expand-card summary p {
         font-size: 16px !important;
+      }
+      .summary-chip,
+      .metric-card,
+      .index-card,
+      .hero-action,
+      .workflow-step,
+      .source-card,
+      details.panel,
+      .faq-list details {
+        border-radius: 8px !important;
+      }
+      .share-row,
+      .site-footer-links,
+      .source-card-footer,
+      .source-card-header {
+        gap: 8px !important;
       }
     }
     @media (max-width: 480px) {

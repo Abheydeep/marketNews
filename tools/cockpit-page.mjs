@@ -27,11 +27,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   // does not flag a mismatch between the structured data and the on-page H1.
   const pageH1 = digest.title || "Daily Pre-Market Briefing";
   const pageTitle = isTradingGuidePage
-    ? `Trading Guide: ${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`
-    : `${pageH1} | Market Narrative - ${formatDigestDate(digest.digestDate)}`;
-  const pageDescription = isTradingGuidePage
-    ? "Standalone Nifty and Bank Nifty trading guide with bias, gates, no-trade zone, confirmation checks, and market preparation context."
-    : "Daily pre-market intelligence for Nifty, Bank Nifty, global cues, Asian markets, source cards, and live chart context.";
+    ? `Trading Guide: ${pageH1} | Nifty & Bank Nifty Levels - ${formatDigestDate(digest.digestDate)}`
+    : `${pageH1} - Nifty Pre-Market Analysis ${formatDigestDate(digest.digestDate)} | Market Narrative`;
+  const pageDescription = dailySeoDescription(digest, isTradingGuidePage);
   const pageOrigin = options.siteOrigin ?? siteOrigin;
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
@@ -5063,6 +5061,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         width: 100%;
       }
 
+      .source-card-header,
+      .source-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .source-stat-strip,
       .source-stat-help {
         justify-content: flex-start;
@@ -5078,12 +5082,70 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .regional-breadth {
         grid-template-columns: 1fr;
       }
+
+      .market-map-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .source-card.source-evidence-card {
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .source-thumb {
+        min-height: 78px;
+      }
+
+      .source-thumb span {
+        bottom: 30px;
+        font-size: 9px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .source-thumb strong {
+        bottom: 10px;
+        font-size: 12px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .source-card h3 {
+        font-size: 14px;
+      }
+
+      .source-card-detail {
+        margin-top: 7px;
+      }
+
+      .market-mini-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
+      .mini-sparkline {
+        grid-column: 1 / -1;
+        height: 30px;
+        width: 100%;
+      }
     }
 
     @media (max-width: 480px) {
       .page-header h1 {
         font-size: 30px;
         line-height: 1.08;
+      }
+
+      .india-preopen-panel {
+        padding: 14px;
+      }
+
+      .preopen-header {
+        flex-direction: column;
+      }
+
+      .preopen-flow-badge {
+        width: max-content;
       }
 
       .source-stat-strip span {
@@ -5093,6 +5155,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       .chart-link-btn {
         width: 100%;
         justify-content: center;
+      }
+
+      .source-card.source-evidence-card {
+        grid-template-columns: 68px minmax(0, 1fr);
+      }
+
+      .source-thumb {
+        min-height: 72px;
+      }
+
+      .source-card-footer a {
+        width: 100%;
+      }
+
+      .market-map-details summary {
+        padding: 14px;
+      }
+
+      .market-map-grid {
+        padding: 0 12px 12px;
+      }
+
+      .indices-page-link {
+        margin: 0 12px 12px;
+        width: calc(100% - 24px);
       }
     }
     .market-map-details {
@@ -9945,6 +10032,34 @@ function formatDigestDate(date) {
     month: "short",
     year: "numeric"
   }).format(new Date(`${date}T12:00:00+05:30`));
+}
+
+function dailySeoDescription(digest, isTradingGuidePage) {
+  if (isTradingGuidePage) {
+    return "Nifty and Bank Nifty trading guide with opening bias, levels, no-trade zone, Bank Nifty confirmation and first-range checks for market preparation.";
+  }
+  const lead = firstSentence(
+    digest.todaysReadArticle ||
+    digest.briefing ||
+    digest.dailyLead?.summary ||
+    digest.twoMinuteSummary ||
+    ""
+  );
+  const prefix = `Pre-market analysis for ${formatDigestDate(digest.digestDate)}.`;
+  const suffix = "GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
+  return compactMetaDescription([prefix, lead, suffix].filter(Boolean).join(" "));
+}
+
+function firstSentence(value) {
+  const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  const match = normalized.match(/^(.{40,180}?[.!?])\s/);
+  return match ? match[1] : normalized.slice(0, 160);
+}
+
+function compactMetaDescription(value) {
+  const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  return normalized.length <= 220 ? normalized : `${normalized.slice(0, 217).replace(/\s+\S*$/, "")}...`;
 }
 
 function niftySetup(digest) {

@@ -4,7 +4,7 @@
  *
  * Run after `vercel deploy --prod` (or in CI) to catch the regression classes that
  * the reliability review flagged: JSON-LD headline/H1 mismatch, missing sitemap
- * entries, broken /latest/ redirect, missing cache headers, dead links.
+ * entries, broken /latest/ resolution, missing cache headers, dead links.
  *
  * Exits non-zero on any failure so it can gate a release.
  *
@@ -87,6 +87,19 @@ function findNewsArticle(nodes) {
   return null;
 }
 
+function samePath(left, right) {
+  const leftPath = String(left || "").replace(/^https?:\/\/[^/]+/, "").replace(/\/+$/, "");
+  const rightPath = String(right || "").replace(/^https?:\/\/[^/]+/, "").replace(/\/+$/, "");
+  return Boolean(leftPath && rightPath && leftPath === rightPath);
+}
+
+function latestHtmlPointsToBrief(html, latestUrl) {
+  const latestPath = String(latestUrl || "").replace(/^https?:\/\/[^/]+/, "").replace(/\/+$/, "");
+  if (!latestPath) return false;
+  const escaped = latestPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?:url=|href=|location\\.(?:replace|assign)\\()[\"']?${escaped}/?`, "i").test(html);
+}
+
 async function probeLatestSlugFromSitemap(sitemapXml) {
   const urls = extractMatches(sitemapXml, /<loc>([^<]+)<\/loc>/g).map((m) => m[1]);
   // Accept both compact (3jun2026) and ISO (2026-06-03) slug formats. The Day 7
@@ -127,24 +140,23 @@ async function main() {
   const latestUrl = await probeLatestSlugFromSitemap(sitemapXml);
   record("sitemap parses and has at least one daily brief", Boolean(latestUrl), latestUrl || "no briefs in sitemap");
 
-  // 3. /latest/ eventually resolves to the latest verified brief
-  // Production routes /latest/ → /api/latest-redirect (vercel.json rewrites),
-  // which issues a real 301. Probe with redirect: "manual" so we observe the
-  // redirect itself and its Location header rather than the followed-redirect
-  // body (which is the brief HTML and contains no redirect signal).
+  // 3. /latest/ eventually resolves to the latest verified brief.
+  // Older production builds issued a hard 301 from /latest/. Current static
+  // builds can serve a lightweight shell with meta/JS links to the latest brief.
+  // Accept either contract, but keep verifying that the target is the newest
+  // sitemap briefing rather than stale archive history.
   const latestRes = await fetchText(`${SITE_ORIGIN}/latest/`, { redirect: "manual" });
   const latestStatus = latestRes.status;
   const latestLocation = latestRes.headers.get("location");
-  record("/latest/ responds with 301", latestStatus === 301, `status=${latestStatus}`);
   if (latestUrl) {
-    const normalizedLatest = latestUrl.replace(/\/+$/, "");
-    const normalizedLocation = (latestLocation || "").replace(/\/+$/, "");
-    // Location may be a relative path ("/5jun2026/") or absolute
-    // ("https://www.marketnarrative.in/5jun2026/"). Compare on the path tail.
-    const locationTail = normalizedLocation.replace(/^https?:\/\/[^/]+/, "");
-    const latestTail = normalizedLatest.replace(/^https?:\/\/[^/]+/, "");
-    const matches = locationTail && locationTail === latestTail;
-    record("/latest/ Location header matches sitemap's latest brief", Boolean(matches), `location=${latestLocation || "?"} expected=${latestTail}`);
+    const redirectStatuses = new Set([301, 302, 307, 308]);
+    if (redirectStatuses.has(latestStatus)) {
+      record("/latest/ redirects to sitemap's latest brief", samePath(latestLocation, latestUrl), `location=${latestLocation || "?"}`);
+    } else {
+      const latestHtml = await latestRes.text();
+      const pointsToLatest = latestStatus === 200 && latestHtmlPointsToBrief(latestHtml, latestUrl);
+      record("/latest/ static shell points to sitemap's latest brief", pointsToLatest, `status=${latestStatus}`);
+    }
   }
 
   // 4. JSON-LD headline ↔ H1 parity on the latest daily brief

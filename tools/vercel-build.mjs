@@ -29,7 +29,21 @@ await mkdir(outputDir, { recursive: true });
 if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
   await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
-  await writeManifest(target, ["/", "/latest/", "/latest/trading-guide/", "/multibagger/", "/about/", "/subscribe/"]);
+  await writeManifest(target, [
+    "/",
+    "/latest/",
+    "/latest/trading-guide/",
+    "/indices/",
+    "/money-flow/fii-dii/",
+    "/market-statistics/",
+    "/moves/",
+    "/multibagger/",
+    "/about/",
+    "/subscribe/",
+    "/contact/",
+    "/privacy/",
+    "/terms/"
+  ]);
   // Mirror out/site/latest-slug.txt to the project root so api/latest-redirect.js
   // can read it as a last-resort fallback on cold start when the env var and
   // the /digest.json fetch are both unavailable. Vercel deploys the project

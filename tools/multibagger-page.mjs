@@ -821,8 +821,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid var(--line);
       border-radius: 8px;
+      scrollbar-width: thin;
     }
 
     table {
@@ -1583,8 +1585,44 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         padding: 16px;
       }
 
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .module-grid details.panel:not([open]) summary {
-        min-height: 132px;
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .module-grid details.panel:not([open]),
+      .module-grid details.panel:not([open]) summary {
+        min-height: 0;
+      }
+
+      .module-grid details.panel:not([open]) .module-preview {
+        padding-right: 0;
+      }
+
+      .detail-toggle {
+        justify-self: start;
+        min-height: 44px;
+      }
+
+      .table-wrap {
+        margin-left: -4px;
+        margin-right: -4px;
+      }
+
+      table {
+        min-width: 680px;
+      }
+
+      .holdings-table {
+        min-width: 980px;
+      }
+
+      .module-grid details.panel:not([open]) summary {
         padding: 18px;
       }
 

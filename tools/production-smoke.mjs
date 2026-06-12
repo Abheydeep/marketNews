@@ -13,7 +13,8 @@ const config = {
   nonAdminEmail: process.env.NON_ABHEY_EMAIL ?? "",
   nonAdminPassword: process.env.NON_ABHEY_PASSWORD ?? "",
   authenticated: process.env.RUN_AUTHENTICATED_SMOKE === "true",
-  orderBlock: process.env.RUN_ORDER_BLOCK_SMOKE === "true"
+  orderBlock: process.env.RUN_ORDER_BLOCK_SMOKE === "true",
+  timeoutMs: Number.parseInt(process.env.PROD_SMOKE_TIMEOUT_MS ?? "20000", 10)
 };
 
 const results = [];
@@ -80,7 +81,23 @@ await check("latest public digest exposes verified article sources when generate
   }
   assert.equal(payload.sourceVerification.blockedReason, null);
   assert.ok(payload.sourceVerification.verifiedArticleCount >= 8);
-  assert.ok(payload.sourceVerification.categoryCount >= 4);
+  assert.ok(payload.sourceVerification.publisherCount >= 1);
+  assert.ok(payload.sourceVerification.categoryCount >= 1);
+  const selection = payload.publicSourceSelection ?? {};
+  if (selection.publishMode === "full_brief") {
+    assert.ok(payload.sourceVerification.categoryCount >= 4, "full brief must have broad category coverage");
+    assert.ok((selection.directIndiaSourceCount ?? 0) >= 5, "full brief must have at least 5 direct India sources");
+    assert.ok((selection.officialIndiaSourceCount ?? 0) >= 3, "full brief must have at least 3 official India sources");
+  } else {
+    assert.ok(
+      ["limited_brief", "global_cue_only", undefined].includes(selection.publishMode),
+      `unexpected public publishMode ${selection.publishMode}`
+    );
+    assert.ok(
+      ["limited", "global-cue-only", undefined].includes(selection.evidenceGrade),
+      `unexpected public evidenceGrade ${selection.evidenceGrade}`
+    );
+  }
   assert.ok((payload.news ?? []).every((article) => sourceUrlLooksArticleLevel(article.sourceUrl)), "latest digest has a section homepage source URL");
   assert.equal(JSON.stringify(payload.newsCards ?? []).includes("sentimentScore"), false, "public newsCards leaked raw sentiment scores");
 });
@@ -259,27 +276,36 @@ function skip(name) {
 }
 
 async function login(email, password) {
-  const response = await fetch(`${config.authApiUrl}/api/auth/login`, {
+  const response = await fetchText(`${config.authApiUrl}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
   });
-  const payload = await response.json().catch(() => ({}));
+  const payload = JSON.parse(response.body || "{}");
   assert.equal(response.status, 200, `login failed with ${response.status}: ${JSON.stringify(payload)}`);
   assert.ok(payload.token, "login response did not include token");
   return payload.token;
 }
 
 async function fetchText(url, options = {}) {
-  const response = await fetch(url, {
-    redirect: "follow",
-    ...options
-  });
-  return { status: response.status, body: await response.text(), headers: response.headers };
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), config.timeoutMs);
+  try {
+    const response = await fetch(url, {
+      redirect: "follow",
+      ...options,
+      signal: controller.signal
+    });
+    return { status: response.status, body: await response.text(), headers: response.headers };
+  } catch (error) {
+    throw new Error(error.cause?.code ?? error.message);
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function fetchJson(url, expectedStatus, token, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetchText(url, {
     method: options.method ?? "GET",
     headers: {
       Accept: "application/json",
@@ -289,9 +315,12 @@ async function fetchJson(url, expectedStatus, token, options = {}) {
     },
     body: options.body
   });
-  const payload = await response.json().catch(() => ({}));
   const expected = Array.isArray(expectedStatus) ? expectedStatus : [expectedStatus];
-  assert.ok(expected.includes(response.status), `expected HTTP ${expected.join(" or ")}, got ${response.status}: ${JSON.stringify(payload)}`);
+  assert.ok(
+    expected.includes(response.status),
+    `expected HTTP ${expected.join(" or ")}, got ${response.status}: ${response.body.slice(0, 120).replace(/\s+/g, " ")}`
+  );
+  const payload = JSON.parse(response.body || "{}");
   if (Array.isArray(expectedStatus)) {
     return { statusCode: response.status, payload };
   }

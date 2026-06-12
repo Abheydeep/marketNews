@@ -25,6 +25,7 @@ const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
+const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").trim() || `https://formsubmit.co/${subscribeEmail}`;
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
@@ -134,6 +135,12 @@ const multibaggerDir = join(siteDir, "multibagger");
 const aboutDir = join(siteDir, "about");
 const subscribeDir = join(siteDir, "subscribe");
 const indicesDir = join(siteDir, "indices");
+const moneyFlowDir = join(siteDir, "money-flow", "fii-dii");
+const marketStatsDir = join(siteDir, "market-statistics");
+const movesDir = join(siteDir, "moves");
+const contactDir = join(siteDir, "contact");
+const privacyDir = join(siteDir, "privacy");
+const termsDir = join(siteDir, "terms");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
@@ -152,6 +159,18 @@ await mkdir(subscribeDir, { recursive: true });
 await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
 await mkdir(indicesDir, { recursive: true });
 await writeGuardedFile(join(indicesDir, "index.html"), indicesPage(latest));
+await mkdir(moneyFlowDir, { recursive: true });
+await writeGuardedFile(join(moneyFlowDir, "index.html"), moneyFlowPage(latest));
+await mkdir(marketStatsDir, { recursive: true });
+await writeGuardedFile(join(marketStatsDir, "index.html"), marketStatisticsPage(latest));
+await mkdir(movesDir, { recursive: true });
+await writeGuardedFile(join(movesDir, "index.html"), movesHubPage(latest));
+await mkdir(contactDir, { recursive: true });
+await writeGuardedFile(join(contactDir, "index.html"), contactPage());
+await mkdir(privacyDir, { recursive: true });
+await writeGuardedFile(join(privacyDir, "index.html"), privacyPage());
+await mkdir(termsDir, { recursive: true });
+await writeGuardedFile(join(termsDir, "index.html"), termsPage());
 
 await mkdir(join(adminDir, "components"), { recursive: true });
 await mkdir(join(adminDir, "multibagger"), { recursive: true });
@@ -270,20 +289,25 @@ function redirectPage(targetHref, label) {
   <title>Market Narrative ${escapeHtml(label)}</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#050816;color:#f8fafc;font-family:system-ui,sans-serif}
+    html,body{height:100%;overflow-x:hidden;background:#050816;color:#f8fafc;font-family:system-ui,sans-serif}
     body{display:flex;align-items:center;justify-content:center;min-height:100vh}
     .redir{text-align:center;padding:24px}
     .redir p{color:#b8c4d8;font-size:.9rem;margin-top:8px}
     .redir a{color:#60a5fa;text-decoration:none;font-size:.85rem;display:block;margin-top:16px}
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
   <script>location.replace(${JSON.stringify(targetHref)});</script>
 </head>
-<body>
+<body class="has-btb">
   <div class="redir">
     <p>Redirecting…</p>
     <p>Educational market research only; not SEBI-registered investment advice.</p>
     <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
   </div>
+  ${bottomTabBarHtml(label === "latest trading guide" ? "guide" : "latest")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -864,13 +888,14 @@ function fallbackWatchItems(digest) {
 
 function archivePage(digests, allDigests = digests, latestDigest = null) {
   const latest = latestDigest ?? digests.find(isVerifiedPublicDigest) ?? digests[0];
-  const pageTitle = "Market Narrative: Nifty & Bank Nifty Pre-Market Briefings";
-  const pageDescription = "Market Narrative by Abhey Deep publishes a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing with global cues, India read-through, source cards, trading guide levels, and archive history.";
+  const pageTitle = "Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative";
+  const pageDescription = "Daily Nifty today analysis at 7:15 AM IST covering GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const latestState = homepageLatestState(latest);
   const primaryAction = homepagePrimaryAction(latestState, latest);
   const heroContent = homepageHeroContent(latest);
   const jsonLdDigests = digests.filter(isVerifiedPublicDigest);
+  const homepageFaq = homepageFaqItems();
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -908,7 +933,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
-  <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty pre-market, Indian stock market briefing, GIFT Nifty, Nifty trading guide">
+  <meta name="keywords" content="nifty today analysis, pre market analysis nifty, bank nifty analysis today, gift nifty today, fii dii data today, indian stock market analysis today">
+  <meta name="geo.region" content="IN">
+  <meta name="geo.placename" content="India">
+  <meta name="language" content="English">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/">
@@ -919,12 +947,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
   <meta property="og:url" content="${escapeHtml(siteOrigin)}/">
   <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Market Narrative Nifty pre-market analysis briefing">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:title" content="Nifty Today Analysis - Pre-Market Briefing | Market Narrative">
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
   <title>${escapeHtml(pageTitle)}</title>
-  ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription))}
+  ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription, homepageFaq))}
   <style>
     :root {
       --paper: #050816;
@@ -1749,6 +1778,83 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       color: #94a3b8;
     }
 
+    .seo-section,
+    .faq-section,
+    .site-footer-links {
+      border-top: 1px solid var(--line);
+      margin-top: 34px;
+      padding-top: 28px;
+    }
+
+    .seo-section h2,
+    .faq-section h2 {
+      color: #f8fafc;
+      font-size: 24px;
+      letter-spacing: 0;
+      margin: 0 0 12px;
+    }
+
+    .seo-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .seo-copy-card,
+    .faq-section details {
+      background: rgba(15, 23, 42, 0.58);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .seo-copy-card h3 {
+      color: #f8fafc;
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    .seo-copy-card p,
+    .faq-section p {
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-section summary {
+      cursor: pointer;
+      color: #f8fafc;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .faq-section details p {
+      margin-top: 10px;
+    }
+
+    .site-footer-links {
+      color: #94a3b8;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 36px;
+    }
+
+    .site-footer-links a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #f8fafc;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 9px 11px;
+    }
+
     @media (max-width: 760px) {
       .hero-actions,
       .workflow-strip {
@@ -1803,6 +1909,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         grid-template-columns: 1fr;
       }
 
+      .seo-grid {
+        grid-template-columns: 1fr;
+      }
+
       .archive-filter-head,
       .subscribe-strip {
         align-items: flex-start;
@@ -1838,6 +1948,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
           <a class="nav-link" href="./">Archive</a>
           <a class="latest-link" href="./latest/">Latest briefing</a>
           <a class="nav-link" href="./latest/trading-guide/">Trading Guide</a>
+          <a class="nav-link" href="./money-flow/fii-dii/">FII/DII</a>
+          <a class="nav-link" href="./market-statistics/">Stats</a>
           <a class="nav-link" href="./multibagger/">Portfolio</a>
           <a class="nav-link" href="./about/">About</a>
           <a class="subscribe-link" href="${escapeHtml(subscribeHref())}">Subscribe</a>
@@ -1902,7 +2014,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         <span id="archiveResultCount">${escapeHtml(String(digests.length))} briefings shown · try crude, Bank Nifty, IT, rates, or a date</span>
       </div>
       <div class="archive-filter-controls">
-        <input id="archiveSearch" type="search" aria-label="Search archive by keyword">
+        <input id="archiveSearch" type="search" aria-label="Search archive by keyword" autocomplete="off" autocapitalize="none">
         <select id="archiveTagFilter" aria-label="Filter archive by driver">
           <option value="all">All</option>
           <option value="crude-energy">Crude / Energy</option>
@@ -1921,6 +2033,9 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <h2 class="archive-title">Recent Briefing Navigation</h2>
       ${recentGrid}
     </section>
+    ${homepageSeoSectionHtml()}
+    ${homepageFaqSectionHtml(homepageFaq)}
+    ${siteFooterLinksHtml()}
   </main>
   <script>
     document.querySelectorAll('[data-copy-url]').forEach((button) => {
@@ -2656,7 +2771,419 @@ function subscribePage() {
 </html>`;
 }
 
-function archivePageJsonLd(latest, digests, pageTitle, pageDescription) {
+function moneyFlowPage(latest) {
+  const pageTitle = "FII DII Data Today - Institutional Flow & F&O Positioning | Market Narrative";
+  const pageDescription = "FII DII data today with interpretation for Nifty traders. Track FII selling, DII absorption, institutional flow and Bank Nifty context.";
+  const flow = latest?.fiiDiiFlows ?? null;
+  const flowDate = flow?.date || latest?.digestDate || todayInIst();
+  const fiiNet = Number(flow?.fiiNet ?? 0);
+  const diiNet = Number(flow?.diiNet ?? 0);
+  const hasFlow = Boolean(flow) && (Math.abs(fiiNet) > 0 || Math.abs(diiNet) > 0);
+  const absorption = fiiNet < 0 && diiNet > 0
+    ? `${Math.round((diiNet / Math.abs(fiiNet)) * 100)}%`
+    : "not applicable";
+  const body = `
+    <section class="metric-grid" aria-label="Latest institutional flow snapshot">
+      <article class="metric-card"><span>FII cash flow</span><strong class="${fiiNet >= 0 ? "up" : "down"}">${escapeHtml(hasFlow ? formatCrore(fiiNet) : "Unavailable")}</strong><p>${escapeHtml(flowDate)} provisional cash-market read.</p></article>
+      <article class="metric-card"><span>DII cash flow</span><strong class="${diiNet >= 0 ? "up" : "down"}">${escapeHtml(hasFlow ? formatCrore(diiNet) : "Unavailable")}</strong><p>Domestic institutional buying or selling against FII flow.</p></article>
+      <article class="metric-card"><span>DII absorption ratio</span><strong>${escapeHtml(absorption)}</strong><p>How much domestic buying offset FII selling in the latest available data.</p></article>
+    </section>
+    <section class="copy-stack">
+      <h2>How to read today's FII DII data</h2>
+      <p>FII DII data today is useful because it shows whether institutional money is supporting or resisting the Nifty move. Heavy FII selling today can pressure the next session, but the read changes when DII buying today absorbs most of that outflow. The useful question is not just whether FIIs sold; it is whether the selling came with weak breadth, Bank Nifty pressure, USD/INR stress, or index futures short build-up.</p>
+      <h2>What FII F&O positioning tells you that cash data does not</h2>
+      <p>Cash flow tells you what institutions did in the spot market. FII F&O data adds the forward-looking layer: index futures, stock futures, options positioning, and whether the desk is hedging or pressing a directional view. If FII cash selling comes with index-futures short build-up, the signal is stronger. If cash selling comes with futures covering, the market may be rotating rather than breaking down.</p>
+      <h2>Understanding the DII absorption ratio</h2>
+      <p>The DII absorption ratio compares domestic buying against FII net selling. If FIIs sell Rs 2,000 cr and DIIs buy Rs 3,000 cr, absorption is 150%, which means domestic institutions more than absorbed the foreign outflow. That can cushion Nifty even on weak global cues. If absorption is low, the same FII selling can matter more for the opening range.</p>
+    </section>
+    <section class="faq-section">
+      <h2>FII DII questions traders ask</h2>
+      ${faqDetailsHtml(fiiDiiFaqItems())}
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/money-flow/fii-dii/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Institutional Flow",
+    h1: "FII DII Data Today - Institutional Flow & Positioning",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "FII DII Data", url: `${siteOrigin}/money-flow/fii-dii/` }
+      ]),
+      {
+        "@type": "WebPage",
+        "@id": `${siteOrigin}/money-flow/fii-dii/#webpage`,
+        url: `${siteOrigin}/money-flow/fii-dii/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` },
+        dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
+      },
+      faqPageJsonLd(`${siteOrigin}/money-flow/fii-dii/#faq`, fiiDiiFaqItems())
+    ])
+  });
+}
+
+function marketStatisticsPage(latest) {
+  const pageTitle = "India Market Statistics Today - Nifty Breadth, VIX & Flow | Market Narrative";
+  const pageDescription = "India market statistics today for Nifty traders: index context, India VIX, FII DII flow, sector cues and market health explanation.";
+  const snapshots = Array.isArray(latest?.marketSnapshots) ? latest.marketSnapshots : [];
+  const keySymbols = ["NIFTY", "BANKNIFTY", "GIFTNIFTY", "INDIAVIX", "USDINR", "BRENT", "GOLD"];
+  const selected = keySymbols
+    .map((symbol) => snapshots.find((snapshot) => snapshot.symbol === symbol))
+    .filter(Boolean);
+  const health = marketHealthScore(selected, latest?.fiiDiiFlows);
+  const body = `
+    <section class="metric-grid" aria-label="Latest market statistics">
+      <article class="metric-card"><span>Market health score</span><strong>${escapeHtml(String(health.score))}/100</strong><p>${escapeHtml(health.label)}</p></article>
+      ${selected.slice(0, 5).map((snapshot) => `
+        <article class="metric-card">
+          <span>${escapeHtml(snapshot.symbol)}</span>
+          <strong class="${Number(snapshot.changePercent || 0) >= 0 ? "up" : "down"}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
+          <p>${escapeHtml(marketDisplayNameForSnapshot(snapshot))} - ${escapeHtml(formatIndexValue(snapshot))}</p>
+        </article>
+      `).join("")}
+    </section>
+    <section class="copy-stack">
+      <h2>How to read India market statistics today</h2>
+      <p>Market statistics help separate a real Nifty move from a narrow index print. The first check is index direction, then Bank Nifty confirmation, India VIX, FII DII flow, crude oil, USD/INR, and whether the sector move is broad enough to sustain after the opening range. A green Nifty with weak banks and rising VIX is less useful than a smaller move with breadth support.</p>
+      <h2>Nifty breadth, advance decline and market health</h2>
+      <p>The advance decline ratio shows whether more NSE stocks are rising than falling. When Nifty rises but the advance decline ratio is weak, the move is usually concentrated in index heavyweights. Market Narrative treats breadth as confirmation, not decoration: the briefing waits for Bank Nifty and sector participation before turning global cues into an India-open view.</p>
+      <h2>Why India VIX matters before the open</h2>
+      <p>India VIX tells you whether options traders are pricing calm or stress. A falling VIX with stable USD/INR and supportive FII DII flow usually makes gap follow-through easier. A rising VIX into a green open can mean traders are hedging the move, so the first 15-30 minutes matter more than the headline.</p>
+    </section>
+    <section class="faq-section">
+      <h2>Market statistics questions</h2>
+      ${faqDetailsHtml(marketStatsFaqItems())}
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/market-statistics/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Market Statistics",
+    h1: "India Market Statistics Today - Nifty Breadth & Health Score",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "Market Statistics", url: `${siteOrigin}/market-statistics/` }
+      ]),
+      {
+        "@type": "WebPage",
+        "@id": `${siteOrigin}/market-statistics/#webpage`,
+        url: `${siteOrigin}/market-statistics/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` },
+        dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
+      },
+      faqPageJsonLd(`${siteOrigin}/market-statistics/#faq`, marketStatsFaqItems())
+    ])
+  });
+}
+
+function movesHubPage(latest) {
+  const pageTitle = "Why Stocks Move - Daily Nifty Stock Move Explanations | Market Narrative";
+  const pageDescription = "Find out why Nifty, Bank Nifty and Indian stocks moved today with source-backed market move explanations and India read-through.";
+  const body = `
+    <section class="copy-stack">
+      <h2>Why Indian stocks move</h2>
+      <p>Market Narrative move articles explain the reason behind sharp moves in Nifty, Bank Nifty, sector indices, and important Indian stocks. The goal is simple: answer why the market rose or fell today without turning the page into tips, targets, or trade calls.</p>
+      <h2>What each move article includes</h2>
+      <p>Each article is designed to explain what happened, the source-backed reason, the India read-through, and what to watch next. For index moves, the article focuses on breadth, FII DII flow, crude oil, USD/INR, sector leadership, and whether Bank Nifty confirmed the move.</p>
+      <h2>Latest briefing context</h2>
+      <p>The latest full pre-market context is still the daily briefing. Move articles are post-event explainers; use them to understand the market, not as a recommendation to buy, sell, or hold securities.</p>
+      <p><a class="inline-cta" href="/latest/">Open the latest Nifty pre-market briefing</a></p>
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/moves/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Move Explanations",
+    h1: "Why Indian Stocks Move - Daily Explanations",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "Why Stocks Move", url: `${siteOrigin}/moves/` }
+      ]),
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteOrigin}/moves/#webpage`,
+        url: `${siteOrigin}/moves/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` },
+        dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
+      }
+    ])
+  });
+}
+
+function contactPage() {
+  const pageTitle = "Contact Market Narrative - Feedback, Corrections & Partnerships";
+  const pageDescription = "Contact Market Narrative for feedback, data corrections, broken pages, press enquiries, or partnerships.";
+  const body = `
+    <section class="copy-stack">
+      <h2>Feedback and corrections</h2>
+      <p>Email <a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a> for feedback, source corrections, data errors, broken pages, press enquiries, or partnerships. For data issues, include the page URL, the specific number or line that looks wrong, and the source you are comparing it with.</p>
+      <h2>Response window</h2>
+      <p>Corrections to market data or article inaccuracies are prioritised on trading days. Normal response time is within 48 hours; urgent data corrections are reviewed as soon as possible.</p>
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/contact/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Contact",
+    h1: "Contact Market Narrative",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "Contact", url: `${siteOrigin}/contact/` }
+      ]),
+      {
+        "@type": "ContactPage",
+        "@id": `${siteOrigin}/contact/#webpage`,
+        url: `${siteOrigin}/contact/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` }
+      }
+    ])
+  });
+}
+
+function privacyPage() {
+  const pageTitle = "Privacy Policy - Market Narrative";
+  const pageDescription = "Plain-English privacy policy for Market Narrative, including analytics, external links, and contact details.";
+  const body = `
+    <section class="copy-stack">
+      <p><strong>Last updated:</strong> ${escapeHtml(formatDigestDate(todayInIst()))}</p>
+      <h2>What data we collect</h2>
+      <p>Market Narrative does not require accounts or logins. The public briefing pages can be read without registration. If you join the email list, the email provider receives the address you submit so the daily brief can be delivered.</p>
+      <h2>Analytics</h2>
+      <p>The site may use Vercel Analytics or similar privacy-focused measurement to understand page performance and traffic patterns. We do not use advertising networks, third-party tracking pixels, or behavioural ad retargeting.</p>
+      <h2>External links</h2>
+      <p>Briefing pages link to source articles and market-data pages owned by third parties. Market Narrative is not responsible for their privacy practices or content.</p>
+      <h2>Privacy contact</h2>
+      <p>For privacy questions, email <a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>. This policy is governed by the laws of India.</p>
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/privacy/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Privacy",
+    h1: "Privacy Policy",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "Privacy Policy", url: `${siteOrigin}/privacy/` }
+      ]),
+      {
+        "@type": "WebPage",
+        "@id": `${siteOrigin}/privacy/#webpage`,
+        url: `${siteOrigin}/privacy/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` }
+      }
+    ])
+  });
+}
+
+function termsPage() {
+  const pageTitle = "Terms of Use - Market Narrative";
+  const pageDescription = "Plain-English terms of use for Market Narrative, including educational use, data accuracy, external links, and liability limits.";
+  const body = `
+    <section class="copy-stack">
+      <h2>Educational market research only</h2>
+      <p>Market Narrative publishes market information and analysis for educational purposes. Nothing on this site is SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives.</p>
+      <h2>Data accuracy</h2>
+      <p>The site uses public market data, exchange information, publisher articles, and automated checks, but it cannot guarantee real-time accuracy. Always verify prices, levels, corporate announcements, and source articles before acting.</p>
+      <h2>Intellectual property</h2>
+      <p>The desk notes, explanations, page layouts, and interpretations are original Market Narrative content. Underlying market data and linked source articles remain owned by their respective publishers or data providers.</p>
+      <h2>No liability</h2>
+      <p>You are responsible for your own trading and investment decisions. Market Narrative is not liable for gains, losses, missed trades, data delays, source errors, or decisions made after reading the site.</p>
+      <h2>External links and governing law</h2>
+      <p>External links are provided for verification and context. Market Narrative does not control or endorse third-party pages. These terms are governed by the laws of India.</p>
+    </section>
+  `;
+  return staticSeoPage({
+    path: "/terms/",
+    pageTitle,
+    pageDescription,
+    eyebrow: "Terms",
+    h1: "Terms of Use",
+    bodyHtml: body,
+    jsonLd: seoGraph([
+      organizationJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Market Narrative", url: `${siteOrigin}/` },
+        { name: "Terms of Use", url: `${siteOrigin}/terms/` }
+      ]),
+      {
+        "@type": "WebPage",
+        "@id": `${siteOrigin}/terms/#webpage`,
+        url: `${siteOrigin}/terms/`,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${siteOrigin}/#website` },
+        publisher: { "@id": `${siteOrigin}/#organization` }
+      }
+    ])
+  });
+}
+
+function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd }) {
+  const canonical = `${siteOrigin}${path}`;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  ${brandHeadLinks(siteOrigin)}
+  <meta name="description" content="${escapeHtml(pageDescription)}">
+  <meta name="author" content="Abhey Deep">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#050816">
+  <link rel="canonical" href="${escapeHtml(canonical)}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:site_name" content="Market Narrative">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(pageDescription)}">
+  <meta property="og:url" content="${escapeHtml(canonical)}">
+  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
+  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <title>${escapeHtml(pageTitle)}</title>
+  ${jsonLdScript(jsonLd)}
+  <style>
+    :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.66); --cyan:#22d3ee; --green:#34d399; --red:#fb7185; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; min-height:100%; overflow-x:hidden; }
+    body { background: radial-gradient(circle at 15% 0%, rgba(34,211,238,.18), transparent 30vw), linear-gradient(135deg,#030712 0%,#08111f 48%,#111827 100%); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1040px, calc(100% - 36px)); margin:0 auto; }
+    .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
+    .nav-inner { align-items:center; display:flex; gap:16px; justify-content:space-between; min-height:64px; }
+    .brand { align-items:center; display:flex; gap:12px; font-size:20px; font-weight:850; }
+    ${brandMarkCss()}
+    .tabs { align-items:center; display:flex; flex-wrap:wrap; gap:12px; }
+    img, svg, video, canvas { max-width:100%; height:auto; }
+    a, button, summary, input, select { touch-action:manipulation; }
+    .tabs a { align-items:center; border:1px solid var(--line); border-radius:8px; color:var(--muted); display:inline-flex; font-size:13px; font-weight:800; min-height:44px; padding:8px 10px; }
+    main { padding:52px 0 36px; }
+    .hero { border-bottom:1px solid var(--line); margin-bottom:28px; padding-bottom:28px; }
+    .eyebrow { color:var(--cyan); font-size:12px; font-weight:950; letter-spacing:.12em; margin:0 0 12px; text-transform:uppercase; }
+    h1 { font-size:clamp(38px,7vw,68px); letter-spacing:0; line-height:1; margin:0; max-width:900px; }
+    .hero p { color:var(--muted); font-size:18px; line-height:1.65; margin:18px 0 0; max-width:820px; }
+    .copy-stack { display:grid; gap:16px; }
+    .copy-stack h2, .faq-section h2 { color:var(--ink); font-size:24px; letter-spacing:0; margin:20px 0 0; }
+    .copy-stack p, .faq-section p { color:var(--muted); font-size:16px; line-height:1.75; margin:0; max-width:860px; }
+    .copy-stack a, .inline-cta { color:#cffafe; font-weight:900; text-decoration:underline; text-underline-offset:3px; }
+    .metric-grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); margin-bottom:28px; }
+    .metric-card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; }
+    .metric-card span { color:var(--muted); display:block; font-size:12px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+    .metric-card strong { display:block; font-size:28px; margin:8px 0; }
+    .metric-card strong.up { color:var(--green); }
+    .metric-card strong.down { color:var(--red); }
+    .metric-card p { color:var(--muted); font-size:13px; line-height:1.5; margin:0; }
+    .faq-section { border-top:1px solid var(--line); margin-top:30px; padding-top:22px; }
+    .faq-list { display:grid; gap:10px; margin-top:14px; }
+    .faq-list details { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:15px; }
+    .faq-list summary { cursor:pointer; font-weight:850; line-height:1.35; }
+    .faq-list p { margin-top:10px; }
+    .site-footer-links { border-top:1px solid var(--line); color:var(--muted); display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; padding:24px 0 36px; }
+    .site-footer-links a { border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:13px; font-weight:800; padding:9px 11px; }
+    .disclaimer { color:var(--muted); font-size:12px; line-height:1.6; margin-top:16px; }
+    @media (max-width:720px) {
+      .nav-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
+      .tabs { overflow-x:auto; width:100%; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
+      main { padding-top:34px; }
+      .metric-grid { grid-template-columns:1fr; }
+      .copy-stack h2, .faq-section h2 { font-size:20px; line-height:1.2; }
+    }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
+  </style>
+</head>
+<body class="has-btb">
+  <nav class="topbar">
+    <div class="shell nav-inner">
+      <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
+      <div class="tabs" aria-label="Market Narrative sections">
+        <a href="/">Archive</a>
+        <a href="/latest/">Latest Briefing</a>
+        <a href="/money-flow/fii-dii/">FII/DII</a>
+        <a href="/market-statistics/">Statistics</a>
+        <a href="/moves/">Moves</a>
+        <a href="/about/">About</a>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">${escapeHtml(eyebrow)}</p>
+      <h1>${escapeHtml(h1)}</h1>
+      <p>${escapeHtml(pageDescription)}</p>
+    </section>
+    ${bodyHtml}
+    ${siteFooterLinksHtml()}
+    <p class="disclaimer">Educational market research only; this is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
+  </main>
+  ${bottomTabBarHtml(staticPageActiveKey(path))}
+  ${mobileShellScript()}
+</body>
+</html>`;
+}
+
+function staticPageActiveKey(path) {
+  if (path === "/") return "archive";
+  if (path.startsWith("/latest/")) return "latest";
+  if (path.startsWith("/multibagger/")) return "portfolio";
+  if (path.startsWith("/subscribe/")) return "subscribe";
+  return "more";
+}
+
+function archivePageJsonLd(latest, digests, pageTitle, pageDescription, faqItems = []) {
   return seoGraph([
     organizationJsonLd(),
     websiteJsonLd(),
@@ -2686,7 +3213,8 @@ function archivePageJsonLd(latest, digests, pageTitle, pageDescription) {
         }))
       },
       dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
-    }
+    },
+    faqPageJsonLd(`${siteOrigin}/#faq`, faqItems)
   ]);
 }
 
@@ -2739,11 +3267,240 @@ function subscribePageJsonLd(pageTitle, pageDescription) {
   ]);
 }
 
+function indicesPageJsonLd(pageTitle, pageDescription, digest) {
+  const snapshots = (digest.marketSnapshots ?? [])
+    .filter((snapshot) => snapshot?.symbol)
+    .slice(0, 20);
+  return seoGraph([
+    organizationJsonLd(),
+    websiteJsonLd(),
+    breadcrumbJsonLd([
+      { name: "Market Narrative", url: `${siteOrigin}/` },
+      { name: "Global Indices Watch", url: `${siteOrigin}/indices/` }
+    ]),
+    {
+      "@type": "WebPage",
+      "@id": `${siteOrigin}/indices/#webpage`,
+      url: `${siteOrigin}/indices/`,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      about: ["Nifty 50", "Bank Nifty", "GIFT Nifty", "Asian markets", "US markets", "Brent crude", "USD INR"],
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: snapshots.length,
+        itemListElement: snapshots.map((snapshot, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: marketDisplayNameForSnapshot(snapshot),
+          item: {
+            "@type": "Thing",
+            name: marketDisplayNameForSnapshot(snapshot),
+            alternateName: snapshot.symbol,
+            description: `${marketDisplayNameForSnapshot(snapshot)} reference move: ${formatSnapshotChange(snapshot)}`
+          }
+        }))
+      }
+    }
+  ]);
+}
+
 function seoGraph(nodes) {
   return {
     "@context": "https://schema.org",
-    "@graph": nodes
+    "@graph": nodes.filter(Boolean)
   };
+}
+
+function homepageSeoSectionHtml() {
+  const sections = [
+    {
+      title: "What is Market Narrative?",
+      body: "Market Narrative is a pre market analysis nifty briefing for Indian traders who want a clear read before the cash market opens. The daily briefing covers Nifty 50, Bank Nifty, global cues, institutional flow, and the first confirmation levels to watch at 9:15 AM IST. It is published before 7:15 AM IST on trading days and written for readers who need context, not noise."
+    },
+    {
+      title: "What the briefing covers every morning",
+      body: "Each Nifty today analysis combines GIFT Nifty today context, FII DII data today, crude oil impact for India, Asia market cues, Bank Nifty analysis today, and the opening bias. The goal is to show what changed overnight, which sector has the market nerve, and what must confirm before the first move deserves weight."
+    },
+    {
+      title: "How to read the pre-market briefing",
+      body: "Start with the 2-minute summary, then use the Trading Guide levels only as conditional preparation. The desk note explains the story; the opening range decides whether it matters. Searchers looking for a Nifty prediction today should read Market Narrative as a conditional market map, not a certainty."
+    },
+    {
+      title: "Why FII DII data matters for Nifty",
+      body: "FII selling today can pressure Nifty when it arrives with weak breadth, USD/INR stress, or index-futures shorts. DII absorption changes the read: strong domestic buying can cushion foreign outflow. That institutional flow is one of the most important pre-market signals for Indian stock market analysis today."
+    },
+    {
+      title: "Published before 7:15 AM IST every trading day",
+      body: "The site is built for the morning window before the Indian cash open. Read it alongside your broker terminal, official exchange data, and live charts. Market Narrative is share market analysis today India readers can scan quickly, then verify with opening breadth and Bank Nifty confirmation."
+    },
+    {
+      title: "Free and no account required",
+      body: "The public archive, latest briefing, FII DII page, market statistics, and move explainers are free to read. No account is required. The positioning is simple: Indian stock market analysis today, written with source links and a no-advice boundary."
+    }
+  ];
+  return `
+    <section class="seo-section" aria-label="About this Nifty pre-market briefing">
+      <h2>What is Market Narrative?</h2>
+      <div class="seo-grid">
+        ${sections.map((section) => `
+          <article class="seo-copy-card">
+            <h3>${escapeHtml(section.title)}</h3>
+            <p>${escapeHtml(section.body)}</p>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function homepageFaqItems() {
+  return [
+    {
+      name: "What is a pre-market analysis for Nifty?",
+      text: "A pre-market analysis for Nifty is a morning read of the global and domestic signals likely to shape the Nifty 50 open before 9:15 AM IST. It looks at GIFT Nifty, FII DII flow, US markets, Asian markets, crude oil, USD/INR, and Bank Nifty confirmation."
+    },
+    {
+      name: "How does GIFT Nifty affect Nifty's opening?",
+      text: "GIFT Nifty trades before NSE opens and gives a rough indication of the gap direction. The gap does not guarantee follow-through; cash-market breadth, Bank Nifty participation, and the first opening range decide whether the move holds."
+    },
+    {
+      name: "What is the best time to read pre-market analysis for Indian stocks?",
+      text: "The useful window is usually 7:00 AM to 9:00 AM IST. By then US markets have closed, Asian markets are active, and crude, dollar, gold, and GIFT Nifty signals can be compared before the Indian cash market opens."
+    },
+    {
+      name: "How does crude oil affect Nifty and Bank Nifty?",
+      text: "Crude oil affects India through fuel costs, inflation expectations, the trade deficit, USD/INR, OMCs, aviation, tyres, paints, and rate expectations. Bank Nifty needs separate confirmation because crude can move macro sentiment without directly moving bank breadth."
+    },
+    {
+      name: "What does Bank Nifty confirmation mean?",
+      text: "Bank Nifty confirmation means banking stocks support the Nifty move. If Nifty rises but Bank Nifty lags, the move is weaker. If both hold VWAP and breadth improves, the opening move has better confirmation."
+    },
+    {
+      name: "Is Market Narrative free to use?",
+      text: "Yes. The latest briefing, archive, FII DII page, market statistics, indices board, and move explanations are free to read. The site publishes educational market research only, not investment advice."
+    }
+  ];
+}
+
+function fiiDiiFaqItems() {
+  return [
+    {
+      name: "What is FII DII data and why does it matter?",
+      text: "FII DII data shows how much foreign and domestic institutional investors bought or sold in Indian equities. Because these flows are large, they often influence Nifty, Bank Nifty, and sector breadth."
+    },
+    {
+      name: "What does FII DII data today mean for Nifty tomorrow?",
+      text: "FII DII data is one input for the next session's opening bias. FII selling with weak DII absorption is pressure; FII selling absorbed by strong DII buying is less bearish and needs confirmation from the opening range."
+    },
+    {
+      name: "Why does Nifty fall when FII sells?",
+      text: "Nifty can fall when FIIs sell because foreign institutions own a meaningful share of the free float. The signal is stronger when cash selling aligns with index futures shorts, weak breadth, and rupee pressure."
+    },
+    {
+      name: "What is the DII absorption ratio?",
+      text: "The DII absorption ratio compares domestic institutional buying with FII net selling. A ratio above 100% means DIIs bought more than FIIs sold, which can cushion the market."
+    }
+  ];
+}
+
+function marketStatsFaqItems() {
+  return [
+    {
+      name: "What is Nifty advance decline ratio?",
+      text: "The advance decline ratio compares the number of rising stocks with falling stocks. A broad rally has healthier participation than an index move driven by a few heavyweights."
+    },
+    {
+      name: "What does India VIX tell traders?",
+      text: "India VIX measures expected volatility through options pricing. Rising VIX into a rally can signal hedging, while falling VIX with breadth support usually makes a move cleaner."
+    },
+    {
+      name: "Why does market breadth matter for Nifty traders?",
+      text: "Breadth shows whether the market move is broad or narrow. A Nifty gap is more reliable when Bank Nifty, sector breadth, and advance-decline participation confirm it."
+    }
+  ];
+}
+
+function homepageFaqSectionHtml(items) {
+  return `
+    <section class="faq-section" id="faq">
+      <h2>Nifty pre-market analysis FAQ</h2>
+      ${faqDetailsHtml(items)}
+    </section>
+  `;
+}
+
+function faqDetailsHtml(items) {
+  return `
+    <div class="faq-list">
+      ${items.map((item) => `
+        <details>
+          <summary>${escapeHtml(item.name)}</summary>
+          <p>${escapeHtml(item.text)}</p>
+        </details>
+      `).join("")}
+    </div>
+  `;
+}
+
+function faqPageJsonLd(id, items) {
+  if (!items.length) {
+    return null;
+  }
+  return {
+    "@type": "FAQPage",
+    "@id": id,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.name,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.text
+      }
+    }))
+  };
+}
+
+function siteFooterLinksHtml() {
+  return `
+    <footer class="site-footer-links" aria-label="Market Narrative site links">
+      <a href="/">Archive</a>
+      <a href="/latest/">Latest briefing</a>
+      <a href="/money-flow/fii-dii/">FII DII data</a>
+      <a href="/market-statistics/">Market statistics</a>
+      <a href="/indices/">Global indices</a>
+      <a href="/moves/">Move explanations</a>
+      <a href="/multibagger/">Portfolio tracker</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Use</a>
+    </footer>
+  `;
+}
+
+function formatCrore(value) {
+  const sign = Number(value) >= 0 ? "+" : "-";
+  const abs = Math.abs(Number(value) || 0);
+  return `${sign}Rs ${Number(abs.toFixed(0)).toLocaleString("en-IN")} cr`;
+}
+
+function marketHealthScore(snapshots, flow) {
+  const valid = snapshots.filter((snapshot) => Number.isFinite(Number(snapshot.changePercent)));
+  const positives = valid.filter((snapshot) => Number(snapshot.changePercent) > 0).length;
+  const breadthScore = valid.length ? positives / valid.length : 0.5;
+  const vix = valid.find((snapshot) => snapshot.symbol === "INDIAVIX");
+  const vixPenalty = Number(vix?.changePercent ?? 0) > 2 ? 10 : 0;
+  const flowBoost = Number(flow?.diiNet ?? 0) > Math.abs(Number(flow?.fiiNet ?? 0)) ? 8 : 0;
+  const score = Math.max(0, Math.min(100, Math.round(45 + breadthScore * 45 + flowBoost - vixPenalty)));
+  const label = score >= 70
+    ? "supportive but still needs opening-range confirmation"
+    : score >= 45
+      ? "mixed; Bank Nifty and breadth must confirm"
+      : "defensive; avoid treating a gap as confirmation";
+  return { score, label };
 }
 
 function organizationJsonLd() {
@@ -2757,7 +3514,12 @@ function organizationJsonLd() {
       url: `${siteOrigin}/favicon.svg`
     },
     founder: { "@id": `${siteOrigin}/about/#abhey-deep` },
-    description: "Daily Nifty and Bank Nifty pre-market intelligence by Abhey Deep."
+    description: "Daily Indian pre-market briefing for Nifty 50 and Bank Nifty traders, with FII DII data, GIFT Nifty context, source cards and market statistics.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Customer Support",
+      email: contactEmail
+    }
   };
 }
 
@@ -2768,6 +3530,7 @@ function websiteJsonLd() {
     name: "Market Narrative",
     alternateName: ["Market Narrative India", "Abhey Deep Market Narrative"],
     url: `${siteOrigin}/`,
+    description: "Daily pre-market briefing for Nifty 50 and Bank Nifty traders published at 7:15 AM IST on trading days.",
     inLanguage: "en-IN",
     publisher: { "@id": `${siteOrigin}/#organization` }
   };
@@ -3277,15 +4040,18 @@ function indicesPage(digest) {
     })
     .join("");
   const lastUpdated = formatGeneratedTime(digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`);
+  const pageTitle = "Global Indices Watch | Market Narrative";
+  const pageDescription = "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
-  <title>Global Indices Watch | Market Narrative</title>
-  <meta name="description" content="Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.">
+  <title>${escapeHtml(pageTitle)}</title>
+  <meta name="description" content="${escapeHtml(pageDescription)}">
   <link rel="canonical" href="${escapeHtml(siteOrigin)}/indices/">
+  ${jsonLdScript(indicesPageJsonLd(pageTitle, pageDescription, digest))}
   <style>
     ${brandMarkCss()}
     :root {
@@ -3300,18 +4066,22 @@ function indicesPage(digest) {
       --flat: #fbbf24;
       --cyan: #67e8f9;
     }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
+    a, button, summary { touch-action: manipulation; }
     .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
     .topbar { border-bottom: 1px solid var(--line); background: rgba(5, 8, 22, 0.86); position: sticky; top: 0; backdrop-filter: blur(16px); z-index: 10; }
     .nav-inner { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 900; }
     .tabs { display: flex; gap: 14px; overflow-x: auto; }
-    .tab-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .tab-link { align-items: center; color: var(--muted); display: inline-flex; min-height: 44px; text-decoration: none; font-size: 13px; font-weight: 800; white-space: nowrap; }
     .tab-link.active { color: var(--cyan); }
     .hero { padding: 46px 0 26px; }
     .eyebrow { margin: 0 0 10px; color: var(--cyan); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
@@ -3322,7 +4092,7 @@ function indicesPage(digest) {
     .indices-group-head h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
     .indices-group-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
     .indices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .index-card { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; }
+    .index-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; }
     .index-card:hover { border-color: rgba(103, 232, 249, .5); }
     .index-card-top { display: flex; justify-content: space-between; gap: 12px; }
     .index-card strong { font-size: 22px; }
@@ -3334,9 +4104,27 @@ function indicesPage(digest) {
     .index-spark path.area { opacity: .14; }
     .index-spark path.line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     .footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
+    @media (max-width: 760px) {
+      .hero { padding: 30px 0 18px; }
+      .indices-group { margin: 18px 0; }
+      .indices-group-head { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .indices-grid { grid-template-columns: 1fr; }
+      .index-card { gap: 10px; padding: 14px; }
+      .index-card-top { align-items: flex-start; }
+      .index-card strong { font-size: 18px; line-height: 1.18; }
+      .index-card-top > strong { text-align: right; }
+      .footer-note { margin-bottom: 84px; }
+    }
+    @media (max-width: 380px) {
+      .index-card-top { flex-direction: column; }
+      .index-card-top > strong { text-align: left; }
+    }
+    ${bottomTabBarCss()}
+    ${mobileTypographyCss()}
+    ${proPolishCss()}
   </style>
 </head>
-<body>
+<body class="has-btb">
   <nav class="topbar">
     <div class="shell nav-inner">
       <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
@@ -3357,6 +4145,8 @@ function indicesPage(digest) {
     ${groups}
     <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
   </main>
+  ${bottomTabBarHtml("more")}
+  ${mobileShellScript()}
 </body>
 </html>`;
 }
@@ -3428,6 +4218,8 @@ function robotsTxt() {
   return [
     "User-agent: *",
     "Allow: /",
+    "Disallow: /api/",
+    "Disallow: /_vercel/",
     "Disallow: /admin/",
     "Disallow: /dark-preview/",
     `Sitemap: ${siteOrigin}/sitemap.xml`,
@@ -3443,9 +4235,15 @@ function sitemapXml(allDigests) {
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/indices/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
+    { loc: `${siteOrigin}/money-flow/fii-dii/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
+    { loc: `${siteOrigin}/market-statistics/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
+    { loc: `${siteOrigin}/moves/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.7" },
     { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.7" },
     { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.7" },
     { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.6" },
+    { loc: `${siteOrigin}/contact/`, lastmod: digests[0]?.digestDate, changefreq: "yearly", priority: "0.4" },
+    { loc: `${siteOrigin}/privacy/`, lastmod: digests[0]?.digestDate, changefreq: "yearly", priority: "0.3" },
+    { loc: `${siteOrigin}/terms/`, lastmod: digests[0]?.digestDate, changefreq: "yearly", priority: "0.3" },
     ...digests.map((digest) => ({
       loc: `${siteOrigin}/${slugForDigest(digest)}/trading-guide/`,
       lastmod: digest.digestDate,

@@ -111,7 +111,7 @@ function verifyVercelArtifacts() {
 
   assertOutput("index.html", /Open briefing/);
   assertOutput("index.html", /sentiment-sparkline/);
-  assertOutput("index.html", /7:15 AM IST Nifty and Bank Nifty pre-market briefing/);
+  assertOutput("index.html", /7:15 AM IST[\s\S]{0,120}(?:Nifty 50|Nifty)[\s\S]{0,120}Bank Nifty[\s\S]{0,120}(?:pre-market briefing|opening bias|traders)/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
   assertOutput("index.html", /Last verified update/);
   assertOutput("index.html", /Daily trader workflow/);

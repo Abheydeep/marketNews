@@ -137,7 +137,7 @@ await group("Public user surface", async () => {
     [/Market Narrative latest briefing|No pre-market briefing|briefing was not published as latest/i],
     [/Admin Login/i, ...offTopicAuditPatterns]
   );
-  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Previous Close Quote Board|Market Quote Board|Nifty/i, /Watch first:/i, /Share this briefing/i, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, /India-source/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Live Quote Board/i, /live refresh pending/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
+  await expectPage("User", "Latest briefing", `${config.publicUrl}${config.latestBriefingPath}`, 200, [...financeMetadataPatterns, /Daily Pre-Market Summary|Today's Read|Global Indices Watch|Nifty/i, /Today.?s Read|Global Indices Watch|India Pre-Open/i, /Share on WhatsApp|Share on X|Share on LinkedIn/i, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, /India read-through|Source quality|Evidence & Sources/i, /Bank Nifty|global cues|India/i], [/Share this trading guide/i, /Live Quote Board/i, /live refresh pending/i, /Open chart on TradingView/i, /View Chart On TradingView/i, /Open Yahoo Chart/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]);
   await expectJson("User", "Latest digest JSON", `${config.publicUrl}${config.latestBriefingPath}digest.json`, 200, (payload) => {
     assert.equal(payload.status, "PUBLISHED", "public digest status must not expose internal DRAFT state");
     assert.ok(Array.isArray(payload.marketSnapshots), "marketSnapshots missing");
@@ -528,28 +528,29 @@ async function runBrowserSmoke() {
         });
       });
       const page = await context.newPage();
-      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Past briefings/i);
+      const publicPageOptions = { assertNoHorizontalOverflow: viewport.name === "mobile" };
+      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Past briefings/i, publicPageOptions);
       const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
-      assert.match(homeBody, /Top \d+ India read-through notes selected/i, "homepage must simplify public source-count language without hardcoding the source count");
-      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Previous Close Quote Board|Market Quote Board|Daily Pre-Market Summary/i);
+      assert.match(homeBody, /Search the archive|Past briefings|Nifty Today Analysis/i, "homepage must show archive/search context for public readers");
+      await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Today's Read|Global Indices Watch|Daily Pre-Market Summary/i, publicPageOptions);
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
-      assert.match(latestBody, /Get the next trading-day 7:15 AM brief|Join daily email|Subscribe/i, "latest briefing must show a retention CTA or subscribe path");
+      assert.match(latestBody, /Get the next trading-day 7:15 AM brief|Join Email|Join daily email|Subscribe/i, "latest briefing must show a retention CTA or subscribe path");
       const latestHtml = await page.content();
-      assert.ok(latestHtml.indexOf('id="summaryExpand"') < latestHtml.indexOf("Share this briefing"), "latest briefing summary must render before share controls");
+      assert.ok(latestHtml.indexOf('id="summaryExpand"') < latestHtml.indexOf('compact-meta-strip share-row'), "latest briefing summary must render before share controls");
       assert.ok(latestHtml.indexOf('id="summaryExpand"') < latestHtml.indexOf("Market Mood"), "latest briefing summary must render before mood cards");
       assert.doesNotMatch(latestBody, /[A-Za-z0-9][,;:]\.|[A-Za-z0-9]\.[;:]/, "latest briefing has malformed generated punctuation");
       assert.doesNotMatch(latestBody, /Last available close|live data not yet available/i, "latest briefing must not foreground stale quote-board language");
       assert.doesNotMatch(latestBody, /Global crude-flow signal|India impact runs only through/i, "latest briefing must not expose internal driver labels");
-      assert.match(latestBody, /Previous close\/reference quotes|Market quote context/i, "latest briefing must show explicit quote-board state");
+      assert.match(latestBody, /Previous close|GIFT context|India Pre-Open/i, "latest briefing must show explicit pre-open reference state");
       assert.doesNotMatch(latestBody, /live refresh pending/i, "latest briefing must not imply a pending live feed on archived quote context");
-      await browserCheck(page, "User", `Browser ${viewport.name} trading guide`, `${config.publicUrl}${config.latestBriefingPath}trading-guide/`, /Today's Trade Map|Long only above|Short risk below/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} trading guide`, `${config.publicUrl}${config.latestBriefingPath}trading-guide/`, /Today's Trade Map|Long only above|Short risk below/i, publicPageOptions);
       const guideBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.match(guideBody, /Valid for open preparation only/i, "trading guide must disclose session validity");
       const guideHtml = await page.content();
       assert.ok(guideHtml.includes('id="trading-guide-view" class="tab-content"'), "trading guide URL must render the guide surface");
       assert.equal(guideHtml.includes('id="public-view"'), false, "trading guide URL must not render hidden public briefing content");
       assert.equal((guideHtml.match(/<h1/g) || []).length, 1, "trading guide URL should render exactly one h1");
-      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i);
+      await browserCheck(page, "User", `Browser ${viewport.name} multibagger`, `${config.publicUrl}/multibagger/`, /Since entry|Current value|Public tracking active|Cash conversion matters/i, publicPageOptions);
       const multibaggerHtml = await page.content();
       assert.ok(
         multibaggerHtml.indexOf('aria-label="Current model holdings"') > -1
@@ -557,6 +558,10 @@ async function runBrowserSmoke() {
           && multibaggerHtml.indexOf('aria-label="Current model holdings"') < multibaggerHtml.indexOf('aria-label="Public model performance"'),
         "multibagger holdings must appear before the metric stack"
       );
+      await browserCheck(page, "User", `Browser ${viewport.name} indices`, `${config.publicUrl}/indices/`, /Global Indices Watch|Nifty, Bank Nifty/i, publicPageOptions);
+      await browserCheck(page, "User", `Browser ${viewport.name} FII DII`, `${config.publicUrl}/money-flow/fii-dii/`, /FII DII Data Today|Institutional Flow/i, publicPageOptions);
+      await browserCheck(page, "User", `Browser ${viewport.name} market statistics`, `${config.publicUrl}/market-statistics/`, /India Market Statistics Today|Market health score/i, publicPageOptions);
+      await browserCheck(page, "User", `Browser ${viewport.name} moves`, `${config.publicUrl}/moves/`, /Why Indian Stocks Move|Move Explanations/i, publicPageOptions);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
       await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);
@@ -586,12 +591,20 @@ async function runBrowserSmoke() {
   }
 }
 
-async function browserCheck(page, surface, name, url, pattern) {
+async function browserCheck(page, surface, name, url, pattern, options = {}) {
   await gotoOrRenderFetchedHtml(page, url);
   const body = await page.locator("body").innerText({ timeout: config.timeoutMs });
   assert.match(body, pattern, `${name} missing ${pattern}`);
   const visibleBody = await page.locator("body").boundingBox();
   assert.ok(visibleBody && visibleBody.width > 300 && visibleBody.height > 300, `${name} has invalid body dimensions`);
+  if (options.assertNoHorizontalOverflow) {
+    const overflow = await page.evaluate(() => {
+      const root = document.documentElement;
+      const body = document.body;
+      return Math.max(root.scrollWidth, body.scrollWidth) - window.innerWidth;
+    });
+    assert.ok(overflow <= 2, `${name} has horizontal overflow of ${overflow}px`);
+  }
 }
 
 async function gotoOrRenderFetchedHtml(page, url) {
