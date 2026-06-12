@@ -2812,8 +2812,6 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
-  assert.ok(publicBuildScript.includes("archivedDigestForDate(today)"));
-  assert.ok(publicBuildScript.includes("VERCEL_REGENERATE_TRACKED_ARCHIVE"));
   assert.ok(publicBuildScript.includes("Refusing to publish a previous archive as /latest"));
   assert.ok(publicBuildScript.includes("ALLOW_VERIFIED_ARCHIVE_FALLBACK"));
   assert.ok(publicBuildScript.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
@@ -2821,6 +2819,10 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(publicBuildScript.includes("writeLatestStatusPages"));
   assert.ok(publicBuildScript.includes("(0715|0830)"));
   assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
+  const publishSiteScript = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
+  assert.ok(publishSiteScript.includes("Source digest missing"));
+  assert.ok(publishSiteScript.includes("falling back to archived digest"));
+  assert.ok(publishSiteScript.includes("sourceDigestLoadedFromArchive"));
   assert.equal(latestRedirectScript.includes("writeFile"), false);
   assert.equal(latestRedirectScript.includes('"vercel.json"'), false);
 

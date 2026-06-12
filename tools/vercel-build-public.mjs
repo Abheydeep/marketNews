@@ -93,20 +93,14 @@ const today = `${byType.year}-${byType.month}-${byType.day}`;
 const latestArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
   ? { date: process.env.VERCEL_BUILD_FIXTURE_DATE, scheduledTime: process.env.VERCEL_BUILD_FIXTURE_TIME ?? "07:15" }
   : latestArchivedDigest();
-const todayArchive = process.env.VERCEL_BUILD_FIXTURE_DATE
-  ? null
-  : archivedDigestForDate(today);
-const shouldUseTrackedArchive =
-  process.env.SKIP_DAILY_GENERATE === "true" ||
-  (todayArchive && process.env.VERCEL_REGENERATE_TRACKED_ARCHIVE !== "true");
-const date = shouldUseTrackedArchive ? (todayArchive?.date ?? latestArchive.date) : today;
-const scheduledTime = shouldUseTrackedArchive ? (todayArchive?.scheduledTime ?? latestArchive.scheduledTime) : "07:15";
+const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : today;
+const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
 const calendarState = marketCalendarState(date);
 
-if (shouldUseTrackedArchive) {
-  console.log(`Publishing tracked archived digest ${date} ${scheduledTime}; set VERCEL_REGENERATE_TRACKED_ARCHIVE=true to force live generation.`);
+if (process.env.SKIP_DAILY_GENERATE === "true") {
+  console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
 } else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
   const fallback = latestArchivedDigest();
   console.warn(
@@ -145,7 +139,13 @@ if (shouldUseTrackedArchive) {
     process.env.NEWS_DATA_MODE ?? "live"
   ], { exitOnFailure: false });
   if (generated.status === 0) {
-    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], { exitOnFailure: false });
+    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], {
+      env: {
+        ...process.env,
+        SKIP_ARCHIVE_WRITE: "true"
+      },
+      exitOnFailure: false
+    });
     if (published.status === 0) {
       await writeLatestSlugArtifact(slugForDate(date));
       await writePwaArtifacts();
@@ -165,7 +165,12 @@ if (shouldUseTrackedArchive) {
     signal: generated.signal
   });
 }
-run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", scheduledTime]);
+run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", scheduledTime], {
+  env: {
+    ...process.env,
+    SKIP_ARCHIVE_WRITE: "true"
+  }
+});
 await writeLatestSlugArtifact(slugForDate(date));
 await writePwaArtifacts();
 
@@ -316,18 +321,6 @@ function latestArchivedDigest() {
     process.exit(1);
   }
   return latest;
-}
-
-function archivedDigestForDate(date) {
-  const archiveDir = join(rootDir, "archive", "daily");
-  const digests = readdirSync(archiveDir)
-    .map((fileName) => {
-      const match = fileName.match(new RegExp(`^${date}-(0715|0830)-digest\\.json$`));
-      return match ? { date, scheduledTime: `${match[1].slice(0, 2)}:${match[1].slice(2)}` } : null;
-    })
-    .filter(Boolean)
-    .sort((left, right) => left.scheduledTime.localeCompare(right.scheduledTime));
-  return digests.at(-1) ?? null;
 }
 
 function run(command, args, options = {}) {

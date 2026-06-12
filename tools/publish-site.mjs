@@ -30,11 +30,12 @@ const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").tri
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
 const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
+let sourceDigestLoadedFromArchive = false;
 
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = await loadSourceDigest();
 const existingDigests = await loadArchivedDigests();
-if (!skipArchiveWrite) {
+if (!skipArchiveWrite && !sourceDigestLoadedFromArchive) {
   const sourceVerification = publicArchiveVerificationForDigest(
     sourceDigest,
     assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests))
@@ -546,9 +547,13 @@ async function loadSourceDigest() {
   try {
     return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(sourceJson, "utf8")));
   } catch (error) {
-    if (!skipArchiveWrite) {
+    if (error?.code !== "ENOENT" && !skipArchiveWrite) {
       throw error;
     }
+    if (error?.code === "ENOENT") {
+      console.warn(`Source digest missing at ${sourceJson}; falling back to archived digest ${archivedJson}.`);
+    }
+    sourceDigestLoadedFromArchive = true;
     return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(archivedJson, "utf8")));
   }
 }
