@@ -9,13 +9,14 @@
     "frontend"
   ],
   "scripts": {
+    "context:verify": "node tools/context-verify.mjs",
     "test": "node tools/verify.mjs",
     "demo": "node tools/demo-server.mjs",
     "daily:generate": "node tools/generate-daily-summary.mjs",
     "site:publish": "node tools/publish-site.mjs",
     "site:qa": "node tools/full-site-qa.mjs",
     "public:copy:qa": "node tools/public-copy-qa.mjs",
-    "test:deploy": "node tools/predeploy-verify.mjs",
+    "test:deploy": "npm run context:verify && node tools/predeploy-verify.mjs",
     "prod:smoke": "node tools/production-smoke.mjs",
     "reliability:smoke": "node tools/reliability-smoke.mjs",
     "prod:qa": "node tools/production-qa-gate.mjs",
@@ -31,6 +32,8 @@
     "trading:test": "cd services/trading-api && python3 -m pytest",
     "trading:test:lite": "cd services/trading-api && python3 tests/run_unit_tests.py",
     "trading:mock:regression": "node tools/trading-mock-regression.mjs",
-    "trading:dashboard:dev": "npm --workspace @market-narrative/trading-dashboard run dev"
+    "trading:dashboard:dev": "npm --workspace @market-narrative/trading-dashboard run dev",
+    "local:prod": "node tools/local-prod-run.mjs",
+    "local:prod:smoke": "node tools/local-prod-smoke.mjs"
   }
 }

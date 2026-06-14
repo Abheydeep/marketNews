@@ -1,0 +1,9 @@
+flowchart LR
+  Context[context:verify] --> Unit[npm test]
+  Unit --> Deploy[test:deploy]
+  Deploy --> Build[public Vercel build]
+  Build --> CopyQA[public copy QA]
+  CopyQA --> LocalProd[optional real LLM local-prod]
+  LocalProd --> Push[push/merge]
+  Push --> ProdSmoke[prod smoke / reliability smoke]
+

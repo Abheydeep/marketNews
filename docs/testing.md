@@ -28,11 +28,13 @@ Live Zerodha order placement is out of scope for launch and must remain disabled
 Run this before opening or merging the PR:
 
 ```bash
+npm run context:verify
 npm run test:deploy
 ```
 
 This runs:
 
+- Context guardrail verification.
 - Repo contract tests via `npm test`.
 - Trading dashboard TypeScript typecheck.
 - Trading dashboard production export build.
@@ -250,6 +252,20 @@ npm run prod:smoke
 ```
 
 Expected result: order confirmation is `BLOCKED`. A `PLACED` result during launch mode is a release blocker.
+
+## Local Prod-Like Content Gate
+
+For content-generation, LLM-routing, or public briefing pipeline changes, run a
+real-key local pass before deploy:
+
+```bash
+npm run local:prod -- --date YYYY-MM-DD
+npm run local:prod:smoke
+```
+
+`local:prod` loads `.env.local`, requires at least one real LLM key, generates
+with live market/news modes, builds the public artifact, runs public copy QA,
+and serves the result locally. Unit tests remain mocked by default.
 
 ## VPS Infrastructure Gate
 

@@ -60,6 +60,26 @@ npm run prod:qa
 
 It checks public/admin/trade domains, deployment manifests, logos, stale chart links, API health, auth boundaries, browser console errors, and mobile rendering. Treat any failure as a launch blocker.
 
+## Agent Context Guardrails
+
+All coding sessions start from `AGENTS.md`, which points agents to the six
+required files in `context/`. Run this before implementation and before commit:
+
+```bash
+npm run context:verify
+```
+
+For content or pipeline changes that must exercise real LLM behavior, use the
+explicit local-prod path with keys in `.env.local`:
+
+```bash
+npm run local:prod -- --date YYYY-MM-DD
+npm run local:prod:smoke
+```
+
+Normal unit tests keep LLMs mocked; the local-prod flow is the prod-like
+real-key check.
+
 ## No-Install Demo
 
 You can run a working demo server with only Node:

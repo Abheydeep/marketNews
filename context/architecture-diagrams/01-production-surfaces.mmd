@@ -1,0 +1,12 @@
+flowchart LR
+  Repo[marketNews monorepo] --> Public[Vercel public<br/>marketnarrative.in]
+  Repo --> Admin[Vercel admin<br/>admin.marketnarrative.in]
+  Repo --> Trade[Vercel trade<br/>trade.marketnarrative.in]
+  Repo --> Spring[Spring API<br/>api.marketnarrative.in]
+  Repo --> FastAPI[FastAPI trading API<br/>trade-api.marketnarrative.in]
+  Public --> PublicData[Archive, latest, indices,<br/>FII/DII, statistics, moves]
+  Admin --> PrivateStudio[Studio and publishing workflows]
+  Trade --> Cockpit[Abhey-only trading cockpit]
+  Spring --> Auth[Auth and admin/public APIs]
+  FastAPI --> Kite[Kite market/trading data]
+

@@ -45,6 +45,9 @@ jobs:
       - name: Repo tests
         run: npm test
 
+      - name: Context guardrail
+        run: npm run context:verify
+
       - name: Deployment QA gate
         env:
           MARKET_DATA_MODE: mock

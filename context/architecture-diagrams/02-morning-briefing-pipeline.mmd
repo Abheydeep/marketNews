@@ -1,0 +1,12 @@
+flowchart TD
+  Cron[07:15 IST workflow] --> Calendar[market-calendar]
+  Calendar -->|closed| Closed[market closed state]
+  Calendar -->|trading day| Ingest[Pulse/RSS/source ingestion]
+  Ingest --> Rank[deterministic pre-score]
+  Rank --> Rerank[agent reranker]
+  Rerank --> Enrich[article enrichment]
+  Enrich --> Guardrails[public copy guardrails]
+  Guardrails --> Digest[archive daily digest]
+  Digest --> Publish[static publisher]
+  Publish --> Site[public briefing pages]
+

@@ -1,0 +1,12 @@
+flowchart TD
+  Large[legacy large files] --> Cockpit[cockpit-page<br/>public briefing render]
+  Large --> Publish[publish-site<br/>static pages and sitemap]
+  Large --> Sources[news-sources<br/>ingest and enrich]
+  Large --> Core[core<br/>digest assembly]
+  Large --> Verify[verify<br/>contract tests]
+  Large --> Predeploy[predeploy verify<br/>release gate]
+  Cockpit --> Split1[split by page section]
+  Publish --> Split2[split by page type]
+  Sources --> Split3[split ingest/score/LLM]
+  Core --> Split4[split lead/setup/desk note]
+

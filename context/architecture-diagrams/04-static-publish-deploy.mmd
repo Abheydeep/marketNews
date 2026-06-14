@@ -1,0 +1,10 @@
+flowchart TD
+  Digest[archive digest] --> Publisher[publish-site]
+  Publisher --> PublicOut[out/site]
+  PublicOut --> Latest[/latest static shell]
+  PublicOut --> Sitemap[sitemap and robots]
+  PublicOut --> Manifest[deployment manifest]
+  PublicOut --> Vercel[Vercel public artifact]
+  Vercel --> Smoke[reliability smoke]
+  Smoke --> Live[marketnarrative.in]
+
