@@ -1,9 +1,18 @@
 flowchart LR
-  Context[context:verify] --> Unit[npm test]
-  Unit --> Deploy[test:deploy]
-  Deploy --> Build[public Vercel build]
-  Build --> CopyQA[public copy QA]
-  CopyQA --> LocalProd[optional real LLM local-prod]
-  LocalProd --> Push[push/merge]
-  Push --> ProdSmoke[prod smoke / reliability smoke]
+  Context["context:verify"] --> Unit["npm test"]
+  Unit --> DeployGate["test:deploy"]
+  DeployGate --> PublicBuild["MARKET_NARRATIVE_DEPLOY_TARGET=public vercel:build"]
+  PublicBuild --> CopyQA["public:copy:qa -- public"]
+  CopyQA --> LocalProd{"content or pipeline change?"}
+  LocalProd -->|yes| RealLLM["local:prod with .env.local real keys"]
+  RealLLM --> LocalSmoke["local:prod:smoke"]
+  LocalProd -->|no| Review["review and commit"]
+  LocalSmoke --> Review
+  Review --> Push["push / merge"]
+  Push --> CI["GitHub QA workflow"]
+  CI --> Vercel["Vercel/GitHub Pages deploy"]
+  Vercel --> ProdSmoke["reliability:smoke / prod:qa"]
 
+  Context -->|fails| FixContext["fix stale context or ratchet"]
+  DeployGate -->|fails| RCA["root cause before patch"]
+  ProdSmoke -->|fails| Incident["incident note and rollback/fix"]

@@ -17,14 +17,12 @@
  *   RELIABILITY_REQUIRED_TRADING_DAY  If 'true', the most recent verified daily
  *                                     briefing must be from the current trading day
  *                                     in Asia/Kolkata. Default: 'true'.
- *   RELIABILITY_MAX_PARALLEL   Concurrency cap (default: 8).
  */
 
 import { setTimeout as sleep } from "node:timers/promises";
-
+import { log } from "./logger.mjs";
 const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://www.marketnarrative.in").replace(/\/+$/, "");
 const REQUIRE_TRADING_DAY = process.env.RELIABILITY_REQUIRED_TRADING_DAY !== "false";
-const MAX_PARALLEL = Number(process.env.RELIABILITY_MAX_PARALLEL || 8);
 
 const results = [];
 let failed = 0;
@@ -123,7 +121,7 @@ function tradingWeekdayInIst() {
 }
 
 async function main() {
-  process.stdout.write(`Reliability smoke against ${SITE_ORIGIN}\n`);
+  log.info("reliability smoke started", { siteOrigin: SITE_ORIGIN, requireTradingDay: REQUIRE_TRADING_DAY });
 
   // 1. Homepage reachable and well-formed
   const homeRes = await getOk(`${SITE_ORIGIN}/`);
@@ -230,6 +228,7 @@ async function main() {
 
   await sleep(10);
   process.stdout.write(`\n${results.length} checks · ${results.length - failed} passed · ${failed} failed\n`);
+  log.info("reliability smoke completed", { checks: results.length, passed: results.length - failed, failed });
   if (failed > 0) {
     process.stdout.write(`\nFirst failures:\n`);
     for (const r of results.filter((x) => !x.ok).slice(0, 8)) {
@@ -240,6 +239,7 @@ async function main() {
 }
 
 main().catch((err) => {
+  log.error("reliability smoke crashed", { error: err.message });
   console.error("Smoke test crashed:", err);
   process.exit(2);
 });

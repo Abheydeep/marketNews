@@ -1,11 +1,25 @@
 flowchart TD
-  Articles[ranked articles] --> Shortlist[top candidates]
-  Shortlist --> LeadAgent[NVIDIA lead reranker]
-  LeadAgent -->|valid JSON| Lead[lead story]
-  LeadAgent -->|fallback| Deterministic[deterministic lead]
-  Articles --> UsedAngles[used India angles]
-  UsedAngles --> Enricher[LLM card enrichment]
-  Enricher --> Validate[sanitize and validate patch]
-  Validate -->|pass| Cards[unique source cards]
-  Validate -->|fail| Fallback[deterministic read-through]
+  Articles["candidate articles"] --> Filter["market relevance and garbage filter"]
+  Filter --> Score["deterministic scoring"]
+  Score --> Shortlist["top 8 lead candidates"]
 
+  Shortlist --> LeadAgent["NVIDIA chat completion lead reranker"]
+  LeadAgent --> ValidateLead["validate ids and JSON"]
+  ValidateLead -->|valid| Lead["selected lead article"]
+  ValidateLead -->|invalid or no key| DeterministicLead["deterministic fallback lead"]
+
+  Articles --> Templates["thematic read-through rules"]
+  Templates --> RepeatCheck["same-template repeat detection"]
+  RepeatCheck -->|first unique template| DeterministicCopy["rule-based source card copy"]
+  RepeatCheck -->|repeat or generic| EditorialAgent["LLM editorial enrichment"]
+  EditorialAgent --> Sanitize["sanitizeArticleEditorialPatch"]
+  Sanitize -->|valid| Polished["polished card copy"]
+  Sanitize -->|invalid| DeterministicCopy
+
+  Lead --> Digest["digest assembly"]
+  DeterministicLead --> Digest
+  Polished --> SourceLedger["public source ledger"]
+  DeterministicCopy --> SourceLedger
+  SourceLedger --> CopyGuard["public copy guardrails"]
+  CopyGuard -->|pass| Publishable["publishable digest"]
+  CopyGuard -->|fail| Stop["fail generation"]

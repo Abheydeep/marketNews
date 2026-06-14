@@ -11,7 +11,7 @@ import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyC
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
-
+import { log } from "./logger.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "07:15";
@@ -240,9 +240,7 @@ await writeFile(
   "utf8"
 );
 
-process.stdout.write(`Static site ready: ${siteDir}\n`);
-process.stdout.write(`Archive entry point: ${join(siteDir, "index.html")}\n`);
-process.stdout.write(`Latest daily page: ${join(siteDir, slugForDigest(latest), "index.html")}\n`);
+log.info("static site published", { siteDir, archiveEntry: join(siteDir, "index.html"), latestPage: join(siteDir, slugForDigest(latest), "index.html"), digestDate: latest.digestDate });
 
 await writeSlugRedirects(digests);
 

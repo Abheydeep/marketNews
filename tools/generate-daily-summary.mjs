@@ -8,6 +8,7 @@ import { marketCalendarState } from "./market-calendar.mjs";
 import { assertPremarketPublishWindow } from "./publish-window.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
+import { log } from "./logger.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -18,12 +19,15 @@ const enforcePublishWindow = readFlag("--enforce-publish-window") || process.env
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
+const runId = `daily-${date}-${label}-${Date.now()}`;
 
 const lockFile = join(rootDir, `out`, `daily`, `publish-lock-${date}-${label}.lock`);
+log.info("daily generation started", { runId, date, scheduledTime, marketDataMode, newsDataMode, liveMode });
 if (liveMode) {
   try {
     const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);
     await access(archiveFile);
+    log.info("daily generation skipped existing archive", { runId, archiveFile });
     process.stdout.write(`Verified archive already exists for ${date} (${archiveFile}). Skipping generation.\n`);
     await mkdir(join(rootDir, "out", "daily"), { recursive: true });
     await writeFile(join(rootDir, "out", "daily", `${date}-${label}-digest.json`), await readFile(archiveFile, "utf8"), "utf8");
@@ -32,6 +36,7 @@ if (liveMode) {
     // File does not exist, check lock
     try {
       await access(lockFile);
+      log.warn("daily generation skipped active lock", { runId, lockFile });
       process.stdout.write(`Lock file exists for ${date} (${lockFile}). Already running. Skipping.\n`);
       process.exit(0);
     } catch {
@@ -44,6 +49,7 @@ if (liveMode) {
 const calendarState = marketCalendarState(date);
 
 if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
+  log.warn("daily generation blocked non-trading day", { runId, date, state: calendarState.state, reason: calendarState.reason });
   process.stderr.write(`Daily briefing generation blocked for ${date}: ${calendarState.state} (${calendarState.reason}).\n`);
   process.stderr.write("Set ALLOW_NON_TRADING_DAY_DIGEST=true only for an explicit manual non-trading-day test.\n");
   process.exit(2);
@@ -53,6 +59,7 @@ if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH
   try {
     assertPremarketPublishWindow({ date, scheduledTime });
   } catch (error) {
+    log.error("daily generation blocked publish window", { runId, date, scheduledTime, error: error.message });
     process.stderr.write(`${error.message}\n`);
     process.exit(2);
   }
@@ -63,6 +70,12 @@ const generatedDigest = await buildDigest(date, {
   newsDataMode,
   nvidiaApiKey: process.env.NVIDIA_API_KEY,
   agentLeadRerank: Boolean(process.env.NVIDIA_API_KEY)
+});
+log.info("daily digest built", {
+  runId,
+  verifiedArticleCount: generatedDigest.sourceVerification?.verifiedArticleCount ?? 0,
+  marketDataMode: generatedDigest.marketDataMode,
+  newsDataMode: generatedDigest.newsDataMode
 });
 const nonTradingSession = !calendarState.isTradingSession
   ? {
@@ -104,6 +117,7 @@ await writeFile(htmlPath, publicHtml, "utf8");
 await writeFile(studioHtmlPath, cockpitPage(digest, "studio-view", { includeStudio: true }), "utf8");
 await writeFile(reelScriptPath, reelScriptMarkdown(digest), "utf8");
 const latestRedirectSlug = await updateLatestRedirect({ date });
+log.info("daily generation completed", { runId, jsonPath, htmlPath, latestRedirectSlug });
 
 process.stdout.write(`Daily pre-market summary generated for ${date}\n`);
 process.stdout.write(`Scheduled-for timestamp: ${digest.scheduledFor}\n`);

@@ -1,12 +1,34 @@
 flowchart TD
-  Large[legacy large files] --> Cockpit[cockpit-page<br/>public briefing render]
-  Large --> Publish[publish-site<br/>static pages and sitemap]
-  Large --> Sources[news-sources<br/>ingest and enrich]
-  Large --> Core[core<br/>digest assembly]
-  Large --> Verify[verify<br/>contract tests]
-  Large --> Predeploy[predeploy verify<br/>release gate]
-  Cockpit --> Split1[split by page section]
-  Publish --> Split2[split by page type]
-  Sources --> Split3[split ingest/score/LLM]
-  Core --> Split4[split lead/setup/desk note]
+  subgraph Current["Current oversized modules"]
+    Cockpit["cockpit-page.mjs"]
+    Publish["publish-site.mjs"]
+    Sources["news-sources.mjs"]
+    Core["core.mjs"]
+    Verify["verify.mjs"]
+    Multi["multibagger-page.mjs"]
+  end
 
+  subgraph Targets["Target ownership"]
+    BriefSections["briefing page sections"]
+    StaticPages["static page renderers"]
+    Ingest["source ingestion adapters"]
+    Score["article scoring and routing"]
+    LLM["LLM provider/enrichment interface"]
+    Digest["digest assembly"]
+    Tests["test groups by subsystem"]
+    Tracker["multibagger tracker sections"]
+  end
+
+  Cockpit --> BriefSections
+  Publish --> StaticPages
+  Sources --> Ingest
+  Sources --> Score
+  Sources --> LLM
+  Core --> Digest
+  Core --> Score
+  Verify --> Tests
+  Multi --> Tracker
+
+  Targets --> Rule["new files under 200 lines"]
+  Current --> Ratchet["legacy files must not grow"]
+  Ratchet --> Progress["progress-tracker documents exceptions"]

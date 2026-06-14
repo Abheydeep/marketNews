@@ -1,10 +1,24 @@
 flowchart TD
-  Digest[archive digest] --> Publisher[publish-site]
-  Publisher --> PublicOut[out/site]
-  PublicOut --> Latest[/latest static shell]
-  PublicOut --> Sitemap[sitemap and robots]
-  PublicOut --> Manifest[deployment manifest]
-  PublicOut --> Vercel[Vercel public artifact]
-  Vercel --> Smoke[reliability smoke]
-  Smoke --> Live[marketnarrative.in]
+  Digest["out/daily or archive digest"] --> Load["publish-site loadSourceDigest"]
+  Load --> Redact["redacted public payload"]
+  Redact --> Pages["render public pages"]
+  Pages --> Home["/ archive homepage"]
+  Pages --> Dated["/DDmonYYYY/ and trading-guide"]
+  Pages --> Latest["/latest/ and /latest/trading-guide/ shell"]
+  Pages --> Hubs["indices, flows, stats, moves, multibagger"]
+  Pages --> SEO["sitemap, robots, manifest, OG card"]
 
+  Home --> Guard["writeGuardedFile public copy QA"]
+  Dated --> Guard
+  Latest --> Guard
+  Hubs --> Guard
+  Guard --> OutSite["out/site"]
+  SEO --> OutSite
+  OutSite --> VercelBuild["vercel-build-public copies to public"]
+  VercelBuild --> Artifact["Vercel public artifact"]
+  Artifact --> Deploy["production deploy"]
+  Deploy --> Smoke["reliability smoke"]
+  Smoke --> Live["marketnarrative.in"]
+
+  Guard -->|copy violation| Block["block artifact"]
+  Smoke -->|failure| Incident["debug via structured logs"]

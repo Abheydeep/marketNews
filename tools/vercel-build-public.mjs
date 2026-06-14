@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
+import { log } from "./logger.mjs";
 
 // Read by api/latest-redirect.js as a last-resort fallback when both the
 // LATEST_DIGEST_SLUG env var and the /digest.json fetch fail. Written here
@@ -98,15 +99,15 @@ const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
 const calendarState = marketCalendarState(date);
+const runId = `vercel-public-${date}-${Date.now()}`;
+
+log.info("public vercel build started", { runId, date, scheduledTime, skipDailyGenerate: process.env.SKIP_DAILY_GENERATE === "true", calendarState: calendarState.state });
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
-  console.log(`Skipping daily digest generation for artifact verification; publishing archived digest ${date} ${scheduledTime}.`);
+  log.info("publishing archived digest for artifact verification", { runId, date, scheduledTime });
 } else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
   const fallback = latestArchivedDigest();
-  console.warn(
-    `No trading-day public briefing for ${date} (${calendarState.state}: ${calendarState.reason}). ` +
-    `Publishing archived digest ${fallback.date} ${fallback.scheduledTime} and a market-closed /latest page.`
-  );
+  log.warn("publishing market-closed public artifact", { runId, date, state: calendarState.state, reason: calendarState.reason, fallback });
   const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
     env: {
       ...process.env,
@@ -117,12 +118,12 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     exitOnFailure: false
   });
   if (fallbackPublish.status !== 0) {
-    console.error("Unable to publish market-closed artifact.");
+    log.error("unable to publish market-closed artifact", { runId, status: fallbackPublish.status });
     process.exit(fallbackPublish.status ?? 1);
   }
-  await writeLatestStatusPages({ date, fallback, status: "market-closed", calendarState });
   await writeLatestSlugArtifact(slugForDate(fallback.date));
   await writePwaArtifacts();
+  log.info("public vercel build completed market-closed artifact", { runId, fallback });
   process.exit(0);
 } else {
   const generated = run("npm", [
@@ -149,6 +150,7 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     if (published.status === 0) {
       await writeLatestSlugArtifact(slugForDate(date));
       await writePwaArtifacts();
+      log.info("public vercel build completed fresh artifact", { runId, date });
       process.exit(0);
     }
     await handleFreshBuildFailure({
@@ -176,11 +178,9 @@ await writePwaArtifacts();
 
 async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
   const fallback = latestArchivedDigest();
+  // writeLatestStatusPages was removed: /latest/ is handled by API/static shell resolution.
   if (allowVerifiedArchiveFallback) {
-    console.warn(
-      `Live briefing for ${date} was not verified during ${failedStep}. ` +
-      `ALLOW_VERIFIED_ARCHIVE_FALLBACK=true is set, so publishing archived digest ${fallback.date} ${fallback.scheduledTime}.`
-    );
+    log.warn("publishing verified archive fallback", { runId, date, failedStep, status, signal, fallback });
     run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
       env: {
         ...process.env,
@@ -193,13 +193,10 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
   }
 
   const exitStatus = status ?? 1;
-  console.error(
-    `Live briefing for ${date} was not verified during ${failedStep}. ` +
-    "Refusing to publish a previous archive as /latest. Publishing a public verification-hold page instead. " +
-    "Fix the source/data failure or set ALLOW_VERIFIED_ARCHIVE_FALLBACK=true only for an explicit manual recovery deploy."
-  );
+  const holdMessage = `Live briefing for ${date} was not verified during ${failedStep}. Refusing to publish a previous archive as /latest.`;
+  log.error(holdMessage, { runId, date, failedStep, status, signal, fallback });
   if (signal) {
-    console.error(`Failed command signal: ${signal}`);
+    log.error("failed command signal", { runId, signal });
   }
   const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {
     env: {
@@ -211,71 +208,14 @@ async function handleFreshBuildFailure({ date, failedStep, status, signal }) {
     exitOnFailure: false
   });
   if (fallbackPublish.status !== 0) {
-    console.error(`Unable to publish verification-hold artifact after ${failedStep} failed.`);
+    log.error("unable to publish verification-hold artifact", { runId, failedStep, status: fallbackPublish.status });
     process.exit(fallbackPublish.status ?? (exitStatus === 0 ? 1 : exitStatus));
   }
-  await writeLatestStatusPages({ date, failedStep, fallback, status: "verification-hold" });
   await writeLatestSlugArtifact(slugForDate(fallback.date));
   await writePwaArtifacts();
   process.exit(0);
 }
 
-async function writeLatestStatusPages({ date, failedStep = "", fallback, status, calendarState = marketCalendarState(date) }) {
-  // We no longer write static fallback pages to /latest/ because it breaks the SEO
-  // requirement of returning a 301 redirect. The Vercel rewrite to api/latest-redirect.js
-  // will handle the fallback logic.
-}
-
-function latestStatusPage({ date, failedStep, fallback, status, calendarState, isTradingGuide }) {
-  const marketClosed = status === "market-closed";
-  const holidayClosed = marketClosed && calendarState?.state === "exchange_holiday";
-  const title = marketClosed
-    ? `${formatDate(date)} market closed | Market Narrative`
-    : `${formatDate(date)} briefing under verification | Market Narrative`;
-  const fallbackSlug = slugForDate(fallback.date);
-  const fallbackHref = isTradingGuide ? `/${fallbackSlug}/trading-guide/` : `/${fallbackSlug}/`;
-  const fallbackLabel = isTradingGuide ? "Open latest verified trading guide" : "Open latest verified briefing";
-  const eyebrow = marketClosed ? "Market Closed" : "Source Verification Hold";
-  const heading = marketClosed
-    ? `No ${isTradingGuide ? "trading guide" : "pre-market briefing"} for ${formatDate(date)}.`
-    : `${formatDate(date)} briefing was not published as latest.`;
-  const lead = marketClosed
-    ? holidayClosed
-      ? `Indian cash markets are closed for ${calendarState.reason}, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
-      : `Indian cash markets are not in session today, so Market Narrative is not publishing a fresh ${isTradingGuide ? "trading guide" : "pre-open briefing"}.`
-    : `The ${isTradingGuide ? "trading guide" : "pre-market briefing"} did not clear the public source-quality gate during ${failedStep}, so Market Narrative is not presenting the previous archive as today's latest edition.`;
-  const latestLine = marketClosed
-    ? `The latest verified trading-day edition remains ${formatDate(fallback.date)}. Use it as historical context for the next open.`
-    : `The latest verified archive remains ${formatDate(fallback.date)}. Use that only as historical context, not as today's pre-open read.`;
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="robots" content="noindex,follow">
-  <title>${escapeHtml(title)}</title>
-  <style>
-    body { margin: 0; font-family: Inter, Arial, sans-serif; color: #111827; background: #f8fafc; }
-    main { max-width: 720px; margin: 0 auto; padding: 72px 24px; }
-    p { font-size: 18px; line-height: 1.65; color: #374151; }
-    .eyebrow { color: #b45309; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
-    h1 { font-size: 40px; line-height: 1.1; margin: 12px 0 18px; }
-    a { display: inline-block; margin: 10px 12px 0 0; color: #ffffff; background: #111827; padding: 12px 16px; border-radius: 8px; text-decoration: none; font-weight: 800; }
-    a.secondary { color: #111827; background: #e5e7eb; }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="eyebrow">${escapeHtml(eyebrow)}</div>
-    <h1>${escapeHtml(heading)}</h1>
-    <p>${escapeHtml(lead)}</p>
-    <p>${escapeHtml(latestLine)}</p>
-    <a href="${escapeHtml(fallbackHref)}">${escapeHtml(fallbackLabel)}</a>
-    <a class="secondary" href="/">Open archive</a>
-  </main>
-</body>
-</html>`;
-}
 
 function slugForDate(value) {
   const date = String(value);
@@ -285,24 +225,6 @@ function slugForDate(value) {
   const [year, month, day] = date.split("-");
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   return `${Number(day)}${monthName}${year}`;
-}
-
-function formatDate(value) {
-  return new Intl.DateTimeFormat("en-IN", {
-    timeZone: "Asia/Kolkata",
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-  }).format(new Date(`${value}T12:00:00+05:30`));
-}
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
 }
 
 function latestArchivedDigest() {
@@ -317,13 +239,14 @@ function latestArchivedDigest() {
     .sort((left, right) => `${left.date}T${left.scheduledTime}`.localeCompare(`${right.date}T${right.scheduledTime}`));
   const latest = digests.at(-1);
   if (!latest) {
-    console.error("No weekday archived digest is available for artifact verification.");
+    log.error("no weekday archived digest available", { runId });
     process.exit(1);
   }
   return latest;
 }
 
 function run(command, args, options = {}) {
+  log.info("running build command", { runId, command, args });
   const spawnOptions = {
     stdio: "inherit",
     shell: false,
@@ -355,6 +278,6 @@ function runNpmScriptWithNode(args, spawnOptions) {
   if (!match) {
     return null;
   }
-  console.warn(`npm not found; running ${scriptName} via node ${match[1]}.`);
+  log.warn("npm not found; falling back to node script", { runId, scriptName, path: match[1] });
   return spawnSync("node", [match[1], ...forwardedArgs], spawnOptions);
 }

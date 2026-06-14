@@ -30,6 +30,13 @@ These must remain true after changes:
 
 ## Completed
 
+- 2026-06-14: Unit 1 guardrail follow-up started after baseline commit. Added
+  richer architecture diagrams and structured stage logs for daily generation,
+  public Vercel build fallback paths, static publishing completion, predeploy
+  checks, and reliability smoke. Oversized touched files did not grow. Verified:
+  `npm run context:verify`, `npm test`, `npm run test:deploy`,
+  `MARKET_NARRATIVE_DEPLOY_TARGET=public npm run vercel:build`,
+  `npm run public:copy:qa -- public`, and `git diff --check`.
 - 2026-06-14: Context guardrail system implemented. Added `AGENTS.md`,
   six-file `context/` workflow, Mermaid diagrams, `context:verify`, structured
   logger, local-prod commands, pre-push/CI/predeploy integration, and docs.
@@ -45,8 +52,8 @@ These must remain true after changes:
 
 ## In Progress
 
-- Context guardrail follow-up: use the new system on the next implementation
-  task and begin splitting oversized legacy files.
+- Continue architecture debt split in safe units: QA probes first, then public
+  model pages, publisher, briefing page, content engine, and test modules.
 
 ## Found During Work
 

@@ -1,12 +1,23 @@
 flowchart TD
-  Cron[07:15 IST workflow] --> Calendar[market-calendar]
-  Calendar -->|closed| Closed[market closed state]
-  Calendar -->|trading day| Ingest[Pulse/RSS/source ingestion]
-  Ingest --> Rank[deterministic pre-score]
-  Rank --> Rerank[agent reranker]
-  Rerank --> Enrich[article enrichment]
-  Enrich --> Guardrails[public copy guardrails]
-  Guardrails --> Digest[archive daily digest]
-  Digest --> Publish[static publisher]
-  Publish --> Site[public briefing pages]
+  Cron["GitHub Actions 07:15 IST"] --> Calendar["market-calendar state"]
+  Calendar -->|weekend or holiday| Closed["market-closed publication event"]
+  Calendar -->|trading day| Existing["check tracked archive"]
+  Existing -->|exists| Reuse["reuse immutable archive"]
+  Existing -->|missing| Generate["generate-daily-summary"]
 
+  Generate --> Sources["news-sources ingest Pulse/RSS"]
+  Sources --> Score["core pre-score by India relevance and market severity"]
+  Score --> Rerank["NVIDIA lead reranker if key exists"]
+  Rerank --> Enrich["LLM article enrichment and dedup"]
+  Enrich --> Digest["digest JSON with sourceVerification"]
+  Digest --> Guard["assertPublicBriefingCopy"]
+  Guard --> Archive["archive/daily/YYYY-MM-DD-0715-digest.json"]
+  Archive --> Publish["publish-site static render"]
+  Closed --> Publish
+  Reuse --> Publish
+  Publish --> Latest["/latest static shell or redirect target"]
+  Publish --> Public["dated briefing and trading guide"]
+  Publish --> QA["public copy QA"]
+
+  Guard -->|fails| Hold["source or QA hold page"]
+  QA -->|fails| Block["block deploy"]

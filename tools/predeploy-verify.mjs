@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
-
+import { log } from "./logger.mjs";
 const checks = [
   {
     name: "Repo contract tests",
@@ -33,7 +33,6 @@ const checks = [
     args: ["run", "trading:mock:regression"]
   }
 ];
-
 if (commandExists("mvn")) {
   checks.push({
     name: "Spring backend tests",
@@ -47,13 +46,12 @@ if (commandExists("mvn")) {
 } else {
   console.warn("WARN Spring backend tests skipped: mvn was not found. Set REQUIRE_MAVEN=true in CI to make this fatal.");
 }
-
 const startedAt = Date.now();
 const failures = [];
-
 for (const check of checks) {
   const label = `\n==> ${check.name}`;
-  console.log(label);
+  log.info("predeploy check started", { name: check.name });
+  process.stdout.write(`${label}\n`);
   if (check.run) {
     try {
       check.run();
@@ -71,18 +69,17 @@ for (const check of checks) {
     }
   }
 }
-
 const seconds = ((Date.now() - startedAt) / 1000).toFixed(1);
 if (failures.length > 0) {
+  log.error("predeploy verification failed", { seconds, failures });
   console.error(`\nFAIL predeploy verification failed in ${seconds}s`);
   for (const failure of failures) {
     console.error(`- ${failure}`);
   }
   process.exit(1);
 }
-
+log.info("predeploy verification completed", { seconds, checks: checks.length });
 console.log(`\nPASS predeploy verification completed in ${seconds}s`);
-
 function fastApiPython() {
   const venvPython = "services/trading-api/.venv/bin/python";
   return existsSync(venvPython) ? venvPython : "python3";
