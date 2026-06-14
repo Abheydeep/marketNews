@@ -37,6 +37,12 @@ These must remain true after changes:
   `npm run context:verify`, `npm test`, `npm run test:deploy`,
   `MARKET_NARRATIVE_DEPLOY_TARGET=public npm run vercel:build`,
   `npm run public:copy:qa -- public`, and `git diff --check`.
+- 2026-06-14: Unit 2 architecture debt split started with the reliability smoke
+  script. Moved fetch, parsing, sitemap, latest, and IST date helpers into
+  `tools/reliability-smoke-helpers.mjs`; `tools/reliability-smoke.mjs` is now
+  under 200 lines. Verified: `node --check` on both files,
+  `npm run context:verify`, `npm test`, and `npm run reliability:smoke`
+  (19/19 live checks passed).
 - 2026-06-14: Context guardrail system implemented. Added `AGENTS.md`,
   six-file `context/` workflow, Mermaid diagrams, `context:verify`, structured
   logger, local-prod commands, pre-push/CI/predeploy integration, and docs.
