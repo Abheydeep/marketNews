@@ -43,6 +43,13 @@ These must remain true after changes:
   under 200 lines. Verified: `node --check` on both files,
   `npm run context:verify`, `npm test`, and `npm run reliability:smoke`
   (19/19 live checks passed).
+- 2026-06-14: Unit 3 split the predeploy release gate into a small runner,
+  check factory, artifact assertions, and Vercel artifact groups. ROOT CAUSE:
+  the first split moved `SKIP_ARCHIVE_WRITE` out of `predeploy-verify.mjs`
+  while a contract test still inspected that runner for the archive-write safety
+  marker; added an explicit runner marker pointing to the helper module. Verified:
+  `node --check` on all four modules, `npm run context:verify`, `npm test`, and
+  `npm run test:deploy`.
 - 2026-06-14: Context guardrail system implemented. Added `AGENTS.md`,
   six-file `context/` workflow, Mermaid diagrams, `context:verify`, structured
   logger, local-prod commands, pre-push/CI/predeploy integration, and docs.
