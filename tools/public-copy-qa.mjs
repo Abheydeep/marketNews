@@ -3,7 +3,9 @@ import { extname, join, normalize, relative } from "node:path";
 import { findPublicBriefingViolations } from "./editorial-guardrails.mjs";
 
 const defaultTargets = ["out/site", "public"];
-const targets = process.argv.slice(2).length ? process.argv.slice(2) : defaultTargets;
+const explicitTargets = process.argv.slice(2);
+const targets = explicitTargets.length ? explicitTargets : defaultTargets;
+const requireExistingTargets = explicitTargets.length > 0;
 const scanExtensions = new Set([".html", ".json", ".txt"]);
 const adminLabelPatterns = [
   /Daily Pre-Market Archive/i,
@@ -46,6 +48,9 @@ async function scanTarget(target) {
     await scanFile(target);
   } catch (error) {
     if (error.code === "ENOENT") {
+      if (requireExistingTargets) {
+        violations.push({ file: target, message: "explicit public-copy QA target does not exist" });
+      }
       return;
     }
     throw error;

@@ -3,7 +3,8 @@ flowchart LR
   Unit --> DeployGate["test:deploy"]
   DeployGate --> PublicBuild["MARKET_NARRATIVE_DEPLOY_TARGET=public vercel:build"]
   PublicBuild --> CopyQA["public:copy:qa -- public"]
-  CopyQA --> LocalProd{"content or pipeline change?"}
+  CopyQA --> MobileSmoke["mobile:smoke -- public"]
+  MobileSmoke --> LocalProd{"content or pipeline change?"}
   LocalProd -->|yes| RealLLM["local:prod with .env.local real keys"]
   RealLLM --> LocalSmoke["local:prod:smoke"]
   LocalProd -->|no| Review["review and commit"]

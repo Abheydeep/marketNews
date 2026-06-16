@@ -1,5 +1,14 @@
 flowchart TD
+  GitHubSchedule["GitHub schedule 07:00-09:00 IST"] --> PagesWorkflow["pages.yml publish workflow"]
+  VercelCron["Vercel cron watchdog every 5 min"] --> CronApi["/api/cron/premarket-publish"]
+  CronApi --> ArchiveCheck["check GitHub archive and /latest freshness"]
+  ArchiveCheck -->|missing/stale| ActiveRunCheck["skip if publish workflow already active"]
+  ActiveRunCheck -->|dispatch| PagesWorkflow
+  ArchiveCheck -->|missing after alert threshold| HardAlert["structured error log"]
+  PagesWorkflow --> Digest
+
   Digest["out/daily or archive digest"] --> Load["publish-site loadSourceDigest"]
+  RuntimeAssets["out/vercel/assets/og generated images"] --> AssetCopy["copy assets into out/site/assets"]
   Load --> Redact["redacted public payload"]
   Redact --> Pages["render public pages"]
   Pages --> Home["/ archive homepage"]
@@ -7,6 +16,8 @@ flowchart TD
   Pages --> Latest["/latest/ and /latest/trading-guide/ shell"]
   Pages --> Hubs["indices, flows, stats, moves, multibagger"]
   Pages --> SEO["sitemap, robots, manifest, OG card"]
+  MovesArchive["archive/moves tracked articles"] --> MovesCopy["copy into /moves/ dated explainers"]
+  MovesCopy --> Hubs
 
   Home --> Guard["writeGuardedFile public copy QA"]
   Dated --> Guard
@@ -14,6 +25,7 @@ flowchart TD
   Hubs --> Guard
   Guard --> OutSite["out/site"]
   SEO --> OutSite
+  AssetCopy --> OutSite
   OutSite --> VercelBuild["vercel-build-public copies to public"]
   VercelBuild --> Artifact["Vercel public artifact"]
   Artifact --> Deploy["production deploy"]

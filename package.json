@@ -16,6 +16,7 @@
     "site:publish": "node tools/publish-site.mjs",
     "site:qa": "node tools/full-site-qa.mjs",
     "public:copy:qa": "node tools/public-copy-qa.mjs",
+    "mobile:smoke": "node tools/mobile-artifact-smoke.mjs",
     "test:deploy": "npm run context:verify && node tools/predeploy-verify.mjs",
     "prod:smoke": "node tools/production-smoke.mjs",
     "reliability:smoke": "node tools/reliability-smoke.mjs",

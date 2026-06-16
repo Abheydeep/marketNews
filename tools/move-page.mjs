@@ -8,9 +8,11 @@ import { escapeHtml } from "./brand-assets.mjs"; // reuse utility for escaping H
  * Helper to generate JSON‑LD for a NewsArticle.
  */
 function newsArticleJsonLd({ date, slug, article, symbol, change }) {
-  const url = `${process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in"}/moves/${date}/${slug}/`;
   const origin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+  const url = `${origin}/moves/${date}/${slug}/`;
   const movement = change > 0 ? "rose" : "fell";
+  const publishedAt = stableArticleTimestamp(date, article?.publishedAt || article?.timestamp || article?.generatedAt);
+  const modifiedAt = stableArticleTimestamp(date, article?.modifiedAt || article?.updatedAt || publishedAt);
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -18,12 +20,12 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
     "description": article.summary ?? "",
     "image": {
       "@type": "ImageObject",
-      "url": article.thumbnail?.url ?? `${origin}/og-card.svg`,
+      "url": article.ogImageUrl || article.thumbnail?.url || `${origin}/og-card.svg`,
       "width": 1200,
-      "height": 630
+      "height": 675
     },
-    "datePublished": new Date().toISOString(),
-    "dateModified": new Date().toISOString(),
+    "datePublished": publishedAt,
+    "dateModified": modifiedAt,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": url
@@ -44,7 +46,10 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
 }
 
 function safeJsonScript(value) {
-  return JSON.stringify(value).replace(/</g, "\\u003c");
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
 }
 
 /**
@@ -61,7 +66,11 @@ export function movePage({ date, slug, article, symbol, change }) {
   const pageTitle = `Why ${symbol} ${movement} ${Math.abs(change).toFixed(1)}% today - ${date} | Market Narrative`;
   const description = compactMetaDescription(`${symbol} ${movement} ${Math.abs(change).toFixed(1)}% on ${date}. ${article.summary ?? ""}`);
   const jsonLd = safeJsonScript(newsArticleJsonLd({ date, slug, article, symbol, change }));
-  const thumbnailUrl = article.thumbnail?.url ?? "";
+  const thumbnailUrl = article.ogImageUrl || article.thumbnail?.url || "";
+  const origin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+  const canonicalUrl = `${origin}/moves/${date}/${slug}/`;
+  const fallbackImage = `${origin}/og-card.svg`;
+  const socialImage = thumbnailUrl || fallbackImage;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -71,18 +80,22 @@ export function movePage({ date, slug, article, symbol, change }) {
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="canonical" href="${escapeHtml(`https://marketnarrative.in/moves/${date}/${slug}/`)}">
+  <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(description)}">
-  <meta property="og:url" content="${escapeHtml(`https://marketnarrative.in/moves/${date}/${slug}/`)}">
-  <meta property="og:image" content="${escapeHtml(thumbnailUrl || "https://marketnarrative.in/og-card.svg")}">
+  <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
+  <meta property="og:image" content="${escapeHtml(socialImage)}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:type" content="${socialImage.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">
+  <meta property="og:image:alt" content="${escapeHtml(`${pageTitle} - Market Narrative move image`)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
-  <meta name="twitter:image" content="${escapeHtml(thumbnailUrl || "https://marketnarrative.in/og-card.svg")}">
+  <meta name="twitter:image" content="${escapeHtml(socialImage)}">
   <script type="application/ld+json">${jsonLd}</script>
   <style>
     ${compactCardCss()}
@@ -96,7 +109,7 @@ export function movePage({ date, slug, article, symbol, change }) {
       <h1>Why ${escapeHtml(symbol)} ${escapeHtml(movement)} ${escapeHtml(Math.abs(change).toFixed(1))}% today</h1>
       <p class="compact-subtitle">${escapeHtml(article.headline || `${symbol} market move explained`)}</p>
     </header>
-    ${thumbnailUrl ? `<img src="${escapeHtml(thumbnailUrl)}" alt="${escapeHtml(article.headline)}" class="compact-thumb"/>` : ""}
+    ${thumbnailUrl ? `<img src="${escapeHtml(thumbnailUrl)}" alt="${escapeHtml(article.headline)}" class="compact-thumb" width="1200" height="220" loading="eager" decoding="async">` : ""}
     <article class="compact-body">
       <p>${escapeHtml(article.summary ?? "")}</p>
     </article>
@@ -105,6 +118,14 @@ export function movePage({ date, slug, article, symbol, change }) {
   ${mobileShellScript()}
 </body>
 </html>`;
+}
+
+function stableArticleTimestamp(date, value) {
+  const parsed = Date.parse(value);
+  if (Number.isFinite(parsed)) {
+    return new Date(parsed).toISOString();
+  }
+  return new Date(`${date}T09:15:00+05:30`).toISOString();
 }
 
 /**
@@ -132,7 +153,9 @@ function compactCardCss() {
     }
     .compact-thumb {
       width: 100%;
-      height: auto;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
       border-radius: 12px;
       margin: 0 0 16px;
     }

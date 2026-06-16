@@ -1,5 +1,6 @@
 flowchart TD
-  Cron["GitHub Actions 07:15 IST"] --> Calendar["market-calendar state"]
+  Cron["GitHub Actions 07:00-08:00 retries"] --> Calendar["market-calendar state"]
+  Incremental["GitHub Actions 08:00-09:00 incremental retries"] --> Calendar
   Calendar -->|weekend or holiday| Closed["market-closed publication event"]
   Calendar -->|trading day| Existing["check tracked archive"]
   Existing -->|exists| Reuse["reuse immutable archive"]
@@ -9,9 +10,14 @@ flowchart TD
   Sources --> Score["core pre-score by India relevance and market severity"]
   Score --> Rerank["NVIDIA lead reranker if key exists"]
   Rerank --> Enrich["LLM article enrichment and dedup"]
+  Enrich --> ImagePrompt["theme image prompt"]
+  ImagePrompt -->|NVIDIA qwen-image best effort| OgAsset["out/vercel/assets/og/YYYY-MM-DD.jpg"]
+  ImagePrompt -->|missing key or failure| StaticCard["static /og-card.svg fallback"]
   Enrich --> Digest["digest JSON with sourceVerification"]
+  OgAsset --> Digest
+  StaticCard --> Digest
   Digest --> Guard["assertPublicBriefingCopy"]
-  Guard --> Archive["archive/daily/YYYY-MM-DD-0715-digest.json"]
+  Guard --> Archive["archive/daily/YYYY-MM-DD-HHMM-digest.json"]
   Archive --> Publish["publish-site static render"]
   Closed --> Publish
   Reuse --> Publish
@@ -21,3 +27,4 @@ flowchart TD
 
   Guard -->|fails| Hold["source or QA hold page"]
   QA -->|fails| Block["block deploy"]
+  Manual["workflow_dispatch manual recovery"] -->|explicit allow_late or fixture only| Generate

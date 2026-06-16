@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
+import { log } from "./logger.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
@@ -898,14 +899,14 @@ export function newsArticleJsonLd(digest, options = {}) {
   const headline = options.h1Override || digest.title;
   // Real raster ≥ 1200×675 is required for Google News discoverability. SVG OG cards
   // are fine for social but are ignored by the News image picker.
-  const image = "https://marketnarrative.in/og-card-1200x675.png";
+  const image = digest.ogImageUrl || "https://marketnarrative.in/og-card-1200x675.png";
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline,
     alternativeHeadline: digest.title,
     description,
-    image: [image, "https://marketnarrative.in/og-card.svg"],
+    image: digest.ogImageUrl ? [image] : [image, "https://marketnarrative.in/og-card.svg"],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonicalUrl
@@ -1384,8 +1385,8 @@ function configuredDailyLeadReranker(options = {}) {
   const model = options.nvidiaLeadModel ?? process.env.NVIDIA_LEAD_MODEL ?? options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ prompt, userPrompt }) => {
-    console.log(`[Lead Reranker] Requesting NVIDIA API (Model: ${model})...`);
     const startTime = Date.now();
+    log.info("daily lead reranker request started", { provider: "nvidia", model });
     const response = await fetcher(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
@@ -1408,7 +1409,7 @@ function configuredDailyLeadReranker(options = {}) {
       }),
       signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_LEAD_TIMEOUT_MS ?? 20000))
     });
-    console.log(`[Lead Reranker] Received response with status ${response?.status} in ${Date.now() - startTime}ms`);
+    log.info("daily lead reranker request completed", { provider: "nvidia", model, status: response?.status, durationMs: Date.now() - startTime });
     if (!response?.ok) {
       throw new Error(`NVIDIA daily lead rerank failed with status ${response?.status ?? "unknown"}`);
     }
@@ -2593,7 +2594,6 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
     usdinr ? `USD/INR: ${usdinr.closeValue}` : ""
   ].filter(Boolean).join(", ");
 
-  // Use the fast NIM model — same HTTP pattern as nimCall which is proven to work locally
   const model = options.deskEditorModel ?? process.env.NVIDIA_DESK_MODEL ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? NIM_MODEL;
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const fetcher = options.llmFetcher ?? fetch;
@@ -2602,8 +2602,8 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
 
   const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite a cohesive 3-paragraph article weaving these events together. Find the hidden connections between global macro shifts, corporate earnings, and Indian market implications. Do not simply list events or repeat a standard summary structure. Instead, tell the story of what is driving the market today, highlighting the most critical themes, how they interact, and what the key battlegrounds will be for traders. Be highly detailed and analytical. No preamble, no sign-off. Return exactly three paragraphs.`;
 
-  console.log(`[Desk Editor] Synthesizing Today's Read (${model})...`);
   const startTime = Date.now();
+  log.info("desk editor synthesis started", { provider: "nvidia", model });
 
   for (let attempt = 0; attempt <= 1; attempt++) {
     try {
@@ -2630,11 +2630,11 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
       });
 
       if (response.status === 429 || response.status >= 500) {
-        console.warn(`[Desk Editor] API ${response.status} on attempt ${attempt + 1}, retrying...`);
+        log.warn("desk editor retryable response", { provider: "nvidia", model, status: response.status, attempt: attempt + 1 });
         continue;
       }
       if (!response.ok) {
-        console.warn(`[Desk Editor] API returned ${response.status}`);
+        log.warn("desk editor request rejected", { provider: "nvidia", model, status: response.status });
         if (strictDeskEditor) {
           throw new Error(`Desk editor API returned ${response.status}`);
         }
@@ -2643,10 +2643,10 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
       const data = await response.json();
       const raw = (data?.choices ?? []).map(c => c?.message?.content ?? "").filter(Boolean).join("\n").trim();
       const text = raw ? cleanAIOutput(raw) : null;
-      console.log(`[Desk Editor] Synthesized in ${((Date.now() - startTime) / 1000).toFixed(1)}s (${text?.length ?? 0} chars)`);
+      log.info("desk editor synthesis completed", { provider: "nvidia", model, durationMs: Date.now() - startTime, chars: text?.length ?? 0 });
       return text || null;
     } catch (error) {
-      console.warn(`[Desk Editor] Attempt ${attempt + 1} failed: ${error.message}`);
+      log.warn("desk editor attempt failed", { provider: "nvidia", model, attempt: attempt + 1, error: error.message });
     }
   }
   if (strictDeskEditor) {

@@ -9,6 +9,8 @@ import { assertPremarketPublishWindow } from "./publish-window.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 import { log } from "./logger.mjs";
+import { buildBriefingImagePrompt, generateArticleImage } from "./generate-article-image.mjs";
+import { writeOgImageAsset } from "./og-image-assets.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -16,6 +18,9 @@ const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const marketDataMode = readArg("--market-data") ?? process.env.MARKET_DATA_MODE ?? "mock";
 const newsDataMode = readArg("--news-data") ?? process.env.NEWS_DATA_MODE ?? "live";
 const enforcePublishWindow = readFlag("--enforce-publish-window") || process.env.ENFORCE_PREMARKET_WINDOW === "true";
+const publishWindowCutoffMinutes = optionalNumber(readArg("--publish-window-cutoff-minutes") ?? process.env.PREMARKET_LATE_CUTOFF_MINUTES);
+const forceGenerate = readFlag("--force-generate") || process.env.FORCE_DAILY_GENERATE === "true";
+const requireArticleImage = process.env.REQUIRE_ARTICLE_IMAGE === "true";
 const label = scheduledTime.replace(":", "");
 const outputDir = join(rootDir, "out", "daily");
 const liveMode = marketDataMode === "live" || newsDataMode === "live";
@@ -23,7 +28,7 @@ const runId = `daily-${date}-${label}-${Date.now()}`;
 
 const lockFile = join(rootDir, `out`, `daily`, `publish-lock-${date}-${label}.lock`);
 log.info("daily generation started", { runId, date, scheduledTime, marketDataMode, newsDataMode, liveMode });
-if (liveMode) {
+if (liveMode && !forceGenerate) {
   try {
     const archiveFile = join(rootDir, "archive", "daily", `${date}-${label}-digest.json`);
     await access(archiveFile);
@@ -57,7 +62,7 @@ if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING
 
 if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH !== "true") {
   try {
-    assertPremarketPublishWindow({ date, scheduledTime });
+    assertPremarketPublishWindow({ date, scheduledTime, cutoffMinutes: publishWindowCutoffMinutes });
   } catch (error) {
     log.error("daily generation blocked publish window", { runId, date, scheduledTime, error: error.message });
     process.stderr.write(`${error.message}\n`);
@@ -100,6 +105,10 @@ const digest = {
     : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
   ...(nonTradingSession ? { nonTradingSession } : {})
 };
+digest.ogImageUrl = await generatedBriefingOgImageUrl(digest);
+if (requireArticleImage && !digest.ogImageUrl) {
+  throw new Error("Article image generation is required for this run but no image URL was produced.");
+}
 
 await mkdir(outputDir, { recursive: true });
 
@@ -151,4 +160,25 @@ function readArg(name) {
 
 function readFlag(name) {
   return process.argv.includes(name);
+}
+
+function optionalNumber(value) {
+  if (value == null || value === "") {
+    return undefined;
+  }
+  const number = Number(value);
+  return Number.isFinite(number) ? number : undefined;
+}
+
+async function generatedBriefingOgImageUrl(digest) {
+  const prompt = buildBriefingImagePrompt(digest);
+  const buffer = await Promise.race([
+    generateArticleImage(prompt),
+    new Promise((resolve) => setTimeout(() => resolve(null), 50_000))
+  ]);
+  const asset = await writeOgImageAsset(buffer, `${digest.digestDate}.jpg`).catch((error) => {
+    log.warn("briefing image asset write failed", { runId, date: digest.digestDate, error: error.message });
+    return null;
+  });
+  return asset?.url ?? null;
 }

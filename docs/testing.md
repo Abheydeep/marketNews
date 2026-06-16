@@ -193,7 +193,7 @@ Install the local pre-push hook before release work:
 npm run hooks:install
 ```
 
-The hook runs `npm test`, builds the public Vercel artifact in mock mode, and runs `npm run public:copy:qa`. Do not bypass it on release branches. GitHub Actions also runs the public-copy QA gate on pull requests and `main` pushes.
+The hook runs `npm test`, builds the public Vercel artifact in mock mode, and runs `npm run public:copy:qa`. Do not bypass it on release branches. GitHub Actions also runs the public-copy QA gate and `npm run mobile:smoke -- public` on pull requests and `main` pushes.
 
 Before using the trading cockpit for real workflows, run the strict authenticated gate from a trusted shell:
 
@@ -263,7 +263,7 @@ npm run local:prod -- --date YYYY-MM-DD
 npm run local:prod:smoke
 ```
 
-`local:prod` loads `.env.local`, requires at least one real LLM key, generates
+`local:prod` loads `.env.local`, requires a real `NVIDIA_API_KEY`, generates
 with live market/news modes, builds the public artifact, runs public copy QA,
 and serves the result locally. Unit tests remain mocked by default.
 

@@ -1,4 +1,5 @@
 import { ARTICLE_ENRICHMENT_PROMPT } from "./editorial-guardrails.mjs";
+import { log } from "./logger.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
@@ -304,7 +305,7 @@ export async function fetchLiveNewsArticles(date, options = {}) {
       if (options.strictFetch) {
         throw error;
       }
-      console.warn(`[news-source] ${feed.sourceName} skipped: ${error.message}`);
+      log.warn("news source skipped", { sourceName: feed.sourceName, error: error.message });
     }
   }
   
@@ -346,7 +347,7 @@ async function enrichPulseArticleWithContent(article, fetcher) {
        article.summary = paragraphs.join('\n\n'); 
     }
   } catch (e) {
-    console.warn(`[news-source] Failed to scrape pulse body for ${article.sourceUrl}: ${e.message}`);
+      log.warn("pulse article body scrape failed", { sourceUrl: article.sourceUrl, error: e.message });
   }
   return article;
 }
@@ -425,85 +426,11 @@ function configuredArticleEditorialEnricher(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const anthropicApiKey = options.anthropicApiKey ?? process.env.ANTHROPIC_API_KEY;
-  if (anthropicApiKey) {
-    return configuredAnthropicArticleEditorialEnricher({ ...options, apiKey: anthropicApiKey, fetcher });
-  }
-  const openaiApiKey = options.openaiApiKey ?? process.env.OPENAI_API_KEY;
-  if (openaiApiKey) {
-    return configuredOpenAiArticleEditorialEnricher({ ...options, apiKey: openaiApiKey, fetcher });
-  }
   const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
   if (nvidiaApiKey) {
     return configuredNvidiaArticleEditorialEnricher({ ...options, apiKey: nvidiaApiKey, fetcher });
   }
-  const geminiApiKey = options.geminiApiKey ?? process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
-  if (geminiApiKey) {
-    return configuredGeminiArticleEditorialEnricher({ ...options, apiKey: geminiApiKey, fetcher });
-  }
   return null;
-}
-
-function configuredAnthropicArticleEditorialEnricher(options = {}) {
-  const { apiKey, fetcher } = options;
-  const model = options.anthropicModel ?? process.env.ANTHROPIC_MODEL ?? "claude-3-5-haiku-latest";
-  return async ({ article, prompt, schema }) => {
-    const response = await fetcher("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01"
-      },
-      body: JSON.stringify({
-        model,
-        max_tokens: 240,
-        system: prompt,
-        messages: [{
-          role: "user",
-          content: articleEditorialUserPrompt(article, schema)
-        }]
-      })
-    });
-    if (!response?.ok) {
-      throw new Error(`article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
-    }
-    const data = await response.json();
-    return parseArticleEditorialResponse(data?.content?.[0]?.text);
-  };
-}
-
-function configuredOpenAiArticleEditorialEnricher(options = {}) {
-  const { apiKey, fetcher } = options;
-  const model = options.openaiModel ?? process.env.OPENAI_MODEL ?? "gpt-5.2";
-  return async ({ article, prompt, schema }) => {
-    const response = await fetcher("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model,
-        max_output_tokens: 240,
-        instructions: prompt,
-        input: articleEditorialUserPrompt(article, schema),
-        text: {
-          format: {
-            type: "json_schema",
-            name: "article_card_editorial_patch",
-            strict: true,
-            schema: articleEditorialJsonSchema()
-          }
-        }
-      })
-    });
-    if (!response?.ok) {
-      throw new Error(`OpenAI article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
-    }
-    const data = await response.json();
-    return parseArticleEditorialResponse(openAiResponseText(data));
-  };
 }
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
@@ -512,16 +439,14 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING === "true";
   return async ({ article, prompt, schema, usedAngles = [] }) => {
-    console.log(`[Editorial Enricher] Requesting NVIDIA API (Model: ${model}) for: ${article?.headline?.slice(0, 30)}...`);
-    const startTime = Date.now();
-    const response = await fetcher(`${baseUrl}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
+    const startedAt = Date.now();
+    const response = await nvidiaFetchWithRetry({
+      fetcher,
+      url: `${baseUrl}/chat/completions`,
+      provider: "nvidia_article_editorial",
+      model,
+      timeoutMs: Number(options.nvidiaArticleTimeoutMs ?? process.env.NVIDIA_ARTICLE_TIMEOUT_MS ?? process.env.NVIDIA_TIMEOUT_MS ?? 15000),
+      body: {
         model,
         messages: [
           { role: "system", content: prompt },
@@ -534,13 +459,10 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
         chat_template_kwargs: enableThinking ? { enable_thinking: true } : { thinking: false },
         ...(enableThinking ? { reasoning_budget: Number(options.nvidiaArticleReasoningBudget ?? process.env.NVIDIA_ARTICLE_REASONING_BUDGET ?? 1024) } : {}),
         stream: false
-      }),
-      signal: AbortSignal.timeout(Number(options.nvidiaArticleTimeoutMs ?? process.env.NVIDIA_ARTICLE_TIMEOUT_MS ?? process.env.NVIDIA_TIMEOUT_MS ?? 15000))
+      },
+      apiKey
     });
-    console.log(`[Editorial Enricher] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
-    if (!response?.ok) {
-      throw new Error(`NVIDIA article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
-    }
+    log.info("article editorial enrichment completed", { provider: "nvidia", model, status: response.status, durationMs: Date.now() - startedAt });
     const data = await response.json();
     return parseArticleEditorialResponse(nvidiaResponseText(data));
   };
@@ -553,86 +475,46 @@ function nvidiaResponseText(data) {
     .join("\n");
 }
 
-function articleEditorialJsonSchema() {
-  return {
-    type: "object",
-    additionalProperties: false,
-    properties: {
-      takeaway: { type: "string" },
-      indiaImpact: { type: "string" },
-      watchFor: { type: "string" }
-    },
-    required: ["takeaway", "indiaImpact", "watchFor"]
-  };
-}
-
-function openAiResponseText(data) {
-  if (typeof data?.output_text === "string") {
-    return data.output_text;
-  }
-  return (data?.output ?? [])
-    .flatMap((item) => item?.content ?? [])
-    .map((content) => content?.text ?? "")
-    .filter(Boolean)
-    .join("\n");
-}
-
-function configuredGeminiArticleEditorialEnricher(options = {}) {
-  const { apiKey, fetcher } = options;
-  const model = normalizeGeminiModelName(options.geminiModel ?? process.env.GEMINI_MODEL ?? "gemini-flash-latest");
-  return async ({ article, prompt, schema }) => {
-    const response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        systemInstruction: {
-          parts: [{ text: prompt }]
+async function nvidiaFetchWithRetry({ fetcher, url, provider, model, body, apiKey, timeoutMs, retries = 2 }) {
+  let lastError;
+  for (let attempt = 1; attempt <= retries + 1; attempt += 1) {
+    const startedAt = Date.now();
+    try {
+      log.info("llm request started", { provider, model, attempt });
+      const response = await fetcher(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${apiKey}`
         },
-        contents: [{
-          role: "user",
-          parts: [{ text: articleEditorialUserPrompt(article, schema) }]
-        }],
-        generationConfig: {
-          maxOutputTokens: 1000,
-          responseMimeType: "application/json",
-          responseSchema: geminiArticleEditorialSchema()
-        }
-      })
-    });
-    if (!response?.ok) {
-      throw new Error(`Gemini article editorial enrichment failed with status ${response?.status ?? "unknown"}`);
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(timeoutMs)
+      });
+      log.info("llm request completed", { provider, model, attempt, status: response.status, durationMs: Date.now() - startedAt });
+      if (response.ok) {
+        return response;
+      }
+      const retryable = response.status === 429 || response.status >= 500;
+      lastError = new Error(`NVIDIA ${provider} failed with status ${response.status}`);
+      if (!retryable || attempt > retries) {
+        throw lastError;
+      }
+    } catch (error) {
+      lastError = error;
+      const timedOut = error?.name === "AbortError" || error?.name === "TimeoutError";
+      log.warn("llm request failed", { provider, model, attempt, timedOut, error: error.message });
+      if (attempt > retries) {
+        throw error;
+      }
     }
-    const data = await response.json();
-    return parseArticleEditorialResponse(geminiResponseText(data));
-  };
+    await sleep(Number(process.env.NVIDIA_RETRY_DELAY_MS ?? 900) * attempt);
+  }
+  throw lastError;
 }
 
-function normalizeGeminiModelName(value) {
-  return String(value || "gemini-flash-latest").replace(/^models\//, "");
-}
-
-function geminiArticleEditorialSchema() {
-  return {
-    type: "OBJECT",
-    properties: {
-      takeaway: { type: "STRING" },
-      indiaImpact: { type: "STRING" },
-      watchFor: { type: "STRING" }
-    },
-    required: ["takeaway", "indiaImpact", "watchFor"],
-    propertyOrdering: ["takeaway", "indiaImpact", "watchFor"]
-  };
-}
-
-function geminiResponseText(data) {
-  return (data?.candidates ?? [])
-    .flatMap((candidate) => candidate?.content?.parts ?? [])
-    .map((part) => part?.text ?? "")
-    .filter(Boolean)
-    .join("\n");
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function articleShouldUseEditorialEnrichment(article, seenTemplateSignatures) {
@@ -2729,16 +2611,14 @@ important to least important. The first index in your array becomes the lead sto
 Return nothing else — no explanation, no markdown, no preamble.
 Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
 
-      console.log(`[Pulse Agent] Requesting NVIDIA API (Model: ${model})...`);
-      const startTime = Date.now();
-      const response = await fetcher(`${baseUrl}/chat/completions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${nvidiaApiKey}`
-        },
-        body: JSON.stringify({
+      const response = await nvidiaFetchWithRetry({
+        fetcher,
+        url: `${baseUrl}/chat/completions`,
+        provider: "nvidia_pulse_selection",
+        model,
+        apiKey: nvidiaApiKey,
+        timeoutMs: Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 15000),
+        body: {
           model,
           messages: [
             { role: "system", content: prompt },
@@ -2749,14 +2629,8 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
           max_tokens: Number(options.nvidiaPulseMaxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 512),
           chat_template_kwargs: { thinking: false },
           stream: false
-        }),
-        signal: AbortSignal.timeout(Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 15000))
+        }
       });
-      console.log(`[Pulse Agent] Received response with status ${response.status} in ${Date.now() - startTime}ms`);
-
-      if (!response.ok) {
-        throw new Error(`NVIDIA API failed with status ${response.status}`);
-      }
       const data = await response.json();
       const text = data?.choices?.[0]?.message?.content?.trim() ?? "[]";
       // Ensure we extract the array even if there is markdown or conversational preamble
@@ -2778,7 +2652,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
     if (strictAgentSelection) {
       throw e;
     }
-    console.warn("Agent selection parsing failed", e.message);
+    log.warn("pulse agent selection fell back", { error: e.message });
   }
   return articles;
 }

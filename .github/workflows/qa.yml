@@ -65,4 +65,7 @@ jobs:
         run: npm run vercel:build
 
       - name: Public copy QA
-        run: npm run public:copy:qa -- out/vercel
+        run: npm run public:copy:qa -- public
+
+      - name: Mobile public artifact smoke
+        run: npm run mobile:smoke -- public

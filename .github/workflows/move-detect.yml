@@ -1,0 +1,70 @@
+name: Move Detect Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Move article date, defaults to current IST date"
+        required: false
+        default: ""
+      triggered_by:
+        description: "Trigger source"
+        required: false
+        default: "manual"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: move-detect-publish
+  cancel-in-progress: true
+
+jobs:
+  moves:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - name: Compute dates
+        run: |
+          MOVE_DATE="${{ github.event.inputs.date }}"
+          if [ -z "$MOVE_DATE" ]; then
+            MOVE_DATE="$(TZ=Asia/Kolkata date +%F)"
+          fi
+          LATEST_ARCHIVE="$(ls archive/daily/*-digest.json | sort | tail -n 1)"
+          LATEST_NAME="$(basename "$LATEST_ARCHIVE")"
+          PUBLISH_DATE="$(echo "$LATEST_NAME" | sed -E 's/-[0-9]{4}-digest\.json$//')"
+          PUBLISH_LABEL="$(echo "$LATEST_NAME" | sed -E 's/^.*-([0-9]{4})-digest\.json$/\1/')"
+          echo "MOVE_DATE=$MOVE_DATE" >> "$GITHUB_ENV"
+          echo "PUBLISH_DATE=$PUBLISH_DATE" >> "$GITHUB_ENV"
+          echo "PUBLISH_TIME=${PUBLISH_LABEL:0:2}:${PUBLISH_LABEL:2:2}" >> "$GITHUB_ENV"
+
+      - name: Generate tracked move pages
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NVIDIA_PULSE_API_KEY: ${{ secrets.NVIDIA_PULSE_API_KEY }}
+          MOVE_ARTICLE_CONCURRENCY: "2"
+        run: node tools/generate-move-articles.mjs --date "$MOVE_DATE" --output-root archive/moves
+
+      - name: Verify public artifact with move pages
+        run: |
+          SKIP_ARCHIVE_WRITE=true npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"
+          npm run public:copy:qa -- out/site
+
+      - name: Commit move pages
+        run: |
+          if [ -z "$(git status --porcelain -- archive/moves)" ]; then
+            echo "No new move pages generated"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/moves
+          git commit -m "Publish move articles for ${MOVE_DATE}"
+          git push

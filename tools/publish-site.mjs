@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
@@ -6,6 +6,7 @@ import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
+import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
@@ -18,6 +19,7 @@ const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const label = scheduledTime.replace(":", "");
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
+const archivedMovesDir = join(rootDir, "archive", "moves");
 const publicationEventsPath = join(rootDir, "data", "publication-events.json");
 const siteDir = join(rootDir, "out", "site");
 const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
@@ -29,10 +31,10 @@ const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").trim() || `https://formsubmit.co/${subscribeEmail}`;
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
+const includeSourceDigestPreview = skipArchiveWrite && process.env.LOCAL_PREVIEW_DIGEST === "true";
 const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
 const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
 let sourceDigestLoadedFromArchive = false;
-
 await mkdir(archiveDir, { recursive: true });
 const sourceDigest = await loadSourceDigest();
 const existingDigests = await loadArchivedDigests();
@@ -46,7 +48,6 @@ if (!skipArchiveWrite && !sourceDigestLoadedFromArchive) {
     : sourceDigest);
   await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
 }
-
 function publicArchiveVerificationForDigest(digest, verification) {
   if (!verification) {
     return verification;
@@ -60,7 +61,6 @@ function publicArchiveVerificationForDigest(digest, verification) {
     isVerifiedForPublicArchive: false
   };
 }
-
 const digests = (await loadArchivedDigests()).map(enrichPublicDigest);
 if (!digests.length) {
   throw new Error("No archived digests are available to publish");
@@ -68,7 +68,8 @@ if (!digests.length) {
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
 const publicationEvents = await loadPublicationEvents();
 const weekdayDigests = digests.filter(isWeekdayDigest);
-const archiveHomeDigests = publicArchiveDigests.length ? publicArchiveDigests : weekdayDigests.slice(0, 1);
+const sourcePreviewDigests = includeSourceDigestPreview && !sourceDigestLoadedFromArchive ? [sourceDigest] : [];
+const archiveHomeDigests = sourcePreviewDigests.length ? sourcePreviewDigests : publicArchiveDigests.length ? publicArchiveDigests : weekdayDigests.slice(0, 1);
 if (!archiveHomeDigests.length) {
   throw new Error("No weekday archived digests are available to publish");
 }
@@ -83,6 +84,7 @@ await writeFile(join(siteDir, "favicon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 await writeFile(join(siteDir, "sw.js"), serviceWorkerJs(), "utf8");
+await cp(join(rootDir, "out", "vercel", "assets"), join(siteDir, "assets"), { recursive: true, force: true }).catch((error) => { if (error.code !== "ENOENT") throw error; });
 
 for (const digest of digests) {
   const slug = slugForDigest(digest);
@@ -165,6 +167,7 @@ await mkdir(marketStatsDir, { recursive: true });
 await writeGuardedFile(join(marketStatsDir, "index.html"), marketStatisticsPage(latest));
 await mkdir(movesDir, { recursive: true });
 await writeGuardedFile(join(movesDir, "index.html"), movesHubPage(latest));
+await cp(archivedMovesDir, movesDir, { recursive: true, force: true }).catch((error) => { if (error.code !== "ENOENT") throw error; });
 await mkdir(contactDir, { recursive: true });
 await writeGuardedFile(join(contactDir, "index.html"), contactPage());
 await mkdir(privacyDir, { recursive: true });
@@ -222,10 +225,6 @@ await writeGuardedFile(
   }, null, 2)}\n`
 );
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
-// Sitemap must include the most recent published URL even when source verification
-// held (otherwise the sitemap drifts behind the live /latest/ redirect and Google
-// stops crawling fresh pages). Verified status still gates the in-page JSON-LD
-// NewsArticle eligibility; the URL itself is indexable whenever the page exists.
 await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(allArchiveTimelineEntries), "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
@@ -459,6 +458,9 @@ async function loadArchivedDigests() {
     const digest = sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(join(archiveDir, fileName), "utf8")));
     const key = `${digest.digestDate}-${scheduledLabelForDigest(digest)}`;
     digestsByKey.set(key, digest);
+  }
+  if (includeSourceDigestPreview && !sourceDigestLoadedFromArchive) {
+    digestsByKey.set(`${sourceDigest.digestDate}-${scheduledLabelForDigest(sourceDigest)}`, sourceDigest);
   }
 
   return [...digestsByKey.values()].sort((left, right) => {
@@ -2805,6 +2807,7 @@ function moneyFlowPage(latest) {
     pageDescription,
     eyebrow: "Institutional Flow",
     h1: "FII DII Data Today - Institutional Flow & Positioning",
+    ogImageUrl: latest?.ogImageUrl,
     bodyHtml: body,
     jsonLd: seoGraph([
       organizationJsonLd(),
@@ -2868,6 +2871,7 @@ function marketStatisticsPage(latest) {
     pageDescription,
     eyebrow: "Market Statistics",
     h1: "India Market Statistics Today - Nifty Breadth & Health Score",
+    ogImageUrl: latest?.ogImageUrl,
     bodyHtml: body,
     jsonLd: seoGraph([
       organizationJsonLd(),
@@ -3063,8 +3067,9 @@ function termsPage() {
   });
 }
 
-function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd }) {
+function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd, ogImageUrl = "" }) {
   const canonical = `${siteOrigin}${path}`;
+  const socialImage = ogImageUrl || `${siteOrigin}/og-card.svg`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3082,14 +3087,11 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(pageDescription)}">
   <meta property="og:url" content="${escapeHtml(canonical)}">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="675">
-  <meta property="og:image:alt" content="${escapeHtml(pageTitle)}">
+  <meta property="og:image" content="${escapeHtml(socialImage)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">\n  <meta property="og:image:type" content="${socialImage.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">\n  <meta property="og:image:alt" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
-  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
+  <meta name="twitter:image" content="${escapeHtml(socialImage)}">
   <title>${escapeHtml(pageTitle)}</title>
   ${jsonLdScript(jsonLd)}
   <style>
@@ -4091,10 +4093,17 @@ function indicesPage(digest) {
     .indices-group-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
     .indices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
     .index-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; }
-    .index-card:hover { border-color: rgba(103, 232, 249, .5); }
+    .index-card:hover, .index-card[open] { border-color: rgba(103, 232, 249, .5); }
+    .index-card summary { cursor: pointer; display: grid; gap: 12px; list-style: none; }
+    .index-card summary::-webkit-details-marker { display: none; }
     .index-card-top { display: flex; justify-content: space-between; gap: 12px; }
     .index-card strong { font-size: 22px; }
     .index-card small, .index-meta { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .index-detail { border-top: 1px solid var(--line); display: grid; gap: 10px; margin-top: 2px; padding-top: 12px; }
+    .index-detail-chart .index-spark { height: 112px; }
+    .index-detail p, .seo-context p { color: #cbd5e1; line-height: 1.6; margin: 0; }
+    .seo-context { border-top: 1px solid var(--line); display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 34px 0 0; padding-top: 22px; }
+    .seo-context h2 { font-size: 16px; margin: 0 0 8px; }
     .move.up { color: var(--up); }
     .move.down { color: var(--down); }
     .move.flat { color: var(--flat); }
@@ -4111,6 +4120,7 @@ function indicesPage(digest) {
       .index-card-top { align-items: flex-start; }
       .index-card strong { font-size: 18px; line-height: 1.18; }
       .index-card-top > strong { text-align: right; }
+      .seo-context { grid-template-columns: 1fr; }
       .footer-note { margin-bottom: 84px; }
     }
     @media (max-width: 380px) {
@@ -4141,9 +4151,11 @@ function indicesPage(digest) {
       <p>Captured from the same Yahoo price-series snapshots used in the daily briefing. Last briefing update: ${escapeHtml(lastUpdated)} IST. Use this as market context; the Trading Guide still owns execution levels.</p>
     </header>
     ${groups}
+    <section class="seo-context" aria-label="How to use the indices board"><div><h2>What this board tracks</h2><p>Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div><div><h2>How traders use it before open</h2><p>Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div></section>
     <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
   </main>
   ${bottomTabBarHtml("more")}
+  <script>function openIndexHash(){const id=window.location.hash?window.location.hash.slice(1):"";if(!id)return;const target=document.getElementById(id);if(target&&target.tagName==="DETAILS"){target.open=true;target.scrollIntoView({block:"center"});}}window.addEventListener("hashchange",openIndexHash);openIndexHash();</script>
   ${mobileShellScript()}
 </body>
 </html>`;
@@ -4152,19 +4164,14 @@ function indicesPage(digest) {
 function indexSnapshotCard(snapshot) {
   const change = Number(snapshot.changePercent || 0);
   const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
-  const href = tradingViewUrlForSnapshot(snapshot);
   return `
-    <a class="index-card" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
-      <div class="index-card-top">
-        <div>
-          <small>${escapeHtml(snapshot.symbol)}</small>
-          <strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong>
-        </div>
-        <strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
-      </div>
-      ${snapshotSparklineSvgForPublish(snapshot)}
-      <div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(snapshot.source || "Yahoo Finance chart API")}</div>
-    </a>
+    <details id="${escapeHtml(String(snapshot.symbol || "").toLowerCase())}" class="index-card">
+      <summary aria-label="Open ${escapeHtml(marketDisplayNameForSnapshot(snapshot))} chart context">
+      <div class="index-card-top"><div><small>${escapeHtml(snapshot.symbol)}</small><strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong></div><strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong></div>
+      ${snapshotSparklineSvgForPublish(snapshot)}<div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(publicSnapshotSourceLabel(snapshot))}</div>
+      </summary>
+      <div class="index-detail"><div class="index-detail-chart">${snapshotSparklineSvgForPublish(snapshot)}</div><p>${escapeHtml(indexSnapshotContext(snapshot))}</p></div>
+    </details>
   `;
 }
 
@@ -4188,7 +4195,6 @@ function snapshotSparklineSvgForPublish(snapshot) {
   const area = `${path} L216 56 L4 56 Z`;
   return `<svg class="index-spark" viewBox="0 0 220 58" aria-hidden="true"><path class="area" d="${area}" fill="${stroke}"></path><path class="line" d="${path}" stroke="${stroke}"></path></svg>`;
 }
-
 function formatIndexValue(snapshot) {
   const value = Number(snapshot.closeValue);
   const close = Number.isFinite(value)
@@ -4197,21 +4203,17 @@ function formatIndexValue(snapshot) {
   const time = snapshot.dataTimestamp ? formatGeneratedTime(snapshot.dataTimestamp) : "";
   return time ? `${close} at ${time} IST` : close;
 }
-
-function tradingViewUrlForSnapshot(snapshot) {
-  const symbol = snapshot.tradingViewSymbol || {
-    NIFTY: "NSE:NIFTY",
-    BANKNIFTY: "NSE:BANKNIFTY",
-    GIFTNIFTY: "NSEIX:NIFTY1!",
-    BRENT: "TVC:UKOIL",
-    DXY: "TVC:DXY",
-    USDINR: "FX:USDINR",
-    GOLD: "TVC:GOLD",
-    INDIAVIX: "NSE:INDIAVIX"
-  }[snapshot.symbol] || snapshot.yahooSymbol || "NSE:NIFTY";
-  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
+function indexSnapshotContext(snapshot) {
+  const region = snapshot.marketRegion || regionForSnapshotSymbol(snapshot.symbol);
+  const direction = Number(snapshot.changePercent || 0) >= 0 ? "supportive" : "pressure";
+  return `${marketDisplayNameForSnapshot(snapshot)} is part of the ${region} read. The captured Yahoo series is ${direction} on this snapshot; use it as context, then let Nifty breadth and Bank Nifty decide whether the open confirms.`;
 }
-
+function regionForSnapshotSymbol(symbol) {
+  if (["SPX", "NDX", "DJI"].includes(symbol)) return "US overnight";
+  if (["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"].includes(symbol)) return "Asia handoff";
+  if (["BRENT", "DXY", "USDINR", "GOLD"].includes(symbol)) return "macro hedge";
+  return "India reference";
+}
 function robotsTxt() {
   return [
     "User-agent: *",

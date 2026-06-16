@@ -155,7 +155,7 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.locator(".hero h1"), "archive product-promise heading");
   await expectOne(page.locator(".hero .eyebrow"), "archive eyebrow");
   await expectOne(page.getByRole("heading", { name: "Past briefings" }), "archive section heading");
-  await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
+  await expectOne(page.locator('.freshness-banner a[href="./latest/"]'), "latest briefing status link");
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
   assert.equal(await page.getByRole("link", { name: "Admin login" }).count(), 0, "archive should not expose admin login");
@@ -583,7 +583,7 @@ async function verifyQuoteBoard(page, daily) {
 }
 
 async function verifyCharts(page, daily) {
-  let externalLinks = 0;
+  let internalLinks = 0;
   for (const symbol of chartSymbols) {
     const region = regionForSymbol(symbol);
     await page.locator(`button.breadth-card[data-region="${region}"]`).click();
@@ -610,16 +610,16 @@ async function verifyCharts(page, daily) {
     assert.ok(stats.nonBlank > 100, `${daily.slug} ${symbol} chart appears blank`);
     const chartLink = page.locator("#openFullChart");
     await expectOne(chartLink, `${daily.slug} ${symbol} full chart link`);
-    await clickExternalPopup(page, chartLink, "https://www.tradingview.com/chart/", `${daily.slug} ${symbol} TradingView chart`);
-    externalLinks += 1;
+    const href = await chartLink.getAttribute("href", { timeout: 10_000 });
+    assert.ok(href?.startsWith("/indices/#"), `${daily.slug} ${symbol} full chart link should stay on Market Narrative, got ${href}`);
+    internalLinks += 1;
     const close = page.getByRole("button", { name: "Close index chart" });
     await expectOne(close, `${daily.slug} ${symbol} close chart`);
     await close.click();
     await page.locator("#indexChartModal.open").waitFor({ state: "hidden", timeout: 15_000 });
   }
-  return { buttons: chartSymbols.length, externalLinks };
+  return { buttons: chartSymbols.length, internalLinks };
 }
-
 async function clickSourceLinks(page, daily, options = {}) {
   await verifySourceFilters(page, daily);
   const links = page.locator(".source-card[role='link'][data-source-url], .source-lead-card a[href], .source-card a[href]").filter({ visible: true });
@@ -642,13 +642,13 @@ async function clickSourceLinks(page, daily, options = {}) {
 
 async function verifySourceFilters(page, daily) {
   await expectOne(page.getByRole("heading", { name: "Evidence & Sources" }), `${daily.slug} source evidence section`);
-  await expectAtLeast(page.locator(".top-story-card"), 1, `${daily.slug} top source cards`);
   const ledger = page.locator("#sourceLedger");
   await expectOne(ledger, `${daily.slug} source ledger details`);
   await expectOne(page.locator("#sourceLedger:not([open])"), `${daily.slug} source ledger should start collapsed`);
   assert.equal(await page.locator(".source-card:visible").count(), 0, `${daily.slug} full source cards should not show by default`);
   await page.locator("#sourceLedger > summary").click();
   await expectOne(page.locator("#sourceLedger[open]"), `${daily.slug} source ledger opens`);
+  await expectAtLeast(page.locator(".top-story-card:visible"), 1, `${daily.slug} top source cards`);
   await expectAtLeast(page.locator(".source-category-head h3"), 2, `${daily.slug} source category headings`);
   const buttons = page.locator("[data-source-filter]");
   const buttonCount = await buttons.count();

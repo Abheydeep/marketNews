@@ -31,6 +31,7 @@ import {
   scanPriceSeries,
   weightedSentiment
 } from "./core.mjs";
+import premarketCronHandler from "../api/cron/premarket-publish.js";
 import moveDetectHandler from "../api/move-detect.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { detectMoves, generateMoveArticle } from "./generate-move-articles.mjs";
@@ -42,6 +43,7 @@ import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle
 import { assertPremarketPublishWindow, premarketPublishWindowStatus } from "./publish-window.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+import { runGenerateArticleImageTests } from "./generate-article-image.test.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
@@ -53,6 +55,8 @@ const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
   "evidence matters only if margins, guidance, or demand can travel to listed Indian peers",
   "Watch Brent at the 6 AM IST print; above $108 keeps OMC and aviation headline risk alive"
 ];
+
+await runGenerateArticleImageTests(test, assert);
 
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();
@@ -110,6 +114,49 @@ await test("move-detect endpoint rejects wrong cron secret", async () => {
   else process.env.CRON_SECRET = previousSecret;
 });
 
+await test("premarket publish cron fails closed without cron secret", async () => {
+  const previousSecret = process.env.CRON_SECRET;
+  delete process.env.CRON_SECRET;
+  const result = await invokeApiHandler(premarketCronHandler, { method: "GET", headers: {}, query: {} });
+  assert.equal(result.status, 500);
+  assert.equal(result.body.error, "missing_cron_secret");
+  if (previousSecret === undefined) delete process.env.CRON_SECRET;
+  else process.env.CRON_SECRET = previousSecret;
+});
+
+await test("move-detect endpoint dispatches GitHub workflow instead of writing serverless files", async () => {
+  const previousSecret = process.env.CRON_SECRET;
+  const previousToken = process.env.GITHUB_WORKFLOW_TOKEN;
+  const previousFetch = globalThis.fetch;
+  const calls = [];
+  try {
+    process.env.CRON_SECRET = "expected-secret";
+    process.env.GITHUB_WORKFLOW_TOKEN = "workflow-token";
+    globalThis.fetch = async (url, request = {}) => {
+      calls.push({ url, request });
+      return { ok: true, status: 204 };
+    };
+    const result = await invokeMoveDetect({
+      method: "POST",
+      headers: { authorization: "Bearer expected-secret" },
+      query: { date: "2026-06-12" }
+    });
+    assert.equal(result.status, 202);
+    assert.equal(result.body.workflow, "move-detect.yml");
+    assert.equal(calls.length, 1);
+    assert.match(calls[0].url, /actions\/workflows\/move-detect\.yml\/dispatches$/);
+    const body = JSON.parse(calls[0].request.body);
+    assert.equal(body.ref, "main");
+    assert.equal(body.inputs.date, "2026-06-12");
+  } finally {
+    globalThis.fetch = previousFetch;
+    if (previousSecret === undefined) delete process.env.CRON_SECRET;
+    else process.env.CRON_SECRET = previousSecret;
+    if (previousToken === undefined) delete process.env.GITHUB_WORKFLOW_TOKEN;
+    else process.env.GITHUB_WORKFLOW_TOKEN = previousToken;
+  }
+});
+
 await test("move article pipeline detects live snapshot moves and requires valid LLM JSON", async () => {
   const moves = await detectMoves({ index: 0.8, macro: 1.0 }, {
     snapshots: [
@@ -135,16 +182,30 @@ await test("move article pipeline detects live snapshot moves and requires valid
 });
 
 await test("move page includes public disclaimer and safe JSON-LD", () => {
+  const previousOrigin = process.env.PUBLIC_SITE_ORIGIN;
+  process.env.PUBLIC_SITE_ORIGIN = "https://preview.marketnarrative.in";
   const html = movePage({
     date: "2026-06-11",
     slug: "brent-1-4-pct",
     symbol: "BRENT",
     change: -1.4,
-    article: { headline: "Brent drops <script>", summary: "A live move note for Indian market context without trade advice." }
+    article: {
+      headline: "Brent drops <script>",
+      summary: "A live move note for Indian market context without trade advice.",
+      ogImageUrl: "https://preview.marketnarrative.in/assets/og/move-2026-06-11-brent.jpg",
+      publishedAt: "2026-06-11T09:30:00+05:30"
+    }
   });
+  if (previousOrigin === undefined) delete process.env.PUBLIC_SITE_ORIGIN;
+  else process.env.PUBLIC_SITE_ORIGIN = previousOrigin;
   assert.match(html, /not SEBI-registered investment advice/);
   assert.doesNotMatch(html, /<script>\"/);
-  assert.match(html, /\\u003cscript>/);
+  assert.match(html, /\\u003cscript\\u003e/);
+  assert.match(html, /https:\/\/preview\.marketnarrative\.in\/moves\/2026-06-11\/brent-1-4-pct\//);
+  assert.match(html, /og:image:type" content="image\/jpeg"/);
+  assert.match(html, /assets\/og\/move-2026-06-11-brent\.jpg/);
+  assert.match(html, /height: 220px/);
+  assert.match(html, /"datePublished":"2026-06-11T04:00:00.000Z"/);
   assertPublicBriefingCopy("move page", html);
 });
 
@@ -605,7 +666,7 @@ await test("live news pipeline can route generic article copy through editorial 
   assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
 
-await test("live news pipeline can polish source cards with OpenAI when Anthropic is absent", async () => {
+await test("live news pipeline ignores non-NVIDIA polishing keys for now", async () => {
   const fetcher = async (url) => ({
     ok: true,
     text: async () => {
@@ -616,105 +677,30 @@ await test("live news pipeline can polish source cards with OpenAI when Anthropi
       return testRssXml([
         {
           title: `Generic source context from ${sourceSlug}`,
-          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "openai-generic-source-context"),
+          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "nonnvidia-generic-source-context"),
           description: "Market context changed before the India open without a clean sector keyword."
         }
       ]);
     }
   });
-  let openAiCalls = 0;
-  const llmFetcher = async (url, request = {}) => {
-    openAiCalls += 1;
-    assert.equal(url, "https://api.openai.com/v1/responses");
-    assert.equal(request.headers.Authorization, "Bearer test-openai-key");
-    const body = JSON.parse(request.body);
-    assert.equal(body.model, "gpt-5.2");
-    assert.equal(body.instructions, ARTICLE_ENRICHMENT_PROMPT);
-    assert.ok(body.input.includes("Generic source context"));
-    assert.equal(body.text.format.type, "json_schema");
-    assert.equal(body.text.format.name, "article_card_editorial_patch");
-    return {
-      ok: true,
-      json: async () => ({
-        output_text: JSON.stringify({
-          takeaway: "OpenAI polishing turns the loose headline into a specific pre-open breadth check",
-          indiaImpact: "Nifty and Bank Nifty breadth need confirmation before this source gets India trading weight",
-          watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
-        })
-      })
-    };
+  let llmCalls = 0;
+  const llmFetcher = async () => {
+    llmCalls += 1;
+    throw new Error("non-NVIDIA provider should not be called");
   };
   const articles = await fetchLiveNewsArticles("2026-05-04", {
     fetcher,
     llmFetcher,
-    anthropicApiKey: "",
-    openaiApiKey: "test-openai-key"
-  });
-
-  assert.ok(openAiCalls > 0, "OpenAI should run when Anthropic is absent and OPENAI_API_KEY is available");
-  assert.ok(articles.some((article) => /OpenAI polishing turns/i.test(article.takeaway)));
-  assert.ok(articles.some((article) => /Nifty and Bank Nifty breadth/i.test(article.indiaImpact)));
-});
-
-await test("live news pipeline can polish source cards with Gemini when other LLM keys are absent", async () => {
-  const fetcher = async (url) => ({
-    ok: true,
-    text: async () => {
-      if (String(url).includes("/features/rss/")) {
-        return '<a href="https://www.moneycontrol.com/rss/marketreports.xml">markets</a>';
-      }
-      const sourceSlug = String(url).includes("moneycontrol") ? "moneycontrol" : slugForTestUrl(url);
-      return testRssXml([
-        {
-          title: `Generic source context from ${sourceSlug}`,
-          link: testArticleUrl(String(url).includes("moneycontrol") ? "moneycontrol" : "cnbc", sourceSlug, "gemini-generic-source-context"),
-          description: "Market context changed before the India open without a clean sector keyword."
-        }
-      ]);
-    }
-  });
-  let geminiCalls = 0;
-  const llmFetcher = async (url, request = {}) => {
-    geminiCalls += 1;
-    assert.equal(url, "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent");
-    assert.equal(request.headers["X-goog-api-key"], "test-gemini-key");
-    const body = JSON.parse(request.body);
-    assert.equal(body.systemInstruction.parts[0].text, ARTICLE_ENRICHMENT_PROMPT);
-    assert.ok(body.contents[0].parts[0].text.includes("Generic source context"));
-    assert.equal(body.generationConfig.maxOutputTokens, 1000);
-    assert.equal(body.generationConfig.responseMimeType, "application/json");
-    assert.equal(body.generationConfig.responseSchema.type, "OBJECT");
-    return {
-      ok: true,
-      json: async () => ({
-        candidates: [{
-          content: {
-            parts: [{
-              text: `Here is the JSON requested:\n\`\`\`json\n${JSON.stringify({
-                takeaway: "Gemini polishing turns the loose headline into a specific pre-open breadth check",
-                indiaImpact: "Bank Nifty and Nifty breadth need confirmation before this source gets India trading weight",
-                watchFor: "Watch Bank Nifty VWAP through 9:45 AM"
-              })}\n\`\`\``
-            }]
-          }
-        }]
-      })
-    };
-  };
-  const articles = await fetchLiveNewsArticles("2026-05-04", {
-    fetcher,
-    llmFetcher,
-    anthropicApiKey: "",
-    openaiApiKey: "",
+    anthropicApiKey: "test-anthropic-key",
+    openaiApiKey: "test-openai-key",
     geminiApiKey: "test-gemini-key"
   });
 
-  assert.ok(geminiCalls > 0, "Gemini should run when only GEMINI_API_KEY is available");
-  assert.ok(articles.some((article) => /Gemini polishing turns/i.test(article.takeaway)));
-  assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
+  assert.equal(llmCalls, 0, "OpenAI/Anthropic/Gemini polishing must stay disabled");
+  assert.ok(articles.length > 0);
 });
 
-await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini", async () => {
+await test("live news pipeline can run NVIDIA desk-agent polishing", async () => {
   const fetcher = async (url) => ({
     ok: true,
     text: async () => {
@@ -772,7 +758,7 @@ await test("live news pipeline can run NVIDIA desk-agent polishing before Gemini
     geminiApiKey: "test-gemini-key"
   });
 
-  assert.ok(nvidiaCalls > 0, "NVIDIA should run when NVIDIA_API_KEY is available before Gemini fallback");
+  assert.ok(nvidiaCalls > 0, "NVIDIA should run when NVIDIA_API_KEY is available");
   assert.ok(articles.some((article) => /NVIDIA desk agent turns/i.test(article.takeaway)));
   assert.ok(articles.some((article) => /Bank Nifty and Nifty breadth/i.test(article.indiaImpact)));
 });
@@ -2643,21 +2629,26 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
 
   const workflow = await readFile(join(rootDir, ".github", "workflows", "pages.yml"), "utf8");
   assert.ok(workflow.includes("cancel-in-progress: false"));
-  assert.ok(workflow.includes('cron: "45,55 1 * * 1-5"'), "workflow should publish at 07:15 IST with a same-workflow backup");
+  assert.ok(workflow.includes('cron: "30,45 1 * * 1-5"'), "workflow should retry the 07:15 publish between 07:00 and 08:00 IST");
+  assert.ok(workflow.includes('cron: "0,15,30 3 * * 1-5"'), "workflow should retry the 08:00 incremental publish until 09:00 IST");
   assert.ok(workflow.includes("enforce_publish_window"));
+  assert.ok(workflow.includes("allow_late_publish"));
+  assert.ok(workflow.includes("allow_fixture_fallback"));
+  assert.ok(workflow.includes("PREMARKET_LATE_CUTOFF_MINUTES"));
   assert.ok(workflow.includes('github.event.inputs.enforce_publish_window }}" = "true"'));
-  assert.ok(workflow.includes("Generate daily 7:15 IST summary"));
-  assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
+  assert.ok(workflow.includes("Generate scheduled IST summary"));
   assert.ok(workflow.includes("NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}"));
   assert.ok(workflow.includes("(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.ARCHIVE_ALREADY_TRACKED != 'true'"));
   assert.ok(workflow.includes("--enforce-publish-window"));
+  assert.equal(workflow.includes('ALLOW_LATE_PREMARKET_PUBLISH: "true"'), false, "scheduled workflow must not export manual late-publish override");
+  assert.equal(workflow.includes("Live generation failed; retrying with fixture news fallback"), false, "scheduled workflow must not auto-fallback to fixture news");
   assert.ok(workflow.includes("ARCHIVE_ALREADY_TRACKED"));
   assert.ok(workflow.includes('if [ "${{ github.event_name }}" = "push" ] && [ "$ARCHIVE_ALREADY_TRACKED" != "true" ]; then'));
-  assert.ok(workflow.includes('LATEST_ARCHIVE="$(ls archive/daily/*-0715-digest.json | sort | tail -n 1)"'));
+  assert.ok(workflow.includes('LATEST_ARCHIVE="$(ls archive/daily/*-digest.json | sort | tail -n 1)"'));
   assert.ok(workflow.includes('SKIP_ARCHIVE_WRITE_VALUE="true"'));
-  assert.ok(workflow.includes('PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" npm run site:publish -- --date "$PUBLISH_DATE"'));
+  assert.ok(workflow.includes('PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"'));
   assert.ok(workflow.includes("SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}"));
-  assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-0715-digest.json\""));
+  assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-${SUMMARY_LABEL}-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
   assert.ok(workflow.includes("tools/import-archive.mjs"));
   const calendarWorkflow = await readFile(join(rootDir, ".github", "workflows", "calendar-refresh.yml"), "utf8");
@@ -2673,6 +2664,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(dailyGenerator.includes("marketCalendarState"));
   assert.ok(dailyGenerator.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
   assert.ok(dailyGenerator.includes("assertPremarketPublishWindow"));
+  assert.ok(dailyGenerator.includes("PREMARKET_LATE_CUTOFF_MINUTES"));
   assert.ok(dailyGenerator.includes("ALLOW_LATE_PREMARKET_PUBLISH"));
 
   const importer = await readFile(join(rootDir, "tools", "import-archive.mjs"), "utf8");
@@ -2796,10 +2788,9 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const vercelBuildScript = await readFile(join(rootDir, "tools", "vercel-build.mjs"), "utf8");
   assert.match(vercelBuildScript, /outputDir\s*=\s*join\(rootDir,\s*"public"\)/);
   assert.deepEqual(vercelConfig.crons, [
-    {
-      path: "/api/cron/premarket-publish",
-      schedule: "30 1 * * 1-5"
-    }
+    { path: "/api/cron/premarket-publish", schedule: "30-55/5 1 * * 1-5" },
+    { path: "/api/cron/premarket-publish", schedule: "*/5 2 * * 1-5" },
+    { path: "/api/cron/premarket-publish", schedule: "0-30/5 3 * * 1-5" }
   ]);
   assert.equal(
     (vercelConfig.redirects ?? []).some((redirect) => String(redirect.source ?? "").startsWith("/latest")),
@@ -2810,7 +2801,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(premarketCron.includes("actions/workflows/${WORKFLOW_ID}/dispatches"));
   assert.ok(premarketCron.includes("GITHUB_WORKFLOW_TOKEN"));
   assert.ok(premarketCron.includes('enforce_publish_window: "true"'));
-  assert.ok(premarketCron.includes('triggered_by: "vercel-cron"'));
+  assert.ok(premarketCron.includes("vercel-watchdog"));
   const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
   const productionQaGate = await readFile(join(rootDir, "tools", "production-qa-gate.mjs"), "utf8");
   const launchValues = await readFile(join(rootDir, "deploy", "production", "launch-values.md"), "utf8");
@@ -2842,7 +2833,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(publicBuildScript.includes("ALLOW_NON_TRADING_DAY_DIGEST"));
   assert.ok(publicBuildScript.includes("market-closed"));
   assert.ok(publicBuildScript.includes("writeLatestStatusPages"));
-  assert.ok(publicBuildScript.includes("(0715|0830)"));
+  assert.ok(publicBuildScript.includes("(0715|0800|0830)"));
   assert.ok(publicBuildScript.includes('SKIP_ARCHIVE_WRITE: "true"'));
   const publishSiteScript = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   assert.ok(publishSiteScript.includes("Source digest missing"));
@@ -3097,7 +3088,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Japan - Nikkei 225"));
   assert.ok(publicHtml.body.includes("Hong Kong - Hang Seng"));
   assert.ok(publicHtml.body.includes("Evidence & Sources") || publicHtml.body.includes("Evidence &amp; Sources"));
-  assert.ok(publicHtml.body.includes("India read-through notes from a"));
+  assert.ok(publicHtml.body.includes("India read-through notes from verified articles"));
   assert.ok(publicHtml.body.includes("verified articles"));
   assert.ok(publicHtml.body.includes("source-ledger-details"));
   assert.ok(publicHtml.body.includes("data-default-source-filter"));
@@ -3135,17 +3126,16 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(!publicHtml.body.includes("live-board-header"));
   assert.ok(publicHtml.body.includes("indexChartModal"));
   assert.ok(publicHtml.body.includes("openIndexChart"));
-  assert.ok(publicHtml.body.includes("Open External Chart"));
-  assert.ok(publicHtml.body.includes("https://www.tradingview.com/chart/?symbol="));
+  assert.ok(publicHtml.body.includes("Open Indices Board"));
+  assert.ok(publicHtml.body.includes("/indices/#"));
   assert.ok(!publicHtml.body.includes("Open Yahoo Chart"));
   assert.ok(publicHtml.body.includes("chartSeriesLabel"));
-  assert.ok(!publicHtml.body.includes("Yahoo Finance intraday price chart"));
-  assert.ok(!publicHtml.body.includes("Yahoo Finance price series"));
+  assert.ok(publicHtml.body.includes("Published Yahoo price series"));
   assert.ok(publicHtml.body.includes("chartFallback"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest"));
   assert.ok(publicHtml.body.includes("Refreshing prices after page load"));
   assert.ok(publicHtml.body.includes("refreshPublishedDigest('page-load')"));
-  assert.ok(publicHtml.body.includes("setInterval(() => refreshPublishedDigest('background'), 60_000)"));
+  assert.ok(publicHtml.body.includes("setInterval(() => refreshPublishedDigest('background'), 300_000)"));
   assert.ok(publicHtml.body.includes("resolveDigestRefreshUrls"));
   assert.ok(publicHtml.body.includes("apiDigestUrl"));
   assert.ok(publicHtml.body.includes("/api/public/digest/"));
@@ -3312,6 +3302,10 @@ if (failed.length > 0) {
 }
 
 async function invokeMoveDetect(request) {
+  return invokeApiHandler(moveDetectHandler, request);
+}
+
+async function invokeApiHandler(handler, request) {
   const response = {
     statusCode: 200,
     body: null,
@@ -3328,7 +3322,7 @@ async function invokeMoveDetect(request) {
       return this;
     }
   };
-  await moveDetectHandler(request, response);
+  await handler(request, response);
   return { status: response.statusCode, body: response.body, headers: response.headers };
 }
 

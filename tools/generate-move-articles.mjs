@@ -2,10 +2,17 @@
 // Detect significant live market moves, generate concise Pulse articles with an LLM, and publish static move pages.
 
 import { writeFile, mkdir, rm } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, isAbsolute, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fetchLiveMarketSnapshots } from "./market-data.mjs";
+import { mapWithConcurrency } from "./limited-concurrency.mjs";
 import { movePage } from "./move-page.mjs";
+import { generateMoveArticle } from "./pulse-move-article.mjs";
+import { buildMoveImagePrompt, generateArticleImage } from "./generate-article-image.mjs";
+import { writeOgImageAsset } from "./og-image-assets.mjs";
+import { log } from "./logger.mjs";
+
+export { generateMoveArticle } from "./pulse-move-article.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -79,134 +86,30 @@ function slugify(text) {
 export async function generateAndPublish(move, dateStr, options = {}) {
   const article = await generateMoveArticle(move, options);
   const slug = slugify(`${move.symbol}-${Math.abs(move.priceChangePct).toFixed(1)}-pct`);
-  const outDir = join(rootDir, "out", "moves", dateStr, slug);
+  const imageAsset = await generatedMoveOgImage(move, dateStr, options);
+  const outDir = join(moveOutputRoot(options), dateStr, slug);
+  const pageArticle = {
+    ...article,
+    ogImageUrl: imageAsset?.url ?? article.ogImageUrl ?? null,
+    publishedAt: article.publishedAt || move.timestamp || `${dateStr}T09:15:00+05:30`,
+    modifiedAt: article.modifiedAt || article.publishedAt || move.timestamp || `${dateStr}T09:15:00+05:30`
+  };
   await rm(outDir, { recursive: true, force: true });
   await mkdir(outDir, { recursive: true });
 
-  await writeFile(join(outDir, "article.json"), `${JSON.stringify({ ...article, move }, null, 2)}\n`, "utf8");
-  await writeFile(join(outDir, "index.html"), movePage({ date: dateStr, slug, article, symbol: move.symbol, change: move.priceChangePct }), "utf8");
+  await writeFile(join(outDir, "article.json"), `${JSON.stringify({ ...pageArticle, move }, null, 2)}\n`, "utf8");
+  await writeFile(join(outDir, "index.html"), movePage({ date: dateStr, slug, article: pageArticle, symbol: move.symbol, change: move.priceChangePct }), "utf8");
 
   return { symbol: move.symbol, slug, href: `/moves/${dateStr}/${slug}/`, headline: article.headline };
 }
 
-export async function generateMoveArticle(move, options = {}) {
-  const raw = options.rawArticle ?? await callPulseArticleModel(move, options);
-  const article = parseArticleJson(raw);
-  if (!article) {
-    throw new Error(`Pulse LLM did not return valid article JSON for ${move.symbol}`);
-  }
-  return {
-    ...article,
-    llmProvider: "nvidia",
-    llmModel: raw.model || pulseModel()
-  };
-}
-
-async function callPulseArticleModel(move, options = {}) {
-  const apiKey = options.apiKey ?? process.env.NVIDIA_PULSE_API_KEY ?? process.env.NVIDIA_API_KEY;
-  if (!apiKey) throw new Error("missing_nvidia_pulse_api_key");
-  const model = options.model ?? pulseModel();
-  const baseUrl = String(options.baseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
-  const fetcher = options.fetcher ?? fetch;
-  const response = await fetcher(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${apiKey}`
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        { role: "system", content: pulseArticleSystemPrompt() },
-        { role: "user", content: pulseArticleUserPrompt(move) }
-      ],
-      response_format: { type: "json_object" },
-      temperature: Number(options.temperature ?? process.env.NVIDIA_PULSE_TEMPERATURE ?? 0.35),
-      top_p: Number(options.topP ?? process.env.NVIDIA_PULSE_TOP_P ?? 0.9),
-      max_tokens: Number(options.maxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 900),
-      chat_template_kwargs: { thinking: false },
-      stream: false
-    }),
-    signal: AbortSignal.timeout(Number(options.timeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 15000))
+async function generatedMoveOgImage(move, dateStr, options = {}) {
+  const prompt = buildMoveImagePrompt({ ...move, entityName: move.entityName || move.name, change: move.priceChangePct });
+  const buffer = await generateArticleImage(prompt, options.nvidiaApiKey ? { apiKey: options.nvidiaApiKey } : {});
+  return writeOgImageAsset(buffer, `move-${dateStr}-${slugify(move.symbol || move.name || "market")}.jpg`, { origin: options.origin }).catch((error) => {
+    log.warn("move image asset write failed", { symbol: move.symbol, date: dateStr, error: error.message });
+    return null;
   });
-  if (!response.ok) {
-    throw new Error(`NVIDIA Pulse article call failed with HTTP ${response.status}: ${await response.text()}`);
-  }
-  const data = await response.json();
-  return {
-    content: (data?.choices ?? []).map((choice) => choice?.message?.content ?? "").filter(Boolean).join("\n"),
-    model
-  };
-}
-
-function pulseModel() {
-  return process.env.NVIDIA_PULSE_MODEL || "meta/llama-4-maverick-17b-128e-instruct";
-}
-
-function pulseArticleSystemPrompt() {
-  return [
-    "You are Market Narrative's Pulse editor for Indian markets.",
-    "Write only verified, plain-English market context for traders.",
-    "Do not give buy/sell advice, price targets, or assured direction.",
-    "Return strict JSON only. No markdown."
-  ].join(" ");
-}
-
-function pulseArticleUserPrompt(move) {
-  const direction = move.priceChangePct >= 0 ? "up" : "down";
-  return JSON.stringify({
-    task: "Write a concise Pulse article from this live market move.",
-    requiredJsonShape: { headline: "string", summary: "string" },
-    rules: [
-      "headline <= 90 characters",
-      "summary <= 120 words",
-      "explain the likely India-market transmission path",
-      "mention Nifty, Bank Nifty, sector, crude, USD/INR, or breadth only when relevant",
-      "no trading calls, no guaranteed language, no invented causes"
-    ],
-    move: {
-      symbol: move.symbol,
-      name: move.name,
-      direction,
-      changePercent: Number(move.priceChangePct.toFixed(2)),
-      marketRegion: move.marketRegion,
-      closeValue: move.closeValue,
-      previousClose: move.previousClose,
-      timestamp: move.timestamp,
-      source: move.source
-    }
-  }, null, 2);
-}
-
-function parseArticleJson(raw) {
-  const text = typeof raw === "string" ? raw : raw?.content;
-  if (!text) return null;
-  const cleaned = String(text).trim().replace(/^```(?:json)?/i, "").replace(/```$/i, "").trim();
-  let parsed;
-  try {
-    parsed = JSON.parse(cleaned);
-  } catch {
-    const match = cleaned.match(/\{[\s\S]*\}/);
-    if (!match) return null;
-    try {
-      parsed = JSON.parse(match[0]);
-    } catch {
-      return null;
-    }
-  }
-  const headline = cleanArticleField(parsed.headline, 110);
-  const summary = cleanArticleField(parsed.summary, 900);
-  if (!headline || headline.length < 18 || !summary || summary.length < 40) return null;
-  return { headline, summary };
-}
-
-function cleanArticleField(value, maxLength) {
-  return String(value ?? "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, maxLength)
-    .trim();
 }
 
 function todayInIst() {
@@ -223,6 +126,14 @@ function readArg(name) {
   return index === -1 ? null : process.argv[index + 1] ?? null;
 }
 
+function moveOutputRoot(options = {}) {
+  const value = options.outputRoot ?? readArg("--output-root") ?? process.env.MOVE_ARTICLE_OUTPUT_ROOT;
+  if (!value) {
+    return join(rootDir, "out", "moves");
+  }
+  return isAbsolute(value) ? value : join(rootDir, value);
+}
+
 export async function main(options = {}) {
   const thresholds = parseThresholds(options.env ?? process.env);
   const moves = await detectMoves(thresholds, options);
@@ -231,10 +142,12 @@ export async function main(options = {}) {
     return { date: dateStr, moveCount: moves.length, generatedCount: 0, moves };
   }
   const limit = Number(options.limit ?? process.env.MOVE_ARTICLE_LIMIT ?? 5);
-  const generated = [];
-  for (const move of moves.slice(0, limit)) {
-    generated.push(await generateAndPublish(move, dateStr, options));
-  }
+  const concurrency = Number(options.concurrency ?? process.env.MOVE_ARTICLE_CONCURRENCY ?? 10);
+  const generated = await mapWithConcurrency(
+    moves.slice(0, limit),
+    concurrency,
+    (move) => generateAndPublish(move, dateStr, options)
+  );
   return { date: dateStr, moveCount: moves.length, generatedCount: generated.length, generated };
 }
 

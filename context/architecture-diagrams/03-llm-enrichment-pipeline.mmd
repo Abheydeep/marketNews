@@ -3,21 +3,29 @@ flowchart TD
   Filter --> Score["deterministic scoring"]
   Score --> Shortlist["top 8 lead candidates"]
 
-  Shortlist --> LeadAgent["NVIDIA chat completion lead reranker"]
-  LeadAgent --> ValidateLead["validate ids and JSON"]
+  Shortlist --> LeadAgent["NVIDIA-only chat completion lead reranker"]
+  LeadAgent --> RetryLead["timeout + 429/5xx retry/backoff"]
+  RetryLead --> ValidateLead["validate ids and JSON"]
   ValidateLead -->|valid| Lead["selected lead article"]
   ValidateLead -->|invalid or no key| DeterministicLead["deterministic fallback lead"]
 
   Articles --> Templates["thematic read-through rules"]
   Templates --> RepeatCheck["same-template repeat detection"]
   RepeatCheck -->|first unique template| DeterministicCopy["rule-based source card copy"]
-  RepeatCheck -->|repeat or generic| EditorialAgent["LLM editorial enrichment"]
-  EditorialAgent --> Sanitize["sanitizeArticleEditorialPatch"]
+  RepeatCheck -->|repeat or generic| EditorialAgent["NVIDIA-only editorial enrichment"]
+  EditorialAgent --> RetryEditorial["timeout + 429/5xx retry/backoff"]
+  RetryEditorial --> Sanitize["sanitizeArticleEditorialPatch"]
   Sanitize -->|valid| Polished["polished card copy"]
   Sanitize -->|invalid| DeterministicCopy
+  Lead --> ImageScene["briefing driver scene selection"]
+  ImageScene --> ImageModel["image provider: OpenAI / Gemini / NVIDIA"]
+  ImageModel -->|success| OgJpeg["1200x675 JPEG asset"]
+  ImageModel -->|fail or no key| OgFallback["static SVG OG fallback"]
 
   Lead --> Digest["digest assembly"]
   DeterministicLead --> Digest
+  OgJpeg --> Digest
+  OgFallback --> Digest
   Polished --> SourceLedger["public source ledger"]
   DeterministicCopy --> SourceLedger
   SourceLedger --> CopyGuard["public copy guardrails"]

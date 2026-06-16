@@ -6,18 +6,12 @@ import { fileURLToPath } from "node:url";
 import { isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
 import { log } from "./logger.mjs";
 
-// Read by api/latest-redirect.js as a last-resort fallback when both the
-// LATEST_DIGEST_SLUG env var and the /digest.json fetch fail. Written here
-// at the end of the build so the value matches the artifact we just shipped.
 async function writeLatestSlugArtifact(slug) {
   const outPath = join(rootDir, "out", "site", "latest-slug.txt");
   await writeFile(outPath, `${slug}\n`, "utf8");
   return outPath;
 }
 
-// PWA manifest + tiny offline service worker. Enables "Add to Home Screen"
-// on iOS/Android, gives the site an icon and theme color, and serves a
-// cached version of the latest digest when the user is offline.
 async function writePwaArtifacts() {
   const manifest = {
     name: "Market Narrative",
@@ -36,8 +30,6 @@ async function writePwaArtifacts() {
   };
   await writeFile(join(rootDir, "out", "site", "manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
 
-  // Service worker: cache the homepage and the latest slug for offline use.
-  // Use a JS literal so it works with file:// in dev and https in prod.
   const sw = `// Market Narrative service worker. Caches the home page and the
 // most recent briefing so the app is usable on a flaky network.
 const CACHE = "mn-shell-v1";
@@ -98,6 +90,7 @@ const date = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.date : t
 const scheduledTime = process.env.SKIP_DAILY_GENERATE === "true" ? latestArchive.scheduledTime : "07:15";
 const allowVerifiedArchiveFallback = process.env.ALLOW_VERIFIED_ARCHIVE_FALLBACK === "true";
 const allowNonTradingDayDigest = process.env.ALLOW_NON_TRADING_DAY_DIGEST === "true";
+const localPreviewDigest = process.env.LOCAL_PREVIEW_DIGEST === "true";
 const calendarState = marketCalendarState(date);
 const runId = `vercel-public-${date}-${Date.now()}`;
 
@@ -105,6 +98,14 @@ log.info("public vercel build started", { runId, date, scheduledTime, skipDailyG
 
 if (process.env.SKIP_DAILY_GENERATE === "true") {
   log.info("publishing archived digest for artifact verification", { runId, date, scheduledTime });
+} else if (localPreviewDigest) {
+  run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], {
+    env: { ...process.env, SKIP_ARCHIVE_WRITE: "true", LOCAL_PREVIEW_DIGEST: "true" }
+  });
+  await writeLatestSlugArtifact(slugForDate(date));
+  await writePwaArtifacts();
+  log.info("public vercel build completed local preview artifact", { runId, date });
+  process.exit(0);
 } else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
   const fallback = latestArchivedDigest();
   log.warn("publishing market-closed public artifact", { runId, date, state: calendarState.state, reason: calendarState.reason, fallback });
@@ -231,7 +232,7 @@ function latestArchivedDigest() {
   const archiveDir = join(rootDir, "archive", "daily");
   const digests = readdirSync(archiveDir)
     .map((fileName) => {
-      const match = fileName.match(/^(\d{4}-\d{2}-\d{2})-(0715|0830)-digest\.json$/);
+      const match = fileName.match(/^(\d{4}-\d{2}-\d{2})-(0715|0800|0830)-digest\.json$/);
       return match ? { date: match[1], scheduledTime: `${match[2].slice(0, 2)}:${match[2].slice(2)}` } : null;
     })
     .filter(Boolean)

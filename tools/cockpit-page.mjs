@@ -23,8 +23,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
-  // Single source of truth for the H1, <title>, and JSON-LD headline so Google News
-  // does not flag a mismatch between the structured data and the on-page H1.
   const pageH1 = digest.title || "Daily Pre-Market Briefing";
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${pageH1} | Nifty & Bank Nifty Levels - ${formatDigestDate(digest.digestDate)}`
@@ -34,7 +32,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
-  const previewImageUrl = absoluteSiteUrl("/og-card.svg", siteOrigin);
+  const previewImageUrl = absoluteSiteUrl(digest.ogImageUrl || "/og-card.svg", siteOrigin);
   const studioTabHtml = includeStudio
     ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
     : "";
@@ -86,8 +84,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="author" content="Abhey Deep">
   <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief">
   <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
-  <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   ${digest.nextEditionPath ? `<link rel="next" href="${escapeHtml(absoluteSiteUrl(digest.nextEditionPath, pageOrigin))}">` : ""}
   ${digest.previousEditionPath ? `<link rel="prev" href="${escapeHtml(absoluteSiteUrl(digest.previousEditionPath, pageOrigin))}">` : ""}
@@ -95,7 +92,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <link rel="alternate" hreflang="x-default" href="${escapeHtml(canonicalUrl)}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="675">
-  <meta property="og:image:alt" content="Market Narrative daily pre-market briefing cover card">
+  <meta property="og:image:type" content="${previewImageUrl.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">
+  <meta property="og:image:alt" content="${escapeHtml(`${pageH1} - Market Narrative pre-market briefing image`)}">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_IN">
   <meta property="og:site_name" content="Market Narrative">
@@ -914,7 +912,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .preopen-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 10px;
       margin-bottom: 12px;
     }
@@ -1832,6 +1830,30 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #111827;
       font-size: 18px;
       line-height: 1.25;
+    }
+
+    .source-ledger-details summary h2 {
+      margin: 0;
+      color: #111827;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .source-summary-main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    @media (max-width: 700px) {
+      .source-summary-main {
+        flex-direction: column;
+      }
+      .source-summary-main .source-stat-strip {
+        justify-content: flex-start;
+      }
     }
 
     .source-ledger-details summary p {
@@ -4577,7 +4599,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(103, 232, 249, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
-    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong, .video-kit h3, .scene-card strong, .desk-note-copy p) {
+    .glass-v2 :is(.page-header h1, .executive-card h2, .executive-card strong, .expanded-briefing-head h2, .section-kicker h2, .source-ledger-details summary h2, .source-ledger-details summary h3, .source-lead-copy h3, .source-category-head h3, .source-card h3, .brief-section h3, .brief-section strong, .brief-lead strong, .briefing-lens strong, .brief-list strong, .watch-grid strong, .panel h2, .briefing-card h2, .quote-region-head h3, .chart-modal-header h2, .studio-header h1, .studio-hero h1, .studio-run-card strong, .studio-metric strong, .workflow-step strong, .validation-row strong, .theme-review-top strong, .source-qa-item strong, .script-section-card strong, .checklist-item strong, .activity-item strong, .prompt-detail strong, .section-title, .tech-block h3, .milestone h3, .source-stat-strip strong, .source-category-meta strong, .source-readthrough-grid strong, .source-card-detail summary, .source-takeaway strong, .briefing-date, .briefing-date strong, .video-kit h3, .scene-card strong, .desk-note-copy p) {
       color: #f8fafc;
     }
 
@@ -5385,6 +5407,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(pageH1)}</h1>
           ${digest.dailyLead?.headline ? `<h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px;">${escapeHtml(digest.dailyLead.headline)}</h2>` : ""}
         </header>
+        ${digest.ogImageUrl ? `<img src="${escapeHtml(previewImageUrl)}" alt="${escapeHtml(`${pageH1} - market theme illustration`)}" width="1200" height="400" loading="eager" decoding="async" style="width:100%;height:280px;object-fit:cover;object-position:center;border-radius:var(--border-radius-lg);margin-bottom:1.5rem">` : ""}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -5426,7 +5449,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
             <h2 id="indexChartTitle">Index Chart</h2>
             <p id="indexChartMeta">Timestamped snapshot preview for the selected market.</p>
           </div>
-          <a id="openFullChart" class="chart-link-btn" href="https://www.tradingview.com/markets/indices/" target="_blank" rel="noopener noreferrer">Open External Chart</a>
+          <a id="openFullChart" class="chart-link-btn" href="/indices/">Open Indices Board</a>
           <button id="closeIndexChart" class="icon-btn" type="button" aria-label="Close index chart">&times;</button>
         </div>
         <div class="modal-chart-container">
@@ -6022,7 +6045,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
       updateLiveClock('Refreshing prices after page load');
       refreshPublishedDigest('page-load');
-      setInterval(() => refreshPublishedDigest('background'), 60_000);
+      setInterval(() => refreshPublishedDigest('background'), 300_000);
     }
 
     function renderIndexBoard() {
@@ -6372,7 +6395,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       window.__ACTIVE_INDEX_SYMBOL__ = symbol;
       title.textContent = marketDisplayName(quote) + ' (' + quote.symbol + ')';
       meta.textContent = status.open
-        ? 'Published price series from the latest quote feed. The board checks for updates every 60 seconds.'
+        ? 'Published Yahoo price series from the latest quote feed. The board checks for updates every 5 minutes.'
         : 'Market closed. Showing the latest published price series for review.';
       setChartLinks(quote);
       modal.classList.add('open');
@@ -6429,18 +6452,12 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     function chartSeriesLabel(quote) {
       return (quote.dataQuality === 'live' ? 'Captured price series' : 'Reference price series') +
         ' - ' +
-        (quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol));
+        quote.symbol;
     }
 
     function setChartLinks(quote) {
-      const url = tradingViewUrl(quote);
       const open = document.getElementById('openFullChart');
-      if (open) open.href = url;
-    }
-
-    function tradingViewUrl(quote) {
-      const symbol = quote.tradingViewSymbol || fallbackTradingViewSymbol(quote.symbol);
-      return 'https://www.tradingview.com/chart/?symbol=' + encodeURIComponent(symbol);
+      if (open) open.href = '/indices/#' + encodeURIComponent(String(quote.symbol || '').toLowerCase());
     }
 
     function showChartFallback() {
@@ -6522,29 +6539,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         hour: '2-digit',
         minute: '2-digit'
       }).format(date);
-    }
-
-    function fallbackTradingViewSymbol(symbol) {
-      return {
-        SPX: 'SP:SPX',
-        NDX: 'NASDAQ:NDX',
-        DJI: 'DJ:DJI',
-        NIFTY: 'NSE:NIFTY',
-        BANKNIFTY: 'NSE:BANKNIFTY',
-        GIFTNIFTY: 'NSEIX:NIFTY1!',
-        NIKKEI: 'TVC:NI225',
-        HSI: 'TVC:HSI',
-        SHCOMP: 'SSE:000001',
-        KOSPI: 'KRX:KOSPI',
-        TAIEX: 'TWSE:TAIEX',
-        STI: 'TVC:STI',
-        ASX200: 'ASX:XJO',
-        DXY: 'TVC:DXY',
-        BRENT: 'TVC:UKOIL',
-        USDINR: 'FX:USDINR',
-        GOLD: 'TVC:GOLD',
-        INDIAVIX: 'NSE:INDIAVIX'
-      }[symbol] ?? 'SP:SPX';
     }
 
     function regionForSymbol(symbol) {
@@ -7695,20 +7689,6 @@ function shareIconHtml(type) {
   return icons[type] || icons.copy;
 }
 
-function chartCtaPanelHtml(digest) {
-  const nifty = (digest.marketSnapshots || []).find((snapshot) => snapshot.symbol === "NIFTY") || (digest.marketSnapshots || [])[0];
-  const href = nifty ? tradingViewUrlForSnapshot(nifty) : "https://www.tradingview.com/markets/indices/";
-  return `
-    <section class="chart-cta-panel" aria-label="TradingView chart link">
-      <div>
-        <h2>View Chart On TradingView</h2>
-        <p class="chart-note">This page publishes source-backed levels and timestamped quote snapshots. Use TradingView for the interactive chart.</p>
-      </div>
-      <a class="chart-link-btn" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Open chart on TradingView</a>
-    </section>
-  `;
-}
-
 function quoteBoardTitle(digest) {
   return quoteBoardShowsPreviousClose(digest)
     ? "Previous Close Quote Board"
@@ -7771,20 +7751,6 @@ function quoteBoardShowsPreviousClose(digest) {
     day: "2-digit"
   }).format(digestDate);
   return latestKey < digestKey;
-}
-
-function tradingViewUrlForSnapshot(snapshot) {
-  const symbol = snapshot.tradingViewSymbol || {
-    NIFTY: "NSE:NIFTY",
-    BANKNIFTY: "NSE:BANKNIFTY",
-    GIFTNIFTY: "NSEIX:NIFTY1!",
-    BRENT: "TVC:UKOIL",
-    DXY: "TVC:DXY",
-    USDINR: "FX:USDINR",
-    GOLD: "TVC:GOLD",
-    INDIAVIX: "NSE:INDIAVIX"
-  }[snapshot.symbol] || "NSE:NIFTY";
-  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
 }
 
 function isVerifiedPublicDigest(digest) {
@@ -7860,7 +7826,9 @@ function indiaPreOpenHtml(digest) {
   const gift = (giftRaw && giftRaw.dataQuality !== "seed-merged" && giftRaw.dataQuality !== "mock-fallback" && !giftRaw.source?.includes("Mock"))
     ? giftRaw : null;
   const nifty = snapshots.find((s) => s.symbol === "NIFTY");
-  const usdinr = snapshots.find((s) => s.symbol === "USDINR");
+  const bankNifty = snapshots.find((s) => s.symbol === "BANKNIFTY");
+  const brent = snapshots.find((s) => s.symbol === "BRENT");
+  const usdinr = snapshots.find((s) => s.symbol === "USDINR" && Number(s.closeValue) >= 70 && Number(s.closeValue) <= 90);
   const vix = snapshots.find((s) => s.symbol === "INDIAVIX");
   const gold = snapshots.find((s) => s.symbol === "GOLD");
 
@@ -7903,9 +7871,12 @@ function indiaPreOpenHtml(digest) {
   const diiClass = flowsAvailable ? (fii.diiNet >= 0 ? "up" : "down") : "";
   const flowDate = fii?.date ? ` (${fii.date})` : " (provisional)";
 
-  const tvLink = (sym, tv) =>
-    `href="${escapeHtml(`https://www.tradingview.com/chart/?symbol=${encodeURIComponent(tv)}`)}"` +
-    ` target="_blank" rel="noopener"`;
+  const boardLink = (symbol) => `href="/indices/#${escapeHtml(String(symbol).toLowerCase())}"`;
+  const snapshotClass = (snapshot) => {
+    const pct = Number(snapshot?.changePercent);
+    if (!Number.isFinite(pct) || Math.abs(pct) < 0.05) return "flat";
+    return pct > 0 ? "up" : "down";
+  };
 
   return `
     <section class="india-preopen-panel" aria-label="India Pre-Open Nerve">
@@ -7918,7 +7889,7 @@ function indiaPreOpenHtml(digest) {
       </div>
       <div class="preopen-grid">
 
-        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${gift ? tvLink("GIFTNIFTY", "NSEIX:NIFTY1!") : `href="https://www.tradingview.com/chart/?symbol=NSEIX%3ANIFTY1!" target="_blank" rel="noopener"`}>
+        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${boardLink("GIFTNIFTY")}>
           <span>${gift ? "GIFT Nifty Gap" : "Nifty Close (No GIFT)"}</span>
           <strong>
             ${gift ? escapeHtml(formatNumber(gift.closeValue)) : nifty ? escapeHtml(formatNumber(nifty.closeValue)) : "—"}
@@ -7926,12 +7897,26 @@ function indiaPreOpenHtml(digest) {
           <small>
             ${giftGapPct !== null
     ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% implied open`
-    : "Check TradingView for live gap"}
+    : "Use indices board for live gap context"}
           </small>
           ${snapshotSparklineHtml(gift || nifty, "preopen-sparkline")}
         </a>
 
-        <a class="preopen-tile ${escapeHtml(rupeeData.cls)}" aria-label="USD/INR" ${usdinr ? tvLink("USDINR", "FX:USDINR") : ""}>
+        <a class="preopen-tile ${escapeHtml(snapshotClass(bankNifty))}" aria-label="Bank Nifty" ${boardLink("BANKNIFTY")}>
+          <span>Bank Nifty</span>
+          <strong>${bankNifty ? escapeHtml(formatNumber(bankNifty.closeValue)) : "—"}</strong>
+          <small>${bankNifty ? `${escapeHtml(formatSnapshotChange(bankNifty))} · confirms or rejects the index move` : "Awaiting data"}</small>
+          ${snapshotSparklineHtml(bankNifty, "preopen-sparkline")}
+        </a>
+
+        <a class="preopen-tile ${escapeHtml(snapshotClass(brent))}" aria-label="Brent crude" ${boardLink("BRENT")}>
+          <span>Brent Crude</span>
+          <strong>${brent ? `$${escapeHtml(formatNumber(brent.closeValue))}` : "—"}</strong>
+          <small>${brent ? `${escapeHtml(formatSnapshotChange(brent))} · ${brent.changePercent > 0.5 ? "OMC/aviation pressure" : brent.changePercent < -0.5 ? "inflation relief watch" : "macro filter"}` : "Awaiting data"}</small>
+          ${snapshotSparklineHtml(brent, "preopen-sparkline")}
+        </a>
+
+        <a class="preopen-tile ${escapeHtml(rupeeData.cls)}" aria-label="USD/INR" ${boardLink("USDINR")}>
           <span>USD / INR</span>
           <strong>${usdinr ? escapeHtml(String(usdinr.closeValue)) : "—"}</strong>
           <small>
@@ -7942,15 +7927,15 @@ function indiaPreOpenHtml(digest) {
           ${snapshotSparklineHtml(usdinr, "preopen-sparkline")}
         </a>
 
-        <a class="preopen-tile ${escapeHtml(vixData.cls)}" aria-label="India VIX" ${vix ? tvLink("INDIAVIX", "NSE:INDIAVIX") : ""}>
+        <a class="preopen-tile ${escapeHtml(vixData.cls)}" aria-label="India VIX" ${boardLink("INDIAVIX")}>
           <span>India VIX</span>
           <strong>${vix ? escapeHtml(String(vix.closeValue)) : "—"}</strong>
           <small>${vix ? escapeHtml(vixData.label) : "Awaiting data"}</small>
           ${snapshotSparklineHtml(vix, "preopen-sparkline")}
         </a>
 
-        <a class="preopen-tile ${gold && gold.changePercent >= 0 ? "up" : "down"}" aria-label="Gold" ${gold ? tvLink("GOLD", "TVC:GOLD") : ""}>
-          <span>Gold (MCX proxy)</span>
+        <a class="preopen-tile ${escapeHtml(snapshotClass(gold))}" aria-label="Gold" ${boardLink("GOLD")}>
+          <span>Gold (COMEX)</span>
           <strong>${gold ? `$${escapeHtml(formatNumber(gold.closeValue))}` : "—"}</strong>
           <small>
             ${gold
@@ -8536,22 +8521,22 @@ function executiveSummaryHtml(digest) {
   const groups = [
     {
       title: "US Overnight",
-      symbols: ["SPX", "NDX", "DJI"],
+      symbols: ["SPX", "NDX"],
       note: globalRisk?.takeaway || "Use the US close as risk appetite context, then wait for India breadth."
     },
     {
       title: "Asia Watch",
-      symbols: ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX"],
+      symbols: ["NIKKEI", "HSI", "KOSPI"],
       note: "Asia breadth is the handoff into GIFT Nifty and the cash open."
     },
     {
       title: "Macro Hedges",
-      symbols: ["BRENT", "DXY", "USDINR", "GOLD"],
+      symbols: ["BRENT", "DXY", "USDINR"],
       note: "Crude, dollar, rupee and gold decide how much macro weight to assign."
     },
     {
       title: "India Reference",
-      symbols: ["NIFTY", "BANKNIFTY", "INDIAVIX", "GIFTNIFTY"],
+      symbols: ["NIFTY", "BANKNIFTY", "GIFTNIFTY"],
       note: "Previous close and GIFT context set the first range reference."
     }
   ];
@@ -8561,7 +8546,7 @@ function executiveSummaryHtml(digest) {
       <summary>
         <div>
           <h3>Global Indices Watch</h3>
-          <p>Captured Yahoo price-series snapshots. Tap a row for the full chart context.</p>
+          <p>Top Yahoo snapshots only. Open the full board for expanded on-site charts.</p>
         </div>
       </summary>
       <div class="market-map-grid">
@@ -8593,12 +8578,16 @@ function marketMiniRowHtml(snapshot) {
   const change = Number(snapshot.changePercent || 0);
   const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
   return `
-    <a class="market-mini-row" href="${escapeHtml(tradingViewUrlForSnapshot(snapshot))}" target="_blank" rel="noopener noreferrer">
+    <a class="market-mini-row" href="${escapeHtml(indicesBoardHrefForSnapshot(snapshot))}">
       <span>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}<em>${escapeHtml(snapshot.symbol)}</em></span>
       ${snapshotSparklineHtml(snapshot, "mini-sparkline")}
       <strong class="${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
     </a>
   `;
+}
+
+function indicesBoardHrefForSnapshot(snapshot) {
+  return `/indices/#${encodeURIComponent(String(snapshot.symbol || "").toLowerCase())}`;
 }
 
 function snapshotSparklineHtml(snapshot, className = "mini-sparkline") {
@@ -8944,27 +8933,18 @@ function unifiedSourceSectionHtml(digest) {
 
   return `
     <section class="sources-section" aria-label="Evidence and sources">
-      <div class="section-kicker">
-        <div>
-          <h2>Evidence & Sources</h2>
-          <p class="source-section-copy">${escapeHtml(sourceQualityLine(digest))} ${escapeHtml(`${articles.length} India read-through notes from a ${totalArticles}-article shortlist.`)}</p>
-        </div>
-        <div class="source-stat-strip" aria-label="Source statistics">
-          <span>Articles<strong>${escapeHtml(articles.length)}</strong></span>
-          <span>Publishers<strong>${escapeHtml(sourceCount)}</strong></span>
-          ${toneStats}
-        </div>
-      </div>
-
-      <ul class="top-stories-list" aria-label="Top stories">
-        ${cards}
-      </ul>
-
-      <details id="sourceLedger" class="source-ledger-details" data-default-source-filter="${escapeHtml(defaultFilter)}">
+      <details id="sourceLedger" class="source-ledger-details sources-collapse-details" data-default-source-filter="${escapeHtml(defaultFilter)}">
         <summary>
-          <div>
-            <h3>View all ${escapeHtml(articles.length)} verified articles</h3>
-            <p>Category-filtered source ledger with India read-through notes.</p>
+          <div class="source-summary-main">
+            <div>
+              <h2>Evidence & Sources</h2>
+              <p>${escapeHtml(sourceQualityLine(digest))} ${escapeHtml(`${articles.length} India read-through notes from verified articles in a ${totalArticles}-article shortlist.`)}</p>
+            </div>
+            <div class="source-stat-strip" aria-label="Source statistics">
+              <span>Articles<strong>${escapeHtml(articles.length)}</strong></span>
+              <span>Publishers<strong>${escapeHtml(sourceCount)}</strong></span>
+              ${toneStats}
+            </div>
           </div>
           <span class="disclosure-action source-ledger-action" aria-hidden="true">
             <span class="label-closed">Show details</span>
@@ -8973,6 +8953,11 @@ function unifiedSourceSectionHtml(digest) {
           </span>
         </summary>
         <div class="source-ledger-body">
+          <ul class="top-stories-list" aria-label="Top stories">
+            ${cards}
+          </ul>
+          ${remainingCount > 0 ? `<p class="top-stories-footer">${remainingCount} more article${remainingCount === 1 ? "" : "s"} in the categorized source ledger.</p>` : ""}
+
           <div class="source-filter-row" aria-label="Source category filters">
             ${sourceFilterButtonsHtml(categories, articles.length, defaultFilter)}
             <span id="sourceVisibleCount" class="source-visible-count">${escapeHtml(defaultCount)} shown</span>
