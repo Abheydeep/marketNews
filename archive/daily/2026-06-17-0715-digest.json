@@ -1,56 +1,56 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-17",
-  "title": "Crude / energy risk Tests Risk Appetite",
+  "title": "Rates / Fed path Support Opening Range",
   "status": "PUBLISHED",
-  "generatedAt": "2026-06-17T10:58:27.402Z",
+  "generatedAt": "2026-06-17T11:01:15.512Z",
   "dailyLead": {
-    "label": "Crude / energy risk",
-    "sourceArticleId": "zerodha-pulse:ha1531",
-    "driverType": "crude",
-    "headline": "Oil Price Today (June 17): Crude oil dips below $80, near 3-month low ahead of US-Iran agreement. Will liquid gold fall more?",
-    "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+    "label": "Rates / Fed path",
+    "sourceArticleId": "business-standard-economy:svxc4c",
+    "driverType": "rates",
+    "headline": "Rice stocks climb to record high; wheat inventories at five-year peak",
+    "indiaImpact": "FMCG and rural-facing stocks may find sentiment support if food disinflation narrative holds; no direct Nifty index call yet.",
     "riskSide": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-    "supportSide": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+    "supportSide": "Auto ancillaries, specialty chemicals, and select IT services may catch sentiment if global demand narrative holds; no direct Nifty index call yet.",
     "giftNiftyBias": null
   },
   "publicSourceSelection": {
     "visibleCount": 8,
     "shortlistCount": 25,
     "windowHours": 24,
-    "excludedNoDirectIndiaCount": 1,
-    "indiaPublisherCount": 5,
-    "shortlistIndiaPublisherCount": 13,
-    "directIndiaSourceCount": 5,
+    "excludedNoDirectIndiaCount": 3,
+    "indiaPublisherCount": 3,
+    "shortlistIndiaPublisherCount": 10,
+    "directIndiaSourceCount": 3,
     "officialIndiaSourceCount": 0,
-    "domesticCatalystCount": 5,
-    "globalContextCount": 3,
-    "globalOnlySourceRatio": 38,
+    "domesticCatalystCount": 3,
+    "globalContextCount": 5,
+    "globalOnlySourceRatio": 63,
     "evidenceGrade": "limited",
     "publishMode": "limited_brief",
-    "indiaPublisherCoverage": "Full India-source gate: Limited; 5 direct India sources, 0 official sources, 5 domestic catalysts.",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 3 direct India sources, 0 official sources, 3 domestic catalysts.",
     "visibleSourceUrls": [
       "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-17-crude-oil-dips-below-80-near-3-month-low-ahead-of-us-iran-agreement-will-liquid-gold-fall-more/articleshow/131784347.cms",
-      "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-tech-stocks-selloff-to-oil-prices-8-key-things-that-changed-for-indian-stock-market-overnight-11781658244588.html",
-      "https://www.cnbc.com/2026/06/16/treasury-yields-investors-await-warsh-first-fed-meeting.html",
+      "https://www.business-standard.com/economy/news/rice-stocks-climb-to-record-high-wheat-inventories-at-five-year-peak-126061600779_1.html",
+      "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
       "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/lt-share-price-today-live-17-jun-2026/liveblog/131784665.cms",
-      "https://www.livemint.com/market/stock-market-news/stocks-to-watch-gic-wipro-prime-focus-among-shares-in-focus-today-check-list-here-11781661664444.html",
       "https://www.bloomberg.com/news/articles/2026-06-16/gold-holds-gain-as-us-iran-prepare-to-sign-interim-peace-deal",
       "https://www.cnbc.com/2026/06/17/japan-trade-data-may-exports-imports.html",
-      "https://www.livemint.com/market/commodities/crude-oil-prices-gain-on-uncertainty-over-strait-of-hormuz-reopening-brent-oil-near-80-per-barrel-11781658878640.html"
+      "https://www.bloomberg.com/news/articles/2026-06-17/bond-rally-fails-to-allay-higher-for-longer-global-rates-threat",
+      "https://www.cnbc.com/2026/06/17/cnbc-daily-open-markets-iran-oil-trump-deal-ukraine-russia-spacex.html"
     ]
   },
-  "archiveSummary": "Crude / energy risk: Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-  "twoMinuteSummary": "The Federal Reserve began its two-day monetary policy meeting on Tuesday, causing U.S. Treasury yields to slide. The market is anticipating a potential rate cut later this year, with the Fed's decision expected on Wednesday. Global investors are closely watching the meeting's outcome, as it may impact risk appetite and capital flows into emerging markets like India.\n\nAn interim agreement between the US and Iran is expected to be signed on Friday, which could grant Tehran significant economic incentives, including the resumption of oil sales. This development has led to a decline in crude oil prices, with Brent crude falling below $80. The potential increase in oil supply could ease global inflationary pressures, benefiting economies that are heavily dependent on oil imports.\n\nThe Indian stock market is expected to open flat-to-positive, with GIFT Nifty trading at a premium of nearly 31 points from the Nifty futures' previous close. The Sensex and Nifty 50 closed higher on Tuesday, with the Sensex advancing 544.15 points and the Nifty 50 climbing 135.25 points. The market's direction will be influenced by global cues, including the outcome of the Fed's policy meeting and the US-Iran agreement.",
-  "deskNote": "The neutral sentiment in the Indian markets today reflects a mix of global cues, with the US markets closing lower and Asian markets showing a mixed response. The expected US-Iran agreement and its potential impact on oil prices adds a layer of complexity to the market narrative. While a decline in oil prices could benefit India's economy, the potential rate cut by the Fed could lead to increased capital flows into emerging markets. The key narrative to watch is how these global developments influence the market's risk appetite and sectoral rotation. The structural read-through suggests that the market is likely to remain range-bound, with a focus on stock-specific opportunities rather than broad directional bets.",
+  "archiveSummary": "Rates / Fed path: FMCG and rural-facing stocks may find sentiment support if food disinflation narrative holds; no direct Nifty...",
+  "twoMinuteSummary": "Global markets are mixed ahead of key economic data releases. The S&P 500 fell 0.82%, Nasdaq 100 dropped 1.21%, while Nikkei 225 rose 0.51% and Shanghai Composite gained 0.12%. The US Dollar Index edged up 0.34%, and Brent Crude surged 1.64% despite reports of a potential US-Iran interim agreement that could ease oil supply constraints. India's rice stocks hit a record high and wheat inventories reached a five-year peak, boosting food security.\n\nIndia's market sentiment remains neutral with Nifty 50 down 0.22% and Bank Nifty up 0.18%. GIFT Nifty is trading at -0.38%. Ashok Leyland's Q4 net profit rose 11% to Rs 1,381.32 cr, while L&T's share price is being closely watched. The India VIX fell 3.21%, indicating a decrease in volatility expectations.\n\nThe USD/INR pair rose 0.08%, and Gold (COMEX) gained 1.18%. The potential US-Iran agreement could have significant implications for global oil prices and inflation. Japan's May exports grew at their fastest pace in over three years, driven by chip demand. India's food security has been boosted by record rice and wheat inventories.",
+  "deskNote": "The market is walking a tightrope between global risk-off cues and domestic positives. The reported US-Iran interim agreement has the potential to reshape global energy dynamics, which could have a cascading effect on India's inflation trajectory and monetary policy expectations. On the other hand, record rice and wheat inventories in India are a significant positive, giving the government room to maneuver on food prices.\n\nThe neutral sentiment in Indian markets today reflects this balancing act between external risks and domestic strengths. The slight dip in India VIX suggests that volatility expectations are easing, but the presence of conflicting signals keeps the overall sentiment neutral.\n\nThe structural read-through from these developments suggests that sectoral rotations could be a key theme. Sectors that benefit from stable food prices and potential easing of inflationary pressures may attract flows, while those sensitive to global commodity prices, especially oil, will be under scrutiny. The coming days will be crucial in determining how these narratives play out in the Indian markets.",
   "watchItems": [
-    "Gift Nifty premium/discount versus the previous Nifty close, then Nifty VWAP and Bank Nifty breadth after 9:15 AM.",
     "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
-    "Nifty IT breadth after the open and whether exporters confirm the currency read-through."
+    "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.",
+    "Brent, USD/INR, gold and FII flow at the open; geopolitics needs risk-off confirmation before it becomes an index bias."
   ],
-  "overallSentiment": -0.073,
+  "overallSentiment": -0.065,
   "sentimentLabel": "NEUTRAL",
-  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21%\n\nNarrative Themes:\n- US Fed Rate Decision Looms: U.S. Treasury yields fell as the Federal Reserve's two-day policy meeting kicked off.\n- Iran Nuclear Deal Impact: Interim agreement expected to grant Tehran economic incentives, including resuming oil sales.\n- Mixed Global Earnings: Sensex and Nifty 50 advanced on Tuesday amid mixed global cues.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n- BANKNIFTY BULLISH entry 55000, stop 49674.28, target 66716.58 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, GIFT Nifty -0.38%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21%\n\nNarrative Themes:\n- Oil Price Truce: US-Iran interim deal may ease crude prices and global inflation.\n- Agri Inventory Boost: India's rice and wheat stocks hit record peaks, enhancing food security.\n- Earnings Beat: Ashok Leyland's Q4 net profit rises 11% to Rs 1381.32 cr, cushioning auto sector.\n- Global Earnings & Risk Appetite: Japan's May exports surge on chip demand, beating estimates.\n\nValidated Trading Setups:\n- NIFTY BULLISH — entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n- BANKNIFTY BULLISH — entry 55000, stop 49674.28, target 66716.58 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -243,14 +243,14 @@
   ],
   "fiiDiiFlows": null,
   "giftNiftyBias": null,
-  "todaysReadArticle": "The Indian market's pre-open session is poised on the cusp of a potentially decisive day, driven by a confluence of global macroeconomic shifts and sector-specific news. The most significant development is the dip in crude oil prices below $80 per barrel, nearing a three-month low, as the US and Iran move closer to an interim agreement. This easing in Brent crude has immediate implications for India's import-cost sensitive sectors; a sustained decline could provide margin relief for Oil Marketing Companies (OMCs), aviation, paints, and tyres, although upstream energy companies may lag due to their exposure to the global crude price dynamics.\n\nThe connection between crude oil prices and the broader Indian market narrative is nuanced, with the direction of Brent crude serving as a critical indicator for sectoral performance. As the market awaits the outcome of the US Federal Reserve's two-day policy meeting, US Treasury yields have slid, introducing an additional layer of complexity. A rise in yields could be bearish for Bank Nifty, realty, autos, and high-PE growth stocks, underscoring the need for cleaner bank and growth-stock confirmation to absorb potential rate hike implications. The interplay between crude oil, US monetary policy, and Indian market breadth will be crucial, with sectoral divergence likely as IT, pharma, metals, and autos respond differently to trade-flow news and import-cost dynamics.\n\nAs the Nifty potentially opens firmer, traders will be keenly watching Bank Nifty, USD/INR, and advance-decline ratios for confirmation of a sustainable trend. The risk appetite is supportive only if Indian market breadth confirms beyond initial ranges, and sector support needs related Indian peer breadth and Nifty VWAP acceptance before it translates into broad index weight. The immediate battleground for traders will be the response of OMCs, aviation, and tyres to the crude oil price dynamics, alongside the reaction of IT and pharma to global trade-flow news, making it a day where sectoral divergence and macroeconomic indicators will heavily influence the market's direction.",
+  "todaysReadArticle": "The overnight narrative is dominated by the unfolding US-Iran interim agreement, which is expected to be signed on Friday, granting Tehran significant economic incentives and easing geopolitical tensions. This development has sent crude oil prices tumbling below $80, near a three-month low, as the risk premium associated with supply disruptions unwinds. For Indian markets, a sustained decline in Brent crude is bullish for oil marketing companies, aviation, paints, and tyres, as it eases input cost pressures and cools imported inflation fears, potentially supporting FMCG and rural-facing stocks if the food disinflation narrative holds, backed by record grain stocks.\n\nThe global macro landscape is witnessing a complex interplay of factors, with Japan's surprise export surge, driven by soaring chip demand, signaling resilient global trade demand. However, the read-through for Indian exporters requires domestic order-flow confirmation, which could potentially benefit auto ancillaries, specialty chemicals, and select IT services if the global demand narrative holds. Meanwhile, the bond market rally has failed to allay concerns about higher-for-longer global rates, keeping the discount-rate risk for equities elevated and posing a challenge to Bank Nifty, realty, and high-PE growth stocks, particularly if US yields stay firm and USD/INR pressures persist.\n\nAs Indian markets prepare for the open, the key battlegrounds will be the Brent crude price, USD/INR, and gold, which will dictate the direction of FII flows and, in turn, influence equity market sentiment. While isolated stock action is possible, driven by earnings announcements like Ashok Leyland's Q4 results, a broader sectoral or index-level move will require confirmation from related Indian peers and Nifty VWAP acceptance. The morning handoff will be critical in determining whether the interim US-Iran agreement survives and translates into a sustained rally in Indian markets, or if the higher-for-longer global rates narrative takes center stage, pressuring rate-sensitive sectors.",
   "themes": [
     {
       "digestDate": "2026-06-17",
       "themeType": "macro_negative",
       "title": "Negative Macro Impact",
-      "summary": "U.S. Treasury yields fell on Tuesday as the Federal Reserve's two-day policy meeting kicked off.",
-      "sentimentScore": -0.78,
+      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "sentimentScore": -0.49,
       "evidenceCount": 1
     },
     {
@@ -258,22 +258,14 @@
       "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "The interim agreement, expected to be signed on Friday, would grant Tehran significant economic incentives, including the immediate ability to resume oil sales.",
-      "sentimentScore": -0.41,
+      "sentimentScore": -0.448,
       "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-06-17",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Gift Nifty was trading around 24,032 level, a premium of nearly 31 points from the Nifty futures’ previous close, indicating a flat-to-positive start for the Indian stock market indices.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 1
     },
     {
       "digestDate": "2026-06-17",
       "themeType": "sector_positive",
       "title": "Sector-Specific Cushion",
-      "summary": "L&T Share Price Live Updates: L&T's Current Market Price.",
+      "summary": "L&T Share Price Live Updates: L&T's Price Movement Today.",
       "sentimentScore": 0.35,
       "evidenceCount": 1
     },
@@ -281,9 +273,9 @@
       "digestDate": "2026-06-17",
       "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
-      "summary": "Stock market today: On Tuesday, the Sensex advanced 544.15 points, or 0.71%, to settle at 76,808.48, while the Nifty 50 climbed 135.25 points, or 0.57%, to close at 23,989.15.",
-      "sentimentScore": 0.4,
-      "evidenceCount": 2
+      "summary": "India's rice stocks hit a record high and wheat inventories reached a five-year peak, boosting food security and giving the government room to manage prices",
+      "sentimentScore": 0.497,
+      "evidenceCount": 3
     }
   ],
   "tradeSetups": [
@@ -324,7 +316,7 @@
     "blockedReason": null,
     "isVerifiedForPublicArchive": true
   },
-  "durationMillis": 13247499,
+  "durationMillis": 362147,
   "scheduledFor": "2026-06-17T07:15:00+05:30",
   "runMode": "scheduled-verified-source-data",
   "ogImageUrl": null,
@@ -351,54 +343,54 @@
       }
     },
     {
-      "publishedAt": "2026-06-17T01:37:05.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, US tech stocks selloff to oil prices: 8 key things that changed for Indian stock market overnight",
-      "summary": "Gift Nifty was trading around 24,032 level, a premium of nearly 31 points from the Nifty futures’ previous close, indicating a flat-to-positive start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 24,032 level, a premium of nearly 31 points from the Nifty futures’ previous; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-tech-stocks-selloff-to-oil-prices-8-key-things-that-changed-for-indian-stock-market-overnight-11781658244588.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
+      "publishedAt": "2026-06-16T18:04:56.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "Rice stocks climb to record high; wheat inventories at five-year peak",
+      "summary": "India's rice stocks hit a record high and wheat inventories reached a five-year peak, boosting food security and giving the government room to manage prices",
+      "takeaway": "Record grain stocks give the government policy room to manage food inflation, removing a near-term CPI upside risk for the RBI.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "FMCG and rural-facing stocks may find sentiment support if food disinflation narrative holds; no direct Nifty index call yet.",
+      "watchFor": "Nifty FMCG breadth and G-sec yield move in first 30 minutes.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rice-stocks-climb-to-record-high-wheat-inventories-at-five-year-peak-126061600779_1.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
       "thumbnail": {
-        "label": "Open",
-        "theme": "Gift Tech",
-        "accent": "#0891b2",
-        "alt": "From Gift Nifty, US tech stocks selloff to oil prices: 8 key things that changed for Indian stock market overnight source thumbnail"
+        "label": "Market",
+        "theme": "Rice Climb",
+        "accent": "#059669",
+        "alt": "Rice stocks climb to record high; wheat inventories at five-year peak source thumbnail"
       }
     },
     {
-      "publishedAt": "2026-06-16T20:01:52.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Treasury yields slide as Fed begins monetary policy meeting",
-      "summary": "U.S. Treasury yields fell on Tuesday as the Federal Reserve's two-day policy meeting kicked off.",
-      "takeaway": "US Treasury yields fell on Tuesday as the Federal Reserve's two-day policy meeting kicked off; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/16/treasury-yields-investors-await-warsh-first-fed-meeting.html",
+      "publishedAt": "2026-06-17T06:30:00+05:30",
+      "sourceId": "the-week-business",
+      "sourceName": "The Week Business",
+      "headline": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "takeaway": "Ashok Leyland's Q4 profit growth is a single-stock result; it lacks the margin or demand signal to lift the auto sector at open.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Nifty Auto may see isolated stock action, but no index-level transmission exists unless CV cycle commentary surprises in the concall.",
+      "watchFor": "Ashok Leyland holding above opening VWAP on 15-minute chart.",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
       "sentimentLabel": "negative",
-      "entityName": "Rates",
+      "entityName": "Market",
       "category": "macro_negative",
       "thumbnail": {
-        "label": "Rates",
-        "theme": "Treasury Yields",
+        "label": "Market",
+        "theme": "Ashok Leyland",
         "accent": "#dc2626",
-        "alt": "Treasury yields slide as Fed begins monetary policy meeting source thumbnail"
+        "alt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail"
       }
     },
     {
       "publishedAt": "2026-06-17T02:44:40.000Z",
       "sourceId": "economic-times-stocks",
       "sourceName": "Economic Times Stocks",
-      "headline": "L&T Share Price Live Updates: L&T's Current Market Price",
-      "summary": "L&T Share Price Live Updates: L&T's Current Market Price.",
-      "takeaway": "L&T's Current Market Price; sector support needs Indian peer breadth before it earns index weight.",
+      "headline": "L&T Share Price Live Updates: L&T's Price Movement Today",
+      "summary": "L&T Share Price Live Updates: L&T's Price Movement Today.",
+      "takeaway": "L&T's Price Movement Today; sector support needs Indian peer breadth before it earns index weight.",
       "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
       "indiaImpact": "Sector Breadth needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
       "watchFor": "Watch Sector Breadth peer breadth and Bank Nifty VWAP through the first range.",
@@ -410,37 +402,16 @@
         "label": "Sector Breadth",
         "theme": "L&T Share",
         "accent": "#2563eb",
-        "alt": "L&T Share Price Live Updates: L&T's Current Market Price source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-17T02:23:35.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: GIC, Wipro, Prime Focus among shares in focus today; check list here",
-      "summary": "Stock market today: On Tuesday, the Sensex advanced 544.15 points, or 0.71%, to settle at 76,808.48, while the Nifty 50 climbed 135.25 points, or 0.57%, to close at 23,989.15.",
-      "takeaway": "Stock market today: On Tuesday, the Sensex advanced 544.15 points, or 0.71%, to settle at 76,808.48, while; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-gic-wipro-prime-focus-among-shares-in-focus-today-check-list-here-11781661664444.html",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Prime Focus",
-        "accent": "#059669",
-        "alt": "Stocks to watch: GIC, Wipro, Prime Focus among shares in focus today; check list here source thumbnail"
+        "alt": "L&T Share Price Live Updates: L&T's Price Movement Today source thumbnail"
       }
     },
     {
       "publishedAt": "2026-06-16T23:48:24.000Z",
       "sourceId": "bloomberg-markets",
       "sourceName": "Bloomberg Markets",
-      "headline": "Gold Holds Gain as US, Iran Prepare to Sign Interim Peace Deal",
-      "summary": "Gold held gains, as the US and Iran prepared to sign an interim peace deal that may ease global inflationary pressures arising from the war.",
-      "takeaway": "Gold held gains, as the US and Iran prepared to sign an interim peace deal that may ease; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
+      "headline": "Gold Steadies as US and Iran Prepare to Sign Interim Peace Deal",
+      "summary": "Gold steadied after a four-day gain as the US and Iran prepared to sign an interim peace agreement that may ease global inflationary pressures arising from the war.",
+      "takeaway": "Gold steadied after a four-day gain as the US and Iran prepared to sign an interim peace agreement; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
       "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
       "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
       "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
@@ -450,9 +421,9 @@
       "category": "global_risk",
       "thumbnail": {
         "label": "Geopolitical Risk",
-        "theme": "Gold Holds",
+        "theme": "Gold Steadies",
         "accent": "#7c3aed",
-        "alt": "Gold Holds Gain as US, Iran Prepare to Sign Interim Peace Deal source thumbnail"
+        "alt": "Gold Steadies as US and Iran Prepare to Sign Interim Peace Deal source thumbnail"
       }
     },
     {
@@ -461,10 +432,10 @@
       "sourceName": "CNBC Markets",
       "headline": "Japan May exports grow at fastest pace in over three years, beating estimates, as chip demand soars",
       "summary": "Japan's exports in May grew at their fastest pace since November 2022, boosted by robust demand for cars and semiconductors.",
-      "takeaway": "Japan's exports in May grew at their fastest pace since November 2022, boosted by robust demand for cars; trade-flow news separates exporters from import-cost sectors, so the index read needs sector confirmation.",
+      "takeaway": "Japan's export surge signals resilient global trade demand, but the read-through for Indian exporters requires domestic order-flow confirmation.",
       "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
-      "indiaImpact": "IT, pharma, metals, autos and import-cost sectors can diverge; use breadth by sector before assigning index direction.",
-      "watchFor": "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.",
+      "indiaImpact": "Auto ancillaries, specialty chemicals, and select IT services may catch sentiment if global demand narrative holds; no direct Nifty index call yet.",
+      "watchFor": "Nifty Auto and Nifty IT breadth in first 30 minutes.",
       "sourceUrl": "https://www.cnbc.com/2026/06/17/japan-trade-data-may-exports-imports.html",
       "sentimentLabel": "positive",
       "entityName": "Exporters",
@@ -477,24 +448,45 @@
       }
     },
     {
-      "publishedAt": "2026-06-17T01:29:46.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Crude oil prices near three-month low on hopes of Strait of Hormuz reopening; Brent oil near $80 per barrel",
-      "summary": "Oil prices are near three-month lows as the US-Iran peace deal details emerge, allowing Iran to potentially resume oil exports. Brent crude futures were below $80 per barrel today.&nbsp;",
-      "takeaway": "Oil prices are near three-month lows as the US-Iran peace deal details emerge, allowing Iran to potentially resume; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $80; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-gain-on-uncertainty-over-strait-of-hormuz-reopening-brent-oil-near-80-per-barrel-11781658878640.html",
+      "publishedAt": "2026-06-17T00:30:00.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Bond Rally Fails to Allay Higher-for-Longer Global Rates Threat",
+      "summary": "Governments around the world look to be facing lofty borrowing costs for at least the rest of the year, even as the fragile Middle East truce lowers energy prices and curbs inflationary fears.",
+      "takeaway": "A bond rally does not cancel the higher-for-longer rate reality; the discount-rate risk for equities stays elevated.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Bank Nifty, realty, and high-PE growth stocks face a fragile open if US yields stay firm and USD/INR pressures persist.",
+      "watchFor": "Bank Nifty VWAP and USD/INR spot through 9:45 AM.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-17/bond-rally-fails-to-allay-higher-for-longer-global-rates-threat",
+      "sentimentLabel": "positive",
+      "entityName": "Rates",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Bond Rally Fails to Allay Higher-for-Longer Global Rates Threat source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-17T00:57:41.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "CNBC Daily Open: Markets cheer Iran calm as Trump eyes his next deal",
+      "summary": "The memorandum of understanding for the Iran conflict seems to be holding, with the signing in Geneva inching closer without a reversal so far.",
+      "takeaway": "The Iran de-escalation holds, removing a near-term crude supply shock; the risk premium is unwinding, not building.",
+      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
+      "indiaImpact": "Brent crude is the direct beneficiary; sustained calm eases input costs for OMCs, paints, and tyres while cooling imported inflation fears.",
+      "watchFor": "Brent futures holding below $70 and OMC stocks opening firm.",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/cnbc-daily-open-markets-iran-oil-trump-deal-ukraine-russia-spacex.html",
       "sentimentLabel": "negative",
       "entityName": "Geopolitical risk",
       "category": "global_risk",
       "thumbnail": {
-        "label": "Crude Exports",
-        "theme": "Oil Supply",
-        "accent": "#f97316",
-        "alt": "Crude oil prices near three-month low on hopes of Strait of Hormuz reopening; Brent oil near $80 per barrel source thumbnail"
+        "label": "Geopolitical Risk",
+        "theme": "Cnbc Daily",
+        "accent": "#7c3aed",
+        "alt": "CNBC Daily Open: Markets cheer Iran calm as Trump eyes his next deal source thumbnail"
       }
     }
   ],
@@ -510,52 +502,42 @@
       "category": "global_risk"
     },
     {
-      "title": "From Gift Nifty, US tech stocks selloff to oil prices: 8 key things that changed for Indian stock market overnight",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-17T01:37:05.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-tech-stocks-selloff-to-oil-prices-8-key-things-that-changed-for-indian-stock-market-overnight-11781658244588.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "From Gift Nifty, US tech stocks selloff to oil prices: 8 key things that changed for Indian stock market overnight source thumbnail",
-      "sentimentLabel": "neutral",
-      "category": "neutral_volatile"
-    },
-    {
-      "title": "Treasury yields slide as Fed begins monetary policy meeting",
-      "publisherName": "CNBC World",
-      "timestamp": "2026-06-16T20:01:52.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/16/treasury-yields-investors-await-warsh-first-fed-meeting.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETreasury%20Yields%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Treasury yields slide as Fed begins monetary policy meeting source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "L&T Share Price Live Updates: L&T's Current Market Price",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-17T02:44:40.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/lt-share-price-today-live-17-jun-2026/liveblog/131784665.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EL%26amp%3BT%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "L&T Share Price Live Updates: L&T's Current Market Price source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "Stocks to watch: GIC, Wipro, Prime Focus among shares in focus today; check list here",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-17T02:23:35.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-gic-wipro-prime-focus-among-shares-in-focus-today-check-list-here-11781661664444.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EPrime%20Focus%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Stocks to watch: GIC, Wipro, Prime Focus among shares in focus today; check list here source thumbnail",
+      "title": "Rice stocks climb to record high; wheat inventories at five-year peak",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-16T18:04:56.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rice-stocks-climb-to-record-high-wheat-inventories-at-five-year-peak-126061600779_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERice%20Climb%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Rice stocks climb to record high; wheat inventories at five-year peak source thumbnail",
       "sentimentLabel": "positive",
       "category": "macro_positive"
     },
     {
-      "title": "Gold Holds Gain as US, Iran Prepare to Sign Interim Peace Deal",
+      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-06-17T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "L&T Share Price Live Updates: L&T's Price Movement Today",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-17T02:44:40.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/lt-share-price-today-live-17-jun-2026/liveblog/131784665.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EL%26amp%3BT%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "L&T Share Price Live Updates: L&T's Price Movement Today source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Gold Steadies as US and Iran Prepare to Sign Interim Peace Deal",
       "publisherName": "Bloomberg Markets",
       "timestamp": "2026-06-16T23:48:24.000Z",
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-16/gold-holds-gain-as-us-iran-prepare-to-sign-interim-peace-deal",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Holds%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Gold Holds Gain as US, Iran Prepare to Sign Interim Peace Deal source thumbnail",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Steadies%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold Steadies as US and Iran Prepare to Sign Interim Peace Deal source thumbnail",
       "sentimentLabel": "negative",
       "category": "global_risk"
     },
@@ -570,12 +552,22 @@
       "category": "macro_positive"
     },
     {
-      "title": "Crude oil prices near three-month low on hopes of Strait of Hormuz reopening; Brent oil near $80 per barrel",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-17T01:29:46.000Z",
-      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-gain-on-uncertainty-over-strait-of-hormuz-reopening-brent-oil-near-80-per-barrel-11781658878640.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Crude oil prices near three-month low on hopes of Strait of Hormuz reopening; Brent oil near $80 per barrel source thumbnail",
+      "title": "Bond Rally Fails to Allay Higher-for-Longer Global Rates Threat",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-17T00:30:00.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-17/bond-rally-fails-to-allay-higher-for-longer-global-rates-threat",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Bond Rally Fails to Allay Higher-for-Longer Global Rates Threat source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "CNBC Daily Open: Markets cheer Iran calm as Trump eyes his next deal",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-17T00:57:41.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/cnbc-daily-open-markets-iran-oil-trump-deal-ukraine-russia-spacex.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECnbc%20Daily%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC Daily Open: Markets cheer Iran calm as Trump eyes his next deal source thumbnail",
       "sentimentLabel": "negative",
       "category": "global_risk"
     }
