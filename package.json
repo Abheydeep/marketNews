@@ -11,6 +11,7 @@
   "scripts": {
     "context:verify": "node tools/context-verify.mjs",
     "test": "node tools/verify.mjs",
+    "build": "npm run vercel:build",
     "demo": "node tools/demo-server.mjs",
     "daily:generate": "node tools/generate-daily-summary.mjs",
     "site:publish": "node tools/publish-site.mjs",

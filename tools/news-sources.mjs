@@ -438,6 +438,9 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING === "true";
+  const isPulseModel = model.includes("deepseek");
+  const finalApiKey = isPulseModel ? (process.env.PULSE_API_KEY ?? apiKey) : apiKey;
+  
   return async ({ article, prompt, schema, usedAngles = [] }) => {
     const startedAt = Date.now();
     const response = await nvidiaFetchWithRetry({
@@ -445,7 +448,7 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
       url: `${baseUrl}/chat/completions`,
       provider: "nvidia_article_editorial",
       model,
-      timeoutMs: Number(options.nvidiaArticleTimeoutMs ?? process.env.NVIDIA_ARTICLE_TIMEOUT_MS ?? process.env.NVIDIA_TIMEOUT_MS ?? 15000),
+      timeoutMs: Number(options.nvidiaArticleTimeoutMs ?? process.env.NVIDIA_ARTICLE_TIMEOUT_MS ?? process.env.NVIDIA_TIMEOUT_MS ?? 180000),
       body: {
         model,
         messages: [
@@ -460,7 +463,7 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
         ...(enableThinking ? { reasoning_budget: Number(options.nvidiaArticleReasoningBudget ?? process.env.NVIDIA_ARTICLE_REASONING_BUDGET ?? 1024) } : {}),
         stream: false
       },
-      apiKey
+      apiKey: finalApiKey
     });
     log.info("article editorial enrichment completed", { provider: "nvidia", model, status: response.status, durationMs: Date.now() - startedAt });
     const data = await response.json();
