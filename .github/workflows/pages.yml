@@ -108,6 +108,7 @@ jobs:
           PREMARKET_LATE_CUTOFF_MINUTES: "60"
           PUBLIC_BRIEFING_AGENT_RERANK: "true"
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          PULSE_API_KEY: ${{ secrets.PULSE_API_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.allow_late_publish }}" = "true" ]; then
             export ALLOW_LATE_PREMARKET_PUBLISH=true
