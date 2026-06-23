@@ -190,3 +190,4 @@ These must remain true after changes:
 - Split large public rendering files into focused modules.
 - Add richer local-prod smoke coverage for real LLM output quality.
 - Keep architecture diagrams current as the publish and LLM pipelines evolve.
+- 2026-06-23: Fixed Vercel deployment crash for public site. ROOT CAUSE: `tools/vercel-build.mjs` failed to infer the public deploy target from the default Vercel project name (`marketnews`), causing an immediate exit with status 1 and aborting all deployments since the Vercel CLI migration. Updated the inference regex to match `^marketnews$` and its Vercel domains. Verified: `npm run context:verify`, `npm test` (75 passed), simulated Vercel build via `VERCEL="1" VERCEL_PROJECT_NAME="marketnews" VERCEL_URL="marketnews.vercel.app" node tools/vercel-build.mjs`. No architecture diagrams changed.
