@@ -80,7 +80,7 @@ function inferVercelTarget() {
     if (/(^|[^a-z])trade([^a-z]|$)|trading|market-news-trade/.test(signal)) {
       return "trade";
     }
-    if (/(^|[^a-z])public([^a-z]|$)|marketnarrative-public|market-news-public|^marketnarrative\.in$|^www\.marketnarrative\.in$/.test(signal)) {
+    if (/(^|[^a-z])public([^a-z]|$)|marketnarrative-public|market-news-public|^marketnarrative\.in$|^www\.marketnarrative\.in$|^marketnews(-\w+)?\.vercel\.app$|^marketnews$/.test(signal)) {
       return "public";
     }
   }
