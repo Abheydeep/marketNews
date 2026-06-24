@@ -34,7 +34,6 @@ const siteDir = join(rootDir, "out", "site");
 const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
 const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
-const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
 const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
@@ -136,12 +135,7 @@ for (const event of publicationEvents) {
   await writeGuardedFile(join(eventGuideDir, "index.html"), publicationEventPage(event, latest, true));
 }
 const publicMultibaggerState = await multibaggerStateWithMarketQuotes();
-const adminDigest = {
-  ...sourceDigest,
-  canonicalPath: "/"
-};
 const darkPreviewDir = join(siteDir, "dark-preview");
-const adminDir = join(siteDir, "admin");
 const multibaggerDir = join(siteDir, "multibagger");
 const aboutDir = join(siteDir, "about");
 const subscribeDir = join(siteDir, "subscribe");
@@ -184,45 +178,7 @@ await writeGuardedFile(join(privacyDir, "index.html"), privacyPage());
 await mkdir(termsDir, { recursive: true });
 await writeGuardedFile(join(termsDir, "index.html"), termsPage());
 
-await mkdir(join(adminDir, "components"), { recursive: true });
-await mkdir(join(adminDir, "multibagger"), { recursive: true });
-await writeFile(
-  join(adminDir, "index.html"),
-  cockpitPage(adminDigest, "studio-view", {
-    includeStudio: true,
-    theme: "glass-v2",
-    requireAuth: true,
-    multibaggerState: publicMultibaggerState,
-    siteOrigin: adminSiteOrigin
-  }),
-  "utf8"
-);
-await writeFile(join(adminDir, "favicon.ico"), "", "utf8");
-await writeFile(join(adminDir, "favicon.svg"), brandFaviconSvg(), "utf8");
-await writeFile(join(adminDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
-await writeFile(join(adminDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`, "utf8");
-await writeFile(
-  join(adminDir, "components", "index.html"),
-  cockpitPage(adminDigest, "components-view", {
-    includeStudio: true,
-    theme: "glass-v2",
-    requireAuth: true,
-    multibaggerState: publicMultibaggerState,
-    siteOrigin: adminSiteOrigin
-  }),
-  "utf8"
-);
-await writeFile(
-  join(adminDir, "multibagger", "index.html"),
-  cockpitPage(adminDigest, "multibagger-admin-view", {
-    includeStudio: true,
-    theme: "glass-v2",
-    requireAuth: true,
-    multibaggerState: publicMultibaggerState,
-    siteOrigin: adminSiteOrigin
-  }),
-  "utf8"
-);
+
 await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveTimelineEntries.slice(0, 5), allArchiveTimelineEntries, latest));
 await writeFile(join(siteDir, "404.html"), notFoundPage(), "utf8");
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);

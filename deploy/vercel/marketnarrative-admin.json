@@ -1,16 +1,15 @@
 {
+  "note": "Admin studio is now a standalone repo: Abheydeep/marketnarrative-admin",
   "projectName": "marketnarrative-admin",
+  "repository": "Abheydeep/marketnarrative-admin",
   "rootDirectory": ".",
-  "frameworkPreset": "other",
+  "frameworkPreset": "vite",
   "installCommand": "npm install",
-  "buildCommand": "npm run vercel:build",
-  "outputDirectory": "public",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "domains": ["admin.marketnarrative.in"],
+  "deploymentProtection": "vercel-authentication",
   "environment": {
-    "MARKET_NARRATIVE_DEPLOY_TARGET": "admin",
-    "MARKET_DATA_MODE": "live",
-    "PUBLIC_SITE_ORIGIN": "https://marketnarrative.in",
-    "ADMIN_SITE_ORIGIN": "https://admin.marketnarrative.in",
-    "MARKET_NARRATIVE_API_BASE": "https://api.marketnarrative.in"
+    "VITE_API_BASE_URL": "https://api.marketnarrative.in"
   }
 }

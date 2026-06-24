@@ -14,21 +14,27 @@ const inferredTarget = explicitTarget ? null : inferVercelTarget();
 
 if (process.env.VERCEL === "1" && !explicitTarget && !inferredTarget) {
   console.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
-  console.error("Set it to one of: public, admin, trade.");
-  console.error("Or use a Vercel project/deployment URL that clearly includes public, admin, or trade.");
-  console.error("This prevents admin.marketnarrative.in from accidentally serving the public site.");
+  console.error("Set it to: public.");
+  console.error("Admin and trade are now separate repos — see Abheydeep/marketnarrative-admin and Abheydeep/marketnarrative-trade.");
   console.error(`Vercel target signals: ${vercelTargetSignals().join(", ") || "none"}`);
   process.exit(1);
 }
 
 const target = normalizeTarget(explicitTarget ?? inferredTarget ?? "public");
 
+if (target === "admin" || target === "trade") {
+  console.error(`MARKET_NARRATIVE_DEPLOY_TARGET="${target}" is no longer valid in this repo.`);
+  console.error("Admin studio → Abheydeep/marketnarrative-admin (Vite, dist/)");
+  console.error("Trade cockpit → Abheydeep/marketnarrative-trade (Next.js, out/)");
+  process.exit(1);
+}
+
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 
 if (target === "public") {
   run("npm", ["run", "vercel:build:public"]);
-  await copyOutput(join(rootDir, "out", "site"), { excludeTopLevel: ["admin"] });
+  await copyOutput(join(rootDir, "out", "site"));
   await writeManifest(target, [
     "/",
     "/latest/",
@@ -51,19 +57,8 @@ if (target === "public") {
   await copyLatestSlugFallback(join(rootDir, "out", "site", "latest-slug.txt"));
   run("node", ["tools/public-copy-qa.mjs", "public"]);
   console.log("Prepared Vercel public output in public");
-} else if (target === "admin") {
-  run("npm", ["run", "vercel:build:public"]);
-  await copyOutput(join(rootDir, "out", "site", "admin"));
-  await writeFile(join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n", "utf8");
-  await writeManifest(target, ["/", "/components/", "/multibagger/"]);
-  console.log("Prepared Vercel admin studio output in public");
-} else if (target === "trade") {
-  run("npm", ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]);
-  await copyOutput(join(rootDir, "apps", "trading-dashboard", "out"));
-  await writeManifest(target, ["/", "/kite/callback/"]);
-  console.log("Prepared Vercel trading cockpit output in public");
 } else {
-  console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public", "admin", or "trade".`);
+  console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public".`);
   process.exit(1);
 }
 
@@ -74,12 +69,6 @@ function normalizeTarget(value) {
 function inferVercelTarget() {
   const signals = vercelTargetSignals();
   for (const signal of signals) {
-    if (/(^|[^a-z])admin([^a-z]|$)|admin-studio|market-news-admin/.test(signal)) {
-      return "admin";
-    }
-    if (/(^|[^a-z])trade([^a-z]|$)|trading|market-news-trade/.test(signal)) {
-      return "trade";
-    }
     if (/(^|[^a-z])public([^a-z]|$)|marketnarrative-public|market-news-public|^marketnarrative\.in$|^www\.marketnarrative\.in$|^marketnews(-\w+)?\.vercel\.app$|^marketnews$/.test(signal)) {
       return "public";
     }
@@ -102,9 +91,7 @@ async function copyOutput(sourceDir, options = {}) {
   const excluded = new Set(options.excludeTopLevel ?? []);
   const entries = await readdir(sourceDir, { withFileTypes: true });
   for (const entry of entries) {
-    if (excluded.has(entry.name)) {
-      continue;
-    }
+    if (excluded.has(entry.name)) continue;
     await cp(join(sourceDir, entry.name), join(outputDir, entry.name), { recursive: true });
   }
 }
@@ -122,22 +109,12 @@ async function copyLatestSlugFallback(sourcePath) {
 async function writeManifest(targetName, routes) {
   await writeFile(
     join(outputDir, "deployment-manifest.json"),
-    `${JSON.stringify(
-      {
-        app: "marketnarrative",
-        target: targetName,
-        routes
-      },
-      null,
-      2
-    )}\n`,
+    `${JSON.stringify({ app: "marketnarrative", target: targetName, routes }, null, 2)}\n`,
     "utf8"
   );
 }
 
 function run(command, args) {
   const result = spawnSync(command, args, { cwd: rootDir, stdio: "inherit", shell: false });
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
-  }
+  if (result.status !== 0) process.exit(result.status ?? 1);
 }

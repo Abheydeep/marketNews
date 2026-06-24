@@ -2542,15 +2542,13 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
     assert.equal(publisher.includes(roughCopy), false, `publisher should not contain rough copy: ${roughCopy}`);
   }
   assert.ok(publisher.includes("multibaggerPage"));
-  assert.ok(publisher.includes("components-view"));
-  assert.ok(publisher.includes("multibagger-admin-view"));
   assert.ok(publisher.includes('join(siteDir, "multibagger")'));
-  assert.ok(publisher.includes('join(adminDir, "multibagger")'));
   assert.ok(publisher.includes('"state.json"'));
-  assert.ok(publisher.includes("adminSiteOrigin"));
-  assert.ok(publisher.includes("https://admin.marketnarrative.in"));
-  assert.ok(publisher.includes('join(siteDir, "admin")'));
-  assert.ok(publisher.includes('requireAuth: true'));
+  assert.ok(!publisher.includes("adminSiteOrigin"), "admin site origin removed — admin is a separate repo");
+  assert.ok(!publisher.includes("components-view"), "admin cockpit views removed — admin is a separate repo");
+  assert.ok(!publisher.includes("multibagger-admin-view"), "admin cockpit views removed — admin is a separate repo");
+  assert.ok(!publisher.includes('join(siteDir, "admin")'), "admin dir generation removed — admin is a separate repo");
+  assert.ok(!publisher.includes('requireAuth: true'), "requireAuth only used in admin cockpit views, now removed");
   assert.ok(!publisher.includes('join(siteDir, "components")'));
   assert.ok(!publisher.includes("Project components"));
   assert.ok(publisher.includes('"dark-preview"'));
@@ -2736,46 +2734,32 @@ await test("Spring CORS allows admin and trade frontend origins", async () => {
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
-  assert.deepEqual(rootPackage.workspaces, ["apps/*", "packages/*", "frontend"]);
+  assert.deepEqual(rootPackage.workspaces, ["apps/public-portal", "frontend"]);
   assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
   assert.equal(rootPackage.scripts["public:copy:qa"], "node tools/public-copy-qa.mjs");
   assert.equal(rootPackage.scripts["hooks:install"], "git config core.hooksPath .githooks");
   assert.equal(rootPackage.scripts["prod:qa"], "node tools/production-qa-gate.mjs");
   assert.ok(rootPackage.scripts["prod:qa:strict"].includes("REQUIRE_AUTHENTICATED_QA=true"));
-  assert.ok(rootPackage.scripts["vercel:build:admin"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=admin"));
-  assert.ok(rootPackage.scripts["vercel:build:trade"].includes("MARKET_NARRATIVE_DEPLOY_TARGET=trade"));
+  assert.equal(rootPackage.scripts["vercel:build:admin"], undefined, "admin is a separate repo — no admin build script in monorepo");
+  assert.equal(rootPackage.scripts["vercel:build:trade"], undefined, "trade is a separate repo — no trade build script in monorepo");
 
   const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
-  const adminPackage = JSON.parse(await readFile(join(rootDir, "apps", "admin-studio", "package.json"), "utf8"));
-  const uiPackage = JSON.parse(await readFile(join(rootDir, "packages", "ui", "package.json"), "utf8"));
-  const apiPackage = JSON.parse(await readFile(join(rootDir, "packages", "api-client", "package.json"), "utf8"));
-  const uiIndex = await readFile(join(rootDir, "packages", "ui", "src", "index.ts"), "utf8");
-  const uiBrand = await readFile(join(rootDir, "packages", "ui", "src", "BrandMark.tsx"), "utf8");
   const publicPortalPage = await readFile(join(rootDir, "apps", "public-portal", "app", "page.tsx"), "utf8");
-  const adminStudioPage = await readFile(join(rootDir, "apps", "admin-studio", "src", "App.tsx"), "utf8");
-  const tradingAuth = await readFile(join(rootDir, "apps", "trading-dashboard", "lib", "auth.ts"), "utf8");
-  const tradingBrand = await readFile(join(rootDir, "apps", "trading-dashboard", "components", "BrandMark.tsx"), "utf8");
-  const tradingLayout = await readFile(join(rootDir, "apps", "trading-dashboard", "app", "layout.tsx"), "utf8");
-  const tradingIcon = await readFile(join(rootDir, "apps", "trading-dashboard", "app", "icon.svg"), "utf8");
 
   assert.equal(publicPackage.name, "@market-narrative/public-portal");
-  assert.equal(adminPackage.name, "@market-narrative/admin-studio");
-  assert.equal(uiPackage.name, "@market-narrative/ui");
-  assert.equal(apiPackage.name, "@market-narrative/api-client");
   assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
-  assert.ok(adminPackage.dependencies["@market-narrative/api-client"]);
-  assert.ok(uiIndex.includes("BrandMark"));
-  assert.ok(uiBrand.includes("ui-mn-signal"));
   assert.ok(publicPortalPage.includes("BrandMark"));
-  assert.ok(adminStudioPage.includes("BrandMark"));
-  assert.ok(tradingAuth.includes("abhey@marketnarrative.in"));
-  assert.ok(!tradingAuth.includes("abhey@marketnarrative.local"));
-  assert.ok(tradingAuth.includes("Auth API unreachable"));
-  assert.ok(tradingAuth.includes("api.marketnarrative.in DNS"));
-  assert.ok(tradingBrand.includes("Market Narrative"));
-  assert.ok(tradingBrand.includes("trade-mn-signal"));
-  assert.ok(tradingLayout.includes("/icon.svg"));
-  assert.ok(tradingIcon.includes("mn-signal"));
+
+  const adminRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
+  const tradeRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
+  assert.equal(adminRef.repository, "Abheydeep/marketnarrative-admin");
+  assert.equal(adminRef.frameworkPreset, "vite");
+  assert.equal(adminRef.outputDirectory, "dist");
+  assert.deepEqual(adminRef.domains, ["admin.marketnarrative.in"]);
+  assert.equal(tradeRef.repository, "Abheydeep/marketnarrative-trade");
+  assert.equal(tradeRef.frameworkPreset, "nextjs");
+  assert.equal(tradeRef.outputDirectory, "out");
+  assert.deepEqual(tradeRef.domains, ["trade.marketnarrative.in"]);
 });
 
 await test("Vercel projects select public, admin, or trade output by deploy target", async () => {
@@ -2818,16 +2802,14 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(buildScript.includes("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel"));
   assert.ok(buildScript.includes("inferVercelTarget"));
   assert.ok(buildScript.includes("VERCEL_PROJECT_PRODUCTION_URL"));
-  assert.ok(buildScript.includes("market-news-admin"));
   assert.ok(buildScript.includes("deployment-manifest.json"));
   assert.ok(buildScript.includes('"public"'));
-  assert.ok(buildScript.includes('"admin"'));
-  assert.ok(buildScript.includes('"trade"'));
-  assert.ok(buildScript.includes('excludeTopLevel: ["admin"]'));
+  assert.ok(!buildScript.includes('"out", "site", "admin"'), "no admin copyOutput in monorepo build");
+  assert.ok(!buildScript.includes("@market-narrative/trading-dashboard"), "no trading-dashboard build in monorepo");
   assert.ok(buildScript.includes("vercel:build:public"));
   assert.ok(buildScript.includes("tools/public-copy-qa.mjs"));
-  assert.ok(buildScript.includes('"out", "site", "admin"'));
-  assert.ok(buildScript.includes("@market-narrative/trading-dashboard"));
+  assert.ok(buildScript.includes("Abheydeep/marketnarrative-admin"), "admin repo pointer must be in build script error message");
+  assert.ok(buildScript.includes("Abheydeep/marketnarrative-trade"), "trade repo pointer must be in build script error message");
   assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
@@ -2852,13 +2834,13 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.equal(publicProject.outputDirectory, "public");
   assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
   assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
-  assert.equal(adminProject.buildCommand, "npm run vercel:build");
-  assert.equal(adminProject.outputDirectory, "public");
-  assert.equal(adminProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "admin");
+  assert.equal(adminProject.repository, "Abheydeep/marketnarrative-admin", "admin is now a separate repo");
+  assert.equal(adminProject.buildCommand, "npm run build");
+  assert.equal(adminProject.outputDirectory, "dist");
   assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
-  assert.equal(tradeProject.buildCommand, "npm run vercel:build");
-  assert.equal(tradeProject.outputDirectory, "public");
-  assert.equal(tradeProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "trade");
+  assert.equal(tradeProject.repository, "Abheydeep/marketnarrative-trade", "trade is now a separate repo");
+  assert.equal(tradeProject.buildCommand, "npm run build");
+  assert.equal(tradeProject.outputDirectory, "out");
   assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
   for (const route of [
     "https://admin.marketnarrative.in/",

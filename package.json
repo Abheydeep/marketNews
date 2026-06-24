@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/*",
-    "packages/*",
+    "apps/public-portal",
     "frontend"
   ],
   "scripts": {
@@ -26,16 +25,12 @@
     "prod:qa:strict": "RUN_AUTHENTICATED_QA=true REQUIRE_AUTHENTICATED_QA=true node tools/production-qa-gate.mjs",
     "hooks:install": "git config core.hooksPath .githooks",
     "vercel:build": "node tools/vercel-build.mjs",
-    "vercel:build:admin": "MARKET_NARRATIVE_DEPLOY_TARGET=admin node tools/vercel-build.mjs",
     "vercel:build:public": "node tools/vercel-build-public.mjs",
-    "vercel:build:trade": "MARKET_NARRATIVE_DEPLOY_TARGET=trade node tools/vercel-build.mjs",
     "public:dev": "npm --workspace @market-narrative/public-portal run dev",
-    "admin:dev": "npm --workspace @market-narrative/admin-studio run dev",
     "trading:api": "cd services/trading-api && uvicorn app.main:app --reload --port 8090",
     "trading:test": "cd services/trading-api && python3 -m pytest",
     "trading:test:lite": "cd services/trading-api && python3 tests/run_unit_tests.py",
     "trading:mock:regression": "node tools/trading-mock-regression.mjs",
-    "trading:dashboard:dev": "npm --workspace @market-narrative/trading-dashboard run dev",
     "local:prod": "node tools/local-prod-run.mjs",
     "local:prod:smoke": "node tools/local-prod-smoke.mjs"
   }

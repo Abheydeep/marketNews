@@ -9,17 +9,7 @@ export function createPredeployChecks({ requireMaven = false } = {}) {
       command: "npm",
       args: ["test"]
     },
-    {
-      name: "Trading dashboard typecheck",
-      command: "npm",
-      args: ["--workspace", "@market-narrative/trading-dashboard", "run", "typecheck"]
-    },
-    {
-      name: "Trading dashboard production export",
-      command: "npm",
-      args: ["--workspace", "@market-narrative/trading-dashboard", "run", "build"]
-    },
-    {
+{
       name: "Vercel artifact separation",
       run: verifyVercelArtifacts
     },
