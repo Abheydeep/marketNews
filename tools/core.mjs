@@ -7,7 +7,7 @@ import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } f
 import { resolveNewsArticles } from "./news-sources.mjs";
 
 const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-const NIM_MODEL = "meta/llama-4-maverick-17b-128e-instruct";
+const NIM_MODEL = process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
 
 let _skillsCache = null;
 async function loadSkills() {
@@ -40,7 +40,7 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
           max_tokens: maxTokens,
           temperature: 0.65
         }),
-        signal: AbortSignal.timeout(Number(process.env.NVIDIA_TIMEOUT_MS ?? 20000))
+        signal: AbortSignal.timeout(Number(process.env.NVIDIA_TIMEOUT_MS ?? 120000))
       });
       if (response.status === 429 || response.status >= 500) {
         process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);
@@ -121,8 +121,8 @@ ${topArticles}`;
 
   const editorialBriefing = await nimCall(
     systemPrompt,
-    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 3 paragraphs.\n- Exactly 3 stories (one story per paragraph).\n- Facts only. No opinions.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
-    { maxTokens: 800 }
+    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs.\n- Exactly 4 stories (one story per paragraph).\n- Facts only. No opinions.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
+    { maxTokens: 2000 }
   );
 
   let twoMinuteSummary = null;
@@ -2599,9 +2599,9 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const fetcher = options.llmFetcher ?? fetch;
 
-  const systemPrompt = `You are a senior financial journalist writing the "Today's Read" feature article for an India pre-open briefing. Write a highly detailed, engaging, and narrative-driven market article that synthesizes the last 20 hours of news into a cohesive story. Use direct, authoritative prose. No bullet points, no headers, no markdown. Write exactly three substantial paragraphs separated by a blank line.`;
+  const systemPrompt = `You are a senior financial journalist writing the "Today's Read" feature article for an India pre-open briefing. Write a highly detailed, engaging, and narrative-driven market article that synthesizes the last 20 hours of news into a cohesive story. Use direct, authoritative prose. No bullet points, no headers, no markdown. Write exactly four substantial paragraphs separated by a blank line.`;
 
-  const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite a cohesive 3-paragraph article weaving these events together. Find the hidden connections between global macro shifts, corporate earnings, and Indian market implications. Do not simply list events or repeat a standard summary structure. Instead, tell the story of what is driving the market today, highlighting the most critical themes, how they interact, and what the key battlegrounds will be for traders. Be highly detailed and analytical. No preamble, no sign-off. Return exactly three paragraphs.`;
+  const userPrompt = `Key overnight news (last 20 hours):\n\n${articleContext}\n\nMarket snapshot: ${marketCtx}\n\nWrite a cohesive 4-paragraph article weaving these events together. Find the hidden connections between global macro shifts, corporate earnings, and Indian market implications. Do not simply list events or repeat a standard summary structure. Instead, tell the story of what is driving the market today, highlighting the most critical themes, how they interact, and what the key battlegrounds will be for traders. Be highly detailed and analytical. No preamble, no sign-off. Return exactly four paragraphs.`;
 
   const startTime = Date.now();
   log.info("desk editor synthesis started", { provider: "nvidia", model });
@@ -2622,12 +2622,12 @@ export async function synthesizeTodaysReadArticle(date, articles, marketSnapshot
             { role: "system", content: systemPrompt },
             { role: "user", content: userPrompt }
           ],
-          max_tokens: Number(options.deskEditorMaxTokens ?? process.env.NVIDIA_DESK_MAX_TOKENS ?? 900),
+          max_tokens: Number(options.deskEditorMaxTokens ?? process.env.NVIDIA_DESK_MAX_TOKENS ?? 2000),
           temperature: Number(options.deskEditorTemperature ?? process.env.NVIDIA_DESK_TEMPERATURE ?? 0.35),
           top_p: Number(options.deskEditorTopP ?? process.env.NVIDIA_DESK_TOP_P ?? 0.9),
           stream: false
         }),
-        signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_DESK_TIMEOUT_MS ?? 25000))
+        signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_DESK_TIMEOUT_MS ?? 120000))
       });
 
       if (response.status === 429 || response.status >= 500) {

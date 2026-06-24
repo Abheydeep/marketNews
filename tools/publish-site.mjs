@@ -3342,8 +3342,8 @@ function homepageSeoSectionHtml() {
     }
   ];
   return `
-    <section class="seo-section" aria-label="About this Nifty pre-market briefing">
-      <h2>What is Market Narrative?</h2>
+    <details class="seo-section" aria-label="About this Nifty pre-market briefing">
+      <summary><h2>What is Market Narrative?</h2></summary>
       <div class="seo-grid">
         ${sections.map((section) => `
           <article class="seo-copy-card">
@@ -3352,7 +3352,7 @@ function homepageSeoSectionHtml() {
           </article>
         `).join("")}
       </div>
-    </section>
+    </details>
   `;
 }
 
