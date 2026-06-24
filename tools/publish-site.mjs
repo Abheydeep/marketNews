@@ -13,6 +13,15 @@ import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { log } from "./logger.mjs";
+
+const NAV_ITEMS = [
+  { href: "/latest/", label: "Latest briefing" },
+  { href: "/latest/trading-guide/", label: "Trading Guide" },
+  { href: "/money-flow/fii-dii/", label: "FII/DII" },
+  { href: "/multibagger/", label: "Portfolio" },
+  { href: "/about/", label: "About" },
+];
+
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "07:15";
@@ -885,14 +894,6 @@ function fallbackWatchItems(digest) {
     .filter(Boolean);
   return [...new Set(items)].slice(0, 3);
 }
-
-const NAV_ITEMS = [
-  { href: "/latest/", label: "Latest briefing" },
-  { href: "/latest/trading-guide/", label: "Trading Guide" },
-  { href: "/money-flow/fii-dii/", label: "FII/DII" },
-  { href: "/multibagger/", label: "Portfolio" },
-  { href: "/about/", label: "About" },
-];
 
 function siteTopbarHtml(activeHref = "") {
   const links = NAV_ITEMS.map(({ href, label }) => {
