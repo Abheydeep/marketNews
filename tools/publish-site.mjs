@@ -214,7 +214,7 @@ await writeFile(
   }),
   "utf8"
 );
-await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveTimelineEntries, allArchiveTimelineEntries, latest));
+await writeGuardedFile(join(siteDir, "index.html"), archivePage(archiveTimelineEntries.slice(0, 5), allArchiveTimelineEntries, latest));
 await writeFile(join(siteDir, "404.html"), notFoundPage(), "utf8");
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(
@@ -1416,53 +1416,18 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin: 0;
     }
 
-    .archive-filter {
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.54);
-      display: grid;
-      gap: 12px;
-      margin: 0 0 18px;
-      padding: 14px;
-    }
-
-    .archive-filter-head {
+    .archive-header-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 12px;
+      margin: 0 0 16px;
     }
-
-    .archive-filter-head strong {
-      color: #f8fafc;
-      font-size: 16px;
-      line-height: 1.25;
+    .archive-see-all {
+      color: #7cb4f5;
+      font-size: 13px;
+      text-decoration: none;
     }
-
-    .archive-filter-head span {
-      color: #9fb0c8;
-      font-size: 12px;
-      font-weight: 850;
-    }
-
-    .archive-filter-controls {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(180px, 0.6fr);
-      gap: 10px;
-    }
-
-    .archive-filter input,
-    .archive-filter select {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 8px;
-      background: rgba(2, 6, 23, 0.46);
-      color: #f8fafc;
-      font: inherit;
-      font-size: 14px;
-      min-height: 42px;
-      padding: 10px 11px;
-      width: 100%;
-    }
+    .archive-see-all:hover { text-decoration: underline; }
 
     .archive-title {
       margin: 0 0 16px;
@@ -1905,15 +1870,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         margin-top: 16px;
       }
 
-      .archive-filter-controls {
-        grid-template-columns: 1fr;
-      }
-
       .seo-grid {
         grid-template-columns: 1fr;
       }
 
-      .archive-filter-head,
       .subscribe-strip {
         align-items: flex-start;
         flex-direction: column;
@@ -2007,31 +1967,12 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         <strong>The articles behind every India read</strong>
       </article>
     </section>
-    <h2 class="archive-title">Past briefings</h2>
-    <section class="archive-filter" aria-label="Search archived briefings">
-      <div class="archive-filter-head">
-        <strong>Search the archive</strong>
-        <span id="archiveResultCount">${escapeHtml(String(digests.length))} briefings shown · try crude, Bank Nifty, IT, rates, or a date</span>
-      </div>
-      <div class="archive-filter-controls">
-        <input id="archiveSearch" type="search" aria-label="Search archive by keyword" autocomplete="off" autocapitalize="none">
-        <select id="archiveTagFilter" aria-label="Filter archive by driver">
-          <option value="all">All</option>
-          <option value="crude-energy">Crude / Energy</option>
-          <option value="banks">Banks</option>
-          <option value="rates">Rates</option>
-          <option value="global-tech">Global Tech</option>
-          <option value="currency">Currency</option>
-          <option value="geopolitical">Geopolitical</option>
-        </select>
-      </div>
-    </section>
+    <div class="archive-header-row">
+      <h2 class="archive-title">Recent briefings</h2>
+      <a class="archive-see-all" href="/archive/">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
+    </div>
     <section class="digest-grid">
       ${cards}
-    </section>
-    <section class="recent-archive-section" aria-label="Recent briefing navigation">
-      <h2 class="archive-title">Recent Briefing Navigation</h2>
-      ${recentGrid}
     </section>
     ${homepageSeoSectionHtml()}
     ${homepageFaqSectionHtml(homepageFaq)}
@@ -2061,29 +2002,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       });
     });
 
-    const archiveSearch = document.getElementById('archiveSearch');
-    const archiveTagFilter = document.getElementById('archiveTagFilter');
-    const archiveResultCount = document.getElementById('archiveResultCount');
-    const archiveCards = Array.from(document.querySelectorAll('[data-archive-card]'));
-    function applyArchiveFilter() {
-      const query = (archiveSearch?.value || '').trim().toLowerCase();
-      const tag = archiveTagFilter?.value || 'all';
-      let visible = 0;
-      for (const card of archiveCards) {
-        const matchesQuery = !query || (card.dataset.archiveSearch || '').includes(query);
-        const tags = (card.dataset.archiveTags || '').split('|');
-        const matchesTag = tag === 'all' || tags.includes(tag);
-        const show = matchesQuery && matchesTag;
-        card.hidden = !show;
-        if (show) visible += 1;
-      }
-      if (archiveResultCount) {
-        archiveResultCount.textContent = visible + ' briefing' + (visible === 1 ? '' : 's') + ' shown';
-      }
-    }
-    archiveSearch?.addEventListener('input', applyArchiveFilter);
-    archiveTagFilter?.addEventListener('change', applyArchiveFilter);
-    applyArchiveFilter();
   </script>
   ${bottomTabBarHtml("archive")}
   ${mobileShellScript()}

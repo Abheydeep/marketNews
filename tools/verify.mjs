@@ -2431,7 +2431,7 @@ await test("backend market snapshot contract carries chart-refresh fields", asyn
 await test("static publisher emits public pages plus auth-gated admin pages", async () => {
   const publisher = await readFile(join(rootDir, "tools", "publish-site.mjs"), "utf8");
   const brandAssets = await readFile(join(rootDir, "tools", "brand-assets.mjs"), "utf8");
-  assert.ok(publisher.includes("archivePage(archiveTimelineEntries, allArchiveTimelineEntries, latest)"));
+  assert.ok(publisher.includes("archivePage(archiveTimelineEntries.slice(0, 5), allArchiveTimelineEntries, latest)"));
   assert.ok(publisher.includes("publication-events.json"));
   assert.ok(publisher.includes("publicationEventPage"));
   assert.ok(publisher.includes("Read publication record"));
@@ -2462,11 +2462,12 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Track Portfolio"));
   assert.ok(publisher.includes("Subscribe"));
   assert.ok(publisher.includes("Join daily email"));
-  assert.ok(publisher.includes("Search the archive"));
-  assert.ok(publisher.includes("archiveSearch"));
-  assert.ok(publisher.includes("archiveTagFilter"));
-  assert.ok(publisher.includes("data-archive-card"));
-  assert.ok(publisher.includes("archiveFilterOptions"));
+  assert.ok(publisher.includes("archive-see-all"), "homepage must have See all link to /archive/");
+  assert.ok(publisher.includes("data-archive-card"), "homepage cards must have data-archive-card attribute");
+  assert.ok(publisher.includes("archiveFilterOptions"), "archiveFilterOptions helper must exist in publisher");
+  const archivePage = await readFile(join(rootDir, "tools", "archive-page.mjs"), "utf8");
+  assert.ok(archivePage.includes("Search"), "archive page must have search input");
+  assert.ok(archivePage.includes("dataset.s"), "archive page must filter on data-s search attribute");
   const publicationEvents = await readFile(join(rootDir, "data", "publication-events.json"), "utf8");
   assert.ok(publicationEvents.includes('"date": "2026-05-07"'));
   assert.ok(publicationEvents.includes('"date": "2026-05-08"'));
@@ -2515,9 +2516,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Daily trader workflow"));
   // Opening nerve removed in redesign
   // Workflow strip updated in redesign
-  assert.ok(publisher.includes("Past briefings"));
-  assert.ok(publisher.includes("Recent Briefing Navigation"));
-  assert.ok(publisher.includes("recent-archive-link"));
+  assert.ok(publisher.includes("Recent briefings"), "homepage must have Recent briefings section heading");
+  assert.ok(publisher.includes("recent-archive-link"), "homepage must have recent-archive-link elements");
   assert.ok(publisher.includes("Open briefing"));
   assert.ok(publisher.includes("India read"));
   assert.ok(publisher.includes('isVerifiedPublicDigest(digest) ? digest.title : "Archived market briefing"'));
@@ -2525,7 +2525,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("sentiment-sparkline"));
   assert.ok(publisher.includes("Top ${digest.publicSourceSelection.visibleCount} India read-through notes selected"));
   assert.ok(publisher.includes("overflow-x: auto"));
-  assert.ok(publisher.includes('aria-label="Search archive by keyword"'));
+  assert.ok(archivePage.includes('type="search"'), "archive page must have a search input");
   assert.ok(publisher.includes("staticPageActiveKey"));
   assert.ok(publisher.includes("bottomTabBarHtml(staticPageActiveKey(path))"));
   assert.ok(publisher.includes('body class="has-btb"'));

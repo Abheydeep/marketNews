@@ -478,41 +478,58 @@ function nvidiaResponseText(data) {
 }
 
 async function nvidiaFetchWithRetry({ fetcher, url, provider, model, body, apiKey, timeoutMs, retries = 2 }) {
+  // Use streaming when model likely needs long think time (Nemotron) to prevent Cloudflare 120s idle timeout.
+  const useStream = body.stream !== false && /nemotron/i.test(model);
+  const requestBody = useStream ? { ...body, stream: true } : { ...body, stream: false };
   let lastError;
   for (let attempt = 1; attempt <= retries + 1; attempt += 1) {
     const startedAt = Date.now();
     try {
-      log.info("llm request started", { provider, model, attempt });
+      log.info("llm request started", { provider, model, attempt, stream: useStream });
       const response = await fetcher(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json", Accept: useStream ? "text/event-stream" : "application/json", Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify(requestBody),
         signal: AbortSignal.timeout(timeoutMs)
       });
       log.info("llm request completed", { provider, model, attempt, status: response.status, durationMs: Date.now() - startedAt });
       if (response.ok) {
-        return response;
+        if (!useStream) return response;
+        const assembled = await assembleStream(response);
+        return { ok: true, status: 200, json: () => Promise.resolve(assembled) };
       }
       const retryable = response.status === 429 || response.status >= 500;
       lastError = new Error(`NVIDIA ${provider} failed with status ${response.status}`);
-      if (!retryable || attempt > retries) {
-        throw lastError;
-      }
+      if (!retryable || attempt > retries) throw lastError;
     } catch (error) {
       lastError = error;
       const timedOut = error?.name === "AbortError" || error?.name === "TimeoutError";
       log.warn("llm request failed", { provider, model, attempt, timedOut, error: error.message });
-      if (attempt > retries) {
-        throw error;
-      }
+      if (attempt > retries) throw error;
     }
     await sleep(Number(process.env.NVIDIA_RETRY_DELAY_MS ?? 900) * attempt);
   }
   throw lastError;
+}
+
+async function assembleStream(response) {
+  const decoder = new TextDecoder();
+  let content = "";
+  const reader = response.body.getReader();
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      for (const line of decoder.decode(value, { stream: true }).split("\n")) {
+        if (!line.startsWith("data: ") || line === "data: [DONE]") continue;
+        try {
+          const delta = JSON.parse(line.slice(6))?.choices?.[0]?.delta?.content;
+          if (delta) content += delta;
+        } catch { /* skip malformed chunk */ }
+      }
+    }
+  } finally { reader.releaseLock(); }
+  return { choices: [{ message: { content } }] };
 }
 
 function sleep(ms) {
