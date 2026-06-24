@@ -30,9 +30,8 @@ function assertPublicHome() {
   assertOutput("index.html", /BreadcrumbList/);
   assertOutput("index.html", /WebSite/);
   assertOutput("index.html", /max-image-preview:large/);
-  assertOutput("index.html", /Past briefings/);
-  assertOutput("index.html", /Search the archive/);
-  assertOutput("index.html", /archiveSearch/);
+  assertOutput("index.html", /Recent briefings/);
+  assertOutput("index.html", /archive-see-all/);
   assertOutput("index.html", /Join daily email/);
   assertOutput("index.html", /div class="digest-card/);
   assertOutput("index.html", /Open briefing/);

@@ -154,7 +154,7 @@ async function verifyArchive(page, rootUrl) {
   await verifyDarkSurfaceContrast(page, "archive dark page", { rootSelector: ".archive-dark", minimumSamples: 20 });
   await expectOne(page.locator(".hero h1"), "archive product-promise heading");
   await expectOne(page.locator(".hero .eyebrow"), "archive eyebrow");
-  await expectOne(page.getByRole("heading", { name: "Past briefings" }), "archive section heading");
+  await expectOne(page.getByRole("heading", { name: "Recent briefings" }), "archive section heading");
   await expectOne(page.locator('.freshness-banner a[href="./latest/"]'), "latest briefing status link");
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
   await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");

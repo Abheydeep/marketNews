@@ -116,7 +116,7 @@ await group("Public user surface", async () => {
     "Public home",
     config.publicUrl,
     200,
-    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief|Check market status|Check latest status/i, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i, /Open Trading Guide/i, /Track Portfolio/i, /Past briefings/i, /Open briefing/i, /sentiment-sparkline/i, /application\/ld\+json/i],
+    [...financeMetadataPatterns, /Market Narrative: Nifty/i, /Read today's brief|Check market status|Check latest status/i, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i, /Open Trading Guide/i, /Track Portfolio/i, /Recent briefings/i, /Open briefing/i, /sentiment-sparkline/i, /application\/ld\+json/i],
     [/Studio Command/i, ...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectPage(
@@ -124,7 +124,7 @@ await group("Public user surface", async () => {
     "Public www",
     config.wwwUrl,
     [200, 301, 302, 307, 308],
-    [/Market Narrative: Nifty|Past briefings/i],
+    [/Market Narrative: Nifty|Recent briefings/i],
     [...publicBlockedCopyPatterns, ...offTopicAuditPatterns]
   );
   await expectManifest("User", "Public manifest", config.publicUrl, "public");
@@ -529,9 +529,9 @@ async function runBrowserSmoke() {
       });
       const page = await context.newPage();
       const publicPageOptions = { assertNoHorizontalOverflow: viewport.name === "mobile" };
-      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Past briefings/i, publicPageOptions);
+      await browserCheck(page, "User", `Browser ${viewport.name} public home`, config.publicUrl, /Market Narrative: Nifty|Recent briefings/i, publicPageOptions);
       const homeBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
-      assert.match(homeBody, /Search the archive|Past briefings|Nifty Today Analysis/i, "homepage must show archive/search context for public readers");
+      assert.match(homeBody, /Recent briefings|See all.*briefings|Nifty Today Analysis/i, "homepage must show archive context for public readers");
       await browserCheck(page, "User", `Browser ${viewport.name} latest briefing`, `${config.publicUrl}${config.latestBriefingPath}`, /Today's Read|Global Indices Watch|Daily Pre-Market Summary/i, publicPageOptions);
       const latestBody = await page.locator("body").innerText({ timeout: config.timeoutMs });
       assert.match(latestBody, /Get the next trading-day 7:15 AM brief|Join Email|Join daily email|Subscribe/i, "latest briefing must show a retention CTA or subscribe path");

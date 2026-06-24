@@ -74,7 +74,7 @@ async function runCycle(page, cycle) {
   await expectOne(page.getByRole("link", { name: /Read today's brief/i }), "homepage primary briefing action");
   await expectOne(page.getByRole("link", { name: /Open Trading Guide/i }).first(), "homepage trading guide action");
   await expectOne(page.getByRole("link", { name: /Track Portfolio/i }), "homepage portfolio action");
-  await expectOne(page.getByRole("heading", { name: "Past briefings" }), "archive section heading");
+  await expectOne(page.getByRole("heading", { name: "Recent briefings" }), "archive section heading");
   await expectOne(page.getByRole("link", { name: "Latest briefing" }), "latest briefing link");
   const openDailyLink = page.locator(`a.open-link[href="./${dailySlug}/"]`);
   await expectOne(openDailyLink.filter({ hasText: "Open briefing" }), "read market briefing link");

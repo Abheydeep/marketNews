@@ -2878,7 +2878,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     "Open chart on TradingView",
     "Open Yahoo Chart",
     "Market Narrative: Nifty",
-    "Past briefings",
+    "Recent briefings",
     "Open briefing",
     
     "trade-mn-signal",
