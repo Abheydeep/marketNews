@@ -24,6 +24,7 @@ async function loadSkills() {
 export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
+  console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
