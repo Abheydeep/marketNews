@@ -88,6 +88,10 @@ async function scanFile(path) {
     return;
   }
 
+  if (isArchiveListingPage(path)) {
+    return;
+  }
+
   for (const violation of findPublicBriefingViolations(path, content)) {
     violations.push({
       file: displayPath(path),
@@ -117,6 +121,11 @@ function shouldSkipFile(path) {
 function isArchiveHome(path) {
   const normalized = normalize(path).replaceAll("\\", "/");
   return normalized.endsWith("out/site/index.html") || normalized.endsWith("public/index.html");
+}
+
+function isArchiveListingPage(path) {
+  const normalized = normalize(path).replaceAll("\\", "/");
+  return normalized.endsWith("archive/index.html");
 }
 
 function slash() {
