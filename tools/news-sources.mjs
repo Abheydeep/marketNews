@@ -435,9 +435,9 @@ function configuredArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
-  const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING === "true";
+  const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING !== "false";
   const isPulseModel = model.includes("deepseek");
   const finalApiKey = isPulseModel ? (process.env.PULSE_API_KEY ?? apiKey) : apiKey;
   
@@ -460,7 +460,6 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
         temperature: Number(options.nvidiaArticleTemperature ?? process.env.NVIDIA_ARTICLE_TEMPERATURE ?? 0.2),
         top_p: Number(options.nvidiaArticleTopP ?? process.env.NVIDIA_ARTICLE_TOP_P ?? 0.9),
         chat_template_kwargs: enableThinking ? { enable_thinking: true } : { thinking: false },
-        ...(enableThinking ? { reasoning_budget: Number(options.nvidiaArticleReasoningBudget ?? process.env.NVIDIA_ARTICLE_REASONING_BUDGET ?? 1024) } : {}),
         stream: false
       },
       apiKey: finalApiKey
@@ -2561,7 +2560,7 @@ export async function agentSelectPulseArticles(articles, options = {}) {
 
   try {
     if (nvidiaApiKey) {
-      const model = options.nvidiaPulseModel ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+      const model = options.nvidiaPulseModel ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "deepseek-ai/deepseek-v4-pro";
       const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
       const prompt = `You are the pre-market desk editor at Market Narrative. Your briefing reaches Indian 
 retail and semi-professional traders before NSE opens at 9:15 AM IST. You are reading 
@@ -2620,7 +2619,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
         provider: "nvidia_pulse_selection",
         model,
         apiKey: nvidiaApiKey,
-        timeoutMs: Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 15000),
+        timeoutMs: Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 30000),
         body: {
           model,
           messages: [
@@ -2630,7 +2629,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
           temperature: Number(options.nvidiaPulseTemperature ?? process.env.NVIDIA_PULSE_TEMPERATURE ?? 0.2),
           top_p: Number(options.nvidiaPulseTopP ?? process.env.NVIDIA_PULSE_TOP_P ?? 0.9),
           max_tokens: Number(options.nvidiaPulseMaxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 512),
-          chat_template_kwargs: { thinking: false },
+          chat_template_kwargs: { thinking: true },
           stream: false
         }
       });

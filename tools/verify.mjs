@@ -724,11 +724,11 @@ await test("live news pipeline can run NVIDIA desk-agent polishing", async () =>
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
     assert.equal(body.max_tokens, 900);
-    assert.equal(body.chat_template_kwargs.thinking, false);
+    assert.equal(body.chat_template_kwargs.enable_thinking, true);
     assert.equal(body.reasoning_budget, undefined);
     assert.equal(body.messages[0].role, "system");
     assert.equal(body.messages[0].content, ARTICLE_ENRICHMENT_PROMPT);
@@ -1348,10 +1348,10 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
     assert.equal(request.headers.Authorization, "Bearer test-nvidia-key");
     assert.equal(request.headers.Accept, "application/json");
     const body = JSON.parse(request.body);
-    assert.equal(body.model, "meta/llama-4-maverick-17b-128e-instruct");
+    assert.equal(body.model, "nvidia/nemotron-3-ultra-550b-a55b");
     assert.equal(body.response_format.type, "json_object");
     assert.equal(body.stream, false);
-    assert.equal(body.chat_template_kwargs.thinking, false);
+    assert.equal(body.chat_template_kwargs.enable_thinking, true);
     assert.equal(body.reasoning_budget, undefined);
     assert.equal(body.messages[0].content, DAILY_LEAD_RERANK_PROMPT);
     assert.ok(body.messages[1].content.includes("deterministicLeadId"));

@@ -1382,7 +1382,7 @@ function configuredDailyLeadReranker(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const model = options.nvidiaLeadModel ?? process.env.NVIDIA_LEAD_MODEL ?? options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? process.env.NVIDIA_PULSE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-4-maverick-17b-128e-instruct";
+  const model = options.nvidiaLeadModel ?? process.env.NVIDIA_LEAD_MODEL ?? options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   return async ({ prompt, userPrompt }) => {
     const startTime = Date.now();
@@ -1404,10 +1404,10 @@ function configuredDailyLeadReranker(options = {}) {
         max_tokens: Number(options.nvidiaMaxTokens ?? process.env.NVIDIA_LEAD_MAX_TOKENS ?? 1200),
         temperature: Number(options.nvidiaTemperature ?? process.env.NVIDIA_LEAD_TEMPERATURE ?? 0.2),
         top_p: Number(options.nvidiaTopP ?? process.env.NVIDIA_LEAD_TOP_P ?? 0.9),
-        chat_template_kwargs: { thinking: false },
+        chat_template_kwargs: { enable_thinking: true },
         stream: false
       }),
-      signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_LEAD_TIMEOUT_MS ?? 20000))
+      signal: AbortSignal.timeout(Number(options.nvidiaTimeoutMs ?? process.env.NVIDIA_LEAD_TIMEOUT_MS ?? 60000))
     });
     log.info("daily lead reranker request completed", { provider: "nvidia", model, status: response?.status, durationMs: Date.now() - startTime });
     if (!response?.ok) {

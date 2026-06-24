@@ -3,7 +3,10 @@ flowchart TD
   Filter --> Score["deterministic scoring"]
   Score --> Shortlist["top 8 lead candidates"]
 
-  Shortlist --> LeadAgent["NVIDIA-only chat completion lead reranker"]
+  Articles --> PulseAgent["Pulse selection: deepseek-ai/deepseek-v4-pro\nthinking ON · key: NVIDIA_PULSE_API_KEY\ntimeout 30s"]
+  PulseAgent -->|selected indices| Filter
+
+  Shortlist --> LeadAgent["Lead reranker: nvidia/nemotron-3-ultra-550b-a55b\nenable_thinking ON · no budget cap\ntimeout 60s · key: NVIDIA_API_KEY"]
   LeadAgent --> RetryLead["timeout + 429/5xx retry/backoff"]
   RetryLead --> ValidateLead["validate ids and JSON"]
   ValidateLead -->|valid| Lead["selected lead article"]
@@ -12,7 +15,7 @@ flowchart TD
   Articles --> Templates["thematic read-through rules"]
   Templates --> RepeatCheck["same-template repeat detection"]
   RepeatCheck -->|first unique template| DeterministicCopy["rule-based source card copy"]
-  RepeatCheck -->|repeat or generic| EditorialAgent["NVIDIA-only editorial enrichment"]
+  RepeatCheck -->|repeat or generic| EditorialAgent["Editorial enrichment: nvidia/nemotron-3-ultra-550b-a55b\nenable_thinking ON · no budget cap\ntimeout 180s · key: NVIDIA_API_KEY"]
   EditorialAgent --> RetryEditorial["timeout + 429/5xx retry/backoff"]
   RetryEditorial --> Sanitize["sanitizeArticleEditorialPatch"]
   Sanitize -->|valid| Polished["polished card copy"]

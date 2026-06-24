@@ -52,9 +52,9 @@
   {
     "symbol": "GIFTNIFTY",
     "name": "GIFT Nifty",
-    "closeValue": 22480.50,
-    "changePercent": -0.38,
-    "source": "Exchange Mock",
+    "closeValue": 23980.0,
+    "changePercent": 0,
+    "source": "NSE IFSC (seed reference)",
     "marketRegion": "India Open",
     "session": "india",
     "tradingViewSymbol": "NSEIX:NIFTY1!"
