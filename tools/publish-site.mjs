@@ -886,6 +886,64 @@ function fallbackWatchItems(digest) {
   return [...new Set(items)].slice(0, 3);
 }
 
+function homepageMarketStripHtml(snapshots) {
+  const KEYS = [
+    { sym: "NIFTY", label: "Nifty" },
+    { sym: "BANKNIFTY", label: "Bank Nifty" },
+    { sym: "GIFTNIFTY", label: "GIFT Nifty" },
+    { sym: "BRENT", label: "Brent" },
+    { sym: "USDINR", label: "USD/INR" },
+  ];
+  const chips = KEYS.map(({ sym, label }) => {
+    const s = snapshots.find((x) => x.symbol === sym);
+    if (!s?.closeValue) return "";
+    const chg = s.changePercent ?? 0;
+    const cls = chg > 0.05 ? "ms-up" : chg < -0.05 ? "ms-dn" : "ms-flat";
+    const sign = chg > 0 ? "+" : "";
+    return `<div class="ms-chip ${cls}"><span class="ms-lbl">${escapeHtml(label)}</span><span class="ms-val">${escapeHtml(s.closeValue.toLocaleString("en-IN"))}</span><span class="ms-chg">${sign}${chg.toFixed(2)}%</span></div>`;
+  }).filter(Boolean).join("");
+  return chips ? `<div class="market-strip" aria-label="Key market levels">${chips}</div>` : "";
+}
+
+function homepageFiiDiiBarHtml(fii) {
+  if (!fii?.fiiNet && fii?.fiiNet !== 0) return "";
+  const fiiCls = fii.fiiNet >= 0 ? "fii-pos" : "fii-neg";
+  const diiCls = fii.diiNet >= 0 ? "fii-pos" : "fii-neg";
+  const fiiSign = fii.fiiNet >= 0 ? "+" : "";
+  const diiSign = fii.diiNet >= 0 ? "+" : "";
+  return `<div class="fii-bar" aria-label="FII DII institutional flows">
+    <span class="fii-label">Institutional flows · ${escapeHtml(fii.date ?? "")}</span>
+    <div class="fii-cells">
+      <div class="fii-cell"><span>FII Net</span><strong class="${fiiCls}">${fiiSign}₹${Math.abs(fii.fiiNet).toLocaleString("en-IN", { maximumFractionDigits: 0 })} Cr</strong></div>
+      <div class="fii-cell"><span>DII Net</span><strong class="${diiCls}">${diiSign}₹${Math.abs(fii.diiNet).toLocaleString("en-IN", { maximumFractionDigits: 0 })} Cr</strong></div>
+      <a class="fii-link" href="/fii-dii/">Full FII/DII data &rarr;</a>
+    </div>
+  </div>`;
+}
+
+function homepageYesterdayBarHtml(prevDigest) {
+  const hl = prevDigest?.dailyLead?.headline;
+  if (!hl) return "";
+  const slug = slugForDigest(prevDigest);
+  return `<div class="yesterday-bar"><span class="yb-label">Yesterday's focus</span><a class="yb-link" href="./${escapeHtml(slug)}/">${escapeHtml(hl)}</a></div>`;
+}
+
+function homepageTagFilterHtml(digests) {
+  const TAG_OPTIONS = [
+    { value: "", label: "All" },
+    { value: "crude", label: "Crude / Energy" },
+    { value: "banks", label: "Banks" },
+    { value: "rates", label: "Rates" },
+    { value: "global", label: "Global" },
+    { value: "tech", label: "Tech / IT" },
+    { value: "currency", label: "Currency" },
+  ];
+  const pills = TAG_OPTIONS.map((o, i) =>
+    `<button class="tag-pill${i === 0 ? " active" : ""}" data-tag="${escapeHtml(o.value)}">${escapeHtml(o.label)}</button>`
+  ).join("");
+  return `<div class="tag-filter" role="group" aria-label="Filter by driver">${pills}</div>`;
+}
+
 function archivePage(digests, allDigests = digests, latestDigest = null) {
   const latest = latestDigest ?? digests.find(isVerifiedPublicDigest) ?? digests[0];
   const pageTitle = "Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative";
@@ -896,6 +954,12 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   const heroContent = homepageHeroContent(latest);
   const jsonLdDigests = digests.filter(isVerifiedPublicDigest);
   const homepageFaq = homepageFaqItems();
+  const briefPreview = (() => { const t = (latest.twoMinuteSummary ?? "").split(/\n\n+/)[0].trim(); return t.length > 230 ? t.substring(0, 227) + "…" : t; })();
+  const marketStrip = homepageMarketStripHtml(latest.marketSnapshots ?? []);
+  const fiiDiiBar = homepageFiiDiiBarHtml(latest.fiiDiiFlows);
+  const yesterdayBar = homepageYesterdayBarHtml(allDigests[1]);
+  const tagFilter = homepageTagFilterHtml(digests);
+  const subscriberCount = (process.env.PUBLIC_SUBSCRIBER_COUNT ?? "").trim();
   const cards = digests
     .map((digest) => {
       const slug = slugForDigest(digest);
@@ -1820,6 +1884,38 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       padding: 9px 11px;
     }
 
+    .brief-preview { color: #9fb0c8; font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 680px; }
+    .brief-preview-link { color: #7cb4f5; font-size: 13px; white-space: nowrap; }
+    .sub-proof { color: #34d399; font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px; }
+    .market-strip { display: flex; flex-wrap: nowrap; gap: 10px; overflow-x: auto; padding: 10px 0 6px; scrollbar-width: none; }
+    .market-strip::-webkit-scrollbar { display: none; }
+    .ms-chip { background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 100px; padding: 10px 12px; }
+    .ms-lbl { color: #64748b; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    .ms-val { color: #f8fafc; font-size: 15px; font-weight: 700; }
+    .ms-chg { font-size: 12px; font-weight: 700; }
+    .ms-up .ms-chg { color: #34d399; }
+    .ms-dn .ms-chg { color: #f87171; }
+    .ms-flat .ms-chg { color: #94a3b8; }
+    .fii-bar { align-items: center; background: rgba(15,23,42,.6); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin: 10px 0; padding: 12px 16px; }
+    .fii-label { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; width: 100%; }
+    .fii-cells { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .fii-cell { display: flex; flex-direction: column; gap: 2px; }
+    .fii-cell span { color: #94a3b8; font-size: 12px; }
+    .fii-cell strong { font-size: 15px; }
+    .fii-pos { color: #34d399; }
+    .fii-neg { color: #f87171; }
+    .fii-link { color: #7cb4f5; font-size: 13px; margin-left: auto; text-decoration: none; }
+    .fii-link:hover { text-decoration: underline; }
+    .yesterday-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
+    .yb-label { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+    .yb-link { color: #9fb0c8; font-size: 13px; text-decoration: none; }
+    .yb-link:hover { color: #f8fafc; text-decoration: underline; }
+    .tag-filter { display: flex; flex-wrap: nowrap; gap: 8px; margin: 8px 0 12px; overflow-x: auto; scrollbar-width: none; }
+    .tag-filter::-webkit-scrollbar { display: none; }
+    .tag-pill { background: rgba(15,23,42,.6); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; color: #94a3b8; cursor: pointer; font-size: 13px; font-weight: 700; padding: 6px 14px; white-space: nowrap; transition: background 120ms, border-color 120ms, color 120ms; }
+    .tag-pill:hover { border-color: rgba(124,180,245,.5); color: #f8fafc; }
+    .tag-pill.active { background: rgba(99,102,241,.2); border-color: rgba(99,102,241,.5); color: #a5b4fc; }
+
     @media (max-width: 760px) {
       .hero-actions,
       .workflow-strip {
@@ -1893,6 +1989,21 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       .hero-action span {
         display: none;
       }
+
+      .digest-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .digest-grid::-webkit-scrollbar { display: none; }
+      .digest-grid .digest-card {
+        flex: 0 0 min(85vw, 320px);
+        scroll-snap-align: start;
+      }
     }
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
@@ -1922,6 +2033,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <p class="eyebrow">${escapeHtml(heroContent.eyebrow)}</p>
       <h1>${escapeHtml(heroContent.h1)}</h1>
       <h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px; font-weight: 500;">${escapeHtml(heroContent.subheadline)}</h2>
+      ${briefPreview ? `<p class="brief-preview">${escapeHtml(briefPreview)} <a href="./latest/" class="brief-preview-link">Read full brief &rarr;</a></p>` : ""}
       <p class="byline">By Abhey Deep / Market Narrative</p>
       ${homepageFreshnessBannerHtml(latestState)}
       <div class="hero-actions" aria-label="Primary actions">
@@ -1940,6 +2052,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
+          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this brief at 7:15 AM</span>` : ""}
           <strong>Get the next trading-day 7:15 AM brief — straight to your inbox before the market opens.</strong>
           <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
         </div>
@@ -1947,12 +2060,15 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
       ${archiveShareRowHtml()}
     </section>
+    ${marketStrip}
     <section class="summary-row" aria-label="Archive summary">
       <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
       <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
       <div class="summary-chip"><span>Today's focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
       <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
     </section>
+    ${fiiDiiBar}
+    ${yesterdayBar}
     <section class="workflow-strip" aria-label="Daily trader workflow">
       <article class="workflow-step">
         <span>1. Today's brief</span>
@@ -1971,7 +2087,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <h2 class="archive-title">Recent briefings</h2>
       <a class="archive-see-all" href="/archive/">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
     </div>
-    <section class="digest-grid">
+    ${tagFilter}
+    <section class="digest-grid" id="digest-grid">
       ${cards}
     </section>
     ${homepageSeoSectionHtml()}
@@ -1979,6 +2096,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     ${siteFooterLinksHtml()}
   </main>
   <script>
+    (function() {
+      const pills = document.querySelectorAll('.tag-pill');
+      const cards = document.querySelectorAll('#digest-grid [data-archive-card]');
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const tag = pill.dataset.tag;
+          cards.forEach(c => {
+            c.hidden = tag ? !c.dataset.archiveTags.includes(tag) : false;
+          });
+        });
+      });
+    })();
     document.querySelectorAll('[data-copy-url]').forEach((button) => {
       button.addEventListener('click', async () => {
         const label = button.querySelector('.sr-only');
