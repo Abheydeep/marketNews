@@ -2483,7 +2483,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("I'm Abhey Deep - a software engineer and Indian market trader"));
   assert.ok(publisher.includes("Published record"));
   assert.ok(publisher.includes("verified briefings"));
-  assert.ok(publisher.includes('<span class="tab-link active" aria-current="page">About</span>'));
+  assert.ok(publisher.includes('tab-link--active" aria-current="page">'));
   assert.ok(publisher.includes('name="_honey"'));
   assert.equal(publisher.includes('name="_captcha" value="false"'), false);
   assert.ok(publisher.includes('.sent-note[hidden]'));

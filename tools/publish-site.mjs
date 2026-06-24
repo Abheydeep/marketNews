@@ -886,6 +886,43 @@ function fallbackWatchItems(digest) {
   return [...new Set(items)].slice(0, 3);
 }
 
+const NAV_ITEMS = [
+  { href: "/latest/", label: "Latest briefing" },
+  { href: "/latest/trading-guide/", label: "Trading Guide" },
+  { href: "/money-flow/fii-dii/", label: "FII/DII" },
+  { href: "/multibagger/", label: "Portfolio" },
+  { href: "/about/", label: "About" },
+];
+
+function siteTopbarHtml(activeHref = "") {
+  const links = NAV_ITEMS.map(({ href, label }) => {
+    const isActive = activeHref && href === activeHref;
+    return isActive
+      ? `<span class="tab-link tab-link--active" aria-current="page">${escapeHtml(label)}</span>`
+      : `<a class="tab-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+  }).join("");
+  return `<nav class="topbar">
+    <div class="shell">
+      <div class="nav-inner">
+        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
+        <div class="site-tabs" aria-label="Site navigation">${links}<a class="tab-link tab-link--cta" href="${escapeHtml(subscribeHref())}">Subscribe</a></div>
+      </div>
+    </div>
+  </nav>`;
+}
+
+function siteNavCss() {
+  return `
+    .site-tabs { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
+    .site-tabs::-webkit-scrollbar { display:none; }
+    .tab-link { border:1px solid rgba(255,255,255,.12); border-radius:8px; color:#9fb0c8; font-size:13px; font-weight:800; padding:8px 12px; white-space:nowrap; transition:border-color 120ms,color 120ms,background 120ms; }
+    .tab-link:hover { border-color:rgba(124,180,245,.4); color:#f8fafc; }
+    .tab-link--active { background:rgba(99,102,241,.18); border-color:rgba(99,102,241,.4); color:#a5b4fc; }
+    .tab-link--cta { background:rgba(52,211,153,.13); border-color:rgba(52,211,153,.3); color:#bbf7d0; margin-left:6px; }
+    .tab-link--cta:hover { background:rgba(52,211,153,.22); }
+  `;
+}
+
 function homepageMarketStripHtml(snapshots) {
   const KEYS = [
     { sym: "NIFTY", label: "Nifty" },
@@ -907,16 +944,24 @@ function homepageMarketStripHtml(snapshots) {
 
 function homepageFiiDiiBarHtml(fii) {
   if (!fii?.fiiNet && fii?.fiiNet !== 0) return "";
-  const fiiCls = fii.fiiNet >= 0 ? "fii-pos" : "fii-neg";
-  const diiCls = fii.diiNet >= 0 ? "fii-pos" : "fii-neg";
-  const fiiSign = fii.fiiNet >= 0 ? "+" : "";
-  const diiSign = fii.diiNet >= 0 ? "+" : "";
+  const fiiNet = Number(fii.fiiNet ?? 0);
+  const diiNet = Number(fii.diiNet ?? 0);
+  const fiiCls = fiiNet >= 0 ? "fii-pos" : "fii-neg";
+  const diiCls = diiNet >= 0 ? "fii-pos" : "fii-neg";
+  const fmt = (v) => `${v >= 0 ? "+" : ""}₹${Math.abs(v).toLocaleString("en-IN", { maximumFractionDigits: 0 })} Cr`;
+  const total = Math.abs(fiiNet) + Math.abs(diiNet) || 1;
+  const fiiPct = Math.round(Math.abs(fiiNet) / total * 100);
+  const diiPct = Math.round(Math.abs(diiNet) / total * 100);
+  const fiiColor = fiiNet >= 0 ? "#34d399" : "#f87171";
+  const diiColor = diiNet >= 0 ? "#34d399" : "#f87171";
   return `<div class="fii-bar" aria-label="FII DII institutional flows">
-    <span class="fii-label">Institutional flows · ${escapeHtml(fii.date ?? "")}</span>
+    <div class="fii-header"><span class="fii-dot"></span><span class="fii-label">Institutional flows · ${escapeHtml(fii.date ?? "")}</span><a class="fii-link" href="/money-flow/fii-dii/">Full data &rarr;</a></div>
     <div class="fii-cells">
-      <div class="fii-cell"><span>FII Net</span><strong class="${fiiCls}">${fiiSign}₹${Math.abs(fii.fiiNet).toLocaleString("en-IN", { maximumFractionDigits: 0 })} Cr</strong></div>
-      <div class="fii-cell"><span>DII Net</span><strong class="${diiCls}">${diiSign}₹${Math.abs(fii.diiNet).toLocaleString("en-IN", { maximumFractionDigits: 0 })} Cr</strong></div>
-      <a class="fii-link" href="/fii-dii/">Full FII/DII data &rarr;</a>
+      <div class="fii-cell"><span>FII Net</span><strong class="${fiiCls}">${escapeHtml(fmt(fiiNet))}</strong></div>
+      <div class="fii-cell"><span>DII Net</span><strong class="${diiCls}">${escapeHtml(fmt(diiNet))}</strong></div>
+    </div>
+    <div class="fii-bar-track" title="FII ${fiiPct}% · DII ${diiPct}%">
+      <div class="fii-bar-fill" style="width:${fiiPct}%;background:${fiiColor};"></div>
     </div>
   </div>`;
 }
@@ -1134,41 +1179,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
       ${brandMarkCss()}
 
-    .subscribe-link {
-      border-radius: 8px;
-      background: rgba(52, 211, 153, 0.15);
-      border: 1px solid rgba(52, 211, 153, 0.34);
-      color: #bbf7d0;
-      padding: 10px 13px;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .latest-link {
-      border-radius: 8px;
-      background: linear-gradient(135deg, #06b6d4, #6366f1);
-      color: #fff;
-      padding: 10px 13px;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .nav-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .nav-link {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(15, 23, 42, 0.52);
-      padding: 10px 13px;
-      color: #f8fafc;
-      font-size: 13px;
-      font-weight: 900;
-    }
+    ${siteNavCss()}
 
     .share-row {
       display: flex;
@@ -1808,8 +1819,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     .seo-section,
-    .faq-section,
-    .site-footer-links {
+    .faq-section {
       border-top: 1px solid var(--line);
       margin-top: 34px;
       padding-top: 28px;
@@ -1867,22 +1877,18 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin-top: 10px;
     }
 
-    .site-footer-links {
-      color: #94a3b8;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding-bottom: 36px;
-    }
-
-    .site-footer-links a {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      color: #f8fafc;
-      font-size: 13px;
-      font-weight: 800;
-      padding: 9px 11px;
-    }
+    .site-footer { border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding:28px 0 48px; }
+    .footer-brand { align-items:center; display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; }
+    .footer-logo { align-items:center; display:flex; font-size:17px; font-weight:850; gap:10px; }
+    .footer-tagline { color:#475569; font-size:13px; }
+    .footer-cols { display:grid; gap:24px; grid-template-columns:repeat(3,1fr); margin-bottom:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:8px; }
+    .footer-col-head { color:#64748b; font-size:11px; font-weight:800; letter-spacing:.08em; margin-bottom:4px; text-transform:uppercase; }
+    .footer-col a { color:#94a3b8; font-size:14px; transition:color 120ms; }
+    .footer-col a:hover { color:#f8fafc; }
+    .footer-legal { border-top:1px solid rgba(255,255,255,.06); color:#475569; display:flex; flex-wrap:wrap; font-size:12px; gap:16px; padding-top:16px; }
+    .footer-legal a { color:#64748b; }
+    .footer-legal a:hover { color:#94a3b8; }
 
     .brief-preview { color: #9fb0c8; font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 680px; }
     .brief-preview-link { color: #7cb4f5; font-size: 13px; white-space: nowrap; }
@@ -1896,16 +1902,25 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .ms-up .ms-chg { color: #34d399; }
     .ms-dn .ms-chg { color: #f87171; }
     .ms-flat .ms-chg { color: #94a3b8; }
-    .fii-bar { align-items: center; background: rgba(15,23,42,.6); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin: 10px 0; padding: 12px 16px; }
-    .fii-label { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; width: 100%; }
-    .fii-cells { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-    .fii-cell { display: flex; flex-direction: column; gap: 2px; }
-    .fii-cell span { color: #94a3b8; font-size: 12px; }
-    .fii-cell strong { font-size: 15px; }
-    .fii-pos { color: #34d399; }
-    .fii-neg { color: #f87171; }
-    .fii-link { color: #7cb4f5; font-size: 13px; margin-left: auto; text-decoration: none; }
-    .fii-link:hover { text-decoration: underline; }
+    .recent-briefings-toggle { border:none; }
+    .recent-briefings-toggle > summary { cursor:pointer; list-style:none; }
+    .recent-briefings-toggle > summary::-webkit-details-marker { display:none; }
+    .recent-briefings-toggle > summary .archive-title::before { content:"▶ "; font-size:11px; color:#64748b; transition:transform 160ms; display:inline-block; }
+    .recent-briefings-toggle[open] > summary .archive-title::before { content:"▼ "; }
+    .fii-bar { background:rgba(15,23,42,.7); border:1px solid rgba(255,255,255,.1); border-left:3px solid #6366f1; border-radius:12px; margin:10px 0; padding:14px 16px; }
+    .fii-header { align-items:center; display:flex; gap:8px; margin-bottom:12px; }
+    .fii-dot { width:8px; height:8px; border-radius:50%; background:#6366f1; flex-shrink:0; }
+    .fii-label { color:#94a3b8; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .fii-cells { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
+    .fii-cell { display:flex; flex-direction:column; gap:3px; }
+    .fii-cell span { color:#64748b; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .fii-cell strong { font-size:20px; font-weight:900; line-height:1; }
+    .fii-bar-track { background:rgba(255,255,255,.08); border-radius:4px; height:4px; margin-top:12px; overflow:hidden; position:relative; }
+    .fii-bar-fill { border-radius:4px; height:100%; position:absolute; left:0; transition:width 400ms ease; }
+    .fii-pos { color:#34d399; }
+    .fii-neg { color:#f87171; }
+    .fii-link { color:#7cb4f5; font-size:13px; margin-left:auto; text-decoration:none; display:inline-flex; align-items:center; gap:4px; }
+    .fii-link:hover { text-decoration:underline; }
     .yesterday-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
     .yb-label { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
     .yb-link { color: #9fb0c8; font-size: 13px; text-decoration: none; }
@@ -2011,23 +2026,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   </style>
 </head>
 <body class="archive-dark has-btb">
-  <nav class="topbar">
-    <div class="shell">
-      <div class="nav-inner">
-        <div class="brand">${brandMarkHtml()}<span>Market Narrative</span></div>
-        <div class="nav-actions">
-          <a class="nav-link" href="./">Archive</a>
-          <a class="latest-link" href="./latest/">Latest briefing</a>
-          <a class="nav-link" href="./latest/trading-guide/">Trading Guide</a>
-          <a class="nav-link" href="./money-flow/fii-dii/">FII/DII</a>
-          <a class="nav-link" href="./market-statistics/">Stats</a>
-          <a class="nav-link" href="./multibagger/">Portfolio</a>
-          <a class="nav-link" href="./about/">About</a>
-          <a class="subscribe-link" href="${escapeHtml(subscribeHref())}">Subscribe</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  ${siteTopbarHtml()}
   <main class="shell">
     <section class="hero">
       <p class="eyebrow">${escapeHtml(heroContent.eyebrow)}</p>
@@ -2083,14 +2082,16 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         <strong>The articles behind every India read</strong>
       </article>
     </section>
-    <div class="archive-header-row">
-      <h2 class="archive-title">Recent briefings</h2>
-      <a class="archive-see-all" href="/archive/">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
-    </div>
-    ${tagFilter}
-    <section class="digest-grid" id="digest-grid">
-      ${cards}
-    </section>
+    <details class="recent-briefings-toggle" id="recent-briefings">
+      <summary class="archive-header-row">
+        <h2 class="archive-title">Recent briefings</h2>
+        <a class="archive-see-all" href="/archive/" onclick="event.stopPropagation()">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
+      </summary>
+      ${tagFilter}
+      <section class="digest-grid" id="digest-grid">
+        ${cards}
+      </section>
+    </details>
     ${homepageSeoSectionHtml()}
     ${homepageFaqSectionHtml(homepageFaq)}
     ${siteFooterLinksHtml()}
@@ -2439,20 +2440,7 @@ function aboutPage(latest, archiveDigests = []) {
   </style>
 </head>
 <body class="has-btb">
-  <nav class="topbar">
-    <div class="shell">
-      <div class="nav-inner">
-        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="tabs" aria-label="Market Narrative sections">
-          <a class="tab-link" href="/">Archive</a>
-          <a class="tab-link" href="/latest/">Public Briefing</a>
-          <a class="tab-link" href="/latest/trading-guide/">Trading Guide</a>
-          <a class="tab-link" href="/multibagger/">Portfolio</a>
-          <span class="tab-link active" aria-current="page">About</span>
-        </div>
-      </div>
-    </div>
-  </nav>
+  ${siteTopbarHtml("/about/")}
   <main class="shell">
     <section class="hero">
       <p class="eyebrow">About Market Narrative</p>
@@ -2760,21 +2748,7 @@ function subscribePage() {
   </style>
 </head>
 <body class="has-btb">
-  <nav class="topbar">
-    <div class="shell">
-      <div class="nav-inner">
-        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="tabs" aria-label="Market Narrative sections">
-          <a class="tab-link" href="/">Archive</a>
-          <a class="tab-link" href="/latest/">Public Briefing</a>
-          <a class="tab-link" href="/latest/trading-guide/">Trading Guide</a>
-          <a class="tab-link" href="/multibagger/">Portfolio</a>
-          <a class="tab-link" href="/about/">About</a>
-          <span class="tab-link active" aria-current="page">Subscribe</span>
-        </div>
-      </div>
-    </div>
-  </nav>
+  ${siteTopbarHtml("/subscribe/")}
   <main class="shell">
     <p class="eyebrow">Daily Email</p>
     <h1>Get the 7:15 AM market nerve before the open.</h1>
@@ -3195,19 +3169,7 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
   </style>
 </head>
 <body class="has-btb">
-  <nav class="topbar">
-    <div class="shell nav-inner">
-      <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
-      <div class="tabs" aria-label="Market Narrative sections">
-        <a href="/">Archive</a>
-        <a href="/latest/">Latest Briefing</a>
-        <a href="/money-flow/fii-dii/">FII/DII</a>
-        <a href="/market-statistics/">Statistics</a>
-        <a href="/moves/">Moves</a>
-        <a href="/about/">About</a>
-      </div>
-    </div>
-  </nav>
+  ${siteTopbarHtml(path)}
   <main class="shell">
     <section class="hero">
       <p class="eyebrow">${escapeHtml(eyebrow)}</p>
@@ -3514,18 +3476,38 @@ function faqPageJsonLd(id, items) {
 
 function siteFooterLinksHtml() {
   return `
-    <footer class="site-footer-links" aria-label="Market Narrative site links">
-      <a href="/">Archive</a>
-      <a href="/latest/">Latest briefing</a>
-      <a href="/money-flow/fii-dii/">FII DII data</a>
-      <a href="/market-statistics/">Market statistics</a>
-      <a href="/indices/">Global indices</a>
-      <a href="/moves/">Move explanations</a>
-      <a href="/multibagger/">Portfolio tracker</a>
-      <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
-      <a href="/privacy/">Privacy Policy</a>
-      <a href="/terms/">Terms of Use</a>
+    <footer class="site-footer" aria-label="Market Narrative site links">
+      <div class="footer-brand">
+        <span class="footer-logo">${brandMarkHtml()}<span>Market Narrative</span></span>
+        <span class="footer-tagline">Daily pre-market briefing for Indian equity traders · 7:15 AM IST</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-head">Briefings</span>
+          <a href="/latest/">Latest briefing</a>
+          <a href="/">Archive</a>
+          <a href="/latest/trading-guide/">Trading Guide</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-head">Data</span>
+          <a href="/money-flow/fii-dii/">FII DII data</a>
+          <a href="/market-statistics/">Market statistics</a>
+          <a href="/indices/">Global indices</a>
+          <a href="/moves/">Move explanations</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-head">Site</span>
+          <a href="/multibagger/">Portfolio tracker</a>
+          <a href="/about/">About</a>
+          <a href="/subscribe/">Subscribe</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Use</a>
+        <span>Educational market research only · Not SEBI-registered investment advice</span>
+      </div>
     </footer>
   `;
 }
@@ -4182,17 +4164,7 @@ function indicesPage(digest) {
   </style>
 </head>
 <body class="has-btb">
-  <nav class="topbar">
-    <div class="shell nav-inner">
-      <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
-      <div class="tabs">
-        <a class="tab-link" href="/latest/">Public Briefing</a>
-        <span class="tab-link active" aria-current="page">Indices</span>
-        <a class="tab-link" href="/multibagger/">Portfolio</a>
-        <a class="tab-link" href="/about/">About</a>
-      </div>
-    </div>
-  </nav>
+  ${siteTopbarHtml("/indices/")}
   <main class="shell">
     <header class="hero">
       <p class="eyebrow">Global Indices Watch</p>
