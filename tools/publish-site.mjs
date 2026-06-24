@@ -4092,16 +4092,16 @@ function indicesPage(digest) {
     .indices-group-head h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
     .indices-group-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
     .indices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .index-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; }
-    .index-card:hover, .index-card[open] { border-color: rgba(103, 232, 249, .5); }
-    .index-card summary { cursor: pointer; display: grid; gap: 12px; list-style: none; }
-    .index-card summary::-webkit-details-marker { display: none; }
+    .index-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; cursor: pointer; text-align: left; appearance: none; }
+    .index-card:hover { border-color: rgba(103, 232, 249, .5); }
     .index-card-top { display: flex; justify-content: space-between; gap: 12px; }
     .index-card strong { font-size: 22px; }
     .index-card small, .index-meta { color: var(--muted); font-size: 12px; line-height: 1.45; }
-    .index-detail { border-top: 1px solid var(--line); display: grid; gap: 10px; margin-top: 2px; padding-top: 12px; }
-    .index-detail-chart .index-spark { height: 112px; }
-    .index-detail p, .seo-context p { color: #cbd5e1; line-height: 1.6; margin: 0; }
+    .seo-context p { color: #cbd5e1; line-height: 1.6; margin: 0; }
+    .idx-m { display:none;position:fixed;inset:0;z-index:200;background:rgba(5,8,22,.9);align-items:center;justify-content:center }
+    .idx-m.open { display:flex }
+    .idx-panel { background:#0b1220;border:1px solid rgba(148,163,184,.22);border-radius:12px;padding:24px 28px;width:min(580px,calc(100vw - 32px));max-height:90vh;overflow-y:auto;position:relative }
+    .idx-close { position:absolute;top:12px;right:16px;background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1;padding:0 }
     .seo-context { border-top: 1px solid var(--line); display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 34px 0 0; padding-top: 22px; }
     .seo-context h2 { font-size: 16px; margin: 0 0 8px; }
     .move.up { color: var(--up); }
@@ -4155,7 +4155,8 @@ function indicesPage(digest) {
     <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
   </main>
   ${bottomTabBarHtml("more")}
-  <script>function openIndexHash(){const id=window.location.hash?window.location.hash.slice(1):"";if(!id)return;const target=document.getElementById(id);if(target&&target.tagName==="DETAILS"){target.open=true;target.scrollIntoView({block:"center"});}}window.addEventListener("hashchange",openIndexHash);openIndexHash();</script>
+  <div class="idx-m" id="idx-m" onclick="if(event.target===this)this.classList.remove('open')"><div class="idx-panel"><button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button><small id="idx-sym" style="display:block;margin-bottom:4px"></small><h3 id="idx-name" style="margin:0 0 6px;font-size:22px"></h3><strong id="idx-val" class="move" style="display:block;font-size:16px;margin-bottom:12px"></strong><svg id="idx-svg" viewBox="0 0 540 200" style="width:100%;height:200px;display:block;margin-bottom:12px"></svg><p id="idx-ctx" style="color:#cbd5e1;line-height:1.6;margin:0;font-size:14px"></p></div></div>
+  <script>function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();(function(){var m=document.getElementById("idx-m");document.querySelectorAll(".index-card").forEach(function(c){c.addEventListener("click",function(){var d=c.dataset,s=document.getElementById("idx-svg"),t=d.cls==="up"?"#34d399":d.cls==="down"?"#fb7185":"#fbbf24";document.getElementById("idx-sym").textContent=c.querySelector("small").textContent;document.getElementById("idx-name").textContent=d.name;var v=document.getElementById("idx-val");v.className="move "+d.cls;v.textContent=c.querySelector(".move").textContent+" \xb7 "+d.val;document.getElementById("idx-ctx").textContent=d.ctx;var pts=JSON.parse(d.pts||"[]");if(pts.length>1){var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),r=Math.max(1e-9,mx-mn),p=pts.map(function(v,i){return(i?"L":"M")+(4+i/(pts.length-1)*532).toFixed(1)+" "+(190-(v-mn)/r*180).toFixed(1);}).join(" ");s.innerHTML="<path d='"+p+" L536 196 L4 196 Z' fill='"+t+"' opacity='.14'/><path d='"+p+"' fill='none' stroke='"+t+"' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/>";}else{s.innerHTML="<line x1='4' y1='100' x2='536' y2='100' stroke='"+t+"' stroke-width='2'/>";}m.classList.add("open");});});}());</script>
   ${mobileShellScript()}
 </body>
 </html>`;
@@ -4164,15 +4165,11 @@ function indicesPage(digest) {
 function indexSnapshotCard(snapshot) {
   const change = Number(snapshot.changePercent || 0);
   const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
-  return `
-    <details id="${escapeHtml(String(snapshot.symbol || "").toLowerCase())}" class="index-card">
-      <summary aria-label="Open ${escapeHtml(marketDisplayNameForSnapshot(snapshot))} chart context">
-      <div class="index-card-top"><div><small>${escapeHtml(snapshot.symbol)}</small><strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong></div><strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong></div>
-      ${snapshotSparklineSvgForPublish(snapshot)}<div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(publicSnapshotSourceLabel(snapshot))}</div>
-      </summary>
-      <div class="index-detail"><div class="index-detail-chart">${snapshotSparklineSvgForPublish(snapshot)}</div><p>${escapeHtml(indexSnapshotContext(snapshot))}</p></div>
-    </details>
-  `;
+  const pts = escapeHtml(JSON.stringify((snapshot.chartPoints ?? []).map((p) => Number(p.close)).filter(Number.isFinite)));
+  return `<button id="${escapeHtml(String(snapshot.symbol || "").toLowerCase())}" class="index-card" data-pts="${pts}" data-cls="${escapeHtml(cls)}" data-val="${escapeHtml(formatIndexValue(snapshot))}" data-ctx="${escapeHtml(indexSnapshotContext(snapshot))}" data-name="${escapeHtml(marketDisplayNameForSnapshot(snapshot))}">
+  <div class="index-card-top"><div><small>${escapeHtml(snapshot.symbol)}</small><strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong></div><strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong></div>
+  ${snapshotSparklineSvgForPublish(snapshot)}<div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(publicSnapshotSourceLabel(snapshot))}</div>
+  </button>`;
 }
 
 function snapshotSparklineSvgForPublish(snapshot) {
