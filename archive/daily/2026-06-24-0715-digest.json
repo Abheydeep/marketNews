@@ -1,58 +1,57 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-24",
-  "title": "Nifty overnight: +0.95% — gap-up bias Tests Risk Appetite",
+  "title": "Nifty overnight: +0.8% — gap-up bias Tests Risk Appetite",
   "status": "PUBLISHED",
-  "generatedAt": "2026-06-24T09:30:35.591Z",
+  "generatedAt": "2026-06-24T09:59:59.147Z",
   "dailyLead": {
-    "label": "Nifty overnight: +0.95% — gap-up bias",
+    "label": "Nifty overnight: +0.8% — gap-up bias",
     "sourceArticleId": "mint-markets:i2jiex",
     "driverType": "crude",
     "headline": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel",
     "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-    "riskSide": "OMCs, aviation, paints, and tyres may benefit if Brent stays soft; upstream energy may lag due to lower crude prices.",
-    "supportSide": "Bank Nifty and private banks are key; weak financial breadth can cap Nifty even if global cues firm up.",
+    "riskSide": "Nifty gap direction is the initial check; Bank Nifty confirmation will decide if the trend sustains.",
+    "supportSide": "Bank Nifty and private banks are in focus due to Yes Bank's presence in the stock watchlist.",
     "giftNiftyBias": null
   },
   "publicSourceSelection": {
-    "visibleCount": 10,
+    "visibleCount": 9,
     "shortlistCount": 25,
     "windowHours": 24,
-    "excludedNoDirectIndiaCount": 0,
-    "indiaPublisherCount": 6,
+    "excludedNoDirectIndiaCount": 2,
+    "indiaPublisherCount": 7,
     "shortlistIndiaPublisherCount": 18,
-    "directIndiaSourceCount": 6,
+    "directIndiaSourceCount": 7,
     "officialIndiaSourceCount": 0,
-    "domesticCatalystCount": 6,
-    "globalContextCount": 4,
-    "globalOnlySourceRatio": 40,
+    "domesticCatalystCount": 7,
+    "globalContextCount": 2,
+    "globalOnlySourceRatio": 22,
     "evidenceGrade": "limited",
     "publishMode": "limited_brief",
-    "indiaPublisherCoverage": "Full India-source gate: Limited; 6 direct India sources, 0 official sources, 6 domestic catalysts.",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 7 direct India sources, 0 official sources, 7 domestic catalysts.",
     "visibleSourceUrls": [
       "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-24-june-11782265374822.html",
-      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
-      "https://www.livemint.com/market/commodities/crude-oil-prices-extend-fall-on-smoother-flows-through-strait-of-hormuz-brent-below-77-per-barrel-11782265079363.html",
       "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
-      "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
+      "https://www.livemint.com/market/commodities/crude-oil-prices-extend-fall-on-smoother-flows-through-strait-of-hormuz-brent-below-77-per-barrel-11782265079363.html",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
       "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
+      "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
       "https://www.business-standard.com/economy/news/diversity-of-routes-to-be-key-for-india-s-energy-security-s-p-global-126062301079_1.html",
-      "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html",
-      "https://www.cnbc.com/2026/06/23/cerebras-cbrs-q1-earnings-report-2026.html",
-      "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html"
+      "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html"
     ]
   },
-  "archiveSummary": "Nifty overnight: +0.95% — gap-up bias: OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent...",
-  "twoMinuteSummary": "Global markets closed mixed on Tuesday as investors digested the latest developments in international trade and geopolitics. The S&P 500 fell 1.436%, while the Nasdaq 100 declined 3.295%. In contrast, the Dow Jones ended relatively flat, down only 0.089%. Asian markets also showed a mixed response, with Nikkei 225 falling 0.879% and Hang Seng rising 0.325%.\n\nIndia-US trade talks took center stage as Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer to discuss a proposed bilateral trade agreement. The talks aim to salvage the agreement after changes in US tariff policy affected the earlier framework. This development comes after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in over a year on the sidelines of the G7 summit in France.\n\nThe Indian market is expected to open with a muted bias, as indicated by GIFT Nifty trading around 23,868, a premium of nearly 15 points from the previous close. Tech Mahindra's market update is among the key sector-specific developments to watch. Meanwhile, crude oil prices continued their fall, with Brent crude below $77 per barrel due to smoother flows through the Strait of Hormuz.\n\nOn Tuesday, the Sensex tumbled 893.39 points, or 1.16%, to close at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to end at 23,824.10. The market's reaction to global earnings and risk appetite will be crucial in determining the next direction.",
-  "deskNote": "Today's market narrative is shaped by the delicate balance between global risk-off cues and sector-specific cushions. The India-US trade talks represent a critical development that could potentially boost investor sentiment, but the outcome remains uncertain. The muted opening bias, as indicated by GIFT Nifty, suggests that traders are adopting a cautious stance ahead of further developments.\n\nThe structural read-through from global markets indicates a continued risk-off sentiment, driven by the decline in S&P 500 and Nasdaq 100. However, the relatively stable performance of the Dow Jones and the mixed response from Asian markets suggest that the situation is more nuanced. The fall in crude oil prices due to smoother flows through the Strait of Hormuz is another factor that could influence the market's direction.\n\nIn this environment, the market's ability to absorb global shocks while responding to domestic cues will be closely watched. The India VIX's rise by 4.673% indicates a heightened sense of caution among traders, which could lead to a more volatile trading session. Overall, the narrative is one of cautious optimism, with traders waiting for clarity on the trade talks and global earnings to emerge.",
+  "archiveSummary": "Nifty overnight: +0.8% — gap-up bias: OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent...",
+  "twoMinuteSummary": "Crude oil prices continued their downward trend on Wednesday, with Brent crude falling below $77 per barrel due to smoother flows through the Strait of Hormuz. The decline in crude oil prices is expected to have a positive impact on India's economy, as the country is a significant importer of crude oil.\n\nIndia and the United States opened high-level trade talks on Tuesday, with Commerce and Industry Minister Piyush Goyal meeting US Trade Representative Jamieson Greer. The talks aimed to salvage and recalibrate a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. The two sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10% tariff on imports from trading partners is due to expire.\n\nThe Gift Nifty indicated a muted start for the Indian benchmark index on Wednesday, trading around 23,868 levels, a premium of nearly 15 points from the Nifty futures' previous close. This suggests a neutral opening bias for the Indian stock market.\n\nThe Indian stock market witnessed a significant decline on Tuesday, with the Sensex tumbling 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10. The decline was largely attributed to global risk-off cues and negative earnings reports from some major companies.",
+  "deskNote": "Today's market narrative is characterized by a delicate balance between global risk-off cues and sector-specific cushions. The decline in crude oil prices is a significant positive for India, given its status as a major crude importer. However, the ongoing trade talks with the US are a wild card, with the potential to swing market sentiment either way. The muted opening bias indicated by the Gift Nifty suggests that traders are adopting a wait-and-watch approach ahead of further developments in the trade talks. As the day unfolds, market participants will be closely watching the reaction of Indian stocks to global cues, particularly the performance of tech stocks, which have been a source of strength in recent sessions. The structural read-through here is that India remains sensitive to global risk appetite, but is also finding support from specific sectoral narratives.",
   "watchItems": [
     "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
-    "Watch Nifty VWAP and Bank Nifty breadth in the first 30 minutes for confirmation.",
+    "Watch Nifty VWAP and Bank Nifty breadth in the first 15 minutes.",
     "Metals, pharma, IT and auto-ancillary breadth separately; trade policy stories split sectors, not the whole index."
   ],
-  "overallSentiment": -0.037,
+  "overallSentiment": 0.038,
   "sentimentLabel": "NEUTRAL",
-  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.436%, Nasdaq 100 -3.295%, Dow Jones -0.089%, Nikkei 225 -0.879%, Hang Seng +0.325%, Shanghai Composite -1.256%, KOSPI +3.257%, Taiwan Weighted -2.244%, Straits Times +0.206%, ASX 200 +0.244%, US Dollar Index +0.179%, Brent Crude -1.946%, USD/INR -0.037%, Gold (COMEX) -1.313%, India VIX +4.673%, GIFT Nifty +0%\n\nNarrative Themes:\n- India-US Trade Talks: High-level trade talks between India and the US aimed at salvaging a proposed bilateral trade agreement.\n- Volatile Opening Bias: GIFT Nifty indicates a muted start for the Indian benchmark index.\n- Sector-Specific Cushion: Tech Mahindra's market update may provide sector-specific insights.\n- Global Earnings & Risk Appetite: Global earnings reports are influencing risk appetite and market sentiment.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.436%, Nasdaq 100 -3.295%, Dow Jones -0.089%, Nikkei 225 -0.879%, Hang Seng +0.325%, Shanghai Composite -1.256%, KOSPI +3.257%, Taiwan Weighted -2.244%, Straits Times +0.197%, ASX 200 +0.244%, US Dollar Index +0.218%, Brent Crude -1.661%, USD/INR -0.077%, Gold (COMEX) -1.53%, India VIX +4.112%, GIFT Nifty +0%\n\nNarrative Themes:\n- US-India Trade Revival: High-level trade talks between India and the US aimed at salvaging a proposed bilateral trade agreement.\n- Global Risk-Off Sentiment: Crude oil prices fell as flows through Strait of Hormuz smoothed, impacting global risk appetite.\n- Sector-Specific Movements: Tech Mahindra and Infosys share price updates indicate sector-specific activity.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -2272,12 +2271,12 @@
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
-      "closeValue": 24051.45,
+      "closeValue": 24014.35,
       "previousClose": 23824.1,
-      "changePercent": 0.954,
+      "changePercent": 0.799,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:29:11.000Z",
+      "dataTimestamp": "2026-06-24T09:58:44.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^NSEI",
       "tradingViewSymbol": "NSE:NIFTY",
@@ -2308,10 +2307,6 @@
         {
           "time": "2026-06-24T03:55:00.000Z",
           "close": 23869.5
-        },
-        {
-          "time": "2026-06-24T03:57:00.000Z",
-          "close": 23878.5
         },
         {
           "time": "2026-06-24T03:58:00.000Z",
@@ -2362,10 +2357,6 @@
           "close": 23822.5
         },
         {
-          "time": "2026-06-24T04:22:00.000Z",
-          "close": 23820.75
-        },
-        {
           "time": "2026-06-24T04:23:00.000Z",
           "close": 23814.1
         },
@@ -2412,10 +2403,6 @@
         {
           "time": "2026-06-24T04:45:00.000Z",
           "close": 23916
-        },
-        {
-          "time": "2026-06-24T04:46:00.000Z",
-          "close": 23920.3
         },
         {
           "time": "2026-06-24T04:48:00.000Z",
@@ -2466,10 +2453,6 @@
           "close": 23955.4
         },
         {
-          "time": "2026-06-24T05:11:00.000Z",
-          "close": 23952.2
-        },
-        {
           "time": "2026-06-24T05:13:00.000Z",
           "close": 23944.7
         },
@@ -2516,10 +2499,6 @@
         {
           "time": "2026-06-24T05:35:00.000Z",
           "close": 23968
-        },
-        {
-          "time": "2026-06-24T05:36:00.000Z",
-          "close": 23972.6
         },
         {
           "time": "2026-06-24T05:38:00.000Z",
@@ -2570,10 +2549,6 @@
           "close": 23960.6
         },
         {
-          "time": "2026-06-24T06:01:00.000Z",
-          "close": 23959.15
-        },
-        {
           "time": "2026-06-24T06:03:00.000Z",
           "close": 23974.15
         },
@@ -2622,10 +2597,6 @@
           "close": 24004.35
         },
         {
-          "time": "2026-06-24T06:26:00.000Z",
-          "close": 24006.9
-        },
-        {
           "time": "2026-06-24T06:28:00.000Z",
           "close": 24002.4
         },
@@ -2670,12 +2641,8 @@
           "close": 23994.9
         },
         {
-          "time": "2026-06-24T06:49:00.000Z",
-          "close": 23997.85
-        },
-        {
-          "time": "2026-06-24T06:51:00.000Z",
-          "close": 23998.5
+          "time": "2026-06-24T06:50:00.000Z",
+          "close": 23996.9
         },
         {
           "time": "2026-06-24T06:53:00.000Z",
@@ -2722,12 +2689,8 @@
           "close": 23982.4
         },
         {
-          "time": "2026-06-24T07:14:00.000Z",
-          "close": 23991.35
-        },
-        {
-          "time": "2026-06-24T07:16:00.000Z",
-          "close": 23987.7
+          "time": "2026-06-24T07:15:00.000Z",
+          "close": 23986.95
         },
         {
           "time": "2026-06-24T07:18:00.000Z",
@@ -2774,12 +2737,8 @@
           "close": 24013.35
         },
         {
-          "time": "2026-06-24T07:39:00.000Z",
-          "close": 24020
-        },
-        {
-          "time": "2026-06-24T07:41:00.000Z",
-          "close": 24019.05
+          "time": "2026-06-24T07:40:00.000Z",
+          "close": 24016.5
         },
         {
           "time": "2026-06-24T07:43:00.000Z",
@@ -2826,12 +2785,8 @@
           "close": 24065.1
         },
         {
-          "time": "2026-06-24T08:04:00.000Z",
-          "close": 24072.3
-        },
-        {
-          "time": "2026-06-24T08:06:00.000Z",
-          "close": 24087.8
+          "time": "2026-06-24T08:05:00.000Z",
+          "close": 24084.6
         },
         {
           "time": "2026-06-24T08:08:00.000Z",
@@ -2878,12 +2833,8 @@
           "close": 24048.2
         },
         {
-          "time": "2026-06-24T08:29:00.000Z",
-          "close": 24055.8
-        },
-        {
-          "time": "2026-06-24T08:31:00.000Z",
-          "close": 24043.5
+          "time": "2026-06-24T08:30:00.000Z",
+          "close": 24044.05
         },
         {
           "time": "2026-06-24T08:33:00.000Z",
@@ -2926,16 +2877,12 @@
           "close": 24056.05
         },
         {
-          "time": "2026-06-24T08:52:00.000Z",
-          "close": 24056.85
+          "time": "2026-06-24T08:53:00.000Z",
+          "close": 24048.2
         },
         {
-          "time": "2026-06-24T08:54:00.000Z",
-          "close": 24054.3
-        },
-        {
-          "time": "2026-06-24T08:56:00.000Z",
-          "close": 24056.45
+          "time": "2026-06-24T08:55:00.000Z",
+          "close": 24051.45
         },
         {
           "time": "2026-06-24T08:58:00.000Z",
@@ -2978,16 +2925,12 @@
           "close": 24040.4
         },
         {
-          "time": "2026-06-24T09:17:00.000Z",
-          "close": 24041.05
+          "time": "2026-06-24T09:18:00.000Z",
+          "close": 24044.55
         },
         {
-          "time": "2026-06-24T09:19:00.000Z",
-          "close": 24046.95
-        },
-        {
-          "time": "2026-06-24T09:21:00.000Z",
-          "close": 24058.85
+          "time": "2026-06-24T09:20:00.000Z",
+          "close": 24056.75
         },
         {
           "time": "2026-06-24T09:23:00.000Z",
@@ -3002,20 +2945,76 @@
           "close": 24051.85
         },
         {
-          "time": "2026-06-24T09:29:11.000Z",
-          "close": 24051.45
+          "time": "2026-06-24T09:29:00.000Z",
+          "close": 24050.75
+        },
+        {
+          "time": "2026-06-24T09:31:00.000Z",
+          "close": 24038.9
+        },
+        {
+          "time": "2026-06-24T09:33:00.000Z",
+          "close": 24034.75
+        },
+        {
+          "time": "2026-06-24T09:35:00.000Z",
+          "close": 24033.9
+        },
+        {
+          "time": "2026-06-24T09:37:00.000Z",
+          "close": 24020.75
+        },
+        {
+          "time": "2026-06-24T09:39:00.000Z",
+          "close": 24027.55
+        },
+        {
+          "time": "2026-06-24T09:41:00.000Z",
+          "close": 24017.85
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 24007.3
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 24031.3
+        },
+        {
+          "time": "2026-06-24T09:48:00.000Z",
+          "close": 24013.65
+        },
+        {
+          "time": "2026-06-24T09:50:00.000Z",
+          "close": 24011.05
+        },
+        {
+          "time": "2026-06-24T09:52:00.000Z",
+          "close": 24013.5
+        },
+        {
+          "time": "2026-06-24T09:54:00.000Z",
+          "close": 24018.95
+        },
+        {
+          "time": "2026-06-24T09:56:00.000Z",
+          "close": 24011.65
+        },
+        {
+          "time": "2026-06-24T09:58:44.000Z",
+          "close": 24014.35
         }
       ]
     },
     {
       "symbol": "BANKNIFTY",
       "name": "Bank Nifty",
-      "closeValue": 58192,
+      "closeValue": 58168.05,
       "previousClose": 57183.75,
-      "changePercent": 1.763,
+      "changePercent": 1.721,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:29:11.000Z",
+      "dataTimestamp": "2026-06-24T09:58:38.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^NSEBANK",
       "tradingViewSymbol": "NSE:BANKNIFTY",
@@ -3046,10 +3045,6 @@
         {
           "time": "2026-06-24T03:55:00.000Z",
           "close": 57492.25
-        },
-        {
-          "time": "2026-06-24T03:57:00.000Z",
-          "close": 57512.95
         },
         {
           "time": "2026-06-24T03:58:00.000Z",
@@ -3100,10 +3095,6 @@
           "close": 57363.1
         },
         {
-          "time": "2026-06-24T04:22:00.000Z",
-          "close": 57329.05
-        },
-        {
           "time": "2026-06-24T04:23:00.000Z",
           "close": 57321.2
         },
@@ -3150,10 +3141,6 @@
         {
           "time": "2026-06-24T04:45:00.000Z",
           "close": 57645.05
-        },
-        {
-          "time": "2026-06-24T04:46:00.000Z",
-          "close": 57674.8
         },
         {
           "time": "2026-06-24T04:48:00.000Z",
@@ -3204,10 +3191,6 @@
           "close": 57677.7
         },
         {
-          "time": "2026-06-24T05:11:00.000Z",
-          "close": 57676.55
-        },
-        {
           "time": "2026-06-24T05:13:00.000Z",
           "close": 57665.65
         },
@@ -3254,10 +3237,6 @@
         {
           "time": "2026-06-24T05:35:00.000Z",
           "close": 57802.2
-        },
-        {
-          "time": "2026-06-24T05:36:00.000Z",
-          "close": 57817.55
         },
         {
           "time": "2026-06-24T05:38:00.000Z",
@@ -3308,10 +3287,6 @@
           "close": 57893.65
         },
         {
-          "time": "2026-06-24T06:01:00.000Z",
-          "close": 57891.55
-        },
-        {
           "time": "2026-06-24T06:03:00.000Z",
           "close": 57939.25
         },
@@ -3360,10 +3335,6 @@
           "close": 58108.95
         },
         {
-          "time": "2026-06-24T06:26:00.000Z",
-          "close": 58118.9
-        },
-        {
           "time": "2026-06-24T06:28:00.000Z",
           "close": 58078.55
         },
@@ -3408,12 +3379,8 @@
           "close": 58073.15
         },
         {
-          "time": "2026-06-24T06:49:00.000Z",
-          "close": 58074.75
-        },
-        {
-          "time": "2026-06-24T06:51:00.000Z",
-          "close": 58101.9
+          "time": "2026-06-24T06:50:00.000Z",
+          "close": 58085.45
         },
         {
           "time": "2026-06-24T06:53:00.000Z",
@@ -3460,12 +3427,8 @@
           "close": 58023.95
         },
         {
-          "time": "2026-06-24T07:14:00.000Z",
-          "close": 58045.45
-        },
-        {
-          "time": "2026-06-24T07:16:00.000Z",
-          "close": 58044.3
+          "time": "2026-06-24T07:15:00.000Z",
+          "close": 58034.7
         },
         {
           "time": "2026-06-24T07:18:00.000Z",
@@ -3512,12 +3475,8 @@
           "close": 58023.65
         },
         {
-          "time": "2026-06-24T07:39:00.000Z",
-          "close": 58034.3
-        },
-        {
-          "time": "2026-06-24T07:41:00.000Z",
-          "close": 58043.95
+          "time": "2026-06-24T07:40:00.000Z",
+          "close": 58041.1
         },
         {
           "time": "2026-06-24T07:43:00.000Z",
@@ -3564,12 +3523,8 @@
           "close": 58157.35
         },
         {
-          "time": "2026-06-24T08:04:00.000Z",
-          "close": 58172.95
-        },
-        {
-          "time": "2026-06-24T08:06:00.000Z",
-          "close": 58214.5
+          "time": "2026-06-24T08:05:00.000Z",
+          "close": 58195.2
         },
         {
           "time": "2026-06-24T08:08:00.000Z",
@@ -3616,12 +3571,8 @@
           "close": 58165.65
         },
         {
-          "time": "2026-06-24T08:29:00.000Z",
-          "close": 58185.55
-        },
-        {
-          "time": "2026-06-24T08:31:00.000Z",
-          "close": 58144
+          "time": "2026-06-24T08:30:00.000Z",
+          "close": 58152.35
         },
         {
           "time": "2026-06-24T08:33:00.000Z",
@@ -3664,16 +3615,12 @@
           "close": 58196.85
         },
         {
-          "time": "2026-06-24T08:52:00.000Z",
-          "close": 58191.15
+          "time": "2026-06-24T08:53:00.000Z",
+          "close": 58168.25
         },
         {
-          "time": "2026-06-24T08:54:00.000Z",
-          "close": 58191.15
-        },
-        {
-          "time": "2026-06-24T08:56:00.000Z",
-          "close": 58184.95
+          "time": "2026-06-24T08:55:00.000Z",
+          "close": 58173.2
         },
         {
           "time": "2026-06-24T08:58:00.000Z",
@@ -3716,16 +3663,12 @@
           "close": 58134.5
         },
         {
-          "time": "2026-06-24T09:17:00.000Z",
-          "close": 58135.9
+          "time": "2026-06-24T09:18:00.000Z",
+          "close": 58165.4
         },
         {
-          "time": "2026-06-24T09:19:00.000Z",
-          "close": 58171.25
-        },
-        {
-          "time": "2026-06-24T09:21:00.000Z",
-          "close": 58211.6
+          "time": "2026-06-24T09:20:00.000Z",
+          "close": 58205.35
         },
         {
           "time": "2026-06-24T09:23:00.000Z",
@@ -3740,8 +3683,64 @@
           "close": 58190.45
         },
         {
-          "time": "2026-06-24T09:29:11.000Z",
-          "close": 58192
+          "time": "2026-06-24T09:29:00.000Z",
+          "close": 58191.85
+        },
+        {
+          "time": "2026-06-24T09:31:00.000Z",
+          "close": 58188.8
+        },
+        {
+          "time": "2026-06-24T09:33:00.000Z",
+          "close": 58183.8
+        },
+        {
+          "time": "2026-06-24T09:35:00.000Z",
+          "close": 58180.8
+        },
+        {
+          "time": "2026-06-24T09:37:00.000Z",
+          "close": 58150.7
+        },
+        {
+          "time": "2026-06-24T09:39:00.000Z",
+          "close": 58156.7
+        },
+        {
+          "time": "2026-06-24T09:41:00.000Z",
+          "close": 58122.1
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 58103.3
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 58137.55
+        },
+        {
+          "time": "2026-06-24T09:48:00.000Z",
+          "close": 58134.05
+        },
+        {
+          "time": "2026-06-24T09:50:00.000Z",
+          "close": 58146.85
+        },
+        {
+          "time": "2026-06-24T09:52:00.000Z",
+          "close": 58137.85
+        },
+        {
+          "time": "2026-06-24T09:54:00.000Z",
+          "close": 58159.8
+        },
+        {
+          "time": "2026-06-24T09:56:00.000Z",
+          "close": 58160.15
+        },
+        {
+          "time": "2026-06-24T09:58:38.000Z",
+          "close": 58168.05
         }
       ]
     },
@@ -7443,12 +7442,12 @@
     {
       "symbol": "STI",
       "name": "Straits Times",
-      "closeValue": 5216.44,
+      "closeValue": 5215.99,
       "previousClose": 5205.74,
-      "changePercent": 0.206,
+      "changePercent": 0.197,
       "currency": "SGD",
       "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-24T08:59:59.000Z",
+      "dataTimestamp": "2026-06-24T09:20:00.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^STI",
       "tradingViewSymbol": "TVC:STI",
@@ -7514,8 +7513,8 @@
           "close": 5219.17
         },
         {
-          "time": "2026-06-24T01:37:00.000Z",
-          "close": 5219.63
+          "time": "2026-06-24T01:38:00.000Z",
+          "close": 5218.47
         },
         {
           "time": "2026-06-24T01:40:00.000Z",
@@ -7526,8 +7525,8 @@
           "close": 5213.73
         },
         {
-          "time": "2026-06-24T01:45:00.000Z",
-          "close": 5211.24
+          "time": "2026-06-24T01:46:00.000Z",
+          "close": 5213.01
         },
         {
           "time": "2026-06-24T01:48:00.000Z",
@@ -7602,8 +7601,8 @@
           "close": 5231.34
         },
         {
-          "time": "2026-06-24T02:36:00.000Z",
-          "close": 5231.33
+          "time": "2026-06-24T02:37:00.000Z",
+          "close": 5229.82
         },
         {
           "time": "2026-06-24T02:39:00.000Z",
@@ -7614,8 +7613,8 @@
           "close": 5229.71
         },
         {
-          "time": "2026-06-24T02:44:00.000Z",
-          "close": 5229
+          "time": "2026-06-24T02:45:00.000Z",
+          "close": 5229.48
         },
         {
           "time": "2026-06-24T02:47:00.000Z",
@@ -7626,8 +7625,8 @@
           "close": 5220.75
         },
         {
-          "time": "2026-06-24T02:52:00.000Z",
-          "close": 5223.95
+          "time": "2026-06-24T02:53:00.000Z",
+          "close": 5220.69
         },
         {
           "time": "2026-06-24T02:55:00.000Z",
@@ -7638,8 +7637,8 @@
           "close": 5215.92
         },
         {
-          "time": "2026-06-24T03:00:00.000Z",
-          "close": 5217.67
+          "time": "2026-06-24T03:01:00.000Z",
+          "close": 5215.41
         },
         {
           "time": "2026-06-24T03:03:00.000Z",
@@ -7650,8 +7649,8 @@
           "close": 5217.11
         },
         {
-          "time": "2026-06-24T03:08:00.000Z",
-          "close": 5218.21
+          "time": "2026-06-24T03:09:00.000Z",
+          "close": 5219.7
         },
         {
           "time": "2026-06-24T03:11:00.000Z",
@@ -7662,8 +7661,8 @@
           "close": 5219.45
         },
         {
-          "time": "2026-06-24T03:16:00.000Z",
-          "close": 5215.23
+          "time": "2026-06-24T03:17:00.000Z",
+          "close": 5213.31
         },
         {
           "time": "2026-06-24T03:19:00.000Z",
@@ -7690,8 +7689,8 @@
           "close": 5216.84
         },
         {
-          "time": "2026-06-24T03:35:00.000Z",
-          "close": 5216.31
+          "time": "2026-06-24T03:36:00.000Z",
+          "close": 5219.2
         },
         {
           "time": "2026-06-24T03:38:00.000Z",
@@ -7702,8 +7701,8 @@
           "close": 5217.24
         },
         {
-          "time": "2026-06-24T03:43:00.000Z",
-          "close": 5218.2
+          "time": "2026-06-24T03:44:00.000Z",
+          "close": 5218.11
         },
         {
           "time": "2026-06-24T03:46:00.000Z",
@@ -7714,8 +7713,8 @@
           "close": 5214.22
         },
         {
-          "time": "2026-06-24T03:51:00.000Z",
-          "close": 5214.68
+          "time": "2026-06-24T03:52:00.000Z",
+          "close": 5214.91
         },
         {
           "time": "2026-06-24T03:54:00.000Z",
@@ -7726,7 +7725,7 @@
           "close": 5213.61
         },
         {
-          "time": "2026-06-24T03:59:00.000Z",
+          "time": "2026-06-24T04:00:00.000Z",
           "close": 5214.64
         },
         {
@@ -7738,8 +7737,8 @@
           "close": 5214.72
         },
         {
-          "time": "2026-06-24T04:07:00.000Z",
-          "close": 5214.72
+          "time": "2026-06-24T04:08:00.000Z",
+          "close": 5214.74
         },
         {
           "time": "2026-06-24T04:10:00.000Z",
@@ -7750,8 +7749,8 @@
           "close": 5214.78
         },
         {
-          "time": "2026-06-24T04:15:00.000Z",
-          "close": 5214.72
+          "time": "2026-06-24T04:16:00.000Z",
+          "close": 5214.76
         },
         {
           "time": "2026-06-24T04:18:00.000Z",
@@ -7762,8 +7761,8 @@
           "close": 5214.74
         },
         {
-          "time": "2026-06-24T04:23:00.000Z",
-          "close": 5214.76
+          "time": "2026-06-24T04:24:00.000Z",
+          "close": 5214.72
         },
         {
           "time": "2026-06-24T04:26:00.000Z",
@@ -7774,47 +7773,47 @@
           "close": 5214.74
         },
         {
-          "time": "2026-06-24T04:31:00.000Z",
+          "time": "2026-06-24T04:32:00.000Z",
           "close": 5214.72
         },
         {
-          "time": "2026-06-24T04:34:00.000Z",
-          "close": 5214.74
+          "time": "2026-06-24T04:35:00.000Z",
+          "close": 5214.7
         },
         {
           "time": "2026-06-24T04:37:00.000Z",
           "close": 5214.7
         },
         {
-          "time": "2026-06-24T04:39:00.000Z",
+          "time": "2026-06-24T04:40:00.000Z",
           "close": 5214.66
         },
         {
-          "time": "2026-06-24T04:42:00.000Z",
-          "close": 5214.64
+          "time": "2026-06-24T04:43:00.000Z",
+          "close": 5214.68
         },
         {
           "time": "2026-06-24T04:45:00.000Z",
           "close": 5214.68
         },
         {
-          "time": "2026-06-24T04:47:00.000Z",
+          "time": "2026-06-24T04:48:00.000Z",
           "close": 5214.64
         },
         {
-          "time": "2026-06-24T04:50:00.000Z",
-          "close": 5214.68
+          "time": "2026-06-24T04:51:00.000Z",
+          "close": 5214.66
         },
         {
           "time": "2026-06-24T04:53:00.000Z",
           "close": 5214.66
         },
         {
-          "time": "2026-06-24T04:55:00.000Z",
-          "close": 5214.66
+          "time": "2026-06-24T04:56:00.000Z",
+          "close": 5214.64
         },
         {
-          "time": "2026-06-24T04:58:00.000Z",
+          "time": "2026-06-24T04:59:00.000Z",
           "close": 5210.82
         },
         {
@@ -7826,8 +7825,8 @@
           "close": 5217.18
         },
         {
-          "time": "2026-06-24T05:06:00.000Z",
-          "close": 5214.83
+          "time": "2026-06-24T05:07:00.000Z",
+          "close": 5214.55
         },
         {
           "time": "2026-06-24T05:09:00.000Z",
@@ -7838,8 +7837,8 @@
           "close": 5211.32
         },
         {
-          "time": "2026-06-24T05:14:00.000Z",
-          "close": 5211.4
+          "time": "2026-06-24T05:15:00.000Z",
+          "close": 5213.27
         },
         {
           "time": "2026-06-24T05:17:00.000Z",
@@ -7850,8 +7849,8 @@
           "close": 5214.45
         },
         {
-          "time": "2026-06-24T05:22:00.000Z",
-          "close": 5214.59
+          "time": "2026-06-24T05:23:00.000Z",
+          "close": 5214.68
         },
         {
           "time": "2026-06-24T05:25:00.000Z",
@@ -7862,320 +7861,320 @@
           "close": 5215.54
         },
         {
-          "time": "2026-06-24T05:30:00.000Z",
-          "close": 5213.32
+          "time": "2026-06-24T05:31:00.000Z",
+          "close": 5213.74
         },
         {
-          "time": "2026-06-24T05:33:00.000Z",
-          "close": 5213.34
+          "time": "2026-06-24T05:34:00.000Z",
+          "close": 5213.15
         },
         {
           "time": "2026-06-24T05:36:00.000Z",
           "close": 5215.05
         },
         {
-          "time": "2026-06-24T05:38:00.000Z",
-          "close": 5215.48
+          "time": "2026-06-24T05:39:00.000Z",
+          "close": 5215.55
         },
         {
-          "time": "2026-06-24T05:41:00.000Z",
-          "close": 5216.68
+          "time": "2026-06-24T05:42:00.000Z",
+          "close": 5217.63
         },
         {
           "time": "2026-06-24T05:44:00.000Z",
           "close": 5217.03
         },
         {
-          "time": "2026-06-24T05:46:00.000Z",
-          "close": 5217.19
+          "time": "2026-06-24T05:47:00.000Z",
+          "close": 5217.8
         },
         {
-          "time": "2026-06-24T05:49:00.000Z",
-          "close": 5218.13
+          "time": "2026-06-24T05:50:00.000Z",
+          "close": 5218.49
         },
         {
           "time": "2026-06-24T05:52:00.000Z",
           "close": 5216.01
         },
         {
-          "time": "2026-06-24T05:54:00.000Z",
-          "close": 5216.93
+          "time": "2026-06-24T05:55:00.000Z",
+          "close": 5216.76
         },
         {
-          "time": "2026-06-24T05:57:00.000Z",
-          "close": 5217.64
+          "time": "2026-06-24T05:58:00.000Z",
+          "close": 5217.13
         },
         {
           "time": "2026-06-24T06:00:00.000Z",
           "close": 5217.89
         },
         {
-          "time": "2026-06-24T06:02:00.000Z",
-          "close": 5215.62
+          "time": "2026-06-24T06:03:00.000Z",
+          "close": 5217.09
         },
         {
-          "time": "2026-06-24T06:05:00.000Z",
-          "close": 5218.16
+          "time": "2026-06-24T06:06:00.000Z",
+          "close": 5217.36
         },
         {
           "time": "2026-06-24T06:08:00.000Z",
           "close": 5216.95
         },
         {
-          "time": "2026-06-24T06:10:00.000Z",
-          "close": 5216.26
+          "time": "2026-06-24T06:11:00.000Z",
+          "close": 5217.41
         },
         {
-          "time": "2026-06-24T06:13:00.000Z",
-          "close": 5217.63
+          "time": "2026-06-24T06:14:00.000Z",
+          "close": 5218.69
         },
         {
           "time": "2026-06-24T06:16:00.000Z",
           "close": 5219.01
         },
         {
-          "time": "2026-06-24T06:18:00.000Z",
-          "close": 5218.68
+          "time": "2026-06-24T06:19:00.000Z",
+          "close": 5219.59
         },
         {
-          "time": "2026-06-24T06:21:00.000Z",
-          "close": 5219.74
+          "time": "2026-06-24T06:22:00.000Z",
+          "close": 5218.75
         },
         {
           "time": "2026-06-24T06:24:00.000Z",
           "close": 5219.15
         },
         {
-          "time": "2026-06-24T06:26:00.000Z",
-          "close": 5218.36
+          "time": "2026-06-24T06:27:00.000Z",
+          "close": 5220.78
         },
         {
-          "time": "2026-06-24T06:29:00.000Z",
-          "close": 5221.19
+          "time": "2026-06-24T06:30:00.000Z",
+          "close": 5217.84
         },
         {
-          "time": "2026-06-24T06:32:00.000Z",
-          "close": 5215.76
+          "time": "2026-06-24T06:33:00.000Z",
+          "close": 5213.67
         },
         {
-          "time": "2026-06-24T06:34:00.000Z",
-          "close": 5214.72
+          "time": "2026-06-24T06:35:00.000Z",
+          "close": 5214.82
         },
         {
-          "time": "2026-06-24T06:37:00.000Z",
-          "close": 5214.79
+          "time": "2026-06-24T06:38:00.000Z",
+          "close": 5215.68
         },
         {
-          "time": "2026-06-24T06:40:00.000Z",
-          "close": 5212.45
+          "time": "2026-06-24T06:41:00.000Z",
+          "close": 5214.64
         },
         {
           "time": "2026-06-24T06:43:00.000Z",
           "close": 5215.02
         },
         {
-          "time": "2026-06-24T06:45:00.000Z",
-          "close": 5215.88
+          "time": "2026-06-24T06:46:00.000Z",
+          "close": 5214.45
         },
         {
-          "time": "2026-06-24T06:48:00.000Z",
-          "close": 5215.45
+          "time": "2026-06-24T06:49:00.000Z",
+          "close": 5214.86
         },
         {
           "time": "2026-06-24T06:51:00.000Z",
           "close": 5215.52
         },
         {
-          "time": "2026-06-24T06:53:00.000Z",
-          "close": 5215.3
+          "time": "2026-06-24T06:54:00.000Z",
+          "close": 5215.59
         },
         {
-          "time": "2026-06-24T06:56:00.000Z",
-          "close": 5216.37
+          "time": "2026-06-24T06:57:00.000Z",
+          "close": 5215.75
         },
         {
           "time": "2026-06-24T06:59:00.000Z",
           "close": 5216.41
         },
         {
-          "time": "2026-06-24T07:01:00.000Z",
-          "close": 5216.12
+          "time": "2026-06-24T07:02:00.000Z",
+          "close": 5215.89
         },
         {
-          "time": "2026-06-24T07:04:00.000Z",
-          "close": 5213.53
+          "time": "2026-06-24T07:05:00.000Z",
+          "close": 5213.15
         },
         {
           "time": "2026-06-24T07:07:00.000Z",
           "close": 5213.72
         },
         {
-          "time": "2026-06-24T07:09:00.000Z",
-          "close": 5214.41
+          "time": "2026-06-24T07:10:00.000Z",
+          "close": 5214.55
         },
         {
-          "time": "2026-06-24T07:12:00.000Z",
-          "close": 5215
+          "time": "2026-06-24T07:13:00.000Z",
+          "close": 5214.74
         },
         {
           "time": "2026-06-24T07:15:00.000Z",
           "close": 5214.33
         },
         {
-          "time": "2026-06-24T07:17:00.000Z",
-          "close": 5215.56
+          "time": "2026-06-24T07:18:00.000Z",
+          "close": 5215.79
         },
         {
-          "time": "2026-06-24T07:20:00.000Z",
-          "close": 5214.79
+          "time": "2026-06-24T07:21:00.000Z",
+          "close": 5214.66
         },
         {
           "time": "2026-06-24T07:23:00.000Z",
           "close": 5215.23
         },
         {
-          "time": "2026-06-24T07:25:00.000Z",
-          "close": 5213.15
+          "time": "2026-06-24T07:26:00.000Z",
+          "close": 5213.35
         },
         {
-          "time": "2026-06-24T07:28:00.000Z",
-          "close": 5211.69
+          "time": "2026-06-24T07:29:00.000Z",
+          "close": 5211.85
         },
         {
-          "time": "2026-06-24T07:31:00.000Z",
+          "time": "2026-06-24T07:32:00.000Z",
+          "close": 5214.81
+        },
+        {
+          "time": "2026-06-24T07:34:00.000Z",
+          "close": 5212.73
+        },
+        {
+          "time": "2026-06-24T07:37:00.000Z",
+          "close": 5212.62
+        },
+        {
+          "time": "2026-06-24T07:40:00.000Z",
+          "close": 5213.24
+        },
+        {
+          "time": "2026-06-24T07:42:00.000Z",
+          "close": 5215.07
+        },
+        {
+          "time": "2026-06-24T07:45:00.000Z",
+          "close": 5216
+        },
+        {
+          "time": "2026-06-24T07:48:00.000Z",
           "close": 5217.06
         },
         {
-          "time": "2026-06-24T07:33:00.000Z",
-          "close": 5214.92
+          "time": "2026-06-24T07:50:00.000Z",
+          "close": 5215.69
         },
         {
-          "time": "2026-06-24T07:36:00.000Z",
-          "close": 5211.87
+          "time": "2026-06-24T07:53:00.000Z",
+          "close": 5214.27
         },
         {
-          "time": "2026-06-24T07:39:00.000Z",
-          "close": 5211.43
+          "time": "2026-06-24T07:56:00.000Z",
+          "close": 5215.04
         },
         {
-          "time": "2026-06-24T07:41:00.000Z",
-          "close": 5213
+          "time": "2026-06-24T07:58:00.000Z",
+          "close": 5214.45
         },
         {
-          "time": "2026-06-24T07:44:00.000Z",
-          "close": 5212.87
+          "time": "2026-06-24T08:01:00.000Z",
+          "close": 5213.92
         },
         {
-          "time": "2026-06-24T07:47:00.000Z",
-          "close": 5217.06
+          "time": "2026-06-24T08:04:00.000Z",
+          "close": 5212.12
         },
         {
-          "time": "2026-06-24T07:49:00.000Z",
-          "close": 5217.09
+          "time": "2026-06-24T08:06:00.000Z",
+          "close": 5216.17
         },
         {
-          "time": "2026-06-24T07:52:00.000Z",
-          "close": 5215.41
+          "time": "2026-06-24T08:09:00.000Z",
+          "close": 5214.64
         },
         {
-          "time": "2026-06-24T07:55:00.000Z",
-          "close": 5214.2
-        },
-        {
-          "time": "2026-06-24T07:57:00.000Z",
-          "close": 5213.88
-        },
-        {
-          "time": "2026-06-24T08:00:00.000Z",
-          "close": 5214.14
-        },
-        {
-          "time": "2026-06-24T08:03:00.000Z",
-          "close": 5213.2
-        },
-        {
-          "time": "2026-06-24T08:05:00.000Z",
-          "close": 5213.91
-        },
-        {
-          "time": "2026-06-24T08:08:00.000Z",
-          "close": 5214.46
-        },
-        {
-          "time": "2026-06-24T08:11:00.000Z",
-          "close": 5215.45
+          "time": "2026-06-24T08:12:00.000Z",
+          "close": 5215.32
         },
         {
           "time": "2026-06-24T08:14:00.000Z",
           "close": 5214.09
         },
         {
-          "time": "2026-06-24T08:16:00.000Z",
-          "close": 5214.3
+          "time": "2026-06-24T08:17:00.000Z",
+          "close": 5214.8
         },
         {
-          "time": "2026-06-24T08:19:00.000Z",
-          "close": 5213.2
+          "time": "2026-06-24T08:20:00.000Z",
+          "close": 5214.3
         },
         {
           "time": "2026-06-24T08:22:00.000Z",
           "close": 5212.77
         },
         {
-          "time": "2026-06-24T08:24:00.000Z",
-          "close": 5214.87
+          "time": "2026-06-24T08:25:00.000Z",
+          "close": 5214.08
         },
         {
-          "time": "2026-06-24T08:27:00.000Z",
-          "close": 5214.46
+          "time": "2026-06-24T08:28:00.000Z",
+          "close": 5214.22
         },
         {
-          "time": "2026-06-24T08:30:00.000Z",
-          "close": 5214.78
+          "time": "2026-06-24T08:31:00.000Z",
+          "close": 5213.71
         },
         {
-          "time": "2026-06-24T08:32:00.000Z",
-          "close": 5215.34
+          "time": "2026-06-24T08:33:00.000Z",
+          "close": 5215.04
         },
         {
-          "time": "2026-06-24T08:35:00.000Z",
-          "close": 5218.03
+          "time": "2026-06-24T08:36:00.000Z",
+          "close": 5216.05
         },
         {
-          "time": "2026-06-24T08:38:00.000Z",
-          "close": 5216.98
+          "time": "2026-06-24T08:39:00.000Z",
+          "close": 5217.58
         },
         {
-          "time": "2026-06-24T08:40:00.000Z",
-          "close": 5218.44
+          "time": "2026-06-24T08:41:00.000Z",
+          "close": 5218.34
         },
         {
-          "time": "2026-06-24T08:43:00.000Z",
-          "close": 5218.35
+          "time": "2026-06-24T08:44:00.000Z",
+          "close": 5218.5
         },
         {
-          "time": "2026-06-24T08:46:00.000Z",
-          "close": 5218.43
+          "time": "2026-06-24T08:47:00.000Z",
+          "close": 5217.06
         },
         {
-          "time": "2026-06-24T08:48:00.000Z",
-          "close": 5220.28
+          "time": "2026-06-24T08:49:00.000Z",
+          "close": 5218.17
         },
         {
-          "time": "2026-06-24T08:51:00.000Z",
-          "close": 5217.55
+          "time": "2026-06-24T08:52:00.000Z",
+          "close": 5218
         },
         {
-          "time": "2026-06-24T08:54:00.000Z",
-          "close": 5219.09
+          "time": "2026-06-24T08:55:00.000Z",
+          "close": 5215.77
         },
         {
-          "time": "2026-06-24T08:56:00.000Z",
-          "close": 5215.95
+          "time": "2026-06-24T08:57:00.000Z",
+          "close": 5215.65
         },
         {
-          "time": "2026-06-24T08:59:00.000Z",
-          "close": 5216.44
+          "time": "2026-06-24T09:00:00.000Z",
+          "close": 5215.99
         }
       ]
     },
@@ -8921,12 +8920,12 @@
     {
       "symbol": "DXY",
       "name": "US Dollar Index",
-      "closeValue": 101.59,
+      "closeValue": 101.63,
       "previousClose": 101.41,
-      "changePercent": 0.179,
+      "changePercent": 0.218,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:19:11.000Z",
+      "dataTimestamp": "2026-06-24T09:48:43.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "DX-Y.NYB",
       "tradingViewSymbol": "TVC:DXY",
@@ -8947,19 +8946,15 @@
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:05:00.000Z",
+          "time": "2026-06-24T04:06:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:07:00.000Z",
-          "close": 101.49
-        },
-        {
-          "time": "2026-06-24T04:09:00.000Z",
+          "time": "2026-06-24T04:08:00.000Z",
           "close": 101.5
         },
         {
-          "time": "2026-06-24T04:11:00.000Z",
+          "time": "2026-06-24T04:10:00.000Z",
           "close": 101.5
         },
         {
@@ -8975,12 +8970,12 @@
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:18:00.000Z",
+          "time": "2026-06-24T04:17:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:20:00.000Z",
-          "close": 101.48
+          "time": "2026-06-24T04:19:00.000Z",
+          "close": 101.49
         },
         {
           "time": "2026-06-24T04:21:00.000Z",
@@ -9003,19 +8998,15 @@
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:30:00.000Z",
+          "time": "2026-06-24T04:31:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:32:00.000Z",
+          "time": "2026-06-24T04:33:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:34:00.000Z",
-          "close": 101.48
-        },
-        {
-          "time": "2026-06-24T04:36:00.000Z",
+          "time": "2026-06-24T04:35:00.000Z",
           "close": 101.48
         },
         {
@@ -9039,15 +9030,15 @@
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:46:00.000Z",
+          "time": "2026-06-24T04:47:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:48:00.000Z",
+          "time": "2026-06-24T04:49:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T04:50:00.000Z",
+          "time": "2026-06-24T04:51:00.000Z",
           "close": 101.49
         },
         {
@@ -9055,23 +9046,19 @@
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:53:00.000Z",
+          "time": "2026-06-24T04:54:00.000Z",
           "close": 101.5
         },
         {
-          "time": "2026-06-24T04:55:00.000Z",
+          "time": "2026-06-24T04:56:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:57:00.000Z",
+          "time": "2026-06-24T04:58:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T04:59:00.000Z",
-          "close": 101.49
-        },
-        {
-          "time": "2026-06-24T05:01:00.000Z",
+          "time": "2026-06-24T05:00:00.000Z",
           "close": 101.49
         },
         {
@@ -9095,19 +9082,15 @@
           "close": 101.46
         },
         {
-          "time": "2026-06-24T05:11:00.000Z",
+          "time": "2026-06-24T05:12:00.000Z",
           "close": 101.46
         },
         {
-          "time": "2026-06-24T05:13:00.000Z",
+          "time": "2026-06-24T05:14:00.000Z",
           "close": 101.46
         },
         {
-          "time": "2026-06-24T05:15:00.000Z",
-          "close": 101.46
-        },
-        {
-          "time": "2026-06-24T05:17:00.000Z",
+          "time": "2026-06-24T05:16:00.000Z",
           "close": 101.46
         },
         {
@@ -9147,24 +9130,20 @@
           "close": 101.47
         },
         {
-          "time": "2026-06-24T05:34:00.000Z",
+          "time": "2026-06-24T05:35:00.000Z",
           "close": 101.47
         },
         {
-          "time": "2026-06-24T05:36:00.000Z",
-          "close": 101.47
-        },
-        {
-          "time": "2026-06-24T05:38:00.000Z",
+          "time": "2026-06-24T05:37:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T05:40:00.000Z",
-          "close": 101.48
+          "time": "2026-06-24T05:39:00.000Z",
+          "close": 101.47
         },
         {
-          "time": "2026-06-24T05:42:00.000Z",
-          "close": 101.47
+          "time": "2026-06-24T05:41:00.000Z",
+          "close": 101.48
         },
         {
           "time": "2026-06-24T05:43:00.000Z",
@@ -9183,23 +9162,19 @@
           "close": 101.47
         },
         {
-          "time": "2026-06-24T05:50:00.000Z",
-          "close": 101.46
-        },
-        {
-          "time": "2026-06-24T05:52:00.000Z",
+          "time": "2026-06-24T05:51:00.000Z",
           "close": 101.47
         },
         {
-          "time": "2026-06-24T05:54:00.000Z",
+          "time": "2026-06-24T05:53:00.000Z",
           "close": 101.47
         },
         {
-          "time": "2026-06-24T05:56:00.000Z",
-          "close": 101.46
+          "time": "2026-06-24T05:55:00.000Z",
+          "close": 101.47
         },
         {
-          "time": "2026-06-24T05:58:00.000Z",
+          "time": "2026-06-24T05:57:00.000Z",
           "close": 101.46
         },
         {
@@ -9211,15 +9186,15 @@
           "close": 101.46
         },
         {
-          "time": "2026-06-24T06:03:00.000Z",
+          "time": "2026-06-24T06:02:00.000Z",
           "close": 101.46
         },
         {
-          "time": "2026-06-24T06:05:00.000Z",
+          "time": "2026-06-24T06:04:00.000Z",
           "close": 101.46
         },
         {
-          "time": "2026-06-24T06:07:00.000Z",
+          "time": "2026-06-24T06:06:00.000Z",
           "close": 101.45
         },
         {
@@ -9239,24 +9214,20 @@
           "close": 101.42
         },
         {
-          "time": "2026-06-24T06:15:00.000Z",
-          "close": 101.44
+          "time": "2026-06-24T06:16:00.000Z",
+          "close": 101.46
         },
         {
-          "time": "2026-06-24T06:17:00.000Z",
+          "time": "2026-06-24T06:18:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T06:19:00.000Z",
+          "time": "2026-06-24T06:20:00.000Z",
           "close": 101.47
         },
         {
-          "time": "2026-06-24T06:21:00.000Z",
+          "time": "2026-06-24T06:22:00.000Z",
           "close": 101.45
-        },
-        {
-          "time": "2026-06-24T06:23:00.000Z",
-          "close": 101.46
         },
         {
           "time": "2026-06-24T06:24:00.000Z",
@@ -9275,15 +9246,15 @@
           "close": 101.5
         },
         {
-          "time": "2026-06-24T06:31:00.000Z",
-          "close": 101.5
-        },
-        {
-          "time": "2026-06-24T06:33:00.000Z",
+          "time": "2026-06-24T06:32:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T06:35:00.000Z",
+          "time": "2026-06-24T06:34:00.000Z",
+          "close": 101.49
+        },
+        {
+          "time": "2026-06-24T06:36:00.000Z",
           "close": 101.49
         },
         {
@@ -9295,23 +9266,19 @@
           "close": 101.5
         },
         {
-          "time": "2026-06-24T06:40:00.000Z",
+          "time": "2026-06-24T06:41:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T06:42:00.000Z",
+          "time": "2026-06-24T06:43:00.000Z",
           "close": 101.49
         },
         {
-          "time": "2026-06-24T06:44:00.000Z",
+          "time": "2026-06-24T06:45:00.000Z",
           "close": 101.48
         },
         {
-          "time": "2026-06-24T06:46:00.000Z",
-          "close": 101.48
-        },
-        {
-          "time": "2026-06-24T06:48:00.000Z",
+          "time": "2026-06-24T06:47:00.000Z",
           "close": 101.48
         },
         {
@@ -9331,24 +9298,20 @@
           "close": 101.52
         },
         {
-          "time": "2026-06-24T06:56:00.000Z",
-          "close": 101.53
-        },
-        {
-          "time": "2026-06-24T06:58:00.000Z",
-          "close": 101.54
-        },
-        {
-          "time": "2026-06-24T07:00:00.000Z",
-          "close": 101.54
-        },
-        {
-          "time": "2026-06-24T07:02:00.000Z",
-          "close": 101.56
-        },
-        {
-          "time": "2026-06-24T07:04:00.000Z",
+          "time": "2026-06-24T06:57:00.000Z",
           "close": 101.55
+        },
+        {
+          "time": "2026-06-24T06:59:00.000Z",
+          "close": 101.54
+        },
+        {
+          "time": "2026-06-24T07:01:00.000Z",
+          "close": 101.54
+        },
+        {
+          "time": "2026-06-24T07:03:00.000Z",
+          "close": 101.56
         },
         {
           "time": "2026-06-24T07:05:00.000Z",
@@ -9387,24 +9350,20 @@
           "close": 101.56
         },
         {
-          "time": "2026-06-24T07:21:00.000Z",
+          "time": "2026-06-24T07:22:00.000Z",
           "close": 101.56
         },
         {
-          "time": "2026-06-24T07:23:00.000Z",
+          "time": "2026-06-24T07:24:00.000Z",
           "close": 101.56
         },
         {
-          "time": "2026-06-24T07:25:00.000Z",
-          "close": 101.57
+          "time": "2026-06-24T07:26:00.000Z",
+          "close": 101.56
         },
         {
-          "time": "2026-06-24T07:27:00.000Z",
-          "close": 101.55
-        },
-        {
-          "time": "2026-06-24T07:29:00.000Z",
-          "close": 101.55
+          "time": "2026-06-24T07:28:00.000Z",
+          "close": 101.54
         },
         {
           "time": "2026-06-24T07:30:00.000Z",
@@ -9423,23 +9382,19 @@
           "close": 101.57
         },
         {
-          "time": "2026-06-24T07:37:00.000Z",
-          "close": 101.56
-        },
-        {
-          "time": "2026-06-24T07:39:00.000Z",
+          "time": "2026-06-24T07:38:00.000Z",
           "close": 101.57
         },
         {
-          "time": "2026-06-24T07:41:00.000Z",
+          "time": "2026-06-24T07:40:00.000Z",
           "close": 101.55
         },
         {
-          "time": "2026-06-24T07:43:00.000Z",
-          "close": 101.54
+          "time": "2026-06-24T07:42:00.000Z",
+          "close": 101.55
         },
         {
-          "time": "2026-06-24T07:45:00.000Z",
+          "time": "2026-06-24T07:44:00.000Z",
           "close": 101.53
         },
         {
@@ -9447,16 +9402,16 @@
           "close": 101.53
         },
         {
-          "time": "2026-06-24T07:48:00.000Z",
-          "close": 101.54
+          "time": "2026-06-24T07:47:00.000Z",
+          "close": 101.52
         },
         {
-          "time": "2026-06-24T07:50:00.000Z",
+          "time": "2026-06-24T07:49:00.000Z",
           "close": 101.53
         },
         {
-          "time": "2026-06-24T07:52:00.000Z",
-          "close": 101.55
+          "time": "2026-06-24T07:51:00.000Z",
+          "close": 101.54
         },
         {
           "time": "2026-06-24T07:53:00.000Z",
@@ -9479,19 +9434,15 @@
           "close": 101.58
         },
         {
-          "time": "2026-06-24T08:02:00.000Z",
-          "close": 101.58
-        },
-        {
-          "time": "2026-06-24T08:04:00.000Z",
+          "time": "2026-06-24T08:03:00.000Z",
           "close": 101.57
         },
         {
-          "time": "2026-06-24T08:06:00.000Z",
+          "time": "2026-06-24T08:05:00.000Z",
           "close": 101.58
         },
         {
-          "time": "2026-06-24T08:08:00.000Z",
+          "time": "2026-06-24T08:07:00.000Z",
           "close": 101.58
         },
         {
@@ -9515,11 +9466,11 @@
           "close": 101.64
         },
         {
-          "time": "2026-06-24T08:18:00.000Z",
-          "close": 101.63
+          "time": "2026-06-24T08:19:00.000Z",
+          "close": 101.62
         },
         {
-          "time": "2026-06-24T08:20:00.000Z",
+          "time": "2026-06-24T08:21:00.000Z",
           "close": 101.61
         },
         {
@@ -9535,19 +9486,15 @@
           "close": 101.6
         },
         {
-          "time": "2026-06-24T08:27:00.000Z",
-          "close": 101.6
+          "time": "2026-06-24T08:28:00.000Z",
+          "close": 101.59
         },
         {
-          "time": "2026-06-24T08:29:00.000Z",
-          "close": 101.58
+          "time": "2026-06-24T08:30:00.000Z",
+          "close": 101.57
         },
         {
-          "time": "2026-06-24T08:31:00.000Z",
-          "close": 101.56
-        },
-        {
-          "time": "2026-06-24T08:33:00.000Z",
+          "time": "2026-06-24T08:32:00.000Z",
           "close": 101.57
         },
         {
@@ -9571,20 +9518,16 @@
           "close": 101.6
         },
         {
-          "time": "2026-06-24T08:43:00.000Z",
+          "time": "2026-06-24T08:44:00.000Z",
           "close": 101.59
         },
         {
-          "time": "2026-06-24T08:45:00.000Z",
-          "close": 101.6
-        },
-        {
-          "time": "2026-06-24T08:47:00.000Z",
+          "time": "2026-06-24T08:46:00.000Z",
           "close": 101.59
         },
         {
-          "time": "2026-06-24T08:49:00.000Z",
-          "close": 101.57
+          "time": "2026-06-24T08:48:00.000Z",
+          "close": 101.58
         },
         {
           "time": "2026-06-24T08:50:00.000Z",
@@ -9603,8 +9546,8 @@
           "close": 101.57
         },
         {
-          "time": "2026-06-24T08:58:00.000Z",
-          "close": 101.58
+          "time": "2026-06-24T08:57:00.000Z",
+          "close": 101.57
         },
         {
           "time": "2026-06-24T08:59:00.000Z",
@@ -9627,19 +9570,15 @@
           "close": 101.62
         },
         {
-          "time": "2026-06-24T09:08:00.000Z",
+          "time": "2026-06-24T09:09:00.000Z",
           "close": 101.62
         },
         {
-          "time": "2026-06-24T09:10:00.000Z",
+          "time": "2026-06-24T09:11:00.000Z",
           "close": 101.62
         },
         {
-          "time": "2026-06-24T09:12:00.000Z",
-          "close": 101.61
-        },
-        {
-          "time": "2026-06-24T09:14:00.000Z",
+          "time": "2026-06-24T09:13:00.000Z",
           "close": 101.59
         },
         {
@@ -9651,20 +9590,80 @@
           "close": 101.61
         },
         {
-          "time": "2026-06-24T09:19:11.000Z",
-          "close": 101.59
+          "time": "2026-06-24T09:19:00.000Z",
+          "close": 101.58
+        },
+        {
+          "time": "2026-06-24T09:21:00.000Z",
+          "close": 101.58
+        },
+        {
+          "time": "2026-06-24T09:23:00.000Z",
+          "close": 101.6
+        },
+        {
+          "time": "2026-06-24T09:25:00.000Z",
+          "close": 101.62
+        },
+        {
+          "time": "2026-06-24T09:27:00.000Z",
+          "close": 101.63
+        },
+        {
+          "time": "2026-06-24T09:29:00.000Z",
+          "close": 101.63
+        },
+        {
+          "time": "2026-06-24T09:31:00.000Z",
+          "close": 101.62
+        },
+        {
+          "time": "2026-06-24T09:32:00.000Z",
+          "close": 101.64
+        },
+        {
+          "time": "2026-06-24T09:34:00.000Z",
+          "close": 101.64
+        },
+        {
+          "time": "2026-06-24T09:36:00.000Z",
+          "close": 101.64
+        },
+        {
+          "time": "2026-06-24T09:38:00.000Z",
+          "close": 101.63
+        },
+        {
+          "time": "2026-06-24T09:40:00.000Z",
+          "close": 101.62
+        },
+        {
+          "time": "2026-06-24T09:42:00.000Z",
+          "close": 101.61
+        },
+        {
+          "time": "2026-06-24T09:44:00.000Z",
+          "close": 101.64
+        },
+        {
+          "time": "2026-06-24T09:46:00.000Z",
+          "close": 101.64
+        },
+        {
+          "time": "2026-06-24T09:48:43.000Z",
+          "close": 101.63
         }
       ]
     },
     {
       "symbol": "BRENT",
       "name": "Brent Crude",
-      "closeValue": 75.58,
+      "closeValue": 75.8,
       "previousClose": 77.08,
-      "changePercent": -1.946,
+      "changePercent": -1.661,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:18:14.000Z",
+      "dataTimestamp": "2026-06-24T09:48:34.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "BZ=F",
       "tradingViewSymbol": "TVC:UKOIL",
@@ -9681,12 +9680,12 @@
           "close": 76.38
         },
         {
-          "time": "2026-06-24T04:07:00.000Z",
-          "close": 76.42
-        },
-        {
           "time": "2026-06-24T04:13:00.000Z",
           "close": 76.46
+        },
+        {
+          "time": "2026-06-24T04:18:00.000Z",
+          "close": 76.49
         },
         {
           "time": "2026-06-24T04:19:00.000Z",
@@ -9695,10 +9694,6 @@
         {
           "time": "2026-06-24T04:20:00.000Z",
           "close": 76.56
-        },
-        {
-          "time": "2026-06-24T04:22:00.000Z",
-          "close": 76.58
         },
         {
           "time": "2026-06-24T04:25:00.000Z",
@@ -9713,8 +9708,8 @@
           "close": 76.5
         },
         {
-          "time": "2026-06-24T04:33:00.000Z",
-          "close": 76.46
+          "time": "2026-06-24T04:37:00.000Z",
+          "close": 76.5
         },
         {
           "time": "2026-06-24T04:57:00.000Z",
@@ -9729,10 +9724,6 @@
           "close": 76.47
         },
         {
-          "time": "2026-06-24T05:00:00.000Z",
-          "close": 76.63
-        },
-        {
           "time": "2026-06-24T05:01:00.000Z",
           "close": 76.59
         },
@@ -9745,8 +9736,8 @@
           "close": 76.58
         },
         {
-          "time": "2026-06-24T05:07:00.000Z",
-          "close": 76.53
+          "time": "2026-06-24T05:06:00.000Z",
+          "close": 76.56
         },
         {
           "time": "2026-06-24T05:27:00.000Z",
@@ -9761,10 +9752,6 @@
           "close": 76.47
         },
         {
-          "time": "2026-06-24T05:35:00.000Z",
-          "close": 76.54
-        },
-        {
           "time": "2026-06-24T05:42:00.000Z",
           "close": 76.4
         },
@@ -9777,8 +9764,8 @@
           "close": 76.38
         },
         {
-          "time": "2026-06-24T05:54:00.000Z",
-          "close": 76.3
+          "time": "2026-06-24T05:50:00.000Z",
+          "close": 76.38
         },
         {
           "time": "2026-06-24T05:56:00.000Z",
@@ -9793,10 +9780,6 @@
           "close": 76.33
         },
         {
-          "time": "2026-06-24T06:01:00.000Z",
-          "close": 76.49
-        },
-        {
           "time": "2026-06-24T06:02:00.000Z",
           "close": 76.53
         },
@@ -9805,12 +9788,12 @@
           "close": 76.64
         },
         {
-          "time": "2026-06-24T06:05:00.000Z",
-          "close": 76.82
+          "time": "2026-06-24T06:04:00.000Z",
+          "close": 76.86
         },
         {
-          "time": "2026-06-24T06:06:00.000Z",
-          "close": 76.85
+          "time": "2026-06-24T06:05:00.000Z",
+          "close": 76.82
         },
         {
           "time": "2026-06-24T06:07:00.000Z",
@@ -9829,8 +9812,8 @@
           "close": 76.77
         },
         {
-          "time": "2026-06-24T06:12:00.000Z",
-          "close": 76.74
+          "time": "2026-06-24T06:13:00.000Z",
+          "close": 76.73
         },
         {
           "time": "2026-06-24T06:14:00.000Z",
@@ -9839,10 +9822,6 @@
         {
           "time": "2026-06-24T06:15:00.000Z",
           "close": 76.6
-        },
-        {
-          "time": "2026-06-24T06:16:00.000Z",
-          "close": 76.56
         },
         {
           "time": "2026-06-24T06:17:00.000Z",
@@ -9873,10 +9852,6 @@
           "close": 76.41
         },
         {
-          "time": "2026-06-24T06:28:00.000Z",
-          "close": 76.47
-        },
-        {
           "time": "2026-06-24T06:29:00.000Z",
           "close": 76.49
         },
@@ -9889,8 +9864,8 @@
           "close": 76.32
         },
         {
-          "time": "2026-06-24T06:35:00.000Z",
-          "close": 76.28
+          "time": "2026-06-24T06:34:00.000Z",
+          "close": 76.33
         },
         {
           "time": "2026-06-24T06:36:00.000Z",
@@ -9905,10 +9880,6 @@
           "close": 76.39
         },
         {
-          "time": "2026-06-24T06:39:00.000Z",
-          "close": 76.34
-        },
-        {
           "time": "2026-06-24T06:41:00.000Z",
           "close": 76.28
         },
@@ -9917,12 +9888,12 @@
           "close": 76.29
         },
         {
-          "time": "2026-06-24T06:46:00.000Z",
-          "close": 76.38
+          "time": "2026-06-24T06:45:00.000Z",
+          "close": 76.36
         },
         {
-          "time": "2026-06-24T06:47:00.000Z",
-          "close": 76.31
+          "time": "2026-06-24T06:46:00.000Z",
+          "close": 76.38
         },
         {
           "time": "2026-06-24T06:48:00.000Z",
@@ -9941,20 +9912,16 @@
           "close": 76.31
         },
         {
-          "time": "2026-06-24T06:53:00.000Z",
-          "close": 76.27
+          "time": "2026-06-24T06:55:00.000Z",
+          "close": 76.37
         },
         {
-          "time": "2026-06-24T06:55:00.000Z",
+          "time": "2026-06-24T06:56:00.000Z",
           "close": 76.37
         },
         {
           "time": "2026-06-24T06:57:00.000Z",
           "close": 76.42
-        },
-        {
-          "time": "2026-06-24T06:58:00.000Z",
-          "close": 76.38
         },
         {
           "time": "2026-06-24T07:00:00.000Z",
@@ -9973,8 +9940,8 @@
           "close": 76.3
         },
         {
-          "time": "2026-06-24T07:04:00.000Z",
-          "close": 76.23
+          "time": "2026-06-24T07:05:00.000Z",
+          "close": 76.18
         },
         {
           "time": "2026-06-24T07:06:00.000Z",
@@ -9983,10 +9950,6 @@
         {
           "time": "2026-06-24T07:07:00.000Z",
           "close": 76.07
-        },
-        {
-          "time": "2026-06-24T07:08:00.000Z",
-          "close": 75.98
         },
         {
           "time": "2026-06-24T07:09:00.000Z",
@@ -10017,10 +9980,6 @@
           "close": 76.17
         },
         {
-          "time": "2026-06-24T07:19:00.000Z",
-          "close": 76.21
-        },
-        {
           "time": "2026-06-24T07:21:00.000Z",
           "close": 76.22
         },
@@ -10033,8 +9992,8 @@
           "close": 75.95
         },
         {
-          "time": "2026-06-24T07:26:00.000Z",
-          "close": 75.97
+          "time": "2026-06-24T07:25:00.000Z",
+          "close": 76.01
         },
         {
           "time": "2026-06-24T07:28:00.000Z",
@@ -10053,20 +10012,16 @@
           "close": 76.14
         },
         {
-          "time": "2026-06-24T07:36:00.000Z",
-          "close": 76.14
-        },
-        {
           "time": "2026-06-24T07:37:00.000Z",
           "close": 76.12
         },
         {
-          "time": "2026-06-24T07:39:00.000Z",
-          "close": 76.17
+          "time": "2026-06-24T07:38:00.000Z",
+          "close": 76.16
         },
         {
-          "time": "2026-06-24T07:40:00.000Z",
-          "close": 76.16
+          "time": "2026-06-24T07:39:00.000Z",
+          "close": 76.17
         },
         {
           "time": "2026-06-24T07:41:00.000Z",
@@ -10085,8 +10040,8 @@
           "close": 75.97
         },
         {
-          "time": "2026-06-24T07:46:00.000Z",
-          "close": 76.11
+          "time": "2026-06-24T07:47:00.000Z",
+          "close": 76.05
         },
         {
           "time": "2026-06-24T07:48:00.000Z",
@@ -10095,10 +10050,6 @@
         {
           "time": "2026-06-24T07:49:00.000Z",
           "close": 76.05
-        },
-        {
-          "time": "2026-06-24T07:50:00.000Z",
-          "close": 75.99
         },
         {
           "time": "2026-06-24T07:51:00.000Z",
@@ -10133,10 +10084,6 @@
           "close": 75.76
         },
         {
-          "time": "2026-06-24T08:01:00.000Z",
-          "close": 75.71
-        },
-        {
           "time": "2026-06-24T08:02:00.000Z",
           "close": 75.64
         },
@@ -10165,10 +10112,6 @@
           "close": 75.59
         },
         {
-          "time": "2026-06-24T08:10:00.000Z",
-          "close": 75.64
-        },
-        {
           "time": "2026-06-24T08:11:00.000Z",
           "close": 75.74
         },
@@ -10177,8 +10120,8 @@
           "close": 75.82
         },
         {
-          "time": "2026-06-24T08:15:00.000Z",
-          "close": 75.72
+          "time": "2026-06-24T08:14:00.000Z",
+          "close": 75.67
         },
         {
           "time": "2026-06-24T08:16:00.000Z",
@@ -10197,20 +10140,16 @@
           "close": 75.66
         },
         {
-          "time": "2026-06-24T08:21:00.000Z",
-          "close": 75.56
-        },
-        {
           "time": "2026-06-24T08:22:00.000Z",
           "close": 75.57
         },
         {
-          "time": "2026-06-24T08:24:00.000Z",
-          "close": 75.62
+          "time": "2026-06-24T08:23:00.000Z",
+          "close": 75.58
         },
         {
-          "time": "2026-06-24T08:25:00.000Z",
-          "close": 75.6
+          "time": "2026-06-24T08:24:00.000Z",
+          "close": 75.62
         },
         {
           "time": "2026-06-24T08:26:00.000Z",
@@ -10229,8 +10168,8 @@
           "close": 75.51
         },
         {
-          "time": "2026-06-24T08:30:00.000Z",
-          "close": 75.65
+          "time": "2026-06-24T08:31:00.000Z",
+          "close": 75.62
         },
         {
           "time": "2026-06-24T08:32:00.000Z",
@@ -10243,10 +10182,6 @@
         {
           "time": "2026-06-24T08:34:00.000Z",
           "close": 75.49
-        },
-        {
-          "time": "2026-06-24T08:35:00.000Z",
-          "close": 75.57
         },
         {
           "time": "2026-06-24T08:36:00.000Z",
@@ -10277,10 +10212,6 @@
           "close": 75.73
         },
         {
-          "time": "2026-06-24T08:45:00.000Z",
-          "close": 75.65
-        },
-        {
           "time": "2026-06-24T08:46:00.000Z",
           "close": 75.67
         },
@@ -10289,8 +10220,8 @@
           "close": 75.7
         },
         {
-          "time": "2026-06-24T08:49:00.000Z",
-          "close": 75.72
+          "time": "2026-06-24T08:48:00.000Z",
+          "close": 75.69
         },
         {
           "time": "2026-06-24T08:50:00.000Z",
@@ -10309,10 +10240,6 @@
           "close": 75.74
         },
         {
-          "time": "2026-06-24T08:54:00.000Z",
-          "close": 75.7
-        },
-        {
           "time": "2026-06-24T08:55:00.000Z",
           "close": 75.71
         },
@@ -10321,8 +10248,8 @@
           "close": 75.83
         },
         {
-          "time": "2026-06-24T08:59:00.000Z",
-          "close": 75.79
+          "time": "2026-06-24T08:57:00.000Z",
+          "close": 75.89
         },
         {
           "time": "2026-06-24T09:00:00.000Z",
@@ -10341,12 +10268,12 @@
           "close": 75.68
         },
         {
-          "time": "2026-06-24T09:04:00.000Z",
+          "time": "2026-06-24T09:05:00.000Z",
           "close": 75.73
         },
         {
-          "time": "2026-06-24T09:05:00.000Z",
-          "close": 75.73
+          "time": "2026-06-24T09:06:00.000Z",
+          "close": 75.72
         },
         {
           "time": "2026-06-24T09:07:00.000Z",
@@ -10355,10 +10282,6 @@
         {
           "time": "2026-06-24T09:08:00.000Z",
           "close": 75.64
-        },
-        {
-          "time": "2026-06-24T09:09:00.000Z",
-          "close": 75.61
         },
         {
           "time": "2026-06-24T09:10:00.000Z",
@@ -10373,8 +10296,8 @@
           "close": 75.45
         },
         {
-          "time": "2026-06-24T09:13:00.000Z",
-          "close": 75.46
+          "time": "2026-06-24T09:14:00.000Z",
+          "close": 75.54
         },
         {
           "time": "2026-06-24T09:15:00.000Z",
@@ -10389,20 +10312,96 @@
           "close": 75.58
         },
         {
-          "time": "2026-06-24T09:18:14.000Z",
+          "time": "2026-06-24T09:20:00.000Z",
+          "close": 75.46
+        },
+        {
+          "time": "2026-06-24T09:22:00.000Z",
+          "close": 75.52
+        },
+        {
+          "time": "2026-06-24T09:24:00.000Z",
+          "close": 75.53
+        },
+        {
+          "time": "2026-06-24T09:27:00.000Z",
+          "close": 75.48
+        },
+        {
+          "time": "2026-06-24T09:28:00.000Z",
+          "close": 75.4
+        },
+        {
+          "time": "2026-06-24T09:29:00.000Z",
+          "close": 75.54
+        },
+        {
+          "time": "2026-06-24T09:30:00.000Z",
           "close": 75.58
+        },
+        {
+          "time": "2026-06-24T09:32:00.000Z",
+          "close": 75.66
+        },
+        {
+          "time": "2026-06-24T09:33:00.000Z",
+          "close": 75.65
+        },
+        {
+          "time": "2026-06-24T09:34:00.000Z",
+          "close": 75.69
+        },
+        {
+          "time": "2026-06-24T09:35:00.000Z",
+          "close": 75.61
+        },
+        {
+          "time": "2026-06-24T09:37:00.000Z",
+          "close": 75.74
+        },
+        {
+          "time": "2026-06-24T09:38:00.000Z",
+          "close": 75.72
+        },
+        {
+          "time": "2026-06-24T09:39:00.000Z",
+          "close": 75.69
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 75.66
+        },
+        {
+          "time": "2026-06-24T09:44:00.000Z",
+          "close": 75.69
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 75.66
+        },
+        {
+          "time": "2026-06-24T09:46:00.000Z",
+          "close": 75.61
+        },
+        {
+          "time": "2026-06-24T09:48:00.000Z",
+          "close": 75.86
+        },
+        {
+          "time": "2026-06-24T09:48:34.000Z",
+          "close": 75.8
         }
       ]
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
-      "closeValue": 94.69,
+      "closeValue": 94.65,
       "previousClose": 94.73,
-      "changePercent": -0.037,
+      "changePercent": -0.077,
       "currency": "INR",
       "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-24T09:29:06.000Z",
+      "dataTimestamp": "2026-06-24T09:58:33.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "USDINR=X",
       "tradingViewSymbol": "FX:USDINR",
@@ -10423,28 +10422,24 @@
           "close": 94.72
         },
         {
-          "time": "2026-06-24T02:53:00.000Z",
-          "close": 94.73
-        },
-        {
-          "time": "2026-06-24T03:31:00.000Z",
-          "close": 94.9
-        },
-        {
-          "time": "2026-06-24T03:33:00.000Z",
+          "time": "2026-06-24T03:30:00.000Z",
           "close": 94.89
         },
         {
-          "time": "2026-06-24T03:35:00.000Z",
+          "time": "2026-06-24T03:32:00.000Z",
+          "close": 94.88
+        },
+        {
+          "time": "2026-06-24T03:34:00.000Z",
+          "close": 94.88
+        },
+        {
+          "time": "2026-06-24T03:36:00.000Z",
           "close": 94.87
         },
         {
-          "time": "2026-06-24T03:37:00.000Z",
-          "close": 94.84
-        },
-        {
-          "time": "2026-06-24T03:39:00.000Z",
-          "close": 94.85
+          "time": "2026-06-24T03:38:00.000Z",
+          "close": 94.86
         },
         {
           "time": "2026-06-24T03:41:00.000Z",
@@ -10459,11 +10454,11 @@
           "close": 94.88
         },
         {
-          "time": "2026-06-24T03:48:00.000Z",
-          "close": 94.88
+          "time": "2026-06-24T03:47:00.000Z",
+          "close": 94.87
         },
         {
-          "time": "2026-06-24T03:50:00.000Z",
+          "time": "2026-06-24T03:49:00.000Z",
           "close": 94.86
         },
         {
@@ -10483,28 +10478,24 @@
           "close": 94.86
         },
         {
-          "time": "2026-06-24T04:00:00.000Z",
+          "time": "2026-06-24T04:01:00.000Z",
+          "close": 94.87
+        },
+        {
+          "time": "2026-06-24T04:03:00.000Z",
+          "close": 94.86
+        },
+        {
+          "time": "2026-06-24T04:05:00.000Z",
           "close": 94.85
         },
         {
-          "time": "2026-06-24T04:02:00.000Z",
-          "close": 94.86
-        },
-        {
-          "time": "2026-06-24T04:04:00.000Z",
-          "close": 94.86
-        },
-        {
-          "time": "2026-06-24T04:06:00.000Z",
-          "close": 94.86
-        },
-        {
-          "time": "2026-06-24T04:08:00.000Z",
+          "time": "2026-06-24T04:07:00.000Z",
           "close": 94.85
         },
         {
-          "time": "2026-06-24T04:10:00.000Z",
-          "close": 94.84
+          "time": "2026-06-24T04:09:00.000Z",
+          "close": 94.85
         },
         {
           "time": "2026-06-24T04:12:00.000Z",
@@ -10527,47 +10518,43 @@
           "close": 94.85
         },
         {
-          "time": "2026-06-24T04:22:00.000Z",
+          "time": "2026-06-24T04:23:00.000Z",
+          "close": 94.85
+        },
+        {
+          "time": "2026-06-24T04:25:00.000Z",
           "close": 94.84
         },
         {
-          "time": "2026-06-24T04:24:00.000Z",
+          "time": "2026-06-24T04:27:00.000Z",
           "close": 94.84
         },
         {
-          "time": "2026-06-24T04:26:00.000Z",
-          "close": 94.83
-        },
-        {
-          "time": "2026-06-24T04:28:00.000Z",
-          "close": 94.83
-        },
-        {
-          "time": "2026-06-24T04:30:00.000Z",
-          "close": 94.85
-        },
-        {
-          "time": "2026-06-24T04:33:00.000Z",
-          "close": 94.85
-        },
-        {
-          "time": "2026-06-24T04:35:00.000Z",
-          "close": 94.85
-        },
-        {
-          "time": "2026-06-24T04:37:00.000Z",
-          "close": 94.85
-        },
-        {
-          "time": "2026-06-24T04:39:00.000Z",
+          "time": "2026-06-24T04:29:00.000Z",
           "close": 94.84
         },
         {
-          "time": "2026-06-24T04:41:00.000Z",
+          "time": "2026-06-24T04:31:00.000Z",
+          "close": 94.86
+        },
+        {
+          "time": "2026-06-24T04:34:00.000Z",
+          "close": 94.86
+        },
+        {
+          "time": "2026-06-24T04:36:00.000Z",
+          "close": 94.85
+        },
+        {
+          "time": "2026-06-24T04:38:00.000Z",
+          "close": 94.84
+        },
+        {
+          "time": "2026-06-24T04:40:00.000Z",
           "close": 94.83
         },
         {
-          "time": "2026-06-24T04:43:00.000Z",
+          "time": "2026-06-24T04:42:00.000Z",
           "close": 94.83
         },
         {
@@ -10591,24 +10578,20 @@
           "close": 94.86
         },
         {
-          "time": "2026-06-24T04:55:00.000Z",
-          "close": 94.87
-        },
-        {
-          "time": "2026-06-24T04:57:00.000Z",
-          "close": 94.85
-        },
-        {
-          "time": "2026-06-24T04:59:00.000Z",
+          "time": "2026-06-24T04:56:00.000Z",
           "close": 94.84
         },
         {
-          "time": "2026-06-24T05:01:00.000Z",
-          "close": 94.83
+          "time": "2026-06-24T04:58:00.000Z",
+          "close": 94.85
         },
         {
-          "time": "2026-06-24T05:03:00.000Z",
-          "close": 94.82
+          "time": "2026-06-24T05:00:00.000Z",
+          "close": 94.84
+        },
+        {
+          "time": "2026-06-24T05:02:00.000Z",
+          "close": 94.8
         },
         {
           "time": "2026-06-24T05:05:00.000Z",
@@ -10631,8 +10614,8 @@
           "close": 94.73
         },
         {
-          "time": "2026-06-24T05:15:00.000Z",
-          "close": 94.69
+          "time": "2026-06-24T05:16:00.000Z",
+          "close": 94.66
         },
         {
           "time": "2026-06-24T05:18:00.000Z",
@@ -10651,28 +10634,24 @@
           "close": 94.63
         },
         {
-          "time": "2026-06-24T05:26:00.000Z",
-          "close": 94.65
+          "time": "2026-06-24T05:27:00.000Z",
+          "close": 94.67
         },
         {
-          "time": "2026-06-24T05:28:00.000Z",
-          "close": 94.66
-        },
-        {
-          "time": "2026-06-24T05:30:00.000Z",
-          "close": 94.68
-        },
-        {
-          "time": "2026-06-24T05:32:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T05:34:00.000Z",
-          "close": 94.68
-        },
-        {
-          "time": "2026-06-24T05:36:00.000Z",
+          "time": "2026-06-24T05:29:00.000Z",
           "close": 94.7
+        },
+        {
+          "time": "2026-06-24T05:31:00.000Z",
+          "close": 94.7
+        },
+        {
+          "time": "2026-06-24T05:33:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T05:35:00.000Z",
+          "close": 94.69
         },
         {
           "time": "2026-06-24T05:38:00.000Z",
@@ -10695,28 +10674,24 @@
           "close": 94.73
         },
         {
-          "time": "2026-06-24T05:48:00.000Z",
-          "close": 94.74
+          "time": "2026-06-24T05:49:00.000Z",
+          "close": 94.72
         },
         {
-          "time": "2026-06-24T05:50:00.000Z",
-          "close": 94.71
-        },
-        {
-          "time": "2026-06-24T05:52:00.000Z",
-          "close": 94.67
-        },
-        {
-          "time": "2026-06-24T05:54:00.000Z",
+          "time": "2026-06-24T05:51:00.000Z",
           "close": 94.68
         },
         {
-          "time": "2026-06-24T05:56:00.000Z",
+          "time": "2026-06-24T05:53:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T05:58:00.000Z",
+          "time": "2026-06-24T05:55:00.000Z",
           "close": 94.7
+        },
+        {
+          "time": "2026-06-24T05:57:00.000Z",
+          "close": 94.68
         },
         {
           "time": "2026-06-24T06:00:00.000Z",
@@ -10727,11 +10702,11 @@
           "close": 94.64
         },
         {
-          "time": "2026-06-24T06:05:00.000Z",
-          "close": 94.63
+          "time": "2026-06-24T06:04:00.000Z",
+          "close": 94.65
         },
         {
-          "time": "2026-06-24T06:07:00.000Z",
+          "time": "2026-06-24T06:06:00.000Z",
           "close": 94.64
         },
         {
@@ -10755,28 +10730,24 @@
           "close": 94.71
         },
         {
-          "time": "2026-06-24T06:19:00.000Z",
+          "time": "2026-06-24T06:20:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:21:00.000Z",
-          "close": 94.68
+          "time": "2026-06-24T06:22:00.000Z",
+          "close": 94.67
         },
         {
-          "time": "2026-06-24T06:23:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T06:25:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T06:27:00.000Z",
+          "time": "2026-06-24T06:24:00.000Z",
           "close": 94.7
         },
         {
-          "time": "2026-06-24T06:29:00.000Z",
+          "time": "2026-06-24T06:26:00.000Z",
           "close": 94.7
+        },
+        {
+          "time": "2026-06-24T06:28:00.000Z",
+          "close": 94.71
         },
         {
           "time": "2026-06-24T06:31:00.000Z",
@@ -10799,19 +10770,19 @@
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:41:00.000Z",
+          "time": "2026-06-24T06:42:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T06:44:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:43:00.000Z",
+          "time": "2026-06-24T06:46:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:45:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T06:47:00.000Z",
+          "time": "2026-06-24T06:48:00.000Z",
           "close": 94.69
         },
         {
@@ -10819,28 +10790,24 @@
           "close": 94.68
         },
         {
-          "time": "2026-06-24T06:52:00.000Z",
+          "time": "2026-06-24T06:53:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:54:00.000Z",
+          "time": "2026-06-24T06:55:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T06:56:00.000Z",
+          "time": "2026-06-24T06:57:00.000Z",
           "close": 94.72
         },
         {
-          "time": "2026-06-24T06:58:00.000Z",
-          "close": 94.71
-        },
-        {
-          "time": "2026-06-24T07:00:00.000Z",
+          "time": "2026-06-24T06:59:00.000Z",
           "close": 94.7
         },
         {
-          "time": "2026-06-24T07:02:00.000Z",
-          "close": 94.71
+          "time": "2026-06-24T07:01:00.000Z",
+          "close": 94.72
         },
         {
           "time": "2026-06-24T07:04:00.000Z",
@@ -10863,24 +10830,20 @@
           "close": 94.67
         },
         {
-          "time": "2026-06-24T07:14:00.000Z",
-          "close": 94.67
+          "time": "2026-06-24T07:15:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T07:16:00.000Z",
-          "close": 94.65
+          "time": "2026-06-24T07:17:00.000Z",
+          "close": 94.64
         },
         {
-          "time": "2026-06-24T07:18:00.000Z",
-          "close": 94.65
+          "time": "2026-06-24T07:19:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T07:20:00.000Z",
-          "close": 94.65
-        },
-        {
-          "time": "2026-06-24T07:22:00.000Z",
-          "close": 94.65
+          "time": "2026-06-24T07:21:00.000Z",
+          "close": 94.63
         },
         {
           "time": "2026-06-24T07:24:00.000Z",
@@ -10903,8 +10866,8 @@
           "close": 94.6
         },
         {
-          "time": "2026-06-24T07:34:00.000Z",
-          "close": 94.62
+          "time": "2026-06-24T07:35:00.000Z",
+          "close": 94.64
         },
         {
           "time": "2026-06-24T07:37:00.000Z",
@@ -10923,27 +10886,23 @@
           "close": 94.63
         },
         {
-          "time": "2026-06-24T07:45:00.000Z",
+          "time": "2026-06-24T07:46:00.000Z",
           "close": 94.65
         },
         {
-          "time": "2026-06-24T07:47:00.000Z",
-          "close": 94.66
-        },
-        {
-          "time": "2026-06-24T07:49:00.000Z",
+          "time": "2026-06-24T07:48:00.000Z",
           "close": 94.64
         },
         {
-          "time": "2026-06-24T07:51:00.000Z",
+          "time": "2026-06-24T07:50:00.000Z",
+          "close": 94.65
+        },
+        {
+          "time": "2026-06-24T07:52:00.000Z",
           "close": 94.67
         },
         {
-          "time": "2026-06-24T07:53:00.000Z",
-          "close": 94.68
-        },
-        {
-          "time": "2026-06-24T07:55:00.000Z",
+          "time": "2026-06-24T07:54:00.000Z",
           "close": 94.68
         },
         {
@@ -10967,43 +10926,39 @@
           "close": 94.68
         },
         {
-          "time": "2026-06-24T08:07:00.000Z",
-          "close": 94.68
-        },
-        {
-          "time": "2026-06-24T08:09:00.000Z",
-          "close": 94.66
-        },
-        {
-          "time": "2026-06-24T08:11:00.000Z",
+          "time": "2026-06-24T08:08:00.000Z",
           "close": 94.67
         },
         {
-          "time": "2026-06-24T08:13:00.000Z",
+          "time": "2026-06-24T08:10:00.000Z",
+          "close": 94.66
+        },
+        {
+          "time": "2026-06-24T08:12:00.000Z",
+          "close": 94.66
+        },
+        {
+          "time": "2026-06-24T08:14:00.000Z",
           "close": 94.68
         },
         {
-          "time": "2026-06-24T08:15:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T08:17:00.000Z",
-          "close": 94.69
+          "time": "2026-06-24T08:16:00.000Z",
+          "close": 94.68
         },
         {
           "time": "2026-06-24T08:19:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T08:22:00.000Z",
+          "time": "2026-06-24T08:21:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T08:24:00.000Z",
+          "time": "2026-06-24T08:23:00.000Z",
           "close": 94.69
         },
         {
-          "time": "2026-06-24T08:26:00.000Z",
+          "time": "2026-06-24T08:25:00.000Z",
           "close": 94.68
         },
         {
@@ -11027,28 +10982,24 @@
           "close": 94.67
         },
         {
-          "time": "2026-06-24T08:38:00.000Z",
-          "close": 94.67
+          "time": "2026-06-24T08:39:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T08:40:00.000Z",
-          "close": 94.68
+          "time": "2026-06-24T08:41:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T08:42:00.000Z",
-          "close": 94.67
+          "time": "2026-06-24T08:43:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T08:44:00.000Z",
-          "close": 94.67
+          "time": "2026-06-24T08:45:00.000Z",
+          "close": 94.66
         },
         {
-          "time": "2026-06-24T08:46:00.000Z",
+          "time": "2026-06-24T08:47:00.000Z",
           "close": 94.64
-        },
-        {
-          "time": "2026-06-24T08:48:00.000Z",
-          "close": 94.65
         },
         {
           "time": "2026-06-24T08:50:00.000Z",
@@ -11071,15 +11022,15 @@
           "close": 94.64
         },
         {
-          "time": "2026-06-24T09:00:00.000Z",
-          "close": 94.61
+          "time": "2026-06-24T09:01:00.000Z",
+          "close": 94.63
         },
         {
-          "time": "2026-06-24T09:02:00.000Z",
-          "close": 94.64
+          "time": "2026-06-24T09:03:00.000Z",
+          "close": 94.67
         },
         {
-          "time": "2026-06-24T09:04:00.000Z",
+          "time": "2026-06-24T09:05:00.000Z",
           "close": 94.66
         },
         {
@@ -11091,27 +11042,23 @@
           "close": 94.68
         },
         {
-          "time": "2026-06-24T09:11:00.000Z",
-          "close": 94.68
-        },
-        {
-          "time": "2026-06-24T09:13:00.000Z",
+          "time": "2026-06-24T09:12:00.000Z",
           "close": 94.67
         },
         {
-          "time": "2026-06-24T09:15:00.000Z",
+          "time": "2026-06-24T09:14:00.000Z",
           "close": 94.67
         },
         {
-          "time": "2026-06-24T09:17:00.000Z",
-          "close": 94.69
-        },
-        {
-          "time": "2026-06-24T09:19:00.000Z",
+          "time": "2026-06-24T09:16:00.000Z",
           "close": 94.68
         },
         {
-          "time": "2026-06-24T09:21:00.000Z",
+          "time": "2026-06-24T09:18:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T09:20:00.000Z",
           "close": 94.68
         },
         {
@@ -11127,20 +11074,72 @@
           "close": 94.69
         },
         {
-          "time": "2026-06-24T09:29:06.000Z",
+          "time": "2026-06-24T09:29:00.000Z",
           "close": 94.69
+        },
+        {
+          "time": "2026-06-24T09:32:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T09:34:00.000Z",
+          "close": 94.67
+        },
+        {
+          "time": "2026-06-24T09:36:00.000Z",
+          "close": 94.67
+        },
+        {
+          "time": "2026-06-24T09:38:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T09:40:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 94.68
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 94.66
+        },
+        {
+          "time": "2026-06-24T09:47:00.000Z",
+          "close": 94.63
+        },
+        {
+          "time": "2026-06-24T09:49:00.000Z",
+          "close": 94.64
+        },
+        {
+          "time": "2026-06-24T09:51:00.000Z",
+          "close": 94.65
+        },
+        {
+          "time": "2026-06-24T09:54:00.000Z",
+          "close": 94.64
+        },
+        {
+          "time": "2026-06-24T09:56:00.000Z",
+          "close": 94.64
+        },
+        {
+          "time": "2026-06-24T09:58:33.000Z",
+          "close": 94.65
         }
       ]
     },
     {
       "symbol": "GOLD",
       "name": "Gold (COMEX)",
-      "closeValue": 4094.9,
+      "closeValue": 4085.9,
       "previousClose": 4149.4,
-      "changePercent": -1.313,
+      "changePercent": -1.53,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:19:03.000Z",
+      "dataTimestamp": "2026-06-24T09:48:32.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "GC=F",
       "tradingViewSymbol": "TVC:GOLD",
@@ -11161,24 +11160,20 @@
           "close": 4076.2
         },
         {
-          "time": "2026-06-24T04:05:00.000Z",
-          "close": 4073.8
+          "time": "2026-06-24T04:06:00.000Z",
+          "close": 4074.4
         },
         {
-          "time": "2026-06-24T04:07:00.000Z",
-          "close": 4075.5
+          "time": "2026-06-24T04:08:00.000Z",
+          "close": 4077.1
         },
         {
-          "time": "2026-06-24T04:09:00.000Z",
-          "close": 4075.3
+          "time": "2026-06-24T04:10:00.000Z",
+          "close": 4073.7
         },
         {
-          "time": "2026-06-24T04:11:00.000Z",
-          "close": 4073.9
-        },
-        {
-          "time": "2026-06-24T04:13:00.000Z",
-          "close": 4073.8
+          "time": "2026-06-24T04:12:00.000Z",
+          "close": 4073.3
         },
         {
           "time": "2026-06-24T04:14:00.000Z",
@@ -11193,8 +11188,8 @@
           "close": 4072.5
         },
         {
-          "time": "2026-06-24T04:20:00.000Z",
-          "close": 4073.8
+          "time": "2026-06-24T04:19:00.000Z",
+          "close": 4072.2
         },
         {
           "time": "2026-06-24T04:21:00.000Z",
@@ -11217,24 +11212,20 @@
           "close": 4080.4
         },
         {
-          "time": "2026-06-24T04:30:00.000Z",
-          "close": 4080.8
+          "time": "2026-06-24T04:31:00.000Z",
+          "close": 4081.5
         },
         {
-          "time": "2026-06-24T04:32:00.000Z",
-          "close": 4081.4
+          "time": "2026-06-24T04:33:00.000Z",
+          "close": 4081.7
         },
         {
-          "time": "2026-06-24T04:34:00.000Z",
-          "close": 4081.6
+          "time": "2026-06-24T04:35:00.000Z",
+          "close": 4079.6
         },
         {
-          "time": "2026-06-24T04:36:00.000Z",
-          "close": 4081.8
-        },
-        {
-          "time": "2026-06-24T04:38:00.000Z",
-          "close": 4082.2
+          "time": "2026-06-24T04:37:00.000Z",
+          "close": 4082.3
         },
         {
           "time": "2026-06-24T04:39:00.000Z",
@@ -11253,24 +11244,20 @@
           "close": 4080.8
         },
         {
-          "time": "2026-06-24T04:46:00.000Z",
-          "close": 4081.4
+          "time": "2026-06-24T04:47:00.000Z",
+          "close": 4082.3
         },
         {
-          "time": "2026-06-24T04:48:00.000Z",
+          "time": "2026-06-24T04:49:00.000Z",
+          "close": 4080.4
+        },
+        {
+          "time": "2026-06-24T04:51:00.000Z",
           "close": 4079.3
         },
         {
-          "time": "2026-06-24T04:50:00.000Z",
-          "close": 4079.7
-        },
-        {
-          "time": "2026-06-24T04:52:00.000Z",
-          "close": 4079.7
-        },
-        {
-          "time": "2026-06-24T04:54:00.000Z",
-          "close": 4080.2
+          "time": "2026-06-24T04:53:00.000Z",
+          "close": 4079.2
         },
         {
           "time": "2026-06-24T04:55:00.000Z",
@@ -11281,16 +11268,16 @@
           "close": 4083
         },
         {
-          "time": "2026-06-24T04:59:00.000Z",
-          "close": 4080.6
+          "time": "2026-06-24T04:58:00.000Z",
+          "close": 4081.6
         },
         {
-          "time": "2026-06-24T05:01:00.000Z",
-          "close": 4081.7
+          "time": "2026-06-24T05:00:00.000Z",
+          "close": 4080.8
         },
         {
-          "time": "2026-06-24T05:03:00.000Z",
-          "close": 4078.6
+          "time": "2026-06-24T05:02:00.000Z",
+          "close": 4079.2
         },
         {
           "time": "2026-06-24T05:04:00.000Z",
@@ -11313,20 +11300,16 @@
           "close": 4083.5
         },
         {
-          "time": "2026-06-24T05:13:00.000Z",
-          "close": 4083.3
+          "time": "2026-06-24T05:14:00.000Z",
+          "close": 4084.4
         },
         {
-          "time": "2026-06-24T05:15:00.000Z",
-          "close": 4084.7
+          "time": "2026-06-24T05:16:00.000Z",
+          "close": 4083.8
         },
         {
-          "time": "2026-06-24T05:17:00.000Z",
-          "close": 4083.4
-        },
-        {
-          "time": "2026-06-24T05:19:00.000Z",
-          "close": 4082.6
+          "time": "2026-06-24T05:18:00.000Z",
+          "close": 4083.5
         },
         {
           "time": "2026-06-24T05:20:00.000Z",
@@ -11349,40 +11332,36 @@
           "close": 4091.4
         },
         {
-          "time": "2026-06-24T05:29:00.000Z",
-          "close": 4090.1
+          "time": "2026-06-24T05:30:00.000Z",
+          "close": 4094.1
         },
         {
-          "time": "2026-06-24T05:31:00.000Z",
-          "close": 4094.6
+          "time": "2026-06-24T05:32:00.000Z",
+          "close": 4099.4
         },
         {
-          "time": "2026-06-24T05:33:00.000Z",
-          "close": 4102.7
+          "time": "2026-06-24T05:34:00.000Z",
+          "close": 4099.3
         },
         {
-          "time": "2026-06-24T05:35:00.000Z",
-          "close": 4097.6
+          "time": "2026-06-24T05:36:00.000Z",
+          "close": 4097.7
         },
         {
           "time": "2026-06-24T05:37:00.000Z",
           "close": 4094.7
         },
         {
-          "time": "2026-06-24T05:38:00.000Z",
-          "close": 4093.6
+          "time": "2026-06-24T05:39:00.000Z",
+          "close": 4094.6
         },
         {
-          "time": "2026-06-24T05:40:00.000Z",
-          "close": 4091.8
+          "time": "2026-06-24T05:41:00.000Z",
+          "close": 4090.4
         },
         {
-          "time": "2026-06-24T05:42:00.000Z",
-          "close": 4090.7
-        },
-        {
-          "time": "2026-06-24T05:44:00.000Z",
-          "close": 4094.8
+          "time": "2026-06-24T05:43:00.000Z",
+          "close": 4092.4
         },
         {
           "time": "2026-06-24T05:45:00.000Z",
@@ -11405,24 +11384,20 @@
           "close": 4090.4
         },
         {
-          "time": "2026-06-24T05:54:00.000Z",
-          "close": 4089.2
+          "time": "2026-06-24T05:55:00.000Z",
+          "close": 4091.1
         },
         {
-          "time": "2026-06-24T05:56:00.000Z",
-          "close": 4091.8
+          "time": "2026-06-24T05:57:00.000Z",
+          "close": 4091.6
         },
         {
-          "time": "2026-06-24T05:58:00.000Z",
-          "close": 4091.8
+          "time": "2026-06-24T05:59:00.000Z",
+          "close": 4093.1
         },
         {
-          "time": "2026-06-24T06:00:00.000Z",
-          "close": 4095.8
-        },
-        {
-          "time": "2026-06-24T06:02:00.000Z",
-          "close": 4095.6
+          "time": "2026-06-24T06:01:00.000Z",
+          "close": 4096.9
         },
         {
           "time": "2026-06-24T06:03:00.000Z",
@@ -11445,12 +11420,12 @@
           "close": 4112.2
         },
         {
-          "time": "2026-06-24T06:12:00.000Z",
-          "close": 4113.3
+          "time": "2026-06-24T06:13:00.000Z",
+          "close": 4112.5
         },
         {
-          "time": "2026-06-24T06:14:00.000Z",
-          "close": 4113.5
+          "time": "2026-06-24T06:15:00.000Z",
+          "close": 4110.9
         },
         {
           "time": "2026-06-24T06:16:00.000Z",
@@ -11461,24 +11436,20 @@
           "close": 4103.6
         },
         {
-          "time": "2026-06-24T06:19:00.000Z",
-          "close": 4104.4
+          "time": "2026-06-24T06:20:00.000Z",
+          "close": 4103.5
         },
         {
-          "time": "2026-06-24T06:21:00.000Z",
-          "close": 4103.3
-        },
-        {
-          "time": "2026-06-24T06:23:00.000Z",
+          "time": "2026-06-24T06:22:00.000Z",
           "close": 4105.5
         },
         {
-          "time": "2026-06-24T06:25:00.000Z",
-          "close": 4106.6
+          "time": "2026-06-24T06:24:00.000Z",
+          "close": 4105.9
         },
         {
-          "time": "2026-06-24T06:27:00.000Z",
-          "close": 4106.1
+          "time": "2026-06-24T06:26:00.000Z",
+          "close": 4106.3
         },
         {
           "time": "2026-06-24T06:28:00.000Z",
@@ -11501,20 +11472,16 @@
           "close": 4106
         },
         {
-          "time": "2026-06-24T06:37:00.000Z",
-          "close": 4106.9
+          "time": "2026-06-24T06:38:00.000Z",
+          "close": 4105.4
         },
         {
-          "time": "2026-06-24T06:39:00.000Z",
-          "close": 4106.4
+          "time": "2026-06-24T06:40:00.000Z",
+          "close": 4108.6
         },
         {
-          "time": "2026-06-24T06:41:00.000Z",
-          "close": 4110.3
-        },
-        {
-          "time": "2026-06-24T06:43:00.000Z",
-          "close": 4109.7
+          "time": "2026-06-24T06:42:00.000Z",
+          "close": 4108.5
         },
         {
           "time": "2026-06-24T06:44:00.000Z",
@@ -11537,8 +11504,8 @@
           "close": 4107.9
         },
         {
-          "time": "2026-06-24T06:53:00.000Z",
-          "close": 4108.4
+          "time": "2026-06-24T06:54:00.000Z",
+          "close": 4107.1
         },
         {
           "time": "2026-06-24T06:55:00.000Z",
@@ -11557,20 +11524,16 @@
           "close": 4106.4
         },
         {
-          "time": "2026-06-24T07:02:00.000Z",
-          "close": 4102.6
+          "time": "2026-06-24T07:03:00.000Z",
+          "close": 4104.5
         },
         {
-          "time": "2026-06-24T07:04:00.000Z",
-          "close": 4106.1
+          "time": "2026-06-24T07:05:00.000Z",
+          "close": 4104.8
         },
         {
-          "time": "2026-06-24T07:06:00.000Z",
-          "close": 4106.5
-        },
-        {
-          "time": "2026-06-24T07:08:00.000Z",
-          "close": 4106.6
+          "time": "2026-06-24T07:07:00.000Z",
+          "close": 4105.4
         },
         {
           "time": "2026-06-24T07:09:00.000Z",
@@ -11593,24 +11556,20 @@
           "close": 4103.1
         },
         {
-          "time": "2026-06-24T07:18:00.000Z",
-          "close": 4104.3
+          "time": "2026-06-24T07:19:00.000Z",
+          "close": 4102.9
         },
         {
-          "time": "2026-06-24T07:20:00.000Z",
-          "close": 4102.5
+          "time": "2026-06-24T07:21:00.000Z",
+          "close": 4103
         },
         {
-          "time": "2026-06-24T07:22:00.000Z",
-          "close": 4103.5
+          "time": "2026-06-24T07:23:00.000Z",
+          "close": 4100.9
         },
         {
-          "time": "2026-06-24T07:24:00.000Z",
+          "time": "2026-06-24T07:25:00.000Z",
           "close": 4102
-        },
-        {
-          "time": "2026-06-24T07:26:00.000Z",
-          "close": 4102.8
         },
         {
           "time": "2026-06-24T07:27:00.000Z",
@@ -11629,8 +11588,8 @@
           "close": 4097.9
         },
         {
-          "time": "2026-06-24T07:35:00.000Z",
-          "close": 4095.5
+          "time": "2026-06-24T07:34:00.000Z",
+          "close": 4098
         },
         {
           "time": "2026-06-24T07:36:00.000Z",
@@ -11649,24 +11608,20 @@
           "close": 4098.3
         },
         {
-          "time": "2026-06-24T07:43:00.000Z",
-          "close": 4098.9
+          "time": "2026-06-24T07:44:00.000Z",
+          "close": 4099.7
         },
         {
-          "time": "2026-06-24T07:45:00.000Z",
-          "close": 4099
+          "time": "2026-06-24T07:46:00.000Z",
+          "close": 4099.6
         },
         {
-          "time": "2026-06-24T07:47:00.000Z",
-          "close": 4100.5
+          "time": "2026-06-24T07:48:00.000Z",
+          "close": 4102.2
         },
         {
-          "time": "2026-06-24T07:49:00.000Z",
-          "close": 4102.1
-        },
-        {
-          "time": "2026-06-24T07:51:00.000Z",
-          "close": 4098.6
+          "time": "2026-06-24T07:50:00.000Z",
+          "close": 4100.3
         },
         {
           "time": "2026-06-24T07:52:00.000Z",
@@ -11689,20 +11644,16 @@
           "close": 4094.1
         },
         {
-          "time": "2026-06-24T08:01:00.000Z",
-          "close": 4093.8
-        },
-        {
-          "time": "2026-06-24T08:03:00.000Z",
-          "close": 4093.1
-        },
-        {
-          "time": "2026-06-24T08:05:00.000Z",
+          "time": "2026-06-24T08:02:00.000Z",
           "close": 4093.5
         },
         {
-          "time": "2026-06-24T08:07:00.000Z",
-          "close": 4093.3
+          "time": "2026-06-24T08:04:00.000Z",
+          "close": 4093.9
+        },
+        {
+          "time": "2026-06-24T08:06:00.000Z",
+          "close": 4093.2
         },
         {
           "time": "2026-06-24T08:08:00.000Z",
@@ -11717,12 +11668,12 @@
           "close": 4091.1
         },
         {
-          "time": "2026-06-24T08:14:00.000Z",
-          "close": 4091
+          "time": "2026-06-24T08:13:00.000Z",
+          "close": 4091.9
         },
         {
-          "time": "2026-06-24T08:16:00.000Z",
-          "close": 4091.5
+          "time": "2026-06-24T08:15:00.000Z",
+          "close": 4092
         },
         {
           "time": "2026-06-24T08:17:00.000Z",
@@ -11745,24 +11696,20 @@
           "close": 4097.1
         },
         {
-          "time": "2026-06-24T08:26:00.000Z",
-          "close": 4096.5
+          "time": "2026-06-24T08:27:00.000Z",
+          "close": 4095.5
         },
         {
-          "time": "2026-06-24T08:28:00.000Z",
-          "close": 4096.4
+          "time": "2026-06-24T08:29:00.000Z",
+          "close": 4097.7
         },
         {
-          "time": "2026-06-24T08:30:00.000Z",
-          "close": 4100.6
+          "time": "2026-06-24T08:31:00.000Z",
+          "close": 4104.3
         },
         {
-          "time": "2026-06-24T08:32:00.000Z",
-          "close": 4103.7
-        },
-        {
-          "time": "2026-06-24T08:34:00.000Z",
-          "close": 4101.3
+          "time": "2026-06-24T08:33:00.000Z",
+          "close": 4102
         },
         {
           "time": "2026-06-24T08:35:00.000Z",
@@ -11781,44 +11728,40 @@
           "close": 4099.8
         },
         {
-          "time": "2026-06-24T08:42:00.000Z",
-          "close": 4099.1
+          "time": "2026-06-24T08:43:00.000Z",
+          "close": 4099.6
         },
         {
-          "time": "2026-06-24T08:44:00.000Z",
-          "close": 4100
+          "time": "2026-06-24T08:45:00.000Z",
+          "close": 4097.7
         },
         {
-          "time": "2026-06-24T08:46:00.000Z",
-          "close": 4096.6
+          "time": "2026-06-24T08:47:00.000Z",
+          "close": 4094.6
         },
         {
-          "time": "2026-06-24T08:48:00.000Z",
-          "close": 4095.9
-        },
-        {
-          "time": "2026-06-24T08:50:00.000Z",
-          "close": 4096.9
+          "time": "2026-06-24T08:49:00.000Z",
+          "close": 4095.8
         },
         {
           "time": "2026-06-24T08:51:00.000Z",
           "close": 4096.1
         },
         {
-          "time": "2026-06-24T08:53:00.000Z",
-          "close": 4095.5
+          "time": "2026-06-24T08:52:00.000Z",
+          "close": 4096.4
         },
         {
-          "time": "2026-06-24T08:55:00.000Z",
-          "close": 4094
+          "time": "2026-06-24T08:54:00.000Z",
+          "close": 4093.6
         },
         {
-          "time": "2026-06-24T08:57:00.000Z",
-          "close": 4094.3
+          "time": "2026-06-24T08:56:00.000Z",
+          "close": 4094.1
         },
         {
-          "time": "2026-06-24T08:59:00.000Z",
-          "close": 4093.3
+          "time": "2026-06-24T08:58:00.000Z",
+          "close": 4093.6
         },
         {
           "time": "2026-06-24T09:00:00.000Z",
@@ -11837,23 +11780,19 @@
           "close": 4090.8
         },
         {
-          "time": "2026-06-24T09:07:00.000Z",
-          "close": 4089.6
+          "time": "2026-06-24T09:08:00.000Z",
+          "close": 4089.2
         },
         {
-          "time": "2026-06-24T09:09:00.000Z",
-          "close": 4086.9
+          "time": "2026-06-24T09:10:00.000Z",
+          "close": 4087.7
         },
         {
-          "time": "2026-06-24T09:11:00.000Z",
-          "close": 4088.3
+          "time": "2026-06-24T09:12:00.000Z",
+          "close": 4092.9
         },
         {
-          "time": "2026-06-24T09:13:00.000Z",
-          "close": 4093.2
-        },
-        {
-          "time": "2026-06-24T09:15:00.000Z",
+          "time": "2026-06-24T09:14:00.000Z",
           "close": 4093.3
         },
         {
@@ -11865,20 +11804,80 @@
           "close": 4094.8
         },
         {
-          "time": "2026-06-24T09:19:03.000Z",
-          "close": 4094.9
+          "time": "2026-06-24T09:20:00.000Z",
+          "close": 4093.5
+        },
+        {
+          "time": "2026-06-24T09:22:00.000Z",
+          "close": 4091.9
+        },
+        {
+          "time": "2026-06-24T09:24:00.000Z",
+          "close": 4091.3
+        },
+        {
+          "time": "2026-06-24T09:26:00.000Z",
+          "close": 4089
+        },
+        {
+          "time": "2026-06-24T09:28:00.000Z",
+          "close": 4089
+        },
+        {
+          "time": "2026-06-24T09:30:00.000Z",
+          "close": 4087.2
+        },
+        {
+          "time": "2026-06-24T09:31:00.000Z",
+          "close": 4087.1
+        },
+        {
+          "time": "2026-06-24T09:33:00.000Z",
+          "close": 4087.8
+        },
+        {
+          "time": "2026-06-24T09:35:00.000Z",
+          "close": 4087.2
+        },
+        {
+          "time": "2026-06-24T09:37:00.000Z",
+          "close": 4086.6
+        },
+        {
+          "time": "2026-06-24T09:39:00.000Z",
+          "close": 4085.6
+        },
+        {
+          "time": "2026-06-24T09:41:00.000Z",
+          "close": 4084.3
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 4083.4
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 4085.6
+        },
+        {
+          "time": "2026-06-24T09:47:00.000Z",
+          "close": 4084.5
+        },
+        {
+          "time": "2026-06-24T09:48:32.000Z",
+          "close": 4085.9
         }
       ]
     },
     {
       "symbol": "INDIAVIX",
       "name": "India VIX",
-      "closeValue": 13.44,
+      "closeValue": 13.37,
       "previousClose": 12.84,
-      "changePercent": 4.673,
+      "changePercent": 4.112,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:29:10.000Z",
+      "dataTimestamp": "2026-06-24T09:58:44.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^INDIAVIX",
       "tradingViewSymbol": "NSE:INDIAVIX",
@@ -11908,10 +11907,6 @@
         },
         {
           "time": "2026-06-24T03:55:00.000Z",
-          "close": 13.94
-        },
-        {
-          "time": "2026-06-24T03:57:00.000Z",
           "close": 13.94
         },
         {
@@ -11963,10 +11958,6 @@
           "close": 14.01
         },
         {
-          "time": "2026-06-24T04:22:00.000Z",
-          "close": 13.99
-        },
-        {
           "time": "2026-06-24T04:23:00.000Z",
           "close": 14.08
         },
@@ -12013,10 +12004,6 @@
         {
           "time": "2026-06-24T04:45:00.000Z",
           "close": 13.74
-        },
-        {
-          "time": "2026-06-24T04:46:00.000Z",
-          "close": 13.73
         },
         {
           "time": "2026-06-24T04:48:00.000Z",
@@ -12067,10 +12054,6 @@
           "close": 13.7
         },
         {
-          "time": "2026-06-24T05:11:00.000Z",
-          "close": 13.72
-        },
-        {
           "time": "2026-06-24T05:13:00.000Z",
           "close": 13.71
         },
@@ -12117,10 +12100,6 @@
         {
           "time": "2026-06-24T05:35:00.000Z",
           "close": 13.6
-        },
-        {
-          "time": "2026-06-24T05:36:00.000Z",
-          "close": 13.62
         },
         {
           "time": "2026-06-24T05:38:00.000Z",
@@ -12171,10 +12150,6 @@
           "close": 13.64
         },
         {
-          "time": "2026-06-24T06:01:00.000Z",
-          "close": 13.65
-        },
-        {
           "time": "2026-06-24T06:03:00.000Z",
           "close": 13.63
         },
@@ -12223,10 +12198,6 @@
           "close": 13.61
         },
         {
-          "time": "2026-06-24T06:26:00.000Z",
-          "close": 13.56
-        },
-        {
           "time": "2026-06-24T06:28:00.000Z",
           "close": 13.62
         },
@@ -12271,11 +12242,7 @@
           "close": 13.66
         },
         {
-          "time": "2026-06-24T06:49:00.000Z",
-          "close": 13.66
-        },
-        {
-          "time": "2026-06-24T06:51:00.000Z",
+          "time": "2026-06-24T06:50:00.000Z",
           "close": 13.66
         },
         {
@@ -12323,12 +12290,8 @@
           "close": 13.64
         },
         {
-          "time": "2026-06-24T07:14:00.000Z",
-          "close": 13.65
-        },
-        {
-          "time": "2026-06-24T07:16:00.000Z",
-          "close": 13.65
+          "time": "2026-06-24T07:15:00.000Z",
+          "close": 13.64
         },
         {
           "time": "2026-06-24T07:18:00.000Z",
@@ -12375,11 +12338,7 @@
           "close": 13.56
         },
         {
-          "time": "2026-06-24T07:39:00.000Z",
-          "close": 13.56
-        },
-        {
-          "time": "2026-06-24T07:41:00.000Z",
+          "time": "2026-06-24T07:40:00.000Z",
           "close": 13.55
         },
         {
@@ -12427,11 +12386,7 @@
           "close": 13.54
         },
         {
-          "time": "2026-06-24T08:04:00.000Z",
-          "close": 13.47
-        },
-        {
-          "time": "2026-06-24T08:06:00.000Z",
+          "time": "2026-06-24T08:05:00.000Z",
           "close": 13.55
         },
         {
@@ -12479,12 +12434,8 @@
           "close": 13.56
         },
         {
-          "time": "2026-06-24T08:29:00.000Z",
-          "close": 13.53
-        },
-        {
-          "time": "2026-06-24T08:31:00.000Z",
-          "close": 13.59
+          "time": "2026-06-24T08:30:00.000Z",
+          "close": 13.56
         },
         {
           "time": "2026-06-24T08:33:00.000Z",
@@ -12527,16 +12478,12 @@
           "close": 13.56
         },
         {
-          "time": "2026-06-24T08:52:00.000Z",
-          "close": 13.57
-        },
-        {
-          "time": "2026-06-24T08:54:00.000Z",
-          "close": 13.58
-        },
-        {
-          "time": "2026-06-24T08:56:00.000Z",
+          "time": "2026-06-24T08:53:00.000Z",
           "close": 13.59
+        },
+        {
+          "time": "2026-06-24T08:55:00.000Z",
+          "close": 13.57
         },
         {
           "time": "2026-06-24T08:58:00.000Z",
@@ -12579,16 +12526,12 @@
           "close": 13.54
         },
         {
-          "time": "2026-06-24T09:17:00.000Z",
-          "close": 13.53
+          "time": "2026-06-24T09:18:00.000Z",
+          "close": 13.52
         },
         {
-          "time": "2026-06-24T09:19:00.000Z",
-          "close": 13.51
-        },
-        {
-          "time": "2026-06-24T09:21:00.000Z",
-          "close": 13.49
+          "time": "2026-06-24T09:20:00.000Z",
+          "close": 13.48
         },
         {
           "time": "2026-06-24T09:23:00.000Z",
@@ -12603,8 +12546,64 @@
           "close": 13.44
         },
         {
-          "time": "2026-06-24T09:29:10.000Z",
+          "time": "2026-06-24T09:29:00.000Z",
           "close": 13.44
+        },
+        {
+          "time": "2026-06-24T09:31:00.000Z",
+          "close": 13.43
+        },
+        {
+          "time": "2026-06-24T09:33:00.000Z",
+          "close": 13.43
+        },
+        {
+          "time": "2026-06-24T09:35:00.000Z",
+          "close": 13.43
+        },
+        {
+          "time": "2026-06-24T09:37:00.000Z",
+          "close": 13.37
+        },
+        {
+          "time": "2026-06-24T09:39:00.000Z",
+          "close": 13.4
+        },
+        {
+          "time": "2026-06-24T09:41:00.000Z",
+          "close": 13.39
+        },
+        {
+          "time": "2026-06-24T09:43:00.000Z",
+          "close": 13.39
+        },
+        {
+          "time": "2026-06-24T09:45:00.000Z",
+          "close": 13.31
+        },
+        {
+          "time": "2026-06-24T09:48:00.000Z",
+          "close": 13.38
+        },
+        {
+          "time": "2026-06-24T09:50:00.000Z",
+          "close": 13.35
+        },
+        {
+          "time": "2026-06-24T09:52:00.000Z",
+          "close": 13.34
+        },
+        {
+          "time": "2026-06-24T09:54:00.000Z",
+          "close": 13.33
+        },
+        {
+          "time": "2026-06-24T09:56:00.000Z",
+          "close": 13.39
+        },
+        {
+          "time": "2026-06-24T09:58:44.000Z",
+          "close": 13.37
         }
       ]
     },
@@ -12630,14 +12629,14 @@
     "diiSell": 16182.83
   },
   "giftNiftyBias": null,
-  "todaysReadArticle": "The Indian market is poised for a cautious open, with GIFT Nifty indicating a muted start and a slight positive gap, though lacking conviction for a clear trend. The direction of Nifty's opening gap will be the initial check, while Bank Nifty breadth will be crucial in determining if the move sustains beyond the open. Yesterday's sharp decline in Sensex and Nifty has put risk-off mode back in play, and weak financial breadth can cap Nifty even if global cues firm up. Private banks and Bank Nifty are key areas to watch, as their performance will significantly influence the broader market's trajectory.\n\nGlobal cues are mixed, with crude oil prices extending their fall on smoother flows through the Strait of Hormuz, easing inflation concerns and putting pressure off OMCs, aviation, and tyres. Brent crude futures for August delivery declined to $76.73 per barrel, a development that can be treated as evidence of supply discipline. The impact on Indian markets will travel through sustained Brent direction rather than the meeting headline alone. Upstream energy stocks may benefit from this development, offsetting some of the pressure on other sectors. Meanwhile, the inclusion of Alphabet in the Dow Jones signals tech gaining industrial cred, supporting the AI-spending narrative, but India needs local IT services breadth to confirm this trend.\n\nThe Nifty IT sector is a critical battleground, with Tech Mahindra's market update potentially influencing sentiment. Local breadth is needed to confirm the trade, and USD/INR support is required for a meaningful move. The sector's performance will be closely tied to global tech trends, and exporters leading the charge after the open could be a bullish sign. On the other hand, ongoing trade talks between India and the US may impact export-oriented sectors, with the outcome determining the direction for Indian exporters and autos. Nifty Auto and exporters are key areas to watch, as tariff or demand news can hit them differently from domestic OEMs and other sectors.\n\nAs India navigates these global macro shifts, the need for diversification in energy routes and suppliers has been highlighted by S&P Global Energy, citing West Asia tensions and exposing risks linked to geopolitical escalation. Brent crude, USD/INR, gold, and FII provisional flow data will be direct checks on the Indian market, with broad index bias needing breadth to sustain any move. The interplay between these factors will dictate the market's direction, with traders needing to stay alert to developments in crude oil, global tech trends, and trade talks to navigate the complex landscape unfolding today.",
+  "todaysReadArticle": "Crude oil prices have extended their fall on optimism that flows through the Strait of Hormuz are smoothing out, with global benchmark Brent crude futures for August delivery declining 0.45% to $76.73 per barrel. This development is significant for India, a major oil importer, as softer Brent crude prices can ease import costs and benefit sectors such as aviation, paints, and tyres, while potentially weighing on upstream energy stocks. The current trend in crude oil prices is a key indicator of the market's risk appetite, with a sustained decline potentially signalling a more favourable environment for risk assets.\n\nThe decline in crude oil prices is also reflective of a broader market narrative, with the US-Iran peace talks and the easing of tensions in the Middle East contributing to a more optimistic outlook. This has implications not just for crude oil, but also for other commodities such as gold, and currencies like the USD/INR. A softer Brent crude price can also influence India's energy security concerns, with S&P Global Energy recently highlighting the need for India to diversify not just its energy suppliers, but also its transport routes. This underscores the importance of monitoring geopolitical developments and their impact on crude oil prices.\n\nThe Indian market's reaction to the decline in crude oil prices will be influenced by a range of domestic factors, including the performance of key sectors such as IT and banking. The Nifty IT index, in particular, may be influenced by global tech trends, with the inclusion of Alphabet in the Dow Jones index signalling a pivot towards tech. However, the impact of this development on Indian IT stocks will depend on broader market trends, including the performance of exporter stocks and the direction of Nasdaq futures. Meanwhile, the banking sector is likely to be in focus, with Yes Bank featuring on the stock watchlist and Bank Nifty being a key indicator of the trend's sustainability.\n\nAs the Indian market opens, traders will be watching the Nifty gap direction and Bank Nifty confirmation to gauge the initial trend. The Gift Nifty indicates a muted start, with a premium of 15 points suggesting a slight positive gap, but lacking conviction for a clear direction. Stock-specific moves in Vedanta, IRFC, and Yes Bank will also be in focus, with the performance of these stocks potentially influencing broader market trends. The USD/INR and crude oil prices will also be key indicators to watch, as they can influence the market's risk appetite and sectoral performance.",
   "themes": [
     {
       "digestDate": "2026-06-24",
       "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "India and the United States opened high-level trade talks on Tuesday aimed at salvaging and recalibrating a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer here as both sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10 per cent tariff on imports from trading partners is due to expire. \"Warm welcome to @USTradeRep Amb Jamieson Greer, @USAmbIndia Amb Sergio Gor and their delegation to @DoC_GoI. Looking forward to productive discussions on the bilateral trade agreement between (India & US),\" Commerce and Industry Minister Piyush Goyal said in a post on X. Greer's two-day visit comes days after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in more than a year on the sidelines of the G7 summit in France on June 17, injecting fresh momentum into trade",
-      "sentimentScore": -0.408,
+      "sentimentScore": -0.556,
       "evidenceCount": 5
     },
     {
@@ -12661,8 +12660,8 @@
       "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
       "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
-      "sentimentScore": 0.384,
-      "evidenceCount": 3
+      "sentimentScore": 0.4,
+      "evidenceCount": 2
     }
   ],
   "tradeSetups": [],
@@ -12673,12 +12672,12 @@
     "mode": "live",
     "verifiedArticleCount": 60,
     "publisherCount": 14,
-    "categoryCount": 5,
+    "categoryCount": 6,
     "duplicateWithPreviousPercent": 0,
     "blockedReason": null,
     "isVerifiedForPublicArchive": true
   },
-  "durationMillis": 75594,
+  "durationMillis": 67467,
   "scheduledFor": "2026-06-24T07:15:00+05:30",
   "runMode": "scheduled-verified-source-data",
   "ogImageUrl": null,
@@ -12689,10 +12688,10 @@
       "sourceName": "Mint Markets",
       "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June",
       "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 23,868 level, a premium of nearly 15 points from the Nifty futures’ previous close.",
-      "takeaway": "GIFT Nifty indicates a muted start; premium of 15 points suggests a slight positive gap, but lacks conviction for a clear trend.",
+      "takeaway": "Gift Nifty indicates a muted start; premium of 15 points suggests a slight positive gap, but lacks conviction for a clear direction.",
       "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Nifty's opening gap direction is the initial check; Bank Nifty breadth will decide if the move sustains beyond the open.",
-      "watchFor": "Watch Nifty VWAP and Bank Nifty breadth in the first 30 minutes for confirmation.",
+      "indiaImpact": "Nifty gap direction is the initial check; Bank Nifty confirmation will decide if the trend sustains.",
+      "watchFor": "Watch Nifty VWAP and Bank Nifty breadth in the first 15 minutes.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-24-june-11782265374822.html",
       "sentimentLabel": "neutral",
       "entityName": "Nifty Open",
@@ -12705,24 +12704,24 @@
       }
     },
     {
-      "publishedAt": "2026-06-24T02:35:23.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
-      "summary": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update.",
-      "takeaway": "Tech Mahindra's market update may influence Nifty IT sentiment; local breadth is needed to confirm the trade.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty IT is the relevant sector; local breadth and USD/INR support are required for a meaningful trade.",
-      "watchFor": "Watch Nifty IT stocks' relative performance and USD/INR through the first 30 minutes.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
+      "publishedAt": "2026-06-24T02:20:09.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
+      "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
+      "takeaway": "Yesterday's sharp decline in Sensex and Nifty; today's focus is on stock-specific moves in Vedanta, IRFC, and Yes Bank.",
+      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
+      "indiaImpact": "Bank Nifty and private banks are in focus due to Yes Bank's presence in the stock watchlist.",
+      "watchFor": "Watch Bank Nifty and private-bank breadth in the first 30 minutes for direction.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
       "sentimentLabel": "positive",
-      "entityName": "Nifty IT",
-      "category": "sector_positive",
+      "entityName": "Bank Nifty",
+      "category": "macro_positive",
       "thumbnail": {
-        "label": "It",
-        "theme": "Tech Mahindra",
-        "accent": "#2563eb",
-        "alt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail"
+        "label": "Bank",
+        "theme": "Yes Bank",
+        "accent": "#059669",
+        "alt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail"
       }
     },
     {
@@ -12747,24 +12746,66 @@
       }
     },
     {
-      "publishedAt": "2026-06-24T02:20:09.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
-      "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
-      "takeaway": "Yesterday's sharp decline in Sensex and Nifty; risk-off continues if Indian breadth remains weak.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty and private banks are key; weak financial breadth can cap Nifty even if global cues firm up.",
-      "watchFor": "Watch private-bank breadth and Bank Nifty VWAP through 9:45 AM.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
+      "publishedAt": "2026-06-24T02:35:23.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
+      "summary": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update.",
+      "takeaway": "Tech Mahindra's market update may influence Nifty IT; local breadth and USD/INR support are needed to confirm the trade.",
+      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
+      "indiaImpact": "Nifty IT is the relevant sector; local breadth and USD/INR will determine if global tech news translates into an India trade.",
+      "watchFor": "Watch Nifty IT stocks' relative performance and USD/INR in the first 30 minutes.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
       "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
+      "entityName": "Nifty IT",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "It",
+        "theme": "Tech Mahindra",
+        "accent": "#2563eb",
+        "alt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-24T02:35:04.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Infosys Share Price Live Updates: Infosys Stock Performance Today",
+      "summary": "Infosys Share Price Live Updates: Infosys Stock Performance Today.",
+      "takeaway": "Infosys stock update; needs broader Nifty IT and exporter breadth to confirm a trading signal.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty IT may react if Infosys leads; otherwise, it's a stock-specific move without broader market impact.",
+      "watchFor": "Watch Nifty IT breadth and exporter stocks at the open for a directional cue.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty IT",
       "category": "macro_positive",
       "thumbnail": {
-        "label": "Bank",
-        "theme": "Yes Bank",
+        "label": "It",
+        "theme": "Infosys Share",
         "accent": "#059669",
-        "alt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail"
+        "alt": "Infosys Share Price Live Updates: Infosys Stock Performance Today source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-24T00:25:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
+      "summary": "As Alphabet rolls out more data centers &#x2014; and borrowing money to do it &#x2014; it can be argued that it is becoming more of an industrial company, says strategist",
+      "takeaway": "Alphabet's inclusion in Dow Jones signals tech pivot; India's IT sector may react if exporter stocks lead and Nasdaq futures confirm.",
+      "whyItMatters": "Global Tech stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
+      "indiaImpact": "Nifty IT may gain if exporter breadth improves; otherwise, it's global tech context without direct India impact.",
+      "watchFor": "Watch Nifty IT and exporter stocks against Nasdaq futures at the open for a directional cue.",
+      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
+      "sentimentLabel": "negative",
+      "entityName": "Global Tech",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail"
       }
     },
     {
@@ -12773,10 +12814,10 @@
       "sourceName": "CNBC World",
       "headline": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz",
       "summary": "Oil falls Tuesday as investors continue to assess the latest developments in the Middle East, while showing optimism the conflict may end soon.",
-      "takeaway": "Crude oil prices edge lower as Strait of Hormuz tanker traffic is monitored, easing inflation concerns if the trend survives the morning handoff.",
+      "takeaway": "Crude oil prices ease on optimism over Middle East conflict resolution; softer Brent may ease India's import costs if the trend holds.",
       "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, paints, and tyres may benefit if Brent stays soft; upstream energy may lag due to lower crude prices.",
-      "watchFor": "Watch Brent holding below the Asia handoff for sustained softness.",
+      "indiaImpact": "OMCs, aviation, paints, and tyres may benefit if Brent stays soft; upstream energy could lag on lower crude prices.",
+      "watchFor": "Watch Brent prices holding below Asia handoff levels for sustained softness.",
       "sourceUrl": "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
       "sentimentLabel": "negative",
       "entityName": "Geopolitical risk",
@@ -12786,27 +12827,6 @@
         "theme": "Oil Supply",
         "accent": "#f97316",
         "alt": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T00:25:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
-      "summary": "As Alphabet rolls out more data centers &#x2014; and borrowing money to do it &#x2014; it can be argued that it is becoming more of an industrial company, says strategist",
-      "takeaway": "Alphabet's inclusion in Dow Jones signals tech gaining industrial cred; supports AI-spending narrative, but India needs local IT services breadth to confirm.",
-      "whyItMatters": "Global Tech stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
-      "indiaImpact": "Nifty IT is the direct check; potentially bullish if exporters lead after the open, otherwise remains global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures for confirmation.",
-      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail"
       }
     },
     {
@@ -12836,10 +12856,10 @@
       "sourceName": "Business Standard Economy",
       "headline": "India, US begin trade talks as two nations rework deal amid tariff changes",
       "summary": "India and the United States opened high-level trade talks on Tuesday aimed at salvaging and recalibrating a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer here as both sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10 per cent tariff on imports from trading partners is due to expire. \"Warm welcome to @USTradeRep Amb Jamieson Greer, @USAmbIndia Amb Sergio Gor and their delegation to @DoC_GoI. Looking forward to productive discussions on the bilateral trade agreement between (India & US),\" Commerce and Industry Minister Piyush Goyal said in a post on X. Greer's two-day visit comes days after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in more than a year on the sidelines of the G7 summit in France on June 17, injecting fresh momentum into trade",
-      "takeaway": "Tariff changes and trade talks may impact export-oriented sectors; outcome will determine the direction for Indian exporters and autos.",
+      "takeaway": "Tariff changes and trade talks may impact India's export-oriented sectors; outcome will determine the extent of the effect on Indian markets.",
       "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
-      "indiaImpact": "Nifty Auto and exporters are key; tariff or demand news can hit them differently from domestic OEMs and other sectors.",
-      "watchFor": "Watch exporter and auto-ancillary breadth in the first 30 minutes for trade direction.",
+      "indiaImpact": "Nifty Auto and exporters are key sectors to watch as tariff changes and trade talks may influence their performance.",
+      "watchFor": "Watch exporter and Nifty Auto sector breadth in the first 30 minutes for a directional cue.",
       "sourceUrl": "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html",
       "sentimentLabel": "negative",
       "entityName": "Autos",
@@ -12849,48 +12869,6 @@
         "theme": "Begin Trade",
         "accent": "#7c3aed",
         "alt": "India, US begin trade talks as two nations rework deal amid tariff changes source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-23T22:11:21.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Cerebras falls 10% after chipmaker forecasts shrinking margin in first earnings report since IPO",
-      "summary": "Cerebras went public on the Nasdaq in May, giving Wall Street access to a pureplay AI company.",
-      "takeaway": "Cerebras went public on the Nasdaq in May, giving Wall Street access to a pureplay AI company; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/23/cerebras-cbrs-q1-earnings-report-2026.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "Cerebras falls 10% after chipmaker forecasts shrinking margin in first earnings report since IPO source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T01:40:44.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Alphabet added to Dow Jones Industrial Average, replacing Verizon",
-      "summary": "Alphabet will replace Verizon in the Dow Jones Industrial Average.",
-      "takeaway": "Alphabet will replace Verizon in the Dow Jones Industrial Average; Alphabet supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Alphabet must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Alphabet added to Dow Jones Industrial Average, replacing Verizon source thumbnail"
       }
     }
   ],
@@ -12906,14 +12884,14 @@
       "category": "neutral_volatile"
     },
     {
-      "title": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-24T02:35:23.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETech%20Mahindra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail",
+      "title": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-24T02:20:09.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EYes%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail",
       "sentimentLabel": "positive",
-      "category": "sector_positive"
+      "category": "macro_positive"
     },
     {
       "title": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel",
@@ -12926,14 +12904,34 @@
       "category": "global_risk"
     },
     {
-      "title": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-24T02:20:09.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EYes%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail",
+      "title": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-24T02:35:23.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETech%20Mahindra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Infosys Share Price Live Updates: Infosys Stock Performance Today",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-24T02:35:04.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EInfosys%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Infosys Share Price Live Updates: Infosys Stock Performance Today source thumbnail",
       "sentimentLabel": "positive",
       "category": "macro_positive"
+    },
+    {
+      "title": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-06-24T00:25:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
     },
     {
       "title": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz",
@@ -12943,16 +12941,6 @@
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz source thumbnail",
       "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
-      "publisherName": "MarketWatch",
-      "timestamp": "2026-06-24T00:25:00.000Z",
-      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail",
-      "sentimentLabel": "positive",
       "category": "global_risk"
     },
     {
@@ -12974,26 +12962,6 @@
       "thumbnailAlt": "India, US begin trade talks as two nations rework deal amid tariff changes source thumbnail",
       "sentimentLabel": "negative",
       "category": "global_risk"
-    },
-    {
-      "title": "Cerebras falls 10% after chipmaker forecasts shrinking margin in first earnings report since IPO",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-06-23T22:11:21.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/23/cerebras-cbrs-q1-earnings-report-2026.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Cerebras falls 10% after chipmaker forecasts shrinking margin in first earnings report since IPO source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Alphabet added to Dow Jones Industrial Average, replacing Verizon",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-06-24T01:40:44.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Alphabet added to Dow Jones Industrial Average, replacing Verizon source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
     }
   ],
   "setupAudit": [
@@ -13002,7 +12970,7 @@
       "direction": "BULLISH",
       "status": "ACTIVE",
       "reason": "NIFTY is still below the entry zone, so this remains a conditional pullback plan.",
-      "currentPrice": 24051.45,
+      "currentPrice": 24014.35,
       "entry": 24200,
       "stopLoss": 22321.51,
       "target": 28332.69,
@@ -13013,13 +12981,13 @@
       "symbol": "BANKNIFTY",
       "direction": "BULLISH",
       "status": "RISK_REWARD_COMPRESSED",
-      "reason": "BANKNIFTY moved away from the entry zone; the reward left is only 1R.",
-      "currentPrice": 58192,
+      "reason": "BANKNIFTY moved away from the entry zone; the reward left is only 1.01R.",
+      "currentPrice": 58168.05,
       "entry": 55000,
       "stopLoss": 49674.28,
       "target": 66716.58,
       "riskReward": 2.2,
-      "remainingRiskReward": 1.001
+      "remainingRiskReward": 1.006
     }
   ],
   "asset": {
