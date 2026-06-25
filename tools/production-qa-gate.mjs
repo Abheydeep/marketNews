@@ -79,7 +79,6 @@ await group("Domain sanity", async () => {
         "README.md",
         "docs",
         "deploy",
-        "apps",
         "frontend",
         "tools",
         "backend",

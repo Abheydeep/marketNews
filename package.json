@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/public-portal",
     "frontend"
   ],
   "scripts": {
@@ -26,7 +25,6 @@
     "hooks:install": "git config core.hooksPath .githooks",
     "vercel:build": "node tools/vercel-build.mjs",
     "vercel:build:public": "node tools/vercel-build-public.mjs",
-    "public:dev": "npm --workspace @market-narrative/public-portal run dev",
     "trading:api": "cd services/trading-api && uvicorn app.main:app --reload --port 8090",
     "trading:test": "cd services/trading-api && python3 -m pytest",
     "trading:test:lite": "cd services/trading-api && python3 tests/run_unit_tests.py",

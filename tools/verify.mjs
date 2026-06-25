@@ -2734,7 +2734,7 @@ await test("Spring CORS allows admin and trade frontend origins", async () => {
 
 await test("frontend workspace separates public portal, admin studio, and shared packages", async () => {
   const rootPackage = JSON.parse(await readFile(join(rootDir, "package.json"), "utf8"));
-  assert.deepEqual(rootPackage.workspaces, ["apps/public-portal", "frontend"]);
+  assert.deepEqual(rootPackage.workspaces, ["frontend"], "monorepo is public-only; admin/trade/public-portal are gone");
   assert.equal(rootPackage.scripts["vercel:build"], "node tools/vercel-build.mjs");
   assert.equal(rootPackage.scripts["public:copy:qa"], "node tools/public-copy-qa.mjs");
   assert.equal(rootPackage.scripts["hooks:install"], "git config core.hooksPath .githooks");
@@ -2742,13 +2742,7 @@ await test("frontend workspace separates public portal, admin studio, and shared
   assert.ok(rootPackage.scripts["prod:qa:strict"].includes("REQUIRE_AUTHENTICATED_QA=true"));
   assert.equal(rootPackage.scripts["vercel:build:admin"], undefined, "admin is a separate repo — no admin build script in monorepo");
   assert.equal(rootPackage.scripts["vercel:build:trade"], undefined, "trade is a separate repo — no trade build script in monorepo");
-
-  const publicPackage = JSON.parse(await readFile(join(rootDir, "apps", "public-portal", "package.json"), "utf8"));
-  const publicPortalPage = await readFile(join(rootDir, "apps", "public-portal", "app", "page.tsx"), "utf8");
-
-  assert.equal(publicPackage.name, "@market-narrative/public-portal");
-  assert.ok(publicPackage.dependencies["@market-narrative/ui"]);
-  assert.ok(publicPortalPage.includes("BrandMark"));
+  assert.equal(rootPackage.scripts["public:dev"], undefined, "public-portal removed — no public:dev script");
 
   const adminRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
   const tradeRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
