@@ -36,7 +36,7 @@ import moveDetectHandler from "../api/move-detect.mjs";
 import { LIVE_MARKET_SYMBOLS, normalizeYahooChartResult } from "./market-data.mjs";
 import { detectMoves, generateMoveArticle } from "./generate-move-articles.mjs";
 import { movePage } from "./move-page.mjs";
-import { marketCalendarState, verifyCalendarData } from "./market-calendar.mjs";
+import { marketCalendarState, verifyCalendarData, isGeneralEditionDate } from "./market-calendar.mjs";
 import { multibaggerState, validateMultibaggerState } from "./multibagger-data.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle, resolveNewsArticles, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
@@ -2678,8 +2678,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
     const archiveDigest = await readFile(join(rootDir, "archive", "daily", fileName), "utf8");
     const parsedArchiveDigest = JSON.parse(archiveDigest);
     if (parsedArchiveDigest?.sourceVerification?.isVerifiedForPublicArchive === true) {
+      // Trading days plus general-edition days (weekday holidays, Sundays) may be verified
+      // for the public archive; fully-closed days (Saturdays, weekend holidays) may not.
       const calendar = marketCalendarState(parsedArchiveDigest.digestDate);
-      assert.equal(calendar.isTradingSession, true, `${fileName} is verified for public archive on a closed-market date: ${calendar.reason}`);
+      assert.equal(isGeneralEditionDate(parsedArchiveDigest.digestDate), true, `${fileName} is verified for public archive on a fully-closed date: ${calendar.reason}`);
     }
     assert.ok(!archiveDigest.includes("teleprompterScript"), `${fileName} should not archive private teleprompterScript`);
     assert.ok(!archiveDigest.includes("reelScript"), `${fileName} should not archive private reelScript`);

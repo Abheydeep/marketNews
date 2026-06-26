@@ -162,7 +162,7 @@ export function marketBiasWord(dailyLead, marketSnapshots = []) {
 // Punchy, SEO-friendly H1 written by the model, grounded strictly in the chosen lead and
 // real market data so it cannot drift to an off-lead story, fabricate flows, or contradict
 // the day's direction. Falls back to the deterministic templated title on failure.
-export async function generateEditorialHeadline({ dailyLead, marketSnapshots = [] } = {}) {
+export async function generateEditorialHeadline({ dailyLead, marketSnapshots = [], marketUpdate = false } = {}) {
   if (!process.env.NVIDIA_API_KEY) return null;
   const story = dailyLead?.headline || dailyLead?.label || "";
   if (!story) return null;
@@ -177,8 +177,25 @@ export async function generateEditorialHeadline({ dailyLead, marketSnapshots = [
   };
   const pricesLine = [price("NIFTY", "Nifty"), price("BANKNIFTY", "Bank Nifty"), price("BRENT", "Brent crude", "$"), price("USDINR", "USD/INR")]
     .filter(Boolean).join(", ");
-  const system = "You are the headline editor for Market Narrative, a pre-market briefing for Indian equity traders and investors. You write accurate, grounded headlines — never sensational and never invented.";
-  const user = `Write ONE H1 headline for today's India pre-market briefing.
+  const system = marketUpdate
+    ? "You are the headline editor for Market Narrative's Indian stock market update. You write accurate, grounded headlines — never sensational and never invented."
+    : "You are the headline editor for Market Narrative, a pre-market briefing for Indian equity traders and investors. You write accurate, grounded headlines — never sensational and never invented.";
+  const user = marketUpdate
+    ? `Write ONE H1 headline for today's India market update. Indian stock markets are CLOSED today, so this is a general market update — NOT a pre-market or opening-bell piece.
+
+PRIMARY STORY (the headline MUST be about THIS story, nothing else): ${story}
+INDIA READ-THROUGH: ${dailyLead?.indiaImpact || ""}
+PRICES (latest close): ${pricesLine}
+
+RULES:
+- 8 to 13 words. One line only. No surrounding quotes, no date, no publisher name.
+- The headline MUST be about the PRIMARY STORY and its India relevance.
+- Markets are CLOSED: do NOT reference "the open", "gap-up", "gap-down", "9:15", "pre-market", or trading the session.
+- Use ONLY the facts above. Do NOT invent events, FII/FPI flows, named stocks, or numbers that are not listed.
+- Engaging, punchy, factual. SEO: include "Nifty", "Sensex", or "stock market" plus the named driver.
+- No sensational or clickbait words. No buy/sell/hold, no price targets, no index levels.
+- Output ONLY the headline text.`
+    : `Write ONE H1 headline for today's India pre-market briefing.
 
 PRIMARY STORY (the headline MUST be about THIS story, nothing else): ${story}
 INDIA READ-THROUGH: ${dailyLead?.indiaImpact || ""}

@@ -89,6 +89,21 @@ export function isTradingSessionDate(date, options = {}) {
   return marketCalendarState(date, options).isTradingSession;
 }
 
+// A date we publish a public edition for: any trading day, plus weekday exchange holidays
+// and Sundays (a plain "Market Update" piece). Saturdays and weekend NSE holidays stay closed.
+export function isGeneralEditionDate(date, options = {}) {
+  const cal = marketCalendarState(date, options);
+  if (cal.isTradingSession) return true;
+  if (cal.state === PUBLICATION_STATES.EXCHANGE_HOLIDAY) return true;
+  return new Date(`${normalizeDate(date)}T12:00:00+05:30`).getDay() === 0;
+}
+
+// A publishable date that is NOT a trading session — render it as a general market update
+// (no pre-market / opening-bell framing, no trade setups).
+export function isMarketUpdateDate(date, options = {}) {
+  return isGeneralEditionDate(date, options) && !marketCalendarState(date, options).isTradingSession;
+}
+
 export function todayInIst() {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Kolkata",

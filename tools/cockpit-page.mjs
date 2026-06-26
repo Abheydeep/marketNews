@@ -23,10 +23,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
-  const pageH1 = digest.title || "Daily Pre-Market Briefing";
+  const marketUpdate = Boolean(digest.marketUpdateMode);
+  const pageH1 = digest.title || (marketUpdate ? "Indian Market Update" : "Daily Pre-Market Briefing");
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${pageH1} | Nifty & Bank Nifty Levels - ${formatDigestDate(digest.digestDate)}`
-    : `${pageH1} - Nifty Pre-Market Analysis ${formatDigestDate(digest.digestDate)} | Market Narrative`;
+    : marketUpdate
+      ? `${pageH1} - Indian Stock Market Update ${formatDigestDate(digest.digestDate)} | Market Narrative`
+      : `${pageH1} - Nifty Pre-Market Analysis ${formatDigestDate(digest.digestDate)} | Market Narrative`;
   const pageDescription = dailySeoDescription(digest, isTradingGuidePage);
   const pageOrigin = options.siteOrigin ?? siteOrigin;
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
@@ -82,7 +85,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta http-equiv="Pragma" content="no-cache">
   <meta name="description" content="${escapeHtml(pageDescription)}">
   <meta name="author" content="Abhey Deep">
-  <meta name="keywords" content="Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief">
+  <meta name="keywords" content="${marketUpdate ? "Market Narrative, Abhey Deep, Indian stock market update, Nifty, Sensex, NSE, BSE, market news today, FII DII data" : "Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief"}">
+
   <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
   <meta name="theme-color" content="#050816">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
@@ -7735,7 +7739,7 @@ function compactMetaStripHtml(digest, canonicalUrl) {
   return `
     <div class="compact-meta-strip share-row" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; width: fit-content; max-width: 100%; margin: 16px auto; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 999px; padding: 6px 16px; font-size: 0.85em; color: var(--stone);">
       ${prevLink || nextLink ? `<span style="font-weight: 500; white-space: nowrap;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span>${metaDivider}` : ""}
-      <span style="white-space: nowrap;"><strong style="color: var(--chalk);">Abhey Deep</strong> <span style="opacity:0.45;">·</span> Pre-market briefing</span>
+      <span style="white-space: nowrap;"><strong style="color: var(--chalk);">Abhey Deep</strong> <span style="opacity:0.45;">·</span> ${digest.marketUpdateMode ? "Market update" : "Pre-market briefing"}</span>
       ${metaDivider}
       <time datetime="${generated}" style="white-space: nowrap;">${escapeHtml(formatDigestDate(digest.digestDate))}</time>
       ${metaDivider}
@@ -8093,11 +8097,11 @@ function indiaPreOpenHtml(digest) {
       </div>`;
 
   return `
-    <section class="india-preopen-panel" aria-label="India Pre-Open Nerve">
+    <section class="india-preopen-panel" aria-label="${digest.marketUpdateMode ? "Market snapshot" : "India Pre-Open Nerve"}">
       <div class="preopen-header">
         <div>
-          <span class="summary-label">India Pre-Open</span>
-          <h2>Key reads before 9:15 AM IST</h2>
+          <span class="summary-label">${digest.marketUpdateMode ? "Market Update" : "India Pre-Open"}</span>
+          <h2>${digest.marketUpdateMode ? "Where Indian markets stand" : "Key reads before 9:15 AM IST"}</h2>
         </div>
         ${fii ? `<span class="preopen-flow-badge">Flows${escapeHtml(flowDate)}</span>` : ""}
       </div>
@@ -10253,8 +10257,12 @@ function dailySeoDescription(digest, isTradingGuidePage) {
     digest.twoMinuteSummary ||
     ""
   );
-  const prefix = `Pre-market analysis for ${formatDigestDate(digest.digestDate)}.`;
-  const suffix = "GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
+  const prefix = digest.marketUpdateMode
+    ? `Indian stock market update for ${formatDigestDate(digest.digestDate)}.`
+    : `Pre-market analysis for ${formatDigestDate(digest.digestDate)}.`;
+  const suffix = digest.marketUpdateMode
+    ? "Nifty, Sensex, global cues, crude oil, FII DII data and what's moving markets."
+    : "GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
   return compactMetaDescription([prefix, lead, suffix].filter(Boolean).join(" "));
 }
 

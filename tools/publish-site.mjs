@@ -5,7 +5,7 @@ import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSoci
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
-import { marketCalendarState } from "./market-calendar.mjs";
+import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
@@ -63,8 +63,9 @@ function publicArchiveVerificationForDigest(digest, verification) {
   if (!verification) {
     return verification;
   }
-  const calendar = marketCalendarState(digest.digestDate);
-  if (calendar.isTradingSession) {
+  // Trading days and general-edition days (weekday holidays, Sundays) stay verified for the
+  // public archive; only fully-closed days (Saturdays, weekend holidays) are de-verified.
+  if (isGeneralEditionDate(digest.digestDate)) {
     return verification;
   }
   return {
@@ -83,7 +84,8 @@ const publishTargetDigest = digests.find((digest) => digest.digestDate === date)
 if (publishTargetDigest) {
   const editorialH1 = await generateEditorialHeadline({
     dailyLead: publishTargetDigest.dailyLead,
-    marketSnapshots: publishTargetDigest.marketSnapshots
+    marketSnapshots: publishTargetDigest.marketSnapshots,
+    marketUpdate: Boolean(publishTargetDigest.marketUpdateMode)
   });
   if (editorialH1) {
     publishTargetDigest.title = editorialH1;
@@ -854,7 +856,7 @@ function publicOnePageSummary(digest) {
 }
 
 function isVerifiedPublicDigest(digest) {
-  return Boolean(isWeekdayDigest(digest) && digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
+  return Boolean(isGeneralEditionDate(digest.digestDate) && digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
 }
 
 function isWeekdayDigest(digest) {

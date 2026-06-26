@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
-import { marketCalendarState } from "./market-calendar.mjs";
+import { marketCalendarState, isGeneralEditionDate, isMarketUpdateDate } from "./market-calendar.mjs";
 import { assertPremarketPublishWindow } from "./publish-window.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
@@ -53,14 +53,16 @@ if (liveMode && !forceGenerate) {
 
 const calendarState = marketCalendarState(date);
 
-if (liveMode && !calendarState.isTradingSession && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
+if (liveMode && !isGeneralEditionDate(date) && process.env.ALLOW_NON_TRADING_DAY_DIGEST !== "true") {
   log.warn("daily generation blocked non-trading day", { runId, date, state: calendarState.state, reason: calendarState.reason });
   process.stderr.write(`Daily briefing generation blocked for ${date}: ${calendarState.state} (${calendarState.reason}).\n`);
   process.stderr.write("Set ALLOW_NON_TRADING_DAY_DIGEST=true only for an explicit manual non-trading-day test.\n");
   process.exit(2);
 }
 
-if (liveMode && enforcePublishWindow && process.env.ALLOW_LATE_PREMARKET_PUBLISH !== "true") {
+// The pre-market publish window only applies to trading days (it gates the 9:15 open).
+// Holiday / Sunday market-update editions can publish any time.
+if (liveMode && enforcePublishWindow && calendarState.isTradingSession && process.env.ALLOW_LATE_PREMARKET_PUBLISH !== "true") {
   try {
     assertPremarketPublishWindow({ date, scheduledTime, cutoffMinutes: publishWindowCutoffMinutes });
   } catch (error) {
@@ -82,6 +84,7 @@ log.info("daily digest built", {
   marketDataMode: generatedDigest.marketDataMode,
   newsDataMode: generatedDigest.newsDataMode
 });
+const marketUpdateMode = isMarketUpdateDate(date);
 const nonTradingSession = !calendarState.isTradingSession
   ? {
     state: calendarState.state,
@@ -89,7 +92,9 @@ const nonTradingSession = !calendarState.isTradingSession
     source: calendarState.source
   }
   : null;
-if (nonTradingSession && generatedDigest.sourceVerification) {
+// Holiday / Sunday market-update editions are published as the public latest, so keep them
+// verified. Only de-verify a non-trading day we are NOT publishing as a general edition.
+if (nonTradingSession && !marketUpdateMode && generatedDigest.sourceVerification) {
   generatedDigest.sourceVerification = {
     ...generatedDigest.sourceVerification,
     isVerifiedForPublicArchive: false
@@ -100,9 +105,12 @@ const digest = {
   ...generatedDigest,
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
-  runMode: nonTradingSession
-    ? "manual-non-trading-source-data"
-    : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
+  marketUpdateMode,
+  runMode: marketUpdateMode
+    ? "scheduled-market-update"
+    : nonTradingSession
+      ? "manual-non-trading-source-data"
+      : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
   ...(nonTradingSession ? { nonTradingSession } : {})
 };
 digest.ogImageUrl = await generatedBriefingOgImageUrl(digest);

@@ -18,10 +18,10 @@ const SCRIPT_CHECKS = [
 ];
 
 const LEGACY_LIMITS = {
-  "tools/cockpit-page.mjs": 10585,
-  "tools/publish-site.mjs": 4439,
+  "tools/cockpit-page.mjs": 10593,
+  "tools/publish-site.mjs": 4441,
   "tools/news-sources.mjs": 2784,
-  "tools/core.mjs": 2730,
+  "tools/core.mjs": 2747,
   "tools/verify.mjs": 3394,
   "tools/predeploy-verify.mjs": 298,
   "tools/reliability-smoke.mjs": 245,
@@ -39,7 +39,7 @@ const LEGACY_LIMITS = {
   "tools/public-payload.mjs": 255,
   "tools/generate-move-articles.mjs": 248,
   "tools/trading-mock-regression.mjs": 238,
-  "tools/market-calendar.mjs": 213,
+  "tools/market-calendar.mjs": 228,
   "scratch/modify_news.mjs": 215
 };
 
