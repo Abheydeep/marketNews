@@ -912,9 +912,75 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .preopen-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       margin-bottom: 12px;
+    }
+    @media (min-width: 1100px) {
+      .preopen-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    }
+    .preopen-brief {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: rgba(99,179,237,0.06);
+      border: 1px solid rgba(99,179,237,0.16);
+      border-radius: 10px;
+    }
+    .preopen-bottom-line {
+      margin: 0;
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .preopen-tags {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
+      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent 100%);
+      mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent 100%);
+    }
+    .preopen-tags::-webkit-scrollbar { display: none; }
+    .preopen-chip {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      cursor: help;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .preopen-chip:hover, .preopen-chip:focus-visible {
+      border-color: rgba(99,179,237,0.4);
+      background: rgba(99,179,237,0.1);
+      outline: none;
+    }
+    .preopen-chip--event {
+      color: #fbbf24;
+      background: rgba(251,191,36,0.1);
+      border-color: rgba(251,191,36,0.28);
+    }
+    .preopen-chip--event::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: currentColor;
     }
     .preopen-tile {
       background: rgba(255,255,255,0.04);
@@ -1555,9 +1621,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-stat-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(72px, max-content));
+      justify-content: end;
       gap: 8px;
     }
 
@@ -1815,7 +1881,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 16px;
-      align-items: center;
+      align-items: start;
       padding: 16px 18px;
       cursor: pointer;
       list-style: none;
@@ -1840,19 +1906,19 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-summary-main {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
       gap: 16px;
       min-width: 0;
     }
 
     @media (max-width: 700px) {
       .source-summary-main {
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
       .source-summary-main .source-stat-strip {
-        justify-content: flex-start;
+        justify-content: start;
       }
     }
 
@@ -1866,6 +1932,31 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 
     .source-ledger-action {
       font-size: 12px;
+    }
+
+    /* Evidence & Sources: the whole header is the toggle — chevron affordance + hover highlight. */
+    .sources-collapse-details > summary {
+      transition: background 0.15s;
+    }
+    .sources-collapse-details > summary:hover {
+      background: rgba(148, 163, 184, 0.06);
+    }
+    .sources-collapse-details > summary:focus-visible {
+      outline: 2px solid rgba(99, 179, 237, 0.55);
+      outline-offset: -3px;
+    }
+    .source-collapse-chevron {
+      align-self: center;
+      color: #8892aa;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform 0.2s ease, color 0.15s ease;
+    }
+    .sources-collapse-details > summary:hover .source-collapse-chevron {
+      color: #f0f2f8;
+    }
+    .sources-collapse-details[open] .source-collapse-chevron {
+      transform: rotate(180deg);
     }
 
     .source-ledger-body {
@@ -5247,9 +5338,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .market-map-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       padding: 0 16px 16px 16px;
+    }
+    @media (min-width: 1100px) {
+      .market-map-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
     .market-map-card {
       background: rgba(255, 255, 255, 0.03);
@@ -7411,7 +7507,10 @@ function hookTitle(digest) {
 
   const leadHeadline = digest.dailyLead?.headline;
   if (leadHeadline) {
-     const cleanHeadline = leadHeadline.replace(/^[^:|—-]+[:|—-]\s*/, '').trim(); 
+     // Strip a leading "Source/section label: " or "label — " prefix only. Require the
+     // delimiter to be a colon, pipe, or em dash followed by whitespace so intra-word
+     // hyphens (e.g. "India-China") are never split.
+     const cleanHeadline = leadHeadline.replace(/^[^:|—]{3,45}[:|—]\s+/, '').trim();
      if (cleanHeadline.length > 10) {
         if (hasFlow) {
            return `${cleanHeadline} — ${fiiPhrase()}`;
@@ -7492,11 +7591,22 @@ function compactSummaryText(digest) {
   const watchFirst = compactWatchFirstLine(digest);
   const leadText = `${digest.dailyLead?.label || ""} ${digest.dailyLead?.headline || ""} ${digest.dailyLead?.indiaImpact || ""}`.toLowerCase();
   if (/\b(crude|oil|brent|iran|hormuz|trump)\b/.test(leadText)) {
-    return conciseSentence([
-      "Iran deal headlines pulled Brent under $90 and flipped Asia back to risk-on.",
-      "For India, the first read is OMCs, aviation, tyres, USD/INR and whether Nifty breadth confirms the gap.",
-      "Treat the opening move as tradable only after Bank Nifty and first-range VWAP agree."
-    ].join(" "), 58);
+    const brent = (digest.marketSnapshots || []).find((s) => s.symbol === "BRENT");
+    const brentPx = brent && Number.isFinite(Number(brent.closeValue)) ? Math.round(Number(brent.closeValue)) : null;
+    const brentPct = brent ? Number(brent.changePercent) : null;
+    const easing = Number.isFinite(brentPct) && brentPct < -0.3;
+    const firmer = Number.isFinite(brentPct) && brentPct > 0.3;
+    const moveClause = brentPx
+      ? (easing ? `Brent crude has slipped to about $${brentPx} a barrel`
+        : firmer ? `Brent crude has pushed up to about $${brentPx} a barrel`
+        : `Brent crude is holding near $${brentPx} a barrel`)
+      : "Crude oil is the big overnight swing factor";
+    const whyIndia = easing
+      ? "Cheaper oil eases India's import bill and inflation worry — a relief for oil marketing companies, airlines, tyre and paint makers, and the rupee."
+      : firmer
+      ? "Costlier oil adds to India's import bill and inflation worry — a headwind for oil marketing companies, airlines, tyre and paint makers, and the rupee."
+      : "It feeds straight into India's import bill, the rupee and fuel-sensitive sectors like oil marketers, airlines, tyres and paints.";
+    return conciseSentence(`${moveClause}, and that sets the tone for India's open. ${whyIndia} The bigger question is whether Nifty and Bank Nifty can hold the early move once the cash market opens.`, 80);
   }
   return conciseSentence([
     headline
@@ -7620,22 +7730,21 @@ function compactMetaStripHtml(digest, canonicalUrl) {
   const prevLink = digest.previousEditionPath ? `<a href="${escapeHtml(digest.previousEditionPath)}" style="color: var(--chalk); text-decoration: none;">&#8592; Prev</a>` : "";
   const nextLink = digest.nextEditionPath ? `<a href="${escapeHtml(digest.nextEditionPath)}" style="color: var(--chalk); text-decoration: none;">Next &#8594;</a>` : "";
 
+  const metaDivider = `<span aria-hidden="true" style="display:inline-block; width:1px; height:13px; background:rgba(255,255,255,0.14);"></span>`;
+  const iconStyle = "color: var(--stone); display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 7px;";
   return `
-    <div class="compact-meta-strip share-row" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 0.85em;">
-      <div style="display: flex; align-items: center; gap: 10px; color: var(--stone); flex-wrap: wrap;">
-        ${prevLink || nextLink ? `<span style="font-weight: 500;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span><span style="opacity: 0.3;">•</span>` : ""}
-        <span><strong style="color: var(--chalk);">Abhey Deep</strong> / 7:15 AM</span>
-        <span style="opacity: 0.3; display: none;">•</span>
-        <time datetime="${generated}" style="display: none;">Verified ${escapeHtml(formatGeneratedTime(generated))}</time>
-      </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <a href="${escapeHtml(subscribeUrl)}" style="color: var(--teal); font-weight: 600; text-decoration: none;">Join Email</a>
-        <div style="display: flex; gap: 8px; align-items: center; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 12px;">
-           <a href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("whatsapp")}</a>
-           <a href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("x")}</a>
-           <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style="color: var(--stone); display: flex; width: 18px;">${shareIconHtml("linkedin")}</a>
-        </div>
-      </div>
+    <div class="compact-meta-strip share-row" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; width: fit-content; max-width: 100%; margin: 16px auto; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 999px; padding: 6px 16px; font-size: 0.85em; color: var(--stone);">
+      ${prevLink || nextLink ? `<span style="font-weight: 500; white-space: nowrap;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span>${metaDivider}` : ""}
+      <span style="white-space: nowrap;"><strong style="color: var(--chalk);">Abhey Deep</strong> <span style="opacity:0.45;">·</span> Pre-market briefing</span>
+      ${metaDivider}
+      <time datetime="${generated}" style="white-space: nowrap;">${escapeHtml(formatDigestDate(digest.digestDate))}</time>
+      ${metaDivider}
+      <a href="${escapeHtml(subscribeUrl)}" style="color: var(--teal); font-weight: 600; text-decoration: none; white-space: nowrap; align-self: center; line-height: 1; display: inline-flex; align-items: center;">Join Email</a>
+      <span style="display: inline-flex; align-items: center; gap: 2px; margin-left: 2px; align-self: center;">
+        <a href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" style="${iconStyle}">${shareIconHtml("whatsapp")}</a>
+        <a href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" style="${iconStyle}">${shareIconHtml("x")}</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style="${iconStyle}">${shareIconHtml("linkedin")}</a>
+      </span>
     </div>
   `;
 }
@@ -7816,6 +7925,70 @@ function marketMoodRailHtml(digest) {
   `;
 }
 
+const PREOPEN_SECTOR_KEYWORDS = [
+  [/\b(omc|oil marketing|hpcl|bpcl|ioc|fuel retail)\b/, "OMCs", "Crude swings hit oil-marketing margins first."],
+  [/\b(crude|brent|opec|ongc|natural gas|upstream)\b/, "Energy", "Crude price moves flow straight into energy stocks."],
+  [/\b(bank|banking|lender|credit|nbfc|financial|hdfc|icici|sbi|axis)\b/, "Banks / Financials", "Heaviest index weight; moves on rate and policy news."],
+  [/\b(\bit\b|software|infosys|tcs|wipro|hcltech|nasdaq|semiconductor|chip)\b/, "Nifty IT", "Earns in dollars; tracks US tech and the rupee."],
+  [/\b(metal|steel|copper|aluminium|zinc|hindalco|jsw|tata steel)\b/, "Metals", "Move with global commodity and China cues."],
+  [/\b(auto|vehicle|two-wheeler|\bev\b|maruti|tata motors|hero|bajaj auto)\b/, "Auto", "Sensitive to fuel, rates and demand trends."],
+  [/\b(pharma|healthcare|\bdrug\b|\bfda\b|sun pharma|cipla)\b/, "Pharma", "Driven by US FDA and export news."],
+  [/\b(fmcg|consumer staple|hindustan unilever|\bitc\b|nestle)\b/, "FMCG", "Defensive bid when the broader market turns cautious."],
+  [/\b(realty|real estate|housing|\bdlf\b)\b/, "Realty", "Rate-sensitive; moves with bond yields."],
+  [/\b(capital goods|larsen|\bl&t\b|engineering|\bbhel\b|infrastructure)\b/, "Capital Goods", "Order-flow and infra-spending cues are in play."],
+  [/\b(cement|ultratech|ambuja|\bacc\b)\b/, "Cement", "Demand and input-cost cues drive cement names."],
+  [/\b(aviation|airline|indigo|spicejet)\b/, "Aviation", "Crude is the swing factor for airline costs."],
+  [/\b(tyre|tyres|\bmrf\b|apollo tyres)\b/, "Tyres", "Crude-linked input costs are the key read."],
+  [/\b(paint|paints|asian paints|berger)\b/, "Paints", "Crude derivatives feed paint input costs."],
+  [/\b(chemical|chemicals|specialty chem)\b/, "Chemicals", "Crude and global demand set the chemical tone."],
+  [/\b(jewellery|jeweller|titan)\b/, "Jewellery", "Tracks gold prices and import-duty signals."],
+  [/\b(power|utilit|ntpc|coal india|powergrid)\b/, "Power / Utilities", "Defensive, rate- and fuel-sensitive pocket."]
+];
+
+// Sectors in focus today. The lead read-through is scanned first so the day's own
+// sectors rank ahead of ones that only appear in the wider source stack.
+function preOpenSectorChips(digest) {
+  const leadText = [digest.dailyLead?.label, digest.dailyLead?.headline, digest.dailyLead?.indiaImpact]
+    .join(" ").toLowerCase();
+  const newsText = (digest.news ?? []).slice(0, 8)
+    .map((a) => `${a.headline || ""} ${a.takeaway || a.summary || ""} ${a.indiaImpact || ""} ${a.entityName || ""}`)
+    .join(" ").toLowerCase();
+  const chips = [];
+  const seen = new Set();
+  const collect = (text) => {
+    for (const [pattern, label, reason] of PREOPEN_SECTOR_KEYWORDS) {
+      if (chips.length >= 4) break;
+      if (pattern.test(text) && !seen.has(label)) {
+        seen.add(label);
+        chips.push({ label, reason });
+      }
+    }
+  };
+  collect(leadText);
+  collect(newsText);
+  return chips;
+}
+
+// Scheduled triggers for the session: F&O expiry (computed) plus macro/earnings cues
+// detected in today's news. Kept conservative so nothing is invented.
+function preOpenEvents(digest) {
+  const events = [];
+  const day = new Date(`${digest.digestDate}T12:00:00+05:30`);
+  if (day.getDay() === 4) {
+    const plus7 = new Date(day);
+    plus7.setDate(day.getDate() + 7);
+    events.push(plus7.getMonth() !== day.getMonth()
+      ? { label: "Monthly F&O expiry", reason: "Index & stock options expire today — expect volatility and unwinding." }
+      : { label: "Weekly F&O expiry", reason: "Weekly index options expire today — intraday swings can widen." });
+  }
+  const text = (digest.news ?? []).slice(0, 8)
+    .map((a) => `${a.headline || ""} ${a.takeaway || a.summary || ""}`).join(" ").toLowerCase();
+  if (/\b(rbi|mpc|repo rate|monetary policy)\b/.test(text)) events.push({ label: "RBI in focus", reason: "Central-bank commentary can move rates and banking stocks." });
+  if (/\b(gdp|cpi|inflation data|\biip\b|\bpmi\b|jobs data|payroll)\b/.test(text)) events.push({ label: "Econ data", reason: "Scheduled macro data can swing the open." });
+  if (/\b(quarterly results|earnings|q[1-4] result|results today|profit jump)\b/.test(text)) events.push({ label: "Earnings", reason: "Quarterly results can drive stock-specific moves." });
+  return events.slice(0, 3);
+}
+
 function indiaPreOpenHtml(digest) {
   const snapshots = digest.marketSnapshots ?? [];
   const fii = digest.fiiDiiFlows ?? null;
@@ -7828,7 +8001,7 @@ function indiaPreOpenHtml(digest) {
   const nifty = snapshots.find((s) => s.symbol === "NIFTY");
   const bankNifty = snapshots.find((s) => s.symbol === "BANKNIFTY");
   const brent = snapshots.find((s) => s.symbol === "BRENT");
-  const usdinr = snapshots.find((s) => s.symbol === "USDINR" && Number(s.closeValue) >= 70 && Number(s.closeValue) <= 90);
+  const usdinr = snapshots.find((s) => s.symbol === "USDINR" && Number(s.closeValue) >= 70 && Number(s.closeValue) <= 110);
   const vix = snapshots.find((s) => s.symbol === "INDIAVIX");
   const gold = snapshots.find((s) => s.symbol === "GOLD");
 
@@ -7842,10 +8015,10 @@ function indiaPreOpenHtml(digest) {
   // VIX zone
   function vixZone(v) {
     if (!v) return { label: "—", cls: "" };
-    if (v < 14) return { label: "Calm — options cheap", cls: "up" };
-    if (v < 20) return { label: "Normal range", cls: "flat" };
-    if (v < 26) return { label: "Elevated — hedge cost rising", cls: "down" };
-    return { label: "Fear zone — wide stops", cls: "down" };
+    if (v < 14) return { label: "Low volatility", cls: "up" };
+    if (v < 20) return { label: "Normal volatility", cls: "flat" };
+    if (v < 26) return { label: "Elevated volatility", cls: "down" };
+    return { label: "High volatility", cls: "down" };
   }
   const vixData = vixZone(vix?.closeValue);
 
@@ -7878,6 +8051,47 @@ function indiaPreOpenHtml(digest) {
     return pct > 0 ? "up" : "down";
   };
 
+  // One-line factual recap of what happened overnight — no guidance, levels, or "what to watch".
+  const niftyPct = Number(nifty?.changePercent);
+  const brentPct = Number(brent?.changePercent);
+  const avgOf = (symbols) => {
+    const vals = symbols.map((sym) => snapshots.find((s) => s.symbol === sym))
+      .filter(Boolean).map((s) => Number(s.changePercent)).filter(Number.isFinite);
+    return vals.length ? vals.reduce((sum, value) => sum + value, 0) / vals.length : null;
+  };
+  const asiaVals = ["NIKKEI", "HSI", "KOSPI"].map((sym) => snapshots.find((s) => s.symbol === sym))
+    .filter(Boolean).map((s) => Number(s.changePercent)).filter(Number.isFinite);
+  const usAvg = avgOf(["SPX", "NDX", "DJI"]);
+  const recap = [];
+  if (Number.isFinite(brentPct) && brent) {
+    const px = Math.round(Number(brent.closeValue));
+    recap.push(brentPct < -0.3 ? `Brent crude eased to about $${px}` : brentPct > 0.3 ? `Brent crude firmed to about $${px}` : `Brent crude held near $${px}`);
+  }
+  if (asiaVals.length) {
+    const up = asiaVals.filter((v) => v > 0.1).length;
+    const down = asiaVals.filter((v) => v < -0.1).length;
+    recap.push(up > down ? "Asian markets traded mostly higher" : down > up ? "Asian markets traded mostly lower" : "Asian markets were mixed");
+  }
+  if (Number.isFinite(usAvg)) {
+    recap.push(usAvg > 0.15 ? "Wall Street closed higher" : usAvg < -0.15 ? "Wall Street closed lower" : "Wall Street closed mixed");
+  }
+  const openPhrase = giftGapPct !== null
+    ? (giftGapPct >= 0.15 ? "GIFT Nifty points to a gap-up open" : giftGapPct <= -0.15 ? "GIFT Nifty points to a gap-down open" : "GIFT Nifty points to a flat open")
+    : Number.isFinite(niftyPct) && niftyPct > 0.2 ? "Nifty's overnight reference closed firmer"
+    : Number.isFinite(niftyPct) && niftyPct < -0.2 ? "Nifty's overnight reference closed softer" : null;
+  const bottomLine = `${[recap.join(", "), openPhrase].filter(Boolean).join("; ")}.`;
+  const sectorChips = preOpenSectorChips(digest);
+  const events = preOpenEvents(digest);
+  const briefHtml = `
+      <div class="preopen-brief">
+        <p class="preopen-bottom-line">${escapeHtml(bottomLine)}</p>
+        ${(sectorChips.length || events.length) ? `
+        <div class="preopen-tags">
+          ${sectorChips.map((chip) => `<span class="preopen-chip" title="${escapeHtml(chip.reason)}" tabindex="0">${escapeHtml(chip.label)}</span>`).join("")}
+          ${events.map((event) => `<span class="preopen-chip preopen-chip--event" title="${escapeHtml(event.reason)}" tabindex="0">${escapeHtml(event.label)}</span>`).join("")}
+        </div>` : ""}
+      </div>`;
+
   return `
     <section class="india-preopen-panel" aria-label="India Pre-Open Nerve">
       <div class="preopen-header">
@@ -7887,6 +8101,7 @@ function indiaPreOpenHtml(digest) {
         </div>
         ${fii ? `<span class="preopen-flow-badge">Flows${escapeHtml(flowDate)}</span>` : ""}
       </div>
+      ${briefHtml}
       <div class="preopen-grid">
 
         <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${boardLink("GIFTNIFTY")}>
@@ -7896,8 +8111,8 @@ function indiaPreOpenHtml(digest) {
           </strong>
           <small>
             ${giftGapPct !== null
-    ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% implied open`
-    : "Use indices board for live gap context"}
+    ? `${escapeHtml(giftGapSign)} ${escapeHtml(Math.abs(giftGapPct).toFixed(2))}% vs prev close`
+    : "Previous session close"}
           </small>
           ${snapshotSparklineHtml(gift || nifty, "preopen-sparkline")}
         </a>
@@ -7905,14 +8120,14 @@ function indiaPreOpenHtml(digest) {
         <a class="preopen-tile ${escapeHtml(snapshotClass(bankNifty))}" aria-label="Bank Nifty" ${boardLink("BANKNIFTY")}>
           <span>Bank Nifty</span>
           <strong>${bankNifty ? escapeHtml(formatNumber(bankNifty.closeValue)) : "—"}</strong>
-          <small>${bankNifty ? `${escapeHtml(formatSnapshotChange(bankNifty))} · confirms or rejects the index move` : "Awaiting data"}</small>
+          <small>${bankNifty ? `${escapeHtml(formatSnapshotChange(bankNifty))} · banking & financials index` : "Awaiting data"}</small>
           ${snapshotSparklineHtml(bankNifty, "preopen-sparkline")}
         </a>
 
         <a class="preopen-tile ${escapeHtml(snapshotClass(brent))}" aria-label="Brent crude" ${boardLink("BRENT")}>
           <span>Brent Crude</span>
           <strong>${brent ? `$${escapeHtml(formatNumber(brent.closeValue))}` : "—"}</strong>
-          <small>${brent ? `${escapeHtml(formatSnapshotChange(brent))} · ${brent.changePercent > 0.5 ? "OMC/aviation pressure" : brent.changePercent < -0.5 ? "inflation relief watch" : "macro filter"}` : "Awaiting data"}</small>
+          <small>${brent ? `${escapeHtml(formatSnapshotChange(brent))} · ${brent.changePercent > 0.5 ? "higher crude import bill" : brent.changePercent < -0.5 ? "lower crude import bill" : "oil import benchmark"}` : "Awaiting data"}</small>
           ${snapshotSparklineHtml(brent, "preopen-sparkline")}
         </a>
 
@@ -7939,7 +8154,7 @@ function indiaPreOpenHtml(digest) {
           <strong>${gold ? `$${escapeHtml(formatNumber(gold.closeValue))}` : "—"}</strong>
           <small>
             ${gold
-    ? `${escapeHtml(gold.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(gold.changePercent).toFixed(2))}% · duty-hike read: ${gold.changePercent > 1 ? "Jewellery sector in play" : "Watch MCX open"}`
+    ? `${escapeHtml(gold.changePercent >= 0 ? "▲" : "▼")} ${escapeHtml(Math.abs(gold.changePercent).toFixed(2))}% · global safe-haven benchmark`
     : "Awaiting data"}
           </small>
           ${snapshotSparklineHtml(gold, "preopen-sparkline")}
@@ -8516,13 +8731,25 @@ function sourceSummaryForTwoMinute(article, fallback) {
   return conciseSentence(humanizeLeadCopy(line), 28);
 }
 
+function usOvernightNote(digest) {
+  const snaps = digest.marketSnapshots ?? [];
+  const vals = ["SPX", "NDX", "DJI"]
+    .map((symbol) => snaps.find((s) => s.symbol === symbol))
+    .filter(Boolean)
+    .map((s) => Number(s.changePercent))
+    .filter(Number.isFinite);
+  if (!vals.length) return "Use the US close as risk-appetite context, then wait for India breadth.";
+  const avg = vals.reduce((sum, value) => sum + value, 0) / vals.length;
+  const tone = avg > 0.15 ? "Wall Street closed higher" : avg < -0.15 ? "Wall Street closed lower" : "Wall Street closed mixed";
+  return `${tone} — the global risk-appetite backdrop before India's open.`;
+}
+
 function executiveSummaryHtml(digest) {
-  const globalRisk = firstByCategory(digest.news, "global_risk");
   const groups = [
     {
       title: "US Overnight",
       symbols: ["SPX", "NDX"],
-      note: globalRisk?.takeaway || "Use the US close as risk appetite context, then wait for India breadth."
+      note: usOvernightNote(digest)
     },
     {
       title: "Asia Watch",
@@ -8946,11 +9173,7 @@ function unifiedSourceSectionHtml(digest) {
               ${toneStats}
             </div>
           </div>
-          <span class="disclosure-action source-ledger-action" aria-hidden="true">
-            <span class="label-closed">Show details</span>
-            <span class="label-open">Hide details</span>
-            <span class="disclosure-icon"></span>
-          </span>
+          <span class="source-collapse-chevron" aria-hidden="true">▾</span>
         </summary>
         <div class="source-ledger-body">
           <ul class="top-stories-list" aria-label="Top stories">

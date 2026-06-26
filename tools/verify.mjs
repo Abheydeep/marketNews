@@ -3030,7 +3030,9 @@ await test("demo app serves public and admin flows without external packages", a
 
   assert.ok(publicHtml.body.includes("disclosure-action summary-disclosure-action"));
   // quote-board-action removed from public briefing page (moved to trading guide)
-  assert.ok(publicHtml.body.includes("disclosure-action source-ledger-action"));
+  // Evidence & Sources is collapsible via a whole-header click with a chevron affordance.
+  assert.ok(publicHtml.body.includes("sources-collapse-details"));
+  assert.ok(publicHtml.body.includes("source-collapse-chevron"));
   assert.equal(publicHtml.body.includes("summary-expand-action"), false);
   assert.equal(publicHtml.body.includes("quote-board-chev"), false);
   assert.equal(publicHtml.body.includes('class="expanded-briefing-head"'), false);

@@ -21,7 +21,7 @@ async function loadSkills() {
   return _skillsCache;
 }
 
-export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2 } = {}) {
+export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2, temperature = 0.65 } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
   console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
@@ -38,7 +38,7 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
             { role: "user", content: userPrompt }
           ],
           max_tokens: maxTokens,
-          temperature: 0.65
+          temperature
         }),
         signal: AbortSignal.timeout(Number(process.env.NVIDIA_TIMEOUT_MS ?? 120000))
       });
@@ -121,7 +121,7 @@ ${topArticles}`;
 
   const editorialBriefing = await nimCall(
     systemPrompt,
-    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs.\n- Exactly 4 stories (one story per paragraph).\n- Facts only. No opinions.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
+    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
     { maxTokens: 2000 }
   );
 
@@ -144,6 +144,75 @@ ${topArticles}`;
 
   if (!teleprompterScript && !onePageSummary && !reelScript && !twoMinuteSummary && !deskNote) return null;
   return { teleprompterScript, onePageSummary, reelScript, twoMinuteSummary, deskNote };
+}
+
+// Plain-language description of today's open, derived only from real data. Used to lock
+// the LLM headline's tone to the actual market direction (no bearish title on an up day).
+export function marketBiasWord(dailyLead, marketSnapshots = []) {
+  const giftBias = dailyLead?.giftNiftyBias?.bias;
+  if (giftBias === "gap_up") return "POSITIVE — GIFT Nifty signals a gap-up / firm open";
+  if (giftBias === "gap_down") return "NEGATIVE — GIFT Nifty signals a gap-down / weak open";
+  const nifty = marketSnapshots.find((s) => s.symbol === "NIFTY");
+  const pct = Number(nifty?.changePercent);
+  if (Number.isFinite(pct) && pct > 0.3) return "POSITIVE — overnight cues point to a firm open";
+  if (Number.isFinite(pct) && pct < -0.3) return "NEGATIVE — overnight cues point to a weak open";
+  return "MIXED — no clear directional edge into the open";
+}
+
+// Punchy, SEO-friendly H1 written by the model, grounded strictly in the chosen lead and
+// real market data so it cannot drift to an off-lead story, fabricate flows, or contradict
+// the day's direction. Falls back to the deterministic templated title on failure.
+export async function generateEditorialHeadline({ dailyLead, marketSnapshots = [] } = {}) {
+  if (!process.env.NVIDIA_API_KEY) return null;
+  const story = dailyLead?.headline || dailyLead?.label || "";
+  if (!story) return null;
+  const bias = marketBiasWord(dailyLead, marketSnapshots);
+  const price = (symbol, label, unit = "%") => {
+    const s = marketSnapshots.find((x) => x.symbol === symbol);
+    if (!s) return "";
+    const pct = Number(s.changePercent);
+    const pctStr = Number.isFinite(pct) ? `${pct >= 0 ? "+" : ""}${pct.toFixed(1)}%` : "";
+    const lvl = unit === "$" && Number.isFinite(Number(s.closeValue)) ? ` ($${Math.round(Number(s.closeValue))})` : "";
+    return `${label}${lvl} ${pctStr}`.trim();
+  };
+  const pricesLine = [price("NIFTY", "Nifty"), price("BANKNIFTY", "Bank Nifty"), price("BRENT", "Brent crude", "$"), price("USDINR", "USD/INR")]
+    .filter(Boolean).join(", ");
+  const system = "You are the headline editor for Market Narrative, a pre-market briefing for Indian equity traders and investors. You write accurate, grounded headlines — never sensational and never invented.";
+  const user = `Write ONE H1 headline for today's India pre-market briefing.
+
+PRIMARY STORY (the headline MUST be about THIS story, nothing else): ${story}
+INDIA READ-THROUGH: ${dailyLead?.indiaImpact || ""}
+MARKET DIRECTION TODAY: ${bias}
+PRICES: ${pricesLine}
+
+RULES:
+- 8 to 13 words. One line only. No surrounding quotes, no date, no publisher name.
+- The headline MUST be about the PRIMARY STORY and its India read-through — do not switch to a different topic.
+- The tone MUST match MARKET DIRECTION. If POSITIVE, do not imply selling, caution, or a weak open. If NEGATIVE, do not imply a rally.
+- Use ONLY the facts above. Do NOT invent events, FII/FPI flows, named stocks, or numbers that are not listed.
+- Make it engaging and punchy with a clear angle — connect the story to its India market impact, not a flat wire headline.
+- SEO: name the driver (e.g. "Brent crude", "bond yields", a sector) AND, where it fits naturally, add an India-equity hook readers search — "Nifty", "Sensex", or "stock market today".
+- Plain, confident, factual. No sensational or clickbait words ("spree", "shocking", "panic", "you won't believe").
+- No trading calls: no buy/sell/hold, no price targets, no index levels, no "VWAP".
+- Output ONLY the headline text.`;
+  const raw = await nimCall(system, user, { maxTokens: 60, retries: 3, temperature: 0.3 });
+  return sanitizeEditorialHeadline(raw);
+}
+
+function sanitizeEditorialHeadline(raw) {
+  if (!raw) return null;
+  let h = String(raw).split("\n").map((line) => line.trim()).filter(Boolean)[0] || "";
+  h = h.replace(/^["'“”\s]+|["'“”\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
+  if (!h) return null;
+  // Reject trading-call / level language so the H1 always clears editorial guardrails.
+  if (/\b(buy|sell|hold)\b/i.test(h)) return null;
+  if (/\btarget price\b|\bvwap\b/i.test(h)) return null;
+  if (/\b\d{2},?\d{3}\b/.test(h)) return null; // index levels like 24,114 / 24114 / 80000
+  // Reject sensational / clickbait language we explicitly forbid.
+  if (/\b(spree|shocking|panic|jaw-dropping|unbelievable)\b/i.test(h)) return null;
+  if (/you won'?t believe|will shock/i.test(h)) return null;
+  if (h.length < 18 || h.length > 90) return null;
+  return h;
 }
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -987,7 +1056,12 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
     ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
     ?? articles[0];
   const headline = String(dailyLead?.headline || lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
-  const force = dailyLead?.label || dominantForceLabel(lead, headline);
+  // The lead label is sometimes a verbose market-bias sentence (e.g. "Nifty overnight:
+  // +1.27% — gap-up bias" or "GIFT Nifty: ..."). That reads badly as a title force word,
+  // so fall back to the driver label in those cases.
+  const rawLabel = dailyLead?.label || "";
+  const verboseLabel = /overnight|gift nifty|[:%]|\d/i.test(rawLabel);
+  const force = (rawLabel && !verboseLabel) ? rawLabel : dominantForceLabel(lead, headline);
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
   const consequence = titleConsequence(lead, sentimentLabel);
   const previousTitle = normalizeEditorial(previousDigest?.title);

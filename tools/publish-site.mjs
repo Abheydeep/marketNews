@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
-import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
+import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
@@ -72,6 +72,19 @@ function publicArchiveVerificationForDigest(digest, verification) {
 const digests = (await loadArchivedDigests()).map(enrichPublicDigest);
 if (!digests.length) {
   throw new Error("No archived digests are available to publish");
+}
+// Give the edition being published a punchy, SEO-friendly H1 generated from its PUBLIC lead
+// (the lead and copy that actually appear after public filtering), so the headline always
+// matches the page. Degrades to the formulaic title when the model is unavailable.
+const publishTargetDigest = digests.find((digest) => digest.digestDate === date);
+if (publishTargetDigest) {
+  const editorialH1 = await generateEditorialHeadline({
+    dailyLead: publishTargetDigest.dailyLead,
+    marketSnapshots: publishTargetDigest.marketSnapshots
+  });
+  if (editorialH1) {
+    publishTargetDigest.title = editorialH1;
+  }
 }
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
 const publicationEvents = await loadPublicationEvents();
