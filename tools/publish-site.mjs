@@ -23,11 +23,14 @@ const NAV_ITEMS = [
 ];
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const date = readArg("--date") ?? todayInIst();
+const requestedDate = readArg("--date") ?? todayInIst();
 const scheduledTime = readArg("--scheduled-time") ?? "07:15";
 const label = scheduledTime.replace(":", "");
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
+// Fall back to the most recent archived edition when the requested day has no digest yet
+// (e.g. a code-only push before the scheduled briefing is generated) so publish still ships.
+const date = await resolvePublishDate(requestedDate, label, dailyDir, archiveDir);
 const archivedMovesDir = join(rootDir, "archive", "moves");
 const publicationEventsPath = join(rootDir, "data", "publication-events.json");
 const siteDir = join(rootDir, "out", "site");
@@ -558,6 +561,29 @@ async function loadSourceDigest() {
     sourceDigestLoadedFromArchive = true;
     return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(archivedJson, "utf8")));
   }
+}
+
+// Resolve which edition to publish: the requested date if its digest exists, otherwise the
+// most recent archived edition. Keeps publish working on a code push even when that day's
+// briefing has not been generated yet.
+async function resolvePublishDate(requested, labelKey, dailyDirPath, archiveDirPath) {
+  const wanted = `${requested}-${labelKey}-digest.json`;
+  const listOf = async (dir) => { try { return await readdir(dir); } catch { return []; } };
+  const [archiveFiles, dailyFiles] = await Promise.all([listOf(archiveDirPath), listOf(dailyDirPath)]);
+  if (archiveFiles.includes(wanted) || dailyFiles.includes(wanted)) {
+    return requested;
+  }
+  const pattern = new RegExp(`^(\\d{4}-\\d{2}-\\d{2})-${labelKey}-digest\\.json$`);
+  let latest = null;
+  for (const file of archiveFiles) {
+    const match = file.match(pattern);
+    if (match && (!latest || match[1] > latest)) latest = match[1];
+  }
+  if (latest && latest !== requested) {
+    console.warn(`No ${requested} digest found; publishing latest archived edition ${latest} instead.`);
+    return latest;
+  }
+  return requested;
 }
 
 function assertNewDigestSourceIntegrity(digest, previousDigest) {
