@@ -964,19 +964,14 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
         <p>Contains the planned identity, market data, news, analysis, narrative, assets, and publishing modules with API contracts and persistence schema.</p>
       </article>
       <article class="repo-card">
-        <code>apps/public-portal/</code>
-        <strong>Public Next.js portal path</strong>
-        <p>Reserved for the SEO public portal when the project moves into a full application deployment.</p>
-      </article>
-      <article class="repo-card">
-        <code>apps/admin-studio/</code>
+        <code>[Extracted] admin studio</code>
         <strong>Private admin workspace</strong>
-        <p>Holds the split admin deployment path for authenticated Studio controls, script review, and asset generation.</p>
+        <p>Extracted to Abheydeep/marketnarrative-admin. Holds the separate Vite + React React 19 SPA command center.</p>
       </article>
       <article class="repo-card">
-        <code>packages/</code>
-        <strong>Shared UI and API contracts</strong>
-        <p>Shared design tokens, component primitives, API client types, and permission names for public/admin consistency.</p>
+        <code>[Extracted] trade cockpit</code>
+        <strong>Private trading workspace</strong>
+        <p>Extracted to Abheydeep/marketnarrative-trade. Holds the separate Next.js 15 static export dashboard.</p>
       </article>
       <article class="repo-card">
         <code>tools/</code>
