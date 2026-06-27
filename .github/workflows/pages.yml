@@ -37,6 +37,11 @@ on:
     # Weekday 08:00-09:00 IST attempts for the 08:00 incremental briefing.
     - cron: "30,45 2 * * 1-5"
     - cron: "0,15,30 3 * * 1-5"
+    # Sunday 07:00-07:45 IST attempts for the general Market Update edition.
+    # (Weekday holidays are already covered by the 1-5 crons above; Saturdays are
+    # intentionally skipped — only Sundays publish a general edition.)
+    - cron: "30,45 1 * * 0"
+    - cron: "0,15 2 * * 0"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true

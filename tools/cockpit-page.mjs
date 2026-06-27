@@ -44,7 +44,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     : isTradingGuidePage
       ? '<a class="tab-link" href="../">Public Briefing</a>'
       : '<span class="tab-link active" aria-current="page">Public Briefing</span>';
-  const tradingGuideTabHtml = includeStudio
+  // Closed-market (market-update) editions carry no trading guide — markets are shut.
+  const tradingGuideTabHtml = includeStudio || marketUpdate
     ? ""
     : isTradingGuidePage
       ? '<span class="tab-link active" aria-current="page">Trading Guide</span>'
@@ -7536,6 +7537,23 @@ function heroEyebrowLabel(digest) {
   const sentiment = Number(digest.overallSentiment ?? 0);
   const bias = digest.giftNiftyBias;
 
+  // Market-update (closed-market) editions carry no pre-open gap or trading signal —
+  // markets are shut, so the eyebrow names the backdrop topic factually instead.
+  if (digest.marketUpdateMode) {
+    const topics = {
+      crude: "Crude & energy in focus",
+      geopolitical: "Geopolitics in focus",
+      rates: "Rates & yields in focus",
+      tech_move: "Global tech in focus",
+      tech: "Global tech in focus",
+      banks: "Banks & financials in focus",
+      precious_metals: "Gold & metals in focus",
+      currency: "Currency & dollar in focus",
+      asia: "Asian markets in focus"
+    };
+    return topics[driver] ?? "Global markets recap";
+  }
+
   // GIFT Nifty gap takes priority when real data is available
   if (bias?.bias === "gap_up" && Math.abs(bias.gapPts) >= 40) {
     return `GIFT Nifty +${Math.abs(bias.gapPts)} pts — Gap-Up Signal`;
@@ -7560,6 +7578,8 @@ function heroEyebrowLabel(digest) {
 
 /** Replaces generic "Daily Briefing" date-panel label with a driver/FII signal. */
 function briefingSignalLabel(digest) {
+  // Closed-market editions show a neutral "Market Update" tag, not a pre-open signal.
+  if (digest.marketUpdateMode) return "Market Update";
   const driver = (digest.dailyLead?.driverType ?? "").toLowerCase();
   const fii = digest.fiiDiiFlows;
   const fiiNet = Number(fii?.fiiNet ?? 0);
@@ -7591,6 +7611,18 @@ function compactSummaryText(digest) {
   const impact = digest.dailyLead?.indiaImpact
     ? conciseClause(humanizeLeadCopy(digest.dailyLead.indiaImpact), 24)
     : `${driver.summary}`;
+  // Closed-market (market-update) editions: factual recap only — no pre-open call,
+  // no "watch first" Nifty levels and no breadth-confirmation trading framing.
+  if (digest.marketUpdateMode) {
+    const thread = headline
+      ? `${headline.charAt(0).toUpperCase()}${headline.slice(1)}`
+      : `${driver.title} is the main thread`;
+    return conciseSentence([
+      "With Indian markets closed, the read is on global cues and overnight moves.",
+      `${thread}.`,
+      `India angle: ${impact}.`
+    ].filter(Boolean).join(" "), 50);
+  }
   const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
   const watchFirst = compactWatchFirstLine(digest);
   const leadText = `${digest.dailyLead?.label || ""} ${digest.dailyLead?.headline || ""} ${digest.dailyLead?.indiaImpact || ""}`.toLowerCase();
@@ -7890,7 +7922,7 @@ function deskNoteHtml(digest) {
       <div class="todays-read-body">
         ${paragraphs.map((p) => `<p>${escapeHtml(editorialSentence(p))}</p>`).join("\n        ")}
       </div>
-      <p class="todays-read-footer">Market context only. Levels and execution checks remain in the Trading Guide.</p>
+      <p class="todays-read-footer">${digest.marketUpdateMode ? "Market context only. A full pre-market trading guide returns on the next session day." : "Market context only. Levels and execution checks remain in the Trading Guide."}</p>
     </section>
   `;
 }
@@ -8083,9 +8115,11 @@ function indiaPreOpenHtml(digest) {
     ? (giftGapPct >= 0.15 ? "GIFT Nifty points to a gap-up open" : giftGapPct <= -0.15 ? "GIFT Nifty points to a gap-down open" : "GIFT Nifty points to a flat open")
     : Number.isFinite(niftyPct) && niftyPct > 0.2 ? "Nifty's overnight reference closed firmer"
     : Number.isFinite(niftyPct) && niftyPct < -0.2 ? "Nifty's overnight reference closed softer" : null;
-  const bottomLine = `${[recap.join(", "), openPhrase].filter(Boolean).join("; ")}.`;
-  const sectorChips = preOpenSectorChips(digest);
-  const events = preOpenEvents(digest);
+  // Closed-market editions show the factual global recap only — no gap/open call
+  // (GIFT Nifty doesn't trade on holidays/Sundays) and no sector/event watch chips.
+  const bottomLine = `${[recap.join(", "), digest.marketUpdateMode ? null : openPhrase].filter(Boolean).join("; ")}.`;
+  const sectorChips = digest.marketUpdateMode ? [] : preOpenSectorChips(digest);
+  const events = digest.marketUpdateMode ? [] : preOpenEvents(digest);
   const briefHtml = `
       <div class="preopen-brief">
         <p class="preopen-bottom-line">${escapeHtml(bottomLine)}</p>
@@ -8108,7 +8142,7 @@ function indiaPreOpenHtml(digest) {
       ${briefHtml}
       <div class="preopen-grid">
 
-        <a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${boardLink("GIFTNIFTY")}>
+        ${digest.marketUpdateMode ? "" : `<a class="preopen-tile ${escapeHtml(giftGapClass)}" aria-label="GIFT Nifty" ${boardLink("GIFTNIFTY")}>
           <span>${gift ? "GIFT Nifty Gap" : "Nifty Close (No GIFT)"}</span>
           <strong>
             ${gift ? escapeHtml(formatNumber(gift.closeValue)) : nifty ? escapeHtml(formatNumber(nifty.closeValue)) : "—"}
@@ -8119,7 +8153,7 @@ function indiaPreOpenHtml(digest) {
     : "Previous session close"}
           </small>
           ${snapshotSparklineHtml(gift || nifty, "preopen-sparkline")}
-        </a>
+        </a>`}
 
         <a class="preopen-tile ${escapeHtml(snapshotClass(bankNifty))}" aria-label="Bank Nifty" ${boardLink("BANKNIFTY")}>
           <span>Bank Nifty</span>

@@ -1015,8 +1015,12 @@ export function newsArticleJsonLd(digest, options = {}) {
       }
     },
     isAccessibleForFree: true,
-    keywords: "Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty, Indian stock market, 7:15 AM IST market brief",
-    about: ["Nifty 50", "Bank Nifty", "Indian stock market", "pre-market briefing", "global market cues"]
+    keywords: digest.marketUpdateMode
+      ? "Market Narrative, Abhey Deep, Indian stock market update, Nifty, Sensex, FII DII data, global market cues"
+      : "Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty, Indian stock market, 7:15 AM IST market brief",
+    about: digest.marketUpdateMode
+      ? ["Nifty 50", "Sensex", "Indian stock market", "market update", "global market cues"]
+      : ["Nifty 50", "Bank Nifty", "Indian stock market", "pre-market briefing", "global market cues"]
   };
 }
 
