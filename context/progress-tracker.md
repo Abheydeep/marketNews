@@ -210,8 +210,23 @@ These must remain true after changes:
   Architecture diagrams changed: context/architecture-diagrams/01-production-surfaces.mmd.
   Debt found but deferred: none.
 
-
-
-
+- 2026-06-27: Reconfigured mobile bottom tab bar and added More Hub on /about/.
+  Replaced Subscribe and More tabs with FII DII (/money-flow/fii-dii/) and Indices (/indices/).
+  New tab bar: Home | Briefing | FII DII | Indices | Portfolio.
+  Added fiiDiiIcon() and indicesIcon() SVGs; removed subscribeIcon() from bar.
+  Updated staticPageActiveKey() to route /money-flow/fii-dii/ → "fiidii" and /indices/ → "indices".
+  Fixed hardcoded bottomTabBarHtml("more") on Indices page, bottomTabBarHtml("subscribe") on Subscribe page,
+  and bottomTabBarHtml("about") on About page to use valid keys.
+  Redesigned /about/ as premium More Hub: 2-column glassmorphic card grid (1-col on mobile)
+  with priority-ordered links: Subscribe, Market Stats, Portfolio, Contact, Privacy, Terms.
+  Updated verify.mjs assertion to expect bottomTabBarHtml("indices") on Indices page.
+  Bumped context-verify.mjs legacy limits: mobile-shell.mjs 397→404, publish-site.mjs 4422→4533
+  (intentional growth from More Hub CSS/HTML and two new icon functions).
+  Verified: npm run context:verify PASS, npm test 80/80 PASS, npm run test:deploy PASS,
+  HTML assertions confirm 5 tabs (Home/Briefing/FII DII/Indices/Portfolio), correct active keys,
+  and 6 More Hub cards on /about/. Pushed commit 699a4dd to main.
+  Architecture diagrams changed: none.
+  Debt found but deferred: accordion smooth-transition redesign, 7:15 AM text scrub,
+  summary row card merge, bottom nav clipping fix — all in next mobile polish pass.
 
 
