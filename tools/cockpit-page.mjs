@@ -21,9 +21,33 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const safeInitialTab = includeStudio || publicTabs.has(initialTab) ? initialTab : "public-view";
   const clientDigest = includeStudio ? digest : publicDigestPayload(digest);
   const isTradingGuidePage = /\/trading-guide\/?$/i.test(digest.canonicalPath ?? "");
+  const marketUpdate = Boolean(digest.marketUpdateMode);
+
+  // If a user tries to access the Trading Guide page on a day the market is closed,
+  // immediately redirect them to the parent market briefing page.
+  if (isTradingGuidePage && marketUpdate) {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="0; url=../">
+  <title>Redirecting...</title>
+  <script>window.location.replace("../");</script>
+</head>
+<body>
+  <div style="font-family: system-ui, sans-serif; text-align: center; padding: 48px; background: #050816; color: #f8fafc; min-height: 100vh;">
+    <p>Indian stock markets are closed today.</p>
+    <p>Redirecting to today's market update briefing...</p>
+    <a href="../" style="color: #60a5fa; text-decoration: none;">Click here if you are not redirected</a>
+  </div>
+</body>
+</html>`;
+  }
+
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
-  const marketUpdate = Boolean(digest.marketUpdateMode);
   const pageH1 = digest.title || (marketUpdate ? "Indian Market Update" : "Daily Pre-Market Briefing");
   const pageTitle = isTradingGuidePage
     ? `Trading Guide: ${pageH1} | Nifty & Bank Nifty Levels - ${formatDigestDate(digest.digestDate)}`

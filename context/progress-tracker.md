@@ -197,5 +197,9 @@ These must remain true after changes:
   Verified: `npm run context:verify` (passes with fii-dii-tables.mjs at 163 lines), `npm test` (all 80 tests pass), `npm run test:deploy` (passed), and browser subagent visual checks showing 0 horizontal page overflow and correct navigation visibility.
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
+- 2026-06-27: Implemented closed-market trading guide page redirection. ROOT CAUSE: cockpitPage in tools/cockpit-page.mjs does not prevent rendering of trading guide layout when marketUpdate is true, causing closed-market editions to render empty/stale levels and causing tab navigation inconsistencies. Added a redirect page that immediately routes users to the parent briefing page. Updated the context verify line limit to 10651. Verified: npm run context:verify, npm test (80 passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
 
 
