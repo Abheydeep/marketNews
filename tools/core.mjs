@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
 import { log } from "./logger.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
+import { isMarketUpdateDate } from "./market-calendar.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
 const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
@@ -72,6 +73,12 @@ function cleanAIOutput(text) {
 async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, themes, setups, articles, overallSentiment, dailyLead }) {
   if (!process.env.NVIDIA_API_KEY) return null;
   const skills = await loadSkills();
+  // Closed-market (holiday/Sunday) editions are a general market update, not a
+  // pre-market brief — keep the copy from referencing the open or trading the session.
+  const marketUpdate = isMarketUpdateDate(date);
+  const closedMarketRule = marketUpdate
+    ? '\n- Indian markets are CLOSED today: this is a general market update, NOT a pre-market brief. Do NOT reference "the open", "gap-up", "gap-down", "9:15", "pre-market", "watch first", or trading the session. Write in past/present tense about what happened, not what to do at the open.'
+    : "";
 
   const marketSummary = snapshots
     .map((s) => `${s.name} ${s.changePercent >= 0 ? "+" : ""}${s.changePercent}%`)
@@ -121,7 +128,7 @@ ${topArticles}`;
 
   const editorialBriefing = await nimCall(
     systemPrompt,
-    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
+    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
     { maxTokens: 2000 }
   );
 
@@ -1310,12 +1317,17 @@ function dailyLeadFromArticle(date, lead, ranked = [], marketSnapshots = [], sel
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
   const leadText = articleTextForLead(lead);
-  const giftBias = computeGiftNiftyBias(marketSnapshots);
+  // On closed-market (holiday/Sunday) editions GIFT Nifty does not trade and there is
+  // no "open" to gap into — drop all gap/open framing so the lead stays a factual recap.
+  const marketUpdate = isMarketUpdateDate(date);
+  const giftBias = marketUpdate ? null : computeGiftNiftyBias(marketSnapshots);
 
   // GIFT Nifty as the primary label when live; fall back to Nifty overnight change otherwise
   const niftySnap = marketSnapshots.find((s) => s.symbol === "NIFTY");
   const niftyChangePct = Number(niftySnap?.changePercent) || 0;
-  const niftyBiasLabel = niftyChangePct > 0.3
+  const niftyBiasLabel = marketUpdate
+    ? null
+    : niftyChangePct > 0.3
     ? `Nifty overnight: +${round(Math.abs(niftyChangePct), 2)}% — gap-up bias`
     : niftyChangePct < -0.3
     ? `Nifty overnight: -${round(Math.abs(niftyChangePct), 2)}% — gap-down bias`

@@ -21,7 +21,7 @@ const LEGACY_LIMITS = {
   "tools/cockpit-page.mjs": 10627,
   "tools/publish-site.mjs": 4422,
   "tools/news-sources.mjs": 2784,
-  "tools/core.mjs": 2751,
+  "tools/core.mjs": 2763,
   "tools/verify.mjs": 3394,
   "tools/predeploy-verify.mjs": 298,
   "tools/reliability-smoke.mjs": 245,
