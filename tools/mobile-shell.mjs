@@ -375,7 +375,7 @@ export function bottomTabBarCss() {
       }
       /* Lift content above the fixed bar on mobile, overriding .shell padding */
       body.has-btb main.shell,
-      body.has-btb .shell:last-of-type {
+      body.has-btb > .shell:last-of-type {
         padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
       }
     }

@@ -1382,6 +1382,38 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       gap: 10px;
     }
 
+    .subscribe-share-zone .share-link,
+    .subscribe-share-zone .share-copy-btn {
+      min-width: auto !important;
+      min-height: auto !important;
+      width: 32px !important;
+      height: 32px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      padding: 0 !important;
+      color: #9fb0c8 !important;
+      cursor: pointer;
+      transition: background 120ms, border-color 120ms, color 120ms !important;
+    }
+
+    .subscribe-share-zone .share-link:hover,
+    .subscribe-share-zone .share-copy-btn:hover {
+      background: rgba(34, 211, 238, 0.16) !important;
+      border-color: rgba(34, 211, 238, 0.4) !important;
+      color: #22d3ee !important;
+    }
+
+    .subscribe-share-zone .share-link svg,
+    .subscribe-share-zone .share-copy-btn svg {
+      width: 16px !important;
+      height: 16px !important;
+      display: block;
+    }
+
     .subscribe-strip strong {
       color: #f8fafc;
       display: block;
@@ -2046,6 +2078,28 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       .workflow-step {
         min-height: auto;
       }
+
+      .archive-header-left {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+      }
+
+      .archive-title {
+        font-size: 18px !important;
+      }
+
+      .recent-briefings-toggle > summary,
+      .seo-section > summary {
+        align-items: center !important;
+        min-height: auto !important;
+      }
+
+      .seo-section,
+      .faq-section {
+        margin-top: 14px !important;
+        padding-top: 12px !important;
+      }
     }
 
     @media (max-width: 640px) {
@@ -2105,6 +2159,21 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       @media (max-width: 440px) {
         .subscribe-share-zone span.share-label {
           display: none;
+        }
+      }
+      @media (max-width: 400px) {
+        .subscribe-strip-actions {
+          flex-direction: column !important;
+          align-items: stretch !important;
+          gap: 12px !important;
+        }
+        .subscribe-btn {
+          width: 100% !important;
+          text-align: center !important;
+        }
+        .subscribe-share-zone {
+          justify-content: center !important;
+          width: 100% !important;
         }
       }
 
