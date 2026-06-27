@@ -19,7 +19,7 @@ const SCRIPT_CHECKS = [
 
 const LEGACY_LIMITS = {
   "tools/cockpit-page.mjs": 10593,
-  "tools/publish-site.mjs": 4441,
+  "tools/publish-site.mjs": 4422,
   "tools/news-sources.mjs": 2784,
   "tools/core.mjs": 2747,
   "tools/verify.mjs": 3394,

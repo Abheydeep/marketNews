@@ -44,6 +44,7 @@ import { assertPremarketPublishWindow, premarketPublishWindowStatus } from "./pu
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 import { runGenerateArticleImageTests } from "./generate-article-image.test.mjs";
+import { runFiiDiiTests } from "./fii-dii-source.test.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
@@ -57,6 +58,7 @@ const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
 ];
 
 await runGenerateArticleImageTests(test, assert);
+await runFiiDiiTests(test, assert);
 
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();

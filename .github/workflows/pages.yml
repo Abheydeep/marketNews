@@ -130,6 +130,11 @@ jobs:
             fi
           fi
 
+      - name: Capture FII/DII history
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: node tools/fii-dii-capture.mjs
+
       - name: Import previous deployed archive
         run: |
           if curl -fsSL https://abheydeep.github.io/marketNews/archive.json -o /tmp/market-narrative-archive.json; then
@@ -160,25 +165,29 @@ jobs:
       - name: Commit verified daily archive for Vercel
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-${SUMMARY_LABEL}-digest.json"
-          if git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
-            echo "Verified archive already tracked: $ARCHIVE_FILE"
-            exit 0
-          fi
-          # Fail loudly if the archive has private studio fields (teleprompterScript / reelScript)
-          if grep -q '"teleprompterScript"' "$ARCHIVE_FILE" 2>/dev/null; then
-            echo "ERROR: $ARCHIVE_FILE contains private teleprompterScript — run site:publish to redact before committing" >&2
-            exit 1
-          fi
-          if grep -q '"reelScript"' "$ARCHIVE_FILE" 2>/dev/null; then
-            echo "ERROR: $ARCHIVE_FILE contains private reelScript — run site:publish to redact before committing" >&2
-            exit 1
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$ARCHIVE_FILE"
-          git commit -m "Publish verified ${SUMMARY_TIME} briefing for ${SUMMARY_DATE}"
-          git push
+          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-${SUMMARY_LABEL}-digest.json"
+          if ! git ls-files --error-unmatch "$ARCHIVE_FILE" >/dev/null 2>&1; then
+            # Fail loudly if the archive has private studio fields (teleprompterScript / reelScript)
+            if grep -q '"teleprompterScript"' "$ARCHIVE_FILE" 2>/dev/null; then
+              echo "ERROR: $ARCHIVE_FILE contains private teleprompterScript — run site:publish to redact before committing" >&2
+              exit 1
+            fi
+            if grep -q '"reelScript"' "$ARCHIVE_FILE" 2>/dev/null; then
+              echo "ERROR: $ARCHIVE_FILE contains private reelScript — run site:publish to redact before committing" >&2
+              exit 1
+            fi
+            git add "$ARCHIVE_FILE"
+          fi
+          # The FII/DII capture step refreshes this store; commit it so Vercel rebuilds with current data.
+          git add data/fii-dii-history.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit (archive already tracked, store unchanged)."
+          else
+            git commit -m "Publish verified ${SUMMARY_TIME} briefing for ${SUMMARY_DATE}"
+            git push
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

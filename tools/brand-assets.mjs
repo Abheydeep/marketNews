@@ -17,20 +17,21 @@ export function brandHeadLinks(origin = "") {
 
 export function brandMarkCss() {
   return `
-    .brand-mark {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      width: 38px !important;
-      height: 38px !important;
-      flex: 0 0 38px !important;
-      border-radius: 12px !important;
-      background: transparent !important;
-      color: inherit !important;
-      box-shadow: none !important;
-      overflow: visible !important;
-      padding: 0 !important;
-      line-height: 1 !important;
+    .brand .brand-mark,
+    .footer-logo .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+      overflow: visible;
+      padding: 0;
+      line-height: 1;
     }
 
     .brand-mark svg {

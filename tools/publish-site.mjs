@@ -5,6 +5,10 @@ import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSoci
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { fiiDiiPageBody } from "./fii-dii-page.mjs";
+import { loadHistory, historyArray } from "./fii-dii-store.mjs";
+import { isoKey } from "./fii-dii-source.mjs";
+import { parseDayLabel } from "./fii-dii-capture.mjs";
 import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
@@ -183,7 +187,9 @@ await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
 await mkdir(indicesDir, { recursive: true });
 await writeGuardedFile(join(indicesDir, "index.html"), indicesPage(latest));
 await mkdir(moneyFlowDir, { recursive: true });
-await writeGuardedFile(join(moneyFlowDir, "index.html"), moneyFlowPage(latest));
+const fiiDiiFnoRecords = historyArray(await loadHistory());
+const fiiDiiCashRecords = buildFiiDiiCashRecords(digests);
+await writeGuardedFile(join(moneyFlowDir, "index.html"), moneyFlowPage(latest, fiiDiiCashRecords, fiiDiiFnoRecords));
 await mkdir(marketStatsDir, { recursive: true });
 await writeGuardedFile(join(marketStatsDir, "index.html"), marketStatisticsPage(latest));
 await mkdir(movesDir, { recursive: true });
@@ -899,7 +905,7 @@ function siteTopbarHtml(activeHref = "") {
       ? `<span class="tab-link tab-link--active" aria-current="page">${escapeHtml(label)}</span>`
       : `<a class="tab-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
   }).join("");
-  return `<nav class="topbar">
+  return `<nav class="topbar" aria-label="Primary">
     <div class="shell">
       <div class="nav-inner">
         <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
@@ -2792,36 +2798,30 @@ function subscribePage() {
 </html>`;
 }
 
-function moneyFlowPage(latest) {
+function buildFiiDiiCashRecords(allDigests) {
+  const byIso = new Map();
+  for (const digest of allDigests) {
+    const flow = digest?.fiiDiiFlows;
+    if (!flow?.date) continue;
+    const parsed = parseDayLabel(flow.date);
+    if (!parsed) continue;
+    const iso = isoKey(parsed);
+    if (byIso.has(iso)) continue;
+    const { date, ...cash } = flow;
+    byIso.set(iso, { iso, date: flow.date, cash });
+  }
+  return [...byIso.values()].sort((a, b) => a.iso.localeCompare(b.iso));
+}
+
+function moneyFlowPage(latest, cashRecords, fnoRecords) {
   const pageTitle = "FII DII Data Today - Institutional Flow & F&O Positioning | Market Narrative";
-  const pageDescription = "FII DII data today with interpretation for Nifty traders. Track FII selling, DII absorption, institutional flow and Bank Nifty context.";
-  const flow = latest?.fiiDiiFlows ?? null;
-  const flowDate = flow?.date || latest?.digestDate || todayInIst();
-  const fiiNet = Number(flow?.fiiNet ?? 0);
-  const diiNet = Number(flow?.diiNet ?? 0);
-  const hasFlow = Boolean(flow) && (Math.abs(fiiNet) > 0 || Math.abs(diiNet) > 0);
-  const absorption = fiiNet < 0 && diiNet > 0
-    ? `${Math.round((diiNet / Math.abs(fiiNet)) * 100)}%`
-    : "not applicable";
-  const body = `
-    <section class="metric-grid" aria-label="Latest institutional flow snapshot">
-      <article class="metric-card"><span>FII cash flow</span><strong class="${fiiNet >= 0 ? "up" : "down"}">${escapeHtml(hasFlow ? formatCrore(fiiNet) : "Unavailable")}</strong><p>${escapeHtml(flowDate)} provisional cash-market read.</p></article>
-      <article class="metric-card"><span>DII cash flow</span><strong class="${diiNet >= 0 ? "up" : "down"}">${escapeHtml(hasFlow ? formatCrore(diiNet) : "Unavailable")}</strong><p>Domestic institutional buying or selling against FII flow.</p></article>
-      <article class="metric-card"><span>DII absorption ratio</span><strong>${escapeHtml(absorption)}</strong><p>How much domestic buying offset FII selling in the latest available data.</p></article>
-    </section>
-    <section class="copy-stack">
-      <h2>How to read today's FII DII data</h2>
-      <p>FII DII data today is useful because it shows whether institutional money is supporting or resisting the Nifty move. Heavy FII selling today can pressure the next session, but the read changes when DII buying today absorbs most of that outflow. The useful question is not just whether FIIs sold; it is whether the selling came with weak breadth, Bank Nifty pressure, USD/INR stress, or index futures short build-up.</p>
-      <h2>What FII F&O positioning tells you that cash data does not</h2>
-      <p>Cash flow tells you what institutions did in the spot market. FII F&O data adds the forward-looking layer: index futures, stock futures, options positioning, and whether the desk is hedging or pressing a directional view. If FII cash selling comes with index-futures short build-up, the signal is stronger. If cash selling comes with futures covering, the market may be rotating rather than breaking down.</p>
-      <h2>Understanding the DII absorption ratio</h2>
-      <p>The DII absorption ratio compares domestic buying against FII net selling. If FIIs sell Rs 2,000 cr and DIIs buy Rs 3,000 cr, absorption is 150%, which means domestic institutions more than absorbed the foreign outflow. That can cushion Nifty even on weak global cues. If absorption is low, the same FII selling can matter more for the opening range.</p>
-    </section>
+  const pageDescription = "FII DII data today with charts and interpretation: cash-market flow, F&O index and stock positioning, DII absorption and the FII index-futures long ratio.";
+  const { bodyHtml, faqItems } = fiiDiiPageBody(cashRecords, fnoRecords);
+  const body = `${bodyHtml}
     <section class="faq-section">
       <h2>FII DII questions traders ask</h2>
-      ${faqDetailsHtml(fiiDiiFaqItems())}
-    </section>
-  `;
+      ${faqDetailsHtml(faqItems)}
+    </section>`;
   return staticSeoPage({
     path: "/money-flow/fii-dii/",
     pageTitle,
@@ -2848,7 +2848,7 @@ function moneyFlowPage(latest) {
         publisher: { "@id": `${siteOrigin}/#organization` },
         dateModified: latest?.generatedAt ?? latest?.publishedAt ?? latest?.digestDate
       },
-      faqPageJsonLd(`${siteOrigin}/money-flow/fii-dii/#faq`, fiiDiiFaqItems())
+      faqPageJsonLd(`${siteOrigin}/money-flow/fii-dii/#faq`, faqItems)
     ])
   });
 }
@@ -3154,6 +3154,7 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     .site-footer-links { border-top:1px solid var(--line); color:var(--muted); display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; padding:24px 0 36px; }
     .site-footer-links a { border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:13px; font-weight:800; padding:9px 11px; }
     .disclaimer { color:var(--muted); font-size:12px; line-height:1.6; margin-top:16px; }
+    .mn-skip { position:absolute; left:-9999px; top:0; z-index:50; padding:10px 14px; background:var(--cyan); color:#04121b; font-weight:850; border-radius:0 0 8px 0; } .mn-skip:focus { left:0; }
     @media (max-width:720px) {
       .nav-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
       .tabs { overflow-x:auto; width:100%; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
@@ -3167,8 +3168,9 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
   </style>
 </head>
 <body class="has-btb">
+  <a class="mn-skip" href="#mn-main">Skip to content</a>
   ${siteTopbarHtml(path)}
-  <main class="shell">
+  <main class="shell" id="mn-main">
     <section class="hero">
       <p class="eyebrow">${escapeHtml(eyebrow)}</p>
       <h1>${escapeHtml(h1)}</h1>
@@ -3390,27 +3392,6 @@ function homepageFaqItems() {
     {
       name: "Is Market Narrative free to use?",
       text: "Yes. The latest briefing, archive, FII DII page, market statistics, indices board, and move explanations are free to read. The site publishes educational market research only, not investment advice."
-    }
-  ];
-}
-
-function fiiDiiFaqItems() {
-  return [
-    {
-      name: "What is FII DII data and why does it matter?",
-      text: "FII DII data shows how much foreign and domestic institutional investors bought or sold in Indian equities. Because these flows are large, they often influence Nifty, Bank Nifty, and sector breadth."
-    },
-    {
-      name: "What does FII DII data today mean for Nifty tomorrow?",
-      text: "FII DII data is one input for the next session's opening bias. FII selling with weak DII absorption is pressure; FII selling absorbed by strong DII buying is less bearish and needs confirmation from the opening range."
-    },
-    {
-      name: "Why does Nifty fall when FII sells?",
-      text: "Nifty can fall when FIIs sell because foreign institutions own a meaningful share of the free float. The signal is stronger when cash selling aligns with index futures shorts, weak breadth, and rupee pressure."
-    },
-    {
-      name: "What is the DII absorption ratio?",
-      text: "The DII absorption ratio compares domestic institutional buying with FII net selling. A ratio above 100% means DIIs bought more than FIIs sold, which can cushion the market."
     }
   ];
 }
