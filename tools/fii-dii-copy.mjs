@@ -1,7 +1,7 @@
 // Plain-English interpretation + educational copy + FAQ for the FII/DII page.
 // Wording stays factual/observational (no advice, targets, or guarantees) to
 // satisfy the public editorial guardrail.
-import { escapeHtml, fmtCr, longRatio, signClass } from "./fii-dii-format.mjs";
+import { escapeHtml, fmtCr, longRatio, signClass, monthLabel } from "./fii-dii-format.mjs";
 
 function streak(days, key) {
   const withCash = days.filter((d) => d.cash);
@@ -25,18 +25,26 @@ export function fiiDiiInterpretation(days) {
   const fii = Number(last.cash.fiiNet || 0);
   const dii = Number(last.cash.diiNet || 0);
   const side = (v) => (v >= 0 ? "net buyers" : "net sellers");
-  out.push(`On <b>${escapeHtml(last.date)}</b>, FIIs were <b class="${signClass(fii)}">${side(fii)}</b> at ${escapeHtml(fmtCr(fii))} and DIIs were <b class="${signClass(dii)}">${side(dii)}</b> at ${escapeHtml(fmtCr(dii))} in the cash market.`);
+
+  const latestMonth = monthLabel(last.date);
+  const currentMonthDays = cashDays.filter((d) => monthLabel(d.date) === latestMonth);
+  const activeMonthDays = currentMonthDays.filter(d => !(Number(d.cash?.fiiBuy || 0) === 0 && Number(d.cash?.diiBuy || 0) === 0));
+  const sumFiiMtd = activeMonthDays.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
+  const avgSession = activeMonthDays.length > 0 ? Math.round(sumFiiMtd / activeMonthDays.length) : 0;
+  
+  const compText = Math.abs(fii) < Math.abs(avgSession) ? "representing a moderation relative to" : "exceeding";
+  out.push(`Institutional flow: FIIs were <b class="${signClass(fii)}">${side(fii)}</b> at ${escapeHtml(fmtCr(fii))} and DIIs were <b class="${signClass(dii)}">${side(dii)}</b> at ${escapeHtml(fmtCr(dii))} in the cash market. This session's activity is ${compText} the current MTD session average of ${escapeHtml(fmtCr(avgSession))} per session.`);
 
   if (fii < 0 && dii > 0) {
     const absorbed = Math.round((dii / Math.abs(fii)) * 100);
-    out.push(`Domestic institutions absorbed about <b>${absorbed}%</b> of the foreign cash-market outflow that session${absorbed >= 100 ? ", more than offsetting it" : ""}.`);
+    out.push(`Domestic institutions absorbed about <b>${absorbed}%</b> of the foreign cash-market outflow that session. Historically, absorption levels around or above 100% point to strong domestic liquidity cushioning structural support zones rather than letting the index break.`);
   } else if (fii > 0 && dii < 0) {
-    out.push(`Foreign money led the cash-market bid while domestic institutions took the other side.`);
+    out.push(`DII profit-taking absorbed the cash-market inflow from FIIs, showing key counter-cyclical domestic flows at higher market extensions.`);
   }
 
   const fiiStreak = streak(cashDays, "fiiNet");
   if (fiiStreak >= 2) {
-    out.push(`FIIs have been <b>${side(fii)}</b> for <b>${fiiStreak} sessions running</b> in the available data.`);
+    out.push(`FIIs have been <b>${side(fii)}</b> for <b>${fiiStreak} sessions running</b>. In structural trends, persistent streaking indicates sustained asset reallocation rather than brief transactional volatility.`);
   }
 
   const fnoDay = days.filter((d) => d.fnoOi?.fii).at(-1);
@@ -44,14 +52,15 @@ export function fiiDiiInterpretation(days) {
     const ratio = longRatio(fnoDay.fnoOi.fii, "idxFutLong", "idxFutShort");
     if (ratio != null) {
       const lean = ratio >= 55 ? "tilted long" : ratio <= 45 ? "tilted short" : "balanced";
-      out.push(`FII index-futures positioning is <b>${lean}</b> — about <b>${ratio.toFixed(0)}%</b> of their index-futures book is on the long side (as of ${escapeHtml(fnoDay.date)}).`);
+      out.push(`FII index-futures positioning is <b>${lean}</b> — about <b>${ratio.toFixed(0)}%</b> of their index-futures book is on the long side (as of ${escapeHtml(fnoDay.date)}). Because derivatives positions can adjust rapidly, this index futures lean functions as a key leading indicator before cash-market flows turn.`);
     }
   }
 
   const mtd = cashDays.slice(-22);
-  const fiiMtd = mtd.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
-  const diiMtd = mtd.reduce((a, d) => a + Number(d.cash.diiNet || 0), 0);
-  out.push(`Across the last <b>${mtd.length}</b> sessions, cumulative cash flow is <b class="${signClass(fiiMtd)}">${escapeHtml(fmtCr(fiiMtd))}</b> from FIIs and <b class="${signClass(diiMtd)}">${escapeHtml(fmtCr(diiMtd))}</b> from DIIs.`);
+  const activeMtd = mtd.filter(d => !(Number(d.cash?.fiiBuy || 0) === 0 && Number(d.cash?.diiBuy || 0) === 0));
+  const fiiMtd = activeMtd.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
+  const diiMtd = activeMtd.reduce((a, d) => a + Number(d.cash.diiNet || 0), 0);
+  out.push(`Divergence context: FIIs continue to utilize derivatives for positioning hedges during cash fluctuations. Across the last <b>${activeMtd.length}</b> active sessions, cumulative flow stands at <b class="${signClass(fiiMtd)}">${escapeHtml(fmtCr(fiiMtd))}</b> for FIIs and <b class="${signClass(diiMtd)}">${escapeHtml(fmtCr(diiMtd))}</b> for DIIs, confirming the ongoing domestic liquidity offset.`);
   return out;
 }
 

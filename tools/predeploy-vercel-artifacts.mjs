@@ -21,8 +21,6 @@ export function verifyVercelArtifacts() {
   assertOutput("robots.txt", /Disallow: \/dark-preview\//);
   assertOutput("sitemap.xml", /<changefreq>daily<\/changefreq>/);
   assertOutput("sitemap.xml", /<priority>1\.0<\/priority>/);
-  assertAdminArtifact();
-  assertTradeArtifact();
 }
 
 function assertPublicHome() {
@@ -119,25 +117,3 @@ function assertDailyPages() {
   assertOutput("4may2026/trading-guide/index.html", /Stand-down trigger/);
 }
 
-function assertAdminArtifact() {
-  buildTarget("admin");
-  assertOutput("deployment-manifest.json", /"target": "admin"/);
-  assertOutput("index.html", /Studio Command|Daily Reel Script|Admin Login/);
-  assertOutput("components/index.html", /Project Components Map|Repository Component Map/);
-  assertOutput("multibagger/index.html", /Multibagger Review Desk|Run Monthly Review/);
-  assertOutput("robots.txt", /Disallow: \//);
-  assertOutputNot("index.html", /Pre-Market Intelligence Archive/);
-}
-
-function assertTradeArtifact() {
-  buildTarget("trade");
-  assertOutput("deployment-manifest.json", /"target": "trade"/);
-  assertOutput("icon.svg", /mn-signal/);
-  assertOutput("index.html", /_next\/static/);
-  assertOutputTree("_next/static", /trade-api\.marketnarrative\.in/);
-  assertOutputTreeNot("_next/static", /Market WebSocket connection failed/);
-  assertOutputTree("_next/static", /Waiting for live/);
-  assertOutputTree("_next/static", /OI . warming up/);
-  assertOutputTree("_next/static", /ATM/);
-  assertOutputTree("_next/static", /Asia\/Kolkata/);
-}

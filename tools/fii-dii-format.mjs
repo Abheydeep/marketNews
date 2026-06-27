@@ -17,7 +17,19 @@ export function fmtCr(value) {
 /** Plain grouped integer, e.g. contract counts. */
 export function fmtNum(value) {
   const n = Number(value);
-  return Number.isFinite(n) ? Math.round(n).toLocaleString("en-IN") : "—";
+  if (!Number.isFinite(n)) return "—";
+  const sign = n < 0 ? "−" : "";
+  return `${sign}${Math.abs(Math.round(n)).toLocaleString("en-IN")}`;
+}
+
+/** Lakh-abbreviated contract counts, e.g. 40.8L */
+export function fmtLakh(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "—";
+  const sign = n < 0 ? "−" : "";
+  const lakh = Math.abs(n) / 100000;
+  const formatted = lakh.toFixed(2).replace(/\.?0+$/, "");
+  return `${sign}${formatted}L`;
 }
 
 export function signClass(value) {

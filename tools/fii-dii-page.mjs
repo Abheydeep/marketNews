@@ -2,29 +2,28 @@
 // into hero cards, charts, an interpretation read, and tabbed tables.
 // Returns { bodyHtml, faqItems } so publish-site can wrap it with the shared
 // SEO shell and keep the FAQ JSON-LD in sync.
-import { escapeHtml, fmtCr, signClass, longRatio, shortDay } from "./fii-dii-format.mjs";
+import { escapeHtml, fmtCr, fmtNum, signClass, fnoNet, longRatio, shortDay, monthLabel } from "./fii-dii-format.mjs";
 import { fiiDiiStyles } from "./fii-dii-styles.mjs";
 import { divergingBars, lineChart, chartCard } from "./fii-dii-charts.mjs";
 import { cashDaily, cashMonthly, fnoDaily, fnoMonthly } from "./fii-dii-tables.mjs";
 import { fiiDiiInterpretation, fiiDiiEducation, fiiDiiFaqItems } from "./fii-dii-copy.mjs";
+import { regimeBanner, getHistoricalExtremeMonths } from "./fii-dii-regime.mjs";
 
 /** Merge cash records and F&O records into one date-ascending day series. */
 function mergeDays(cashRecords, fnoRecords) {
   const map = new Map();
   for (const r of fnoRecords || []) {
-    map.set(r.iso, { iso: r.iso, date: r.date, cash: r.cash || null, fnoOi: r.fnoOi || null, fnoVol: r.fnoVol || null });
+    map.set(r.iso, { iso: r.iso, date: r.date, cash: r.cash || null, fnoOi: r.fnoOi || null, fnoVol: r.fnoVol || null, niftyChangePercent: null, niftyClose: null });
   }
   for (const c of cashRecords || []) {
     const prev = map.get(c.iso) || { iso: c.iso, date: c.date, fnoOi: null, fnoVol: null };
     prev.date = prev.date || c.date;
     prev.cash = prev.cash || c.cash;
+    prev.niftyChangePercent = c.niftyChangePercent !== undefined ? c.niftyChangePercent : null;
+    prev.niftyClose = c.niftyClose !== undefined ? c.niftyClose : null;
     map.set(c.iso, prev);
   }
   return [...map.values()].sort((a, b) => a.iso.localeCompare(b.iso));
-}
-
-function card(label, value, cls, note) {
-  return `<div class="mf-card"><span>${escapeHtml(label)}</span><strong class="${cls}">${escapeHtml(value)}</strong><small>${escapeHtml(note)}</small></div>`;
 }
 
 function heroCards(days) {
@@ -33,35 +32,114 @@ function heroCards(days) {
   const fii = Number(lastCash?.cash?.fiiNet ?? NaN);
   const dii = Number(lastCash?.cash?.diiNet ?? NaN);
   const ratio = lastFno ? longRatio(lastFno.fnoOi.fii, "idxFutLong", "idxFutShort") : null;
-  const absorption = fii < 0 && dii > 0 ? `${Math.round((dii / Math.abs(fii)) * 100)}%` : "—";
+  
+  const absFii = Math.abs(fii) || 1;
+  const absorption = fii < 0 && dii > 0 ? `${Math.round((dii / absFii) * 100)}%` : "—";
+  const scaleLimit = Math.max(Math.abs(fii), Math.abs(dii), 2000);
+  const fiiWidth = Math.max(5, Math.round((Math.abs(fii) / scaleLimit) * 100));
+  const diiWidth = Math.max(5, Math.round((Math.abs(dii) / scaleLimit) * 100));
+  
+  const cashDays = days.filter((d) => d.cash);
+  const latestMonth = lastCash ? monthLabel(lastCash.date) : "";
+  const currentMonthDays = cashDays.filter((d) => monthLabel(d.date) === latestMonth);
+  const fiiMtd = currentMonthDays.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
+  const diiMtd = currentMonthDays.reduce((a, d) => a + Number(d.cash.diiNet || 0), 0);
+
+  const fiiColor = fii >= 0 ? "var(--up-fill)" : "var(--dn-fill)";
+  const diiColor = dii >= 0 ? "var(--up-fill)" : "var(--dn-fill)";
+
+  const longVal = ratio != null ? ratio : 0;
+  const shortVal = ratio != null ? 100 - ratio : 0;
+  const diiFnoNet = lastFno ? fnoNet(lastFno.fnoOi.dii, "idxFutLong", "idxFutShort") : 0;
+
   return `<div class="mf-cards">
-    ${card("FII cash net", Number.isFinite(fii) ? fmtCr(fii) : "—", signClass(fii), "Foreign institutional net flow, latest session")}
-    ${card("DII cash net", Number.isFinite(dii) ? fmtCr(dii) : "—", signClass(dii), "Domestic institutional net flow, latest session")}
-    ${card("FII index-fut long %", ratio == null ? "—" : `${ratio.toFixed(0)}%`, ratio == null ? "flat" : ratio >= 50 ? "pos" : "neg", "Long share of FII index-futures book")}
-    ${card("DII absorption", absorption, absorption === "—" ? "flat" : "pos", "Domestic buying vs FII cash outflow")}
+    <!-- Card 1: Cash Flow Today -->
+    <div class="mf-card">
+      <span>Cash Flow Today · ${escapeHtml(lastCash?.date || "latest")}</span>
+      <div class="mf-battle">
+        <div class="mf-battle-row">
+          <div class="mf-battle-lbl" style="color:var(--dn)">FII</div>
+          <div class="mf-battle-track"><div class="mf-battle-fill" style="background:${fiiColor};width:${fiiWidth}%"></div></div>
+          <div class="mf-battle-num ${signClass(fii)}">${Number.isFinite(fii) ? fmtCr(fii) : "—"}</div>
+        </div>
+        <div class="mf-battle-row">
+          <div class="mf-battle-lbl" style="color:var(--up)">DII</div>
+          <div class="mf-battle-track"><div class="mf-battle-fill" style="background:${diiColor};width:${diiWidth}%"></div></div>
+          <div class="mf-battle-num ${signClass(dii)}">${Number.isFinite(dii) ? fmtCr(dii) : "—"}</div>
+        </div>
+      </div>
+      <div class="mf-battle-stats">
+        <div>
+          <small>Combined Net</small>
+          <strong class="${signClass(fii + dii)}" style="font-size:15px;margin:2px 0">${fmtCr(fii + dii)}</strong>
+        </div>
+        <div>
+          <small>DII Absorption</small>
+          <strong class="${absorption === "—" ? "flat" : "pos"}" style="font-size:15px;margin:2px 0">${absorption}</strong>
+        </div>
+        <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
+          <span>MTD FII: <span class="${signClass(fiiMtd)}">${fmtCr(fiiMtd)}</span></span>
+          <span>MTD DII: <span class="${signClass(diiMtd)}">${fmtCr(diiMtd)}</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: FII Index Futures Positioning -->
+    <div class="mf-card">
+      <span>FII Index Futures positioning</span>
+      <div class="mf-gauge-wrap">
+        <div class="mf-gauge-header">
+          <span style="color:var(--up)">Long: ${longVal.toFixed(0)}%</span>
+          <span style="color:var(--dn)">Short: ${shortVal.toFixed(0)}%</span>
+        </div>
+        <div class="mf-gauge-track">
+          <div class="mf-gauge-long" style="width:${longVal.toFixed(1)}%"></div>
+          <div class="mf-gauge-short" style="width:${shortVal.toFixed(1)}%"></div>
+        </div>
+        <div class="mf-gauge-labels">
+          <span>Long Position</span>
+          <span style="opacity:0.6">Parity</span>
+          <span>Short Position</span>
+        </div>
+      </div>
+      <div class="mf-battle-stats">
+        <div>
+          <small>Contracts Long</small>
+          <strong style="font-size:15px;margin:2px 0;color:var(--up)">${lastFno ? fmtNum(lastFno.fnoOi.fii.idxFutLong) : "—"}</strong>
+        </div>
+        <div>
+          <small>Contracts Short</small>
+          <strong style="font-size:15px;margin:2px 0;color:var(--dn)">${lastFno ? fmtNum(lastFno.fnoOi.fii.idxFutShort) : "—"}</strong>
+        </div>
+        <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
+          <span>Lean: ${getHistoricalExtremeMonths(days, ratio)}</span>
+          <span>DII Net: <span class="${signClass(diiFnoNet)}">${diiFnoNet >= 0 ? "long" : "short"} ${fmtNum(Math.abs(diiFnoNet))}</span></span>
+        </div>
+      </div>
+    </div>
   </div>`;
 }
 
 function chartsBlock(days) {
   const cash = days.filter((d) => d.cash).slice(-22);
-  const bars = divergingBars(cash.map((d) => ({ label: shortDay(d.date), fii: Number(d.cash.fiiNet || 0), dii: Number(d.cash.diiNet || 0) })));
+  const bars = divergingBars(cash.map((d) => ({ label: shortDay(d.date), fii: Number(d.cash.fiiNet || 0), dii: Number(d.cash.diiNet || 0), niftyChangePercent: d.niftyChangePercent, niftyClose: d.niftyClose })));
   let cf = 0; let cd = 0;
   const cumFii = []; const cumDii = []; const cumLabels = [];
   for (const d of cash) { cf += Number(d.cash.fiiNet || 0); cd += Number(d.cash.diiNet || 0); cumFii.push(cf); cumDii.push(cd); cumLabels.push(shortDay(d.date)); }
   const cum = lineChart([
-    { name: "FII", color: "#22d3ee", values: cumFii },
-    { name: "DII", color: "#a78bfa", values: cumDii }
+    { name: "FII", color: "var(--dn)", values: cumFii },
+    { name: "DII", color: "var(--up)", values: cumDii }
   ], cumLabels, fmtCr);
   const fno = days.filter((d) => d.fnoOi?.fii).slice(-40);
   const ratios = fno.map((d) => longRatio(d.fnoOi.fii, "idxFutLong", "idxFutShort"));
-  const ratioChart = lineChart([{ name: "FII long %", color: "#34d399", values: ratios }], fno.map((d) => shortDay(d.date)), (v) => `${Math.round(v)}%`);
+  const ratioChart = lineChart([{ name: "FII long %", color: "var(--up)", values: ratios }], fno.map((d) => shortDay(d.date)), (v) => `${Math.round(v)}%`);
   return `<div>
     <h2 class="mf-section-h">Flow &amp; positioning charts</h2>
     <p class="mf-section-s">FII and DII cash flow, the running cumulative, and how FIIs are leaning in index futures — the three views a desk checks before the open.</p>
     <div class="mf-charts">
-      ${chartCard("FII vs DII daily cash net", "Net buy/sell per session, ₹ crore", bars, [{ name: "FII", color: "#22d3ee" }, { name: "DII", color: "#a78bfa" }])}
-      ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "#22d3ee" }, { name: "DII", color: "#a78bfa" }])}
-      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book", ratioChart, [{ name: "FII long %", color: "#34d399" }])}
+      ${chartCard("FII vs DII daily cash net", "Net flow (FII left, DII right bar) · green = buy · red = sell · Nifty in gold", bars, [{ name: "Buying support", color: "var(--up)" }, { name: "Selling pressure", color: "var(--dn)" }, { name: "Nifty 50", color: "#d4a847" }])}
+      ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "var(--dn)" }, { name: "DII", color: "var(--up)" }])}
+      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book · shaded zones show extreme bias", ratioChart, [{ name: "FII long %", color: "var(--up)" }])}
     </div>
   </div>`;
 }
@@ -104,6 +182,7 @@ export function fiiDiiPageBody(cashRecords, fnoRecords) {
   const bodyHtml = `${fiiDiiStyles()}
   <div class="mf">
     <div class="mf-asof">Data as of <b>${escapeHtml(lastDate)}</b> · cash from NSE FII/DII activity, F&amp;O from NSE participant reports</div>
+    ${regimeBanner(days)}
     ${heroCards(days)}
     ${readBlock}
     ${chartsBlock(days)}
