@@ -2,11 +2,10 @@
 
 ## Shape
 
-The cockpit is additive to the existing market-narrative system:
+The cockpit consists of:
 
-- `services/trading-api` is a Python FastAPI service for Kite auth, instruments, option-chain construction, technical analysis, sentiment, signals, and guarded order placement.
-- `apps/trading-dashboard` is a private Next.js/Tailwind dashboard that consumes REST and WebSocket data from the trading API.
-- `packages/api-client` now includes shared TypeScript contracts for candles, options, signals, risk state, order proposals, and market envelopes.
+- `services/trading-api` (housed in this repo): Python FastAPI service for Kite auth, instruments, option-chain construction, technical analysis, sentiment, signals, and guarded order placement.
+- [marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade) (external repo): Next.js/Tailwind dashboard that consumes REST and WebSocket data from the trading API.
 
 Trading access is restricted to the configured Abhey admin account. In local demo mode, `DemoUserInitializer` creates `abhey@marketnarrative.local` with password `market-open`. In production, set `TRADING_ADMIN_EMAIL=abhey@marketnarrative.in` and `ABHEY_ADMIN_PASSWORD` in the VPS `.env`. `LocalJwtService` grants `trade:read` and `trade:execute` only to the configured email.
 
@@ -69,16 +68,10 @@ uvicorn app.main:app --reload --port 8090
 
 Use `pip install -r requirements-ml.txt` only for FinBERT inference. Use `requirements-quant-extra.txt` only where `pandas-ta` is available; the default technical engine includes pure-Python fallbacks.
 
-```bash
-npm install
-npm run trading:dashboard:dev
-```
+To run the dashboard UI, clone and configure the external repository:
+[marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade)
 
-Open `http://127.0.0.1:3002`. The dashboard dev script uses Turbopack because the default webpack dev server in the installed Next 15.5.x release can throw a broken dev-overlay `__webpack_modules__[moduleId] is not a function` error in this monorepo.
-
-The dashboard login screen defaults to the configured Abhey email, but never pre-fills the password. It calls the existing Spring `/api/auth/login` endpoint and refuses tokens that are not for the configured Abhey admin or do not include `trade:execute`.
-
-Dashboard public env defaults live in `apps/trading-dashboard/.env.example`.
+Follow the setup and environment variable instructions in that repository's README.md to connect it to the local trading API.
 
 ## Test
 

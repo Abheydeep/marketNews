@@ -5,16 +5,7 @@ Use this as the launch cheat sheet. DNS records do not go in `.env`; DNS records
 ## Vercel Public Project
 
 Project: `marketnarrative-public`
-
-The root `vercel.json` configures every Vercel project to run `npm run vercel:build` and publish `out/vercel`. The project role is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`.
-
-If the deployment summary lists source files such as `/apps/...` as static assets, the project is ignoring the build config and is publishing the repository root by mistake.
-
-If `admin.marketnarrative.in` shows the public archive, either the domain is attached to the public Vercel project or this env var is missing on the admin project:
-
-```env
-MARKET_NARRATIVE_DEPLOY_TARGET=admin
-```
+Repository: `Abheydeep/marketNews` (This Repo)
 
 Build settings:
 
@@ -22,7 +13,7 @@ Build settings:
 Root Directory: ./
 Install Command: npm install
 Build Command: npm run vercel:build
-Output Directory: out/vercel
+Output Directory: public
 ```
 
 Environment variables:
@@ -42,28 +33,21 @@ www.marketnarrative.in
 ## Vercel Admin Project
 
 Project: `marketnarrative-admin`
-
-You can reuse/rename the existing `market-news-admin-studio` Vercel project for this. This project owns the private script engine/admin studio and the private portfolio workflow.
-
-Before redeploying, remove `admin.marketnarrative.in` from every other Vercel project. Vercel routes by the domain attached to a project, so the DNS record alone is not enough.
+Repository: `Abheydeep/marketnarrative-admin`
 
 Build settings:
 
 ```text
 Root Directory: ./
 Install Command: npm install
-Build Command: npm run vercel:build
-Output Directory: out/vercel
+Build Command: npm run build
+Output Directory: dist
 ```
 
 Environment variables:
 
 ```env
-MARKET_NARRATIVE_DEPLOY_TARGET=admin
-MARKET_DATA_MODE=live
-PUBLIC_SITE_ORIGIN=https://marketnarrative.in
-ADMIN_SITE_ORIGIN=https://admin.marketnarrative.in
-MARKET_NARRATIVE_API_BASE=https://api.marketnarrative.in
+VITE_API_BASE_URL=https://api.marketnarrative.in
 ```
 
 Domains:
@@ -83,22 +67,20 @@ https://admin.marketnarrative.in/multibagger/ Private multibagger monthly review
 ## Vercel Trade Project
 
 Project: `marketnarrative-trade`
-
-Create a separate Vercel project named `marketnarrative-trade`. The trade project must have `MARKET_NARRATIVE_DEPLOY_TARGET=trade`, and it must not own the apex `marketnarrative.in`, `www.marketnarrative.in`, or `admin.marketnarrative.in` domains.
+Repository: `Abheydeep/marketnarrative-trade`
 
 Build settings:
 
 ```text
 Root Directory: ./
 Install Command: npm install
-Build Command: npm run vercel:build
-Output Directory: out/vercel
+Build Command: npm run build
+Output Directory: out
 ```
 
 Environment variables:
 
 ```env
-MARKET_NARRATIVE_DEPLOY_TARGET=trade
 NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in
 NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in
 NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
@@ -117,7 +99,7 @@ marketnarrative-public owns:
   marketnarrative.in
   www.marketnarrative.in
 
-marketnarrative-admin or market-news-admin-studio owns:
+marketnarrative-admin owns:
   admin.marketnarrative.in
 
 marketnarrative-trade owns:

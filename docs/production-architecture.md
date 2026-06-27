@@ -1,16 +1,16 @@
 # MarketNarrative Production Architecture
 
-This repo publishes one product family through separate production surfaces. Each surface builds from the same monorepo root, but Vercel selects the deployed artifact with `MARKET_NARRATIVE_DEPLOY_TARGET`.
+This codebase publishes the public site briefing, while the operator admin studio and trading cockpit have been split out into separate standalone repositories.
 
 ## Production Surfaces
 
-| Surface | Domain | Deploy target | Purpose | Public? |
+| Surface | Domain | Repository | Purpose | Public? |
 | --- | --- | --- | --- | --- |
-| Public briefing | `marketnarrative.in` and `www.marketnarrative.in` | `public` | Daily pre-market archive, dated briefings, public multibagger tracker | Yes |
-| Admin studio | `admin.marketnarrative.in` | `admin` | Script engine, publishing studio, project component map, multibagger review workflow | No |
-| Trading cockpit | `trade.marketnarrative.in` | `trade` | Abhey-only Nifty/Bank Nifty trading cockpit | No |
-| Spring API | `api.marketnarrative.in` | DigitalOcean Docker Compose | Auth, digest admin APIs, public digest APIs, multibagger APIs | API |
-| Trading API | `trade-api.marketnarrative.in` | DigitalOcean Docker Compose | Kite auth, market stream, options, signals, guarded order proposals | API |
+| Public briefing | `marketnarrative.in` and `www.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Daily pre-market archive, dated briefings, public multibagger tracker | Yes |
+| Admin studio | `admin.marketnarrative.in` | `Abheydeep/marketnarrative-admin` | Script engine, publishing studio, components map, portfolio review | No |
+| Trading cockpit | `trade.marketnarrative.in` | `Abheydeep/marketnarrative-trade` | Nifty/Bank Nifty trading cockpit | No |
+| Spring API | `api.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Auth, digest admin APIs, public digest APIs, multibagger APIs | API |
+| Trading API | `trade-api.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Kite auth, market stream, options, signals, guarded order proposals | API |
 
 ## Public Site
 
@@ -35,39 +35,20 @@ The multibagger public state is a model tracker, not a statement of real account
 
 ## Admin Studio
 
-The admin Vercel project uses:
+The Admin Studio frontend lives in `Abheydeep/marketnarrative-admin`.
+It is built as a React Vite SPA and deployed to Vercel (target: `admin.marketnarrative.in`).
+It communicates with the Spring monolith backend APIs for script reviews, manual runs, and asset triggers.
 
-```env
-MARKET_NARRATIVE_DEPLOY_TARGET=admin
-PUBLIC_SITE_ORIGIN=https://marketnarrative.in
-ADMIN_SITE_ORIGIN=https://admin.marketnarrative.in
-MARKET_NARRATIVE_API_BASE=https://api.marketnarrative.in
-```
-
-It runs the same static publisher, then copies only `out/site/admin` into `out/vercel`. Because that admin folder becomes the root of the admin deployment, the admin routes are:
-
-```text
-https://admin.marketnarrative.in/              Private script engine / admin studio
-https://admin.marketnarrative.in/components/   Private project components and architecture map
-https://admin.marketnarrative.in/multibagger/ Private multibagger monthly review
-```
-
-`/` is the private Studio Command page for the script engine and publishing workflow. `/components/` is the private project components and architecture map. `/multibagger/` is the private portfolio review workflow for screenshot upload, monthly review generation, and sanitized publishing.
-
-The admin artifact writes `robots.txt` with `Disallow: /`. The static gate protects previews; production API operations still require Spring auth and permissions.
+Deployed admin routes:
+- `https://admin.marketnarrative.in/` (Private script engine / admin studio)
+- `https://admin.marketnarrative.in/components/` (Private project components and architecture map)
+- `https://admin.marketnarrative.in/multibagger/` (Private multibagger monthly review)
 
 ## Trading Cockpit
 
-The trade Vercel project uses:
-
-```env
-MARKET_NARRATIVE_DEPLOY_TARGET=trade
-NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in
-NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in
-NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
-```
-
-It builds `apps/trading-dashboard` as a static Next export. The cockpit remains separate from the admin studio because trading has different permissions, WebSocket behavior, and risk controls.
+The Trading Cockpit frontend lives in `Abheydeep/marketnarrative-trade`.
+It is built as a Next.js 15 app, statically exported, and deployed to Vercel (target: `trade.marketnarrative.in`).
+It communicates with the FastAPI trading backend for option streams, scans, and Kite integrations.
 
 ## Backend Boundary
 

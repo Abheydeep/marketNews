@@ -4,16 +4,18 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 
 ## Monorepo Layout
 
-- `backend/` - Java 17 Spring Boot modular monolith.
-- `apps/public-portal/` - public Next.js SEO portal.
-- `apps/admin-studio/` - private React SPA command center.
-- `apps/trading-dashboard/` - private Next.js real-time Nifty/Bank Nifty trading cockpit.
-- `packages/ui/` - shared market design system.
-- `packages/api-client/` - typed API client and permission contracts.
+- `backend/` - Java 17 Spring Boot modular monolith (provides core database, scheduler, and API endpoints).
 - `services/trading-api/` - Python FastAPI service for Kite Connect, options microstructure, signals, and guarded order placement.
 - `frontend/` - earlier combined Next.js prototype retained for reference.
 - `infra/` - Docker Compose for PostgreSQL and Redis.
+- `tools/` - Active desk toolchain (quote adapter, digest builder, page renderer, publisher, sitemap/robots generator, test suite, and QA checks).
+- `archive/` - Public-safe digest history (redacted JSON timeline).
 - `docs/` - Architecture notes, production roadmap, and resume framing.
+
+### Extracted Standalone Repositories
+The private UI applications have been split out of the monorepo into separate codebases:
+- [marketnarrative-admin](https://github.com/Abheydeep/marketnarrative-admin) (Vite + React 19) - private admin studio command center.
+- [marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade) (Next.js 15 static export) - private Nifty/Bank Nifty real-time trading cockpit UI.
 
 ## MVP Workflow
 
@@ -82,7 +84,7 @@ real-key check.
 
 ## No-Install Demo
 
-You can run a working demo server with only Node:
+The repository includes a self-contained local demo server to simulate pages and APIs:
 
 ```bash
 npm run demo
@@ -91,20 +93,18 @@ npm run demo
 Then open:
 
 - Public portal: `http://localhost:4173`
-- Admin studio: `http://localhost:4173/admin`
+
+The local demo supports mock/preview routes for the extracted admin views:
+- `/admin`: mock Studio Command view (reel script, scanner workbench, source QA).
+- `/admin/components`: visual project-components map.
 
 Demo admin credentials:
-
 - Email: `admin@marketnarrative.local`
 - Password: `market-open`
 
-The no-install demo mirrors the mock workflow used by the Spring/Next implementation. It is included so the project is usable even before Java 17, Maven, Docker, and npm registry access are available.
-
-The demo keeps the public and private surfaces separate:
-
+The no-install demo mirrors the mock workflow used by the Spring/Next implementation. It is included so the project is usable even before Java 17, Maven, Docker, and npm registry access are available. It keeps the public and private surfaces separate:
 - Public route `/`: public briefing only.
-- Auth-gated route `/admin`: Studio Command with daily reel script, scanner workbench, source QA, AI thumbnail simulation, architecture notes, and animated teleprompter.
-- Auth-gated route `/admin/components`: expandable project-components map for understanding the system internals.
+- Auth-gated route `/admin` & `/admin/components`: mock views for operators to inspect local digests and layout.
 
 ## Daily 7:15 AM Summary
 
@@ -158,7 +158,7 @@ npm run daily:generate -- --market-data live
 
 The public quote board uses the generated `digest.json`; when hosted on GitHub Pages, the browser checks that file every minute and reflects the latest published values. Local dated `file://` previews also check the public GitHub Pages digest first, so a manual reload does not stay pinned to an old generated file. Clicking an index opens a first-party canvas chart from the captured price series, with a TradingView chart link for the external full view.
 
-The public export ships `/admin/` and `/admin/components/` behind a client-side login gate so the main website has one coherent admin entry point. This is suitable for the static demo; production hosting should replace it with server-side/Auth0 authentication. The public archive, dated briefings, and admin pages use the premium dark glassmorphism UI; `out/site/dark-preview/index.html` remains only as a backward-compatible alias.
+The public export builds strictly the public-facing pages (`/`, sitemaps, dated pages). The admin studio and trading cockpit frontends have been moved to their own standalone repositories and are no longer built as part of this static public export.
 
 ## GitHub Pages
 
@@ -168,7 +168,11 @@ See `docs/github-pages.md`.
 
 ## Advanced Architecture Track
 
-The repo now includes the production architecture path described in `docs/advanced-architecture.md`: split public/admin frontend deployments, shared workspace packages, Auth0-style permission claims, agentic RAG extension points, Redis digest publication, and PostgreSQL monthly partitioning guidance.
+The project utilizes a distributed architecture with:
+- Public-facing briefings (built from this repository and hosted via Vercel).
+- Separate frontend repositories for Admin and Trade interfaces.
+- Spring API modular monolith for persistence and publishing workflows.
+- FastAPI service for high-performance Kite Connect market data streams.
 
 ## Production Deployment
 
@@ -181,7 +185,7 @@ Use `docs/deployment.md` for the `marketnarrative.in` rollout:
 
 ## Trading Cockpit
 
-The additive trading cockpit is documented in `docs/trading-cockpit.md`. It runs beside the existing Spring Boot app:
+The FastAPI backend for the trading cockpit resides in `services/trading-api/`. Run it locally with:
 
 ```bash
 cd services/trading-api
@@ -191,12 +195,8 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8090
 ```
 
-In another terminal:
-
-```bash
-npm install
-npm run trading:dashboard:dev
-```
+To run the interactive trade cockpit UI dashboard, clone and run the standalone repository:
+[marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade)
 
 Trading dashboard defaults:
 

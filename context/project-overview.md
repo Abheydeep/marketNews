@@ -25,7 +25,7 @@ and want a disciplined map, not a pile of headlines.
 - Evidence/source ledger with public-safe summaries.
 - Indices board, FII/DII page, market statistics, move explainers, and public
   multibagger model tracker.
-- Admin and trading surfaces as separate private deployments.
+- Admin and trading UI surfaces as separate standalone repositories and private deployments.
 
 ## Out Of Scope
 

@@ -1,11 +1,14 @@
 flowchart LR
   subgraph Repo["marketNews monorepo"]
     Tools["tools/*.mjs pipelines"]
-    Apps["apps/* frontends"]
-    Packages["packages/* shared code"]
     Services["services/trading-api"]
     Backend["backend Spring API"]
     Archive["archive/daily immutable JSON"]
+  end
+
+  subgraph ExternalRepos["External Frontends"]
+    AdminRepo["marketnarrative-admin repo"]
+    TradeRepo["marketnarrative-trade repo"]
   end
 
   subgraph Public["Public surface"]
@@ -28,8 +31,8 @@ flowchart LR
 
   Tools --> Archive
   Archive --> PublicDomain
-  Apps --> AdminDomain
-  Apps --> TradeDomain
+  AdminRepo --> AdminDomain
+  TradeRepo --> TradeDomain
   PublicDomain --> PublicPages
   AdminDomain --> AdminPages
   TradeDomain --> TradePages

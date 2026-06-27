@@ -20,61 +20,41 @@ Open a PR to `main` after the verification commands pass.
 
 ## Vercel Projects
 
-Create three separate Vercel projects from `Abheydeep/marketNews`. Each project builds from the repo root and writes `./public` (Vercel's default static output directory). The deployed surface is selected by `MARKET_NARRATIVE_DEPLOY_TARGET`. The build script can also infer the target from unmistakable Vercel project/deployment URLs such as `market-news-admin-studio` or `admin.marketnarrative.in`, but the explicit env var remains the preferred production setting.
+Deploy three separate Vercel projects:
 
-The committed `vercel.json` sets `framework: null` and explicit `installCommand` / `buildCommand`. Do **not** add `outputDirectory` to `vercel.json` — the current Vercel CLI schema rejects it. The build writes to `./public` because that is Vercel's default, and the only one the CLI accepts without an override.
+1. **Public Project** (`marketnarrative-public`):
+   - Repository: `Abheydeep/marketNews` (This Repo)
+   - Root directory: `.`
+   - Framework preset: Other
+   - Install command: `npm install`
+   - Build command: `npm run vercel:build`
+   - Domains: `marketnarrative.in`, `www.marketnarrative.in`
+   - Env:
+     - `MARKET_NARRATIVE_DEPLOY_TARGET=public`
+     - `MARKET_DATA_MODE=live`
+     - `LATEST_DIGEST_SLUG` (e.g. `5jun2026`, set by the publish pipeline — read by `api/latest-redirect.js`)
 
-Do not attach `admin.marketnarrative.in` to the public project, and do not attach `marketnarrative.in` or `www.marketnarrative.in` to the admin project. If a deployment summary lists repository source files like `/apps/...` as static assets, the build settings are wrong and the project is publishing the repository root.
+2. **Admin Project** (`marketnarrative-admin`):
+   - Repository: `Abheydeep/marketnarrative-admin`
+   - Root directory: `.`
+   - Framework preset: Vite
+   - Install command: `npm install`
+   - Build command: `npm run build`
+   - Domains: `admin.marketnarrative.in`
+   - Env:
+     - `VITE_API_BASE_URL=https://api.marketnarrative.in`
 
-Public project:
-
-- Project name: `marketnarrative-public`
-- Root directory: `.`
-- Framework preset: Other
-- Install command: `npm install`
-- Build command: `npm run vercel:build`
-- Domains: `marketnarrative.in`, `www.marketnarrative.in`
-- Env:
-  - `MARKET_NARRATIVE_DEPLOY_TARGET=public`
-  - `MARKET_DATA_MODE=live`
-  - `LATEST_DIGEST_SLUG` (e.g. `5jun2026`, set by the publish pipeline — read by `api/latest-redirect.js`)
-
-Admin project:
-
-- Project name: `marketnarrative-admin` or the reused `market-news-admin-studio`
-- Root directory: `.`
-- Framework preset: Other
-- Install command: `npm install`
-- Build command: `npm run vercel:build`
-- Domains: `admin.marketnarrative.in`
-- Env:
-  - `MARKET_NARRATIVE_DEPLOY_TARGET=admin`
-  - `MARKET_DATA_MODE=live`
-  - `PUBLIC_SITE_ORIGIN=https://marketnarrative.in`
-  - `ADMIN_SITE_ORIGIN=https://admin.marketnarrative.in`
-  - `MARKET_NARRATIVE_API_BASE=https://api.marketnarrative.in`
-
-Admin routes:
-
-```text
-https://admin.marketnarrative.in/              Private Studio Command page
-https://admin.marketnarrative.in/components/   Private project components map
-https://admin.marketnarrative.in/multibagger/ Private multibagger review workflow
-```
-
-Trade project:
-
-- Project name: `marketnarrative-trade`
-- Root directory: `.`
-- Framework preset: Other
-- Install command: `npm install`
-- Build command: `npm run vercel:build`
-- Domains: `trade.marketnarrative.in`
-- Env:
-  - `MARKET_NARRATIVE_DEPLOY_TARGET=trade`
-  - `NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in`
-  - `NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in`
-  - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`
+3. **Trade Project** (`marketnarrative-trade`):
+   - Repository: `Abheydeep/marketnarrative-trade`
+   - Root directory: `.`
+   - Framework preset: Next.js
+   - Install command: `npm install`
+   - Build command: `npm run build`
+   - Domains: `trade.marketnarrative.in`
+   - Env:
+     - `NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in`
+     - `NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in`
+     - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`
 
 Reference settings are stored in `deploy/vercel/`.
 
