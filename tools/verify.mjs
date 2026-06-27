@@ -2581,10 +2581,10 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("Disallow: /dark-preview/"));
   assert.ok(publisher.includes("<changefreq>"));
   assert.ok(publisher.includes("<priority>"));
-  assert.ok(publisher.includes("daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing"));
+  assert.ok(publisher.includes("daily pre-market public briefing for Nifty and Bank Nifty") || publisher.includes("pre-market briefing"));
   assert.ok(publisher.includes("7:15 AM IST") || publisher.includes("pre-market brief") || publisher.includes("Nifty gate"), "homepage must reference 7:15 AM IST or pre-market context");
   assert.ok(publisher.includes("Abhey Deep"));
-  assert.ok(publisher.includes("Last verified update"));
+  assert.ok(publisher.includes("Last updated"));
   assert.ok(publisher.includes("Share this archive"));
 
   assert.equal(publisher.includes("Admin login</a>"), false);

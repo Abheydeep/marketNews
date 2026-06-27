@@ -1420,40 +1420,55 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       line-height: 1.65;
     }
 
-    .summary-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+    /* Summary card — unified 2x2 block replacing 4 separate chips */
+    .summary-card {
       margin: 28px 0 34px;
-    }
-
-    .summary-chip,
-    .digest-card {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46));
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.5));
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(14px);
+      overflow: hidden;
     }
-
-    .summary-chip {
-      padding: 16px;
+    .summary-card-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide: row;
     }
-
-    .summary-chip span {
+    .summary-item {
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+    .summary-item:last-child { border-right: none; }
+    .summary-item span {
       display: block;
       color: #9fb0c8;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-
-    .summary-chip strong {
+    .summary-item strong {
       display: block;
-      margin-top: 6px;
-      font-size: 24px;
-      line-height: 1.1;
+      margin-top: 5px;
+      font-size: 15px;
+      line-height: 1.2;
+      color: #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 680px) {
+      .summary-card-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .summary-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .summary-item:nth-child(odd) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+      .summary-item:nth-last-child(-n+2) { border-bottom: none; }
     }
 
     .workflow-strip {
@@ -1870,13 +1885,30 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       gap: 10px;
     }
 
+    .faq-section details summary::-webkit-details-marker { display: none; }
     .faq-section summary {
+      list-style: none;
       cursor: pointer;
       color: #f8fafc;
       font-weight: 850;
       line-height: 1.35;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
-
+    .faq-section summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      color: #22d3ee;
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
+    }
+    .faq-section details[open] > summary::after {
+      transform: rotate(45deg);
+    }
     .faq-section details p {
       margin-top: 10px;
     }
@@ -1888,10 +1920,16 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .market-strip { display: flex; flex-wrap: nowrap; gap: 10px; overflow-x: auto; padding: 10px 0 6px; scrollbar-width: none; }
     .market-strip::-webkit-scrollbar { display: none; } .ms-chip { background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 100px; padding: 10px 12px; } .ms-lbl { color: #64748b; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; } .ms-val { color: #f8fafc; font-size: 15px; font-weight: 700; } .ms-chg { font-size: 12px; font-weight: 700; } .ms-up .ms-chg { color: #34d399; } .ms-dn .ms-chg { color: #f87171; } .ms-flat .ms-chg { color: #94a3b8; }
     .recent-briefings-toggle { border:none; }
-    .recent-briefings-toggle > summary { cursor:pointer; list-style:none; }
+    .recent-briefings-toggle > summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
     .recent-briefings-toggle > summary::-webkit-details-marker { display:none; }
-    .recent-briefings-toggle > summary .archive-title::before { content:"▶ "; font-size:11px; color:#64748b; transition:transform 160ms; display:inline-block; }
-    .recent-briefings-toggle[open] > summary .archive-title::before { content:"▼ "; }
+    .recent-briefings-toggle > summary .archive-title::before {
+      content: "→";
+      font-size: 13px;
+      color: #38bdf8;
+      display: inline-block;
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .recent-briefings-toggle[open] > summary .archive-title::before { transform: rotate(90deg); }
     .fii-bar { background:rgba(15,23,42,.7); border:1px solid rgba(255,255,255,.1); border-left:3px solid #6366f1; border-radius:12px; margin:10px 0; padding:14px 16px; }
     .fii-header { align-items:center; display:flex; gap:8px; margin-bottom:12px; }
     .fii-dot { width:8px; height:8px; border-radius:50%; background:#6366f1; flex-shrink:0; }
@@ -2036,8 +2074,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
       <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
         <div>
-          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this brief at 7:15 AM</span>` : ""}
-          <strong>Get the next trading-day 7:15 AM brief — straight to your inbox before the market opens.</strong>
+          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
+          <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
           <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
         </div>
         <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
@@ -2045,11 +2083,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       ${archiveShareRowHtml()}
     </section>
     ${marketStrip}
-    <section class="summary-row" aria-label="Archive summary">
-      <div class="summary-chip"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
-      <div class="summary-chip"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
-      <div class="summary-chip"><span>Today's focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
-      <div class="summary-chip"><span>Last verified update</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
+    <section class="summary-card" aria-label="Archive summary">
+      <div class="summary-card-inner">
+        <div class="summary-item"><span>Latest edition</span><strong>${escapeHtml(formatDigestDate(latest.digestDate))}</strong></div>
+        <div class="summary-item"><span>Coverage</span><strong>Nifty / Bank Nifty</strong></div>
+        <div class="summary-item"><span>Today's focus</span><strong>${escapeHtml(archiveFocus(latest))}</strong></div>
+        <div class="summary-item"><span>Last updated</span><strong>${escapeHtml(formatGeneratedTime(latest.generatedAt || latest.publishedAt || `${latest.digestDate}T07:15:00+05:30`))}</strong></div>
+      </div>
     </section>
     ${fiiDiiBar}
     ${yesterdayBar}
@@ -2553,7 +2593,7 @@ function aboutPage(latest, archiveDigests = []) {
     <section class="about-grid">
       <article class="about-card">
         <h2>What you get here</h2>
-        <p>A daily 7:15 AM IST public briefing for Nifty and Bank Nifty: global cues, India read-through, opening gates, Bank Nifty confirmation, sector watch, and source cards in one workflow.</p>
+        <p>A daily pre-market public briefing for Nifty and Bank Nifty: global cues, India read-through, opening gates, Bank Nifty confirmation, sector watch, and source cards in one workflow.</p>
       </article>
       <article class="about-card">
         <h2>Why not just headlines?</h2>
@@ -2591,8 +2631,8 @@ function aboutPage(latest, archiveDigests = []) {
 }
 
 function subscribePage() {
-  const pageTitle = "Join The 7:15 AM Brief | Market Narrative";
-  const pageDescription = "Join the Market Narrative daily email flow for the 7:15 AM IST Nifty and Bank Nifty pre-market briefing.";
+  const pageTitle = "Join The Pre-Market Brief | Market Narrative";
+  const pageDescription = "Join the Market Narrative daily email flow for the Nifty and Bank Nifty pre-market briefing.";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2849,7 +2889,7 @@ function subscribePage() {
   ${siteTopbarHtml("/subscribe/")}
   <main class="shell">
     <p class="eyebrow">Daily Email</p>
-    <h1>Get the 7:15 AM market nerve before the open.</h1>
+    <h1>Get the pre-market briefing before the open.</h1>
     <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
     <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
       <div class="sent-note" hidden aria-live="polite"></div>
@@ -3241,7 +3281,10 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     .faq-section { border-top:1px solid var(--line); margin-top:30px; padding-top:22px; }
     .faq-list { display:grid; gap:10px; margin-top:14px; }
     .faq-list details { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:15px; }
-    .faq-list summary { cursor:pointer; font-weight:850; line-height:1.35; }
+    .faq-list details summary::-webkit-details-marker { display:none; }
+    .faq-list summary { list-style:none; cursor:pointer; font-weight:850; line-height:1.35; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .faq-list summary::after { content:"+"; font-size:20px; font-weight:300; line-height:1; color:var(--cyan); flex-shrink:0; transition:transform 0.22s ease; }
+    .faq-list details[open] > summary::after { transform:rotate(45deg); }
     .faq-list p { margin-top:10px; }
     .site-footer-links { border-top:1px solid var(--line); color:var(--muted); display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; padding:24px 0 36px; }
     .site-footer-links a { border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:13px; font-weight:800; padding:9px 11px; }

@@ -371,11 +371,11 @@ export function bottomTabBarCss() {
       /* Lift content above the fixed bar on mobile. */
       body.has-btb main,
       body.has-btb .shell:last-child {
-        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
       }
     }
     @media (max-width: 760px) {
-      main { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
+      main { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important; }
     }
     /* === End bottom tab bar === */
   `;
