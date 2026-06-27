@@ -2014,7 +2014,25 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .yb-link:hover { color: #f8fafc; text-decoration: underline; }
     .tag-filter { display: flex; flex-wrap: nowrap; gap: 8px; margin: 8px 0 12px; overflow-x: auto; scrollbar-width: none; }
     .tag-filter::-webkit-scrollbar { display: none; }
-    .tag-pill { background: rgba(15,23,42,.6); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; color: #94a3b8; cursor: pointer; font-size: 13px; font-weight: 700; padding: 6px 14px; white-space: nowrap; transition: background 120ms, border-color 120ms, color 120ms; }
+    .tag-pill {
+      background: rgba(15,23,42,.6);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 99px;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 0 16px;
+      white-space: nowrap;
+      transition: background 120ms, border-color 120ms, color 120ms;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      min-width: auto !important;
+      min-height: auto !important;
+      flex-shrink: 0;
+    }
     .tag-pill:hover { border-color: rgba(124,180,245,.5); color: #f8fafc; }
     .tag-pill.active { background: rgba(99,102,241,.2); border-color: rgba(99,102,241,.5); color: #a5b4fc; }
 

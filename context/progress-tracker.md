@@ -234,8 +234,8 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
-- 2026-06-28: Unified collapsibility indicators across the homepage and daily briefing page to use consistent cyan + icons that rotate to × on open. Baseline-aligned "Recent briefings" header with "See all briefings" link via flex wrapper. Redesigned homepage subscribe/share card to show the join button and share buttons side-by-side. Eliminated empty header space by shrinking main.shell and .hero top padding to 4px on mobile, and resolved asymmetric margins below closed details summary panels.
-  ROOT CAUSE: details expanders used inconsistent arrow indicators (▾, ▼, browser default), summary h2 margins broke text alignment, and spacing rules below topbar were oversized.
+- 2026-06-28: Unified collapsibility indicators across the homepage and daily briefing page to use consistent cyan + icons that rotate to × on open. Baseline-aligned "Recent briefings" header with "See all briefings" link via flex wrapper. Redesigned homepage subscribe/share card to show the join button and share buttons side-by-side. Eliminated empty header space by shrinking main.shell and .hero top padding to 4px on mobile, and resolved asymmetric margins below closed details summary panels. Redesigned homepage tag filter pills as capsules with flex-shrink: 0 and reset default button touch targets to prevent overlap and support horizontal scrolling on mobile.
+  ROOT CAUSE: details expanders used inconsistent arrow indicators (▾, ▼, browser default), summary h2 margins broke text alignment, spacing rules below topbar were oversized, and tag pills buttons lacked flex-shrink while inheriting global min-width.
   Verified: `npm run context:verify` (passed), `npm test` (80 passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but deferred: none.
