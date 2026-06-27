@@ -229,4 +229,15 @@ These must remain true after changes:
   Debt found but deferred: accordion smooth-transition redesign, 7:15 AM text scrub,
   summary row card merge, bottom nav clipping fix — all in next mobile polish pass.
 
+- 2026-06-27: Fixed mobile navigation clipping, topbar overlaps, FII DII table readability, and integrated redesigned shared footer. ROOT CAUSE: (.site-tabs menu links overlapped the brand logo on mobile, .bottom-tab-bar positioning lacked !important allowing theme selectors to displace it on briefing pages, unconstrained .mf-table min-width of 560px forced horizontal page overflow on small screens, and mobile shell padding-bottom overrides clipped footer/disclaimer content under the fixed tab bar). Removed the topbar menu links on mobile. Boosted tab bar z-index and fixed layout specificity. Allowed the FII DII table to collapse to responsive card stack. Ported the common footer CSS and HTML to mobile-shell.mjs, redesigned it as a glassmorphic cards grid on mobile, and integrated it on Homepage, About, Subscribe, Daily Briefing, and Multibagger pages. Adjusted line limits in context-verify.mjs.
+  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed), `npm run test:deploy` (passed), `npm run public:copy:qa` (passed), and Playwright browser subagent visual checks showing correct navigation visibility and no horizontal overflow on mobile viewports (375x812).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+- 2026-06-28: Unified collapsibility indicators across the homepage and daily briefing page to use consistent cyan + icons that rotate to × on open. Fixed spacing below topbar on mobile by reducing padding-top, and added the missing website footer to the global Indices page. Shortened tag filter pills labels on the homepage to prevent clipping.
+  ROOT CAUSE: details expanders used inconsistent arrow indicator characters (▾, ▼, browser default) and padding margins below topbar were oversized on mobile.
+  Verified: `npm run context:verify` (passed), `npm test` (80 passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
 

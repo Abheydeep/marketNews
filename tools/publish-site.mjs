@@ -12,7 +12,7 @@ import { parseDayLabel } from "./fii-dii-capture.mjs";
 import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -980,12 +980,12 @@ function homepageYesterdayBarHtml(prevDigest) {
 function homepageTagFilterHtml(digests) {
   const TAG_OPTIONS = [
     { value: "", label: "All" },
-    { value: "crude", label: "Crude / Energy" },
+    { value: "crude", label: "Crude" },
     { value: "banks", label: "Banks" },
     { value: "rates", label: "Rates" },
     { value: "global", label: "Global" },
-    { value: "tech", label: "Tech / IT" },
-    { value: "currency", label: "Currency" },
+    { value: "tech", label: "Tech" },
+    { value: "currency", label: "FX" },
   ];
   const pills = TAG_OPTIONS.map((o, i) =>
     `<button class="tag-pill${i === 0 ? " active" : ""}" data-tag="${escapeHtml(o.value)}">${escapeHtml(o.label)}</button>`
@@ -1335,17 +1335,46 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     .subscribe-strip {
-      align-items: center;
       border: 1px solid rgba(52, 211, 153, 0.28);
       border-radius: 14px;
       background: rgba(6, 78, 59, 0.20);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: space-between;
       margin-top: 16px;
       max-width: 900px;
-      padding: 14px 15px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .subscribe-strip-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .subscribe-strip-share {
+      border-top: 1px dashed rgba(52, 211, 153, 0.2);
+      padding-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .subscribe-strip-share span {
+      color: #9fb0c8;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .subscribe-strip-share .share-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .subscribe-strip strong {
@@ -1355,7 +1384,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       line-height: 1.25;
     }
 
-    .subscribe-strip span {
+    .subscribe-strip span.sub-proof {
       color: #bbf7d0;
       display: block;
       font-size: 13px;
@@ -1364,7 +1393,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin-top: 3px;
     }
 
-    .subscribe-strip a {
+    .subscribe-strip a.subscribe-btn {
       border: 1px solid rgba(187, 247, 208, 0.32);
       border-radius: 8px;
       background: rgba(5, 46, 22, 0.66);
@@ -1373,6 +1402,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       font-size: 13px;
       font-weight: 950;
       padding: 10px 12px;
+      text-decoration: none;
     }
 
     .sr-only {
@@ -1512,7 +1542,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .archive-header-row {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       margin: 0 0 16px;
     }
@@ -1520,11 +1550,12 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       color: #7cb4f5;
       font-size: 13px;
       text-decoration: none;
+      white-space: nowrap;
     }
     .archive-see-all:hover { text-decoration: underline; }
 
     .archive-title {
-      margin: 0 0 16px;
+      margin: 0;
       color: #f8fafc;
       font-size: 22px;
     }
@@ -1843,6 +1874,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin-top: 34px;
       padding-top: 28px;
     }
+    .seo-section > summary { cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .seo-section > summary::-webkit-details-marker { display:none; }
+    .seo-section > summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      color: #22d3ee;
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
+    }
+    .seo-section[open] > summary::after {
+      transform: rotate(45deg);
+    }
 
     .seo-section h2,
     .faq-section h2 {
@@ -1922,14 +1967,17 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .recent-briefings-toggle { border:none; }
     .recent-briefings-toggle > summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
     .recent-briefings-toggle > summary::-webkit-details-marker { display:none; }
-    .recent-briefings-toggle > summary .archive-title::before {
-      content: "→";
-      font-size: 13px;
-      color: #38bdf8;
-      display: inline-block;
-      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    .recent-briefings-toggle > summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      color: #22d3ee;
+      flex-shrink: 0;
+      margin-left: auto;
+      transition: transform 0.22s ease;
     }
-    .recent-briefings-toggle[open] > summary .archive-title::before { transform: rotate(90deg); }
+    .recent-briefings-toggle[open] > summary::after { transform: rotate(45deg); }
     .fii-bar { background:rgba(15,23,42,.7); border:1px solid rgba(255,255,255,.1); border-left:3px solid #6366f1; border-radius:12px; margin:10px 0; padding:14px 16px; }
     .fii-header { align-items:center; display:flex; gap:8px; margin-bottom:12px; }
     .fii-dot { width:8px; height:8px; border-radius:50%; background:#6366f1; flex-shrink:0; }
@@ -2012,6 +2060,16 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         align-items: flex-start;
         flex-direction: column;
       }
+      .subscribe-strip-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .subscribe-strip-share {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
 
       .workflow-strip {
         grid-template-columns: 1fr;
@@ -2072,15 +2130,25 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
           <span>Follow the public multibagger model and changes.</span>
         </a>
       </div>
-      <div class="subscribe-strip" aria-label="Subscribe to Market Narrative">
-        <div>
-          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
-          <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
-          <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
+      <div class="subscribe-strip" aria-label="Subscribe and Share Market Narrative">
+        <div class="subscribe-strip-main">
+          <div>
+            ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
+            <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
+            <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
+          </div>
+          <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
         </div>
-        <a href="${escapeHtml(subscribeHref())}">Join daily email</a>
+        <div class="subscribe-strip-share">
+          <span>Share this archive</span>
+          <div class="share-links">
+            <a class="share-link" href="https://wa.me/?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}%20${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
+            <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}&url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
+            <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
+            <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(siteOrigin + "/")}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
+          </div>
+        </div>
       </div>
-      ${archiveShareRowHtml()}
     </section>
     ${marketStrip}
     <section class="summary-card" aria-label="Archive summary">
@@ -2540,6 +2608,7 @@ function aboutPage(latest, archiveDigests = []) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteFooterCss()}
   </style>
 </head>
 <body class="has-btb">
@@ -2623,6 +2692,7 @@ function aboutPage(latest, archiveDigests = []) {
         <a class="archive-proof-link" href="/">Browse the archive</a>
       </article>
     </section>
+    ${siteFooterLinksHtml()}
   </main>
   ${bottomTabBarHtml("archive")}
   ${mobileShellScript()}
@@ -2883,6 +2953,7 @@ function subscribePage() {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteFooterCss()}
   </style>
 </head>
 <body class="has-btb">
@@ -2915,6 +2986,7 @@ function subscribePage() {
       </form>
       <p class="fine-print">Educational market research only; this is not SEBI-registered investment advice. No spam, no trade calls, and no recommendation to buy or sell securities or derivatives. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
+    ${siteFooterLinksHtml()}
   </main>
   <script>
     if (new URLSearchParams(window.location.search).get('sent') === '1') {
@@ -3590,61 +3662,6 @@ function faqPageJsonLd(id, items) {
   };
 }
 
-function siteFooterCss() {
-  return `.site-footer { border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding:28px 0 48px; }
-    .footer-brand { align-items:center; display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; }
-    .footer-logo { align-items:center; display:flex; font-size:17px; font-weight:850; gap:10px; }
-    .footer-tagline { color:#475569; font-size:13px; }
-    .footer-cols { display:grid; gap:24px; grid-template-columns:repeat(3,1fr); margin-bottom:24px; }
-    .footer-col { display:flex; flex-direction:column; gap:8px; }
-    .footer-col-head { color:#64748b; font-size:11px; font-weight:800; letter-spacing:.08em; margin-bottom:4px; text-transform:uppercase; }
-    .footer-col a { color:#94a3b8; font-size:14px; transition:color 120ms; display:block; line-height:1.6; }
-    .footer-col a:hover { color:#f8fafc; }
-    .footer-legal { border-top:1px solid rgba(255,255,255,.06); color:#475569; display:flex; flex-wrap:wrap; font-size:12px; gap:16px; padding-top:16px; }
-    .footer-legal a { color:#64748b; }
-    .footer-legal a:hover { color:#94a3b8; }
-    @media (max-width:720px) { .footer-cols { grid-template-columns:1fr 1fr; } }
-    @media (max-width:480px) { .footer-cols { grid-template-columns:1fr; } }`;
-}
-
-function siteFooterLinksHtml() {
-  return `
-    <footer class="site-footer" aria-label="Market Narrative site links">
-      <div class="footer-brand">
-        <span class="footer-logo">${brandMarkHtml()}<span>Market Narrative</span></span>
-        <span class="footer-tagline">Daily pre-market briefing for Indian equity traders · 7:15 AM IST</span>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <span class="footer-col-head">Briefings</span>
-          <a href="/latest/">Latest briefing</a>
-          <a href="/">Archive</a>
-          <a href="/latest/trading-guide/">Trading Guide</a>
-        </div>
-        <div class="footer-col">
-          <span class="footer-col-head">Data</span>
-          <a href="/money-flow/fii-dii/">FII DII data</a>
-          <a href="/market-statistics/">Market statistics</a>
-          <a href="/indices/">Global indices</a>
-          <a href="/moves/">Move explanations</a>
-        </div>
-        <div class="footer-col">
-          <span class="footer-col-head">Site</span>
-          <a href="/multibagger/">Portfolio tracker</a>
-          <a href="/about/">About</a>
-          <a href="/subscribe/">Subscribe</a>
-          <a href="/contact/">Contact</a>
-        </div>
-      </div>
-      <div class="footer-legal">
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/terms/">Terms of Use</a>
-        <span>Educational market research only · Not SEBI-registered investment advice</span>
-      </div>
-    </footer>
-  `;
-}
-
 function formatCrore(value) {
   const sign = Number(value) >= 0 ? "+" : "-";
   const abs = Math.abs(Number(value) || 0);
@@ -3900,21 +3917,7 @@ function titleCaseTag(value) {
     .join(" ");
 }
 
-function archiveShareRowHtml() {
-  const url = `${siteOrigin}/`;
-  const text = "Market Narrative pre-market briefing archive";
-  const encodedUrl = encodeURIComponent(url);
-  const encodedText = encodeURIComponent(text);
-  return `
-    <div class="share-row" aria-label="Share Market Narrative archive">
-      <span>Share this archive</span>
-      <a class="share-link" href="https://wa.me/?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
-      <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
-      <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
-      <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(url)}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
-    </div>
-  `;
-}
+
 
 function shareIconHtml(type) {
   const icons = {
@@ -4294,6 +4297,7 @@ function indicesPage(digest) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteFooterCss()}
   </style>
 </head>
 <body class="has-btb">
@@ -4307,6 +4311,7 @@ function indicesPage(digest) {
     ${groups}
     <section class="seo-context" aria-label="How to use the indices board"><div><h2>What this board tracks</h2><p>Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div><div><h2>How traders use it before open</h2><p>Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div></section>
     <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
+    ${siteFooterLinksHtml()}
   </main>
   ${bottomTabBarHtml("indices")}
   <div class="idx-m" id="idx-m" onclick="if(event.target===this)this.classList.remove('open')"><div class="idx-panel"><button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button><small id="idx-sym" style="display:block;margin-bottom:4px"></small><h3 id="idx-name" style="margin:0 0 6px;font-size:22px"></h3><strong id="idx-val" class="move" style="display:block;font-size:16px;margin-bottom:12px"></strong><svg id="idx-svg" viewBox="0 0 540 200" style="width:100%;height:200px;display:block;margin-bottom:12px"></svg><p id="idx-ctx" style="color:#cbd5e1;line-height:1.6;margin:0;font-size:14px"></p></div></div>

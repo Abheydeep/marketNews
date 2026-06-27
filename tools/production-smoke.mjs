@@ -25,7 +25,7 @@ await check("public apex loads archive", async () => {
   assert.match(response.body, /Market Narrative|Market Nerve Before The Open|briefings/i);
   assert.doesNotMatch(response.body, /Admin Login|admin\.marketnarrative\.in/i);
   assert.match(response.body, /By Abhey Deep \/ Market Narrative/i);
-  assert.match(response.body, /Last verified update/i);
+  assert.match(response.body, /Last updated/i);
   assert.match(response.body, /Search the archive|Join daily email/i);
   assert.match(response.body, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i);
 });
@@ -64,7 +64,7 @@ await check("public host loads about page", async () => {
 await check("public host loads subscribe page", async () => {
   const response = await fetchText(`${config.publicUrl}/subscribe/`);
   assert.equal(response.status, 200);
-  assert.match(response.body, /Join The 7:15 AM Brief|Join daily email/i);
+  assert.match(response.body, /Join The Pre-Market Brief|Join daily email/i);
   assert.match(response.body, /method="POST"/i);
   assert.match(response.body, /name="_honey"/i);
   assert.match(response.body, /class="sent-note" hidden/i);

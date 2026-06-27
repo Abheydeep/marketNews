@@ -6,6 +6,7 @@
  * future change is a single edit. The bar is fixed to the bottom of the
  * viewport on small screens and hidden on desktop.
  */
+import { brandMarkHtml } from "./brand-assets.mjs";
 
 /**
  * Returns a small inline <script> block that registers /sw.js (if available)
@@ -184,7 +185,10 @@ export function mobileTypographyCss() {
         padding: 0 var(--mobile-shell-pad) !important;
       }
       main.shell {
-        padding-top: 24px !important;
+        padding-top: 12px !important;
+      }
+      .hero {
+        padding-top: 16px !important;
       }
       .glass-v2 .executive-card,
       .glass-v2 .trade-map-card,
@@ -265,9 +269,9 @@ export function mobileTypographyCss() {
       /* Shrink the topbar to a single brand row on mobile. The bottom tab
          bar carries the navigation. */
       body:not(.admin-auth-required) .nav-inner {
-        min-height: 52px !important;
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
+        min-height: 44px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: flex-start !important;
@@ -275,7 +279,8 @@ export function mobileTypographyCss() {
       }
       /* Hide every link group inside the top nav on mobile. Brand stays. */
       body:not(.admin-auth-required) .nav-actions,
-      body:not(.admin-auth-required) .tabs {
+      body:not(.admin-auth-required) .tabs,
+      body:not(.admin-auth-required) .site-tabs {
         display: none !important;
       }
       
@@ -319,11 +324,11 @@ export function bottomTabBarCss() {
     @media (max-width: 760px) {
       .bottom-tab-bar {
         display: block;
-        position: fixed;
+        position: fixed !important;
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 60;
+        z-index: 60 !important;
         background: rgba(5, 8, 22, 0.92);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
@@ -368,10 +373,10 @@ export function bottomTabBarCss() {
         height: 100%;
         display: block;
       }
-      /* Lift content above the fixed bar on mobile. */
-      body.has-btb main,
-      body.has-btb .shell:last-child {
-        padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+      /* Lift content above the fixed bar on mobile, overriding .shell padding */
+      body.has-btb main.shell,
+      body.has-btb .shell:last-of-type {
+        padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
       }
     }
     @media (max-width: 760px) {
@@ -401,4 +406,75 @@ function indicesIcon() {
 }
 function moreIcon() {
   return `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18" cy="12" r="1.8"/></svg>`;
+}
+
+/**
+ * Redesigned responsive site footer CSS.
+ */
+export function siteFooterCss() {
+  return `
+    .site-footer { border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding:28px 0 48px; }
+    .footer-brand { align-items:center; display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; }
+    .footer-logo { align-items:center; display:flex; font-size:17px; font-weight:850; gap:10px; }
+    .footer-tagline { color:#475569; font-size:13px; }
+    .footer-cols { display:grid; gap:24px; grid-template-columns:repeat(3,1fr); margin-bottom:24px; }
+    .footer-col { display:flex; flex-direction:column; gap:8px; }
+    .footer-col-head { color:#64748b; font-size:11px; font-weight:800; letter-spacing:.08em; margin-bottom:4px; text-transform:uppercase; }
+    .footer-col a { color:#94a3b8; font-size:14px; transition:color 120ms; display:block; line-height:1.6; }
+    .footer-col a:hover { color:#f8fafc; }
+    .footer-legal { border-top:1px solid rgba(255,255,255,.06); color:#475569; display:flex; flex-wrap:wrap; font-size:12px; gap:16px; padding-top:16px; }
+    .footer-legal a { color:#64748b; }
+    .footer-legal a:hover { color:#94a3b8; }
+    
+    @media (max-width:760px) {
+      .footer-brand { flex-direction:column; align-items:flex-start !important; gap:8px; }
+      .footer-cols { grid-template-columns:repeat(2,1fr) !important; gap:16px !important; }
+      .footer-col { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px 18px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.03); }
+      .footer-col:last-child { grid-column:span 2; }
+      .footer-col-head { border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px; margin-bottom:8px; }
+      .footer-col a { min-height:44px; display:flex; align-items:center; }
+      .footer-legal { flex-direction:column; gap:12px; }
+    }
+  `;
+}
+
+/**
+ * Shared website footer links HTML.
+ */
+export function siteFooterLinksHtml() {
+  return `
+    <footer class="site-footer" aria-label="Market Narrative site links">
+      <div class="footer-brand">
+        <span class="footer-logo">${brandMarkHtml()}<span>Market Narrative</span></span>
+        <span class="footer-tagline">Daily pre-market briefing for Indian equity traders · 7:15 AM IST</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-head">Briefings</span>
+          <a href="/latest/">Latest briefing</a>
+          <a href="/">Archive</a>
+          <a href="/latest/trading-guide/">Trading Guide</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-head">Data</span>
+          <a href="/money-flow/fii-dii/">FII DII data</a>
+          <a href="/market-statistics/">Market statistics</a>
+          <a href="/indices/">Global indices</a>
+          <a href="/moves/">Move explanations</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-head">Site</span>
+          <a href="/multibagger/">Portfolio tracker</a>
+          <a href="/about/">About</a>
+          <a href="/subscribe/">Subscribe</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Use</a>
+        <span>Educational market research only · Not SEBI-registered investment advice</span>
+      </div>
+    </footer>
+  `;
 }

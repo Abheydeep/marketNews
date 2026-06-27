@@ -36,7 +36,7 @@ function assertPublicHome() {
   assertOutput("index.html", /sentiment-sparkline/);
   assertOutput("index.html", /7:15 AM IST[\s\S]{0,120}(?:Nifty 50|Nifty)[\s\S]{0,120}Bank Nifty[\s\S]{0,120}(?:pre-market briefing|opening bias|traders)/);
   assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
-  assertOutput("index.html", /Last verified update/);
+  assertOutput("index.html", /Last updated/);
   assertOutput("index.html", /Daily trader workflow/);
   assertOutput("index.html", /Trading Guide/);
   assertOutput("index.html", /Share this archive/);
@@ -98,7 +98,7 @@ function assertAboutAndSubscribe() {
   assertOutput("about/index.html", /aria-current="page">About/);
   assertOutput("about/index.html", /verified briefings published since launch/);
   assertOutput("about/index.html", /Browse the archive/);
-  assertOutput("subscribe/index.html", /Join The 7:15 AM Brief/);
+  assertOutput("subscribe/index.html", /Join The Pre-Market Brief/);
   assertOutput("subscribe/index.html", /Join daily email/);
   assertOutput("subscribe/index.html", /RegisterAction/);
   assertOutput("subscribe/index.html", /name="_honey"/);

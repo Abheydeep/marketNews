@@ -1,6 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
@@ -619,11 +619,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: rgba(255, 255, 255, 0.16);
       font-size: 14px;
       line-height: 1;
+      transition: transform 0.22s ease;
     }
 
     .disclosure-icon::before {
-      content: "▾";
-      transform: translateY(-1px);
+      content: "+";
     }
 
     .briefing-expand-card[open] .disclosure-action .label-closed,
@@ -636,11 +636,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: inline;
     }
 
-    .briefing-expand-card[open] .disclosure-icon::before,
-    .source-ledger-details[open] .disclosure-icon::before,
-    .quote-board-toggle.open .disclosure-icon::before {
-      content: "▴";
-      transform: translateY(-1px);
+    .briefing-expand-card[open] .disclosure-icon,
+    .source-ledger-details[open] .disclosure-icon,
+    .quote-board-toggle.open .disclosure-icon {
+      transform: rotate(45deg);
     }
 
     .expanded-briefing-page {
@@ -1977,8 +1976,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
     .source-collapse-chevron {
       align-self: center;
-      color: #8892aa;
-      font-size: 18px;
+      color: var(--cyan);
+      font-size: 20px;
+      font-weight: 300;
       line-height: 1;
       transition: transform 0.2s ease, color 0.15s ease;
     }
@@ -1986,7 +1986,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       color: #f0f2f8;
     }
     .sources-collapse-details[open] .source-collapse-chevron {
-      transform: rotate(180deg);
+      transform: rotate(45deg);
     }
 
     .source-ledger-body {
@@ -2277,11 +2277,30 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     .source-card-detail summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: #111827;
       font-size: 12px;
       font-weight: 900;
       cursor: pointer;
-      list-style-position: outside;
+      list-style: none;
+    }
+
+    .source-card-detail summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .source-card-detail summary::after {
+      content: "+";
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cyan);
+      transition: transform 0.22s ease;
+    }
+
+    .source-card-detail[open] summary::after {
+      transform: rotate(45deg);
     }
 
     .source-card-detail p {
@@ -5348,13 +5367,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       display: none;
     }
     .market-map-details summary::after {
-      content: "▼";
-      font-size: 0.8em;
-      color: var(--stone);
-      transition: transform 0.2s;
+      content: "+";
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--cyan);
+      transition: transform 0.22s ease;
     }
     .market-map-details[open] summary::after {
-      transform: rotate(180deg);
+      transform: rotate(45deg);
     }
     .market-map-details summary h3 {
       margin: 0;
@@ -5492,6 +5512,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteFooterCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -5860,6 +5881,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ${multibaggerAdminConsoleHtml(publicMultibaggerState)}
     </section>
     ` : ""}
+    ${includeStudio ? "" : siteFooterLinksHtml()}
   </main>
 
   <script>
@@ -9236,7 +9258,7 @@ function unifiedSourceSectionHtml(digest) {
               ${toneStats}
             </div>
           </div>
-          <span class="source-collapse-chevron" aria-hidden="true">▾</span>
+          <span class="source-collapse-chevron" aria-hidden="true">+</span>
         </summary>
         <div class="source-ledger-body">
           <ul class="top-stories-list" aria-label="Top stories">

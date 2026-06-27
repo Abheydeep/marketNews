@@ -103,6 +103,7 @@ export function fiiDiiStyles() {
   }
   @media (max-width:600px){
     .mf-table, .mf-table thead, .mf-table tbody, .mf-table tr, .mf-table td, .mf-table th {display:block}
+    .mf-table{min-width:auto !important}
     .mf-table thead {display:none}
     .mf-table caption {font-size:13px;padding:12px 10px;text-align:center}
     .mf-table tr {border:1px solid var(--line);border-radius:10px;margin-bottom:12px;padding:12px;background:var(--paper)}

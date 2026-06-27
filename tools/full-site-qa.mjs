@@ -157,7 +157,7 @@ async function verifyArchive(page, rootUrl) {
   await expectOne(page.getByRole("heading", { name: "Recent briefings" }), "archive section heading");
   await expectOne(page.locator('.freshness-banner a[href="./latest/"]'), "latest briefing status link");
   await expectOne(page.locator(".hero .byline").filter({ hasText: "By Abhey Deep / Market Narrative" }), "archive byline");
-  await expectOne(page.locator(".summary-chip").filter({ hasText: "Last verified update" }), "archive last verified update");
+  await expectOne(page.locator(".summary-item").filter({ hasText: "Last updated" }), "archive last updated");
   assert.equal(await page.getByRole("link", { name: "Admin login" }).count(), 0, "archive should not expose admin login");
   await expectAtLeast(page.getByText("The articles behind every India read", { exact: true }), 1, "archive India evidence workflow");
   await expectAtLeast(page.locator(".archive-snapshot-grid"), 1, "archive market snapshot previews");

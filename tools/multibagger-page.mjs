@@ -1,5 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -1633,6 +1633,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteFooterCss()}
   </style>
 </head>
 <body class="glass-v2 has-btb">
@@ -1959,9 +1960,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     </section>
   </main>
 
-  <footer class="shell">
-    <p>Quote timestamps are shown beside each holding. Public data excludes personal screenshots, share counts, portfolio totals, and unpublished review notes.</p>
-  </footer>
+  <div class="shell" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
+    <p style="color:var(--muted); font-size:12px; line-height:1.5;">Quote timestamps are shown beside each holding. Public data excludes personal screenshots, share counts, portfolio totals, and unpublished review notes.</p>
+    ${siteFooterLinksHtml()}
+  </div>
 
   <script>
     window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
