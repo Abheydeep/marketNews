@@ -141,19 +141,21 @@ export function proPolishCss() {
 }
 /**
  * Returns the bottom-tab-bar HTML for a given active key.
- * activeKey: "archive" | "latest" | "guide" | "portfolio" | "about" | "subscribe" | "more"
- *   "more" is a fallback for any key not in the bar; the bar's "More" item
- *   highlights instead. Pages like /about/ use "more" or "about".
+ * activeKey: "archive" | "latest" | "fiidii" | "indices" | "portfolio"
+ *   Legacy keys ("guide" → "latest", "about"/"subscribe"/"more" → "archive").
+ *   Pages like /about/ and /subscribe/ have no dedicated tab; Home highlights.
  */
 export function bottomTabBarHtml(activeKey) {
   const items = [
-    { key: "archive",   href: "/",             label: "Home",      icon: homeIcon() },
-    { key: "latest",    href: "/latest/",      label: "Briefing",  icon: briefingIcon() },
-    { key: "portfolio", href: "/multibagger/", label: "Portfolio", icon: portfolioIcon() },
-    { key: "subscribe", href: "/subscribe/",   label: "Subscribe", icon: subscribeIcon() },
-    { key: "more",      href: "/about/",       label: "More",      icon: moreIcon() },
+    { key: "archive",   href: "/",                    label: "Home",     icon: homeIcon() },
+    { key: "latest",    href: "/latest/",             label: "Briefing", icon: briefingIcon() },
+    { key: "fiidii",    href: "/money-flow/fii-dii/", label: "FII DII",  icon: fiiDiiIcon() },
+    { key: "indices",   href: "/indices/",            label: "Indices",  icon: indicesIcon() },
+    { key: "portfolio", href: "/multibagger/",        label: "Portfolio",icon: portfolioIcon() },
   ];
-  const normalizedKey = ["guide", "about"].includes(activeKey) ? "more" : activeKey;
+  const normalizedKey = ["guide"].includes(activeKey) ? "latest"
+    : ["about", "subscribe", "more"].includes(activeKey) ? "archive"
+    : activeKey;
   const cells = items.map((item) => {
     const isActive = item.key === normalizedKey;
     const stateAttr = isActive ? ' aria-current="page"' : "";
@@ -389,8 +391,13 @@ function briefingIcon() {
 function portfolioIcon() {
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`;
 }
-function subscribeIcon() {
-  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l8 6 8-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>`;
+function fiiDiiIcon() {
+  // Trending line with upward arrow head — represents institutional flow direction
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,17 7,12 11,16 16,9 21,13"/><polyline points="16,9 21,9 21,14"/></svg>`;
+}
+function indicesIcon() {
+  // 2x2 grid of small squares — represents a multi-index watch board
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`;
 }
 function moreIcon() {
   return `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18" cy="12" r="1.8"/></svg>`;

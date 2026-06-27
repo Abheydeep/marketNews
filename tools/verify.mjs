@@ -2531,7 +2531,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("staticPageActiveKey"));
   assert.ok(publisher.includes("bottomTabBarHtml(staticPageActiveKey(path))"));
   assert.ok(publisher.includes('body class="has-btb"'));
-  assert.ok(publisher.includes('bottomTabBarHtml("more")'));
+  assert.ok(publisher.includes('bottomTabBarHtml("indices")'));
   assert.ok(publisher.includes(".indices-grid { grid-template-columns: 1fr; }"));
   assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");
   for (const roughCopy of [

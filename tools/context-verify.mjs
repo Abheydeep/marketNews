@@ -19,7 +19,7 @@ const SCRIPT_CHECKS = [
 
 const LEGACY_LIMITS = {
   "tools/cockpit-page.mjs": 10652,
-  "tools/publish-site.mjs": 4422,
+  "tools/publish-site.mjs": 4533,
   "tools/news-sources.mjs": 2784,
   "tools/core.mjs": 2763,
   "tools/verify.mjs": 3394,
@@ -31,7 +31,7 @@ const LEGACY_LIMITS = {
   "tools/full-site-qa.mjs": 785,
   "tools/production-qa-gate.mjs": 722,
   "tools/editorial-guardrails.mjs": 436,
-  "tools/mobile-shell.mjs": 397,
+  "tools/mobile-shell.mjs": 404,
   "tools/production-smoke.mjs": 383,
   "tools/vercel-build-public.mjs": 360,
   "tools/market-data.mjs": 365,

@@ -2419,6 +2419,84 @@ function aboutPage(latest, archiveDigests = []) {
         grid-template-columns: 1fr;
       }
     }
+
+    /* === More Hub === */
+    .more-hub {
+      margin-bottom: 36px;
+    }
+    .more-hub-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .more-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .more-hub-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 15px 16px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      color: #f8fafc;
+      text-decoration: none;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      min-height: 70px;
+    }
+    .more-hub-card:hover {
+      border-color: rgba(34, 211, 238, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(34, 211, 238, 0.1);
+    }
+    .more-hub-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(34, 211, 238, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #22d3ee;
+    }
+    .more-hub-card-icon svg { width: 18px; height: 18px; display: block; }
+    .more-hub-card-body { flex: 1; min-width: 0; }
+    .more-hub-card-label {
+      font-weight: 800;
+      font-size: 14px;
+      display: block;
+      line-height: 1.2;
+    }
+    .more-hub-card-desc {
+      color: #94a3b8;
+      font-size: 12px;
+      line-height: 1.35;
+      margin-top: 3px;
+      display: block;
+    }
+    .more-hub-card-arrow {
+      color: #334155;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: color 0.18s ease, transform 0.18s ease;
+    }
+    .more-hub-card:hover .more-hub-card-arrow {
+      color: #22d3ee;
+      transform: translateX(2px);
+    }
+    @media (max-width: 480px) {
+      .more-hub-grid { grid-template-columns: 1fr; }
+    }
+    /* === End More Hub === */
+
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
@@ -2427,6 +2505,41 @@ function aboutPage(latest, archiveDigests = []) {
 <body class="has-btb">
   ${siteTopbarHtml("/about/")}
   <main class="shell">
+    <section class="more-hub" aria-label="Quick links">
+      <span class="more-hub-eyebrow">Market Narrative</span>
+      <div class="more-hub-grid">
+        <a class="more-hub-card" href="/subscribe/" id="more-hub-subscribe">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l8 6 8-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Subscribe</span><span class="more-hub-card-desc">Pre-market briefing to your inbox</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+        <a class="more-hub-card" href="/market-statistics/" id="more-hub-stats">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Market Stats</span><span class="more-hub-card-desc">Sector &amp; macro data dashboard</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+        <a class="more-hub-card" href="/multibagger/" id="more-hub-portfolio">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Portfolio</span><span class="more-hub-card-desc">Public multibagger model tracker</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+        <a class="more-hub-card" href="/contact/" id="more-hub-contact">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Contact</span><span class="more-hub-card-desc">Send feedback or reach out</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+        <a class="more-hub-card" href="/privacy/" id="more-hub-privacy">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Privacy</span><span class="more-hub-card-desc">Privacy policy</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+        <a class="more-hub-card" href="/terms/" id="more-hub-terms">
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <span class="more-hub-card-body"><span class="more-hub-card-label">Terms</span><span class="more-hub-card-desc">Terms of use</span></span>
+          <span class="more-hub-card-arrow">&#8250;</span>
+        </a>
+      </div>
+    </section>
     <section class="hero">
       <p class="eyebrow">About Market Narrative</p>
       <h1>Independent pre-market context for Indian traders.</h1>
@@ -2471,7 +2584,7 @@ function aboutPage(latest, archiveDigests = []) {
       </article>
     </section>
   </main>
-  ${bottomTabBarHtml("about")}
+  ${bottomTabBarHtml("archive")}
   ${mobileShellScript()}
 </body>
 </html>`;
@@ -2773,7 +2886,7 @@ function subscribePage() {
       }
     }
   </script>
-  ${bottomTabBarHtml("subscribe")}
+  ${bottomTabBarHtml("archive")}
   ${mobileShellScript()}
 </body>
 </html>`;
@@ -3170,7 +3283,8 @@ function staticPageActiveKey(path) {
   if (path === "/") return "archive";
   if (path.startsWith("/latest/")) return "latest";
   if (path.startsWith("/multibagger/")) return "portfolio";
-  if (path.startsWith("/subscribe/")) return "subscribe";
+  if (path.startsWith("/money-flow/fii-dii/")) return "fiidii";
+  if (path.startsWith("/indices/")) return "indices";
   return "more";
 }
 
@@ -4151,7 +4265,7 @@ function indicesPage(digest) {
     <section class="seo-context" aria-label="How to use the indices board"><div><h2>What this board tracks</h2><p>Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div><div><h2>How traders use it before open</h2><p>Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div></section>
     <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
   </main>
-  ${bottomTabBarHtml("more")}
+  ${bottomTabBarHtml("indices")}
   <div class="idx-m" id="idx-m" onclick="if(event.target===this)this.classList.remove('open')"><div class="idx-panel"><button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button><small id="idx-sym" style="display:block;margin-bottom:4px"></small><h3 id="idx-name" style="margin:0 0 6px;font-size:22px"></h3><strong id="idx-val" class="move" style="display:block;font-size:16px;margin-bottom:12px"></strong><svg id="idx-svg" viewBox="0 0 540 200" style="width:100%;height:200px;display:block;margin-bottom:12px"></svg><p id="idx-ctx" style="color:#cbd5e1;line-height:1.6;margin:0;font-size:14px"></p></div></div>
   <script>function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();(function(){var m=document.getElementById("idx-m");document.querySelectorAll(".index-card").forEach(function(c){c.addEventListener("click",function(){var d=c.dataset,s=document.getElementById("idx-svg"),t=d.cls==="up"?"#34d399":d.cls==="down"?"#fb7185":"#fbbf24";document.getElementById("idx-sym").textContent=c.querySelector("small").textContent;document.getElementById("idx-name").textContent=d.name;var v=document.getElementById("idx-val");v.className="move "+d.cls;v.textContent=c.querySelector(".move").textContent+" \xb7 "+d.val;document.getElementById("idx-ctx").textContent=d.ctx;var pts=JSON.parse(d.pts||"[]");if(pts.length>1){var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),r=Math.max(1e-9,mx-mn),p=pts.map(function(v,i){return(i?"L":"M")+(4+i/(pts.length-1)*532).toFixed(1)+" "+(190-(v-mn)/r*180).toFixed(1);}).join(" ");s.innerHTML="<path d='"+p+" L536 196 L4 196 Z' fill='"+t+"' opacity='.14'/><path d='"+p+"' fill='none' stroke='"+t+"' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/>";}else{s.innerHTML="<line x1='4' y1='100' x2='536' y2='100' stroke='"+t+"' stroke-width='2'/>";}m.classList.add("open");});});}());</script>
   ${mobileShellScript()}
