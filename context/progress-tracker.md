@@ -206,6 +206,10 @@ These must remain true after changes:
 - 2026-06-27: Cleaned up project components documentation after monorepo split. ROOT CAUSE: tools/project-components-page.mjs still displayed directory cards for deleted folders (apps/admin-studio, apps/public-portal, packages) after the monorepo split (496c7d1), which caused stale folder hierarchy documentation. Removed the deleted components and updated the map to clearly reflect that admin and trade workspaces have been extracted to their own standalone repositories. Verified: npm run context:verify, npm test (80 passed).
   Architecture diagrams changed: none.
   Debt found but deferred: none.
+- 2026-06-27: Cleaned up stale workspace references across README.md, context/, and docs/ files after monorepo split. Also added comprehensive READMEs to the external marketnarrative-admin and marketnarrative-trade repositories. Verified: npm run context:verify, npm test (80 passed), npm run test:deploy.
+  Architecture diagrams changed: context/architecture-diagrams/01-production-surfaces.mmd.
+  Debt found but deferred: none.
+
 
 
 
