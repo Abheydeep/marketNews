@@ -41,6 +41,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     <p>Indian stock markets are closed today.</p>
     <p>Redirecting to today's market update briefing...</p>
     <a href="../" style="color: #60a5fa; text-decoration: none;">Click here if you are not redirected</a>
+    <p style="margin-top: 24px; color: #b8c4d8; font-size: 0.85rem; opacity: 0.6;">Educational market research only; not SEBI-registered investment advice.</p>
   </div>
 </body>
 </html>`;
