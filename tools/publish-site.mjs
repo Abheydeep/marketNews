@@ -1343,35 +1343,40 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .subscribe-strip-main {
+    .subscribe-strip-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .subscribe-strip-actions {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
       flex-wrap: wrap;
       width: 100%;
-    }
-
-    .subscribe-strip-share {
       border-top: 1px dashed rgba(52, 211, 153, 0.2);
       padding-top: 14px;
+    }
+
+    .subscribe-share-zone {
       display: flex;
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      width: 100%;
     }
 
-    .subscribe-strip-share span {
+    .subscribe-share-zone span.share-label {
       color: #9fb0c8;
       font-size: 13px;
       font-weight: 850;
     }
 
-    .subscribe-strip-share .share-links {
+    .subscribe-share-zone .share-links {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -1545,6 +1550,11 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       align-items: center;
       justify-content: space-between;
       margin: 0 0 16px;
+    }
+    .archive-header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
     }
     .archive-see-all {
       color: #7cb4f5;
@@ -1871,8 +1881,8 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .seo-section,
     .faq-section {
       border-top: 1px solid var(--line);
-      margin-top: 34px;
-      padding-top: 28px;
+      margin-top: 24px;
+      padding-top: 20px;
     }
     .seo-section > summary { cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .seo-section > summary::-webkit-details-marker { display:none; }
@@ -1888,13 +1898,19 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .seo-section[open] > summary::after {
       transform: rotate(45deg);
     }
+    .seo-section[open] .seo-grid {
+      margin-top: 16px;
+    }
 
-    .seo-section h2,
+    .seo-section summary h2,
     .faq-section h2 {
       color: #f8fafc;
       font-size: 24px;
       letter-spacing: 0;
-      margin: 0 0 12px;
+      margin: 0;
+    }
+    .faq-section h2 {
+      margin-bottom: 12px;
     }
 
     .seo-grid {
@@ -2057,18 +2073,21 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       }
 
       .subscribe-strip {
-        align-items: flex-start;
-        flex-direction: column;
+        padding: 14px;
       }
-      .subscribe-strip-main {
-        flex-direction: column;
-        align-items: flex-start;
+      .subscribe-strip-actions {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 12px;
       }
-      .subscribe-strip-share {
-        flex-direction: column;
-        align-items: flex-start;
+      .subscribe-share-zone {
         gap: 8px;
+      }
+      @media (max-width: 440px) {
+        .subscribe-share-zone span.share-label {
+          display: none;
+        }
       }
 
       .workflow-strip {
@@ -2131,21 +2150,21 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         </a>
       </div>
       <div class="subscribe-strip" aria-label="Subscribe and Share Market Narrative">
-        <div class="subscribe-strip-main">
-          <div>
-            ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
-            <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
-            <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
-          </div>
-          <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
+        <div class="subscribe-strip-content">
+          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
+          <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
+          <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
         </div>
-        <div class="subscribe-strip-share">
-          <span>Share this archive</span>
-          <div class="share-links">
-            <a class="share-link" href="https://wa.me/?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}%20${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
-            <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}&url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
-            <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
-            <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(siteOrigin + "/")}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
+        <div class="subscribe-strip-actions">
+          <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
+          <div class="subscribe-share-zone">
+            <span class="share-label">Share this archive</span>
+            <div class="share-links">
+              <a class="share-link" href="https://wa.me/?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}%20${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
+              <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}&url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
+              <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
+              <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(siteOrigin + "/")}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
+            </div>
           </div>
         </div>
       </div>
@@ -2177,8 +2196,10 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     </section>
     <details class="recent-briefings-toggle" id="recent-briefings">
       <summary class="archive-header-row">
-        <h2 class="archive-title">Recent briefings</h2>
-        <a class="archive-see-all" href="/archive/" onclick="event.stopPropagation()">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
+        <div class="archive-header-left">
+          <h2 class="archive-title">Recent briefings</h2>
+          <a class="archive-see-all" href="/archive/" onclick="event.stopPropagation()">See all ${escapeHtml(String(allDigests.length))} briefings &rarr;</a>
+        </div>
       </summary>
       ${tagFilter}
       <section class="digest-grid" id="digest-grid">

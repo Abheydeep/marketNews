@@ -234,8 +234,8 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
-- 2026-06-28: Unified collapsibility indicators across the homepage and daily briefing page to use consistent cyan + icons that rotate to × on open. Fixed spacing below topbar on mobile by reducing padding-top, and added the missing website footer to the global Indices page. Shortened tag filter pills labels on the homepage to prevent clipping.
-  ROOT CAUSE: details expanders used inconsistent arrow indicator characters (▾, ▼, browser default) and padding margins below topbar were oversized on mobile.
+- 2026-06-28: Unified collapsibility indicators across the homepage and daily briefing page to use consistent cyan + icons that rotate to × on open. Baseline-aligned "Recent briefings" header with "See all briefings" link via flex wrapper. Redesigned homepage subscribe/share card to show the join button and share buttons side-by-side. Eliminated empty header space by shrinking main.shell and .hero top padding to 4px on mobile, and resolved asymmetric margins below closed details summary panels.
+  ROOT CAUSE: details expanders used inconsistent arrow indicators (▾, ▼, browser default), summary h2 margins broke text alignment, and spacing rules below topbar were oversized.
   Verified: `npm run context:verify` (passed), `npm test` (80 passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but deferred: none.

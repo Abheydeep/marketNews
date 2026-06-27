@@ -185,10 +185,10 @@ export function mobileTypographyCss() {
         padding: 0 var(--mobile-shell-pad) !important;
       }
       main.shell {
-        padding-top: 12px !important;
+        padding-top: 4px !important;
       }
       .hero {
-        padding-top: 16px !important;
+        padding-top: 4px !important;
       }
       .glass-v2 .executive-card,
       .glass-v2 .trade-map-card,
