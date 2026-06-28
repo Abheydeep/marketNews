@@ -30,6 +30,10 @@ These must remain true after changes:
 
 ## Completed
 
+- 2026-06-28: Resolved redirect, CDN caching, and stale service worker issues. ROOT CAUSE: homepage and /latest/ had stale-while-revalidate=86400 which allowed Vercel edges to serve old cached pages for up to 24 hours while background revalidation was in flight, dynamic data pages (/money-flow/fii-dii/, /market-statistics/, etc.) lacked caching rules causing inconsistent edge region caching, and PWA Service Worker used a Cache-First (with background update) strategy that immediately served stale HTML.
+  Verified: modified `vercel.json` to reduce revalidation to 5 minutes on dynamic pages, added rules for 7 uncovered pages, tightened static pages to 1 hour, and transitioned the Service Worker to a Network-First strategy with cache purging on activation. Verified via `npm run context:verify`, `npm test` (80 tests passed), `npm run test:deploy`, and `curl -I` on live URLs to verify header parameters.
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
 - 2026-06-28: Resolved visual and jargon anomalies across all public pages (FII-1 to FII-6, STATS-1, STATS-2, MOVES-1, SUB-1). ROOT CAUSE: selector specificity error in css hide logic for radio inputs, finance-heavy jargon (MTD, absorption) without helpful tooltips, missing health score metric breakdowns, metric timing clarity, and lack of standalone moves archive warnings.
   Verified: `git commit` and `git push origin main` triggered automated Vercel rebuild; fetched live URLs directly to confirm fixes are correctly rendered on production site; successfully ran verification gates `npm run context:verify`, `npm test` (80 tests passed), `npm run test:deploy` (5 checks passed), and `npm run public:copy:qa`.
   Architecture diagrams changed: none.
