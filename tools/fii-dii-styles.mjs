@@ -88,7 +88,7 @@ export function fiiDiiStyles() {
   .mf-read b{color:#fff;font-weight:850}
   .mf-note{color:var(--muted);font-size:12px;line-height:1.55;border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
   
-  @media (max-width:720px){
+  @media (max-width:760px){
     .mf{gap:20px}
     .mf-cards{grid-template-columns:1fr}
     .mf-card strong{font-size:22px}

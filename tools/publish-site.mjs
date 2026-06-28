@@ -1468,6 +1468,14 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin-bottom: 30px;
     }
 
+    .eyebrow-container {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .eyebrow {
       margin: 0 0 10px;
       color: #9fb0c8;
@@ -2231,7 +2239,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   ${siteTopbarHtml()}
   <main class="shell">
     <section class="hero">
-      <div class="eyebrow-container" style="margin-bottom: 10px; display: flex; align-items: center; flex-wrap: wrap;">
+      <div class="eyebrow-container">
         <p class="eyebrow" style="margin: 0; display: inline-block;">${escapeHtml(heroContent.eyebrow)}</p>
         <span class="freshness-chip freshness-chip--${escapeHtml(latestState.className)}">
           ● ${escapeHtml(latestState.label)}
@@ -2922,6 +2930,9 @@ function subscribePage() {
     }
 
     .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
       background: rgba(3, 7, 18, 0.72);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(18px);
@@ -3500,7 +3511,7 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     .site-footer-links a { border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:13px; font-weight:800; padding:9px 11px; }
     .disclaimer { color:var(--muted); font-size:12px; line-height:1.6; margin-top:16px; }
     .mn-skip { position:absolute; left:-9999px; top:0; z-index:50; padding:10px 14px; background:var(--cyan); color:#04121b; font-weight:850; border-radius:0 0 8px 0; } .mn-skip:focus { left:0; }
-    @media (max-width:720px) {
+    @media (max-width:760px) {
       .nav-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
       .site-tabs { overflow-x:auto; width:100%; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
       main { padding-top:34px; }

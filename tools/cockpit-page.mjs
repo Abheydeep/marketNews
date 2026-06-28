@@ -5290,6 +5290,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         height: 30px;
         width: 100%;
       }
+
+      .news-card-list {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 480px) {
