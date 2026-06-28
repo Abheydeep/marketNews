@@ -1493,6 +1493,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       letter-spacing: 0;
     }
 
+    .subheadline {
+      font-size: 1.1rem;
+      color: #9fb0c8;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
     .hero p {
       max-width: 780px;
       margin: 0;
@@ -2246,7 +2253,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         </span>
       </div>
       <h1>${escapeHtml(heroContent.h1)}</h1>
-      <h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px; font-weight: 500;">${escapeHtml(heroContent.subheadline)}</h2>
+      <h2 class="subheadline">${escapeHtml(heroContent.subheadline)}</h2>
       <div class="today-focus-chip">
         <span class="focus-label">Today's focus:</span>
         <strong>${escapeHtml(archiveFocus(latest))}</strong>
