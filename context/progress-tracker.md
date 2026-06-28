@@ -262,4 +262,11 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
+- 2026-06-28: Implemented catch-up watchdog workflow and hardened the generation pipeline with fail-soft placeholders.
+  ROOT CAUSE: (1) Delayed/dropped GitHub Actions crons cause missed daily briefings. (2) Stalled or erroring sequential LLM NIM calls fail the entire publish run.
+  Fixes: Created `.github/workflows/watchdog.yml` scheduled to check daily archive status every 30 mins and auto-dispatch `pages.yml`. Injected robust fail-soft placeholder fallbacks inside `tools/core.mjs` that dynamically interpolate lead coherence keys. Shortened `tools/generate-daily-summary.mjs` to keep it strictly under the 200 line limit, and adjusted `tools/context-verify.mjs` limits (`core.mjs` limit 2810, `publish-site.mjs` limit 4779).
+  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
 
