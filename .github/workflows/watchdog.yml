@@ -1,0 +1,36 @@
+name: Briefing Watchdog
+
+on:
+  schedule:
+    # Every 30 minutes from 01:00 UTC (06:30 IST) to 04:30 UTC (10:00 IST) on weekdays
+    - cron: "0,30 1,2,3,4 * * 1-5"
+    # Every 30 minutes from 01:00 UTC (06:30 IST) to 04:30 UTC (10:00 IST) on Sundays
+    - cron: "0,30 1,2,3,4 * * 0"
+    # Evening sweep at 13:00 UTC (18:30 IST) every day
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  check-and-trigger:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify today's briefing status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
+          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0715-digest.json"
+          echo "Checking if archive file exists: $ARCHIVE_FILE"
+          
+          if [ -f "$ARCHIVE_FILE" ]; then
+            echo "SUCCESS: Today's briefing archive already exists. Watchdog has nothing to do."
+          else
+            echo "WARNING: Today's briefing archive is MISSING. Triggering pages.yml publishing workflow..."
+            gh workflow run pages.yml
+          fi

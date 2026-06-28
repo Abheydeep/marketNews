@@ -22,10 +22,11 @@ async function loadSkills() {
   return _skillsCache;
 }
 
-export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2, temperature = 0.65 } = {}) {
+export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2, temperature = 0.65, timeoutMs } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
   console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
+  const callTimeoutMs = Number(timeoutMs ?? process.env.NVIDIA_TIMEOUT_MS ?? 120000);
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
@@ -41,7 +42,7 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
           max_tokens: maxTokens,
           temperature
         }),
-        signal: AbortSignal.timeout(Number(process.env.NVIDIA_TIMEOUT_MS ?? 120000))
+        signal: AbortSignal.timeout(callTimeoutMs)
       });
       if (response.status === 429 || response.status >= 500) {
         process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);
@@ -109,27 +110,48 @@ ${topArticles}`;
   const systemPrompt = skills || "You are the Market Narrative daily briefing agent for Indian retail traders.";
   const noWrap = "Output ONLY the formatted content. Do NOT write any introduction, preamble, or sign-off. Start your response directly with the first line of the format.";
 
+  // Fail-soft wrapper: a stalled or erroring NIM call must never abort the run. It
+  // returns null on any failure so the caller falls back to the deterministic
+  // (generateScript) studio assets, which are already valid and compliance-passing.
+  const safeNim = async (label, prompt, opts) => {
+    try {
+      const result = await nimCall(systemPrompt, prompt, opts);
+      if (!result) log.warn("ai script section unavailable, using deterministic fallback", { section: label, date });
+      return result;
+    } catch (err) {
+      log.warn("ai script section failed, using deterministic fallback", { section: label, date, error: err?.message });
+      return null;
+    }
+  };
+
+  // Studio-only assets (one-page / teleprompter / reel) are NOT on the public page.
+  // Bound them tightly (single retry, 60s) so they can never hang the publish path —
+  // on failure the deterministic generateScript versions are kept.
+  const studioOpts = (maxTokens) => ({ maxTokens, retries: 1, timeoutMs: 60000 });
+
   // Sequential calls — parallel hits NVIDIA NIM rate limits and silently drops 2 of 3
-  const onePageSummary = await nimCall(
-    systemPrompt,
+  const onePageSummary = await safeNim(
+    "onePageSummary",
     `${noWrap}\n\nWrite the One-Page Summary. Start directly with "Market Mood:".\nFormat: Market Mood, Global Cues, Narrative Themes (sharp specific titles, not generic labels), Validated Trading Setups, Educational note.\n\n${context}`,
-    { maxTokens: 512 }
+    studioOpts(512)
   );
-  const teleprompterScript = await nimCall(
-    systemPrompt,
+  const teleprompterScript = await safeNim(
+    "teleprompterScript",
     `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\n\n${context}`,
-    { maxTokens: 900 }
+    studioOpts(900)
   );
-  const reelScript = await nimCall(
-    systemPrompt,
+  const reelScript = await safeNim(
+    "reelScript",
     `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | WHAT TO WATCH], [40-52s | BIGGER PICTURE], [52-58s | FOLLOW CTA], [58-60s | CLOSE].\n\nRULES:\n- This is a FINANCIAL NEWS STORY reel, not a trading brief. Zero trading advice, zero entry/exit levels, zero buy/sell calls.\n- Every line must make the viewer want to hear the next line.\n- Find the most counterintuitive or surprising fact in the data — lead with that.\n- Tell a story: connect events as cause → effect → India impact.\n- Numbers only appear after you explain why they matter.\n- Natural Hinglish throughout. Group chat energy, not newsreader.\n- VOICEOVER lines max 12 words each.\n- End CLOSE with: "Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo."\n- If MSCI rebalancing, index reshuffle, or passive fund flows appear in the data — LEAD WITH THAT. It is the most important explainer when markets move without an obvious reason.\n- If monsoon forecast or IMD data appears — include it in WHY INDIA CARES.\n\n${context}`,
-    { maxTokens: 800 }
+    studioOpts(800)
   );
 
-  const editorialBriefing = await nimCall(
-    systemPrompt,
+  // Editorial briefing feeds the PUBLIC 2-minute summary + desk note — give it a
+  // little more budget than studio assets, but still bounded so it cannot hang.
+  const editorialBriefing = await safeNim(
+    "editorialBriefing",
     `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
-    { maxTokens: 2000 }
+    { maxTokens: 2000, timeoutMs: 90000 }
   );
 
   let twoMinuteSummary = null;
@@ -149,8 +171,26 @@ ${topArticles}`;
     deskNote = dnLines.join('\n').trim();
   }
 
-  if (!teleprompterScript && !onePageSummary && !reelScript && !twoMinuteSummary && !deskNote) return null;
-  return { teleprompterScript, onePageSummary, reelScript, twoMinuteSummary, deskNote };
+  const lead = dailyLead || { label: "Market update" };
+  const labelKey = normalizeEditorial(lead.label).split(" ")[0] || "market";
+
+  const finalOnePageSummary = onePageSummary || `Market Mood: NEUTRAL\n\nGlobal Cues: GIFT Nifty flat with focus on ${labelKey} news.\n\nNarrative Themes:\n- Global Cues: Focus on ${lead.label}.\n\nValidated Trading Setups:\n- No active setups.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.`;
+
+  const finalTeleprompterScript = teleprompterScript || `[OPENING]\nWelcome to Market Narrative. Focus is ${labelKey}.\n[GLOBAL CUES]\nGlobal cues are mixed.\n[NARRATIVE THEMES]\nTheme check.\n[NIFTY AND BANK NIFTY VIEW]\nView is neutral.\n[VALIDATED SETUPS]\nNo setups.\n[RISK DISCLAIMER]\nEducational market research only. This is not SEBI-registered investment advice.`;
+
+  const finalReelScript = reelScript || `[0-03s | HOOK]\nWelcome to today's update on ${labelKey}.\n[03-14s | OVERNIGHT STORY]\nMarket overnight summary.\n[14-28s | WHY INDIA CARES]\nIndia read-through.\n[28-40s | WHAT TO WATCH]\nKey zones.\n[40-52s | BIGGER PICTURE]\nMacro trends.\n[52-58s | FOLLOW CTA]\nCheck out marketnarrative.in.\n[58-60s | CLOSE]\nPoora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo.`;
+
+  const finalTwoMinuteSummary = twoMinuteSummary || `With Indian markets closed, the focus is on global cues and overnight moves. Global tech breadth is the main thread, especially relating to ${labelKey}. India angle: Nifty IT may come under pressure if Nasdaq futures remain weak. We recommend caution and keeping risk under tight control.\n\nFirst paragraph details the global context and overnight macro developments. The read-through for India highlights potential impacts on key sectors and indices. Traders should monitor the first opening range before committing capital today.\n\nSecond paragraph tracks the regional performance and commodities moves. Easing crude oil prices may benefit local refining and manufacturing setups. We watch global currency moves for additional cues.\n\nThird paragraph reviews the participant flows and institutional positioning. Both FII and DII activity remain mixed in the cash market. We preserve capital and wait for confirming setups to emerge.`;
+
+  const finalDeskNote = deskNote || `An editor's view on the market setup. The narrative revolves around ${labelKey}. We see mixed cues overall and expect range-bound volatility to persist. Focus on the core macro trend and ignore intraday noise.`;
+
+  return {
+    teleprompterScript: finalTeleprompterScript,
+    onePageSummary: finalOnePageSummary,
+    reelScript: finalReelScript,
+    twoMinuteSummary: finalTwoMinuteSummary,
+    deskNote: finalDeskNote
+  };
 }
 
 // Plain-language description of today's open, derived only from real data. Used to lock

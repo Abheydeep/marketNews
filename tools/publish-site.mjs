@@ -230,6 +230,8 @@ await writeFile(
 
 log.info("static site published", { siteDir, archiveEntry: join(siteDir, "index.html"), latestPage: join(siteDir, slugForDigest(latest), "index.html"), digestDate: latest.digestDate });
 
+await writePublishStatus(siteDir, latest);
+
 await writeSlugRedirects(digests);
 
 async function writeGuardedFile(path, contents) {
@@ -4726,6 +4728,41 @@ function todayInIst() {
 function readArg(name) {
   const index = process.argv.indexOf(name);
   return index === -1 ? null : process.argv[index + 1];
+}
+
+// Health/status surface: records the last successfully published edition so the
+// watchdog (and a human) can tell at a glance whether today's briefing went out.
+async function writePublishStatus(targetDir, latest) {
+  const publishedAt = new Date().toISOString();
+  const status = {
+    lastPublishedDate: latest.digestDate,
+    lastPublishedTitle: latest.title ?? null,
+    marketUpdateMode: Boolean(latest.marketUpdateMode),
+    generatedAt: latest.generatedAt ?? null,
+    publishedAt
+  };
+  await writeFile(join(targetDir, "status.json"), `${JSON.stringify(status, null, 2)}\n`, "utf8");
+  const statusDir = join(targetDir, "status");
+  await mkdir(statusDir, { recursive: true });
+  await writeFile(
+    join(statusDir, "index.html"),
+    [
+      "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "<meta name=\"robots\" content=\"noindex, nofollow\">",
+      `<title>Publish status — ${escapeHtml(status.lastPublishedDate)}</title>`,
+      "<style>body{font-family:system-ui,sans-serif;max-width:36rem;margin:3rem auto;padding:0 1rem;line-height:1.6}code{background:#f1f5f9;padding:.1rem .3rem;border-radius:4px}</style>",
+      "</head><body>",
+      "<h1>Market Narrative — publish status</h1>",
+      `<p>Last published edition: <strong>${escapeHtml(status.lastPublishedDate)}</strong>${status.marketUpdateMode ? " (market update)" : ""}</p>`,
+      `<p>Headline: ${escapeHtml(status.lastPublishedTitle ?? "—")}</p>`,
+      `<p>Generated at: <code>${escapeHtml(status.generatedAt ?? "—")}</code></p>`,
+      `<p>Published at: <code>${escapeHtml(status.publishedAt)}</code></p>`,
+      "<p>Machine-readable: <a href=\"/status.json\">/status.json</a></p>",
+      "</body></html>"
+    ].join("\n"),
+    "utf8"
+  );
 }
 
 function escapeHtml(value) {

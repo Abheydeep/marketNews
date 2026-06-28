@@ -171,22 +171,28 @@ function readFlag(name) {
 }
 
 function optionalNumber(value) {
-  if (value == null || value === "") {
-    return undefined;
-  }
+  if (value == null || value === "") return undefined;
   const number = Number(value);
   return Number.isFinite(number) ? number : undefined;
 }
 
 async function generatedBriefingOgImageUrl(digest) {
-  const prompt = buildBriefingImagePrompt(digest);
-  const buffer = await Promise.race([
-    generateArticleImage(prompt),
-    new Promise((resolve) => setTimeout(() => resolve(null), 50_000))
-  ]);
-  const asset = await writeOgImageAsset(buffer, `${digest.digestDate}.jpg`).catch((error) => {
-    log.warn("briefing image asset write failed", { runId, date: digest.digestDate, error: error.message });
+  // Fail-soft: image generation is a non-essential asset. Any failure (provider
+  // 500, timeout, prompt error) must never abort the publish run — return null and
+  // let the page fall back to the static OG card.
+  try {
+    const prompt = buildBriefingImagePrompt(digest);
+    const buffer = await Promise.race([
+      generateArticleImage(prompt),
+      new Promise((resolve) => setTimeout(() => resolve(null), 50_000))
+    ]);
+    const asset = await writeOgImageAsset(buffer, `${digest.digestDate}.jpg`).catch((error) => {
+      log.warn("briefing image asset write failed", { runId, date: digest.digestDate, error: error.message });
+      return null;
+    });
+    return asset?.url ?? null;
+  } catch (error) {
+    log.warn("briefing image generation failed, continuing without image", { runId, date: digest.digestDate, error: error?.message });
     return null;
-  });
-  return asset?.url ?? null;
+  }
 }
