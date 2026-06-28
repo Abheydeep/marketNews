@@ -243,4 +243,11 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
+- 2026-06-28: Fixed desktop freshness banner placement regression and spurious workflow-strip step 1 markup.
+  ROOT CAUSE: (1) Placing the full freshness-banner block card inside the flex eyebrow-container caused it to render inline on desktop viewports. (2) Spurious step 3 copy was incorrectly appended as a <p> element to step 1 inside the workflow strip.
+  Fixes: Separated the inline mobile status chip (kept inside the eyebrow container) from the full freshness banner block card (moved back below brief preview on desktop), and deleted the duplicate paragraph from workflow step 1.
+  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
 
