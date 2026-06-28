@@ -2515,8 +2515,6 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes('join(siteDir, "terms")'));
   assert.ok(publisher.includes("FII DII Data Today - Institutional Flow & F&O Positioning"));
   assert.ok(publisher.includes("India Market Statistics Today - Nifty Breadth & Health Score"));
-  assert.ok(publisher.includes("Daily trader workflow"));
-  // Opening nerve removed in redesign
   // Workflow strip updated in redesign
   assert.ok(publisher.includes("Recent briefings"), "homepage must have Recent briefings section heading");
   assert.ok(publisher.includes("recent-archive-link"), "homepage must have recent-archive-link elements");

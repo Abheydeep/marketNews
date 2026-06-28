@@ -970,12 +970,7 @@ function homepageFiiDiiBarHtml(fii) {
   </div>`;
 }
 
-function homepageYesterdayBarHtml(prevDigest) {
-  const hl = prevDigest?.dailyLead?.headline;
-  if (!hl) return "";
-  const slug = slugForDigest(prevDigest);
-  return `<div class="yesterday-bar"><span class="yb-label">Yesterday's focus</span><a class="yb-link" href="./${escapeHtml(slug)}/">${escapeHtml(hl)}</a></div>`;
-}
+
 
 function homepageTagFilterHtml(digests) {
   const TAG_OPTIONS = [
@@ -1006,7 +1001,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   const briefPreview = (() => { const t = (latest.twoMinuteSummary ?? "").split(/\n\n+/)[0].trim(); return t.length > 230 ? t.substring(0, 227) + "…" : t; })();
   const marketStrip = homepageMarketStripHtml(latest.marketSnapshots ?? []);
   const fiiDiiBar = homepageFiiDiiBarHtml(latest.fiiDiiFlows);
-  const yesterdayBar = homepageYesterdayBarHtml(allDigests[1]);
+
   const tagFilter = homepageTagFilterHtml(digests);
   const subscriberCount = (process.env.PUBLIC_SUBSCRIBER_COUNT ?? "").trim();
   const cards = digests
@@ -1321,6 +1316,17 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       transform: translateY(-2px);
     }
 
+    .hero-action--primary {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.45), rgba(34, 211, 238, 0.28)) !important;
+      border-color: rgba(99, 102, 241, 0.7) !important;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+    }
+    .hero-action--primary:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(34, 211, 238, 0.4)) !important;
+      border-color: #22d3ee !important;
+      box-shadow: 0 0 24px rgba(34, 211, 238, 0.24) !important;
+    }
+
     .hero-action strong {
       color: #f8fafc;
       font-size: 17px;
@@ -1487,95 +1493,59 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       line-height: 1.65;
     }
 
-    /* Summary card — unified 2x2 block replacing 4 separate chips */
-    .summary-card {
-      margin: 28px 0 34px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.5));
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(14px);
-      overflow: hidden;
-    }
-    .summary-card-inner {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      divide: row;
-    }
-    .summary-item {
-      padding: 16px 18px;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-      min-width: 0;
-    }
-    .summary-item:last-child { border-right: none; }
-    .summary-item span {
-      display: block;
-      color: #9fb0c8;
+    /* Freshness & Today's Focus Badges */
+    .freshness-chip {
+      display: none;
+      align-items: center;
+      gap: 5px;
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-left: 8px;
+      vertical-align: middle;
     }
-    .summary-item strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 15px;
-      line-height: 1.2;
-      color: #f1f5f9;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .freshness-chip--live {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.25);
     }
-    @media (max-width: 680px) {
-      .summary-card-inner {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .summary-item {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .summary-item:nth-child(odd) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
-      .summary-item:nth-last-child(-n+2) { border-bottom: none; }
+    .freshness-chip--closed {
+      background: rgba(148, 163, 184, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .freshness-chip--hold {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.25);
     }
 
-    .workflow-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin: -6px 0 34px;
-    }
-
-    .workflow-step {
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.54);
-      display: grid;
-      gap: 7px;
-      min-height: 128px;
-      padding: 15px;
-    }
-
-    .workflow-step span {
-      color: #67e8f9;
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .workflow-step strong {
-      color: #f8fafc;
-      font-size: 19px;
-      line-height: 1.18;
-    }
-
-    .workflow-step p {
+    .today-focus-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 14px;
       color: #cbd5e1;
-      font-size: 13px;
-      font-weight: 720;
-      line-height: 1.5;
-      margin: 0;
+      margin: 4px 0 16px;
+      line-height: 1.4;
     }
+    .today-focus-chip .focus-label {
+      color: #67e8f9;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .summary-card,
+    .workflow-strip {
+      display: none !important;
+    }
+
+
 
     .archive-header-row {
       display: flex;
@@ -2040,10 +2010,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .fii-neg { color:#f87171; }
     .fii-link { color:#7cb4f5; font-size:13px; margin-left:auto; text-decoration:none; display:inline-flex; align-items:center; gap:4px; }
     .fii-link:hover { text-decoration:underline; }
-    .yesterday-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
-    .yb-label { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
-    .yb-link { color: #9fb0c8; font-size: 13px; text-decoration: none; }
-    .yb-link:hover { color: #f8fafc; text-decoration: underline; }
+
     .tag-filter { display: flex; flex-wrap: nowrap; gap: 8px; margin: 8px 0 12px; overflow-x: auto; scrollbar-width: none; }
     .tag-filter::-webkit-scrollbar { display: none; }
     .tag-pill {
@@ -2134,10 +2101,34 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         margin-bottom: 22px;
       }
 
+      .subheadline {
+        display: none !important;
+      }
+
+      .brief-preview-link {
+        display: none !important;
+      }
+
+      .byline {
+        display: none !important;
+      }
+
+      .freshness-chip {
+        display: inline-flex !important;
+      }
+
+      .freshness-banner {
+        display: none !important;
+      }
+
       .hero-actions {
         grid-template-columns: 1fr;
         gap: 8px;
         margin-top: 16px;
+      }
+
+      .hero-action:not(.hero-action--primary) {
+        display: none !important;
       }
 
       .seo-grid {
@@ -2177,10 +2168,34 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         }
       }
 
-      .workflow-strip {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        margin-top: -10px;
+      .recent-briefings-toggle > summary {
+        cursor: default !important;
+      }
+      .recent-briefings-toggle > summary::after {
+        display: none !important;
+      }
+      .recent-briefings-toggle > summary a {
+        pointer-events: auto !important;
+      }
+
+      .digest-card h2 {
+        font-size: 19px !important;
+        line-height: 1.25 !important;
+      }
+
+      .tag-filter {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin: 8px 0 16px !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.08) !important;
+        padding-bottom: 12px !important;
+        overflow-x: visible !important;
+      }
+
+      .market-strip {
+        -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%) !important;
+        mask-image: linear-gradient(to right, #000 82%, transparent 100%) !important;
       }
 
       .hero-action {
@@ -2203,7 +2218,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       }
       .digest-grid::-webkit-scrollbar { display: none; }
       .digest-grid .digest-card {
-        flex: 0 0 min(85vw, 320px);
+        flex: 0 0 min(80vw, 300px) !important;
         scroll-snap-align: start;
       }
     }
@@ -2216,14 +2231,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   ${siteTopbarHtml()}
   <main class="shell">
     <section class="hero">
-      <p class="eyebrow">${escapeHtml(heroContent.eyebrow)}</p>
+      <div class="eyebrow-container" style="margin-bottom: 10px; display: flex; align-items: center; flex-wrap: wrap;">
+        <p class="eyebrow" style="margin: 0; display: inline-block;">${escapeHtml(heroContent.eyebrow)}</p>
+        ${homepageFreshnessBannerHtml(latestState)}
+      </div>
       <h1>${escapeHtml(heroContent.h1)}</h1>
       <h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px; font-weight: 500;">${escapeHtml(heroContent.subheadline)}</h2>
+      <div class="today-focus-chip">
+        <span class="focus-label">Today's focus:</span>
+        <strong>${escapeHtml(archiveFocus(latest))}</strong>
+      </div>
       ${briefPreview ? `<p class="brief-preview">${escapeHtml(briefPreview)} <a href="./latest/" class="brief-preview-link">Read full brief &rarr;</a></p>` : ""}
       <p class="byline">By Abhey Deep / Market Narrative</p>
-      ${homepageFreshnessBannerHtml(latestState)}
       <div class="hero-actions" aria-label="Primary actions">
-        <a class="hero-action" href="./latest/">
+        <a class="hero-action hero-action--primary" href="./latest/">
           <strong>${escapeHtml(primaryAction.label)}</strong>
           <span>${escapeHtml(primaryAction.detail)}</span>
         </a>
@@ -2236,25 +2257,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
           <span>Follow the public multibagger model and changes.</span>
         </a>
       </div>
-      <div class="subscribe-strip" aria-label="Subscribe and Share Market Narrative">
-        <div class="subscribe-strip-content">
-          ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
-          <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
-          <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
-        </div>
-        <div class="subscribe-strip-actions">
-          <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
-          <div class="subscribe-share-zone">
-            <span class="share-label">Share this archive</span>
-            <div class="share-links">
-              <a class="share-link" href="https://wa.me/?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}%20${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
-              <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}&url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
-              <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
-              <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(siteOrigin + "/")}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     ${marketStrip}
     <section class="summary-card" aria-label="Archive summary">
@@ -2266,11 +2268,11 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       </div>
     </section>
     ${fiiDiiBar}
-    ${yesterdayBar}
     <section class="workflow-strip" aria-label="Daily trader workflow">
       <article class="workflow-step">
         <span>1. Today's brief</span>
         <strong>Bias, Nifty level, Bank Nifty signal in 90 seconds</strong>
+        <p>The articles behind every India read</p>
       </article>
       <article class="workflow-step">
         <span>2. Trading Guide</span>
@@ -2281,7 +2283,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         <strong>The articles behind every India read</strong>
       </article>
     </section>
-    <details class="recent-briefings-toggle" id="recent-briefings">
+    <details class="recent-briefings-toggle" id="recent-briefings" open>
       <summary class="archive-header-row">
         <div class="archive-header-left">
           <h2 class="archive-title">Recent briefings</h2>
@@ -2293,6 +2295,25 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         ${cards}
       </section>
     </details>
+    <div class="subscribe-strip" aria-label="Subscribe and Share Market Narrative" style="margin-top: 24px;">
+      <div class="subscribe-strip-content">
+        ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
+        <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
+        <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
+      </div>
+      <div class="subscribe-strip-actions">
+        <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
+        <div class="subscribe-share-zone">
+          <span class="share-label">Share this archive</span>
+          <div class="share-links">
+            <a class="share-link" href="https://wa.me/?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}%20${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" title="Share on WhatsApp">${shareIconHtml("whatsapp")}<span class="sr-only">WhatsApp</span></a>
+            <a class="share-link" href="https://twitter.com/intent/tweet?text=${encodeURIComponent("Market Narrative pre-market briefing archive")}&url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X">${shareIconHtml("x")}<span class="sr-only">X</span></a>
+            <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin + "/")}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" title="Share on LinkedIn">${shareIconHtml("linkedin")}<span class="sr-only">LinkedIn</span></a>
+            <button class="share-copy-btn" type="button" data-copy-url="${escapeHtml(siteOrigin + "/")}" aria-label="Copy link" title="Copy link">${shareIconHtml("copy")}<span class="sr-only">Copy link</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
     ${homepageSeoSectionHtml()}
     ${homepageFaqSectionHtml(homepageFaq)}
     ${siteFooterLinksHtml()}
@@ -2311,6 +2332,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
           });
         });
       });
+      if (window.innerWidth <= 640) {
+        document.getElementById('recent-briefings')
+          ?.addEventListener('toggle', (e) => {
+            const el = e.target;
+            if (!el.open) el.open = true;
+          });
+      }
     })();
     document.querySelectorAll('[data-copy-url]').forEach((button) => {
       button.addEventListener('click', async () => {
@@ -3944,6 +3972,9 @@ function homepagePrimaryAction(state, latest) {
 
 function homepageFreshnessBannerHtml(state) {
   return `
+    <span class="freshness-chip freshness-chip--${escapeHtml(state.className)}">
+      ● ${escapeHtml(state.label)}
+    </span>
     <div class="freshness-banner ${escapeHtml(state.className)}" role="status" aria-label="Latest briefing status">
       <div>
         <span>${escapeHtml(state.label)}</span>
