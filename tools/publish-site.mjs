@@ -6,6 +6,7 @@ import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { fiiDiiPageBody } from "./fii-dii-page.mjs";
+import { indicesPageHtml, giftNiftyPageHtml } from "./indices-layout.mjs";
 import { loadHistory, historyArray } from "./fii-dii-store.mjs";
 import { isoKey } from "./fii-dii-source.mjs";
 import { parseDayLabel } from "./fii-dii-capture.mjs";
@@ -186,6 +187,9 @@ await mkdir(subscribeDir, { recursive: true });
 await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage(latest, publicArchiveDigests.length ? publicArchiveDigests.length : archiveHomeDigests.length));
 await mkdir(indicesDir, { recursive: true });
 await writeGuardedFile(join(indicesDir, "index.html"), indicesPage(latest));
+const giftNiftyDir = join(indicesDir, "gift-nifty");
+await mkdir(giftNiftyDir, { recursive: true });
+await writeGuardedFile(join(giftNiftyDir, "index.html"), giftNiftyPage(latest, publicArchiveDigests.length ? publicArchiveDigests : archiveHomeDigests));
 await mkdir(moneyFlowDir, { recursive: true });
 const fiiDiiFnoRecords = historyArray(await loadHistory());
 const fiiDiiCashRecords = buildFiiDiiCashRecords(digests);
@@ -3672,7 +3676,28 @@ function indicesPageJsonLd(pageTitle, pageDescription, digest) {
     }
   ]);
 }
-
+function giftNiftyPageJsonLd(pageTitle, pageDescription, digest) {
+  return seoGraph([
+    organizationJsonLd(),
+    websiteJsonLd(),
+    breadcrumbJsonLd([
+      { name: "Market Narrative", url: `${siteOrigin}/` },
+      { name: "Global Indices Watch", url: `${siteOrigin}/indices/` },
+      { name: "GIFT Nifty Live Open Gap Calculator", url: `${siteOrigin}/indices/gift-nifty/` }
+    ]),
+    {
+      "@type": "WebPage",
+      "@id": `${siteOrigin}/indices/gift-nifty/#webpage`,
+      url: `${siteOrigin}/indices/gift-nifty/`,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteOrigin}/#website` },
+      publisher: { "@id": `${siteOrigin}/#organization` },
+      about: ["GIFT Nifty", "Nifty 50 Open prediction", "NSE IX", "SGX Nifty gap calculator"]
+    }
+  ]);
+}
 function seoGraph(nodes) {
   return {
     "@context": "https://schema.org",
@@ -4344,193 +4369,40 @@ function compactWords(value, maxWords) {
 }
 
 function indicesPage(digest) {
-  const groups = [
-    ["India", ["NIFTY", "BANKNIFTY", "GIFTNIFTY", "INDIAVIX"]],
-    ["US Overnight", ["SPX", "NDX", "DJI"]],
-    ["Asia", ["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"]],
-    ["Macro", ["BRENT", "DXY", "USDINR", "GOLD"]]
-  ]
-    .map(([title, symbols]) => {
-      const snapshots = symbols
-        .map((symbol) => (digest.marketSnapshots ?? []).find((item) => item.symbol === symbol))
-        .filter(Boolean);
-      if (!snapshots.length) return "";
-      return `
-        <section class="indices-group">
-          <div class="indices-group-head">
-            <h2>${escapeHtml(title)}</h2>
-            <span>${escapeHtml(snapshots.length)} tracked</span>
-          </div>
-          <div class="indices-grid">
-            ${snapshots.map(indexSnapshotCard).join("")}
-          </div>
-        </section>
-      `;
-    })
-    .join("");
   const lastUpdated = formatGeneratedTime(digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`);
   const pageTitle = "Global Indices Watch | Market Narrative";
   const pageDescription = "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.";
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <title>${escapeHtml(pageTitle)}</title>
-  <meta name="description" content="${escapeHtml(pageDescription)}">
-  <link rel="canonical" href="${escapeHtml(siteOrigin)}/indices/">
-  ${jsonLdScript(indicesPageJsonLd(pageTitle, pageDescription, digest))}
-  <style>
-    ${brandMarkCss()}
-    :root {
-      --bg: #050816;
-      --panel: #0b1220;
-      --panel-2: #111827;
-      --line: rgba(148, 163, 184, 0.22);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --up: #34d399;
-      --down: #fb7185;
-      --flat: #fbbf24;
-      --cyan: #67e8f9;
-    }
-    * { box-sizing: border-box; }
-    html, body { overflow-x: hidden; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    img, svg, video, canvas { max-width: 100%; height: auto; }
-    a, button, summary { touch-action: manipulation; }
-    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .topbar { border-bottom: 1px solid var(--line); background: rgba(5, 8, 22, 0.86); position: sticky; top: 0; backdrop-filter: blur(16px); z-index: 10; }
-    .nav-inner { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 900; }
-    .tabs { display: flex; gap: 14px; overflow-x: auto; }
-    .tab-link { align-items: center; color: var(--muted); display: inline-flex; min-height: 44px; text-decoration: none; font-size: 13px; font-weight: 800; white-space: nowrap; }
-    .tab-link.active { color: var(--cyan); }
-    .hero { padding: 46px 0 26px; }
-    .eyebrow { margin: 0 0 10px; color: var(--cyan); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
-    h1 { margin: 0; max-width: 780px; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: 0; }
-    .hero p { max-width: 760px; color: #cbd5e1; font-size: 17px; line-height: 1.7; }
-    .indices-group { margin: 24px 0; }
-    .indices-group-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 12px; }
-    .indices-group-head h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
-    .indices-group-head span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
-    .indices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .index-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .72)); color: inherit; text-decoration: none; cursor: pointer; text-align: left; appearance: none; }
-    .index-card:hover { border-color: rgba(103, 232, 249, .5); }
-    .index-card-top { display: flex; justify-content: space-between; gap: 12px; }
-    .index-card strong { font-size: 22px; }
-    .index-card small, .index-meta { color: var(--muted); font-size: 12px; line-height: 1.45; }
-    .seo-context p { color: #cbd5e1; line-height: 1.6; margin: 0; }
-    .idx-m { display:none;position:fixed;inset:0;z-index:200;background:rgba(5,8,22,.9);align-items:center;justify-content:center }
-    .idx-m.open { display:flex }
-    .idx-panel { background:#0b1220;border:1px solid rgba(148,163,184,.22);border-radius:12px;padding:24px 28px;width:min(580px,calc(100vw - 32px));max-height:90vh;overflow-y:auto;position:relative }
-    .idx-close { position:absolute;top:12px;right:16px;background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1;padding:0 }
-    .seo-context { border-top: 1px solid var(--line); display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 34px 0 0; padding-top: 22px; }
-    .seo-context h2 { font-size: 16px; margin: 0 0 8px; }
-    .move.up { color: var(--up); }
-    .move.down { color: var(--down); }
-    .move.flat { color: var(--flat); }
-    .index-spark { width: 100%; height: 58px; display: block; }
-    .index-spark path.area { opacity: .14; }
-    .index-spark path.line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
-    @media (max-width: 760px) {
-      .hero { padding: 30px 0 18px; }
-      .indices-group { margin: 18px 0; }
-      .indices-group-head { align-items: flex-start; flex-direction: column; gap: 4px; }
-      .indices-grid { grid-template-columns: 1fr; }
-      .index-card { gap: 10px; padding: 14px; }
-      .index-card-top { align-items: flex-start; }
-      .index-card strong { font-size: 18px; line-height: 1.18; }
-      .index-card-top > strong { text-align: right; }
-      .seo-context { grid-template-columns: 1fr; }
-      .footer-note { margin-bottom: 84px; }
-    }
-    @media (max-width: 380px) {
-      .index-card-top { flex-direction: column; }
-      .index-card-top > strong { text-align: left; }
-    }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
-    ${siteFooterCss()}
-  </style>
-</head>
-<body class="has-btb">
-  ${siteTopbarHtml("/indices/")}
-  <main class="shell">
-    <header class="hero">
-      <p class="eyebrow">Global Indices Watch</p>
-      <h1>Nifty, Bank Nifty, Asia, US futures context and macro hedges in one board.</h1>
-      <p>Captured from the same Yahoo price-series snapshots used in the daily briefing. Last briefing update: ${escapeHtml(lastUpdated)} IST. Use this as market context; the Trading Guide still owns execution levels.</p>
-    </header>
-    ${groups}
-    <section class="seo-context" aria-label="How to use the indices board"><div><h2>What this board tracks</h2><p>Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div><div><h2>How traders use it before open</h2><p>Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div></section>
-    <p class="footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
-    ${siteFooterLinksHtml()}
-  </main>
-  ${bottomTabBarHtml("indices")}
-  <div class="idx-m" id="idx-m" onclick="if(event.target===this)this.classList.remove('open')"><div class="idx-panel"><button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button><small id="idx-sym" style="display:block;margin-bottom:4px"></small><h3 id="idx-name" style="margin:0 0 6px;font-size:22px"></h3><strong id="idx-val" class="move" style="display:block;font-size:16px;margin-bottom:12px"></strong><svg id="idx-svg" viewBox="0 0 540 200" style="width:100%;height:200px;display:block;margin-bottom:12px"></svg><p id="idx-ctx" style="color:#cbd5e1;line-height:1.6;margin:0;font-size:14px"></p></div></div>
-  <script>function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();(function(){var m=document.getElementById("idx-m");document.querySelectorAll(".index-card").forEach(function(c){c.addEventListener("click",function(){var d=c.dataset,s=document.getElementById("idx-svg"),t=d.cls==="up"?"#34d399":d.cls==="down"?"#fb7185":"#fbbf24";document.getElementById("idx-sym").textContent=c.querySelector("small").textContent;document.getElementById("idx-name").textContent=d.name;var v=document.getElementById("idx-val");v.className="move "+d.cls;v.textContent=c.querySelector(".move").textContent+" \xb7 "+d.val;document.getElementById("idx-ctx").textContent=d.ctx;var pts=JSON.parse(d.pts||"[]");if(pts.length>1){var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),r=Math.max(1e-9,mx-mn),p=pts.map(function(v,i){return(i?"L":"M")+(4+i/(pts.length-1)*532).toFixed(1)+" "+(190-(v-mn)/r*180).toFixed(1);}).join(" ");s.innerHTML="<path d='"+p+" L536 196 L4 196 Z' fill='"+t+"' opacity='.14'/><path d='"+p+"' fill='none' stroke='"+t+"' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/>";}else{s.innerHTML="<line x1='4' y1='100' x2='536' y2='100' stroke='"+t+"' stroke-width='2'/>";}m.classList.add("open");});});}());</script>
-  ${mobileShellScript()}
-</body>
-</html>`;
+  const assets = {
+    headLinks: brandHeadLinks(siteOrigin),
+    markCss: brandMarkCss(),
+    bottomTabBarCss: bottomTabBarCss(),
+    mobileTypographyCss: mobileTypographyCss(),
+    proPolishCss: proPolishCss(),
+    siteFooterCss: siteFooterCss(),
+    mobileShellScript: mobileShellScript(),
+    topbarHtml: siteTopbarHtml("/indices/"),
+    footerLinksHtml: siteFooterLinksHtml(),
+    bottomTabBarHtml: bottomTabBarHtml("indices")
+  };
+  return indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLdScript(indicesPageJsonLd(pageTitle, pageDescription, digest)), assets);
 }
 
-function indexSnapshotCard(snapshot) {
-  const change = Number(snapshot.changePercent || 0);
-  const cls = change > 0.05 ? "up" : change < -0.05 ? "down" : "flat";
-  const pts = escapeHtml(JSON.stringify((snapshot.chartPoints ?? []).map((p) => Number(p.close)).filter(Number.isFinite)));
-  return `<button id="${escapeHtml(String(snapshot.symbol || "").toLowerCase())}" class="index-card" data-pts="${pts}" data-cls="${escapeHtml(cls)}" data-val="${escapeHtml(formatIndexValue(snapshot))}" data-ctx="${escapeHtml(indexSnapshotContext(snapshot))}" data-name="${escapeHtml(marketDisplayNameForSnapshot(snapshot))}">
-  <div class="index-card-top"><div><small>${escapeHtml(snapshot.symbol)}</small><strong>${escapeHtml(marketDisplayNameForSnapshot(snapshot))}</strong></div><strong class="move ${escapeHtml(cls)}">${escapeHtml(formatSnapshotChange(snapshot))}</strong></div>
-  ${snapshotSparklineSvgForPublish(snapshot)}<div class="index-meta">${escapeHtml(formatIndexValue(snapshot))} · ${escapeHtml(publicSnapshotSourceLabel(snapshot))}</div>
-  </button>`;
-}
-
-function snapshotSparklineSvgForPublish(snapshot) {
-  const points = Array.isArray(snapshot.chartPoints)
-    ? snapshot.chartPoints.map((point) => Number(point.close)).filter((value) => Number.isFinite(value))
-    : [];
-  const change = Number(snapshot.changePercent || 0);
-  const stroke = change > 0.05 ? "#34d399" : change < -0.05 ? "#fb7185" : "#fbbf24";
-  if (points.length < 2) {
-    return `<svg class="index-spark" viewBox="0 0 220 58" aria-hidden="true"><path class="line" d="M4 29 H216" stroke="${stroke}"></path></svg>`;
-  }
-  const min = Math.min(...points);
-  const max = Math.max(...points);
-  const range = Math.max(1e-9, max - min);
-  const path = points.map((value, index) => {
-    const x = 4 + (index / Math.max(1, points.length - 1)) * 212;
-    const y = 52 - ((value - min) / range) * 46;
-    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
-  }).join(" ");
-  const area = `${path} L216 56 L4 56 Z`;
-  return `<svg class="index-spark" viewBox="0 0 220 58" aria-hidden="true"><path class="area" d="${area}" fill="${stroke}"></path><path class="line" d="${path}" stroke="${stroke}"></path></svg>`;
-}
-function formatIndexValue(snapshot) {
-  const value = Number(snapshot.closeValue);
-  const close = Number.isFinite(value)
-    ? value.toLocaleString("en-IN", { maximumFractionDigits: 2 })
-    : "value unavailable";
-  const time = snapshot.dataTimestamp ? formatGeneratedTime(snapshot.dataTimestamp) : "";
-  return time ? `${close} at ${time} IST` : close;
-}
-function indexSnapshotContext(snapshot) {
-  const region = snapshot.marketRegion || regionForSnapshotSymbol(snapshot.symbol);
-  const direction = Number(snapshot.changePercent || 0) >= 0 ? "supportive" : "pressure";
-  return `${marketDisplayNameForSnapshot(snapshot)} is part of the ${region} read. The captured Yahoo series is ${direction} on this snapshot; use it as context, then let Nifty breadth and Bank Nifty decide whether the open confirms.`;
-}
-function regionForSnapshotSymbol(symbol) {
-  if (["SPX", "NDX", "DJI"].includes(symbol)) return "US overnight";
-  if (["NIKKEI", "HSI", "SHCOMP", "KOSPI", "TAIEX", "STI", "ASX200"].includes(symbol)) return "Asia handoff";
-  if (["BRENT", "DXY", "USDINR", "GOLD"].includes(symbol)) return "macro hedge";
-  return "India reference";
+function giftNiftyPage(digest, archiveDigests) {
+  const pageTitle = "GIFT Nifty Live Open Gap Calculator | Market Narrative";
+  const pageDescription = "Live GIFT Nifty index futures price, gap calculator to predict Nifty 50 opening direction, historical gap open logs and session countdowns.";
+  const assets = {
+    headLinks: brandHeadLinks(siteOrigin),
+    markCss: brandMarkCss(),
+    bottomTabBarCss: bottomTabBarCss(),
+    mobileTypographyCss: mobileTypographyCss(),
+    proPolishCss: proPolishCss(),
+    siteFooterCss: siteFooterCss(),
+    mobileShellScript: mobileShellScript(),
+    topbarHtml: siteTopbarHtml("/indices/"),
+    footerLinksHtml: siteFooterLinksHtml(),
+    bottomTabBarHtml: bottomTabBarHtml("indices")
+  };
+  return giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLdScript(giftNiftyPageJsonLd(pageTitle, pageDescription, digest)), assets);
 }
 function robotsTxt() {
   return [
@@ -4553,6 +4425,7 @@ function sitemapXml(allDigests) {
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/indices/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
+    { loc: `${siteOrigin}/indices/gift-nifty/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/money-flow/fii-dii/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/market-statistics/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/moves/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.7" },
@@ -4671,6 +4544,15 @@ function formatGeneratedTime(value) {
     minute: "2-digit",
     hour12: false
   }).format(date);
+}
+
+function formatIndexValue(snapshot) {
+  const value = Number(snapshot.closeValue);
+  const close = Number.isFinite(value)
+    ? value.toLocaleString("en-IN", { maximumFractionDigits: 2 })
+    : "value unavailable";
+  const time = snapshot.dataTimestamp ? formatGeneratedTime(snapshot.dataTimestamp) : "";
+  return time ? `${close} at ${time} IST` : close;
 }
 
 function formatChange(changePercent) {

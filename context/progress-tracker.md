@@ -280,5 +280,15 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
-
+- 2026-06-28: Indices Page Redesign + GIFT Nifty Page + Live Data Layer.
+  (1) Created `tools/nse-ix.mjs` (74 lines): GIFT Nifty scraper fetching from `nseix.com/api/derivatives-watch`, returning Yahoo-compatible MarketSnapshot. Wired into `resolveMarketSnapshots()` in `tools/core.mjs`.
+  (2) Created `tools/indices-page.mjs` (146 lines): page body builders `indicesPageBody(digest)` and `giftNiftyPageBody(digest, archiveDigests)` with heatmap cards, VIX gauge, market session clocks, gap calculator, and 15-session history table.
+  (3) Created `tools/indices-styles.mjs` (74 lines): namespaced `.idx-*` CSS for heatmaps, spot indicators, clocks, and tables.
+  (4) Created `tools/indices-layout.mjs` (187 lines): full HTML page shells for indices and gift-nifty pages, extracting ~250 lines of inline template from `publish-site.mjs`.
+  (5) Refactored `tools/publish-site.mjs` (4660 lines, down from 4779): `indicesPage()` and `giftNiftyPage()` now delegate to `indices-layout.mjs` via an assets object pattern. Added `giftNiftyPageJsonLd()` and `formatIndexValue()`. Registered `/indices/gift-nifty/` in `sitemapXml()`.
+  (6) Created `api/live-indices.mjs` (31 lines): serverless endpoint returning merged Yahoo + GIFT Nifty snapshots with `s-maxage=15` Cache-Control.
+  (7) Updated `tools/verify.mjs` assertion: `.indices-grid` CSS check now reads `indices-styles.mjs` for `.idx-grid`.
+  Verified: `npm run context:verify` (PASS), `npm test` (80 passed), `npm run test:deploy` (PASS, 18.6s).
+  Architecture diagrams changed: `02-morning-briefing-pipeline.mmd` (NSE IX scraper data flow), `04-static-publish-deploy.mmd` (gift-nifty page, /api/live-indices subgraph), `06-module-ownership-debt.mmd` (completed splits section).
+  Debt found but deferred: client-side polling JS for live-indices not yet wired into the static pages (requires follow-up to add flash update animations).
 

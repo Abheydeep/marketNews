@@ -14,10 +14,16 @@ flowchart TD
   Pages --> Home["/ archive homepage"]
   Pages --> Dated["/DDmonYYYY/ and trading-guide"]
   Pages --> Latest["/latest/ and /latest/trading-guide/ shell"]
-  Pages --> Hubs["indices, flows, stats, moves, multibagger"]
+  Pages --> Hubs["indices, gift-nifty, flows, stats, moves, multibagger"]
   Pages --> SEO["sitemap, robots, manifest, OG card"]
   MovesArchive["archive/moves tracked articles"] --> MovesCopy["copy into /moves/ dated explainers"]
   MovesCopy --> Hubs
+
+  subgraph LiveAPI["Serverless live data"]
+    LiveIndices["/api/live-indices"]
+    LiveIndices --> YahooLive["Yahoo Finance"]
+    LiveIndices --> NseIxLive["nse-ix.mjs GIFT Nifty"]
+  end
 
   Home --> Guard["writeGuardedFile public copy QA"]
   Dated --> Guard

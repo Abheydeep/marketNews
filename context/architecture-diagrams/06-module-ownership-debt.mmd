@@ -8,6 +8,16 @@ flowchart TD
     Multi["multibagger-page.mjs"]
   end
 
+  subgraph Completed["Completed splits"]
+    IdxPage["indices-page.mjs (146 lines)"]
+    IdxStyles["indices-styles.mjs (74 lines)"]
+    IdxLayout["indices-layout.mjs (187 lines)"]
+    NseIx["nse-ix.mjs (74 lines)"]
+    FiiPage["fii-dii-page.mjs"]
+    FiiTables["fii-dii-tables.mjs"]
+    FiiStyles["fii-dii-styles.mjs"]
+  end
+
   subgraph Targets["Target ownership"]
     BriefSections["briefing page sections"]
     StaticPages["static page renderers"]
@@ -21,6 +31,11 @@ flowchart TD
 
   Cockpit --> BriefSections
   Publish --> StaticPages
+  Publish -.-> IdxPage
+  Publish -.-> IdxLayout
+  Publish -.-> IdxStyles
+  Core -.-> NseIx
+  Publish -.-> FiiPage
   Sources --> Ingest
   Sources --> Score
   Sources --> LLM
@@ -32,3 +47,4 @@ flowchart TD
   Targets --> Rule["new files under 200 lines"]
   Current --> Ratchet["legacy files must not grow"]
   Ratchet --> Progress["progress-tracker documents exceptions"]
+

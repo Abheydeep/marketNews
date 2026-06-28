@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
 import { log } from "./logger.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
+import { fetchGiftNiftySnapshot } from "./nse-ix.mjs";
 import { isMarketUpdateDate } from "./market-calendar.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 
@@ -432,33 +433,17 @@ export async function buildDigest(date = todayIso(), options = {}) {
 }
 
 async function resolveMarketSnapshots(seedMarketSnapshots, marketDataMode) {
-  if (marketDataMode !== "live") {
-    return { marketSnapshots: seedMarketSnapshots, marketDataError: null, fiiDiiFlows: null };
-  }
-
-  const [snapshotResult, fiiDiiFlows] = await Promise.all([
-    fetchLiveMarketSnapshots().then(
-      (snapshots) => ({ snapshots, error: null }),
-      (error) => ({ snapshots: null, error: error.message })
-    ),
-    fetchFiiDiiFlows()
+  if (marketDataMode !== "live") return { marketSnapshots: seedMarketSnapshots, marketDataError: null, fiiDiiFlows: null };
+  const [snapshotResult, fiiDiiFlows, giftSnapshot] = await Promise.all([
+    fetchLiveMarketSnapshots().then(s => ({ snapshots: s, error: null }), e => ({ snapshots: null, error: e.message })),
+    fetchFiiDiiFlows(),
+    fetchGiftNiftySnapshot()
   ]);
-
-  if (snapshotResult.snapshots) {
-    // Merge seed-only symbols (GIFTNIFTY isn't on Yahoo Finance) into the live set
-    // so GIFT Nifty gap computation always has data.
-    const liveSymbols = new Set(snapshotResult.snapshots.map((s) => s.symbol));
-    const seedOnlyExtras = seedMarketSnapshots.filter((s) => !liveSymbols.has(s.symbol));
-    const merged = seedOnlyExtras.length > 0
-      ? [...snapshotResult.snapshots, ...seedOnlyExtras.map((s) => ({ ...s, dataQuality: "seed-merged" }))]
-      : snapshotResult.snapshots;
-    return { marketSnapshots: merged, marketDataError: null, fiiDiiFlows };
-  }
-  return {
-    marketSnapshots: markSnapshotsAsFallback(seedMarketSnapshots, snapshotResult.error),
-    marketDataError: snapshotResult.error,
-    fiiDiiFlows
-  };
+  let merged = snapshotResult.snapshots
+    ? [...snapshotResult.snapshots, ...seedMarketSnapshots.filter(s => !new Set(snapshotResult.snapshots.map(x => x.symbol)).has(s.symbol)).map(s => ({ ...s, dataQuality: "seed-merged" }))]
+    : markSnapshotsAsFallback(seedMarketSnapshots, snapshotResult.error);
+  if (giftSnapshot) merged = merged.map(s => s.symbol === "GIFTNIFTY" ? giftSnapshot : s);
+  return { marketSnapshots: merged, marketDataError: snapshotResult.error, fiiDiiFlows };
 }
 
 export function scanPriceSeries(date, priceSeriesSeed) {

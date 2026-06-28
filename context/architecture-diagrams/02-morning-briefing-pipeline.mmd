@@ -8,6 +8,13 @@ flowchart TD
 
   Generate --> Sources["news-sources ingest Pulse/RSS"]
   Sources --> Score["core pre-score by India relevance and market severity"]
+  Score --> MarketData["resolveMarketSnapshots"]
+  MarketData --> Yahoo["Yahoo Finance live snapshots"]
+  MarketData --> NseIx["nse-ix.mjs GIFT Nifty scraper"]
+  NseIx --> NseIxApi["nseix.com derivatives-watch API"]
+  Yahoo --> MergedSnaps["merged market snapshots"]
+  NseIxApi --> MergedSnaps
+  MergedSnaps --> Digest
   Score --> Rerank["NVIDIA lead reranker if key exists"]
   Rerank --> Enrich["LLM article enrichment and dedup"]
   Enrich --> ImagePrompt["theme image prompt"]
