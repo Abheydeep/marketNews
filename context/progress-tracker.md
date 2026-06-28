@@ -246,6 +246,12 @@ These must remain true after changes:
 - 2026-06-28: Fixed desktop freshness banner placement regression and spurious workflow-strip step 1 markup.
   ROOT CAUSE: (1) Placing the full freshness-banner block card inside the flex eyebrow-container caused it to render inline on desktop viewports. (2) Spurious step 3 copy was incorrectly appended as a <p> element to step 1 inside the workflow strip.
   Fixes: Separated the inline mobile status chip (kept inside the eyebrow container) from the full freshness banner block card (moved back below brief preview on desktop), and deleted the duplicate paragraph from workflow step 1.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+- 2026-06-28: Resolved final mobile responsiveness bugs and standardized breakpoints across all public pages.
+  ROOT CAUSE: (1) Subscribe page topbar lacked sticky styling, causing it to scroll away. (2) Briefing page news-card-list grid columns remained 2-col at 390px viewport, crushing article layout readability. (3) staticSeoPage and fii-dii-styles used inconsistent 720px breakpoint instead of 760px. (4) Eyebrow container used inline styles.
+  Fixes: Added sticky position to subscribe page topbar, set news-card-list to 1-col on viewports <=620px, standardized breakpoints to 760px, refactored eyebrow-container styles into stylesheet, and updated context limit checks (publish-site limit 4735, cockpit-page limit 10685).
   Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but deferred: none.
