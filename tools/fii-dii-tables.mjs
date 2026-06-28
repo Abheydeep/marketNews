@@ -81,7 +81,7 @@ export function cashDaily(days) {
     { v: "—" }
   ];
   return table({
-    caption: "Daily cash-market flow (₹ crore)",
+    caption: "Cash flow · daily",
     headers: ["Date", "FII Net", "DII Net", "FII+DII Net", "Absorb %", "Nifty 50"],
     rows, foot
   });
@@ -106,7 +106,7 @@ export function cashMonthly(days) {
     m.key, { v: String(m.n) }, barCell(m.fii, maxFii, fmtCr), barCell(m.dii, maxDii, fmtCr), barCell(m.fii + m.dii, maxTotal, fmtCr)
   ]);
   return table({
-    caption: "Monthly cash-market net flow (₹ crore)",
+    caption: "Cash flow · monthly",
     headers: ["Month", "Sessions", "FII Net", "DII Net", "FII+DII Net"], rows
   });
 }
@@ -126,7 +126,7 @@ export function fnoDaily(days, scope) {
     barCell(fnoNet(d.fnoOi.dii, longK, shortK), maxD, fmtNum)
   ]);
   return table({
-    caption: `Daily FII/DII ${scope === "idx" ? "index" : "stock"} futures positioning (net long contracts)`,
+    caption: `Futures · daily net (${scope === "idx" ? "index" : "stock"})`,
     headers: ["Date", "FII Long", "FII Short", "FII Net", "FII Long %", "DII Net"], rows
   });
 }
@@ -157,7 +157,7 @@ export function fnoMonthly(days, scope) {
     barCell(Math.round(m.dNet / m.n), maxD, fmtNum)
   ]);
   return table({
-    caption: `Monthly FII/DII ${scope === "idx" ? "index" : "stock"} futures positioning (session averages)`,
+    caption: `Futures · monthly average (${scope === "idx" ? "index" : "stock"})`,
     headers: ["Month", "Sessions", "FII Long %", "FII Net", "DII Net"], rows
   });
 }

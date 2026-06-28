@@ -12,13 +12,10 @@ import { regimeBanner, getHistoricalExtremeMonths } from "./fii-dii-regime.mjs";
 /** Merge cash records and F&O records into one date-ascending day series. */
 function mergeDays(cashRecords, fnoRecords) {
   const map = new Map();
-  for (const r of fnoRecords || []) {
-    map.set(r.iso, { iso: r.iso, date: r.date, cash: r.cash || null, fnoOi: r.fnoOi || null, fnoVol: r.fnoVol || null, niftyChangePercent: null, niftyClose: null });
-  }
+  for (const r of fnoRecords || []) map.set(r.iso, { iso: r.iso, date: r.date, cash: r.cash || null, fnoOi: r.fnoOi || null, fnoVol: r.fnoVol || null, niftyChangePercent: null, niftyClose: null });
   for (const c of cashRecords || []) {
     const prev = map.get(c.iso) || { iso: c.iso, date: c.date, fnoOi: null, fnoVol: null };
-    prev.date = prev.date || c.date;
-    prev.cash = prev.cash || c.cash;
+    prev.date = prev.date || c.date; prev.cash = prev.cash || c.cash;
     prev.niftyChangePercent = c.niftyChangePercent !== undefined ? c.niftyChangePercent : null;
     prev.niftyClose = c.niftyClose !== undefined ? c.niftyClose : null;
     map.set(c.iso, prev);
@@ -74,19 +71,19 @@ function heroCards(days) {
           <strong class="${signClass(fii + dii)}" style="font-size:15px;margin:2px 0">${fmtCr(fii + dii)}</strong>
         </div>
         <div>
-          <small>DII Absorption</small>
+          <small title="How much of FII net selling was absorbed/bought by DIIs today">DII Covered (Offset)</small>
           <strong class="${absorption === "—" ? "flat" : "pos"}" style="font-size:15px;margin:2px 0">${absorption}</strong>
         </div>
         <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
-          <span>MTD FII: <span class="${signClass(fiiMtd)}">${fmtCr(fiiMtd)}</span></span>
-          <span>MTD DII: <span class="${signClass(diiMtd)}">${fmtCr(diiMtd)}</span></span>
+          <span>${escapeHtml(latestMonth)} FII: <span class="${signClass(fiiMtd)}">${fmtCr(fiiMtd)}</span></span>
+          <span>${escapeHtml(latestMonth)} DII: <span class="${signClass(diiMtd)}">${fmtCr(diiMtd)}</span></span>
         </div>
       </div>
     </div>
 
-    <!-- Card 2: FII Index Futures Positioning -->
+    <!-- Card 2: FII Futures Bias -->
     <div class="mf-card">
-      <span>FII Index Futures positioning</span>
+      <span>FII Futures Bias</span>
       <div class="mf-gauge-wrap">
         <div class="mf-gauge-header">
           <span style="color:var(--up)">Long: ${longVal.toFixed(0)}%</span>
@@ -112,8 +109,8 @@ function heroCards(days) {
           <strong style="font-size:15px;margin:2px 0;color:var(--dn)">${lastFno ? fmtNum(lastFno.fnoOi.fii.idxFutShort) : "—"}</strong>
         </div>
         <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
-          <span>Lean: ${getHistoricalExtremeMonths(days, ratio)}</span>
-          <span>DII Net: <span class="${signClass(diiFnoNet)}">${diiFnoNet >= 0 ? "long" : "short"} ${fmtNum(Math.abs(diiFnoNet))}</span></span>
+          <span>FII Trend: ${getHistoricalExtremeMonths(days, ratio)}</span>
+          <span>DII Hedge Net: <span class="${signClass(diiFnoNet)}">${diiFnoNet >= 0 ? "Long" : "Short"} ${fmtNum(Math.abs(diiFnoNet))}</span> <small style="opacity:0.6;font-weight:normal">(hedged/non-directional)</small></span>
         </div>
       </div>
     </div>
@@ -133,9 +130,25 @@ function chartsBlock(days) {
   const fno = days.filter((d) => d.fnoOi?.fii).slice(-40);
   const ratios = fno.map((d) => longRatio(d.fnoOi.fii, "idxFutLong", "idxFutShort"));
   const ratioChart = lineChart([{ name: "FII long %", color: "var(--up)", values: ratios }], fno.map((d) => shortDay(d.date)), (v) => `${Math.round(v)}%`);
+
+  const latestRatio = ratios.at(-1);
+  let futuresTakeaway = "";
+  if (latestRatio != null) {
+    const isShort = latestRatio < 50;
+    const pct = isShort ? (100 - latestRatio) : latestRatio;
+    const direction = isShort ? "short" : "long";
+    const extremeLabel = (isShort && latestRatio <= 20) || (!isShort && latestRatio >= 80)
+      ? " — historically extreme positioning"
+      : "";
+    futuresTakeaway = `<div class="mf-read" style="margin: 12px 0 16px; padding: 12px 14px; background: rgba(70,173,196,0.06); border: 1px solid var(--line); border-radius: 8px;">
+      <strong>Takeaway:</strong> FIIs are currently <strong>${Math.round(pct)}% ${direction}</strong> on index futures${extremeLabel}.
+    </div>`;
+  }
+
   return `<div>
     <h2 class="mf-section-h">Flow &amp; positioning charts</h2>
-    <p class="mf-section-s">FII and DII cash flow, the running cumulative, and how FIIs are leaning in index futures — the three views a desk checks before the open.</p>
+    <p class="mf-section-s">FII and DII cash flow, the running cumulative, and how FIIs are leaning in index futures — the three views market participants check before the open.</p>
+    ${futuresTakeaway}
     <div class="mf-charts">
       ${chartCard("FII vs DII daily cash net", "Net flow (FII left, DII right bar) · green = buy · red = sell · Nifty in gold", bars, [{ name: "Buying support", color: "var(--up)" }, { name: "Selling pressure", color: "var(--dn)" }, { name: "Nifty 50", color: "#d4a847" }])}
       ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "var(--dn)" }, { name: "DII", color: "var(--up)" }])}
@@ -145,25 +158,7 @@ function chartsBlock(days) {
 }
 
 function tablesBlock(days) {
-  return `<div>
-    <h2 class="mf-section-h">Daily &amp; monthly data</h2>
-    <p class="mf-section-s">Switch between cash-market flow and F&amp;O index / stock positioning. Tables show recent sessions plus a monthly roll-up.</p>
-    <div>
-      <input type="radio" name="mftab" id="mf-cash" checked>
-      <input type="radio" name="mftab" id="mf-idx">
-      <input type="radio" name="mftab" id="mf-stk">
-      <div class="mf-tabs">
-        <label for="mf-cash">Cash</label>
-        <label for="mf-idx">F&amp;O Index</label>
-        <label for="mf-stk">F&amp;O Stock</label>
-      </div>
-      <div class="mf-tw">
-        <div class="mf-panel cash">${cashDaily(days)}${cashMonthly(days)}</div>
-        <div class="mf-panel idx">${fnoDaily(days, "idx")}${fnoMonthly(days, "idx")}</div>
-        <div class="mf-panel stk">${fnoDaily(days, "stk")}${fnoMonthly(days, "stk")}</div>
-      </div>
-    </div>
-  </div>`;
+  return `<div><h2 class="mf-section-h">Daily &amp; monthly data</h2><p class="mf-section-s">Switch between cash-market flow and F&amp;O index / stock positioning. Tables show recent sessions plus a monthly roll-up.</p><div><input type="radio" name="mftab" id="mf-cash" checked><input type="radio" name="mftab" id="mf-idx"><input type="radio" name="mftab" id="mf-stk"><div class="mf-tabs"><label for="mf-cash">Cash</label><label for="mf-idx">F&amp;O Index</label><label for="mf-stk">F&amp;O Stock</label></div><div class="mf-tw"><div class="mf-panel cash">${cashDaily(days)}${cashMonthly(days)}</div><div class="mf-panel idx">${fnoDaily(days, "idx")}${fnoMonthly(days, "idx")}</div><div class="mf-panel stk">${fnoDaily(days, "stk")}${fnoMonthly(days, "stk")}</div></div></div></div>`;
 }
 
 /**

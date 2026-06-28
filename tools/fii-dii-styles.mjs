@@ -52,7 +52,7 @@ export function fiiDiiStyles() {
   .mf-charts{display:grid;gap:16px;grid-template-columns:1fr 1fr}
   .mf-chart--wide{grid-column:1/-1}
   .mf-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-  .mf-tabs input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  #mf-cash, #mf-idx, #mf-stk{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
   .mf-tabs label{border:1px solid var(--line);border-radius:9px;color:var(--muted);cursor:pointer;font-size:13px;font-weight:850;min-height:44px;display:inline-flex;align-items:center;padding:8px 14px}
   .mf-panel{display:none}
   .mf-tw{border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -65,7 +65,7 @@ export function fiiDiiStyles() {
   
   .mf-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .mf-table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
-  .mf-table caption{caption-side:top;text-align:left;color:var(--muted);font-size:12px;font-weight:800;padding:14px 14px 8px;text-transform:uppercase;letter-spacing:.06em}
+  .mf-table caption{caption-side:top;text-align:left;color:var(--muted);font-size:12px;font-weight:800;padding:14px 14px 8px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mf-table th,.mf-table td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;position:relative;z-index:1}
   .mf-table th:first-child,.mf-table td:first-child{text-align:left;position:sticky;left:0;background:var(--paper);z-index:3}
   .mf-table thead th{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0;background:#0a1322;z-index:2}

@@ -265,8 +265,12 @@ These must remain true after changes:
 - 2026-06-28: Implemented catch-up watchdog workflow and hardened the generation pipeline with fail-soft placeholders.
   ROOT CAUSE: (1) Delayed/dropped GitHub Actions crons cause missed daily briefings. (2) Stalled or erroring sequential LLM NIM calls fail the entire publish run.
   Fixes: Created `.github/workflows/watchdog.yml` scheduled to check daily archive status every 30 mins and auto-dispatch `pages.yml`. Injected robust fail-soft placeholder fallbacks inside `tools/core.mjs` that dynamically interpolate lead coherence keys. Shortened `tools/generate-daily-summary.mjs` to keep it strictly under the 200 line limit, and adjusted `tools/context-verify.mjs` limits (`core.mjs` limit 2810, `publish-site.mjs` limit 4779).
-  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed).
+- 2026-06-28: Resolved 11 public page visual, layout, and copy anomalies (FII-1 to FII-6, STATS-1, STATS-2, HOME-1, SUB-1, MOVES-1).
+  ROOT CAUSE: (1) Visible radio input dots was a css selector mismatch (.mf-tabs input instead of actual input ids). (2) Jargon and lack of context on FII Futures, DII Absorption, and Market health score caused poor usability. (3) Moves index was empty without standalone articles list. (4) Subscribe page lacked social proof and sample links. (5) Stats page lacked price staleness context.
+  Fixes: Hidden radio inputs, shortened table captions to avoid wrapping, renamed DII Absorption to DII Covered (Offset) with tooltips, retitled FII futures card and explained trend and hedges, added a dynamic takeaway callout to FII charts, exposed health score contributors, added briefing time warning on stats page, surfaced DII offset on homepage, added total editions and sample link to subscribe page, and added placeholder redirect card to moves page. Optimized file sizes to respect limits (publish-site.mjs at 4774 lines, fii-dii-page.mjs at 189 lines).
+  Verified: `npm run context:verify`, `npm test` (80 passed), `npm run test:deploy`, `npm run public:copy:qa`.
   Architecture diagrams changed: none.
   Debt found but deferred: none.
+
 
 

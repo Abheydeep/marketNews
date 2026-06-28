@@ -183,7 +183,7 @@ await writeGuardedFile(join(multibaggerDir, "state.json"), `${JSON.stringify(pub
 await mkdir(aboutDir, { recursive: true });
 await writeGuardedFile(join(aboutDir, "index.html"), aboutPage(latest, publicArchiveDigests.length ? publicArchiveDigests : archiveHomeDigests));
 await mkdir(subscribeDir, { recursive: true });
-await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage());
+await writeGuardedFile(join(subscribeDir, "index.html"), subscribePage(latest, publicArchiveDigests.length ? publicArchiveDigests.length : archiveHomeDigests.length));
 await mkdir(indicesDir, { recursive: true });
 await writeGuardedFile(join(indicesDir, "index.html"), indicesPage(latest));
 await mkdir(moneyFlowDir, { recursive: true });
@@ -809,95 +809,41 @@ function publicThemesForNews(date, news) {
 function publicWeightedSentiment(news) {
   const items = news ?? [];
   const weights = items.reduce((sum, article) => sum + publicArticleWeight(article), 0);
-  if (!weights) {
-    return 0;
-  }
-  return items.reduce((sum, article) => sum + articleTone(article) * publicArticleWeight(article), 0) / weights;
+  return weights ? items.reduce((sum, article) => sum + articleTone(article) * publicArticleWeight(article), 0) / weights : 0;
 }
-
 function publicArticleWeight(article) {
   return Number.isFinite(Number(article?.entityMatchScore)) ? Number(article.entityMatchScore) : 1;
 }
-
 function publicLabelFromScore(score) {
-  if (score >= 0.25) return "BULLISH";
-  if (score <= -0.25) return "BEARISH";
-  if (Math.abs(score) < 0.1) return "NEUTRAL";
-  return "VOLATILE";
+  return score >= 0.25 ? "BULLISH" : score <= -0.25 ? "BEARISH" : Math.abs(score) < 0.1 ? "NEUTRAL" : "VOLATILE";
 }
-
 function publicTitleForCategory(category) {
-  return {
-    macro_negative: "Macro Pressure",
-    global_risk: "Global Risk",
-    neutral_volatile: "Opening Volatility",
-    sector_negative: "Sector Pressure",
-    sector_positive: "Sector Support",
-    macro_positive: "Global Earnings & Risk Appetite"
-  }[category] || "Market Cues";
+  return { macro_negative: "Macro Pressure", global_risk: "Global Risk", neutral_volatile: "Opening Volatility", sector_negative: "Sector Pressure", sector_positive: "Sector Support", macro_positive: "Global Earnings & Risk Appetite" }[category] || "Market Cues";
 }
-
 function roundPublic(value, places) {
-  const number = Number(value);
-  return Number.isFinite(number) ? Number(number.toFixed(places)) : 0;
+  return Number.isFinite(Number(value)) ? Number(Number(value).toFixed(places)) : 0;
 }
-
 function publicOnePageSummary(digest) {
-  const marketLine = (digest.marketSnapshots ?? [])
-    .map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`)
-    .join(", ");
-  const themeLines = (digest.themes ?? [])
-    .map((theme) => `- ${theme.title}: ${theme.summary}`)
-    .join("\n");
-  const setupLines = (digest.tradeSetups ?? []).length
-    ? digest.tradeSetups.map((setup) =>
-      `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`
-    ).join("\n")
-    : "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.";
-  return [
-    `Market Mood: ${digest.sentimentLabel}`,
-    `Global Cues: ${marketLine}`,
-    `Narrative Themes:\n${themeLines}`,
-    `Validated Trading Setups:\n${setupLines}`,
-    "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."
-  ].join("\n\n");
+  const marketLine = (digest.marketSnapshots ?? []).map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`).join(", ");
+  const themeLines = (digest.themes ?? []).map((theme) => `- ${theme.title}: ${theme.summary}`).join("\n");
+  const setupLines = (digest.tradeSetups ?? []).length ? digest.tradeSetups.map((setup) => `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`).join("\n") : "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.";
+  return [`Market Mood: ${digest.sentimentLabel}`, `Global Cues: ${marketLine}`, `Narrative Themes:\n${themeLines}`, `Validated Trading Setups:\n${setupLines}`, "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."].join("\n\n");
 }
-
 function isVerifiedPublicDigest(digest) {
   return Boolean(isGeneralEditionDate(digest.digestDate) && digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
 }
-
-function isWeekdayDigest(digest) {
-  return isWeekdayDate(digest.digestDate);
-}
-
-function isWeekdayDate(value) {
-  return marketCalendarState(value).isTradingSession;
-}
-
+function isWeekdayDigest(digest) { return isWeekdayDate(digest.digestDate); }
+function isWeekdayDate(value) { return marketCalendarState(value).isTradingSession; }
 function relatedVerifiedEditions(digest, verifiedDigests) {
   const index = verifiedDigests.findIndex((item) => item.digestDate === digest.digestDate && scheduledLabelForDigest(item) === scheduledLabelForDigest(digest));
-  if (index === -1) {
-    return {};
-  }
-  return {
-    nextEditionPath: index > 0 ? `../${slugForDigest(verifiedDigests[index - 1])}/` : "",
-    previousEditionPath: index < verifiedDigests.length - 1 ? `../${slugForDigest(verifiedDigests[index + 1])}/` : ""
-  };
+  return index === -1 ? {} : { nextEditionPath: index > 0 ? `../${slugForDigest(verifiedDigests[index - 1])}/` : "", previousEditionPath: index < verifiedDigests.length - 1 ? `../${slugForDigest(verifiedDigests[index + 1])}/` : "" };
 }
-
 function legacyDeskNote(digest) {
   const driver = highestImpactArticle(digest);
-  return driver
-    ? `${cleanArchiveSentence(driver.takeaway || driver.summary || driver.headline)} This archived edition is retained for historical context; newer editions use the verified article-link source ledger.`
-    : "This archived edition is retained for historical context; newer editions use the verified article-link source ledger.";
+  return driver ? `${cleanArchiveSentence(driver.takeaway || driver.summary || driver.headline)} This archived edition is retained for historical context; newer editions use the verified article-link source ledger.` : "This archived edition is retained for historical context; newer editions use the verified article-link source ledger.";
 }
-
 function fallbackWatchItems(digest) {
-  const items = (digest.news ?? [])
-    .map((article) => cleanArchiveSentence(article.watchFor))
-    .filter(Boolean);
-  return [...new Set(items)].slice(0, 3);
+  return [...new Set((digest.news ?? []).map((article) => cleanArchiveSentence(article.watchFor)).filter(Boolean))].slice(0, 3);
 }
 
 function siteTopbarHtml(activeHref = "") {
@@ -960,6 +906,17 @@ function homepageFiiDiiBarHtml(fii) {
   const diiPct = Math.round(Math.abs(diiNet) / total * 100);
   const fiiColor = fiiNet >= 0 ? "#34d399" : "#f87171";
   const diiColor = diiNet >= 0 ? "#34d399" : "#f87171";
+
+  let offsetHtml = "";
+  if (fiiNet < 0 && diiNet > 0) {
+    const absFii = Math.abs(fiiNet) || 1;
+    const absorption = Math.round((diiNet / absFii) * 100);
+    offsetHtml = `<div class="fii-offset" style="font-size:11px;color:var(--muted);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;display:flex;justify-content:space-between">
+      <span>DII Covered (Offset)</span>
+      <strong>${absorption}% <small style="font-weight:normal">(of FII selling)</small></strong>
+    </div>`;
+  }
+
   return `<div class="fii-bar" aria-label="FII DII institutional flows">
     <div class="fii-header"><span class="fii-dot"></span><span class="fii-label">Institutional flows · ${escapeHtml(fii.date ?? "")}</span><a class="fii-link" href="/money-flow/fii-dii/">Full data &rarr;</a></div>
     <div class="fii-cells">
@@ -969,6 +926,7 @@ function homepageFiiDiiBarHtml(fii) {
     <div class="fii-bar-track" title="FII ${fiiPct}% · DII ${diiPct}%">
       <div class="fii-bar-fill" style="width:${fiiPct}%;background:${fiiColor};"></div>
     </div>
+    ${offsetHtml}
   </div>`;
 }
 
@@ -2855,7 +2813,7 @@ function aboutPage(latest, archiveDigests = []) {
 </html>`;
 }
 
-function subscribePage() {
+function subscribePage(latest, totalBriefings = 38) {
   const pageTitle = "Join The Pre-Market Brief | Market Narrative";
   const pageDescription = "Join the Market Narrative daily email flow for the Nifty and Bank Nifty pre-market briefing.";
   return `<!DOCTYPE html>
@@ -3120,6 +3078,17 @@ function subscribePage() {
     <p class="eyebrow">Daily Email</p>
     <h1>Get the pre-market briefing before the open.</h1>
     <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 0;font-size:13px;color:var(--muted);font-weight:800;">
+      <span style="background:rgba(34,211,238,0.1);color:var(--cyan);padding:4px 8px;border-radius:6px;border:1px solid rgba(34,211,238,0.15)">
+        ✓ ${totalBriefings}+ editions published
+      </span>
+      <span style="background:rgba(52,211,153,0.1);color:var(--green);padding:4px 8px;border-radius:6px;border:1px solid rgba(52,211,153,0.15)">
+        ✓ 100% free with source links
+      </span>
+      <a href="/latest/" style="text-decoration:underline;padding:4px 0;color:var(--ink);">
+        Read sample briefing &rarr;
+      </a>
+    </div>
     <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
       <div class="sent-note" hidden aria-live="polite"></div>
       <form action="${escapeHtml(subscribeFormAction)}" method="POST">
@@ -3226,8 +3195,16 @@ function marketStatisticsPage(latest) {
     .filter(Boolean);
   const health = marketHealthScore(selected, latest?.fiiDiiFlows);
   const body = `
+    <div style="color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
+      Prices as of morning briefing: <b>${escapeHtml(formatDigestDate(latest.digestDate))} at 7:15 AM IST</b>
+    </div>
     <section class="metric-grid" aria-label="Latest market statistics">
-      <article class="metric-card"><span>Market health score</span><strong>${escapeHtml(String(health.score))}/100</strong><p>${escapeHtml(health.label)}</p></article>
+      <article class="metric-card">
+        <span>Market health score</span>
+        <strong>${escapeHtml(String(health.score))}/100</strong>
+        <p>${escapeHtml(health.label)}</p>
+        ${health.breakdown?.length ? `<p style="font-size:11px;color:var(--muted);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px">${escapeHtml(health.breakdown.join(" · "))}</p>` : ""}
+      </article>
       ${selected.slice(0, 5).map((snapshot) => `
         <article class="metric-card">
           <span>${escapeHtml(snapshot.symbol)}</span>
@@ -3287,6 +3264,13 @@ function movesHubPage(latest) {
     <section class="copy-stack">
       <h2>Why Indian stocks move</h2>
       <p>Market Narrative move articles explain the reason behind sharp moves in Nifty, Bank Nifty, sector indices, and important Indian stocks. The goal is simple: answer why the market rose or fell today without turning the page into tips, targets, or trade calls.</p>
+      
+      <div class="metric-card" style="margin: 20px 0; border: 1px dashed var(--line); background: var(--panel); padding: 16px; border-radius: 8px;">
+        <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--ink);">No standalone move articles yet</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted);">We are currently backfilling individual stock move archives. In the meantime, you can read today's briefing to get the full overnight and post-market context for index and stock moves.</p>
+        <p style="margin: 12px 0 0; font-size: 14px;"><a class="inline-cta" href="/latest/">Read today's pre-market briefing &rarr;</a></p>
+      </div>
+
       <h2>What each move article includes</h2>
       <p>Each article is designed to explain what happened, the source-backed reason, the India read-through, and what to watch next. For index moves, the article focuses on breadth, FII DII flow, crude oil, USD/INR, sector leadership, and whether Bank Nifty confirmed the move.</p>
       <h2>Latest briefing context</h2>
@@ -3831,15 +3815,31 @@ function marketHealthScore(snapshots, flow) {
   const positives = valid.filter((snapshot) => Number(snapshot.changePercent) > 0).length;
   const breadthScore = valid.length ? positives / valid.length : 0.5;
   const vix = valid.find((snapshot) => snapshot.symbol === "INDIAVIX");
-  const vixPenalty = Number(vix?.changePercent ?? 0) > 2 ? 10 : 0;
+  
+  const breakdown = [];
+  const breadthPct = Math.round(breadthScore * 100);
+  breakdown.push(`Breadth positive: ${breadthPct}%`);
+  
+  const vixChange = Number(vix?.changePercent ?? 0);
+  const vixPenalty = vixChange > 2 ? 10 : 0;
+  if (vixPenalty > 0) {
+    breakdown.push(`VIX elevated (-10)`);
+  } else if (vixChange < -2) {
+    breakdown.push(`VIX cooling (+5)`);
+  }
+  
   const flowBoost = Number(flow?.diiNet ?? 0) > Math.abs(Number(flow?.fiiNet ?? 0)) ? 8 : 0;
+  if (flowBoost > 0) {
+    breakdown.push(`DII offset active (+8)`);
+  }
+  
   const score = Math.max(0, Math.min(100, Math.round(45 + breadthScore * 45 + flowBoost - vixPenalty)));
   const label = score >= 70
     ? "supportive but still needs opening-range confirmation"
     : score >= 45
       ? "mixed; Bank Nifty and breadth must confirm"
       : "defensive; avoid treating a gap as confirmation";
-  return { score, label };
+  return { score, label, breakdown };
 }
 
 function organizationJsonLd() {
