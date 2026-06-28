@@ -2233,7 +2233,9 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     <section class="hero">
       <div class="eyebrow-container" style="margin-bottom: 10px; display: flex; align-items: center; flex-wrap: wrap;">
         <p class="eyebrow" style="margin: 0; display: inline-block;">${escapeHtml(heroContent.eyebrow)}</p>
-        ${homepageFreshnessBannerHtml(latestState)}
+        <span class="freshness-chip freshness-chip--${escapeHtml(latestState.className)}">
+          ● ${escapeHtml(latestState.label)}
+        </span>
       </div>
       <h1>${escapeHtml(heroContent.h1)}</h1>
       <h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px; font-weight: 500;">${escapeHtml(heroContent.subheadline)}</h2>
@@ -2242,6 +2244,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         <strong>${escapeHtml(archiveFocus(latest))}</strong>
       </div>
       ${briefPreview ? `<p class="brief-preview">${escapeHtml(briefPreview)} <a href="./latest/" class="brief-preview-link">Read full brief &rarr;</a></p>` : ""}
+      ${homepageFreshnessBannerHtml(latestState)}
       <p class="byline">By Abhey Deep / Market Narrative</p>
       <div class="hero-actions" aria-label="Primary actions">
         <a class="hero-action hero-action--primary" href="./latest/">
@@ -2272,7 +2275,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <article class="workflow-step">
         <span>1. Today's brief</span>
         <strong>Bias, Nifty level, Bank Nifty signal in 90 seconds</strong>
-        <p>The articles behind every India read</p>
       </article>
       <article class="workflow-step">
         <span>2. Trading Guide</span>
@@ -3972,9 +3974,6 @@ function homepagePrimaryAction(state, latest) {
 
 function homepageFreshnessBannerHtml(state) {
   return `
-    <span class="freshness-chip freshness-chip--${escapeHtml(state.className)}">
-      ● ${escapeHtml(state.label)}
-    </span>
     <div class="freshness-banner ${escapeHtml(state.className)}" role="status" aria-label="Latest briefing status">
       <div>
         <span>${escapeHtml(state.label)}</span>
