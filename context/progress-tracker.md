@@ -252,7 +252,13 @@ These must remain true after changes:
 - 2026-06-28: Resolved final mobile responsiveness bugs and standardized breakpoints across all public pages.
   ROOT CAUSE: (1) Subscribe page topbar lacked sticky styling, causing it to scroll away. (2) Briefing page news-card-list grid columns remained 2-col at 390px viewport, crushing article layout readability. (3) staticSeoPage and fii-dii-styles used inconsistent 720px breakpoint instead of 760px. (4) Eyebrow container used inline styles.
   Fixes: Added sticky position to subscribe page topbar, set news-card-list to 1-col on viewports <=620px, standardized breakpoints to 760px, refactored eyebrow-container styles into stylesheet, and updated context limit checks (publish-site limit 4735, cockpit-page limit 10685).
-  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed), `npm run test:deploy` (passed), and `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+- 2026-06-28: Removed inline styling from homepage hero subheadline and refactored it into layout stylesheet.
+  ROOT CAUSE: Homepage hero subheadline h2 had inline styles, bypassing the main layout CSS classes.
+  Fixes: Removed the inline style attribute from subheadline h2 inside the template and mapped the layout declarations to the new stylesheet class rule. Updated publish-site baseline limit to 4742.
+  Verified: `npm run context:verify` (passed), `npm test` (all 80 tests passed).
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
