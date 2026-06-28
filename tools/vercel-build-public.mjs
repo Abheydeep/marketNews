@@ -32,7 +32,7 @@ async function writePwaArtifacts() {
 
   const sw = `// Market Narrative service worker. Caches the home page and the
 // most recent briefing so the app is usable on a flaky network.
-const CACHE = "mn-shell-v1";
+const CACHE = "mn-shell-v2";
 const PRECACHE_URLS = ["/", "/manifest.json", "/favicon.svg"];
 
 self.addEventListener("install", (event) => {
@@ -56,18 +56,15 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/api/")) return; // never cache functions
   event.respondWith(
-    caches.match(req).then((cached) => {
-      const network = fetch(req)
-        .then((res) => {
-          if (res && res.ok && (res.type === "basic" || res.type === "default")) {
-            const copy = res.clone();
-            caches.open(CACHE).then((cache) => cache.put(req, copy));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || network;
-    })
+    fetch(req)
+      .then((res) => {
+        if (res && res.ok && (res.type === "basic" || res.type === "default")) {
+          const copy = res.clone();
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(req))
   );
 });
 `;

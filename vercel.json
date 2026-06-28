@@ -572,7 +572,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400"
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=3600"
         },
         {
           "key": "X-Content-Type-Options",
@@ -585,7 +585,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400"
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=3600"
         },
         {
           "key": "X-Content-Type-Options",
@@ -598,7 +598,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400"
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=3600"
         },
         {
           "key": "X-Content-Type-Options",
@@ -611,7 +611,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=86400"
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
         },
         {
           "key": "X-Content-Type-Options",
@@ -624,7 +624,98 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=30, s-maxage=180, stale-while-revalidate=86400"
+          "value": "public, max-age=30, s-maxage=180, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/money-flow/fii-dii/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/market-statistics/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/indices/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/moves/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/contact/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/privacy/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/terms/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
         },
         {
           "key": "X-Content-Type-Options",
