@@ -30,6 +30,10 @@ These must remain true after changes:
 
 ## Completed
 
+- 2026-06-28: Resolved visual and jargon anomalies across all public pages (FII-1 to FII-6, STATS-1, STATS-2, MOVES-1, SUB-1). ROOT CAUSE: selector specificity error in css hide logic for radio inputs, finance-heavy jargon (MTD, absorption) without helpful tooltips, missing health score metric breakdowns, metric timing clarity, and lack of standalone moves archive warnings.
+  Verified: `git commit` and `git push origin main` triggered automated Vercel rebuild; fetched live URLs directly to confirm fixes are correctly rendered on production site; successfully ran verification gates `npm run context:verify`, `npm test` (80 tests passed), `npm run test:deploy` (5 checks passed), and `npm run public:copy:qa`.
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
 - 2026-06-16: Added Vercel watchdog retries and simplified public market context
   surfaces. ROOT CAUSE: the morning publish path depended on GitHub scheduled
   workflow creation, so a dropped schedule left no independent process checking
