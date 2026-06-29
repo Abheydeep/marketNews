@@ -25,7 +25,7 @@ async function loadSkills() {
 
 // timeoutMs guards only the connection (first-byte) phase. Once the stream
 // starts, chunks arrive progressively — no wall-clock limit on slow 550B generation.
-const NIM_CONNECTION_TIMEOUT_MS = Number(process.env.NVIDIA_TIMEOUT_MS ?? 30000);
+const NIM_CONNECTION_TIMEOUT_MS = Number(process.env.NVIDIA_TIMEOUT_MS ?? 120000);
 
 export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2, temperature = 0.65, timeoutMs } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
@@ -33,7 +33,7 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
   const connectionTimeoutMs = Number(timeoutMs ?? NIM_CONNECTION_TIMEOUT_MS);
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      if (attempt > 0) await new Promise((r) => setTimeout(r, 5000 * attempt));
+      if (attempt > 0) await new Promise((r) => setTimeout(r, 15000 * attempt));
       const response = await fetch(NIM_API_URL, {
         method: "POST",
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },

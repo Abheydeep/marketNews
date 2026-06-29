@@ -360,7 +360,7 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
   const agentMode = shouldUseAgentArticleEnrichment(options);
   const maxEnrichmentCalls = Number.isFinite(Number(options.maxArticleEditorialEnrichmentCalls))
     ? Number(options.maxArticleEditorialEnrichmentCalls)
-    : agentMode ? 24 : 12;
+    : agentMode ? 8 : 6;
   const enriched = [];
   const seenTemplateSignatures = new Map();
   const usedEditorialAngles = [];
