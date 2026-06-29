@@ -2643,7 +2643,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(workflow.includes('if [ "${{ github.event_name }}" = "push" ] && [ "$ARCHIVE_ALREADY_TRACKED" != "true" ]; then'));
   assert.ok(workflow.includes('LATEST_ARCHIVE="$(ls archive/daily/*-digest.json | sort | tail -n 1)"'));
   assert.ok(workflow.includes('SKIP_ARCHIVE_WRITE_VALUE="true"'));
-  assert.ok(workflow.includes('PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"'));
+  assert.ok(workflow.includes('PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" node --env-file-if-exists=.env tools/publish-site.mjs --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"'));
   assert.ok(workflow.includes("SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}"));
   assert.ok(workflow.includes("ARCHIVE_FILE=\"archive/daily/${SUMMARY_DATE}-${SUMMARY_LABEL}-digest.json\""));
   assert.ok(workflow.includes("Import previous deployed archive"));
