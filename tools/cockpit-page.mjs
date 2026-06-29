@@ -7540,6 +7540,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </script>
   ${bottomTabBarHtml("latest")}
   ${mobileShellScript()}
+  <footer style="text-align:center;padding:12px 16px 24px;font-size:0.78rem;color:#6b7a99;line-height:1.5;">
+    Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.
+  </footer>
 </body>
 </html>`;
 }
