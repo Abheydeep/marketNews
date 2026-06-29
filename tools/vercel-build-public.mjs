@@ -3,7 +3,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
+import { isGeneralEditionDate, isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
 import { log } from "./logger.mjs";
 
 async function writeLatestSlugArtifact(slug) {
@@ -103,7 +103,10 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
   await writePwaArtifacts();
   log.info("public vercel build completed local preview artifact", { runId, date });
   process.exit(0);
-} else if (!calendarState.isTradingSession && !allowNonTradingDayDigest) {
+} else if (!calendarState.isTradingSession && !isGeneralEditionDate(date) && !allowNonTradingDayDigest) {
+  // Genuinely closed, non-edition days (e.g. Saturdays) show the market-closed shell.
+  // Sundays and exchange holidays ARE general-edition days — they fall through to the
+  // generate branch below and publish a market-update edition instead.
   const fallback = latestArchivedDigest();
   log.warn("publishing market-closed public artifact", { runId, date, state: calendarState.state, reason: calendarState.reason, fallback });
   const fallbackPublish = run("npm", ["run", "site:publish", "--", "--date", fallback.date, "--scheduled-time", fallback.scheduledTime], {

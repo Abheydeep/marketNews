@@ -658,7 +658,7 @@ function enrichPublicDigest(digest) {
   const dailyLead = verified && digestDailyLeadIsVisible(digest.dailyLead, news)
     ? digest.dailyLead
     : recomputedDailyLead;
-  const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead) : digest.title;
+  const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead, Boolean(digest.marketUpdateMode)) : digest.title;
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
     : (digest.archiveSummary || archiveCardSummary({ ...digest, news }));
@@ -3974,7 +3974,21 @@ function homepageLatestState(latest) {
   const latestDate = latest?.digestDate || "";
   const buildDate = publicBuildDate;
   const calendar = marketCalendarState(buildDate);
+  const isMarketUpdate = Boolean(latest?.marketUpdateMode);
   if (latestDate === buildDate && publicLatestStatus !== "verification-hold" && publicLatestStatus !== "market-closed") {
+    // Holiday / Sunday market-update editions are today's published edition — frame
+    // them as a general market update, not a pre-open trading brief.
+    if (isMarketUpdate) {
+      return {
+        kind: "published",
+        className: "live",
+        label: "Today's market update is live",
+        title: `Market update for ${formatDigestDate(latestDate)}`,
+        detail: "Markets are closed today — see where Indian and global markets stand and the news moving them.",
+        ctaLabel: "Open today's update",
+        ctaHref: "./latest/"
+      };
+    }
     return {
       kind: "published",
       className: "live",
@@ -3985,7 +3999,9 @@ function homepageLatestState(latest) {
       ctaHref: "./latest/"
     };
   }
-  if (publicLatestStatus === "market-closed" || !calendar.isTradingSession) {
+  // Only treat as "market closed" on genuinely non-edition days (e.g. Saturdays).
+  // Sundays / exchange holidays are general-edition days and should never show this.
+  if (publicLatestStatus === "market-closed" || (!calendar.isTradingSession && !isGeneralEditionDate(buildDate))) {
     const closedLabel = calendar.state === "exchange_holiday" ? "Market holiday" : "Market closed today";
     return {
       kind: "market-closed",
@@ -4239,10 +4255,23 @@ function previousSessionDriver(digest) {
   );
 }
 
-function titleForDailyLead(dailyLead) {
+function titleForDailyLead(dailyLead, marketUpdate = false) {
   const text = `${dailyLead?.label || ""} ${dailyLead?.headline || ""} ${dailyLead?.indiaImpact || ""}`.toLowerCase();
   if (dailyLead?.driverType === "crude" && /\b(iran|hormuz|trump|strike|war|deal)\b/.test(text)) {
-    return "Iran Deal Hopes Pull Brent Below $90";
+    return marketUpdate ? "Iran Deal Hopes Pull Brent Lower" : "Iran Deal Hopes Pull Brent Below $90";
+  }
+  // Closed-market (holiday/Sunday) editions: general "what's moving markets" titles
+  // with no pre-open framing ("Open", "Opening Range", "morning", "follow-through").
+  if (marketUpdate) {
+    return {
+      crude: "Brent Move Drives India's Market Mood",
+      rates: "Rates Steer The Market Mood",
+      currency: "Currency Pressure In Focus For Indian Markets",
+      tech: "Tech Breadth Drives The Market Mood",
+      banks: "Bank Nifty In Focus For Indian Markets",
+      asia: "Asia Risk Appetite Frames The Market Mood",
+      market: "Market Breadth In Focus For Indian Markets"
+    }[dailyLead.driverType] || `${dailyLead.label || "Market Breadth"} In Focus For Indian Markets`;
   }
   return {
     crude: "Brent Move Sets The Morning Risk",

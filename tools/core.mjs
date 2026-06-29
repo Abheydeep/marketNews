@@ -1116,8 +1116,20 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
   const verboseLabel = /overnight|gift nifty|[:%]|\d/i.test(rawLabel);
   const force = (rawLabel && !verboseLabel) ? rawLabel : dominantForceLabel(lead, headline);
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
-  const consequence = titleConsequence(lead, sentimentLabel);
   const previousTitle = normalizeEditorial(previousDigest?.title);
+  // Closed-market (holiday/Sunday) editions: build a general title with no pre-open
+  // framing ("Open", "Opening Range", "morning", "9:15", "gap").
+  if (isMarketUpdateDate(date)) {
+    const muConsequence = marketUpdateTitleConsequence(lead, sentimentLabel);
+    const muCandidates = [
+      `${force} ${verb} ${muConsequence}`,
+      themes[0]?.title ? `${themes[0].title} Drives The Market Mood` : "",
+      force ? `${force} In Focus For Indian Markets` : ""
+    ].map(compactTitle).filter(Boolean);
+    return muCandidates.find((candidate) => normalizeEditorial(candidate) !== previousTitle)
+      || compactTitle(`${force} ${verb} Indian Market Mood`);
+  }
+  const consequence = titleConsequence(lead, sentimentLabel);
   const candidates = [
     `${force} ${verb} ${consequence}`,
     lead?.headline ? `${lead.headline} Sets Nifty Lens` : "",
@@ -1128,6 +1140,17 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
     .filter(Boolean);
   return candidates.find((candidate) => normalizeEditorial(candidate) !== previousTitle)
     || compactTitle(`${force} ${verb} ${date} Open`);
+}
+
+// Neutral, non-pre-open read-through used only for closed-market titles.
+function marketUpdateTitleConsequence(article, sentimentLabel) {
+  const entity = String(article?.entityName || "").toLowerCase();
+  if (entity.includes("bank")) return "Bank Nifty Mood";
+  if (entity.includes("it") || entity.includes("tech")) return "IT Sector Read";
+  if (entity.includes("brent") || entity.includes("crude")) return "India Inflation Watch";
+  if (sentimentLabel === "BULLISH") return "Indian Market Mood";
+  if (sentimentLabel === "BEARISH") return "Indian Market Caution";
+  return "Indian Market Mood";
 }
 
 function dominantForceLabel(article, headline) {
