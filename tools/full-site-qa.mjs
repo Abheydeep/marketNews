@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { escapeHtml } from "./html-utils.mjs";
+import { fetchWithRetry } from "./http.mjs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
@@ -500,7 +501,7 @@ async function verifyDailyPage(page, daily, stamp) {
 }
 
 async function verifyPublicDigestJson(daily, stamp) {
-  const response = await fetch(`${baseUrl}/${daily.slug}/digest.json?fullqa=${stamp}`);
+  const response = await fetchWithRetry(`${baseUrl}/${daily.slug}/digest.json?fullqa=${stamp}`);
   assert.equal(response.ok, true, `${daily.slug} public digest.json should load`);
   const digest = await response.json();
   assertPublicBriefingCopy(`${daily.slug} digest.json`, JSON.stringify(digest));

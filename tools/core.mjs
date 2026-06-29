@@ -8,6 +8,7 @@ import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } f
 import { fetchGiftNiftySnapshot } from "./nse-ix.mjs";
 import { isMarketUpdateDate } from "./market-calendar.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
+import { fetchWithRetry } from "./http.mjs";
 
 const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 const NIM_MODEL = process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
@@ -35,7 +36,7 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) await new Promise((r) => setTimeout(r, 15000 * attempt));
-      const response = await fetch(NIM_API_URL, {
+      const response = await fetchWithRetry(NIM_API_URL, {
         method: "POST",
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -48,7 +49,8 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
           temperature,
           stream: true
         }),
-        signal: AbortSignal.timeout(connectionTimeoutMs)
+        timeoutMs: connectionTimeoutMs,
+        retries: 0
       });
       if (response.status === 429 || response.status >= 500) {
         process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);

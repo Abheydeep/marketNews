@@ -1,6 +1,7 @@
 // FII/DII data sources: NSE cash provisional flows + participant-wise F&O reports.
 // Cash comes from market-data.mjs; F&O comes from the NSE archives participant CSVs.
 import { fetchFiiDiiFlows } from "./market-data.mjs";
+import { fetchWithRetry } from "./http.mjs";
 
 export { fetchFiiDiiFlows };
 
@@ -61,7 +62,7 @@ export function parseParticipantCsv(text) {
 }
 
 async function fetchCsv(url, signal) {
-  const res = await fetch(url, { signal, headers: { "User-Agent": UA, Accept: "text/csv,*/*" } });
+  const res = await fetchWithRetry(url, { signal, headers: { Accept: "text/csv,*/*" } });
   if (!res.ok) return null;
   return res.text();
 }

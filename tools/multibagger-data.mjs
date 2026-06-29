@@ -1,3 +1,5 @@
+import { fetchJson } from "./http.mjs";
+
 const MODEL_CAPITAL_INR = 500_000;
 const MODEL_ENTRY_DATE = "2026-04-27";
 const MODEL_BASELINE_ENTRY_AT = "2026-05-04T14:12:00+05:30";
@@ -688,22 +690,7 @@ async function fetchBseQuote(ticker, scripcode, fallback) {
   }
 }
 
-async function fetchJson(url, options = {}) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 4500);
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal
-    });
-    if (!response.ok) {
-      throw new Error(`Quote request failed with HTTP ${response.status}`);
-    }
-    return await response.json();
-  } finally {
-    clearTimeout(timeout);
-  }
-}
+
 
 function latestStateTimestamp(snapshots = priceSnapshots, benchmark = benchmarkSnapshot) {
   const liveTimestamps = [

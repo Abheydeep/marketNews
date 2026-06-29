@@ -4681,4 +4681,3 @@ async function writePublishStatus(targetDir, latest) {
     "utf8"
   );
 }
-}

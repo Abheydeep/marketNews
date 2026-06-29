@@ -19,7 +19,7 @@ const SCRIPT_CHECKS = [
 
 const LEGACY_LIMITS = {
   "tools/cockpit-page.mjs": 10676,
-  "tools/publish-site.mjs": 4685,
+  "tools/publish-site.mjs": 4683,
   "tools/news-sources.mjs": 2784,
   "tools/core.mjs": 2826,
   "tools/verify.mjs": 3398,
@@ -27,8 +27,8 @@ const LEGACY_LIMITS = {
   "tools/reliability-smoke.mjs": 245,
   "tools/multibagger-page.mjs": 3098,
   "tools/project-components-page.mjs": 1299,
-  "tools/multibagger-data.mjs": 825,
-  "tools/full-site-qa.mjs": 781,
+  "tools/multibagger-data.mjs": 812,
+  "tools/full-site-qa.mjs": 783,
   "tools/production-qa-gate.mjs": 722,
   "tools/editorial-guardrails.mjs": 436,
   "tools/mobile-shell.mjs": 481,
