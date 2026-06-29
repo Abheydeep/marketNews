@@ -302,3 +302,10 @@ These must remain true after changes:
   Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes. Verified interactively via browser subagent: clicks open populated modals, switches tabs (5D, 1Y) cleanly, GIFT proxies Nifty-50 history, and closes work.
   Architecture diagrams changed: none.
   Debt found but deferred: none.
+
+- 2026-06-29: Fixed macro hedges sparkline shapes (Brent, Gold, USDINR, DXY) and header ticker empty dashes.
+  ROOT CAUSE (if bug): (1) Sparklines fell back to synthesized waves because UTC grouping split global sessions that trade across UTC midnight. Solved by grouping by local exchange time zones. (2) Header ticker was empty because the main index layout file was missing the client-side live poller script.
+  Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes, `npm run public:copy:qa` passes. Visual validation in browser confirmed ticker bar is populated and sparkline curves represent real trading.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+

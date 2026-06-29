@@ -222,7 +222,7 @@ export async function fetchYahooChartQuote(definition, timeoutMs) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(definition.yahooSymbol)}?range=1d&interval=1m`;
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(definition.yahooSymbol)}?range=5d&interval=15m`;
     const response = await fetch(url, {
       signal: controller.signal,
       headers: {
@@ -230,11 +230,7 @@ export async function fetchYahooChartQuote(definition, timeoutMs) {
         "User-Agent": "Mozilla/5.0 MarketNarrativeStoryboardEngine/0.1"
       }
     });
-
-    if (!response.ok) {
-      throw new Error(`${definition.yahooSymbol} returned HTTP ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`${definition.yahooSymbol} returned HTTP ${response.status}`);
     return normalizeYahooChartResult(definition, await response.json());
   } finally {
     clearTimeout(timer);
@@ -244,9 +240,7 @@ export async function fetchYahooChartQuote(definition, timeoutMs) {
 export function normalizeYahooChartResult(definition, payload) {
   const result = payload?.chart?.result?.[0];
   const meta = result?.meta;
-  if (!meta) {
-    throw new Error(`${definition.yahooSymbol} did not return chart metadata`);
-  }
+  if (!meta) throw new Error(`${definition.yahooSymbol} did not return chart metadata`);
 
   const closes = result?.indicators?.quote?.[0]?.close?.filter((value) => Number.isFinite(value)) ?? [];
   const latest = Number(meta.regularMarketPrice ?? closes.at(-1));
@@ -280,59 +274,59 @@ export function normalizeYahooChartResult(definition, payload) {
       latest,
       timestamp,
       symbol: definition.symbol
-    })
+    }, meta)
   };
 }
 
-function chartPointsForResult(result, quote) {
-  const points = buildChartPoints(result);
-  if (points.length >= 3) {
-    return points;
-  }
+function chartPointsForResult(result, quote, meta) {
+  const points = buildChartPoints(result, meta);
+  if (points.length >= 3) return points;
   return synthesizeChartPoints(quote);
 }
 
-function buildChartPoints(result) {
-  const timestamps = result?.timestamp ?? [];
-  const closes = result?.indicators?.quote?.[0]?.close ?? [];
-  const points = [];
+function buildChartPoints(result, meta) {
+  const timestamps = result?.timestamp ?? [], closes = result?.indicators?.quote?.[0]?.close ?? [], points = [];
+  const tz = meta?.exchangeTimezoneName || "UTC";
+  const formatter = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" });
 
   for (let index = 0; index < Math.min(timestamps.length, closes.length); index += 1) {
-    const timestamp = Number(timestamps[index]);
-    const close = Number(closes[index]);
+    const timestamp = Number(timestamps[index]), close = Number(closes[index]);
     if (Number.isFinite(timestamp) && Number.isFinite(close) && close > 0) {
-      points.push({
-        time: new Date(timestamp * 1000).toISOString(),
-        close: round(close, 2)
-      });
+      const parts = formatter.formatToParts(new Date(timestamp * 1000));
+      const pMap = Object.fromEntries(parts.map(p => [p.type, p.value]));
+      points.push({ time: `${pMap.year}-${pMap.month}-${pMap.day}`, close: round(close, 2) });
     }
   }
 
-  return thinChartPoints(points, 180);
+  if (points.length === 0) return [];
+
+  const groups = {};
+  for (const p of points) {
+    if (!groups[p.time]) groups[p.time] = [];
+    groups[p.time].push(p);
+  }
+
+  const sortedDates = Object.keys(groups).sort();
+  for (let i = sortedDates.length - 1; i >= 0; i--) {
+    const group = groups[sortedDates[i]];
+    if (group.length >= 3) return thinChartPoints(group, 180);
+  }
+  return thinChartPoints(groups[sortedDates[sortedDates.length - 1]], 180);
 }
 
 function synthesizeChartPoints({ previous, latest, timestamp, symbol }) {
   const end = Number.isFinite(Date.parse(timestamp)) ? Date.parse(timestamp) : Date.now();
-  const pointCount = 24;
-  const intervalMs = 15 * 60 * 1000;
-  const drift = latest - previous;
+  const pointCount = 24, intervalMs = 15 * 60 * 1000, drift = latest - previous;
   const seed = [...String(symbol)].reduce((sum, character) => sum + character.charCodeAt(0), 0);
   const waveAmplitude = Math.max(Math.abs(latest) * 0.0008, Math.abs(drift) * 0.35, 0.01);
 
   return Array.from({ length: pointCount }, (_, index) => {
     const progress = index / (pointCount - 1);
     const time = new Date(end - (pointCount - 1 - index) * intervalMs).toISOString();
-    if (index === 0) {
-      return { time, close: round(previous, 2) };
-    }
-    if (index === pointCount - 1) {
-      return { time, close: round(latest, 2) };
-    }
+    if (index === 0) return { time, close: round(previous, 2) };
+    if (index === pointCount - 1) return { time, close: round(latest, 2) };
     const wave = Math.sin((progress * 2.4 + seed / 17) * Math.PI) * waveAmplitude * (1 - progress * 0.35);
-    return {
-      time,
-      close: round(previous + drift * progress + wave, 2)
-    };
+    return { time, close: round(previous + drift * progress + wave, 2) };
   });
 }
 

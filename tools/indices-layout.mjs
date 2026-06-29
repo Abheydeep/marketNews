@@ -98,6 +98,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();
   </script>
   ${indicesChartScript()}
+  ${indicesLiveScript()}
   <script>
     function updateClocks() {
       const el = document.getElementById("market-clocks");
