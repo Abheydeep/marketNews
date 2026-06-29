@@ -796,6 +796,9 @@ export function articleLooksMarketRelevant(article) {
   if (isIndiaStartupFundingStory(text)) {
     return false;
   }
+  if (isSmeIpoStory(text)) {
+    return false;
+  }
   if (isGenericEarningsCallSummary(text) && !isImportantEarningsStory(text)) {
     return false;
   }
@@ -1098,6 +1101,17 @@ function isIndiaStartupFundingStory(value) {
   if (!isSmallCroreRaise && !hasStartupFundingLanguage) return false;
   // Allow through if it's a listed-company capital-market action
   return !/\b(ipo|qip|fpo|bond|ncd|debenture|rights\s+issue|public\s+issue|stock\s+exchange|nse|bse|sebi|listed)\b/.test(text);
+}
+
+function isSmeIpoStory(value) {
+  const text = String(value || "").toLowerCase();
+  // SME/small-cap IPO allotment, GMP, and subscription churn — irrelevant for Nifty traders
+  if (/\bsme\s+ipo\b|\bbse\s+sme\b|\bnse\s+emerge\b/.test(text)) return true;
+  if (/\bipo\s+allotment\b|\ballotment\s+status\b/.test(text)) return true;
+  if (/\bgrey\s+market\s+premium\b|\bgmp\b.{0,40}\bipo\b|\bipo\b.{0,40}\bgmp\b/.test(text)) return true;
+  if (/\bipo\s+subscription\s+status\b|\bday\s+[123]\s+subscription\b/.test(text)) return true;
+  if (/\bipo\s+listing\s+(?:price\s+)?prediction\b|\blisting\s+gain\s+prediction\b/.test(text)) return true;
+  return false;
 }
 
 function isGenericEarningsCallSummary(value) {

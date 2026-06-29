@@ -149,6 +149,7 @@ jobs:
       - name: Publish static archive site
         env:
           SKIP_ARCHIVE_WRITE: ${{ env.ARCHIVE_ALREADY_TRACKED }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
         run: |
           PUBLISH_DATE="$SUMMARY_DATE"
           PUBLISH_TIME="$SUMMARY_TIME"
