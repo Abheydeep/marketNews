@@ -3,6 +3,7 @@ import { escapeHtml } from "./html-utils.mjs";
 import { indicesLiveScript } from "./indices-live.mjs";
 import { indicesChartScript } from "./indices-chart.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
+import { pageShell } from "./page-shell.mjs";
 
 export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets) {
   const tickerItems = [
@@ -12,22 +13,9 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
   ].map(([s, n]) => `<div class="idx-ticker-item" data-live="${s}"><span>${n}</span><strong data-field="ltp">LTP: —</strong> <strong data-field="pct">—</strong></div>`).join("");
   const tickerHtml = `<div class="idx-ticker-strip"><div class="idx-ticker-wrap">${tickerItems}${tickerItems}</div></div>`;
 
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${assets.headLinks}
-  <title>Global Indices Watch | Market Narrative</title>
-  <meta name="description" content="Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.">
-  <link rel="canonical" href="${siteOrigin}/indices/">
+  const head = `
   ${jsonLd}
   <style>
-    ${assets.markCss}
-    ${assets.bottomTabBarCss}
-    ${assets.mobileTypographyCss}
-    ${assets.proPolishCss}
-    ${assets.siteFooterCss}
     .idx-m { display:none;position:fixed;inset:0;z-index:200;background:rgba(5,8,22,.9);align-items:center;justify-content:center }
     .idx-m.open { display:flex }
     .idx-panel { background:#0b1220;border:1px solid rgba(148,163,184,.22);border-radius:12px;padding:24px 28px;width:min(580px,calc(100vw - 32px));max-height:90vh;overflow-y:auto;position:relative }
@@ -36,9 +24,9 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     .idx-tab-btn:hover { color: var(--text-idx); border-color: var(--muted-idx); }
     .idx-tab-btn.active { background: rgba(103, 232, 249, 0.1); border-color: var(--cyan-idx); color: var(--cyan-idx); }
   </style>
-</head>
-<body class="idx-layout-body has-btb">
-  ${assets.topbarHtml}
+  `;
+
+  const main = `
   ${tickerHtml}
   <main class="idx-layout-shell">
     <header class="idx-layout-hero">
@@ -54,7 +42,6 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     <p class="idx-layout-footer-note">${DISCLAIMER}</p>
     ${assets.footerLinksHtml}
   </main>
-  ${assets.bottomTabBarHtml}
   <div class="idx-m" id="idx-m" onclick="if(e=event,e.target===this)this.classList.remove('open')">
     <div class="idx-panel">
       <button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button>
@@ -75,122 +62,114 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
         <button class="idx-tab-btn" data-range="max">MAX</button>
       </div>
 
-      <!-- Stat Meta Row -->
-      <div class="idx-modal-meta" style="display:flex;justify-content:space-between;background:rgba(11,18,32,0.4);border:1px solid var(--line-idx);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;">
-        <div class="idx-meta-stat">
-          <span style="display:block;color:var(--muted-idx);font-size:10px;text-transform:uppercase;margin-bottom:2px;">High</span>
-          <strong id="idx-stat-max" style="font-weight:800;">—</strong>
-        </div>
-        <div class="idx-meta-stat" style="text-align:center;">
-          <span style="display:block;color:var(--muted-idx);font-size:10px;text-transform:uppercase;margin-bottom:2px;">Low</span>
-          <strong id="idx-stat-min" style="font-weight:800;">—</strong>
-        </div>
-        <div class="idx-meta-stat" style="text-align:right;">
-          <span style="display:block;color:var(--muted-idx);font-size:10px;text-transform:uppercase;margin-bottom:2px;">Range Change</span>
-          <strong id="idx-stat-chg" style="font-weight:800;">—</strong>
-        </div>
+      <!-- Live Chart Area -->
+      <div class="idx-modal-chart" style="width:100%;height:220px;position:relative;background:rgba(255,255,255,0.01);border:1px solid var(--line-idx);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg id="idx-svg" width="540" height="220" viewBox="0 0 540 220" style="width:100%;height:100%;overflow:visible;"></svg>
       </div>
 
-      <svg id="idx-svg" viewBox="0 0 540 220" style="width:100%;height:220px;display:block;margin-bottom:12px;background:rgba(5,8,22,0.3);border-radius:8px;border:1px solid var(--line-idx);"></svg>
-      <p id="idx-ctx" style="color:#cbd5e1;line-height:1.6;margin:0;font-size:14px"></p>
-      <p id="idx-proxy-note" style="color:var(--muted-idx);font-size:11px;margin-top:10px;display:none;line-height:1.4;"></p>
+      <!-- Stats Grid -->
+      <div class="idx-modal-stats" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;border-top:1px solid var(--line-idx);padding-top:14px;">
+        <div>
+          <span style="display:block;font-size:10px;color:var(--muted-idx);font-weight:900;letter-spacing:0.05em;text-transform:uppercase;">Range High</span>
+          <strong id="idx-stat-max" style="font-size:16px;color:#fff;">—</strong>
+        </div>
+        <div>
+          <span style="display:block;font-size:10px;color:var(--muted-idx);font-weight:900;letter-spacing:0.05em;text-transform:uppercase;">Range Low</span>
+          <strong id="idx-stat-min" style="font-size:16px;color:#fff;">—</strong>
+        </div>
+      </div>
+      
+      <!-- Market Open Countdown (Tier 4 / item 30) -->
+      <div id="idx-countdown-wrap" style="margin-top:14px;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.14);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:between;">
+        <span id="idx-countdown-status" style="font-size:11px;color:#cffafe;font-weight:800;letter-spacing:0.02em;">Pre-market Open in progress</span>
+        <strong id="idx-countdown-clock" style="font-family:monospace;font-size:14px;color:#22d3ee;">00:00:00</strong>
+      </div>
     </div>
   </div>
+
+  <script>
+    const prevPrices = {};
+    let lastSuccess = Date.now();
+    
+    function getPollIntervalMs() {
+      const date = new Date();
+      const utc = date.getTime() + date.getTimezoneOffset() * 60000;
+      const ist = new Date(utc + 3600000 * 5.5);
+      const day = ist.getDay();
+      const hour = ist.getHours();
+      const min = ist.getMinutes();
+      if (day === 0 || day === 6) return 300000; // 5m weekends
+      if (hour === 9 && min >= 0 && min <= 15) return 15000; // 15s pre-market
+      if (hour >= 9 && hour < 16) return 30000; // 30s live market
+      return 120000; // 2m offline
+    }
+
+    function formatChangeStr(close, prev, pct) {
+      if (!close || !prev) return "—";
+      const diff = close - prev;
+      const sign = diff >= 0 ? "+" : "";
+      return sign + diff.toFixed(2) + " (" + (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%)";
+    }
+
+    function getHeatClass(pct) {
+      if (pct > 2.0) return "heat-max-pos";
+      if (pct > 0.8) return "heat-mid-pos";
+      if (pct > 0.05) return "heat-min-pos";
+      if (pct < -2.0) return "heat-max-neg";
+      if (pct < -0.8) return "heat-mid-neg";
+      if (pct < -0.05) return "heat-min-neg";
+      return "heat-flat";
+    }
+
+    function updateCountdown() {
+      const el = document.getElementById("idx-countdown-clock"), statusEl = document.getElementById("idx-countdown-status");
+      if (!el || !statusEl) return;
+      const now = new Date(), utc = now.getTime() + now.getTimezoneOffset() * 60000, ist = new Date(utc + 3600000 * 5.5), day = ist.getDay();
+      if (day === 0 || day === 6) { statusEl.textContent = "Market is Closed"; el.textContent = "Weekend"; return; }
+      const hour = ist.getHours(), min = ist.getMinutes();
+      if (hour * 60 + min >= 540) { statusEl.textContent = "Market is Open"; el.textContent = "00:00:00"; return; }
+      const target = new Date(ist); target.setHours(9, 0, 0, 0);
+      const diff = target - ist, h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+      el.textContent = String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+      statusEl.textContent = "Pre-market Open in progress";
+    }
+    setInterval(updateCountdown, 1000); updateCountdown();
+  </script>
   <script>
     function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();
   </script>
-  ${indicesChartScript()}
-  ${indicesLiveScript()}
   <script>
     function updateClocks() {
-      const el = document.getElementById("market-clocks");
-      if (!el) return;
-      const now = new Date();
-      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-      const ist = new Date(utc + 3600000 * 5.5);
-      const day = ist.getDay();
+      const el = document.getElementById("market-clocks"); if (!el) return;
+      const now = new Date(), utc = now.getTime() + now.getTimezoneOffset() * 60000, ist = new Date(utc + 3600000 * 5.5), day = ist.getDay();
       const timeStr = ist.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
       const sessions = [
-        { name: "GIFT Nifty", openHour: 6.5, closeHour: 23.5, active: day > 0 && day < 6 },
-        { name: "NSE Cash", openHour: 9.25, closeHour: 15.5, active: day > 0 && day < 6 },
-        { name: "Tokyo", openHour: 5.5, closeHour: 11.5, active: day > 0 && day < 6 },
-        { name: "London", openHour: 12.5, closeHour: 21.0, active: day > 0 && day < 6 },
-        { name: "New York", openHour: 19.0, closeHour: 2.5, active: day > 0 && day < 6 }
+        { name: "GIFT Nifty", open: 6.5, close: 23.5 }, { name: "NSE Cash", open: 9.25, close: 15.5 },
+        { name: "Tokyo", open: 5.5, close: 11.5 }, { name: "London", open: 12.5, close: 21.0 },
+        { name: "New York", open: 19.0, close: 2.5 }
       ];
       el.innerHTML = sessions.map(s => {
         const h = ist.getHours() + ist.getMinutes() / 60;
-        let isOpen = false;
-        if (s.active) {
-          if (s.openHour < s.closeHour) { isOpen = h >= s.openHour && h < s.closeHour; }
-          else { isOpen = h >= s.openHour || h < s.closeHour; }
-        }
+        const isOpen = day > 0 && day < 6 && (s.open < s.close ? (h >= s.open && h < s.close) : (h >= s.open || h < s.close));
         return \`<div class="idx-clock"><span>\${s.name}</span><strong>\${timeStr}</strong><div class="idx-clock-pill \${isOpen ? "open" : "closed"}">\${isOpen ? "Open" : "Closed"}</div></div>\`;
       }).join("");
     }
     setInterval(updateClocks, 1000); updateClocks();
   </script>
-  ${assets.mobileShellScript}
-</body>
-</html>`;
+  ${indicesLiveScript()}
+  ${indicesChartScript()}
+  `;
+
+  return pageShell({
+    title: "Global Indices Watch | Market Narrative",
+    description: "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.",
+    canonicalUrl: `${siteOrigin}/indices/`,
+    ogImage: `${siteOrigin}/og-card.svg`,
+    head,
+    bodyClass: "idx-layout-body has-btb",
+    activeHref: "/indices/",
+    mobileActiveKey: "indices",
+    main
+  });
 }
 
-export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, assets) {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${assets.headLinks}
-  <title>GIFT Nifty Live Open Gap Calculator | Market Narrative</title>
-  <meta name="description" content="Live GIFT Nifty index futures price, gap calculator to predict Nifty 50 opening direction, historical gap open logs and session countdowns.">
-  <link rel="canonical" href="${siteOrigin}/indices/gift-nifty/">
-  ${jsonLd}
-  <style>
-    ${assets.markCss}
-    ${assets.bottomTabBarCss}
-    ${assets.mobileTypographyCss}
-    ${assets.proPolishCss}
-    ${assets.siteFooterCss}
-  </style>
-</head>
-<body class="idx-layout-body has-btb">
-  ${assets.topbarHtml}
-  <main class="idx-layout-shell">
-    <header class="idx-layout-hero">
-      <p class="idx-layout-eyebrow">GIFT Nifty Watch</p>
-      <h1 class="idx-layout-h1">GIFT Nifty Live Quote & Opening Gap Calculator</h1>
-      <p class="idx-layout-hero-p">Calculates implied open gaps for Indian markets based on active GIFT Nifty contracts traded at GIFT City, Gujarat.</p>
-    </header>
-    ${giftNiftyPageBody(digest, archiveDigests)}
-    <p class="idx-layout-footer-note">${DISCLAIMER_COMPACT}</p>
-    ${assets.footerLinksHtml}
-  </main>
-  ${assets.bottomTabBarHtml}
-  <script>
-    function updateCountdown() {
-      const el = document.getElementById("nse-countdown");
-      const statusEl = document.getElementById("nse-countdown-status");
-      if (!el || !statusEl) return;
-      const now = new Date();
-      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-      const ist = new Date(utc + 3600000 * 5.5);
-      const target = new Date(ist);
-      target.setHours(9, 15, 0, 0);
-      if (ist.getHours() > 9 || (ist.getHours() === 9 && ist.getMinutes() >= 15)) {
-        statusEl.textContent = "Market is Open"; el.textContent = "00:00:00"; return;
-      }
-      const diff = target - ist;
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      const pad = (n) => String(n).padStart(2, "0");
-      el.textContent = pad(h) + ":" + pad(m) + ":" + pad(s);
-      statusEl.textContent = "Pre-market Open in progress";
-    }
-    setInterval(updateCountdown, 1000); updateCountdown();
-  </script>
-  ${indicesLiveScript()}
-  ${assets.mobileShellScript}
-</body>
-</html>`;
-}

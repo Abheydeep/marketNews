@@ -46,6 +46,10 @@ import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 import { runGenerateArticleImageTests } from "./generate-article-image.test.mjs";
 import { runFiiDiiTests } from "./fii-dii-source.test.mjs";
 import { runIndicesTests } from "./indices-page.test.mjs";
+import "./html-utils.test.mjs";
+import "./http.test.mjs";
+import "./chart-svg.test.mjs";
+import "./architecture-guard.test.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
 const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
@@ -2526,8 +2530,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("overflow-x: auto"));
   assert.ok(archivePage.includes('type="search"'), "archive page must have a search input");
   assert.ok(publisher.includes("staticPageActiveKey"));
-  assert.ok(publisher.includes("bottomTabBarHtml(staticPageActiveKey(path))"));
-  assert.ok(publisher.includes('body class="has-btb"'));
+  assert.ok(publisher.includes("mobileActiveKey: staticPageActiveKey(path)"));
+  assert.ok(publisher.includes('bodyClass: "has-btb"'));
   assert.ok(publisher.includes('bottomTabBarHtml("indices")'));
   assert.ok((await readFile(join(rootDir, "tools", "indices-styles.mjs"), "utf8")).includes(".idx-grid { grid-template-columns: 1fr; }"));
   assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");

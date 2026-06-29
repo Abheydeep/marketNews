@@ -9,7 +9,8 @@ import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { fiiDiiPageBody } from "./fii-dii-page.mjs";
-import { indicesPageHtml, giftNiftyPageHtml } from "./indices-layout.mjs";
+import { indicesPageHtml } from "./indices-layout.mjs";
+import { giftNiftyPageHtml } from "./gift-nifty-layout.mjs";
 import { loadHistory, historyArray } from "./fii-dii-store.mjs";
 import { isoKey } from "./fii-dii-source.mjs";
 import { parseDayLabel } from "./fii-dii-capture.mjs";
@@ -3078,49 +3079,10 @@ function termsPage() {
 function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd, ogImageUrl = "" }) {
   const canonical = `${siteOrigin}${path}`;
   const socialImage = ogImageUrl || `${siteOrigin}/og-card.svg`;
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="author" content="Abhey Deep">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#050816">
-  <link rel="canonical" href="${escapeHtml(canonical)}">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Market Narrative">
-  <meta property="og:title" content="${escapeHtml(pageTitle)}">
-  <meta property="og:description" content="${escapeHtml(pageDescription)}">
-  <meta property="og:url" content="${escapeHtml(canonical)}">
-  <meta property="og:image" content="${escapeHtml(socialImage)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">\n  <meta property="og:image:type" content="${socialImage.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">\n  <meta property="og:image:alt" content="${escapeHtml(pageTitle)}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
-  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
-  <meta name="twitter:image" content="${escapeHtml(socialImage)}">
-  <title>${escapeHtml(pageTitle)}</title>
+
+  const head = `
   ${jsonLdScript(jsonLd)}
   <style>
-    :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.66); --cyan:#22d3ee; --green:#34d399; --red:#fb7185; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; min-height:100%; overflow-x:hidden; }
-    body { background: radial-gradient(circle at 15% 0%, rgba(34,211,238,.18), transparent 30vw), linear-gradient(135deg,#030712 0%,#08111f 48%,#111827 100%); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
-    a { color:inherit; text-decoration:none; }
-    .shell { width:min(1040px, calc(100% - 36px)); margin:0 auto; }
-    .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
-    .nav-inner { align-items:center; display:flex; gap:16px; justify-content:space-between; min-height:64px; }
-    .brand { align-items:center; display:flex; gap:12px; font-size:20px; font-weight:850; }
-    ${brandMarkCss()}
-    ${siteNavCss()}
-    img, svg, video, canvas { max-width:100%; height:auto; }
-    a, button, summary, input, select { touch-action:manipulation; }
-    main { padding:52px 0 36px; }
-    .hero { border-bottom:1px solid var(--line); margin-bottom:28px; padding-bottom:28px; }
-    .eyebrow { color:var(--cyan); font-size:12px; font-weight:950; letter-spacing:.12em; margin:0 0 12px; text-transform:uppercase; }
-    h1 { font-size:clamp(38px,7vw,68px); letter-spacing:0; line-height:1; margin:0; max-width:900px; }
-    .hero p { color:var(--muted); font-size:18px; line-height:1.65; margin:18px 0 0; max-width:820px; }
     .copy-stack { display:grid; gap:16px; }
     .copy-stack h2, .faq-section h2 { color:var(--ink); font-size:24px; letter-spacing:0; margin:20px 0 0; }
     .copy-stack p, .faq-section p { color:var(--muted); font-size:16px; line-height:1.75; margin:0; max-width:860px; }
@@ -3140,27 +3102,15 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     .faq-list summary::after { content:"+"; font-size:20px; font-weight:300; line-height:1; color:var(--cyan); flex-shrink:0; transition:transform 0.22s ease; }
     .faq-list details[open] > summary::after { transform:rotate(45deg); }
     .faq-list p { margin-top:10px; }
-    .site-footer-links { border-top:1px solid var(--line); color:var(--muted); display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; padding:24px 0 36px; }
-    .site-footer-links a { border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:13px; font-weight:800; padding:9px 11px; }
     .disclaimer { color:var(--muted); font-size:12px; line-height:1.6; margin-top:16px; }
-    .mn-skip { position:absolute; left:-9999px; top:0; z-index:50; padding:10px 14px; background:var(--cyan); color:#04121b; font-weight:850; border-radius:0 0 8px 0; } .mn-skip:focus { left:0; }
     @media (max-width:760px) {
-      .nav-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
-      .site-tabs { overflow-x:auto; width:100%; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
-      main { padding-top:34px; }
       .metric-grid { grid-template-columns:1fr; }
       .copy-stack h2, .faq-section h2 { font-size:20px; line-height:1.2; }
     }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
-    ${siteFooterCss()}
   </style>
-</head>
-<body class="has-btb">
-  <a class="mn-skip" href="#mn-main">Skip to content</a>
-  ${siteTopbarHtml(path)}
-  <main class="shell" id="mn-main">
+  `;
+
+  const main = `
     <section class="hero">
       <p class="eyebrow">${escapeHtml(eyebrow)}</p>
       <h1>${escapeHtml(h1)}</h1>
@@ -3169,11 +3119,19 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     ${bodyHtml}
     ${siteFooterLinksHtml()}
     <p class="disclaimer">${DISCLAIMER}</p>
-  </main>
-  ${bottomTabBarHtml(staticPageActiveKey(path))}
-  ${mobileShellScript()}
-</body>
-</html>`;
+  `;
+
+  return pageShell({
+    title: pageTitle,
+    description: pageDescription,
+    canonicalUrl: canonical,
+    ogImage: socialImage,
+    head,
+    bodyClass: "has-btb",
+    activeHref: path,
+    mobileActiveKey: staticPageActiveKey(path),
+    main
+  });
 }
 
 function staticPageActiveKey(path) {
