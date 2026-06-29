@@ -13,6 +13,26 @@ function formatChange(snap) {
   return `${sign}${chg.toFixed(2)}% ${ptsStr ? `(${ptsStr})` : ""}`;
 }
 
+const DESCRIPTIONS = {
+  NIFTY: "Nifty 50: India's benchmark index of large-cap companies. Reflects baseline domestic institutional flow.",
+  BANKNIFTY: "Bank Nifty: High-beta driver of cash market sentiment. Highly sensitive to credit cycles and FII flows.",
+  GIFTNIFTY: "GIFT Nifty: Active offshore USD-denominated contracts. Implies domestic open bias before local pre-market trading starts.",
+  INDIAVIX: "India VIX: Fear gauge representing expected 30-day volatility. VIX spikes signal hedging demand.",
+  SPX: "S&P 500: Primary gauge of US equity health. Influences overnight sentiment across global emerging market desks.",
+  NDX: "Nasdaq 100: Tech heavy US benchmark. Drives sentiment across Indian IT service exporters.",
+  DJI: "Dow Jones: US blue-chip benchmark index reflecting traditional industrial sector health.",
+  NIKKEI: "Nikkei 225: Japan's headline index. Shapes early morning Asian risk appetite and liquidity transfer.",
+  HSI: "Hang Seng: Hong Kong's index. Correlates with FII flows in emerging markets and global tech cues.",
+  BRENT: "Brent Crude: Global benchmark for oil prices. Spikes above $85 represent direct inflationary risks for India.",
+  DXY: "US Dollar Index: Measures USD strength. Stronger DXY pressure triggers FII capital outflows from India.",
+  USDINR: "USD/INR Spot rate: Spot value of Indian Rupee. Depreciations indicate direct FX pressure on domestic import costs.",
+  GOLD: "Comex Gold: Safe-haven asset class. Gold rally cues highlight risk-off rotations across global desks."
+};
+
+function getSymbolDescription(symbol, name) {
+  return DESCRIPTIONS[symbol] || `${name} acts as global reference point for Indian pre-market desks.`;
+}
+
 function getHeatClass(pct) {
   if (pct > 1.5) return "idx-heat-bg-pos-3";
   if (pct > 0.5) return "idx-heat-bg-pos-2";
@@ -26,7 +46,9 @@ function getHeatClass(pct) {
 export function indicesPageBody(digest) {
   const snapshots = digest.marketSnapshots || [];
   const bias = computeGiftNiftyBias(snapshots);
-  const gift = snapshots.find(s => s.symbol === "GIFTNIFTY") || { closeValue: 24000, changePercent: 0, previousClose: 24000 };
+  const gift = snapshots.find(s => s.symbol === "GIFTNIFTY");
+  const giftMissing = !gift || gift.dataQuality === "seed";
+  const giftSnap = gift || { closeValue: 0, changePercent: 0, previousClose: 0 };
   const vix = snapshots.find(s => s.symbol === "INDIAVIX") || { closeValue: 12 };
   
   const groups = [
@@ -48,12 +70,12 @@ export function indicesPageBody(digest) {
           const heatCls = getHeatClass(pct);
           const pts = JSON.stringify((s.chartPoints ?? []).map(p => Number(p.close)).filter(Number.isFinite));
           const displayVal = s.closeValue ? s.closeValue.toLocaleString("en-IN", { maximumFractionDigits: 2 }) : "N/A";
-          return `<button class="idx-card ${heatCls}" id="btn-${s.symbol.toLowerCase()}" data-pts="${escapeHtml(pts)}" data-cls="${cls}" data-symbol="${s.symbol}" data-val="${displayVal}" data-name="${escapeHtml(s.name)}" data-change="${escapeHtml(formatChange(s))}">
+          return `<button class="idx-card ${heatCls}" id="btn-${s.symbol.toLowerCase()}" data-live="${s.symbol}" data-pts="${escapeHtml(pts)}" data-cls="${cls}" data-symbol="${s.symbol}" data-val="${displayVal}" data-name="${escapeHtml(s.name)}" data-change="${escapeHtml(formatChange(s))}" data-ctx="${escapeHtml(getSymbolDescription(s.symbol, s.name))}">
             <div class="idx-card-top">
               <div><small>${s.symbol}</small><strong style="display:block;margin-top:2px;">${escapeHtml(s.name)}</strong></div>
-              <strong class="idx-card-change ${cls}">${escapeHtml(pct > 0 ? "+" : "")}${pct.toFixed(2)}%</strong>
+              <strong class="idx-card-change ${cls}" data-field="pct">${escapeHtml(pct > 0 ? "+" : "")}${pct.toFixed(2)}%</strong>
             </div>
-            <div class="idx-card-bottom"><span>LTP: ${displayVal}</span><span>${s.dataQuality === "live" ? "● Live" : "Delayed"}</span></div>
+            <div class="idx-card-bottom"><span data-field="ltp">LTP: ${displayVal}</span><span data-field="quality">${s.dataQuality === "live" ? "● Live" : "Delayed"}</span></div>
           </button>`;
         }).join("")}
       </div>
@@ -61,25 +83,28 @@ export function indicesPageBody(digest) {
   }).join("");
 
   const vixPct = Math.min(100, Math.max(0, ((vix.closeValue - 10) / 25) * 100));
+  const niftyPrevClose = (snapshots.find(s => s.symbol === "NIFTY") || {}).previousClose || (snapshots.find(s => s.symbol === "NIFTY") || {}).closeValue || 0;
 
   return `${indicesStyles()}
-    <div class="idx">
-      <div class="idx-spotlight">
+    <div class="idx" data-nifty-close="${niftyPrevClose}">
+      <div id="idx-live-badge" class="idx-live-badge">● Live · updated just now</div>
+      <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Analysis</h3>
         <div class="idx-spotlight-price">
-          <strong>${gift.closeValue.toLocaleString("en-IN")}</strong>
-          <span class="${Number(gift.changePercent || 0) >= 0 ? "idx-pos" : "idx-neg"}">${formatChange(gift)}</span>
+          <strong data-field="ltp">${giftMissing ? "—" : giftSnap.closeValue.toLocaleString("en-IN")}</strong>
+          <span class="${Number(giftSnap.changePercent || 0) >= 0 ? "idx-pos" : "idx-neg"}" data-field="pct">${giftMissing ? "Awaiting live data" : formatChange(giftSnap)}</span>
         </div>
         <div class="idx-spotlight-meta">
-          <div class="idx-meta-item"><span>Implied Open Gap</span><strong class="${bias ? (bias.gapPts >= 0 ? "idx-pos" : "idx-neg") : "idx-flat"}">${bias ? `${bias.gapPts > 0 ? "+" : ""}${bias.gapPts} pts (${bias.gapPct > 0 ? "+" : ""}${bias.gapPct}%)` : "Live Gap Unavailable"}</strong></div>
+          <div class="idx-meta-item"><span>Implied Open Gap</span><strong class="${bias ? (bias.gapPts >= 0 ? "idx-pos" : "idx-neg") : "idx-flat"}" data-field="gap">${(bias && !giftMissing) ? `${bias.gapPts > 0 ? "+" : ""}${bias.gapPts} pts (${bias.gapPct > 0 ? "+" : ""}${bias.gapPct}%)` : "Live gap unavailable"}</strong></div>
           <div class="idx-meta-item"><span>Gap Bias Strength</span><strong style="text-transform:uppercase;">${bias ? bias.bias.replace("_", " ") : "N/A"}</strong></div>
           <div class="idx-meta-item"><span>Actionable Route</span><a href="/indices/gift-nifty/" style="color:var(--cyan-idx);font-weight:800;text-decoration:none;">Detailed analysis &rarr;</a></div>
         </div>
       </div>
-      <div class="idx-vix">
-        <div class="idx-vix-head"><h3>Market Volatility (India VIX)</h3><strong>LTP: ${vix.closeValue.toFixed(2)}</strong></div>
-        <div class="idx-vix-track"><div class="idx-vix-pin" style="left: ${vixPct}%;"></div></div>
-        <div class="idx-vix-labels"><span>10 (CALM)</span><span>15 (CAUTION)</span><span>20 (STRESS)</span><span>35+ (PANIC)</span></div>
+      <div class="idx-vix" data-live="INDIAVIX">
+        <div class="idx-vix-head"><h3>Market Volatility (India VIX)</h3><strong data-field="ltp">LTP: ${vix.closeValue.toFixed(2)}</strong></div>
+        <div class="idx-vix-track"><div class="idx-vix-pin" id="idx-vix-pin" style="left: ${vixPct}%;"></div></div>
+        <div class="idx-vix-labels"><span style="flex:none;">10</span><span style="position:absolute;left:${((15-10)/25)*100}%;">15</span><span style="position:absolute;left:${((20-10)/25)*100}%;">20</span><span style="flex:none;margin-left:auto;">35+</span></div>
+        <div class="idx-vix-zones" style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted-idx);margin-top:2px;"><span>CALM</span><span>CAUTION</span><span>STRESS</span><span>PANIC</span></div>
       </div>
       ${cardsHtml}
       <section style="margin-top:12px;">
@@ -92,8 +117,10 @@ export function indicesPageBody(digest) {
 export function giftNiftyPageBody(digest, archiveDigests = []) {
   const snapshots = digest.marketSnapshots || [];
   const bias = computeGiftNiftyBias(snapshots);
-  const gift = snapshots.find(s => s.symbol === "GIFTNIFTY") || { closeValue: 24000, changePercent: 0, previousClose: 24000 };
-  const nifty = snapshots.find(s => s.symbol === "NIFTY") || { closeValue: 24000 };
+  const gift = snapshots.find(s => s.symbol === "GIFTNIFTY");
+  const giftMissing = !gift || gift.dataQuality === "seed";
+  const giftSnap = gift || { closeValue: 0, changePercent: 0, previousClose: 0 };
+  const nifty = snapshots.find(s => s.symbol === "NIFTY") || { closeValue: 0 };
 
   const historyRows = archiveDigests.slice(0, 15).map(d => {
     const dBias = computeGiftNiftyBias(d.marketSnapshots || []);
@@ -108,17 +135,18 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
   }).filter(Boolean).join("");
 
   return `${indicesStyles()}
-    <div class="idx">
-      <div class="idx-spotlight">
+    <div class="idx" data-nifty-close="${(nifty.previousClose || nifty.closeValue || 0)}">
+      <div id="idx-live-badge" class="idx-live-badge">● Live · updated just now</div>
+      <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Calculator</h3>
         <div class="idx-calc">
-          <div class="idx-calc-row"><span>GIFT Nifty LTP</span><strong class="idx-calc-val">${gift.closeValue.toLocaleString("en-IN")}</strong></div>
-          <div class="idx-calc-row"><span>Previous Nifty 50 Close</span><strong class="idx-calc-val">${nifty.closeValue.toLocaleString("en-IN")}</strong></div>
+          <div class="idx-calc-row"><span>GIFT Nifty LTP</span><strong class="idx-calc-val" data-field="ltp">${giftMissing ? "—" : giftSnap.closeValue.toLocaleString("en-IN")}</strong></div>
+          <div class="idx-calc-row"><span>Previous Nifty 50 Close</span><strong class="idx-calc-val">${nifty.closeValue ? nifty.closeValue.toLocaleString("en-IN") : "—"}</strong></div>
           <div class="idx-calc-row" style="border-top:1px solid var(--line-idx);padding-top:14px;margin-top:10px;">
             <span>Implied Open Gap</span>
-            <strong class="idx-calc-val ${bias ? (bias.gapPts >= 0 ? "idx-pos" : "idx-neg") : "idx-flat"}" style="font-size:18px;">${bias ? `${bias.gapPts > 0 ? "+" : ""}${bias.gapPts} pts (${bias.gapPct > 0 ? "+" : ""}${bias.gapPct}%)` : "Live Gap Unavailable"}</strong>
+            <strong class="idx-calc-val ${(bias && !giftMissing) ? (bias.gapPts >= 0 ? "idx-pos" : "idx-neg") : "idx-flat"}" style="font-size:18px;" data-field="gap">${(bias && !giftMissing) ? `${bias.gapPts > 0 ? "+" : ""}${bias.gapPts} pts (${bias.gapPct > 0 ? "+" : ""}${bias.gapPct}%)` : "Live gap unavailable"}</strong>
           </div>
-          <div class="idx-calc-row"><span>Gap Bias Strength</span><strong class="idx-calc-val" style="text-transform:uppercase;color:var(--cyan-idx);">${bias ? bias.bias.replace("_", " ") : "N/A"}</strong></div>
+          <div class="idx-calc-row"><span>Gap Bias Strength</span><strong class="idx-calc-val" style="text-transform:uppercase;color:var(--cyan-idx);">${(bias && !giftMissing) ? bias.bias.replace("_", " ") : "N/A"}</strong></div>
         </div>
       </div>
       <div class="idx-vix" style="text-align:center;">
@@ -127,11 +155,12 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
         <span id="nse-countdown-status" style="font-size:11px;color:var(--cyan-idx);font-weight:800;text-transform:uppercase;display:block;margin-top:4px;">Checking Session Status</span>
       </div>
       <section style="margin-top:12px;">
-        <h2 style="font-size:16px;text-transform:uppercase;color:var(--muted-idx);margin-bottom:12px;">GIFT Nifty Open Gap Logs (Last 15 Sessions)</h2>
+        <h2 style="font-size:16px;text-transform:uppercase;color:var(--muted-idx);margin-bottom:6px;">GIFT Nifty Open Gap Logs (Last 15 Sessions)</h2>
+        <p style="font-size:12px;color:var(--muted-idx);margin:0 0 12px;">History builds as live GIFT Nifty data accumulates from each session.</p>
         <div class="idx-table-wrap">
           <table class="idx-table">
             <thead>
-              <tr><th>Date</th><th>GIFT Nifty at 7:15 AM</th><th>Prev Nifty Close</th><th>Gap Implied</th><th>Bias Result</th></tr>
+              <tr><th>Date</th><th>GIFT Nifty (captured)</th><th>Prev Nifty Close</th><th>Gap Implied</th><th>Bias Result</th></tr>
             </thead>
             <tbody>${historyRows || '<tr><td colspan="5" style="text-align:center;color:var(--muted-idx)">No gap history available</td></tr>'}</tbody>
           </table>

@@ -2,6 +2,8 @@
 export function indicesStyles() {
   return `<style>
   .idx { --bg-idx: #050816; --panel-idx: #0b1220; --panel-2-idx: #111827; --line-idx: rgba(148, 163, 184, 0.22); --text-idx: #f8fafc; --muted-idx: #94a3b8; --up-idx: #34d399; --down-idx: #fb7185; --flat-idx: #fbbf24; --cyan-idx: #67e8f9; display: grid; gap: 24px; margin-bottom: 40px; }
+  .idx-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--up-idx); background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); padding: 4px 10px; border-radius: 99px; width: fit-content; margin-bottom: -12px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; }
+  .idx-live-badge.offline { color: var(--down-idx); background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.2); }
   .idx-spotlight { background: linear-gradient(135deg, rgba(11, 18, 32, 0.95), rgba(17, 24, 39, 0.85)); border: 1px solid var(--cyan-idx); box-shadow: 0 0 20px rgba(103, 232, 249, 0.1); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
   .idx-spotlight::before { content: "SPOTLIGHT"; position: absolute; top: 12px; right: 16px; font-size: 9px; font-weight: 900; color: var(--cyan-idx); letter-spacing: 0.15em; background: rgba(103, 232, 249, 0.1); padding: 2px 6px; border-radius: 4px; }
   .idx-spotlight h3 { margin: 0 0 8px; font-size: 14px; color: var(--muted-idx); text-transform: uppercase; letter-spacing: 0.08em; }
@@ -27,7 +29,7 @@ export function indicesStyles() {
   .idx-vix-head h3 { margin: 0; font-size: 14px; text-transform: uppercase; color: var(--muted-idx); }
   .idx-vix-track { height: 10px; background: linear-gradient(90deg, #34d399 0%, #fbbf24 40%, #f97316 70%, #fb7185 100%); border-radius: 99px; position: relative; margin: 16px 0 8px; }
   .idx-vix-pin { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #ffffff; border: 2px solid var(--bg-idx); border-radius: 50%; box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); transition: left 0.3s ease; }
-  .idx-vix-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted-idx); font-weight: 800; }
+  .idx-vix-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted-idx); font-weight: 800; position: relative; }
   .idx-clocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 8px; }
   .idx-clock { background: rgba(11, 18, 32, 0.4); border: 1px solid var(--line-idx); border-radius: 6px; padding: 10px 12px; text-align: center; }
   .idx-clock span { display: block; font-size: 10px; color: var(--muted-idx); text-transform: uppercase; margin-bottom: 4px; }
@@ -35,7 +37,8 @@ export function indicesStyles() {
   .idx-clock-pill { display: inline-block; font-size: 9px; font-weight: 900; padding: 1px 6px; border-radius: 4px; margin-top: 6px; }
   .idx-clock-pill.open { background: rgba(52, 211, 153, 0.15); color: var(--up-idx); }
   .idx-clock-pill.closed { background: rgba(251, 113, 133, 0.15); color: var(--down-idx); }
-  .idx-ticker-strip { background: #0b1220; border-bottom: 1px solid var(--line-idx); overflow: hidden; white-space: nowrap; padding: 8px 0; font-size: 12px; font-weight: 800; }
+  .idx-ticker-strip { background: #0b1220; border-bottom: 1px solid var(--line-idx); overflow: hidden; white-space: nowrap; padding: 8px 0; font-size: 12px; font-weight: 800; cursor: pointer; }
+  .idx-ticker-strip:hover .idx-ticker-wrap { animation-play-state: paused; }
   .idx-ticker-wrap { display: inline-block; animation: idxMarquee 25s linear infinite; }
   .idx-ticker-item { display: inline-flex; align-items: center; gap: 6px; margin-right: 28px; }
   .idx-ticker-item span { color: var(--muted-idx); }
@@ -69,6 +72,7 @@ export function indicesStyles() {
   @media (max-width: 760px) {
     .idx-grid { grid-template-columns: 1fr; }
     .idx-spotlight-price strong { font-size: 30px; }
+    .idx-ticker-strip { display: none; }
   }
   </style>`;
 }

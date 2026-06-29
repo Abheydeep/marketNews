@@ -5,9 +5,7 @@
   "buildCommand": "npm run vercel:build",
   "crons": [
     { "path": "/api/cron/premarket-publish", "schedule": "45 1 * * *" },
-    { "path": "/api/cron/premarket-publish", "schedule": "30 2 * * *" },
-    { "path": "/api/cron/premarket-publish", "schedule": "30 3 * * *" },
-    { "path": "/api/cron/premarket-publish", "schedule": "0 13 * * *" }
+    { "path": "/api/cron/premarket-publish", "schedule": "30 2 * * *" }
   ],
   "cleanUrls": false,
   "trailingSlash": true,
@@ -660,6 +658,19 @@
     },
     {
       "source": "/indices/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=300"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/indices/gift-nifty/",
       "headers": [
         {
           "key": "Cache-Control",

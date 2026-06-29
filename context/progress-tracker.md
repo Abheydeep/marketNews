@@ -291,4 +291,8 @@ These must remain true after changes:
   Verified: `npm run context:verify` (PASS), `npm test` (80 passed), `npm run test:deploy` (PASS, 18.6s).
   Architecture diagrams changed: `02-morning-briefing-pipeline.mmd` (NSE IX scraper data flow), `04-static-publish-deploy.mmd` (gift-nifty page, /api/live-indices subgraph), `06-module-ownership-debt.mmd` (completed splits section).
   Debt found but deferred: client-side polling JS for live-indices not yet wired into the static pages (requires follow-up to add flash update animations).
-
+- 2026-06-29: Implemented Live Polling, API Hardening, and resolved 4 review bugs for Indices and GIFT Nifty pages.
+  ROOT CAUSE (if bug): (1) VIX pin scale was linear but VIX labels were spaced evenly, (2) GIFT history logs table used incorrect headers and labels, (3) missing/seed GIFT data fell back to a magic price of 24000 instead of handling it gracefully, and (4) nse-ix.mjs emitted epoch millisecond timestamps instead of standard ISO strings.
+  Verified: `npm run context:verify` passes, `npm test` passes (80 tests), `npm run test:deploy` passes. Verified HTML layout correctness, namespaced CSS, cache headers in vercel.json, and serverless response format.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.

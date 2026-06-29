@@ -109,10 +109,10 @@ export async function fetchGiftNiftySnapshot({ timeoutMs = 6000 } = {}) {
       closeValue: lastPrice,
       previousClose: prevClose,
       changePercent: Number.isFinite(pctChange) ? pctChange : (change / prevClose) * 100,
-      dataTimestamp: timestampMs,
+      dataTimestamp: new Date(timestampMs).toISOString(),
       chartPoints: [
-        { time: startOfDayMs, close: prevClose },
-        { time: timestampMs, close: lastPrice }
+        { time: new Date(startOfDayMs).toISOString(), close: prevClose },
+        { time: new Date(timestampMs).toISOString(), close: lastPrice }
       ],
       source: "NSE IFSC", // matching existing 'NSE IFSC (seed reference)' identifier format
       marketRegion: "India Open",

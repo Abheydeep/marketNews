@@ -1,6 +1,14 @@
 import { indicesPageBody, giftNiftyPageBody, escapeHtml } from "./indices-page.mjs";
+import { indicesLiveScript } from "./indices-live.mjs";
 
 export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets) {
+  const tickerItems = [
+    ["NIFTY", "Nifty 50"], ["BANKNIFTY", "Bank Nifty"], ["GIFTNIFTY", "GIFT Nifty"],
+    ["SPX", "S&P 500"], ["NDX", "Nasdaq 100"], ["NIKKEI", "Nikkei 225"],
+    ["HSI", "Hang Seng"], ["BRENT", "Brent Crude"], ["GOLD", "Gold"]
+  ].map(([s, n]) => `<div class="idx-ticker-item" data-live="${s}"><span>${n}</span><strong data-field="ltp">LTP: —</strong> <strong data-field="pct">—</strong></div>`).join("");
+  const tickerHtml = `<div class="idx-ticker-strip"><div class="idx-ticker-wrap">${tickerItems}${tickerItems}</div></div>`;
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +47,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
 </head>
 <body class="has-btb">
   ${assets.topbarHtml}
+  ${tickerHtml}
   <main class="shell">
     <header class="hero">
       <p class="eyebrow">Global Indices Watch</p>
@@ -68,7 +77,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
         var v=document.getElementById("idx-val");
         v.className="move "+d.cls;
         v.textContent=d.val+" \xb7 "+d.change;
-        document.getElementById("idx-ctx").textContent=d.name + " is tracked as index reference.";
+        document.getElementById("idx-ctx").textContent=d.ctx || (d.name + " is tracked as index reference.");
         var pts=JSON.parse(d.pts||"[]");
         if(pts.length>1){
           var mn=Math.min.apply(null,pts),mx=Math.max.apply(null,pts),r=Math.max(1e-9,mx-mn),
@@ -107,6 +116,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     }
     setInterval(updateClocks, 1000); updateClocks();
   </script>
+  ${indicesLiveScript()}
   ${assets.mobileShellScript}
 </body>
 </html>`;
@@ -181,6 +191,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
     }
     setInterval(updateCountdown, 1000); updateCountdown();
   </script>
+  ${indicesLiveScript()}
   ${assets.mobileShellScript}
 </body>
 </html>`;
