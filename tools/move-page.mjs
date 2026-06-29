@@ -2,7 +2,8 @@
 // Generates a compact card page for an auto‑move article.
 // The page includes SEO meta tags, JSON‑LD NewsArticle, and a glass‑v2 style card.
 
-import { escapeHtml } from "./brand-assets.mjs"; // reuse utility for escaping HTML
+import { escapeHtml } from "./html-utils.mjs"; // reuse utility for escaping HTML
+import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
 
 /**
  * Helper to generate JSON‑LD for a NewsArticle.
@@ -113,7 +114,7 @@ export function movePage({ date, slug, article, symbol, change }) {
     <article class="compact-body">
       <p>${escapeHtml(article.summary ?? "")}</p>
     </article>
-    <footer class="compact-disclaimer">Educational market research only; not SEBI-registered investment advice, a recommendation, or a solicitation.</footer>
+    <footer class="compact-disclaimer">${DISCLAIMER_COMPACT}</footer>
   </section>
   ${mobileShellScript()}
 </body>

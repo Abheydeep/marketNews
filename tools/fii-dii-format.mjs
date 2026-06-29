@@ -1,10 +1,5 @@
-// Shared formatting + derivation helpers for the FII/DII page modules.
-
-export function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
+import { escapeHtml } from "./html-utils.mjs";
+export { escapeHtml };
 
 /** "+₹1,234 Cr" / "−₹987 Cr" for a crore value. */
 export function fmtCr(value) {

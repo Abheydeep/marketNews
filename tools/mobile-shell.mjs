@@ -7,6 +7,7 @@
  * viewport on small screens and hidden on desktop.
  */
 import { brandMarkHtml } from "./brand-assets.mjs";
+import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
 
 /**
  * Returns a small inline <script> block that registers /sw.js (if available)
@@ -473,7 +474,7 @@ export function siteFooterLinksHtml() {
       <div class="footer-legal">
         <a href="/privacy/">Privacy Policy</a>
         <a href="/terms/">Terms of Use</a>
-        <span>Educational market research only · Not SEBI-registered investment advice</span>
+        <span>${DISCLAIMER_COMPACT}</span>
       </div>
     </footer>
   `;

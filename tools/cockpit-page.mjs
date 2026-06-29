@@ -1,4 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+import { escapeHtml } from "./html-utils.mjs";
+import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
@@ -41,7 +43,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     <p>Indian stock markets are closed today.</p>
     <p>Redirecting to today's market update briefing...</p>
     <a href="../" style="color: #60a5fa; text-decoration: none;">Click here if you are not redirected</a>
-    <p style="margin-top: 24px; color: #b8c4d8; font-size: 0.85rem; opacity: 0.6;">Educational market research only; not SEBI-registered investment advice.</p>
+    <p style="margin-top: 24px; color: #b8c4d8; font-size: 0.85rem; opacity: 0.6;">${DISCLAIMER_COMPACT}</p>
   </div>
 </body>
 </html>`;
@@ -7541,7 +7543,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   ${bottomTabBarHtml("latest")}
   ${mobileShellScript()}
   <footer style="text-align:center;padding:12px 16px 24px;font-size:0.78rem;color:#6b7a99;line-height:1.5;">
-    Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.
+    ${DISCLAIMER}
   </footer>
 </body>
 </html>`;
@@ -10622,13 +10624,6 @@ function adminAuthGateHtml() {
   </section>`;
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
 
 function jsonLdPayload(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026");

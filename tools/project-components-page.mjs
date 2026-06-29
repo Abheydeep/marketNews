@@ -1,4 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+import { escapeHtml, formatDigestDate } from "./html-utils.mjs";
 
 export function projectComponentsPage({ digests = [], publicBaseHref = "../", requireAuth = false } = {}) {
   const latest = digests[0];
@@ -1296,20 +1297,3 @@ function slugForDigest(digest) {
   return `${Number(day)}${monthName}${year}`;
 }
 
-function formatDigestDate(date) {
-  return new Intl.DateTimeFormat("en-IN", {
-    timeZone: "Asia/Kolkata",
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  }).format(new Date(`${date}T12:00:00+05:30`));
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}

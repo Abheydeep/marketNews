@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { escapeHtml } from "./html-utils.mjs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
@@ -777,9 +778,4 @@ function parseDailyPages(value) {
   });
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
+

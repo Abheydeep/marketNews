@@ -1,4 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
+import { escapeHtml } from "./html-utils.mjs";
+import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
@@ -1953,7 +1955,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
                 <p>Vertical rallies, social screenshots, and media frenzy are not entry signals. The model waits for evidence, sizing discipline, and published review logic.</p>
               </article>
             </div>
-            <p class="note" style="margin-top:12px;">This page is educational research, not personalized advice, not SEBI-registered investment advice, not a PMS offer, and not a promise of 5x returns.</p>
+            <p class="note" style="margin-top:12px;">This page is educational research; ${DISCLAIMER_COMPACT} Not a PMS offer, and not a promise of 5x returns.</p>
           </section>
         </div>
       </details>
@@ -3093,10 +3095,3 @@ function jsonLdPayload(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026");
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}

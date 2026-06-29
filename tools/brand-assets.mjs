@@ -1,3 +1,5 @@
+import { escapeHtml } from "./html-utils.mjs";
+
 export function brandMarkHtml(label = "Market Narrative") {
   return `<span class="brand-mark" aria-hidden="true">${brandMarkSvg({ title: label })}</span>`;
 }
@@ -109,12 +111,4 @@ export function brandSocialCardSvg() {
   <text x="126" y="496" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">marketnarrative.in</text>
 </svg>
 `;
-}
-
-export function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
 }

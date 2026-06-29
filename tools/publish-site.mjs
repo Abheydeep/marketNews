@@ -2,6 +2,8 @@ import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
+import { escapeHtml } from "./html-utils.mjs";
+import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
@@ -299,7 +301,7 @@ function redirectPage(targetHref, label) {
 <body class="has-btb">
   <div class="redir">
     <p>Redirecting…</p>
-    <p>Educational market research only; not SEBI-registered investment advice.</p>
+    <p>${DISCLAIMER_COMPACT}</p>
     <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
   </div>
   ${bottomTabBarHtml(label === "latest trading guide" ? "guide" : "latest")}
@@ -433,7 +435,7 @@ function publicationEventPage(event, latest, isTradingGuide) {
     <p>The latest verified trading-day edition remains ${escapeHtml(formatDigestDate(latest.digestDate))}. Use that only as historical context, not as a reconstructed ${escapeHtml(formatDigestDate(event.digestDate))} market read.</p>
     <a href="${escapeHtml(latestHref)}">${escapeHtml(isTradingGuide ? "Open latest verified trading guide" : "Open latest verified briefing")}</a>
     <a class="secondary" href="/">Open archive</a>
-    <p class="disclaimer">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured.</p>
+    <p class="disclaimer">${DISCLAIMER}</p>
   </main>
 </body>
 </html>`;
@@ -835,7 +837,7 @@ function publicOnePageSummary(digest) {
   const marketLine = (digest.marketSnapshots ?? []).map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`).join(", ");
   const themeLines = (digest.themes ?? []).map((theme) => `- ${theme.title}: ${theme.summary}`).join("\n");
   const setupLines = (digest.tradeSetups ?? []).length ? digest.tradeSetups.map((setup) => `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`).join("\n") : "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.";
-  return [`Market Mood: ${digest.sentimentLabel}`, `Global Cues: ${marketLine}`, `Narrative Themes:\n${themeLines}`, `Validated Trading Setups:\n${setupLines}`, "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."].join("\n\n");
+  return [`Market Mood: ${digest.sentimentLabel}`, `Global Cues: ${marketLine}`, `Narrative Themes:\n${themeLines}`, `Validated Trading Setups:\n${setupLines}`, "Educational note: " + DISCLAIMER].join("\n\n");
 }
 function isVerifiedPublicDigest(digest) {
   return Boolean(isGeneralEditionDate(digest.digestDate) && digest.sourceVerification && !digest.sourceVerification.blockedReason && digest.sourceVerification.isVerifiedForPublicArchive !== false);
@@ -3404,7 +3406,7 @@ function termsPage() {
   const body = `
     <section class="copy-stack">
       <h2>Educational market research only</h2>
-      <p>Market Narrative publishes market information and analysis for educational purposes. Nothing on this site is SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives.</p>
+      <p>Market Narrative publishes market information and analysis for educational purposes. ${DISCLAIMER}</p>
       <h2>Data accuracy</h2>
       <p>The site uses public market data, exchange information, publisher articles, and automated checks, but it cannot guarantee real-time accuracy. Always verify prices, levels, corporate announcements, and source articles before acting.</p>
       <h2>Intellectual property</h2>
@@ -3536,7 +3538,7 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     </section>
     ${bodyHtml}
     ${siteFooterLinksHtml()}
-    <p class="disclaimer">Educational market research only; this is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
+    <p class="disclaimer">${DISCLAIMER}</p>
   </main>
   ${bottomTabBarHtml(staticPageActiveKey(path))}
   ${mobileShellScript()}
@@ -4679,11 +4681,4 @@ async function writePublishStatus(targetDir, latest) {
     "utf8"
   );
 }
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
 }

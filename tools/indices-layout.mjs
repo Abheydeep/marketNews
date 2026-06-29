@@ -1,6 +1,8 @@
-import { indicesPageBody, giftNiftyPageBody, escapeHtml } from "./indices-page.mjs";
+import { indicesPageBody, giftNiftyPageBody } from "./indices-page.mjs";
+import { escapeHtml } from "./html-utils.mjs";
 import { indicesLiveScript } from "./indices-live.mjs";
 import { indicesChartScript } from "./indices-chart.mjs";
+import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 
 export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets) {
   const tickerItems = [
@@ -49,7 +51,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
       <div><h2>What this board tracks</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div>
       <div><h2>How traders use it before open</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div>
     </section>
-    <p class="idx-layout-footer-note">Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.</p>
+    <p class="idx-layout-footer-note">${DISCLAIMER}</p>
     ${assets.footerLinksHtml}
   </main>
   ${assets.bottomTabBarHtml}
@@ -160,7 +162,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
       <p class="idx-layout-hero-p">Calculates implied open gaps for Indian markets based on active GIFT Nifty contracts traded at GIFT City, Gujarat.</p>
     </header>
     ${giftNiftyPageBody(digest, archiveDigests)}
-    <p class="idx-layout-footer-note">Educational market research only. This is not SEBI-registered investment advice.</p>
+    <p class="idx-layout-footer-note">${DISCLAIMER_COMPACT}</p>
     ${assets.footerLinksHtml}
   </main>
   ${assets.bottomTabBarHtml}

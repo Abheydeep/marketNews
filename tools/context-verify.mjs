@@ -18,17 +18,17 @@ const SCRIPT_CHECKS = [
 ];
 
 const LEGACY_LIMITS = {
-  "tools/cockpit-page.mjs": 10685,
-  "tools/publish-site.mjs": 4807,
+  "tools/cockpit-page.mjs": 10676,
+  "tools/publish-site.mjs": 4685,
   "tools/news-sources.mjs": 2784,
   "tools/core.mjs": 2826,
   "tools/verify.mjs": 3398,
   "tools/predeploy-verify.mjs": 298,
   "tools/reliability-smoke.mjs": 245,
-  "tools/multibagger-page.mjs": 3102,
-  "tools/project-components-page.mjs": 1320,
+  "tools/multibagger-page.mjs": 3098,
+  "tools/project-components-page.mjs": 1299,
   "tools/multibagger-data.mjs": 825,
-  "tools/full-site-qa.mjs": 785,
+  "tools/full-site-qa.mjs": 781,
   "tools/production-qa-gate.mjs": 722,
   "tools/editorial-guardrails.mjs": 436,
   "tools/mobile-shell.mjs": 481,
@@ -91,7 +91,7 @@ process.stdout.write("PASS context verification\n");
 function allMjsFiles() {
   const tracked = git(["ls-files", "*.mjs"]);
   const untracked = git(["ls-files", "--others", "--exclude-standard", "*.mjs"]);
-  return [...new Set([...tracked, ...untracked].filter(Boolean))];
+  return [...new Set([...tracked, ...untracked].filter((f) => f && !f.startsWith("scratch/")))];
 }
 
 function git(args) {

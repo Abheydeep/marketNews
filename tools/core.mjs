@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DAILY_LEAD_RERANK_PROMPT } from "./editorial-guardrails.mjs";
+import { DISCLAIMER } from "./site-constants.mjs";
 import { log } from "./logger.mjs";
 import { fetchFiiDiiFlows, fetchLiveMarketSnapshots, markSnapshotsAsFallback } from "./market-data.mjs";
 import { fetchGiftNiftySnapshot } from "./nse-ix.mjs";
@@ -729,7 +730,7 @@ export function labelFromScore(score) {
   return "VOLATILE";
 }
 
-const PUBLIC_MARKET_DISCLAIMER = "Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.";
+const PUBLIC_MARKET_DISCLAIMER = DISCLAIMER;
 
 export function generateScript(date, sentimentLabel, snapshots, themes, setups, overallSentiment, articles = [], previousDigest = null, dailyLead = null) {
   const title = uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDigest, dailyLead);

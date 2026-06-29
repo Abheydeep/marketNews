@@ -1,26 +1,8 @@
 // Serverless endpoint acting as a Yahoo Finance proxy for historical indices charts.
 export const config = { runtime: "nodejs", regions: ["bom1"] };
 
-const SYMBOL_MAP = {
-  NIFTY: "^NSEI",
-  BANKNIFTY: "^NSEBANK",
-  GIFTNIFTY: "^NSEI", // Proxy history to Nifty 50
-  SPX: "^GSPC",
-  NDX: "^NDX",
-  DJI: "^DJI",
-  NIKKEI: "^N225",
-  HSI: "^HSI",
-  SHCOMP: "000001.SS",
-  KOSPI: "^KS11",
-  TAIEX: "^TWII",
-  STI: "^STI",
-  ASX200: "^AXJO",
-  BRENT: "BZ=F",
-  DXY: "DX-Y.NYB",
-  USDINR: "USDINR=X",
-  GOLD: "GC=F",
-  INDIAVIX: "^INDIAVIX"
-};
+import { SYMBOL_MAP } from "../tools/site-constants.mjs";
+import { fetchYahooChart } from "../tools/http.mjs";
 
 const INTERVAL_MAP = {
   "1d": "1m",
@@ -55,25 +37,8 @@ export default async function handler(request, response) {
     return response.status(400).json({ ok: false, error: "invalid_range" });
   }
 
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 8000);
-
   try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yahooSymbol)}?range=${range}&interval=${interval}`;
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        Accept: "application/json",
-        "User-Agent": "Mozilla/5.0 MarketNarrativeStoryboardEngine/0.1"
-      }
-    });
-    clearTimeout(timer);
-
-    if (!res.ok) {
-      return response.status(502).json({ ok: false, error: `yahoo_error_status_${res.status}` });
-    }
-
-    const payload = await res.json();
+    const payload = await fetchYahooChart(yahooSymbol, range, interval, 8000);
     const result = payload?.chart?.result?.[0];
     const meta = result?.meta;
     if (!meta) {
@@ -116,7 +81,6 @@ export default async function handler(request, response) {
       meta: { min, max, first, last, changePct }
     });
   } catch (error) {
-    clearTimeout(timer);
     return response.status(500).json({ ok: false, error: error.message });
   }
 }
