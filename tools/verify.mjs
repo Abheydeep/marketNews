@@ -45,20 +45,19 @@ import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 import { runGenerateArticleImageTests } from "./generate-article-image.test.mjs";
 import { runFiiDiiTests } from "./fii-dii-source.test.mjs";
-
+import { runIndicesTests } from "./indices-page.test.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
 const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
   "Brent, OMC margins, aviation fuel and inflation expectations are the India open transmission line",
   "translate it into levels, breadth and sector leadership before assigning it trading weight",
   "treat it as Global Tech earnings-quality evidence until India gets matching sector breadth",
-  "evidence matters only if margins, guidance or demand can travel to listed Indian peers",
   "evidence matters only if margins, guidance, or demand can travel to listed Indian peers",
   "Watch Brent at the 6 AM IST print; above $108 keeps OMC and aviation headline risk alive"
 ];
-
 await runGenerateArticleImageTests(test, assert);
 await runFiiDiiTests(test, assert);
+await runIndicesTests(test, assert);
 
 await test("seed files are valid and complete", async () => {
   const seeds = await loadSeeds();

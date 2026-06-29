@@ -69,10 +69,25 @@ export function indicesStyles() {
   .idx-heat-bg-neg-2 { background: rgba(251, 113, 133, 0.16); }
   .idx-heat-bg-neg-3 { background: rgba(251, 113, 133, 0.24); }
   
-  @media (max-width: 760px) {
-    .idx-grid { grid-template-columns: 1fr; }
-    .idx-spotlight-price strong { font-size: 30px; }
-    .idx-ticker-strip { display: none; }
-  }
+    .idx-layout-body { margin: 0; background: #050816; color: #f8fafc; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .idx-layout-shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .idx-layout-topbar { border-bottom: 1px solid rgba(148, 163, 184, 0.22); background: rgba(5, 8, 22, 0.86); position: sticky; top: 0; backdrop-filter: blur(16px); z-index: 10; }
+    .idx-layout-nav { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .idx-layout-brand { display: inline-flex; align-items: center; gap: 10px; color: #f8fafc; text-decoration: none; font-weight: 900; }
+    .idx-layout-tabs { display: flex; gap: 14px; overflow-x: auto; }
+    .idx-layout-tab-link { align-items: center; color: #94a3b8; display: inline-flex; min-height: 44px; text-decoration: none; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .idx-layout-tab-link.active { color: #67e8f9; }
+    .idx-layout-hero { padding: 46px 0 26px; }
+    .idx-layout-eyebrow { margin: 0 0 10px; color: #67e8f9; font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .idx-layout-h1 { margin: 0; max-width: 780px; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: 0; }
+    .idx-layout-hero-p { max-width: 760px; color: #cbd5e1; font-size: 17px; line-height: 1.7; }
+    .idx-layout-footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid rgba(148, 163, 184, 0.22); color: #94a3b8; font-size: 12px; line-height: 1.6; }
+    @media (max-width: 760px) {
+      .idx-grid { grid-template-columns: 1fr; }
+      .idx-spotlight-price strong { font-size: 30px; }
+      .idx-ticker-strip { display: none; }
+      .idx-layout-hero { padding: 30px 0 18px; }
+      .idx-layout-footer-note { margin-bottom: 84px; }
+    }
   </style>`;
 }

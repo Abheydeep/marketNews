@@ -48,6 +48,20 @@ export function indicesLiveScript() {
         setTimeout(() => el.classList.remove(cls), 600);
       }
 
+      function drawSparklineSvg(svgEl, sparkData, cls) {
+        if (!svgEl) return;
+        const closes = (sparkData || []).map(Number).filter(Number.isFinite);
+        if (closes.length < 2) {
+          svgEl.innerHTML = '<line x1="0" y1="18" x2="100" y2="18" stroke="var(--line-idx)" stroke-width="1.5" />';
+          return;
+        }
+        const min = Math.min(...closes), max = Math.max(...closes), range = max - min || 1e-9;
+        const pathPoints = closes.map((val, i) => ((i / (closes.length - 1)) * 100).toFixed(1) + "," + (34 - ((val - min) / range) * 30).toFixed(1));
+        const strokeColor = cls === "idx-pos" ? "var(--up-idx)" : cls === "idx-neg" ? "var(--down-idx)" : "var(--flat-idx)";
+        const pathD = "M " + pathPoints.join(" L ");
+        svgEl.innerHTML = '<path d="' + pathD + ' L 100,36 L 0,36 Z" fill="' + strokeColor + '" opacity="0.05" /><path d="' + pathD + '" fill="none" stroke="' + strokeColor + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />';
+      }
+
       async function poll() {
         try {
           const res = await fetch("/api/live-indices");
@@ -83,6 +97,14 @@ export function indicesLiveScript() {
                 el.dataset.cls = dirClass;
                 // Update heatbg class
                 el.className = "idx-card " + getHeatClass(pct);
+
+                // Repaint card sparkline
+                const svg = el.querySelector('[data-field="spark"]');
+                if (svg && s.spark) {
+                  svg.dataset.cls = dirClass;
+                  svg.dataset.pts = JSON.stringify(s.spark);
+                  drawSparklineSvg(svg, s.spark, dirClass);
+                }
               }
 
               // Update fields

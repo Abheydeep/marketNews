@@ -32,7 +32,14 @@ const DESCRIPTIONS = {
 function getSymbolDescription(symbol, name) {
   return DESCRIPTIONS[symbol] || `${name} acts as global reference point for Indian pre-market desks.`;
 }
-
+export function buildSparklinePath(points, cls) {
+  const closes = (points || []).map(p => typeof p === "object" ? Number(p.close) : Number(p)).filter(Number.isFinite);
+  if (closes.length < 2) return `<line x1="0" y1="18" x2="100" y2="18" stroke="var(--line-idx)" stroke-width="1.5" />`;
+  const min = Math.min(...closes), max = Math.max(...closes), range = max - min || 1e-9;
+  const pathPoints = closes.map((val, i) => `${((i / (closes.length - 1)) * 100).toFixed(1)},${(34 - ((val - min) / range) * 30).toFixed(1)}`);
+  const strokeColor = cls === "idx-pos" ? "var(--up-idx)" : cls === "idx-neg" ? "var(--down-idx)" : "var(--flat-idx)";
+  return `<path d="M ${pathPoints.join(" L ")} L 100,36 L 0,36 Z" fill="${strokeColor}" opacity="0.05" /><path d="M ${pathPoints.join(" L ")}" fill="none" stroke="${strokeColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />`;
+}
 function getHeatClass(pct) {
   if (pct > 1.5) return "idx-heat-bg-pos-3";
   if (pct > 0.5) return "idx-heat-bg-pos-2";
@@ -68,12 +75,22 @@ export function indicesPageBody(digest) {
           const pct = Number(s.changePercent || 0);
           const cls = pct > 0.05 ? "idx-pos" : pct < -0.05 ? "idx-neg" : "idx-flat";
           const heatCls = getHeatClass(pct);
-          const pts = JSON.stringify((s.chartPoints ?? []).map(p => Number(p.close)).filter(Number.isFinite));
+          let cardPoints = s.chartPoints || [];
+          if (s.symbol === "GIFTNIFTY" && cardPoints.length < 2) {
+            const niftyRef = snapshots.find(n => n.symbol === "NIFTY");
+            if (niftyRef) cardPoints = niftyRef.chartPoints || [];
+          }
+          const pts = JSON.stringify(cardPoints.map(p => Number(p.close)).filter(Number.isFinite));
           const displayVal = s.closeValue ? s.closeValue.toLocaleString("en-IN", { maximumFractionDigits: 2 }) : "N/A";
           return `<button class="idx-card ${heatCls}" id="btn-${s.symbol.toLowerCase()}" data-live="${s.symbol}" data-pts="${escapeHtml(pts)}" data-cls="${cls}" data-symbol="${s.symbol}" data-val="${displayVal}" data-name="${escapeHtml(s.name)}" data-change="${escapeHtml(formatChange(s))}" data-ctx="${escapeHtml(getSymbolDescription(s.symbol, s.name))}">
             <div class="idx-card-top">
               <div><small>${s.symbol}</small><strong style="display:block;margin-top:2px;">${escapeHtml(s.name)}</strong></div>
               <strong class="idx-card-change ${cls}" data-field="pct">${escapeHtml(pct > 0 ? "+" : "")}${pct.toFixed(2)}%</strong>
+            </div>
+            <div class="idx-spark-wrap" style="height:36px;margin:10px 0;width:100%;">
+              <svg class="idx-card-spark" viewBox="0 0 100 36" style="width:100%;height:36px;display:block;" data-field="spark" data-pts="${escapeHtml(pts)}" data-cls="${cls}">
+                ${buildSparklinePath(cardPoints, cls)}
+              </svg>
             </div>
             <div class="idx-card-bottom"><span data-field="ltp">LTP: ${displayVal}</span><span data-field="quality">${s.dataQuality === "live" ? "● Live" : "Delayed"}</span></div>
           </button>`;

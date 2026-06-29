@@ -296,3 +296,9 @@ These must remain true after changes:
   Verified: `npm run context:verify` passes, `npm test` passes (80 tests), `npm run test:deploy` passes. Verified HTML layout correctness, namespaced CSS, cache headers in vercel.json, and serverless response format.
   Architecture diagrams changed: none.
   Debt found but deferred: none.
+
+- 2026-06-29: Implemented card sparklines, multi-timeframe detail chart modal, and fixed stale Indian/GIFT charts.
+  ROOT CAUSE (if bug): (1) Indian index charts (Nifty, Bank Nifty) were stale at weekends/pre-open because Yahoo regularMarketTime only updates during active sessions and GIFT Nifty had no historical data, and (2) index cards had a large empty space in the middle.
+  Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes. Verified responsive multi-timeframe modal switching (1D to MAX) fetching through a cached serverless api/chart.mjs proxy, and fallback of GIFT Nifty spark/history charts to Nifty 50 underlying data.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
