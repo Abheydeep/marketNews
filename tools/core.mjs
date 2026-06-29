@@ -23,14 +23,17 @@ async function loadSkills() {
   return _skillsCache;
 }
 
+// timeoutMs guards only the connection (first-byte) phase. Once the stream
+// starts, chunks arrive progressively — no wall-clock limit on slow 550B generation.
+const NIM_CONNECTION_TIMEOUT_MS = Number(process.env.NVIDIA_TIMEOUT_MS ?? 30000);
+
 export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retries = 2, temperature = 0.65, timeoutMs } = {}) {
   const apiKey = process.env.NVIDIA_API_KEY;
   if (!apiKey) return null;
-  console.error("nimCall called with prompt:", userPrompt.substring(0, 100));
-  const callTimeoutMs = Number(timeoutMs ?? process.env.NVIDIA_TIMEOUT_MS ?? 120000);
+  const connectionTimeoutMs = Number(timeoutMs ?? NIM_CONNECTION_TIMEOUT_MS);
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      if (attempt > 0) await new Promise((r) => setTimeout(r, 3000 * attempt));
+      if (attempt > 0) await new Promise((r) => setTimeout(r, 5000 * attempt));
       const response = await fetch(NIM_API_URL, {
         method: "POST",
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -41,9 +44,10 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
             { role: "user", content: userPrompt }
           ],
           max_tokens: maxTokens,
-          temperature
+          temperature,
+          stream: true
         }),
-        signal: AbortSignal.timeout(callTimeoutMs)
+        signal: AbortSignal.timeout(connectionTimeoutMs)
       });
       if (response.status === 429 || response.status >= 500) {
         process.stderr.write(`[agent] NIM ${response.status} on attempt ${attempt + 1}\n`);
@@ -53,14 +57,43 @@ export async function nimCall(systemPrompt, userPrompt, { maxTokens = 1024, retr
         process.stderr.write(`[agent] NIM ${response.status}: ${await response.text()}\n`);
         return null;
       }
-      const data = await response.json();
-      const raw = data?.choices?.[0]?.message?.content?.trim() ?? null;
-      return raw ? cleanAIOutput(raw) : null;
+      const text = await collectNimStream(response);
+      return text ? cleanAIOutput(text) : null;
     } catch (err) {
       process.stderr.write(`[agent] NIM fetch failed (attempt ${attempt + 1}): ${err.message}\n`);
     }
   }
   return null;
+}
+
+async function collectNimStream(response) {
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let content = "";
+  let buffer = "";
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop(); // keep last (potentially incomplete) line
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed.startsWith("data: ")) continue;
+        const payload = trimmed.slice(6);
+        if (payload === "[DONE]") return content || null;
+        try {
+          const chunk = JSON.parse(payload);
+          const delta = chunk.choices?.[0]?.delta?.content;
+          if (delta) content += delta;
+        } catch { /* skip malformed SSE chunk */ }
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return content || null;
 }
 
 function cleanAIOutput(text) {
@@ -111,86 +144,58 @@ ${topArticles}`;
   const systemPrompt = skills || "You are the Market Narrative daily briefing agent for Indian retail traders.";
   const noWrap = "Output ONLY the formatted content. Do NOT write any introduction, preamble, or sign-off. Start your response directly with the first line of the format.";
 
-  // Fail-soft wrapper: a stalled or erroring NIM call must never abort the run. It
-  // returns null on any failure so the caller falls back to the deterministic
-  // (generateScript) studio assets, which are already valid and compliance-passing.
-  const safeNim = async (label, prompt, opts) => {
-    try {
-      const result = await nimCall(systemPrompt, prompt, opts);
-      if (!result) log.warn("ai script section unavailable, using deterministic fallback", { section: label, date });
-      return result;
-    } catch (err) {
-      log.warn("ai script section failed, using deterministic fallback", { section: label, date, error: err?.message });
-      return null;
-    }
+  // Sequential calls — parallel hits NVIDIA NIM rate limits and silently drops 2 of 3.
+  // NIM now uses streaming: timeoutMs only guards the connection (first-byte), not the
+  // full generation. If a call returns null after retries, generation fails loudly.
+  const requireNim = async (label, prompt, opts) => {
+    const result = await nimCall(systemPrompt, prompt, opts);
+    if (!result) throw new Error(`NIM returned empty response for section: ${label}`);
+    return result;
   };
 
-  // Studio-only assets (one-page / teleprompter / reel) are NOT on the public page.
-  // Bound them tightly (single retry, 60s) so they can never hang the publish path —
-  // on failure the deterministic generateScript versions are kept.
-  const studioOpts = (maxTokens) => ({ maxTokens, retries: 1, timeoutMs: 60000 });
-
-  // Sequential calls — parallel hits NVIDIA NIM rate limits and silently drops 2 of 3
-  const onePageSummary = await safeNim(
+  const onePageSummary = await requireNim(
     "onePageSummary",
     `${noWrap}\n\nWrite the One-Page Summary. Start directly with "Market Mood:".\nFormat: Market Mood, Global Cues, Narrative Themes (sharp specific titles, not generic labels), Validated Trading Setups, Educational note.\n\n${context}`,
-    studioOpts(512)
+    { maxTokens: 512 }
   );
-  const teleprompterScript = await safeNim(
+  const teleprompterScript = await requireNim(
     "teleprompterScript",
     `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\n\n${context}`,
-    studioOpts(900)
+    { maxTokens: 900 }
   );
-  const reelScript = await safeNim(
+  const reelScript = await requireNim(
     "reelScript",
     `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | WHAT TO WATCH], [40-52s | BIGGER PICTURE], [52-58s | FOLLOW CTA], [58-60s | CLOSE].\n\nRULES:\n- This is a FINANCIAL NEWS STORY reel, not a trading brief. Zero trading advice, zero entry/exit levels, zero buy/sell calls.\n- Every line must make the viewer want to hear the next line.\n- Find the most counterintuitive or surprising fact in the data — lead with that.\n- Tell a story: connect events as cause → effect → India impact.\n- Numbers only appear after you explain why they matter.\n- Natural Hinglish throughout. Group chat energy, not newsreader.\n- VOICEOVER lines max 12 words each.\n- End CLOSE with: "Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo."\n- If MSCI rebalancing, index reshuffle, or passive fund flows appear in the data — LEAD WITH THAT. It is the most important explainer when markets move without an obvious reason.\n- If monsoon forecast or IMD data appears — include it in WHY INDIA CARES.\n\n${context}`,
-    studioOpts(800)
+    { maxTokens: 800 }
   );
 
-  // Editorial briefing feeds the PUBLIC 2-minute summary + desk note — give it a
-  // little more budget than studio assets, but still bounded so it cannot hang.
-  const editorialBriefing = await safeNim(
+  const editorialBriefing = await requireNim(
     "editorialBriefing",
     `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
-    { maxTokens: 2000, timeoutMs: 90000 }
+    { maxTokens: 2000 }
   );
 
-  let twoMinuteSummary = null;
-  let deskNote = null;
-  if (editorialBriefing) {
-    const lines = editorialBriefing.split('\n');
-    let mode = null;
-    let tmsLines = [];
-    let dnLines = [];
-    for (const line of lines) {
-      if (line.includes('[TWO-MINUTE SUMMARY]')) { mode = 'tms'; continue; }
-      if (line.includes('[DESK NOTE]')) { mode = 'dn'; continue; }
-      if (mode === 'tms') tmsLines.push(line);
-      if (mode === 'dn') dnLines.push(line);
-    }
-    twoMinuteSummary = tmsLines.join('\n').trim();
-    deskNote = dnLines.join('\n').trim();
+  const lines = editorialBriefing.split('\n');
+  let mode = null;
+  const tmsLines = [];
+  const dnLines = [];
+  for (const line of lines) {
+    if (line.includes('[TWO-MINUTE SUMMARY]')) { mode = 'tms'; continue; }
+    if (line.includes('[DESK NOTE]')) { mode = 'dn'; continue; }
+    if (mode === 'tms') tmsLines.push(line);
+    if (mode === 'dn') dnLines.push(line);
   }
+  const twoMinuteSummary = tmsLines.join('\n').trim();
+  const deskNote = dnLines.join('\n').trim();
 
-  const lead = dailyLead || { label: "Market update" };
-  const labelKey = normalizeEditorial(lead.label).split(" ")[0] || "market";
-
-  const finalOnePageSummary = onePageSummary || `Market Mood: NEUTRAL\n\nGlobal Cues: GIFT Nifty flat with focus on ${labelKey} news.\n\nNarrative Themes:\n- Global Cues: Focus on ${lead.label}.\n\nValidated Trading Setups:\n- No active setups.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.`;
-
-  const finalTeleprompterScript = teleprompterScript || `[OPENING]\nWelcome to Market Narrative. Focus is ${labelKey}.\n[GLOBAL CUES]\nGlobal cues are mixed.\n[NARRATIVE THEMES]\nTheme check.\n[NIFTY AND BANK NIFTY VIEW]\nView is neutral.\n[VALIDATED SETUPS]\nNo setups.\n[RISK DISCLAIMER]\nEducational market research only. This is not SEBI-registered investment advice.`;
-
-  const finalReelScript = reelScript || `[0-03s | HOOK]\nWelcome to today's update on ${labelKey}.\n[03-14s | OVERNIGHT STORY]\nMarket overnight summary.\n[14-28s | WHY INDIA CARES]\nIndia read-through.\n[28-40s | WHAT TO WATCH]\nKey zones.\n[40-52s | BIGGER PICTURE]\nMacro trends.\n[52-58s | FOLLOW CTA]\nCheck out marketnarrative.in.\n[58-60s | CLOSE]\nPoora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo.`;
-
-  const finalTwoMinuteSummary = twoMinuteSummary || `Global cues and overnight macro moves are the main focus. ${labelKey} is the leading thread. India angle: Nifty and Bank Nifty will take direction from global sentiment and currency moves.\n\nGlobal macro developments have set the risk tone overnight. The read-through for India highlights potential impacts on key sectors and indices.\n\nRegional performance and commodities are tracking the macro theme. Currency and crude oil moves are additional cues to watch.\n\nParticipant flows and institutional positioning remain mixed. Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.`;
-
-  const finalDeskNote = deskNote || `An editor's view on the market setup. The narrative revolves around ${labelKey}. We see mixed cues overall and expect range-bound volatility to persist. Focus on the core macro trend and ignore intraday noise.`;
+  if (!twoMinuteSummary) throw new Error("NIM editorial briefing missing [TWO-MINUTE SUMMARY] section");
 
   return {
-    teleprompterScript: finalTeleprompterScript,
-    onePageSummary: finalOnePageSummary,
-    reelScript: finalReelScript,
-    twoMinuteSummary: finalTwoMinuteSummary,
-    deskNote: finalDeskNote
+    teleprompterScript,
+    onePageSummary,
+    reelScript,
+    twoMinuteSummary,
+    deskNote: deskNote || null
   };
 }
 
