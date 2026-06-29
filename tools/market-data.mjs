@@ -244,7 +244,7 @@ export function normalizeYahooChartResult(definition, payload) {
 
   const closes = result?.indicators?.quote?.[0]?.close?.filter((value) => Number.isFinite(value)) ?? [];
   const latest = Number(meta.regularMarketPrice ?? closes.at(-1));
-  const previous = Number(meta.chartPreviousClose ?? meta.previousClose);
+  const previous = Number(meta.previousClose ?? meta.chartPreviousClose);
   if (!Number.isFinite(latest) || !Number.isFinite(previous) || previous === 0) {
     throw new Error(`${definition.yahooSymbol} returned incomplete price data`);
   }

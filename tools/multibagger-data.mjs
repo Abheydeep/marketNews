@@ -597,8 +597,8 @@ async function fetchYahooQuote(ticker, yahooSymbol, fallback) {
       return null;
     }
     const previousClose = firstFinite(
-      numberFrom(meta.chartPreviousClose),
       numberFrom(meta.previousClose),
+      numberFrom(meta.chartPreviousClose),
       numberFrom(meta.regularMarketPreviousClose),
       fallback.previousClose
     );
@@ -624,8 +624,8 @@ async function fetchYahooBenchmark(yahooSymbol) {
     return null;
   }
   const previousClose = firstFinite(
-    numberFrom(meta.chartPreviousClose),
     numberFrom(meta.previousClose),
+    numberFrom(meta.chartPreviousClose),
     numberFrom(meta.regularMarketPreviousClose),
     benchmarkSnapshot.previousClose
   );

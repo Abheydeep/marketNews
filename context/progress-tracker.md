@@ -309,3 +309,10 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
+- 2026-06-29: Fixed unstyled indices board navigation bar layout and wrong India/global index change percentages.
+  ROOT CAUSE (if bug): (1) Navigation bar was unstyled because `siteNavCss()` styles were missing from the indices page styling templates. (2) India and global index change percentages were wrong because the Yahoo Finance chart API returned an incorrect `chartPreviousClose` metadata field, which was prioritized over the correct `previousClose`.
+  Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes, `npm run public:copy:qa` passes. Live production site visual inspect via browser subagent confirmed header styles render correctly.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+
