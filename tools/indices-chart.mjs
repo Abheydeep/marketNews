@@ -122,6 +122,14 @@ export function indicesChartScript() {
         currentSymbol = d.symbol;
         currentCls = d.cls;
 
+        document.getElementById("idx-sym").textContent = d.symbol;
+        document.getElementById("idx-name").textContent = d.name;
+        const v = document.getElementById("idx-val");
+        v.className = "move " + d.cls;
+        v.textContent = d.val + " · " + d.change;
+        document.getElementById("idx-ctx").textContent = d.ctx || (d.name + " is tracked as index reference.");
+        document.getElementById("idx-m").classList.add("open");
+
         // Reset tab
         activeRange = "1d";
         document.querySelectorAll(".idx-tab-btn").forEach(btn => {

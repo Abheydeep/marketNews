@@ -103,7 +103,7 @@ export function indicesLiveScript() {
                 if (svg && s.spark) {
                   svg.dataset.cls = dirClass;
                   svg.dataset.pts = JSON.stringify(s.spark);
-                  drawSparklineSvg(svg, s.spark, dirClass);
+                  drawSparklineSvg(svg, s.spark, s.symbol === "GIFTNIFTY" ? "idx-flat" : dirClass);
                 }
               }
 
@@ -171,7 +171,7 @@ export function indicesLiveScript() {
         }
       }, 1000);
 
-      pollTimeout = setTimeout(poll, getPollIntervalMs());
+      poll();
     })();
   </script>`;
 }

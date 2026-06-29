@@ -298,7 +298,7 @@ These must remain true after changes:
   Debt found but deferred: none.
 
 - 2026-06-29: Implemented card sparklines, multi-timeframe detail chart modal, and fixed stale Indian/GIFT charts.
-  ROOT CAUSE (if bug): (1) Indian index charts (Nifty, Bank Nifty) were stale at weekends/pre-open because Yahoo regularMarketTime only updates during active sessions and GIFT Nifty had no historical data, and (2) index cards had a large empty space in the middle.
-  Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes. Verified responsive multi-timeframe modal switching (1D to MAX) fetching through a cached serverless api/chart.mjs proxy, and fallback of GIFT Nifty spark/history charts to Nifty 50 underlying data.
+  ROOT CAUSE (if bug): (1) Detailed modal did not open on card click because class 'open' was not added and header fields were blank, (2) poller delay left Indian sparks stale on initial load, and (3) GIFT card spark color color-clashed with quote signal.
+  Verified: `npm run context:verify` passes, `npm test` passes (85 tests), `npm run test:deploy` passes. Verified interactively via browser subagent: clicks open populated modals, switches tabs (5D, 1Y) cleanly, GIFT proxies Nifty-50 history, and closes work.
   Architecture diagrams changed: none.
   Debt found but deferred: none.

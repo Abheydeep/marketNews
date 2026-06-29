@@ -89,7 +89,7 @@ export function indicesPageBody(digest) {
             </div>
             <div class="idx-spark-wrap" style="height:36px;margin:10px 0;width:100%;">
               <svg class="idx-card-spark" viewBox="0 0 100 36" style="width:100%;height:36px;display:block;" data-field="spark" data-pts="${escapeHtml(pts)}" data-cls="${cls}">
-                ${buildSparklinePath(cardPoints, cls)}
+                ${buildSparklinePath(cardPoints, s.symbol === "GIFTNIFTY" ? "idx-flat" : cls)}
               </svg>
             </div>
             <div class="idx-card-bottom"><span data-field="ltp">LTP: ${displayVal}</span><span data-field="quality">${s.dataQuality === "live" ? "● Live" : "Delayed"}</span></div>
