@@ -1,0 +1,2427 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-06-29",
+  "title": "Nifty Metal Support Opening Range",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-06-29T14:38:54.090Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: -116 pt gap-down",
+    "sourceArticleId": "economic-times-stocks:sm3qmv",
+    "driverType": "banks",
+    "headline": "Anubhav Plast shares list flat at IPO price of Rs 80 on BSE SME platform",
+    "indiaImpact": "GIFT Nifty at 23939.5 (-116 pts, -0.48%) signals gap-down open. Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+    "riskSide": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+    "supportSide": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
+    "giftNiftyBias": {
+      "giftPrice": 23939.5,
+      "niftyClose": 24056,
+      "gapPts": -116,
+      "gapPct": -0.48,
+      "bias": "gap_down",
+      "biasLabel": "-116 pt gap-down"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 8,
+    "shortlistCount": 16,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 0,
+    "indiaPublisherCount": 4,
+    "shortlistIndiaPublisherCount": 9,
+    "directIndiaSourceCount": 4,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 4,
+    "globalContextCount": 4,
+    "globalOnlySourceRatio": 50,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 4 direct India sources, 0 official sources, 4 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://economictimes.indiatimes.com/markets/stocks/news/anubhav-plast-shares-to-list-today-check-gmp-ahead-of-debut/articleshow/132061435.cms",
+      "https://economictimes.indiatimes.com/markets/ipos/fpos/turtlemint-ipo-shares-to-debut-today-heres-what-gmp-suggests-ahead-of-listing/articleshow/132061463.cms",
+      "https://www.bloomberg.com/news/articles/2026-06-29/pboc-debuts-overnight-operation-surprises-with-no-rate-released",
+      "https://www.cnbc.com/2026/06/28/china-doesnt-need-to-de-throne-dollar-to-win-global-currency-war.html",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-29-jun-2026/liveblog/132061418.cms",
+      "https://www.bloomberg.com/news/articles/2026-06-28/us-futures-climb-on-reports-peace-talks-to-resume-markets-wrap",
+      "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-29-crude-oil-rises-after-renewed-us-iran-strikes-what-lies-ahead/articleshow/132061243.cms",
+      "https://www.bloomberg.com/news/articles/2026-06-28/latest-oil-market-news-and-analysis-for-june-29"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: -116 pt gap-down: GIFT Nifty at 23939.5 (-116 pts, -0.48%) signals gap-down open. Use IPO demand as a...",
+  "twoMinuteSummary": "Anubhav Plast debuted on the BSE SME platform at its issue price of eighty rupees, matching grey market expectations. The eighty crore offering was subscribed just over two times, driven mainly by retail investors. The company makes steel pipes and tubular poles used in government infrastructure projects and plans to use the proceeds for a new facility producing crash barriers and solar panel structures. Watch whether this flat listing dampens appetite for upcoming SME issues or if retail interest holds firm.\n\nChina's central bank set the rate on its new overnight liquidity tool below market forecasts, a move economists read as a quiet rate cut aimed at lowering borrowing costs across the economy. Cheaper Chinese credit could lift demand for industrial metals and commodities, which would benefit Indian metal and mining companies. It also eases pressure on the rupee by reducing the dollar's relative appeal. Watch for follow-through in Chinese credit data and any spillover into global commodity prices.\n\nUS President Trump warned Iran would \"no longer exist\" if conflict resumes, after American forces struck Iranian missile storage and radar sites over an alleged ceasefire violation. The escalation injects fresh geopolitical risk into markets that had been focused on earnings and central banks. Higher oil prices would widen India's import bill and weaken the rupee, while defence and energy stocks could see tactical interest. Watch for official Iranian responses and any disruption to Gulf shipping lanes.\n\nA rebound in US technology shares lifted Wall Street after last week's artificial intelligence selloff, as investors bet the sector's heavy capital spending will keep earnings growing. Indian IT services firms, which derive much of their revenue from US tech budgets, tend to track this sentiment with a lag. A sustained recovery in US tech spending would support order flows for Tata Consultancy Services, Infosys, and peers. Watch upcoming quarterly guidance from major US cloud and software companies for confirmation.",
+  "deskNote": "The market is trying to price three different futures at once. One is a China that is quietly easing while pretending not to, a move that helps commodities but signals deeper growth anxiety. Another is a Middle East where a single miscalculation could spike oil and scramble every emerging market budget, India included. The third is a US tech sector that refuses to stop spending, dragging the rest of the world's earnings expectations along for the ride.\n\nWhat makes today unusual is how little these stories overlap. The Chinese easing should weaken the dollar and lift risk appetite. The Iran tension should strengthen the dollar and crush risk appetite. The US tech rebound should lift growth stocks everywhere. They are pulling in different directions, which explains why the headline indices are stuck near flat while sectors rotate violently underneath.\n\nFor India, the net effect is a waiting game. The rupee holds because oil hasn't broken out and the dollar isn't running away. The Nifty holds because FII selling has paused but not reversed. The VIX ticks up because nobody wants to commit capital before the next headline. This is not a market with a view; it is a market with a headache.\n\nThe real story may be what is not moving. Smallcap and midcap indices have stopped leading. IPO subscriptions are decent but not frenzied. Retail flows into mutual funds remain steady but unexcited. The speculative froth that usually appears at turning points is absent. That could mean the market is healthier than it looks, or it could mean participants are simply exhausted.\n\nWatch the bond market. If US yields stay anchored while Chinese yields drift lower, the carry trade into Indian debt stays alive. That keeps the rupee stable and gives the RBI room to pause. If yields rise on oil fears or Fed repricing, the whole calculus shifts. Everything else — tech earnings, IPO listings, geopolitical rhetoric — is noise until the cost of money decides which way the wind blows.",
+  "watchItems": [
+    "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.",
+    "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
+    "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on."
+  ],
+  "overallSentiment": -0.099,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.10%, Nasdaq 100 -0.14%, Dow Jones +0.24%, Nifty 50 -0.46%, Bank Nifty -0.77%, Nikkei 225 +0.16%, Hang Seng +1.57%, Brent Crude +1.14",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7361.31,
+      "previousClose": 7354.02,
+      "changePercent": 0.099,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:14:27.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 7420.88
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7397.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7360.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7361.31
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29076.53,
+      "previousClose": 29118.24,
+      "changePercent": -0.143,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:14:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 29491.93
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29318.13
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29072.66
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29076.53
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 52000.72,
+      "previousClose": 51876.11,
+      "changePercent": 0.24,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:14:27.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 52248.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52177.34
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52016.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52000.72
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 23946.25,
+      "previousClose": 24056,
+      "changePercent": -0.456,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-29T10:01:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 24064.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24094
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24075.55
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24061.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24112.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24112.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24066.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24073
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24061.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24031.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 24011.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23993.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23968.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23944.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23963.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23962.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23965.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23940.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23947.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23958.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23950.85
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23964.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23930.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23943.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23978.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23946.25
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57727.35,
+      "previousClose": 58177.05,
+      "changePercent": -0.773,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-29T10:01:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 58038.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58111.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58045.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58022.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58206.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58245.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58116.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58121.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 58083.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57972.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57911.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57860.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57739.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57693.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57720.05
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57790.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57805.75
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57787.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57828
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57898.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57893.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57942.75
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57778.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57716.05
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57828.05
+        },
+        {
+          "time": "2026-06-29",
+          "close": 57727.35
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 69468.11,
+      "previousClose": 69360.88,
+      "changePercent": 0.155,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-06-29T06:45:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 69397.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68569.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68646.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68935.11
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68741.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68551.06
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69075.55
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68982.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68551.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68864.85
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68869.43
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68635.19
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69077.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68838.48
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68724.86
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68616.71
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68556.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68673.63
+        },
+        {
+          "time": "2026-06-29",
+          "close": 68743.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69138.83
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69305.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69242.58
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69382.07
+        },
+        {
+          "time": "2026-06-29",
+          "close": 69468.11
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 23026.68,
+      "previousClose": 22671.86,
+      "changePercent": 1.565,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-06-29T08:09:22.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 22858.53
+        },
+        {
+          "time": "2026-06-29",
+          "close": 22862.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 22857.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23071.17
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23013.75
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23105.83
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23106.95
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23156.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23155.13
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23145.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23153.89
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23091.63
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23066.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23134.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23074.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23059.68
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23097.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23094.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23093.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23071.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23083.71
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23056.14
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23007.46
+        },
+        {
+          "time": "2026-06-29",
+          "close": 23026.68
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 4073.9,
+      "previousClose": 4027.27,
+      "changePercent": 1.158,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-06-29T07:00:29.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 4030.66
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4021.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 3994.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4038.76
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4015.92
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4037.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4040.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4032.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4034.08
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4020.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4039.74
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4056.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4064.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4049.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4050.61
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4062.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4075.18
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4073.9
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 8394.65,
+      "previousClose": 8411.21,
+      "changePercent": -0.197,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-06-29T09:05:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 8257.07
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8158.28
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8245.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8316.78
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8271.68
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8260.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8368.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8287.05
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8207.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8264.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8277.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8250.96
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8236.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8250.18
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8189.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8332.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8295.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8242.64
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8226.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8217.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8276.88
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8311.16
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8462.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8516.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8394.65
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 44999.9,
+      "previousClose": 44571.76,
+      "changePercent": 0.961,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-06-29T05:33:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 45031.69
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45087.57
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45425.07
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45418.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45012.56
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45200.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45173.08
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45198.99
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45221.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45168.93
+        },
+        {
+          "time": "2026-06-29",
+          "close": 44979.83
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45180.61
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45034.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 44970.74
+        },
+        {
+          "time": "2026-06-29",
+          "close": 44948.97
+        },
+        {
+          "time": "2026-06-29",
+          "close": 44959.96
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45067.49
+        },
+        {
+          "time": "2026-06-29",
+          "close": 45049.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 44999.9
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5208.75,
+      "previousClose": 5191.73,
+      "changePercent": 0.328,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-06-29T09:20:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 5193.64
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5189.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5184.62
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5187.69
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5180.58
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5187.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5186.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5188.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5187.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5188.08
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5192.78
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.86
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.88
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5202.84
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5197.06
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5195.98
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5195.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5197.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5194.43
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5199.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.97
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5199.37
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5198.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5199.07
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5203.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5199.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5202.92
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5201.68
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5203.87
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5203.02
+        },
+        {
+          "time": "2026-06-29",
+          "close": 5208.75
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8823.4,
+      "previousClose": 8764.2,
+      "changePercent": 0.675,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-06-29T06:52:44.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 8818.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8810.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8793.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8794.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8788.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8783.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8780.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8778
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8768.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8780.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8779.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8782.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8784.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8789.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8785.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8796
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8798.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8797.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8793.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8792.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8793.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8793.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8810.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8812.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8823.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 8823.4
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 101.23,
+      "previousClose": 101.36,
+      "changePercent": -0.128,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:04:26.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 101.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.37
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.16
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.31
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.28
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.23
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.22
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.23
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.22
+        },
+        {
+          "time": "2026-06-29",
+          "close": 101.23
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 73.43,
+      "previousClose": 72.6,
+      "changePercent": 1.143,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:04:19.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 73.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.23
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.21
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.92
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.99
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.77
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.99
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.16
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.06
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.87
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.08
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.19
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.48
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.52
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.28
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.14
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 72.96
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.14
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.03
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.46
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 73.43
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 94.53,
+      "previousClose": 94.3,
+      "changePercent": 0.244,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-06-29T12:23:13.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 94.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.39
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.31
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.33
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.37
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.31
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.28
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.33
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.31
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.33
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.33
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.37
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.43
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.45
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.46
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.44
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.47
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.53
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.53
+        },
+        {
+          "time": "2026-06-29",
+          "close": 94.53
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4040.2,
+      "previousClose": 4096.3,
+      "changePercent": -1.37,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T14:04:24.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 4079.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4079.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4071.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4065.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4069.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4063.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4064.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4069
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4073.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4075.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4076
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4077
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4073.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4080.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4077.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4076.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4078.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4075.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4069.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4060.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4064.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4061.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4057.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4045.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4053.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4051.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4049.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4051.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4049
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4046.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4049.2
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4053.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4061.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4052.5
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4058.9
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4057.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4061.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4052
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4052.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4046.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4041.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 4040.2
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 13.61,
+      "previousClose": 13.05,
+      "changePercent": 4.291,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-29T10:04:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 13.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.6
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.52
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.41
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.4
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.43
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.42
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.53
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.84
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.96
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.85
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.88
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.84
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.91
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.91
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.82
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.86
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.71
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.87
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.64
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.57
+        },
+        {
+          "time": "2026-06-29",
+          "close": 13.61
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23939.5,
+      "previousClose": 23954,
+      "changePercent": -0.06,
+      "dataTimestamp": "2026-06-29T14:12:20.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-06-29T06:12:20.000Z",
+          "close": 23954
+        },
+        {
+          "time": "2026-06-29T14:12:20.000Z",
+          "close": 23939.5
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "29-Jun-2026",
+    "fiiNet": -1350.1,
+    "fiiBuy": 24754.26,
+    "fiiSell": 26104.36,
+    "diiNet": 2801.45,
+    "diiBuy": 55273.85,
+    "diiSell": 52472.4
+  },
+  "giftNiftyBias": {
+    "giftPrice": 23939.5,
+    "niftyClose": 24056,
+    "gapPts": -116,
+    "gapPct": -0.48,
+    "bias": "gap_down",
+    "biasLabel": "-116 pt gap-down"
+  },
+  "todaysReadArticle": "Anubhav Plast's flat debut at its Rs 80 issue price on the BSE SME platform this morning delivers the clearest signal yet that the retail-driven frenzy which powered last year's small-cap listings has exhausted itself, leaving primary market demand as a pure liquidity and risk-appetite barometer rather than a leading indicator for the broader indices. The listing mirrors the grey market's muted whisper and arrives just hours before Turtlemint's Rs 883 crore issue tests the same waters at Rs 152, setting up a real-time stress test for midcap sentiment that matters far more to the Nifty's trajectory than the headline index print; with Bank Nifty already nursing a 0.77% deficit at 57,727, the message is unambiguous — incremental capital is selective, not speculative, and the market's next directional move hinges on whether financials can reclaim leadership.\n\nThat domestic caution sits against a backdrop of violent cross-currents overnight. The PBOC's surprise easing via a new overnight lending tool, coming in below forecasts, signals Beijing's growing urgency to arrest a growth slowdown, a development that should theoretically lower global borrowing costs and support rate-sensitive sectors back home — but only if the resultant yield stability survives the geopolitical noise. Simultaneously, the narrative of a renminbi-led dethroning of the dollar has been correctly dismissed as a distraction; the real currency war travels through crude, gold and FII flows before it touches Indian equities, meaning orderly rupee weakness remains a tailwind for IT exporters like Tech Mahindra, provided the Nifty IT index can muster local breadth and the USD/INR pair holds above 94.50 without triggering imported-cost panic in paints, tyres and aviation.\n\nThe oil market encapsulated the week's schizophrenia in a single session: Brent surged toward four-month highs on Saturday after President Trump's \"Iran will no longer exist\" rhetoric, only to retreat to $73.43 by the Asian open as Washington and Tehran agreed to halt fresh strikes. That round-trip leaves Indian upstream names as relative winners while OMCs, airlines and chemical downstream users remain hostage to every headline; the 1.14% bounce in crude is not yet a trend, but it is a reminder that India's macro stability — current account, fiscal math, inflation trajectory — remains a hostage to West Asian geopolitics, and any sustained move above $75 would force a repricing of the entire consumption basket.\n\nFor the opening bell, traders must watch three things with surgical precision: whether Bank Nifty can defend the 57,500 put-writing base and drag the Nifty back above 24,000, whether Turtlemint's listing premium or discount confirms the SME appetite read from Anubhav Plast, and whether the USD/INR opens stable enough to let Nifty IT lead rather than lag the global tech rebound that lifted Wall Street overnight. The AI-driven rally in US megacaps only becomes an India trade if domestic exporters show margin resilience and guidance visibility in the coming earnings season; until then, it is context, not catalyst. The market is offering no free lunches — only a menu of conditional probabilities priced in rupees, barrels and basis points.",
+  "themes": [
+    {
+      "digestDate": "2026-06-29",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "China’s central bank set the interest rate on its new overnight liquidity tool at a level that was below expectations, according to people familiar with the matter, in what some economists see as a de facto rate cut that could push down market borrowing costs.",
+      "sentimentScore": -0.83,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-06-29",
+      "themeType": "global_risk",
+      "title": "Global Risk-Off Cue",
+      "summary": "US President Donald Trump said on Saturday that Iran would \"no longer exist\" if the US were \"forced\" to resume the war. \"United States aircraft just struck Iranian missile and drone storage locations, and coastal radar sites, for violating the Cease Fire Agreement, AGAIN!\" Trump wrote on Truth Social.",
+      "sentimentScore": -0.198,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-06-29",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "The Rs 883 crore public issue was priced at Rs 152 per share and comprised a fresh issue of Rs 661 crore along with an offer for sale worth Rs 222 crore",
+      "sentimentScore": -0.08,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-06-29",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "Anubhav Plast shares debuted at their IPO price of Rs 80 on the BSE SME platform, mirroring grey market expectations. The company's Rs 80 crore IPO saw a 2.18 times subscription, with strong retail investor interest. Anubhav Plast manufactures ERW steel pipes and tubes, and swaged steel tubular poles, primarily for government projects. Proceeds will fund a new facility for crash barriers and solar panel structures.",
+      "sentimentScore": 0.47,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-06-29",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "A rally in technology firms spurred a rebound in stocks after last week’s artificial-intelligence selloff lured buyers betting the industry’s investment boom will continue to support solid corporate earnings.",
+      "sentimentScore": 0.54,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 1406327,
+  "scheduledFor": "2026-06-29T08:00:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-06-29T02:35:18.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Anubhav Plast shares list flat at IPO price of Rs 80 on BSE SME platform",
+      "summary": "Anubhav Plast shares debuted at their IPO price of Rs 80 on the BSE SME platform, mirroring grey market expectations. The company's Rs 80 crore IPO saw a 2.18 times subscription, with strong retail investor interest. Anubhav Plast manufactures ERW steel pipes and tubes, and swaged steel tubular poles, primarily for government projects. Proceeds will fund a new facility for crash barriers and solar panel structures.",
+      "takeaway": "Anubhav Plast shares debuted at their IPO price of Rs 80 on the BSE SME platform, mirroring grey; primary-market demand is a risk-appetite read, not an automatic index signal.",
+      "whyItMatters": "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
+      "indiaImpact": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      "watchFor": "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/anubhav-plast-shares-to-list-today-check-gmp-ahead-of-debut/articleshow/132061435.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty Metal",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "Metal",
+        "theme": "Anubhav Plast",
+        "accent": "#2563eb",
+        "alt": "Anubhav Plast shares list flat at IPO price of Rs 80 on BSE SME platform source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-29T02:37:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Turtlemint IPO shares to debut today. Here&#039;s what GMP suggests ahead of listing",
+      "summary": "The Rs 883 crore public issue was priced at Rs 152 per share and comprised a fresh issue of Rs 661 crore along with an offer for sale worth Rs 222 crore",
+      "takeaway": "The Rs 883 crore public issue was priced at Rs 152 per share and comprised a fresh issue; primary-market demand is a risk-appetite read, not an automatic index signal.",
+      "whyItMatters": "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
+      "indiaImpact": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      "watchFor": "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/ipos/fpos/turtlemint-ipo-shares-to-debut-today-heres-what-gmp-suggests-ahead-of-listing/articleshow/132061463.cms",
+      "sentimentLabel": "neutral",
+      "entityName": "Market",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Turtlemint Ipo",
+        "accent": "#0891b2",
+        "alt": "Turtlemint IPO shares to debut today. Here&#039;s what GMP suggests ahead of listing source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-29T01:41:56.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "PBOC’s New Overnight Rate Said Below Forecasts in Hint at Easing",
+      "summary": "China’s central bank set the interest rate on its new overnight liquidity tool at a level that was below expectations, according to people familiar with the matter, in what some economists see as a de facto rate cut that could push down market borrowing costs.",
+      "takeaway": "PBOC's surprise easing via new overnight tool signals stronger China stimulus intent, lowering local borrowing costs.','indiaImpact'.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-29/pboc-debuts-overnight-operation-surprises-with-no-rate-released",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "BoE Rates",
+        "theme": "Central Banks",
+        "accent": "#dc2626",
+        "alt": "PBOC’s New Overnight Rate Said Below Forecasts in Hint at Easing source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-28T13:25:43.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "If you think China needs to dethrone U.S. dollar, you don't understand how it is waging global currency war",
+      "summary": "It's misguided to focus on China's renminbi replacing the U.S. dollar. Beijing is already successfully reducing dependence on a dollar-centric global system.",
+      "takeaway": "It's misguided to focus on China's renminbi replacing the US dollar; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
+      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
+      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
+      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
+      "sourceUrl": "https://www.cnbc.com/2026/06/28/china-doesnt-need-to-de-throne-dollar-to-win-global-currency-war.html",
+      "sentimentLabel": "positive",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "You Think",
+        "accent": "#7c3aed",
+        "alt": "If you think China needs to dethrone U.S. dollar, you don't understand how it is waging global currency war source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-29T02:33:25.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Tech Mahindra Share Price Highlights: Tech Mahindra Stock Price History",
+      "summary": "Tech Mahindra Share Price Highlights: Tech Mahindra Stock Price History.",
+      "takeaway": "Tech Mahindra Stock Price History; Nifty IT is global technology context; Indian exporters need local breadth before it matters.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
+      "watchFor": "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-29-jun-2026/liveblog/132061418.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty IT",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "It",
+        "theme": "Tech Mahindra",
+        "accent": "#059669",
+        "alt": "Tech Mahindra Share Price Highlights: Tech Mahindra Stock Price History source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-28T22:15:36.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Tech Stocks Power Wall Street Gains After AI Rout: Markets Wrap",
+      "summary": "A rally in technology firms spurred a rebound in stocks after last week’s artificial-intelligence selloff lured buyers betting the industry’s investment boom will continue to support solid corporate earnings.",
+      "takeaway": "A rally in technology firms spurred a rebound in stocks after last week’s artificial-intelligence selloff lured buyers betting; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-28/us-futures-climb-on-reports-peace-talks-to-resume-markets-wrap",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Tech Stocks Power Wall Street Gains After AI Rout: Markets Wrap source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-29T02:21:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Oil Price Today (June 29): Crude oil rises after renewed US-Iran strikes. What lies ahead?",
+      "summary": "US President Donald Trump said on Saturday that Iran would \"no longer exist\" if the US were \"forced\" to resume the war. \"United States aircraft just struck Iranian missile and drone storage locations, and coastal radar sites, for violating the Cease Fire Agreement, AGAIN!\" Trump wrote on Truth Social.",
+      "takeaway": "US President Donald Trump said on Saturday that Iran would \"no longer exist\" if the US were \"forced\"; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-29-crude-oil-rises-after-renewed-us-iran-strikes-what-lies-ahead/articleshow/132061243.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Oil Price",
+        "accent": "#7c3aed",
+        "alt": "Oil Price Today (June 29): Crude oil rises after renewed US-Iran strikes. What lies ahead? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-28T22:01:18.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Oil Trades Near Four-Month Low as US and Iran Halt Fresh Attacks",
+      "summary": "Oil held above the lowest since the end of February after the US and Iran agreed to stop attacking each other, following flare-ups over the weekend that saw a supertanker hit near the Strait of Hormuz.",
+      "takeaway": "Oil held above the lowest since the end of February after the US and Iran agreed to stop; keep the oil story tied to Brent direction before turning it into an India equity signal.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-28/latest-oil-market-news-and-analysis-for-june-29",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Crude Exports",
+        "theme": "Oil Supply",
+        "accent": "#f97316",
+        "alt": "Oil Trades Near Four-Month Low as US and Iran Halt Fresh Attacks source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Anubhav Plast shares list flat at IPO price of Rs 80 on BSE SME platform",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-29T02:35:18.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/anubhav-plast-shares-to-list-today-check-gmp-ahead-of-debut/articleshow/132061435.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAnubhav%20Plast%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMetal%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Anubhav Plast shares list flat at IPO price of Rs 80 on BSE SME platform source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Turtlemint IPO shares to debut today. Here&#039;s what GMP suggests ahead of listing",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-29T02:37:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/ipos/fpos/turtlemint-ipo-shares-to-debut-today-heres-what-gmp-suggests-ahead-of-listing/articleshow/132061463.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETurtlemint%20Ipo%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Turtlemint IPO shares to debut today. Here&#039;s what GMP suggests ahead of listing source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "PBOC’s New Overnight Rate Said Below Forecasts in Hint at Easing",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-29T01:41:56.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-29/pboc-debuts-overnight-operation-surprises-with-no-rate-released",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "PBOC’s New Overnight Rate Said Below Forecasts in Hint at Easing source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "If you think China needs to dethrone U.S. dollar, you don't understand how it is waging global currency war",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-28T13:25:43.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/28/china-doesnt-need-to-de-throne-dollar-to-win-global-currency-war.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EYou%20Think%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "If you think China needs to dethrone U.S. dollar, you don't understand how it is waging global currency war source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "global_risk"
+    },
+    {
+      "title": "Tech Mahindra Share Price Highlights: Tech Mahindra Stock Price History",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-29T02:33:25.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-29-jun-2026/liveblog/132061418.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETech%20Mahindra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tech Mahindra Share Price Highlights: Tech Mahindra Stock Price History source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Tech Stocks Power Wall Street Gains After AI Rout: Markets Wrap",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-28T22:15:36.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-28/us-futures-climb-on-reports-peace-talks-to-resume-markets-wrap",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tech Stocks Power Wall Street Gains After AI Rout: Markets Wrap source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Oil Price Today (June 29): Crude oil rises after renewed US-Iran strikes. What lies ahead?",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-29T02:21:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-29-crude-oil-rises-after-renewed-us-iran-strikes-what-lies-ahead/articleshow/132061243.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Price%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (June 29): Crude oil rises after renewed US-Iran strikes. What lies ahead? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Oil Trades Near Four-Month Low as US and Iran Halt Fresh Attacks",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-28T22:01:18.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-28/latest-oil-market-news-and-analysis-for-june-29",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Trades Near Four-Month Low as US and Iran Halt Fresh Attacks source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 19 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 19 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-06-29.webp"
+  }
+}
