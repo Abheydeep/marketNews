@@ -22,7 +22,7 @@ const LEGACY_LIMITS = {
   "tools/publish-site.mjs": 4779,
   "tools/news-sources.mjs": 2784,
   "tools/core.mjs": 2810,
-  "tools/verify.mjs": 3394,
+  "tools/verify.mjs": 3396,
   "tools/predeploy-verify.mjs": 298,
   "tools/reliability-smoke.mjs": 245,
   "tools/multibagger-page.mjs": 3102,

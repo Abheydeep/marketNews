@@ -2783,7 +2783,10 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   const premarketCron = await readFile(join(rootDir, "api", "cron", "premarket-publish.js"), "utf8");
   assert.ok(premarketCron.includes("actions/workflows/${WORKFLOW_ID}/dispatches"));
   assert.ok(premarketCron.includes("GITHUB_WORKFLOW_TOKEN"));
-  assert.ok(premarketCron.includes('enforce_publish_window: "true"'));
+  // A late catch-up (past the publish window) must allow a late publish, otherwise
+  // the dispatched run is rejected by the premarket window guard.
+  assert.ok(premarketCron.includes('enforce_publish_window: lateRecovery ? "false" : "true"'));
+  assert.ok(premarketCron.includes('allow_late_publish: lateRecovery ? "true" : "false"'));
   assert.ok(premarketCron.includes("vercel-watchdog"));
   const productionSmoke = await readFile(join(rootDir, "tools", "production-smoke.mjs"), "utf8");
   const productionQaGate = await readFile(join(rootDir, "tools", "production-qa-gate.mjs"), "utf8");

@@ -1,4 +1,5 @@
 import { log } from "../../tools/logger.mjs";
+import { isGeneralEditionDate } from "../../tools/market-calendar.mjs";
 
 const OWNER = "Abheydeep";
 const REPO = "marketNews";
@@ -6,6 +7,10 @@ const WORKFLOW_ID = "pages.yml";
 const DISPATCH_TIMEOUT_MS = Number(process.env.GITHUB_DISPATCH_TIMEOUT_MS ?? 10000);
 const SITE_ORIGIN = process.env.PUBLIC_SITE_ORIGIN || "https://marketnarrative.in";
 const ALERT_MINUTES = { "07:15": 450, "08:00": 510 };
+// Past these IST minutes the on-time publish window has closed (scheduled time +
+// 60-min cutoff), so a catch-up dispatch must explicitly allow a late publish or
+// the run is rejected by the premarket window guard.
+const WINDOW_CUTOFF_MINUTES = { "07:15": 495, "08:00": 540 };
 
 export default async function handler(request, response) {
   if (request.method !== "GET" && request.method !== "POST") {
@@ -36,14 +41,30 @@ export default async function handler(request, response) {
 
   const now = new Date();
   const { date, minutes } = istDateParts(now);
+
+  // Only edition days (trading days, exchange holidays, Sundays) get a briefing.
+  // Saturdays and other genuinely-closed days are skipped so we never dispatch a
+  // run the generator will (correctly) reject.
+  if (!isGeneralEditionDate(date) && request.query?.force !== "1") {
+    log.info("premarket watchdog skipped non-edition day", { date });
+    return response.status(200).json({ ok: true, skipped: true, reason: "non_edition_day", date });
+  }
+
   const summaryTime = minutes >= 480 ? "08:00" : "07:15";
   const summaryLabel = summaryTime.replace(":", "");
+  // An edition for today counts whether it published in the 07:15 OR 08:00 slot —
+  // checking only the current slot's label would re-dispatch over an existing edition.
   const archivePath = `archive/daily/${date}-${summaryLabel}-digest.json`;
-  const archiveTracked = await githubArchiveExists(token, archivePath);
+  const archiveTracked = (await githubArchiveExists(token, `archive/daily/${date}-0715-digest.json`)) ||
+    (await githubArchiveExists(token, `archive/daily/${date}-0800-digest.json`));
   const latestCurrent = await latestPageMatchesDate(date);
   const shouldDispatch = request.query?.force === "1" || !archiveTracked || latestCurrent === false;
   const alertAfter = ALERT_MINUTES[summaryTime] ?? 450;
   const alert = shouldDispatch && minutes >= alertAfter;
+  // Past the on-time window the dispatched run would be blocked by the premarket
+  // window guard, so a late catch-up must allow a late publish — otherwise the
+  // recovery silently fails (the exact bug that left editions unpublished).
+  const lateRecovery = minutes >= (WINDOW_CUTOFF_MINUTES[summaryTime] ?? 495);
 
   log[alert ? "error" : "info"]("premarket watchdog checked latest state", {
     date,
@@ -94,12 +115,12 @@ export default async function handler(request, response) {
         body: JSON.stringify({
           ref: "main",
           inputs: {
-            enforce_publish_window: "true",
-            allow_late_publish: "false",
+            enforce_publish_window: lateRecovery ? "false" : "true",
+            allow_late_publish: lateRecovery ? "true" : "false",
             allow_fixture_fallback: "false",
             allow_non_trading_day: "false",
             summary_time: summaryTime,
-            triggered_by: alert ? "vercel-watchdog-alert" : "vercel-watchdog"
+            triggered_by: lateRecovery ? "vercel-watchdog-late-recovery" : (alert ? "vercel-watchdog-alert" : "vercel-watchdog")
           }
         }),
         signal: AbortSignal.timeout(DISPATCH_TIMEOUT_MS)
@@ -128,12 +149,13 @@ export default async function handler(request, response) {
     ok: true,
     workflow: WORKFLOW_ID,
     ref: "main",
-    triggeredBy: alert ? "vercel-watchdog-alert" : "vercel-watchdog",
+    triggeredBy: lateRecovery ? "vercel-watchdog-late-recovery" : (alert ? "vercel-watchdog-alert" : "vercel-watchdog"),
     date,
     summaryTime,
     archiveTracked,
     latestCurrent,
-    alert
+    alert,
+    lateRecovery
   });
 }
 
