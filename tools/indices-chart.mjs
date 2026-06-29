@@ -1,7 +1,10 @@
-// Client-side chart modal renderer supporting multiple timeframes, live chart proxy data fetches, and caching.
+import { chartClientScript } from "./chart-svg.mjs";
+
 export function indicesChartScript() {
   return `<script>
     (function() {
+      ${chartClientScript()}
+
       const chartCache = {};
       let currentSymbol = "";
       let currentCls = "idx-flat";
@@ -25,16 +28,13 @@ export function indicesChartScript() {
         }
 
         const color = cls === "idx-pos" ? "#34d399" : cls === "idx-neg" ? "#fb7185" : "#fbbf24";
-        const minVal = meta.min;
-        const maxVal = meta.max;
-        const range = maxVal - minVal || 1e-9;
+        const coords = mapPointsToSvgCoords(points, { padLeft: 10, width: 520, yZero: 205, yHeight: 190 });
+        if (!coords) {
+          svg.innerHTML = '<text x="270" y="110" text-anchor="middle" fill="var(--muted-idx)" font-size="14">Chart data unavailable</text>';
+          return;
+        }
 
-        const pathPoints = points.map((p, i) => {
-          const x = 10 + (i / (points.length - 1)) * 520;
-          const y = 205 - ((p.c - minVal) / range) * 190;
-          return { x, y };
-        });
-
+        const pathPoints = coords.pathPoints;
         const midY = 205 - (0.5 * 190);
         const gridLines = \`
           <line x1="10" y1="15" x2="530" y2="15" stroke="var(--line-idx)" stroke-dasharray="4,4" stroke-width="1" />

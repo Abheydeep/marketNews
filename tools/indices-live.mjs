@@ -1,3 +1,5 @@
+import { chartClientScript } from "./chart-svg.mjs";
+
 // Client-side indices polling and real-time DOM update script.
 export function indicesLiveScript() {
   return `<script>
@@ -48,23 +50,23 @@ export function indicesLiveScript() {
         setTimeout(() => el.classList.remove(cls), 600);
       }
 
+      ${chartClientScript()}
+
       function drawSparklineSvg(svgEl, sparkData, cls) {
         if (!svgEl) return;
-        const closes = (sparkData || []).map(Number).filter(Number.isFinite);
-        if (closes.length < 2) {
+        const coords = mapPointsToSvgCoords(sparkData, { padLeft: 0, width: 100, yZero: 34, yHeight: 30 });
+        if (!coords) {
           svgEl.innerHTML = '<line x1="0" y1="18" x2="100" y2="18" stroke="var(--line-idx)" stroke-width="1.5" />';
           return;
         }
-        const min = Math.min(...closes), max = Math.max(...closes), range = max - min || 1e-9;
-        const pathPoints = closes.map((val, i) => ((i / (closes.length - 1)) * 100).toFixed(1) + "," + (34 - ((val - min) / range) * 30).toFixed(1));
+        const pathPointsStr = coords.pathPoints.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join(" L ");
         const strokeColor = cls === "idx-pos" ? "var(--up-idx)" : cls === "idx-neg" ? "var(--down-idx)" : "var(--flat-idx)";
-        const pathD = "M " + pathPoints.join(" L ");
-        svgEl.innerHTML = '<path d="' + pathD + ' L 100,36 L 0,36 Z" fill="' + strokeColor + '" opacity="0.05" /><path d="' + pathD + '" fill="none" stroke="' + strokeColor + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />';
+        svgEl.innerHTML = '<path d="M ' + pathPointsStr + ' L 100,36 L 0,36 Z" fill="' + strokeColor + '" opacity="0.05" /><path d="M ' + pathPointsStr + '" fill="none" stroke="' + strokeColor + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />';
       }
 
       async function poll() {
         try {
-          const res = await fetch("/api/live-indices");
+          const res = await fetch("/api/live-indices/");
           if (!res.ok) throw new Error("status_" + res.status);
           const data = await res.json();
           if (!data || !Array.isArray(data.snapshots)) throw new Error("malformed_payload");
