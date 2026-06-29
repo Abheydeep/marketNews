@@ -1,13 +1,10 @@
 name: Briefing Watchdog
 
+# The scheduled safety-net now runs on Vercel Cron (/api/cron/premarket-publish),
+# which is far more punctual than GitHub Actions cron — the GitHub scheduler was
+# dropping and delaying these ticks by hours, defeating the watchdog. This workflow
+# is retained for manual catch-up only.
 on:
-  schedule:
-    # Every 30 minutes from 01:00 UTC (06:30 IST) to 04:30 UTC (10:00 IST) on weekdays
-    - cron: "0,30 1,2,3,4 * * 1-5"
-    # Every 30 minutes from 01:00 UTC (06:30 IST) to 04:30 UTC (10:00 IST) on Sundays
-    - cron: "0,30 1,2,3,4 * * 0"
-    # Evening sweep at 13:00 UTC (18:30 IST) every day
-    - cron: "0 13 * * *"
   workflow_dispatch:
 
 jobs:
@@ -25,12 +22,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           SUMMARY_DATE="$(TZ=Asia/Kolkata date +%F)"
-          ARCHIVE_FILE="archive/daily/${SUMMARY_DATE}-0715-digest.json"
-          echo "Checking if archive file exists: $ARCHIVE_FILE"
-          
-          if [ -f "$ARCHIVE_FILE" ]; then
+          # An edition for today may have published in either the 07:15 or 08:00 slot.
+          if ls "archive/daily/${SUMMARY_DATE}-0715-digest.json" "archive/daily/${SUMMARY_DATE}-0800-digest.json" >/dev/null 2>&1; then
             echo "SUCCESS: Today's briefing archive already exists. Watchdog has nothing to do."
           else
-            echo "WARNING: Today's briefing archive is MISSING. Triggering pages.yml publishing workflow..."
-            gh workflow run pages.yml
+            echo "WARNING: Today's briefing archive is MISSING. Triggering manual recovery (allow late publish)..."
+            # This is a manual recovery, almost always run after the window has closed,
+            # so allow a late publish — otherwise pages.yml is blocked by the window guard.
+            gh workflow run pages.yml -f allow_late_publish=true -f enforce_publish_window=false -f triggered_by=github-watchdog-manual
           fi
