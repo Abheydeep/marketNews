@@ -162,7 +162,8 @@ jobs:
             SKIP_ARCHIVE_WRITE_VALUE="true"
             echo "Code push has no verified archive for $SUMMARY_DATE; publishing latest tracked archive $PUBLISH_DATE."
           fi
-          PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" npm run site:publish -- --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"
+          PUBLIC_BUILD_DATE="$SUMMARY_DATE" SKIP_ARCHIVE_WRITE="$SKIP_ARCHIVE_WRITE_VALUE" node --env-file-if-exists=.env tools/publish-site.mjs --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"
+          node --env-file-if-exists=.env tools/archive-page.mjs --date "$PUBLISH_DATE" --scheduled-time "$PUBLISH_TIME"
 
       - name: Public copy QA
         run: npm run public:copy:qa -- out/site
