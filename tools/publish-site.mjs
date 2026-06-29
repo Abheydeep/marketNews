@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
+import { pageShell } from "./page-shell.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
@@ -2357,198 +2358,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 </html>`;
 }
 
-function aboutPage(latest, archiveDigests = []) {
+export function aboutPage(latest, archiveDigests = []) {
   const pageTitle = "About Market Narrative | Abhey Deep";
   const pageDescription = "About Abhey Deep and Market Narrative, a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing built around source verification, trader language, and public research boundaries.";
   const editionCount = verifiedEditionCount(archiveDigests);
   const editionLabel = editionCount === 1 ? "1 verified briefing" : `${editionCount} verified briefings`;
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="author" content="Abhey Deep">
-  <meta name="keywords" content="Abhey Deep, Market Narrative, Nifty briefing, Bank Nifty briefing, Indian market trader, pre-market research">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#050816">
-  <link rel="canonical" href="${escapeHtml(siteOrigin)}/about/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Market Narrative">
-  <meta property="og:title" content="${escapeHtml(pageTitle)}">
-  <meta property="og:description" content="${escapeHtml(pageDescription)}">
-  <meta property="og:url" content="${escapeHtml(siteOrigin)}/about/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
-  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
-  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
-  <title>${escapeHtml(pageTitle)}</title>
+
+  const head = `
   ${jsonLdScript(aboutPageJsonLd(pageTitle, pageDescription))}
   <style>
-    :root {
-      --paper: #050816;
-      --ink: #f8fafc;
-      --muted: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --cyan: #22d3ee;
-      --green: #34d399;
-      --amber: #fbbf24;
-    }
-
-    * { box-sizing: border-box; }
-
-    /* === Global mobile base (Tier 1) === */
-    html, body { overflow-x: hidden; }
-    body {
-      padding-left: env(safe-area-inset-left, 0px);
-      padding-right: env(safe-area-inset-right, 0px);
-    }
-    img, svg, video, canvas { max-width: 100%; height: auto; }
-    a, button { touch-action: manipulation; }
-    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
-    *:focus { outline: none; }
-    *:focus-visible {
-      outline: 2px solid #22d3ee;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    /* === End global mobile base === */
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 16% 0%, rgba(34, 211, 238, 0.26), transparent 32vw),
-        radial-gradient(circle at 82% 4%, rgba(52, 211, 153, 0.18), transparent 30vw),
-        linear-gradient(135deg, #030712 0%, #08111f 48%, #111827 100%);
-      color: var(--ink);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .shell {
-      width: min(1040px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(3, 7, 18, 0.72);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-inner {
-      align-items: center;
-      display: flex;
-      gap: 16px;
-      justify-content: space-between;
-      min-height: 64px;
-    }
-
-    .brand {
-      align-items: center;
-      display: flex;
-      gap: 12px;
-      font-size: 20px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    ${brandMarkCss()}
-
-    .tabs {
-      align-items: stretch;
-      display: flex;
-      gap: 24px;
-      min-height: 64px;
-    }
-
-    .tab-link {
-      align-items: center;
-      border-bottom: 2px solid transparent;
-      color: var(--muted);
-      display: inline-flex;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 0 1px;
-    }
-
-    .tab-link.active {
-      border-bottom-color: var(--cyan);
-      color: var(--ink);
-      font-weight: 850;
-    }
-
-    main {
-      padding: 52px 0 72px;
-    }
-
-    .hero {
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 24px;
-      padding-bottom: 28px;
-    }
-
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: 0.12em;
-      margin: 0 0 12px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: clamp(40px, 7vw, 70px);
-      letter-spacing: 0;
-      line-height: 0.98;
-      margin: 0;
-      max-width: 860px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-      margin: 18px 0 0;
-      max-width: 760px;
-    }
-
     .about-grid {
       display: grid;
       gap: 14px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
     .about-card,
     .method-card {
       border: 1px solid var(--line);
@@ -2556,7 +2379,6 @@ function aboutPage(latest, archiveDigests = []) {
       background: rgba(15, 23, 42, 0.62);
       padding: 18px;
     }
-
     .about-card h2,
     .method-card h2 {
       color: #fff;
@@ -2564,7 +2386,6 @@ function aboutPage(latest, archiveDigests = []) {
       line-height: 1.15;
       margin: 0 0 10px;
     }
-
     .about-card p,
     .method-card p,
     .method-card li {
@@ -2572,24 +2393,19 @@ function aboutPage(latest, archiveDigests = []) {
       font-size: 15px;
       line-height: 1.65;
     }
-
     .about-card p,
     .method-card p {
       margin: 0;
     }
-
     .method-card {
       grid-column: 1 / -1;
     }
-
     .archive-proof-card {
       background: linear-gradient(135deg, rgba(34, 211, 238, 0.14), rgba(52, 211, 153, 0.10)), rgba(15, 23, 42, 0.62);
     }
-
     .archive-proof-card strong {
       color: #f8fafc;
     }
-
     .archive-proof-link {
       align-items: center;
       border: 1px solid rgba(34, 211, 238, 0.34);
@@ -2601,21 +2417,18 @@ function aboutPage(latest, archiveDigests = []) {
       margin-top: 14px;
       padding: 9px 11px;
     }
-
     .method-list {
       display: grid;
       gap: 10px;
       margin: 12px 0 0;
       padding-left: 20px;
     }
-
     .about-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
     }
-
     .about-actions a {
       border-radius: 8px;
       background: rgba(34, 211, 238, 0.12);
@@ -2625,32 +2438,16 @@ function aboutPage(latest, archiveDigests = []) {
       font-weight: 900;
       padding: 10px 12px;
     }
-
     .about-actions a.subscribe {
       background: rgba(52, 211, 153, 0.16);
       border-color: rgba(52, 211, 153, 0.34);
       color: #bbf7d0;
     }
-
     @media (max-width: 760px) {
-      .nav-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 12px 0 0;
-      }
-
-      .tabs {
-        gap: 16px;
-        min-height: 48px;
-        overflow-x: auto;
-        width: 100%;
-      }
-
       .about-grid {
         grid-template-columns: 1fr;
       }
     }
-
     /* === More Hub === */
     .more-hub {
       margin-bottom: 36px;
@@ -2726,17 +2523,10 @@ function aboutPage(latest, archiveDigests = []) {
     @media (max-width: 480px) {
       .more-hub-grid { grid-template-columns: 1fr; }
     }
-    /* === End More Hub === */
-
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
-    ${siteFooterCss()}
   </style>
-</head>
-<body class="has-btb">
-  ${siteTopbarHtml("/about/")}
-  <main class="shell">
+  `;
+
+  const main = `
     <section class="more-hub" aria-label="Quick links">
       <span class="more-hub-eyebrow">Market Narrative</span>
       <div class="more-hub-grid">
@@ -2756,7 +2546,7 @@ function aboutPage(latest, archiveDigests = []) {
           <span class="more-hub-card-arrow">&#8250;</span>
         </a>
         <a class="more-hub-card" href="/contact/" id="more-hub-contact">
-          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="more-hub-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
           <span class="more-hub-card-body"><span class="more-hub-card-label">Contact</span><span class="more-hub-card-desc">Send feedback or reach out</span></span>
           <span class="more-hub-card-arrow">&#8250;</span>
         </a>
@@ -2797,7 +2587,7 @@ function aboutPage(latest, archiveDigests = []) {
       </article>
       <article class="about-card">
         <h2>What this is not</h2>
-        <p>This is educational market research, not SEBI-registered investment advice, a recommendation, or a promise of returns. No page places trades or asks readers to buy or sell securities.</p>
+        <p>This is educational market research; ${DISCLAIMER_COMPACT} Not a PMS offer, and not a promise of returns. No page places trades or asks readers to buy or sell securities.</p>
       </article>
       <article class="method-card">
         <h2>Methodology</h2>
@@ -2815,306 +2605,138 @@ function aboutPage(latest, archiveDigests = []) {
         <a class="archive-proof-link" href="/">Browse the archive</a>
       </article>
     </section>
-    ${siteFooterLinksHtml()}
-  </main>
-  ${bottomTabBarHtml("archive")}
-  ${mobileShellScript()}
-</body>
-</html>`;
+  `;
+
+  return pageShell({
+    title: pageTitle,
+    description: pageDescription,
+    canonicalUrl: `${siteOrigin}/about/`,
+    ogImage: `${siteOrigin}/og-card.svg`,
+    head,
+    bodyClass: "has-btb",
+    activeHref: "/about/",
+    mobileActiveKey: "archive",
+    main
+  });
 }
 
-function subscribePage(latest, totalBriefings = 38) {
+export function subscribePage(latest, totalBriefings = 38) {
   const pageTitle = "Join The Pre-Market Brief | Market Narrative";
   const pageDescription = "Join the Market Narrative daily email flow for the Nifty and Bank Nifty pre-market briefing.";
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="author" content="Abhey Deep">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#050816">
-  <link rel="canonical" href="${escapeHtml(siteOrigin)}/subscribe/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Market Narrative">
-  <meta property="og:title" content="${escapeHtml(pageTitle)}">
-  <meta property="og:description" content="${escapeHtml(pageDescription)}">
-  <meta property="og:url" content="${escapeHtml(siteOrigin)}/subscribe/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
-  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
-  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
-  <title>${escapeHtml(pageTitle)}</title>
+
+  const head = `
   ${jsonLdScript(subscribePageJsonLd(pageTitle, pageDescription))}
   <style>
-    :root {
-      --paper: #050816;
-      --ink: #f8fafc;
-      --muted: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --cyan: #22d3ee;
-      --green: #34d399;
-    }
-
-    * { box-sizing: border-box; }
-
-    /* === Global mobile base (Tier 1) === */
-    html, body { overflow-x: hidden; }
-    body {
-      padding-left: env(safe-area-inset-left, 0px);
-      padding-right: env(safe-area-inset-right, 0px);
-    }
-    img, svg, video, canvas { max-width: 100%; height: auto; }
-    a, button { touch-action: manipulation; }
-    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
-    *:focus { outline: none; }
-    *:focus-visible {
-      outline: 2px solid #22d3ee;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    /* === End global mobile base === */
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 16% 0%, rgba(34, 211, 238, 0.26), transparent 32vw),
-        radial-gradient(circle at 82% 4%, rgba(52, 211, 153, 0.18), transparent 30vw),
-        linear-gradient(135deg, #030712 0%, #08111f 48%, #111827 100%);
-      color: var(--ink);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .shell {
-      width: min(820px, calc(100% - 36px));
+    .subscribe-box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.62);
+      padding: 24px;
+      max-width: 600px;
       margin: 0 auto;
     }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(3, 7, 18, 0.72);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
+    .subscribe-box h2 {
+      color: #fff;
+      font-size: 24px;
+      margin: 0 0 8px;
     }
-
-    .nav-inner {
-      align-items: center;
-      display: flex;
-      gap: 16px;
-      justify-content: space-between;
-      min-height: 64px;
-    }
-
-    .brand {
-      align-items: center;
-      display: flex;
-      gap: 12px;
-      font-size: 20px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    ${brandMarkCss()}
-
-    .tabs {
-      align-items: stretch;
-      display: flex;
-      gap: 20px;
-      min-height: 64px;
-    }
-
-    .tab-link {
-      align-items: center;
-      border-bottom: 2px solid transparent;
+    .subscribe-box p {
       color: var(--muted);
-      display: inline-flex;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 0 1px;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 20px;
     }
-
-    .tab-link.active {
-      border-bottom-color: var(--cyan);
-      color: var(--ink);
-      font-weight: 850;
-    }
-
-    main {
-      padding: 54px 0 80px;
-    }
-
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: 0.12em;
-      margin: 0 0 12px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: clamp(40px, 7vw, 68px);
-      letter-spacing: 0;
-      line-height: 0.98;
-      margin: 0;
-      max-width: 780px;
-    }
-
-    .lede {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-      margin: 18px 0 0;
-      max-width: 700px;
-    }
-
-    .subscribe-panel {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.68);
-      margin-top: 26px;
-      padding: 20px;
-    }
-
     .sent-note {
-      border: 1px solid rgba(52, 211, 153, 0.38);
-      border-radius: 8px;
-      background: rgba(52, 211, 153, 0.12);
+      background: rgba(52, 211, 153, 0.16);
+      border: 1px solid rgba(52, 211, 153, 0.32);
       color: #bbf7d0;
-      display: none;
-      font-weight: 850;
-      margin-bottom: 14px;
+      border-radius: 8px;
       padding: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 800;
     }
-
     .sent-note[hidden] {
       display: none !important;
     }
-
-    body[data-sent="true"] .sent-note {
-      display: block;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    label {
-      color: #e5e7eb;
-      display: grid;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    input,
-    select {
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      background: rgba(2, 6, 23, 0.54);
-      color: #f8fafc;
-      font: inherit;
-      min-height: 44px;
-      padding: 10px 11px;
-      width: 100%;
-    }
-
-    button {
-      border: 0;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #06b6d4, #34d399);
-      color: #022c22;
-      cursor: pointer;
-      font: inherit;
-      font-size: 15px;
-      font-weight: 950;
-      min-height: 46px;
-      padding: 11px 14px;
-    }
-
-    .fine-print {
-      color: #93a4bd;
-      font-size: 13px;
-      line-height: 1.6;
-      margin: 14px 0 0;
-    }
-
     .honey-field {
       display: none;
     }
-
-    @media (max-width: 760px) {
-      .nav-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 12px 0 0;
-      }
-
-      .tabs {
-        gap: 16px;
-        min-height: 48px;
-        overflow-x: auto;
-        width: 100%;
-      }
+    .subscribe-form {
+      display: grid;
+      gap: 16px;
     }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
-    ${siteFooterCss()}
+    .subscribe-form label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .subscribe-form input,
+    .subscribe-form select {
+      background: rgba(3, 7, 18, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 10px 12px;
+      width: 100%;
+      outline: none;
+    }
+    .subscribe-form input:focus,
+    .subscribe-form select:focus {
+      border-color: var(--cyan);
+    }
+    .subscribe-form button {
+      background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+      border: none;
+      border-radius: 8px;
+      color: #030712;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 900;
+      padding: 12px;
+      transition: opacity 0.18s ease;
+    }
+    .subscribe-form button:hover {
+      opacity: 0.9;
+    }
+    .fine-print {
+      color: #64748b;
+      font-size: 11px;
+      line-height: 1.5;
+      margin: 20px 0 0;
+    }
   </style>
-</head>
-<body class="has-btb">
-  ${siteTopbarHtml("/subscribe/")}
-  <main class="shell">
-    <p class="eyebrow">Daily Email</p>
-    <h1>Get the pre-market briefing before the open.</h1>
-    <p class="lede">Join the email flow for the daily Nifty and Bank Nifty brief: global cue, India read-through, first level to verify, Bank Nifty filter, and source ledger.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 0;font-size:13px;color:var(--muted);font-weight:800;">
-      <span style="background:rgba(34,211,238,0.1);color:var(--cyan);padding:4px 8px;border-radius:6px;border:1px solid rgba(34,211,238,0.15)">
-        ✓ ${totalBriefings}+ editions published
-      </span>
-      <span style="background:rgba(52,211,153,0.1);color:var(--green);padding:4px 8px;border-radius:6px;border:1px solid rgba(52,211,153,0.15)">
-        ✓ 100% free with source links
-      </span>
-      <a href="/latest/" style="text-decoration:underline;padding:4px 0;color:var(--ink);">
-        Read sample briefing &rarr;
-      </a>
-    </div>
-    <section class="subscribe-panel" aria-label="Join daily Market Narrative email">
-      <div class="sent-note" hidden aria-live="polite"></div>
-      <form action="${escapeHtml(subscribeFormAction)}" method="POST">
-        <input type="hidden" name="_subject" value="New Market Narrative daily brief subscriber">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="${escapeHtml(`${siteOrigin}/subscribe/?sent=1`)}">
+  `;
+
+  const main = `
+    <section class="hero">
+      <p class="eyebrow">Join the workflow</p>
+      <h1>Pre-market research, delivered at 7:15 AM.</h1>
+      <p>Receive Nifty and Bank Nifty global cues, India read-through, opening gates, Bank Nifty confirmation, sector watch, and source links straight to your inbox every morning before the cash open.</p>
+    </section>
+    <section class="subscribe-box">
+      <h2>Subscribe</h2>
+      <p>No spam. Only the daily briefing. Join ${totalBriefings} readers.</p>
+      <div class="sent-note" hidden></div>
+      <form class="subscribe-form" action="https://formspree.io/f/xvgozvwd" method="POST">
         <label class="honey-field" aria-hidden="true">Leave this empty
           <input type="text" name="_honey" tabindex="-1" autocomplete="off">
         </label>
-        <label>Email
-          <input name="email" type="email" autocomplete="email" required>
+        <label>
+          Email address
+          <input type="email" name="email" required>
         </label>
-        <label>What should the brief help you trade?
-          <select name="market_focus">
-            <option value="Nifty and Bank Nifty">Nifty and Bank Nifty</option>
-            <option value="Bank Nifty first">Bank Nifty first</option>
+        <label>
+          Interest
+          <select name="interest">
+            <option value="Nifty &amp; Bank Nifty briefing">Nifty &amp; Bank Nifty briefing</option>
             <option value="Sector watch">Sector watch</option>
             <option value="Long-term portfolio context">Long-term portfolio context</option>
           </select>
@@ -3124,21 +2746,29 @@ function subscribePage(latest, totalBriefings = 38) {
       <p class="fine-print">Educational market research only; this is not SEBI-registered investment advice. No spam, no trade calls, and no recommendation to buy or sell securities or derivatives. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
     ${siteFooterLinksHtml()}
-  </main>
-  <script>
-    if (new URLSearchParams(window.location.search).get('sent') === '1') {
-      document.body.dataset.sent = 'true';
-      const sentNote = document.querySelector('.sent-note');
-      if (sentNote) {
-        sentNote.textContent = ['Request received.', 'Check your inbox for the confirmation note.'].join(' ');
-        sentNote.hidden = false;
+    <script>
+      if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        document.body.dataset.sent = 'true';
+        const sentNote = document.querySelector('.sent-note');
+        if (sentNote) {
+          sentNote.textContent = ['Request received.', 'Check your inbox for the confirmation note.'].join(' ');
+          sentNote.hidden = false;
+        }
       }
-    }
-  </script>
-  ${bottomTabBarHtml("archive")}
-  ${mobileShellScript()}
-</body>
-</html>`;
+    </script>
+  `;
+
+  return pageShell({
+    title: pageTitle,
+    description: pageDescription,
+    canonicalUrl: `${siteOrigin}/subscribe/`,
+    ogImage: `${siteOrigin}/og-card.svg`,
+    head,
+    bodyClass: "has-btb",
+    activeHref: "/subscribe/",
+    mobileActiveKey: "archive",
+    main
+  });
 }
 
 function buildFiiDiiCashRecords(allDigests) {
