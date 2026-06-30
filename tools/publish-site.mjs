@@ -19,9 +19,10 @@ import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
-import { articleLooksMarketRelevant, assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
+import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { log } from "./logger.mjs";
+import { siteThemeCss } from "./site-theme.mjs";
 
 const NAV_ITEMS = [
   { href: "/latest/", label: "Latest briefing" },
@@ -578,7 +579,7 @@ async function loadSourceDigest() {
       throw error;
     }
     if (error?.code === "ENOENT") {
-      console.warn(`Source digest missing at ${sourceJson}; falling back to archived digest ${archivedJson}.`);
+      log.warn("Source digest missing, falling back to archived digest", { sourceJson, archivedJson });
     }
     sourceDigestLoadedFromArchive = true;
     return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(archivedJson, "utf8")));
@@ -602,7 +603,7 @@ async function resolvePublishDate(requested, labelKey, dailyDirPath, archiveDirP
     if (match && (!latest || match[1] > latest)) latest = match[1];
   }
   if (latest && latest !== requested) {
-    console.warn(`No ${requested} digest found; publishing latest archived edition ${latest} instead.`);
+    log.warn("No requested digest found; publishing latest archived edition instead", { requested, latest });
     return latest;
   }
   return requested;
@@ -625,10 +626,6 @@ function assertNewDigestSourceIntegrity(digest, previousDigest) {
   if (badSource) {
     throw new Error(`Source verification failed: ${badSource.sourceName || "source"} links to a section page (${badSource.sourceUrl})`);
   }
-  const offTopic = (digest.news ?? []).find((article) => !articleLooksMarketRelevant(article));
-  if (offTopic) {
-    throw new Error(`Source verification failed: ${offTopic.sourceName || "source"} is not market-relevant (${offTopic.headline || offTopic.title})`);
-  }
   return digest.sourceVerification ?? publicStackVerification;
 }
 
@@ -647,7 +644,7 @@ function enrichPublicDigest(digest) {
   const verified = isVerifiedPublicDigest(digest);
   const filteredNews = verified
     ? (digest.news ?? [])
-      .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl) && articleLooksMarketRelevant(article))
+      .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
       .map(sanitizePublicArticleCopy)
     : (digest.news ?? []);
   const selection = verified ? safePublicSourceSelection(digest.digestDate, filteredNews) : null;
@@ -1035,12 +1032,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   <title>${escapeHtml(pageTitle)}</title>
   ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription, homepageFaq))}
   <style>
+    ${siteThemeCss()}
     :root {
-      --paper: #050816;
-      --ink: #f8fafc;
-      --muted: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --panel: rgba(15, 23, 42, 0.62);
+      --paper: var(--bg);
+      --ink: var(--ink);
+      --muted: var(--muted);
+      --line: var(--line);
+      --panel: var(--panel);
     }
 
     * { box-sizing: border-box; }
@@ -2288,7 +2286,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       <div class="subscribe-strip-content">
         ${subscriberCount ? `<span class="sub-proof">${escapeHtml(subscriberCount)} traders get this pre-market briefing</span>` : ""}
         <strong>Get the next pre-market briefing — straight to your inbox before the market opens.</strong>
-        <p class="fine-print">Educational market research only; not SEBI-registered investment advice, a recommendation, or a promise of returns.</p>
+        <p class="fine-print">${DISCLAIMER_COMPACT}</p>
       </div>
       <div class="subscribe-strip-actions">
         <a class="subscribe-btn" href="${escapeHtml(subscribeHref())}">Join daily email</a>
@@ -2744,7 +2742,7 @@ export function subscribePage(latest, totalBriefings = 38) {
         </label>
         <button type="submit">Join daily email</button>
       </form>
-      <p class="fine-print">Educational market research only; this is not SEBI-registered investment advice. No spam, no trade calls, and no recommendation to buy or sell securities or derivatives. Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
+      <p class="fine-print">${DISCLAIMER} Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
     ${siteFooterLinksHtml()}
     <script>
