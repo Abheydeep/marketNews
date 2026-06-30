@@ -42,7 +42,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${jsonLdPayload(multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount))}</script>
-  <style>
+  <style>/* site-theme v1 */
     :root {
       --paper: #050816;
       --ink: #f8fafc;
@@ -1639,6 +1639,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   </style>
 </head>
 <body class="glass-v2 has-btb">
+  <!-- site-header v1 -->
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -1961,7 +1962,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       </details>
     </section>
   </main>
-
+  <!-- site-footer v1 -->
   <div class="shell" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
     <p style="color:var(--muted); font-size:12px; line-height:1.5;">Quote timestamps are shown beside each holding. Public data excludes personal screenshots, share counts, portfolio totals, and unpublished review notes.</p>
     ${siteFooterLinksHtml()}

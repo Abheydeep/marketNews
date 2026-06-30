@@ -3,6 +3,9 @@ import assert from "node:assert";
 import { readFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { cockpitPage } from "./cockpit-page.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
+import { buildDigest } from "./core.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
@@ -79,4 +82,25 @@ test("architecture-guard: negative test for sentinel validation", () => {
   
   assert.ok(!badRes.hasTheme && !badRes.hasHeader && !badRes.hasFooter, "Should flag missing sentinels");
   assert.ok(goodRes.hasTheme && goodRes.hasHeader && goodRes.hasFooter, "Should recognize clean sentinels");
+});
+
+test("architecture-guard: verify rendered page sentinels in-memory", async () => {
+  const digest = await buildDigest("2026-04-29");
+  const cockpitHtml = cockpitPage(
+    { ...digest, canonicalPath: "/29apr2026/" },
+    "public-view",
+    { includeStudio: true }
+  );
+  const multibaggerHtml = multibaggerPage();
+
+  const cockpitRes = verifyRenderedSentinels(cockpitHtml);
+  const multibaggerRes = verifyRenderedSentinels(multibaggerHtml);
+
+  assert.ok(cockpitRes.hasTheme, "Cockpit page missing site-theme sentinel");
+  assert.ok(cockpitRes.hasHeader, "Cockpit page missing site-header sentinel");
+  assert.ok(cockpitRes.hasFooter, "Cockpit page missing site-footer sentinel");
+
+  assert.ok(multibaggerRes.hasTheme, "Multibagger page missing site-theme sentinel");
+  assert.ok(multibaggerRes.hasHeader, "Multibagger page missing site-header sentinel");
+  assert.ok(multibaggerRes.hasFooter, "Multibagger page missing site-footer sentinel");
 });

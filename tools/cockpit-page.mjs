@@ -140,13 +140,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
   <style>
+    /* site-theme v1 */
     :root {
-      --paper: #f4f5f7;
-      --ink: #111827;
-      --slate: #0f172a;
-      --stone: #6b7280;
-      --line: #e5e7eb;
-      --panel: #ffffff;
+      --paper: #0b1120;
+      --ink: #f4f5f7;
+      --slate: #f8fafc;
+      --stone: #b8c4d8;
+      --line: #263247;
+      --panel: #111827;
       --blue: #2563eb;
       --green: #059669;
       --red: #dc2626;
@@ -188,34 +189,26 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       -webkit-font-smoothing: antialiased;
     }
 
-    @media (prefers-color-scheme: dark) {
-      body:not(.glass-v2) {
-        --paper: #0b1120;
-        --ink: #f4f5f7;
-        --slate: #f8fafc;
-        --stone: #b8c4d8;
-        --line: #263247;
-        --panel: #111827;
-        background: #0b1120;
-      }
+    body:not(.glass-v2) {
+      background: #0b1120;
+    }
 
-      body:not(.glass-v2) .topbar {
-        background: rgba(11, 17, 32, 0.94);
-      }
+    body:not(.glass-v2) .topbar {
+      background: rgba(11, 17, 32, 0.94);
+    }
 
-      body:not(.glass-v2) :is(.info-card, .panel, .briefing-card, .quote-board-card, .source-category-section, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric) {
-        background: #111827;
-        border-color: #263247;
-        color: #f4f5f7;
-      }
+    body:not(.glass-v2) :is(.info-card, .panel, .briefing-card, .quote-board-card, .source-category-section, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric) {
+      background: #111827;
+      border-color: #263247;
+      color: #f4f5f7;
+    }
 
-      body:not(.glass-v2) :is(.section-kicker h2, .source-category-head h3, .source-category-meta strong, .source-stat-strip strong, .source-card h3, .brief-section h3, .brief-section strong) {
-        color: #f8fafc;
-      }
+    body:not(.glass-v2) :is(.section-kicker h2, .source-category-head h3, .source-category-meta strong, .source-stat-strip strong, .source-card h3, .brief-section h3, .brief-section strong) {
+      color: #f8fafc;
+    }
 
-      body:not(.glass-v2) :is(.source-category-head p, .source-section-copy, .chart-note, .brief-list, .watch-grid, .source-stat-strip span, .source-category-meta span) {
-        color: #b8c4d8;
-      }
+    body:not(.glass-v2) :is(.source-category-head p, .source-section-copy, .chart-note, .brief-list, .watch-grid, .source-stat-strip span, .source-category-meta span) {
+      color: #b8c4d8;
     }
 
     button, textarea, input {
@@ -5523,6 +5516,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
   ${requireAuth ? adminAuthGateHtml() : ""}
+  <!-- site-header v1 -->
   <nav class="topbar">
     <div class="shell">
       <div class="nav-inner">
@@ -7542,6 +7536,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </script>
   ${bottomTabBarHtml("latest")}
   ${mobileShellScript()}
+  <!-- site-footer v1 -->
   <footer style="text-align:center;padding:12px 16px 24px;font-size:0.78rem;color:#6b7a99;line-height:1.5;">
     ${DISCLAIMER}
   </footer>

@@ -315,4 +315,17 @@ These must remain true after changes:
   Architecture diagrams changed: none.
   Debt found but deferred: none.
 
+- 2026-06-29: Implemented Phase 0, Phase 1, Phase 2, and foundation of Phase 3 & 4 of the architectural plan.
+  ROOT CAUSE (if bug): none.
+  Verified: Created `tools/html-utils.mjs` and `tools/site-constants.mjs` to centralize formatters, disclaimers, and symbols. Created `tools/http.mjs` to unify requests, timeout logic, and retries. Created `tools/chart-svg.mjs` to unify coordinate-to-SVG mapping. Created `tools/site-chrome.mjs`, `tools/page-shell.mjs`, and `tools/json-ld.mjs` to unify the global document shells, headers, and footers. Registered `tools/architecture-guard.test.mjs` and verification suites, which run successfully. Verified via `npm run context:verify` (passes), `npm test` (96 tests pass), and `npm run test:deploy` (passes).
+  Architecture diagrams changed: none.
+  Debt found but deferred: migrating existing page files to use the new page-shell.mjs and decompositing cockpit-page.mjs.
+
+- 2026-06-30: Completed Phase G and Phase H: migrated cockpit and multibagger pages to adopt force-dark theme variables and unified site sentinels (theme, header, footer). Implemented strict architecture guard integration test that renders pages in-memory and validates sentinels, ensuring empty allowlist enforcement.
+  ROOT CAUSE (if bug): none.
+  Verified: `npm run context:verify` (passed), `npm test` (85 tests passed, including `verify rendered page sentinels in-memory` test), `npm run test:deploy` (passed), `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+
 
