@@ -1,6 +1,7 @@
 import { ARTICLE_ENRICHMENT_PROMPT } from "./editorial-guardrails.mjs";
 import { log } from "./logger.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+import { triageArticlesWithLLM } from "./article-triage.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 
@@ -312,12 +313,12 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   let verifiedArticles = dedupeArticles(feedResults)
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl));
     
-  if (!isPulseMode) {
-    verifiedArticles = verifiedArticles.filter(articleLooksMarketRelevant);
-  }
-  
   verifiedArticles = verifiedArticles.filter((article) => articleIsFreshForDigest(article, date, isPulseMode));
-  
+
+  if (!isPulseMode) {
+    verifiedArticles = await triageArticlesWithLLM(verifiedArticles, options);
+  }
+
   let selectedArticles;
   if (isPulseMode) {
     selectedArticles = await agentSelectPulseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), options);
@@ -352,27 +353,29 @@ async function enrichPulseArticleWithContent(article, fetcher) {
   return article;
 }
 
+const ENRICH_CONCURRENCY = 4;
+
 async function enrichArticlesWithEditorialLLM(articles, options = {}) {
   const enricher = options.articleEditorialEnricher ?? configuredArticleEditorialEnricher(options);
   if (typeof enricher !== "function") {
     return articles;
   }
-  const agentMode = shouldUseAgentArticleEnrichment(options);
-  const maxEnrichmentCalls = Number.isFinite(Number(options.maxArticleEditorialEnrichmentCalls))
-    ? Number(options.maxArticleEditorialEnrichmentCalls)
-    : agentMode ? 8 : 6;
-  const enriched = [];
-  const seenTemplateSignatures = new Map();
   const usedEditorialAngles = [];
-  let enrichmentCalls = 0;
-  for (const article of articles) {
-    if ((!agentMode && !articleShouldUseEditorialEnrichment(article, seenTemplateSignatures)) || enrichmentCalls >= maxEnrichmentCalls) {
-      enriched.push(article);
-      rememberArticleEditorialAngles(article, usedEditorialAngles);
-      continue;
-    }
-    try {
-      enrichmentCalls += 1;
+  const enriched = new Array(articles.length);
+  let enrichedCount = 0;
+  let fallbackCount = 0;
+
+  log.info("enrich start", { total: articles.length, concurrency: ENRICH_CONCURRENCY });
+
+  for (let i = 0; i < articles.length; i += ENRICH_CONCURRENCY) {
+    const batch = articles.slice(i, i + ENRICH_CONCURRENCY);
+    const batchNum = Math.floor(i / ENRICH_CONCURRENCY) + 1;
+    const totalBatches = Math.ceil(articles.length / ENRICH_CONCURRENCY);
+    log.info("enrich batch start", { batch: batchNum, of: totalBatches, headlines: batch.map((a) => String(a.headline ?? "").slice(0, 50)) });
+    const batchStart = Date.now();
+
+    const settled = await Promise.allSettled(batch.map(async (article) => {
+      const articleStart = Date.now();
       const patch = await enricher({
         article: articleForEditorialEnrichment(article),
         prompt: ARTICLE_ENRICHMENT_PROMPT,
@@ -383,17 +386,28 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
           watchFor: "max 20 words, one tradable confirmation input"
         }
       });
-      const patchedArticle = sanitizeArticleEditorialPatch(article, patch);
-      enriched.push(patchedArticle);
-      rememberArticleEditorialAngles(patchedArticle, usedEditorialAngles);
-    } catch (error) {
-      if (options.strictEditorialEnrichment) {
-        throw error;
+      log.info("enrich article ok", { headline: String(article.headline ?? "").slice(0, 60), durationMs: Date.now() - articleStart });
+      return sanitizeArticleEditorialPatch(article, patch);
+    }));
+
+    for (let j = 0; j < batch.length; j++) {
+      const result = settled[j];
+      if (result.status === "fulfilled") {
+        enriched[i + j] = result.value;
+        rememberArticleEditorialAngles(result.value, usedEditorialAngles);
+        enrichedCount++;
+      } else {
+        if (options.strictEditorialEnrichment) throw result.reason;
+        log.warn("enrich article failed", { headline: String(batch[j].headline ?? "").slice(0, 60), error: result.reason?.message });
+        enriched[i + j] = batch[j];
+        rememberArticleEditorialAngles(batch[j], usedEditorialAngles);
+        fallbackCount++;
       }
-      enriched.push(article);
-      rememberArticleEditorialAngles(article, usedEditorialAngles);
     }
+    log.info("enrich batch complete", { batch: batchNum, of: totalBatches, durationMs: Date.now() - batchStart });
   }
+
+  log.info("enrich complete", { total: articles.length, enriched: enrichedCount, fallback: fallbackCount });
   return enriched;
 }
 
