@@ -113619,6 +113619,74 @@
       "diiNet": 2801.45,
       "diiBuy": 55273.85,
       "diiSell": 52472.4
+    },
+    "fnoOi": {
+      "fii": {
+        "idxFutLong": 60489,
+        "idxFutShort": 294940,
+        "stkFutLong": 4035844,
+        "stkFutShort": 3359553,
+        "idxCeLong": 871182,
+        "idxPeLong": 1263889,
+        "idxCeShort": 1116554,
+        "idxPeShort": 647669,
+        "stkCeLong": 297462,
+        "stkPeLong": 462641,
+        "stkCeShort": 501572,
+        "stkPeShort": 302892,
+        "totalLong": 6991507,
+        "totalShort": 6223179
+      },
+      "dii": {
+        "idxFutLong": 82029,
+        "idxFutShort": 11796,
+        "stkFutLong": 469740,
+        "stkFutShort": 4482036,
+        "idxCeLong": 6109,
+        "idxPeLong": 25857,
+        "idxCeShort": 50,
+        "idxPeShort": 194,
+        "stkCeLong": 783,
+        "stkPeLong": 43012,
+        "stkCeShort": 408852,
+        "stkPeShort": 17653,
+        "totalLong": 627530,
+        "totalShort": 4920581
+      }
+    },
+    "fnoVol": {
+      "fii": {
+        "idxFutLong": 83108,
+        "idxFutShort": 93750,
+        "stkFutLong": 2056429,
+        "stkFutShort": 2033129,
+        "idxCeLong": 4761247,
+        "idxPeLong": 5101873,
+        "idxCeShort": 4746707,
+        "idxPeShort": 5082298,
+        "stkCeLong": 719790,
+        "stkPeLong": 331834,
+        "stkCeShort": 743206,
+        "stkPeShort": 338621,
+        "totalLong": 13054281,
+        "totalShort": 13037711
+      },
+      "dii": {
+        "idxFutLong": 15495,
+        "idxFutShort": 14649,
+        "stkFutLong": 1268072,
+        "stkFutShort": 1260385,
+        "idxCeLong": 225,
+        "idxPeLong": 8626,
+        "idxCeShort": 160,
+        "idxPeShort": 3076,
+        "stkCeLong": 26426,
+        "stkPeLong": 8835,
+        "stkCeShort": 26553,
+        "stkPeShort": 4718,
+        "totalLong": 1327679,
+        "totalShort": 1309541
+      }
     }
   }
 }

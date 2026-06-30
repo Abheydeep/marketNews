@@ -1,0 +1,2143 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-06-30",
+  "title": "Nifty Open Shape Opening Range",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-06-30T07:38:20.060Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: flat open",
+    "sourceArticleId": "mint-markets:1gp6u6",
+    "driverType": "crude",
+    "headline": "Stock market today: Gift Nifty hints muted start; US-Iran talks to global markets - 7 stocks to buy or sell",
+    "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
+    "riskSide": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
+    "supportSide": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+    "giftNiftyBias": {
+      "giftPrice": 23975,
+      "niftyClose": 23946.25,
+      "gapPts": 29,
+      "gapPct": 0.12,
+      "bias": "flat",
+      "biasLabel": "flat open"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 9,
+    "shortlistCount": 25,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 0,
+    "indiaPublisherCount": 8,
+    "shortlistIndiaPublisherCount": 22,
+    "directIndiaSourceCount": 8,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 8,
+    "globalContextCount": 1,
+    "globalOnlySourceRatio": 11,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 8 direct India sources, 0 official sources, 8 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-bajaj-auto-zee-share-price-30-june-2026/liveblog/132082129.cms",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-motors-pv-share-price-today-live-30-jun-2026/liveblog/132082352.cms",
+      "https://www.livemint.com/market/commodities/crude-oil-prices-fall-on-possible-us-iran-talks-brent-near-72-per-barrel-11782783756605.html",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-today-live-30-jun-2026/liveblog/132082314.cms",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/dr-reddys-stock-price-today-live-30-jun-2026/liveblog/132082351.cms",
+      "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-muted-start-us-iran-talks-to-global-markets-7-stocks-to-buy-or-sell-11782783429732.html",
+      "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bajaj-finance-share-price-live-30-jun-2026/liveblog/132082343.cms",
+      "https://www.business-standard.com/economy/news/iip-industrial-output-grows-5-1-may-manufacturing-electricity-boost-126062900609_1.html",
+      "https://www.cnbc.com/2026/06/30/china-factory-activity-june-tech-export-demand-pmi-nbs.html"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: flat open: Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index...",
+  "twoMinuteSummary": "Overnight talks between the United States and Iran pushed Brent crude below seventy-three dollars a barrel, the lowest level in weeks. Lower oil prices ease pressure on India's import bill and give the rupee breathing room, which benefits paint, airline, and tyre companies that use crude derivatives. Watch whether the diplomatic momentum holds through the week, because any breakdown would reverse the relief quickly.\n\nGIFT Nifty pointed to a flat-to-positive open while Asian markets sent mixed signals, with Taiwan and Japan rising but Hong Kong and Australia slipping. The divergence means foreign portfolio flows could stay choppy, leaving domestic institutions to set the tone for heavyweight sectors like banking and information technology. The next cue will come from tonight's US jobs data, which could shift rate-cut expectations and move the dollar.\n\nTata Motors' passenger vehicle arm showed resilience in early trade, reflecting steady domestic demand despite global growth worries. A stronger rupee and softer commodity costs help margins, but the export-linked Jaguar Land Rover business remains sensitive to European and Chinese sentiment. Keep an eye on monthly sales numbers due this week for confirmation that the volume recovery is broadening.\n\nEicher Motors and Dr Reddy's Laboratories moved in opposite directions, highlighting the stock-picking nature of the current market. Two-wheeler demand is tied to rural income and monsoon progress, while pharma faces pricing pressure in the US generics market. Monsoon updates and the next round of USFDA inspection outcomes will decide which of these narratives gains traction.",
+  "deskNote": "The market is stuck in a familiar waiting room: geopolitics offering a temporary oil reprieve, global indices flashing green but breadth staying narrow, and domestic heavyweights refusing to commit to a direction. What makes this pause different from the last three is that the usual catalysts — earnings season, policy meetings, budget speculation — are all weeks away. That vacuum gets filled by noise: a headline here, a block deal there, a rupee move that reverses by lunch. The structural read-through is simpler than it looks. When foreign flows turn tentative and domestic liquidity stays abundant but selective, the market stops rewarding themes and starts rewarding balance sheets. Companies with pricing power, low leverage, and visible volume growth will outperform not because they are \"defensive\" but because they don't need the macro to cooperate. The rest will trade on hope, and hope is a poor position-sizing tool.",
+  "watchItems": [
+    "Gift Nifty premium/discount versus the previous Nifty close, then Nifty VWAP and Bank Nifty breadth after 9:15 AM.",
+    "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.",
+    "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read."
+  ],
+  "overallSentiment": -0.07,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +1.18%, Nasdaq 100 +2.26%, Dow Jones +0.59%, Nifty 50 +0.04%, Bank Nifty +0.09%, Nikkei 225 +0.8",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7440.43,
+      "previousClose": 7354.02,
+      "changePercent": 1.175,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T21:42:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 7420.88
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7397.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7355.44
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7390.62
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7400.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7407.84
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7403.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7406.85
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7412.72
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7413.38
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7413.57
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7412.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7413.8
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7416.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7428.75
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7430.68
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7432.19
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7433.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7435.12
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7430.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7438.75
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7436.11
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7435.11
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7437.76
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7435.22
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7439.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 7440.43
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29774.75,
+      "previousClose": 29118.24,
+      "changePercent": 2.255,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 29491.93
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29318.13
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29069.68
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29272.07
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29303.13
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29434.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29443.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29487.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29539.7
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29556.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29563.83
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29583.78
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29627.1
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29633.26
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29700.54
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29726.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29723.92
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29720.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29735.15
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29704.24
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29769.65
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29746.28
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29732.37
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29746.73
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29740.48
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29773.23
+        },
+        {
+          "time": "2026-06-29",
+          "close": 29774.75
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 52182.74,
+      "previousClose": 51876.11,
+      "changePercent": 0.591,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-29T21:41:19.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-29",
+          "close": 52248.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52177.34
+        },
+        {
+          "time": "2026-06-29",
+          "close": 51967.49
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52173.35
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52236.96
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52217.29
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52121.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52107.59
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52125.02
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52097.57
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52137.09
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52109.51
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52097.77
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52115.19
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52166.02
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52129.69
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52203.99
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52237.36
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52255.34
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52227.08
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52242.3
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52232.25
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52217.32
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52191.12
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52178.18
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52172.04
+        },
+        {
+          "time": "2026-06-29",
+          "close": 52182.74
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 23955.7,
+      "previousClose": 23946.25,
+      "changePercent": 0.039,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-30T07:14:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 23896.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23870.35
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23881.7
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23889.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23891.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23890.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23878.65
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23938.05
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23976.55
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23932.6
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23946.15
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23925.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23933.15
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23954.25
+        },
+        {
+          "time": "2026-06-30",
+          "close": 23955.7
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57778.9,
+      "previousClose": 57727.35,
+      "changePercent": 0.089,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-30T07:14:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 57739.35
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57698.75
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57793.95
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57835.05
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57758.65
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57752
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57658.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57808.25
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57856
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57729.85
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57767.35
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57704.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57720.05
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57774.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 57778.9
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 70062.32,
+      "previousClose": 69468.11,
+      "changePercent": 0.855,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-06-30T06:45:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 70496.02
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69777.96
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69365.73
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69755.02
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69602.55
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70147.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69915.76
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69965.58
+        },
+        {
+          "time": "2026-06-30",
+          "close": 69861.83
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70106.86
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70116.82
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70367.42
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70258.58
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70441.14
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70617.39
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70663.33
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70547.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70642.18
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70476.04
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70486
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70376.53
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70274.51
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70181.82
+        },
+        {
+          "time": "2026-06-30",
+          "close": 70062.32
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 22804.81,
+      "previousClose": 23026.68,
+      "changePercent": -0.964,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-06-30T06:59:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 22938.89
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22832.76
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22783.72
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22736.7
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22726.34
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22727.34
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22785.08
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22762.06
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22737.15
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22753.74
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22752.96
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22728.94
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22728.65
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22753.01
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22816.36
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22834.96
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22809.39
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22783.61
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22811.05
+        },
+        {
+          "time": "2026-06-30",
+          "close": 22804.81
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 4096.74,
+      "previousClose": 4027.26,
+      "changePercent": 1.725,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-06-30T06:57:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 4066.85
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4062.22
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4063.62
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4064.49
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4066.28
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4065.58
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4074
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4082.04
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4082.13
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4076.55
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4079.24
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4075.79
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4078.05
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4078.07
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4080.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4088.62
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4096.72
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 8476.48,
+      "previousClose": 8394.65,
+      "changePercent": 0.975,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-06-30T06:32:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 8420.42
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8343.88
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8240.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8327.61
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8298.14
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8410.08
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8387.07
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8422.23
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8373.34
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8481.16
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8446.64
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8514.18
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8496.77
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8515.06
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8513.26
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8476.33
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8528.71
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8614.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8659.71
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8627.93
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8639.46
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8606.96
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8570.08
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8569.15
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8476.48
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 46125.91,
+      "previousClose": 44999.9,
+      "changePercent": 2.502,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-06-30T05:33:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 46242.3
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46411.01
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46393.47
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46402.84
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46336.68
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46439.12
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46473.27
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46437.12
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46362.46
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46410.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46406.06
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46434.97
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46484.95
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46543.86
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46577.13
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46520.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46637.02
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46559.35
+        },
+        {
+          "time": "2026-06-30",
+          "close": 46125.91
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5178.99,
+      "previousClose": 5208.75,
+      "changePercent": -0.571,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-06-30T06:59:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 5182.16
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5185.79
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5188.83
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5189.42
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5185.96
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5181.53
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5180.4
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5178.57
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5180.36
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5182.32
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5181.14
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.62
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.14
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.09
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.16
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5176.04
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5166.99
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5169.63
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5167.52
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5176.04
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5175.4
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5175.59
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.21
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5177.58
+        },
+        {
+          "time": "2026-06-30",
+          "close": 5178.99
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8778.7,
+      "previousClose": 8823.4,
+      "changePercent": -0.507,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-06-30T06:25:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 8829.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8820.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8825.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8834.6
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8829.4
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8832.7
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8818.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8819.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8820.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8818.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8824.3
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.4
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8822.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8813.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8805.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8808.6
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8801
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8791.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8792.3
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8778.7
+        },
+        {
+          "time": "2026-06-30",
+          "close": 8778.7
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 101.27,
+      "previousClose": 101.36,
+      "changePercent": -0.089,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-30T07:04:47.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 101.32
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.33
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.32
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.38
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.37
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.36
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.36
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.41
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.39
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.32
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.31
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.28
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.27
+        },
+        {
+          "time": "2026-06-30",
+          "close": 101.27
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 73.53,
+      "previousClose": 73.91,
+      "changePercent": -0.514,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-30T07:04:20.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 73.7
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.53
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.52
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.49
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.47
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.46
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.53
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.33
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.3
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.13
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.3
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.41
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.53
+        },
+        {
+          "time": "2026-06-30",
+          "close": 73.53
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 94.64,
+      "previousClose": 94.53,
+      "changePercent": 0.114,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-06-30T07:14:41.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 94.51
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.56
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.59
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.62
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.63
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.66
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.64
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.58
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.55
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.56
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.62
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.6
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.59
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.63
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.66
+        },
+        {
+          "time": "2026-06-30",
+          "close": 94.64
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4040.1,
+      "previousClose": 4038.9,
+      "changePercent": 0.03,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-06-30T07:04:42.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 3985.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3995.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4002.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3999.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3998.8
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3996.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3992.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 3991.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4001.2
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4025.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4039.1
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4043.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4040.5
+        },
+        {
+          "time": "2026-06-30",
+          "close": 4040.1
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 13.38,
+      "previousClose": 13.05,
+      "changePercent": 2.49,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-06-30T07:14:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-06-30",
+          "close": 13.88
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.9
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.85
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.77
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.74
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.65
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.72
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.45
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.28
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.41
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.33
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.4
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.37
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.38
+        },
+        {
+          "time": "2026-06-30",
+          "close": 13.38
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23975,
+      "previousClose": 23940.5,
+      "changePercent": 0.14,
+      "dataTimestamp": "2026-06-30T07:13:14.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-06-29T23:13:14.000Z",
+          "close": 23940.5
+        },
+        {
+          "time": "2026-06-30T07:13:14.000Z",
+          "close": 23975
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "29-Jun-2026",
+    "fiiNet": -1350.1,
+    "fiiBuy": 24754.26,
+    "fiiSell": 26104.36,
+    "diiNet": 2801.45,
+    "diiBuy": 55273.85,
+    "diiSell": 52472.4
+  },
+  "giftNiftyBias": {
+    "giftPrice": 23975,
+    "niftyClose": 23946.25,
+    "gapPts": 29,
+    "gapPct": 0.12,
+    "bias": "flat",
+    "biasLabel": "flat open"
+  },
+  "todaysReadArticle": "GIFT Nifty's modest premium over the Nifty's Friday close frames a market caught between diplomatic headlines and domestic data, with the benchmark poised for a flat-to-positive open that will test whether the index can sustain above the first-range VWAP before committing to direction. The overnight session distilled into a single tension: US-Iran nuclear talks in Oman trimmed Brent's risk premium toward $72 a barrel, yet OPEC+ supply discipline and the opacity of Iranian output volumes prevented a deeper collapse, leaving the energy complex in a holding pattern that directly conditions the rupee, the omc complex, and the broader rate-sensitive financial pack.\n\nAsian risk-on provided a supportive backdrop, but the real signal for Indian traders sits in the May industrial output print, which surged to a five-month high of 5.1 percent and reinforces the domestic growth momentum that underpins the RBI's pause bias ahead of the June policy review. That data point does not trade in isolation; it arrives alongside a USD/INR hovering near 84.64 and provisional FII flow data that will determine whether the cyclical bounce in capital goods and infrastructure names has institutional sponsorship or remains a retail-led headline chase.\n\nSingle-stock ticks across Tata Motors PV, Eicher Motors, Dr Reddy's and Bajaj Finance are noise until sector breadth validates them, and the advance-decline line across Nifty Auto, Pharma and the Bank Nifty will be the true arbiter of whether Friday's marginal gains — Nifty 23,955.7, Bank Nifty 57,778.9 — represent accumulation or distribution. The financial sector's participation is particularly critical; without Bank Nifty confirming the move through breadth and volume, any Nifty upside lacks the structural heft to sustain beyond the opening auction.\n\nAt the 9:15 AM bell, traders must watch three things in sequence: whether Nifty holds the overnight gap above the first fifteen-minute VWAP, whether Bank Nifty's advance-decline ratio breaks above 1.5 to signal broad financial participation, and whether Brent's dip below $73 translates into immediate rupee strength that lifts OMCs and aviation names into the green. The IIP print gives the bulls a fundamental anchor, but in a market driven by diplomatic headlines and flow dynamics, price action in the first hour will write the real narrative for the session.",
+  "themes": [
+    {
+      "digestDate": "2026-06-30",
+      "themeType": "global_risk",
+      "title": "Global Risk-Off Cue",
+      "summary": "US-Iran war: Brent crude futures for August delivery, set to expire on Tuesday, fell 1.03%, or 75 cents, to $72.40 per barrel.",
+      "sentimentScore": -0.558,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-06-30",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher.",
+      "sentimentScore": -0.065,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-06-30",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update.",
+      "sentimentScore": 0.35,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-06-30",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today..",
+      "sentimentScore": 0.4,
+      "evidenceCount": 4
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 53,
+    "publisherCount": 13,
+    "categoryCount": 5,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 1401155,
+  "scheduledFor": "2026-06-30T08:00:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-06-30T02:14:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
+      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher.",
+      "takeaway": "GIFT Nifty premium frames the opening gap; Asian risk-on adds context but local breadth decides tradability.','indiaImpact'.",
+      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
+      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
+      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-bajaj-auto-zee-share-price-30-june-2026/liveblog/132082129.cms",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Sensex Today",
+        "accent": "#0891b2",
+        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:33:24.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today.",
+      "summary": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today..",
+      "takeaway": "Single-stock price tick adds no pre-market signal; sector breadth needed for index read-through.','indiaImpact'.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-motors-pv-share-price-today-live-30-jun-2026/liveblog/132082352.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Tata Motors",
+        "accent": "#059669",
+        "alt": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today. source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T01:58:09.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Crude oil prices fall on possible US-Iran talks; Brent near $72 per barrel",
+      "summary": "US-Iran war: Brent crude futures for August delivery, set to expire on Tuesday, fell 1.03%, or 75 cents, to $72.40 per barrel.",
+      "takeaway": "Diplomatic talks trim Brent's risk premium, but OPEC+ supply discipline and Iran output uncertainty cap the downside for now.','indiaImpact'.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around $72; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-fall-on-possible-us-iran-talks-brent-near-72-per-barrel-11782783756605.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Crude oil prices fall on possible US-Iran talks; Brent near $72 per barrel source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:31:58.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update",
+      "summary": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update.",
+      "takeaway": "Single-stock price feed adds no pre-market signal; Nifty Auto needs peer breadth before Eicher's move carries index weight.",
+      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
+      "indiaImpact": "Nifty Auto and auto ancillaries require sector breadth confirmation; isolated Eicher tick does not shift index bias.",
+      "watchFor": "Watch Nifty Auto advance-decline and auto-finance names through first range.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-today-live-30-jun-2026/liveblog/132082314.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Sector Breadth",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "Sector Breadth",
+        "theme": "Eicher Motors",
+        "accent": "#2563eb",
+        "alt": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:33:19.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Dr Reddys Share Price Live Updates: Dr. Reddys reports a decrease in today's stock price",
+      "summary": "Dr Reddys Share Price Live Updates: Dr. Reddys reports a decrease in today's stock price.",
+      "takeaway": "Single-stock price tick without news catalyst; pharma sector breadth required before any index read-through.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty Pharma and healthcare peers need advance-decline confirmation; otherwise stock-specific context only.",
+      "watchFor": "Watch Nifty Pharma breadth and Dr. Reddy's opening volume at 9:15 AM.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/dr-reddys-stock-price-today-live-30-jun-2026/liveblog/132082351.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Reddys Share",
+        "accent": "#059669",
+        "alt": "Dr Reddys Share Price Live Updates: Dr. Reddys reports a decrease in today's stock price source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:30:14.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Stock market today: Gift Nifty hints muted start; US-Iran talks to global markets - 7 stocks to buy or sell",
+      "summary": "Indian stock market indices, Sensex and Nifty 50, are expected to open positively on Tuesday amid rising global markets, despite geopolitical tensions due to US-Iran conflicts and profit booking. Experts suggest cautious trading influenced by upcoming negotiations and regional developments.",
+      "takeaway": "Gift Nifty signals a flat-to-positive open as global gains offset US-Iran tensions; the real test is whether Nifty sustains above first-range VWAP.','indiaImpact'.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
+      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-muted-start-us-iran-talks-to-global-markets-7-stocks-to-buy-or-sell-11782783429732.html",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Gift Nifty",
+        "accent": "#0891b2",
+        "alt": "Stock market today: Gift Nifty hints muted start; US-Iran talks to global markets - 7 stocks to buy or sell source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:33:03.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Bajaj Finance Share Price Live Updates: Bajaj Finance's Current Price and Market Performance",
+      "summary": "Bajaj Finance Share Price Live Updates: Bajaj Finance's Current Price and Market Performance.",
+      "takeaway": "Live price feed with no fresh catalyst; Bajaj Finance move is noise until Bank Nifty breadth validates financial-sector participation.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Stock-specific only; Bank Nifty and financials breadth must confirm before any index read-through forms.",
+      "watchFor": "Watch Bajaj Finance VWAP and Bank Nifty advance-decline into 9:30 AM.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bajaj-finance-share-price-live-30-jun-2026/liveblog/132082343.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Bajaj Finance",
+        "accent": "#059669",
+        "alt": "Bajaj Finance Share Price Live Updates: Bajaj Finance's Current Price and Market Performance source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-29T10:45:39.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India's industrial output growth hits five-month high of 5.1% in May",
+      "summary": "Industrial output growth rose to 5.1 per cent in May as electricity generation strengthened and the government adopted Output-PPI for the new IIP series",
+      "takeaway": "May IIP at 5.1% reinforces domestic growth momentum, supports RBI pause bias and cyclical sectors ahead of Q1 earnings.','indiaImpact'.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/iip-industrial-output-grows-5-1-may-manufacturing-electricity-boost-126062900609_1.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Indias Industrial",
+        "accent": "#059669",
+        "alt": "India's industrial output growth hits five-month high of 5.1% in May source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-06-30T02:35:39.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "China factory activity grows faster than expected in June on tech export demand",
+      "summary": "China's manufacturing engine held up this year as surging demand for artificial intelligence technology helped offset the drag from Middle East turmoil.",
+      "takeaway": "China's AI-driven manufacturing upside eases global growth worries, lifting demand outlook for metals and export sectors.",
+      "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
+      "indiaImpact": "Nifty Metal, auto and chemical exporters stand to benefit if China's factory strength sustains global orders.",
+      "watchFor": "Watch Nifty Metal and Nifty Auto opening breadth for early confirmation.",
+      "sourceUrl": "https://www.cnbc.com/2026/06/30/china-factory-activity-june-tech-export-demand-pmi-nbs.html",
+      "sentimentLabel": "negative",
+      "entityName": "Global Tech",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "China factory activity grows faster than expected in June on tech export demand source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-30T02:14:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-bajaj-auto-zee-share-price-30-june-2026/liveblog/132082129.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today.",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-30T02:33:24.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-motors-pv-share-price-today-live-30-jun-2026/liveblog/132082352.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETata%20Motors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tata Motors PV Share Price Live Updates: Tata Motors PV sees a price of Rs 350.0, with a positive change today. source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Crude oil prices fall on possible US-Iran talks; Brent near $72 per barrel",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-30T01:58:09.000Z",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-fall-on-possible-us-iran-talks-brent-near-72-per-barrel-11782783756605.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude oil prices fall on possible US-Iran talks; Brent near $72 per barrel source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-30T02:31:58.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-today-live-30-jun-2026/liveblog/132082314.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EEicher%20Motors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Eicher Motors Share Price Live Updates: Eicher Motors Daily Price Update source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Dr Reddys Share Price Live Updates: Dr. Reddys reports a decrease in today's stock price",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-30T02:33:19.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/dr-reddys-stock-price-today-live-30-jun-2026/liveblog/132082351.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EReddys%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dr Reddys Share Price Live Updates: Dr. Reddys reports a decrease in today's stock price source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Stock market today: Gift Nifty hints muted start; US-Iran talks to global markets - 7 stocks to buy or sell",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-30T02:30:14.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-muted-start-us-iran-talks-to-global-markets-7-stocks-to-buy-or-sell-11782783429732.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Nifty%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock market today: Gift Nifty hints muted start; US-Iran talks to global markets - 7 stocks to buy or sell source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Bajaj Finance Share Price Live Updates: Bajaj Finance's Current Price and Market Performance",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-30T02:33:03.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bajaj-finance-share-price-live-30-jun-2026/liveblog/132082343.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBajaj%20Finance%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Bajaj Finance Share Price Live Updates: Bajaj Finance's Current Price and Market Performance source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India's industrial output growth hits five-month high of 5.1% in May",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-29T10:45:39.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/iip-industrial-output-grows-5-1-may-manufacturing-electricity-boost-126062900609_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Industrial%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India's industrial output growth hits five-month high of 5.1% in May source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "China factory activity grows faster than expected in June on tech export demand",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-30T02:35:39.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/30/china-factory-activity-june-tech-export-demand-pmi-nbs.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "China factory activity grows faster than expected in June on tech export demand source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 20 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 20 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-06-30.webp"
+  }
+}
