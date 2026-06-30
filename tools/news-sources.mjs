@@ -316,7 +316,8 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   verifiedArticles = verifiedArticles.filter((article) => articleIsFreshForDigest(article, date, isPulseMode));
 
   if (!isPulseMode) {
-    verifiedArticles = await triageArticlesWithLLM(verifiedArticles, options);
+    const preTriage = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 100);
+    verifiedArticles = await triageArticlesWithLLM(preTriage, options);
   }
 
   let selectedArticles;
