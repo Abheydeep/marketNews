@@ -75,13 +75,15 @@ Rules:
   headline already says.
 - India impact: maximum 35 words. Name the Indian index, sector, instrument,
   or say it is global-only context when the India transmission line is weak.
-- Watch for: maximum 20 words. Give one observable confirmation input for the
-  open: price, breadth, VWAP, Bank Nifty, USD/INR, crude, yields, FII flow,
-  sector breadth, or options data.
-- Prefer Nifty, Bank Nifty, Nifty IT, Nifty Bank, Nifty Auto, Nifty Metal,
-  FMCG, OMCs, aviation, pharma, realty, exporters, USD/INR, Brent, G-sec
-  yields, India VIX, PCR, OI buildup, put writing, or call resistance only
-  when the article supports that link.
+- Watch for: maximum 20 words. Name ONE concrete thing to watch — a price
+  move, a policy decision, a data release, or a sector reaction — in plain
+  language any investor can follow. Make it specific to THIS article's story,
+  not a generic checklist. BANNED words: "VWAP", "sector breadth",
+  "first-range", "advance-decline", "risk-on", "risk-off", "structural",
+  "tradable", "breadth validates".
+- Prefer Nifty, Bank Nifty, Nifty IT, Nifty Auto, Nifty Metal, Nifty FMCG,
+  OMCs, aviation, pharma, realty, exporters, USD/INR, Brent, G-sec yields
+  only when the article supports that link.
 - If the story has no direct India read-through, do not invent one. Mark it as
   global-only context in natural public language.
 - Rank like a morning Indian market desk: PM/RBI/SEBI/finance-ministry policy,
@@ -104,9 +106,9 @@ Rules:
 
 Good shape:
 {
-  "takeaway": "US yields are the risk variable; India needs local bank breadth before the signal has trading weight.",
-  "indiaImpact": "Bank Nifty, realty and autos are the checks if yields stay firm and USD/INR pressures the open.",
-  "watchFor": "Watch Bank Nifty VWAP and USD/INR through 9:45 AM."
+  "takeaway": "US yields jumped to their highest in two months, raising the cost of borrowing for governments and companies worldwide.",
+  "indiaImpact": "Bank Nifty, realty and auto stocks face pressure if Indian bond yields follow US yields higher.",
+  "watchFor": "Watch whether the 10-year Indian government bond yield rises at the open."
 }
 `.trim();
 
@@ -127,7 +129,7 @@ Ranking rules:
 1. PM/RBI/SEBI/finance-ministry policy and direct India market-state stories outrank generic stock liveblogs.
 2. Brent/crude moves above 2%, Iran/Hormuz/Red Sea/geopolitical commodity shocks, and oil-import stress are top India-open drivers.
 3. GIFT Nifty, FII/DII flows, USD/INR, Bank Nifty breadth, and index futures outrank single-stock price updates.
-4. US-China tariff/trade truce stories matter when they explain Nasdaq, KOSPI, Hang Seng, metals, exporters, or risk-on/risk-off.
+4. US-China tariff/trade truce stories matter when they explain Nasdaq, KOSPI, Hang Seng, metals, or exporters — and whether global investors are moving into or out of emerging markets like India.
 5. Major US tech/semiconductor moves matter through Nifty IT only when the article supports that transmission.
 6. Single-stock liveblogs, analyst targets, stock-pick lists, and isolated corporate updates are supporting context unless they clearly move the index.
 

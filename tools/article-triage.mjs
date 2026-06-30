@@ -22,7 +22,7 @@ function buildTriagePrompt(articles) {
 3 = Moderate: useful background context for Indian traders
 2 = Low: generic business news, weak India relevance
 1 = Very low: barely connected
-0 = Irrelevant: SME/small-cap IPO allotment/GMP/subscription, US lifestyle, retirement, sports, medical, crypto, US single-stock without India link, "how to invest" pieces, celebrity/royals, gadget reviews
+0 = Irrelevant: SME/small-cap IPO allotment/GMP/subscription, US lifestyle, retirement, sports, medical, crypto, US single-stock without India link, "how to invest" pieces, celebrity/royals, gadget reviews, live stock price update liveblogs (e.g. "Share Price Live Updates", "Daily Price Update", "Current Price and Market Performance", "stock price today live"), individual stock price trackers with no news
 
 Respond ONLY with a valid JSON array — no explanation, no markdown:
 [{"id":1,"score":4},{"id":2,"score":0},...]

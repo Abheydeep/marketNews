@@ -163,7 +163,7 @@ ${topArticles}`;
   );
   const teleprompterScript = await requireNim(
     "teleprompterScript",
-    `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\n\n${context}`,
+    `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\nBANNED WORDS: "VWAP", "breadth", "risk-on", "risk-off", "first-range", "sector breadth validates", "advance-decline", "structural", "accumulation or distribution".\n\n${context}`,
     { maxTokens: 900 }
   );
   const reelScript = await requireNim(
@@ -174,7 +174,7 @@ ${topArticles}`;
 
   const editorialBriefing = await requireNim(
     "editorialBriefing",
-    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon: do not use "VWAP", "first-range", "breadth", "tradable", "RR", or specific index levels/numbers as levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
+    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon whatsoever: do not use "VWAP", "first-range", "breadth", "tradable", "RR", "risk-on", "risk-off", "sector breadth validates", "advance-decline", "structural heft", "accumulation", "distribution" (in the technical sense), or specific index levels/numbers as price targets or support levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
     { maxTokens: 2000 }
   );
 
@@ -248,6 +248,7 @@ RULES:
 - The headline MUST be about the PRIMARY STORY and its India relevance.
 - Markets are CLOSED: do NOT reference "the open", "gap-up", "gap-down", "9:15", "pre-market", or trading the session.
 - Use ONLY the facts above. Do NOT invent events, FII/FPI flows, named stocks, or numbers that are not listed.
+- CRITICAL: Do NOT include any specific price level or dollar/rupee value (e.g. "$90", "₹350", "24,000") unless it appears literally in the PRICES section above. If the story mentions a price not in PRICES, omit the number.
 - Engaging, punchy, factual. SEO: include "Nifty", "Sensex", or "stock market" plus the named driver.
 - No sensational or clickbait words. No buy/sell/hold, no price targets, no index levels.
 - Output ONLY the headline text.`
@@ -263,6 +264,7 @@ RULES:
 - The headline MUST be about the PRIMARY STORY and its India read-through — do not switch to a different topic.
 - The tone MUST match MARKET DIRECTION. If POSITIVE, do not imply selling, caution, or a weak open. If NEGATIVE, do not imply a rally.
 - Use ONLY the facts above. Do NOT invent events, FII/FPI flows, named stocks, or numbers that are not listed.
+- CRITICAL: Do NOT include any specific price level or dollar/rupee value (e.g. "$90", "₹350", "24,000") unless it appears literally in the PRICES section above. If the source article mentions a number not in PRICES, omit the number entirely.
 - Make it engaging and punchy with a clear angle — connect the story to its India market impact, not a flat wire headline.
 - SEO: name the driver (e.g. "Brent crude", "bond yields", a sector) AND, where it fits naturally, add an India-equity hook readers search — "Nifty", "Sensex", or "stock market today".
 - Plain, confident, factual. No sensational or clickbait words ("spree", "shocking", "panic", "you won't believe").
@@ -837,11 +839,11 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
     ? `If ${setup.symbol} accepts near ${formatNumber(setup.entry)}, the plan is clean: invalidation below ${formatNumber(setup.stopLoss)}, target near ${formatNumber(setup.target)}, and no entry unless the reward stays at least twice the risk.`
     : "No forced trade at the open. Let the first-hour range form, then only take a setup that gives at least twice the reward for the risk.";
   const bankSetupLine = bankSetup
-    ? `Bank Nifty confirmation sits near ${formatNumber(bankSetup.entry)}; below ${formatNumber(bankSetup.stopLoss)}, the risk-on read loses authority.`
+    ? `Bank Nifty confirmation sits near ${formatNumber(bankSetup.entry)}; below ${formatNumber(bankSetup.stopLoss)}, the bullish case weakens.`
     : bankNiftyConfirmationLine(snapshots);
   const toneLine = {
     BULLISH: "The setup has a constructive bias, but the first candle still has to prove it.",
-    BEARISH: "This is not a clean risk-on morning; protect capital first and let levels confirm.",
+    BEARISH: "This is not a clean start; protect capital first and let price action confirm.",
     VOLATILE: "This is a two-way market; the edge is in waiting for confirmation, not guessing the gap.",
     NEUTRAL: "The market is balanced enough that the first thirty minutes can change the whole read."
   }[sentimentLabel] ?? "The first thirty minutes matter more than the headline gap.";
@@ -875,7 +877,7 @@ function generateReelScript({ date, sentimentLabel, snapshots, themes, setups, a
     "",
     "[28-40s | INDIA OPEN]",
     "ON SCREEN: Nifty + Bank Nifty game plan",
-    `VOICEOVER: ${indiaLine || "Nifty and Bank Nifty need confirmation after the bell."} If banks hold VWAP and breadth improves, dips can stay selective. If breadth breaks, reduce size and wait.`,
+    `VOICEOVER: ${indiaLine || "Nifty and Bank Nifty need confirmation after the bell."} If banks stabilise and more stocks gain than fall, dips can stay selective. If sellers dominate after the open, reduce size and wait.`,
     "",
     "[40-52s | TRADE PLAN]",
     "ON SCREEN: No chase. Only 1:2+ setups.",
@@ -896,7 +898,7 @@ function bankNiftyConfirmationLine(snapshots = []) {
   if (!bank?.closeValue) {
     return "Bank Nifty must confirm with private-bank breadth and VWAP acceptance before any Nifty bias gets size.";
   }
-  return `Bank Nifty confirmation is the filter: hold ${formatNumber(bank.closeValue)} and VWAP for risk-on; lose it and keep the Nifty plan defensive.`;
+  return `Bank Nifty is the key check: hold above ${formatNumber(bank.closeValue)} and the bulls stay in control; break below it and keep the overall plan defensive.`;
 }
 
 function sectorStakeLine(input) {
