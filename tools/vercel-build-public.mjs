@@ -127,6 +127,25 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
   log.info("public vercel build completed market-closed artifact", { runId, fallback });
   process.exit(0);
 } else {
+  // If today's archive is already committed (e.g., from the daily schedule run),
+  // publish from it directly — no need to re-run the LLM pipeline on code-only pushes.
+  // This is the main fix for the "latest lags after code pushes" problem.
+  const committedToday = todayArchivedDigest(date);
+  if (committedToday) {
+    log.info("committed archive found for today — skipping regeneration", { runId, date, scheduledTime: committedToday.scheduledTime });
+    const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", committedToday.scheduledTime], {
+      env: { ...process.env, SKIP_ARCHIVE_WRITE: "true" },
+      exitOnFailure: false
+    });
+    if (published.status === 0) {
+      await writeLatestSlugArtifact(slugForDate(date));
+      await writePwaArtifacts();
+      log.info("public vercel build completed from committed archive", { runId, date });
+      process.exit(0);
+    }
+    log.warn("publish from committed archive failed, attempting fresh generation", { runId, date });
+  }
+
   const generated = run("npm", [
     "run",
     "daily:generate",
@@ -228,6 +247,17 @@ function slugForDate(value) {
   return `${Number(day)}${monthName}${year}`;
 }
 
+function todayArchivedDigest(date) {
+  const archiveDir = join(rootDir, "archive", "daily");
+  // Prefer the latest slot if multiple exist for the same day.
+  for (const slot of ["0800", "0830", "0715"]) {
+    if (existsSync(join(archiveDir, `${date}-${slot}-digest.json`))) {
+      return { date, scheduledTime: `${slot.slice(0, 2)}:${slot.slice(2)}` };
+    }
+  }
+  return null;
+}
+
 function latestArchivedDigest() {
   const archiveDir = join(rootDir, "archive", "daily");
   const digests = readdirSync(archiveDir)
@@ -236,7 +266,7 @@ function latestArchivedDigest() {
       return match ? { date: match[1], scheduledTime: `${match[2].slice(0, 2)}:${match[2].slice(2)}` } : null;
     })
     .filter(Boolean)
-    .filter((item) => isTradingSessionDate(item.date))
+    .filter((item) => isGeneralEditionDate(item.date))
     .sort((left, right) => `${left.date}T${left.scheduledTime}`.localeCompare(`${right.date}T${right.scheduledTime}`));
   const latest = digests.at(-1);
   if (!latest) {
