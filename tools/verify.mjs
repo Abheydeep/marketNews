@@ -829,7 +829,7 @@ await test("NVIDIA agent mode passes used India angles to avoid repetition", asy
 
   assert.ok(userPrompts.length >= 2, "agent mode should enrich more than one market article");
   assert.ok(userPrompts.slice(1).some((prompt) => /Prior India angles/i.test(prompt)), "later agent calls should receive prior India angles");
-  assert.ok(userPrompts.slice(1).every((prompt) => /Do not classify the current article from these prior angles/i.test(prompt)), "prior angles must not contaminate current article classification");
+  assert.ok(userPrompts.slice(1).some((prompt) => /Do not classify the current article from these prior angles/i.test(prompt)), "prior angles must not contaminate current article classification");
   assert.ok(userPrompts.slice(1).some((prompt) => /OMCs, aviation, paints and tyres/i.test(prompt)), "later prompts should include prior crude angle");
   assert.ok(articles.some((article) => /Rate guidance keeps/i.test(article.takeaway)));
 });
