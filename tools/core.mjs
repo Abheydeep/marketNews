@@ -374,23 +374,15 @@ export async function buildDigest(date = todayIso(), options = {}) {
     .map((item) => item.setup);
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
-  const script = generateScript(date, sentimentLabel, marketSnapshots, themes, tradeSetups, overallSentiment, publicArticles, options.previousDigest, dailyLead);
+  const tempTitle = uniqueTitleForDigest(date, sentimentLabel, publicArticles, themes, options.previousDigest, dailyLead);
   const aiScript = await generateFullScriptWithAI({ date, sentimentLabel, snapshots: marketSnapshots, themes, setups: tradeSetups, articles: publicArticles, overallSentiment, dailyLead });
-  let twoMinuteSummary = null;
-  let aiDeskNote = null;
-  if (aiScript) {
-    if (aiScript.teleprompterScript) script.teleprompterScript = aiScript.teleprompterScript;
-    if (aiScript.onePageSummary) script.onePageSummary = aiScript.onePageSummary;
-    if (aiScript.reelScript) script.reelScript = aiScript.reelScript;
-    if (aiScript.twoMinuteSummary) twoMinuteSummary = aiScript.twoMinuteSummary;
-    if (aiScript.deskNote) aiDeskNote = aiScript.deskNote;
-  }
+  const twoMinuteSummary = aiScript?.twoMinuteSummary || null;
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(date, publicArticles, themes, options.previousDigest, dailyLead);
-  const deskNote = aiDeskNote || deskNoteForDigest(date, publicArticles, tradeSetups, marketSnapshots, overallSentiment, options.previousDigest, dailyLead);
-  const watchItems = watchItemsForDigest(date, publicArticles, tradeSetups, options.previousDigest);
+  const deskNote = aiScript?.deskNote || null;
+  const watchItems = watchItemsFromArticles(publicArticles, options.previousDigest);
   assertDigestEditorialIntegrity({
-    title: script.title,
+    title: tempTitle,
     archiveSummary,
     deskNote,
     watchItems,
@@ -406,7 +398,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const digest = {
     scriptId: 1,
     digestDate: date,
-    title: script.title,
+    title: tempTitle,
     status: "DRAFT",
     generatedAt,
     dailyLead,
@@ -417,9 +409,9 @@ export async function buildDigest(date = todayIso(), options = {}) {
     watchItems,
     overallSentiment: round(overallSentiment, 3),
     sentimentLabel,
-    onePageSummary: script.onePageSummary,
-    teleprompterScript: script.teleprompterScript,
-    reelScript: script.reelScript,
+    onePageSummary: aiScript?.onePageSummary || null,
+    teleprompterScript: aiScript?.teleprompterScript || null,
+    reelScript: aiScript?.reelScript || null,
     publishedAt: null,
     marketSnapshots,
     fiiDiiFlows: fiiDiiFlows ?? null,
@@ -2366,63 +2358,19 @@ function sectorFocusLabel(article) {
   return "Sector breadth";
 }
 
-function watchItemsForDigest(date, articles, setups, previousDigest) {
-  const rankedArticles = [...articles].sort((left, right) =>
-    marketLeadScore(right) + sectorLeadScore(right) + freshnessScore(right, date) -
-    (marketLeadScore(left) + sectorLeadScore(left) + freshnessScore(left, date))
-  );
-  const candidates = [
-    ...rankedArticles.map((article) => specificWatchItem(article)).filter(Boolean),
-    ...setups.map((setup) => `${setup.symbol} acceptance near ${formatNumber(setup.entry)} with invalidation at ${formatNumber(setup.stopLoss)}.`)
-  ];
+function watchItemsFromArticles(articles, previousDigest) {
   const previous = new Set((previousDigest?.watchItems || []).map(normalizeEditorial));
   const unique = [];
-  for (const item of candidates) {
+  for (const article of articles) {
+    const item = article?.watchFor;
+    if (!item) continue;
     const cleaned = cleanSentence(item);
     const key = normalizeEditorial(cleaned);
-    if (!key || previous.has(key) || unique.some((existing) => normalizeEditorial(existing) === key)) {
-      continue;
-    }
+    if (!key || previous.has(key) || unique.some((existing) => normalizeEditorial(existing) === key)) continue;
     unique.push(cleaned);
     if (unique.length === 3) break;
   }
-  while (unique.length < 3) {
-    unique.push([
-      "Gift Nifty premium or discount versus the previous Nifty close; this sets the gap direction before 9:15 AM.",
-      "Bank Nifty VWAP hold through 9:45 AM IST; failed hold keeps the session defensive regardless of global cues.",
-      "FII provisional flow, especially selling above Rs 1,500 Cr; heavy outflow can fade a firm open."
-    ][unique.length]);
-  }
-  return unique.slice(0, 3);
-}
-
-function specificWatchItem(article) {
-  const headline = String(article?.headline || "").toLowerCase();
-  if (/\b(gift nifty|sgx nifty|nifty futures|index futures|futures premium|futures discount)\b/.test(headline)) return "Gift Nifty premium/discount versus the previous Nifty close, then Nifty VWAP and Bank Nifty breadth after 9:15 AM.";
-  if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "US jobs-week positioning and Nasdaq futures before India opens; a weak risk tape keeps Nifty in confirmation mode.";
-  if (/\b(opec|production|output)\b/.test(headline)) return "Brent reaction to OPEC supply headlines before Europe opens; aviation, OMCs, paints and upstream energy are the first India checks.";
-  if (/\b(crude|oil|brent)\b/.test(headline)) return "Brent direction before the Europe open and whether oil-import sensitivity hits India breadth.";
-  if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(headline)) return "Brent, USD/INR, gold and FII flow at the open; geopolitics needs risk-off confirmation before it becomes an index bias.";
-  if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|mpc|stt|capital gains tax)\b/.test(headline)) return "Affected-sector breadth, Bank Nifty VWAP and official circular follow-through; policy stories need sector confirmation.";
-  if (/\b(yield|bond|rate|fed|inflation)\b/.test(headline)) return "US yield direction into the afternoon and whether Bank Nifty holds VWAP.";
-  if (/\b(dollar|rupee|currency|yen|usd.?inr|forex|dxy)\b/.test(headline)) return "USD/INR and DXY behavior through the first hour; currency pressure can cap risk appetite.";
-  if (/\b(fii|dii|fpi|foreign institutional|domestic institutional|institutional flow|provisional flow)\b/.test(headline)) return "FII/DII provisional flow and Bank Nifty VWAP; heavy FII selling can blunt a firm global open.";
-  if (/\b(bank|banks|credit|deposit)\b/.test(headline)) return "Bank Nifty follow-through through 9:45-10:00 AM IST and whether private-bank breadth confirms.";
-  if (/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) return "Nifty IT breadth after the open and whether exporters confirm the currency read-through.";
-  if (/\b(tech|ai|software|semiconductor|chip|chips)\b/.test(headline)) return "Nasdaq and semiconductor futures into the cash open; use them as risk-appetite context, not an automatic Nifty IT call.";
-  if (/\b(asia|china|japan|hong kong|korea|taiwan)\b/.test(headline)) return "Asia breadth into the Indian first hour and whether regional risk stays supportive.";
-  if (/\b(apple|amazon|meta|alphabet|microsoft|big tech|faang|mega-cap|mag.?7)\b/.test(headline)) return "Nasdaq futures and Nifty IT advance-decline at open; mega-cap earnings must translate into exporter participation.";
-  if (/\b(tariff|trade war|export ban|import duty|export restriction|protectionist|trade policy)\b/.test(headline)) return "Metals, pharma, IT and auto-ancillary breadth separately; trade policy stories split sectors, not the whole index.";
-  if (/\b(rbi|repo rate|monetary policy|liquidity|g-sec|gsec)\b/.test(headline)) return "G-sec yield and Bank Nifty VWAP; RBI signals travel fastest to banks, realty and autos.";
-  if (/\b(metal|metals|steel|copper|aluminium|aluminum|iron ore)\b/.test(headline)) return "Nifty Metal breadth, China futures and commodity prices; cyclicals need Bank Nifty support before becoming broad risk-on.";
-  if (/\b(monsoon|rainfall|agri|agriculture|rural|crop|fertili[sz]er)\b/.test(headline)) return "FMCG, tractors, fertilisers and rural lenders after the first range; monsoon cues need domestic breadth confirmation.";
-  if (/\b(consumer|retail|spending|sentiment|fmcg|rural demand)\b/.test(headline)) return "FMCG, auto and retail-lender breadth after the first range; skip the read if banks lag.";
-  if (/\b(volatility|vix|options?|pcr|oi buildup|put writing|call resistance)\b/.test(headline)) return "India VIX, PCR, put writing and call resistance through 9:45 AM; size only after the option tape confirms.";
-  const fallback = article?.watchFor || "";
-  if (/\bnifty it\b/i.test(fallback) && !/\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline)) {
-    return "";
-  }
-  return fallback;
+  return unique;
 }
 
 function freshnessScore(article, date) {
