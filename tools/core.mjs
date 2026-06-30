@@ -271,18 +271,35 @@ RULES:
 - No trading calls: no buy/sell/hold, no price targets, no index levels, no "VWAP".
 - Output ONLY the headline text.`;
   const raw = await nimCall(system, user, { maxTokens: 60, retries: 3, temperature: 0.3 });
-  return sanitizeEditorialHeadline(raw);
+  return sanitizeEditorialHeadline(raw, allowedDollarPrices(marketSnapshots));
 }
 
-function sanitizeEditorialHeadline(raw) {
+function allowedDollarPrices(marketSnapshots) {
+  const allowed = new Set();
+  for (const s of marketSnapshots) {
+    const v = Number(s.closeValue);
+    if (Number.isFinite(v) && v > 0) {
+      allowed.add(Math.round(v));
+      allowed.add(Math.floor(v));
+      allowed.add(Math.ceil(v));
+    }
+  }
+  return allowed;
+}
+
+function sanitizeEditorialHeadline(raw, allowedPrices = new Set()) {
   if (!raw) return null;
   let h = String(raw).split("\n").map((line) => line.trim()).filter(Boolean)[0] || "";
-  h = h.replace(/^["'“”\s]+|["'“”\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
+  h = h.replace(/^["'""\s]+|["'""\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
   if (!h) return null;
   // Reject trading-call / level language so the H1 always clears editorial guardrails.
   if (/\b(buy|sell|hold)\b/i.test(h)) return null;
   if (/\btarget price\b|\bvwap\b/i.test(h)) return null;
   if (/\b\d{2},?\d{3}\b/.test(h)) return null; // index levels like 24,114 / 24114 / 80000
+  // Reject any dollar amount not present in actual live price data (prevents hallucinated prices like "$90").
+  for (const match of h.matchAll(/\$(\d+)/g)) {
+    if (!allowedPrices.has(Number(match[1]))) return null;
+  }
   // Reject sensational / clickbait language we explicitly forbid.
   if (/\b(spree|shocking|panic|jaw-dropping|unbelievable)\b/i.test(h)) return null;
   if (/you won'?t believe|will shock/i.test(h)) return null;
@@ -2210,12 +2227,25 @@ function archiveSummaryForDigest(date, articles, themes, previousDigest, dailyLe
   const force = dailyLead?.label || dominantForceLabel(lead, String(lead?.headline || "").toLowerCase());
   const rawText = dailyLead?.indiaImpact || editorialLeadSentence(lead) || lead?.summary || lead?.headline || themes[0]?.summary || "Opening range needs confirmation from source-led market cues.";
   const text = rawText.replace(/^Direct\s+(index|India)\s+read-through:\s*/i, "");
-  const summary = compactWords(cleanSentence(`${force}: ${text}`), 20);
+  const summary = compactWords(cleanSentence(stripJargon(`${force}: ${text}`)), 20);
   if (summary && normalizeEditorial(summary) !== normalizeEditorial(previousDigest?.archiveSummary)) {
     return summary;
   }
   const fallback = lead?.headline ? `${lead.headline} is today's main source-led difference for the India open.` : "Today needs fresh confirmation from verified source cues.";
   return compactWords(cleanSentence(fallback), 20);
+}
+
+function stripJargon(text) {
+  if (!text) return text;
+  return text
+    .replace(/\brisk-off assets?\b/gi, "safe-haven assets")
+    .replace(/\brisk-on assets?\b/gi, "growth assets")
+    .replace(/\brisk-off\b/gi, "defensive")
+    .replace(/\brisk-on\b/gi, "positive")
+    .replace(/\bVWAP\b/g, "session average")
+    .replace(/\bsector breadth validates\b/gi, "sectors confirm")
+    .replace(/\badvance-decline\b/gi, "market participation")
+    .replace(/\bfirst-range\b/gi, "opening range");
 }
 
 function deskNoteForDigest(date, articles, setups, marketSnapshots = [], overallSentiment = 0, previousDigest, dailyLead = null) {
@@ -2392,7 +2422,7 @@ function editorialLeadSentence(article) {
     return "Gift Nifty premium or discount sets the opening gap, but cash-market breadth decides whether the gap holds";
   }
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(text)) {
-    return "US jobs data and semiconductor earnings will test whether last week's risk-on momentum can carry into India";
+    return "US jobs data and semiconductor earnings will test whether last week's positive momentum can carry into India";
   }
   if (/\b(apple|amazon|meta|alphabet|microsoft|google|nvidia|big tech|faang|mega-cap|mag.?7)\b/.test(text)) {
     return "Mega-cap tech sets the global risk tone; India needs Nifty IT and exporter breadth to confirm the read-through";
@@ -2404,10 +2434,10 @@ function editorialLeadSentence(article) {
     return "Crude remains the key transmission line for import costs, aviation fuel, OMC margins and inflation expectations";
   }
   if (/trump.{0,25}(xi|jinping|beijing)|xi.{0,25}trump|us.?china (trade|talks?|deal|truce|tariff)|trade (deal|truce|ceasefire|agreement)|tariff (deal|truce|cut|pause|rollback)/.test(text)) {
-    return "US-China diplomacy is the single largest global risk variable right now — a positive outcome is risk-on for IT exports, metals and mid-cap India; watch FII flows and USD/INR to confirm";
+    return "US-China diplomacy is the single largest global risk variable right now — a positive outcome is a net positive for IT exports, metals and mid-cap India; watch FII flows and USD/INR to confirm";
   }
   if (/\b(war|military|missile|strike|airstrike|conflict|geopolit|iran|israel|russia|ukraine|taiwan strait|south china sea|nato|sanctions|red sea|hormuz)\b/.test(text)) {
-    return "Geopolitical escalation is a risk-off cue that India must verify through crude, gold, USD/INR, FII flow and breadth";
+    return "Geopolitical escalation is a negative signal India must verify through crude, gold, USD/INR, FII flow and index participation";
   }
   if (/\b(gst|sebi|pli|production[-\s]?linked incentive|union budget|finance ministry|budget|stt|capital gains tax)\b/.test(text)) {
     return "India policy is a direct domestic catalyst; affected sectors need breadth confirmation before the index inherits it";

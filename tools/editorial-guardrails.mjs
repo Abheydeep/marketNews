@@ -75,6 +75,8 @@ Rules:
   headline already says.
 - India impact: maximum 35 words. Name the Indian index, sector, instrument,
   or say it is global-only context when the India transmission line is weak.
+  BANNED words: "risk-on", "risk-off", "VWAP", "sector breadth", "structural",
+  "tradable", "advance-decline", "breadth validates".
 - Watch for: maximum 20 words. Name ONE concrete thing to watch — a price
   move, a policy decision, a data release, or a sector reaction — in plain
   language any investor can follow. Make it specific to THIS article's story,
