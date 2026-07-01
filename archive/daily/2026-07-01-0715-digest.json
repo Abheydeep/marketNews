@@ -1,19 +1,19 @@
 {
   "scriptId": 1,
   "digestDate": "2026-07-01",
-  "title": "Currency Ease Opening Range",
+  "title": "GIFT Nifty signals firm open as global tensions ease slightly",
   "status": "PUBLISHED",
-  "generatedAt": "2026-07-01T06:29:18.961Z",
+  "generatedAt": "2026-07-01T09:28:09.880Z",
   "dailyLead": {
     "label": "GIFT Nifty: +198 pt gap-up",
     "sourceArticleId": "mint-markets:oodqjx",
     "driverType": "crude",
     "headline": "From Gift Nifty, US-Iran talks to fall in Japanese Yen: 8 key things that changed for Indian stock market overnight",
-    "indiaImpact": "GIFT Nifty at 24063.5 (+198 pts, +0.83%) signals gap-up open. Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-    "riskSide": "OMCs, aviation, paints and tyres face margin pressure if Brent stays firm; Nifty may consolidate near Gift Nifty levels.",
-    "supportSide": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
+    "indiaImpact": "GIFT Nifty at 24064 (+198 pts, +0.83%) signals gap-up open. OMCs, aviation, and import-dependent sectors may face pressure if geopolitical tensions escalate and Brent crude rises; USD/INR may also be impacted.",
+    "riskSide": "OMCs, aviation, paints, and tyres may benefit if Brent stabilizes; upstream energy stocks could react to crude price movements.",
+    "supportSide": "Power, utilities, and metals/cement stocks may react to changes in energy demand and costs, influencing Nifty.",
     "giftNiftyBias": {
-      "giftPrice": 24063.5,
+      "giftPrice": 24064,
       "niftyClose": 23865.75,
       "gapPts": 198,
       "gapPct": 0.83,
@@ -23,11 +23,11 @@
   },
   "publicSourceSelection": {
     "visibleCount": 9,
-    "shortlistCount": 25,
+    "shortlistCount": 23,
     "windowHours": 24,
-    "excludedNoDirectIndiaCount": 0,
+    "excludedNoDirectIndiaCount": 2,
     "indiaPublisherCount": 7,
-    "shortlistIndiaPublisherCount": 13,
+    "shortlistIndiaPublisherCount": 12,
     "directIndiaSourceCount": 7,
     "officialIndiaSourceCount": 0,
     "domesticCatalystCount": 7,
@@ -44,21 +44,21 @@
       "https://www.livemint.com/market/stock-market-news/stocks-to-watch-hdfc-bank-kotak-mahindra-bank-coal-india-among-shares-in-focus-today-check-list-here-11782872199823.html",
       "https://www.livemint.com/market/commodities/crude-oil-prices-gain-amid-us-iran-talks-uncertainty-brent-crude-at-73-per-barrel-11782871144815.html",
       "https://www.cnbc.com/2026/06/30/oil-prices-brent-wti-crude-trump-iran.html",
-      "https://www.cnbc.com/2026/07/01/china-ai-cyberattacks-startups-insider-risks-espionage.html",
-      "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-1-july-11782832067484.html"
+      "https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories",
+      "https://www.business-standard.com/economy/news/japan-backs-acme-ihi-odisha-green-ammonia-project-with-25-year-subsidy-126063001184_1.html"
     ]
   },
-  "archiveSummary": "GIFT Nifty: +198 pt gap-up: GIFT Nifty at 24063.5 (+198 pts, +0.83%) signals gap-up open. Bullish for IT exporters if...",
-  "twoMinuteSummary": "Overnight talks between the United States and Iran kept oil markets on edge, pushing Brent crude above seventy-three dollars a barrel. Higher energy costs feed directly into India's import bill, putting pressure on the rupee and squeezing margins for airlines, paint companies, and tyre makers. Traders will watch whether diplomatic progress eases supply fears or if any escalation keeps a floor under prices through the week.\n\nGIFT Nifty was quoting a slight discount to the previous Nifty futures close, signalling a cautious start for domestic benchmarks. The gap reflects overnight uncertainty rather than a sharp directional bet, but it means the opening hour could see choppy, two-way action as participants gauge the real appetite. The focus will be on whether buying interest emerges at lower levels or if selling pressure extends the recent pullback.\n\nThe Reserve Bank's holiday calendar shows major banks shut for twelve days in July, including six weekends. Fewer working days mean lower settlement volumes and thinner liquidity in the banking segment, which can amplify price moves in financial stocks. Investors holding positions in lenders should factor in the possibility of wider bid-ask spreads and slower execution on those dates.\n\nYesterday the Sensex and Nifty both slipped around a third of a percent, snapping a brief recovery attempt, while Asian markets sent mixed signals — Japan and Taiwan gained on a US tech rally but South Korea and Australia declined. The divergence suggests global risk appetite is selective, not broad-based. Market participants will look for cues from upcoming US jobs data and any fresh headlines on the Iran negotiations to decide the next leg.",
-  "deskNote": "The market is trying to price two different movies at once. In one theatre, US technology stocks are rallying on artificial intelligence optimism, dragging Asian tech-heavy indices higher. In the other, geopolitical tension in the Middle East is keeping a bid under oil, which acts like a tax on every Indian household and corporate balance sheet. The rupee's quiet depreciation against the dollar is the bridge between these scripts — it transmits global risk aversion into domestic purchasing power.\n\nWhat makes this moment unusual is the calendar. A dozen bank holidays in a single month is not just an operational nuisance; it compresses all the month's funding needs, government borrowing, and corporate refinancing into fewer sessions. That concentration risk tends to show up first in short-term rates and then in the spread between high-quality and lower-rated borrowers. The equity market often ignores plumbing until a pipe bursts.\n\nThe yen's slide adds a third dimension. A weaker Japanese currency makes carry trades more attractive but also signals that the Bank of Japan is in no hurry to tighten. For India, that means foreign portfolio flows may stay fickle — chasing yield in dollars one week, rotating into yen-funded positions the next. The domestic investor base has deepened, but it still dances to the rhythm of global liquidity.\n\nThe narrative, then, is not about a crash or a melt-up. It is about a market that has run ahead of earnings visibility and now faces a gauntlet of external shocks — oil, currency, calendar, and central bank timing — all arriving together. The next few weeks will reveal whether the recent consolidation was a healthy pause or the start of a deeper re-rating. Patience, not prediction, is the appropriate stance.",
+  "archiveSummary": "GIFT Nifty: +198 pt gap-up: GIFT Nifty at 24064 (+198 pts, +0.83%) signals gap-up open. OMCs, aviation, and import-dependent sectors...",
+  "twoMinuteSummary": "The Indian stock market is poised for a potentially volatile opening today, with the GIFT Nifty indicating a flat start. Overnight developments, including US-Iran talks and a sharp decline in the Japanese Yen, are likely to influence domestic market sentiment. The ongoing geopolitical tensions between the US and Iran have led to a slight increase in crude oil prices, with Brent crude rising to $72 a barrel. This could put pressure on Indian stocks, particularly those in the energy and commodity sectors.\n\nThe RBI holiday calendar has revealed that major banks across India will remain closed for twelve days in July, including six weekend holidays. This prolonged bank closure may impact market liquidity and trading activity, potentially leading to increased volatility. Investors should keep a close eye on banking stocks, such as HDFC Bank and Kotak Mahindra Bank, as they may be affected by the reduced liquidity. Additionally, the overall market sentiment may be influenced by the bank closures.\n\nAsian stocks have shown a mixed response today, with Japan's Nikkei 225 and South Korea's Kospi advancing over 1% on the back of a US tech rally and optimism surrounding US-Iran talks. However, the small-cap Kosdaq index slipped 0.42%, indicating a lack of broad-based buying interest. The Indian market may follow a similar trend, with investors remaining cautious amid the uncertain global economic landscape. Stocks like Coal India may be in focus today, given the ongoing developments in the commodity space.\n\nThe US tech rally has been a significant driver of Asian market sentiment, with stocks like AMD and Micron being among the top gainers. However, volatility threatens these top gainers, and investors should be cautious of potential price corrections. The Indian market may also be influenced by the global earnings season, with investors closely watching corporate results for signs of economic health. As the market opens, investors should be prepared for potential volatility and adjust their strategies accordingly.",
+  "deskNote": "Today's market narrative is one of cautious optimism, tempered by the looming uncertainty of US-Iran tensions and the prolonged bank closures in India. The GIFT Nifty's flat start indication suggests a lack of clear direction, and investors will need to navigate the complex interplay of global cues and domestic market dynamics. The rise in crude oil prices amid US-Iran talks uncertainty is a key risk factor, and investors should be prepared for potential volatility in energy and commodity stocks. As the market opens, it will be essential to monitor the price action and adjust strategies accordingly, keeping in mind the potential impact of reduced liquidity due to the bank closures.",
   "watchItems": [
-    "Watch Brent reaction to US-Iran talk headlines at Asia open.",
-    "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
-    "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty."
+    "Watch Brent crude price movement above $72/barrel and its impact on Indian oil stocks.",
+    "Watch Brent crude price movement and USD/INR at the open to gauge the impact of geopolitical tensions on Indian markets.",
+    "Watch Bank Nifty's opening reaction to the holiday calendar and its impact on liquidity-sensitive stocks."
   ],
-  "overallSentiment": -0.118,
+  "overallSentiment": -0.167,
   "sentimentLabel": "VOLATILE",
-  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.79%, Nasdaq 100 +1.69%, Dow Jones +0.26%, Nikkei 225 +0.84%, Hang Seng -0.63%, Shanghai Composite +2.14%, KOSPI -1.89%, Taiwan Weighted +1.94%, Brent Crude +0.32%, USD/INR +0.07%, Gold -1.23%, India VIX -1.19%, GIFT Nifty +0.25%\n\nNarrative Themes:\n- GIFT Nifty Discount Signals",
+  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.792%, Nasdaq 100 +1.685%, Dow Jones +0.262%, Nikkei 225 +0.589%, Hang Seng -0.633%, Shanghai Composite +2.115%, KOSPI -2.042%, Taiwan Weighted +1.936%, Straits Times -0.109%, ASX 200 -0.636%, US Dollar Index +0.178%, Brent Crude -1.659%, USD/INR +0.539%, Gold (COMEX) -1.213%, India VIX -2.316%, GIFT Nifty +0.25%\n\nNarrative Themes:\n- Bank Holiday Impact: Major Indian banks will remain closed for 12 days.\n- Geopolitical Risk: US-Iran tensions push crude oil prices higher.\n- Earnings & Risk Appetite: Global earnings reports influence market sentiment.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
   "marketSnapshots": [
     {
@@ -442,12 +442,12 @@
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
-      "closeValue": 24006.25,
+      "closeValue": 24024.05,
       "previousClose": 23865.75,
-      "changePercent": 0.589,
+      "changePercent": 0.663,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-07-01T06:01:16.000Z",
+      "dataTimestamp": "2026-07-01T09:26:05.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^NSEI",
       "tradingViewSymbol": "NSE:NIFTY",
@@ -493,23 +493,75 @@
         },
         {
           "time": "2026-07-01",
-          "close": 24007.25
+          "close": 24012.55
         },
         {
           "time": "2026-07-01",
-          "close": 24006.25
+          "close": 24026.25
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24023.5
+        },
+        {
+          "time": "2026-07-01",
+          "close": 23997.4
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24023.8
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24022.95
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24028.05
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24012.75
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24029.2
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24018.35
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24035.6
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24028.6
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24021.1
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24022.55
+        },
+        {
+          "time": "2026-07-01",
+          "close": 24024.05
         }
       ]
     },
     {
       "symbol": "BANKNIFTY",
       "name": "Bank Nifty",
-      "closeValue": 57855.45,
+      "closeValue": 58037.2,
       "previousClose": 57542.9,
-      "changePercent": 0.543,
+      "changePercent": 0.859,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-07-01T06:01:16.000Z",
+      "dataTimestamp": "2026-07-01T09:26:06.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^NSEBANK",
       "tradingViewSymbol": "NSE:BANKNIFTY",
@@ -555,23 +607,75 @@
         },
         {
           "time": "2026-07-01",
-          "close": 57858.35
+          "close": 57884.4
         },
         {
           "time": "2026-07-01",
-          "close": 57855.45
+          "close": 57984
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57975.9
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57934.35
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57963.7
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57968
+        },
+        {
+          "time": "2026-07-01",
+          "close": 58002.5
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57955.85
+        },
+        {
+          "time": "2026-07-01",
+          "close": 58016.25
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57965.85
+        },
+        {
+          "time": "2026-07-01",
+          "close": 58019.6
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57959.05
+        },
+        {
+          "time": "2026-07-01",
+          "close": 57918.65
+        },
+        {
+          "time": "2026-07-01",
+          "close": 58040.6
+        },
+        {
+          "time": "2026-07-01",
+          "close": 58037.2
         }
       ]
     },
     {
       "symbol": "NIKKEI",
       "name": "Nikkei 225",
-      "closeValue": 70653.44,
+      "closeValue": 70474.96,
       "previousClose": 70062.32,
-      "changePercent": 0.844,
+      "changePercent": 0.589,
       "currency": "JPY",
       "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-07-01T05:46:15.000Z",
+      "dataTimestamp": "2026-07-01T06:45:03.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^N225",
       "tradingViewSymbol": "TVC:NI225",
@@ -662,11 +766,19 @@
         },
         {
           "time": "2026-07-01",
-          "close": 70665.09
+          "close": 70628.21
         },
         {
           "time": "2026-07-01",
-          "close": 70653.44
+          "close": 70542.7
+        },
+        {
+          "time": "2026-07-01",
+          "close": 70426.72
+        },
+        {
+          "time": "2026-07-01",
+          "close": 70474.96
         }
       ]
     },
@@ -788,12 +900,12 @@
     {
       "symbol": "SHCOMP",
       "name": "Shanghai Composite",
-      "closeValue": 4113.6,
+      "closeValue": 4112.45,
       "previousClose": 4027.26,
-      "changePercent": 2.144,
+      "changePercent": 2.115,
       "currency": "CNY",
       "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-07-01T05:46:15.000Z",
+      "dataTimestamp": "2026-07-01T07:00:24.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "000001.SS",
       "tradingViewSymbol": "SSE:000001",
@@ -852,23 +964,39 @@
         },
         {
           "time": "2026-07-01",
-          "close": 4113.95
+          "close": 4107.11
         },
         {
           "time": "2026-07-01",
-          "close": 4113.6
+          "close": 4107.79
+        },
+        {
+          "time": "2026-07-01",
+          "close": 4099.12
+        },
+        {
+          "time": "2026-07-01",
+          "close": 4103.5
+        },
+        {
+          "time": "2026-07-01",
+          "close": 4112.87
+        },
+        {
+          "time": "2026-07-01",
+          "close": 4112.45
         }
       ]
     },
     {
       "symbol": "KOSPI",
       "name": "KOSPI",
-      "closeValue": 8316.72,
+      "closeValue": 8303.41,
       "previousClose": 8476.48,
-      "changePercent": -1.885,
+      "changePercent": -2.042,
       "currency": "KRW",
       "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-07-01T05:41:10.000Z",
+      "dataTimestamp": "2026-07-01T09:05:40.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^KS11",
       "tradingViewSymbol": "KRX:KOSPI",
@@ -967,7 +1095,15 @@
         },
         {
           "time": "2026-07-01",
-          "close": 8314.12
+          "close": 8322.29
+        },
+        {
+          "time": "2026-07-01",
+          "close": 8316.02
+        },
+        {
+          "time": "2026-07-01",
+          "close": 8303.41
         }
       ]
     },
@@ -1069,12 +1205,12 @@
     {
       "symbol": "STI",
       "name": "Straits Times",
-      "closeValue": 5170.71,
+      "closeValue": 5164.99,
       "previousClose": 5170.65,
-      "changePercent": 0.001,
+      "changePercent": -0.109,
       "currency": "SGD",
       "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-07-01T05:46:15.000Z",
+      "dataTimestamp": "2026-07-01T08:59:59.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^STI",
       "tradingViewSymbol": "TVC:STI",
@@ -1161,23 +1297,67 @@
         },
         {
           "time": "2026-07-01",
-          "close": 5170.06
+          "close": 5172.69
         },
         {
           "time": "2026-07-01",
-          "close": 5170.71
+          "close": 5173.37
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5175.08
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5172.46
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5171.24
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5166.74
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5162.31
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5162.91
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5160.96
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5161.96
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5165.61
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5167.85
+        },
+        {
+          "time": "2026-07-01",
+          "close": 5164.99
         }
       ]
     },
     {
       "symbol": "ASX200",
       "name": "ASX 200",
-      "closeValue": 8721,
+      "closeValue": 8722.9,
       "previousClose": 8778.7,
-      "changePercent": -0.657,
+      "changePercent": -0.636,
       "currency": "AUD",
       "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-07-01T05:41:14.000Z",
+      "dataTimestamp": "2026-07-01T07:12:14.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^AXJO",
       "tradingViewSymbol": "ASX:XJO",
@@ -1276,23 +1456,31 @@
         },
         {
           "time": "2026-07-01",
-          "close": 8721.3
+          "close": 8715.5
         },
         {
           "time": "2026-07-01",
-          "close": 8721
+          "close": 8724
+        },
+        {
+          "time": "2026-07-01",
+          "close": 8722.9
+        },
+        {
+          "time": "2026-07-01",
+          "close": 8722.9
         }
       ]
     },
     {
       "symbol": "DXY",
       "name": "US Dollar Index",
-      "closeValue": 101.28,
+      "closeValue": 101.37,
       "previousClose": 101.19,
-      "changePercent": 0.094,
+      "changePercent": 0.178,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-07-01T05:51:16.000Z",
+      "dataTimestamp": "2026-07-01T09:16:05.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "DX-Y.NYB",
       "tradingViewSymbol": "TVC:DXY",
@@ -1330,23 +1518,79 @@
         },
         {
           "time": "2026-07-01",
-          "close": 101.28
+          "close": 101.3
         },
         {
           "time": "2026-07-01",
-          "close": 101.28
+          "close": 101.33
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.33
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.33
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.32
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.36
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.39
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.35
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.32
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.35
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.36
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.33
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.36
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.35
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.37
+        },
+        {
+          "time": "2026-07-01",
+          "close": 101.37
         }
       ]
     },
     {
       "symbol": "BRENT",
       "name": "Brent Crude",
-      "closeValue": 73.18,
+      "closeValue": 71.74,
       "previousClose": 72.95,
-      "changePercent": 0.315,
+      "changePercent": -1.659,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-07-01T05:50:28.000Z",
+      "dataTimestamp": "2026-07-01T09:15:51.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "BZ=F",
       "tradingViewSymbol": "TVC:UKOIL",
@@ -1384,23 +1628,79 @@
         },
         {
           "time": "2026-07-01",
-          "close": 73.18
+          "close": 73.04
         },
         {
           "time": "2026-07-01",
-          "close": 73.18
+          "close": 73.08
+        },
+        {
+          "time": "2026-07-01",
+          "close": 73.02
+        },
+        {
+          "time": "2026-07-01",
+          "close": 73.05
+        },
+        {
+          "time": "2026-07-01",
+          "close": 73.09
+        },
+        {
+          "time": "2026-07-01",
+          "close": 73.24
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.94
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.98
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.92
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.88
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.45
+        },
+        {
+          "time": "2026-07-01",
+          "close": 72.25
+        },
+        {
+          "time": "2026-07-01",
+          "close": 71.75
+        },
+        {
+          "time": "2026-07-01",
+          "close": 71.73
+        },
+        {
+          "time": "2026-07-01",
+          "close": 71.74
+        },
+        {
+          "time": "2026-07-01",
+          "close": 71.74
         }
       ]
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
-      "closeValue": 94.72,
+      "closeValue": 95.16,
       "previousClose": 94.65,
-      "changePercent": 0.074,
+      "changePercent": 0.539,
       "currency": "INR",
       "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-07-01T06:01:11.000Z",
+      "dataTimestamp": "2026-07-01T09:26:05.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "USDINR=X",
       "tradingViewSymbol": "FX:USDINR",
@@ -1462,23 +1762,75 @@
         },
         {
           "time": "2026-07-01",
-          "close": 94.72
+          "close": 94.71
         },
         {
           "time": "2026-07-01",
-          "close": 94.72
+          "close": 94.73
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.73
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.75
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.79
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.86
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.94
+        },
+        {
+          "time": "2026-07-01",
+          "close": 94.93
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.03
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.06
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.03
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.04
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.11
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.16
+        },
+        {
+          "time": "2026-07-01",
+          "close": 95.16
         }
       ]
     },
     {
       "symbol": "GOLD",
       "name": "Gold (COMEX)",
-      "closeValue": 3988.9,
+      "closeValue": 3989.5,
       "previousClose": 4038.5,
-      "changePercent": -1.228,
+      "changePercent": -1.213,
       "currency": "USD",
       "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-07-01T05:51:09.000Z",
+      "dataTimestamp": "2026-07-01T09:16:04.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "GC=F",
       "tradingViewSymbol": "TVC:GOLD",
@@ -1516,23 +1868,79 @@
         },
         {
           "time": "2026-07-01",
-          "close": 3989.3
+          "close": 3986.6
         },
         {
           "time": "2026-07-01",
-          "close": 3988.9
+          "close": 3978
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3980.4
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3984.7
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3985
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3974.5
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3977.3
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3984.2
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3988.7
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3987.5
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3992
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3990.2
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3987.7
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3989.1
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3990
+        },
+        {
+          "time": "2026-07-01",
+          "close": 3989.5
         }
       ]
     },
     {
       "symbol": "INDIAVIX",
       "name": "India VIX",
-      "closeValue": 13.44,
+      "closeValue": 13.29,
       "previousClose": 13.6,
-      "changePercent": -1.191,
+      "changePercent": -2.316,
       "currency": "INR",
       "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-07-01T06:01:17.000Z",
+      "dataTimestamp": "2026-07-01T09:26:06.000Z",
       "source": "Yahoo Finance chart API",
       "yahooSymbol": "^INDIAVIX",
       "tradingViewSymbol": "NSE:INDIAVIX",
@@ -1578,29 +1986,81 @@
         },
         {
           "time": "2026-07-01",
-          "close": 13.43
+          "close": 13.4
         },
         {
           "time": "2026-07-01",
           "close": 13.44
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.4
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.43
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.38
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.4
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.39
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.38
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.3
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.3
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.31
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.32
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.38
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.28
+        },
+        {
+          "time": "2026-07-01",
+          "close": 13.28
         }
       ]
     },
     {
       "symbol": "GIFTNIFTY",
       "name": "GIFT Nifty",
-      "closeValue": 24063.5,
+      "closeValue": 24064,
       "previousClose": 24003,
       "changePercent": 0.25,
-      "dataTimestamp": "2026-07-01T05:58:18.000Z",
+      "dataTimestamp": "2026-07-01T09:23:17.000Z",
       "chartPoints": [
         {
-          "time": "2026-06-30T21:58:18.000Z",
+          "time": "2026-07-01T01:23:17.000Z",
           "close": 24003
         },
         {
-          "time": "2026-07-01T05:58:18.000Z",
-          "close": 24063.5
+          "time": "2026-07-01T09:23:17.000Z",
+          "close": 24064
         }
       ],
       "source": "NSE IFSC",
@@ -1619,14 +2079,14 @@
     "diiSell": 16590.24
   },
   "giftNiftyBias": {
-    "giftPrice": 24063.5,
+    "giftPrice": 24064,
     "niftyClose": 23865.75,
     "gapPts": 198,
     "gapPct": 0.83,
     "bias": "gap_up",
     "biasLabel": "+198 pt gap-up"
   },
-  "todaysReadArticle": "The overnight narrative has crystallized around a familiar but potent cocktail of geopolitical friction and currency volatility, with the Gift Nifty opening at a 16-point discount to the previous Nifty futures close near 23,994, signaling a flat-to-negative bias that forces traders to price in a stall in the U.S.-Iran nuclear dialogue in Doha. This impasse has injected a stubborn geopolitical premium into Brent crude, holding it above $73 a barrel despite its worst monthly decline since March 2020, while a sharply weaker Japanese yen — driven by divergent rate expectations — adds a layer of carry-trade unwind risk that travels through gold, the dollar index, and ultimately FII flow dynamics before hitting Indian equities. The market is effectively being asked to digest a defensive signal where the transmission mechanism runs hot: higher energy costs threaten domestic margin structures just as global risk appetite, buoyed by a U.S. tech rally, attempts to reassert itself.\n\nThat global tech rally, which lifted the Nikkei 225 and Kospi by over one percent, provides a crucial but conditional offset for Dalal Street. The optimism surrounding AI capital expenditure cycles and the broader semiconductor complex offers a tailwind for Nifty IT exporters, yet the translation into local alpha remains hostage to the USD/INR trajectory, currently hovering near 94.72; only an orderly rupee depreciation converts global tech strength into an India trade, whereas volatile weakness triggers capital flight. Simultaneously, the oil market’s mixed signals — Brent posting historic monthly losses yet refusing to break below $73 on supply disruption fears — create a tactical dilemma for sectors with high energy beta. Upstream energy names offer a natural hedge, but the downstream pain for OMCs, aviation, paints, and tyres is acute and immediate, demanding that traders watch the crack spreads and inventory data as closely as the headline crude price.\n\nDomestically, the session’s architecture will be defined by the interplay between financial breadth and industrial energy demand. The Nifty 50 closed at 24,006 and Bank Nifty at 57,855, both posting modest gains, but the leadership is narrowing; heavyweights like HDFC Bank and Kotak Mahindra Bank are in focus not just for earnings trajectory but as the primary liquidity vehicles for any FII repositioning. The routine July bank holiday calendar is a non-event for algorithms but a reminder that financial sector participation is the gatekeeper for index upside. Meanwhile, Coal India and the broader power utility complex sit at the intersection of surging summer demand and fuel supply logistics, making energy breadth a real-time proxy for inflation expectations and capex cycles — a narrative far more consequential for the domestic cyclical trade than the China-linked cyber espionage headlines that merely reinforce the global AI spending thesis without offering a direct entry point.\n\nAs the pre-open auction builds, the trader’s checklist narrows to three convergence points: first, whether the Gift Nifty discount narrows or widens in the first fifteen minutes, revealing true institutional intent versus overnight algorithmic positioning; second, the USD/INR reaction function to the dollar-yen move, where a break above 94.80 could trigger stop-losses in rate-sensitive financials and autos even as it cushions IT; and third, the Brent crude tape, where a sustained push toward $73 would force a rapid repricing of OMC marketing margins and aviation fuel hedges. Bank Nifty’s ability to hold 57,700 — the 20-DMA confluence — will dictate whether the index can decouple from the geopolitical noise or if the session devolves into a stock-picker’s market driven by Coal India’s production data and HDFC Bank’s deposit franchise resilience.",
+  "todaysReadArticle": "The Indian stock market is poised for a potentially volatile open, with Gift Nifty indicating a negative start as geopolitical tensions between the US and Iran continue to escalate, keeping crude oil prices elevated and influencing market sentiment. The uncertainty surrounding US-Iran talks has been a key driver of market movements overnight, with Brent crude prices hovering around $72 per barrel, potentially impacting India's import costs and inflation. As a result, sectors such as OMCs, aviation, and tyres may face pressure if Brent remains firm, while upstream energy stocks could react to crude price movements.\n\nThe global context is one of heightened uncertainty, with the US-Iran standoff threatening to disrupt energy supplies and push crude prices higher. The Japanese Yen's fall overnight has added to the global market jitters, with currencies and commodities coming under pressure. In contrast, Asian stocks have shown some resilience, with Nikkei 225 and Kospi rising over 1% on the back of a US tech rally and optimism over US-Iran talks. However, the global technology context remains fragile, with rising volatility threatening semiconductor stocks and potentially impacting global tech momentum, which could eventually spill over into Indian markets, particularly Nifty IT.\n\nDomestically, the RBI's bank holiday calendar for July lists 12 closures, potentially impacting liquidity and transaction flows through major banks like SBI, HDFC, and ICICI. This could have a bearing on Bank Nifty and private banks, influencing liquidity and transaction-sensitive stocks. Additionally, India's power demand and coal use data may influence energy and industrial sectors, impacting inflation expectations and potentially reacting on power, utilities, and metals/cement stocks. The USD/INR exchange rate may also come under pressure if geopolitical tensions escalate, further complicating the market outlook.\n\nAs Indian markets open, traders will be watching the reaction to Gift Nifty's negative indication, with a focus on OMCs, aviation, and upstream energy stocks in the context of crude oil price movements. The USD/INR exchange rate will also be under scrutiny, given the potential impact of geopolitical tensions on currency markets. Nifty IT stocks will be monitored for signs of pressure from global tech volatility, while Bank Nifty and private banks will be sensitive to liquidity and transaction flows amidst the RBI's bank holiday calendar. The interplay between these factors will set the tone for the day's trading, with traders needing to be nimble in response to evolving market sentiment.",
   "themes": [
     {
       "digestDate": "2026-07-01",
@@ -1634,22 +2094,22 @@
       "title": "Negative Macro Impact",
       "summary": "As per RBI holiday calendar, major banks across India will remain closed for twelve days including six weekend holidays.",
       "sentimentScore": -0.55,
-      "evidenceCount": 1
+      "evidenceCount": 2
     },
     {
       "digestDate": "2026-07-01",
       "themeType": "global_risk",
       "title": "Global Defensive Cue",
-      "summary": "US-Iran war: Brent crude futures gained 50 cents, or 0.69%, to $73.45 a barrel, while US West Texas Intermediate (WTI) crude rose 63 cents, or 0.91%, to $73 a barrel.",
-      "sentimentScore": -0.054,
-      "evidenceCount": 4
+      "summary": "US-Iran war: Brent crude futures gained 50 cents, or 0.69%, to $72 a barrel, while US West Texas Intermediate (WTI) crude rose 63 cents, or 0.91%, to $72 a barrel.",
+      "sentimentScore": -0.188,
+      "evidenceCount": 3
     },
     {
       "digestDate": "2026-07-01",
       "themeType": "neutral_volatile",
       "title": "Volatile Opening Bias",
-      "summary": "Gift Nifty was trading around 23,994 level, a discount of nearly 16 points from the Nifty futures’ previous close, indicating a negative start for the Indian stock market indices.",
-      "sentimentScore": 0.018,
+      "summary": "Volatility threatens top gainers including AMD and Micron.",
+      "sentimentScore": -0.039,
       "evidenceCount": 3
     },
     {
@@ -1667,14 +2127,14 @@
   "newsDataMode": "live",
   "sourceVerification": {
     "mode": "live",
-    "verifiedArticleCount": 46,
-    "publisherCount": 12,
+    "verifiedArticleCount": 48,
+    "publisherCount": 11,
     "categoryCount": 5,
     "duplicateWithPreviousPercent": 0,
     "blockedReason": null,
     "isVerifiedForPublicArchive": true
   },
-  "durationMillis": 1566345,
+  "durationMillis": 116302,
   "scheduledFor": "2026-07-01T07:15:00+05:30",
   "marketUpdateMode": false,
   "runMode": "scheduled-verified-source-data",
@@ -1686,10 +2146,10 @@
       "sourceName": "Mint Markets",
       "headline": "Stock market today: Gift Nifty hints flat start; US-Iran talks, weak yen to crude oil prices - 8 stocks to buy or sell",
       "summary": "The Indian stock market may open quietly on Wednesday, influenced by global market trends. Domestic indices dropped yesterday, with the Nifty 50 and BSE Sensex both closing lower. Oil prices rose slightly amid ongoing geopolitical tensions between the US and Iran.",
-      "takeaway": "Gift Nifty signals flat open as US-Iran talks and yen weakness keep crude elevated, offsetting yesterday's Nifty decline.','indiaImpact'.",
+      "takeaway": "Geopolitical tensions between the US and Iran kept crude oil prices elevated, potentially impacting India's import costs and inflation.",
       "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, paints and tyres face margin pressure if Brent stays firm; Nifty may consolidate near Gift Nifty levels.",
-      "watchFor": "Watch Brent reaction to US-Iran talk headlines at Asia open.",
+      "indiaImpact": "OMCs, aviation, paints, and tyres may benefit if Brent stabilizes; upstream energy stocks could react to crude price movements.",
+      "watchFor": "Watch Brent crude price movement above $75/barrel and its impact on Indian oil stocks.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-flat-start-us-iran-talks-weak-yen-to-crude-oil-prices-8-stocks-to-buy-or-sell-11782870590356.html",
       "sentimentLabel": "negative",
       "entityName": "Nifty Open",
@@ -1707,12 +2167,12 @@
       "sourceName": "Mint Markets",
       "headline": "From Gift Nifty, US-Iran talks to fall in Japanese Yen: 8 key things that changed for Indian stock market overnight",
       "summary": "Gift Nifty was trading around 23,994 level, a discount of nearly 16 points from the Nifty futures’ previous close, indicating a negative start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,994 level, a discount of nearly 16 points from the Nifty futures’ previous; geopolitical escalation is a defensive signal that travels through crude, gold, currencies and FII flows before equities.",
+      "takeaway": "Gift Nifty indicates a negative start for Indian indices; geopolitical tensions can impact crude, gold, and currencies, influencing FII flows and market sentiment.",
       "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
+      "indiaImpact": "OMCs, aviation, and import-dependent sectors may face pressure if geopolitical tensions escalate and Brent crude rises; USD/INR may also be impacted.",
+      "watchFor": "Watch Brent crude price movement and USD/INR at the open to gauge the impact of geopolitical tensions on Indian markets.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-talks-to-fall-in-japanese-yen-8-key-things-that-changed-for-indian-stock-market-overnight-11782832381286.html",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "negative",
       "entityName": "Nifty Open",
       "category": "neutral_volatile",
       "thumbnail": {
@@ -1728,10 +2188,10 @@
       "sourceName": "Zerodha Pulse",
       "headline": "Bank Holidays In July 2026: SBI, HDFC, ICICI & Other Banks Closed for 12 Days",
       "summary": "As per RBI holiday calendar, major banks across India will remain closed for twelve days including six weekend holidays.",
-      "takeaway": "RBI calendar lists 12 July bank holidays including six weekends — routine schedule already embedded in market calendars.','indiaImpact'.",
+      "takeaway": "RBI's bank holiday calendar lists 12 closures in July, potentially impacting liquidity and transaction flows through major banks like SBI, HDFC, and ICICI.",
       "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
+      "indiaImpact": "Bank Nifty and private banks may be affected due to reduced operational days, influencing liquidity and transaction-sensitive stocks.",
+      "watchFor": "Watch Bank Nifty's opening reaction to the holiday calendar and its impact on liquidity-sensitive stocks.",
       "sourceUrl": "https://www.ndtvprofit.com/india/bank-holidays-july-2026-sbi-icici-hdfc-and-other-banks-to-remain-closed-for-12-days-check-state-wise-list-11691112",
       "sentimentLabel": "negative",
       "entityName": "Bank Nifty",
@@ -1770,10 +2230,10 @@
       "sourceName": "Mint Markets",
       "headline": "Stocks to watch: HDFC Bank, Kotak Mahindra Bank, Coal India among shares in focus today; check list here",
       "summary": "Stock market today: On Tuesday, Sensex fell 249.70 points, or 0.33%, to end at 76,478.67, while the Nifty 50 declined 80.50 points, or 0.34%, to settle at 23,865.75.",
-      "takeaway": "Stock market today: On Tuesday, Sensex fell 249.70 points, or 0.33%, to end at 76,478.67, while the Nifty; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.",
+      "takeaway": "India's power demand and coal use data may influence energy and industrial sectors, impacting inflation expectations.",
       "whyItMatters": "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.",
-      "indiaImpact": "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.",
-      "watchFor": "Watch power, energy and industrial breadth after the open; broad-index bias needs confirmation outside the headline.",
+      "indiaImpact": "Power, utilities, and metals/cement stocks may react to changes in energy demand and costs, influencing Nifty.",
+      "watchFor": "Watch Coal India's stock reaction to any changes in coal demand and supply dynamics.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-hdfc-bank-kotak-mahindra-bank-coal-india-among-shares-in-focus-today-check-list-here-11782872199823.html",
       "sentimentLabel": "positive",
       "entityName": "India Energy",
@@ -1791,10 +2251,10 @@
       "sourceName": "Mint Markets",
       "headline": "Crude oil prices gain amid US-Iran talks uncertainty; Brent crude at $73 per barrel",
       "summary": "US-Iran war: Brent crude futures gained 50 cents, or 0.69%, to $73.45 a barrel, while US West Texas Intermediate (WTI) crude rose 63 cents, or 0.91%, to $70.13 a barrel.",
-      "takeaway": "US-Iran nuclear talks stall, keeping Brent above $73 and adding a geopolitical premium to crude that could widen India's import bill.','indiaImpact'.",
+      "takeaway": "Uncertainty in US-Iran talks keeps Brent crude prices elevated, potentially sustaining pressure on inflation-sensitive Indian sectors.",
       "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $73; OMC risk stays live only if supply headlines keep prices firm.",
+      "indiaImpact": "OMCs, aviation, and tyres may stay under pressure if Brent remains firm; upstream energy could be an offset.",
+      "watchFor": "Watch whether Brent crude sustains above $73 at the Asia open.",
       "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-gain-amid-us-iran-talks-uncertainty-brent-crude-at-73-per-barrel-11782871144815.html",
       "sentimentLabel": "negative",
       "entityName": "Geopolitical risk",
@@ -1812,10 +2272,10 @@
       "sourceName": "CNBC World",
       "headline": "Brent posts biggest monthly decline since March 2020 as traders monitor U.S.-Iran talks",
       "summary": "The moves come as oil traders monitor the prospect for U.S.-Iran talks in Doha on Tuesday.",
-      "takeaway": "The moves come as oil traders monitor the prospect for US-Iran talks in Doha on Tuesday; keep the oil story tied to Brent direction before turning it into an India equity signal.",
+      "takeaway": "Brent crude's biggest monthly decline since March 2020 puts pressure off, pending US-Iran talks outcome that could swing prices.",
       "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+      "indiaImpact": "OMCs and aviation stocks may react to Brent direction; softer prices support margin relief, while firm prices pressure these sectors.",
+      "watchFor": "Watch Brent crude price movement at Asia open to gauge direction for OMCs and related sectors.",
       "sourceUrl": "https://www.cnbc.com/2026/06/30/oil-prices-brent-wti-crude-trump-iran.html",
       "sentimentLabel": "negative",
       "entityName": "Geopolitical risk",
@@ -1828,45 +2288,45 @@
       }
     },
     {
-      "publishedAt": "2026-06-30T23:27:41.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "China-linked actors target more than technology as AI competition with U.S. intensifies",
-      "summary": "Cyberattacks from China-based entities are on the rise and not just targeting specific tech, analysts warn, as the U.S. AI race intensifies.",
-      "takeaway": "Cyberattacks from China-based entities are on the rise and not just targeting specific tech, analysts warn; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/07/01/china-ai-cyberattacks-startups-insider-risks-espionage.html",
+      "publishedAt": "2026-07-01T01:57:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "This threat to the chip rally has surged to its highest level since 2015",
+      "summary": "Volatility threatens top gainers including AMD and Micron.",
+      "takeaway": "Rising volatility threatens semiconductor stocks like AMD and Micron, potentially impacting global tech momentum.",
+      "whyItMatters": "High volatility changes risk management first: option writers need evidence before the market deserves directional size.",
+      "indiaImpact": "Nifty IT may face pressure if global tech volatility spills over into Indian markets.",
+      "watchFor": "Watch Nifty IT's reaction at the open for signs of weakness.",
+      "sourceUrl": "https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories",
       "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "global_risk",
+      "entityName": "Options tape",
+      "category": "neutral_volatile",
       "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "China-linked actors target more than technology as AI competition with U.S. intensifies source thumbnail"
+        "label": "Jobs + Chips",
+        "theme": "US Calendar",
+        "accent": "#059669",
+        "alt": "This threat to the chip rally has surged to its highest level since 2015 source thumbnail"
       }
     },
     {
-      "publishedAt": "2026-07-01T01:13:02.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 1 July",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a tepid start for the Indian benchmark index. The Gift Nifty was trading around 23,994 level, a discount of nearly 16 points from the Nifty futures’ previous close.",
-      "takeaway": "Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty session average and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-1-july-11782832067484.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
+      "publishedAt": "2026-06-30T14:03:20.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "Japan backs ACME-IHI Odisha green ammonia project with 25-year subsidy",
+      "summary": "Japan has approved 25-year CfD support for the ACME-IHI green ammonia project in Odisha, strengthening its commercial viability and India's green hydrogen ambitions",
+      "takeaway": "Japan's 25-year CfD support boosts ACME-IHI green ammonia project's viability, strengthening India's green hydrogen ambitions and potentially attracting more investments in the sector.",
+      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and market participation confirm stress after the open.",
+      "indiaImpact": "The development may benefit Indian renewable energy and green hydrogen sectors, potentially influencing stocks related to these areas.",
+      "watchFor": "Watch whether Indian renewable energy stocks react positively at the open following Japan's support for the green ammonia project.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/japan-backs-acme-ihi-odisha-green-ammonia-project-with-25-year-subsidy-126063001184_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "macro_negative",
       "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 1 July source thumbnail"
+        "label": "Yen Watch",
+        "theme": "FX Intervention",
+        "accent": "#0ea5e9",
+        "alt": "Japan backs ACME-IHI Odisha green ammonia project with 25-year subsidy source thumbnail"
       }
     }
   ],
@@ -1888,7 +2348,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-talks-to-fall-in-japanese-yen-8-key-things-that-changed-for-indian-stock-market-overnight-11782832381286.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "From Gift Nifty, US-Iran talks to fall in Japanese Yen: 8 key things that changed for Indian stock market overnight source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "negative",
       "category": "neutral_volatile"
     },
     {
@@ -1942,24 +2402,24 @@
       "category": "global_risk"
     },
     {
-      "title": "China-linked actors target more than technology as AI competition with U.S. intensifies",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-06-30T23:27:41.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/07/01/china-ai-cyberattacks-startups-insider-risks-espionage.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "China-linked actors target more than technology as AI competition with U.S. intensifies source thumbnail",
+      "title": "This threat to the chip rally has surged to its highest level since 2015",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-07-01T01:57:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "This threat to the chip rally has surged to its highest level since 2015 source thumbnail",
       "sentimentLabel": "positive",
-      "category": "global_risk"
+      "category": "neutral_volatile"
     },
     {
-      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 1 July",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-07-01T01:13:02.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-1-july-11782832067484.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 1 July source thumbnail",
-      "sentimentLabel": "neutral",
-      "category": "neutral_volatile"
+      "title": "Japan backs ACME-IHI Odisha green ammonia project with 25-year subsidy",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-30T14:03:20.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/japan-backs-acme-ihi-odisha-green-ammonia-project-with-25-year-subsidy-126063001184_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Japan backs ACME-IHI Odisha green ammonia project with 25-year subsidy source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
     }
   ],
   "setupAudit": [
