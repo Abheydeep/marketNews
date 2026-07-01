@@ -159,7 +159,19 @@ if (process.env.SKIP_DAILY_GENERATE === "true") {
     process.env.MARKET_DATA_MODE ?? "live",
     "--news-data",
     process.env.NEWS_DATA_MODE ?? "live"
-  ], { exitOnFailure: false });
+  ], {
+    exitOnFailure: false,
+    // Mirror the same permissive flags GitHub Actions uses on scheduled runs so
+    // Vercel on-demand generation (when the cron missed) doesn't fail on window
+    // checks or source-count thresholds that the scheduled runner relaxes.
+    env: {
+      ...process.env,
+      ALLOW_INSUFFICIENT_SOURCES: process.env.ALLOW_INSUFFICIENT_SOURCES ?? "true",
+      PREMARKET_LATE_CUTOFF_MINUTES: process.env.PREMARKET_LATE_CUTOFF_MINUTES ?? "180",
+      ALLOW_LATE_PREMARKET_PUBLISH: process.env.ALLOW_LATE_PREMARKET_PUBLISH ?? "true",
+      PUBLIC_BRIEFING_AGENT_RERANK: process.env.PUBLIC_BRIEFING_AGENT_RERANK ?? "true"
+    }
+  });
   if (generated.status === 0) {
     const published = run("npm", ["run", "site:publish", "--", "--date", date, "--scheduled-time", "07:15"], {
       env: {
