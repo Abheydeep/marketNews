@@ -373,7 +373,9 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
     log.info("enrich batch start", { batch: batchNum, of: totalBatches, headlines: batch.map((a) => String(a.headline ?? "").slice(0, 50)) });
     const batchStart = Date.now();
 
-    const settled = await Promise.allSettled(batch.map(async (article) => {
+    const settled = await Promise.allSettled(batch.map(async (article, batchIndex) => {
+      // Stagger requests within each batch by 50ms to avoid thundering-herd 429s
+      await new Promise((resolve) => setTimeout(resolve, batchIndex * 50));
       const articleStart = Date.now();
       const patch = await enricher({
         article: articleForEditorialEnrichment(article),
