@@ -152,7 +152,7 @@ function chartsBlock(days) {
     <div class="mf-charts">
       ${chartCard("FII vs DII daily cash net", "Net flow (FII left, DII right bar) · green = buy · red = sell · Nifty in gold", bars, [{ name: "Buying support", color: "var(--mf-up)" }, { name: "Selling pressure", color: "var(--dn)" }, { name: "Nifty 50", color: "#d4a847" }])}
       ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "var(--dn)" }, { name: "DII", color: "var(--mf-up)" }])}
-      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book · shaded zones show extreme bias", ratioChart, [{ name: "FII long %", color: "var(--mf-up)" }])}
+      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book · shaded zones show extreme bias", ratioChart, [{ name: "FII long %", color: "var(--mf-up)" }], true)}
     </div>
   </div>`;
 }

@@ -38,7 +38,10 @@ flowchart TD
   ScriptAgent --> Digest
   Polished --> SourceLedger["public source ledger"]
   DeterministicCopy --> SourceLedger
-  SourceLedger --> CopyGuard["public copy guardrails"]
+  Digest --> DirectionGuard["public-direction-guard: assert opening-signal consistency"]
+  DirectionGuard --> DirectionRepair["deterministic final-boundary reconciliation"]
+  DirectionRepair --> CopyGuard["public copy guardrails"]
+  SourceLedger --> CopyGuard
   CopyGuard -->|pass| Publishable["publishable digest"]
   CopyGuard -->|fail| Stop["fail generation"]
 

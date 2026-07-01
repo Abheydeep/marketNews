@@ -50,7 +50,7 @@ import { runIndicesTests } from "./indices-page.test.mjs";
 import "./html-utils.test.mjs";
 import "./http.test.mjs";
 import "./chart-svg.test.mjs";
-import "./architecture-guard.test.mjs"; import "./content-guardrails.test.mjs"; import "./public-page-contract.test.mjs";
+import "./architecture-guard.test.mjs"; import "./content-guardrails.test.mjs"; import "./public-page-contract.test.mjs"; import "./public-render-regressions.test.mjs"; import "./public-direction-guard.test.mjs"; import "./market-session-client.test.mjs"; import "./public-copy-sanitizer.test.mjs";
 import "./concurrency.test.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];

@@ -381,11 +381,11 @@ function sanitizeString(value) {
     )
     .replace(
       /The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call\./gi,
-      "No clean 1:2 setup is active yet, so use the first hour to watch opening-range acceptance before taking a directional view."
+      "No clean 1:2 setup is active yet, so use the first hour to watch price acceptance before taking a directional view."
     )
     .replace(
       /No active 1:2 RR setup passed all scanner and live-quote filters\./gi,
-      "No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation."
+      "No clean 1:2 RR setup is active yet; wait for fresh first-hour confirmation."
     )
     .replace(
       /No trade setup qualifies under the 1:2 risk-reward framework after live quote validation\./gi,
@@ -429,7 +429,7 @@ function sanitizeString(value) {
     )
     .replace(
       /Live quote validation removed stale 1:2 levels\./gi,
-      "Wait for opening-range confirmation."
+      "Wait for first-hour confirmation."
     )
     .replace(
       /Live validation removed stale levels\./gi,

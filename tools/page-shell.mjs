@@ -4,7 +4,7 @@ import { bottomTabBarHtml, bottomTabBarCss, mobileTypographyCss, mobileShellScri
 import { brandHeadLinks, brandMarkCss } from "./brand-assets.mjs";
 import { escapeHtml } from "./html-utils.mjs";
 import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
-import { sanitizePublicHtml } from "./public-copy-sanitizer.mjs";
+import { publicCopyClientScript, sanitizePublicHtml } from "./public-copy-sanitizer.mjs";
 
 /**
  * Construct a standard unified HTML document shell for Market Narrative.
@@ -16,12 +16,13 @@ export function pageShell({
   canonicalUrl = `${publicSiteOrigin()}/`,
   ogImage = socialCardUrl("home"),
   ogType = "website",
+  styles = "",
   head = "",
   headExtras = "",
   bodyClass = "has-btb",
   activeHref = "",
   mobileActiveKey = "", // e.g. "archive", "latest", "fiidii", "indices", "portfolio"
-  mainClass = "",
+  mainClass = "site-content-shell",
   main = "",
   afterMain = "",
   scripts = ""
@@ -70,6 +71,7 @@ export function pageShell({
     ${siteFooterCss()}
     ${needsBtb ? bottomTabBarCss() : ""}
     ${needsBtb ? mobileTypographyCss() : ""}
+    ${styles}
   </style>
   ${head}
   ${headExtras}
@@ -88,6 +90,7 @@ export function pageShell({
   
   ${needsBtb ? bottomTabBarHtml(mobileActiveKey) : ""}
   ${needsBtb ? mobileShellScript() : ""}
+  ${publicCopyClientScript()}
   ${scripts}
 </body>
 </html>`);

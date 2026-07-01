@@ -8,7 +8,7 @@ flowchart TD
   PagesWorkflow --> Digest
 
   Digest["out/daily or archive digest"] --> Load["publish-site loadSourceDigest"]
-  Registry["public-page-registry: www origin, title, nav and social policy"] --> SharedShell["pageShell owns public document chrome and metadata"]
+  Registry["public-page-registry: www origin, title, nav and social policy"] --> SharedShell["pageShell owns document chrome, metadata, styles and content width"]
   RuntimeAssets["out/vercel/assets/og generated images"] --> AssetCopy["copy assets into out/site/assets"]
   Digest --> SocialCards["deterministic social-card SVG templates"]
   SocialCards --> Sharp["sharp rasterizes 1200x630 PNG cards"]
@@ -17,6 +17,8 @@ flowchart TD
   Redact --> Pages["render public pages"]
   Registry --> Pages
   SharedShell --> Pages
+  PublicCopy["public-copy-sanitizer: server text + dynamic DOM text"] --> SharedShell
+  SessionState["market-session-client: symbol-aware exchange state"] --> Hubs
   Pages --> Home["/ archive homepage"]
   Pages --> Dated["/DDmonYYYY/ and trading-guide"]
   Pages --> Latest["/latest/ and /latest/trading-guide/ shell"]

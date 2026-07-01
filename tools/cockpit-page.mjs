@@ -68,6 +68,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
   const previewImageUrl = absoluteSiteUrl(digest.ogImageUrl || socialCardUrl(isTradingGuidePage ? "guide" : "briefing", siteOrigin), siteOrigin);
+  const articleHeroImageUrl = digest.articleHeroImageUrl || (digest.ogImageUrl && !/\/assets\/social\//i.test(digest.ogImageUrl) ? digest.ogImageUrl : "");
   const navItems = [];
   if (includeStudio) {
     navItems.push(
@@ -5426,7 +5427,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
           <h1>${escapeHtml(pageH1)}</h1>
           ${digest.dailyLead?.headline ? `<h2 class="subheadline" style="font-size: 1.1rem; color: var(--stone); margin-top: 8px;">${escapeHtml(digest.dailyLead.headline)}</h2>` : ""}
         </header>
-        ${digest.ogImageUrl ? `<img src="${escapeHtml(previewImageUrl)}" alt="${escapeHtml(`${pageH1} - market theme illustration`)}" width="1200" height="400" loading="eager" decoding="async" style="width:100%;height:280px;object-fit:cover;object-position:center;border-radius:var(--border-radius-lg);margin-bottom:1.5rem">` : ""}
+        ${articleHeroImageUrl ? `<img src="${escapeHtml(absoluteSiteUrl(articleHeroImageUrl, siteOrigin))}" alt="${escapeHtml(`${pageH1} - market theme illustration`)}" width="1200" height="400" loading="eager" decoding="async" style="width:100%;height:280px;object-fit:cover;object-position:center;border-radius:var(--border-radius-lg);margin-bottom:1.5rem">` : ""}
 
         <details id="summaryExpand" class="info-card executive-card briefing-expand-card">
           <summary>
@@ -6700,7 +6701,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ctx.fillText('No active 1:2 setup', width / 2, height / 2 - 8);
       ctx.fillStyle = palette.muted;
       ctx.font = '13px Arial';
-      ctx.fillText('Wait for opening-range confirmation.', width / 2, height / 2 + 18);
+      ctx.fillText('Wait for first-hour confirmation.', width / 2, height / 2 + 18);
     }
 
     function scaleCanvas(canvas) {
@@ -7183,7 +7184,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       }
 
       const activeIndex = Math.min(scenes.length - 1, Math.floor(p * Math.max(1, scenes.length)));
-      const activeScene = scenes[activeIndex] || { title: 'Market Read', caption: 'Opening range decides' };
+      const activeScene = scenes[activeIndex] || { title: 'Market Read', caption: 'First-hour range decides' };
       ctx.fillStyle = 'rgba(255,255,255,0.14)';
       roundRect(ctx, width * 0.08, height * 0.07, width * 0.84, 42, 14);
       ctx.fill();
@@ -7198,7 +7199,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       wrapCanvasText(ctx, activeScene.title || 'Market Read', width * 0.1, height * 0.28, width * 0.8, 40, 2);
       ctx.fillStyle = '#dbeafe';
       ctx.font = '700 20px Arial';
-      wrapCanvasText(ctx, activeScene.caption || 'Opening range decides', width * 0.1, height * 0.43, width * 0.8, 30, 3);
+      wrapCanvasText(ctx, activeScene.caption || 'First-hour range decides', width * 0.1, height * 0.43, width * 0.8, 30, 3);
 
       const lineY = height * 0.72;
       scenes.slice(0, 5).forEach((scene, index) => {
@@ -7422,7 +7423,7 @@ function hookTitle(digest) {
   }
 
   if (hasFlow) {
-    return `${fiiPhrase()} on ${fii.date} — Check the Opening Range Before Taking a View`;
+    return `${fiiPhrase()} on ${fii.date} — Check the First-Hour Range Before Taking a View`;
   }
   return String(digest.title ?? "India Pre-Open Market Briefing");
 }
@@ -8858,7 +8859,7 @@ function noSetupTradeFrame(digest) {
   if (compressed.length) {
     return "The move has already stretched away from the entry zone, so the remaining reward is not worth the risk. Wait for price to reset near a cleaner level.";
   }
-  return "No clean 1:2 setup is active yet, so wait for opening-range confirmation before taking a directional view.";
+  return "No clean 1:2 setup is active yet, so wait for first-hour confirmation before taking a directional view.";
 }
 
 function tradeFramingHtml(digest, setup, setupText) {
@@ -9820,7 +9821,7 @@ function scannerValidationHtml(digest) {
     return `
       <div class="validation-list">
         ${auditRows || validationRow("blocked", "No active setup from current checks", "The page only shows a trade plan when the entry, stop, and target still preserve at least 2R.")}
-        ${validationRow("warn", "Opening range required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
+        ${validationRow("warn", "First-hour confirmation required", "The next valid plan should be rebuilt only after price accepts a fresh level with clean risk placement.")}
         ${validationRow("ok", "Trade execution disabled", "Studio output remains educational research for video planning; no order placement is connected.")}
       </div>
     `;

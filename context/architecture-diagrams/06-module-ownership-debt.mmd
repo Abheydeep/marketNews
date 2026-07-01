@@ -20,6 +20,8 @@ flowchart TD
     SharedShell["page-shell.mjs + legacy-public-shell.mjs"]
     SocialCards["social-card.mjs"]
     SessionClient["market-session-client.mjs"]
+    DirectionGuard["public-direction-guard.mjs"]
+    PublicCopy["public-copy-sanitizer.mjs"]
   end
 
   subgraph Targets["Target ownership"]
@@ -46,6 +48,9 @@ flowchart TD
   Cockpit -.-> SharedShell
   Multi -.-> SharedShell
   Publish -.-> SessionClient
+  Core -.-> DirectionGuard
+  Publish -.-> DirectionGuard
+  SharedShell -.-> PublicCopy
   Sources --> Ingest
   Sources --> Score
   Sources --> LLM

@@ -16,7 +16,8 @@ export function legacyPublicPageShell(html, options) {
   const main = mainMatch[2].replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
   return pageShell({
     ...options,
-    head: `${structuredData}<style>${styles}</style>`,
+    head: structuredData,
+    styles,
     headExtras: supplementalHead,
     main,
     mainClass,

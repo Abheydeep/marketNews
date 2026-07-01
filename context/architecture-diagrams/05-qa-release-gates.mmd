@@ -7,8 +7,10 @@ flowchart LR
   MobileSmoke --> LocalProd{"content or pipeline change?"}
   LocalProd -->|yes| RealLLM["local:prod with .env.local real keys"]
   RealLLM --> LocalSmoke["local:prod:smoke"]
-  LocalProd -->|no| Review["review and commit"]
-  LocalSmoke --> Review
+  LocalSmoke --> ChromeQA["Chrome desktop/mobile route matrix"]
+  LocalProd -->|no| ChromeQA
+  ChromeQA -->|pass| Review["review and commit"]
+  ChromeQA -->|extension or visual failure| VisualBlock["block release; repair Chrome or UI"]
   Review --> Push["push / merge"]
   Push --> CI["GitHub QA workflow"]
   CI --> Vercel["Vercel/GitHub Pages deploy"]

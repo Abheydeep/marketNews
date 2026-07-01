@@ -18,7 +18,7 @@ const DESCRIPTIONS = {
   SPX: "S&P 500: Primary gauge of US equity health. Influences overnight sentiment across global emerging market desks.",
   NDX: "Nasdaq 100: Tech heavy US benchmark. Drives sentiment across Indian IT service exporters.",
   DJI: "Dow Jones: US blue-chip benchmark index reflecting traditional industrial sector health.",
-  NIKKEI: "Nikkei 225: Japan's headline index. Shapes early morning Asian risk appetite and liquidity transfer.",
+  NIKKEI: "Nikkei 225: Japan's headline index. Shapes early morning Asian willingness to take risk and liquidity transfer.",
   HSI: "Hang Seng: Hong Kong's index. Correlates with FII flows in emerging markets and global tech cues.",
   BRENT: "Brent Crude: Global benchmark for oil prices. Spikes above $85 represent direct inflationary risks for India.",
   DXY: "US Dollar Index: Measures USD strength. Stronger DXY pressure triggers FII capital outflows from India.",
@@ -89,7 +89,7 @@ export function indicesPageBody(digest) {
                 ${buildSparklinePath(cardPoints, s.symbol === "GIFTNIFTY" ? "idx-flat" : cls)}
               </svg>
             </div>
-            <div class="idx-card-bottom"><span data-field="ltp">LTP: ${displayVal}</span><span data-field="quality">${s.dataQuality === "live" ? "● Live" : "Delayed"}</span></div>
+            <div class="idx-card-bottom"><span data-field="ltp">LTP: ${displayVal}</span><span data-field="quality">Snapshot</span></div>
           </button>`;
         }).join("")}
       </div>

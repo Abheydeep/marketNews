@@ -10,7 +10,7 @@ import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 import { log } from "./logger.mjs";
 import { buildBriefingImagePrompt, generateArticleImage } from "./generate-article-image.mjs";
-import { writeOgImageAsset } from "./og-image-assets.mjs"; import { reconcileGeneratedInstrumentPrices } from "./public-price-reconcile.mjs";
+import { writeOgImageAsset } from "./og-image-assets.mjs"; import { reconcileGeneratedInstrumentPrices } from "./public-price-reconcile.mjs"; import { reconcilePublicDirection } from "./public-direction-guard.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -101,7 +101,7 @@ if (nonTradingSession && !marketUpdateMode && generatedDigest.sourceVerification
   };
 }
 
-const digest = sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices({
+const digest = reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices({
   ...generatedDigest,
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
@@ -112,7 +112,7 @@ const digest = sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPric
       ? "manual-non-trading-source-data"
       : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
   ...(nonTradingSession ? { nonTradingSession } : {})
-}));
+})));
 digest.ogImageUrl = await generatedBriefingOgImageUrl(digest);
 if (requireArticleImage && !digest.ogImageUrl) {
   throw new Error("Article image generation is required for this run but no image URL was produced.");

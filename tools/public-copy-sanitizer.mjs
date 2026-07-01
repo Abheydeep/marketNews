@@ -5,11 +5,11 @@ export function stripPublicJargon(value) {
     .replace(/\brisk-off\b/gi, "defensive")
     .replace(/\brisk-on\b/gi, "constructive")
     .replace(/\bVWAP\b/g, "session average")
-    .replace(/\bopening range\b/gi, "first-hour range")
-    .replace(/\brisk appetite\b/gi, "willingness to take risk")
+    .replace(/\bopening[- ]range\b/gi, "first-hour range")
+    .replace(/\brisk[- ]appetite\b/gi, "willingness to take risk")
     .replace(/\bsector breadth validates\b/gi, "sector participation confirms")
     .replace(/\bsector breadth\b/gi, "sector participation")
-    .replace(/\badvance-decline\b/gi, "market participation")
+    .replace(/\badvance[- ]decline\b/gi, "market participation")
     .replace(/\bbreadth\b/gi, "market participation")
     .replace(/\bstructural heft\b/gi, "staying power")
     .replace(/\baccumulation or distribution\b/gi, "sustained buying or selling");
@@ -20,4 +20,26 @@ export function sanitizePublicHtml(value) {
     /(<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>|<[^>]+>)|([^<]+)/gi,
     (match, protectedMarkup, visibleText) => protectedMarkup || stripPublicJargon(visibleText)
   ).replace(/<button(?![^>]*\btype=)/gi, '<button type="button"');
+}
+
+export function publicCopyClientScript() {
+  return `<script>
+  (() => {
+    const plain = (value) => String(value || "")
+      .replace(/\\brisk-off\\b/gi, "defensive").replace(/\\brisk-on\\b/gi, "constructive")
+      .replace(/\\bVWAP\\b/g, "session average").replace(/\\bopening[- ]range\\b/gi, "first-hour range")
+      .replace(/\\brisk[- ]appetite\\b/gi, "willingness to take risk")
+      .replace(/\\bsector breadth\\b/gi, "sector participation")
+      .replace(/\\badvance[- ]decline\\b/gi, "market participation").replace(/\\bbreadth\\b/gi, "market participation");
+    const clean = (root) => {
+      if (!root || root.nodeType === 3) { if (root) root.nodeValue = plain(root.nodeValue); return; }
+      if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/i.test(root.tagName)) return;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let node; while ((node = walker.nextNode())) node.nodeValue = plain(node.nodeValue);
+    };
+    clean(document.body);
+    new MutationObserver((records) => records.forEach((record) => record.addedNodes.forEach(clean)))
+      .observe(document.body, { childList: true, subtree: true });
+  })();
+  </script>`;
 }

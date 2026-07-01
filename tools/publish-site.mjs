@@ -29,7 +29,7 @@ import { siteThemeCss } from "./site-theme.mjs";
 import { isLivePriceTracker } from "./article-triage.mjs";
 import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
 import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from "./public-price-reconcile.mjs";
-import { generateSocialCards } from "./social-card.mjs";
+import { generateSocialCards } from "./social-card.mjs"; import { reconcilePublicDirection } from "./public-direction-guard.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const siteOrigin = publicSiteOrigin();
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
@@ -444,7 +444,7 @@ async function loadArchivedDigests() {
 
   const digestsByKey = new Map();
   for (const fileName of digestFiles) {
-    const digest = sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(join(archiveDir, fileName), "utf8"))));
+    const digest = reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(join(archiveDir, fileName), "utf8")))));
     const key = `${digest.digestDate}-${scheduledLabelForDigest(digest)}`;
     digestsByKey.set(key, digest);
   }
@@ -558,7 +558,7 @@ function compareArchiveEntries(left, right) {
 
 async function loadSourceDigest() {
   try {
-    return sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(sourceJson, "utf8"))));
+    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(sourceJson, "utf8")))));
   } catch (error) {
     if (error?.code !== "ENOENT" && !skipArchiveWrite) {
       throw error;
@@ -567,7 +567,7 @@ async function loadSourceDigest() {
       log.warn("Source digest missing, falling back to archived digest", { sourceJson, archivedJson });
     }
     sourceDigestLoadedFromArchive = true;
-    return sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(archivedJson, "utf8"))));
+    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(archivedJson, "utf8")))));
   }
 }
 
@@ -824,7 +824,7 @@ function roundPublic(value, places) {
 function publicOnePageSummary(digest) {
   const marketLine = (digest.marketSnapshots ?? []).map((snapshot) => `${snapshot.name} ${formatSnapshotChange(snapshot)}`).join(", ");
   const themeLines = (digest.themes ?? []).map((theme) => `- ${theme.title}: ${theme.summary}`).join("\n");
-  const setupLines = (digest.tradeSetups ?? []).length ? digest.tradeSetups.map((setup) => `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`).join("\n") : "- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.";
+  const setupLines = (digest.tradeSetups ?? []).length ? digest.tradeSetups.map((setup) => `- ${setup.symbol} ${setup.direction} entry ${setup.entry}, stop ${setup.stopLoss}, target ${setup.target} (RR ${setup.riskReward})`).join("\n") : "- No clean 1:2 RR setup is active yet; wait for fresh first-hour confirmation.";
   return [`Market Mood: ${digest.sentimentLabel}`, `Global Cues: ${marketLine}`, `Narrative Themes:\n${themeLines}`, `Validated Trading Setups:\n${setupLines}`, "Educational note: " + DISCLAIMER].join("\n\n");
 }
 function isVerifiedPublicDigest(digest) {
@@ -1961,8 +1961,8 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
         scroll-snap-align: start;
       }
     }
+    ${proPolishCss()}
   </style>
-  ${proPolishCss()}
   `;
 
   const main = `
@@ -2284,7 +2284,7 @@ export function aboutPage(latest, archiveDigests = []) {
   </style>
   `;
 
-  const main = `
+  const moreHub = `
     <section class="more-hub" aria-label="Quick links">
       <span class="more-hub-eyebrow">Market Narrative</span>
       <div class="more-hub-grid">
@@ -2319,7 +2319,8 @@ export function aboutPage(latest, archiveDigests = []) {
           <span class="more-hub-card-arrow">&#8250;</span>
         </a>
       </div>
-    </section>
+    </section>`;
+  const main = `
     <header class="hero">
       <p class="eyebrow">About Market Narrative</p>
       <h1>Independent pre-market context for Indian traders.</h1>
@@ -2363,6 +2364,7 @@ export function aboutPage(latest, archiveDigests = []) {
         <a class="archive-proof-link" href="/">Browse the archive</a>
       </article>
     </section>
+    ${moreHub}
   `;
 
   return pageShell({
@@ -2417,8 +2419,8 @@ export function subscribePage(latest, totalBriefings = 38) {
     .sent-note[hidden] {
       display: none !important;
     }
-    .honey-field {
-      display: none;
+    .subscribe-form .honey-field[hidden] {
+      display: none !important;
     }
     .subscribe-form {
       display: grid;
@@ -2485,7 +2487,7 @@ export function subscribePage(latest, totalBriefings = 38) {
       <div class="sent-note" hidden></div>
       <form class="subscribe-form" action="https://formspree.io/f/xvgozvwd" method="POST">
         <input type="hidden" name="_next" value="${siteOrigin}/subscribe/?sent=1">
-        <label class="honey-field" aria-hidden="true">Leave this empty
+        <label class="honey-field" hidden aria-hidden="true">Leave this empty
           <input type="text" name="_honey" tabindex="-1" autocomplete="off">
         </label>
         <label>

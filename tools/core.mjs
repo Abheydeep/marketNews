@@ -10,7 +10,7 @@ import { isMarketUpdateDate } from "./market-calendar.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 import { fetchWithRetry } from "./http.mjs";
 import { mapWithConcurrency } from "./limited-concurrency.mjs";
-import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
+import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs"; import { assertPublicDirectionConsistency } from "./public-direction-guard.mjs";
 
 const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 const NIM_MODEL = process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
@@ -137,7 +137,7 @@ async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, theme
   const context = `DATE: ${date}
 SENTIMENT: ${sentimentLabel} (score: ${overallSentiment})
 MARKETS: ${marketSummary}
-${dailyLead?.headline ? `\nPRIMARY STORY (lead with this): ${dailyLead.headline}\n` : ""}
+${dailyLead?.headline ? `\nPRIMARY STORY (lead with this): ${dailyLead.headline}\nOPENING SIGNAL: ${JSON.stringify(dailyLead.giftNiftyBias || null)}\n` : ""}
 KEY THEMES:
 ${themesSummary}
 
@@ -394,9 +394,11 @@ export async function buildDigest(date = todayIso(), options = {}) {
   assertDigestEditorialIntegrity({
     title,
     archiveSummary,
+    twoMinuteSummary,
     deskNote,
     watchItems,
-    dailyLead
+    dailyLead,
+    giftNiftyBias: dailyLead.giftNiftyBias ?? null
   }, options.previousDigest);
   const asset = generateAsset(date, sentimentLabel, {
     snapshots: marketSnapshots,
@@ -2539,12 +2541,12 @@ function editorialBecause(article) {
 
 function assertDigestEditorialIntegrity(current, previousDigest) {
   const stale = ["Global Pressure Meets Domestic Selectivity", "clearest macro headwind", "Selectivity"];
-  const publicText = [current.title, current.archiveSummary, current.deskNote, ...(current.watchItems || [])].join(" ");
+  const publicText = [current.title, current.archiveSummary, current.twoMinuteSummary, current.deskNote, ...(current.watchItems || [])].join(" ");
   const banned = stale.find((phrase) => publicText.includes(phrase));
   if (banned) {
     throw new Error(`Digest editorial integrity failed: stale phrase "${banned}"`);
   }
-  assertDailyLeadCoherence(current);
+  assertDailyLeadCoherence(current); assertPublicDirectionConsistency(current);
   if (!previousDigest) {
     return;
   }

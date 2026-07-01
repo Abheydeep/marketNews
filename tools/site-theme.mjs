@@ -65,6 +65,30 @@ img, svg {
   outline-offset: 2px;
 }
 
+.site-content-shell {
+  margin: 0 auto;
+  width: min(1160px, calc(100% - 36px));
+}
+
+.mn-skip {
+  background: var(--ink);
+  border-radius: 0 0 8px 0;
+  color: var(--bg);
+  font-weight: 800;
+  left: 0;
+  padding: 10px 14px;
+  position: fixed;
+  top: 0;
+  transform: translateY(-120%);
+  transition: transform 120ms ease;
+  z-index: 300;
+}
+
+.mn-skip:focus,
+.mn-skip:focus-visible {
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-delay: -1ms !important;
