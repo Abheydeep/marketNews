@@ -51,6 +51,7 @@ test("content guardrails: deterministic public copy contains no risk-on or risk-
 
 test("content guardrails: committed archive preference selects the latest slot", async () => {
   const source = await readFile("tools/vercel-build-public.mjs", "utf8");
+  assert.match(source, /import \{ existsSync, readFileSync, readdirSync \} from "node:fs"/);
   assert.match(source, /for \(const slot of \["0830", "0800", "0715"\]\)/);
   const publisher = await readFile("tools/publish-site.mjs", "utf8");
   assert.match(publisher, /datedPageDigests = digests\.filter/);

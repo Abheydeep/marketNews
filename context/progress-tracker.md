@@ -357,3 +357,8 @@ These must remain true after changes:
   Verified: rollover, deterministic archived-publish, and price-free lead-title regression tests passed; the exact CI publish command passed under Node 22; `npm run context:verify` passed; `npm test` passed 86 repository tests and 33 Node tests; `npm run test:deploy` passed all 5 checks in 15.6 seconds, including the public Vercel artifact and 18 FastAPI tests; `npm run public:copy:qa -- public` passed.
   Architecture diagrams changed: none.
   Debt found but deferred: NVIDIA Flux remains on explicit image fallback because bounded hosted-image probes time out.
+
+- 2026-07-01: Restored normal Vercel public builds after the latest-slot optimization. ROOT CAUSE: `todayArchivedDigest()` in `tools/vercel-build-public.mjs` called `existsSync()` when `SKIP_DAILY_GENERATE` was false, but the module omitted that `node:fs` import, causing a pre-generation `ReferenceError` on Vercel.
+  Verified: targeted import/slot regression passed; `npm run context:verify` passed; `npm test` passed 86 repository tests and 33 Node tests; `npm run test:deploy` passed all 5 checks in 16.3 seconds; `npm run public:copy:qa -- public` passed.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
