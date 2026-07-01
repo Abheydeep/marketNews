@@ -387,14 +387,18 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const overallSentiment = weightedSentiment(articles);
   const sentimentLabel = labelFromScore(overallSentiment);
   const tempTitle = uniqueTitleForDigest(date, sentimentLabel, publicArticles, themes, options.previousDigest, dailyLead);
-  const aiScript = await generateFullScriptWithAI({ date, sentimentLabel, snapshots: marketSnapshots, themes, setups: tradeSetups, articles: publicArticles, overallSentiment, dailyLead });
+  const [aiScript, editorialH1] = await Promise.all([
+    generateFullScriptWithAI({ date, sentimentLabel, snapshots: marketSnapshots, themes, setups: tradeSetups, articles: publicArticles, overallSentiment, dailyLead }),
+    generateEditorialHeadline({ dailyLead, marketSnapshots, marketUpdate: Boolean(options.marketUpdateMode) })
+  ]);
+  const title = editorialH1 || tempTitle;
   const twoMinuteSummary = aiScript?.twoMinuteSummary || null;
   const generatedAt = options.generatedAt ?? new Date().toISOString();
   const archiveSummary = archiveSummaryForDigest(date, publicArticles, themes, options.previousDigest, dailyLead);
   const deskNote = aiScript?.deskNote || null;
   const watchItems = watchItemsFromArticles(publicArticles, options.previousDigest);
   assertDigestEditorialIntegrity({
-    title: tempTitle,
+    title,
     archiveSummary,
     deskNote,
     watchItems,
@@ -410,7 +414,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
   const digest = {
     scriptId: 1,
     digestDate: date,
-    title: tempTitle,
+    title,
     status: "DRAFT",
     generatedAt,
     dailyLead,

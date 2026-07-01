@@ -67,9 +67,10 @@ test("content guardrails: archived publish forwards its source slot across midni
   });
 });
 
-test("content guardrails: archived publishes do not regenerate the verified headline", async () => {
-  const publisher = await readFile("tools/publish-site.mjs", "utf8");
-  assert.match(publisher, /if \(publishTargetDigest && !sourceDigestLoadedFromArchive\)/);
+test("content guardrails: editorial headline is generated at build time and stored in the archive", async () => {
+  const core = await readFile("tools/core.mjs", "utf8");
+  assert.match(core, /generateEditorialHeadline\(/);
+  assert.match(core, /editorialH1 \|\| tempTitle/);
 });
 
 test("content guardrails: deterministic crude titles never embed a stale price", () => {

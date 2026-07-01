@@ -6,7 +6,7 @@ import { escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
-import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
+import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { normalizePublicSourceCategory } from "./public-source-category.mjs";
 import { titleForDailyLead } from "./public-lead-title.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
@@ -19,7 +19,7 @@ import { parseDayLabel } from "./fii-dii-capture.mjs";
 import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -92,20 +92,7 @@ const digests = (await loadArchivedDigests()).map(enrichPublicDigest);
 if (!digests.length) {
   throw new Error("No archived digests are available to publish");
 }
-// Give the edition being published a punchy, SEO-friendly H1 generated from its PUBLIC lead
-// (the lead and copy that actually appear after public filtering), so the headline always
-// matches the page. Degrades to the formulaic title when the model is unavailable.
-const publishTargetDigest = digests.find((digest) => digest.digestDate === date);
-if (publishTargetDigest && !sourceDigestLoadedFromArchive) {
-  const editorialH1 = await generateEditorialHeadline({
-    dailyLead: publishTargetDigest.dailyLead,
-    marketSnapshots: publishTargetDigest.marketSnapshots,
-    marketUpdate: Boolean(publishTargetDigest.marketUpdateMode)
-  });
-  if (editorialH1) {
-    publishTargetDigest.title = editorialH1;
-  }
-}
+
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
 const publicationEvents = await loadPublicationEvents();
 const weekdayDigests = digests.filter(isWeekdayDigest);
@@ -670,7 +657,7 @@ function enrichPublicDigest(digest) {
   const dailyLead = verified && digestDailyLeadIsVisible(digest.dailyLead, news)
     ? digest.dailyLead
     : recomputedDailyLead;
-  const coherentTitle = verified && dailyLead ? titleForDailyLead(dailyLead, Boolean(digest.marketUpdateMode)) : digest.title;
+  const coherentTitle = digest.title || (verified && dailyLead ? titleForDailyLead(dailyLead, Boolean(digest.marketUpdateMode)) : null);
   const coherentArchiveSummary = verified && dailyLead
     ? compactWords(`${dailyLead.label}: ${dailyLead.indiaImpact}`, 38)
     : (digest.archiveSummary || archiveCardSummary({ ...digest, news }));
@@ -968,7 +955,7 @@ function homepageTagFilterHtml(digests) {
   return `<div class="tag-filter" role="group" aria-label="Filter by driver">${pills}</div>`;
 }
 
-function archivePage(digests, allDigests = digests, latestDigest = null) {
+export function archivePage(digests, allDigests = digests, latestDigest = null) {
   const latest = latestDigest ?? digests.find(isVerifiedPublicDigest) ?? digests[0];
   const pageTitle = "Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative";
   const pageDescription = "Daily Nifty today analysis at 7:15 AM IST covering GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
@@ -1013,78 +1000,24 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     })
     .join("");
 
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <meta name="description" content="${escapeHtml(pageDescription)}">
+  const head = `
   <meta name="author" content="Abhey Deep">
   <meta name="keywords" content="nifty today analysis, pre market analysis nifty, bank nifty analysis today, gift nifty today, fii dii data today, indian stock market analysis today">
   <meta name="geo.region" content="IN">
   <meta name="geo.placename" content="India">
   <meta name="language" content="English">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#050816">
-  <link rel="canonical" href="${escapeHtml(siteOrigin)}/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Market Narrative">
-  <meta property="og:title" content="${escapeHtml(pageTitle)}">
-  <meta property="og:description" content="${escapeHtml(pageDescription)}">
-  <meta property="og:url" content="${escapeHtml(siteOrigin)}/">
-  <meta property="og:image" content="${escapeHtml(siteOrigin)}/og-card.svg">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="675">
-  <meta property="og:image:alt" content="Market Narrative Nifty pre-market analysis briefing">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nifty Today Analysis - Pre-Market Briefing | Market Narrative">
-  <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
-  <meta name="twitter:image" content="${escapeHtml(siteOrigin)}/og-card.svg">
-  <title>${escapeHtml(pageTitle)}</title>
   ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription, homepageFaq))}
   <style>
-    ${siteThemeCss()}
-    * { box-sizing: border-box; }
-
-    /* === Global mobile base (Tier 1) === */
-    html, body { overflow-x: hidden; }
-    body {
-      padding-left: env(safe-area-inset-left, 0px);
-      padding-right: env(safe-area-inset-right, 0px);
-    }
-    img, svg, video, canvas { max-width: 100%; height: auto; }
-    a, button { touch-action: manipulation; }
-    a, button, [tabindex] { -webkit-tap-highlight-color: transparent; }
-    *:focus { outline: none; }
-    *:focus-visible {
-      outline: 2px solid #22d3ee;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    /* === End global mobile base === */
-
-    body {
-      margin: 0;
-      min-height: 100vh;
+    body.archive-dark {
       background:
         radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.32), transparent 32vw),
         radial-gradient(circle at 82% 0%, rgba(96, 165, 250, 0.30), transparent 34vw),
         radial-gradient(circle at 70% 86%, rgba(244, 63, 94, 0.18), transparent 28vw),
         linear-gradient(135deg, #030712 0%, #08111f 46%, #111827 100%);
-      color: var(--ink);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
+    body.archive-dark::before {
       content: "";
       position: fixed;
       inset: 0;
@@ -1095,63 +1028,15 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 42%);
     }
 
-    body > * {
+    body.archive-dark > * {
       position: relative;
       z-index: 1;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(3, 7, 18, 0.66);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
     }
 
     .shell {
       width: min(1040px, calc(100% - 36px));
       margin: 0 auto;
     }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 64px;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 20px;
-      font-weight: 850;
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-      ${brandMarkCss()}
-
-    ${siteNavCss()}
 
     .share-row {
       display: flex;
@@ -1248,205 +1133,79 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     .share-copy-btn {
-      cursor: pointer;
-      font: inherit;
+      position: relative;
     }
-
     .share-copy-btn[data-copy-state="copied"] {
-      border-color: rgba(52, 211, 153, 0.5);
-      background: rgba(6, 78, 59, 0.38);
-      color: #86efac;
+      border-color: #34d399;
+      color: #34d399;
     }
 
-    .share-icon {
-      width: 18px;
-      height: 18px;
-      display: block;
-    }
-
-    .hero-actions {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 22px;
-      max-width: 900px;
-    }
-
-    .hero-action {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.66);
-      display: grid;
-      gap: 5px;
-      min-height: 86px;
-      padding: 13px 14px;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-    }
-
-    .hero-action:hover {
-      border-color: rgba(103, 232, 249, 0.45);
-      background: rgba(15, 23, 42, 0.86);
-      transform: translateY(-2px);
-    }
-
-    .hero-action--primary {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.45), rgba(34, 211, 238, 0.28)) !important;
-      border-color: rgba(99, 102, 241, 0.7) !important;
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
-    }
-    .hero-action--primary:hover {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(34, 211, 238, 0.4)) !important;
-      border-color: #22d3ee !important;
-      box-shadow: 0 0 24px rgba(34, 211, 238, 0.24) !important;
-    }
-
-    .hero-action strong {
-      color: #f8fafc;
-      font-size: 17px;
-      line-height: 1.2;
-    }
-
-    .hero-action span {
-      color: #9fb0c8;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.45;
+    .share-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .subscribe-strip {
-      border: 1px solid rgba(52, 211, 153, 0.28);
+      background: rgba(15, 23, 42, 0.62);
+      border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(6, 78, 59, 0.20);
-      margin-top: 16px;
-      max-width: 900px;
-      padding: 16px;
       display: flex;
-      flex-direction: column;
-      gap: 14px;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      padding: 24px;
     }
 
     .subscribe-strip-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      max-width: 580px;
+    }
+    .subscribe-strip-content strong {
+      color: #fff;
+      display: block;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+    .subscribe-strip-content p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 8px 0 0;
     }
 
     .subscribe-strip-actions {
+      align-items: flex-start;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 14px;
-      flex-wrap: wrap;
-      width: 100%;
-      border-top: 1px dashed rgba(52, 211, 153, 0.2);
-      padding-top: 14px;
+      justify-content: space-between;
+    }
+
+    .subscribe-btn {
+      background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+      border-radius: 8px;
+      color: #030712;
+      display: inline-flex;
+      font-size: 15px;
+      font-weight: 900;
+      padding: 12px 18px;
+      transition: opacity 120ms;
+    }
+    .subscribe-btn:hover {
+      opacity: 0.9;
     }
 
     .subscribe-share-zone {
-      display: flex;
       align-items: center;
+      display: flex;
       gap: 12px;
-      flex-wrap: wrap;
     }
-
-    .subscribe-share-zone span.share-label {
-      color: #9fb0c8;
-      font-size: 13px;
+    .subscribe-share-zone span {
+      color: var(--muted);
+      font-size: 12px;
       font-weight: 850;
-    }
-
-    .subscribe-share-zone .share-links {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .subscribe-share-zone .share-link,
-    .subscribe-share-zone .share-copy-btn {
-      min-width: auto !important;
-      min-height: auto !important;
-      width: 32px !important;
-      height: 32px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      border-radius: 50% !important;
-      background: rgba(255, 255, 255, 0.08) !important;
-      border: 1px solid rgba(255, 255, 255, 0.16) !important;
-      padding: 0 !important;
-      color: #9fb0c8 !important;
-      cursor: pointer;
-      transition: background 120ms, border-color 120ms, color 120ms !important;
-    }
-
-    .subscribe-share-zone .share-link:hover,
-    .subscribe-share-zone .share-copy-btn:hover {
-      background: rgba(34, 211, 238, 0.16) !important;
-      border-color: rgba(34, 211, 238, 0.4) !important;
-      color: #22d3ee !important;
-    }
-
-    .subscribe-share-zone .share-link svg,
-    .subscribe-share-zone .share-copy-btn svg {
-      width: 16px !important;
-      height: 16px !important;
-      display: block;
-    }
-
-    .subscribe-strip strong {
-      color: #f8fafc;
-      display: block;
-      font-size: 16px;
-      line-height: 1.25;
-    }
-
-    .subscribe-strip span.sub-proof {
-      color: #bbf7d0;
-      display: block;
-      font-size: 13px;
-      font-weight: 720;
-      line-height: 1.45;
-      margin-top: 3px;
-    }
-
-    .subscribe-strip a.subscribe-btn {
-      border: 1px solid rgba(187, 247, 208, 0.32);
-      border-radius: 8px;
-      background: rgba(5, 46, 22, 0.66);
-      color: #f0fdf4;
-      flex: 0 0 auto;
-      font-size: 13px;
-      font-weight: 950;
-      padding: 10px 12px;
-      text-decoration: none;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    main {
-      padding: 42px 0 72px;
-    }
-
-    .hero {
-      margin-bottom: 30px;
-    }
-
-    .eyebrow-container {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .eyebrow {
@@ -1532,8 +1291,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .workflow-strip {
       display: none !important;
     }
-
-
 
     .archive-header-row {
       display: flex;
@@ -1964,9 +1721,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
       margin-top: 10px;
     }
 
-    .site-footer { border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding:28px 0 48px; }
-    ${siteFooterCss()}
-
     .brief-preview { color: #9fb0c8; font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 680px; } .brief-preview-link { color: #7cb4f5; font-size: 13px; white-space: nowrap; } .sub-proof { color: #34d399; font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px; }
     .market-strip { display: flex; flex-wrap: nowrap; gap: 10px; overflow-x: auto; padding: 10px 0 6px; scrollbar-width: none; }
     .market-strip::-webkit-scrollbar { display: none; } .ms-chip { background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 100px; padding: 10px 12px; } .ms-lbl { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; } .ms-val { color: #f8fafc; font-size: 15px; font-weight: 700; } .ms-chg { font-size: 12px; font-weight: 700; } .ms-up .ms-chg { color: #34d399; } .ms-dn .ms-chg { color: #f87171; } .ms-flat .ms-chg { color: #94a3b8; }
@@ -1989,9 +1743,9 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .fii-dot { width:8px; height:8px; border-radius:50%; background:#6366f1; flex-shrink:0; }
     .fii-label { color:#94a3b8; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
     .fii-cells { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
-    .fii-cell { display:flex; flex-direction:column; gap:3px; }
-    .fii-cell span { color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
-    .fii-cell strong { font-size:20px; font-weight:900; line-height:1; }
+    .fii-cells .fii-cell { display:flex; flex-direction:column; gap:3px; }
+    .fii-cells .fii-cell span { color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .fii-cells .fii-cell strong { font-size:20px; font-weight:900; line-height:1; }
     .fii-bar-track { background:rgba(255,255,255,.08); border-radius:4px; height:4px; margin-top:12px; overflow:hidden; position:relative; }
     .fii-bar-fill { border-radius:4px; height:100%; position:absolute; left:0; transition:width 400ms ease; }
     .fii-pos { color:#34d399; }
@@ -2058,21 +1812,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     }
 
     @media (max-width: 640px) {
-      .nav-inner {
-        align-items: start;
-        flex-direction: column;
-        gap: 12px;
-        padding: 12px 0;
-      }
-
-      .nav-actions {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 2px;
-        width: 100%;
-      }
-
       .latest-link,
       .nav-link,
       .subscribe-link {
@@ -2210,15 +1949,13 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         scroll-snap-align: start;
       }
     }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
   </style>
-</head>
-<body class="archive-dark has-btb">
-  ${siteTopbarHtml()}
-  <main class="shell">
-    <section class="hero">
+  ${proPolishCss()}
+  `;
+
+  const main = `
+  <div class="shell">
+    <header class="hero">
       <div class="eyebrow-container">
         <p class="eyebrow" style="margin: 0; display: inline-block;">${escapeHtml(heroContent.eyebrow)}</p>
         <span class="freshness-chip freshness-chip--${escapeHtml(latestState.className)}">
@@ -2248,7 +1985,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
           <span>Follow the public multibagger model and changes.</span>
         </a>
       </div>
-    </section>
+    </header>
     ${marketStrip}
     <section class="summary-card" aria-label="Archive summary">
       <div class="summary-card-inner">
@@ -2306,8 +2043,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     </div>
     ${homepageSeoSectionHtml()}
     ${homepageFaqSectionHtml(homepageFaq)}
-    ${siteFooterLinksHtml()}
-  </main>
+  </div>
   <script>
     (function() {
       const pills = document.querySelectorAll('.tag-pill');
@@ -2352,12 +2088,20 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         }, 1800);
       });
     });
-
   </script>
-  ${bottomTabBarHtml("archive")}
-  ${mobileShellScript()}
-</body>
-</html>`;
+  `;
+
+  return pageShell({
+    title: pageTitle,
+    description: pageDescription,
+    canonicalUrl: `${siteOrigin}/`,
+    ogImage: `${siteOrigin}/og-card.svg`,
+    head,
+    bodyClass: "archive-dark has-btb",
+    activeHref: "/",
+    mobileActiveKey: "archive",
+    main
+  });
 }
 
 export function aboutPage(latest, archiveDigests = []) {
@@ -2564,7 +2308,7 @@ export function aboutPage(latest, archiveDigests = []) {
         </a>
       </div>
     </section>
-    <section class="hero">
+    <header class="hero">
       <p class="eyebrow">About Market Narrative</p>
       <h1>Independent pre-market context for Indian traders.</h1>
       <p>I built Market Narrative to answer one practical morning question: what is the market nerve before the Indian cash open, and what must confirm before that view matters?</p>
@@ -2573,7 +2317,7 @@ export function aboutPage(latest, archiveDigests = []) {
         <a href="/latest/trading-guide/">Open Trading Guide</a>
         <a class="subscribe" href="${escapeHtml(subscribeHref())}">Join daily email</a>
       </div>
-    </section>
+    </header>
     <section class="about-grid">
       <article class="about-card">
         <h2>What you get here</h2>
@@ -2718,11 +2462,11 @@ export function subscribePage(latest, totalBriefings = 38) {
   `;
 
   const main = `
-    <section class="hero">
+    <header class="hero">
       <p class="eyebrow">Join the workflow</p>
       <h1>Pre-market research, delivered at 7:15 AM.</h1>
       <p>Receive Nifty and Bank Nifty global cues, India read-through, opening gates, Bank Nifty confirmation, sector watch, and source links straight to your inbox every morning before the cash open.</p>
-    </section>
+    </header>
     <section class="subscribe-box">
       <h2>Subscribe</h2>
       <p>No spam. Only the daily briefing. Join ${totalBriefings} readers.</p>
@@ -2747,7 +2491,6 @@ export function subscribePage(latest, totalBriefings = 38) {
       </form>
       <p class="fine-print">${DISCLAIMER} Your email is used only for the Market Narrative daily brief. If you do not receive a confirmation email within a few minutes, try again or write directly to ${escapeHtml(subscribeEmail)}.</p>
     </section>
-    ${siteFooterLinksHtml()}
     <script>
       if (new URLSearchParams(window.location.search).get('sent') === '1') {
         document.body.dataset.sent = 'true';
@@ -3112,13 +2855,12 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
   `;
 
   const main = `
-    <section class="hero">
+    <header class="hero">
       <p class="eyebrow">${escapeHtml(eyebrow)}</p>
       <h1>${escapeHtml(h1)}</h1>
       <p>${escapeHtml(pageDescription)}</p>
-    </section>
+    </header>
     ${bodyHtml}
-    ${siteFooterLinksHtml()}
     <p class="disclaimer">${DISCLAIMER}</p>
   `;
 
@@ -3963,37 +3705,13 @@ function indicesPage(digest) {
   const lastUpdated = formatGeneratedTime(digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`);
   const pageTitle = "Global Indices Watch | Market Narrative";
   const pageDescription = "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.";
-  const assets = {
-    headLinks: brandHeadLinks(siteOrigin),
-    markCss: brandMarkCss(),
-    bottomTabBarCss: bottomTabBarCss(),
-    mobileTypographyCss: mobileTypographyCss(),
-    proPolishCss: proPolishCss(),
-    siteFooterCss: siteFooterCss(),
-    mobileShellScript: mobileShellScript(),
-    topbarHtml: siteTopbarHtml("/indices/"),
-    footerLinksHtml: siteFooterLinksHtml(),
-    bottomTabBarHtml: bottomTabBarHtml("indices")
-  };
-  return indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLdScript(indicesPageJsonLd(pageTitle, pageDescription, digest)), assets);
+  return indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLdScript(indicesPageJsonLd(pageTitle, pageDescription, digest)));
 }
 
 function giftNiftyPage(digest, archiveDigests) {
   const pageTitle = "GIFT Nifty Live Open Gap Calculator | Market Narrative";
   const pageDescription = "Live GIFT Nifty index futures price, gap calculator to predict Nifty 50 opening direction, historical gap open logs and session countdowns.";
-  const assets = {
-    headLinks: brandHeadLinks(siteOrigin),
-    markCss: brandMarkCss(),
-    bottomTabBarCss: bottomTabBarCss(),
-    mobileTypographyCss: mobileTypographyCss(),
-    proPolishCss: proPolishCss(),
-    siteFooterCss: siteFooterCss(),
-    mobileShellScript: mobileShellScript(),
-    topbarHtml: siteTopbarHtml("/indices/"),
-    footerLinksHtml: siteFooterLinksHtml(),
-    bottomTabBarHtml: bottomTabBarHtml("indices")
-  };
-  return giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLdScript(giftNiftyPageJsonLd(pageTitle, pageDescription, digest)), assets);
+  return giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLdScript(giftNiftyPageJsonLd(pageTitle, pageDescription, digest)));
 }
 function robotsTxt() {
   return [
