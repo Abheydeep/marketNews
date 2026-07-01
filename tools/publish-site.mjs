@@ -95,7 +95,7 @@ if (!digests.length) {
 // (the lead and copy that actually appear after public filtering), so the headline always
 // matches the page. Degrades to the formulaic title when the model is unavailable.
 const publishTargetDigest = digests.find((digest) => digest.digestDate === date);
-if (publishTargetDigest) {
+if (publishTargetDigest && !sourceDigestLoadedFromArchive) {
   const editorialH1 = await generateEditorialHeadline({
     dailyLead: publishTargetDigest.dailyLead,
     marketSnapshots: publishTargetDigest.marketSnapshots,

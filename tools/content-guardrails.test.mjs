@@ -65,6 +65,11 @@ test("content guardrails: archived publish forwards its source slot across midni
   });
 });
 
+test("content guardrails: archived publishes do not regenerate the verified headline", async () => {
+  const publisher = await readFile("tools/publish-site.mjs", "utf8");
+  assert.match(publisher, /if \(publishTargetDigest && !sourceDigestLoadedFromArchive\)/);
+});
+
 test("content guardrails: Pulse selection fallback stays bounded", async () => {
   const articles = Array.from({ length: 100 }, (_, index) => ({ headline: `Market article ${index}`, sourceName: `Source ${index}`, summary: "India market context" }));
   const selected = await agentSelectPulseArticles(articles, { nvidiaApiKey: "test", llmFetcher: async () => ({ ok: true, status: 200, json: async () => ({ choices: [{ message: { content: "[]" } }] }) }) });
