@@ -20,3 +20,4 @@ __pycache__/
 .vercel
 public/
 latest-slug.txt
+archive/daily/*.bak*

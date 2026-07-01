@@ -385,3 +385,8 @@ These must remain true after changes:
   Verified: `npm run context:verify` passed; targeted architecture/public contracts passed 11 tests; `npm test` passed 86 tests; `npm run test:deploy` passed all 5 checks in 26.7 seconds; `npm run public:copy:qa -- public` passed; all 15 rendered sitemap routes contain one theme, header, main, footer, two consistent chrome wrappers, and no duplicate IDs.
   Architecture diagrams changed: none.
   Debt found but deferred: Chrome extension visual automation remains unavailable; artifact and direct-route checks are the current fallback.
+- 2026-07-01: Removed 19 reviewed local artifacts, including destructive historical-regeneration shell scripts, unsafe arbitrary-file LLM review tooling, duplicate archive backups and images, stale issue/design files, and one-off probes; preserved durable UI intent in `context/archive/2026-06-public-ui-design-history.md`; and ignored future archive backup files.
+  ROOT CAUSE: none; repository hygiene cleanup after explicit review.
+  Verified: `npm run context:verify` passed; `npm test` passed 86 tests; `npm run test:deploy` passed all 5 checks in 26.5 seconds, including 18 FastAPI tests and the localhost trading regression; `npm run public:copy:qa` passed for `out/site` and `public`.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
