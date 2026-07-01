@@ -67,74 +67,9 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     a { color: inherit; text-decoration: none; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(3, 7, 18, 0.72);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-    }
-
     .shell {
       width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-    }
-
-    .nav-inner {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 20px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--cyan), #6366f1 54%, #f43f5e);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    ${brandMarkCss()}
-
-    .tabs {
-      display: flex;
-      gap: 28px;
-      align-items: stretch;
-      min-height: 64px;
-    }
-
-    .tab-link {
-      display: inline-flex;
-      align-items: center;
-      border: 0;
-      border-bottom: 2px solid transparent;
-      color: var(--muted);
-      padding: 0 1px;
-      font-size: 14px;
-      font-weight: 650;
-    }
-
-    .tab-link.active {
-      color: var(--ink);
-      border-bottom-color: #67e8f9;
-      font-weight: 800;
     }
 
     .share-panel {
@@ -1558,23 +1493,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     }
 
     @media (max-width: 760px) {
-      .nav-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 13px 0;
-      }
-
-      .tabs {
-        width: 100%;
-        min-height: 48px;
-        gap: 16px;
-        overflow-x: auto;
-      }
-
-      .tab-link {
-        white-space: nowrap;
-      }
-
       details.panel summary {
         padding: 16px;
       }
@@ -1627,8 +1545,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
-    ${siteHeaderCss()}
-    ${siteFooterCss()}
   </style>
 </head>
 <body class="glass-v2 has-btb">
@@ -1643,7 +1559,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <!-- class="tab-link active" aria-current="page">Portfolio -->
 
   <main class="shell">
-    <section class="hero">
+    <header class="hero">
       <div>
         <p class="eyebrow">Market Narrative Research</p>
         <h1>Market Narrative Multibagger Portfolio</h1>
@@ -1660,7 +1576,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
           </div>
         </div>
       </aside>
-    </section>
+    </header>
 
     <section class="reader-orientation" aria-label="How to read this page">
       <div>

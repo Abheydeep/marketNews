@@ -5,7 +5,7 @@ import { indicesChartScript } from "./indices-chart.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
 
-export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets) {
+export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
   const tickerItems = [
     ["NIFTY", "Nifty 50"], ["BANKNIFTY", "Bank Nifty"], ["GIFTNIFTY", "GIFT Nifty"],
     ["SPX", "S&P 500"], ["NDX", "Nasdaq 100"], ["NIKKEI", "Nikkei 225"],
@@ -18,8 +18,8 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
   <style>
     .idx-m { display:none;position:fixed;inset:0;z-index:200;background:rgba(5,8,22,.9);align-items:center;justify-content:center }
     .idx-m.open { display:flex }
-    .idx-panel { background:#0b1220;border:1px solid rgba(148,163,184,.22);border-radius:12px;padding:24px 28px;width:min(580px,calc(100vw - 32px));max-height:90vh;overflow-y:auto;position:relative }
-    .idx-close { position:absolute;top:12px;right:16px;background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer;line-height:1;padding:0 }
+    .idx-panel { background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 28px;width:min(580px,calc(100vw - 32px));max-height:90vh;overflow-y:auto;position:relative }
+    .idx-close { position:absolute;top:12px;right:16px;background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1;padding:0 }
     .idx-tab-btn { background: rgba(255,255,255,0.04); border: 1px solid var(--line-idx); color: var(--muted-idx); border-radius: 6px; padding: 6px 12px; font-size: 11px; font-weight: 800; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex: 0 0 auto; }
     .idx-tab-btn:hover { color: var(--text-idx); border-color: var(--muted-idx); }
     .idx-tab-btn.active { background: rgba(103, 232, 249, 0.1); border-color: var(--cyan-idx); color: var(--cyan-idx); }
@@ -40,7 +40,6 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
       <div><h2>How traders use it before open</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div>
     </section>
     <p class="idx-layout-footer-note">${DISCLAIMER}</p>
-    ${assets.footerLinksHtml}
   </div>
   <div class="idx-m" id="idx-m" onclick="if(e=event,e.target===this)this.classList.remove('open')">
     <div class="idx-panel">
@@ -166,7 +165,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     canonicalUrl: `${siteOrigin}/indices/`,
     ogImage: `${siteOrigin}/og-card.svg`,
     head,
-    bodyClass: "idx-layout-body has-btb",
+    bodyClass: "has-btb",
     activeHref: "/indices/",
     mobileActiveKey: "indices",
     main

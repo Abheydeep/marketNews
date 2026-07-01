@@ -2488,7 +2488,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("I'm Abhey Deep - a software engineer and Indian market trader"));
   assert.ok(publisher.includes("Published record"));
   assert.ok(publisher.includes("verified briefings"));
-  assert.ok(publisher.includes('tab-link--active" aria-current="page">'));
+  const siteChrome = await readFile(join(rootDir, "tools", "site-chrome.mjs"), "utf8");
+  assert.ok(siteChrome.includes('tab-link--active'));
   assert.ok(publisher.includes('name="_honey"'));
   assert.equal(publisher.includes('name="_captcha" value="false"'), false);
   assert.ok(publisher.includes('.sent-note[hidden]'));
@@ -2532,26 +2533,20 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("staticPageActiveKey"));
   assert.ok(publisher.includes("mobileActiveKey: staticPageActiveKey(path)"));
   assert.ok(publisher.includes('bodyClass: "has-btb"'));
-  assert.ok(publisher.includes('bottomTabBarHtml("indices")'));
+  assert.ok((await readFile(join(rootDir, "tools", "indices-layout.mjs"), "utf8")).includes('mobileActiveKey: "indices"'));
   assert.ok((await readFile(join(rootDir, "tools", "indices-styles.mjs"), "utf8")).includes(".idx-grid { grid-template-columns: 1fr; }"));
-  assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false, "mobile homepage nav must not stack four full-width buttons");
-  for (const roughCopy of [
-    "All Market Narrative briefings",
-    "The root page now works",
-    "Open daily briefing",
-    "Asia watch:",
-    "markets tracked"
-  ]) {
-    assert.equal(publisher.includes(roughCopy), false, `publisher should not contain rough copy: ${roughCopy}`);
+  assert.equal(publisher.includes(".nav-link {\n        text-align: center;\n      }"), false);
+  for (const roughCopy of ["All Market Narrative briefings", "The root page now works", "Open daily briefing", "Asia watch:", "markets tracked"]) {
+    assert.equal(publisher.includes(roughCopy), false);
   }
   assert.ok(publisher.includes("multibaggerPage"));
   assert.ok(publisher.includes('join(siteDir, "multibagger")'));
   assert.ok(publisher.includes('"state.json"'));
-  assert.ok(!publisher.includes("adminSiteOrigin"), "admin site origin removed — admin is a separate repo");
-  assert.ok(!publisher.includes("components-view"), "admin cockpit views removed — admin is a separate repo");
-  assert.ok(!publisher.includes("multibagger-admin-view"), "admin cockpit views removed — admin is a separate repo");
-  assert.ok(!publisher.includes('join(siteDir, "admin")'), "admin dir generation removed — admin is a separate repo");
-  assert.ok(!publisher.includes('requireAuth: true'), "requireAuth only used in admin cockpit views, now removed");
+  assert.ok(!publisher.includes("adminSiteOrigin"));
+  assert.ok(!publisher.includes("components-view"));
+  assert.ok(!publisher.includes("multibagger-admin-view"));
+  assert.ok(!publisher.includes('join(siteDir, "admin")'));
+  assert.ok(!publisher.includes('requireAuth: true'));
   assert.ok(!publisher.includes('join(siteDir, "components")'));
   assert.ok(!publisher.includes("Project components"));
   assert.ok(publisher.includes('"dark-preview"'));
@@ -2567,12 +2562,15 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("og-card.svg"));
   assert.ok(publisher.includes("favicon.svg"));
   assert.ok(publisher.includes("apple-touch-icon.svg"));
+
+  const pageShell = await readFile(join(rootDir, "tools", "page-shell.mjs"), "utf8");
   assert.ok(publisher.includes("brandMarkHtml"));
   assert.ok(publisher.includes("brandSocialCardSvg"));
-  assert.ok(publisher.includes("og:title"));
-  assert.ok(publisher.includes("twitter:card"));
-  assert.ok(publisher.includes('rel="canonical"'));
   assert.ok(publisher.includes("archivePageJsonLd"));
+  assert.ok(pageShell.includes("og:title") || publisher.includes("og:title"));
+  assert.ok(pageShell.includes("twitter:card") || publisher.includes("twitter:card"));
+  assert.ok(pageShell.includes('rel="canonical"') || publisher.includes('rel="canonical"'));
+
   assert.ok(publisher.includes("aboutPageJsonLd"));
   assert.ok(publisher.includes("subscribePageJsonLd"));
   assert.ok(publisher.includes("Organization"));

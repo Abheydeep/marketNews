@@ -3,6 +3,21 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { pageShell } from "./page-shell.mjs";
 import { normalizePublicSourceCategory } from "./public-source-category.mjs";
+import { indicesPageHtml } from "./indices-layout.mjs";
+import { giftNiftyPageHtml } from "./gift-nifty-layout.mjs";
+import {
+  archivePage,
+  aboutPage,
+  subscribePage,
+  moneyFlowPage,
+  marketStatisticsPage,
+  movesHubPage,
+  contactPage,
+  privacyPage,
+  termsPage
+} from "./publish-site.mjs";
+import { cockpitPage } from "./cockpit-page.mjs";
+import { multibaggerPage } from "./multibagger-page.mjs";
 
 function tagCount(html, tag) {
   return (html.match(new RegExp(`<${tag}\\b`, "gi")) || []).length;
@@ -11,6 +26,20 @@ function tagCount(html, tag) {
 function duplicateIds(html) {
   const ids = [...html.matchAll(/\sid=["']([^"']+)["']/gi)].map((match) => match[1]);
   return ids.filter((id, index) => ids.indexOf(id) !== index);
+}
+
+function markerCount(html, marker) {
+  return html.split(marker).length - 1;
+}
+
+function assertSharedShell(html, label) {
+  assert.equal(markerCount(html, "/* site-theme v1 */"), 1, `${label} must have one shared theme`);
+  assert.equal(markerCount(html, "<!-- site-header v1 -->"), 1, `${label} must have one shared header`);
+  assert.equal(markerCount(html, "<!-- site-footer v1 -->"), 1, `${label} must have one shared footer`);
+  assert.equal(tagCount(html, "main"), 1, `${label} must have one main landmark`);
+  assert.equal((html.match(/<footer\b[^>]*class=["'][^"']*site-footer/gi) || []).length, 1, `${label} must have one canonical site footer`);
+  assert.equal((html.match(/<nav\b[^>]*class=["'][^"']*topbar/gi) || []).length, 1, `${label} must have one canonical site header`);
+  assert.deepEqual(duplicateIds(html), [], `${label} must have no duplicate DOM IDs`);
 }
 
 test("public pages: shared shell has complete metadata and unique ids", () => {
@@ -62,4 +91,39 @@ test("public sources: dead and unsupported endpoints are absent", async () => {
   assert.doesNotMatch(market, /market-data\/fii-dii-activity/);
   assert.match(market, /reports\/fii-dii/);
   assert.doesNotMatch(images, /qwen-image/);
+});
+
+test("public pages: every public renderer consumes the shared shell exactly once", () => {
+  const mockDigest = {
+    digestDate: "2026-06-30",
+    generatedAt: new Date().toISOString(),
+    news: [],
+    twoMinuteSummary: "Nifty summary",
+    fiiDiiFlows: null,
+    tradeSetups: [],
+    marketSnapshots: [
+      { symbol: "GIFTNIFTY", closeValue: 24000, changePercent: 0.1, previousClose: 23980, dataQuality: "live" },
+      { symbol: "NIFTY", closeValue: 24000, changePercent: 0.1, previousClose: 23980, dataQuality: "live" },
+      { symbol: "INDIAVIX", closeValue: 12.5, changePercent: -0.5, previousClose: 13.0, dataQuality: "live" }
+    ]
+  };
+
+  const siteOrigin = "https://www.marketnarrative.in";
+  const pages = [
+    ["Indices", indicesPageHtml(mockDigest, siteOrigin, "2026-06-30 07:15", "")],
+    ["GIFT Nifty", giftNiftyPageHtml(mockDigest, [], siteOrigin, "")],
+    ["Homepage", archivePage([mockDigest], [mockDigest])],
+    ["About", aboutPage(mockDigest, [mockDigest])],
+    ["Subscribe", subscribePage(mockDigest, 38)],
+    ["FII/DII", moneyFlowPage(mockDigest, [], [])],
+    ["Market Statistics", marketStatisticsPage(mockDigest)],
+    ["Moves", movesHubPage(mockDigest)],
+    ["Contact", contactPage()],
+    ["Privacy", privacyPage()],
+    ["Terms", termsPage()],
+    ["Briefing", cockpitPage(mockDigest, "public-view", { includeStudio: false, theme: "glass-v2" })],
+    ["Portfolio", multibaggerPage()]
+  ];
+
+  for (const [label, html] of pages) assertSharedShell(html, label);
 });

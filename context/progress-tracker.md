@@ -362,3 +362,26 @@ These must remain true after changes:
   Verified: targeted import/slot regression passed; `npm run context:verify` passed; `npm test` passed 86 repository tests and 33 Node tests; `npm run test:deploy` passed all 5 checks in 16.3 seconds; `npm run public:copy:qa -- public` passed.
   Architecture diagrams changed: none.
   Debt found but deferred: none.
+
+- 2026-07-01: Removed duplicate footer and layout styling overrides from indices and GIFT Nifty pages.
+  ROOT CAUSE: `indicesPageHtml` in `tools/indices-layout.mjs` at line 43 retained the legacy footer injection after adopting `pageShell`, while `indicesStyles` in `tools/indices-styles.mjs` at lines 72–84 overrode shared global chrome selectors, causing duplicate footers and visual styling overrides on the indices pages.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed). Added new test `public pages: indices and gift nifty pages have exactly one header, main, and footer` in `tools/public-page-contract.test.mjs`.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+- 2026-07-01: Migrated the homepage (archivePage) to pageShell, removed all remaining duplicate footers from static pages (/money-flow/fii-dii/, /market-statistics/, /moves/, /subscribe/, /contact/, /privacy/, /terms/), and cleaned up visual style overrides from the cockpit and multibagger pages.
+  ROOT CAUSE: staticSeoPage and subscribePage in publish-site.mjs injected siteFooterLinksHtml() inside pageShell(), producing duplicate footers. archivePage in publish-site.mjs rendered a standalone HTML document instead of wrapping in pageShell(). tools/multibagger-page.mjs and tools/cockpit-page.mjs contained page-level CSS overrides for unified chrome selectors (.topbar, .brand, .brand-mark, .tab-link).
+  Verified: `npm run context:verify` (passed), `npm test` (passed 86 tests), `npm run test:deploy` (passed 5 checks), `npm run public:copy:qa` (passed). Added new layout contract unit tests in `tools/public-page-contract.test.mjs` asserting exactly one `<header>`, `<main>`, and `<footer>` tag for the migrated pages.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+
+- 2026-07-01: Resolved outstanding Phase 5 layout, test, styling, and coverage items.
+  ROOT CAUSE (if bug): (1) Homepage hero action styling regressed when base CSS rules were removed from publish-site.mjs, (2) importing publish-site.mjs in tests triggered top-level file deletions and side-effects because the execution script was not wrapped in an entry-point guard, (3) cockpit and multibagger pages retained duplicate site CSS calls and page-level chrome styling overrides, and (4) contract tests omitted FII/DII, Market Stats, Moves, Contact, Privacy, Terms, Cockpit, and Multibagger routes.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (passed 5 checks), `npm run public:copy:qa -- public` (passed).
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
+- 2026-07-01: Hardened shared public-chrome ownership, replaced generic footer tag-count assertions with canonical shell contracts for all public renderers, centralized header/footer width under `site-chrome-shell`, removed the dead duplicate footer implementation from mobile-shell, and restored the committed 1 July artifact after isolating an unrelated contradictory regeneration.
+  ROOT CAUSE: `verifyRenderedSentinels()` checked duplicate chrome HTML but not scoped CSS overrides, while public-page tests counted semantic footer tags instead of canonical shared footer markers.
+  Verified: `npm run context:verify` passed; targeted architecture/public contracts passed 11 tests; `npm test` passed 86 tests; `npm run test:deploy` passed all 5 checks in 26.7 seconds; `npm run public:copy:qa -- public` passed; all 15 rendered sitemap routes contain one theme, header, main, footer, two consistent chrome wrappers, and no duplicate IDs.
+  Architecture diagrams changed: none.
+  Debt found but deferred: Chrome extension visual automation remains unavailable; artifact and direct-route checks are the current fallback.

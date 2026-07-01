@@ -24,7 +24,7 @@ export function siteHeaderHtml(activeHref = "", options = {}) {
     : `<a class="tab-link tab-link--cta" href="/subscribe/">Subscribe</a>`;
   return `<!-- site-header v1 -->
   <nav class="topbar" aria-label="Primary">
-    <div class="shell">
+    <div class="site-chrome-shell">
       <div class="nav-inner">
         <a class="brand" href="${escapeHtml(options.brandHref || "/")}">${brandMarkHtml("Market Narrative", "mn-header")}<span>Market Narrative</span></a>
         <div class="site-tabs" aria-label="Site navigation">${links}${subscribeCta}</div>
@@ -39,6 +39,7 @@ export function siteHeaderHtml(activeHref = "", options = {}) {
 export function siteHeaderCss() {
   return `
     .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
+    .site-chrome-shell { margin:0 auto; width:min(1160px,calc(100% - 36px)); }
     .nav-inner { align-items:center; display:flex; gap:16px; justify-content:space-between; min-height:64px; }
     .brand { align-items:center; display:flex; gap:12px; font-size:20px; font-weight:850; }
     .site-tabs { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
@@ -58,7 +59,7 @@ export function siteHeaderCss() {
 export function siteFooterHtml() {
   return `<!-- site-footer v1 -->
     <footer class="site-footer" aria-label="Market Narrative site links">
-      <div class="shell">
+      <div class="site-chrome-shell">
       <div class="footer-brand">
         <span class="footer-logo">${brandMarkHtml("Market Narrative", "mn-footer")}<span>Market Narrative</span></span>
         <span class="footer-tagline">Daily pre-market briefing for Indian equity traders · 7:15 AM IST</span>

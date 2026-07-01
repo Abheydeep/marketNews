@@ -178,10 +178,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       background: #0b1120;
     }
 
-    body:not(.glass-v2) .topbar {
-      background: rgba(11, 17, 32, 0.94);
-    }
-
     body:not(.glass-v2) :is(.info-card, .panel, .briefing-card, .quote-board-card, .source-category-section, .source-card, .source-ledger-details, .summary-chip, .briefing-block, .briefing-lens, .metric) {
       background: #111827;
       border-color: #263247;
@@ -205,56 +201,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       text-decoration: none;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-      padding-top: env(safe-area-inset-top, 0px);
-    }
-
     .shell {
       max-width: 1160px;
       margin: 0 auto;
       padding: 0 18px;
     }
-
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 64px;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0;
-      color: var(--slate);
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: #030712;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-      box-shadow: 0 8px 20px rgba(17, 24, 39, 0.12);
-    }
-
-    ${brandMarkCss()}
 
     .tabs {
       display: flex;
@@ -263,8 +214,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       min-height: 64px;
     }
 
-    .tab-btn,
-    .tab-link {
+    .tab-btn {
       border: 0;
       border-bottom: 2px solid transparent;
       background: transparent;
@@ -273,14 +223,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-    }
-
-    .tab-link {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .tab-btn {
       font-family: inherit;
     }
 
@@ -4480,20 +4422,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       z-index: 1;
     }
 
-    .glass-v2 .topbar {
-      border-bottom-color: rgba(255, 255, 255, 0.12);
-      background: rgba(3, 7, 18, 0.66);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
-    }
-
-    .glass-v2 .brand-mark {
-      background: linear-gradient(135deg, #22d3ee, #6366f1 54%, #f43f5e);
-      box-shadow: 0 0 34px rgba(34, 211, 238, 0.28);
-    }
-
-    .glass-v2 .tab-btn,
-    .glass-v2 .tab-link {
+    .glass-v2 .tab-btn {
       color: #b8c4d8;
     }
 
@@ -5025,13 +4954,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     }
 
     @media (max-width: 900px) {
-      .nav-inner {
-        align-items: start;
-        flex-direction: column;
-        padding: 10px 0 0;
-        min-height: 52px;
-      }
-
       .tabs {
         width: 100%;
         min-height: 44px;
@@ -5488,8 +5410,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
-    ${siteHeaderCss()}
-    ${siteFooterCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -5541,9 +5461,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         ${todaysReadHtml(digest)}
         ${unifiedSourceSectionHtml(digest)}
 
-        <footer class="public-footer">
+        <aside class="public-footer" aria-label="Briefing provenance">
           <p>Prepared from live market data and linked source notes. Educational market research only, not investment advice.</p>
-        </footer>
+        </aside>
       </div>
     </section>` : ""}
 

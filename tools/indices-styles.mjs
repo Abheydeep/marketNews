@@ -1,7 +1,7 @@
 // Scoped CSS for the Indices and GIFT Nifty pages, namespaced under `.idx` to avoid clashing.
 export function indicesStyles() {
   return `<style>
-  .idx { --bg-idx: #050816; --panel-idx: #0b1220; --panel-2-idx: #111827; --line-idx: rgba(148, 163, 184, 0.22); --text-idx: #f8fafc; --muted-idx: #94a3b8; --up-idx: #34d399; --down-idx: #fb7185; --flat-idx: #fbbf24; --cyan-idx: #67e8f9; display: grid; gap: 24px; margin-bottom: 40px; }
+  .idx { --bg-idx: var(--bg); --panel-idx: var(--panel); --panel-2-idx: var(--surface); --line-idx: var(--line); --text-idx: var(--ink); --muted-idx: var(--muted); --up-idx: var(--up); --down-idx: var(--down); --flat-idx: var(--flat); --cyan-idx: var(--accent); display: grid; gap: 24px; margin-bottom: 40px; }
   .idx-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--up-idx); background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); padding: 4px 10px; border-radius: 99px; width: fit-content; margin-bottom: -12px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; }
   .idx-live-badge.offline { color: var(--down-idx); background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.2); }
   .idx-spotlight { background: linear-gradient(135deg, rgba(11, 18, 32, 0.95), rgba(17, 24, 39, 0.85)); border: 1px solid var(--cyan-idx); box-shadow: 0 0 20px rgba(103, 232, 249, 0.1); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
@@ -69,24 +69,13 @@ export function indicesStyles() {
   .idx-heat-bg-neg-2 { background: rgba(251, 113, 133, 0.16); }
   .idx-heat-bg-neg-3 { background: rgba(251, 113, 133, 0.24); }
   
-    .idx-layout-body { margin: 0; background: #050816; color: #f8fafc; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
     .idx-layout-shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .topbar { position: sticky; top: 0; z-index: 50; background: rgba(5, 8, 22, 0.86); border-bottom: 1px solid rgba(148, 163, 184, 0.22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-    .topbar .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 60px; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 850; color: #f8fafc; text-decoration: none; }
-    .site-tabs { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-    .site-tabs::-webkit-scrollbar { display: none; }
-    .tab-link { border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #9fb0c8; font-size: 13px; font-weight: 800; padding: 8px 12px; white-space: nowrap; text-decoration: none; transition: border-color 120ms, color 120ms, background 120ms; }
-    .tab-link:hover { border-color: rgba(124, 180, 245, 0.4); color: #f8fafc; }
-    .tab-link--active { background: rgba(99, 102, 241, 0.18); border-color: rgba(99, 102, 241, 0.4); color: #a5b4fc; }
-    .tab-link--cta { background: rgba(52, 211, 153, 0.13); border-color: rgba(52, 211, 153, 0.3); color: #bbf7d0; margin-left: 6px; }
-    .tab-link--cta:hover { background: rgba(52, 211, 153, 0.22); }
     .idx-layout-hero { padding: 46px 0 26px; }
-    .idx-layout-eyebrow { margin: 0 0 10px; color: #67e8f9; font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .idx-layout-eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
     .idx-layout-h1 { margin: 0; max-width: 780px; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: 0; }
     .idx-layout-hero-p { max-width: 760px; color: #cbd5e1; font-size: 17px; line-height: 1.7; }
-    .idx-layout-footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid rgba(148, 163, 184, 0.22); color: #94a3b8; font-size: 12px; line-height: 1.6; }
+    .idx-layout-footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
     @media (max-width: 760px) {
       .idx-grid { grid-template-columns: 1fr; }
       .idx-spotlight-price strong { font-size: 30px; }

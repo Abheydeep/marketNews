@@ -1,5 +1,5 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
 import { escapeHtml } from "./html-utils.mjs";
@@ -19,7 +19,7 @@ import { parseDayLabel } from "./fii-dii-capture.mjs";
 import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -28,52 +28,53 @@ import { siteThemeCss } from "./site-theme.mjs";
 import { isLivePriceTracker } from "./article-triage.mjs";
 import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
 import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from "./public-price-reconcile.mjs";
-
-const NAV_ITEMS = [
-  { href: "/latest/", label: "Latest briefing" },
-  { href: "/latest/trading-guide/", label: "Trading Guide" },
-  { href: "/money-flow/fii-dii/", label: "FII/DII" },
-  { href: "/multibagger/", label: "Portfolio" },
-  { href: "/about/", label: "About" },
-];
-
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const requestedDate = readArg("--date") ?? process.env.PUBLISH_SOURCE_DATE ?? todayInIst();
-const scheduledTime = readArg("--scheduled-time") ?? process.env.PUBLISH_SOURCE_TIME ?? "07:15";
-const label = scheduledTime.replace(":", "");
-const dailyDir = join(rootDir, "out", "daily");
-const archiveDir = join(rootDir, "archive", "daily");
-// Fall back to the most recent archived edition when the requested day has no digest yet
-// (e.g. a code-only push before the scheduled briefing is generated) so publish still ships.
-const date = await resolvePublishDate(requestedDate, label, dailyDir, archiveDir);
-const archivedMovesDir = join(rootDir, "archive", "moves");
-const publicationEventsPath = join(rootDir, "data", "publication-events.json");
-const siteDir = join(rootDir, "out", "site");
-const sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
-const archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
 const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
-const subscribeFormAction = (process.env.PUBLIC_SUBSCRIBE_FORM_ACTION ?? "").trim() || `https://formsubmit.co/${subscribeEmail}`;
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 const includeSourceDigestPreview = skipArchiveWrite && process.env.LOCAL_PREVIEW_DIGEST === "true";
 const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
 const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
+
+const dailyDir = join(rootDir, "out", "daily");
+const archiveDir = join(rootDir, "archive", "daily");
+const archivedMovesDir = join(rootDir, "archive", "moves");
+const publicationEventsPath = join(rootDir, "data", "publication-events.json");
+const siteDir = join(rootDir, "out", "site");
+
+let requestedDate = "";
+let scheduledTime = "";
+let label = "";
+let date = "";
+let sourceJson = "";
+let archivedJson = "";
+let sourceDigest = null;
 let sourceDigestLoadedFromArchive = false;
-await mkdir(archiveDir, { recursive: true });
-const sourceDigest = await loadSourceDigest();
-const existingDigests = await loadArchivedDigests();
-if (!skipArchiveWrite && !sourceDigestLoadedFromArchive) {
-  const sourceVerification = publicArchiveVerificationForDigest(
-    sourceDigest,
-    assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests))
-  );
-  const archivedDigest = redactedDigestPayload(sourceVerification
-    ? { ...sourceDigest, sourceVerification }
-    : sourceDigest);
-  await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
-}
+
+async function main() {
+  requestedDate = readArg("--date") ?? process.env.PUBLISH_SOURCE_DATE ?? todayInIst();
+  scheduledTime = readArg("--scheduled-time") ?? process.env.PUBLISH_SOURCE_TIME ?? "07:15";
+  label = scheduledTime.replace(":", "");
+  date = await resolvePublishDate(requestedDate, label, dailyDir, archiveDir);
+  sourceJson = join(dailyDir, `${date}-${label}-digest.json`);
+  archivedJson = join(archiveDir, `${date}-${label}-digest.json`);
+
+  sourceDigestLoadedFromArchive = false;
+  await mkdir(archiveDir, { recursive: true });
+  sourceDigest = await loadSourceDigest();
+  const existingDigests = await loadArchivedDigests();
+  if (!skipArchiveWrite && !sourceDigestLoadedFromArchive) {
+    const sourceVerification = publicArchiveVerificationForDigest(
+      sourceDigest,
+      assertNewDigestSourceIntegrity(sourceDigest, previousDigestFor(sourceDigest, existingDigests))
+    );
+    const archivedDigest = redactedDigestPayload(sourceVerification
+      ? { ...sourceDigest, sourceVerification }
+      : sourceDigest);
+    await writeGuardedFile(archivedJson, `${JSON.stringify(archivedDigest, null, 2)}\n`);
+  }
 function publicArchiveVerificationForDigest(digest, verification) {
   if (!verification) {
     return verification;
@@ -235,7 +236,13 @@ log.info("static site published", { siteDir, archiveEntry: join(siteDir, "index.
 
 await writePublishStatus(siteDir, latest);
 
-await writeSlugRedirects(digests);
+  await writeSlugRedirects(digests);
+}
+
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : "";
+if (invokedPath && invokedPath === fileURLToPath(import.meta.url)) {
+  await main();
+}
 
 async function writeGuardedFile(path, contents) {
   assertPublicBriefingCopy(path, contents);
@@ -853,34 +860,6 @@ function fallbackWatchItems(digest) {
   return [...new Set((digest.news ?? []).map((article) => cleanArchiveSentence(article.watchFor)).filter(Boolean))].slice(0, 3);
 }
 
-function siteTopbarHtml(activeHref = "") {
-  const links = NAV_ITEMS.map(({ href, label }) => {
-    const isActive = activeHref && href === activeHref;
-    return isActive
-      ? `<span class="tab-link tab-link--active" aria-current="page">${escapeHtml(label)}</span>`
-      : `<a class="tab-link" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
-  }).join("");
-  return `<nav class="topbar" aria-label="Primary">
-    <div class="shell">
-      <div class="nav-inner">
-        <a class="brand" href="/">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="site-tabs" aria-label="Site navigation">${links}<a class="tab-link tab-link--cta" href="${escapeHtml(subscribeHref())}">Subscribe</a></div>
-      </div>
-    </div>
-  </nav>`;
-}
-
-function siteNavCss() {
-  return `
-    .site-tabs { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
-    .site-tabs::-webkit-scrollbar { display:none; }
-    .tab-link { border:1px solid rgba(255,255,255,.12); border-radius:8px; color:#9fb0c8; font-size:13px; font-weight:800; padding:8px 12px; white-space:nowrap; transition:border-color 120ms,color 120ms,background 120ms; }
-    .tab-link:hover { border-color:rgba(124,180,245,.4); color:#f8fafc; }
-    .tab-link--active { background:rgba(99,102,241,.18); border-color:rgba(99,102,241,.4); color:#a5b4fc; }
-    .tab-link--cta { background:rgba(52,211,153,.13); border-color:rgba(52,211,153,.3); color:#bbf7d0; margin-left:6px; }
-    .tab-link--cta:hover { background:rgba(52,211,153,.22); }
-  `;
-}
 
 function homepageMarketStripHtml(snapshots) {
   const KEYS = [
@@ -1238,6 +1217,55 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
       color: #cbd5e1;
       font-size: 18px;
       line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      max-width: 900px;
+    }
+
+    .hero-action {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.66);
+      display: grid;
+      gap: 5px;
+      min-height: 86px;
+      padding: 13px 14px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .hero-action:hover {
+      border-color: rgba(103, 232, 249, 0.45);
+      background: rgba(15, 23, 42, 0.86);
+      transform: translateY(-2px);
+    }
+
+    .hero-action--primary {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.45), rgba(34, 211, 238, 0.28)) !important;
+      border-color: rgba(99, 102, 241, 0.7) !important;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+    }
+    .hero-action--primary:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(34, 211, 238, 0.4)) !important;
+      border-color: #22d3ee !important;
+      box-shadow: 0 0 24px rgba(34, 211, 238, 0.24) !important;
+    }
+
+    .hero-action strong {
+      color: #f8fafc;
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .hero-action span {
+      color: #9fb0c8;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
     }
 
     /* Freshness & Today's Focus Badges */
@@ -2530,7 +2558,7 @@ function buildFiiDiiCashRecords(allDigests) {
   return [...byIso.values()].sort((a, b) => a.iso.localeCompare(b.iso));
 }
 
-function moneyFlowPage(latest, cashRecords, fnoRecords) {
+export function moneyFlowPage(latest, cashRecords, fnoRecords) {
   const pageTitle = "FII DII Data Today - Institutional Flow & F&O Positioning | Market Narrative";
   const pageDescription = "FII DII data today with charts and interpretation: cash-market flow, F&O index and stock positioning, DII absorption and the FII index-futures long ratio.";
   const { bodyHtml, faqItems } = fiiDiiPageBody(cashRecords, fnoRecords);
@@ -2570,7 +2598,7 @@ function moneyFlowPage(latest, cashRecords, fnoRecords) {
   });
 }
 
-function marketStatisticsPage(latest) {
+export function marketStatisticsPage(latest) {
   const pageTitle = "India Market Statistics Today - Nifty Breadth, VIX & Flow | Market Narrative";
   const pageDescription = "India market statistics today for Nifty traders: index context, India VIX, FII DII flow, sector cues and market health explanation.";
   const snapshots = Array.isArray(latest?.marketSnapshots) ? latest.marketSnapshots : [];
@@ -2642,7 +2670,7 @@ function marketStatisticsPage(latest) {
   });
 }
 
-function movesHubPage(latest) {
+export function movesHubPage(latest) {
   const pageTitle = "Why Stocks Move - Daily Nifty Stock Move Explanations | Market Narrative";
   const pageDescription = "Find out why Nifty, Bank Nifty and Indian stocks moved today with source-backed market move explanations and India read-through.";
   const body = `
@@ -2692,7 +2720,7 @@ function movesHubPage(latest) {
   });
 }
 
-function contactPage() {
+export function contactPage() {
   const pageTitle = "Contact Market Narrative - Feedback, Corrections & Partnerships";
   const pageDescription = "Contact Market Narrative for feedback, data corrections, broken pages, press enquiries, or partnerships.";
   const body = `
@@ -2731,7 +2759,7 @@ function contactPage() {
   });
 }
 
-function privacyPage() {
+export function privacyPage() {
   const pageTitle = "Privacy Policy - Market Narrative";
   const pageDescription = "Plain-English privacy policy for Market Narrative, including analytics, external links, and contact details.";
   const body = `
@@ -2775,7 +2803,7 @@ function privacyPage() {
   });
 }
 
-function termsPage() {
+export function termsPage() {
   const pageTitle = "Terms of Use - Market Narrative";
   const pageDescription = "Plain-English terms of use for Market Narrative, including educational use, data accuracy, external links, and liability limits.";
   const body = `

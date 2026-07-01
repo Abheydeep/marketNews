@@ -10,17 +10,31 @@ import { buildDigest } from "./core.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
 const CANONICAL_THEME_TOKEN_DEFINITION = /--(?:paper|ink|muted|line|panel|accent|cyan|up|down)\s*:/i;
+const PUBLIC_CHROME_SELECTOR_DEFINITION = /^\s*[^\n{}]*\.(?:topbar|site-chrome-shell|nav-inner|site-tabs|tab-link|site-footer|footer-brand|footer-cols|footer-legal)\b[^\n{}]*\{/im;
 
-export function hasLocalThemeTokenDefinition(content) {
-  return CANONICAL_THEME_TOKEN_DEFINITION.test(content);
+export const hasLocalThemeTokenDefinition = (content) => CANONICAL_THEME_TOKEN_DEFINITION.test(content);
+export function hasLocalPublicChromeDefinition(content) {
+  const blocks = [...content.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((match) => match[1]);
+  return PUBLIC_CHROME_SELECTOR_DEFINITION.test(blocks.length ? blocks.join("\n") : content);
+}
+
+function publicRendererSource(content, normPath) {
+  if (normPath === "tools/multibagger-page.mjs") {
+    return content.split("export function multibaggerAdminPage")[0];
+  }
+  if (normPath === "tools/cockpit-page.mjs") {
+    return content.replace(/body\.admin-auth-required[^{}]*\{[^{}]*\}/g, "");
+  }
+  return content;
+}
+
+function isSharedChromeOwner(normPath) {
+  return ["tools/site-chrome.mjs", "tools/mobile-shell.mjs", "tools/project-components-page.mjs"].includes(normPath);
 }
 
 function isRawFetchExempt(normPath) {
   if (normPath === "tools/http.mjs") return true;
-  return normPath.includes("smoke") ||
-    normPath.includes("qa") ||
-    normPath.includes("soak") ||
-    normPath.includes("regression");
+  return ["smoke", "qa", "soak", "regression"].some((part) => normPath.includes(part));
 }
 
 function isConsoleAllowed(normPath) {
@@ -140,12 +154,20 @@ test("architecture-guard: strict code pattern enforcement", async () => {
     if (hasLocalThemeTokenDefinition(content) && normPath !== "tools/site-theme.mjs") {
       throw new Error(`File ${normPath} defines a canonical theme token. Use site-theme.mjs or a namespaced component token.`);
     }
+    if (hasLocalPublicChromeDefinition(publicRendererSource(content, normPath)) && !isSharedChromeOwner(normPath)) {
+      throw new Error(`File ${normPath} defines shared public chrome CSS. Use tools/site-chrome.mjs or tools/mobile-shell.mjs.`);
+    }
   }
 });
 
 test("architecture-guard: canonical theme definitions cannot hide under another selector", () => {
   assert.equal(hasLocalThemeTokenDefinition("body { --paper:#000; }"), true);
   assert.equal(hasLocalThemeTokenDefinition("body { color:var(--paper); }"), false);
+});
+
+test("architecture-guard: public chrome CSS cannot hide under a scoped selector", () => {
+  assert.equal(hasLocalPublicChromeDefinition("body.glass-v2 .topbar { color:red; }"), true);
+  assert.equal(hasLocalPublicChromeDefinition(".idx-card { color:var(--ink); }"), false);
 });
 
 test("architecture-guard: verify rendered page sentinels in-memory", async () => {

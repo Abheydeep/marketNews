@@ -3,7 +3,7 @@ import { indicesLiveScript } from "./indices-live.mjs";
 import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
 
-export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, assets) {
+export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd) {
   const head = jsonLd;
 
   const main = `
@@ -15,7 +15,6 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
     </header>
     ${giftNiftyPageBody(digest, archiveDigests)}
     <p class="idx-layout-footer-note">${DISCLAIMER_COMPACT}</p>
-    ${assets.footerLinksHtml}
   </div>
   <script>
     function updateCountdown() {
@@ -49,7 +48,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
     canonicalUrl: `${siteOrigin}/indices/gift-nifty/`,
     ogImage: `${siteOrigin}/og-card.svg`,
     head,
-    bodyClass: "idx-layout-body has-btb",
+    bodyClass: "has-btb",
     activeHref: "/indices/",
     mobileActiveKey: "indices",
     main
