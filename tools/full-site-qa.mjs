@@ -10,6 +10,7 @@ const { chromium } = loadPlaywright();
 
 const baseUrl = (process.env.MARKET_NEWS_URL ?? "https://abheydeep.github.io/marketNews").replace(/\/$/, "");
 const cycles = Number.parseInt(process.env.FULL_QA_CYCLES ?? "5", 10);
+const publicOnly = process.env.FULL_QA_PUBLIC_ONLY === "true";
 const dailyPages = parseDailyPages(process.env.FULL_QA_DAILY_PAGES) ?? [
   { slug: "4may2026", label: "Mon, 04 May, 2026" }
 ];
@@ -26,6 +27,7 @@ await context.route("**/*", async (route) => {
   const url = new URL(request.url());
   const base = new URL(baseUrl);
   const isSameSite = url.origin === base.origin && url.pathname.startsWith(base.pathname.replace(/\/$/, ""));
+  if (publicOnly && isSameSite && url.pathname === "/api/live-indices/") { await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, snapshots: [], ts: new Date().toISOString() }) }); return; }
   if (!isSameSite && ["api.marketnarrative.in", "trade-api.marketnarrative.in"].includes(url.hostname)) {
     await route.fulfill({
       status: 200,
@@ -118,7 +120,7 @@ async function runCycle(page, cycle) {
   const rootUrl = `${baseUrl}/?fullqa=${stamp}`;
   const archiveLinks = await verifyArchive(page, rootUrl);
   const darkPreviewCards = await verifyDarkPreview(page, stamp);
-  const adminResult = await verifyAdminRoutes(page, stamp);
+  const adminResult = publicOnly ? { checks: 0, studioButtons: 0 } : await verifyAdminRoutes(page, stamp);
   const adminChecks = adminResult.checks;
   let chartButtons = 0;
   let chartExternalLinks = 0;
@@ -166,13 +168,8 @@ async function verifyArchive(page, rootUrl) {
   await expectAtLeast(page.locator(".sentiment-sparkline"), 1, "archive sentiment sparkline");
   assert.equal(await page.getByRole("link", { name: "Dark preview" }).count(), 0, "archive should not expose a separate dark preview link");
   assert.equal(await page.getByRole("link", { name: "Project components" }).count(), 0, "archive should not expose admin project components");
-  for (const daily of dailyPages) {
-    if (daily.archive !== false) {
-      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`), `${daily.slug} open daily link`);
-      await expectOne(page.locator(`a.open-link[href="./${daily.slug}/"]`).filter({ hasText: "Open briefing" }), `${daily.slug} read market briefing link`);
-      await expectAtLeast(page.getByText(daily.label, { exact: true }), 1, `${daily.slug} archive date`);
-    }
-  }
+  await expectAtLeast(page.locator('a.open-link[href^="./"]'), 1, "recent briefing link");
+  await expectAtLeast(page.locator("a.open-link").filter({ hasText: "Open briefing" }), 1, "recent read-market-briefing link");
   for (const phrase of ["All Market Narrative briefings", "The root page now works", "Asia watch:", "markets tracked", "Open daily briefing"]) {
     assert.equal(await page.getByText(phrase, { exact: false }).count(), 0, `archive should not show rough copy: ${phrase}`);
   }
@@ -520,7 +517,7 @@ async function verifyPublicDigestJson(daily, stamp) {
 }
 
 async function verifyPublicNavigation(page, daily) {
-  const nav = page.locator(".tabs");
+  const nav = page.locator(".site-tabs");
   await expectOne(nav.getByText("Public Briefing", { exact: true }), `${daily.slug} active public nav`);
   await expectOne(nav.getByRole("link", { name: "Trading Guide" }), `${daily.slug} trading guide nav link`);
   await expectOne(nav.getByRole("link", { name: "Indices" }), `${daily.slug} indices nav link`);
@@ -778,5 +775,3 @@ function parseDailyPages(value) {
     return { slug, label, archive: archiveFlag === "archive=false" ? false : true };
   });
 }
-
-

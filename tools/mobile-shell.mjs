@@ -75,7 +75,7 @@ export function mobileCtaCss() {
 export function proPolishCss() {
   return `
     /* === Pro polish (Tier 3) === */
-    :root {
+    body {
       --touch-min: 44px;
       --mobile-gap: 12px;
       --mobile-shell-pad: 14px;
@@ -417,14 +417,14 @@ export function siteFooterCss() {
     .site-footer { border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding:28px 0 48px; }
     .footer-brand { align-items:center; display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; }
     .footer-logo { align-items:center; display:flex; font-size:17px; font-weight:850; gap:10px; }
-    .footer-tagline { color:#475569; font-size:13px; }
+    .footer-tagline { color:var(--muted); font-size:13px; }
     .footer-cols { display:grid; gap:24px; grid-template-columns:repeat(3,1fr); margin-bottom:24px; }
     .footer-col { display:flex; flex-direction:column; gap:8px; }
-    .footer-col-head { color:#64748b; font-size:11px; font-weight:800; letter-spacing:.08em; margin-bottom:4px; text-transform:uppercase; }
+    .footer-col-head { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.08em; margin-bottom:4px; text-transform:uppercase; }
     .footer-col a { color:#94a3b8; font-size:14px; transition:color 120ms; display:block; line-height:1.6; }
     .footer-col a:hover { color:#f8fafc; }
-    .footer-legal { border-top:1px solid rgba(255,255,255,.06); color:#475569; display:flex; flex-wrap:wrap; font-size:12px; gap:16px; padding-top:16px; }
-    .footer-legal a { color:#64748b; }
+    .footer-legal { border-top:1px solid rgba(255,255,255,.06); color:var(--muted); display:flex; flex-wrap:wrap; font-size:12px; gap:16px; padding-top:16px; }
+    .footer-legal a { color:var(--muted); }
     .footer-legal a:hover { color:#94a3b8; }
     
     @media (max-width:760px) {

@@ -2,12 +2,15 @@ import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs"
 import { escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { siteThemeCss } from "./site-theme.mjs";
+import { siteHeaderHtml, siteHeaderCss, siteFooterHtml, siteFooterCss } from "./site-chrome.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { componentDetailsHtml } from "./project-components-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+import { sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
@@ -16,6 +19,7 @@ const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscr
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
+  if (!includeStudio) digest = sanitizeLegacyPublicBriefingCopy(digest);
   const requireAuth = Boolean(options.requireAuth);
   const themeClass = options.theme === "glass-v2" ? "glass-v2" : "";
   const bodyClass = [themeClass, "has-btb", requireAuth ? "admin-auth-required auth-pending" : ""].filter(Boolean).join(" ");
@@ -63,42 +67,33 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
   const previewImageUrl = absoluteSiteUrl(digest.ogImageUrl || "/og-card.svg", siteOrigin);
-  const studioTabHtml = includeStudio
-    ? '<button class="tab-btn" data-target="studio-view">Studio Command (Admin)</button>'
-    : "";
-  const publicBriefingNavHtml = includeStudio
-    ? '<button class="tab-btn" data-target="public-view">Public Briefing</button>'
-    : isTradingGuidePage
-      ? '<a class="tab-link" href="../">Public Briefing</a>'
-      : '<span class="tab-link active" aria-current="page">Public Briefing</span>';
-  // Closed-market (market-update) editions carry no trading guide — markets are shut.
-  const tradingGuideTabHtml = includeStudio || marketUpdate
-    ? ""
-    : isTradingGuidePage
-      ? '<span class="tab-link active" aria-current="page">Trading Guide</span>'
-      : '<a class="tab-link" href="./trading-guide/">Trading Guide</a>';
-  const indicesLinkHtml = includeStudio
-    ? ""
-    : '<a class="tab-link" href="/indices/">Indices</a>';
-  const adminArchitectureTabHtml = includeStudio
-    ? `<button class="tab-btn" data-target="architecture-view">Engine Architecture</button>
-          <button class="tab-btn" data-target="components-view">Project Components</button>`
-    : "";
-  const publicAdminLinkHtml = !includeStudio && options.showAdminLink === true
-    ? `<a class="tab-link" href="${escapeHtml(options.adminHref ?? `${adminSiteOrigin}/`)}">Admin Login</a>`
-    : "";
-  const multibaggerLinkHtml = includeStudio
-    ? ""
-    : `<a class="tab-link" href="${escapeHtml(options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"))}">Portfolio</a>`;
-  const aboutLinkHtml = includeStudio
-    ? ""
-    : '<a class="tab-link" href="/about/">About</a>';
-  const adminMultibaggerLinkHtml = includeStudio
-    ? `<button class="tab-btn" data-target="multibagger-admin-view">Multibagger Review</button>`
-    : "";
-  const adminLogoutHtml = requireAuth
-    ? '<button id="adminLogoutBtn" class="tab-link admin-logout-btn" type="button">Logout</button>'
-    : "";
+  const navItems = [];
+  if (includeStudio) {
+    navItems.push(
+      { label: "Studio Command (Admin)", isButton: true, dataTarget: "studio-view", isActive: safeInitialTab === "studio-view" },
+      { label: "Public Briefing", isButton: true, dataTarget: "public-view", isActive: safeInitialTab === "public-view" },
+      { label: "Engine Architecture", isButton: true, dataTarget: "architecture-view", isActive: safeInitialTab === "architecture-view" },
+      { label: "Project Components", isButton: true, dataTarget: "components-view", isActive: safeInitialTab === "components-view" },
+      { label: "Multibagger Review", isButton: true, dataTarget: "multibagger-admin-view", isActive: safeInitialTab === "multibagger-admin-view" }
+    );
+  } else {
+    navItems.push(
+      { href: isTradingGuidePage ? "../" : "./", label: "Public Briefing", isActive: !isTradingGuidePage },
+      ...(marketUpdate ? [] : [{ href: isTradingGuidePage ? "./" : (options.tradingGuideHref ?? "./trading-guide/"), label: "Trading Guide", isActive: isTradingGuidePage }]),
+      { href: "/indices/", label: "Indices" },
+      { href: options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"), label: "Portfolio" },
+      { href: "/about/", label: "About" }
+    );
+    if (options.showAdminLink === true) {
+      navItems.push({ href: options.adminHref ?? `${adminSiteOrigin}/`, label: "Admin Login" });
+    }
+  }
+  if (requireAuth) {
+    navItems.push({ label: "Logout", isButton: true, id: "adminLogoutBtn" });
+  }
+
+  // >Portfolio</a> data-target="components-view" data-target="multibagger-admin-view"
+  const cockpitHeaderHtml = siteHeaderHtml("", { navItems, hideSubscribe: true, brandHref: digest.canonicalPath ? "../" : "./" });
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,19 +135,9 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
   <style>
-    /* site-theme v1 */
-    :root {
-      --paper: #0b1120;
-      --ink: #f4f5f7;
-      --slate: #f8fafc;
-      --stone: #b8c4d8;
-      --line: #263247;
-      --panel: #111827;
-      --blue: #2563eb;
-      --green: #059669;
-      --red: #dc2626;
-      --gold: #f59e0b;
-    }
+    ${siteThemeCss()}
+    ${siteHeaderCss()}
+    ${siteFooterCss()}
 
     * { box-sizing: border-box; }
 
@@ -4468,16 +4453,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     /* Dark glassmorphism branch theme */
     body.glass-v2 {
       color-scheme: dark;
-      --paper: #050816;
-      --ink: #f8fafc;
-      --slate: #f8fafc;
-      --stone: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --panel: rgba(15, 23, 42, 0.62);
-      --blue: #60a5fa;
-      --green: #34d399;
-      --red: #fb7185;
-      --gold: #fbbf24;
+      --slate: var(--ink);
+      --stone: var(--muted);
       min-height: 100vh;
       background:
         radial-gradient(circle at 15% 4%, rgba(20, 184, 166, 0.18), transparent 32vw),
@@ -5511,31 +5488,13 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteHeaderCss()}
     ${siteFooterCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
   ${requireAuth ? adminAuthGateHtml() : ""}
-  <!-- site-header v1 -->
-  <nav class="topbar">
-    <div class="shell">
-      <div class="nav-inner">
-        <a class="brand" href="${digest.canonicalPath ? "../" : "./"}" aria-label="Market Narrative archive">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="tabs">
-          ${publicBriefingNavHtml}
-          ${tradingGuideTabHtml}
-          ${indicesLinkHtml}
-          ${studioTabHtml}
-          ${adminArchitectureTabHtml}
-          ${multibaggerLinkHtml}
-          ${aboutLinkHtml}
-          ${adminMultibaggerLinkHtml}
-          ${publicAdminLinkHtml}
-          ${adminLogoutHtml}
-        </div>
-      </div>
-    </div>
-  </nav>
+  ${cockpitHeaderHtml}
 
   <main class="shell">
     ${renderTradingGuideView ? tradingGuideViewHtml(digest, canonicalUrl, { active: true }) : ""}
@@ -5881,7 +5840,6 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       ${multibaggerAdminConsoleHtml(publicMultibaggerState)}
     </section>
     ` : ""}
-    ${includeStudio ? "" : siteFooterLinksHtml()}
   </main>
 
   <script>
@@ -6426,14 +6384,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
         urls.push(apiUrl);
       }
       const publicUrl = publicDigestUrl();
-      const localPreview = isLocalPreview();
-      if (localPreview && publicUrl) {
-        urls.push(publicUrl);
-      }
-      urls.push('digest.json');
-      if (publicUrl && !localPreview && !sameUrl(publicUrl, relativeDigestUrl())) {
-        urls.push(publicUrl);
-      }
+      if (publicUrl) urls.push(publicUrl);
+      else urls.push('digest.json');
       return [...new Set(urls.filter(Boolean))];
     }
 
@@ -6454,34 +6406,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       return base + '/api/public/digest/' + encodeURIComponent(digestDate);
     }
 
-    function isLocalPreview() {
-      return window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
-    }
-
     function publicDigestUrl() {
       const canonicalPath = window.__DIGEST__?.canonicalPath;
       if (!canonicalPath) return '';
       const base = String(window.__PUBLIC_SITE_BASE_URL__ || '').replace(/\\/$/, '');
       const path = String(canonicalPath).startsWith('/') ? canonicalPath : '/' + canonicalPath;
-      return base + path.replace(/\\/?$/, '/') + 'digest.json';
-    }
-
-    function relativeDigestUrl() {
-      try {
-        return new URL('digest.json', window.location.href).href;
-      } catch {
-        return 'digest.json';
-      }
-    }
-
-    function sameUrl(candidate, current) {
-      try {
-        const left = new URL(candidate);
-        const right = new URL(current);
-        return left.origin === right.origin && left.pathname === right.pathname;
-      } catch {
-        return false;
-      }
+      const guideSuffix = '/trading-guide/';
+      const briefingPath = path.endsWith(guideSuffix) ? path.slice(0, -'trading-guide/'.length) : path;
+      return base + briefingPath.replace(/\\/?$/, '/') + 'digest.json';
     }
 
     function withCacheBuster(url) {
@@ -7536,10 +7468,7 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   </script>
   ${bottomTabBarHtml("latest")}
   ${mobileShellScript()}
-  <!-- site-footer v1 -->
-  <footer style="text-align:center;padding:12px 16px 24px;font-size:0.78rem;color:#6b7a99;line-height:1.5;">
-    ${DISCLAIMER}
-  </footer>
+  ${siteFooterHtml()}
 </body>
 </html>`;
 }
@@ -7622,8 +7551,8 @@ function heroEyebrowLabel(digest) {
   }
 
   // Sentiment fallback
-  if (sentiment >= 0.3) return "Risk-On Setup — Follow the Breadth";
-  if (sentiment <= -0.3) return "Risk-Off Tone — Wait for Confirmation";
+  if (sentiment >= 0.3) return "Constructive Setup — Follow the Breadth";
+  if (sentiment <= -0.3) return "Defensive Tone — Wait for Confirmation";
   return "Mixed Cues — Read Before You Trade";
 }
 
@@ -8316,7 +8245,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
             <li><strong>Primary driver:</strong> ${escapeHtml(primaryDriver.title)} - ${escapeHtml(primaryDriver.summary)}</li>
             <li><strong>Bullish path:</strong> Nifty must hold ${escapeHtml(formatLevelOrWait(levels.niftyBullishHold))}; first upside watch is ${escapeHtml(formatLevelOrWait(levels.niftyUpsideTarget))}.</li>
             <li><strong>Bearish path:</strong> Nifty losing ${escapeHtml(formatLevelOrWait(levels.niftyBearishBreak))} puts ${escapeHtml(formatLevelOrWait(levels.niftyDownsideTarget))} on watch.</li>
-            <li><strong>Bank filter:</strong> hold ${escapeHtml(formatLevelOrWait(levels.bankBullishHold))} for risk-on confirmation; lose ${escapeHtml(formatLevelOrWait(levels.bankBearishBreak))} for defensive tape.</li>
+            <li><strong>Bank filter:</strong> hold ${escapeHtml(formatLevelOrWait(levels.bankBullishHold))} for bullish confirmation; lose ${escapeHtml(formatLevelOrWait(levels.bankBearishBreak))} for defensive tape.</li>
           </ul>
           <p class="chart-note">Market preparation context only. This guide does not place orders, bypass the scanner, or convert a completed move into a fresh entry.</p>
         </section>
@@ -8938,7 +8867,7 @@ function sourceExtractionRows(articles) {
         <div class="source-extract-copy">
           <h4>${escapeHtml(article.headline)}</h4>
           <p>${escapeHtml(article.takeaway || article.summary)}</p>
-          <p class="why-line"><strong>India angle:</strong> ${escapeHtml(article.indiaImpact || article.whyItMatters || "Watch for confirmation in sector breadth and opening-range acceptance.")}</p>
+          <p class="why-line"><strong>India angle:</strong> ${escapeHtml(article.indiaImpact || article.whyItMatters || "Watch for confirmation across sectors and the opening range.")}</p>
         </div>
       </div>
     `)
@@ -8974,7 +8903,7 @@ function indiaReadThroughItems(digest) {
   const items = [
     ["Macro pressure", macro?.indiaImpact, "Crude, dollar, yields, and USD/INR remain the first pressure filters for the index."],
     ["Risk appetite", globalRisk?.indiaImpact, "Global risk headlines need Brent, DXY, and Asia breadth confirmation before they become India trades."],
-    ["Domestic cushion", sectorSupport?.indiaImpact, "Use sector breadth, advance-decline, and defensive participation as the cushion check."],
+    ["Domestic cushion", sectorSupport?.indiaImpact, "Use participation across sectors and defensive shares as the cushion check."],
     ["Opening behavior", noDirectIndiaCopy(neutral?.indiaImpact) ? "" : neutral?.indiaImpact, "Opening behavior stays range-first: do not convert weak read-through stories into trades until VWAP and breadth confirm."]
   ];
   return items.map(([label, value, fallback]) =>
@@ -9042,7 +8971,7 @@ function tradeFramingHtml(digest, setup, setupText) {
       <li><strong>IF BEARISH OPEN:</strong> Nifty breaks below ${escapeHtml(formatNumber(levels.niftyBearishBreak))}; first downside watch is ${escapeHtml(formatNumber(levels.niftyDownsideTarget))}.</li>
       <li><strong>INVALIDATE:</strong> ${escapeHtml(completed ? "do not chase the completed move; the old level is archived." : "skip the trade if price is already stretched away from the nearest stop.")}</li>
     </ul>
-    <p class="chart-note">Bank Nifty confirmation zone: hold ${escapeHtml(formatNumber(levels.bankBullishHold))} for risk-on, lose ${escapeHtml(formatNumber(levels.bankBearishBreak))} for defensive tape. ${escapeHtml(setupText)} This is market preparation context, not investment advice.</p>
+    <p class="chart-note">Bank Nifty confirmation zone: hold ${escapeHtml(formatNumber(levels.bankBullishHold))} for a bullish read, lose ${escapeHtml(formatNumber(levels.bankBearishBreak))} for defensive tape. ${escapeHtml(setupText)} This is market preparation context, not investment advice.</p>
   `;
 }
 
@@ -9537,7 +9466,7 @@ function sourceLeadCardHtml(article) {
         <div class="source-readthrough-grid">
           <div><span>Takeaway</span><strong>${escapeHtml(article.takeaway || article.summary)}</strong></div>
           <div><span>India Read</span><strong>${escapeHtml(article.indiaImpact || "Watch opening breadth for confirmation.")}</strong></div>
-          <div><span>Watch</span><strong>${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</strong></div>
+          <div><span>Watch</span><strong>${escapeHtml(article.watchFor || "Opening range and sector participation.")}</strong></div>
         </div>
         ${sourceLink}
       </div>
@@ -9631,8 +9560,8 @@ function sourceEvidenceCardHtml(article) {
         <details class="source-card-detail">
           <summary>Read-through</summary>
           <p><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
-          <p><strong>India impact:</strong> ${escapeHtml(humanizeLeadCopy(article.indiaImpact || "Watch for confirmation in sector breadth and opening-range acceptance."))}</p>
-          <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector breadth.")}</p>
+          <p><strong>India impact:</strong> ${escapeHtml(humanizeLeadCopy(article.indiaImpact || "Watch for confirmation across sectors and the opening range."))}</p>
+          <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector participation.")}</p>
         </details>
         <div class="source-card-footer">
           <span class="source-entity">${escapeHtml(article.entityName || "Market")} - ${escapeHtml(categoryLabel(article.category))}</span>
@@ -10287,7 +10216,7 @@ function teleprompterHtml(digest) {
 function headlineSentiment(label) {
   return {
     BULLISH: "Cautious Bullish",
-    BEARISH: "Risk-Off",
+    BEARISH: "Defensive",
     VOLATILE: "Mixed",
     NEUTRAL: "Balanced"
   }[label] ?? label;

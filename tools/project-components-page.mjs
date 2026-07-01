@@ -1,5 +1,6 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { escapeHtml, formatDigestDate } from "./html-utils.mjs";
+import { siteThemeCss } from "./site-theme.mjs";
 
 export function projectComponentsPage({ digests = [], publicBaseHref = "../", requireAuth = false } = {}) {
   const latest = digests[0];
@@ -19,18 +20,7 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
   ${brandHeadLinks("https://admin.marketnarrative.in")}
   <title>Market Narrative | Project Components Map</title>
   <style>
-    :root {
-      --paper: #050816;
-      --ink: #f8fafc;
-      --muted: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --panel: rgba(15, 23, 42, 0.62);
-      --blue: #60a5fa;
-      --green: #34d399;
-      --red: #fb7185;
-      --gold: #fbbf24;
-    }
-
+    ${siteThemeCss()}
     * { box-sizing: border-box; }
 
     body {
@@ -1296,4 +1286,3 @@ function slugForDigest(digest) {
   const monthName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][Number(month) - 1];
   return `${Number(day)}${monthName}${year}`;
 }
-

@@ -4,13 +4,13 @@
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { dirname, isAbsolute, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { log } from "./logger.mjs";
 import { fetchLiveMarketSnapshots } from "./market-data.mjs";
 import { mapWithConcurrency } from "./limited-concurrency.mjs";
 import { movePage } from "./move-page.mjs";
 import { generateMoveArticle } from "./pulse-move-article.mjs";
 import { buildMoveImagePrompt, generateArticleImage } from "./generate-article-image.mjs";
 import { writeOgImageAsset } from "./og-image-assets.mjs";
-import { log } from "./logger.mjs";
 
 export { generateMoveArticle } from "./pulse-move-article.mjs";
 
@@ -153,9 +153,9 @@ export async function main(options = {}) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().then((result) => {
-    console.log(JSON.stringify(result, null, 2));
+    log.info("Generation results:", result);
   }).catch((error) => {
-    console.error("Error generating move articles:", error);
+    log.error("Error generating move articles", { error: error.message });
     process.exit(1);
   });
 }

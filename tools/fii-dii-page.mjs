@@ -60,7 +60,7 @@ function heroCards(days) {
           <div class="mf-battle-num ${signClass(fii)}">${Number.isFinite(fii) ? fmtCr(fii) : "—"}</div>
         </div>
         <div class="mf-battle-row">
-          <div class="mf-battle-lbl" style="color:var(--up)">DII</div>
+          <div class="mf-battle-lbl" style="color:var(--mf-up)">DII</div>
           <div class="mf-battle-track"><div class="mf-battle-fill" style="background:${diiColor};width:${diiWidth}%"></div></div>
           <div class="mf-battle-num ${signClass(dii)}">${Number.isFinite(dii) ? fmtCr(dii) : "—"}</div>
         </div>
@@ -86,7 +86,7 @@ function heroCards(days) {
       <span>FII Futures Bias</span>
       <div class="mf-gauge-wrap">
         <div class="mf-gauge-header">
-          <span style="color:var(--up)">Long: ${longVal.toFixed(0)}%</span>
+          <span style="color:var(--mf-up)">Long: ${longVal.toFixed(0)}%</span>
           <span style="color:var(--dn)">Short: ${shortVal.toFixed(0)}%</span>
         </div>
         <div class="mf-gauge-track">
@@ -102,7 +102,7 @@ function heroCards(days) {
       <div class="mf-battle-stats">
         <div>
           <small>Contracts Long</small>
-          <strong style="font-size:15px;margin:2px 0;color:var(--up)">${lastFno ? fmtNum(lastFno.fnoOi.fii.idxFutLong) : "—"}</strong>
+          <strong style="font-size:15px;margin:2px 0;color:var(--mf-up)">${lastFno ? fmtNum(lastFno.fnoOi.fii.idxFutLong) : "—"}</strong>
         </div>
         <div>
           <small>Contracts Short</small>
@@ -125,11 +125,11 @@ function chartsBlock(days) {
   for (const d of cash) { cf += Number(d.cash.fiiNet || 0); cd += Number(d.cash.diiNet || 0); cumFii.push(cf); cumDii.push(cd); cumLabels.push(shortDay(d.date)); }
   const cum = lineChart([
     { name: "FII", color: "var(--dn)", values: cumFii },
-    { name: "DII", color: "var(--up)", values: cumDii }
+    { name: "DII", color: "var(--mf-up)", values: cumDii }
   ], cumLabels, fmtCr);
   const fno = days.filter((d) => d.fnoOi?.fii).slice(-40);
   const ratios = fno.map((d) => longRatio(d.fnoOi.fii, "idxFutLong", "idxFutShort"));
-  const ratioChart = lineChart([{ name: "FII long %", color: "var(--up)", values: ratios }], fno.map((d) => shortDay(d.date)), (v) => `${Math.round(v)}%`);
+  const ratioChart = lineChart([{ name: "FII long %", color: "var(--mf-up)", values: ratios }], fno.map((d) => shortDay(d.date)), (v) => `${Math.round(v)}%`);
 
   const latestRatio = ratios.at(-1);
   let futuresTakeaway = "";
@@ -150,9 +150,9 @@ function chartsBlock(days) {
     <p class="mf-section-s">FII and DII cash flow, the running cumulative, and how FIIs are leaning in index futures — the three views market participants check before the open.</p>
     ${futuresTakeaway}
     <div class="mf-charts">
-      ${chartCard("FII vs DII daily cash net", "Net flow (FII left, DII right bar) · green = buy · red = sell · Nifty in gold", bars, [{ name: "Buying support", color: "var(--up)" }, { name: "Selling pressure", color: "var(--dn)" }, { name: "Nifty 50", color: "#d4a847" }])}
-      ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "var(--dn)" }, { name: "DII", color: "var(--up)" }])}
-      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book · shaded zones show extreme bias", ratioChart, [{ name: "FII long %", color: "var(--up)" }])}
+      ${chartCard("FII vs DII daily cash net", "Net flow (FII left, DII right bar) · green = buy · red = sell · Nifty in gold", bars, [{ name: "Buying support", color: "var(--mf-up)" }, { name: "Selling pressure", color: "var(--dn)" }, { name: "Nifty 50", color: "#d4a847" }])}
+      ${chartCard("Cumulative cash flow", "Running net over recent sessions, ₹ crore", cum, [{ name: "FII", color: "var(--dn)" }, { name: "DII", color: "var(--mf-up)" }])}
+      ${chartCard("FII index-futures long %", "Long share of the FII index-futures book · shaded zones show extreme bias", ratioChart, [{ name: "FII long %", color: "var(--mf-up)" }])}
     </div>
   </div>`;
 }

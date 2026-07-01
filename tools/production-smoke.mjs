@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
-
+import { DISCLAIMER_MARKER } from "./site-constants.mjs";
 const config = {
   publicUrl: envUrl("PUBLIC_URL", "https://marketnarrative.in"),
   wwwUrl: envUrl("WWW_URL", "https://www.marketnarrative.in"),
@@ -58,7 +58,7 @@ await check("public host loads about page", async () => {
   assert.match(response.body, /About Market Narrative|Who is Abhey Deep|Methodology/i);
   assert.match(response.body, /I'm Abhey Deep|Browse the archive|verified briefings published since launch/i);
   assert.match(response.body, /aria-current="page">About/i);
-  assert.match(response.body, /not SEBI-registered investment advice/i);
+  assert.ok(response.body.includes(DISCLAIMER_MARKER));
 });
 
 await check("public host loads subscribe page", async () => {

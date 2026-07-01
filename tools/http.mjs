@@ -12,6 +12,7 @@ export async function fetchWithRetry(url, options = {}) {
   const timeoutMs = options.timeoutMs || 8000;
   const retries = options.retries ?? 2;
   const signal = options.signal || AbortSignal.timeout(timeoutMs);
+  const fetchImpl = options.fetchImpl ?? globalThis.fetch;
   
   const headers = {
     "User-Agent": DEFAULT_UA,
@@ -25,11 +26,13 @@ export async function fetchWithRetry(url, options = {}) {
   };
   delete finalOptions.timeoutMs;
   delete finalOptions.retries;
+  delete finalOptions.fetchImpl;
 
   for (let attempt = 1; attempt <= retries + 1; attempt++) {
     try {
-      const res = await fetch(url, finalOptions);
-      if (res.ok || attempt === retries + 1) {
+      const res = await fetchImpl(url, finalOptions);
+      const retryable = res.status === 429 || res.status >= 500;
+      if (res.ok || !retryable || attempt === retries + 1) {
         return res;
       }
       log.warn(`HTTP request attempt ${attempt} failed with status ${res.status}`, { url });
@@ -88,7 +91,7 @@ export async function fetchNseJson(url, options = {}) {
   const timeoutMs = options.timeoutMs || 8000;
   
   // 1. Initial cookie seed request to landing page
-  const cookieRes = await fetchWithRetry("https://www.nseindia.com/market-data/fii-dii-activity", {
+  const cookieRes = await fetchWithRetry("https://www.nseindia.com/reports/fii-dii", {
     timeoutMs,
     headers: {
       Accept: "text/html"
@@ -103,7 +106,7 @@ export async function fetchNseJson(url, options = {}) {
     ...options,
     headers: {
       Accept: "application/json",
-      Referer: "https://www.nseindia.com/market-data/fii-dii-activity",
+      Referer: "https://www.nseindia.com/reports/fii-dii",
       ...(rawCookie ? { Cookie: rawCookie } : {}),
       ...options.headers
     }

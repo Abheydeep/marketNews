@@ -1,9 +1,6 @@
 import { computeGiftNiftyBias } from "./core.mjs";
 import { indicesStyles } from "./indices-styles.mjs";
-
-export function escapeHtml(value) {
-  return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
-}
+import { escapeHtml } from "./html-utils.mjs";
 
 function formatChange(snap) {
   const chg = Number(snap.changePercent || 0);
@@ -26,7 +23,7 @@ const DESCRIPTIONS = {
   BRENT: "Brent Crude: Global benchmark for oil prices. Spikes above $85 represent direct inflationary risks for India.",
   DXY: "US Dollar Index: Measures USD strength. Stronger DXY pressure triggers FII capital outflows from India.",
   USDINR: "USD/INR Spot rate: Spot value of Indian Rupee. Depreciations indicate direct FX pressure on domestic import costs.",
-  GOLD: "Comex Gold: Safe-haven asset class. Gold rally cues highlight risk-off rotations across global desks."
+  GOLD: "Comex Gold: Safe-haven asset class. Gold rallies highlight defensive rotations across global desks."
 };
 
 function getSymbolDescription(symbol, name) {

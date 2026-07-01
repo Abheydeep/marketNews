@@ -1,7 +1,9 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
 import { escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss, siteFooterCss, siteFooterLinksHtml } from "./mobile-shell.mjs";
+import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { siteThemeCss } from "./site-theme.mjs";
+import { siteHeaderHtml, siteHeaderCss, siteFooterHtml, siteFooterCss } from "./site-chrome.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
 
 const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
@@ -42,20 +44,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${jsonLdPayload(multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount))}</script>
-  <style>/* site-theme v1 */
-    :root {
-      --paper: #050816;
-      --ink: #f8fafc;
-      --muted: #b8c4d8;
-      --line: rgba(255, 255, 255, 0.14);
-      --panel: rgba(15, 23, 42, 0.70);
-      --panel-strong: rgba(15, 23, 42, 0.90);
-      --cyan: #22d3ee;
-      --blue: #60a5fa;
-      --green: #34d399;
-      --amber: #fbbf24;
-      --red: #fb7185;
-    }
+  <style>
+    ${siteThemeCss()}
+    ${siteHeaderCss()}
+    ${siteFooterCss()}
 
     * { box-sizing: border-box; }
 
@@ -1635,24 +1627,20 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
     ${bottomTabBarCss()}
     ${mobileTypographyCss()}
     ${proPolishCss()}
+    ${siteHeaderCss()}
     ${siteFooterCss()}
   </style>
 </head>
 <body class="glass-v2 has-btb">
-  <!-- site-header v1 -->
-  <nav class="topbar">
-    <div class="shell">
-      <div class="nav-inner">
-        <a class="brand" href="${escapeHtml(siteOrigin)}/">${brandMarkHtml()}<span>Market Narrative</span></a>
-        <div class="tabs" aria-label="Market Narrative sections">
-          <a class="tab-link" href="${escapeHtml(latestBriefingHref)}">Public Briefing</a>
-          <a class="tab-link" href="${escapeHtml(tradingGuideHref)}">Trading Guide</a>
-          <span class="tab-link active" aria-current="page">Portfolio</span>
-          <a class="tab-link" href="/about/">About</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  ${siteHeaderHtml("/multibagger/", {
+    navItems: [
+      { href: latestBriefingHref, label: "Public Briefing" },
+      { href: tradingGuideHref, label: "Trading Guide" },
+      { href: "/multibagger/", label: "Portfolio", isActive: true },
+      { href: "/about/", label: "About" }
+    ]
+  })}
+  <!-- class="tab-link active" aria-current="page">Portfolio -->
 
   <main class="shell">
     <section class="hero">
@@ -1962,11 +1950,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       </details>
     </section>
   </main>
-  <!-- site-footer v1 -->
-  <div class="shell" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
-    <p style="color:var(--muted); font-size:12px; line-height:1.5;">Quote timestamps are shown beside each holding. Public data excludes personal screenshots, share counts, portfolio totals, and unpublished review notes.</p>
-    ${siteFooterLinksHtml()}
-  </div>
+  ${siteFooterHtml()}
 
   <script>
     window.MARKET_NARRATIVE_API_BASE = ${JSON.stringify(apiOrigin)};
@@ -2335,7 +2319,7 @@ export function multibaggerAdminPage(state = multibaggerState()) {
   ${brandHeadLinks(adminSiteOrigin)}
   <meta name="robots" content="noindex,nofollow">
   <title>Market Narrative | Multibagger Admin Review</title>
-  <style>${adminCss()}</style>
+  <style>${siteThemeCss()}${adminCss()}</style>
 </head>
 <body class="admin-auth-required auth-pending has-btb">
   ${adminAuthGateHtml()}
@@ -2404,7 +2388,6 @@ export function multibaggerAdminPage(state = multibaggerState()) {
 
 function adminCss() {
   return `
-    :root { --paper:#050816; --ink:#f8fafc; --muted:#b8c4d8; --line:rgba(255,255,255,.14); --panel:rgba(15,23,42,.76); --cyan:#22d3ee; }
     * { box-sizing:border-box; }
 
     /* === Global mobile base (Tier 1) === */
@@ -3095,4 +3078,3 @@ function multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount)
 function jsonLdPayload(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026");
 }
-

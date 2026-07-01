@@ -7,7 +7,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
   const head = jsonLd;
 
   const main = `
-  <main class="idx-layout-shell">
+  <div class="idx-layout-shell">
     <header class="idx-layout-hero">
       <p class="idx-layout-eyebrow">GIFT Nifty Watch</p>
       <h1 class="idx-layout-h1">GIFT Nifty Live Quote & Opening Gap Calculator</h1>
@@ -16,7 +16,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd, as
     ${giftNiftyPageBody(digest, archiveDigests)}
     <p class="idx-layout-footer-note">${DISCLAIMER_COMPACT}</p>
     ${assets.footerLinksHtml}
-  </main>
+  </div>
   <script>
     function updateCountdown() {
       const el = document.getElementById("nse-countdown");

@@ -2,6 +2,7 @@
 // Simple script to invoke the move-detect API handler locally for testing.
 
 import handler from "../api/move-detect.mjs";
+import { log } from "./logger.mjs";
 
 process.env.CRON_SECRET ||= "local-move-detect-secret";
 
@@ -24,8 +25,8 @@ const mockResponse = {
   },
   json(obj) {
     this._body = obj;
-    console.log("Response status:", this._status);
-    console.log("Response body:", JSON.stringify(obj, null, 2));
+    log.info("Response status:", { status: this._status });
+    log.info("Response body:", obj);
     return this;
   },
 };

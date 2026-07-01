@@ -1,4 +1,5 @@
 import { log } from "./logger.mjs";
+import { fetchWithRetry } from "./http.mjs";
 
 const MONTHS = {
   Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
@@ -54,7 +55,7 @@ export async function fetchGiftNiftySnapshot({ timeoutMs = 6000 } = {}) {
       "Origin": "https://www.nseix.com"
     };
 
-    const res = await fetch(url, { signal: controller.signal, headers });
+    const res = await fetchWithRetry(url, { signal: controller.signal, headers });
     clearTimeout(timer);
     
     if (!res.ok) {

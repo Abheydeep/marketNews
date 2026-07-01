@@ -1,4 +1,5 @@
 import { log } from "../tools/logger.mjs";
+import { fetchWithRetry } from "../tools/http.mjs";
 
 const OWNER = "Abheydeep";
 const REPO = "marketNews";
@@ -30,7 +31,7 @@ export default async function handler(request, response) {
 
   const date = request.query?.date || "";
   try {
-    const dispatch = await fetch(
+    const dispatch = await fetchWithRetry(
       `https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_ID}/dispatches`,
       {
         method: "POST",
@@ -41,7 +42,7 @@ export default async function handler(request, response) {
           "User-Agent": "MarketNarrativeMoveDetect/1.0"
         },
         body: JSON.stringify({ ref: "main", inputs: { date, triggered_by: "vercel-move-detect" } }),
-        signal: AbortSignal.timeout(DISPATCH_TIMEOUT_MS)
+        timeoutMs: DISPATCH_TIMEOUT_MS
       }
     );
     if (!dispatch.ok) {

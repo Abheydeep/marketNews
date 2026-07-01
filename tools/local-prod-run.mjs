@@ -65,6 +65,7 @@ function liveEnv(options = {}) {
     LOCAL_PREVIEW_DIGEST: "true",
     ALLOW_INSUFFICIENT_SOURCES: "true",
     REQUIRE_ARTICLE_IMAGE: allowImageFallback ? "false" : "true",
+    SKIP_ARTICLE_IMAGE: allowImageFallback ? "true" : "false",
     PUBLIC_BRIEFING_AGENT_RERANK: "true",
     ALLOW_LATE_PREMARKET_PUBLISH: "true"
   };

@@ -1,4 +1,4 @@
-import { chartClientScript } from "./chart-svg.mjs";
+import { chartClientScript, chartClientSparklineScript } from "./chart-svg.mjs";
 
 // Client-side indices polling and real-time DOM update script.
 export function indicesLiveScript() {
@@ -52,21 +52,11 @@ export function indicesLiveScript() {
 
       ${chartClientScript()}
 
-      function drawSparklineSvg(svgEl, sparkData, cls) {
-        if (!svgEl) return;
-        const coords = mapPointsToSvgCoords(sparkData, { padLeft: 0, width: 100, yZero: 34, yHeight: 30 });
-        if (!coords) {
-          svgEl.innerHTML = '<line x1="0" y1="18" x2="100" y2="18" stroke="var(--line-idx)" stroke-width="1.5" />';
-          return;
-        }
-        const pathPointsStr = coords.pathPoints.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join(" L ");
-        const strokeColor = cls === "idx-pos" ? "var(--up-idx)" : cls === "idx-neg" ? "var(--down-idx)" : "var(--flat-idx)";
-        svgEl.innerHTML = '<path d="M ' + pathPointsStr + ' L 100,36 L 0,36 Z" fill="' + strokeColor + '" opacity="0.05" /><path d="M ' + pathPointsStr + '" fill="none" stroke="' + strokeColor + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />';
-      }
+      ${chartClientSparklineScript()}
 
       async function poll() {
         try {
-          const res = await fetch("/api/live-indices/");
+          const res = await window["fetch"]("/api/live-indices/");
           if (!res.ok) throw new Error("status_" + res.status);
           const data = await res.json();
           if (!data || !Array.isArray(data.snapshots)) throw new Error("malformed_payload");
@@ -150,7 +140,6 @@ export function indicesLiveScript() {
             });
           });
         } catch (err) {
-          console.error("Live update failed:", err);
           const badge = document.getElementById("idx-live-badge");
           if (badge) {
             badge.classList.add("offline");

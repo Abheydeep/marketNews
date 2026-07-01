@@ -77,6 +77,28 @@ export async function runGenerateArticleImageTests(test = localTest, assertion =
     assertion.equal(requestBody.output_format, "jpeg");
   });
 
+  await test("nvidia image provider uses hosted Flux contract", async () => {
+    let requestedUrl = "";
+    let requestBody = null;
+    const result = await generateArticleImage("test", {
+      provider: "nvidia",
+      apiKey: "test-key",
+      fetcher: async (url, request) => {
+        requestedUrl = url;
+        requestBody = JSON.parse(request.body);
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ artifacts: [{ base64: Buffer.from("jpg").toString("base64") }] })
+        };
+      }
+    });
+    assertion.ok(Buffer.isBuffer(result));
+    assertion.match(requestedUrl, /black-forest-labs\/flux\.1-schnell$/);
+    assertion.equal(requestBody.steps, 4);
+    assertion.equal("model" in requestBody, false);
+  });
+
   await test("article image prompts avoid forbidden compliance words", () => {
     const prompts = [
       buildBriefingImagePrompt({ dailyLead: { driverType: "crude" } }),

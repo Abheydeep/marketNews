@@ -1,7 +1,8 @@
 import { ARTICLE_ENRICHMENT_PROMPT } from "./editorial-guardrails.mjs";
 import { log } from "./logger.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
-import { triageArticlesWithLLM } from "./article-triage.mjs";
+import { isLivePriceTracker, triageArticlesWithLLM } from "./article-triage.mjs";
+import { isPulseMarketCandidate } from "./pulse-candidate-filter.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 
@@ -167,13 +168,6 @@ const LIVE_FEEDS = [
     url: "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"
   },
   {
-    sourceName: "BQ Prime",
-    sourceId: "bq-prime",
-    type: "rss",
-    categoryHint: "macro_negative",
-    url: "https://www.bqprime.com/feeds/rss-all"
-  },
-  {
     sourceName: "Zerodha Pulse",
     sourceId: "zerodha-pulse",
     type: "html-index",
@@ -322,7 +316,11 @@ export async function fetchLiveNewsArticles(date, options = {}) {
 
   let selectedArticles;
   if (isPulseMode) {
-    selectedArticles = await agentSelectPulseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), options);
+    const pulseCandidates = selectDiverseArticles(
+      prioritizeDigestWindowArticles(verifiedArticles.filter(articleLooksMarketRelevant).filter(isPulseMarketCandidate).filter((article) => !isLivePriceTracker(article)), date),
+      80
+    );
+    selectedArticles = await agentSelectPulseArticles(pulseCandidates, options);
     const top3 = selectedArticles.slice(0, 3);
     await Promise.all(top3.map(a => enrichPulseArticleWithContent(a, fetcher)));
   } else {
@@ -1552,10 +1550,10 @@ function thematicFallbackReadthrough(lower, category, entityName) {
   }
   if (isGeopoliticalRiskStory(text)) {
     return {
-      takeaway: "geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
+      takeaway: "geopolitical escalation is a defensive signal that travels through crude, gold, currencies and FII flows before equities.",
       whyItMatters: "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
       indiaImpact: "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      watchFor: "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open."
+      watchFor: "Watch Brent at the Asia open, USD/INR and gold before assigning defensive weight to the India open."
     };
   }
   if (isIndiaPolicyStory(text)) {
@@ -1611,7 +1609,7 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       takeaway: "primary-market demand is a risk-appetite read, not an automatic index signal.",
       whyItMatters: "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
       indiaImpact: "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
-      watchFor: "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as risk-on."
+      watchFor: "Watch listing-day breadth, midcap participation and Bank Nifty VWAP before treating IPO demand as broadly constructive."
     };
   }
   if (isIndiaTelecomStory(text)) {
@@ -1715,7 +1713,7 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       takeaway: "fiscal stress is a yield and currency risk cue before it is an equity signal.",
       whyItMatters: "Debt and deficit stories matter for India only if yields, DXY or USD/INR tighten financial conditions.",
       indiaImpact: "Bank Nifty, rate-sensitive sectors and USD/INR are the direct checks; avoid broad bias if yields stay calm.",
-      watchFor: "Watch US yields, DXY, USD/INR and Bank Nifty VWAP before assigning risk-off weight."
+      watchFor: "Watch US yields, DXY, USD/INR and Bank Nifty VWAP before assigning defensive weight."
     };
   }
   if (/\b(consumer|retail sales?|spending|sentiment|discretionary|fmcg|rural demand)\b/.test(text)) {
@@ -1755,15 +1753,15 @@ function thematicFallbackReadthrough(lower, category, entityName) {
       takeaway: "risk appetite is supportive only if Indian breadth confirms beyond the first range.",
       whyItMatters: "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
       indiaImpact: "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      watchFor: "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read."
+      watchFor: "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the constructive read."
     };
   }
   if (category === "macro_negative") {
     return {
-      takeaway: "macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
+      takeaway: "macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable defensive cue.",
       whyItMatters: "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
       indiaImpact: "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      watchFor: "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off."
+      watchFor: "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing a defensive view."
     };
   }
   if (category === "sector_positive") {
@@ -2585,9 +2583,10 @@ function parsePulseHtmlItems(html, baseUrl) {
 }
 
 export async function agentSelectPulseArticles(articles, options = {}) {
+  const candidates = selectDiverseArticles(articles, 80);
   const agentMode = shouldUseAgentArticleEnrichment(options);
-  if (!agentMode || articles.length === 0) {
-    return articles;
+  if (!agentMode || candidates.length === 0) {
+    return selectDiverseArticles(candidates, 12);
   }
   
   const fetcher = options.llmFetcher ?? fetch;
@@ -2598,10 +2597,10 @@ export async function agentSelectPulseArticles(articles, options = {}) {
      if (strictAgentSelection) {
        throw new Error("Pulse agent selection requires NVIDIA_PULSE_API_KEY or NVIDIA_API_KEY");
      }
-     return articles;
+     return selectDiverseArticles(candidates, 12);
   }
 
-  const inputList = articles.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}\nSummary: ${a.summary}`).join("\n\n");
+  const inputList = candidates.map((a, i) => `[${i}] ${a.headline} - ${a.sourceName}\nSummary: ${a.summary}`).join("\n\n");
   let indices = [];
 
   try {
@@ -2665,7 +2664,8 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
         provider: "nvidia_pulse_selection",
         model,
         apiKey: nvidiaApiKey,
-        timeoutMs: Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 30000),
+        timeoutMs: Number(options.nvidiaPulseTimeoutMs ?? process.env.NVIDIA_PULSE_TIMEOUT_MS ?? 20000),
+        retries: Number(options.nvidiaPulseRetries ?? process.env.NVIDIA_PULSE_RETRIES ?? 0),
         body: {
           model,
           messages: [
@@ -2674,7 +2674,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
           ],
           temperature: Number(options.nvidiaPulseTemperature ?? process.env.NVIDIA_PULSE_TEMPERATURE ?? 0.2),
           top_p: Number(options.nvidiaPulseTopP ?? process.env.NVIDIA_PULSE_TOP_P ?? 0.9),
-          max_tokens: Number(options.nvidiaPulseMaxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 512),
+          max_tokens: Number(options.nvidiaPulseMaxTokens ?? process.env.NVIDIA_PULSE_MAX_TOKENS ?? 128),
           chat_template_kwargs: { thinking: true },
           stream: false
         }
@@ -2691,7 +2691,7 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
     }
 
     if (Array.isArray(indices) && indices.length > 0) {
-      return indices.map(i => articles[i]).filter(Boolean);
+      return indices.slice(0, 12).map(i => candidates[i]).filter(Boolean);
     }
     if (strictAgentSelection) {
       throw new Error("Pulse agent selection returned no valid article indices");
@@ -2702,5 +2702,5 @@ Example: [4, 0, 11, 7, 2, 15, 9, 6]`;
     }
     log.warn("pulse agent selection fell back", { error: e.message });
   }
-  return articles;
+  return selectDiverseArticles(candidates, 12);
 }

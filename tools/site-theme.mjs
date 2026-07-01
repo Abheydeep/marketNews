@@ -15,6 +15,12 @@ export function siteThemeCss() {
   --down: #fb7185;
   --flat: #94a3b8;
   --amber: #fbbf24;
+  --paper: var(--bg);
+  --blue: var(--accent);
+  --cyan: var(--accent);
+  --green: var(--up);
+  --red: var(--down);
+  --gold: var(--amber);
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;

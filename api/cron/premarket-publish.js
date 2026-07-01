@@ -1,5 +1,6 @@
 import { log } from "../../tools/logger.mjs";
 import { isGeneralEditionDate } from "../../tools/market-calendar.mjs";
+import { fetchWithRetry } from "../../tools/http.mjs";
 
 const OWNER = "Abheydeep";
 const REPO = "marketNews";
@@ -102,7 +103,7 @@ export default async function handler(request, response) {
 
   let dispatchResponse;
   try {
-    dispatchResponse = await fetch(
+    dispatchResponse = await fetchWithRetry(
       `https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_ID}/dispatches`,
       {
         method: "POST",
@@ -123,6 +124,7 @@ export default async function handler(request, response) {
             triggered_by: lateRecovery ? "vercel-watchdog-late-recovery" : (alert ? "vercel-watchdog-alert" : "vercel-watchdog")
           }
         }),
+        retries: 0,
         signal: AbortSignal.timeout(DISPATCH_TIMEOUT_MS)
       }
     );
@@ -201,7 +203,7 @@ async function workflowAlreadyActive(token) {
 
 async function githubJson(token, path) {
   try {
-    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, {
+    const res = await fetchWithRetry(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, {
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${token}`,
@@ -219,7 +221,7 @@ async function githubJson(token, path) {
 
 async function latestPageMatchesDate(date) {
   try {
-    const res = await fetch(`${SITE_ORIGIN.replace(/\/$/, "")}/latest/?watchdog=${Date.now()}`, {
+    const res = await fetchWithRetry(`${SITE_ORIGIN.replace(/\/$/, "")}/latest/?watchdog=${Date.now()}`, {
       cache: "no-store",
       signal: AbortSignal.timeout(DISPATCH_TIMEOUT_MS)
     });

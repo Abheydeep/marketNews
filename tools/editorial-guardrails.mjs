@@ -1,3 +1,4 @@
+import { DISCLAIMER, DISCLAIMER_MARKER } from "./site-constants.mjs"; import { stripPublicJargon } from "./public-copy-sanitizer.mjs";
 export const PUBLIC_BRIEFING_EDITORIAL_PROMPT = `
 You are the public markets editor for Market Narrative.
 
@@ -203,6 +204,7 @@ export const PUBLIC_FORBIDDEN_PATTERNS = [
   /video should frame/i,
   /expanded briefing after multi-source extraction/i,
   /source-led brief/i,
+  /\b(?:risk-(?:on|off)|sector breadth|advance-decline|breadth validates|structural heft)\b/i,
   /backend scanner/i,
   /passed all scanner/i,
   /scanner and live-quote/i,
@@ -265,11 +267,11 @@ export function assertPublicBriefingCopy(label, value) {
   // is structurally absent.
   const text = String(value ?? "");
   const isFullHtmlPage = text.includes("<!DOCTYPE html>") && text.includes("</body>");
-  if (isFullHtmlPage && !text.includes("not SEBI-registered investment advice")) {
+  if (isFullHtmlPage && !text.includes(DISCLAIMER_MARKER)) {
     violations.push({
       label,
       pattern: "SEBI disclaimer",
-      excerpt: "missing required SEBI disclaimer: 'not SEBI-registered investment advice'"
+      excerpt: `missing required SEBI disclaimer: '${DISCLAIMER_MARKER}'`
     });
   }
   if (violations.length) {
@@ -360,7 +362,7 @@ function excerptAround(text, index, length) {
 }
 
 function sanitizeString(value) {
-  return value
+  return stripPublicJargon(value
     .replace(
       /Two-minute read:\s*this briefing distills[^.]*\.\s*/gi,
       ""
@@ -375,7 +377,7 @@ function sanitizeString(value) {
     )
     .replace(
       /Educational note: This summary is for market research and content preparation only, not financial advice\./gi,
-      "Educational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan."
+      `Educational note: ${DISCLAIMER}`
     )
     .replace(
       /The scanner has deliberately removed stale trade levels after live quote validation, so the video should frame the first hour as a level-discovery phase rather than a ready-made trade call\./gi,
@@ -436,5 +438,5 @@ function sanitizeString(value) {
     .replace(
       /No active setup after live quote validation; stale levels are hidden from the studio\./gi,
       "No active setup yet; outdated levels are hidden from the studio."
-    );
+    ));
 }

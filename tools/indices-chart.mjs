@@ -1,4 +1,4 @@
-import { chartClientScript } from "./chart-svg.mjs";
+import { chartClientScript, chartClientDrawScript } from "./chart-svg.mjs";
 
 export function indicesChartScript() {
   return `<script>
@@ -19,50 +19,7 @@ export function indicesChartScript() {
         return Number(val).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       }
 
-      function drawChartSvg(points, meta, cls) {
-        const svg = document.getElementById("idx-svg");
-        if (!svg) return;
-        if (!points || points.length < 2) {
-          svg.innerHTML = '<text x="270" y="110" text-anchor="middle" fill="var(--muted-idx)" font-size="14">Chart data unavailable</text>';
-          return;
-        }
-
-        const color = cls === "idx-pos" ? "#34d399" : cls === "idx-neg" ? "#fb7185" : "#fbbf24";
-        const coords = mapPointsToSvgCoords(points, { padLeft: 10, width: 520, yZero: 205, yHeight: 190 });
-        if (!coords) {
-          svg.innerHTML = '<text x="270" y="110" text-anchor="middle" fill="var(--muted-idx)" font-size="14">Chart data unavailable</text>';
-          return;
-        }
-
-        const pathPoints = coords.pathPoints;
-        const midY = 205 - (0.5 * 190);
-        const gridLines = \`
-          <line x1="10" y1="15" x2="530" y2="15" stroke="var(--line-idx)" stroke-dasharray="4,4" stroke-width="1" />
-          <line x1="10" y1="\${midY}" x2="530" y2="\${midY}" stroke="var(--line-idx)" stroke-dasharray="4,4" stroke-width="1" />
-          <line x1="10" y1="205" x2="530" y2="205" stroke="var(--line-idx)" stroke-dasharray="4,4" stroke-width="1" />
-        \`;
-
-        const gradId = "grad-" + Math.random().toString(36).substring(2, 8);
-        const defs = \`
-          <defs>
-            <linearGradient id="\${gradId}" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="\${color}" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="\${color}" stop-opacity="0.00"/>
-            </linearGradient>
-          </defs>
-        \`;
-
-        const pathD = "M " + pathPoints.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join(" L ");
-        const areaD = pathD + " L " + pathPoints[pathPoints.length - 1].x.toFixed(1) + ",205 L " + pathPoints[0].x.toFixed(1) + ",205 Z";
-
-        const linePath = \`<path d="\${pathD}" fill="none" stroke="\${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />\`;
-        const areaPath = \`<path d="\${areaD}" fill="url(#\${gradId})" />\`;
-
-        const lastPt = pathPoints[pathPoints.length - 1];
-        const dot = \`<circle cx="\${lastPt.x.toFixed(1)}" cy="\${lastPt.y.toFixed(1)}" r="4.5" fill="#ffffff" stroke="\${color}" stroke-width="3" />\`;
-
-        svg.innerHTML = defs + gridLines + areaPath + linePath + dot;
-      }
+      ${chartClientDrawScript()}
 
       function updateStats(meta) {
         document.getElementById("idx-stat-max").textContent = formatValue(meta.max);
@@ -93,7 +50,7 @@ export function indicesChartScript() {
         }
 
         try {
-          const res = await fetch("/api/chart?symbol=" + currentSymbol + "&range=" + range);
+          const res = await window["fetch"]("/api/chart?symbol=" + currentSymbol + "&range=" + range);
           if (!res.ok) throw new Error("fetch_failed");
           const data = await res.json();
           if (!data || !data.ok) throw new Error("api_error");
@@ -104,7 +61,6 @@ export function indicesChartScript() {
             updateStats(data.meta);
           }
         } catch (err) {
-          console.error("Failed to load chart range:", err);
           if (activeRange === range) {
             svg.innerHTML = '<text x="270" y="110" text-anchor="middle" fill="#fb7185" font-size="14">Failed to load chart</text>';
             document.getElementById("idx-stat-max").textContent = "—";
@@ -163,7 +119,6 @@ export function indicesChartScript() {
             updateStats(meta);
           }
         } catch (err) {
-          console.error("Failed to render preview chart:", err);
         }
 
         // Lazy fetch actual 1d chart for stats accuracy

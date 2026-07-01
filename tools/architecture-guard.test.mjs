@@ -1,106 +1,176 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cockpitPage } from "./cockpit-page.mjs";
-import { multibaggerPage } from "./multibagger-page.mjs";
+import { multibaggerAdminPage, multibaggerPage } from "./multibagger-page.mjs";
 import { buildDigest } from "./core.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
+const CANONICAL_THEME_TOKEN_DEFINITION = /--(?:paper|ink|muted|line|panel|accent|cyan|up|down)\s*:/i;
 
-// Files that should be checked for duplicate escapeHtml definitions
-const ESCAPE_HTML_FILES = [
-  "tools/publish-site.mjs",
-  "tools/cockpit-page.mjs",
-  "tools/project-components-page.mjs",
-  "brand-assets.mjs",
-  "fii-dii-format.mjs"
-];
-
-// Active allowlist - starting completely empty to prove it fails first on violations
-const ESCAPE_HTML_ALLOWLIST = [];
-
-/**
- * Scan a file to see if it defines a local escapeHtml function.
- */
-function hasLocalEscapeHtml(content) {
-  return /function escapeHtml\s*\(/.test(content);
+export function hasLocalThemeTokenDefinition(content) {
+  return CANONICAL_THEME_TOKEN_DEFINITION.test(content);
 }
 
-/**
- * Verify sentinels are present in rendered HTML.
- */
+function isRawFetchExempt(normPath) {
+  if (normPath === "tools/http.mjs") return true;
+  return normPath.includes("smoke") ||
+    normPath.includes("qa") ||
+    normPath.includes("soak") ||
+    normPath.includes("regression");
+}
+
+function isConsoleAllowed(normPath) {
+  if (
+    normPath.endsWith(".test.mjs") ||
+    normPath.includes("verify") ||
+    normPath.includes("smoke") ||
+    normPath.includes("qa") ||
+    normPath.includes("demo") ||
+    normPath.includes("soak") ||
+    normPath.includes("regression")
+  ) {
+    return true;
+  }
+  return normPath === "tools/logger.mjs" || normPath === "tools/client-logger.mjs";
+}
+
+function stripCode(code) {
+  let result = "", i = 0, state = "normal", escape = false;
+  while (i < code.length) {
+    const char = code[i], next = code[i + 1];
+    if (state === "normal") {
+      if (char === "/" && next === "/") { state = "line-comment"; i += 2; continue; }
+      if (char === "/" && next === "*") { state = "block-comment"; i += 2; continue; }
+      if (char === "'") { state = "single-quote"; escape = false; }
+      else if (char === '"') { state = "double-quote"; escape = false; }
+      else if (char === "`") { state = "template"; escape = false; }
+      result += char;
+    } else if (state === "line-comment") {
+      if (char === "\n" || char === "\r") { state = "normal"; result += char; }
+    } else if (state === "block-comment") {
+      if (char === "*" && next === "/") { state = "normal"; i += 2; continue; }
+    } else if (state === "single-quote" || state === "double-quote" || state === "template") {
+      if (escape) escape = false;
+      else if (char === "\\") escape = true;
+      else if (char === (state === "single-quote" ? "'" : state === "double-quote" ? '"' : "`")) state = "normal";
+    }
+    i++;
+  }
+  return result;
+}
+
+async function getJsFiles(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const res = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (!["__fixtures__", "__tests__", "node_modules", ".next"].includes(entry.name)) {
+        files.push(...(await getJsFiles(res)));
+      }
+    } else if (entry.isFile() && (entry.name.endsWith(".mjs") || entry.name.endsWith(".js")) && !entry.name.endsWith(".test.mjs") && entry.name !== "verify.mjs") {
+      files.push(res);
+    }
+  }
+  return files;
+}
+
 export function verifyRenderedSentinels(html) {
   const hasTheme = html.includes("/* site-theme v1 */");
   const hasHeader = html.includes("<!-- site-header v1 -->");
   const hasFooter = html.includes("<!-- site-footer v1 -->");
-  return { hasTheme, hasHeader, hasFooter };
-}
+  const rootMatches = html.match(/:root\s*\{/gi) || [];
+  const hasMultipleRoots = rootMatches.length > 1;
 
-test("architecture-guard: duplicate escapeHtml definitions (fails first)", async () => {
-  let failedCount = 0;
-  
-  for (const relPath of ESCAPE_HTML_FILES) {
-    const filePath = join(rootDir, "tools", relPath.includes("/") ? relPath.split("/")[1] : relPath);
-    let content;
-    try {
-      content = await readFile(filePath, "utf8");
-    } catch {
-      continue; // Skip if file doesn't exist yet
-    }
-
-    if (hasLocalEscapeHtml(content)) {
-      if (!ESCAPE_HTML_ALLOWLIST.includes(relPath)) {
-        failedCount++;
-      }
+  const headerMarker = '<!-- site-header v1 -->';
+  const headerIdx = html.indexOf(headerMarker);
+  let hasOwnTopbar = false;
+  if (headerIdx !== -1) {
+    const afterHeader = html.slice(headerIdx + headerMarker.length);
+    const navEndIdx = afterHeader.indexOf('</nav>');
+    if (navEndIdx !== -1) {
+      const restHtml = html.slice(0, headerIdx) + afterHeader.slice(navEndIdx + 6);
+      if (restHtml.includes('class="topbar"')) hasOwnTopbar = true;
     }
   }
 
-  assert.strictEqual(
-    failedCount,
-    0,
-    `Found duplicate local escapeHtml definitions in non-allowlisted files. Must use tools/html-utils.mjs.`
-  );
+  const footerMarker = '<!-- site-footer v1 -->';
+  const footerIdx = html.indexOf(footerMarker);
+  let hasOwnFooter = false;
+  if (footerIdx !== -1) {
+    const afterFooter = html.slice(footerIdx + footerMarker.length);
+    const footerEndIdx = afterFooter.indexOf('</footer>');
+    if (footerEndIdx !== -1) {
+      const restHtml = html.slice(0, footerIdx) + afterFooter.slice(footerEndIdx + 9);
+      if (restHtml.includes('class="site-footer"')) hasOwnFooter = true;
+    }
+  }
+  return { hasTheme, hasHeader, hasFooter, hasMultipleRoots, hasOwnTopbar, hasOwnFooter };
+}
+
+test("architecture-guard: strict code pattern enforcement", async () => {
+  const toolsFiles = await getJsFiles(join(rootDir, "tools"));
+  const apiFiles = await getJsFiles(join(rootDir, "api"));
+  const allFiles = [...toolsFiles, ...apiFiles];
+
+  for (const filePath of allFiles) {
+    const normPath = filePath.replace(rootDir + "/", "");
+    const content = await readFile(filePath, "utf8");
+    const stripped = stripCode(content);
+
+    if (/(?:function|const|let|var)\s+escapeHtml\b/.test(stripped) && normPath !== "tools/html-utils.mjs") {
+      throw new Error(`File ${normPath} defines local escapeHtml. Must import from tools/html-utils.mjs.`);
+    }
+    if (/\bfetch\(\s*(?![`])/.test(stripped) && !isRawFetchExempt(normPath)) {
+      throw new Error(`File ${normPath} uses raw fetch. Must use fetchWithRetry or be an operational probe.`);
+    }
+    if (/\bconsole\.(?:log|error|warn|info|debug)\b/.test(stripped) && !isConsoleAllowed(normPath)) {
+      throw new Error(`File ${normPath} uses raw console logging. Must use log from tools/logger.mjs.`);
+    }
+    if (content.includes("not SEBI-registered investment advice") && normPath !== "tools/site-constants.mjs") {
+      throw new Error(`File ${normPath} contains raw SEBI disclaimer. Must use site-constants.mjs.`);
+    }
+    if (/:root\s*\{/.test(content) && normPath !== "tools/site-theme.mjs") {
+      throw new Error(`File ${normPath} contains a :root style block. All variables must be defined in tools/site-theme.mjs.`);
+    }
+    if (hasLocalThemeTokenDefinition(content) && normPath !== "tools/site-theme.mjs") {
+      throw new Error(`File ${normPath} defines a canonical theme token. Use site-theme.mjs or a namespaced component token.`);
+    }
+  }
 });
 
-test("architecture-guard: negative test for escapeHtml detection", () => {
-  const violatingContent = "function escapeHtml(value) { return value; }";
-  const cleanContent = "import { escapeHtml } from './html-utils.mjs';";
-  
-  assert.ok(hasLocalEscapeHtml(violatingContent), "Should detect local escapeHtml definition");
-  assert.ok(!hasLocalEscapeHtml(cleanContent), "Should not flag imported escapeHtml");
-});
-
-test("architecture-guard: negative test for sentinel validation", () => {
-  const violatingHtml = "<html><head><style>:root { --paper: #000; }</style></head><body>No sentinels</body></html>";
-  const cleanHtml = "<html><head><style>/* site-theme v1 */</style></head><body><!-- site-header v1 --><!-- site-footer v1 --></body></html>";
-  
-  const badRes = verifyRenderedSentinels(violatingHtml);
-  const goodRes = verifyRenderedSentinels(cleanHtml);
-  
-  assert.ok(!badRes.hasTheme && !badRes.hasHeader && !badRes.hasFooter, "Should flag missing sentinels");
-  assert.ok(goodRes.hasTheme && goodRes.hasHeader && goodRes.hasFooter, "Should recognize clean sentinels");
+test("architecture-guard: canonical theme definitions cannot hide under another selector", () => {
+  assert.equal(hasLocalThemeTokenDefinition("body { --paper:#000; }"), true);
+  assert.equal(hasLocalThemeTokenDefinition("body { color:var(--paper); }"), false);
 });
 
 test("architecture-guard: verify rendered page sentinels in-memory", async () => {
   const digest = await buildDigest("2026-04-29");
-  const cockpitHtml = cockpitPage(
-    { ...digest, canonicalPath: "/29apr2026/" },
-    "public-view",
-    { includeStudio: true }
-  );
+  const cockpitHtml = cockpitPage({ ...digest, canonicalPath: "/29apr2026/" }, "public-view", { includeStudio: true });
   const multibaggerHtml = multibaggerPage();
+  const multibaggerAdminHtml = multibaggerAdminPage();
 
   const cockpitRes = verifyRenderedSentinels(cockpitHtml);
   const multibaggerRes = verifyRenderedSentinels(multibaggerHtml);
+  const multibaggerAdminRes = verifyRenderedSentinels(multibaggerAdminHtml);
 
   assert.ok(cockpitRes.hasTheme, "Cockpit page missing site-theme sentinel");
   assert.ok(cockpitRes.hasHeader, "Cockpit page missing site-header sentinel");
   assert.ok(cockpitRes.hasFooter, "Cockpit page missing site-footer sentinel");
+  assert.ok(!cockpitRes.hasMultipleRoots, "Cockpit page has multiple :root styles");
+  assert.ok(!cockpitRes.hasOwnTopbar, "Cockpit page defines custom topbar nav block");
+  assert.ok(!cockpitRes.hasOwnFooter, "Cockpit page defines custom footer block");
 
   assert.ok(multibaggerRes.hasTheme, "Multibagger page missing site-theme sentinel");
   assert.ok(multibaggerRes.hasHeader, "Multibagger page missing site-header sentinel");
   assert.ok(multibaggerRes.hasFooter, "Multibagger page missing site-footer sentinel");
+  assert.ok(!multibaggerRes.hasMultipleRoots, "Multibagger page has multiple :root styles");
+  assert.ok(!multibaggerRes.hasOwnTopbar, "Multibagger page defines custom topbar nav block");
+  assert.ok(!multibaggerRes.hasOwnFooter, "Multibagger page defines custom footer block");
+  assert.ok(multibaggerAdminRes.hasTheme, "Multibagger admin page missing site-theme sentinel");
+  assert.ok(!multibaggerAdminRes.hasMultipleRoots, "Multibagger admin page has multiple :root styles");
 });

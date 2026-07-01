@@ -40,7 +40,7 @@ export function divergingBars(days) {
       if (isClipped) {
         const dotY = v >= 0 ? cy - 4 : cy + ch + 12;
         const arrow = v >= 0 ? "▲" : "▼";
-        return rect + `<text x="${(cx + off + bw/2).toFixed(1)}" y="${dotY.toFixed(1)}" fill="var(--accent)" font-size="11" font-weight="900" text-anchor="middle">${arrow}</text>`;
+        return rect + `<text x="${(cx + off + bw/2).toFixed(1)}" y="${dotY.toFixed(1)}" fill="var(--mf-accent)" font-size="11" font-weight="900" text-anchor="middle">${arrow}</text>`;
       }
       return rect;
     };

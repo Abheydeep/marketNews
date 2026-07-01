@@ -9,6 +9,7 @@
 //   node tools/fii-dii-backfill.mjs --from=2015-01-01 --to=2015-12-31
 import { fetchFnoParticipant, isoKey } from "./fii-dii-source.mjs";
 import { loadHistory, saveHistory, upsertDay } from "./fii-dii-store.mjs";
+import { log } from "./logger.mjs";
 
 function arg(name, fallback) {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
@@ -46,17 +47,17 @@ async function main() {
       if (fetched % 20 === 0) {
         await saveHistory(history);
         saved += 1;
-        console.log(`  …checkpoint ${iso} (${fetched} fetched)`);
+        log.info(`  …checkpoint ${iso} (${fetched} fetched)`);
       }
     }
     await sleep(delayMs);
   }
 
   await saveHistory(history);
-  console.log(`backfill done: scanned ${scanned} weekdays, fetched ${fetched}, checkpoints ${saved}`);
+  log.info(`backfill done: scanned ${scanned} weekdays, fetched ${fetched}, checkpoints ${saved}`);
 }
 
 main().catch((err) => {
-  console.error("backfill failed:", err.message);
+  log.error("backfill failed", { error: err.message });
   process.exit(1);
 });

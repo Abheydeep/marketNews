@@ -28,7 +28,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
 
   const main = `
   ${tickerHtml}
-  <main class="idx-layout-shell">
+  <div class="idx-layout-shell">
     <header class="idx-layout-hero">
       <p class="idx-layout-eyebrow">Global Indices Watch</p>
       <h1 class="idx-layout-h1">Nifty, Bank Nifty, Asia, US futures context and macro hedges in one board.</h1>
@@ -41,7 +41,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     </section>
     <p class="idx-layout-footer-note">${DISCLAIMER}</p>
     ${assets.footerLinksHtml}
-  </main>
+  </div>
   <div class="idx-m" id="idx-m" onclick="if(e=event,e.target===this)this.classList.remove('open')">
     <div class="idx-panel">
       <button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button>
@@ -172,4 +172,3 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd, assets)
     main
   });
 }
-

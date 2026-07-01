@@ -2,6 +2,7 @@ import { siteThemeCss } from "./site-theme.mjs";
 import { siteHeaderHtml, siteHeaderCss, siteFooterHtml, siteFooterCss } from "./site-chrome.mjs";
 import { bottomTabBarHtml, bottomTabBarCss, mobileTypographyCss, mobileShellScript } from "./mobile-shell.mjs";
 import { brandHeadLinks, brandMarkCss } from "./brand-assets.mjs";
+import { escapeHtml } from "./html-utils.mjs";
 
 /**
  * Construct a standard unified HTML document shell for Market Narrative.
@@ -19,29 +20,34 @@ export function pageShell({
   main = ""
 } = {}) {
   const needsBtb = !!mobileActiveKey;
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+  const safeCanonicalUrl = escapeHtml(canonicalUrl);
+  const safeOgImage = escapeHtml(ogImage);
   
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="${description}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>${safeTitle}</title>
+  <meta name="description" content="${safeDescription}">
   <meta name="theme-color" content="#050816">
-  <link rel="canonical" href="${canonicalUrl}">
+  <link rel="canonical" href="${safeCanonicalUrl}">
   
   <!-- Open Graph -->
   <meta property="og:site_name" content="Market Narrative">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="${title}">
-  <meta property="og:description" content="${description}">
-  <meta property="og:url" content="${canonicalUrl}">
-  <meta property="og:image" content="${ogImage}">
+  <meta property="og:title" content="${safeTitle}">
+  <meta property="og:description" content="${safeDescription}">
+  <meta property="og:url" content="${safeCanonicalUrl}">
+  <meta property="og:image" content="${safeOgImage}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${title}">
-  <meta name="twitter:description" content="${description}">
-  <meta name="twitter:image" content="${ogImage}">
+  <meta name="twitter:title" content="${safeTitle}">
+  <meta name="twitter:description" content="${safeDescription}">
+  <meta name="twitter:image" content="${safeOgImage}">
   
   ${brandHeadLinks()}
   
@@ -55,7 +61,7 @@ export function pageShell({
   </style>
   ${head}
 </head>
-<body class="${bodyClass}">
+<body class="${escapeHtml(bodyClass)}">
   <a class="mn-skip" href="#mn-main">Skip to content</a>
   
   ${siteHeaderHtml(activeHref)}

@@ -271,26 +271,21 @@ RULES:
 - No trading calls: no buy/sell/hold, no price targets, no index levels, no "VWAP".
 - Output ONLY the headline text.`;
   const raw = await nimCall(system, user, { maxTokens: 60, retries: 3, temperature: 0.3 });
-  return sanitizeEditorialHeadline(raw, allowedDollarPrices(marketSnapshots));
+  return sanitizeEditorialHeadline(raw, allowedDollarPrices(marketSnapshots, story));
 }
 
-function allowedDollarPrices(marketSnapshots) {
-  const allowed = new Set();
-  for (const s of marketSnapshots) {
-    const v = Number(s.closeValue);
-    if (Number.isFinite(v) && v > 0) {
-      allowed.add(Math.round(v));
-      allowed.add(Math.floor(v));
-      allowed.add(Math.ceil(v));
-    }
-  }
-  return allowed;
+export function allowedDollarPrices(marketSnapshots, story = "") {
+  const symbol = /\b(?:brent|crude|oil)\b/i.test(story) ? "BRENT" : /\b(?:gold|bullion)\b/i.test(story) ? "GOLD" : "";
+  const value = Number(marketSnapshots.find((snapshot) => snapshot.symbol === symbol)?.closeValue);
+  return Number.isFinite(value) && value > 0
+    ? new Set([Math.round(value), Math.floor(value), Math.ceil(value)])
+    : new Set();
 }
 
-function sanitizeEditorialHeadline(raw, allowedPrices = new Set()) {
+export function sanitizeEditorialHeadline(raw, allowedPrices = new Set()) {
   if (!raw) return null;
   let h = String(raw).split("\n").map((line) => line.trim()).filter(Boolean)[0] || "";
-  h = h.replace(/^["'""\s]+|["'""\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
+  h = h.replace(/^["'“”\s]+|["'“”\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
   if (!h) return null;
   // Reject trading-call / level language so the H1 always clears editorial guardrails.
   if (/\b(buy|sell|hold)\b/i.test(h)) return null;
@@ -1108,7 +1103,7 @@ function titleForCategory(category) {
     macro_positive: "Global Earnings & Risk Appetite",
     sector_positive: "Sector-Specific Cushion",
     sector_negative: "Sector-Specific Pressure",
-    global_risk: "Global Risk-Off Cue",
+    global_risk: "Global Defensive Cue",
     neutral_volatile: "Volatile Opening Bias"
   }[category] ?? "Market Narrative Theme";
 }

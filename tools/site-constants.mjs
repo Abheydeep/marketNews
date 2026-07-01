@@ -8,6 +8,7 @@ export const DISCLAIMER =
 
 export const DISCLAIMER_COMPACT =
   "Educational market research only; not SEBI-registered investment advice.";
+export const DISCLAIMER_MARKER = DISCLAIMER_COMPACT.split("; ")[1].replace(/\.$/, "");
 
 export const NAV_ITEMS = [
   { href: "/latest/", label: "Latest briefing", key: "briefing" },

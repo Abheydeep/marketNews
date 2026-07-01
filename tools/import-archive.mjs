@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { redactedDigestPayload } from "./public-payload.mjs";
+import { log } from "./logger.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const archivePath = process.argv[2];
@@ -33,7 +34,7 @@ for (const digest of digests) {
     assertPublicBriefingCopy(`${safeDigest.digestDate} imported archive digest`, JSON.stringify(safeDigest));
   } catch (error) {
     skippedInvalid += 1;
-    console.warn(`Skipped imported archive digest ${digest.digestDate}: ${error.message}`);
+    log.warn(`Skipped imported archive digest ${digest.digestDate}: ${error.message}`);
     continue;
   }
   const label = scheduledLabelForDigest(safeDigest).replace(":", "");
@@ -48,12 +49,12 @@ for (const digest of digests) {
   imported += 1;
 }
 
-process.stdout.write(`Imported ${imported} archived digest${imported === 1 ? "" : "s"}\n`);
+log.info(`Imported ${imported} archived digest${imported === 1 ? "" : "s"}`);
 if (preserved) {
-  process.stdout.write(`Preserved ${preserved} richer local digest${preserved === 1 ? "" : "s"}\n`);
+  log.info(`Preserved ${preserved} richer local digest${preserved === 1 ? "" : "s"}`);
 }
 if (skippedInvalid) {
-  process.stdout.write(`Skipped ${skippedInvalid} invalid imported digest${skippedInvalid === 1 ? "" : "s"}\n`);
+  log.info(`Skipped ${skippedInvalid} invalid imported digest${skippedInvalid === 1 ? "" : "s"}`);
 }
 
 async function readExistingDigest(path) {

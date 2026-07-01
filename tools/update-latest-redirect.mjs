@@ -1,4 +1,5 @@
 import { pathToFileURL } from "node:url";
+import { log } from "./logger.mjs";
 
 export async function updateLatestRedirect(options = {}) {
   const date = options.date || readArg("--date") || todayInIst();
@@ -34,9 +35,9 @@ function readArg(name) {
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   updateLatestRedirect()
-    .then((slug) => process.stdout.write(`[latest-redirect] /latest/ -> /${slug}/\n`))
+    .then((slug) => log.info(`[latest-redirect] /latest/ -> /${slug}/`))
     .catch((error) => {
-      console.error(error);
+      log.error("Failed to update latest redirect", { error: error.message });
       process.exitCode = 1;
     });
 }

@@ -98,12 +98,14 @@ async function runOneTriageCall(callIndex, prompt, apiKey, signal) {
 }
 
 export async function triageArticlesWithLLM(articles, options = {}) {
+  const candidates = articles.filter((article) => !isLivePriceTracker(article));
+  if (candidates.length !== articles.length) log.info("deterministic triage removed live price trackers", { removed: articles.length - candidates.length, remaining: candidates.length });
+  articles = candidates;
   const apiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
   if (!apiKey || articles.length === 0) {
     log.warn("triage skipped", { reason: !apiKey ? "no NVIDIA_API_KEY" : "empty article list", returning: articles.length });
     return articles;
   }
-
   const prompt = buildTriagePrompt(articles);
   log.info("triage start", { articles: articles.length, calls: TRIAGE_CALLS, minValid: MIN_VALID_CALLS, promptChars: prompt.length });
 
@@ -162,4 +164,7 @@ export async function triageArticlesWithLLM(articles, options = {}) {
 
   log.info("triage complete", { total: articles.length, included: included.length, excluded: excluded.length, validCalls: scoreMaps.length });
   return included;
+}
+export function isLivePriceTracker(article) {
+  return /\b(?:share|stock) price (?:today )?live updates?\b|\b(?:daily price update|current price and market performance)\b/i.test(String(article?.headline ?? article?.title ?? ""));
 }

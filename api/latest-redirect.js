@@ -24,6 +24,8 @@
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { log } from "../tools/logger.mjs";
+import { fetchWithRetry } from "../tools/http.mjs";
 
 export const config = {
   runtime: "nodejs",
@@ -40,7 +42,7 @@ function slugFromEnv() {
   const raw = String(process.env.LATEST_DIGEST_SLUG || "").trim().toLowerCase();
   if (!raw) return null;
   if (!COMPACT_SLUG_RE.test(raw)) {
-    console.warn(`latest-redirect: ignoring malformed LATEST_DIGEST_SLUG=${raw}`);
+    log.warn(`latest-redirect: ignoring malformed LATEST_DIGEST_SLUG=${raw}`);
     return null;
   }
   return raw;
@@ -61,9 +63,9 @@ function slugFromStaticFile() {
       const raw = readFileSync(candidate, "utf8").trim().toLowerCase();
       if (COMPACT_SLUG_RE.test(raw)) return raw;
       if (ISO_DATE_RE.test(raw)) return isoToCompactSlug(raw);
-      console.warn(`latest-redirect: ${candidate} contains an unrecognized slug "${raw}"`);
+      log.warn(`latest-redirect: ${candidate} contains an unrecognized slug "${raw}"`);
     } catch (err) {
-      console.warn(`latest-redirect: failed to read ${candidate}: ${err.message}`);
+      log.warn(`latest-redirect: failed to read ${candidate}: ${err.message}`);
     }
   }
   return null;
@@ -78,9 +80,9 @@ function isoToCompactSlug(isoDate) {
 
 async function slugFromDigest() {
   const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://marketnarrative.in";
-  const res = await fetch(`${origin}/digest.json`, {
+  const res = await fetchWithRetry(`${origin}/digest.json`, {
     headers: { "user-agent": "MarketNarrativeLatestRedirect/1.0" },
-    signal: AbortSignal.timeout(4000),
+    timeoutMs: 4000,
   });
   if (!res.ok) throw new Error(`digest.json status=${res.status}`);
   const json = await res.json();

@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { log } from "./logger.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const holidayPath = join(rootDir, "data", "market-calendar", "nse-holidays.json");
@@ -199,27 +200,26 @@ async function main() {
   const date = readArg("--date") || todayInIst();
   const state = marketCalendarState(date);
   if (process.argv.includes("--refresh")) {
-    console.error("Live NSE calendar refresh is not implemented yet; use --verify to validate the pinned official calendar.");
-    process.exit(1);
+    log.error("Live NSE calendar refresh is not implemented yet; use --verify to validate the pinned official calendar."); process.exit(1);
   }
   if (process.argv.includes("--verify")) {
     const verified = verifyCalendarData();
-    process.stdout.write(
+    log.info(
       `Market calendar verified for ${verified.exchange} ${verified.segment} ${verified.year}: ` +
       `${verified.weekdayHolidayCount} weekday holidays, ${verified.weekendHolidayCount} weekend holidays. ` +
-      `${state.date} is ${state.state} (${state.reason}).\n`
+      `${state.date} is ${state.state} (${state.reason}).`
     );
     return;
   }
   if (process.argv.includes("--assert-trading-day") || process.argv.includes("--assert-next-ist-trading-day")) {
     if (!state.isTradingSession) {
-      console.error(`${state.date} is ${state.state}: ${state.reason}`);
+      log.error(`${state.date} is ${state.state}: ${state.reason}`);
       process.exit(1);
     }
-    process.stdout.write(`${state.date} is a trading session: ${state.state}\n`);
+    log.info(`${state.date} is a trading session: ${state.state}`);
     return;
   }
-  process.stdout.write(`${JSON.stringify(state, null, 2)}\n`);
+  log.info(JSON.stringify(state, null, 2));
 }
 
 const invokedPath = process.argv[1] ? resolve(process.argv[1]) : "";

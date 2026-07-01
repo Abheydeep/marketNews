@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isGeneralEditionDate, isTradingSessionDate, marketCalendarState } from "./market-calendar.mjs";
 import { log } from "./logger.mjs";
+import { publishCommandEnv } from "./publish-command-env.mjs";
 
 async function writeLatestSlugArtifact(slug) {
   const outPath = join(rootDir, "out", "site", "latest-slug.txt");
@@ -250,7 +251,7 @@ function slugForDate(value) {
 function todayArchivedDigest(date) {
   const archiveDir = join(rootDir, "archive", "daily");
   // Prefer the latest slot if multiple exist for the same day.
-  for (const slot of ["0800", "0830", "0715"]) {
+  for (const slot of ["0830", "0800", "0715"]) {
     if (existsSync(join(archiveDir, `${date}-${slot}-digest.json`))) {
       return { date, scheduledTime: `${slot.slice(0, 2)}:${slot.slice(2)}` };
     }
@@ -281,7 +282,7 @@ function run(command, args, options = {}) {
   const spawnOptions = {
     stdio: "inherit",
     shell: false,
-    env: options.env ?? process.env
+    env: publishCommandEnv(command, args, options.env ?? process.env)
   };
   const result = spawnSync(command, args, spawnOptions);
   if (result.error?.code === "ENOENT" && command === "npm" && args[0] === "run") {

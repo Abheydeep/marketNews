@@ -18,7 +18,7 @@ flowchart TD
   Score --> Rerank["NVIDIA lead reranker if key exists"]
   Rerank --> Enrich["LLM article enrichment and dedup"]
   Enrich --> ImagePrompt["theme image prompt"]
-  ImagePrompt -->|NVIDIA qwen-image best effort| OgAsset["out/vercel/assets/og/YYYY-MM-DD.jpg"]
+  ImagePrompt -->|NVIDIA hosted Flux best effort| OgAsset["out/vercel/assets/og/YYYY-MM-DD.jpg"]
   ImagePrompt -->|missing key or failure| StaticCard["static /og-card.svg fallback"]
   Enrich --> Digest["digest JSON with sourceVerification"]
   OgAsset --> Digest
@@ -30,7 +30,8 @@ flowchart TD
   Reuse --> Publish
   Publish --> Latest["/latest static shell or redirect target"]
   Publish --> Public["dated briefing and trading guide"]
-  Publish --> QA["public copy QA"]
+  Publish --> ArtifactGuard["selected public artifact guard"]
+  ArtifactGuard --> QA["public copy QA"]
 
   Guard -->|fails| Hold["source or QA hold page"]
   QA -->|fails| Block["block deploy"]

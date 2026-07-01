@@ -1,3 +1,5 @@
+import { fetchWithRetry } from "./http.mjs";
+
 export const LIVE_MARKET_SYMBOLS = [
   {
     symbol: "SPX",
@@ -174,20 +176,21 @@ export async function fetchFiiDiiFlows({ timeoutMs = 6_000 } = {}) {
   try {
     // NSE requires a Referer + cookie from the main site; a single pre-flight
     // often seeds enough session state to allow the API call through.
-    const cookieRes = await fetch("https://www.nseindia.com/market-data/fii-dii-activity", {
+    const cookieRes = await fetchWithRetry("https://www.nseindia.com/reports/fii-dii", {
       signal: controller.signal,
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         Accept: "text/html"
       }
     });
+    if (!cookieRes.ok) return null;
     const rawCookie = (cookieRes.headers.get("set-cookie") || "").split(";")[0];
-    const dataRes = await fetch("https://www.nseindia.com/api/fiidiiTradeReact", {
+    const dataRes = await fetchWithRetry("https://www.nseindia.com/api/fiidiiTradeReact", {
       signal: controller.signal,
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         Accept: "application/json",
-        Referer: "https://www.nseindia.com/market-data/fii-dii-activity",
+        Referer: "https://www.nseindia.com/reports/fii-dii",
         ...(rawCookie ? { Cookie: rawCookie } : {})
       }
     });
@@ -223,7 +226,7 @@ export async function fetchYahooChartQuote(definition, timeoutMs) {
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(definition.yahooSymbol)}?range=5d&interval=15m`;
-    const response = await fetch(url, {
+    const response = await fetchWithRetry(url, {
       signal: controller.signal,
       headers: {
         Accept: "application/json",

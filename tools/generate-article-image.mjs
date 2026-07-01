@@ -1,8 +1,9 @@
 import { Buffer } from "node:buffer";
+import { fetchWithRetry } from "./http.mjs";
 import { log } from "./logger.mjs";
+import { NVIDIA_IMAGE_MODEL, nvidiaImageBase64, nvidiaImageEndpoint, nvidiaImageRequest } from "./nvidia-image-contract.mjs";
 
-const IMAGE_ENDPOINT = "https://integrate.api.nvidia.com/v1/images/generations";
-const IMAGE_MODEL = "qwen-image";
+const IMAGE_MODEL = NVIDIA_IMAGE_MODEL;
 const GEMINI_IMAGE_MODEL = "gemini-3.1-flash-image";
 const OPENAI_IMAGE_ENDPOINT = "https://api.openai.com/v1/images/generations";
 const OPENAI_IMAGE_MODEL = "gpt-image-1";
@@ -73,8 +74,12 @@ export async function generateArticleImage(prompt, options = {}) {
     return null;
   }
   try {
-    const fetcher = options.fetcher || fetch;
-    const response = await fetcher(endpoint, requestForProvider(provider, apiKey, model, prompt, options));
+    const request = requestForProvider(provider, apiKey, model, prompt, options);
+    const response = await fetchWithRetry(endpoint, {
+      ...request,
+      fetchImpl: options.fetcher ?? globalThis.fetch,
+      retries: options.retries ?? 0
+    });
     return provider === "gemini"
       ? await imageBufferFromGeminiResponse(response, model)
       : await imageBufferFromDataImageResponse(response, provider, model);
@@ -116,6 +121,9 @@ function requestForProvider(provider, apiKey, model, prompt, options) {
       })
     };
   }
+  if (provider === "nvidia") {
+    return nvidiaImageRequest(apiKey, prompt, options);
+  }
   return {
     method: "POST",
     headers: {
@@ -130,7 +138,8 @@ function requestForProvider(provider, apiKey, model, prompt, options) {
 async function imageBufferFromDataImageResponse(response, provider, model) {
   if (!response.ok) return failedResponse(provider, model, response);
   const payload = await response.json();
-  const encoded = payload?.data?.[0]?.b64_json;
+  const encoded = payload?.data?.[0]?.b64_json
+    ?? nvidiaImageBase64(payload);
   if (!encoded) {
     log.warn("article image generation missing payload", { provider, model });
     return null;
@@ -179,5 +188,5 @@ function endpointForProvider(provider, model) {
   if (provider === "gemini") {
     return process.env.GEMINI_IMAGE_ENDPOINT || `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
   }
-  return process.env.NVIDIA_IMAGE_ENDPOINT || IMAGE_ENDPOINT;
+  return process.env.NVIDIA_IMAGE_ENDPOINT || nvidiaImageEndpoint(model);
 }

@@ -3,14 +3,14 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDigest, reelScriptMarkdown } from "./core.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
-import { assertPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { marketCalendarState, isGeneralEditionDate, isMarketUpdateDate } from "./market-calendar.mjs";
 import { assertPremarketPublishWindow } from "./publish-window.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { updateLatestRedirect } from "./update-latest-redirect.mjs";
 import { log } from "./logger.mjs";
 import { buildBriefingImagePrompt, generateArticleImage } from "./generate-article-image.mjs";
-import { writeOgImageAsset } from "./og-image-assets.mjs";
+import { writeOgImageAsset } from "./og-image-assets.mjs"; import { reconcileGeneratedInstrumentPrices } from "./public-price-reconcile.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const date = readArg("--date") ?? todayInIst();
@@ -101,7 +101,7 @@ if (nonTradingSession && !marketUpdateMode && generatedDigest.sourceVerification
   };
 }
 
-const digest = {
+const digest = sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices({
   ...generatedDigest,
   scheduledFor: `${date}T${scheduledTime}:00+05:30`,
   generatedAt: new Date().toISOString(),
@@ -112,7 +112,7 @@ const digest = {
       ? "manual-non-trading-source-data"
       : marketDataMode === "live" || newsDataMode === "live" ? "scheduled-verified-source-data" : "manual-fixture-schedule",
   ...(nonTradingSession ? { nonTradingSession } : {})
-};
+}));
 digest.ogImageUrl = await generatedBriefingOgImageUrl(digest);
 if (requireArticleImage && !digest.ogImageUrl) {
   throw new Error("Article image generation is required for this run but no image URL was produced.");
@@ -177,6 +177,7 @@ function optionalNumber(value) {
 }
 
 async function generatedBriefingOgImageUrl(digest) {
+  if (process.env.SKIP_ARTICLE_IMAGE === "true") return null;
   // Fail-soft: image generation is a non-essential asset. Any failure (provider
   // 500, timeout, prompt error) must never abort the publish run — return null and
   // let the page fall back to the static OG card.

@@ -3,8 +3,11 @@ flowchart TD
   Filter --> Score["deterministic scoring"]
   Score --> Shortlist["top 8 lead candidates"]
 
-  Articles --> PulseAgent["Pulse selection: deepseek-ai/deepseek-v4-pro\nthinking ON · key: NVIDIA_PULSE_API_KEY\ntimeout 30s"]
+  Articles --> PulseCap["deterministic source diversity cap: 80"]
+  PulseCap --> PulseAgent["Pulse selection: configured NVIDIA model\nmax 12 results · one 20s attempt\nkey: NVIDIA_PULSE_API_KEY"]
   PulseAgent -->|selected indices| Filter
+  PulseAgent -->|timeout or invalid| PulseFallback["deterministic 12-story fallback"]
+  PulseFallback --> Filter
 
   Shortlist --> LeadAgent["Lead reranker: nvidia/nemotron-3-ultra-550b-a55b\nenable_thinking ON · no budget cap\ntimeout 60s · key: NVIDIA_API_KEY"]
   LeadAgent --> RetryLead["timeout + 429/5xx retry/backoff"]
@@ -21,7 +24,7 @@ flowchart TD
   Sanitize -->|valid| Polished["polished card copy"]
   Sanitize -->|invalid| DeterministicCopy
   Lead --> ImageScene["briefing driver scene selection"]
-  ImageScene --> ImageModel["image provider: OpenAI / Gemini / NVIDIA"]
+  ImageScene --> ImageModel["image provider: OpenAI / Gemini / NVIDIA hosted Flux"]
   ImageModel -->|success| OgJpeg["1200x675 JPEG asset"]
   ImageModel -->|fail or no key| OgFallback["static SVG OG fallback"]
 

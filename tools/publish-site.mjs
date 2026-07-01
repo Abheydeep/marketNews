@@ -7,6 +7,7 @@ import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
+import { normalizePublicSourceCategory } from "./public-source-category.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { fiiDiiPageBody } from "./fii-dii-page.mjs";
 import { indicesPageHtml } from "./indices-layout.mjs";
@@ -23,6 +24,9 @@ import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArtic
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { log } from "./logger.mjs";
 import { siteThemeCss } from "./site-theme.mjs";
+import { isLivePriceTracker } from "./article-triage.mjs";
+import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
+import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from "./public-price-reconcile.mjs";
 
 const NAV_ITEMS = [
   { href: "/latest/", label: "Latest briefing" },
@@ -33,8 +37,8 @@ const NAV_ITEMS = [
 ];
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const requestedDate = readArg("--date") ?? todayInIst();
-const scheduledTime = readArg("--scheduled-time") ?? "07:15";
+const requestedDate = readArg("--date") ?? process.env.PUBLISH_SOURCE_DATE ?? todayInIst();
+const scheduledTime = readArg("--scheduled-time") ?? process.env.PUBLISH_SOURCE_TIME ?? "07:15";
 const label = scheduledTime.replace(":", "");
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
@@ -104,13 +108,13 @@ if (publishTargetDigest) {
 const publicArchiveDigests = digests.filter(isVerifiedPublicDigest);
 const publicationEvents = await loadPublicationEvents();
 const weekdayDigests = digests.filter(isWeekdayDigest);
-const sourcePreviewDigests = includeSourceDigestPreview && !sourceDigestLoadedFromArchive ? [sourceDigest] : [];
+const sourcePreviewDigests = includeSourceDigestPreview && !sourceDigestLoadedFromArchive ? [enrichPublicDigest(sourceDigest)] : [];
 const archiveHomeDigests = sourcePreviewDigests.length ? sourcePreviewDigests : publicArchiveDigests.length ? publicArchiveDigests : weekdayDigests.slice(0, 1);
 if (!archiveHomeDigests.length) {
   throw new Error("No weekday archived digests are available to publish");
 }
-const archiveTimelineEntries = sortArchiveEntries([...archiveHomeDigests, ...publicationEvents]);
-const allArchiveTimelineEntries = sortArchiveEntries([...digests, ...publicationEvents]);
+const archiveTimelineEntries = sortArchiveEntries([...archiveHomeDigests, ...publicationEvents]).map(sanitizeLegacyPublicBriefingCopy);
+const allArchiveTimelineEntries = sortArchiveEntries([...digests, ...publicationEvents]).map(sanitizeLegacyPublicBriefingCopy);
 
 await rm(siteDir, { recursive: true, force: true });
 await mkdir(siteDir, { recursive: true });
@@ -122,7 +126,8 @@ await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
 await writeFile(join(siteDir, "sw.js"), serviceWorkerJs(), "utf8");
 await cp(join(rootDir, "out", "vercel", "assets"), join(siteDir, "assets"), { recursive: true, force: true }).catch((error) => { if (error.code !== "ENOENT") throw error; });
 
-for (const digest of digests) {
+const datedPageDigests = digests.filter((digest, index) => digests.findIndex((item) => item.digestDate === digest.digestDate) === index);
+for (const digest of datedPageDigests) {
   const slug = slugForDigest(digest);
   const digestDir = join(siteDir, slug);
   const tradingGuideDir = join(digestDir, "trading-guide");
@@ -153,14 +158,15 @@ for (const digest of digests) {
 }
 
 const latest = archiveHomeDigests[0];
+assertPublicDigestArtifact("selected public digest", publicDigestPayload(latest));
 await writeLatestRedirects(latest);
 for (const event of publicationEvents) {
   const slug = slugForDigest(event);
   const eventDir = join(siteDir, slug);
   const eventGuideDir = join(eventDir, "trading-guide");
   await mkdir(eventGuideDir, { recursive: true });
-  await writeGuardedFile(join(eventDir, "index.html"), publicationEventPage(event, latest, false));
-  await writeGuardedFile(join(eventGuideDir, "index.html"), publicationEventPage(event, latest, true));
+  await writeGuardedFile(join(eventDir, "index.html"), sanitizeLegacyPublicBriefingCopy(publicationEventPage(event, latest, false)));
+  await writeGuardedFile(join(eventGuideDir, "index.html"), sanitizeLegacyPublicBriefingCopy(publicationEventPage(event, latest, true)));
 }
 const publicMultibaggerState = await multibaggerStateWithMarketQuotes();
 const darkPreviewDir = join(siteDir, "dark-preview");
@@ -177,7 +183,7 @@ const termsDir = join(siteDir, "terms");
 await mkdir(darkPreviewDir, { recursive: true });
 await writeGuardedFile(
   join(darkPreviewDir, "index.html"),
-  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/" })
+  cockpitPage({ ...latest, canonicalPath: "/dark-preview/" }, "public-view", { includeStudio: false, theme: "glass-v2", multibaggerHref: "/multibagger/", tradingGuideHref: "/latest/trading-guide/" })
 );
 await writeGuardedFile(join(darkPreviewDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await mkdir(multibaggerDir, { recursive: true });
@@ -217,10 +223,10 @@ await writeFile(join(siteDir, "404.html"), notFoundPage(), "utf8");
 await writeGuardedFile(join(siteDir, "digest.json"), `${JSON.stringify(publicDigestPayload(latest), null, 2)}\n`);
 await writeGuardedFile(
   join(siteDir, "archive.json"),
-  `${JSON.stringify({
+  `${JSON.stringify(sanitizeLegacyPublicBriefingCopy({
     digests: archiveHomeDigests.map(redactedDigestPayload),
     publicationEvents: publicationEvents.map(publicationEventPayload)
-  }, null, 2)}\n`
+  }), null, 2)}\n`
 );
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
 await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(allArchiveTimelineEntries), "utf8");
@@ -459,7 +465,7 @@ async function loadArchivedDigests() {
 
   const digestsByKey = new Map();
   for (const fileName of digestFiles) {
-    const digest = sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(join(archiveDir, fileName), "utf8")));
+    const digest = sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(join(archiveDir, fileName), "utf8"))));
     const key = `${digest.digestDate}-${scheduledLabelForDigest(digest)}`;
     digestsByKey.set(key, digest);
   }
@@ -573,7 +579,7 @@ function compareArchiveEntries(left, right) {
 
 async function loadSourceDigest() {
   try {
-    return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(sourceJson, "utf8")));
+    return sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(sourceJson, "utf8"))));
   } catch (error) {
     if (error?.code !== "ENOENT" && !skipArchiveWrite) {
       throw error;
@@ -582,7 +588,7 @@ async function loadSourceDigest() {
       log.warn("Source digest missing, falling back to archived digest", { sourceJson, archivedJson });
     }
     sourceDigestLoadedFromArchive = true;
-    return sanitizeLegacyPublicBriefingCopy(JSON.parse(await readFile(archivedJson, "utf8")));
+    return sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(archivedJson, "utf8"))));
   }
 }
 
@@ -642,11 +648,15 @@ function previousDigestFor(digest, digests) {
 
 function enrichPublicDigest(digest) {
   const verified = isVerifiedPublicDigest(digest);
+  const sourceNews = (digest.news ?? [])
+    .filter((article) => !isLivePriceTracker(article))
+    .filter((article) => unsupportedInstrumentPrices(article, digest.marketSnapshots ?? []).length === 0);
   const filteredNews = verified
-    ? (digest.news ?? [])
+    ? sourceNews
       .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl))
       .map(sanitizePublicArticleCopy)
-    : (digest.news ?? []);
+      .map(normalizePublicSourceCategory)
+    : sourceNews;
   const selection = verified ? safePublicSourceSelection(digest.digestDate, filteredNews) : null;
   const visibleUrls = new Set(selection?.publicSummary?.visibleSourceUrls ?? digest.publicSourceSelection?.visibleSourceUrls ?? []);
   const news = visibleUrls.size
@@ -759,7 +769,7 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
     )
     .replace(
       /Watch Market during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
-      "Watch first-range high/low, VWAP, advance-decline, and Bank Nifty breadth through 9:45-10:00 AM IST."
+      "Watch the opening range, session average, market participation, and Bank Nifty through 9:45-10:00 AM IST."
     )
     .replace(
       /Watch ([A-Za-z][A-Za-z\s/&+-]{1,40}) during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
@@ -771,14 +781,14 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
     )
     .replace(
       /use it as a ([A-Za-z][A-Za-z\s/&+-]{1,40}) watch input only if a related Indian sector confirms the move\.?/gi,
-      (_match, entity) => `treat ${entity.trim()} as a watchlist cue only after related Indian sector breadth confirms.`
+      (_match, entity) => `treat ${entity.trim()} as a watchlist cue only after related Indian sector participation confirms.`
     )
     .replace(
       /([A-Za-z][A-Za-z\s/&+-]{1,40}) is a watch input,\s*not a trade bias,\s*until Nifty breadth and Bank Nifty confirm\.?/gi,
       (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty breadth and Bank Nifty confirm.`
     );
   if (/blue owl|spacex|carvana|used car/i.test(articleText)) {
-    text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "Global-only context: no direct India trade read; use it only if index futures, sector breadth, currency, or rates confirm after the open.");
+    text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "Global-only context: no direct India trade read; use it only if index futures, sector participation, currency, or rates confirm after the open.");
   }
   return cleanArchiveSentence(text);
 }
@@ -1033,14 +1043,6 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
   ${jsonLdScript(archivePageJsonLd(latest, jsonLdDigests.length ? jsonLdDigests : [latest], pageTitle, pageDescription, homepageFaq))}
   <style>
     ${siteThemeCss()}
-    :root {
-      --paper: var(--bg);
-      --ink: var(--ink);
-      --muted: var(--muted);
-      --line: var(--line);
-      --panel: var(--panel);
-    }
-
     * { box-sizing: border-box; }
 
     /* === Global mobile base (Tier 1) === */
@@ -1966,7 +1968,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
 
     .brief-preview { color: #9fb0c8; font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 680px; } .brief-preview-link { color: #7cb4f5; font-size: 13px; white-space: nowrap; } .sub-proof { color: #34d399; font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px; }
     .market-strip { display: flex; flex-wrap: nowrap; gap: 10px; overflow-x: auto; padding: 10px 0 6px; scrollbar-width: none; }
-    .market-strip::-webkit-scrollbar { display: none; } .ms-chip { background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 100px; padding: 10px 12px; } .ms-lbl { color: #64748b; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; } .ms-val { color: #f8fafc; font-size: 15px; font-weight: 700; } .ms-chg { font-size: 12px; font-weight: 700; } .ms-up .ms-chg { color: #34d399; } .ms-dn .ms-chg { color: #f87171; } .ms-flat .ms-chg { color: #94a3b8; }
+    .market-strip::-webkit-scrollbar { display: none; } .ms-chip { background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 100px; padding: 10px 12px; } .ms-lbl { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; } .ms-val { color: #f8fafc; font-size: 15px; font-weight: 700; } .ms-chg { font-size: 12px; font-weight: 700; } .ms-up .ms-chg { color: #34d399; } .ms-dn .ms-chg { color: #f87171; } .ms-flat .ms-chg { color: #94a3b8; }
     .recent-briefings-toggle { border:none; }
     .recent-briefings-toggle > summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
     .recent-briefings-toggle > summary::-webkit-details-marker { display:none; }
@@ -1987,7 +1989,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
     .fii-label { color:#94a3b8; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
     .fii-cells { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
     .fii-cell { display:flex; flex-direction:column; gap:3px; }
-    .fii-cell span { color:#64748b; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+    .fii-cell span { color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
     .fii-cell strong { font-size:20px; font-weight:900; line-height:1; }
     .fii-bar-track { background:rgba(255,255,255,.08); border-radius:4px; height:4px; margin-top:12px; overflow:hidden; position:relative; }
     .fii-bar-fill { border-radius:4px; height:100%; position:absolute; left:0; transition:width 400ms ease; }
@@ -2175,7 +2177,7 @@ function archivePage(digests, allDigests = digests, latestDigest = null) {
         margin: 8px 0 16px !important;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.08) !important;
         padding-bottom: 12px !important;
-        overflow-x: visible !important;
+        overflow-x: clip !important;
       }
 
       .market-strip {
@@ -3376,7 +3378,7 @@ function marketStatsFaqItems() {
     },
     {
       name: "Why does market breadth matter for Nifty traders?",
-      text: "Breadth shows whether the market move is broad or narrow. A Nifty gap is more reliable when Bank Nifty, sector breadth, and advance-decline participation confirm it."
+      text: "Participation shows whether the market move is broad or narrow. A Nifty gap is more reliable when Bank Nifty and participation across stocks and sectors confirm it."
     }
   ];
 }
@@ -4040,6 +4042,7 @@ function sitemapXml(allDigests) {
   const urls = [
     { loc: `${siteOrigin}/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "1.0" },
     { loc: `${siteOrigin}/latest/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
+    { loc: `${siteOrigin}/archive/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/latest/trading-guide/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/indices/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },
     { loc: `${siteOrigin}/indices/gift-nifty/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.8" },

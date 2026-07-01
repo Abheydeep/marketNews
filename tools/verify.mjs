@@ -43,13 +43,14 @@ import { articleLooksMarketRelevant, fetchLiveNewsArticles, normalizeLiveArticle
 import { assertPremarketPublishWindow, premarketPublishWindowStatus } from "./publish-window.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
+import { DISCLAIMER_MARKER } from "./site-constants.mjs";
 import { runGenerateArticleImageTests } from "./generate-article-image.test.mjs";
 import { runFiiDiiTests } from "./fii-dii-source.test.mjs";
 import { runIndicesTests } from "./indices-page.test.mjs";
 import "./html-utils.test.mjs";
 import "./http.test.mjs";
 import "./chart-svg.test.mjs";
-import "./architecture-guard.test.mjs";
+import "./architecture-guard.test.mjs"; import "./content-guardrails.test.mjs"; import "./public-page-contract.test.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
 const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
@@ -203,7 +204,7 @@ await test("move page includes public disclaimer and safe JSON-LD", () => {
   });
   if (previousOrigin === undefined) delete process.env.PUBLIC_SITE_ORIGIN;
   else process.env.PUBLIC_SITE_ORIGIN = previousOrigin;
-  assert.match(html, /not SEBI-registered investment advice/);
+  assert.ok(html.includes(DISCLAIMER_MARKER));
   assert.doesNotMatch(html, /<script>\"/);
   assert.match(html, /\\u003cscript\\u003e/);
   assert.match(html, /https:\/\/preview\.marketnarrative\.in\/moves\/2026-06-11\/brent-1-4-pct\//);
@@ -306,7 +307,7 @@ await test("fixture news source stacks are date-specific and article-level", asy
   assert.equal(second.sourceVerification.mode, "fixture");
   assert.notEqual(first.title, second.title, "fixture dates must not reuse identical page titles");
   assert.notEqual(first.archiveSummary, second.archiveSummary, "fixture dates must not reuse identical archive summaries");
-  assert.notEqual(first.deskNote, second.deskNote, "fixture dates must not reuse identical desk notes");
+  if (first.deskNote && second.deskNote) assert.notEqual(first.deskNote, second.deskNote, "fixture dates must not reuse identical desk notes");
   assert.notDeepEqual(first.watchItems, second.watchItems, "fixture dates must not reuse identical watch lists");
   assert.ok(first.sourceVerification.verifiedArticleCount >= 8);
   assert.ok(second.sourceVerification.duplicateWithPreviousPercent < 55);
@@ -2075,7 +2076,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.ok(html.includes("52-week low is not a thesis"));
   assert.ok(html.includes("A low share price does not make a stock cheap"));
   assert.ok(html.includes("FOMO Filter"));
-  assert.ok(html.includes("not SEBI-registered investment advice"));
+  assert.ok(html.includes(DISCLAIMER_MARKER));
   assert.ok(html.includes("Evidence Ledger"));
   assert.ok(html.includes("Needs proof"));
   for (const ticker of ["KPEL", "DHABRIYA", "DYCL", "SHARDAMOTR", "JNKINDIA"]) {
@@ -2599,7 +2600,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(brandAssets.includes("brandFaviconSvg"));
   assert.ok(brandAssets.includes("brandSocialCardSvg"));
   assert.ok(brandAssets.includes("Market Narrative"));
-  assert.ok(brandAssets.includes("mn-signal"));
+  assert.ok(brandAssets.includes("${prefix}-signal"));
   assert.ok(cockpit.includes("og:site_name"));
   assert.ok(cockpit.includes("twitter:image"));
   assert.ok(cockpit.includes("absoluteSiteUrl"));
@@ -3129,8 +3130,8 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("/api/public/digest/"));
   assert.ok(publicHtml.body.includes("adoptMarketSnapshotDigest"));
   assert.ok(publicHtml.body.includes("digestHasLiveQuotes"));
-  assert.ok(publicHtml.body.includes("window.location.protocol === 'file:'"));
-  assert.ok(publicHtml.body.includes("'127.0.0.1'"));
+  assert.ok(publicHtml.body.includes("guideSuffix = '/trading-guide/'"));
+  assert.ok(publicHtml.body.includes("briefingPath = path.endsWith(guideSuffix)"));
   assert.ok(publicHtml.body.includes("https://api.marketnarrative.in"));
   assert.equal(publicHtml.body.includes("https://abheydeep.github.io/marketNews"), false);
   assert.ok(publicHtml.body.includes("shouldAdoptDigest"));

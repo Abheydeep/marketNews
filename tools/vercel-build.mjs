@@ -3,6 +3,7 @@ import { copyFile, cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { log } from "./logger.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 // Vercel's default static output directory. Writing here lets the deploy
@@ -13,19 +14,19 @@ const explicitTarget = process.env.MARKET_NARRATIVE_DEPLOY_TARGET;
 const inferredTarget = explicitTarget ? null : inferVercelTarget();
 
 if (process.env.VERCEL === "1" && !explicitTarget && !inferredTarget) {
-  console.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
-  console.error("Set it to: public.");
-  console.error("Admin and trade are now separate repos — see Abheydeep/marketnarrative-admin and Abheydeep/marketnarrative-trade.");
-  console.error(`Vercel target signals: ${vercelTargetSignals().join(", ") || "none"}`);
+  log.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
+  log.error("Set it to: public.");
+  log.error("Admin and trade are now separate repos — see Abheydeep/marketnarrative-admin and Abheydeep/marketnarrative-trade.");
+  log.error(`Vercel target signals: ${vercelTargetSignals().join(", ") || "none"}`);
   process.exit(1);
 }
 
 const target = normalizeTarget(explicitTarget ?? inferredTarget ?? "public");
 
 if (target === "admin" || target === "trade") {
-  console.error(`MARKET_NARRATIVE_DEPLOY_TARGET="${target}" is no longer valid in this repo.`);
-  console.error("Admin studio → Abheydeep/marketnarrative-admin (Vite, dist/)");
-  console.error("Trade cockpit → Abheydeep/marketnarrative-trade (Next.js, out/)");
+  log.error(`MARKET_NARRATIVE_DEPLOY_TARGET="${target}" is no longer valid in this repo.`);
+  log.error("Admin studio → Abheydeep/marketnarrative-admin (Vite, dist/)");
+  log.error("Trade cockpit → Abheydeep/marketnarrative-trade (Next.js, out/)");
   process.exit(1);
 }
 
@@ -56,9 +57,9 @@ if (target === "public") {
   // root alongside api/, making ../latest-slug.txt readable from the function.
   await copyLatestSlugFallback(join(rootDir, "out", "site", "latest-slug.txt"));
   run("node", ["tools/public-copy-qa.mjs", "public"]);
-  console.log("Prepared Vercel public output in public");
+  log.info("Prepared Vercel public output in public");
 } else {
-  console.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public".`);
+  log.error(`Unknown MARKET_NARRATIVE_DEPLOY_TARGET="${target}". Use "public".`);
   process.exit(1);
 }
 
@@ -98,12 +99,12 @@ async function copyOutput(sourceDir, options = {}) {
 
 async function copyLatestSlugFallback(sourcePath) {
   if (!existsSync(sourcePath)) {
-    console.warn(`copyLatestSlugFallback: source not found at ${sourcePath}; /latest/ will rely on env + /digest.json only.`);
+    log.warn(`copyLatestSlugFallback: source not found at ${sourcePath}; /latest/ will rely on env + /digest.json only.`);
     return;
   }
   const dest = join(rootDir, "latest-slug.txt");
   await copyFile(sourcePath, dest);
-  console.log(`Mirrored ${sourcePath} → ${dest} for api/latest-redirect.js fallback.`);
+  log.info(`Mirrored ${sourcePath} → ${dest} for api/latest-redirect.js fallback.`);
 }
 
 async function writeManifest(targetName, routes) {
