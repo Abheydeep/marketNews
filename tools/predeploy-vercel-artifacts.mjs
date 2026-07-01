@@ -98,7 +98,7 @@ function assertAboutAndSubscribe() {
   assertOutput("about/index.html", /aria-current="page">About/);
   assertOutput("about/index.html", /verified briefings published since launch/);
   assertOutput("about/index.html", /Browse the archive/);
-  assertOutput("subscribe/index.html", /Join The Pre-Market Brief/);
+  assertOutput("subscribe/index.html", /Subscribe \| Market Narrative/);
   assertOutput("subscribe/index.html", /Join daily email/);
   assertOutput("subscribe/index.html", /RegisterAction/);
   assertOutput("subscribe/index.html", /name="_honey"/);
@@ -116,4 +116,3 @@ function assertDailyPages() {
   assertOutput("4may2026/trading-guide/index.html", /Opening Nerve/);
   assertOutput("4may2026/trading-guide/index.html", /Stand-down trigger/);
 }
-

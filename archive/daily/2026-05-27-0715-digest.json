@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-27",
-  "title": "Bank Nifty breadth Support Bank Nifty Open",
+  "title": "FMCG and Auto Stocks to Test Nifty's Directional Bias Today",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-27T06:03:08.840Z",
   "dailyLead": {
@@ -10818,5 +10818,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-27.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Support Bank Nifty Open",
+    "correctedTitle": "FMCG and Auto Stocks to Test Nifty's Directional Bias Today",
+    "correctedAt": "2026-07-01T15:42:56.143Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

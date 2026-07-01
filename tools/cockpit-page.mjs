@@ -11,8 +11,12 @@ import { componentDetailsHtml } from "./project-components-page.mjs";
 import { publicDigestPayload } from "./public-payload.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 import { sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
+import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
+import { sanitizePublicHtml } from "./public-copy-sanitizer.mjs";
+import { legacyPublicPageShell } from "./legacy-public-shell.mjs";
+import { tradingGuideJsonLd } from "./json-ld.mjs";
 
-const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const siteOrigin = publicSiteOrigin();
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? process.env.PUBLIC_API_ORIGIN ?? "https://api.marketnarrative.in";
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
@@ -56,17 +60,14 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const renderPublicView = includeStudio || !isTradingGuidePage;
   const renderTradingGuideView = !includeStudio && isTradingGuidePage;
   const pageH1 = digest.title || (marketUpdate ? "Indian Market Update" : "Daily Pre-Market Briefing");
-  const pageTitle = isTradingGuidePage
-    ? `Trading Guide: ${pageH1} | Nifty & Bank Nifty Levels - ${formatDigestDate(digest.digestDate)}`
-    : marketUpdate
-      ? `${pageH1} - Indian Stock Market Update ${formatDigestDate(digest.digestDate)} | Market Narrative`
-      : `${pageH1} - Nifty Pre-Market Analysis ${formatDigestDate(digest.digestDate)} | Market Narrative`;
+  const datedTitle = `${pageH1} — ${formatDigestDate(digest.digestDate)}`;
+  const pageTitle = brandedTitle(isTradingGuidePage ? `Trading Guide: ${datedTitle}` : datedTitle);
   const pageDescription = dailySeoDescription(digest, isTradingGuidePage);
   const pageOrigin = options.siteOrigin ?? siteOrigin;
   const publicSiteBaseUrl = options.publicSiteBaseUrl ?? siteOrigin;
   const publicMultibaggerState = includeStudio ? (options.multibaggerState ?? multibaggerState()) : null;
   const canonicalUrl = absoluteSiteUrl(digest.canonicalPath ?? "/", pageOrigin);
-  const previewImageUrl = absoluteSiteUrl(digest.ogImageUrl || "/og-card.svg", siteOrigin);
+  const previewImageUrl = absoluteSiteUrl(digest.ogImageUrl || socialCardUrl(isTradingGuidePage ? "guide" : "briefing", siteOrigin), siteOrigin);
   const navItems = [];
   if (includeStudio) {
     navItems.push(
@@ -76,33 +77,24 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       { label: "Project Components", isButton: true, dataTarget: "components-view", isActive: safeInitialTab === "components-view" },
       { label: "Multibagger Review", isButton: true, dataTarget: "multibagger-admin-view", isActive: safeInitialTab === "multibagger-admin-view" }
     );
-  } else {
-    navItems.push(
-      { href: isTradingGuidePage ? "../" : "./", label: "Public Briefing", isActive: !isTradingGuidePage },
-      ...(marketUpdate ? [] : [{ href: isTradingGuidePage ? "./" : (options.tradingGuideHref ?? "./trading-guide/"), label: "Trading Guide", isActive: isTradingGuidePage }]),
-      { href: "/indices/", label: "Indices" },
-      { href: options.multibaggerHref ?? (digest.canonicalPath ? "../multibagger/" : "./multibagger/"), label: "Portfolio" },
-      { href: "/about/", label: "About" }
-    );
-    if (options.showAdminLink === true) {
-      navItems.push({ href: options.adminHref ?? `${adminSiteOrigin}/`, label: "Admin Login" });
-    }
   }
   if (requireAuth) {
     navItems.push({ label: "Logout", isButton: true, id: "adminLogoutBtn" });
   }
 
   // >Portfolio</a> data-target="components-view" data-target="multibagger-admin-view"
-  const cockpitHeaderHtml = siteHeaderHtml("", { navItems, hideSubscribe: true, brandHref: digest.canonicalPath ? "../" : "./" });
-  return `<!DOCTYPE html>
+  const cockpitHeaderHtml = includeStudio
+    ? siteHeaderHtml("", { navItems, hideSubscribe: true, brandHref: digest.canonicalPath ? "../" : "./" })
+    : siteHeaderHtml(isTradingGuidePage ? "/latest/trading-guide/" : "/latest/");
+  const renderedPage = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
   ${brandHeadLinks(pageOrigin)}
-  <link rel="preconnect" href="https://marketnarrative.in" crossorigin>
-  <link rel="dns-prefetch" href="https://marketnarrative.in">
+  <link rel="preconnect" href="https://www.marketnarrative.in" crossorigin>
+  <link rel="dns-prefetch" href="https://www.marketnarrative.in">
   <link rel="preload" as="image" href="${escapeHtml(previewImageUrl)}" fetchpriority="high">
   <meta http-equiv="Cache-Control" content="private, max-age=0, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -118,8 +110,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <link rel="alternate" hreflang="en-IN" href="${escapeHtml(canonicalUrl)}">
   <link rel="alternate" hreflang="x-default" href="${escapeHtml(canonicalUrl)}">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="675">
-  <meta property="og:image:type" content="${previewImageUrl.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="${previewImageUrl.endsWith(".jpg") ? "image/jpeg" : "image/png"}">
   <meta property="og:image:alt" content="${escapeHtml(`${pageH1} - Market Narrative pre-market briefing image`)}">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_IN">
@@ -133,11 +125,11 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta name="twitter:description" content="${escapeHtml(pageDescription)}">
   <meta name="twitter:image" content="${escapeHtml(previewImageUrl)}">
   <title>${escapeHtml(pageTitle)}</title>
-  <script type="application/ld+json">${jsonLdPayload(newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
+  <script type="application/ld+json">${jsonLdPayload(isTradingGuidePage
+    ? tradingGuideJsonLd(digest, pageTitle, pageDescription)
+    : newsArticleJsonLd(digest, { h1Override: pageH1 }))}</script>
   <style>
-    ${siteThemeCss()}
-    ${siteHeaderCss()}
-    ${siteFooterCss()}
+    ${includeStudio ? `${siteThemeCss()}${siteHeaderCss()}${siteFooterCss()}` : ""}
 
     * { box-sizing: border-box; }
 
@@ -5407,16 +5399,17 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
+    ${includeStudio ? bottomTabBarCss() : ""}
+    ${includeStudio ? mobileTypographyCss() : ""}
     ${proPolishCss()}
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
+  <a class="mn-skip" href="#mn-main">Skip to content</a>
   ${requireAuth ? adminAuthGateHtml() : ""}
   ${cockpitHeaderHtml}
 
-  <main class="shell">
+  <main id="mn-main" class="shell">
     ${renderTradingGuideView ? tradingGuideViewHtml(digest, canonicalUrl, { active: true }) : ""}
     ${renderPublicView ? `<section id="public-view" class="tab-content${safeInitialTab === "public-view" ? "" : " hidden"}">
       <div class="briefing-shell">
@@ -7391,6 +7384,10 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   ${siteFooterHtml()}
 </body>
 </html>`;
+  return includeStudio ? renderedPage : sanitizePublicHtml(legacyPublicPageShell(renderedPage, {
+    title: pageTitle, description: pageDescription, canonicalUrl, ogImage: previewImageUrl, ogType: isTradingGuidePage ? "website" : "article",
+    bodyClass, activeHref: isTradingGuidePage ? "/latest/trading-guide/" : "/latest/", mobileActiveKey: "latest"
+  }));
 }
 
 /**
@@ -8144,7 +8141,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
               <strong>${escapeHtml(formatDigestDate(digest.digestDate))}</strong>
             </div>
           </div>
-          <h1>Opening levels, confirmation, and risk gates</h1>
+          <h1>${escapeHtml(`Trading Guide: ${digest.title || "Daily Market Plan"}`)}</h1>
           <p class="hero-subcopy">Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch.</p>
         </header>
 

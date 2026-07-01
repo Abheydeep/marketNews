@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-23",
-  "title": "Nifty overnight: +0.61% — gap-up bias Weighs On Opening..",
+  "title": "RBI's June Bulletin flags weak monsoon risks for Indian stock market today",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-24T07:03:07.445Z",
   "dailyLead": {
@@ -12502,5 +12502,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-23.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.61% — gap-up bias Weighs On Opening..",
+    "correctedTitle": "RBI's June Bulletin flags weak monsoon risks for Indian stock market today",
+    "correctedAt": "2026-07-01T15:43:15.196Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

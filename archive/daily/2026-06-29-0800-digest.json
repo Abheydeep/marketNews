@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-29",
-  "title": "Nifty Metal Support Opening Range",
+  "title": "Anubhav Plast Lists Flat on BSE SME, Tests Midcap Sentiment Ahead Nifty",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-29T14:38:54.090Z",
   "dailyLead": {
@@ -2423,5 +2423,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-29.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty Metal Support Opening Range",
+    "correctedTitle": "Anubhav Plast Lists Flat on BSE SME, Tests Midcap Sentiment Ahead Nifty",
+    "correctedAt": "2026-07-01T15:43:13.700Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

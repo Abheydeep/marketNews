@@ -3,7 +3,9 @@
  * Respects ESM and the 200-line budget constraint.
  */
 
-const SITE_ORIGIN = "https://marketnarrative.in";
+import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
+
+const SITE_ORIGIN = publicSiteOrigin();
 
 export function jsonLdPayload(value) {
   return JSON.stringify(value)
@@ -21,7 +23,7 @@ export function newsArticleJsonLd(digest, options = {}) {
   const canonicalUrl = `${SITE_ORIGIN}${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
   const description = digest.archiveSummary || digest.deskNote || "Daily Market Narrative pre-market briefing for Nifty, Bank Nifty, global cues, and India read-through.";
   const headline = options.h1Override || digest.title;
-  const image = digest.ogImageUrl || `${SITE_ORIGIN}/og-card-1200x675.png`;
+  const image = digest.ogImageUrl || socialCardUrl("briefing", SITE_ORIGIN);
   
   return {
     "@context": "https://schema.org",
@@ -29,7 +31,7 @@ export function newsArticleJsonLd(digest, options = {}) {
     headline,
     alternativeHeadline: digest.title,
     description,
-    image: digest.ogImageUrl ? [image] : [image, `${SITE_ORIGIN}/og-card.svg`],
+    image: [image],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonicalUrl
@@ -47,7 +49,7 @@ export function newsArticleJsonLd(digest, options = {}) {
       url: SITE_ORIGIN,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_ORIGIN}/logo.png`
+        url: `${SITE_ORIGIN}/favicon.svg`
       }
     }
   };
@@ -74,5 +76,24 @@ export function multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, mode
       url: `${SITE_ORIGIN}/about/`
     },
     about: ["Indian equities", "multibagger research", "portfolio tracker", `${modelCount} stock model`]
+  };
+}
+
+export function tradingGuideJsonLd(digest, title, description) {
+  const path = String(digest.canonicalPath || `/${digest.digestDate}/trading-guide/`);
+  const url = `${SITE_ORIGIN}${path.startsWith("/") ? path : `/${path}`}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    datePublished: digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
+    dateModified: digest.generatedAt ?? digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
+    inLanguage: "en-IN",
+    isAccessibleForFree: true,
+    about: ["Nifty 50", "Bank Nifty", "conditional market preparation"],
+    publisher: { "@type": "Organization", name: "Market Narrative", url: SITE_ORIGIN }
   };
 }

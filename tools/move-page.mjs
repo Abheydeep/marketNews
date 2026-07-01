@@ -4,12 +4,13 @@
 
 import { escapeHtml } from "./html-utils.mjs"; // reuse utility for escaping HTML
 import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
+import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
 
 /**
  * Helper to generate JSON‑LD for a NewsArticle.
  */
 function newsArticleJsonLd({ date, slug, article, symbol, change }) {
-  const origin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+  const origin = publicSiteOrigin();
   const url = `${origin}/moves/${date}/${slug}/`;
   const movement = change > 0 ? "rose" : "fell";
   const publishedAt = stableArticleTimestamp(date, article?.publishedAt || article?.timestamp || article?.generatedAt);
@@ -21,9 +22,9 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
     "description": article.summary ?? "",
     "image": {
       "@type": "ImageObject",
-      "url": article.ogImageUrl || article.thumbnail?.url || `${origin}/og-card.svg`,
+      "url": article.ogImageUrl || article.thumbnail?.url || socialCardUrl("moves", origin),
       "width": 1200,
-      "height": 675
+      "height": 630
     },
     "datePublished": publishedAt,
     "dateModified": modifiedAt,
@@ -68,9 +69,9 @@ export function movePage({ date, slug, article, symbol, change }) {
   const description = compactMetaDescription(`${symbol} ${movement} ${Math.abs(change).toFixed(1)}% on ${date}. ${article.summary ?? ""}`);
   const jsonLd = safeJsonScript(newsArticleJsonLd({ date, slug, article, symbol, change }));
   const thumbnailUrl = article.ogImageUrl || article.thumbnail?.url || "";
-  const origin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+  const origin = publicSiteOrigin();
   const canonicalUrl = `${origin}/moves/${date}/${slug}/`;
-  const fallbackImage = `${origin}/og-card.svg`;
+  const fallbackImage = socialCardUrl("moves", origin);
   const socialImage = thumbnailUrl || fallbackImage;
 
   return `<!DOCTYPE html>
@@ -90,8 +91,8 @@ export function movePage({ date, slug, article, symbol, change }) {
   <meta property="og:url" content="${escapeHtml(canonicalUrl)}">
   <meta property="og:image" content="${escapeHtml(socialImage)}">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="675">
-  <meta property="og:image:type" content="${socialImage.endsWith(".jpg") ? "image/jpeg" : "image/svg+xml"}">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="${socialImage.endsWith(".jpg") ? "image/jpeg" : "image/png"}">
   <meta property="og:image:alt" content="${escapeHtml(`${pageTitle} - Market Narrative move image`)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}">

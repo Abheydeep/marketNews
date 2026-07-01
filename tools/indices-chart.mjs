@@ -9,6 +9,7 @@ export function indicesChartScript() {
       let currentSymbol = "";
       let currentCls = "idx-flat";
       let activeRange = "1d";
+      let lastTrigger = null;
 
       const rangeLabels = {
         "1d": "1D", "5d": "5D", "1mo": "1M", "3mo": "3M",
@@ -74,6 +75,7 @@ export function indicesChartScript() {
       document.body.addEventListener("click", function(e) {
         const card = e.target.closest(".idx-card");
         if (!card) return;
+        lastTrigger = card;
         const d = card.dataset;
         currentSymbol = d.symbol;
         currentCls = d.cls;
@@ -84,7 +86,10 @@ export function indicesChartScript() {
         v.className = "move " + d.cls;
         v.textContent = d.val + " · " + d.change;
         document.getElementById("idx-ctx").textContent = d.ctx || (d.name + " is tracked as index reference.");
-        document.getElementById("idx-m").classList.add("open");
+        const dialog = document.getElementById("idx-m");
+        dialog.classList.add("open");
+        dialog.setAttribute("aria-hidden", "false");
+        dialog.querySelector(".idx-panel")?.focus();
 
         // Reset tab
         activeRange = "1d";
@@ -131,6 +136,22 @@ export function indicesChartScript() {
         if (tabBtn) {
           selectRange(tabBtn.dataset.range);
         }
+      });
+
+      function closeDialog() {
+        const dialog = document.getElementById("idx-m");
+        if (!dialog?.classList.contains("open")) return;
+        dialog.classList.remove("open");
+        dialog.setAttribute("aria-hidden", "true");
+        lastTrigger?.focus();
+      }
+
+      document.body.addEventListener("click", function(e) {
+        const dialog = document.getElementById("idx-m");
+        if (e.target.closest("[data-dialog-close]") || e.target === dialog) closeDialog();
+      });
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") closeDialog();
       });
     })();
   </script>`;

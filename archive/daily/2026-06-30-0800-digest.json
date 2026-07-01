@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-30",
-  "title": "Nifty Open Shape Opening Range",
+  "title": "Stock market watch: Nifty influenced by US-Iran talks and crude prices",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-30T07:38:20.060Z",
   "dailyLead": {
@@ -2139,5 +2139,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-30.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty Open Shape Opening Range",
+    "correctedTitle": "Stock market watch: Nifty influenced by US-Iran talks and crude prices",
+    "correctedAt": "2026-07-01T15:43:13.730Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-15",
-  "title": "Nifty overnight: +1.16% — gap-up bias Shape Risk Appetite",
+  "title": "Easing US-Iran tensions to boost Indian stocks, oil counters lead gain",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-15T07:02:18.622Z",
   "dailyLead": {
@@ -12693,5 +12693,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-15.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +1.16% — gap-up bias Shape Risk Appetite",
+    "correctedTitle": "Easing US-Iran tensions to boost Indian stocks, oil counters lead gain",
+    "correctedAt": "2026-07-01T15:43:11.286Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -6,6 +6,9 @@
   "workspaces": [
     "frontend"
   ],
+  "dependencies": {
+    "sharp": "0.34.5"
+  },
   "scripts": {
     "context:verify": "node tools/context-verify.mjs",
     "test": "node tools/verify.mjs",
@@ -14,6 +17,7 @@
     "daily:generate": "node --env-file-if-exists=.env tools/generate-daily-summary.mjs",
     "site:publish": "node --env-file-if-exists=.env tools/publish-site.mjs && node --env-file-if-exists=.env tools/archive-page.mjs",
     "archive:generate": "node --env-file-if-exists=.env tools/archive-page.mjs",
+    "archive:backfill-headlines": "node --env-file-if-exists=.env.local tools/backfill-headlines.mjs",
     "site:qa": "node tools/full-site-qa.mjs",
     "public:copy:qa": "node tools/public-copy-qa.mjs",
     "mobile:smoke": "node tools/mobile-artifact-smoke.mjs",

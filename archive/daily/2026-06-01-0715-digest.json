@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-01",
-  "title": "Crude / energy risk Shape Opening Range",
+  "title": "FPI Outflows, US-Iran Talks Influence Nifty, Indian Stock Market Sentiment",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-01T06:35:04.745Z",
   "dailyLead": {
@@ -11650,5 +11650,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-01.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Opening Range",
+    "correctedTitle": "FPI Outflows, US-Iran Talks Influence Nifty, Indian Stock Market Sentiment",
+    "correctedAt": "2026-07-01T15:42:59.933Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -4,7 +4,7 @@ import { chartClientScript, chartClientSparklineScript } from "./chart-svg.mjs";
 export function indicesLiveScript() {
   return `<script>
     (function() {
-      let lastSuccess = Date.now();
+      let lastSuccess = null;
       const prevPrices = {};
       let pollTimeout = null;
 
@@ -65,7 +65,7 @@ export function indicesLiveScript() {
           const badge = document.getElementById("idx-live-badge");
           if (badge) {
             badge.classList.remove("offline");
-            badge.textContent = "● Live · updated just now";
+            badge.textContent = "● Live · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · just now";
           }
 
           const niftyClose = Number(document.querySelector(".idx")?.dataset.niftyClose || 0);
@@ -153,12 +153,12 @@ export function indicesLiveScript() {
       // Keep badge elapsed time fresh
       setInterval(() => {
         const badge = document.getElementById("idx-live-badge");
-        if (!badge || badge.classList.contains("offline")) return;
+        if (!badge || badge.classList.contains("offline") || !lastSuccess) return;
         const s = Math.floor((Date.now() - lastSuccess) / 1000);
         if (s <= 1) {
-          badge.textContent = "● Live · updated just now";
+          badge.textContent = "● Live · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · just now";
         } else {
-          badge.textContent = "● Live · updated " + s + "s ago";
+          badge.textContent = "● Live · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · " + s + "s ago";
         }
       }, 1000);
 

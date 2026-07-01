@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-05",
-  "title": "Rates / Fed path Weighs On Opening Range",
+  "title": "Rising Treasury yields weigh on rate-sensitive Indian stocks ahead open",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-05T00:51:10.880Z",
   "dailyLead": {
@@ -556,5 +556,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-05.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Rates / Fed path Weighs On Opening Range",
+    "correctedTitle": "Rising Treasury yields weigh on rate-sensitive Indian stocks ahead open",
+    "correctedAt": "2026-07-01T15:41:58.724Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

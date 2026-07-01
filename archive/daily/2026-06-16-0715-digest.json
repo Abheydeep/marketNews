@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-16",
-  "title": "Nifty overnight: +0.32% — gap-up bias Tests Risk Appetite",
+  "title": "Indian stock market watches Brent crude rebound for OMC impact",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-16T07:08:52.000Z",
   "dailyLead": {
@@ -12669,5 +12669,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-16.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.32% — gap-up bias Tests Risk Appetite",
+    "correctedTitle": "Indian stock market watches Brent crude rebound for OMC impact",
+    "correctedAt": "2026-07-01T15:43:11.319Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

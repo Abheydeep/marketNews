@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-13",
-  "title": "Crude / energy risk Shape Risk Appetite",
+  "title": "Knowledge Realty Trust's Rs 716.6 cr payout lifts REIT sentiment ahead Nifty open",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-13T09:56:16.647Z",
   "dailyLead": {
@@ -10722,5 +10722,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-13.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Risk Appetite",
+    "correctedTitle": "Knowledge Realty Trust's Rs 716.6 cr payout lifts REIT sentiment ahead Nifty open",
+    "correctedAt": "2026-07-01T15:41:59.690Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

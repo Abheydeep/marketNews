@@ -79,7 +79,7 @@ function isoToCompactSlug(isoDate) {
 }
 
 async function slugFromDigest() {
-  const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://marketnarrative.in";
+  const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://www.marketnarrative.in";
   const res = await fetchWithRetry(`${origin}/digest.json`, {
     headers: { "user-agent": "MarketNarrativeLatestRedirect/1.0" },
     timeoutMs: 4000,

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-09",
-  "title": "Crude / energy risk Lift Opening Range",
+  "title": "Global cues mixed as Brent crude dips ahead of Nifty open",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-09T05:55:08.277Z",
   "dailyLead": {
@@ -11086,5 +11086,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-09.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Lift Opening Range",
+    "correctedTitle": "Global cues mixed as Brent crude dips ahead of Nifty open",
+    "correctedAt": "2026-07-01T15:43:11.761Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-22",
-  "title": "Nifty overnight: +0.37% — gap-up bias Support Opening Range",
+  "title": "Sensex, Nifty End Higher as Cipla, TechM Lead Gains in Stock Market",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-22T10:29:31.335Z",
   "dailyLead": {
@@ -12942,5 +12942,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-22.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Support Opening Range",
+    "correctedTitle": "Sensex, Nifty End Higher as Cipla, TechM Lead Gains in Stock Market",
+    "correctedAt": "2026-07-01T15:43:13.411Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

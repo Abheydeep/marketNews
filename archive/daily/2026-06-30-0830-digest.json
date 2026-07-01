@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-30",
-  "title": "Global Risk Lift Risk Appetite",
+  "title": "Asian Markets Rally Fizzles Out, Dragging Indian Stocks Lower Today",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-30T13:58:42.780Z",
   "dailyLead": {
@@ -2327,5 +2327,14 @@
   "asset": {
     "sentimentLabel": "BEARISH",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-30.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Global Risk Lift Risk Appetite",
+    "correctedTitle": "Asian Markets Rally Fizzles Out, Dragging Indian Stocks Lower Today",
+    "correctedAt": "2026-07-01T15:43:15.608Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -16,6 +16,10 @@ flowchart TD
     FiiPage["fii-dii-page.mjs"]
     FiiTables["fii-dii-tables.mjs"]
     FiiStyles["fii-dii-styles.mjs"]
+    PublicRegistry["public-page-registry.mjs"]
+    SharedShell["page-shell.mjs + legacy-public-shell.mjs"]
+    SocialCards["social-card.mjs"]
+    SessionClient["market-session-client.mjs"]
   end
 
   subgraph Targets["Target ownership"]
@@ -36,6 +40,12 @@ flowchart TD
   Publish -.-> IdxStyles
   Core -.-> NseIx
   Publish -.-> FiiPage
+  Publish -.-> PublicRegistry
+  Publish -.-> SharedShell
+  Publish -.-> SocialCards
+  Cockpit -.-> SharedShell
+  Multi -.-> SharedShell
+  Publish -.-> SessionClient
   Sources --> Ingest
   Sources --> Score
   Sources --> LLM
@@ -47,4 +57,3 @@ flowchart TD
   Targets --> Rule["new files under 200 lines"]
   Current --> Ratchet["legacy files must not grow"]
   Ratchet --> Progress["progress-tracker documents exceptions"]
-

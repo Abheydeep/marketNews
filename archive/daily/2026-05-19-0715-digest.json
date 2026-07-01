@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-19",
-  "title": "Crude / energy risk Shape Opening Range",
+  "title": "Indian stock market watch: Brent crude prices drive overnight shifts",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-19T02:22:17.029Z",
   "dailyLead": {
@@ -9606,5 +9606,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-19.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Opening Range",
+    "correctedTitle": "Indian stock market watch: Brent crude prices drive overnight shifts",
+    "correctedAt": "2026-07-01T15:42:10.685Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

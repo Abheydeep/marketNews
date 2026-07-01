@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-24",
-  "title": "Nifty overnight: +0.8% — gap-up bias Tests Risk Appetite",
+  "title": "Nifty stays positive as crude oil prices continue to fall",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-24T09:59:59.147Z",
   "dailyLead": {
@@ -12993,5 +12993,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-24.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.8% — gap-up bias Tests Risk Appetite",
+    "correctedTitle": "Nifty stays positive as crude oil prices continue to fall",
+    "correctedAt": "2026-07-01T15:43:13.588Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

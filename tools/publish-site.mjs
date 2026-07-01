@@ -5,6 +5,7 @@ import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSoci
 import { escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
+import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, publicSourceSelectionForDigest } from "./core.mjs";
 import { normalizePublicSourceCategory } from "./public-source-category.mjs";
@@ -19,7 +20,7 @@ import { parseDayLabel } from "./fii-dii-capture.mjs";
 import { marketCalendarState, isGeneralEditionDate } from "./market-calendar.mjs";
 import { publicSnapshotSourceLabel } from "./market-snapshot-labels.mjs";
 import { multibaggerStateWithMarketQuotes } from "./multibagger-data.mjs";
-import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
+import { proPolishCss } from "./mobile-shell.mjs";
 import { multibaggerPage } from "./multibagger-page.mjs";
 import { assertSourceVerification, sourceUrlLooksArticleLevel, verifySourceArticles } from "./news-sources.mjs";
 import { publicDigestPayload, redactedDigestPayload } from "./public-payload.mjs";
@@ -28,8 +29,9 @@ import { siteThemeCss } from "./site-theme.mjs";
 import { isLivePriceTracker } from "./article-triage.mjs";
 import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
 import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from "./public-price-reconcile.mjs";
+import { generateSocialCards } from "./social-card.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const siteOrigin = publicSiteOrigin();
 const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
 const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
@@ -116,6 +118,9 @@ await writeFile(join(siteDir, "sw.js"), serviceWorkerJs(), "utf8");
 await cp(join(rootDir, "out", "vercel", "assets"), join(siteDir, "assets"), { recursive: true, force: true }).catch((error) => { if (error.code !== "ENOENT") throw error; });
 
 const datedPageDigests = digests.filter((digest, index) => digests.findIndex((item) => item.digestDate === digest.digestDate) === index);
+await generateSocialCards(join(siteDir, "assets", "social"), datedPageDigests.map((digest) => ({
+  slug: slugForDigest(digest), title: digest.title, date: formatDigestDate(digest.digestDate)
+})));
 for (const digest of datedPageDigests) {
   const slug = slugForDigest(digest);
   const digestDir = join(siteDir, slug);
@@ -124,11 +129,13 @@ for (const digest of datedPageDigests) {
   const pageDigest = {
     ...digest,
     canonicalPath: `/${slug}/`,
+    ogImageUrl: socialCardUrl(`briefing-${slug}`, siteOrigin),
     ...related
   };
   const tradingGuideDigest = {
     ...pageDigest,
-    canonicalPath: `/${slug}/trading-guide/`
+    canonicalPath: `/${slug}/trading-guide/`,
+    ogImageUrl: socialCardUrl(`guide-${slug}`, siteOrigin)
   };
   await mkdir(digestDir, { recursive: true });
   await writeGuardedFile(
@@ -218,7 +225,7 @@ await writeGuardedFile(
   }), null, 2)}\n`
 );
 await writeFile(join(siteDir, "robots.txt"), robotsTxt(), "utf8");
-await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(allArchiveTimelineEntries), "utf8");
+await writeFile(join(siteDir, "sitemap.xml"), sitemapXml(allArchiveTimelineEntries, publicMultibaggerState.updatedAt), "utf8");
 await writeFile(
   join(siteDir, "README.txt"),
   [
@@ -275,43 +282,20 @@ function serviceWorkerJs() {
 }
 
 function redirectPage(targetHref, label) {
-  // The canonical stays on /latest/ — search engines that resolve the meta-refresh
-  // will treat the destination as a duplicate, not the canonical. The previous
-  // implementation pointed canonical at the destination and added noindex, which
-  // leaked link equity and made /latest/ unindexable.
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  ${brandHeadLinks(siteOrigin)}
-  <meta name="robots" content="index,follow">
-  <meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}">
-  <link rel="canonical" href="${escapeHtml(siteOrigin)}/${label === "latest trading guide" ? "latest/trading-guide/" : "latest/"}">
-  <title>Market Narrative ${escapeHtml(label)}</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;overflow-x:hidden;background:#050816;color:#f8fafc;font-family:system-ui,sans-serif}
-    body{display:flex;align-items:center;justify-content:center;min-height:100vh}
-    .redir{text-align:center;padding:24px}
-    .redir p{color:#b8c4d8;font-size:.9rem;margin-top:8px}
-    .redir a{color:#60a5fa;text-decoration:none;font-size:.85rem;display:block;margin-top:16px}
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
-    ${proPolishCss()}
-  </style>
-  <script>location.replace(${JSON.stringify(targetHref)});</script>
-</head>
-<body class="has-btb">
-  <div class="redir">
-    <p>Redirecting…</p>
-    <p>${DISCLAIMER_COMPACT}</p>
-    <a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a>
-  </div>
-  ${bottomTabBarHtml(label === "latest trading guide" ? "guide" : "latest")}
-  ${mobileShellScript()}
-</body>
-</html>`;
+  const isGuide = label === "latest trading guide";
+  const canonicalPath = isGuide ? "/latest/trading-guide/" : "/latest/";
+  const title = brandedTitle(isGuide ? "Latest Trading Guide" : "Latest Briefing");
+  return pageShell({
+    title,
+    description: isGuide ? "Open the latest Market Narrative Trading Guide." : "Open the latest Market Narrative pre-market briefing.",
+    canonicalUrl: `${siteOrigin}${canonicalPath}`,
+    ogImage: socialCardUrl(isGuide ? "guide" : "briefing", siteOrigin),
+    head: `<meta name="robots" content="index,follow"><meta http-equiv="refresh" content="0; url=${escapeHtml(targetHref)}"><style>.redir{text-align:center;padding:72px 24px}.redir p{color:var(--muted)}.redir a{font-weight:850}</style>`,
+    activeHref: isGuide ? "/latest/trading-guide/" : "/latest/",
+    mobileActiveKey: "latest",
+    main: `<section class="redir"><h1>${escapeHtml(title.replace(/ \| Market Narrative$/, ""))}</h1><p>Redirecting…</p><p>${DISCLAIMER_COMPACT}</p><a href="${escapeHtml(targetHref)}">Open ${escapeHtml(label)}</a></section>`,
+    scripts: `<script>location.replace(${JSON.stringify(targetHref)});</script>`
+  });
 }
 
 function notFoundPage() {
@@ -936,7 +920,7 @@ function homepageTagFilterHtml(digests) {
 
 export function archivePage(digests, allDigests = digests, latestDigest = null) {
   const latest = latestDigest ?? digests.find(isVerifiedPublicDigest) ?? digests[0];
-  const pageTitle = "Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative";
+  const pageTitle = brandedTitle("Pre-Market Briefing for Indian Traders");
   const pageDescription = "Daily Nifty today analysis at 7:15 AM IST covering GIFT Nifty, FII DII data, crude oil, Asia cues and Bank Nifty opening bias.";
   const recentGrid = recentArchiveGridHtml(allDigests.slice(0, 7));
   const latestState = homepageLatestState(latest);
@@ -2123,7 +2107,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
     title: pageTitle,
     description: pageDescription,
     canonicalUrl: `${siteOrigin}/`,
-    ogImage: `${siteOrigin}/og-card.svg`,
+    ogImage: socialCardUrl("home", siteOrigin),
     head,
     bodyClass: "archive-dark has-btb",
     activeHref: "/",
@@ -2133,7 +2117,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
 }
 
 export function aboutPage(latest, archiveDigests = []) {
-  const pageTitle = "About Market Narrative | Abhey Deep";
+  const pageTitle = brandedTitle("About");
   const pageDescription = "About Abhey Deep and Market Narrative, a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing built around source verification, trader language, and public research boundaries.";
   const editionCount = verifiedEditionCount(archiveDigests);
   const editionLabel = editionCount === 1 ? "1 verified briefing" : `${editionCount} verified briefings`;
@@ -2353,7 +2337,7 @@ export function aboutPage(latest, archiveDigests = []) {
       </article>
       <article class="about-card">
         <h2>Why not just headlines?</h2>
-        <p>Moneycontrol and news sites tell you what happened. Market Narrative focuses on what Indian traders should verify first: price acceptance, breadth, source quality, and where not to chase.</p>
+        <p>Moneycontrol and news sites tell you what happened. Market Narrative focuses on what Indian traders should verify first: price acceptance, market participation, source quality, and where not to chase.</p>
       </article>
       <article class="about-card">
         <h2>Who is Abhey Deep?</h2>
@@ -2385,17 +2369,17 @@ export function aboutPage(latest, archiveDigests = []) {
     title: pageTitle,
     description: pageDescription,
     canonicalUrl: `${siteOrigin}/about/`,
-    ogImage: `${siteOrigin}/og-card.svg`,
+    ogImage: socialCardUrl("about", siteOrigin),
     head,
     bodyClass: "has-btb",
     activeHref: "/about/",
-    mobileActiveKey: "archive",
+    mobileActiveKey: "",
     main
   });
 }
 
 export function subscribePage(latest, totalBriefings = 38) {
-  const pageTitle = "Join The Pre-Market Brief | Market Narrative";
+  const pageTitle = brandedTitle("Subscribe");
   const pageDescription = "Join the Market Narrative daily email flow for the Nifty and Bank Nifty pre-market briefing.";
 
   const head = `
@@ -2497,9 +2481,10 @@ export function subscribePage(latest, totalBriefings = 38) {
     </header>
     <section class="subscribe-box">
       <h2>Subscribe</h2>
-      <p>No spam. Only the daily briefing. Join ${totalBriefings} readers.</p>
+      <p>${subscriberCountText()}</p>
       <div class="sent-note" hidden></div>
       <form class="subscribe-form" action="https://formspree.io/f/xvgozvwd" method="POST">
+        <input type="hidden" name="_next" value="${siteOrigin}/subscribe/?sent=1">
         <label class="honey-field" aria-hidden="true">Leave this empty
           <input type="text" name="_honey" tabindex="-1" autocomplete="off">
         </label>
@@ -2535,11 +2520,11 @@ export function subscribePage(latest, totalBriefings = 38) {
     title: pageTitle,
     description: pageDescription,
     canonicalUrl: `${siteOrigin}/subscribe/`,
-    ogImage: `${siteOrigin}/og-card.svg`,
+    ogImage: socialCardUrl("subscribe", siteOrigin),
     head,
     bodyClass: "has-btb",
     activeHref: "/subscribe/",
-    mobileActiveKey: "archive",
+    mobileActiveKey: "",
     main
   });
 }
@@ -2559,7 +2544,7 @@ function buildFiiDiiCashRecords(allDigests) {
 }
 
 export function moneyFlowPage(latest, cashRecords, fnoRecords) {
-  const pageTitle = "FII DII Data Today - Institutional Flow & F&O Positioning | Market Narrative";
+  const pageTitle = brandedTitle("FII/DII Money Flow");
   const pageDescription = "FII DII data today with charts and interpretation: cash-market flow, F&O index and stock positioning, DII absorption and the FII index-futures long ratio.";
   const { bodyHtml, faqItems } = fiiDiiPageBody(cashRecords, fnoRecords);
   const body = `${bodyHtml}
@@ -2599,7 +2584,7 @@ export function moneyFlowPage(latest, cashRecords, fnoRecords) {
 }
 
 export function marketStatisticsPage(latest) {
-  const pageTitle = "India Market Statistics Today - Nifty Breadth, VIX & Flow | Market Narrative";
+  const pageTitle = brandedTitle("Market Statistics");
   const pageDescription = "India market statistics today for Nifty traders: index context, India VIX, FII DII flow, sector cues and market health explanation.";
   const snapshots = Array.isArray(latest?.marketSnapshots) ? latest.marketSnapshots : [];
   const keySymbols = ["NIFTY", "BANKNIFTY", "GIFTNIFTY", "INDIAVIX", "USDINR", "BRENT", "GOLD"];
@@ -2671,7 +2656,7 @@ export function marketStatisticsPage(latest) {
 }
 
 export function movesHubPage(latest) {
-  const pageTitle = "Why Stocks Move - Daily Nifty Stock Move Explanations | Market Narrative";
+  const pageTitle = brandedTitle("Market Moves");
   const pageDescription = "Find out why Nifty, Bank Nifty and Indian stocks moved today with source-backed market move explanations and India read-through.";
   const body = `
     <section class="copy-stack">
@@ -2721,7 +2706,7 @@ export function movesHubPage(latest) {
 }
 
 export function contactPage() {
-  const pageTitle = "Contact Market Narrative - Feedback, Corrections & Partnerships";
+  const pageTitle = brandedTitle("Contact");
   const pageDescription = "Contact Market Narrative for feedback, data corrections, broken pages, press enquiries, or partnerships.";
   const body = `
     <section class="copy-stack">
@@ -2760,7 +2745,7 @@ export function contactPage() {
 }
 
 export function privacyPage() {
-  const pageTitle = "Privacy Policy - Market Narrative";
+  const pageTitle = brandedTitle("Privacy Policy");
   const pageDescription = "Plain-English privacy policy for Market Narrative, including analytics, external links, and contact details.";
   const body = `
     <section class="copy-stack">
@@ -2804,7 +2789,7 @@ export function privacyPage() {
 }
 
 export function termsPage() {
-  const pageTitle = "Terms of Use - Market Narrative";
+  const pageTitle = brandedTitle("Terms of Use");
   const pageDescription = "Plain-English terms of use for Market Narrative, including educational use, data accuracy, external links, and liability limits.";
   const body = `
     <section class="copy-stack">
@@ -2850,7 +2835,7 @@ export function termsPage() {
 
 function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd, ogImageUrl = "" }) {
   const canonical = `${siteOrigin}${path}`;
-  const socialImage = ogImageUrl || `${siteOrigin}/og-card.svg`;
+  const socialImage = ogImageUrl || socialCardUrl(socialKeyForPath(path), siteOrigin);
 
   const head = `
   ${jsonLdScript(jsonLd)}
@@ -2911,7 +2896,22 @@ function staticPageActiveKey(path) {
   if (path.startsWith("/multibagger/")) return "portfolio";
   if (path.startsWith("/money-flow/fii-dii/")) return "fiidii";
   if (path.startsWith("/indices/")) return "indices";
-  return "more";
+  return "";
+}
+
+function socialKeyForPath(path) {
+  if (path.startsWith("/money-flow/fii-dii/")) return "fii-dii";
+  if (path.startsWith("/market-statistics/")) return "statistics";
+  if (path.startsWith("/moves/")) return "moves";
+  if (path.startsWith("/subscribe/")) return "subscribe";
+  return "about";
+}
+
+function subscriberCountText() {
+  const count = Number.parseInt(process.env.PUBLIC_SUBSCRIBER_COUNT ?? "", 10);
+  return Number.isFinite(count) && count > 0
+    ? `No spam. Only the daily briefing. Join ${count.toLocaleString("en-IN")} readers.`
+    : "No spam. Only the daily briefing.";
 }
 
 function archivePageJsonLd(latest, digests, pageTitle, pageDescription, faqItems = []) {
@@ -3754,7 +3754,7 @@ function robotsTxt() {
   ].join("\n");
 }
 
-function sitemapXml(allDigests) {
+function sitemapXml(allDigests, multibaggerUpdatedAt = "") {
   // Only include digests that actually have content, plus the latest digest to keep the crawler fresh
   const digests = allDigests.filter((d) => d.briefing || d === allDigests[0]);
   const urls = [
@@ -3767,7 +3767,7 @@ function sitemapXml(allDigests) {
     { loc: `${siteOrigin}/money-flow/fii-dii/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/market-statistics/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.9" },
     { loc: `${siteOrigin}/moves/`, lastmod: digests[0]?.digestDate, changefreq: "daily", priority: "0.7" },
-    { loc: `${siteOrigin}/multibagger/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "0.7" },
+    { loc: `${siteOrigin}/multibagger/`, lastmod: String(multibaggerUpdatedAt || digests[0]?.digestDate || "").slice(0, 10), changefreq: "weekly", priority: "0.7" },
     { loc: `${siteOrigin}/about/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.7" },
     { loc: `${siteOrigin}/subscribe/`, lastmod: digests[0]?.digestDate, changefreq: "monthly", priority: "0.6" },
     { loc: `${siteOrigin}/contact/`, lastmod: digests[0]?.digestDate, changefreq: "yearly", priority: "0.4" },

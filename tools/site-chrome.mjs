@@ -13,10 +13,10 @@ export function siteHeaderHtml(activeHref = "", options = {}) {
     const extraClass = isCta ? " tab-link--cta" : "";
     if (isButton) {
       const idAttr = id ? ` id="${escapeHtml(id)}"` : "";
-      return `<button class="tab-link${activeClass}${extraClass} tab-btn" data-target="${escapeHtml(dataTarget)}"${idAttr}>${escapeHtml(label)}</button>`;
+      return `<button type="button" class="tab-link${activeClass}${extraClass} tab-btn" data-target="${escapeHtml(dataTarget)}"${idAttr}>${escapeHtml(label)}</button>`;
     }
     return (isActive || (activeHref && href === activeHref))
-      ? `<span class="tab-link tab-link--active${extraClass}" aria-current="page">${escapeHtml(label)}</span>`
+      ? `<a class="tab-link tab-link--active${extraClass}" href="${escapeHtml(href)}" aria-current="page">${escapeHtml(label)}</a>`
       : `<a class="tab-link${extraClass}" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
   }).join("");
   const subscribeCta = (options.hideSubscribe || options.navItems)
@@ -73,7 +73,7 @@ export function siteFooterHtml() {
         </div>
         <div class="footer-col">
           <span class="footer-col-head">Data</span>
-          <a href="/money-flow/fii-dii/">FII DII data</a>
+          <a href="/money-flow/fii-dii/">FII/DII data</a>
           <a href="/market-statistics/">Market statistics</a>
           <a href="/indices/">Global indices</a>
           <a href="/moves/">Move explanations</a>

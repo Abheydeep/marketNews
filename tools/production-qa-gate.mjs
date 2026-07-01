@@ -7,7 +7,7 @@ import { join } from "node:path";
 const require = createRequire(import.meta.url);
 
 const config = {
-  publicUrl: envUrl("PUBLIC_URL", "https://marketnarrative.in"),
+  publicUrl: envUrl("PUBLIC_URL", "https://www.marketnarrative.in"),
   wwwUrl: envUrl("WWW_URL", "https://www.marketnarrative.in"),
   adminUrl: envUrl("ADMIN_URL", "https://admin.marketnarrative.in"),
   tradeUrl: envUrl("TRADE_URL", "https://trade.marketnarrative.in"),

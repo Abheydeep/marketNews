@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-19",
-  "title": "Nifty overnight: +0.37% — gap-up bias Shape Bank Nifty..",
+  "title": "India Gains Ground in Energy Transition Readiness, Boosts Market Sentiment",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-22T10:28:28.568Z",
   "dailyLead": {
@@ -12894,5 +12894,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-19.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Shape Bank Nifty..",
+    "correctedTitle": "India Gains Ground in Energy Transition Readiness, Boosts Market Sentiment",
+    "correctedAt": "2026-07-01T15:43:13.378Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

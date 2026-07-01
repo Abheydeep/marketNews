@@ -57,7 +57,7 @@ async function main() {
   record("home returns 200 and an H1", Boolean(homeH1), `h1="${homeH1?.slice(0, 60)}"`);
   record("home has canonical", /<link rel="canonical"\s+href="https:\/\/[^"]+"\s*\/?>/i.test(homeHtml));
   record("home has JSON-LD", /<script[^>]+type="application\/ld\+json"/i.test(homeHtml));
-  record("home has og:image ≥ 1200x675 hint", /og:image:(width|height)/i.test(homeHtml) || /og-card-1200x675/i.test(homeHtml));
+  record("home has 1200x630 social-image metadata", /og:image:width[^>]*1200/i.test(homeHtml) && /og:image:height[^>]*630/i.test(homeHtml));
 
   // 2. Sitemap freshness — newest brief must be in sitemap
   const sitemapRes = await getOk(`${SITE_ORIGIN}/sitemap.xml`);

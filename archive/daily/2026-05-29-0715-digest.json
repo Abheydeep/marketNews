@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-29",
-  "title": "Crude / energy risk Support Opening Range",
+  "title": "Coal India Price Movement Impacts Nifty, Indian Stock Market Sentiment",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-29T05:58:59.865Z",
   "dailyLead": {
@@ -11334,5 +11334,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-29.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Support Opening Range",
+    "correctedTitle": "Coal India Price Movement Impacts Nifty, Indian Stock Market Sentiment",
+    "correctedAt": "2026-07-01T15:42:56.173Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

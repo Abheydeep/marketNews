@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-26",
-  "title": "Crude / energy risk Tests Risk Appetite",
+  "title": "Indian stock market stays cautious as Brent crude oil prices ease",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-26T09:44:21.680Z",
   "dailyLead": {
@@ -10451,5 +10451,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-26.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Indian stock market stays cautious as Brent crude oil prices ease",
+    "correctedAt": "2026-07-01T15:43:13.642Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

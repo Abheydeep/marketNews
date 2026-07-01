@@ -8,9 +8,15 @@ flowchart TD
   PagesWorkflow --> Digest
 
   Digest["out/daily or archive digest"] --> Load["publish-site loadSourceDigest"]
+  Registry["public-page-registry: www origin, title, nav and social policy"] --> SharedShell["pageShell owns public document chrome and metadata"]
   RuntimeAssets["out/vercel/assets/og generated images"] --> AssetCopy["copy assets into out/site/assets"]
+  Digest --> SocialCards["deterministic social-card SVG templates"]
+  SocialCards --> Sharp["sharp rasterizes 1200x630 PNG cards"]
+  Sharp --> AssetCopy
   Load --> Redact["redacted public payload"]
   Redact --> Pages["render public pages"]
+  Registry --> Pages
+  SharedShell --> Pages
   Pages --> Home["/ archive homepage"]
   Pages --> Dated["/DDmonYYYY/ and trading-guide"]
   Pages --> Latest["/latest/ and /latest/trading-guide/ shell"]
@@ -36,7 +42,7 @@ flowchart TD
   VercelBuild --> Artifact["Vercel public artifact"]
   Artifact --> Deploy["production deploy"]
   Deploy --> Smoke["reliability smoke"]
-  Smoke --> Live["marketnarrative.in"]
+  Smoke --> Live["www.marketnarrative.in"]
 
   Guard -->|copy violation| Block["block artifact"]
   Smoke -->|failure| Incident["debug via structured logs"]

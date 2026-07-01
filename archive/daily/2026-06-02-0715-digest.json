@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-02",
-  "title": "Nifty overnight: -0.31% — gap-down bias Shape Opening Range",
+  "title": "Brent Crude Movements to Influence Indian Stock Market, Nifty Outlook",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-02T06:24:45.416Z",
   "dailyLead": {
@@ -11958,5 +11958,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-02.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: -0.31% — gap-down bias Shape Opening Range",
+    "correctedTitle": "Brent Crude Movements to Influence Indian Stock Market, Nifty Outlook",
+    "correctedAt": "2026-07-01T15:42:59.966Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

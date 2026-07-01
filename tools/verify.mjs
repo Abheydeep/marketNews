@@ -51,6 +51,7 @@ import "./html-utils.test.mjs";
 import "./http.test.mjs";
 import "./chart-svg.test.mjs";
 import "./architecture-guard.test.mjs"; import "./content-guardrails.test.mjs"; import "./public-page-contract.test.mjs";
+import "./concurrency.test.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const results = [];
 const FORBIDDEN_PUBLIC_READTHROUGH_PHRASES = [
@@ -1997,10 +1998,10 @@ await test("multibagger public page is expandable and public-safe", () => {
   assertPublicFinancePageIntegrity("multibagger public page", html, [/Nifty|stock|equities|multibagger/i, /Research Method/i]);
   assert.ok(html.includes("Market Narrative Multibagger Portfolio"));
   assert.ok(html.includes("Market Narrative Research"));
-  assert.ok(html.includes("Public Briefing"));
+  assert.ok(html.includes("Latest briefing"));
   assert.ok(html.includes("Trading Guide"));
   assert.ok(html.includes("Multibagger Portfolio"));
-  assert.ok(html.includes('class="tab-link active" aria-current="page">Portfolio'));
+  assert.ok(html.includes('href="/multibagger/" aria-current="page">Portfolio'));
   assert.ok(html.includes('href="/about/">About</a>'));
   assert.ok(html.includes("How to read this page"));
   assert.ok(html.includes("Start with the live model, then open details only when you need evidence."));
@@ -2206,7 +2207,7 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   assertPublicBriefingCopy("sanitized legacy archive", JSON.stringify(sanitized));
   assert.equal(
     sanitized.news[0].indiaImpact,
-    "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the opening range."
+    "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the first-hour range."
   );
 });
 
@@ -2501,7 +2502,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("archiveSourcePreviewHtml"));
   assert.ok(publisher.includes("assertNewDigestSourceIntegrity"));
   assert.ok(publisher.includes("archiveChips"));
-  assert.ok(publisher.includes("Nifty Today Analysis - Pre-Market Briefing for Nifty & Bank Nifty | Market Narrative"));
+  assert.ok(publisher.includes("Pre-Market Briefing for Indian Traders"));
   assert.ok(publisher.includes("homepageSeoSectionHtml"));
   assert.ok(publisher.includes("homepageFaqItems"));
   assert.ok(publisher.includes("faqPageJsonLd"));
@@ -2517,8 +2518,8 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes('join(siteDir, "contact")'));
   assert.ok(publisher.includes('join(siteDir, "privacy")'));
   assert.ok(publisher.includes('join(siteDir, "terms")'));
-  assert.ok(publisher.includes("FII DII Data Today - Institutional Flow & F&O Positioning"));
-  assert.ok(publisher.includes("India Market Statistics Today - Nifty Breadth & Health Score"));
+  assert.ok(publisher.includes("FII/DII Money Flow"));
+  assert.ok(publisher.includes("Market Statistics"));
   // Workflow strip updated in redesign
   assert.ok(publisher.includes("Recent briefings"), "homepage must have Recent briefings section heading");
   assert.ok(publisher.includes("recent-archive-link"), "homepage must have recent-archive-link elements");
@@ -2981,7 +2982,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("application/ld+json"));
   assert.ok(publicHtml.body.includes('glass-v2'));
   assert.ok(publicHtml.body.includes("data-source-url"));
-  assert.ok(publicHtml.body.includes("Public Briefing"));
+    assert.ok(publicHtml.body.includes("Latest briefing"));
   assert.ok(publicHtml.body.includes("Trading Guide"));
   assert.ok(publicHtml.body.includes("Portfolio"));
   assert.ok(!publicHtml.body.includes("Briefing Archive"));
@@ -3204,7 +3205,7 @@ await test("demo app serves public and admin flows without external packages", a
   const multibaggerHtml = await app.request("GET", "/multibagger/");
   assertPublicFinancePageIntegrity("demo multibagger page", multibaggerHtml.body, [/Research Method/i, /KPEL/i]);
   assert.ok(multibaggerHtml.body.includes("Market Narrative Multibagger Portfolio"));
-  assert.ok(multibaggerHtml.body.includes("Public Briefing"));
+  assert.ok(multibaggerHtml.body.includes("Latest briefing"));
   assert.ok(multibaggerHtml.body.includes("Trading Guide"));
   assert.ok(multibaggerHtml.body.includes('aria-current="page">Portfolio'));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);

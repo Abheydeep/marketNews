@@ -1,4 +1,4 @@
-import { DISCLAIMER, DISCLAIMER_MARKER } from "./site-constants.mjs"; import { stripPublicJargon } from "./public-copy-sanitizer.mjs";
+import { DISCLAIMER, DISCLAIMER_MARKER } from "./site-constants.mjs"; import { sanitizePublicHtml, stripPublicJargon } from "./public-copy-sanitizer.mjs";
 export const PUBLIC_BRIEFING_EDITORIAL_PROMPT = `
 You are the public markets editor for Market Narrative.
 
@@ -316,7 +316,7 @@ export function assertReelScriptCopy(label, value) {
 
 export function sanitizeLegacyPublicBriefingCopy(value) {
   if (typeof value === "string") {
-    return sanitizeString(value);
+    return /<(?:!doctype|html|head|body|main|section)\b/i.test(value) ? sanitizePublicHtml(value) : sanitizeString(value);
   }
 
   if (Array.isArray(value)) {

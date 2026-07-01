@@ -4,6 +4,8 @@ import { indicesLiveScript } from "./indices-live.mjs";
 import { indicesChartScript } from "./indices-chart.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
+import { marketSessionClientScript } from "./market-session-client.mjs";
+import { socialCardUrl } from "./public-page-registry.mjs";
 
 export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
   const tickerItems = [
@@ -37,28 +39,22 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
     ${indicesPageBody(digest)}
     <section class="seo-context" aria-label="How to use the indices board" style="border-top:1px solid rgba(148, 163, 184, 0.22); display:grid; gap:16px; grid-template-columns:repeat(2,1fr); margin:34px 0 0; padding-top:22px;">
       <div><h2>What this board tracks</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div>
-      <div><h2>How traders use it before open</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Use the board to separate overnight risk appetite from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div>
+      <div><h2>How traders use it before open</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Use the board to separate overnight willingness to take risk from India confirmation: US close for sentiment, Asia for handoff, GIFT Nifty for gap context, Bank Nifty for confirmation, and crude or rupee for macro pressure.</p></div>
     </section>
     <p class="idx-layout-footer-note">${DISCLAIMER}</p>
   </div>
-  <div class="idx-m" id="idx-m" onclick="if(e=event,e.target===this)this.classList.remove('open')">
-    <div class="idx-panel">
-      <button class="idx-close" onclick="document.getElementById('idx-m').classList.remove('open')" aria-label="Close">×</button>
+  <div class="idx-m" id="idx-m" role="dialog" aria-modal="true" aria-labelledby="idx-name" aria-hidden="true">
+    <div class="idx-panel" tabindex="-1">
+      <button type="button" class="idx-close" data-dialog-close aria-label="Close index chart">×</button>
       <small id="idx-sym" style="display:block;margin-bottom:4px;color:var(--muted-idx);font-weight:900;letter-spacing:0.05em;"></small>
       <h3 id="idx-name" style="margin:0 0 6px;font-size:22px"></h3>
       <strong id="idx-val" class="move" style="display:block;font-size:16px;margin-bottom:12px"></strong>
+      <p id="idx-ctx" style="color:var(--muted-idx);font-size:12px;line-height:1.5;margin:0 0 12px;"></p>
+      <p id="idx-proxy-note" style="display:none;color:var(--muted-idx);font-size:11px;line-height:1.5;"></p>
       
       <!-- Timeframe Tabs -->
       <div class="idx-modal-tabs" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none;">
-        <button class="idx-tab-btn active" data-range="1d">1D</button>
-        <button class="idx-tab-btn" data-range="5d">5D</button>
-        <button class="idx-tab-btn" data-range="1mo">1M</button>
-        <button class="idx-tab-btn" data-range="3mo">3M</button>
-        <button class="idx-tab-btn" data-range="6mo">6M</button>
-        <button class="idx-tab-btn" data-range="1y">1Y</button>
-        <button class="idx-tab-btn" data-range="3y">3Y</button>
-        <button class="idx-tab-btn" data-range="5y">5Y</button>
-        <button class="idx-tab-btn" data-range="max">MAX</button>
+        ${["1d", "5d", "1mo", "3mo", "6mo", "1y", "3y", "5y", "max"].map((range, index) => `<button type="button" class="idx-tab-btn${index === 0 ? " active" : ""}" data-range="${range}">${range === "1mo" ? "1M" : range === "3mo" ? "3M" : range === "6mo" ? "6M" : range.toUpperCase()}</button>`).join("")}
       </div>
 
       <!-- Live Chart Area -->
@@ -76,64 +72,21 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
           <span style="display:block;font-size:10px;color:var(--muted-idx);font-weight:900;letter-spacing:0.05em;text-transform:uppercase;">Range Low</span>
           <strong id="idx-stat-min" style="font-size:16px;color:#fff;">—</strong>
         </div>
+        <div>
+          <span style="display:block;font-size:10px;color:var(--muted-idx);font-weight:900;letter-spacing:0.05em;text-transform:uppercase;">Range Change</span>
+          <strong id="idx-stat-chg" style="font-size:16px;">—</strong>
+        </div>
       </div>
       
       <!-- Market Open Countdown (Tier 4 / item 30) -->
-      <div id="idx-countdown-wrap" style="margin-top:14px;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.14);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:between;">
+      <div id="idx-countdown-wrap" style="margin-top:14px;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.14);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;">
         <span id="idx-countdown-status" style="font-size:11px;color:#cffafe;font-weight:800;letter-spacing:0.02em;">Pre-market Open in progress</span>
         <strong id="idx-countdown-clock" style="font-family:monospace;font-size:14px;color:#22d3ee;">00:00:00</strong>
       </div>
     </div>
   </div>
 
-  <script>
-    const prevPrices = {};
-    let lastSuccess = Date.now();
-    
-    function getPollIntervalMs() {
-      const date = new Date();
-      const utc = date.getTime() + date.getTimezoneOffset() * 60000;
-      const ist = new Date(utc + 3600000 * 5.5);
-      const day = ist.getDay();
-      const hour = ist.getHours();
-      const min = ist.getMinutes();
-      if (day === 0 || day === 6) return 300000; // 5m weekends
-      if (hour === 9 && min >= 0 && min <= 15) return 15000; // 15s pre-market
-      if (hour >= 9 && hour < 16) return 30000; // 30s live market
-      return 120000; // 2m offline
-    }
-
-    function formatChangeStr(close, prev, pct) {
-      if (!close || !prev) return "—";
-      const diff = close - prev;
-      const sign = diff >= 0 ? "+" : "";
-      return sign + diff.toFixed(2) + " (" + (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%)";
-    }
-
-    function getHeatClass(pct) {
-      if (pct > 2.0) return "heat-max-pos";
-      if (pct > 0.8) return "heat-mid-pos";
-      if (pct > 0.05) return "heat-min-pos";
-      if (pct < -2.0) return "heat-max-neg";
-      if (pct < -0.8) return "heat-mid-neg";
-      if (pct < -0.05) return "heat-min-neg";
-      return "heat-flat";
-    }
-
-    function updateCountdown() {
-      const el = document.getElementById("idx-countdown-clock"), statusEl = document.getElementById("idx-countdown-status");
-      if (!el || !statusEl) return;
-      const now = new Date(), utc = now.getTime() + now.getTimezoneOffset() * 60000, ist = new Date(utc + 3600000 * 5.5), day = ist.getDay();
-      if (day === 0 || day === 6) { statusEl.textContent = "Market is Closed"; el.textContent = "Weekend"; return; }
-      const hour = ist.getHours(), min = ist.getMinutes();
-      if (hour * 60 + min >= 540) { statusEl.textContent = "Market is Open"; el.textContent = "00:00:00"; return; }
-      const target = new Date(ist); target.setHours(9, 0, 0, 0);
-      const diff = target - ist, h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
-      el.textContent = String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
-      statusEl.textContent = "Pre-market Open in progress";
-    }
-    setInterval(updateCountdown, 1000); updateCountdown();
-  </script>
+  ${marketSessionClientScript({ clockId: "idx-countdown-clock", statusId: "idx-countdown-status" })}
   <script>
     function openIndexHash(){const id=window.location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(el?.tagName==="BUTTON")el.click();}window.addEventListener("hashchange",openIndexHash);openIndexHash();
   </script>
@@ -163,7 +116,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
     title: "Global Indices Watch | Market Narrative",
     description: "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.",
     canonicalUrl: `${siteOrigin}/indices/`,
-    ogImage: `${siteOrigin}/og-card.svg`,
+    ogImage: socialCardUrl("indices", siteOrigin),
     head,
     bodyClass: "has-btb",
     activeHref: "/indices/",

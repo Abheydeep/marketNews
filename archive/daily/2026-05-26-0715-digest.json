@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-26",
-  "title": "Bank Nifty breadth Support Opening Range",
+  "title": "Taiwan Overtakes India as World's 5th Largest Market; Nifty IT Weighs",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-26T05:51:24.476Z",
   "dailyLead": {
@@ -11126,5 +11126,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-26.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Support Opening Range",
+    "correctedTitle": "Taiwan Overtakes India as World's 5th Largest Market; Nifty IT Weighs",
+    "correctedAt": "2026-07-01T15:43:10.601Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -4,11 +4,12 @@ import { fileURLToPath } from "node:url";
 import { escapeHtml } from "./html-utils.mjs";
 import { log } from "./logger.mjs";
 import { pageShell } from "./page-shell.mjs";
+import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const archiveDir = join(rootDir, "archive", "daily");
 const siteDir = join(rootDir, "out", "site");
-const siteOrigin = process.env.SITE_ORIGIN ?? "https://www.marketnarrative.in";
+const siteOrigin = publicSiteOrigin();
 
 function fmtDate(iso) {
   if (!iso) return "";
@@ -114,10 +115,10 @@ q.addEventListener('input',filter);tag.addEventListener('change',filter);filter(
 </script>
 </section>`;
   return pageShell({
-    title: "All Past Briefings — Market Narrative",
+    title: brandedTitle("Archive"),
     description: "Full archive of Market Narrative daily pre-market briefings for Nifty, Bank Nifty, and India equity traders.",
     canonicalUrl: `${siteOrigin}/archive/`,
-    ogImage: `${siteOrigin}/og-card.svg`,
+    ogImage: socialCardUrl("archive", siteOrigin),
     head,
     bodyClass: "archive-page has-btb",
     activeHref: "/archive/",

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-06",
-  "title": "Global tech breadth Lift Risk Appetite",
+  "title": "Ford's EV push sparks optimism for Nifty Auto stocks amid global slowdown",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-06T15:29:11.141Z",
   "dailyLead": {
@@ -9947,5 +9947,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-06.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Global tech breadth Lift Risk Appetite",
+    "correctedTitle": "Ford's EV push sparks optimism for Nifty Auto stocks amid global slowdown",
+    "correctedAt": "2026-07-01T15:41:58.873Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

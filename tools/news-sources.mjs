@@ -3,6 +3,7 @@ import { log } from "./logger.mjs";
 import { articleThumbnailMeta } from "./source-thumbnails.mjs";
 import { isLivePriceTracker, triageArticlesWithLLM } from "./article-triage.mjs";
 import { isPulseMarketCandidate } from "./pulse-candidate-filter.mjs";
+import { mapWithConcurrency } from "./limited-concurrency.mjs";
 
 export const NEWS_DATA_MODES = new Set(["live", "fixture"]);
 
@@ -271,24 +272,27 @@ export async function fetchLiveNewsArticles(date, options = {}) {
   const fetcher = options.fetcher ?? fetch;
   const isPulseMode = process.env.PULSE_MODE === "true" || options.pulseMode === true;
   const activeFeeds = isPulseMode ? LIVE_FEEDS.filter(f => f.sourceId === "zerodha-pulse") : LIVE_FEEDS;
-  const feedResults = [];
-  for (const feed of activeFeeds) {
+  const fetchConcurrency = Math.max(1, Math.min(12, Number(options.newsFetchConcurrency ?? process.env.NEWS_FETCH_CONCURRENCY ?? 6) || 6));
+  const fetchStarted = Date.now();
+  log.info("news source fetch start", { feeds: activeFeeds.length, concurrency: fetchConcurrency });
+  const feedGroups = await mapWithConcurrency(activeFeeds, fetchConcurrency, async (feed) => {
+    const rows = [];
     try {
       if (feed.type === "rss") {
         const xml = await fetchText(feed.url, fetcher);
-        feedResults.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, feed, item)));
+        rows.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.sourceId === "zerodha-pulse" && feed.type === "html-index") {
         const html = await fetchText(feed.url, fetcher);
-        feedResults.push(...parsePulseHtmlItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
+        rows.push(...parsePulseHtmlItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.type === "html-index") {
         const html = await fetchText(feed.url, fetcher);
-        feedResults.push(...parseHtmlIndexItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
+        rows.push(...parseHtmlIndexItems(html, feed.url).map((item) => normalizeLiveArticle(date, feed, item)));
       } else if (feed.type === "moneycontrol-source-page") {
         const html = await fetchText(feed.url, fetcher);
         const moneycontrolFeeds = moneycontrolFeedUrls(html).slice(0, 6);
         for (const rssUrl of moneycontrolFeeds) {
           const xml = await fetchText(rssUrl, fetcher);
-          feedResults.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, {
+          rows.push(...parseRssItems(xml).map((item) => normalizeLiveArticle(date, {
             ...feed,
             sourceName: moneycontrolSourceName(rssUrl),
             sourceId: `moneycontrol-${slugify(moneycontrolSourceName(rssUrl))}`,
@@ -296,24 +300,22 @@ export async function fetchLiveNewsArticles(date, options = {}) {
           }, item)));
         }
       }
+      return rows;
     } catch (error) {
-      if (options.strictFetch) {
-        throw error;
-      }
+      if (options.strictFetch) throw error;
       log.warn("news source skipped", { sourceName: feed.sourceName, error: error.message });
+      return [];
     }
-  }
-  
+  });
+  const feedResults = feedGroups.flat();
+  log.info("news source fetch complete", { feeds: activeFeeds.length, articles: feedResults.length, durationMs: Date.now() - fetchStarted });
   let verifiedArticles = dedupeArticles(feedResults)
     .filter((article) => sourceUrlLooksArticleLevel(article.sourceUrl));
-    
   verifiedArticles = verifiedArticles.filter((article) => articleIsFreshForDigest(article, date, isPulseMode));
-
   if (!isPulseMode) {
     const preTriage = selectDiverseArticles(prioritizeDigestWindowArticles(verifiedArticles, date), 100);
     verifiedArticles = await triageArticlesWithLLM(preTriage, options);
   }
-
   let selectedArticles;
   if (isPulseMode) {
     const pulseCandidates = selectDiverseArticles(

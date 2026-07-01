@@ -1,12 +1,13 @@
 import { log } from "../../tools/logger.mjs";
 import { isGeneralEditionDate } from "../../tools/market-calendar.mjs";
 import { fetchWithRetry } from "../../tools/http.mjs";
+import { publicSiteOrigin } from "../../tools/public-page-registry.mjs";
 
 const OWNER = "Abheydeep";
 const REPO = "marketNews";
 const WORKFLOW_ID = "pages.yml";
 const DISPATCH_TIMEOUT_MS = Number(process.env.GITHUB_DISPATCH_TIMEOUT_MS ?? 10000);
-const SITE_ORIGIN = process.env.PUBLIC_SITE_ORIGIN || "https://marketnarrative.in";
+const SITE_ORIGIN = publicSiteOrigin();
 const ALERT_MINUTES = { "07:15": 450, "08:00": 510 };
 // Past these IST minutes the on-time publish window has closed (scheduled time +
 // 60-min cutoff), so a catch-up dispatch must explicitly allow a late publish or

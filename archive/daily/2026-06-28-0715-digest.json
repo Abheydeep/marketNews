@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-28",
-  "title": "Crude / energy risk Tests Risk Appetite",
+  "title": "Brent crude drop cools India stock market's oil-linked sector pressure",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-28T06:25:34.648Z",
   "dailyLead": {
@@ -8507,5 +8507,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-28.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Brent crude drop cools India stock market's oil-linked sector pressure",
+    "correctedAt": "2026-07-01T15:43:13.670Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

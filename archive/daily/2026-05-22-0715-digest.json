@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-22",
-  "title": "Nifty overnight: +0.45% — gap-up bias Support Opening Range",
+  "title": "Nifty, Bank Nifty Gains as Metal Stocks, Banks Lead Market Action",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-22T05:51:09.747Z",
   "dailyLead": {
@@ -11018,5 +11018,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-22.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.45% — gap-up bias Support Opening Range",
+    "correctedTitle": "Nifty, Bank Nifty Gains as Metal Stocks, Banks Lead Market Action",
+    "correctedAt": "2026-07-01T15:42:10.780Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-11",
-  "title": "Currency pressure Support Opening Range",
+  "title": "Rising yields weigh on Nifty as Powell's inflation battle intensifies",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-11T04:58:49.062Z",
   "dailyLead": {
@@ -8394,5 +8394,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-11.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Currency pressure Support Opening Range",
+    "correctedTitle": "Rising yields weigh on Nifty as Powell's inflation battle intensifies",
+    "correctedAt": "2026-07-01T15:41:59.834Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

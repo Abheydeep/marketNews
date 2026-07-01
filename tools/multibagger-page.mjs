@@ -5,21 +5,24 @@ import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyC
 import { siteThemeCss } from "./site-theme.mjs";
 import { siteHeaderHtml, siteHeaderCss, siteFooterHtml, siteFooterCss } from "./site-chrome.mjs";
 import { multibaggerState } from "./multibagger-data.mjs";
+import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
+import { sanitizePublicHtml } from "./public-copy-sanitizer.mjs";
+import { legacyPublicPageShell } from "./legacy-public-shell.mjs";
 
-const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const siteOrigin = publicSiteOrigin();
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? "https://api.marketnarrative.in";
 
 export function multibaggerPage(state = multibaggerState(), options = {}) {
   const serializedState = JSON.stringify(state).replaceAll("<", "\\u003c");
-  const pageTitle = "Market Narrative | Multibagger Model Tracker";
+  const pageTitle = brandedTitle("Multibagger Model Tracker");
   const modelCount = state.holdings?.length ?? 0;
   const pageDescription = "A public Market Narrative research model tracking a normalized Rs 5 lakh Indian equities baseline, methodology, investor discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
-  const previewImageUrl = `${siteOrigin}/og-card.svg`;
+  const previewImageUrl = socialCardUrl("portfolio", siteOrigin);
   const latestBriefingHref = absoluteHref(options.latestBriefingPath ?? "/", siteOrigin);
   const tradingGuideHref = `${latestBriefingHref.replace(/#.*$/, "").replace(/\/?$/, "/")}trading-guide/`;
-  return `<!DOCTYPE html>
+  const renderedPage = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -45,10 +48,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <title>${escapeHtml(pageTitle)}</title>
   <script type="application/ld+json">${jsonLdPayload(multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount))}</script>
   <style>
-    ${siteThemeCss()}
-    ${siteHeaderCss()}
-    ${siteFooterCss()}
-
     * { box-sizing: border-box; }
 
     html, body { overflow-x: hidden; }
@@ -1542,23 +1541,15 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         padding: 16px;
       }
     }
-    ${bottomTabBarCss()}
-    ${mobileTypographyCss()}
     ${proPolishCss()}
   </style>
 </head>
 <body class="glass-v2 has-btb">
-  ${siteHeaderHtml("/multibagger/", {
-    navItems: [
-      { href: latestBriefingHref, label: "Public Briefing" },
-      { href: tradingGuideHref, label: "Trading Guide" },
-      { href: "/multibagger/", label: "Portfolio", isActive: true },
-      { href: "/about/", label: "About" }
-    ]
-  })}
+  <a class="mn-skip" href="#mn-main">Skip to content</a>
+  ${siteHeaderHtml("/multibagger/")}
   <!-- class="tab-link active" aria-current="page">Portfolio -->
 
-  <main class="shell">
+  <main id="mn-main" class="shell">
     <header class="hero">
       <div>
         <p class="eyebrow">Market Narrative Research</p>
@@ -2224,6 +2215,10 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   ${mobileShellScript()}
 </body>
 </html>`;
+  return sanitizePublicHtml(legacyPublicPageShell(renderedPage, {
+    title: pageTitle, description: pageDescription, canonicalUrl, ogImage: previewImageUrl,
+    bodyClass: "glass-v2 has-btb", activeHref: "/multibagger/", mobileActiveKey: "portfolio"
+  }));
 }
 
 export function multibaggerAdminPage(state = multibaggerState()) {

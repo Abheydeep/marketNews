@@ -1,4 +1,6 @@
 flowchart TD
+  Sources["RSS and HTML sources"] --> SourceFetch["bounded source fetch · concurrency 6\nNEWS_FETCH_CONCURRENCY=1..12"]
+  SourceFetch --> Articles
   Articles["candidate articles"] --> Filter["market relevance and garbage filter"]
   Filter --> Score["deterministic scoring"]
   Score --> Shortlist["top 8 lead candidates"]
@@ -18,7 +20,7 @@ flowchart TD
   Articles --> Templates["thematic read-through rules"]
   Templates --> RepeatCheck["same-template repeat detection"]
   RepeatCheck -->|first unique template| DeterministicCopy["rule-based source card copy"]
-  RepeatCheck -->|repeat or generic| EditorialAgent["Editorial enrichment: nvidia/nemotron-3-ultra-550b-a55b\nenable_thinking ON · no budget cap\ntimeout 180s · key: NVIDIA_API_KEY"]
+  RepeatCheck -->|repeat or generic| EditorialAgent["Editorial enrichment: configured NVIDIA model\nbatches of 16 · 50ms request stagger\ntimeout 180s · key: NVIDIA_API_KEY"]
   EditorialAgent --> RetryEditorial["timeout + 429/5xx retry/backoff"]
   RetryEditorial --> Sanitize["sanitizeArticleEditorialPatch"]
   Sanitize -->|valid| Polished["polished card copy"]
@@ -32,8 +34,19 @@ flowchart TD
   DeterministicLead --> Digest
   OgJpeg --> Digest
   OgFallback --> Digest
+  Lead --> ScriptAgent["Long-form script sections\nconfigured NVIDIA model · concurrency 2\nSCRIPT_LLM_CONCURRENCY=1..4"]
+  ScriptAgent --> Digest
   Polished --> SourceLedger["public source ledger"]
   DeterministicCopy --> SourceLedger
   SourceLedger --> CopyGuard["public copy guardrails"]
   CopyGuard -->|pass| Publishable["publishable digest"]
   CopyGuard -->|fail| Stop["fail generation"]
+
+  Archive["committed daily archives"] --> TitleDetector["historical title detector"]
+  TitleDetector -->|flagged| EligibleLead["article-level, non-liveblog source selection"]
+  EligibleLead --> TitleAgent["title-only NVIDIA generation · concurrency 2 · max 2 attempts"]
+  TitleAgent --> TitleValidate["plain-language, grounding, punctuation and relevance validation"]
+  TitleValidate -->|invalid| SourceFallback["sanitized archived-source/context fallback"]
+  TitleValidate -->|valid| Correction["title + titleCorrection metadata"]
+  SourceFallback --> Correction
+  Correction --> Publishable

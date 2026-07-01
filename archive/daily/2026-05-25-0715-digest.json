@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-25",
-  "title": "Nifty overnight: +1.13% — gap-up bias Shape Risk Appetite",
+  "title": "Nifty likely to open firm as pharma leads the charge today",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-25T06:11:51.137Z",
   "dailyLead": {
@@ -11298,5 +11298,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-25.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +1.13% — gap-up bias Shape Risk Appetite",
+    "correctedTitle": "Nifty likely to open firm as pharma leads the charge today",
+    "correctedAt": "2026-07-01T15:42:54.882Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

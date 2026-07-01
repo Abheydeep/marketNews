@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-14",
-  "title": "Crude / energy risk Tests Bank Nifty Open",
+  "title": "Rupee slide amid oil shock to boost OMCs, Nifty stocks today",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-14T04:04:50.661Z",
   "dailyLead": {
@@ -8145,5 +8145,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-14.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Bank Nifty Open",
+    "correctedTitle": "Rupee slide amid oil shock to boost OMCs, Nifty stocks today",
+    "correctedAt": "2026-07-01T15:42:05.841Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

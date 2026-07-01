@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-20",
-  "title": "Bank Nifty breadth Support Opening Range",
+  "title": "Nifty, Sensex Tumble as Auto, Metal Stocks Suffer Heavy Losses",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-20T04:08:42.308Z",
   "dailyLead": {
@@ -668,5 +668,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-20.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Support Opening Range",
+    "correctedTitle": "Nifty, Sensex Tumble as Auto, Metal Stocks Suffer Heavy Losses",
+    "correctedAt": "2026-07-01T15:42:10.721Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-17",
-  "title": "Rates / Fed path Support Opening Range",
+  "title": "Brent crude slips to 3-month low; Indian stocks eye mixed open",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-17T11:01:15.512Z",
   "dailyLead": {
@@ -601,5 +601,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-17.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Rates / Fed path Support Opening Range",
+    "correctedTitle": "Brent crude slips to 3-month low; Indian stocks eye mixed open",
+    "correctedAt": "2026-07-01T15:43:12.150Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { sourceUrlLooksArticleLevel } from "./news-sources.mjs";
 import { DISCLAIMER_MARKER } from "./site-constants.mjs";
 const config = {
-  publicUrl: envUrl("PUBLIC_URL", "https://marketnarrative.in"),
+  publicUrl: envUrl("PUBLIC_URL", "https://www.marketnarrative.in"),
   wwwUrl: envUrl("WWW_URL", "https://www.marketnarrative.in"),
   adminUrl: envUrl("ADMIN_URL", "https://admin.marketnarrative.in"),
   tradeUrl: envUrl("TRADE_URL", "https://trade.marketnarrative.in"),
@@ -64,7 +64,7 @@ await check("public host loads about page", async () => {
 await check("public host loads subscribe page", async () => {
   const response = await fetchText(`${config.publicUrl}/subscribe/`);
   assert.equal(response.status, 200);
-  assert.match(response.body, /Join The Pre-Market Brief|Join daily email/i);
+  assert.match(response.body, /Subscribe \| Market Narrative|Join daily email/i);
   assert.match(response.body, /method="POST"/i);
   assert.match(response.body, /name="_honey"/i);
   assert.match(response.body, /class="sent-note" hidden/i);

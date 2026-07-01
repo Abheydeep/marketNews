@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-05-15",
-  "title": "Crude / energy risk Shape Risk Appetite",
+  "title": "Mauritius Fund buys 5 crore shares of Davangere Sugar via bulk deal",
   "status": "PUBLISHED",
   "generatedAt": "2026-05-15T14:21:19.500Z",
   "dailyLead": {
@@ -11461,5 +11461,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-15.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Risk Appetite",
+    "correctedTitle": "Mauritius Fund buys 5 crore shares of Davangere Sugar via bulk deal",
+    "correctedAt": "2026-07-01T15:42:11.984Z",
+    "method": "source_headline_fallback",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-03",
-  "title": "Nifty overnight: -1.25% — gap-down bias Shape Risk Appetite",
+  "title": "Rising Brent Crude Pressures India Stocks Amid Global Market Uncertainty Today",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-03T06:33:34.644Z",
   "dailyLead": {
@@ -12214,5 +12214,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-03.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: -1.25% — gap-down bias Shape Risk Appetite",
+    "correctedTitle": "Rising Brent Crude Pressures India Stocks Amid Global Market Uncertainty Today",
+    "correctedAt": "2026-07-01T15:43:06.326Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-04",
-  "title": "Crude / energy risk Shape Opening Range",
+  "title": "US-India Trade Deal Nears Completion, Nifty Set for Positive Reaction",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-04T06:27:18.084Z",
   "dailyLead": {
@@ -12042,5 +12042,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-04.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Opening Range",
+    "correctedTitle": "US-India Trade Deal Nears Completion, Nifty Set for Positive Reaction",
+    "correctedAt": "2026-07-01T15:43:10.683Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

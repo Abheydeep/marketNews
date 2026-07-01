@@ -2,9 +2,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { log } from "./logger.mjs";
+import { publicSiteOrigin } from "./public-page-registry.mjs";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const siteOrigin = process.env.PUBLIC_SITE_ORIGIN ?? "https://marketnarrative.in";
+const siteOrigin = publicSiteOrigin();
 
 export function ogImageUrl(fileName, origin = siteOrigin) {
   return `${origin.replace(/\/+$/, "")}/assets/og/${basename(fileName)}`;

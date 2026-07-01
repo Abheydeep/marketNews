@@ -157,6 +157,7 @@ test("architecture-guard: strict code pattern enforcement", async () => {
     if (hasLocalPublicChromeDefinition(publicRendererSource(content, normPath)) && !isSharedChromeOwner(normPath)) {
       throw new Error(`File ${normPath} defines shared public chrome CSS. Use tools/site-chrome.mjs or tools/mobile-shell.mjs.`);
     }
+    if (content.includes("https://marketnarrative.in")) throw new Error(`File ${normPath} hardcodes the apex public host. Use publicSiteOrigin() so public metadata stays on www.`);
   }
 });
 

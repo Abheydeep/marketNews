@@ -9,6 +9,8 @@ import { fetchGiftNiftySnapshot } from "./nse-ix.mjs";
 import { isMarketUpdateDate } from "./market-calendar.mjs";
 import { resolveNewsArticles } from "./news-sources.mjs";
 import { fetchWithRetry } from "./http.mjs";
+import { mapWithConcurrency } from "./limited-concurrency.mjs";
+import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
 
 const NIM_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 const NIM_MODEL = process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
@@ -110,6 +112,7 @@ function cleanAIOutput(text) {
 
 async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, themes, setups, articles, overallSentiment, dailyLead }) {
   if (!process.env.NVIDIA_API_KEY) return null;
+  const scriptStarted = Date.now();
   const skills = await loadSkills();
   // Closed-market (holiday/Sunday) editions are a general market update, not a
   // pre-market brief — keep the copy from referencing the open or trading the session.
@@ -147,36 +150,26 @@ ${topArticles}`;
   const systemPrompt = skills || "You are the Market Narrative daily briefing agent for Indian retail traders.";
   const noWrap = "Output ONLY the formatted content. Do NOT write any introduction, preamble, or sign-off. Start your response directly with the first line of the format.";
 
-  // Sequential calls — parallel hits NVIDIA NIM rate limits and silently drops 2 of 3.
-  // NIM now uses streaming: timeoutMs only guards the connection (first-byte), not the
-  // full generation. If a call returns null after retries, generation fails loudly.
+  // Keep section concurrency bounded: provider probes support two sustained calls, while
+  // requireNim still fails the digest if any section is missing after retries.
   const requireNim = async (label, prompt, opts) => {
     const result = await nimCall(systemPrompt, prompt, opts);
     if (!result) throw new Error(`NIM returned empty response for section: ${label}`);
     return result;
   };
 
-  const onePageSummary = await requireNim(
-    "onePageSummary",
-    `${noWrap}\n\nWrite the One-Page Summary. Start directly with "Market Mood:".\nFormat: Market Mood, Global Cues, Narrative Themes (sharp specific titles, not generic labels), Validated Trading Setups, Educational note.\n\n${context}`,
-    { maxTokens: 512 }
+  const sectionTasks = [
+    ["onePageSummary", `${noWrap}\n\nWrite the One-Page Summary. Start directly with "Market Mood:".\nFormat: Market Mood, Global Cues, Narrative Themes (sharp specific titles, not generic labels), Validated Trading Setups, Educational note.\n\n${context}`, { maxTokens: 512 }],
+    ["teleprompterScript", `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\nBANNED WORDS: "VWAP", "breadth", "risk-on", "risk-off", "first-range", "sector breadth validates", "advance-decline", "structural", "accumulation or distribution".\n\n${context}`, { maxTokens: 900 }],
+    ["reelScript", `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | WHAT TO WATCH], [40-52s | BIGGER PICTURE], [52-58s | FOLLOW CTA], [58-60s | CLOSE].\n\nRULES:\n- This is a FINANCIAL NEWS STORY reel, not a trading brief. Zero trading advice, zero entry/exit levels, zero buy/sell calls.\n- Every line must make the viewer want to hear the next line.\n- Find the most counterintuitive or surprising fact in the data — lead with that.\n- Tell a story: connect events as cause → effect → India impact.\n- Numbers only appear after you explain why they matter.\n- Natural Hinglish throughout. Group chat energy, not newsreader.\n- VOICEOVER lines max 12 words each.\n- End CLOSE with: "Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo."\n- If MSCI rebalancing, index reshuffle, or passive fund flows appear in the data — LEAD WITH THAT. It is the most important explainer when markets move without an obvious reason.\n- If monsoon forecast or IMD data appears — include it in WHY INDIA CARES.\n\n${context}`, { maxTokens: 800 }],
+    ["editorialBriefing", `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon whatsoever: do not use "VWAP", "first-range", "breadth", "tradable", "RR", "risk-on", "risk-off", "sector breadth validates", "advance-decline", "structural heft", "accumulation", "distribution" (in the technical sense), or specific index levels/numbers as price targets or support levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`, { maxTokens: 2000 }]
+  ];
+  const sectionConcurrency = Math.max(1, Math.min(4, Number(process.env.SCRIPT_LLM_CONCURRENCY ?? 2) || 2));
+  log.info("long-form generation start", { sections: sectionTasks.length, concurrency: sectionConcurrency });
+  const [onePageSummary, teleprompterScript, reelScript, editorialBriefing] = await mapWithConcurrency(
+    sectionTasks, sectionConcurrency, ([label, prompt, opts]) => requireNim(label, prompt, opts)
   );
-  const teleprompterScript = await requireNim(
-    "teleprompterScript",
-    `${noWrap}\n\nWrite the Teleprompter Script. Start directly with "[OPENING]".\nSections: [OPENING], [GLOBAL CUES], [NARRATIVE THEMES], [NIFTY AND BANK NIFTY VIEW], [VALIDATED SETUPS], [RISK DISCLAIMER].\nMax 20 words per sentence. Calm, confident delivery tone.\nBANNED WORDS: "VWAP", "breadth", "risk-on", "risk-off", "first-range", "sector breadth validates", "advance-decline", "structural", "accumulation or distribution".\n\n${context}`,
-    { maxTokens: 900 }
-  );
-  const reelScript = await requireNim(
-    "reelScript",
-    `${noWrap}\n\nWrite the Reel Script (45–60 sec). Start directly with "[0-03s | HOOK]".\nSections: [0-03s | HOOK], [03-14s | OVERNIGHT STORY], [14-28s | WHY INDIA CARES], [28-40s | WHAT TO WATCH], [40-52s | BIGGER PICTURE], [52-58s | FOLLOW CTA], [58-60s | CLOSE].\n\nRULES:\n- This is a FINANCIAL NEWS STORY reel, not a trading brief. Zero trading advice, zero entry/exit levels, zero buy/sell calls.\n- Every line must make the viewer want to hear the next line.\n- Find the most counterintuitive or surprising fact in the data — lead with that.\n- Tell a story: connect events as cause → effect → India impact.\n- Numbers only appear after you explain why they matter.\n- Natural Hinglish throughout. Group chat energy, not newsreader.\n- VOICEOVER lines max 12 words each.\n- End CLOSE with: "Poora briefing — marketnarrative.in. Roz 7:15 AM. Miss mat karo."\n- If MSCI rebalancing, index reshuffle, or passive fund flows appear in the data — LEAD WITH THAT. It is the most important explainer when markets move without an obvious reason.\n- If monsoon forecast or IMD data appears — include it in WHY INDIA CARES.\n\n${context}`,
-    { maxTokens: 800 }
-  );
-
-  const editorialBriefing = await requireNim(
-    "editorialBriefing",
-    `${noWrap}\n\nWrite the Editorial Briefing.\nSections: [TWO-MINUTE SUMMARY], [DESK NOTE].\n\nRULES for TWO-MINUTE SUMMARY:\n- Exactly 4 paragraphs, one story per paragraph.\n- Each paragraph is 3 to 4 full sentences (roughly 45-70 words), not a one-line note.\n- Structure each paragraph as: what happened -> why it matters for India (name the sectors, stocks, or the rupee it touches) -> what to watch next.\n- Plain, everyday English a non-trader can follow. NO market jargon whatsoever: do not use "VWAP", "first-range", "breadth", "tradable", "RR", "risk-on", "risk-off", "sector breadth validates", "advance-decline", "structural heft", "accumulation", "distribution" (in the technical sense), or specific index levels/numbers as price targets or support levels.\n- Facts and clear cause-and-effect read-throughs. No opinions, no buy/sell/hold/target calls.${closedMarketRule}\n\nRULES for DESK NOTE:\n- An editor's opinion column with a distinct point of view.\n- It can be wrong, that's fine, but it must have a strong narrative.\n- ABSOLUTELY NO trading levels (e.g. no 22,400) and NO trading calls (e.g. no "buy the dip" or "hold VWAP").\n- Focus entirely on market narrative and structural read-throughs.\n\n${context}`,
-    { maxTokens: 2000 }
-  );
+  log.info("long-form generation complete", { sections: sectionTasks.length, concurrency: sectionConcurrency, durationMs: Date.now() - scriptStarted });
 
   const lines = editorialBriefing.split('\n');
   let mode = null;
@@ -337,6 +330,7 @@ export async function buildDigest(date = todayIso(), options = {}) {
     previousDigest: options.previousDigest,
     fetcher: options.fetcher,
     strictFetch: options.strictFetch,
+    newsFetchConcurrency: options.newsFetchConcurrency,
     llmFetcher: options.llmFetcher,
     articleEditorialEnricher: options.articleEditorialEnricher,
     llmArticleEnrichment: options.llmArticleEnrichment,
@@ -1028,7 +1022,8 @@ function normalizeArticleThumbnail(article) {
 
 export function newsArticleJsonLd(digest, options = {}) {
   const canonicalPath = String(digest.canonicalPath || `/${digest.digestDate}/`);
-  const canonicalUrl = `https://marketnarrative.in${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
+  const origin = publicSiteOrigin();
+  const canonicalUrl = `${origin}${canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`}`;
   const description = digest.archiveSummary || digest.deskNote || "Daily Market Narrative pre-market briefing for Nifty, Bank Nifty, global cues, and India read-through.";
   // JSON-LD headline MUST equal the page <h1> (hookTitle) — Google News and the Article
   // rich-result explicitly compare them and will demote mismatched signals. Fall back to
@@ -1036,14 +1031,14 @@ export function newsArticleJsonLd(digest, options = {}) {
   const headline = options.h1Override || digest.title;
   // Real raster ≥ 1200×675 is required for Google News discoverability. SVG OG cards
   // are fine for social but are ignored by the News image picker.
-  const image = digest.ogImageUrl || "https://marketnarrative.in/og-card-1200x675.png";
+  const image = digest.ogImageUrl || socialCardUrl("briefing", origin);
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline,
     alternativeHeadline: digest.title,
     description,
-    image: digest.ogImageUrl ? [image] : [image, "https://marketnarrative.in/og-card.svg"],
+    image: [image],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonicalUrl
@@ -1053,15 +1048,15 @@ export function newsArticleJsonLd(digest, options = {}) {
     author: {
       "@type": "Person",
       name: "Abhey Deep",
-      url: "https://marketnarrative.in/about/"
+      url: `${origin}/about/`
     },
     publisher: {
       "@type": "Organization",
       name: "Market Narrative",
-      url: "https://marketnarrative.in",
+      url: origin,
       logo: {
         "@type": "ImageObject",
-        url: "https://marketnarrative.in/favicon.svg"
+        url: `${origin}/favicon.svg`
       }
     },
     isAccessibleForFree: true,

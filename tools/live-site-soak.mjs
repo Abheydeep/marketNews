@@ -5,7 +5,7 @@ import { join } from "node:path";
 const require = createRequire(import.meta.url);
 const { chromium } = loadPlaywright();
 
-const baseUrl = process.env.MARKET_NEWS_URL ?? "https://marketnarrative.in";
+const baseUrl = process.env.MARKET_NEWS_URL ?? "https://www.marketnarrative.in";
 const cycles = Number.parseInt(process.env.SOAK_CYCLES ?? "5", 10);
 const dailySlug = process.env.MARKET_NEWS_DAILY_SLUG ?? "4may2026";
 const dailyDateLabel = process.env.MARKET_NEWS_DAILY_DATE_LABEL ?? "Mon, 04 May, 2026";

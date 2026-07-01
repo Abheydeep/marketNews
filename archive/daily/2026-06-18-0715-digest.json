@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-18",
-  "title": "Nifty overnight: +0.37% — gap-up bias Weighs On Opening..",
+  "title": "UK inflation steadies, keeping rate-sensitive Indian stocks on cautious watch",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-22T10:27:25.404Z",
   "dailyLead": {
@@ -12798,5 +12798,14 @@
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-18.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Weighs On Opening..",
+    "correctedTitle": "UK inflation steadies, keeping rate-sensitive Indian stocks on cautious watch",
+    "correctedAt": "2026-07-01T15:43:13.559Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

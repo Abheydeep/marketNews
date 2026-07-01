@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-08",
-  "title": "Nifty overnight: -0.68% — gap-down bias Shape Opening Range",
+  "title": "Nifty, stock market outlook influenced by Iran war, oil prices",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-08T07:08:44.954Z",
   "dailyLead": {
@@ -12126,5 +12126,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-08.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: -0.68% — gap-down bias Shape Opening Range",
+    "correctedTitle": "Nifty, stock market outlook influenced by Iran war, oil prices",
+    "correctedAt": "2026-07-01T15:43:10.694Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

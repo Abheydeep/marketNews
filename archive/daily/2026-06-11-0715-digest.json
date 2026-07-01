@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-11",
-  "title": "Crude / energy risk Tests Risk Appetite",
+  "title": "Nifty, stock market watch US-Iran tensions, crude oil surge",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-11T07:44:19.252Z",
   "dailyLead": {
@@ -12172,5 +12172,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-11.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Nifty, stock market watch US-Iran tensions, crude oil surge",
+    "correctedAt": "2026-07-01T15:43:10.753Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

@@ -79,7 +79,7 @@ export function indicesPageBody(digest) {
           }
           const pts = JSON.stringify(cardPoints.map(p => Number(p.close)).filter(Number.isFinite));
           const displayVal = s.closeValue ? s.closeValue.toLocaleString("en-IN", { maximumFractionDigits: 2 }) : "N/A";
-          return `<button class="idx-card ${heatCls}" id="btn-${s.symbol.toLowerCase()}" data-live="${s.symbol}" data-pts="${escapeHtml(pts)}" data-cls="${cls}" data-symbol="${s.symbol}" data-val="${displayVal}" data-name="${escapeHtml(s.name)}" data-change="${escapeHtml(formatChange(s))}" data-ctx="${escapeHtml(getSymbolDescription(s.symbol, s.name))}">
+          return `<button type="button" class="idx-card ${heatCls}" id="btn-${s.symbol.toLowerCase()}" data-live="${s.symbol}" data-pts="${escapeHtml(pts)}" data-cls="${cls}" data-symbol="${s.symbol}" data-val="${displayVal}" data-name="${escapeHtml(s.name)}" data-change="${escapeHtml(formatChange(s))}" data-ctx="${escapeHtml(getSymbolDescription(s.symbol, s.name))}">
             <div class="idx-card-top">
               <div><small>${s.symbol}</small><strong style="display:block;margin-top:2px;">${escapeHtml(s.name)}</strong></div>
               <strong class="idx-card-change ${cls}" data-field="pct">${escapeHtml(pct > 0 ? "+" : "")}${pct.toFixed(2)}%</strong>
@@ -101,7 +101,7 @@ export function indicesPageBody(digest) {
 
   return `${indicesStyles()}
     <div class="idx" data-nifty-close="${niftyPrevClose}">
-      <div id="idx-live-badge" class="idx-live-badge">● Live · updated just now</div>
+      <div id="idx-live-badge" class="idx-live-badge">Briefing snapshot · ${escapeHtml(snapshotTimestamp(digest))}</div>
       <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Analysis</h3>
         <div class="idx-spotlight-price">
@@ -150,7 +150,7 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
 
   return `${indicesStyles()}
     <div class="idx" data-nifty-close="${(nifty.previousClose || nifty.closeValue || 0)}">
-      <div id="idx-live-badge" class="idx-live-badge">● Live · updated just now</div>
+      <div id="idx-live-badge" class="idx-live-badge">Briefing snapshot · ${escapeHtml(snapshotTimestamp(digest))}</div>
       <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Calculator</h3>
         <div class="idx-calc">
@@ -186,4 +186,12 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
         <details class="idx-vix" style="margin-bottom:8px;cursor:pointer;"><summary style="font-weight:800;font-size:14px;outline:none;">How does it predict Nifty open?</summary><p style="color:var(--muted-idx);font-size:13px;line-height:1.6;margin:8px 0 0;">The difference between GIFT Nifty's current price and the Nifty 50's previous close indicates the likely gap open.</p></details>
       </section>
     </div>`;
+}
+
+function snapshotTimestamp(digest) {
+  const value = digest.generatedAt || digest.publishedAt || `${digest.digestDate}T07:15:00+05:30`;
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  }).format(new Date(value)) + " IST";
 }

@@ -141,20 +141,18 @@ export function proPolishCss() {
 /**
  * Returns the bottom-tab-bar HTML for a given active key.
  * activeKey: "archive" | "latest" | "fiidii" | "indices" | "portfolio"
- *   Legacy keys ("guide" → "latest", "about"/"subscribe"/"more" → "archive").
- *   Pages like /about/ and /subscribe/ have no dedicated tab; Home highlights.
+ *   Legacy key "guide" maps to "latest". Routes without a dedicated tab pass
+ *   an empty key so no unrelated destination is announced as current.
  */
 export function bottomTabBarHtml(activeKey) {
   const items = [
     { key: "archive",   href: "/",                    label: "Home",     icon: homeIcon() },
     { key: "latest",    href: "/latest/",             label: "Briefing", icon: briefingIcon() },
-    { key: "fiidii",    href: "/money-flow/fii-dii/", label: "FII DII",  icon: fiiDiiIcon() },
+    { key: "fiidii",    href: "/money-flow/fii-dii/", label: "FII/DII",  icon: fiiDiiIcon() },
     { key: "indices",   href: "/indices/",            label: "Indices",  icon: indicesIcon() },
     { key: "portfolio", href: "/multibagger/",        label: "Portfolio",icon: portfolioIcon() },
   ];
-  const normalizedKey = ["guide"].includes(activeKey) ? "latest"
-    : ["about", "subscribe", "more"].includes(activeKey) ? "archive"
-    : activeKey;
+  const normalizedKey = activeKey === "guide" ? "latest" : activeKey;
   const cells = items.map((item) => {
     const isActive = item.key === normalizedKey;
     const stateAttr = isActive ? ' aria-current="page"' : "";

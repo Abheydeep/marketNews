@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-05",
-  "title": "Crude / energy risk Shape Opening Range",
+  "title": "Global cues like Gift Nifty, Brent crude shape Indian stock market outlook",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-05T06:27:11.326Z",
   "dailyLead": {
@@ -11530,5 +11530,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-05.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Opening Range",
+    "correctedTitle": "Global cues like Gift Nifty, Brent crude shape Indian stock market outlook",
+    "correctedAt": "2026-07-01T15:43:10.658Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }

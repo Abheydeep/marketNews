@@ -1,7 +1,7 @@
 {
   "scriptId": 1,
   "digestDate": "2026-06-10",
-  "title": "Bank Nifty breadth Shape Opening Range",
+  "title": "Gift Nifty Rises, Hints Positive Sentiment for Indian Stock Market Today",
   "status": "PUBLISHED",
   "generatedAt": "2026-06-10T07:05:14.869Z",
   "dailyLead": {
@@ -671,5 +671,14 @@
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-10.webp"
+  },
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Shape Opening Range",
+    "correctedTitle": "Gift Nifty Rises, Hints Positive Sentiment for Indian Stock Market Today",
+    "correctedAt": "2026-07-01T15:43:10.724Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
   }
 }
