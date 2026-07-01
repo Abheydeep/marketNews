@@ -352,7 +352,7 @@ async function enrichPulseArticleWithContent(article, fetcher) {
   return article;
 }
 
-const ENRICH_CONCURRENCY = 4;
+const ENRICH_CONCURRENCY = 16;
 
 async function enrichArticlesWithEditorialLLM(articles, options = {}) {
   const enricher = options.articleEditorialEnricher ?? configuredArticleEditorialEnricher(options);
