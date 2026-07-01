@@ -8,6 +8,7 @@ import { pageShell } from "./page-shell.mjs";
 import { cockpitPage, homepageHeroContent } from "./cockpit-page.mjs";
 import { articleLeadId, dailyLeadForDigest, generateEditorialHeadline, publicSourceSelectionForDigest } from "./core.mjs";
 import { normalizePublicSourceCategory } from "./public-source-category.mjs";
+import { titleForDailyLead } from "./public-lead-title.mjs";
 import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./editorial-guardrails.mjs";
 import { fiiDiiPageBody } from "./fii-dii-page.mjs";
 import { indicesPageHtml } from "./indices-layout.mjs";
@@ -3843,35 +3844,6 @@ function previousSessionDriver(digest) {
     cleanArchiveSentence(digest.themes?.[0]?.summary) ||
     "Global cues and domestic breadth set the tone for the opening range."
   );
-}
-
-function titleForDailyLead(dailyLead, marketUpdate = false) {
-  const text = `${dailyLead?.label || ""} ${dailyLead?.headline || ""} ${dailyLead?.indiaImpact || ""}`.toLowerCase();
-  if (dailyLead?.driverType === "crude" && /\b(iran|hormuz|trump|strike|war|deal)\b/.test(text)) {
-    return marketUpdate ? "Iran Deal Hopes Pull Brent Lower" : "Iran Deal Hopes Pull Brent Below $90";
-  }
-  // Closed-market (holiday/Sunday) editions: general "what's moving markets" titles
-  // with no pre-open framing ("Open", "Opening Range", "morning", "follow-through").
-  if (marketUpdate) {
-    return {
-      crude: "Brent Move Drives India's Market Mood",
-      rates: "Rates Steer The Market Mood",
-      currency: "Currency Pressure In Focus For Indian Markets",
-      tech: "Tech Breadth Drives The Market Mood",
-      banks: "Bank Nifty In Focus For Indian Markets",
-      asia: "Asia Risk Appetite Frames The Market Mood",
-      market: "Market Breadth In Focus For Indian Markets"
-    }[dailyLead.driverType] || `${dailyLead.label || "Market Breadth"} In Focus For Indian Markets`;
-  }
-  return {
-    crude: "Brent Move Sets The Morning Risk",
-    rates: "Rates Shape Opening Range",
-    currency: "Currency Pressure Tests Nifty Open",
-    tech: "Tech Breadth Tests Nifty Follow-Through",
-    banks: "Bank Nifty Breadth Sets The Open",
-    asia: "Asia Risk Appetite Frames Nifty Open",
-    market: "Market Breadth Shapes Nifty Open"
-  }[dailyLead.driverType] || `${dailyLead.label || "Market Breadth"} Shapes Nifty Open`;
 }
 
 function archiveToneClass(digest) {

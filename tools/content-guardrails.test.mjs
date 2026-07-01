@@ -8,6 +8,7 @@ import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
 import { isPulseMarketCandidate } from "./pulse-candidate-filter.mjs";
 import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from "./public-price-reconcile.mjs";
 import { publishCommandEnv } from "./publish-command-env.mjs";
+import { titleForDailyLead } from "./public-lead-title.mjs";
 
 test("content guardrails: deterministic triage removes live price trackers without an LLM", async () => {
   const liveblog = { headline: "Example Share Price Live Updates: Current Price and Market Performance" };
@@ -68,6 +69,15 @@ test("content guardrails: archived publish forwards its source slot across midni
 test("content guardrails: archived publishes do not regenerate the verified headline", async () => {
   const publisher = await readFile("tools/publish-site.mjs", "utf8");
   assert.match(publisher, /if \(publishTargetDigest && !sourceDigestLoadedFromArchive\)/);
+});
+
+test("content guardrails: deterministic crude titles never embed a stale price", () => {
+  const title = titleForDailyLead({
+    driverType: "crude",
+    headline: "Asian markets rise as investors await an Iran deal"
+  });
+  assert.equal(title, "Iran Deal Hopes Put Brent In Focus");
+  assert.doesNotMatch(title, /\$\d/);
 });
 
 test("content guardrails: Pulse selection fallback stays bounded", async () => {
