@@ -9,14 +9,6 @@
   ],
   "cleanUrls": false,
   "trailingSlash": true,
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "marketnarrative.in" }],
-      "destination": "https://www.marketnarrative.in/:path*",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/latest",
