@@ -7521,7 +7521,9 @@ function compactSummaryText(digest) {
       `India angle: ${impact}.`
     ].filter(Boolean).join(" "), 50);
   }
-  const support = digest.dailyLead?.supportSide ? compactSupportClause(digest.dailyLead.supportSide) : "breadth is the confirmation check";
+  const rawSupport = digest.dailyLead?.supportSide || "";
+  const support = rawSupport ? compactSupportClause(rawSupport) : "breadth is the confirmation check";
+  const supportRepeatsImpact = rawSupport && String(digest.dailyLead?.indiaImpact || "").toLowerCase().includes(String(rawSupport).toLowerCase());
   const watchFirst = compactWatchFirstLine(digest);
   const leadText = `${digest.dailyLead?.label || ""} ${digest.dailyLead?.headline || ""} ${digest.dailyLead?.indiaImpact || ""}`.toLowerCase();
   if (/\b(crude|oil|brent|iran|hormuz|trump)\b/.test(leadText)) {
@@ -7548,7 +7550,7 @@ function compactSummaryText(digest) {
       : `Before the open, ${driver.title.toLowerCase()} is the lead read.`,
     watchFirst,
     `India read: ${impact}.`,
-    `Confirmation: ${support}.`
+    supportRepeatsImpact ? "" : `Confirmation: ${support}.`
   ].filter(Boolean).join(" "), 50);
 }
 
@@ -8143,7 +8145,7 @@ function tradingGuideViewHtml(digest, canonicalUrl = "", options = {}) {
             </div>
           </div>
           <h1>${escapeHtml(`Trading Guide: ${digest.title || "Daily Market Plan"}`)}</h1>
-          <p class="hero-subcopy">Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch.</p>
+          <p class="hero-subcopy">Checklist for the open: likely direction, key index levels, when to stand aside, Bank Nifty confirmation, and sector participation.</p>
         </header>
 
         ${guideUrl ? shareRowHtml(guideUrl, `${digest.title} Trading Guide`, "trading guide") : ""}
@@ -8194,8 +8196,8 @@ function openingNerveHtml(digest, options = {}) {
       <div class="opening-nerve-head">
         <div>
           <span class="summary-label">Opening Nerve</span>
-          <h2>What matters before the first range</h2>
-          <p>Use this as the 90-second pre-open read: bias, index gate, Bank Nifty filter, sector nerve, and the condition that tells you to stand down.</p>
+          <h2>What matters in the first 30 minutes</h2>
+          <p>Use this as the 90-second pre-open read: likely direction, key Nifty levels, the Bank Nifty check, sector participation, and when to stand aside.</p>
         </div>
         <span class="trade-bias-pill ${escapeHtml(map.biasClass)}">${escapeHtml(map.bias)}</span>
       </div>
@@ -8206,17 +8208,17 @@ function openingNerveHtml(digest, options = {}) {
           <small>${escapeHtml(map.biasNote)}</small>
         </article>
         <article class="opening-nerve-tile">
-          <span>Nifty gate</span>
+          <span>Key Nifty levels</span>
           <strong>${escapeHtml(openingNiftyGate(map))}</strong>
           <small>Do not let the headline outrun price acceptance.</small>
         </article>
         <article class="opening-nerve-tile">
-          <span>Bank filter</span>
+          <span>Bank Nifty check</span>
           <strong>${escapeHtml(map.bankConfirm)}</strong>
           <small>Bank Nifty must confirm the Nifty move before the view has breadth.</small>
         </article>
         <article class="opening-nerve-tile">
-          <span>Sector nerve</span>
+          <span>Sector check</span>
           <strong>${escapeHtml(topSector.label)}</strong>
           <small>${escapeHtml(topSector.reason)}</small>
         </article>
@@ -8311,7 +8313,7 @@ function todayTradeMapHtml(digest) {
         <div>
           <span class="summary-label">Today's Trade Map</span>
           <h2>Levels before opinion</h2>
-          <p>Start here before reading the full brief: bias, index gates, the no-trade zone, Bank Nifty confirmation, and the sector that can decide follow-through.</p>
+          <p>Start here before reading the full brief: likely direction, key index levels, when to stand aside, Bank Nifty confirmation, and the sector that can decide follow-through.</p>
         </div>
         <span class="trade-bias-pill ${escapeHtml(map.biasClass)}">${escapeHtml(map.bias)}</span>
       </div>
@@ -8324,17 +8326,17 @@ function todayTradeMapHtml(digest) {
         <article class="trade-map-tile">
           <span>Long only above</span>
           <strong>${escapeHtml(formatLevelOrWait(map.longAbove))}</strong>
-          <small>Nifty must accept above this gate before long-side preparation has teeth.</small>
+          <small>Nifty must stay above this level before considering a positive setup.</small>
         </article>
         <article class="trade-map-tile">
-          <span>Short risk below</span>
+          <span>Weakness below</span>
           <strong>${escapeHtml(formatLevelOrWait(map.shortBelow))}</strong>
-          <small>Losing this line shifts the first read from patience to defensive risk control.</small>
+          <small>Moving below this level weakens the opening picture.</small>
         </article>
         <article class="trade-map-tile">
-          <span>No-trade zone</span>
+          <span>Stand-aside band</span>
           <strong>${escapeHtml(map.noTradeZone)}</strong>
-          <small>Inside this band, wait for the first range instead of forcing a direction.</small>
+          <small>Inside this band, wait for a clear direction instead of forcing a view.</small>
         </article>
         <article class="trade-map-tile">
           <span>Bank Nifty confirmation</span>
@@ -8700,7 +8702,7 @@ function executiveSummaryHtml(digest) {
     {
       title: "India Reference",
       symbols: ["NIFTY", "BANKNIFTY", "GIFTNIFTY"],
-      note: "Previous close and GIFT context set the first range reference."
+      note: "Previous close and GIFT context set the opening reference."
     }
   ];
 
@@ -10180,7 +10182,7 @@ function formatDigestDate(date) {
 
 function dailySeoDescription(digest, isTradingGuidePage) {
   if (isTradingGuidePage) {
-    return "Nifty and Bank Nifty trading guide with opening bias, levels, no-trade zone, Bank Nifty confirmation and first-range checks for market preparation.";
+    return "Nifty and Bank Nifty trading guide with opening direction, key levels, stand-aside conditions, and confirmation checks.";
   }
   const lead = firstSentence(
     digest.todaysReadArticle ||

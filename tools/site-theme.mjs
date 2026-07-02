@@ -84,7 +84,6 @@ img, svg {
   z-index: 300;
 }
 
-.mn-skip:focus,
 .mn-skip:focus-visible {
   transform: translateY(0);
 }

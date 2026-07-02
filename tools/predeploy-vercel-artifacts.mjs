@@ -46,9 +46,9 @@ function assertPublicHome() {
 
 function assertMultibagger() {
   assertOutput("multibagger/index.html", /Model status/);
-  assertOutput("multibagger/index.html", /Rs 5L public baseline/);
+  assertOutput("multibagger/index.html", /₹5 lakh public baseline/);
   assertOutput("multibagger/index.html", /Current value/);
-  assertOutput("multibagger/index.html", /Public tracking active|Rs 5L public baseline/);
+  assertOutput("multibagger/index.html", /Public tracking active|₹5 lakh public baseline/);
   assertOutputNot("multibagger/index.html", /Baseline live/);
   assertOutput("multibagger/index.html", /Since entry \(04 May 2026, 02:12 pm\)/);
   assertOutput("multibagger/index.html", /How to read this page/);
@@ -58,7 +58,7 @@ function assertMultibagger() {
   assertOutput("multibagger/index.html", /Entries captured 04 May, 02:12 pm/);
   assertOutput("multibagger/index.html", /Latest quote refresh/);
   assertOutput("multibagger/index.html", /Share this public tracker/);
-  assertOutput("multibagger/index.html", /Rs 5L deployed/);
+  assertOutput("multibagger/index.html", /₹5 lakh deployed/);
   assertOutput("multibagger/index.html", /Current price/);
   assertOutput("multibagger/index.html", /Entry timestamp/);
   assertOutput("multibagger/index.html", /Entry: 04 May 2026, 02:12 pm/);

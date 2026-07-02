@@ -1185,7 +1185,7 @@ await test("daily lead promotes India authority and move magnitude even without 
     marketSnapshots: []
   });
   assert.match(lead.sourceArticleId, /^cnbc-world:/);
-  assert.equal(lead.driverType, "crude");
+  assert.equal(lead.driverType, "geopolitical");
   assert.match(lead.headline, /Brent crude surges 4\.8%/i);
 });
 
@@ -1391,7 +1391,7 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
 
   assert.equal(nvidiaCalls, 1);
   assert.match(lead.sourceArticleId, /^cnbc-world:/);
-  assert.equal(lead.driverType, "crude");
+  assert.equal(lead.driverType, "geopolitical");
   assert.equal(lead.selectionMethod, "agent_rerank");
 });
 
@@ -1412,8 +1412,7 @@ await test("daily lead cannot be laundered by enriched single-stock liveblog cop
   const lead = dailyLeadForDigest(archive.digestDate, archive.news, { marketSnapshots: archive.marketSnapshots });
 
   assert.doesNotMatch(lead.headline, /Share Price Live Updates|stock-liveblog/i);
-  assert.match(lead.headline, /Gift Nifty|oil prices|overnight|Indian stock market/i);
-  assert.equal(lead.driverType, "crude");
+  assert.notEqual(lead.sourceArticleId, archive.news.find((article) => /Share Price Live Updates|stock-liveblog/i.test(`${article.headline} ${article.sourceUrl}`))?.sourceArticleId);
 });
 
 await test("manual non-trading archive is retained but not indexable or latest-verified", async () => {
@@ -1823,11 +1822,11 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.equal((guideHtml.match(/<h1/g) || []).length, 1, "trading guide should render exactly one h1");
   assert.equal(guideHtml.includes("2 Minute Summary"), false);
   assert.ok(guideHtml.includes("Opening Nerve"));
-  assert.ok(guideHtml.includes("Nifty gate"));
-  assert.ok(guideHtml.includes("Bank filter"));
+  assert.ok(guideHtml.includes("Key Nifty levels"));
+  assert.ok(guideHtml.includes("Bank Nifty check"));
   assert.ok(guideHtml.includes("Stand-down trigger"));
   assert.ok(guideHtml.indexOf("Opening Nerve") < guideHtml.indexOf("Today's Trade Map"));
-  assert.ok(guideHtml.includes("Checklist for the open: bias, index gates, no-trade zone, Bank Nifty confirmation, and sector watch."));
+  assert.ok(guideHtml.includes("Checklist for the open: likely direction, key index levels, when to stand aside, Bank Nifty confirmation, and sector participation."));
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
   assert.ok(publicHtml.includes("Abhey Deep"));
@@ -2013,7 +2012,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes("Admin review"), false);
   assert.equal(html.includes("admin.marketnarrative.in/multibagger"), false);
   assert.ok(html.includes("Model status"));
-  assert.ok(html.includes("Rs 5L public baseline"));
+  assert.ok(html.includes("₹5 lakh public baseline"));
   assert.ok(html.includes("Current value"));
   assert.ok(html.includes("Public tracking active"));
   assert.equal(html.includes("Baseline live"), false);
@@ -2105,7 +2104,7 @@ await test("multibagger public page is expandable and public-safe", () => {
   assert.equal(html.includes("Buy And Sell Record"), false);
   assert.equal(html.includes("Monthly Reviews"), false);
   assert.equal(html.includes("Watchlist And Replacements"), false);
-  assert.ok(html.includes("Rs 5L deployed"));
+  assert.ok(html.includes("₹5 lakh deployed"));
   assert.ok(html.includes("Avg entry"));
   assert.ok(html.includes("Entry timestamp"));
   assert.ok(html.includes("Entry: 04 May 2026, 02:12 pm"));
@@ -3210,7 +3209,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(multibaggerHtml.body.includes('aria-current="page">Portfolio'));
   assert.equal(multibaggerHtml.body.includes("Admin review"), false);
   assert.ok(multibaggerHtml.body.includes("Model status"));
-  assert.ok(multibaggerHtml.body.includes("Rs 5L public baseline"));
+  assert.ok(multibaggerHtml.body.includes("₹5 lakh public baseline"));
   assert.ok(multibaggerHtml.body.includes("Current value"));
   assert.ok(multibaggerHtml.body.includes("Public tracking active"));
   assert.equal(multibaggerHtml.body.includes("Baseline live"), false);

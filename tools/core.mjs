@@ -110,6 +110,13 @@ function cleanAIOutput(text) {
   return cleaned.trim();
 }
 
+export function normalizeTwoMinuteSummary(value) {
+  return String(value || "").split(/\n+/).map((item) => item.trim()).filter(Boolean)
+    .slice(0, 4)
+    .map((item) => compactWords(item, 70))
+    .join("\n\n");
+}
+
 async function generateFullScriptWithAI({ date, sentimentLabel, snapshots, themes, setups, articles, overallSentiment, dailyLead }) {
   if (!process.env.NVIDIA_API_KEY) return null;
   const scriptStarted = Date.now();
@@ -181,7 +188,7 @@ ${topArticles}`;
     if (mode === 'tms') tmsLines.push(line);
     if (mode === 'dn') dnLines.push(line);
   }
-  const twoMinuteSummary = tmsLines.join('\n').trim();
+  const twoMinuteSummary = normalizeTwoMinuteSummary(tmsLines.join('\n'));
   const deskNote = dnLines.join('\n').trim();
 
   if (!twoMinuteSummary) throw new Error("NIM editorial briefing missing [TWO-MINUTE SUMMARY] section");
@@ -264,7 +271,7 @@ RULES:
 - No trading calls: no buy/sell/hold, no price targets, no index levels, no "VWAP".
 - Output ONLY the headline text.`;
   const raw = await nimCall(system, user, { maxTokens: 60, retries: 3, temperature: 0.3 });
-  return sanitizeEditorialHeadline(raw, allowedDollarPrices(marketSnapshots, story));
+  return sanitizeEditorialHeadline(raw, allowedDollarPrices(marketSnapshots, story), `${story} ${dailyLead?.indiaImpact || ""}`);
 }
 
 export function allowedDollarPrices(marketSnapshots, story = "") {
@@ -275,24 +282,32 @@ export function allowedDollarPrices(marketSnapshots, story = "") {
     : new Set();
 }
 
-export function sanitizeEditorialHeadline(raw, allowedPrices = new Set()) {
+export function sanitizeEditorialHeadline(raw, allowedPrices = new Set(), storyContext = "") {
   if (!raw) return null;
   let h = String(raw).split("\n").map((line) => line.trim()).filter(Boolean)[0] || "";
   h = h.replace(/^["'“”\s]+|["'“”\s]+$/g, "").replace(/\s+/g, " ").replace(/[.]+$/, "").trim();
   if (!h) return null;
   // Reject trading-call / level language so the H1 always clears editorial guardrails.
   if (/\b(buy|sell|hold)\b/i.test(h)) return null;
-  if (/\btarget price\b|\bvwap\b/i.test(h)) return null;
+  if (/\btarget price\b|\b(?:vwap|risk[- ]appetite|opening[- ]range|breadth)\b/i.test(h)) return null;
   if (/\b\d{2},?\d{3}\b/.test(h)) return null; // index levels like 24,114 / 24114 / 80000
   // Reject any dollar amount not present in actual live price data (prevents hallucinated prices like "$90").
   for (const match of h.matchAll(/\$(\d+)/g)) {
     if (!allowedPrices.has(Number(match[1]))) return null;
   }
   // Reject sensational / clickbait language we explicitly forbid.
-  if (/\b(spree|shocking|panic|jaw-dropping|unbelievable)\b/i.test(h)) return null;
+  if (/\b(spree|shocking|panic|rattl(?:e|es|ed|ing)|roil(?:s|ed|ing)?|jaw-dropping|unbelievable)\b/i.test(h)) return null;
   if (/you won'?t believe|will shock/i.test(h)) return null;
   if (h.length < 18 || h.length > 90) return null;
+  if (storyContext && !headlineMatchesStory(h, storyContext)) return null;
   return h;
+}
+
+function headlineMatchesStory(headline, storyContext) {
+  const generic = new Set(["about", "after", "ahead", "before", "focus", "india", "indian", "lifts", "market", "markets", "nifty", "open", "risk", "sensex", "shapes", "signal", "signals", "stock", "stocks", "support", "supports", "tests", "today"]);
+  const terms = (value) => String(value || "").toLowerCase().match(/[a-z][a-z-]{3,}/g)?.filter((word) => !generic.has(word)) || [];
+  const storyTerms = new Set(terms(storyContext));
+  return terms(headline).some((word) => storyTerms.has(word));
 }
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -1302,14 +1317,14 @@ function sourceGateSummary(profile) {
 export function dailyLeadForDigest(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
   const ranked = rankedDailyLeadCandidates(date, articles, marketSnapshots);
-  const lead = deterministicLeadArticleFromRanked(ranked);
+  const lead = deterministicLeadArticleFromRanked(ranked, date);
   return dailyLeadFromArticle(date, lead, ranked, marketSnapshots);
 }
 
 export async function dailyLeadForDigestWithAgent(date, articles = [], options = {}) {
   const marketSnapshots = options.marketSnapshots ?? [];
   const ranked = rankedDailyLeadCandidates(date, articles, marketSnapshots);
-  const deterministicLead = deterministicLeadArticleFromRanked(ranked);
+  const deterministicLead = deterministicLeadArticleFromRanked(ranked, date);
   const deterministicDailyLead = dailyLeadFromArticle(date, deterministicLead, ranked, marketSnapshots);
   const candidates = dailyLeadRerankCandidates(ranked).slice(0, 8);
   const reranker = options.dailyLeadReranker ?? configuredDailyLeadReranker(options);
@@ -1335,7 +1350,7 @@ export async function dailyLeadForDigestWithAgent(date, articles = [], options =
       marketSnapshots: dailyLeadMarketContext(marketSnapshots)
     });
     const rerank = parseDailyLeadRerank(rawRerank);
-    const selection = validateDailyLeadRerank(rerank, candidates, deterministicLead);
+    const selection = validateDailyLeadRerank(rerank, candidates, deterministicLead, date);
     if (!selection) {
       return deterministicDailyLead;
     }
@@ -1365,17 +1380,17 @@ function rankedDailyLeadCandidates(date, articles = [], marketSnapshots = []) {
     .sort((left, right) => right.score - left.score || left.index - right.index);
 }
 
-function deterministicLeadArticleFromRanked(ranked = []) {
-  const lead = ranked.find((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article))?.article
-    ?? ranked.find((item) => hasIndiaReadThrough(item.article))?.article
-    ?? ranked[0]?.article
+function deterministicLeadArticleFromRanked(ranked = [], date = "") {
+  const current = ranked.filter((item) => isWithinDigestWindow(item.article, date, 12));
+  const pool = current.some((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article)) ? current : ranked;
+  const lead = pool.find((item) => hasIndiaReadThrough(item.article) && !isLeadSuppressedArticle(item.article))?.article
+    ?? pool.find((item) => hasIndiaReadThrough(item.article))?.article
+    ?? pool[0]?.article
     ?? null;
   return lead;
 }
 
 function dailyLeadFromArticle(date, lead, ranked = [], marketSnapshots = [], selection = {}) {
-  const support = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) > 0.05 && hasIndiaReadThrough(item.article))?.article;
-  const risk = ranked.find((item) => item.article !== lead && Number(item.article.sentimentScore) < -0.05 && hasIndiaReadThrough(item.article))?.article;
   const driverType = normalizeAgentLeadDriverType(selection.driverType, driverTypeForArticle(lead));
   const indirectLead = hasIndirectIndiaImpact(lead);
   const leadImpact = dailyLeadImpact(lead);
@@ -1418,8 +1433,8 @@ function dailyLeadFromArticle(date, lead, ranked = [], marketSnapshots = [], sel
     driverType,
     headline: lead?.headline || "Source-led market cue",
     indiaImpact: enrichedImpact,
-    riskSide: risk ? cleanLeadImpact(risk.indiaImpact) : defaultRiskSide(driverType, leadImpact),
-    supportSide: cleanSentence(support?.indiaImpact || defaultSupportSide(driverType)),
+    riskSide: defaultRiskSide(driverType, leadImpact),
+    supportSide: defaultSupportSide(driverType),
     giftNiftyBias: giftBias ?? null,
     ...dailyLeadSelectionMetadata(selection)
   };
@@ -1460,6 +1475,7 @@ function candidateForAgent(item) {
     deterministicRank: item.deterministicRank,
     deterministicScore: round(item.score, 2),
     headline: cleanSentence(article?.headline || ""),
+    publishedAt: article?.publishedAt || "",
     publisher: cleanSentence(article?.sourceName || article?.sourceId || ""),
     category: article?.category || "",
     entityName: article?.entityName || "",
@@ -1515,7 +1531,7 @@ function parseDailyLeadRerank(value) {
   return JSON.parse(text);
 }
 
-function validateDailyLeadRerank(rerank, candidates = [], deterministicLead = null) {
+function validateDailyLeadRerank(rerank, candidates = [], deterministicLead = null, date = "") {
   const ids = new Set(candidates.map((candidate) => candidate.id));
   const validRankedIds = (Array.isArray(rerank?.rankedIds) ? rerank.rankedIds : [])
     .map((id) => String(id || "").trim())
@@ -1532,6 +1548,9 @@ function validateDailyLeadRerank(rerank, candidates = [], deterministicLead = nu
   if (hasCleanIndiaCandidate && (!selected.hasIndiaReadThrough || selected.leadSuppressed)) {
     return null;
   }
+  if (isWithinDigestWindow(deterministicLead, date, 12) && !isWithinDigestWindow(selected.article, date, 12)) {
+    return null;
+  }
   const deterministicId = articleLeadId(deterministicLead);
   const confidence = Number(rerank?.confidence);
   return {
@@ -1540,7 +1559,7 @@ function validateDailyLeadRerank(rerank, candidates = [], deterministicLead = nu
       ? "The deterministic lead remains the strongest pre-open driver."
       : "The reranker promoted a stronger India-open driver from the shortlist.")),
     confidence: Number.isFinite(confidence) ? Math.max(0, Math.min(1, confidence)) : null,
-    driverType: normalizeAgentLeadDriverType(rerank?.driverType, selected.driverType)
+    driverType: selected.driverType
   };
 }
 
@@ -1627,7 +1646,7 @@ function dailyLeadImpact(article) {
     return "Not a direct India trade; watch Brent first because only a price reaction matters for OMCs, aviation, paints, and inflation expectations.";
   }
   if (/^No direct India read-through|^Global-only context/i.test(impact)) {
-    return "Global cue only; India impact needs confirmation through index futures, sector breadth, currency, or rates.";
+    return "Global cue only; India impact needs confirmation through index futures, sector participation, currency, or rates.";
   }
   return cleanLeadImpact(impact || "India read-through needs opening breadth confirmation.");
 }
@@ -1647,28 +1666,28 @@ function defaultRiskSide(driverType, leadImpact) {
     return "Higher yields would pressure banks, realty, autos, and long-duration growth shares.";
   }
   if (driverType === "tech") {
-    return "Weak Nasdaq futures or poor IT breadth would turn the global tech cue into risk, not support.";
+    return "Weak Nasdaq futures or poor IT participation would turn the global tech cue into risk, not support.";
   }
   if (driverType === "geopolitical") {
-    return "Any breakdown in talks or re-escalation would hit IT exports, metals demand, and FII risk appetite — watch USD/INR and India VIX.";
+    return "Any breakdown in talks or re-escalation would hit IT exports, metals demand, and foreign investor confidence — watch USD/INR and India VIX.";
   }
-  return cleanSentence(leadImpact || "The first range must confirm whether the source risk matters for India.");
+  return cleanSentence(leadImpact || "The first-hour move must confirm whether the source risk matters for India.");
 }
 
 function defaultSupportSide(driverType) {
   if (driverType === "crude") {
-    return "Softer Brent and stronger Indian breadth are the confirmation checks.";
+    return "Softer Brent and stronger Indian market participation are the confirmation checks.";
   }
   if (driverType === "rates") {
-    return "Stable yields plus bank breadth is the offset.";
+    return "Stable yields plus bank participation is the offset.";
   }
   if (driverType === "tech") {
-    return "Nasdaq futures, USD/INR, and Nifty IT breadth must confirm the offset.";
+    return "Nasdaq futures, USD/INR, and Nifty IT participation must confirm the offset.";
   }
   if (driverType === "geopolitical") {
-    return "A positive outcome lifts global risk appetite — Nifty IT, metals and mid-caps are the India plays; FII flows confirm.";
+    return "A positive outcome lifts global investor confidence — Nifty IT, metals and mid-caps are the India plays; FII flows confirm.";
   }
-  return "Support needs Indian breadth, sector leadership, or softer macro confirmation.";
+  return "Support needs Indian market participation, sector leadership, or softer macro confirmation.";
 }
 
 function leadArticleForDailyLead(dailyLead, articles = []) {
@@ -1868,7 +1887,7 @@ function crossSourceTractionScore(article, allArticles) {
  * Replaces the regex-heavy dailyLeadScore as the primary ranking signal.
  */
 function tractionScore(article, date, allArticles = [], marketSnapshots = []) {
-  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.indiaImpact || ""} ${article?.takeaway || ""}`.toLowerCase();
+  const text = articleSourceTextForLeadSuppression(article);
   const sourceText = articleSourceTextForLeadSuppression(article);
   let score = 0;
   // Cross-source coverage is the strongest traction proxy
@@ -1876,7 +1895,7 @@ function tractionScore(article, date, allArticles = [], marketSnapshots = []) {
   // India-specific direct mentions (trader relevance)
   if (/\b(nifty|bank nifty|gift nifty|sensex)\b/.test(text)) score += 15;
   if (/\b(fii|dii|provisional flow)\b/.test(text)) score += 12;
-  if (/\b(rbi|sebi|mpc|repo rate)\b/.test(text)) score += 10;
+  if (/\b(rbi|mpc|repo rate)\b/.test(text) || /\bsebi\b.{0,60}\b(rule|circular|regulation|policy|margin|settlement)\b/.test(text)) score += 10;
   // India publisher premium — ET/Mint/NDTV Profit beat global feeds
   if (isIndiaPublisherArticle(article)) score += 10;
   // Market magnitude: specific % moves mentioned
@@ -1912,7 +1931,7 @@ export function computeGiftNiftyBias(marketSnapshots = []) {
   const nifty = marketSnapshots.find((s) => s.symbol === "NIFTY");
   if (!gift || !nifty) return null;
   // Skip if GIFTNIFTY is seed/stale — gap would be meaningless
-  if (gift.dataQuality === "seed-merged" || gift.dataQuality === "mock-fallback" || gift.source?.includes("Mock")) return null;
+  if (gift.dataQuality !== "live" || nifty.dataQuality !== "live" || gift.source?.includes("Mock") || nifty.source?.includes("Mock")) return null;
   const niftyClose = Number(nifty.previousClose ?? nifty.closeValue);
   const giftPrice = Number(gift.closeValue);
   if (!Number.isFinite(niftyClose) || !Number.isFinite(giftPrice) || niftyClose === 0) return null;
@@ -2097,7 +2116,10 @@ function snapshotChangePercent(snapshots = [], pattern) {
 
 function isLeadSuppressedArticle(article) {
   const text = articleSourceTextForLeadSuppression(article);
-  return (isStockLiveblogArticle(article) || isWeakStockListArticle(article)) && !hasMarketwideDriverText(text);
+  const nonMarketGovernance = /\b(court|tribunal|rti|right to information|public authority|petition|hearing|judgment|ruling)\b/i.test(text) && !marketwideStressText(text) && !marketMoveMagnitudeText(text);
+  const priorIndiaClose = /\b(benchmark indices|sensex|nifty|indian stocks?)\b.{0,80}\b(snap(?:s|ped)?|clos(?:e|es|ed)|end(?:s|ed)?|settl(?:e|es|ed)|rebound(?:s|ed)?)\b/i.test(text);
+  const opinionForecast = /\b(analysts? decode charts?|technical analysts?|price target|year[- ]end target)\b|\b(?:can|will)\b.{0,60}\b(?:hit|reach)\b.{0,40}\bby\b.{0,20}\b20\d{2}\b/i.test(text);
+  return nonMarketGovernance || priorIndiaClose || opinionForecast || isWeakStockListArticle(article) || (isStockLiveblogArticle(article) && !hasMarketwideDriverText(text));
 }
 
 function articleSourceTextForLeadSuppression(article) {
@@ -2117,7 +2139,7 @@ function isStockLiveblogArticle(article) {
 
 function isWeakStockListArticle(article) {
   const text = articleTextForLead(article);
-  return /\b(stocks? to watch|recommend(?:s|ed)? .* stocks?|stock picks?|shares? in focus|buy or sell)\b/i.test(text);
+  return /\b(stocks? to watch|recommend(?:s|ed)? .* stocks?|stock picks?|shares? in focus|buy or sell)\b|\bbuy\b.{0,100}\b(says|recommends?|analyst|brokerage)\b/i.test(text);
 }
 
 function hasMarketwideDriverText(text) {
@@ -2169,7 +2191,7 @@ function marketwideStressText(text) {
 }
 
 function driverTypeForArticle(article) {
-  const text = `${article?.headline || ""} ${article?.summary || ""} ${article?.takeaway || ""} ${article?.indiaImpact || ""}`.toLowerCase();
+  const text = articleSourceTextForLeadSuppression(article);
   if (indiaPreciousMetalsPolicyText(text)) return "precious_metals";
   if (largeTechSectorMoveText(text)) return "tech_move";
   // Geopolitical / trade-deal check BEFORE crude — Trump-Xi bilateral summit or US-China
@@ -2405,7 +2427,9 @@ function freshnessScore(article, date) {
   if (!Number.isFinite(published) || !Number.isFinite(digestTime)) return 0;
   const ageHours = (digestTime - published) / (60 * 60 * 1000);
   if (ageHours < -2) return -2;
-  if (ageHours <= 18) return 5;
+  if (ageHours <= 6) return 8;
+  if (ageHours <= 12) return 5;
+  if (ageHours <= 18) return 1;
   if (ageHours <= 36) return 3;
   if (ageHours <= 60) return 1;
   if (ageHours <= 96) return -2;

@@ -56,12 +56,13 @@ export async function runFiiDiiTests(test = nodeTest, assert = defaultAssert) {
     assert.ok(faqItems.length >= 3 && faqItems[0].name && faqItems[0].text, "faq items use name/text shape");
   });
 
-  await test("interpretation reflects absorption, streak and FII futures tilt", () => {
+  await test("interpretation explains the offset, streak and FII futures mix plainly", () => {
     const { bodyHtml } = fiiDiiPageBody(CASH, FNO);
     assert.ok(bodyHtml.includes("net sellers"), "labels FIIs as net sellers");
-    assert.ok(bodyHtml.includes("150%"), "computes DII absorption 3000/2000 = 150%");
+    assert.ok(bodyHtml.includes("150%"), "computes the DII offset 3000/2000 = 150%");
     assert.ok(bodyHtml.includes("2 sessions running"), "detects the 2-session FII selling streak");
-    assert.ok(/tilted short/.test(bodyHtml), "30% long index-futures book reads as tilted short");
+    assert.ok(/mostly short/.test(bodyHtml), "30% long index-futures book reads as mostly short");
+    assert.doesNotMatch(bodyHtml, /\b(?:MTD|absorption|structural|transactional|tilted short|parity|hedged\/non-directional)\b/i);
   });
 }
 

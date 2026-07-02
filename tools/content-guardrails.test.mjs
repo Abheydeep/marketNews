@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { allowedDollarPrices, sanitizeEditorialHeadline } from "./core.mjs";
+import { allowedDollarPrices, normalizeTwoMinuteSummary, sanitizeEditorialHeadline } from "./core.mjs";
 import { isLivePriceTracker, triageArticlesWithLLM } from "./article-triage.mjs";
 import { agentSelectPulseArticles, articleLooksMarketRelevant } from "./news-sources.mjs";
 import { assertPublicDigestArtifact } from "./public-artifact-guard.mjs";
@@ -20,6 +20,7 @@ test("content guardrails: deterministic triage removes live price trackers witho
 
 test("content guardrails: Pulse fallback rejects stock-pick and off-topic headlines", () => {
   assert.equal(articleLooksMarketRelevant({ headline: "Five Stocks To Buy Today: Broker Picks", summary: "Analyst targets" }), false);
+  assert.equal(articleLooksMarketRelevant({ headline: "Can A Bank Freeze Your Account If You Don't Update KYC?", summary: "What RBI rules mean for customers" }), false);
   assert.equal(articleLooksMarketRelevant({ headline: "Who Is A Cricketer? FIR Filed After Match", summary: "Sports report" }), false);
   assert.equal(articleLooksMarketRelevant({ headline: "Brent crude rises as supply risk grows", summary: "Oil affects inflation" }), true);
   assert.equal(isPulseMarketCandidate({ headline: "Stock Picks Today: HDFC Bank and More", summary: "Brokerage radar" }), false);
@@ -41,6 +42,22 @@ test("content guardrails: dollar prices are scoped to the story instrument", () 
 
 test("content guardrails: headline sanitizer removes typographic quotes", () => {
   assert.equal(sanitizeEditorialHeadline("“Brent Relief Supports Nifty Before The Open”"), "Brent Relief Supports Nifty Before The Open");
+});
+
+test("content guardrails: headline sanitizer rejects jargon and off-story drift", () => {
+  const story = "Can A Bank Freeze Your Account If You Don't Update KYC? RBI rules explained";
+  assert.equal(sanitizeEditorialHeadline("Tech Support Risk Appetite", new Set(), story), null);
+  assert.equal(sanitizeEditorialHeadline("Tech Earnings Lift Nifty Sentiment", new Set(), story), null);
+  assert.equal(sanitizeEditorialHeadline("RBI KYC Rules Clarify When Banks Can Freeze Accounts", new Set(), story), "RBI KYC Rules Clarify When Banks Can Freeze Accounts");
+  assert.equal(sanitizeEditorialHeadline("NSE RTI Ruling Rattles Bank Nifty And Stocks", new Set(), "Delhi HC rules NSE a public authority under RTI"), null);
+});
+
+test("content guardrails: two-minute summary is bounded even when the model overruns", () => {
+  const paragraph = Array.from({ length: 95 }, (_, index) => `word${index}`).join(" ");
+  const bounded = normalizeTwoMinuteSummary(Array.from({ length: 6 }, () => paragraph).join("\n\n"));
+  const paragraphs = bounded.split(/\n\n/);
+  assert.equal(paragraphs.length, 4);
+  assert.ok(paragraphs.every((item) => item.split(/\s+/).length <= 70));
 });
 
 test("content guardrails: deterministic public copy contains no risk-on or risk-off jargon", async () => {

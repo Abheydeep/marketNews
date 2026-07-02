@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { publicCopyClientScript, sanitizePublicHtml, stripPublicJargon } from "./public-copy-sanitizer.mjs";
 
 test("public copy sanitizer handles punctuation variants", () => {
-  assert.equal(stripPublicJargon("Opening-range, advance decline and risk-appetite"), "first-hour range, market participation and willingness to take risk");
+  assert.equal(stripPublicJargon("Opening-range, advance decline and risk-appetite"), "first-hour range, market participation and investor confidence");
 });
 
 test("HTML sanitizer leaves code intact and cleans visible text", () => {

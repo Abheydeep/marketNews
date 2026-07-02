@@ -32,27 +32,27 @@ export function fiiDiiInterpretation(days) {
   const sumFiiMtd = activeMonthDays.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
   const avgSession = activeMonthDays.length > 0 ? Math.round(sumFiiMtd / activeMonthDays.length) : 0;
   
-  const compText = Math.abs(fii) < Math.abs(avgSession) ? "representing a moderation relative to" : "exceeding";
-  out.push(`Institutional flow: FIIs were <b class="${signClass(fii)}">${side(fii)}</b> at ${escapeHtml(fmtCr(fii))} and DIIs were <b class="${signClass(dii)}">${side(dii)}</b> at ${escapeHtml(fmtCr(dii))} in the cash market. This session's activity is ${compText} the current MTD session average of ${escapeHtml(fmtCr(avgSession))} per session.`);
+  const compText = Math.abs(fii) < Math.abs(avgSession) ? "below" : "above";
+  out.push(`Institutional flow: FIIs were <b class="${signClass(fii)}">${side(fii)}</b> at ${escapeHtml(fmtCr(fii))} and DIIs were <b class="${signClass(dii)}">${side(dii)}</b> at ${escapeHtml(fmtCr(dii))} in the cash market. FII activity was ${compText} this month's daily average of ${escapeHtml(fmtCr(avgSession))}.`);
 
   if (fii < 0 && dii > 0) {
     const absorbed = Math.round((dii / Math.abs(fii)) * 100);
-    out.push(`Domestic institutions absorbed about <b>${absorbed}%</b> of the foreign cash-market outflow that session. Historically, absorption levels around or above 100% point to strong domestic liquidity cushioning structural support zones rather than letting the index break.`);
+    out.push(`Domestic institutions bought an amount equal to about <b>${absorbed}%</b> of FII net selling that session. A reading above 100% means DII buying exceeded the foreign outflow that day; it does not guarantee index support.`);
   } else if (fii > 0 && dii < 0) {
-    out.push(`DII profit-taking absorbed the cash-market inflow from FIIs, showing key counter-cyclical domestic flows at higher market extensions.`);
+    out.push(`DII net selling offset part of the FII cash-market inflow that session.`);
   }
 
   const fiiStreak = streak(cashDays, "fiiNet");
   if (fiiStreak >= 2) {
-    out.push(`FIIs have been <b>${side(fii)}</b> for <b>${fiiStreak} sessions running</b>. In structural trends, persistent streaking indicates sustained asset reallocation rather than brief transactional volatility.`);
+    out.push(`FIIs have been <b>${side(fii)}</b> for <b>${fiiStreak} sessions running</b>, so this is more than a one-day cash-flow move.`);
   }
 
   const fnoDay = days.filter((d) => d.fnoOi?.fii).at(-1);
   if (fnoDay) {
     const ratio = longRatio(fnoDay.fnoOi.fii, "idxFutLong", "idxFutShort");
     if (ratio != null) {
-      const lean = ratio >= 55 ? "tilted long" : ratio <= 45 ? "tilted short" : "balanced";
-      out.push(`FII index-futures positioning is <b>${lean}</b> — about <b>${ratio.toFixed(0)}%</b> of their index-futures book is on the long side (as of ${escapeHtml(fnoDay.date)}). Because derivatives positions can adjust rapidly, this index futures lean functions as a key leading indicator before cash-market flows turn.`);
+      const lean = ratio >= 55 ? "mostly long" : ratio <= 45 ? "mostly short" : "evenly split";
+      out.push(`FII index-futures contracts are <b>${lean}</b>: about <b>${ratio.toFixed(0)}%</b> are long as of ${escapeHtml(fnoDay.date)}. Futures positions can change quickly, so use this as context rather than a forecast.`);
     }
   }
 
@@ -60,7 +60,7 @@ export function fiiDiiInterpretation(days) {
   const activeMtd = mtd.filter(d => !(Number(d.cash?.fiiBuy || 0) === 0 && Number(d.cash?.diiBuy || 0) === 0));
   const fiiMtd = activeMtd.reduce((a, d) => a + Number(d.cash.fiiNet || 0), 0);
   const diiMtd = activeMtd.reduce((a, d) => a + Number(d.cash.diiNet || 0), 0);
-  out.push(`Divergence context: FIIs continue to utilize derivatives for positioning hedges during cash fluctuations. Across the last <b>${activeMtd.length}</b> active sessions, cumulative flow stands at <b class="${signClass(fiiMtd)}">${escapeHtml(fmtCr(fiiMtd))}</b> for FIIs and <b class="${signClass(diiMtd)}">${escapeHtml(fmtCr(diiMtd))}</b> for DIIs, confirming the ongoing domestic liquidity offset.`);
+  out.push(`Across the last <b>${activeMtd.length}</b> active sessions, cumulative cash flow is <b class="${signClass(fiiMtd)}">${escapeHtml(fmtCr(fiiMtd))}</b> for FIIs and <b class="${signClass(diiMtd)}">${escapeHtml(fmtCr(diiMtd))}</b> for DIIs.`);
   return out;
 }
 
@@ -68,11 +68,11 @@ export function fiiDiiEducation() {
   return `
     <section class="copy-stack">
       <h2>How to read FII and DII data the way a desk does</h2>
-      <p>FII (foreign institutional investor) and DII (domestic institutional investor) flow shows whether the two largest pools of institutional money are pushing the same way or fighting each other. The most useful read is not just the FII number in isolation — it is whether DII demand is absorbing FII selling, and whether the cash-market direction is confirmed by how FIIs are positioned in index and stock futures.</p>
-      <h2>Why F&O positioning adds a layer cash data cannot</h2>
-      <p>Cash flow tells you what institutions did in the spot market yesterday. The participant-wise F&O positioning shows the forward-looking layer: how long or short FIIs are in index futures and stock futures, and how their index option book is leaning. A cash-market sell that comes with a rising FII index-futures short tilt is a different signal from a cash sell while futures stay long.</p>
-      <h2>The DII absorption ratio</h2>
-      <p>When FIIs are net sellers and DIIs are net buyers, the absorption ratio compares the two. If FIIs sell ₹2,000 crore and DIIs buy ₹3,000 crore, absorption is 150% — domestic demand more than covered the foreign outflow that session. A low absorption ratio means the same FII selling weighs more on the tape.</p>
+      <p>FII (foreign institutional investor) and DII (domestic institutional investor) flow shows whether foreign and domestic institutions bought or sold Indian shares on balance.</p>
+      <h2>What the futures data adds</h2>
+      <p>Cash flow shows what institutions did in shares during the previous session. Index-futures data separately shows how many FII contracts were long or short. It is useful context, but positions can change quickly and do not predict the next session.</p>
+      <h2>How much DII buying covered</h2>
+      <p>When FIIs sell and DIIs buy, the percentage compares DII net buying with FII net selling. If FIIs sell ₹2,000 crore and DIIs buy ₹3,000 crore, the reading is 150% because domestic buying was larger than the foreign outflow.</p>
     </section>`;
 }
 

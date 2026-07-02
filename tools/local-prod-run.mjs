@@ -61,7 +61,6 @@ function liveEnv(options = {}) {
     ...process.env,
     MARKET_DATA_MODE: "live",
     NEWS_DATA_MODE: "live",
-    PULSE_MODE: "true",
     LOCAL_PREVIEW_DIGEST: "true",
     ALLOW_INSUFFICIENT_SOURCES: "true",
     REQUIRE_ARTICLE_IMAGE: allowImageFallback ? "false" : "true",

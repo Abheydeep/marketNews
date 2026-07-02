@@ -2547,7 +2547,7 @@ function buildFiiDiiCashRecords(allDigests) {
 
 export function moneyFlowPage(latest, cashRecords, fnoRecords) {
   const pageTitle = brandedTitle("FII/DII Money Flow");
-  const pageDescription = "FII DII data today with charts and interpretation: cash-market flow, F&O index and stock positioning, DII absorption and the FII index-futures long ratio.";
+  const pageDescription = "Latest FII and DII net buying or selling, plus a plain-language view of index-futures positioning.";
   const { bodyHtml, faqItems } = fiiDiiPageBody(cashRecords, fnoRecords);
   const body = `${bodyHtml}
     <section class="faq-section">
@@ -2559,7 +2559,7 @@ export function moneyFlowPage(latest, cashRecords, fnoRecords) {
     pageTitle,
     pageDescription,
     eyebrow: "Institutional Flow",
-    h1: "FII DII Data Today - Institutional Flow & Positioning",
+    h1: "FII/DII Flows and Futures Positioning",
     ogImageUrl: latest?.ogImageUrl,
     bodyHtml: body,
     jsonLd: seoGraph([
@@ -2660,16 +2660,21 @@ export function marketStatisticsPage(latest) {
 export function movesHubPage(latest) {
   const pageTitle = brandedTitle("Market Moves");
   const pageDescription = "Find out why Nifty, Bank Nifty and Indian stocks moved today with source-backed market move explanations and India read-through.";
+  const drivers = (latest?.newsCards ?? latest?.news ?? []).filter((item) => item?.sourceUrl && (item?.headline || item?.title)).slice(0, 4);
+  const driverCards = drivers.map((item) => `<article class="metric-card driver-card">
+      <span>${escapeHtml(item.sourceName || "Verified source")}</span>
+      <h3>${escapeHtml(item.headline || item.title)}</h3>
+      <p>${escapeHtml(item.indiaImpact || item.takeaway || item.summary || "Read the linked source and confirm the India-market effect in the latest briefing.")}</p>
+      <a class="inline-cta" href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>
+    </article>`).join("");
   const body = `
     <section class="copy-stack">
       <h2>Why Indian stocks move</h2>
       <p>Market Narrative move articles explain the reason behind sharp moves in Nifty, Bank Nifty, sector indices, and important Indian stocks. The goal is simple: answer why the market rose or fell today without turning the page into tips, targets, or trade calls.</p>
-      
-      <div class="metric-card" style="margin: 20px 0; border: 1px dashed var(--line); background: var(--panel); padding: 16px; border-radius: 8px;">
-        <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--ink);">No standalone move articles yet</h3>
-        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted);">We are currently backfilling individual stock move archives. In the meantime, you can read today's briefing to get the full overnight and post-market context for index and stock moves.</p>
-        <p style="margin: 12px 0 0; font-size: 14px;"><a class="inline-cta" href="/latest/">Read today's pre-market briefing &rarr;</a></p>
-      </div>
+
+      <h2>Current verified market drivers</h2>
+      ${driverCards ? `<div class="metric-grid">${driverCards}</div>` : `<p>Today's verified drivers are available in the latest briefing.</p>`}
+      <p><a class="inline-cta" href="/latest/">Read today's full pre-market briefing &rarr;</a></p>
 
       <h2>What each move article includes</h2>
       <p>Each article is designed to explain what happened, the source-backed reason, the India read-through, and what to watch next. For index moves, the article focuses on breadth, FII DII flow, crude oil, USD/INR, sector leadership, and whether Bank Nifty confirmed the move.</p>
@@ -2853,6 +2858,8 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     .metric-card strong.up { color:var(--green); }
     .metric-card strong.down { color:var(--red); }
     .metric-card p { color:var(--muted); font-size:13px; line-height:1.5; margin:0; }
+    .driver-card { display:grid; gap:10px; }
+    .driver-card h3 { font-size:17px; line-height:1.35; margin:0; }
     .faq-section { border-top:1px solid var(--line); margin-top:30px; padding-top:22px; }
     .faq-list { display:grid; gap:10px; margin-top:14px; }
     .faq-list details { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:15px; }

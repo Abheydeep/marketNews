@@ -1554,7 +1554,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       <div>
         <p class="eyebrow">Market Narrative Research</p>
         <h1>Market Narrative Multibagger Portfolio</h1>
-        <p>A public ${escapeHtml(modelCount)}-stock Rs 5L model portfolio tracking entries, live prices, P&amp;L, evidence, and monthly keep-or-replace decisions.</p>
+        <p>A public ${escapeHtml(modelCount)}-stock ₹5 lakh model portfolio tracking entries, latest verified prices, P&amp;L, evidence, and monthly keep-or-replace decisions.</p>
       </div>
       <aside class="hero-stat">
         <span>Model status</span>
@@ -1631,7 +1631,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
         <summary>
           <span class="summary-title"><strong>Performance</strong><span>Public baseline, live quote refresh, and benchmark context.</span></span>
           ${detailToggleHtml()}
-          <span class="module-preview"><span class="preview-pill">Rs 5L baseline</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Latest quotes</span></span>
+          <span class="module-preview"><span class="preview-pill">₹5 lakh baseline</span><span class="preview-pill">Entry timestamp</span><span class="preview-pill">Latest quotes</span></span>
         </summary>
         <div class="panel-body">
           <p class="note">Performance is shown in the top metric rail. The holdings cards above show stock-level return, P&amp;L, and day move so this section does not repeat the same five names again.</p>
@@ -1666,7 +1666,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
                     <col class="col-pnl">
                     <col class="col-day">
                   </colgroup>
-                  <thead><tr><th>Ticker</th><th>Weight</th><th>Rs 5L deployed</th><th>Avg entry<span class="th-note">Entry timestamp</span></th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
+                  <thead><tr><th>Ticker</th><th>Weight</th><th>₹5 lakh deployed</th><th>Avg entry<span class="th-note">Entry timestamp</span></th><th id="latestPriceColumnLabel">${latestPriceColumnText(state)}</th><th>Return</th><th>P&amp;L</th><th>Day</th></tr></thead>
                   <tbody id="modelHoldingsRows">
                     ${holdingsRowsHtml(state.holdings)}
                   </tbody>
@@ -1902,7 +1902,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       setTone("portfolioReturnMetric", state.performance?.sinceLaunchPercent);
       setText("benchmarkReturnMetric", formatQuotePercent(state.performance?.benchmarkSinceLaunchPercent));
       setTone("benchmarkReturnMetric", state.performance?.benchmarkSinceLaunchPercent);
-      setText("trackingBaselineMetric", "Rs 5L public baseline");
+      setText("trackingBaselineMetric", "₹5 lakh public baseline");
       setText("trackingEntriesMetric", shortEntryCapturedLabel(state));
       setText("trackingQuotesMetric", shortQuoteLabel(state));
       setText("latestPriceColumnLabel", latestPriceColumnText(state));
@@ -1970,7 +1970,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
       return "<tr>"
         + "<td data-label=\\"Ticker\\"><span class=\\"holding-name-line\\"><span class=\\"ticker\\">" + escapeHtml(holding.ticker) + "</span>" + stockLinkHtml(holding) + "</span><span class=\\"subtext\\">" + escapeHtml(holding.name) + "</span></td>"
         + "<td data-label=\\"Weight\\" class=\\"price-cell\\">" + formatPercent(holding.targetWeight) + "</td>"
-        + "<td data-label=\\"Rs 5L deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
+        + "<td data-label=\\"₹5 lakh deployed\\" class=\\"price-cell\\">" + formatInr(holding.modelAmountInr) + "</td>"
         + "<td data-label=\\"Avg entry\\" class=\\"price-cell\\">" + formatPrice(holding.entryPrice) + "<span class=\\"subtext entry-source-line\\">" + escapeHtml(holdingEntrySourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"" + escapeHtml(latestPriceCellLabel(window.__MULTIBAGGER_STATE__)) + "\\" class=\\"price-cell " + currentTone + "\\">" + formatPrice(holding.lastPrice) + "<span class=\\"subtext quote-source-line\\">" + escapeHtml(holdingPriceSourceLine(holding)) + "</span></td>"
         + "<td data-label=\\"Return\\" class=\\"price-cell " + toneClass(holding.returnPercent) + "\\">" + formatPerformancePercent(holding.returnPercent) + "</td>"
@@ -2539,7 +2539,7 @@ function holdingsRowsHtml(holdings) {
               <tr>
                 <td data-label="Ticker"><span class="holding-name-line"><span class="ticker">${escapeHtml(holding.ticker)}</span>${stockLinkHtml(holding)}</span><span class="subtext">${escapeHtml(holding.name)}</span></td>
                 <td data-label="Weight" class="price-cell">${formatPercent(holding.targetWeight)}</td>
-                <td data-label="Rs 5L deployed" class="price-cell">${formatInr(holding.modelAmountInr)}</td>
+                <td data-label="₹5 lakh deployed" class="price-cell">${formatInr(holding.modelAmountInr)}</td>
                 <td data-label="Avg entry" class="price-cell">${formatPrice(holding.entryPrice)}<span class="subtext entry-source-line">${escapeHtml(holdingEntrySourceLine(holding))}</span></td>
                 <td data-label="Current price" class="price-cell ${holding.isStale ? "stale" : "neutral"}">${formatPrice(holding.lastPrice)}<span class="subtext quote-source-line">${escapeHtml(holdingPriceSourceLine(holding))}</span></td>
                 <td data-label="Return" class="price-cell ${toneClass(holding.returnPercent)}">${formatPerformancePercent(holding.returnPercent)}</td>
@@ -2596,7 +2596,7 @@ function trackingRailHtml(state) {
   const entryShort = compactDateTime(basis.publicFillBaselineAt);
   return `
     <section class="tracking-rail" aria-label="Tracking basis">
-      <article class="tracking-chip"><span>Baseline</span><strong id="trackingBaselineMetric">Rs 5L public baseline</strong></article>
+      <article class="tracking-chip"><span>Baseline</span><strong id="trackingBaselineMetric">₹5 lakh public baseline</strong></article>
       <article class="tracking-chip"><span>Entries</span><strong id="trackingEntriesMetric">Entries captured ${escapeHtml(entryShort)}</strong></article>
       <article class="tracking-chip"><span>Latest quote refresh</span><strong id="trackingQuotesMetric">${escapeHtml(shortQuoteLabel(state))}</strong></article>
       <article class="tracking-chip"><span>Boundary</span><strong>Educational research only</strong></article>

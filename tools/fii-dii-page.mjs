@@ -71,7 +71,7 @@ function heroCards(days) {
           <strong class="${signClass(fii + dii)}" style="font-size:15px;margin:2px 0">${fmtCr(fii + dii)}</strong>
         </div>
         <div>
-          <small title="How much of FII net selling was absorbed/bought by DIIs today">DII Covered (Offset)</small>
+          <small title="DII net buying as a percentage of FII net selling">DII Buying vs FII Selling</small>
           <strong class="${absorption === "—" ? "flat" : "pos"}" style="font-size:15px;margin:2px 0">${absorption}</strong>
         </div>
         <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
@@ -83,7 +83,7 @@ function heroCards(days) {
 
     <!-- Card 2: FII Futures Bias -->
     <div class="mf-card">
-      <span>FII Futures Bias</span>
+      <span>FII Index Futures</span>
       <div class="mf-gauge-wrap">
         <div class="mf-gauge-header">
           <span style="color:var(--mf-up)">Long: ${longVal.toFixed(0)}%</span>
@@ -94,9 +94,9 @@ function heroCards(days) {
           <div class="mf-gauge-short" style="width:${shortVal.toFixed(1)}%"></div>
         </div>
         <div class="mf-gauge-labels">
-          <span>Long Position</span>
-          <span style="opacity:0.6">Parity</span>
-          <span>Short Position</span>
+          <span>Long contracts</span>
+          <span style="opacity:0.6">50 / 50</span>
+          <span>Short contracts</span>
         </div>
       </div>
       <div class="mf-battle-stats">
@@ -110,7 +110,7 @@ function heroCards(days) {
         </div>
         <div style="grid-column: span 2; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .02em">
           <span>FII Trend: ${getHistoricalExtremeMonths(days, ratio)}</span>
-          <span>DII Hedge Net: <span class="${signClass(diiFnoNet)}">${diiFnoNet >= 0 ? "Long" : "Short"} ${fmtNum(Math.abs(diiFnoNet))}</span> <small style="opacity:0.6;font-weight:normal">(hedged/non-directional)</small></span>
+          <span>DII index futures net: <span class="${signClass(diiFnoNet)}">${diiFnoNet >= 0 ? "Long" : "Short"} ${fmtNum(Math.abs(diiFnoNet))}</span></span>
         </div>
       </div>
     </div>

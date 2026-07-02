@@ -4,20 +4,20 @@ export function determineRegime(fii, dii, ratio) {
   const isFiiSelling = fii < 0, isFiiBuying = fii > 0, isDiiBuying = dii > 0, isDiiSelling = dii < 0;
   const absFii = Math.abs(fii) || 1;
   const absorption = (isFiiSelling && isDiiBuying) ? (dii / absFii) : 0;
-  let cls = "neutral", label = "FII positioning neutral", regime = "Regime: Balanced flows";
+  let cls = "neutral", label = "FII futures evenly split", regime = "Cash flows mixed";
   if (ratio != null) {
     if (ratio < 40) {
       cls = "bearish";
-      label = "FII aggressively short";
-      regime = isFiiSelling ? (absorption >= 0.8 ? "Regime: Bearish FII, domestic cushion" : "Regime: Bearish FII, weak domestic cushion") : "Regime: FII short hedging, cash mixed";
+      label = "FII index futures mostly short";
+      regime = isFiiSelling ? (absorption >= 0.8 ? "Foreign selling, domestic buying" : "Foreign selling exceeds domestic buying") : "Futures mostly short; cash mixed";
     } else if (ratio > 60) {
       cls = "bullish";
-      label = "FII aggressively long";
-      regime = isFiiBuying ? (isDiiSelling ? "Regime: Bullish FII, domestic profit-taking" : "Regime: Bullish FII, broad buying") : "Regime: FII long tilt, cash mixed";
+      label = "FII index futures mostly long";
+      regime = isFiiBuying ? (isDiiSelling ? "Foreign buying, domestic selling" : "Both groups buying shares") : "Futures mostly long; cash mixed";
     }
   }
   const details = [label];
-  if (isFiiSelling && isDiiBuying) details.push("DII absorbing");
+  if (isFiiSelling && isDiiBuying) details.push("DII buying offsets FII selling");
   else if (isFiiBuying && isDiiBuying) details.push("Both buying");
   details.push(regime);
   return { cls, text: details.join(" · ") };
@@ -35,9 +35,9 @@ export function getHistoricalExtremeMonths(days, currentRatio) {
     sessions++;
   }
   const months = Math.round(sessions / 21);
-  const lean = currentRatio <= 20 ? "Strongly short" : currentRatio < 40 ? "Short tilt" : currentRatio <= 60 ? "Balanced" : currentRatio <= 80 ? "Long tilt" : "Strongly long";
+  const lean = currentRatio <= 20 ? "Mostly short" : currentRatio < 40 ? "More short than long" : currentRatio <= 60 ? "Evenly split" : currentRatio <= 80 ? "More long than short" : "Mostly long";
   if (months >= 1) {
-    return `<span class="${isBearish ? "neg" : "pos"}" style="font-weight:850">${lean} — most ${isBearish ? "bearish" : "bullish"} in ${months} month${months > 1 ? "s" : ""}</span>`;
+    return `<span class="${isBearish ? "neg" : "pos"}" style="font-weight:850">${lean} — lowest ${isBearish ? "long" : "short"} share in ${months} month${months > 1 ? "s" : ""}</span>`;
   }
   return `<span class="${isBearish ? "neg" : "pos"}" style="font-weight:850">${lean} positioning</span>`;
 }

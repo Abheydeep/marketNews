@@ -115,6 +115,7 @@ export function siteFooterCss() {
     .footer-legal a:hover { color:#94a3b8; }
     
     @media (max-width:760px) {
+      .site-footer { padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)); }
       .footer-brand { flex-direction:column; align-items:flex-start !important; gap:8px; }
       .footer-cols { grid-template-columns:repeat(2,1fr) !important; gap:16px !important; }
       .footer-col { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:16px 18px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.03); }
