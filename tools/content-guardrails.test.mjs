@@ -67,6 +67,12 @@ test("content guardrails: archived publish forwards its source slot across midni
   });
 });
 
+test("content guardrails: fresh Vercel digest is included without archive writes", async () => {
+  const publisher = await readFile("tools/publish-site.mjs", "utf8");
+  assert.match(publisher, /includeSourceDigestPreview = skipArchiveWrite;/);
+  assert.doesNotMatch(publisher, /includeSourceDigestPreview = skipArchiveWrite && process\.env\.LOCAL_PREVIEW_DIGEST/);
+});
+
 test("content guardrails: editorial headline is generated at build time and stored in the archive", async () => {
   const core = await readFile("tools/core.mjs", "utf8");
   assert.match(core, /generateEditorialHeadline\(/);

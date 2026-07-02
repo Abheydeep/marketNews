@@ -36,7 +36,7 @@ const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrat
 const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
-const includeSourceDigestPreview = skipArchiveWrite && process.env.LOCAL_PREVIEW_DIGEST === "true";
+const includeSourceDigestPreview = skipArchiveWrite;
 const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
 const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
 
