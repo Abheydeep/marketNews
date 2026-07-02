@@ -1,7 +1,8 @@
 export const DEFAULT_PUBLIC_SITE_ORIGIN = "https://www.marketnarrative.in";
 
 export function publicSiteOrigin() {
-  return (process.env.PUBLIC_SITE_ORIGIN || DEFAULT_PUBLIC_SITE_ORIGIN).replace(/\/+$/, "");
+  const origin = (process.env.PUBLIC_SITE_ORIGIN || DEFAULT_PUBLIC_SITE_ORIGIN).replace(/\/+$/, "");
+  return /^https:\/\/marketnarrative\.in$/i.test(origin) ? DEFAULT_PUBLIC_SITE_ORIGIN : origin;
 }
 
 export function absolutePublicUrl(path = "/", origin = publicSiteOrigin()) {

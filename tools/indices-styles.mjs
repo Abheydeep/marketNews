@@ -2,7 +2,10 @@
 export function indicesStyles() {
   return `<style>
   .idx { --bg-idx: var(--bg); --panel-idx: var(--panel); --panel-2-idx: var(--surface); --line-idx: var(--line); --text-idx: var(--ink); --muted-idx: var(--muted); --up-idx: var(--up); --down-idx: var(--down); --flat-idx: var(--flat); --cyan-idx: var(--accent); display: grid; gap: 24px; margin-bottom: 40px; }
-  .idx-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--up-idx); background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); padding: 4px 10px; border-radius: 99px; width: fit-content; margin-bottom: -12px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; }
+  .idx-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--muted-idx); background: rgba(148, 163, 184, 0.08); border: 1px solid rgba(148, 163, 184, 0.18); padding: 4px 10px; border-radius: 99px; width: fit-content; margin-bottom: -12px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; }
+  .idx-live-badge.live { color: var(--up-idx); background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.2); }
+  .idx-live-badge.closed { color: var(--flat-idx); background: rgba(148, 163, 184, 0.1); border-color: rgba(148, 163, 184, 0.2); }
+  .idx-live-badge.delayed { color: var(--amber); background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.22); }
   .idx-live-badge.offline { color: var(--down-idx); background: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.2); }
   .idx-spotlight { background: linear-gradient(135deg, rgba(11, 18, 32, 0.95), rgba(17, 24, 39, 0.85)); border: 1px solid var(--cyan-idx); box-shadow: 0 0 20px rgba(103, 232, 249, 0.1); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
   .idx-spotlight::before { content: "SPOTLIGHT"; position: absolute; top: 12px; right: 16px; font-size: 9px; font-weight: 900; color: var(--cyan-idx); letter-spacing: 0.15em; background: rgba(103, 232, 249, 0.1); padding: 2px 6px; border-radius: 4px; }
@@ -69,8 +72,7 @@ export function indicesStyles() {
   .idx-heat-bg-neg-2 { background: rgba(251, 113, 133, 0.16); }
   .idx-heat-bg-neg-3 { background: rgba(251, 113, 133, 0.24); }
   
-    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .idx-layout-shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .idx-layout-shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
     .idx-layout-hero { padding: 46px 0 26px; }
     .idx-layout-eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
     .idx-layout-h1 { margin: 0; max-width: 780px; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: 0; }

@@ -6,6 +6,7 @@ export function indicesLiveScript() {
   return `<script>
     (function() {
       let lastSuccess = null;
+      let lastSnapshots = [];
       const prevPrices = {};
       let pollTimeout = null;
 
@@ -53,6 +54,28 @@ export function indicesLiveScript() {
         setTimeout(() => el.classList.remove(cls), 600);
       }
 
+      function statusForSymbol(snapshot) {
+        if (!snapshot || snapshot.dataQuality !== "live") return { label: "Delayed", className: "delayed" };
+        return marketStateForSymbol(snapshot.symbol) === "open"
+          ? { label: "● Live", className: "live" }
+          : { label: "Closed", className: "closed" };
+      }
+
+      function setBadgeStatus(badge, snapshots, suffix) {
+        if (!badge) return;
+        const live = snapshots.filter(s => s.dataQuality === "live");
+        const open = live.filter(s => marketStateForSymbol(s.symbol) === "open");
+        const delayed = snapshots.length - live.length;
+        const status = open.length > 0
+          ? { label: "● Live", className: "live", detail: open.length + " markets open" }
+          : delayed > 0
+            ? { label: "Delayed", className: "delayed", detail: "showing latest available prices" }
+            : { label: "Closed", className: "closed", detail: "markets outside active hours" };
+        badge.classList.remove("live", "closed", "delayed", "offline");
+        badge.classList.add(status.className);
+        badge.textContent = status.label + " · " + status.detail + " · " + suffix;
+      }
+
       ${chartClientScript()}
 
       ${chartClientSparklineScript()}
@@ -65,11 +88,10 @@ export function indicesLiveScript() {
           if (!data || !Array.isArray(data.snapshots)) throw new Error("malformed_payload");
 
           lastSuccess = Date.now();
+          lastSnapshots = data.snapshots;
           const badge = document.getElementById("idx-live-badge");
-          if (badge) {
-            badge.classList.remove("offline");
-            badge.textContent = "Data refreshed · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · just now";
-          }
+          const refreshedAt = new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST";
+          setBadgeStatus(badge, data.snapshots, "updated " + refreshedAt + " · just now");
 
           const niftyClose = Number(document.querySelector(".idx")?.dataset.niftyClose || 0);
 
@@ -115,7 +137,9 @@ export function indicesLiveScript() {
                   f.textContent = (s.symbol === "GIFTNIFTY" && !el.classList.contains("idx-card")) ? changeText : (pct > 0 ? "+" : "") + pct.toFixed(2) + "%";
                   f.className = (s.symbol === "GIFTNIFTY" && !el.classList.contains("idx-card")) ? (pct >= 0 ? "idx-pos" : "idx-neg") : ("idx-card-change " + dirClass);
                 } else if (type === "quality") {
-                  f.textContent = s.dataQuality !== "live" ? "Delayed" : marketStateForSymbol(s.symbol) === "open" ? "● Live" : "Closed";
+                  const status = statusForSymbol(s);
+                  f.textContent = status.label;
+                  f.className = "idx-quality-" + status.className;
                 }
               });
 
@@ -145,8 +169,9 @@ export function indicesLiveScript() {
         } catch (err) {
           const badge = document.getElementById("idx-live-badge");
           if (badge) {
+            badge.classList.remove("live", "closed", "delayed");
             badge.classList.add("offline");
-            badge.textContent = "⚠ Offline · showing baked data";
+            badge.textContent = "Offline · showing briefing snapshot";
           }
         } finally {
           pollTimeout = setTimeout(poll, getPollIntervalMs());
@@ -158,10 +183,11 @@ export function indicesLiveScript() {
         const badge = document.getElementById("idx-live-badge");
         if (!badge || badge.classList.contains("offline") || !lastSuccess) return;
         const s = Math.floor((Date.now() - lastSuccess) / 1000);
+        const refreshedAt = new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST";
         if (s <= 1) {
-          badge.textContent = "Data refreshed · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · just now";
+          setBadgeStatus(badge, lastSnapshots, "updated " + refreshedAt + " · just now");
         } else {
-          badge.textContent = "Data refreshed · " + new Date(lastSuccess).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) + " IST · " + s + "s ago";
+          setBadgeStatus(badge, lastSnapshots, "updated " + refreshedAt + " · " + s + "s ago");
         }
       }, 1000);
 

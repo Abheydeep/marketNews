@@ -14,6 +14,7 @@ import { assertPublicBriefingCopy, sanitizeLegacyPublicBriefingCopy } from "./ed
 import { fiiDiiPageBody } from "./fii-dii-page.mjs";
 import { indicesPageHtml } from "./indices-layout.mjs";
 import { giftNiftyPageHtml } from "./gift-nifty-layout.mjs";
+import { marketStatsLiveScript } from "./market-stats-live.mjs";
 import { loadHistory, historyArray } from "./fii-dii-store.mjs";
 import { isoKey } from "./fii-dii-source.mjs";
 import { parseDayLabel } from "./fii-dii-capture.mjs";
@@ -2595,8 +2596,8 @@ export function marketStatisticsPage(latest) {
     .filter(Boolean);
   const health = marketHealthScore(selected, latest?.fiiDiiFlows);
   const body = `
-    <div style="color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
-      Prices as of morning briefing: <b>${escapeHtml(formatDigestDate(latest.digestDate))} at 7:15 AM IST</b>
+    <div id="market-stats-live-status" style="color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
+      Briefing snapshot: <b>${escapeHtml(formatDigestDate(latest.digestDate))} at 7:15 AM IST</b>. Live values sync with Indices after load.
     </div>
     <section class="metric-grid" aria-label="Latest market statistics">
       <article class="metric-card">
@@ -2606,10 +2607,10 @@ export function marketStatisticsPage(latest) {
         ${health.breakdown?.length ? `<p style="font-size:11px;color:var(--muted);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px">${escapeHtml(health.breakdown.join(" · "))}</p>` : ""}
       </article>
       ${selected.slice(0, 5).map((snapshot) => `
-        <article class="metric-card">
+        <article class="metric-card" data-stat-live="${escapeHtml(snapshot.symbol)}">
           <span>${escapeHtml(snapshot.symbol)}</span>
-          <strong class="${Number(snapshot.changePercent || 0) >= 0 ? "up" : "down"}">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
-          <p>${escapeHtml(marketDisplayNameForSnapshot(snapshot))} - ${escapeHtml(formatIndexValue(snapshot))}</p>
+          <strong class="${Number(snapshot.changePercent || 0) >= 0 ? "up" : "down"}" data-stat-field="pct">${escapeHtml(formatSnapshotChange(snapshot))}</strong>
+          <p data-stat-field="detail">${escapeHtml(marketDisplayNameForSnapshot(snapshot))} - ${escapeHtml(formatIndexValue(snapshot))}</p>
         </article>
       `).join("")}
     </section>
@@ -2634,6 +2635,7 @@ export function marketStatisticsPage(latest) {
     h1: "India Market Statistics Today - Nifty Breadth & Health Score",
     ogImageUrl: latest?.ogImageUrl,
     bodyHtml: body,
+    scripts: marketStatsLiveScript(),
     jsonLd: seoGraph([
       organizationJsonLd(),
       websiteJsonLd(),
@@ -2840,7 +2842,7 @@ export function termsPage() {
   });
 }
 
-function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd, ogImageUrl = "" }) {
+function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml, jsonLd, ogImageUrl = "", scripts = "" }) {
   const canonical = `${siteOrigin}${path}`;
   const socialImage = ogImageUrl || socialCardUrl(socialKeyForPath(path), siteOrigin);
 
@@ -2895,7 +2897,8 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
     bodyClass: "has-btb",
     activeHref: path,
     mobileActiveKey: staticPageActiveKey(path),
-    main
+    main,
+    scripts
   });
 }
 

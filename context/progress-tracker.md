@@ -318,6 +318,12 @@ These must remain true after changes:
 - 2026-06-29: Implemented Phase 0, Phase 1, Phase 2, and foundation of Phase 3 & 4 of the architectural plan.
   ROOT CAUSE (if bug): none.
   Verified: Created `tools/html-utils.mjs` and `tools/site-constants.mjs` to centralize formatters, disclaimers, and symbols. Created `tools/http.mjs` to unify requests, timeout logic, and retries. Created `tools/chart-svg.mjs` to unify coordinate-to-SVG mapping. Created `tools/site-chrome.mjs`, `tools/page-shell.mjs`, and `tools/json-ld.mjs` to unify the global document shells, headers, and footers. Registered `tools/architecture-guard.test.mjs` and verification suites, which run successfully. Verified via `npm run context:verify` (passes), `npm test` (96 tests pass), and `npm run test:deploy` (passes).
+
+- 2026-07-02: Fixed public shell drift and market-data mismatches on Indices, GIFT Nifty, and Market Statistics.
+  ROOT CAUSE (if bug): `siteThemeCss` hid the skip link only with transform, `siteHeaderCss` let the brand inherit page link colors, `indicesStyles` redefined the shared `.shell` width, `indicesLiveScript` wrote an ambiguous refreshed badge instead of Live/Closed/Delayed state, `marketStatisticsPage` rendered digest-only snapshots while Indices polled `/api/live-indices/`, and `publicSiteOrigin` trusted an apex `PUBLIC_SITE_ORIGIN`.
+  Verified: `npm run context:verify` PASS; targeted `node --test tools/public-render-regressions.test.mjs tools/public-page-contract.test.mjs tools/market-session-client.test.mjs` PASS (29 tests); `npm test` PASS (86 tests); `npm run test:deploy` PASS after rerun with 127.0.0.1 bind permission; `MARKET_NARRATIVE_DEPLOY_TARGET=public npm run vercel:build` PASS with live daily generation and public artifact copy; `npm run public:copy:qa -- public` PASS; `npm run mobile:smoke -- public` PASS.
+  Architecture diagrams changed: `context/architecture-diagrams/04-static-publish-deploy.mmd`, `context/architecture-diagrams/06-module-ownership-debt.mmd`.
+  Debt found but deferred: NVIDIA image generation timed out during the live public build and used the existing fallback path.
   Architecture diagrams changed: none.
   Debt found but deferred: migrating existing page files to use the new page-shell.mjs and decompositing cockpit-page.mjs.
 

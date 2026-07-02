@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { pageShell } from "./page-shell.mjs";
-import { archivePage, aboutPage, subscribePage, moneyFlowPage, movesHubPage } from "./publish-site.mjs";
+import { publicSiteOrigin } from "./public-page-registry.mjs";
+import { indicesPageHtml } from "./indices-layout.mjs";
+import { archivePage, aboutPage, subscribePage, moneyFlowPage, marketStatisticsPage, movesHubPage } from "./publish-site.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 
 const digest = {
@@ -29,8 +31,35 @@ test("public rendering: shell owns styles, content width, and focus-only skip li
   assert.match(html, /<main id="mn-main" class="site-content-shell">/);
   assert.match(html, /\.mn-skip\s*\{/);
   assert.match(html, /\.mn-skip:focus-visible/);
-  assert.doesNotMatch(html, /\.mn-skip:focus\s*,/);
+  assert.match(html, /clip-path:\s*inset\(50%\)/);
   assert.match(html, /@media \(max-width:760px\)[\s\S]*\.site-footer\s*\{[^}]*padding-bottom:\s*calc\(96px \+ env\(safe-area-inset-bottom, 0px\)\)/);
+});
+
+test("public rendering: apex origin env normalizes to canonical www host", () => {
+  const previous = process.env.PUBLIC_SITE_ORIGIN;
+  process.env.PUBLIC_SITE_ORIGIN = "https://marketnarrative.in";
+  try {
+    assert.equal(publicSiteOrigin(), "https://www.marketnarrative.in");
+  } finally {
+    if (previous === undefined) delete process.env.PUBLIC_SITE_ORIGIN;
+    else process.env.PUBLIC_SITE_ORIGIN = previous;
+  }
+});
+
+test("public rendering: indices do not redefine shared width and expose status states", async () => {
+  const html = indicesPageHtml(digest, "https://www.marketnarrative.in", "2026-07-01 07:30", "");
+  assert.match(html, /● Live/);
+  assert.match(html, /Closed/);
+  assert.match(html, /Delayed/);
+  assert.doesNotMatch(await readFile("tools/indices-styles.mjs", "utf8"), /^\s*\.shell\b/m);
+});
+
+test("public rendering: market statistics syncs visible values with indices API", () => {
+  const html = marketStatisticsPage(digest);
+  assert.match(html, /id="market-stats-live-status"/);
+  assert.match(html, /data-stat-live="NIFTY"/);
+  assert.match(html, /Live values sync with Indices/);
+  assert.match(html, /\/api\/live-indices\//);
 });
 
 test("public rendering: homepage does not leak CSS text", () => {

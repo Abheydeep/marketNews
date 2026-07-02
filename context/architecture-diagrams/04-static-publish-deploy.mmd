@@ -32,6 +32,8 @@ flowchart TD
     LiveIndices --> YahooLive["Yahoo Finance"]
     LiveIndices --> NseIxLive["nse-ix.mjs GIFT Nifty"]
   end
+  LiveIndices --> IndicesClient["indices-live.mjs updates /indices and /indices/gift-nifty status and values"]
+  LiveIndices --> StatsClient["market-stats-live.mjs updates /market-statistics values"]
 
   Home --> Guard["writeGuardedFile public copy QA"]
   Dated --> Guard

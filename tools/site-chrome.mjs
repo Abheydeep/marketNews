@@ -41,7 +41,8 @@ export function siteHeaderCss() {
     .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
     .site-chrome-shell { margin:0 auto; width:min(1160px,calc(100% - 36px)); }
     .nav-inner { align-items:center; display:flex; gap:16px; justify-content:space-between; min-height:64px; }
-    .brand { align-items:center; display:flex; gap:12px; font-size:20px; font-weight:850; }
+    .brand { align-items:center; color:var(--ink); display:flex; gap:12px; font-size:20px; font-weight:850; text-decoration:none; }
+    .brand:hover { color:var(--ink); filter:none; }
     .site-tabs { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
     .site-tabs::-webkit-scrollbar { display:none; }
     .tab-link { border:1px solid rgba(255,255,255,.12); border-radius:8px; color:#9fb0c8; font-size:13px; font-weight:800; padding:8px 12px; white-space:nowrap; transition:border-color 120ms,color 120ms,background 120ms; }

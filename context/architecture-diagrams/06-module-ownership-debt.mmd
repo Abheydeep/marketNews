@@ -9,10 +9,11 @@ flowchart TD
   end
 
   subgraph Completed["Completed splits"]
-    IdxPage["indices-page.mjs (146 lines)"]
-    IdxStyles["indices-styles.mjs (74 lines)"]
-    IdxLayout["indices-layout.mjs (187 lines)"]
-    NseIx["nse-ix.mjs (74 lines)"]
+    IdxPage["indices-page.mjs (197 lines)"]
+    IdxStyles["indices-styles.mjs (89 lines)"]
+    IdxLayout["indices-layout.mjs (127 lines)"]
+    NseIx["nse-ix.mjs (129 lines)"]
+    MarketStatsLive["market-stats-live.mjs (49 lines)"]
     FiiPage["fii-dii-page.mjs"]
     FiiTables["fii-dii-tables.mjs"]
     FiiStyles["fii-dii-styles.mjs"]
@@ -48,6 +49,7 @@ flowchart TD
   Cockpit -.-> SharedShell
   Multi -.-> SharedShell
   Publish -.-> SessionClient
+  Publish -.-> MarketStatsLive
   Core -.-> DirectionGuard
   Publish -.-> DirectionGuard
   SharedShell -.-> PublicCopy

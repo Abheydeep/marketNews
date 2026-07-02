@@ -73,19 +73,31 @@ img, svg {
 .mn-skip {
   background: var(--ink);
   border-radius: 0 0 8px 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   color: var(--bg);
   font-weight: 800;
+  height: 1px;
   left: 0;
+  overflow: hidden;
   padding: 10px 14px;
   position: fixed;
   top: 0;
   transform: translateY(-120%);
   transition: transform 120ms ease;
+  white-space: nowrap;
+  width: 1px;
   z-index: 300;
 }
 
+.mn-skip:focus,
 .mn-skip:focus-visible {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
   transform: translateY(0);
+  width: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
