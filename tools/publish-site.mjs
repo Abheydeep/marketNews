@@ -15,6 +15,7 @@ import { fiiDiiPageBody } from "./fii-dii-page.mjs";
 import { indicesPageHtml } from "./indices-layout.mjs";
 import { giftNiftyPageHtml } from "./gift-nifty-layout.mjs";
 import { marketStatsLiveScript } from "./market-stats-live.mjs";
+import { liveStatusBadgeHtml } from "./live-status-badge.mjs";
 import { loadHistory, historyArray } from "./fii-dii-store.mjs";
 import { isoKey } from "./fii-dii-source.mjs";
 import { parseDayLabel } from "./fii-dii-capture.mjs";
@@ -2596,8 +2597,8 @@ export function marketStatisticsPage(latest) {
     .filter(Boolean);
   const health = marketHealthScore(selected, latest?.fiiDiiFlows);
   const body = `
-    <div id="market-stats-live-status" style="color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
-      Briefing snapshot: <b>${escapeHtml(formatDigestDate(latest.digestDate))} at 7:15 AM IST</b>. Live values sync with Indices after load.
+    <div style="margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
+      ${liveStatusBadgeHtml({ id: "market-stats-live-status", text: `Delayed · Briefing snapshot · ${formatDigestDate(latest.digestDate)} 7:15 AM IST` })}
     </div>
     <section class="metric-grid" aria-label="Latest market statistics">
       <article class="metric-card">

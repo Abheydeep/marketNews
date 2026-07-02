@@ -48,17 +48,22 @@ test("public rendering: apex origin env normalizes to canonical www host", () =>
 
 test("public rendering: indices do not redefine shared width and expose status states", async () => {
   const html = indicesPageHtml(digest, "https://www.marketnarrative.in", "2026-07-01 07:30", "");
+  assert.match(html, /<main id="mn-main" class="site-content-shell">/);
+  assert.match(html, /Delayed · Briefing snapshot/);
   assert.match(html, /● Live/);
   assert.match(html, /Closed/);
   assert.match(html, /Delayed/);
+  assert.doesNotMatch(await readFile("tools/indices-layout.mjs", "utf8"), /mainClass:\s*"site-content-full"/);
+  assert.doesNotMatch(await readFile("tools/gift-nifty-layout.mjs", "utf8"), /mainClass:\s*"site-content-full"/);
   assert.doesNotMatch(await readFile("tools/indices-styles.mjs", "utf8"), /^\s*\.shell\b/m);
 });
 
 test("public rendering: market statistics syncs visible values with indices API", () => {
   const html = marketStatisticsPage(digest);
   assert.match(html, /id="market-stats-live-status"/);
+  assert.match(html, /class="mn-live-badge delayed"/);
   assert.match(html, /data-stat-live="NIFTY"/);
-  assert.match(html, /Live values sync with Indices/);
+  assert.match(html, /● Live · synced with Indices/);
   assert.match(html, /\/api\/live-indices\//);
 });
 

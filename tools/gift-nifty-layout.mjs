@@ -31,7 +31,6 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd) {
     bodyClass: "has-btb",
     activeHref: "/indices/",
     mobileActiveKey: "indices",
-    mainClass: "site-content-full",
     main
   });
 }

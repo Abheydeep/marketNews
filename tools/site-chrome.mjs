@@ -39,7 +39,7 @@ export function siteHeaderHtml(activeHref = "", options = {}) {
 export function siteHeaderCss() {
   return `
     .topbar { position:sticky; top:0; z-index:20; background:rgba(3,7,18,.72); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
-    .site-chrome-shell { margin:0 auto; width:min(1160px,calc(100% - 36px)); }
+    .site-chrome-shell { margin:0 auto; width:min(var(--content-max),calc(100% - var(--content-gutter))); }
     .nav-inner { align-items:center; display:flex; gap:16px; justify-content:space-between; min-height:64px; }
     .brand { align-items:center; color:var(--ink); display:flex; gap:12px; font-size:20px; font-weight:850; text-decoration:none; }
     .brand:hover { color:var(--ink); filter:none; }

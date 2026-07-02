@@ -13,7 +13,8 @@ flowchart TD
     IdxStyles["indices-styles.mjs (89 lines)"]
     IdxLayout["indices-layout.mjs (127 lines)"]
     NseIx["nse-ix.mjs (129 lines)"]
-    MarketStatsLive["market-stats-live.mjs (49 lines)"]
+    MarketStatsLive["market-stats-live.mjs (57 lines)"]
+    LiveBadge["live-status-badge.mjs (12 lines)"]
     FiiPage["fii-dii-page.mjs"]
     FiiTables["fii-dii-tables.mjs"]
     FiiStyles["fii-dii-styles.mjs"]
@@ -50,6 +51,8 @@ flowchart TD
   Multi -.-> SharedShell
   Publish -.-> SessionClient
   Publish -.-> MarketStatsLive
+  Publish -.-> LiveBadge
+  IdxPage -.-> LiveBadge
   Core -.-> DirectionGuard
   Publish -.-> DirectionGuard
   SharedShell -.-> PublicCopy

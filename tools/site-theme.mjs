@@ -26,6 +26,8 @@ export function siteThemeCss() {
   --radius-lg: 12px;
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --content-max: 1160px;
+  --content-gutter: 36px;
 }
 
 *, *::before, *::after {
@@ -67,7 +69,48 @@ img, svg {
 
 .site-content-shell {
   margin: 0 auto;
-  width: min(1160px, calc(100% - 36px));
+  width: min(var(--content-max), calc(100% - var(--content-gutter)));
+}
+
+.mn-live-badge {
+  align-items: center;
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 850;
+  gap: 6px;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.mn-live-badge.live {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.24);
+  color: var(--up);
+}
+
+.mn-live-badge.closed {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.22);
+  color: var(--flat);
+}
+
+.mn-live-badge.delayed {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.22);
+  color: var(--amber);
+}
+
+.mn-live-badge.offline {
+  background: rgba(251, 113, 133, 0.1);
+  border-color: rgba(251, 113, 133, 0.22);
+  color: var(--down);
 }
 
 .mn-skip {

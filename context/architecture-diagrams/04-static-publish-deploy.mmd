@@ -9,6 +9,7 @@ flowchart TD
 
   Digest["out/daily or archive digest"] --> Load["publish-site loadSourceDigest"]
   Registry["public-page-registry: www origin, title, nav and social policy"] --> SharedShell["pageShell owns document chrome, metadata, styles and content width"]
+  LiveBadge["live-status-badge: shared delayed/live/closed/offline badge markup"] --> Pages
   RuntimeAssets["out/vercel/assets/og generated images"] --> AssetCopy["copy assets into out/site/assets"]
   Digest --> SocialCards["deterministic social-card SVG templates"]
   SocialCards --> Sharp["sharp rasterizes 1200x630 PNG cards"]
@@ -33,7 +34,9 @@ flowchart TD
     LiveIndices --> NseIxLive["nse-ix.mjs GIFT Nifty"]
   end
   LiveIndices --> IndicesClient["indices-live.mjs updates /indices and /indices/gift-nifty status and values"]
-  LiveIndices --> StatsClient["market-stats-live.mjs updates /market-statistics values"]
+  LiveIndices --> StatsClient["market-stats-live.mjs updates /market-statistics status and values"]
+  LiveBadge --> IndicesClient
+  LiveBadge --> StatsClient
 
   Home --> Guard["writeGuardedFile public copy QA"]
   Dated --> Guard

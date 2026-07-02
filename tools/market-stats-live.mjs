@@ -38,9 +38,17 @@ export function marketStatsLiveScript() {
         const data = await res.json();
         if (!Array.isArray(data.snapshots)) throw new Error("malformed_payload");
         data.snapshots.forEach(applySnapshot);
-        if (status) status.textContent = "Live values synced with Indices · " + formatTimestamp(data.ts);
+        if (status) {
+          status.classList.remove("closed", "delayed", "offline");
+          status.classList.add("live");
+          status.textContent = "● Live · synced with Indices · " + formatTimestamp(data.ts);
+        }
       } catch {
-        if (status) status.textContent = "Briefing snapshot shown; live sync unavailable";
+        if (status) {
+          status.classList.remove("live", "closed", "delayed");
+          status.classList.add("offline");
+          status.textContent = "Offline · showing briefing snapshot";
+        }
       }
     }
     refresh();

@@ -1,6 +1,7 @@
 import { computeGiftNiftyBias } from "./core.mjs";
 import { indicesStyles } from "./indices-styles.mjs";
 import { escapeHtml } from "./html-utils.mjs";
+import { liveStatusBadgeHtml } from "./live-status-badge.mjs";
 
 function formatChange(snap) {
   const chg = Number(snap.changePercent || 0);
@@ -101,7 +102,7 @@ export function indicesPageBody(digest) {
 
   return `${indicesStyles()}
     <div class="idx" data-nifty-close="${niftyPrevClose}">
-      <div id="idx-live-badge" class="idx-live-badge">Briefing snapshot · ${escapeHtml(snapshotTimestamp(digest))}</div>
+      ${liveStatusBadgeHtml({ id: "idx-live-badge", text: `Delayed · Briefing snapshot · ${snapshotTimestamp(digest)}`, extraClass: "idx-live-badge" })}
       <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Analysis</h3>
         <div class="idx-spotlight-price">
@@ -150,7 +151,7 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
 
   return `${indicesStyles()}
     <div class="idx" data-nifty-close="${(nifty.previousClose || nifty.closeValue || 0)}">
-      <div id="idx-live-badge" class="idx-live-badge">Briefing snapshot · ${escapeHtml(snapshotTimestamp(digest))}</div>
+      ${liveStatusBadgeHtml({ id: "idx-live-badge", text: `Delayed · Briefing snapshot · ${snapshotTimestamp(digest)}`, extraClass: "idx-live-badge" })}
       <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Calculator</h3>
         <div class="idx-calc">
