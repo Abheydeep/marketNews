@@ -35,7 +35,9 @@ flowchart TD
   OgJpeg --> Digest
   OgFallback --> Digest
   Lead --> ScriptAgent["Long-form script sections\nconfigured NVIDIA model · concurrency 2\nSCRIPT_LLM_CONCURRENCY=1..4"]
-  ScriptAgent --> Digest
+  ScriptAgent -->|valid section text| Digest
+  ScriptAgent -->|empty section response| ScriptFallback["deterministic long-form section fallback"]
+  ScriptFallback --> Digest
   Polished --> SourceLedger["public source ledger"]
   DeterministicCopy --> SourceLedger
   Digest --> DirectionGuard["public-direction-guard: assert opening-signal consistency"]

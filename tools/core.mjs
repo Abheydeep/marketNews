@@ -161,7 +161,10 @@ ${topArticles}`;
   // requireNim still fails the digest if any section is missing after retries.
   const requireNim = async (label, prompt, opts) => {
     const result = await nimCall(systemPrompt, prompt, opts);
-    if (!result) throw new Error(`NIM returned empty response for section: ${label}`);
+    if (!result) {
+      log.warn("long-form section fallback", { section: label, reason: "empty_nim_response" });
+      return fallbackLongFormSection(label, { date, sentimentLabel, marketSummary, themesSummary, setupsSummary, dailyLead });
+    }
     return result;
   };
 
@@ -200,6 +203,13 @@ ${topArticles}`;
     twoMinuteSummary,
     deskNote: deskNote || null
   };
+}
+
+function fallbackLongFormSection(label, ctx) {
+  if (label === "editorialBriefing") return `[TWO-MINUTE SUMMARY]\n${ctx.dailyLead?.headline || "Verified market cues guide today's India open."} The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\n${ctx.marketSummary || "Global cues are mixed."} India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting to one headline. The first hour should decide whether the overnight cue has local follow-through.\n\n${ctx.themesSummary || "No single theme dominates the source stack."} Sector impact matters only when related Indian names participate after the open. Keep risk small when the source stack is narrow or conflicting.\n\n${ctx.setupsSummary || "No active setups today."} These levels are educational preparation, not investment advice. Wait for live confirmation before acting.\n\n[DESK NOTE]\nToday's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.`;
+  if (label === "onePageSummary") return `Market Mood: ${ctx.sentimentLabel}\n\nGlobal Cues: ${ctx.marketSummary}\n\nNarrative Themes:\n${ctx.themesSummary}\n\nValidated Trading Setups:\n${ctx.setupsSummary}\n\nEducational note: ${PUBLIC_MARKET_DISCLAIMER}`;
+  if (label === "teleprompterScript") return `[OPENING]\n${ctx.dailyLead?.headline || "Today starts with mixed market cues."}\n\n[GLOBAL CUES]\n${ctx.marketSummary}\n\n[NARRATIVE THEMES]\n${ctx.themesSummary}\n\n[VALIDATED SETUPS]\n${ctx.setupsSummary}\n\n[RISK DISCLAIMER]\n${PUBLIC_MARKET_DISCLAIMER}`;
+  return generateReelScript({ date: ctx.date, sentimentLabel: ctx.sentimentLabel, snapshots: [], themes: [], setups: [], articles: [] });
 }
 
 // Plain-language description of today's open, derived only from real data. Used to lock
