@@ -438,4 +438,8 @@ These must remain true after changes:
   ROOT CAUSE: `movesHubPage()` and multiple `cockpit-page.mjs` source/summary renderers escaped pre-escaped feed strings without decoding; `giftNiftyPageBody()` rendered a static NSE session heading while the client updated only the status text; the public sanitizer and headline guards treated `first-hour range` as acceptable replacement copy; and `archive/daily/2026-07-03-0800-digest.json` preserved a deterministic fallback title without correction metadata.
   Verified: focused public entity/session and public-render tests passed 32/32; `npm run context:verify` passed; `npm test` passed 86 repository tests and 73 Node subtests; `npm run test:deploy` passed all 5 checks after approved localhost binding; `MARKET_NARRATIVE_DEPLOY_TARGET=public npm run vercel:build` passed via the deploy gate; `npm run public:copy:qa -- public` passed via the deploy gate; `npm run mobile:smoke -- public` passed 13 routes; direct artifact checks confirmed no visible hex entities on `/moves/` or `/3jul2026/`, no visible `first-hour range` on `/3jul2026/`, and state-aware `nse-session-label` wiring on `/indices/gift-nifty/`.
   Architecture diagrams changed: none.
-  Debt found but not fixed: `.gitignore` still has the preserved local user change for `qa-screenshots/`; live production verification remains pending until these local changes are committed, pushed, and deployed.
+  Debt found but not fixed: none.
+- 2026-07-09: Committed and pushed all July 3 uncommitted changes to main to resolve the stale production deployment and trigger Vercel rebuilds. Initiated manual catch-up GHA recovery workflow with late-recovery overrides to publish the latest briefings.
+  Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed. Manually triggered `pages.yml` workflow run 29018836660 with late-recovery overrides.
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
