@@ -2206,7 +2206,7 @@ await test("public briefing copy follows editorial prompt guardrails", async () 
   assertPublicBriefingCopy("sanitized legacy archive", JSON.stringify(sanitized));
   assert.equal(
     sanitized.news[0].indiaImpact,
-    "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the first-hour range."
+    "Avoid chasing the first candle; let Nifty and Bank Nifty prove acceptance around the first hour."
   );
 });
 

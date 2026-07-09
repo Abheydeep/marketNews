@@ -48,7 +48,7 @@ export function instrumentSessionClientHelpers() {
       }`;
 }
 
-export function marketSessionClientScript({ clockId, statusId }) {
+export function marketSessionClientScript({ clockId, statusId, labelId = "" }) {
   return `<script>
   (() => {
     const closedDates = new Set(${JSON.stringify(closedDates)});
@@ -60,11 +60,13 @@ export function marketSessionClientScript({ clockId, statusId }) {
     function updateSession() {
       const clock = document.getElementById(${JSON.stringify(clockId)});
       const status = document.getElementById(${JSON.stringify(statusId)});
+      const label = document.getElementById(${JSON.stringify(labelId)});
       if (!clock || !status) return;
       const p = istParts();
       const iso = pad(p.year) + "-" + pad(p.month) + "-" + pad(p.day);
       const weekday = new Date(iso + "T12:00:00+05:30").getDay();
       if (weekday === 0 || weekday === 6 || closedDates.has(iso)) {
+        if (label) label.textContent = "NSE Cash Market Closed";
         status.textContent = "NSE cash market closed";
         clock.textContent = closedDates.has(iso) ? "Exchange holiday" : "Weekend";
         return;
@@ -72,9 +74,10 @@ export function marketSessionClientScript({ clockId, statusId }) {
       const seconds = p.hour * 3600 + p.minute * 60 + p.second;
       const open = 9 * 3600 + 15 * 60;
       const close = 15 * 3600 + 30 * 60;
-      if (seconds >= close) { status.textContent = "NSE cash market closed"; clock.textContent = "15:30 IST close"; return; }
-      if (seconds >= open) { status.textContent = "NSE cash market open"; clock.textContent = "Open now"; return; }
+      if (seconds >= close) { if (label) label.textContent = "NSE Cash Market Closed"; status.textContent = "NSE cash market closed"; clock.textContent = "15:30 IST close"; return; }
+      if (seconds >= open) { if (label) label.textContent = "NSE Cash Market Open"; status.textContent = "NSE cash market open"; clock.textContent = "Open now"; return; }
       const remaining = open - seconds;
+      if (label) label.textContent = "NSE Cash Market Countdown";
       clock.textContent = pad(Math.floor(remaining / 3600)) + ":" + pad(Math.floor((remaining % 3600) / 60)) + ":" + pad(remaining % 60);
       status.textContent = seconds >= 9 * 3600 ? "NSE pre-open in progress" : "NSE cash market opens at 09:15 IST";
     }

@@ -47,6 +47,7 @@ test("content guardrails: headline sanitizer removes typographic quotes", () => 
 test("content guardrails: headline sanitizer rejects jargon and off-story drift", () => {
   const story = "Can A Bank Freeze Your Account If You Don't Update KYC? RBI rules explained";
   assert.equal(sanitizeEditorialHeadline("Tech Support Risk Appetite", new Set(), story), null);
+  assert.equal(sanitizeEditorialHeadline("Market Cues Support first-hour range", new Set(), story), null);
   assert.equal(sanitizeEditorialHeadline("Tech Earnings Lift Nifty Sentiment", new Set(), story), null);
   assert.equal(sanitizeEditorialHeadline("RBI KYC Rules Clarify When Banks Can Freeze Accounts", new Set(), story), "RBI KYC Rules Clarify When Banks Can Freeze Accounts");
   assert.equal(sanitizeEditorialHeadline("NSE RTI Ruling Rattles Bank Nifty And Stocks", new Set(), "Delhi HC rules NSE a public authority under RTI"), null);

@@ -11,6 +11,16 @@ export function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+export function decodeHtmlEntities(value) {
+  return String(value ?? "")
+    .replace(/&amp;(#\d+;|#x[\da-f]+;|[a-z]+;)/gi, "&$1")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&nbsp;/g, " ");
+}
+
 export function formatDigestDate(date) {
   return new Intl.DateTimeFormat("en-IN", {
     timeZone: "Asia/Kolkata",

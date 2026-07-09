@@ -1,7 +1,8 @@
 // Scoped CSS for the Indices and GIFT Nifty pages, namespaced under `.idx` to avoid clashing.
 export function indicesStyles() {
   return `<style>
-  .idx { --bg-idx: var(--bg); --panel-idx: var(--panel); --panel-2-idx: var(--surface); --line-idx: var(--line); --text-idx: var(--ink); --muted-idx: var(--muted); --up-idx: var(--up); --down-idx: var(--down); --flat-idx: var(--flat); --cyan-idx: var(--accent); display: grid; gap: 24px; margin-bottom: 40px; }
+	  .idx { --bg-idx: var(--bg); --panel-idx: var(--panel); --panel-2-idx: var(--surface); --line-idx: var(--line); --text-idx: var(--ink); --muted-idx: var(--muted); --up-idx: var(--up); --down-idx: var(--down); --flat-idx: var(--flat); --cyan-idx: var(--accent); display: grid; gap: 24px; margin-bottom: 40px; }
+	  .idx > * { max-width: 100%; min-width: 0; width: 100%; }
   .idx-live-badge { margin-bottom: -12px; transition: all 0.3s ease; }
   .idx-spotlight { background: linear-gradient(135deg, rgba(11, 18, 32, 0.95), rgba(17, 24, 39, 0.85)); border: 1px solid var(--cyan-idx); box-shadow: 0 0 20px rgba(103, 232, 249, 0.1); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
   .idx-spotlight::before { content: "SPOTLIGHT"; position: absolute; top: 12px; right: 16px; font-size: 9px; font-weight: 900; color: var(--cyan-idx); letter-spacing: 0.15em; background: rgba(103, 232, 249, 0.1); padding: 2px 6px; border-radius: 4px; }
@@ -47,7 +48,9 @@ export function indicesStyles() {
   @keyframes idxFlashUp { 0% { background-color: rgba(52, 211, 153, 0.25); } 100% { background-color: transparent; } }
   @keyframes idxFlashDown { 0% { background-color: rgba(251, 113, 133, 0.25); } 100% { background-color: transparent; } }
   .idx-calc { background: var(--panel-idx); border: 1px solid var(--line-idx); border-radius: 12px; padding: 20px; }
-  .idx-calc-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line-idx); }
+	  .idx-calc-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line-idx); }
+	  .idx-calc-row span, .idx-calc-val { min-width: 0; overflow-wrap: anywhere; }
+	  .idx-calc-val { text-align: right; }
   .idx-calc-row:last-child { border-bottom: none; padding-bottom: 0; }
   .idx-calc-row:first-child { padding-top: 0; }
   .idx-calc-val { font-weight: 850; font-size: 15px; }
@@ -75,9 +78,12 @@ export function indicesStyles() {
     .idx-layout-hero-p { max-width: 760px; color: #cbd5e1; font-size: 17px; line-height: 1.7; }
     .idx-layout-footer-note { margin: 38px 0 46px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
     @media (max-width: 760px) {
-      .idx-grid { grid-template-columns: 1fr; }
-      .idx-spotlight-price strong { font-size: 30px; }
-      .idx-ticker-strip { display: none; }
+	      .idx-grid { grid-template-columns: 1fr; }
+	      .idx, .idx-spotlight, .idx-calc, .idx-vix { min-width: 0; width: 100%; }
+	      .idx-calc-row { gap: 12px; }
+	      .idx-spotlight-price strong { font-size: 30px; }
+	      .idx-spotlight-price { align-items: flex-start; flex-direction: column; gap: 4px; }
+	      .idx-ticker-strip { display: none; }
       .idx-layout-hero { padding: 30px 0 18px; }
       .idx-layout-footer-note { margin-bottom: 84px; }
     }

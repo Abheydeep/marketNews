@@ -15,9 +15,9 @@ const execFileAsync = promisify(execFile);
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const archiveDir = join(rootDir, "archive", "daily");
 const reportPath = join(rootDir, "out", "headline-backfill-report.json");
-const formulaPattern = /\b(?:opening range|risk appetite|Nifty overnight|gap-(?:up|down) bias|crude\s*\/\s*energy risk|rates\s*\/\s*Fed path|Bank Nifty breadth|market breadth)\b|\.{2,}$/i;
+const formulaPattern = /\b(?:opening range|first[- ]hour range|risk appetite|Nifty overnight|gap-(?:up|down) bias|crude\s*\/\s*energy risk|rates\s*\/\s*Fed path|Bank Nifty breadth|market breadth)\b|\.{2,}$/i;
 const taxonomySubjectPattern = /^(?:currency pressure|global risk|market pressure|sector support|crude|rates|tech breadth)\s+(?:shape|support|test|weigh|set)s?\b/i;
-const bannedPattern = /\b(?:VWAP|breadth|opening range|risk appetite|risk-on|risk-off|advance-decline)\b/i;
+const bannedPattern = /\b(?:VWAP|breadth|opening range|first[- ]hour range|risk appetite|risk-on|risk-off|advance-decline)\b/i;
 
 export function headlineNeedsBackfill(title) {
   const value = String(title || "").trim();

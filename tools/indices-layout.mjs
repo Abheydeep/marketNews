@@ -94,16 +94,16 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
     function updateClocks() {
       const el = document.getElementById("market-clocks"); if (!el) return;
       const now = new Date(), utc = now.getTime() + now.getTimezoneOffset() * 60000, ist = new Date(utc + 3600000 * 5.5), day = ist.getDay();
-      const timeStr = ist.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      const timeStr = (timeZone) => now.toLocaleTimeString("en-IN", { timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit" });
       const sessions = [
-        { name: "GIFT Nifty", open: 6.5, close: 23.5 }, { name: "NSE Cash", open: 9.25, close: 15.5 },
-        { name: "Tokyo", open: 5.5, close: 11.5 }, { name: "London", open: 12.5, close: 21.0 },
-        { name: "New York", open: 19.0, close: 2.5 }
+        { name: "GIFT Nifty", tz: "Asia/Kolkata", open: 6.5, close: 23.5 }, { name: "NSE Cash", tz: "Asia/Kolkata", open: 9.25, close: 15.5 },
+        { name: "Tokyo", tz: "Asia/Tokyo", open: 5.5, close: 11.5 }, { name: "London", tz: "Europe/London", open: 12.5, close: 21.0 },
+        { name: "New York", tz: "America/New_York", open: 19.0, close: 2.5 }
       ];
       el.innerHTML = sessions.map(s => {
         const h = ist.getHours() + ist.getMinutes() / 60;
         const isOpen = day > 0 && day < 6 && (s.open < s.close ? (h >= s.open && h < s.close) : (h >= s.open || h < s.close));
-        return \`<div class="idx-clock"><span>\${s.name}</span><strong>\${timeStr}</strong><div class="idx-clock-pill \${isOpen ? "open" : "closed"}">\${isOpen ? "Open" : "Closed"}</div></div>\`;
+        return \`<div class="idx-clock"><span>\${s.name}</span><strong>\${timeStr(s.tz)}</strong><div class="idx-clock-pill \${isOpen ? "open" : "closed"}">\${isOpen ? "Open" : "Closed"}</div></div>\`;
       }).join("");
     }
     setInterval(updateClocks, 1000); updateClocks();

@@ -299,7 +299,7 @@ export function sanitizeEditorialHeadline(raw, allowedPrices = new Set(), storyC
   if (!h) return null;
   // Reject trading-call / level language so the H1 always clears editorial guardrails.
   if (/\b(buy|sell|hold)\b/i.test(h)) return null;
-  if (/\btarget price\b|\b(?:vwap|risk[- ]appetite|opening[- ]range|breadth)\b/i.test(h)) return null;
+  if (/\btarget price\b|\b(?:vwap|risk[- ]appetite|opening[- ]range|first[- ]hour range|breadth)\b/i.test(h)) return null;
   if (/\b\d{2},?\d{3}\b/.test(h)) return null; // index levels like 24,114 / 24114 / 80000
   // Reject any dollar amount not present in actual live price data (prevents hallucinated prices like "$90").
   for (const match of h.matchAll(/\$(\d+)/g)) {

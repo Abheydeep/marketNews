@@ -1,9 +1,17 @@
 {
   "scriptId": 1,
   "digestDate": "2026-07-03",
-  "title": "Market Cues Support first-hour range",
+  "title": "GIFT Nifty Strength Shapes India Open",
   "status": "PUBLISHED",
   "generatedAt": "2026-07-03T06:43:26.356Z",
+  "titleCorrection": {
+    "previousTitle": "Market Cues Support first-hour range",
+    "correctedTitle": "GIFT Nifty Strength Shapes India Open",
+    "sourceArticleId": "zerodha-pulse:4k4nms",
+    "method": "manual-public-qa-correction",
+    "validation": "plain-language-title-guard",
+    "correctedAt": "2026-07-03T10:49:58.000Z"
+  },
   "dailyLead": {
     "label": "GIFT Nifty: +255 pt gap-up",
     "sourceArticleId": "zerodha-pulse:4k4nms",

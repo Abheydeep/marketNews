@@ -54,7 +54,7 @@ function assertSharedShell(html, label) {
   for (const [href, text] of [["/latest/", "Latest briefing"], ["/latest/trading-guide/", "Trading Guide"], ["/money-flow/fii-dii/", "FII/DII"], ["/multibagger/", "Portfolio"], ["/about/", "About"], ["/subscribe/", "Subscribe"]]) {
     assert.match(html, new RegExp(`<a[^>]+href="${href.replaceAll("/", "\\/")}"[^>]*>${text.replace("/", "\\/")}`), `${label} missing ${text}`);
   }
-  assert.doesNotMatch(visibleText(html), /\b(?:VWAP|breadth|opening range|risk appetite|risk-on|risk-off|advance-decline)\b/i, `${label} leaks public jargon`);
+  assert.doesNotMatch(visibleText(html), /\b(?:VWAP|breadth|opening range|first[- ]hour range|risk appetite|risk-on|risk-off|advance-decline)\b/i, `${label} leaks public jargon`);
   assert.equal((html.match(/<button\b(?![^>]*\btype=)/gi) || []).length, 0, `${label} has buttons without a type`);
 }
 

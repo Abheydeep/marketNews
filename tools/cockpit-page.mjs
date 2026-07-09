@@ -1,5 +1,5 @@
 import { brandHeadLinks, brandMarkCss, brandMarkHtml } from "./brand-assets.mjs";
-import { escapeHtml } from "./html-utils.mjs";
+import { decodeHtmlEntities, escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { newsArticleJsonLd, PUBLIC_DISPLAY_LIMIT } from "./core.mjs";
 import { bottomTabBarCss, bottomTabBarHtml, mobileShellScript, mobileTypographyCss, proPolishCss } from "./mobile-shell.mjs";
@@ -20,6 +20,10 @@ const siteOrigin = publicSiteOrigin();
 const adminSiteOrigin = process.env.ADMIN_SITE_ORIGIN ?? "https://admin.marketnarrative.in";
 const apiOrigin = process.env.MARKET_NARRATIVE_API_BASE ?? process.env.PUBLIC_API_ORIGIN ?? "https://api.marketnarrative.in";
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
+
+function decodedPublicText(value) {
+  return decodeHtmlEntities(value).replace(/\s+/g, " ").trim();
+}
 
 export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   const includeStudio = options.includeStudio ?? true;
@@ -7507,8 +7511,8 @@ function compactSummaryText(digest) {
   const driver = primaryDriverForDigest(digest);
   const headline = headlineLeadClause(digest.dailyLead?.headline);
   const impact = digest.dailyLead?.indiaImpact
-    ? conciseClause(humanizeLeadCopy(digest.dailyLead.indiaImpact), 24)
-    : `${driver.summary}`;
+    ? conciseClause(humanizeLeadCopy(decodedPublicText(digest.dailyLead.indiaImpact)), 24)
+    : decodedPublicText(driver.summary);
   // Closed-market (market-update) editions: factual recap only — no pre-open call,
   // no "watch first" Nifty levels and no breadth-confirmation trading framing.
   if (digest.marketUpdateMode) {
@@ -8785,9 +8789,9 @@ function sourceExtractionRows(articles) {
           <small>${escapeHtml(formatArticleTime(article.publishedAt))} - ${escapeHtml(categoryLabel(article.category))}</small>
         </div>
         <div class="source-extract-copy">
-          <h4>${escapeHtml(article.headline)}</h4>
-          <p>${escapeHtml(article.takeaway || article.summary)}</p>
-          <p class="why-line"><strong>India angle:</strong> ${escapeHtml(article.indiaImpact || article.whyItMatters || "Watch for confirmation across sectors and the opening range.")}</p>
+          <h4>${escapeHtml(decodedPublicText(article.headline))}</h4>
+          <p>${escapeHtml(decodedPublicText(article.takeaway || article.summary))}</p>
+          <p class="why-line"><strong>India angle:</strong> ${escapeHtml(decodedPublicText(article.indiaImpact || article.whyItMatters || "Watch for confirmation across sectors and the opening range."))}</p>
         </div>
       </div>
     `)
@@ -8998,11 +9002,11 @@ function topStoriesHtml(digest) {
   }
 
   const cards = top3.map((article) => {
-    const headline = escapeHtml(article.headline ?? "");
+    const headline = escapeHtml(decodedPublicText(article.headline));
     const url = article.sourceUrl ?? "#";
     const publisher = escapeHtml(article.sourceName ?? "Source");
-    const indiaLine = escapeHtml(truncate(article.indiaImpact || article.takeaway || "", 160));
-    const watchLine = escapeHtml(truncate(article.watchFor || "", 120));
+    const indiaLine = escapeHtml(truncate(decodedPublicText(article.indiaImpact || article.takeaway), 160));
+    const watchLine = escapeHtml(truncate(decodedPublicText(article.watchFor), 120));
 
     return `
       <li class="top-story-card">
@@ -9067,11 +9071,11 @@ function unifiedSourceSectionHtml(digest) {
   }
 
   const cards = top3.map((article) => {
-    const headline = escapeHtml(article.headline ?? "");
+    const headline = escapeHtml(decodedPublicText(article.headline));
     const url = article.sourceUrl ?? "#";
     const publisher = escapeHtml(article.sourceName ?? "Source");
-    const indiaLine = escapeHtml(truncate(humanizeLeadCopy(article.indiaImpact || article.takeaway || ""), 160));
-    const watchLine = escapeHtml(truncate(article.watchFor || "", 120));
+    const indiaLine = escapeHtml(truncate(humanizeLeadCopy(decodedPublicText(article.indiaImpact || article.takeaway)), 160));
+    const watchLine = escapeHtml(truncate(decodedPublicText(article.watchFor), 120));
 
     return `
       <li class="top-story-card">
@@ -9381,12 +9385,12 @@ function sourceLeadCardHtml(article) {
           <span class="news-badge ${newsToneClass(articleTone(article))}">Lead evidence</span>
           <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
         </div>
-        <h3>${escapeHtml(article.headline)}</h3>
-        <p>${escapeHtml(summary)}</p>
+        <h3>${escapeHtml(decodedPublicText(article.headline))}</h3>
+        <p>${escapeHtml(decodedPublicText(summary))}</p>
         <div class="source-readthrough-grid">
-          <div><span>Takeaway</span><strong>${escapeHtml(article.takeaway || article.summary)}</strong></div>
-          <div><span>India Read</span><strong>${escapeHtml(article.indiaImpact || "Watch opening breadth for confirmation.")}</strong></div>
-          <div><span>Watch</span><strong>${escapeHtml(article.watchFor || "Opening range and sector participation.")}</strong></div>
+          <div><span>Takeaway</span><strong>${escapeHtml(decodedPublicText(article.takeaway || article.summary))}</strong></div>
+          <div><span>India Read</span><strong>${escapeHtml(decodedPublicText(article.indiaImpact || "Watch opening breadth for confirmation."))}</strong></div>
+          <div><span>Watch</span><strong>${escapeHtml(decodedPublicText(article.watchFor || "Opening range and sector participation."))}</strong></div>
         </div>
         ${sourceLink}
       </div>
@@ -9461,9 +9465,14 @@ function sourceCategorySectionHtml(group, defaultFilter) {
 
 function sourceEvidenceCardHtml(article) {
   const hasArticleUrl = sourceUrlLooksArticleLevel(article.sourceUrl);
+  const headline = decodedPublicText(article.headline);
+  const takeaway = decodedPublicText(article.takeaway || article.summary);
+  const whyItMatters = decodedPublicText(article.whyItMatters || article.summary);
+  const indiaImpact = decodedPublicText(article.indiaImpact || "Watch for confirmation across sectors and the opening range.");
+  const watchFor = decodedPublicText(article.watchFor || "Opening range and sector participation.");
   const linkAttrs = hasArticleUrl
-    ? `role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(article.headline)}" data-source-url="${escapeHtml(article.sourceUrl)}"`
-    : `aria-label="Archived source note: ${escapeHtml(article.headline)}"`;
+    ? `role="link" tabindex="0" aria-label="Open source article: ${escapeHtml(headline)}" data-source-url="${escapeHtml(article.sourceUrl)}"`
+    : `aria-label="Archived source note: ${escapeHtml(headline)}"`;
   const footerLink = hasArticleUrl
     ? `<a href="${escapeHtml(article.sourceUrl)}" target="_blank" rel="noreferrer">Read source &#8599;</a>`
     : '<span>Archived link unavailable</span>';
@@ -9475,13 +9484,13 @@ function sourceEvidenceCardHtml(article) {
           <span class="news-badge ${newsToneClass(article.sentimentScore)}">${escapeHtml(newsBadgeLabel(article))}</span>
           <span class="source-name">${escapeHtml(article.sourceName)} - ${escapeHtml(formatArticleTime(article.publishedAt))}</span>
         </div>
-        <h3>${escapeHtml(article.headline)}</h3>
-        <p class="source-takeaway"><strong>Takeaway:</strong> ${escapeHtml(article.takeaway || article.summary)}</p>
+        <h3>${escapeHtml(headline)}</h3>
+        <p class="source-takeaway"><strong>Takeaway:</strong> ${escapeHtml(takeaway)}</p>
         <details class="source-card-detail">
           <summary>Read-through</summary>
-          <p><strong>Why it matters:</strong> ${escapeHtml(article.whyItMatters || article.summary)}</p>
-          <p><strong>India impact:</strong> ${escapeHtml(humanizeLeadCopy(article.indiaImpact || "Watch for confirmation across sectors and the opening range."))}</p>
-          <p><strong>Watch:</strong> ${escapeHtml(article.watchFor || "Opening range and sector participation.")}</p>
+          <p><strong>Why it matters:</strong> ${escapeHtml(whyItMatters)}</p>
+          <p><strong>India impact:</strong> ${escapeHtml(humanizeLeadCopy(indiaImpact))}</p>
+          <p><strong>Watch:</strong> ${escapeHtml(watchFor)}</p>
         </details>
         <div class="source-card-footer">
           <span class="source-entity">${escapeHtml(article.entityName || "Market")} - ${escapeHtml(categoryLabel(article.category))}</span>
@@ -9544,7 +9553,7 @@ function sourceCategorySummary(group) {
     macro_positive: "US earnings and global risk-appetite cues that need Indian breadth before becoming local trade inputs."
   }[group.category] || "Related source notes grouped by theme for faster attribution.";
   return group.leadTakeaway
-    ? `${fallback} Lead read: ${group.leadTakeaway}`
+    ? `${fallback} Lead read: ${decodedPublicText(group.leadTakeaway)}`
     : fallback;
 }
 
@@ -10021,7 +10030,7 @@ function articleThumbnailHtml(article) {
   const thumbnail = articleThumbnailMeta(article);
   const label = thumbnail.label || article.entityName || "Macro";
   const theme = thumbnail.theme || categoryLabel(article.category);
-  const alt = thumbnail.alt || `${article.headline} thumbnail`;
+  const alt = decodedPublicText(thumbnail.alt || `${article.headline} thumbnail`);
   const accent = safeAccent(thumbnail.accent, Number(article.sentimentScore) >= 0 ? "#059669" : "#dc2626");
   return `
     <div class="source-thumb" role="img" aria-label="${escapeHtml(alt)}" style="--thumb-accent: ${accent}">

@@ -2,7 +2,7 @@ import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { brandFaviconSvg, brandHeadLinks, brandMarkCss, brandMarkHtml, brandSocialCardSvg } from "./brand-assets.mjs";
-import { escapeHtml } from "./html-utils.mjs";
+import { decodeHtmlEntities, escapeHtml } from "./html-utils.mjs";
 import { DISCLAIMER, DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { pageShell } from "./page-shell.mjs";
 import { brandedTitle, publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
@@ -41,6 +41,10 @@ const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
 const includeSourceDigestPreview = skipArchiveWrite;
 const publicBuildDate = process.env.PUBLIC_BUILD_DATE ?? todayInIst();
 const publicLatestStatus = process.env.PUBLIC_LATEST_STATUS ?? "";
+
+function escapeDecoded(value) {
+  return escapeHtml(decodeHtmlEntities(value));
+}
 
 const dailyDir = join(rootDir, "out", "daily");
 const archiveDir = join(rootDir, "archive", "daily");
@@ -399,9 +403,9 @@ function publicationEventPage(event, latest, isTradingGuide) {
           ${sources.map((source) => `
             <article class="source-card">
               <span>${escapeHtml(source.sourceName || "Source")} · ${escapeHtml(formatGeneratedTime(source.publishedAt))}</span>
-              <h2>${escapeHtml(source.headline)}</h2>
-              <p><strong>India read:</strong> ${escapeHtml(source.indiaImpact || "Use as global context until Indian breadth confirms.")}</p>
-              <p><strong>Watch:</strong> ${escapeHtml(source.watchFor || "Wait for first-range confirmation.")}</p>
+              <h2>${escapeDecoded(source.headline)}</h2>
+              <p><strong>India read:</strong> ${escapeDecoded(source.indiaImpact || "Use as global context until Indian market participation confirms.")}</p>
+              <p><strong>Watch:</strong> ${escapeDecoded(source.watchFor || "Wait for first-hour confirmation.")}</p>
               <a href="${escapeHtml(source.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>
             </article>
           `).join("")}
@@ -915,7 +919,7 @@ function homepageTagFilterHtml(digests) {
     { value: "currency", label: "FX" },
   ];
   const pills = TAG_OPTIONS.map((o, i) =>
-    `<button class="tag-pill${i === 0 ? " active" : ""}" data-tag="${escapeHtml(o.value)}">${escapeHtml(o.label)}</button>`
+    `<button type="button" class="tag-pill${i === 0 ? " active" : ""}" data-tag="${escapeHtml(o.value)}">${escapeHtml(o.label)}</button>`
   ).join("");
   return `<div class="tag-filter" role="group" aria-label="Filter by driver">${pills}</div>`;
 }
@@ -947,7 +951,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
       const searchText = archiveSearchText(digest, chipValues);
       const tags = archiveTagValues(digest, chipValues);
       return `
-        <div class="digest-card ${toneClass}" data-archive-card data-archive-search="${escapeHtml(searchText)}" data-archive-tags="${escapeHtml(tags.join("|"))}">
+        <div class="digest-card ${toneClass}" data-archive-card data-archive-search="${escapeDecoded(searchText)}" data-archive-tags="${escapeHtml(tags.join("|"))}">
           <div class="card-summary-head">
             <div class="card-topline">
               <span>${escapeHtml(formatDigestDate(digest.digestDate))}</span>
@@ -1175,10 +1179,10 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
 
     .eyebrow {
       margin: 0 0 10px;
-      color: #9fb0c8;
-      font-size: 13px;
+      color: var(--accent);
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
@@ -1287,6 +1291,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
     .today-focus-chip {
       display: inline-flex;
       align-items: baseline;
+      flex-wrap: wrap;
       gap: 6px;
       font-size: 14px;
       color: #cbd5e1;
@@ -1300,6 +1305,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
       letter-spacing: 0.06em;
       flex-shrink: 0;
     }
+    .today-focus-chip strong { overflow-wrap: anywhere; }
 
     .summary-card,
     .workflow-strip {
@@ -1741,17 +1747,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
     .recent-briefings-toggle { border:none; }
     .recent-briefings-toggle > summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
     .recent-briefings-toggle > summary::-webkit-details-marker { display:none; }
-    .recent-briefings-toggle > summary::after {
-      content: "+";
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 1;
-      color: #22d3ee;
-      flex-shrink: 0;
-      margin-left: auto;
-      transition: transform 0.22s ease;
-    }
-    .recent-briefings-toggle[open] > summary::after { transform: rotate(45deg); }
+	    .recent-briefings-toggle > summary::after { content: none; }
     .fii-bar { background:rgba(15,23,42,.7); border:1px solid rgba(255,255,255,.1); border-left:3px solid #6366f1; border-radius:12px; margin:10px 0; padding:14px 16px; }
     .fii-header { align-items:center; display:flex; gap:8px; margin-bottom:12px; }
     .fii-dot { width:8px; height:8px; border-radius:50%; background:#6366f1; flex-shrink:0; }
@@ -2666,8 +2662,8 @@ export function movesHubPage(latest) {
   const drivers = (latest?.newsCards ?? latest?.news ?? []).filter((item) => item?.sourceUrl && (item?.headline || item?.title)).slice(0, 4);
   const driverCards = drivers.map((item) => `<article class="metric-card driver-card">
       <span>${escapeHtml(item.sourceName || "Verified source")}</span>
-      <h3>${escapeHtml(item.headline || item.title)}</h3>
-      <p>${escapeHtml(item.indiaImpact || item.takeaway || item.summary || "Read the linked source and confirm the India-market effect in the latest briefing.")}</p>
+      <h3>${escapeDecoded(item.headline || item.title)}</h3>
+      <p>${escapeDecoded(item.indiaImpact || item.takeaway || item.summary || "Read the linked source and confirm the India-market effect in the latest briefing.")}</p>
       <a class="inline-cta" href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Read source</a>
     </article>`).join("");
   const body = `
@@ -2849,8 +2845,9 @@ function staticSeoPage({ path, pageTitle, pageDescription, eyebrow, h1, bodyHtml
 
   const head = `
   ${jsonLdScript(jsonLd)}
-  <style>
-    .copy-stack { display:grid; gap:16px; }
+	<style>
+	    .eyebrow { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.16em; margin:0 0 10px; text-transform:uppercase; }
+	    .copy-stack { display:grid; gap:16px; }
     .copy-stack h2, .faq-section h2 { color:var(--ink); font-size:24px; letter-spacing:0; margin:20px 0 0; }
     .copy-stack p, .faq-section p { color:var(--muted); font-size:16px; line-height:1.75; margin:0; max-width:860px; }
     .copy-stack a, .inline-cta { color:#cffafe; font-weight:900; text-decoration:underline; text-underline-offset:3px; }
@@ -3690,7 +3687,7 @@ function archiveFocus(digest) {
   }
   if (digest.dailyLead?.label) {
     let focusLabel = digest.dailyLead.label.replace(/breadth/ig, "confirmation");
-    return compactWords(cleanArchiveSentence(focusLabel), 4);
+    return compactWords(cleanArchiveSentence(focusLabel), 5);
   }
   const driver = highestImpactArticle(digest);
   if (driver) {

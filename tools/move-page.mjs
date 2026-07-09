@@ -2,7 +2,7 @@
 // Generates a compact card page for an auto‑move article.
 // The page includes SEO meta tags, JSON‑LD NewsArticle, and a glass‑v2 style card.
 
-import { escapeHtml } from "./html-utils.mjs"; // reuse utility for escaping HTML
+import { decodeHtmlEntities, escapeHtml } from "./html-utils.mjs"; // reuse utility for escaping HTML
 import { DISCLAIMER_COMPACT } from "./site-constants.mjs";
 import { publicSiteOrigin, socialCardUrl } from "./public-page-registry.mjs";
 
@@ -18,8 +18,8 @@ function newsArticleJsonLd({ date, slug, article, symbol, change }) {
   return {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": article.headline?.slice(0, 110) || `Why ${symbol} ${movement} today`,
-    "description": article.summary ?? "",
+    "headline": cleanArticleText(article.headline)?.slice(0, 110) || `Why ${symbol} ${movement} today`,
+    "description": cleanArticleText(article.summary),
     "image": {
       "@type": "ImageObject",
       "url": article.ogImageUrl || article.thumbnail?.url || socialCardUrl("moves", origin),
@@ -66,7 +66,7 @@ function safeJsonScript(value) {
 export function movePage({ date, slug, article, symbol, change }) {
   const movement = change > 0 ? "rose" : "fell";
   const pageTitle = `Why ${symbol} ${movement} ${Math.abs(change).toFixed(1)}% today - ${date} | Market Narrative`;
-  const description = compactMetaDescription(`${symbol} ${movement} ${Math.abs(change).toFixed(1)}% on ${date}. ${article.summary ?? ""}`);
+  const description = compactMetaDescription(`${symbol} ${movement} ${Math.abs(change).toFixed(1)}% on ${date}. ${cleanArticleText(article.summary)}`);
   const jsonLd = safeJsonScript(newsArticleJsonLd({ date, slug, article, symbol, change }));
   const thumbnailUrl = article.ogImageUrl || article.thumbnail?.url || "";
   const origin = publicSiteOrigin();
@@ -109,11 +109,11 @@ export function movePage({ date, slug, article, symbol, change }) {
   <section class="compact-card">
     <header class="compact-header">
       <h1>Why ${escapeHtml(symbol)} ${escapeHtml(movement)} ${escapeHtml(Math.abs(change).toFixed(1))}% today</h1>
-      <p class="compact-subtitle">${escapeHtml(article.headline || `${symbol} market move explained`)}</p>
+      <p class="compact-subtitle">${escapeHtml(cleanArticleText(article.headline) || `${symbol} market move explained`)}</p>
     </header>
-    ${thumbnailUrl ? `<img src="${escapeHtml(thumbnailUrl)}" alt="${escapeHtml(article.headline)}" class="compact-thumb" width="1200" height="220" loading="eager" decoding="async">` : ""}
+    ${thumbnailUrl ? `<img src="${escapeHtml(thumbnailUrl)}" alt="${escapeHtml(cleanArticleText(article.headline))}" class="compact-thumb" width="1200" height="220" loading="eager" decoding="async">` : ""}
     <article class="compact-body">
-      <p>${escapeHtml(article.summary ?? "")}</p>
+      <p>${escapeHtml(cleanArticleText(article.summary))}</p>
     </article>
     <footer class="compact-disclaimer">${DISCLAIMER_COMPACT}</footer>
   </section>
@@ -188,3 +188,5 @@ function compactMetaDescription(value) {
   const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
   return normalized.length <= 170 ? normalized : `${normalized.slice(0, 167).replace(/\s+\S*$/, "")}...`;
 }
+
+function cleanArticleText(value) { return decodeHtmlEntities(value).replace(/\s+/g, " ").trim(); }

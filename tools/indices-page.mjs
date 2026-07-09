@@ -135,7 +135,7 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
   const gift = snapshots.find(s => s.symbol === "GIFTNIFTY");
   const giftMissing = !gift || gift.dataQuality === "seed";
   const giftSnap = gift || { closeValue: 0, changePercent: 0, previousClose: 0 };
-  const nifty = snapshots.find(s => s.symbol === "NIFTY") || { closeValue: 0 };
+  const nifty = snapshots.find(s => s.symbol === "NIFTY") || { closeValue: 0 }, niftyGapClose = Number.isFinite(Number(nifty.previousClose)) ? Number(nifty.previousClose) : Number(nifty.closeValue || 0);
 
   const historyRows = archiveDigests.slice(0, 15).map(d => {
     const dBias = computeGiftNiftyBias(d.marketSnapshots || []);
@@ -150,13 +150,13 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
   }).filter(Boolean).join("");
 
   return `${indicesStyles()}
-    <div class="idx" data-nifty-close="${(nifty.previousClose || nifty.closeValue || 0)}">
+    <div class="idx" data-nifty-close="${niftyGapClose}">
       ${liveStatusBadgeHtml({ id: "idx-live-badge", text: `Delayed · Briefing snapshot · ${snapshotTimestamp(digest)}`, extraClass: "idx-live-badge" })}
       <div class="idx-spotlight" data-live="GIFTNIFTY">
         <h3>GIFT Nifty Gap Calculator</h3>
         <div class="idx-calc">
           <div class="idx-calc-row"><span>GIFT Nifty LTP</span><strong class="idx-calc-val" data-field="ltp">${giftMissing ? "—" : giftSnap.closeValue.toLocaleString("en-IN")}</strong></div>
-          <div class="idx-calc-row"><span>Previous Nifty 50 Close</span><strong class="idx-calc-val">${nifty.closeValue ? nifty.closeValue.toLocaleString("en-IN") : "—"}</strong></div>
+          <div class="idx-calc-row"><span>Previous Nifty 50 Close</span><strong class="idx-calc-val">${niftyGapClose ? niftyGapClose.toLocaleString("en-IN") : "—"}</strong></div>
           <div class="idx-calc-row" style="border-top:1px solid var(--line-idx);padding-top:14px;margin-top:10px;">
             <span>Implied Open Gap</span>
             <strong class="idx-calc-val ${(bias && !giftMissing) ? (bias.gapPts >= 0 ? "idx-pos" : "idx-neg") : "idx-flat"}" style="font-size:18px;" data-field="gap">${(bias && !giftMissing) ? `${bias.gapPts > 0 ? "+" : ""}${bias.gapPts} pts (${bias.gapPct > 0 ? "+" : ""}${bias.gapPct}%)` : "Live gap unavailable"}</strong>
@@ -165,7 +165,7 @@ export function giftNiftyPageBody(digest, archiveDigests = []) {
         </div>
       </div>
       <div class="idx-vix" style="text-align:center;">
-        <h3 style="margin:0 0 6px;font-size:12px;color:var(--muted-idx);text-transform:uppercase;">NSE Cash Market Open</h3>
+        <h3 id="nse-session-label" style="margin:0 0 6px;font-size:12px;color:var(--muted-idx);text-transform:uppercase;">NSE Cash Market Status</h3>
         <div id="nse-countdown" style="font-size:28px;font-weight:900;letter-spacing:-0.02em;">--:--:--</div>
         <span id="nse-countdown-status" style="font-size:11px;color:var(--cyan-idx);font-weight:800;text-transform:uppercase;display:block;margin-top:4px;">Checking Session Status</span>
       </div>

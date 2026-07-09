@@ -18,7 +18,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd) {
     ${giftNiftyPageBody(digest, archiveDigests)}
     <p class="idx-layout-footer-note">${DISCLAIMER_COMPACT}</p>
   </div>
-  ${marketSessionClientScript({ clockId: "nse-countdown", statusId: "nse-countdown-status" })}
+  ${marketSessionClientScript({ clockId: "nse-countdown", statusId: "nse-countdown-status", labelId: "nse-session-label" })}
   ${indicesLiveScript()}
   `;
 

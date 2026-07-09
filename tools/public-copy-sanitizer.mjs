@@ -5,7 +5,8 @@ export function stripPublicJargon(value) {
     .replace(/\brisk-off\b/gi, "defensive")
     .replace(/\brisk-on\b/gi, "constructive")
     .replace(/\bVWAP\b/g, "session average")
-    .replace(/\bopening[- ]range\b/gi, "first-hour range")
+    .replace(/\bopening[- ]range\b/gi, "first hour")
+    .replace(/\bfirst[- ]hour range\b/gi, "first hour")
     .replace(/\brisk[- ]appetite\b/gi, "investor confidence")
     .replace(/\bsector breadth validates\b/gi, "sector participation confirms")
     .replace(/\bsector breadth\b/gi, "sector participation")
@@ -27,7 +28,7 @@ export function publicCopyClientScript() {
   (() => {
     const plain = (value) => String(value || "")
       .replace(/\\brisk-off\\b/gi, "defensive").replace(/\\brisk-on\\b/gi, "constructive")
-      .replace(/\\bVWAP\\b/g, "session average").replace(/\\bopening[- ]range\\b/gi, "first-hour range")
+      .replace(/\\bVWAP\\b/g, "session average").replace(/\\bopening[- ]range\\b/gi, "first hour").replace(/\\bfirst[- ]hour range\\b/gi, "first hour")
       .replace(/\\brisk[- ]appetite\\b/gi, "investor confidence")
       .replace(/\\bsector breadth\\b/gi, "sector participation")
       .replace(/\\badvance[- ]decline\\b/gi, "market participation").replace(/\\bbreadth\\b/gi, "market participation");

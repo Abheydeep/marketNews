@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import { pageShell } from "./page-shell.mjs";
 import { publicSiteOrigin } from "./public-page-registry.mjs";
 import { indicesPageHtml } from "./indices-layout.mjs";
+import { giftNiftyPageHtml } from "./gift-nifty-layout.mjs";
+import { movePage } from "./move-page.mjs";
 import { archivePage, aboutPage, subscribePage, moneyFlowPage, marketStatisticsPage, movesHubPage } from "./publish-site.mjs";
 import { cockpitPage } from "./cockpit-page.mjs";
 
@@ -58,6 +60,43 @@ test("public rendering: indices do not redefine shared width and expose status s
   assert.doesNotMatch(await readFile("tools/indices-styles.mjs", "utf8"), /^\s*\.shell\b/m);
 });
 
+test("public rendering: Gift Nifty calculator displays the same previous close used for gap math", () => {
+  const html = giftNiftyPageHtml({
+    ...digest,
+    marketSnapshots: [
+      { symbol: "GIFTNIFTY", closeValue: 24137.5, previousClose: 24000, changePercent: 0.5, dataQuality: "live" },
+      { symbol: "NIFTY", closeValue: 24083.95, previousClose: 24005.85, changePercent: 0.2, dataQuality: "live" },
+      { symbol: "INDIAVIX", closeValue: 13, previousClose: 13.2, changePercent: -1.5, dataQuality: "live" }
+    ]
+  }, [], "https://www.marketnarrative.in", "");
+  assert.match(html, /Previous Nifty 50 Close<\/span><strong class="idx-calc-val">24,005\.85<\/strong>/);
+  assert.match(html, /\+132 pts/);
+  assert.doesNotMatch(html, /Previous Nifty 50 Close<\/span><strong class="idx-calc-val">24,083\.95<\/strong>/);
+});
+
+test("public rendering: Gift Nifty mobile cards and global clocks are contract-safe", async () => {
+  const layout = await readFile("tools/indices-layout.mjs", "utf8");
+  const styles = await readFile("tools/indices-styles.mjs", "utf8");
+  assert.match(layout, /Asia\/Tokyo/);
+  assert.match(layout, /Europe\/London/);
+  assert.match(layout, /America\/New_York/);
+  assert.match(layout, /timeStr\(s\.tz\)/);
+  assert.match(styles, /\.idx,\s*\.idx-spotlight,\s*\.idx-calc,\s*\.idx-vix\s*\{[^}]*min-width:\s*0/);
+  assert.match(styles, /\.idx-calc-row span,\s*\.idx-calc-val\s*\{[^}]*overflow-wrap:\s*anywhere/);
+});
+
+test("public rendering: move articles decode pre-escaped source apostrophes", () => {
+  const html = movePage({
+    date: "2026-07-03",
+    slug: "kotak-deutsche-bank",
+    symbol: "KOTAKBANK",
+    change: 1.2,
+    article: { headline: "Kotak Mahindra Bank to acquire Deutsche Bank&amp;#039;s retail book", summary: "Deutsche Bank&amp;#039;s India book moves to Kotak." }
+  });
+  assert.match(visibleText(html), /Deutsche Bank's retail book/);
+  assert.doesNotMatch(html, /&amp;#039;|&amp;amp;#039;/);
+});
+
 test("public rendering: market statistics syncs visible values with indices API", () => {
   const html = marketStatisticsPage(digest);
   assert.match(html, /id="market-stats-live-status"/);
@@ -65,11 +104,15 @@ test("public rendering: market statistics syncs visible values with indices API"
   assert.match(html, /data-stat-live="NIFTY"/);
   assert.match(html, /● Live · synced with Indices/);
   assert.match(html, /\/api\/live-indices\//);
+  assert.match(html, /\.eyebrow \{ color:var\(--accent\); font-size:12px; font-weight:900; letter-spacing:\.16em/);
 });
 
 test("public rendering: homepage does not leak CSS text", () => {
   const html = archivePage([digest], [digest], digest);
   assert.doesNotMatch(visibleText(html), /Pro polish|touch-action\s*:/i);
+  assert.match(html, /\.recent-briefings-toggle > summary::after \{ content: none; \}/);
+  assert.match(html, /\.today-focus-chip strong \{ overflow-wrap: anywhere; \}/);
+  assert.doesNotMatch(html, />GIFT Nifty: \+\d+ pt\.\.\.</);
 });
 
 test("public rendering: static pages use the shared content container", () => {
