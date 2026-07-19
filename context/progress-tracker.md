@@ -442,7 +442,7 @@ These must remain true after changes:
 - 2026-07-09: Committed and pushed all July 3 uncommitted changes to main to resolve the stale production deployment and trigger Vercel rebuilds. Initiated manual catch-up GHA recovery workflow with late-recovery overrides to publish the latest briefings.
   Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed. Manually triggered `pages.yml` workflow run 29018836660 with late-recovery overrides.
   Architecture diagrams changed: none.
-- 2026-07-19: Pulled remote changes and corrected the invalid title in `archive/daily/2026-07-12-0800-digest.json` to "AI Trade Marches Higher While Oil Volatility Keeps Wall Street on Edge". This title matched a forbidden formula pattern, which caused `npm test` to fail and blocked all scheduled GHA briefing releases.
+- 2026-07-19: Pulled remote changes and corrected the invalid title in `archive/daily/2026-07-12-0800-digest.json` to "AI Trade Marches Higher While Oil Volatility Keeps Wall Street on Edge". Also sanitized the fallback title generator in `tools/core.mjs` to automatically clean raw labels (e.g. "Crude / energy risk" -> "Crude Prices") to prevent future formula/jargon contract test violations when LLM calls fail. Corrected the invalid title in `archive/daily/2026-07-19-0800-digest.json` to "Oil Market Volatility Keeps Indian Equity Investors on Alert".
   Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed.
   Architecture diagrams changed: none.
   Debt found but not fixed: none.

@@ -1149,12 +1149,12 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
     ?? strongestArticle(articles, (article) => Number.isFinite(Number(article.sentimentScore)))
     ?? articles[0];
   const headline = String(dailyLead?.headline || lead?.headline || themes[0]?.title || sentimentLabel || "Market").toLowerCase();
-  // The lead label is sometimes a verbose market-bias sentence (e.g. "Nifty overnight:
-  // +1.27% — gap-up bias" or "GIFT Nifty: ..."). That reads badly as a title force word,
-  // so fall back to the driver label in those cases.
   const rawLabel = dailyLead?.label || "";
   const verboseLabel = /overnight|gift nifty|[:%]|\d/i.test(rawLabel);
-  const force = (rawLabel && !verboseLabel) ? rawLabel : dominantForceLabel(lead, headline);
+  let force = (rawLabel && !verboseLabel) ? rawLabel : dominantForceLabel(lead, headline);
+  const cleanForceMap = { "Crude / energy risk": "Crude Prices", "Rates / Fed path": "Fed Policy Path", "Bank Nifty breadth": "Bank Nifty Momentum", "Market breadth": "Market Momentum", "Global tech breadth": "Tech Momentum", "Gold / precious metals policy": "Precious Metals Policy", "Currency pressure": "Currency Movement", "Tech sector magnitude move": "Tech Sector Momentum", "Asia risk appetite": "Asia Market Sentiment" };
+  if (cleanForceMap[force]) force = cleanForceMap[force];
+  force = force.replace(/\bcrude\s*\/\s*energy risk\b/i, "Crude Prices").replace(/\brates\s*\/\s*Fed path\b/i, "Fed Policy Path").replace(/\bBank Nifty breadth\b/i, "Bank Nifty Momentum").replace(/\bmarket breadth\b/i, "Market Momentum").replace(/\bbreadth\b/i, "Momentum").replace(/\brisk appetite\b/i, "Sentiment").replace(/\brisk-on\b/i, "constructive").replace(/\brisk-off\b/i, "cautious").replace(/\bopening range\b/i, "opening levels").replace(/\bfirst[- ]hour range\b/i, "initial hour levels");
   const verb = dominantVerb(headline, lead?.category, sentimentLabel);
   const previousTitle = normalizeEditorial(previousDigest?.title);
   // Closed-market (holiday/Sunday) editions: build a general title with no pre-open
