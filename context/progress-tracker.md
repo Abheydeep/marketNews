@@ -441,8 +441,12 @@ These must remain true after changes:
   Debt found but not fixed: none.
 - 2026-07-09: Committed and pushed all July 3 uncommitted changes to main to resolve the stale production deployment and trigger Vercel rebuilds. Initiated manual catch-up GHA recovery workflow with late-recovery overrides to publish the latest briefings.
   Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed. Manually triggered `pages.yml` workflow run 29018836660 with late-recovery overrides.
-  Architecture diagrams changed: none.
-- 2026-07-19: Pulled remote changes and corrected the invalid title in `archive/daily/2026-07-12-0800-digest.json` to "AI Trade Marches Higher While Oil Volatility Keeps Wall Street on Edge". Also sanitized the fallback title generator in `tools/core.mjs` to automatically clean raw labels (e.g. "Crude / energy risk" -> "Crude Prices") to prevent future formula/jargon contract test violations when LLM calls fail. Corrected the invalid title in `archive/daily/2026-07-19-0800-digest.json` to "Oil Market Volatility Keeps Indian Equity Investors on Alert".
-  Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed.
+  Architecture diagrams changed: none.- 2026-07-20: Resolved navigation, title format, jargon, backfill, indices date stamp, and section-specific OG card issues.
+  ROOT CAUSE: (1) Multibagger page customized navItems and dropped FII/DII and Subscribe links, (2) titles for Multibagger and Archive pages used incorrect brand ordering or separators, (3) user-facing template copy in news-sources, publish-site, cockpit, and editorial-guardrails leaked "VWAP" and "breadth" jargon, (4) historical archive digests retained broken templated titles, and (5) the indices page lacked a visible "as of" date stamp block and all pages shared a single static og-card.svg.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (passed 5 checks), `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
+- 2026-07-20: Generated and published today's briefing (July 20) and backfilled July 13 and July 17 missing daily digests. ROOT CAUSE: Today's scheduled GHA workflow run failed because the GHA cron runner was delayed by 232 minutes, triggering the publish window safety block. Manual recovery workflow was dispatched with `enforce_publish_window=false` and `allow_late_publish=true` to force-generate today's briefing. Today's initial fallback title ("Nifty Open Shape first hour") failed the length guard test (<28 chars), so it was updated to a descriptive one.
+  Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed (5 checks); `npm run public:copy:qa` passed; live site verification of `https://www.marketnarrative.in/`, `/latest/`, and `/20jul2026/` confirmed today's briefing is live and redirecting.
+  Architecture diagrams changed: none.
+  Debt found but not fixed: July 14, 15, and 16 daily digests still need to be generated and backfilled.
