@@ -1,0 +1,1971 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-07-21",
+  "title": "Currency Shape India Inflation Watch",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-07-22T07:23:32.377Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: -218 pt gap-down",
+    "sourceArticleId": "business-standard-economy:3mcsuv",
+    "driverType": "crude",
+    "headline": "RBI attracts $20.7 billion through forex steps to bolster capital inflows",
+    "indiaImpact": "GIFT Nifty at 23970 (-218 pts, -0.9%) signals gap-down open. Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+    "riskSide": "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.",
+    "supportSide": "Softer Brent and stronger Indian market participation are the confirmation checks.",
+    "giftNiftyBias": {
+      "giftPrice": 23970,
+      "niftyClose": 24187.7,
+      "gapPts": -218,
+      "gapPct": -0.9,
+      "bias": "gap_down",
+      "biasLabel": "-218 pt gap-down"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 6,
+    "shortlistCount": 6,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 0,
+    "indiaPublisherCount": 3,
+    "shortlistIndiaPublisherCount": 3,
+    "directIndiaSourceCount": 3,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 3,
+    "globalContextCount": 3,
+    "globalOnlySourceRatio": 50,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 3 direct India sources, 0 official sources, 3 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.business-standard.com/economy/news/rbi-attracts-20-7-billion-through-forex-steps-to-bolster-capital-inflows-126072001375_1.html",
+      "https://finance.yahoo.com/markets/stocks/articles/dear-amd-stock-fans-mark-195102761.html",
+      "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-pact-to-curb-illegal-fishing-support-126072001135_1.html",
+      "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-agreement-becomes-123rd-member-126072001509_1.html",
+      "https://finance.yahoo.com/markets/stocks/articles/buy-servicenow-now-earnings-195139761.html",
+      "https://finance.yahoo.com/markets/stocks/articles/why-nvidia-stock-flat-since-194353578.html"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: -218 pt gap-down: GIFT Nifty at 23970 (-218 pts, -0.9%) signals gap-down open. Bearish for OMCs, aviation, paints...",
+  "twoMinuteSummary": "RBI attracts $93 billion through forex steps to bolster capital inflows The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 +0.886%, Nasdaq 100 +1.926%, Dow Jones +0.743%, Nifty 50 -0.718%, Bank Nifty -1.213%, Nikkei 225 -0.313%, Hang Seng -1.192%, Shanghai Composite +1.731%, KOSPI +0.956%, Taiwan Weighted +1.34%, Straits Times +0.345%, ASX 200 +0.338%, US Dollar Index -0.043%, Brent Crude +2.176%, USD/INR +0.265%, Gold (COMEX) +1.148%, India VIX +2.937%, GIFT Nifty -0.55% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Global Defensive Cue: The scale of ‌inflows is in particular focus for ​the rupee, which is facing renewed pressure ‌from a sharp rise in oil prices amid renewed hostilities in the Middle ‌East\n\n- Negative Macro Impact: India has formally accepted the WTO Agreement on Fisheries Subsidies, backing sustainable fishing while safeguarding policy space for traditional and small-scale fishers",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+    "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+    "Watch Bank Nifty session average, USD/INR and market participation through 9:45 AM before pressing a defensive view."
+  ],
+  "overallSentiment": 0.007,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.886%, Nasdaq 100 +1.926%, Dow Jones +0.743%, Nifty 50 -0.718%, Bank Nifty -1.213%, Nikkei 225 -0.313%, Hang Seng -1.192%, Shanghai Composite +1.731%, KOSPI +0.956%, Taiwan Weighted +1.34%, Straits Times +0.345%, ASX 200 +0.338%, US Dollar Index -0.043%, Brent Crude +2.176%, USD/INR +0.265%, Gold (COMEX) +1.148%, India VIX +2.937%, GIFT Nifty -0.55%\n\nNarrative Themes:\n- Global Defensive Cue: The scale of ‌inflows is in particular focus for ​the rupee, which is facing renewed pressure ‌from a sharp rise in oil prices amid renewed hostilities in the Middle ‌East\n- Negative Macro Impact: India has formally accepted the WTO Agreement on Fisheries Subsidies, backing sustainable fishing while safeguarding policy space for traditional and small-scale fishers\n- Global Earnings & investor confidence: Should You Buy ServiceNow (NOW) Before Earnings?.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7509.2,
+      "previousClose": 7443.28,
+      "changePercent": 0.886,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-21T20:39:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-21",
+          "close": 7470.75
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7478.63
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7482.15
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7493.8
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7491.17
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7492.72
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7497.49
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7504.72
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7501.25
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7499.52
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.4
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.47
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.52
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.78
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.89
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7509.34
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.98
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7511.53
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.47
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.45
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7510.97
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7509.04
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.76
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.66
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7510.71
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7507.32
+        },
+        {
+          "time": "2026-07-21",
+          "close": 7509.2
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29155.18,
+      "previousClose": 28604.23,
+      "changePercent": 1.926,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-21T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-21",
+          "close": 28968.42
+        },
+        {
+          "time": "2026-07-21",
+          "close": 28976.01
+        },
+        {
+          "time": "2026-07-21",
+          "close": 28956.31
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29032.62
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29050.31
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29064.47
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29118.26
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29128.35
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29091.28
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29085.97
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29131.01
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29140.57
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29146.99
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29161.61
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29164.36
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29161.37
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29168.8
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29170.25
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29168.72
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29154.1
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29178.72
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29157.31
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29135.27
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29120.91
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29167.5
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29146.12
+        },
+        {
+          "time": "2026-07-21",
+          "close": 29155.18
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 52224.64,
+      "previousClose": 51839.26,
+      "changePercent": 0.743,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-21T20:43:37.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-21",
+          "close": 51903.21
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52014.55
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52165.78
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52180.76
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52104.47
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52106.37
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52132.79
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52190.51
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52204.4
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52205.18
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52253.09
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52324.04
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52340.14
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52346.68
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52316.15
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52277.39
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52275.81
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52250.25
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52201.37
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52225.79
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52214.31
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52210.58
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52219.88
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52236.44
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52215.92
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52221.38
+        },
+        {
+          "time": "2026-07-21",
+          "close": 52224.64
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 24013.95,
+      "previousClose": 24187.7,
+      "changePercent": -0.718,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-22T06:36:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 24048.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24027
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24020.2
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24033.45
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24007.6
+        },
+        {
+          "time": "2026-07-22",
+          "close": 23989.2
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24025.95
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24013.7
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24041.55
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24046.25
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24022
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24011.35
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24013.95
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57133.95,
+      "previousClose": 57835.35,
+      "changePercent": -1.213,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-22T06:36:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 57334.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57327.65
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57286.1
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57320.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57256.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57222.15
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57259.05
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57232.65
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57301.35
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57267.45
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57193.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57120.25
+        },
+        {
+          "time": "2026-07-22",
+          "close": 57133.95
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 66025.2,
+      "previousClose": 66232.19,
+      "changePercent": -0.313,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-07-22T06:21:45.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 67340.26
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67488.12
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67518.25
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67365.19
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67211.64
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67415.2
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67443.08
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67520.71
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67392.27
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67479.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67511.12
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66980.27
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66918.11
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66907.59
+        },
+        {
+          "time": "2026-07-22",
+          "close": 67043.28
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66919.61
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66744.55
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66331.94
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66347.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66199.84
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66237.58
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66122.71
+        },
+        {
+          "time": "2026-07-22",
+          "close": 66038.33
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 24832.8,
+      "previousClose": 25132.29,
+      "changePercent": -1.192,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-07-22T06:21:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 24955.33
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24988.74
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24955.75
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24957.76
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24957.19
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24968.38
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24924.51
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24944.29
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24924.91
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24923.65
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24923.77
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24901.35
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24852.01
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24842.09
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24850.92
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24851.78
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24833.85
+        },
+        {
+          "time": "2026-07-22",
+          "close": 24832.8
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3862,
+      "previousClose": 3796.28,
+      "changePercent": 1.731,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-07-22T06:21:45.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 3859.83
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3878.63
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3872.64
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3880.31
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3872.75
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3877.39
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3867.32
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3883.78
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3883.58
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3869.07
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3869.46
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3863.92
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3858.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3849.98
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3859.77
+        },
+        {
+          "time": "2026-07-22",
+          "close": 3862
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 6812.48,
+      "previousClose": 6747.95,
+      "changePercent": 0.956,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-07-22T06:16:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 7145.78
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7110.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7106.43
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7111.63
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7131.44
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7131.61
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7115.87
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7141.27
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7124.88
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7131.93
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7084.96
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7067.98
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7021.05
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7098.97
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7072.29
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7077.17
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7085.25
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7084.42
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7043.15
+        },
+        {
+          "time": "2026-07-22",
+          "close": 7024.72
+        },
+        {
+          "time": "2026-07-22",
+          "close": 6932.24
+        },
+        {
+          "time": "2026-07-22",
+          "close": 6888.77
+        },
+        {
+          "time": "2026-07-22",
+          "close": 6865.05
+        },
+        {
+          "time": "2026-07-22",
+          "close": 6882.87
+        },
+        {
+          "time": "2026-07-22",
+          "close": 6812.48
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 44825.78,
+      "previousClose": 44232.87,
+      "changePercent": 1.34,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-07-22T05:33:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 45193.97
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44945.89
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44942.59
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45004.06
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45051.79
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45048.81
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44975.91
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44972.84
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44904.67
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45035.37
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44932.33
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44879.95
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44974.1
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45008.86
+        },
+        {
+          "time": "2026-07-22",
+          "close": 45051.64
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44990.73
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44808.23
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44709.23
+        },
+        {
+          "time": "2026-07-22",
+          "close": 44825.78
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5545.81,
+      "previousClose": 5526.72,
+      "changePercent": 0.345,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-07-22T06:21:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 5514.45
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5510.46
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5500.39
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5486.7
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5501.09
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5504.02
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5502.59
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5502.81
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5517.01
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5527.49
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5539.76
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.67
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.69
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.63
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.65
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.92
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5537.68
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5543.13
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5542.65
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5545.92
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5544.97
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5545.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 5545.81
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8823,
+      "previousClose": 8793.3,
+      "changePercent": 0.338,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-07-22T06:16:44.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 8806.8
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8811.5
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8837
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8829.6
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8819
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8815.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8811.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8811.1
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8813.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8817
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8811.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8824.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8826.8
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8830.7
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8828.1
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8819.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8819.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8818
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8815.2
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8812.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8815.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8816.4
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8820.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8814.6
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8823
+        },
+        {
+          "time": "2026-07-22",
+          "close": 8823
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 101.13,
+      "previousClose": 101.17,
+      "changePercent": -0.043,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-22T06:26:47.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 101.16
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.15
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.14
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.14
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.14
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.14
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.14
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.13
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.11
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.12
+        },
+        {
+          "time": "2026-07-22",
+          "close": 101.13
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 92.99,
+      "previousClose": 91.01,
+      "changePercent": 2.176,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-22T06:26:47.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 92.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.16
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.28
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.37
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.26
+        },
+        {
+          "time": "2026-07-22",
+          "close": 91.99
+        },
+        {
+          "time": "2026-07-22",
+          "close": 91.91
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.19
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.97
+        },
+        {
+          "time": "2026-07-22",
+          "close": 92.99
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 96.48,
+      "previousClose": 96.23,
+      "changePercent": 0.265,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-07-22T06:36:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.31
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.31
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.38
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.43
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.44
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.45
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.45
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.47
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.46
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.47
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.47
+        },
+        {
+          "time": "2026-07-22",
+          "close": 96.48
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4123.2,
+      "previousClose": 4076.4,
+      "changePercent": 1.148,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-22T06:26:47.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 4131.7
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4133.6
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4131.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4131.8
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4133.2
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4128.3
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4136.9
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4135.5
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4134
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4121.8
+        },
+        {
+          "time": "2026-07-22",
+          "close": 4123.2
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 12.97,
+      "previousClose": 12.6,
+      "changePercent": 2.937,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-22T06:36:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-22",
+          "close": 12.94
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.93
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13.04
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.99
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13.09
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13.22
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13.04
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13.03
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.89
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.85
+        },
+        {
+          "time": "2026-07-22",
+          "close": 13
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.99
+        },
+        {
+          "time": "2026-07-22",
+          "close": 12.97
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23970,
+      "previousClose": 24103.5,
+      "changePercent": -0.55,
+      "dataTimestamp": "2026-07-22T06:34:34.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-07-21T22:34:34.000Z",
+          "close": 24103.5
+        },
+        {
+          "time": "2026-07-22T06:34:34.000Z",
+          "close": 23970
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "21-Jul-2026",
+    "fiiNet": 1650.16,
+    "fiiBuy": 16327.88,
+    "fiiSell": 14677.72,
+    "diiNet": -656.88,
+    "diiBuy": 14638.54,
+    "diiSell": 15295.42
+  },
+  "giftNiftyBias": {
+    "giftPrice": 23970,
+    "niftyClose": 24187.7,
+    "gapPts": -218,
+    "gapPct": -0.9,
+    "bias": "gap_down",
+    "biasLabel": "-218 pt gap-down"
+  },
+  "todaysReadArticle": null,
+  "themes": [
+    {
+      "digestDate": "2026-07-21",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "The scale of ‌inflows is in particular focus for ​the rupee, which is facing renewed pressure ‌from a sharp rise in oil prices amid renewed hostilities in the Middle ‌East",
+      "sentimentScore": -0.55,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-07-21",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "India has formally accepted the WTO Agreement on Fisheries Subsidies, backing sustainable fishing while safeguarding policy space for traditional and small-scale fishers",
+      "sentimentScore": -0.55,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-07-21",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "Should You Buy ServiceNow (NOW) Before Earnings?.",
+      "sentimentScore": 0.408,
+      "evidenceCount": 4
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 47,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 2560389,
+  "scheduledFor": "2026-07-21T07:15:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-07-20T15:34:05.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "RBI attracts $20.7 billion through forex steps to bolster capital inflows",
+      "summary": "The scale of ‌inflows is in particular focus for ​the rupee, which is facing renewed pressure ‌from a sharp rise in oil prices amid renewed hostilities in the Middle ‌East",
+      "takeaway": "The scale of ‌inflows is in particular focus for ​the rupee, which is facing renewed pressure ‌from; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-attracts-20-7-billion-through-forex-steps-to-bolster-capital-inflows-126072001375_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Brent Crude",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Brent Crude",
+        "theme": "Rbi Attracts",
+        "accent": "#7c3aed",
+        "alt": "RBI attracts $20.7 billion through forex steps to bolster capital inflows source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-07-20T19:51:02.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Dear AMD Stock Fans, Mark Your Calendars for July 22",
+      "summary": "Dear AMD Stock Fans, Mark Your Calendars for July 22.",
+      "takeaway": "Mark Your Calendars for July 22; investor confidence is supportive only if Indian market participation confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/dear-amd-stock-fans-mark-195102761.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Dear Amd",
+        "accent": "#059669",
+        "alt": "Dear AMD Stock Fans, Mark Your Calendars for July 22 source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-07-20T15:00:58.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India joins WTO fisheries subsidies pact to curb illegal fishing support",
+      "summary": "India on Monday announced that it has joined the WTO's agreement on fisheries subsidies, which prohibits government support to illegal fishing activities and over-exploitation of stocks. The agreement focuses on subsidies related to marine wild capture fishing and fishing-related activities at sea. However, aquaculture and inland fisheries remain outside the scope of this pact, which came into force on September 15, 2025. The agreement was adopted by consensus at the 12th WTO Ministerial Conference in Geneva in June 2022. It is the first multilateral WTO agreement with an environmental sustainability objective. \"India deposited its Instrument of Acceptance of the WTO Agreement on Fisheries Subsidies (AFS) on 20th July 2026, thereby becoming a Party to the Agreement,\" the commerce ministry said in a statement. The formal acceptance was handed over by the Commerce Secretary Rajesh Agrawal to the Director-General of the World Trade Organisation (WTO) Ngozi Okonjo-Iweala in ...",
+      "takeaway": "India on Monday announced that it has joined the WTO's agreement on fisheries subsidies, which prohibits government support; investor confidence is supportive only if Indian market participation confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-pact-to-curb-illegal-fishing-support-126072001135_1.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "India Joins",
+        "accent": "#059669",
+        "alt": "India joins WTO fisheries subsidies pact to curb illegal fishing support source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-07-20T17:03:07.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India joins WTO fisheries subsidies agreement, becomes 123rd member",
+      "summary": "India has formally accepted the WTO Agreement on Fisheries Subsidies, backing sustainable fishing while safeguarding policy space for traditional and small-scale fishers",
+      "takeaway": "India has formally accepted the WTO Agreement on Fisheries Subsidies, backing sustainable fishing while safeguarding policy space; macro pressure needs confirmation from yields, currency and Indian market participation before it becomes a tradeable defensive cue.",
+      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and market participation confirm stress after the open.",
+      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and market participation fails to recover.",
+      "watchFor": "Watch Bank Nifty session average, USD/INR and market participation through 9:45 AM before pressing a defensive view.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-agreement-becomes-123rd-member-126072001509_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "India Joins",
+        "accent": "#dc2626",
+        "alt": "India joins WTO fisheries subsidies agreement, becomes 123rd member source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-07-20T19:51:39.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Should You Buy ServiceNow (NOW) Before Earnings?",
+      "summary": "Should You Buy ServiceNow (NOW) Before Earnings?.",
+      "takeaway": "Should You Buy ServiceNow (NOW) Before Earnings; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/buy-servicenow-now-earnings-195139761.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Should You",
+        "accent": "#059669",
+        "alt": "Should You Buy ServiceNow (NOW) Before Earnings? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-07-20T19:43:53.000Z",
+      "sourceId": "yahoo-finance",
+      "sourceName": "Yahoo Finance",
+      "headline": "Why Nvidia Stock is Flat Since November Despite Tripling Its Net Income",
+      "summary": "Why Nvidia Stock is Flat Since November Despite Tripling Its Net Income.",
+      "takeaway": "Nvidia Stock is Flat Since November Despite Tripling Its Net Income; Nvidia is semiconductor-cycle evidence; Indian IT needs Nasdaq market participation and USD/INR support to inherit it.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip market participation and USD/INR support exporters together.",
+      "watchFor": "Watch Nasdaq futures plus Nifty IT market participation; chip strength alone is not enough.",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/why-nvidia-stock-flat-since-194353578.html",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Why Nvidia Stock is Flat Since November Despite Tripling Its Net Income source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "RBI attracts $20.7 billion through forex steps to bolster capital inflows",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-07-20T15:34:05.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-attracts-20-7-billion-through-forex-steps-to-bolster-capital-inflows-126072001375_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERbi%20Attracts%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI attracts $20.7 billion through forex steps to bolster capital inflows source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Dear AMD Stock Fans, Mark Your Calendars for July 22",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-07-20T19:51:02.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/dear-amd-stock-fans-mark-195102761.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDear%20Amd%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dear AMD Stock Fans, Mark Your Calendars for July 22 source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India joins WTO fisheries subsidies pact to curb illegal fishing support",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-07-20T15:00:58.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-pact-to-curb-illegal-fishing-support-126072001135_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Joins%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India joins WTO fisheries subsidies pact to curb illegal fishing support source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India joins WTO fisheries subsidies agreement, becomes 123rd member",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-07-20T17:03:07.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-joins-wto-fisheries-subsidies-agreement-becomes-123rd-member-126072001509_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Joins%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India joins WTO fisheries subsidies agreement, becomes 123rd member source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Should You Buy ServiceNow (NOW) Before Earnings?",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-07-20T19:51:39.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/buy-servicenow-now-earnings-195139761.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EShould%20You%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Should You Buy ServiceNow (NOW) Before Earnings? source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Why Nvidia Stock is Flat Since November Despite Tripling Its Net Income",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-07-20T19:43:53.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/why-nvidia-stock-flat-since-194353578.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Why Nvidia Stock is Flat Since November Despite Tripling Its Net Income source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 41 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 41 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-07-21.webp"
+  }
+}
