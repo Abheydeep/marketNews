@@ -1520,18 +1520,18 @@ function watchForFromArticle(headline, summary, category, entityName) {
     return techReadthrough(lower, entityName).watchFor;
   }
   if (/\b(apple|iphone|mac|big tech|faang)\b/.test(lower)) {
-    return "Watch Nasdaq futures, USD/INR and Nifty IT breadth together; Apple alone is not a local trade trigger.";
+    return "Watch Nasdaq futures, USD/INR and Nifty IT participation together; Apple alone is not a local trade trigger.";
   }
   if (/\b(airline|airlines|spirit|travel|jet fuel)\b/.test(lower)) {
     return aviationReadthrough(lower).watchFor;
   }
   if (isTradePolicyStory(lower)) {
-    return "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.";
+    return "Watch exporter and auto-ancillary participation after the first range; avoid trading the tariff headline alone.";
   }
   if (thematic.watchFor) {
     return thematic.watchFor;
   }
-  return `Watch ${entityName} peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.`;
+  return `Watch ${entityName} peer participation after 9:45 AM; no index bias unless banks and Nifty hold morning averages.`;
 }
 
 function thematicFallbackReadthrough(lower, category, entityName) {
@@ -1770,26 +1770,26 @@ function thematicFallbackReadthrough(lower, category, entityName) {
   }
   if (category === "sector_positive") {
     return {
-      takeaway: "sector support needs Indian peer breadth before it earns index weight.",
+      takeaway: "sector support needs Indian peer participation before it earns index weight.",
       whyItMatters: "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      indiaImpact: `${entityName} needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.`,
-      watchFor: `Watch ${entityName} peer breadth and Bank Nifty VWAP through the first range.`
+      indiaImpact: `${entityName} needs related Indian peer participation and Nifty morning average acceptance before it becomes broad support.`,
+      watchFor: `Watch ${entityName} peer participation and Bank Nifty morning average through the first range.`
     };
   }
   if (category === "sector_negative") {
     return {
-      takeaway: "sector pressure matters only if Indian peers and breadth validate it after the open.",
+      takeaway: "sector pressure matters only if Indian peers and participation validate it after the open.",
       whyItMatters: "Negative sector stories are useful as watchlist filters, not automatic index direction.",
       indiaImpact: `${entityName} needs related Indian peers to weaken before it becomes more than a caution flag.`,
-      watchFor: `Watch ${entityName} peer breadth after 9:45 AM; no index bias if banks and Nifty hold VWAP.`
+      watchFor: `Watch ${entityName} peer participation after 9:45 AM; no index bias if banks and Nifty hold morning averages.`
     };
   }
   if (category === "neutral_volatile") {
     return {
       takeaway: "mixed global cues keep the India open in confirmation mode.",
-      whyItMatters: "Neutral stories matter through the first range: price acceptance, breadth and Bank Nifty decide whether noise becomes signal.",
-      indiaImpact: "Keep Nifty and Bank Nifty in range-first mode until breadth and VWAP agree.",
-      watchFor: "Watch first-range high/low, VWAP and Bank Nifty breadth through 9:45-10:00 AM IST."
+      whyItMatters: "Neutral stories matter through the first range: price acceptance, participation and Bank Nifty decide whether noise becomes signal.",
+      indiaImpact: "Keep Nifty and Bank Nifty in range-first mode until participation and morning averages agree.",
+      watchFor: "Watch first-range high/low, morning averages and Bank Nifty participation through 9:45-10:00 AM IST."
     };
   }
   return {};
@@ -1837,21 +1837,21 @@ function ratesReadthrough(lower) {
   if (/\b(boe|bank of england|uk rate|sterling)\b/.test(lower)) {
     return {
       takeaway: "use it as global rate-sensitivity evidence; India needs bond-market confirmation before banks inherit the signal.",
-      indiaImpact: "Bank Nifty and rate-sensitive sectors care only if global yields follow through and local breadth weakens.",
-      watchFor: `Watch ${level} and Indian bank breadth; no rate trade if yields fade.`
+      indiaImpact: "Bank Nifty and rate-sensitive sectors care only if global yields follow through and local participation weakens.",
+      watchFor: `Watch ${level} and Indian bank participation; no rate trade if yields fade.`
     };
   }
   if (/\b(fed|powell|fomc)\b/.test(lower)) {
     return {
       takeaway: "Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      indiaImpact: "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      watchFor: `Watch ${level}; rising yields require Bank Nifty to hold VWAP.`
+      indiaImpact: "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if participation absorbs it.",
+      watchFor: `Watch ${level}; rising yields require Bank Nifty to hold morning averages.`
     };
   }
   return {
     takeaway: "A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
     indiaImpact: "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-    watchFor: `Watch ${level}; pair it with Bank Nifty VWAP before assigning direction.`
+    watchFor: `Watch ${level}; pair it with Bank Nifty's morning average before assigning direction.`
   };
 }
 

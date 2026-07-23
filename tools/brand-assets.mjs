@@ -85,7 +85,7 @@ export function brandFaviconSvg() {
   return brandMarkSvg({ title: "Market Narrative", idPrefix: "mn-favicon" });
 }
 
-export function brandSocialCardSvg() {
+export function brandSocialCardSvg(title = "Daily Pre-Market Intelligence", subtitle = "Nifty, Bank Nifty, global cues, Asia watch, charts, and source-backed context.") {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">Market Narrative</title>
   <desc id="desc">Daily pre-market intelligence for Nifty, Bank Nifty, global cues, and Asian markets.</desc>
@@ -107,8 +107,8 @@ export function brandSocialCardSvg() {
   <rect x="78" y="72" width="1044" height="486" rx="42" fill="#020617" opacity="0.62" stroke="#ffffff" stroke-opacity="0.16"/>
   <g transform="translate(126 118) scale(1.48)">${brandMarkSvg({ title: "Market Narrative", idPrefix: "mn-social" }).replace("<svg class=\"mn-logo-mark\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\" role=\"img\" aria-label=\"Market Narrative\">", "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\">").replace("</svg>", "</svg>")}</g>
   <text x="292" y="174" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">MARKET NARRATIVE</text>
-  <text x="126" y="318" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900">Daily Pre-Market Intelligence</text>
-  <text x="126" y="398" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="650">Nifty, Bank Nifty, global cues, Asia watch, charts, and source-backed context.</text>
+  <text x="126" y="318" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="900">${escapeHtml(title)}</text>
+  <text x="126" y="398" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="650">${escapeHtml(subtitle)}</text>
   <text x="126" y="496" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">marketnarrative.in</text>
 </svg>
 `;

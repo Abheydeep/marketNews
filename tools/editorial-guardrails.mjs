@@ -409,23 +409,23 @@ function sanitizeString(value) {
     )
     .replace(
       /Watch Market during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
-      "Watch first-range high/low, VWAP, advance-decline, and Bank Nifty breadth through 9:45-10:00 AM IST."
+      "Watch first-range high/low, morning averages, participation, and Bank Nifty participation through 9:45-10:00 AM IST."
     )
     .replace(
       /Watch ([A-Za-z][A-Za-z\s/&+-]{1,40}) during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
-      (_match, entity) => `Watch ${entity.trim()} peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.`
+      (_match, entity) => `Watch ${entity.trim()} peer participation after 9:45 AM; no index bias unless banks and Nifty hold morning averages.`
     )
     .replace(
       /([A-Za-z][A-Za-z\s/&+-]{1,40}) is only a conditional India input;\s*require first-range breadth and related sector participation before using it for trade bias\.?/gi,
-      (_match, entity) => `${entity.trim()} needs related Indian peer breadth before it becomes more than a watchlist cue.`
+      (_match, entity) => `${entity.trim()} needs related Indian peer participation before it becomes more than a watchlist cue.`
     )
     .replace(
       /use it as a ([A-Za-z][A-Za-z\s/&+-]{1,40}) watch input only if a related Indian sector confirms the move\.?/gi,
-      (_match, entity) => `treat ${entity.trim()} as a watchlist cue only after related Indian sector breadth confirms.`
+      (_match, entity) => `treat ${entity.trim()} as a watchlist cue only after related Indian sector participation confirms.`
     )
     .replace(
       /([A-Za-z][A-Za-z\s/&+-]{1,40}) is a watch input,\s*not a trade bias,\s*until Nifty breadth and Bank Nifty confirm\.?/gi,
-      (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty breadth and Bank Nifty confirm.`
+      (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty participation and Bank Nifty confirm.`
     )
     .replace(
       /Live quote validation removed stale 1:2 levels\./gi,

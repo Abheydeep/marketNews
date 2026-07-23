@@ -40,7 +40,7 @@ function assertPublicHome() {
   assertOutput("index.html", /Daily trader workflow/);
   assertOutput("index.html", /Trading Guide/);
   assertOutput("index.html", /Share this archive/);
-  assertOutput("index.html", /Today's briefing is live|Market closed today|Latest under verification|Latest verified trading-day edition/);
+  assertOutput("index.html", /Today's briefing is live|Today's market update is live|Market closed today|Latest under verification|Latest verified trading-day edition/);
   assertOutputNot("index.html", /Daily Pre-Market Archive|All Market Narrative briefings|root page|now works|news archive|Open a dated briefing|full quote board|chart links|Asia watch:|markets tracked|\b\d+\s+setups\b|\b\d+\s+sources\b|Open daily briefing/);
 }
 

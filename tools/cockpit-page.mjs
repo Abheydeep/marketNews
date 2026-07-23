@@ -8826,9 +8826,9 @@ function indiaReadThroughItems(digest) {
   const used = new Set();
   const items = [
     ["Macro pressure", macro?.indiaImpact, "Crude, dollar, yields, and USD/INR remain the first pressure filters for the index."],
-    ["Risk appetite", globalRisk?.indiaImpact, "Global risk headlines need Brent, DXY, and Asia breadth confirmation before they become India trades."],
+    ["Risk appetite", globalRisk?.indiaImpact, "Global risk headlines need Brent, DXY, and Asia participation confirmation before they become India trades."],
     ["Domestic cushion", sectorSupport?.indiaImpact, "Use participation across sectors and defensive shares as the cushion check."],
-    ["Opening behavior", noDirectIndiaCopy(neutral?.indiaImpact) ? "" : neutral?.indiaImpact, "Opening behavior stays range-first: do not convert weak read-through stories into trades until VWAP and breadth confirm."]
+    ["Opening behavior", noDirectIndiaCopy(neutral?.indiaImpact) ? "" : neutral?.indiaImpact, "Opening behavior stays range-first: do not convert weak read-through stories into trades until morning averages and participation confirm."]
   ];
   return items.map(([label, value, fallback]) =>
     `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(distinctIndiaRead(value, fallback, used))}</li>`

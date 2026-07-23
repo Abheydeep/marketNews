@@ -19,7 +19,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   const modelCount = state.holdings?.length ?? 0;
   const pageDescription = "A public Market Narrative research model tracking a normalized Rs 5 lakh Indian equities baseline, methodology, investor discipline, review history, and public-safe performance updates.";
   const canonicalUrl = `${siteOrigin}/multibagger/`;
-  const previewImageUrl = socialCardUrl("portfolio", siteOrigin);
+  const previewImageUrl = `${siteOrigin}/og-portfolio.svg`;
   const latestBriefingHref = absoluteHref(options.latestBriefingPath ?? "/", siteOrigin);
   const tradingGuideHref = `${latestBriefingHref.replace(/#.*$/, "").replace(/\/?$/, "/")}trading-guide/`;
   const renderedPage = `<!DOCTYPE html>
@@ -1547,7 +1547,6 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 <body class="glass-v2 has-btb">
   <a class="mn-skip" href="#mn-main">Skip to content</a>
   ${siteHeaderHtml("/multibagger/")}
-  <!-- class="tab-link active" aria-current="page">Portfolio -->
 
   <main id="mn-main" class="shell">
     <header class="hero">
@@ -1916,11 +1915,11 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
 
     function bindShareActions() {
       const shareUrl = window.location.origin + window.location.pathname;
-      const title = "Market Narrative Multibagger Tracker";
+      const pageTitle = "Multibagger Model Tracker | Market Narrative";
       document.querySelectorAll("[data-share-action]").forEach((node) => {
         const action = node.getAttribute("data-share-action");
         if (node.tagName === "A") {
-          node.href = shareHref(action, shareUrl, title);
+          node.href = shareHref(action, shareUrl, pageTitle);
         }
         node.addEventListener("click", async (event) => {
           if (action !== "copy") {

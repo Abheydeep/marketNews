@@ -115,7 +115,7 @@ q.addEventListener('input',filter);tag.addEventListener('change',filter);filter(
 </script>
 </section>`;
   return pageShell({
-    title: brandedTitle("Archive"),
+    title: brandedTitle("All Past Briefings"),
     description: "Full archive of Market Narrative daily pre-market briefings for Nifty, Bank Nifty, and India equity traders.",
     canonicalUrl: `${siteOrigin}/archive/`,
     ogImage: socialCardUrl("archive", siteOrigin),

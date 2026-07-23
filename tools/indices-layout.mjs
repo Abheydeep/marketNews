@@ -36,6 +36,9 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
       <h1 class="idx-layout-h1">Nifty, Bank Nifty, Asia, US futures context and macro hedges in one board.</h1>
       <p class="idx-layout-hero-p">Captured from the same Yahoo price-series snapshots used in the daily briefing. Last briefing update: ${escapeHtml(lastUpdated)} IST. Use this as market context; the Trading Guide still owns execution levels.</p>
     </header>
+    <div style="color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.04em;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:12px">
+      Prices as of morning briefing: <b>${escapeHtml(lastUpdated)} IST</b>
+    </div>
     ${indicesPageBody(digest)}
     <section class="seo-context" aria-label="How to use the indices board" style="border-top:1px solid rgba(148, 163, 184, 0.22); display:grid; gap:16px; grid-template-columns:repeat(2,1fr); margin:34px 0 0; padding-top:22px;">
       <div><h2>What this board tracks</h2><p style="color:#cbd5e1;line-height:1.6;margin:0;">Market Narrative tracks Nifty, Bank Nifty, GIFT Nifty, US indices, Asian markets, Brent crude, USD/INR, DXY and gold from captured Yahoo price-series snapshots so the morning brief has one consistent reference layer.</p></div>
@@ -116,7 +119,7 @@ export function indicesPageHtml(digest, siteOrigin, lastUpdated, jsonLd) {
     title: "Global Indices Watch | Market Narrative",
     description: "Live and reference global indices watch for Nifty, Bank Nifty, US markets, Asian markets, crude, dollar, rupee and gold with captured Yahoo price-series context.",
     canonicalUrl: `${siteOrigin}/indices/`,
-    ogImage: socialCardUrl("indices", siteOrigin),
+    ogImage: `${siteOrigin}/og-indices.svg`,
     head,
     bodyClass: "has-btb",
     activeHref: "/indices/",

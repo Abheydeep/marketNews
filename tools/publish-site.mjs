@@ -120,6 +120,12 @@ await writeFile(join(siteDir, "favicon.ico"), "", "utf8");
 await writeFile(join(siteDir, "favicon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "apple-touch-icon.svg"), brandFaviconSvg(), "utf8");
 await writeFile(join(siteDir, "og-card.svg"), ogCardSvg(), "utf8");
+await writeFile(join(siteDir, "og-flow.svg"), brandSocialCardSvg("FII DII Data Today", "Cash provisional flows, derivative positioning, and institutional trends."), "utf8");
+await writeFile(join(siteDir, "og-stats.svg"), brandSocialCardSvg("India Market Statistics", "Intraday Nifty participation, India VIX hedging signals, and flow metrics."), "utf8");
+await writeFile(join(siteDir, "og-moves.svg"), brandSocialCardSvg("Why Stocks Move Today", "Daily explanation of major Nifty stock moves, catalysts, and volumes."), "utf8");
+await writeFile(join(siteDir, "og-portfolio.svg"), brandSocialCardSvg("Multibagger Model Tracker", "A Rs 5 Lakh educational model tracking entries, performance, and keep-or-replace history."), "utf8");
+await writeFile(join(siteDir, "og-indices.svg"), brandSocialCardSvg("Global Indices Watch", "Live Nifty, Bank Nifty, US overnight close, Asian open handoff, and macro hedges."), "utf8");
+await writeFile(join(siteDir, "og-giftnifty.svg"), brandSocialCardSvg("GIFT Nifty Open Gap", "Pre-market open gap calculator, index premium, and overnight global handoff tracker."), "utf8");
 await writeFile(join(siteDir, "sw.js"), serviceWorkerJs(), "utf8");
 await cp(join(rootDir, "out", "vercel", "assets"), join(siteDir, "assets"), { recursive: true, force: true }).catch((error) => { if (error.code !== "ENOENT") throw error; });
 
@@ -758,11 +764,11 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
     )
     .replace(
       /Watch ([A-Za-z][A-Za-z\s/&+-]{1,40}) during the first-hour range;\s*trade it only if it broadens into sector leadership\.?/gi,
-      (_match, entity) => `Watch ${entity.trim()} peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.`
+      (_match, entity) => `Watch ${entity.trim()} peer participation after 9:45 AM; no index bias unless banks and Nifty hold morning averages.`
     )
     .replace(
       /([A-Za-z][A-Za-z\s/&+-]{1,40}) is only a conditional India input;\s*require first-range breadth and related sector participation before using it for trade bias\.?/gi,
-      (_match, entity) => `${entity.trim()} needs related Indian peer breadth before it becomes more than a watchlist cue.`
+      (_match, entity) => `${entity.trim()} needs related Indian peer participation before it becomes more than a watchlist cue.`
     )
     .replace(
       /use it as a ([A-Za-z][A-Za-z\s/&+-]{1,40}) watch input only if a related Indian sector confirms the move\.?/gi,
@@ -770,7 +776,7 @@ function sanitizeGeneratedTemplateText(value, article = {}) {
     )
     .replace(
       /([A-Za-z][A-Za-z\s/&+-]{1,40}) is a watch input,\s*not a trade bias,\s*until Nifty breadth and Bank Nifty confirm\.?/gi,
-      (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty breadth and Bank Nifty confirm.`
+      (_match, entity) => `${entity.trim()} stays on the watchlist until Nifty participation and Bank Nifty confirm.`
     );
   if (/blue owl|spacex|carvana|used car/i.test(articleText)) {
     text = text.replace(/Bank Nifty, private banks and NBFCs are the direct check\.?/gi, "Global-only context: no direct India trade read; use it only if index futures, sector participation, currency, or rates confirm after the open.");
@@ -2558,7 +2564,7 @@ export function moneyFlowPage(latest, cashRecords, fnoRecords) {
     pageDescription,
     eyebrow: "Institutional Flow",
     h1: "FII/DII Flows and Futures Positioning",
-    ogImageUrl: latest?.ogImageUrl,
+    ogImageUrl: `${siteOrigin}/og-flow.svg`,
     bodyHtml: body,
     jsonLd: seoGraph([
       organizationJsonLd(),
@@ -2630,7 +2636,7 @@ export function marketStatisticsPage(latest) {
     pageDescription,
     eyebrow: "Market Statistics",
     h1: "India Market Statistics Today - Nifty Breadth & Health Score",
-    ogImageUrl: latest?.ogImageUrl,
+    ogImageUrl: `${siteOrigin}/og-stats.svg`,
     bodyHtml: body,
     scripts: marketStatsLiveScript(),
     jsonLd: seoGraph([
@@ -2688,6 +2694,7 @@ export function movesHubPage(latest) {
     pageDescription,
     eyebrow: "Move Explanations",
     h1: "Why Indian Stocks Move - Daily Explanations",
+    ogImageUrl: `${siteOrigin}/og-moves.svg`,
     bodyHtml: body,
     jsonLd: seoGraph([
       organizationJsonLd(),
@@ -3138,7 +3145,7 @@ function homepageFaqItems() {
     },
     {
       name: "What does Bank Nifty confirmation mean?",
-      text: "Bank Nifty confirmation means banking stocks support the Nifty move. If Nifty rises but Bank Nifty lags, the move is weaker. If both hold VWAP and breadth improves, the opening move has better confirmation."
+      text: "Bank Nifty confirmation means banking stocks support the Nifty move. If Nifty rises but Bank Nifty lags, the move is weaker. If both hold their key average levels and more stocks rise than fall, the opening move has better confirmation."
     },
     {
       name: "Is Market Narrative free to use?",

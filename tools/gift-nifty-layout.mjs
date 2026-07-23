@@ -26,7 +26,7 @@ export function giftNiftyPageHtml(digest, archiveDigests, siteOrigin, jsonLd) {
     title: "GIFT Nifty Live Open Gap Calculator | Market Narrative",
     description: "Live GIFT Nifty index futures price, gap calculator to predict Nifty 50 opening direction, historical gap open logs and session countdowns.",
     canonicalUrl: `${siteOrigin}/indices/gift-nifty/`,
-    ogImage: socialCardUrl("indices", siteOrigin),
+    ogImage: `${siteOrigin}/og-giftnifty.svg`,
     head,
     bodyClass: "has-btb",
     activeHref: "/indices/",
