@@ -16,7 +16,7 @@ const inferredTarget = explicitTarget ? null : inferVercelTarget();
 if (process.env.VERCEL === "1" && !explicitTarget && !inferredTarget) {
   log.error("MARKET_NARRATIVE_DEPLOY_TARGET is required on Vercel.");
   log.error("Set it to: public.");
-  log.error("Admin and trade are now separate repos — see Abheydeep/marketnarrative-admin and Abheydeep/marketnarrative-trade.");
+  log.error("Admin and trade are now separate repos — see marketnarrative/marketnarrative-admin and marketnarrative/marketnarrative-trade.");
   log.error(`Vercel target signals: ${vercelTargetSignals().join(", ") || "none"}`);
   process.exit(1);
 }
@@ -25,8 +25,8 @@ const target = normalizeTarget(explicitTarget ?? inferredTarget ?? "public");
 
 if (target === "admin" || target === "trade") {
   log.error(`MARKET_NARRATIVE_DEPLOY_TARGET="${target}" is no longer valid in this repo.`);
-  log.error("Admin studio → Abheydeep/marketnarrative-admin (Vite, dist/)");
-  log.error("Trade cockpit → Abheydeep/marketnarrative-trade (Next.js, out/)");
+  log.error("Admin studio → marketnarrative/marketnarrative-admin (Vite, dist/)");
+  log.error("Trade cockpit → marketnarrative/marketnarrative-trade (Next.js, out/)");
   process.exit(1);
 }
 

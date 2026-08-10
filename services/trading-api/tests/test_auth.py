@@ -31,23 +31,23 @@ def b64(payload):
     return base64.urlsafe_b64encode(json.dumps(payload, separators=(",", ":")).encode()).decode().rstrip("=")
 
 
-def test_auth_allows_only_abhey_trading_admin():
+def test_auth_allows_only_desk_trading_admin():
     settings = Settings(
         jwt_secret="test-secret",
         jwt_issuer="market-narrative-test",
-        trading_admin_email="abhey@marketnarrative.local",
+        trading_admin_email="desk@marketnarrative.local",
     )
     service = TradingAuthService(settings)
-    token = make_token(settings.jwt_secret, settings.jwt_issuer, "abhey@marketnarrative.local", ["admin:read", "trade:execute"])
+    token = make_token(settings.jwt_secret, settings.jwt_issuer, "desk@marketnarrative.local", ["admin:read", "trade:execute"])
     admin = service.validate_bearer(f"Bearer {token}")
-    assert admin.email == "abhey@marketnarrative.local"
+    assert admin.email == "desk@marketnarrative.local"
 
 
 def test_auth_rejects_other_admin_without_trade_permission():
     settings = Settings(
         jwt_secret="test-secret",
         jwt_issuer="market-narrative-test",
-        trading_admin_email="abhey@marketnarrative.local",
+        trading_admin_email="desk@marketnarrative.local",
     )
     service = TradingAuthService(settings)
     token = make_token(settings.jwt_secret, settings.jwt_issuer, "admin@marketnarrative.local", ["admin:read"])

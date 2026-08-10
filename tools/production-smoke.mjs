@@ -8,10 +8,10 @@ const config = {
   tradeUrl: envUrl("TRADE_URL", "https://trade.marketnarrative.in"),
   authApiUrl: envUrl("AUTH_API_URL", "https://api.marketnarrative.in"),
   tradingApiUrl: envUrl("TRADING_API_URL", "https://trade-api.marketnarrative.in"),
-  adminEmail: process.env.TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in",
+  adminEmail: process.env.TRADING_ADMIN_EMAIL ?? "desk@marketnarrative.in",
   adminPassword: process.env.TRADING_ADMIN_PASSWORD ?? "",
-  nonAdminEmail: process.env.NON_ABHEY_EMAIL ?? "",
-  nonAdminPassword: process.env.NON_ABHEY_PASSWORD ?? "",
+  nonAdminEmail: process.env.NON_DESK_EMAIL ?? "",
+  nonAdminPassword: process.env.NON_DESK_PASSWORD ?? "",
   authenticated: process.env.RUN_AUTHENTICATED_SMOKE === "true",
   orderBlock: process.env.RUN_ORDER_BLOCK_SMOKE === "true",
   timeoutMs: Number.parseInt(process.env.PROD_SMOKE_TIMEOUT_MS ?? "20000", 10)
@@ -24,7 +24,7 @@ await check("public apex loads archive", async () => {
   assert.equal(response.status, 200);
   assert.match(response.body, /Market Narrative|Market Nerve Before The Open|briefings/i);
   assert.doesNotMatch(response.body, /Admin Login|admin\.marketnarrative\.in/i);
-  assert.match(response.body, /By Abhey Deep \/ Market Narrative/i);
+  assert.match(response.body, /By the Editorial Desk \/ Market Narrative/i);
   assert.match(response.body, /Last updated/i);
   assert.match(response.body, /Search the archive|Join daily email/i);
   assert.match(response.body, /Today's briefing is live|Market closed today|Market holiday|Latest under verification/i);
@@ -55,8 +55,8 @@ await check("public host loads multibagger tracker", async () => {
 await check("public host loads about page", async () => {
   const response = await fetchText(`${config.publicUrl}/about/`);
   assert.equal(response.status, 200);
-  assert.match(response.body, /About Market Narrative|Who is Abhey Deep|Methodology/i);
-  assert.match(response.body, /I'm Abhey Deep|Browse the archive|verified briefings published since launch/i);
+  assert.match(response.body, /About Market Narrative|About the Desk|Methodology/i);
+  assert.match(response.body, /We are a dedicated team|Browse the archive|verified briefings published since launch/i);
   assert.match(response.body, /aria-current="page">About/i);
   assert.ok(response.body.includes(DISCLAIMER_MARKER));
 });
@@ -156,11 +156,11 @@ await check("admin host loads multibagger review workflow", async () => {
   assert.match(response.body, /Run Monthly Review/i);
 });
 
-await check("trade host loads Abhey login gate", async () => {
+await check("trade host loads Desk login gate", async () => {
   const response = await fetchText(config.tradeUrl);
   assert.equal(response.status, 200);
   assert.match(response.body, /Trading Cockpit/i);
-  assert.match(response.body, /Abhey|admin/i);
+  assert.match(response.body, /Desk|admin/i);
 });
 
 await check("trade host serves trade deployment target", async () => {
@@ -185,7 +185,7 @@ await check("trading API rejects unauthenticated access", async () => {
 });
 
 if (config.nonAdminEmail && config.nonAdminPassword) {
-  await check("non-Abhey account cannot access trading API", async () => {
+  await check("non-Desk account cannot access trading API", async () => {
     const token = await login(config.nonAdminEmail, config.nonAdminPassword);
     const response = await fetchText(`${config.tradingApiUrl}/api/market/envelope`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -193,14 +193,14 @@ if (config.nonAdminEmail && config.nonAdminPassword) {
     assert.equal(response.status, 403);
   });
 } else {
-  skip("non-Abhey 403 check skipped: set NON_ABHEY_EMAIL and NON_ABHEY_PASSWORD");
+  skip("non-Desk 403 check skipped: set NON_DESK_EMAIL and NON_DESK_PASSWORD");
 }
 
 if (config.authenticated) {
   if (!config.adminPassword) {
     throw new Error("RUN_AUTHENTICATED_SMOKE=true requires TRADING_ADMIN_PASSWORD");
   }
-  const token = await check("Abhey admin can login and receives trade permission", async () => {
+  const token = await check("Desk admin can login and receives trade permission", async () => {
     const tokenValue = await login(config.adminEmail, config.adminPassword);
     const claims = decodeJwt(tokenValue);
     assert.equal(String(claims.sub).toLowerCase(), config.adminEmail.toLowerCase());
@@ -210,19 +210,19 @@ if (config.authenticated) {
     return tokenValue;
   });
 
-  await check("Abhey admin can read trading envelope", async () => {
+  await check("Desk admin can read trading envelope", async () => {
     const payload = await fetchJson(`${config.tradingApiUrl}/api/market/envelope`, 200, token);
     assert.ok(payload.signals);
     assert.ok(payload.option_chains);
   });
 
   for (const index of ["NIFTY", "BANKNIFTY"]) {
-    await check(`Abhey admin can read ${index} signal`, async () => {
+    await check(`Desk admin can read ${index} signal`, async () => {
       const payload = await fetchJson(`${config.tradingApiUrl}/api/signals/latest?index=${index}`, 200, token);
       assert.ok(["BUY", "SELL", "WAIT"].includes(payload.action));
       assert.ok(Array.isArray(payload.reasons));
     });
-    await check(`Abhey admin can read ${index} option chain`, async () => {
+    await check(`Desk admin can read ${index} option chain`, async () => {
       const payload = await fetchJson(`${config.tradingApiUrl}/api/options/chain?index=${index}`, 200, token);
       assert.equal(payload.index, index);
       assert.ok(Array.isArray(payload.snapshots));
@@ -251,7 +251,7 @@ if (config.authenticated) {
     skip("order block smoke skipped: set RUN_ORDER_BLOCK_SMOKE=true");
   }
 } else {
-  skip("authenticated Abhey smoke skipped: set RUN_AUTHENTICATED_SMOKE=true and TRADING_ADMIN_PASSWORD");
+  skip("authenticated Desk smoke skipped: set RUN_AUTHENTICATED_SMOKE=true and TRADING_ADMIN_PASSWORD");
 }
 
 printSummary();

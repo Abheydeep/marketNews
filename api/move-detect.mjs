@@ -1,7 +1,7 @@
 import { log } from "../tools/logger.mjs";
 import { fetchWithRetry } from "../tools/http.mjs";
 
-const OWNER = "Abheydeep";
+const OWNER = "marketnarrative";
 const REPO = "marketNews";
 const WORKFLOW_ID = "move-detect.yml";
 const DISPATCH_TIMEOUT_MS = Number(process.env.GITHUB_DISPATCH_TIMEOUT_MS ?? 10000);

@@ -5,7 +5,7 @@ Use this as the launch cheat sheet. DNS records do not go in `.env`; DNS records
 ## Vercel Public Project
 
 Project: `marketnarrative-public`
-Repository: `Abheydeep/marketNews` (This Repo)
+Repository: `marketnarrative/marketNews` (This Repo)
 
 Build settings:
 
@@ -33,7 +33,7 @@ www.marketnarrative.in
 ## Vercel Admin Project
 
 Project: `marketnarrative-admin`
-Repository: `Abheydeep/marketnarrative-admin`
+Repository: `marketnarrative/marketnarrative-admin`
 
 Build settings:
 
@@ -67,7 +67,7 @@ https://admin.marketnarrative.in/multibagger/ Private multibagger monthly review
 ## Vercel Trade Project
 
 Project: `marketnarrative-trade`
-Repository: `Abheydeep/marketnarrative-trade`
+Repository: `marketnarrative/marketnarrative-trade`
 
 Build settings:
 
@@ -83,7 +83,7 @@ Environment variables:
 ```env
 NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in
 NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in
-NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
+NEXT_PUBLIC_TRADING_ADMIN_EMAIL=desk@marketnarrative.in
 ```
 
 Domain:
@@ -122,7 +122,7 @@ Use `docs/render-deployment.md` for the full flow.
 The only required secret for login is:
 
 ```env
-ABHEY_ADMIN_PASSWORD=replace-with-strong-abhey-password
+DESK_ADMIN_PASSWORD=replace-with-strong-desk-password
 ```
 
 Keep this launch guard:
@@ -139,9 +139,9 @@ If you choose a VPS instead of Render, create this file at `/opt/marketnarrative
 POSTGRES_PASSWORD=replace-with-strong-postgres-password
 JWT_SECRET=replace-with-64-plus-character-shared-secret
 JWT_ISSUER=market-narrative-prod
-TRADING_ADMIN_EMAIL=abhey@marketnarrative.in
+TRADING_ADMIN_EMAIL=desk@marketnarrative.in
 FRONTEND_ORIGINS=https://admin.marketnarrative.in,https://trade.marketnarrative.in
-ABHEY_ADMIN_PASSWORD=replace-with-strong-abhey-password
+DESK_ADMIN_PASSWORD=replace-with-strong-desk-password
 
 ENABLE_LIVE_ORDERS=false
 

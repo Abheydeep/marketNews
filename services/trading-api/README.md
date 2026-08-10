@@ -14,7 +14,7 @@ uvicorn app.main:app --reload --port 8090
 
 Install `requirements-ml.txt` only when `ENABLE_FINBERT=true` is needed. Install `requirements-quant-extra.txt` only in an environment where `pandas-ta` wheels are available; the default engine has pure-Python indicator fallbacks.
 
-The service starts in mock mode, but trading endpoints require an Abhey trading-admin JWT by default. Use the Spring auth service to log in as `abhey@marketnarrative.local` / `market-open` locally, or set `TRADING_AUTH_REQUIRED=false` for isolated API development.
+The service starts in mock mode, but trading endpoints require a desk trading-admin JWT by default. Use the Spring auth service to log in as `desk@marketnarrative.local` / `market-open` locally, or set `TRADING_AUTH_REQUIRED=false` for isolated API development.
 
 It exposes:
 

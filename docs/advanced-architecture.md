@@ -5,8 +5,8 @@
 The frontend services are split into standalone repositories:
 
 - **Public Briefing Site** (housed in this repo): Static public briefing portal built by Node ESM scripts and deployed via Vercel/GitHub Pages.
-- [marketnarrative-admin](https://github.com/Abheydeep/marketnarrative-admin) (Vite + React 19): Private admin studio for digest runs, script edits, asset generation, and publish controls.
-- [marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade) (Next.js 15): Private trading cockpit for live order proposals, technical scan checks, and options heatmaps.
+- [marketnarrative-admin](https://github.com/marketnarrative/marketnarrative-admin) (Vite + React 19): Private admin studio for digest runs, script edits, asset generation, and publish controls.
+- [marketnarrative-trade](https://github.com/marketnarrative/marketnarrative-trade) (Next.js 15): Private trading cockpit for live order proposals, technical scan checks, and options heatmaps.
 
 This keeps admin/trade code out of the public bundle and isolates execution safety.
 

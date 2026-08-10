@@ -29,7 +29,7 @@ public class DemoUserInitializer implements ApplicationRunner {
         @Value("${app.demo-users.demo-admin-password:market-open}") String demoAdminPassword,
         @Value("${app.demo-users.seed-trading-admin:true}") boolean seedTradingAdmin,
         @Value("${app.security.trading-admin-email}") String tradingAdminEmail,
-        @Value("${app.demo-users.trading-admin-display-name:Abhey Trading Admin}") String tradingAdminDisplayName,
+        @Value("${app.demo-users.trading-admin-display-name:Desk Trading Admin}") String tradingAdminDisplayName,
         @Value("${app.demo-users.trading-admin-password:market-open}") String tradingAdminPassword
     ) {
         this.userAccountRepository = userAccountRepository;

@@ -3,7 +3,7 @@ import { isGeneralEditionDate } from "../../tools/market-calendar.mjs";
 import { fetchWithRetry } from "../../tools/http.mjs";
 import { publicSiteOrigin } from "../../tools/public-page-registry.mjs";
 
-const OWNER = "Abheydeep";
+const OWNER = "marketnarrative";
 const REPO = "marketNews";
 const WORKFLOW_ID = "pages.yml";
 const DISPATCH_TIMEOUT_MS = Number(process.env.GITHUB_DISPATCH_TIMEOUT_MS ?? 10000);

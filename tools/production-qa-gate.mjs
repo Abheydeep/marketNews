@@ -13,10 +13,10 @@ const config = {
   tradeUrl: envUrl("TRADE_URL", "https://trade.marketnarrative.in"),
   authApiUrl: envUrl("AUTH_API_URL", "https://api.marketnarrative.in"),
   tradingApiUrl: envUrl("TRADING_API_URL", "https://trade-api.marketnarrative.in"),
-  adminEmail: process.env.TRADING_ADMIN_EMAIL ?? "abhey@marketnarrative.in",
+  adminEmail: process.env.TRADING_ADMIN_EMAIL ?? "desk@marketnarrative.in",
   adminPassword: process.env.TRADING_ADMIN_PASSWORD ?? "",
-  nonAdminEmail: process.env.NON_ABHEY_EMAIL ?? "",
-  nonAdminPassword: process.env.NON_ABHEY_PASSWORD ?? "",
+  nonAdminEmail: process.env.NON_DESK_EMAIL ?? "",
+  nonAdminPassword: process.env.NON_DESK_PASSWORD ?? "",
   runAuthenticated: process.env.RUN_AUTHENTICATED_QA === "true",
   requireAuthenticated: process.env.REQUIRE_AUTHENTICATED_QA === "true",
   runBrowser: process.env.SKIP_BROWSER_QA !== "true",
@@ -190,7 +190,7 @@ await group("Public user surface", async () => {
     "Public about",
     `${config.publicUrl}/about/`,
     200,
-    [/I'm Abhey Deep/i, /verified briefings published since launch/i, /Browse the archive/i, /aria-current="page">About/i],
+    [/We are a dedicated team/i, /verified briefings published since launch/i, /Browse the archive/i, /aria-current="page">About/i],
     [/Latest verified context/i, /product experiment/i]
   );
   await expectPage(
@@ -214,7 +214,7 @@ await group("Admin surface", async () => {
 });
 
 await group("Trade surface", async () => {
-  await expectPage("Trade", "Trading cockpit gate", config.tradeUrl, 200, [/Trading Cockpit/i, /Abhey trading admin/i, /trade-mn-signal|Market Narrative/i, /Login as Abhey Admin|Abhey admin/i], [/lucide-lock-keyhole/i, /FAILED TO FETCH/i]);
+  await expectPage("Trade", "Trading cockpit gate", config.tradeUrl, 200, [/Trading Cockpit/i, /Desk trading admin/i, /trade-mn-signal|Market Narrative/i, /Login as Desk Admin|Desk admin/i], [/lucide-lock-keyhole/i, /FAILED TO FETCH/i]);
   await expectManifest("Trade", "Trade manifest", config.tradeUrl, "trade");
   await expectSvg("Trade", "Trade icon", `${config.tradeUrl}/icon.svg`, /mn-signal|Market Narrative/i);
   await expectPage("Trade", "Kite callback", `${config.tradeUrl}/kite/callback/`, 200, [/Kite Session|Waiting for request token|Trading admin token missing/i]);
@@ -243,14 +243,14 @@ if (config.runAuthenticated || config.requireAuthenticated) {
         "Trade",
         "Authenticated QA configured",
         "TRADING_ADMIN_PASSWORD",
-        "Production Abhey password available",
+        "Production Desk password available",
         "Set TRADING_ADMIN_PASSWORD to run authenticated QA",
         config.requireAuthenticated
       );
       return;
     }
 
-    const token = await check("Trade", "Abhey login and trade permissions", `${config.authApiUrl}/api/auth/login`, "JWT has trade:execute", async () => {
+    const token = await check("Trade", "Desk login and trade permissions", `${config.authApiUrl}/api/auth/login`, "JWT has trade:execute", async () => {
       const tokenValue = await login(config.adminEmail, config.adminPassword);
       const claims = decodeJwt(tokenValue);
       assert.equal(String(claims.sub).toLowerCase(), config.adminEmail.toLowerCase());
@@ -260,7 +260,7 @@ if (config.runAuthenticated || config.requireAuthenticated) {
     });
 
     if (config.nonAdminEmail && config.nonAdminPassword) {
-      await check("Trade", "Non-Abhey rejected by trading API", `${config.tradingApiUrl}/api/market/envelope`, "HTTP 403", async () => {
+      await check("Trade", "Non-Desk rejected by trading API", `${config.tradingApiUrl}/api/market/envelope`, "HTTP 403", async () => {
         const nonAdminToken = await login(config.nonAdminEmail, config.nonAdminPassword);
         const response = await fetchText(`${config.tradingApiUrl}/api/market/envelope`, {
           headers: { Authorization: `Bearer ${nonAdminToken}` }
@@ -269,7 +269,7 @@ if (config.runAuthenticated || config.requireAuthenticated) {
         return `HTTP ${response.status}`;
       });
     } else {
-      await failOrSkip("Trade", "Non-Abhey negative auth", "NON_ABHEY_EMAIL/NON_ABHEY_PASSWORD", "HTTP 403", "credentials not supplied", false);
+      await failOrSkip("Trade", "Non-Desk negative auth", "NON_DESK_EMAIL/NON_DESK_PASSWORD", "HTTP 403", "credentials not supplied", false);
     }
 
     for (const index of ["NIFTY", "BANKNIFTY"]) {
@@ -300,7 +300,7 @@ if (config.runAuthenticated || config.requireAuthenticated) {
     });
   });
 } else {
-  await failOrSkip("Trade", "Authenticated trade safety", "RUN_AUTHENTICATED_QA=true", "Abhey login, non-Abhey 403, order blocked", "not requested", false);
+  await failOrSkip("Trade", "Authenticated trade safety", "RUN_AUTHENTICATED_QA=true", "Desk login, non-Desk 403, order blocked", "not requested", false);
 }
 
 if (config.runBrowser) {
@@ -562,7 +562,7 @@ async function runBrowserSmoke() {
       await browserCheck(page, "User", `Browser ${viewport.name} market statistics`, `${config.publicUrl}/market-statistics/`, /India Market Statistics Today|Market health score/i, publicPageOptions);
       await browserCheck(page, "User", `Browser ${viewport.name} moves`, `${config.publicUrl}/moves/`, /Why Indian Stocks Move|Move Explanations/i, publicPageOptions);
       await browserCheck(page, "Admin", `Browser ${viewport.name} admin gate`, config.adminUrl, /Admin Login|Studio Command/i);
-      await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Abhey trading admin/i);
+      await browserCheck(page, "Trade", `Browser ${viewport.name} trade gate`, config.tradeUrl, /Trading Cockpit|Desk trading admin/i);
       assert.deepEqual(consoleErrors, [], `console/page errors:\n${consoleErrors.join("\n")}`);
       browserResults.push(`${viewport.name} ok`);
       await context.close();

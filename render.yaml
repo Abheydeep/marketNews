@@ -9,7 +9,7 @@ envVarGroups:
       - key: JWT_ISSUER
         value: market-narrative-prod
       - key: TRADING_ADMIN_EMAIL
-        value: abhey@marketnarrative.in
+        value: desk@marketnarrative.in
       - key: ENABLE_LIVE_ORDERS
         value: "false"
 
@@ -33,7 +33,7 @@ services:
     runtime: docker
     plan: free
     region: singapore
-    repo: https://github.com/Abheydeep/marketNews
+    repo: https://github.com/marketnarrative/marketNews
     branch: main
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
@@ -67,7 +67,7 @@ services:
         value: "false"
       - key: SEED_TRADING_ADMIN
         value: "true"
-      - key: ABHEY_ADMIN_PASSWORD
+      - key: DESK_ADMIN_PASSWORD
         sync: false
       - key: MULTIBAGGER_LIVE_QUOTES_ENABLED
         value: "true"
@@ -79,7 +79,7 @@ services:
     runtime: docker
     plan: free
     region: singapore
-    repo: https://github.com/Abheydeep/marketNews
+    repo: https://github.com/marketnarrative/marketNews
     branch: main
     dockerfilePath: ./services/trading-api/Dockerfile
     dockerContext: ./services/trading-api

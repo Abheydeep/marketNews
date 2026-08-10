@@ -29,7 +29,7 @@ export function multibaggerPage(state = multibaggerState(), options = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   ${brandHeadLinks(siteOrigin)}
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="author" content="Abhey Deep">
+  <meta name="author" content="Editorial Desk">
   <meta name="keywords" content="Market Narrative multibagger, Indian equities model tracker, KPEL, Dhabriya Polywood, Sharda Motor, public portfolio tracker">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#050816">
@@ -2978,7 +2978,7 @@ function multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, modelCount)
     },
     author: {
       "@type": "Person",
-      name: "Abhey Deep",
+      name: "Editorial Desk",
       url: `${siteOrigin}/about/`
     },
     about: ["Indian equities", "multibagger research", "portfolio tracker", `${modelCount} stock model`]

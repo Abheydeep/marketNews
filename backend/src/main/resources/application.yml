@@ -33,7 +33,7 @@ app:
   security:
     jwt-secret: ${JWT_SECRET:change-this-local-demo-secret-change-this-local-demo-secret}
     issuer: ${JWT_ISSUER:market-narrative-local}
-    trading-admin-email: ${TRADING_ADMIN_EMAIL:abhey@marketnarrative.local}
+    trading-admin-email: ${TRADING_ADMIN_EMAIL:desk@marketnarrative.local}
   frontend:
     allowed-origin: ${FRONTEND_ORIGINS:${FRONTEND_ORIGIN:http://localhost:3000}}
   multibagger:
@@ -45,8 +45,8 @@ app:
     demo-admin-display-name: ${DEMO_ADMIN_DISPLAY_NAME:Market Narrative Admin}
     demo-admin-password: ${DEMO_ADMIN_PASSWORD:market-open}
     seed-trading-admin: ${SEED_TRADING_ADMIN:true}
-    trading-admin-display-name: ${TRADING_ADMIN_DISPLAY_NAME:Abhey Trading Admin}
-    trading-admin-password: ${ABHEY_ADMIN_PASSWORD:market-open}
+    trading-admin-display-name: ${TRADING_ADMIN_DISPLAY_NAME:Desk Trading Admin}
+    trading-admin-password: ${DESK_ADMIN_PASSWORD:market-open}
 
 management:
   endpoints:

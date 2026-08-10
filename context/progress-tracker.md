@@ -458,3 +458,12 @@ These must remain true after changes:
   Verified: `npm run context:verify` passed; `npm test` passed (86 tests); `npm run test:deploy` passed (5 checks); `npm run public:copy:qa` passed; live site verification of `https://www.marketnarrative.in/`, `/latest/`, and `/23jul2026/` confirmed today's briefing is live and redirecting.
   Architecture diagrams changed: none.
   Debt found but not fixed: July 14, 15, and 16 daily digests still need to be generated and backfilled.
+- 2026-08-05: Rebranded all codebase references, credentials, configuration variables, and documentation from "Abheydeep" / "Abhey" to a generic team/desk effort.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), and `npm run test:deploy` (all 5 checks passed).
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
+- 2026-08-10: Corrected today's digest title to meet contract constraints, and completed transition of all Abhey/Abheydeep references in website copy, schemas, and test suites to generic team/desk effort. ROOT CAUSE: Today's automatically generated fallback digest title was too short and contained forbidden jargon; rebrand was needed to present the project as a team effort.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: `context/architecture-diagrams/01-production-surfaces.mmd`.
+  Debt found but not fixed: none.
+

@@ -1,5 +1,5 @@
 //@version=6
-// FVG v2 — Trend + Session + VWAP — Abhey
+// FVG v2 — Trend + Session + VWAP — Team
 // ==========================================
 // v1 baseline (Feb–May 2026): 54% WR · PF 2.02 · 24 trades · 0.80% DD
 //
@@ -16,7 +16,7 @@
 //
 // USE ON : NIFTY or BANKNIFTY · 5-minute chart
 
-strategy("FVG v2 — Trend + Session + VWAP — Abhey",
+strategy("FVG v2 — Trend + Session + VWAP — Team",
          overlay            = true,
          initial_capital    = 100000,
          currency           = currency.INR,

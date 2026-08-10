@@ -1,7 +1,7 @@
 {
-  "note": "Admin studio is now a standalone repo: Abheydeep/marketnarrative-admin",
+  "note": "Admin studio is now a standalone repo: marketnarrative/marketnarrative-admin",
   "projectName": "marketnarrative-admin",
-  "repository": "Abheydeep/marketnarrative-admin",
+  "repository": "marketnarrative/marketnarrative-admin",
   "rootDirectory": ".",
   "frameworkPreset": "vite",
   "installCommand": "npm install",

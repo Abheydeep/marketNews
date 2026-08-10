@@ -1788,7 +1788,7 @@ await test("full digest contains public SEO and studio contracts", async () => {
   const jsonLd = newsArticleJsonLd(digest);
   assert.equal(jsonLd["@type"], "NewsArticle");
   assert.equal(jsonLd.headline, digest.title);
-  assert.equal(jsonLd.author.name, "Abhey Deep");
+  assert.equal(jsonLd.author.name, "Editorial Desk");
   assert.equal(jsonLd.publisher.name, "Market Narrative");
   assert.ok(jsonLd.keywords.includes("Nifty pre-market briefing"));
 });
@@ -1829,7 +1829,7 @@ await test("daily briefing and trading guide render the correct first-fold hiera
   assert.ok(guideHtml.includes("Checklist for the open: likely direction, key index levels, when to stand aside, Bank Nifty confirmation, and sector participation."));
   assert.doesNotMatch(guideHtml, /Daily Pre-Market Summary|2 Minute Summary/);
   assert.doesNotMatch(publicHtml, /Global crude-flow signal|India impact runs only through/i);
-  assert.ok(publicHtml.includes("Abhey Deep"));
+  assert.ok(publicHtml.includes("Editorial Desk"));
   assert.ok(publicHtml.indexOf('id="summaryExpand"') < publicHtml.indexOf("compact-meta-strip"), "2-minute summary should appear before share row");
   // Top Stories merged into unified Evidence & Sources section
   assert.ok(publicHtml.includes("sources-section"), "Evidence & Sources section must be present");
@@ -2483,9 +2483,9 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("aboutPage"));
   assert.ok(publisher.includes("subscribePage"));
   assert.ok(publisher.includes("About Market Narrative"));
-  assert.ok(publisher.includes("Who is Abhey Deep?"));
+  assert.ok(publisher.includes("About the Desk"));
   assert.ok(publisher.includes("Why not just headlines?"));
-  assert.ok(publisher.includes("I'm Abhey Deep - a software engineer and Indian market trader"));
+  assert.ok(publisher.includes("We are a dedicated team of software developers and active Indian market traders"));
   assert.ok(publisher.includes("Published record"));
   assert.ok(publisher.includes("verified briefings"));
   const siteChrome = await readFile(join(rootDir, "tools", "site-chrome.mjs"), "utf8");
@@ -2582,7 +2582,7 @@ await test("static publisher emits public pages plus auth-gated admin pages", as
   assert.ok(publisher.includes("<priority>"));
   assert.ok(publisher.includes("daily pre-market public briefing for Nifty and Bank Nifty") || publisher.includes("pre-market briefing"));
   assert.ok(publisher.includes("7:15 AM IST") || publisher.includes("pre-market brief") || publisher.includes("Nifty gate"), "homepage must reference 7:15 AM IST or pre-market context");
-  assert.ok(publisher.includes("Abhey Deep"));
+  assert.ok(publisher.includes("Editorial Desk"));
   assert.ok(publisher.includes("Last updated"));
   assert.ok(publisher.includes("Share this archive"));
 
@@ -2749,11 +2749,11 @@ await test("frontend workspace separates public portal, admin studio, and shared
 
   const adminRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-admin.json"), "utf8"));
   const tradeRef = JSON.parse(await readFile(join(rootDir, "deploy", "vercel", "marketnarrative-trade.json"), "utf8"));
-  assert.equal(adminRef.repository, "Abheydeep/marketnarrative-admin");
+  assert.equal(adminRef.repository, "marketnarrative/marketnarrative-admin");
   assert.equal(adminRef.frameworkPreset, "vite");
   assert.equal(adminRef.outputDirectory, "dist");
   assert.deepEqual(adminRef.domains, ["admin.marketnarrative.in"]);
-  assert.equal(tradeRef.repository, "Abheydeep/marketnarrative-trade");
+  assert.equal(tradeRef.repository, "marketnarrative/marketnarrative-trade");
   assert.equal(tradeRef.frameworkPreset, "nextjs");
   assert.equal(tradeRef.outputDirectory, "out");
   assert.deepEqual(tradeRef.domains, ["trade.marketnarrative.in"]);
@@ -2808,8 +2808,8 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.ok(!buildScript.includes("@market-narrative/trading-dashboard"), "no trading-dashboard build in monorepo");
   assert.ok(buildScript.includes("vercel:build:public"));
   assert.ok(buildScript.includes("tools/public-copy-qa.mjs"));
-  assert.ok(buildScript.includes("Abheydeep/marketnarrative-admin"), "admin repo pointer must be in build script error message");
-  assert.ok(buildScript.includes("Abheydeep/marketnarrative-trade"), "trade repo pointer must be in build script error message");
+  assert.ok(buildScript.includes("marketnarrative/marketnarrative-admin"), "admin repo pointer must be in build script error message");
+  assert.ok(buildScript.includes("marketnarrative/marketnarrative-trade"), "trade repo pointer must be in build script error message");
   assert.ok(buildScript.includes("\"public\""));
   assert.ok(publicBuildScript.includes("Live briefing for ${date} was not verified"));
   assert.ok(publicBuildScript.includes("latestArchivedDigest()"));
@@ -2834,11 +2834,11 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
   assert.equal(publicProject.outputDirectory, "public");
   assert.equal(publicProject.environment.MARKET_NARRATIVE_DEPLOY_TARGET, "public");
   assert.deepEqual(publicProject.domains, ["marketnarrative.in", "www.marketnarrative.in"]);
-  assert.equal(adminProject.repository, "Abheydeep/marketnarrative-admin", "admin is now a separate repo");
+  assert.equal(adminProject.repository, "marketnarrative/marketnarrative-admin", "admin is now a separate repo");
   assert.equal(adminProject.buildCommand, "npm run build");
   assert.equal(adminProject.outputDirectory, "dist");
   assert.deepEqual(adminProject.domains, ["admin.marketnarrative.in"]);
-  assert.equal(tradeProject.repository, "Abheydeep/marketnarrative-trade", "trade is now a separate repo");
+  assert.equal(tradeProject.repository, "marketnarrative/marketnarrative-trade", "trade is now a separate repo");
   assert.equal(tradeProject.buildCommand, "npm run build");
   assert.equal(tradeProject.outputDirectory, "out");
   assert.deepEqual(tradeProject.domains, ["trade.marketnarrative.in"]);
@@ -2865,7 +2865,7 @@ await test("Vercel projects select public, admin, or trade output by deploy targ
     
     "trade-mn-signal",
     "lucide-lock-keyhole",
-    "Login as Abhey Admin",
+    "Login as Desk Admin",
     "api.marketnarrative.in",
     "actuator/health",
     "trade-api.marketnarrative.in",
@@ -2916,7 +2916,7 @@ await test("Render blueprint provisions real API and trade API backends", async 
     "healthCheckPath: /health",
     "ENABLE_LIVE_ORDERS",
     'value: "false"',
-    "ABHEY_ADMIN_PASSWORD",
+    "DESK_ADMIN_PASSWORD",
     "sync: false",
     "KITE_REDIRECT_URL",
     "https://trade.marketnarrative.in/kite/callback"
@@ -2986,7 +2986,7 @@ await test("demo app serves public and admin flows without external packages", a
   assert.ok(publicHtml.body.includes("Portfolio"));
   assert.ok(!publicHtml.body.includes("Briefing Archive"));
   assert.ok(!publicHtml.body.includes("Admin Login"));
-  assert.ok(publicHtml.body.includes("Abhey Deep"));
+  assert.ok(publicHtml.body.includes("Editorial Desk"));
   assert.ok(publicHtml.body.includes("compact-meta-strip"));
   assert.equal(publicHtml.body.includes("Share this trading guide"), false);
   assert.ok(publicHtml.body.includes("Verified"));

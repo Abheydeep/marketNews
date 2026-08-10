@@ -45,7 +45,7 @@ Render prompts for `sync: false` values during Blueprint creation. Enter only wh
 Required for login:
 
 ```env
-ABHEY_ADMIN_PASSWORD=<strong password for abhey@marketnarrative.in>
+DESK_ADMIN_PASSWORD=<strong password for desk@marketnarrative.in>
 ```
 
 Optional for launch:
@@ -63,14 +63,14 @@ If Kite keys are blank, the dashboard can still load mock trading state after ad
 ## Render Dashboard Steps
 
 1. Open [Render Blueprints](https://dashboard.render.com/blueprints).
-2. Create a new Blueprint from `https://github.com/Abheydeep/marketNews`.
+2. Create a new Blueprint from `https://github.com/marketnarrative/marketNews`.
 3. Select the branch that contains `render.yaml`.
 4. Review the services:
    - `marketnarrative-api`
    - `marketnarrative-trade-api`
    - `marketnarrative-postgres`
    - `marketnarrative-redis`
-5. Enter `ABHEY_ADMIN_PASSWORD`.
+5. Enter `DESK_ADMIN_PASSWORD`.
 6. Leave `ENABLE_LIVE_ORDERS=false`.
 7. Create the Blueprint and wait for both web services to deploy.
 
@@ -120,13 +120,13 @@ https://trade.marketnarrative.in/
 Username:
 
 ```text
-abhey@marketnarrative.in
+desk@marketnarrative.in
 ```
 
 Password:
 
 ```text
-the ABHEY_ADMIN_PASSWORD entered in Render
+the DESK_ADMIN_PASSWORD entered in Render
 ```
 
 ## Production Caveats

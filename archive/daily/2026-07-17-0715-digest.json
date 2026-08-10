@@ -1,0 +1,2956 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-07-17",
+  "title": "Cost Inflation Index Increase Highlights Tax Adjustments for Traders",
+  "status": "DRAFT",
+  "generatedAt": "2026-07-19T13:58:43.450Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: +323 pt gap-up",
+    "sourceArticleId": "business-standard-economy:ws1a1",
+    "driverType": "rates",
+    "headline": "I-T department raises Cost Inflation Index for current fiscal to 384",
+    "indiaImpact": "GIFT Nifty at 24395.5 (+323 pts, +1.34%) signals gap-up open. Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+    "riskSide": "Higher yields would pressure banks, realty, autos, and long-duration growth shares.",
+    "supportSide": "Stable yields plus bank participation is the offset.",
+    "giftNiftyBias": {
+      "giftPrice": 24395.5,
+      "niftyClose": 24072.75,
+      "gapPts": 323,
+      "gapPct": 1.34,
+      "bias": "gap_up",
+      "biasLabel": "+323 pt gap-up"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 5,
+    "shortlistCount": 10,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 2,
+    "indiaPublisherCount": 3,
+    "shortlistIndiaPublisherCount": 5,
+    "directIndiaSourceCount": 3,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 3,
+    "globalContextCount": 2,
+    "globalOnlySourceRatio": 40,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 3 direct India sources, 0 official sources, 3 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.business-standard.com/economy/news/i-t-department-raises-cost-inflation-index-for-current-fiscal-to-384-126071600388_1.html",
+      "https://www.business-standard.com/economy/news/india-eu-trade-pact-to-be-signed-by-end-of-this-year-piyush-goyal-126071601216_1.html",
+      "https://www.cnbc.com/2026/07/16/unitedhealth-group-unh-earnings-q2-2026.html",
+      "https://www.cnbc.com/2026/07/16/housing-market-mortgages-homebuilding.html",
+      "https://www.business-standard.com/economy/news/india-s-gig-internet-workforce-to-more-than-triple-to-21-mn-by-2030-report-126071601317_1.html"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: +323 pt gap-up: GIFT Nifty at 24395.5 (+323 pts, +1.34%) signals gap-up open. Rate-sensitive Indian sectors need yield...",
+  "twoMinuteSummary": "I-T department raises Cost Inflation Index for current fiscal to 384 The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 -1.01%, Nasdaq 100 -1.492%, Dow Jones -0.774%, Nifty 50 +1.086%, Bank Nifty +1.631%, Nikkei 225 -4.031%, Hang Seng -1.785%, Shanghai Composite -3.046%, KOSPI -6.367%, Taiwan Weighted -6.474%, Straits Times -0.541%, ASX 200 -0.498%, US Dollar Index -0.01%, Brent Crude +4.595%, USD/INR -0.057%, Gold (COMEX) +0.669%, India VIX +2.076%, GIFT Nifty +0.19% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Negative Macro Impact: Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop in existing home sales and builder sentiment.\n\n- Sector-Specific Cushion: The healthcare giant is working to stabilize margins by shrinking membership, exiting unprofitable contracts and pouring $1.5 billion into AI. Sector impact matters only when related Indian names participate after the open. Keep risk small when the source stack is narrow or conflicting.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch the US 10Y trend; pair it with Bank Nifty session average before assigning direction.",
+    "Watch exporter and auto-ancillary market participation after the first range; avoid trading the tariff headline alone.",
+    "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation."
+  ],
+  "overallSentiment": -0.14,
+  "sentimentLabel": "VOLATILE",
+  "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -1.01%, Nasdaq 100 -1.492%, Dow Jones -0.774%, Nifty 50 +1.086%, Bank Nifty +1.631%, Nikkei 225 -4.031%, Hang Seng -1.785%, Shanghai Composite -3.046%, KOSPI -6.367%, Taiwan Weighted -6.474%, Straits Times -0.541%, ASX 200 -0.498%, US Dollar Index -0.01%, Brent Crude +4.595%, USD/INR -0.057%, Gold (COMEX) +0.669%, India VIX +2.076%, GIFT Nifty +0.19%\n\nNarrative Themes:\n- Negative Macro Impact: Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop in existing home sales and builder sentiment.\n- Sector-Specific Cushion: The healthcare giant is working to stabilize margins by shrinking membership, exiting unprofitable contracts and pouring $1.5 billion into AI.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7457.69,
+      "previousClose": 7533.77,
+      "changePercent": -1.01,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T20:43:30.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 7434.08
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7473.11
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7489.02
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7488.85
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7484.19
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7475.39
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7468.54
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7479.73
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7479.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7494.56
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7488.88
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7485.19
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7488.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7488.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7489.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7494.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7481.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7471.23
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7466.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7462.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7458.44
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7469.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7452.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7456.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7460.37
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7457.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 7457.69
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 28592.66,
+      "previousClose": 29025.77,
+      "changePercent": -1.492,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 28239.87
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28502.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28635.53
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28643.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28652.25
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28546.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28528.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28582.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28619.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28754.38
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28764.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28741.06
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28786.87
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28796.54
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28822.42
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28859.32
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28774.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28719.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28681.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28670.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28626.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28686.18
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28578.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28613.57
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28615.02
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28590.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 28592.66
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 52146.42,
+      "previousClose": 52552.97,
+      "changePercent": -0.774,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T20:43:30.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 52349.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52497.02
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52574.09
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52529.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52477.22
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52512.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52435.13
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52529.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52483.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52532.66
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52468.88
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52410.94
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52386.57
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52360.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52355.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52359.28
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52319.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52260.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52255.43
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52200.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52176.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52234.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52152.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52149.66
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52199.73
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52158.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 52146.42
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 24334.3,
+      "previousClose": 24072.75,
+      "changePercent": 1.086,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-17T10:01:13.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 24211.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24230.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24228.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24239.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24281.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24259.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24257.05
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24235.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24244.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24267.25
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24277.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24276.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24277.55
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24277.05
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24283.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24282.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24268.05
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24254.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24249.95
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24281.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24288.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24318.25
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24312.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24329.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24343.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24334.3
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 58521.4,
+      "previousClose": 57582.25,
+      "changePercent": 1.631,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-17T10:01:13.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 57829.45
+        },
+        {
+          "time": "2026-07-17",
+          "close": 57912
+        },
+        {
+          "time": "2026-07-17",
+          "close": 57934.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 57966.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58127.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58075.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58103.95
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58062.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58059.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58071.25
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58107.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58104.05
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58118.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58083.85
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58113.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58109.45
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58057.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 57995.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58105.85
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58223.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58394.55
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58452.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58489.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58481.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58576
+        },
+        {
+          "time": "2026-07-17",
+          "close": 58521.4
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 64141.12,
+      "previousClose": 66835.54,
+      "changePercent": -4.031,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-07-17T06:45:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 64802.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64519.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64192.11
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64663.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64898.89
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64546.62
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64192.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64183.28
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64108.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64036.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63896.48
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64020.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63690.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63524.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63114.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63097.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63252.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63455.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63334.62
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63316.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63682.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 63979.61
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64113.21
+        },
+        {
+          "time": "2026-07-17",
+          "close": 64141.12
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 24562.24,
+      "previousClose": 25008.6,
+      "changePercent": -1.785,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-07-17T08:08:36.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 24915.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24795.07
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24717.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24652.49
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24616.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24583.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24588.93
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24519.01
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24530.62
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24515.12
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24514.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24439.58
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24378.59
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24355.41
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24427.93
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24488.97
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24543.37
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24517.92
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24523.23
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24498.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24474.61
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24508.01
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24502.49
+        },
+        {
+          "time": "2026-07-17",
+          "close": 24562.24
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3764.15,
+      "previousClose": 3882.41,
+      "changePercent": -3.046,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-07-17T07:00:24.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 3849.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3851.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3844.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3834.09
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3819.21
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3815.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3826.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3817.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3818.59
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3796.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3787.41
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3752.59
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3779.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3818.45
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3801.65
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3780.48
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3764.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3764.15
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 6820.6,
+      "previousClose": 7284.41,
+      "changePercent": -6.367,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-07-16T09:05:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-16",
+          "close": 6991.97
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6901.26
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6827.09
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6815.4
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6786.48
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6774.85
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6789.44
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6786.28
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6762.59
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6827.37
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6808.9
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6868.83
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6857.06
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6805.11
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6816.74
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6857.92
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6867.34
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6805.16
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6802.65
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6804.37
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6878.72
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6934.63
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6833.44
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6835.21
+        },
+        {
+          "time": "2026-07-16",
+          "close": 6820.6
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 42671.27,
+      "previousClose": 45624.98,
+      "changePercent": -6.474,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-07-17T05:33:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 44178.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 44060.12
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43903.25
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43838.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43695.63
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43703.53
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43632.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43477.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43580.22
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43687.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43472.71
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43309.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43244.97
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43122.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43025.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 43084.44
+        },
+        {
+          "time": "2026-07-17",
+          "close": 42936.39
+        },
+        {
+          "time": "2026-07-17",
+          "close": 42918
+        },
+        {
+          "time": "2026-07-17",
+          "close": 42671.27
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5509.43,
+      "previousClose": 5539.38,
+      "changePercent": -0.541,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-07-17T09:20:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 5502.22
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5511.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5507.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5510.49
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5514.98
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5515.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5510.71
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5510.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5503.39
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5511.64
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5508.32
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5505.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5505.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5505.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5505.94
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5500.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5493.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5495.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5497.42
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5495.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5505.93
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5508.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5507.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5506.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5500.52
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5501.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5504.51
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5507.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5509.39
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5506.88
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5508.53
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5507.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 5509.43
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8796.7,
+      "previousClose": 8840.7,
+      "changePercent": -0.498,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-07-17T06:46:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 8797.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8790
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8774.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8781.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8778.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8779
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8769
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8763.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8763.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8765.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8773.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8785.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8796.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8794.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8785.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8776.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8777.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8764.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8766.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8773
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8765.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8767.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8778.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8783.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8796.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 8796.7
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 100.76,
+      "previousClose": 100.77,
+      "changePercent": -0.01,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T20:59:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.72
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.71
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.82
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.82
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.85
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.83
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.84
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.83
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.83
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.85
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.73
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.72
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.73
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.78
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.73
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 100.75
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 88.1,
+      "previousClose": 84.23,
+      "changePercent": 4.595,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T20:59:57.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 85.07
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.06
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.04
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.95
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.28
+        },
+        {
+          "time": "2026-07-17",
+          "close": 83.81
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.28
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.46
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.54
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.69
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.64
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.45
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.49
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.68
+        },
+        {
+          "time": "2026-07-17",
+          "close": 84.99
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.72
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.67
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.89
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.56
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 85.83
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.02
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.12
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.77
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.96
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.82
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.82
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.43
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.72
+        },
+        {
+          "time": "2026-07-17",
+          "close": 86.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.38
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.48
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.49
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.66
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.64
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.02
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.99
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.17
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.76
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.75
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.74
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.41
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.79
+        },
+        {
+          "time": "2026-07-17",
+          "close": 87.82
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.07
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.15
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 88.1
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 96.28,
+      "previousClose": 96.34,
+      "changePercent": -0.057,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-07-19T03:30:07.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.26
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.32
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.36
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.35
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.33
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.34
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.29
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 96.27
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4018.8,
+      "previousClose": 3992.1,
+      "changePercent": 0.669,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-07-17T20:59:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 3992.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3989.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3984.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3985
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3983
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3982.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3990.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3988.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4003.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4007.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4000
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4003.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4000.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4000
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4002.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3997
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3996.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3996.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3996.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3998.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4002.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4002.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3999.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4001.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4000.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3999.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4000
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3994.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3995.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3999.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3995.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3997.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3993.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3990.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3973.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3969.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3974.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3971.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3988.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4001.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 3999.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4002.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4002.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4005.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4009.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4018.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4020.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4024.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4022.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4023.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4022.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4019.6
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4018.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4018.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4016
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4014.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4015.5
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4020.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4013
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4016.1
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4010.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4009.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4014.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4019.9
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4016.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4015.4
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4017.7
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4018.8
+        },
+        {
+          "time": "2026-07-17",
+          "close": 4018.8
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 13.15,
+      "previousClose": 12.88,
+      "changePercent": 2.076,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-07-17T10:03:23.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-07-17",
+          "close": 13.05
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.07
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.18
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.31
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.26
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.23
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.2
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.24
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.26
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.28
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.3
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.27
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.21
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.09
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.03
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.18
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.11
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.14
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.23
+        },
+        {
+          "time": "2026-07-17",
+          "close": 13.15
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 24395.5,
+      "previousClose": 24349,
+      "changePercent": 0.19,
+      "dataTimestamp": "2026-07-17T20:59:53.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-07-17T12:59:53.000Z",
+          "close": 24349
+        },
+        {
+          "time": "2026-07-17T20:59:53.000Z",
+          "close": 24395.5
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "17-Jul-2026",
+    "fiiNet": -376.41,
+    "fiiBuy": 14393.77,
+    "fiiSell": 14770.18,
+    "diiNet": 1017.89,
+    "diiBuy": 17180.08,
+    "diiSell": 16162.19
+  },
+  "giftNiftyBias": {
+    "giftPrice": 24395.5,
+    "niftyClose": 24072.75,
+    "gapPts": 323,
+    "gapPct": 1.34,
+    "bias": "gap_up",
+    "biasLabel": "+323 pt gap-up"
+  },
+  "todaysReadArticle": null,
+  "news": [
+    {
+      "publishedAt": "2026-07-16T14:17:33.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "I-T department raises Cost Inflation Index for current fiscal to 384",
+      "summary": "The income tax department has increased the Cost Inflation Index for the current fiscal for calculating long-term capital gains arising from the sale of immovable property, securities and jewellery. The Cost Inflation Index (CII) is used by taxpayers to calculate gains from the sale of capital assets after adjusting inflation. The Cost Inflation Index for FY 2026-27 is 384, as per a notification of the Central Board of Direct Taxes (CBDT). The CII for fiscal 2025-26 was 376. AMRG Global Managing Partner Rajat Mohan said the annual notification of the Cost Inflation Index reflects the government's commitment to maintaining an objective inflation-adjustment mechanism wherever indexation benefits continue under the new tax framework. It provides taxpayers, valuers and tax professionals with clarity for computing the indexed cost and reduces interpretational disputes, Mohan added. CII or Cost Inflation Index is notified under the Income-tax Act, 1961 every year. It is popularly used",
+      "takeaway": "The income tax department has increased the Cost Inflation Index for the current fiscal for calculating long-term capital; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty session average before assigning direction.",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "I-T Department",
+        "accent": "#dc2626",
+        "alt": "I-T department raises Cost Inflation Index for current fiscal to 384 source thumbnail"
+      },
+      "sourceUrl": "https://www.business-standard.com/economy/news/i-t-department-raises-cost-inflation-index-for-current-fiscal-to-384-126071600388_1.html",
+      "sentimentScore": -0.34,
+      "entityName": "Rates",
+      "entityMatchScore": 0.74,
+      "category": "macro_negative"
+    },
+    {
+      "publishedAt": "2026-07-16T14:55:59.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India-EU trade pact to be signed by end of this year: Piyush Goyal",
+      "summary": "India and the European Union (EU) have agreed to ink the free trade agreement by the end of this year, Commerce and Industry Minister Piyush Goyal said on Thursday. Addressing the India-Finland Business Round Table in Helsinki, he said the pact will come into force in the first quarter of 2027. \"The 27-nation EU-India free trade agreement ...in the course of my meetings in Brussels yesterday, we have agreed to sign before the end of calendar 2026, the final legal document and bring into effect in the first quarter of 2027, sometime in February-March next year,\" he said. He added that the deal will open a plethora of opportunities for businesses on both sides. On January 27 this year, India and the European Union (EU) announced the conclusion of negotiations for the 'mother of all deals'. Under the pact, 93 per cent of Indian shipments will enjoy duty-free access to the 27-nation bloc, while the import of luxury cars and wines from the EU will become less expensive. The deal, conc",
+      "takeaway": "India and the European Union (EU) have agreed to ink the free trade agreement by the end; trade-flow news separates exporters from import-cost sectors, so the index read needs sector confirmation.",
+      "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
+      "indiaImpact": "IT, pharma, metals, autos and import-cost sectors can diverge; use market participation by sector before assigning index direction.",
+      "watchFor": "Watch exporter and auto-ancillary market participation after the first range; avoid trading the tariff headline alone.",
+      "thumbnail": {
+        "label": "Exporters",
+        "theme": "India-Eu Trade",
+        "accent": "#dc2626",
+        "alt": "India-EU trade pact to be signed by end of this year: Piyush Goyal source thumbnail"
+      },
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-eu-trade-pact-to-be-signed-by-end-of-this-year-piyush-goyal-126071601216_1.html",
+      "sentimentScore": -0.55,
+      "entityName": "Exporters",
+      "entityMatchScore": 0.8,
+      "category": "macro_negative"
+    },
+    {
+      "publishedAt": "2026-07-16T19:00:37.000Z",
+      "sourceId": "cnbc-business",
+      "sourceName": "CNBC Business",
+      "headline": "UnitedHealth blows past estimates, hikes earnings outlook as it reins in costs",
+      "summary": "The healthcare giant is working to stabilize margins by shrinking membership, exiting unprofitable contracts and pouring $1.5 billion into AI.",
+      "takeaway": "The healthcare giant is working to stabilize margins by shrinking membership, exiting unprofitable contracts and pouring $1.5 billion; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation.",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "UnitedHealth blows past estimates, hikes earnings outlook as it reins in costs source thumbnail"
+      },
+      "sourceUrl": "https://www.cnbc.com/2026/07/16/unitedhealth-group-unh-earnings-q2-2026.html",
+      "sentimentScore": 0.45,
+      "entityName": "Global Tech",
+      "entityMatchScore": 0.8,
+      "category": "sector_positive"
+    },
+    {
+      "publishedAt": "2026-07-16T20:06:13.000Z",
+      "sourceId": "cnbc-business",
+      "sourceName": "CNBC Business",
+      "headline": "Here's why the housing market is hurting so much this summer",
+      "summary": "Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop in existing home sales and builder sentiment.",
+      "takeaway": "Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty session average before assigning direction.",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Heres Why",
+        "accent": "#dc2626",
+        "alt": "Here's why the housing market is hurting so much this summer source thumbnail"
+      },
+      "sourceUrl": "https://www.cnbc.com/2026/07/16/housing-market-mortgages-homebuilding.html",
+      "sentimentScore": -0.61,
+      "entityName": "Rates",
+      "entityMatchScore": 0.74,
+      "category": "macro_negative"
+    },
+    {
+      "publishedAt": "2026-07-16T15:04:16.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India's gig internet workforce to more than triple to 21 mn by 2030: Report",
+      "summary": "Redseer estimates India's monthly active gig internet workforce will reach 17-21 million by 2030, with platform work expanding beyond metros and generating millions of earning opportunities",
+      "takeaway": "Redseer estimates India's monthly active gig internet workforce will reach 17-21 million by 2030, with platform work expanding; macro pressure needs confirmation from yields, currency and Indian market participation before it becomes a tradeable defensive cue.",
+      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and market participation confirm stress after the open.",
+      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and market participation fails to recover.",
+      "watchFor": "Watch Bank Nifty session average, USD/INR and market participation through 9:45 AM before pressing a defensive view.",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Indias Gig",
+        "accent": "#dc2626",
+        "alt": "India's gig internet workforce to more than triple to 21 mn by 2030: Report source thumbnail"
+      },
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-s-gig-internet-workforce-to-more-than-triple-to-21-mn-by-2030-report-126071601317_1.html",
+      "sentimentScore": -0.55,
+      "entityName": "Market",
+      "entityMatchScore": 0.66,
+      "category": "macro_negative"
+    }
+  ],
+  "themes": [
+    {
+      "digestDate": "2026-07-17",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop in existing home sales and builder sentiment.",
+      "sentimentScore": -0.512,
+      "evidenceCount": 4
+    },
+    {
+      "digestDate": "2026-07-17",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "The healthcare giant is working to stabilize margins by shrinking membership, exiting unprofitable contracts and pouring $1.5 billion into AI.",
+      "sentimentScore": 0.45,
+      "evidenceCount": 1
+    }
+  ],
+  "tradeSetups": [],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "setup": {
+        "symbol": "NIFTY",
+        "direction": "BULLISH",
+        "entry": 24200,
+        "stopLoss": 22321.51,
+        "target": 28332.69,
+        "riskReward": 2.2,
+        "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+        "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
+        "digestDate": "2026-07-17",
+        "lastBarDate": "2026-06-10"
+      },
+      "status": "STALE",
+      "reason": "NIFTY setup is 37 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "setup": {
+        "symbol": "BANKNIFTY",
+        "direction": "BULLISH",
+        "entry": 55000,
+        "stopLoss": 49674.28,
+        "target": 66716.58,
+        "riskReward": 2.2,
+        "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+        "invalidationReason": "Invalidate the setup if price closes below 49674.28.",
+        "digestDate": "2026-07-17",
+        "lastBarDate": "2026-06-10"
+      },
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 37 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "VOLATILE",
+    "palette": "slate blue, gold, neutral grey",
+    "referenceImageId": "creator-ref-001",
+    "controlNetMode": "ControlNet Canny + Depth identity lock",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-07-17.webp",
+    "reelVideo": {
+      "durationSeconds": 60,
+      "aspectRatio": "9:16",
+      "style": "premium dark glassmorphism financial reel",
+      "captionStack": [
+        "Levels over prediction",
+        "Macro hedges are mixed: Brent Crude up 4.59%, while USD/INR down 0.06%.",
+        "India is firm, led by India VIX up 2.08%.",
+        "No chase: wait for first hour",
+        "Save before the open"
+      ],
+      "scenes": [
+        {
+          "time": "0-03s",
+          "title": "Hook",
+          "caption": "Levels over prediction",
+          "visual": "Creator close-up, dark glass trading wall, bold sentiment badge."
+        },
+        {
+          "time": "03-14s",
+          "title": "Global Cue",
+          "caption": "Macro hedges are mixed: Brent Crude up 4.59%, while USD/INR down 0.06%.",
+          "visual": "US futures, Asia map, crude and dollar tiles moving behind the creator."
+        },
+        {
+          "time": "14-34s",
+          "title": "India Read",
+          "caption": "India is firm, led by India VIX up 2.08%.",
+          "visual": "Nifty and Bank Nifty cards, session average line, market participation meter."
+        },
+        {
+          "time": "34-52s",
+          "title": "Trade Plan",
+          "caption": "No chase: wait for first hour",
+          "visual": "Entry, stop, target cards with 1:2 risk-reward emphasis."
+        },
+        {
+          "time": "52-60s",
+          "title": "Close",
+          "caption": "Save before the open",
+          "visual": "Clean closing card with disclaimer microcopy."
+        }
+      ],
+      "videoPrompt": "Create a 60-second vertical financial market reel for 2026-07-17. Mood: VOLATILE. Style: premium dark glassmorphism, sharp typography, Indian market desk energy. Use a photorealistic Indian male financial creator as presenter with a ControlNet reference and consistent face. Set the scene in an Indian market studio with NSE/BSE-style boards, Nifty, Bank Nifty, GIFT Nifty, rupee, DXY, Brent, PCR and OI visual tiles where relevant. Main story: Mortgage rates are high, home prices at record levels, and consumers stressed — all contributing to a drop; A higher-yield tape raises the discount-rate check for banks and high-multiple growth. Trade framing: No chase: wait for first hour. No exaggerated profit claims, no guaranteed calls, no investment advice."
+    }
+  },
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 40,
+    "publisherCount": 11,
+    "categoryCount": 5,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 3226917,
+  "scheduledFor": "2026-07-17T07:15:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null
+}

@@ -957,12 +957,12 @@ export function projectComponentsPage({ digests = [], publicBaseHref = "../", re
       <article class="repo-card">
         <code>[Extracted] admin studio</code>
         <strong>Private admin workspace</strong>
-        <p>Extracted to Abheydeep/marketnarrative-admin. Holds the separate Vite + React React 19 SPA command center.</p>
+        <p>Extracted to marketnarrative/marketnarrative-admin. Holds the separate Vite + React React 19 SPA command center.</p>
       </article>
       <article class="repo-card">
         <code>[Extracted] trade cockpit</code>
         <strong>Private trading workspace</strong>
-        <p>Extracted to Abheydeep/marketnarrative-trade. Holds the separate Next.js 15 static export dashboard.</p>
+        <p>Extracted to marketnarrative/marketnarrative-trade. Holds the separate Next.js 15 static export dashboard.</p>
       </article>
       <article class="repo-card">
         <code>tools/</code>

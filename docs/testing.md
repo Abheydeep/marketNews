@@ -97,9 +97,9 @@ Spring backend:
 
 - `/actuator/health` returns `UP`.
 - Demo admin seeding can be disabled with `SEED_DEMO_ADMIN=false`.
-- Production trading admin is seeded only from `TRADING_ADMIN_EMAIL` and `ABHEY_ADMIN_PASSWORD`.
+- Production trading admin is seeded only from `TRADING_ADMIN_EMAIL` and `DESK_ADMIN_PASSWORD`.
 - Normal admin tokens do not include `trade:read` or `trade:execute`.
-- Only the configured Abhey email receives trading permissions.
+- Only the configured desk admin email receives trading permissions.
 - JWT issuer and secret are environment-controlled.
 - Login rejects invalid password and unknown user.
 
@@ -108,11 +108,11 @@ FastAPI trading API:
 - Unauthenticated REST requests return `401`.
 - Token with wrong issuer returns `401`.
 - Expired token returns `401`.
-- Valid non-Abhey admin token returns `403`.
-- Valid Abhey trading-admin token returns `200`.
+- Valid non-desk admin token returns `403`.
+- Valid desk trading-admin token returns `200`.
 - WebSocket without token closes with policy violation.
 - WebSocket with wrong token closes with policy violation.
-- WebSocket with Abhey token streams market envelopes.
+- WebSocket with desk token streams market envelopes.
 - `GET /api/kite/login-url` returns a controlled `400` when Kite key is absent.
 - `POST /api/instruments/refresh` returns `401` when Kite session is missing.
 - Kite HTTP adapter respects quote and historical rate limits.
@@ -126,8 +126,8 @@ Trading dashboard:
 - Static export opens without console errors.
 - Login gate is visible on first load.
 - Password input is empty on first load.
-- Non-Abhey or no-scope token is rejected client-side.
-- Valid Abhey token is persisted in localStorage.
+- Non-desk or no-scope token is rejected client-side.
+- Valid desk token is persisted in localStorage.
 - Logout clears token, snapshot, proposals, and WebSocket state.
 - WebSocket URL includes the token query parameter.
 - REST calls attach the Bearer token.
@@ -160,7 +160,7 @@ Before deploying to the VPS, run the full application in mock mode:
 2. Start Spring backend with local JWT settings.
 3. Start FastAPI trading API with `TRADING_AUTH_REQUIRED=true` and `ENABLE_LIVE_ORDERS=false`.
 4. Start the trading dashboard.
-5. Login as the local Abhey admin.
+5. Login as the local desk admin.
 6. Verify:
    - Market envelope loads.
    - WebSocket connects.
@@ -229,16 +229,16 @@ npm run prod:smoke
 
 This verifies:
 
-- Abhey login works.
-- JWT subject is `abhey@marketnarrative.in`.
+- Desk login works.
+- JWT subject is `desk@marketnarrative.in`.
 - JWT includes `trade:execute`.
 - Trading envelope, latest signals, and option chains return `200`.
 
-Optional non-Abhey negative check:
+Optional non-desk negative check:
 
 ```bash
-NON_ABHEY_EMAIL='<other-admin-email>' \
-NON_ABHEY_PASSWORD='<other-admin-password>' \
+NON_DESK_EMAIL='<other-admin-email>' \
+NON_DESK_PASSWORD='<other-admin-password>' \
 npm run prod:smoke
 ```
 
@@ -341,9 +341,9 @@ Before launch:
 - Confirm the code does not store Kite password or TOTP seed.
 - Confirm `ENABLE_LIVE_ORDERS=false` on the VPS.
 - Confirm `JWT_SECRET` is strong and shared only by Spring and FastAPI.
-- Confirm `ABHEY_ADMIN_PASSWORD` exists only in secret storage or VPS `.env`.
+- Confirm `DESK_ADMIN_PASSWORD` exists only in secret storage or VPS `.env`.
 - Confirm production `SEED_DEMO_ADMIN=false`.
-- Confirm `TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`.
+- Confirm `TRADING_ADMIN_EMAIL=desk@marketnarrative.in`.
 - Confirm trading API protected endpoints require Bearer auth.
 - Confirm order confirmation requires manual UI action.
 - Confirm CORS does not use wildcard origins in production.

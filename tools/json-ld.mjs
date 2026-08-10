@@ -39,8 +39,8 @@ export function newsArticleJsonLd(digest, options = {}) {
     datePublished: digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
     dateModified: digest.generatedAt ?? digest.publishedAt ?? `${digest.digestDate}T07:15:00+05:30`,
     author: {
-      "@type": "Person",
-      name: "Abhey Deep",
+      "@type": "Organization",
+      name: "Editorial Desk",
       url: `${SITE_ORIGIN}/about/`
     },
     publisher: {
@@ -71,8 +71,8 @@ export function multibaggerJsonLd(pageTitle, pageDescription, canonicalUrl, mode
       url: SITE_ORIGIN
     },
     author: {
-      "@type": "Person",
-      name: "Abhey Deep",
+      "@type": "Organization",
+      name: "Editorial Desk",
       url: `${SITE_ORIGIN}/about/`
     },
     about: ["Indian equities", "multibagger research", "portfolio tracker", `${modelCount} stock model`]

@@ -8,7 +8,7 @@ const apiDir = new URL("services/trading-api/", root);
 const pythonBin = existsSync(new URL(".venv/bin/python", apiDir)) ? ".venv/bin/python" : "python3";
 const jwtSecret = "change-this-local-demo-secret-change-this-local-demo-secret";
 const jwtIssuer = "market-narrative-local";
-const tradingAdminEmail = "abhey@marketnarrative.in";
+const tradingAdminEmail = "desk@marketnarrative.in";
 
 const apiPort = await freePort();
 const apiBase = `http://127.0.0.1:${apiPort}`;

@@ -6,11 +6,11 @@ This codebase publishes the public site briefing, while the operator admin studi
 
 | Surface | Domain | Repository | Purpose | Public? |
 | --- | --- | --- | --- | --- |
-| Public briefing | `marketnarrative.in` and `www.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Daily pre-market archive, dated briefings, public multibagger tracker | Yes |
-| Admin studio | `admin.marketnarrative.in` | `Abheydeep/marketnarrative-admin` | Script engine, publishing studio, components map, portfolio review | No |
-| Trading cockpit | `trade.marketnarrative.in` | `Abheydeep/marketnarrative-trade` | Nifty/Bank Nifty trading cockpit | No |
-| Spring API | `api.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Auth, digest admin APIs, public digest APIs, multibagger APIs | API |
-| Trading API | `trade-api.marketnarrative.in` | `Abheydeep/marketNews` (This Repo) | Kite auth, market stream, options, signals, guarded order proposals | API |
+| Public briefing | `marketnarrative.in` and `www.marketnarrative.in` | `marketnarrative/marketNews` (This Repo) | Daily pre-market archive, dated briefings, public multibagger tracker | Yes |
+| Admin studio | `admin.marketnarrative.in` | `marketnarrative/marketnarrative-admin` | Script engine, publishing studio, components map, portfolio review | No |
+| Trading cockpit | `trade.marketnarrative.in` | `marketnarrative/marketnarrative-trade` | Nifty/Bank Nifty trading cockpit | No |
+| Spring API | `api.marketnarrative.in` | `marketnarrative/marketNews` (This Repo) | Auth, digest admin APIs, public digest APIs, multibagger APIs | API |
+| Trading API | `trade-api.marketnarrative.in` | `marketnarrative/marketNews` (This Repo) | Kite auth, market stream, options, signals, guarded order proposals | API |
 
 ## Public Site
 
@@ -35,7 +35,7 @@ The multibagger public state is a model tracker, not a statement of real account
 
 ## Admin Studio
 
-The Admin Studio frontend lives in `Abheydeep/marketnarrative-admin`.
+The Admin Studio frontend lives in `marketnarrative/marketnarrative-admin`.
 It is built as a React Vite SPA and deployed to Vercel (target: `admin.marketnarrative.in`).
 It communicates with the Spring monolith backend APIs for script reviews, manual runs, and asset triggers.
 
@@ -46,7 +46,7 @@ Deployed admin routes:
 
 ## Trading Cockpit
 
-The Trading Cockpit frontend lives in `Abheydeep/marketnarrative-trade`.
+The Trading Cockpit frontend lives in `marketnarrative/marketnarrative-trade`.
 It is built as a Next.js 15 app, statically exported, and deployed to Vercel (target: `trade.marketnarrative.in`).
 It communicates with the FastAPI trading backend for option streams, scans, and Kite integrations.
 

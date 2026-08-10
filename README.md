@@ -14,8 +14,8 @@ Resume-grade MVP for an automated financial media system that turns overnight gl
 
 ### Extracted Standalone Repositories
 The private UI applications have been split out of the monorepo into separate codebases:
-- [marketnarrative-admin](https://github.com/Abheydeep/marketnarrative-admin) (Vite + React 19) - private admin studio command center.
-- [marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade) (Next.js 15 static export) - private Nifty/Bank Nifty real-time trading cockpit UI.
+- [marketnarrative-admin](https://github.com/marketnarrative/marketnarrative-admin) (Vite + React 19) - private admin studio command center.
+- [marketnarrative-trade](https://github.com/marketnarrative/marketnarrative-trade) (Next.js 15 static export) - private Nifty/Bank Nifty real-time trading cockpit UI.
 
 ## MVP Workflow
 
@@ -124,7 +124,7 @@ This writes:
 To run it every market morning at 7:15 AM IST on macOS/Linux, add this cron entry:
 
 ```cron
-15 7 * * 1-5 cd /Users/abheydeep/Documents/Codex/2026-04-29/i-want-make-below-project-lets && /usr/local/bin/npm run daily:generate >> /tmp/market-narrative-daily.log 2>&1
+15 7 * * 1-5 cd /opt/market-narrative && /usr/local/bin/npm run daily:generate >> /tmp/market-narrative-daily.log 2>&1
 ```
 
 If `npm` is in a different location, run `which npm` and replace `/usr/local/bin/npm`.
@@ -196,7 +196,7 @@ uvicorn app.main:app --reload --port 8090
 ```
 
 To run the interactive trade cockpit UI dashboard, clone and run the standalone repository:
-[marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade)
+[marketnarrative-trade](https://github.com/marketnarrative/marketnarrative-trade)
 
 Trading dashboard defaults:
 
@@ -206,7 +206,7 @@ Trading dashboard defaults:
 
 Live Kite order placement is disabled by default. It requires the documented manual Kite redirect login/token exchange, `ENABLE_LIVE_ORDERS=true`, a fresh order proposal, explicit click confirmation, and risk checks.
 
-Trading access is restricted to the configured Abhey admin account. Local demo mode uses `abhey@marketnarrative.local`; production uses `abhey@marketnarrative.in`.
+Trading access is restricted to the configured Desk admin account. Local demo mode uses `desk@marketnarrative.local`; production uses `desk@marketnarrative.in`.
 
 ## Run Infrastructure
 

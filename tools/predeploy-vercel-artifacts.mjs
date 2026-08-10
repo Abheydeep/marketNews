@@ -35,7 +35,7 @@ function assertPublicHome() {
   assertOutput("index.html", /Open briefing/);
   assertOutput("index.html", /sentiment-sparkline/);
   assertOutput("index.html", /7:15 AM IST[\s\S]{0,120}(?:Nifty 50|Nifty)[\s\S]{0,120}Bank Nifty[\s\S]{0,120}(?:pre-market briefing|opening bias|traders)/);
-  assertOutput("index.html", /By Abhey Deep \/ Market Narrative/);
+  assertOutput("index.html", /By the Editorial Desk \/ Market Narrative/);
   assertOutput("index.html", /Last updated/);
   assertOutput("index.html", /Daily trader workflow/);
   assertOutput("index.html", /Trading Guide/);
@@ -91,10 +91,10 @@ function assertMultibagger() {
 
 function assertAboutAndSubscribe() {
   assertOutput("about/index.html", /About Market Narrative/);
-  assertOutput("about/index.html", /Who is Abhey Deep/);
+  assertOutput("about/index.html", /About the Desk/);
   assertOutput("about/index.html", /Why not just headlines/);
   assertOutput("about/index.html", /AboutPage/);
-  assertOutput("about/index.html", /Person/);
+  assertOutput("about/index.html", /Organization/);
   assertOutput("about/index.html", /aria-current="page">About/);
   assertOutput("about/index.html", /verified briefings published since launch/);
   assertOutput("about/index.html", /Browse the archive/);

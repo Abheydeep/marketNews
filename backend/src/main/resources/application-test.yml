@@ -15,7 +15,7 @@ app:
   security:
     jwt-secret: test-secret-test-secret-test-secret-test-secret
     issuer: market-narrative-test
-    trading-admin-email: abhey@marketnarrative.local
+    trading-admin-email: desk@marketnarrative.local
   demo-users:
     seed-demo-admin: true
     demo-admin-password: market-open

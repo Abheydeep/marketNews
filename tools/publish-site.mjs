@@ -34,7 +34,7 @@ import { reconcileGeneratedInstrumentPrices, unsupportedInstrumentPrices } from 
 import { generateSocialCards } from "./social-card.mjs"; import { reconcilePublicDirection } from "./public-direction-guard.mjs";
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const siteOrigin = publicSiteOrigin();
-const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "abhey@marketnarrative.in";
+const subscribeEmail = process.env.PUBLIC_SUBSCRIBE_EMAIL ?? "desk@marketnarrative.in";
 const contactEmail = process.env.PUBLIC_CONTACT_EMAIL ?? subscribeEmail;
 const subscribeUrl = (process.env.PUBLIC_SUBSCRIBE_URL ?? "").trim() || "/subscribe/";
 const skipArchiveWrite = process.env.SKIP_ARCHIVE_WRITE === "true";
@@ -976,7 +976,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
     .join("");
 
   const head = `
-  <meta name="author" content="Abhey Deep">
+  <meta name="author" content="Editorial Desk">
   <meta name="keywords" content="nifty today analysis, pre market analysis nifty, bank nifty analysis today, gift nifty today, fii dii data today, indian stock market analysis today">
   <meta name="geo.region" content="IN">
   <meta name="geo.placename" content="India">
@@ -1986,7 +1986,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
       </div>
       ${briefPreview ? `<p class="brief-preview">${escapeHtml(briefPreview)} <a href="./latest/" class="brief-preview-link">Read full brief &rarr;</a></p>` : ""}
       ${homepageFreshnessBannerHtml(latestState)}
-      <p class="byline">By Abhey Deep / Market Narrative</p>
+      <p class="byline">By the Editorial Desk / Market Narrative</p>
       <div class="hero-actions" aria-label="Primary actions">
         <a class="hero-action hero-action--primary" href="./latest/">
           <strong>${escapeHtml(primaryAction.label)}</strong>
@@ -2122,7 +2122,7 @@ export function archivePage(digests, allDigests = digests, latestDigest = null) 
 
 export function aboutPage(latest, archiveDigests = []) {
   const pageTitle = brandedTitle("About");
-  const pageDescription = "About Abhey Deep and Market Narrative, a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing built around source verification, trader language, and public research boundaries.";
+  const pageDescription = "About the Editorial Desk and Market Narrative, a daily 7:15 AM IST Nifty and Bank Nifty pre-market briefing built around source verification, trader language, and public research boundaries.";
   const editionCount = verifiedEditionCount(archiveDigests);
   const editionLabel = editionCount === 1 ? "1 verified briefing" : `${editionCount} verified briefings`;
 
@@ -2345,8 +2345,8 @@ export function aboutPage(latest, archiveDigests = []) {
         <p>Moneycontrol and news sites tell you what happened. Market Narrative focuses on what Indian traders should verify first: price acceptance, market participation, source quality, and where not to chase.</p>
       </article>
       <article class="about-card">
-        <h2>Who is Abhey Deep?</h2>
-        <p>I'm Abhey Deep - a software engineer and Indian market trader. I built Market Narrative because I couldn't find a pre-market brief that told me what to verify, not just what happened.</p>
+        <h2>About the Desk</h2>
+        <p>We are a dedicated team of software developers and active Indian market traders. We built Market Narrative because we couldn't find a pre-market brief that focuses on verified data and actionable context rather than a simple checklist of headlines.</p>
       </article>
       <article class="about-card">
         <h2>What this is not</h2>
@@ -2947,7 +2947,7 @@ function archivePageJsonLd(latest, digests, pageTitle, pageDescription, faqItems
       inLanguage: "en-IN",
       isPartOf: { "@id": `${siteOrigin}/#website` },
       publisher: { "@id": `${siteOrigin}/#organization` },
-      author: { "@id": `${siteOrigin}/about/#abhey-deep` },
+      author: { "@id": `${siteOrigin}/about/#editorial-desk` },
       about: ["Nifty 50", "Bank Nifty", "GIFT Nifty", "Indian stock market", "pre-market briefing"],
       mainEntity: {
         "@type": "ItemList",
@@ -2973,7 +2973,7 @@ function aboutPageJsonLd(pageTitle, pageDescription) {
     personJsonLd(),
     breadcrumbJsonLd([
       { name: "Market Narrative", url: `${siteOrigin}/` },
-      { name: "About Abhey Deep", url: `${siteOrigin}/about/` }
+      { name: "About the Desk", url: `${siteOrigin}/about/` }
     ]),
     {
       "@type": "AboutPage",
@@ -2984,7 +2984,7 @@ function aboutPageJsonLd(pageTitle, pageDescription) {
       inLanguage: "en-IN",
       isPartOf: { "@id": `${siteOrigin}/#website` },
       publisher: { "@id": `${siteOrigin}/#organization` },
-      mainEntity: { "@id": `${siteOrigin}/about/#abhey-deep` }
+      mainEntity: { "@id": `${siteOrigin}/about/#editorial-desk` }
     }
   ]);
 }
@@ -3259,7 +3259,7 @@ function organizationJsonLd() {
       "@type": "ImageObject",
       url: `${siteOrigin}/favicon.svg`
     },
-    founder: { "@id": `${siteOrigin}/about/#abhey-deep` },
+    founder: { "@id": `${siteOrigin}/about/#editorial-desk` },
     description: "Daily Indian pre-market briefing for Nifty 50 and Bank Nifty traders, with FII DII data, GIFT Nifty context, source cards and market statistics.",
     contactPoint: {
       "@type": "ContactPoint",
@@ -3274,7 +3274,7 @@ function websiteJsonLd() {
     "@type": "WebSite",
     "@id": `${siteOrigin}/#website`,
     name: "Market Narrative",
-    alternateName: ["Market Narrative India", "Abhey Deep Market Narrative"],
+    alternateName: ["Market Narrative India", "Market Narrative Editorial Desk"],
     url: `${siteOrigin}/`,
     description: "Daily pre-market briefing for Nifty 50 and Bank Nifty traders published at 7:15 AM IST on trading days.",
     inLanguage: "en-IN",
@@ -3284,13 +3284,11 @@ function websiteJsonLd() {
 
 function personJsonLd() {
   return {
-    "@type": "Person",
-    "@id": `${siteOrigin}/about/#abhey-deep`,
-    name: "Abhey Deep",
+    "@type": "Organization",
+    "@id": `${siteOrigin}/about/#editorial-desk`,
+    name: "Editorial Desk",
     url: `${siteOrigin}/about/`,
-    worksFor: { "@id": `${siteOrigin}/#organization` },
-    jobTitle: "Software engineer and Indian market trader",
-    description: "Abhey Deep builds Market Narrative, a daily Nifty and Bank Nifty pre-market briefing focused on source verification and trader-ready context."
+    description: "The Editorial Desk builds Market Narrative, a daily Nifty and Bank Nifty pre-market briefing focused on source verification and trader-ready context."
   };
 }
 

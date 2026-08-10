@@ -21,7 +21,7 @@ class Settings:
     auth_required: bool = _bool_env("TRADING_AUTH_REQUIRED", True)
     jwt_secret: str = os.getenv("JWT_SECRET", "change-this-local-demo-secret-change-this-local-demo-secret")
     jwt_issuer: str = os.getenv("JWT_ISSUER", "market-narrative-local")
-    trading_admin_email: str = os.getenv("TRADING_ADMIN_EMAIL", "abhey@marketnarrative.local")
+    trading_admin_email: str = os.getenv("TRADING_ADMIN_EMAIL", "desk@marketnarrative.local")
     kite_api_key: str = os.getenv("KITE_API_KEY", "")
     kite_api_secret: str = os.getenv("KITE_API_SECRET", "")
     kite_redirect_url: str = os.getenv("KITE_REDIRECT_URL", "http://localhost:3002/kite/callback")

@@ -52,7 +52,7 @@ class TradingAuthService:
         permissions = [str(permission) for permission in payload.get("permissions", [])]
         role = str(payload.get("role", ""))
         if email != self.config.trading_admin_email.lower() or role != "ADMIN" or "trade:execute" not in permissions:
-            raise HTTPException(status_code=403, detail="Only the Abhey trading admin can access this service")
+            raise HTTPException(status_code=403, detail="Only the desk trading admin can access this service")
         return TradingAdmin(email=email, name=str(payload.get("name", "Trading Admin")), permissions=permissions)
 
     def websocket_admin(self, websocket: WebSocket) -> TradingAdmin:

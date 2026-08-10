@@ -3,7 +3,7 @@
 ## Targets
 
 - `marketnarrative.in` and `www.marketnarrative.in`: public static briefing on Vercel.
-- `trade.marketnarrative.in`: Abhey-only trading cockpit on Vercel.
+- `trade.marketnarrative.in`: Admin-only trading cockpit on Vercel.
 - `api.marketnarrative.in`: Spring Boot API on Render or a VPS.
 - `trade-api.marketnarrative.in`: FastAPI trading API on Render or a VPS.
 - DNS: Cloudflare.
@@ -23,7 +23,7 @@ Open a PR to `main` after the verification commands pass.
 Deploy three separate Vercel projects:
 
 1. **Public Project** (`marketnarrative-public`):
-   - Repository: `Abheydeep/marketNews` (This Repo)
+   - Repository: `marketnarrative/marketNews` (This Repo)
    - Root directory: `.`
    - Framework preset: Other
    - Install command: `npm install`
@@ -35,7 +35,7 @@ Deploy three separate Vercel projects:
      - `LATEST_DIGEST_SLUG` (e.g. `5jun2026`, set by the publish pipeline — read by `api/latest-redirect.js`)
 
 2. **Admin Project** (`marketnarrative-admin`):
-   - Repository: `Abheydeep/marketnarrative-admin`
+   - Repository: `marketnarrative/marketnarrative-admin`
    - Root directory: `.`
    - Framework preset: Vite
    - Install command: `npm install`
@@ -45,7 +45,7 @@ Deploy three separate Vercel projects:
      - `VITE_API_BASE_URL=https://api.marketnarrative.in`
 
 3. **Trade Project** (`marketnarrative-trade`):
-   - Repository: `Abheydeep/marketnarrative-trade`
+   - Repository: `marketnarrative/marketnarrative-trade`
    - Root directory: `.`
    - Framework preset: Next.js
    - Install command: `npm install`
@@ -54,7 +54,7 @@ Deploy three separate Vercel projects:
    - Env:
      - `NEXT_PUBLIC_AUTH_API_BASE_URL=https://api.marketnarrative.in`
      - `NEXT_PUBLIC_TRADING_API_BASE_URL=https://trade-api.marketnarrative.in`
-     - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=abhey@marketnarrative.in`
+     - `NEXT_PUBLIC_TRADING_ADMIN_EMAIL=desk@marketnarrative.in`
 
 Reference settings are stored in `deploy/vercel/`.
 
@@ -73,7 +73,7 @@ If you see `cache-control: public, max-age=0, must-revalidate` on a path that sh
 
 A stage project lets you verify deploys before promoting to production. To create one:
 
-1. In the Vercel dashboard, **Import Project** from `Abheydeep/marketNews`.
+1. In the Vercel dashboard, **Import Project** from `marketnarrative/marketNews`.
 2. Set the project name to `marketnarrative-public-stage` (or any `-stage` suffix).
 3. Leave **Framework Preset** as auto-detected briefly, watch what Vercel picks. The CLI's auto-detect will set the framework to **Services** because the repo has multiple workspaces. This is the wrong preset — it makes Vercel look for per-service build configs and will fail with a "no Output Directory named 'public' found" error.
 4. Change **Framework Preset** to **Other** and set the same Install / Build commands as the production public project (above).
@@ -120,7 +120,7 @@ Edit `.env` with real values:
 
 - `POSTGRES_PASSWORD`
 - `JWT_SECRET`
-- `ABHEY_ADMIN_PASSWORD`
+- `DESK_ADMIN_PASSWORD`
 - Optional Kite/news keys
 
 Start services:
@@ -201,15 +201,15 @@ After Vercel/DNS:
 
 - `https://marketnarrative.in` loads the public archive.
 - `https://www.marketnarrative.in` aliases or redirects correctly.
-- `https://trade.marketnarrative.in` shows the Abhey admin gate.
+- `https://trade.marketnarrative.in` shows the admin login gate.
 - Browser console has no runtime errors.
-- After Abhey login, the trading WebSocket connects.
+- After desk login, the trading WebSocket connects.
 - Live orders remain blocked unless all risk gates pass.
 
 ## Production Security Notes
 
 - `JWT_SECRET` must be identical for Spring and FastAPI.
-- `TRADING_ADMIN_EMAIL` is `abhey@marketnarrative.in` in production.
-- `ABHEY_ADMIN_PASSWORD` must only live in the VPS `.env` or managed secret storage.
+- `TRADING_ADMIN_EMAIL` is `desk@marketnarrative.in` in production.
+- `DESK_ADMIN_PASSWORD` must only live in the VPS `.env` or managed secret storage.
 - Do not enable `ENABLE_LIVE_ORDERS=true` for launch.
 - Keep Postgres and Redis internal to Docker; do not publish their ports.

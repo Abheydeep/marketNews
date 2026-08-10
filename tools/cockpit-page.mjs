@@ -104,8 +104,8 @@ export function cockpitPage(digest, initialTab = "public-view", options = {}) {
   <meta http-equiv="Cache-Control" content="private, max-age=0, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta name="description" content="${escapeHtml(pageDescription)}">
-  <meta name="author" content="Abhey Deep">
-  <meta name="keywords" content="${marketUpdate ? "Market Narrative, Abhey Deep, Indian stock market update, Nifty, Sensex, NSE, BSE, market news today, FII DII data" : "Market Narrative, Abhey Deep, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief"}">
+  <meta name="author" content="Editorial Desk">
+  <meta name="keywords" content="${marketUpdate ? "Market Narrative, Editorial Desk, Indian stock market update, Nifty, Sensex, NSE, BSE, market news today, FII DII data" : "Market Narrative, Editorial Desk, Nifty pre-market briefing, Bank Nifty trading guide, Indian stock market, GIFT Nifty, 7:15 AM IST market brief"}">
 
   <meta name="robots" content="${pageRobotsMeta(digest, requireAuth)}">
   <meta name="theme-color" content="#050816">
@@ -7675,7 +7675,7 @@ function compactMetaStripHtml(digest, canonicalUrl) {
   return `
     <div class="compact-meta-strip share-row" aria-label="Briefing metadata and actions" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; width: fit-content; max-width: 100%; margin: 16px auto; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 999px; padding: 6px 16px; font-size: 0.85em; color: var(--stone);">
       ${prevLink || nextLink ? `<span style="font-weight: 500; white-space: nowrap;">${prevLink}${prevLink && nextLink ? " &nbsp;|&nbsp; " : ""}${nextLink}</span>${metaDivider}` : ""}
-      <span style="white-space: nowrap;"><strong style="color: var(--chalk);">Abhey Deep</strong> <span style="opacity:0.45;">·</span> ${digest.marketUpdateMode ? "Market update" : "Pre-market briefing"}</span>
+      <span style="white-space: nowrap;"><strong style="color: var(--chalk);">Editorial Desk</strong> <span style="opacity:0.45;">·</span> ${digest.marketUpdateMode ? "Market update" : "Pre-market briefing"}</span>
       ${metaDivider}
       <time datetime="${generated}" style="white-space: nowrap;">${escapeHtml(formatDigestDate(digest.digestDate))}</time>
       ${metaDivider}
@@ -7714,7 +7714,7 @@ function shareRowHtml(canonicalUrl, title, contextLabel = "briefing") {
   return `
     <div class="share-row" aria-label="${escapeHtml(label)}">
       <div class="share-byline">
-        <strong>By Abhey Deep / Market Narrative</strong>
+        <strong>By the Editorial Desk / Market Narrative</strong>
         <small>Source-led pre-market context</small>
       </div>
       <div class="share-actions" aria-label="${escapeHtml(label)}">
@@ -7821,7 +7821,7 @@ function deskNoteHtml(digest) {
   const paragraphs = note.split(/\n+/).map((part) => part.trim()).filter(Boolean).slice(0, 3);
   return `
     <section class="todays-read-section" aria-label="Today&apos;s Read">
-      <div class="todays-read-kicker">Abhey Deep</div>
+      <div class="todays-read-kicker">Editorial Desk</div>
       <h2>Today&apos;s Read</h2>
       <div class="todays-read-body">
         ${paragraphs.map((p) => `<p>${escapeHtml(editorialSentence(p))}</p>`).join("\n        ")}

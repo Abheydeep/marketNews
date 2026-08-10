@@ -133,7 +133,7 @@ public class ReelScriptGenerator {
 
         return """
             You are writing a 45-60 second spoken reel script for a daily Indian stock market update \
-            video on Instagram/YouTube Shorts. The creator is Abhey, who runs marketnarrative.in — \
+            video on Instagram/YouTube Shorts. The creators are the team that runs marketnarrative.in — \
             a site for retail traders.
 
             The script must:

@@ -44,10 +44,10 @@ services:
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
       JWT_ISSUER: ${JWT_ISSUER:-market-narrative-prod}
       FRONTEND_ORIGINS: ${FRONTEND_ORIGINS:-https://admin.marketnarrative.in,https://trade.marketnarrative.in}
-      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-abhey@marketnarrative.in}
+      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-desk@marketnarrative.in}
       SEED_DEMO_ADMIN: "false"
       SEED_TRADING_ADMIN: "true"
-      ABHEY_ADMIN_PASSWORD: ${ABHEY_ADMIN_PASSWORD:?set ABHEY_ADMIN_PASSWORD}
+      DESK_ADMIN_PASSWORD: ${DESK_ADMIN_PASSWORD:?set DESK_ADMIN_PASSWORD}
       DIGEST_ZONE: Asia/Kolkata
 
   trading-api:
@@ -65,7 +65,7 @@ services:
       TRADING_AUTH_REQUIRED: "true"
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
       JWT_ISSUER: ${JWT_ISSUER:-market-narrative-prod}
-      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-abhey@marketnarrative.in}
+      TRADING_ADMIN_EMAIL: ${TRADING_ADMIN_EMAIL:-desk@marketnarrative.in}
       ENABLE_LIVE_ORDERS: "false"
       TRADING_DATABASE_URL: postgresql://narrative:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/market_narrative
       TRADING_REDIS_URL: redis://redis:6379/1

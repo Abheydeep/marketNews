@@ -5,9 +5,9 @@
 The cockpit consists of:
 
 - `services/trading-api` (housed in this repo): Python FastAPI service for Kite auth, instruments, option-chain construction, technical analysis, sentiment, signals, and guarded order placement.
-- [marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade) (external repo): Next.js/Tailwind dashboard that consumes REST and WebSocket data from the trading API.
+- [marketnarrative-trade](https://github.com/marketnarrative/marketnarrative-trade) (external repo): Next.js/Tailwind dashboard that consumes REST and WebSocket data from the trading API.
 
-Trading access is restricted to the configured Abhey admin account. In local demo mode, `DemoUserInitializer` creates `abhey@marketnarrative.local` with password `market-open`. In production, set `TRADING_ADMIN_EMAIL=abhey@marketnarrative.in` and `ABHEY_ADMIN_PASSWORD` in the VPS `.env`. `LocalJwtService` grants `trade:read` and `trade:execute` only to the configured email.
+Trading access is restricted to the configured desk admin account. In local demo mode, `DemoUserInitializer` creates `desk@marketnarrative.local` with password `market-open`. In production, set `TRADING_ADMIN_EMAIL=desk@marketnarrative.in` and `DESK_ADMIN_PASSWORD` in the VPS `.env`. `LocalJwtService` grants `trade:read` and `trade:execute` only to the configured email.
 
 ## Kite Auth And Market Data
 
@@ -69,7 +69,7 @@ uvicorn app.main:app --reload --port 8090
 Use `pip install -r requirements-ml.txt` only for FinBERT inference. Use `requirements-quant-extra.txt` only where `pandas-ta` is available; the default technical engine includes pure-Python fallbacks.
 
 To run the dashboard UI, clone and configure the external repository:
-[marketnarrative-trade](https://github.com/Abheydeep/marketnarrative-trade)
+[marketnarrative-trade](https://github.com/marketnarrative/marketnarrative-trade)
 
 Follow the setup and environment variable instructions in that repository's README.md to connect it to the local trading API.
 
