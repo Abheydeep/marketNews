@@ -1,0 +1,2191 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-08-10",
+  "title": "Nifty Open Shape first hour",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-08-10T03:34:23.324Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: flat open",
+    "sourceArticleId": "mint-markets:p2fq7l",
+    "driverType": "crude",
+    "headline": "Stock market today: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August",
+    "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+    "riskSide": "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.",
+    "supportSide": "Softer Brent and stronger Indian market participation are the confirmation checks.",
+    "giftNiftyBias": {
+      "giftPrice": 24664,
+      "niftyClose": 24636,
+      "gapPts": 28,
+      "gapPct": 0.11,
+      "bias": "flat",
+      "biasLabel": "flat open"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 8,
+    "shortlistCount": 25,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 0,
+    "indiaPublisherCount": 7,
+    "shortlistIndiaPublisherCount": 21,
+    "directIndiaSourceCount": 7,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 6,
+    "globalContextCount": 1,
+    "globalOnlySourceRatio": 13,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 7 direct India sources, 0 official sources, 6 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.ndtvprofit.com/markets/gift-nifty-asian-markets-to-us-iran-war-five-key-things-to-watch-ahead-of-the-indian-stock-market-today-opening-11887883",
+      "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-flat-start-eight-day-trading-stocks-to-buy-on-monday-10-august-11786327368428.html",
+      "https://www.bloomberg.com/news/articles/2026-08-09/gold-holds-gain-after-soft-us-jobs-data-eases-rate-hike-concerns",
+      "https://www.livemint.com/market/commodities/crude-oil-prices-extend-rally-amid-uncertainty-over-us-iran-peace-talks-brent-hovers-near-94-per-barrel-11786325972054.html",
+      "https://www.ndtvprofit.com/markets/asian-stock-markets-today-nikkei-kospi-rise-as-wall-street-rally-boosts-sentiment-11887831",
+      "https://www.business-standard.com/markets/news/asian-stocks-edge-higher-as-nikkei-kospi-gain-on-softer-us-jobs-data-126081000033_1.html",
+      "https://www.livemint.com/market/stock-market-news/buy-or-sell-gift-nifty-up-despite-elusive-iran-oman-deal-vaishali-parekh-recommends-three-stocks-to-buy-today-11786324215228.html",
+      "https://www.business-standard.com/markets/commodities/gold-silver-likely-to-extend-gains-as-inflation-west-asia-risks-loom-126080900348_1.html"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: flat open: India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin...",
+  "twoMinuteSummary": "A surprise contraction in US jobs data last week pulled the rug out from under expectations for a Federal Reserve rate hike in September, sending gold to a steady perch above $4,381 an ounce. For India, this means the rupee catches a breather as dollar strength pauses, but it also keeps imported inflation risks alive through the gold channel — jewellery retailers and bullion importers will feel the squeeze on...\n\nAsian equities rallied across the board on Monday, led by a two percent jump in Taiwan and strong gains in Japan and South Korea, tracking Wall Street's record close. At the same time, Brent crude pushed higher amid stalled US-Iran peace talks, hovering near $84 a barrel. For India, the combination is a double-edged sword: foreign portfolio inflows may chase the regional momentum, but every dollar rise in oil widens...\n\nGift Nifty points to a flat open for the Nifty, a day after the index closed marginally lower alongside a half-percent drop in the Bank Nifty. Geopolitical uncertainty and rising crude have kept domestic participants cautious, even as global cues stay constructive. The market's next directional clue will come from how foreign and domestic institutions position at the open, and whether the India VIX — currently subdued — begins to...\n\nGold and silver futures on the MCX posted weekly gains of roughly six and seven percent respectively, with analysts projecting further upside towards Rs 1.57 lakh per ten grams and Rs 2.80 lakh per kilogram. The rally is being driven by a mix of safe-haven demand, a softer dollar outlook and expectations of Chinese stimulus that could lift industrial metals. Commodity-linked stocks, jewellery chains and the exchange itself will be...",
+  "deskNote": "There is a peculiar calm in the numbers today — US jobs weaken, gold hits records, crude climbs, Asian markets rally, and India prepares to open flat. It feels like the market is simultaneously pricing in a recession, a recovery, a war premium and a peace dividend, all without breaking a sweat. The connective tissue is liquidity: the world has decided that bad news on growth is good news for rates, and that geopolitical risk is a buy-the-dip signal until proven otherwise. For India, this creates a structural tension. The economy imports its energy and exports its savings; a world where oil stays elevated and gold stays bid is a world where the current account deficit widens and household savings get diverted into unproductive assets. Yet the equity market keeps climbing on foreign flows that chase momentum, not fundamentals. The real story isn't whether the Nifty opens ten points higher or lower — it's whether the domestic investor base has the depth to absorb the next reversal when the global narrative inevitably shifts. History suggests we find out only after the fact.",
+  "watchItems": [
+    "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+    "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+    "Watch if India 10-year yield opens below 7% after US jobs miss."
+  ],
+  "overallSentiment": -0.105,
+  "sentimentLabel": "VOLATILE",
+  "onePageSummary": "The user wants me to write a One-Page Summary for the Market Narrative daily briefing agent. I need to output ONLY the formatted content starting with \"Market Mood:\".\n\nLet me analyze the data provided:\n\nDATE: 2026-08-10\nSENTIMENT: VOLATILE (score: -0.10452586206896552)\nMARKETS: Various indices with changes\nPRIMARY STORY: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August\nOPENING SIGNAL: GIFT Nifty 24664, Nifty close 24636, gap +28 pts (+0.11%), bias: flat\nKEY THEMES: 4 themes provided\nSETUPS: No active setups today\nTOP NEWS: 8 articles with sentiment scores\n\nI need to format this as:\n- Market Mood: <BULLISH|BEARISH|VOLATILE|NEUTRAL>\n- Global Cues: <comma-separated index name + change%>\n- Narrative Themes: - <Theme title>: <one sentence summary>\n- Validated Trading Setups: - <SYMBOL> <DIRECTION> entry <price>, stop <price>, target <price> (RR <ratio>)\n- Educational note: <disclaimer>\n\nThe sentiment is VOLATILE (score -0.1045). I'll use VOLATILE.\n\nGlobal Cues: I should list the major indices with their changes. Let me pick the key ones: S&P 500 +0.62%, Nasdaq 100 +1.19%, Dow Jones +0.28%, Nikkei 225 +2.02%, Hang Seng +0.63%, Shanghai +0.34%, KOSPI +0.64%, Taiwan +2.03%, Straits Times +1.05%, ASX 200 -0.44%, US Dollar Index +0.17%, Brent Crude +0.86%, Gold -0.43%, India VIX +0%, GIFT Nifty -0.22%\n\nNarrative Themes: I need sharp specific titles from the KEY THEMES provided:\n1. \"Negative Macro Impact\"",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7757.64,
+      "previousClose": 7709.96,
+      "changePercent": 0.618,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-07T20:50:24.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 7744.98
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7734.01
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7721.71
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7754.54
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7741.67
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7751.99
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7754.48
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7760
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7755.72
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7754.9
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7754.34
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7740.67
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7749.75
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7743.73
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7744.14
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7745.29
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7745.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7745.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7739.21
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7738.55
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7733
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7740.69
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7753.04
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7754.94
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7749.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7755.61
+        },
+        {
+          "time": "2026-08-07",
+          "close": 7757.64
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29722.3,
+      "previousClose": 29373.3,
+      "changePercent": 1.188,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-07T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 29680.78
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29558.88
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29468.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29645.19
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29554.92
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29601.54
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29647.31
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29707.05
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29699.92
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29700.33
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29692.3
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29597.56
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29639.67
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29629.62
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29622.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29636.98
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29631.75
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29634.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29602.74
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29593.09
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29569.21
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29612.89
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29686.24
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29696.64
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29665.43
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29719.17
+        },
+        {
+          "time": "2026-08-07",
+          "close": 29722.3
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 54036.93,
+      "previousClose": 53885.1,
+      "changePercent": 0.282,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-07T20:50:36.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 54005.58
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53954.91
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53927.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54082.01
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53995.84
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54052.42
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54037.78
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54010.65
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53968.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53958.06
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53973.91
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53916.58
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53989.41
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53959.64
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53984.51
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53982.12
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53974.29
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53977.33
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53926.61
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53928.36
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53907.96
+        },
+        {
+          "time": "2026-08-07",
+          "close": 53958.63
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54033.07
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54063.02
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54030.61
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54029.5
+        },
+        {
+          "time": "2026-08-07",
+          "close": 54036.93
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 24570.65,
+      "previousClose": 24636,
+      "changePercent": -0.265,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-07T10:01:13.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 24601.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24618
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24626.5
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24599.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24566.9
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24569.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24570.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24567.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24584.8
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24579.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24560.95
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24540.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24549.5
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24557.05
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24554.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24547
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24565.95
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24548.5
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24563.95
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24526.85
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24534.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24538.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24541.8
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24558.95
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24570.65
+        },
+        {
+          "time": "2026-08-07",
+          "close": 24570.65
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57746.45,
+      "previousClose": 58063.6,
+      "changePercent": -0.546,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-07T10:01:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 57888.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57897.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57928.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57917.65
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57836.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57812.1
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57800.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57810.05
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57838.65
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57779
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57770.75
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57726.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57776.75
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57782
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57774.9
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57751.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57782.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57714.9
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57859.75
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57818
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57879.5
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57827.3
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57754.05
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57782.95
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57746.45
+        },
+        {
+          "time": "2026-08-07",
+          "close": 57746.45
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 66931.48,
+      "previousClose": 65606.71,
+      "changePercent": 2.019,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-08-10T02:35:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 66279.86
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66497.14
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66418.6
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66481.04
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66760.08
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66830.23
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66847.36
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66937.5
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66974.05
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66927.85
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66931.48
+        },
+        {
+          "time": "2026-08-10",
+          "close": 66931.48
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 25830.66,
+      "previousClose": 25668.03,
+      "changePercent": 0.634,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-08-10T03:10:52.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 25875.62
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25843.65
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25837.95
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25809.83
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25852.37
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25836.92
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25823.96
+        },
+        {
+          "time": "2026-08-10",
+          "close": 25830.66
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3953.55,
+      "previousClose": 3940.04,
+      "changePercent": 0.343,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-08-10T03:10:45.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 3951.39
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3963.87
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3955.58
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3956.91
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3951.22
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3950.2
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3953.42
+        },
+        {
+          "time": "2026-08-10",
+          "close": 3953.55
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 6298.63,
+      "previousClose": 6258.77,
+      "changePercent": 0.637,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-08-10T03:05:50.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 6382.08
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6338.47
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6291.82
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6295.04
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6314.75
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6320.49
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6291.77
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6302.85
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6313.53
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6287.07
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6298.51
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6303.17
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6302.99
+        },
+        {
+          "time": "2026-08-10",
+          "close": 6298.63
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 45123.12,
+      "previousClose": 44225.91,
+      "changePercent": 2.029,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-08-10T03:05:50.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 44899.72
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45060.53
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45056.74
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45131.8
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45202.48
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45162.23
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45115.93
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45114.73
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45096.66
+        },
+        {
+          "time": "2026-08-10",
+          "close": 45123.12
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5698.43,
+      "previousClose": 5638.99,
+      "changePercent": 1.054,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-08-07T09:20:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 5652.37
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5667.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5656.33
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5655.59
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5660.33
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5663.36
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5674.06
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5672.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5679.71
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5676.71
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5678.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5685.71
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5685.68
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5685.66
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5685.66
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5687.81
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5695.98
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5695.06
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5687.77
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.64
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5694.06
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5695.47
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5695.09
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5695.7
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5688.18
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5690.98
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.6
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.21
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.16
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.24
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5693.02
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5692.1
+        },
+        {
+          "time": "2026-08-07",
+          "close": 5698.43
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 9223,
+      "previousClose": 9263.6,
+      "changePercent": -0.438,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-08-10T03:05:45.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-10",
+          "close": 9249.6
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9237.1
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9233.3
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9217.7
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9210.2
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9216.9
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9227.2
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9232.3
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9217.5
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9218.2
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9220.8
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9220.2
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9223
+        },
+        {
+          "time": "2026-08-10",
+          "close": 9223
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 99.71,
+      "previousClose": 99.54,
+      "changePercent": 0.173,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-10T03:15:52.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-09",
+          "close": 99.62
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.64
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.63
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.64
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.61
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.62
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.62
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.64
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.61
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.64
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.65
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.63
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.66
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.66
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.68
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.68
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.69
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.68
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.7
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.7
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.71
+        },
+        {
+          "time": "2026-08-09",
+          "close": 99.71
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 84.27,
+      "previousClose": 83.55,
+      "changePercent": 0.862,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-10T03:12:35.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-09",
+          "close": 84.62
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.35
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.44
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.4
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.22
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.33
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.52
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.4
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.43
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.47
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.41
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.26
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.62
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.66
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.72
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.51
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.48
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.26
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.25
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.53
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.27
+        },
+        {
+          "time": "2026-08-09",
+          "close": 84.27
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 95.2,
+      "previousClose": 95.2,
+      "changePercent": 0,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-08-10T02:12:34.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 95.11
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.28
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.24
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.21
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.22
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.24
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.23
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.24
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.25
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.27
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.28
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.26
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.22
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.21
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        },
+        {
+          "time": "2026-08-07",
+          "close": 95.2
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4380.7,
+      "previousClose": 4399.7,
+      "changePercent": -0.432,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-10T03:15:51.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-09",
+          "close": 4402.3
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4402.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4398.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4400.2
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4405.3
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4405.5
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4401.1
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4392
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4403.4
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4396.7
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4393.3
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4391.3
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4382.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4376.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4377.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4383
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4385.1
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4390.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4386.6
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4380
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4379.9
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4380.4
+        },
+        {
+          "time": "2026-08-09",
+          "close": 4380.7
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 12.16,
+      "previousClose": 12.16,
+      "changePercent": 0,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-07T10:00:48.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-07",
+          "close": 12.43
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.47
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.41
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.4
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.48
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.47
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.51
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.41
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.42
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.49
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.45
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.38
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.44
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.35
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.36
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.42
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.36
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.29
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.13
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.14
+        },
+        {
+          "time": "2026-08-07",
+          "close": 12.16
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 24664,
+      "previousClose": 24719.5,
+      "changePercent": -0.22,
+      "dataTimestamp": "2026-08-10T03:25:44.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-08-09T19:25:44.000Z",
+          "close": 24719.5
+        },
+        {
+          "time": "2026-08-10T03:25:44.000Z",
+          "close": 24664
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "07-Aug-2026",
+    "fiiNet": 480.24,
+    "fiiBuy": 12941.31,
+    "fiiSell": 12461.07,
+    "diiNet": 235.56,
+    "diiBuy": 15679.58,
+    "diiSell": 15444.02
+  },
+  "giftNiftyBias": {
+    "giftPrice": 24664,
+    "niftyClose": 24636,
+    "gapPts": 28,
+    "gapPct": 0.11,
+    "bias": "flat",
+    "biasLabel": "flat open"
+  },
+  "todaysReadArticle": "Gift Nifty is signaling a flat-to-cautious open for the Nifty 50 on Monday, a pause that feels less like indifference and more like a market holding its breath while the geopolitical and commodity cross-currents settle. The index closed Friday at 24,570.65, down a marginal 0.27%, while Bank Nifty slipped 0.55% to 57,746.45, but the pre-market tone is being dictated less by domestic technicals and more by the stubborn bid in Brent crude, which sits at $84.27 after a 0.86% jump. With eight specific day-trading ideas circulating for the session, the real directive for participants is clear: treat the index level as secondary to the direction of the energy complex, because every rupee move in Brent rewrites the margin calculus for OMCs, airlines, paint manufacturers and tyre makers, while simultaneously handing a relative strength baton to upstream energy names.\n\nThe overnight rally across Asian bourses — led by the Nikkei and Kospi — provides a supportive backdrop, but it is a rally built on divergent foundations. Wall Street's record close last week was fueled by soft US payrolls data that trimmed rate-hike expectations and dragged Treasury yields lower, a dynamic that lifted gold above the $4,381 an ounce threshold and injected a dose of investor confidence into regional equities. For India, the lower US yield impulse is a net positive, easing pressure on domestic bond yields and offering a tailwind for rate-sensitive sectors like banking, realty and autos, yet the simultaneous surge in bullion widens the current account deficit outlook and keeps the rupee anchored near 95.20 to the dollar. The geopolitical overhang from stalled US-Iran talks in Oman adds a layer of unpredictability; any escalation threatens to push Brent back toward the $84 handle seen in recent sessions, instantly flipping the domestic narrative from margin relief to import-bill anxiety.\n\nThis tension creates a split market where sectoral rotation will likely dominate broad index action. Upstream energy plays stand as the primary hedge against a sustained crude rally, while the pain trade remains concentrated in downstream consumers of oil — OMCs, aviation, paints and tyres — where every dollar on Brent erodes gross refining margins or input costs. Conversely, the Bank Nifty complex, having underperformed the headline index recently, finds fundamental support from the falling yield environment, and any follow-through buying in financials could arrest the index's drift. Capital market infrastructure stocks — exchanges, depositories, brokers — warrant a watchlist slot given the elevated gold and silver prices driving retail participation in commodity derivatives, though this remains a stock-specific theme rather than a broad market driver.\n\nAt the 9:15 AM bell, traders must treat three real-time gauges as their primary compass: the Brent crude tick, the USD/INR spot rate, and the provisional FII flow data. A sustained Brent quote above $85 with a weakening rupee will force immediate defensive positioning in consumption-heavy sectors and trigger short-covering in energy producers, while a pullback toward $82 on diplomatic headlines could unleash a relief rally in the beaten-down OMC and aviation pack. market participation will be the ultimate arbiter — if advancing issues lead decliners by a 2:1 ratio alongside Bank Nifty reclaiming 58,000, the flat Gift Nifty open will be revealed as a coiled spring; if market participation deteriorates alongside crude firmness, the session risks sliding into a distribution day regardless of the Asian tailwind.",
+  "themes": [
+    {
+      "digestDate": "2026-08-10",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "Gold steadied above $4,381 an ounce, with investors assessing a surprise contraction in the US jobs market that allayed concerns around an interest-rate hike.",
+      "sentimentScore": -0.65,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-10",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Gold and silver prices are expected to extend their gains next week, as inflation data from major economies and developments on efforts to end hostilities in West Asia are likely to set the tone for bullion, analysts said. Investors will track inflation numbers from the US, Germany, Japan and India, while upcoming Chinese economic data will also be crucial for industrial metals, they added. \"Gold and silver momentum looks positive and are expected to trade with a positive bias and move up towards Rs 1.57 lakh per 10 grams and Rs 2.80 lakh per kg in the short term,\" Pranav Mer, Senior Vice President, EBG - Commodity & Currency Research, JM Financial Services Ltd, said. On the domestic front, gold futures for October delivery climbed Rs 8,444, or nearly 6 per cent, during the week to close at Rs 1.51 lakh per 10 grams. Silver futures for the September contract surged Rs 14,268, or nearly 7 per cent, to settle at Rs 2.31 lakh per kilogram on the Multi Commodity Exchange. \"Gold ...",
+      "sentimentScore": -0.325,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-08-10",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "Asian markets rallied on Monday, while the US stock market ended higher last week, as the expectations of Federal Reserve rate hike in its September policy diminished after the nonfarm payrolls data. Meanwhile, crude oil prices traded higher.",
+      "sentimentScore": -0.157,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-08-10",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "Japan's Nikkei followed that lead and rose 0.6% on Monday, while South Korea added 0.5%",
+      "sentimentScore": 0.52,
+      "evidenceCount": 1
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 52,
+    "publisherCount": 13,
+    "categoryCount": 5,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 472864,
+  "scheduledFor": "2026-08-10T08:00:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-08-10T01:41:43.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Gift Nifty, Asian Markets To US-Iran War — Five Key Things To Watch Ahead Of The Indian Stock Market Opening",
+      "summary": "Asian markets rallied on Monday, while the US stock market ended higher last week, as the expectations of Federal Reserve rate hike in its September policy diminished after the nonfarm payrolls data. Meanwhile, crude oil prices traded higher.",
+      "takeaway": "Asian markets rallied on Monday, while the US stock market ended higher last week, as the expectations; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gift-nifty-asian-markets-to-us-iran-war-five-key-things-to-watch-ahead-of-the-indian-stock-market-today-opening-11887883",
+      "sentimentLabel": "negative",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Gift Nifty, Asian Markets To US-Iran War — Five Key Things To Watch Ahead Of The Indian Stock Market Opening source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-10T02:29:41.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Stock market today: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August",
+      "summary": "The Indian stock market is expected to open flat due to rising crude oil prices and geopolitical uncertainties. Although positive regional cues suggest a steady start, investor caution remains pivotal as market volatility continues.",
+      "takeaway": "The Indian stock market is expected to open flat due to rising crude oil prices and geopolitical uncertainties; keep the oil story tied to Brent direction before turning it into an India equity signal.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-flat-start-eight-day-trading-stocks-to-buy-on-monday-10-august-11786327368428.html",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Gift Nifty",
+        "accent": "#0891b2",
+        "alt": "Stock market today: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-09T23:30:12.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Gold Holds Above $4,300 as Soft Jobs Data Trims Rate-Hike Bets",
+      "summary": "Gold steadied above $4,300 an ounce, with investors assessing a surprise contraction in the US jobs market that allayed concerns around an interest-rate hike.",
+      "takeaway": "Soft US payrolls pulled rate-hike odds down, lifting gold above $4,300 and pushing Treasury yields lower.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Lower US yields may ease Indian bond yields, supporting Bank Nifty, realty and auto stocks; gold above $4,300 widens import bill pressure.",
+      "watchFor": "Watch if India 10-year yield opens below 7% after US jobs miss.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-09/gold-holds-gain-after-soft-us-jobs-data-eases-rate-hike-concerns",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Gold Holds",
+        "accent": "#dc2626",
+        "alt": "Gold Holds Above $4,300 as Soft Jobs Data Trims Rate-Hike Bets source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-10T01:53:19.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Crude oil prices extend rally amid uncertainty over US-Iran peace talks; Brent hovers near $94 per barrel",
+      "summary": "US-Iran war: Brent crude futures gained 91 cents, or 1.09%, to $84.46 a barrel, while US West Texas Intermediate (WTI) crude futures advanced 61 cents, or 0.78%, to $78.79 a barrel.",
+      "takeaway": "US-Iran tensions lift Brent above $84, adding fresh pressure on India's crude import bill and inflation outlook.','indiaImpact'.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around $94; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-rally-amid-uncertainty-over-us-iran-peace-talks-brent-hovers-near-94-per-barrel-11786325972054.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Crude oil prices extend rally amid uncertainty over US-Iran peace talks; Brent hovers near $94 per barrel source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-10T00:49:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Asian Stock Markets Today: Nikkei, Kospi Rise As Friday&#039;s Wall Street Rally Boosts Sentiment",
+      "summary": "Asian equities followed gains on Wall Street after the S&P 500 ended at a record high, while investors monitored US-Iran developments and oil prices.",
+      "takeaway": "Asian equities extend Wall Street's record rally as traders weigh US-Iran tensions and oil-price direction.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Rising crude on Middle East risk hurts OMCs, airlines, paints and tyres; upstream energy benefits.",
+      "watchFor": "Watch Brent reaction to any US-Iran escalation in early Asian trade.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/asian-stock-markets-today-nikkei-kospi-rise-as-wall-street-rally-boosts-sentiment-11887831",
+      "sentimentLabel": "neutral",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Asian Kospi",
+        "accent": "#7c3aed",
+        "alt": "Asian Stock Markets Today: Nikkei, Kospi Rise As Friday&#039;s Wall Street Rally Boosts Sentiment source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-10T02:09:00.000Z",
+      "sourceId": "business-standard-markets",
+      "sourceName": "Business Standard Markets",
+      "headline": "Asian stocks edge higher as Nikkei, Kospi gain on softer US jobs data",
+      "summary": "Japan's Nikkei followed that lead and rose 0.6% on Monday, while South Korea added 0.5%",
+      "takeaway": "Softer US jobs data lifts Nikkei and Kospi, reinforcing expectations of earlier Fed rate cuts.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Positive Asian sentiment may lift Nifty at open; IT exporters benefit if USD weakens further on rate-cut bets.",
+      "watchFor": "Watch Nifty IT opening gap for confirmation of USD-driven exporter rally.",
+      "sourceUrl": "https://www.business-standard.com/markets/news/asian-stocks-edge-higher-as-nikkei-kospi-gain-on-softer-us-jobs-data-126081000033_1.html",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Yen Watch",
+        "theme": "FX Intervention",
+        "accent": "#0ea5e9",
+        "alt": "Asian stocks edge higher as Nikkei, Kospi gain on softer US jobs data source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-10T01:38:23.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Buy or sell: Gift Nifty up despite elusive Iran-Oman deal, Vaishali Parekh recommends three stocks to buy today",
+      "summary": "Buy or sell stocks: Vaishali Parekh recommends three stocks to buy today — Grasim Industries, Aster DM Quality Care, and Meesho",
+      "takeaway": "Gift Nifty up despite elusive Iran; geopolitical escalation is a defensive signal that travels through crude, gold, currencies and FII flows before equities.",
+      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII investor confidence, not directly.",
+      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs market participation.",
+      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning defensive weight to the India open.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/buy-or-sell-gift-nifty-up-despite-elusive-iran-oman-deal-vaishali-parekh-recommends-three-stocks-to-buy-today-11786324215228.html",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Buy Gift",
+        "accent": "#0891b2",
+        "alt": "Buy or sell: Gift Nifty up despite elusive Iran-Oman deal, Vaishali Parekh recommends three stocks to buy today source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-09T10:14:53.000Z",
+      "sourceId": "business-standard-markets",
+      "sourceName": "Business Standard Markets",
+      "headline": "Gold, silver likely to extend gains as inflation, West Asia risks loom",
+      "summary": "Gold and silver prices are expected to extend their gains next week, as inflation data from major economies and developments on efforts to end hostilities in West Asia are likely to set the tone for bullion, analysts said. Investors will track inflation numbers from the US, Germany, Japan and India, while upcoming Chinese economic data will also be crucial for industrial metals, they added. \"Gold and silver momentum looks positive and are expected to trade with a positive bias and move up towards Rs 1.57 lakh per 10 grams and Rs 2.80 lakh per kg in the short term,\" Pranav Mer, Senior Vice President, EBG - Commodity & Currency Research, JM Financial Services Ltd, said. On the domestic front, gold futures for October delivery climbed Rs 8,444, or nearly 6 per cent, during the week to close at Rs 1.51 lakh per 10 grams. Silver futures for the September contract surged Rs 14,268, or nearly 7 per cent, to settle at Rs 2.31 lakh per kilogram on the Multi Commodity Exchange. \"Gold ...",
+      "takeaway": "Gold and silver prices are expected to extend their gains next week, as inflation data from major economies; market-infrastructure results are a stock-specific capital-market activity cue, not a broad index signal by themselves.",
+      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
+      "indiaImpact": "Watch MCX, exchanges, brokers and capital-market infrastructure peers; broad Nifty bias still needs Bank Nifty and market participation confirmation.",
+      "watchFor": "Watch MCX volume reaction, broker/exchange peer market participation and Bank Nifty session average after the open.",
+      "sourceUrl": "https://www.business-standard.com/markets/commodities/gold-silver-likely-to-extend-gains-as-inflation-west-asia-risks-loom-126080900348_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Market infrastructure",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Yen Watch",
+        "theme": "FX Intervention",
+        "accent": "#0ea5e9",
+        "alt": "Gold, silver likely to extend gains as inflation, West Asia risks loom source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Gift Nifty, Asian Markets To US-Iran War — Five Key Things To Watch Ahead Of The Indian Stock Market Opening",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-08-10T01:41:43.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gift-nifty-asian-markets-to-us-iran-war-five-key-things-to-watch-ahead-of-the-indian-stock-market-today-opening-11887883",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gift Nifty, Asian Markets To US-Iran War — Five Key Things To Watch Ahead Of The Indian Stock Market Opening source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Stock market today: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-08-10T02:29:41.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-flat-start-eight-day-trading-stocks-to-buy-on-monday-10-august-11786327368428.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Nifty%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock market today: Gift Nifty hints a flat start; eight day trading stocks to buy on Monday, 10 August source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Gold Holds Above $4,300 as Soft Jobs Data Trims Rate-Hike Bets",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-08-09T23:30:12.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-09/gold-holds-gain-after-soft-us-jobs-data-eases-rate-hike-concerns",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Holds%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold Holds Above $4,300 as Soft Jobs Data Trims Rate-Hike Bets source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Crude oil prices extend rally amid uncertainty over US-Iran peace talks; Brent hovers near $94 per barrel",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-08-10T01:53:19.000Z",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-rally-amid-uncertainty-over-us-iran-peace-talks-brent-hovers-near-94-per-barrel-11786325972054.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude oil prices extend rally amid uncertainty over US-Iran peace talks; Brent hovers near $94 per barrel source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian Stock Markets Today: Nikkei, Kospi Rise As Friday&#039;s Wall Street Rally Boosts Sentiment",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-08-10T00:49:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/asian-stock-markets-today-nikkei-kospi-rise-as-wall-street-rally-boosts-sentiment-11887831",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Kospi%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian Stock Markets Today: Nikkei, Kospi Rise As Friday&#039;s Wall Street Rally Boosts Sentiment source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian stocks edge higher as Nikkei, Kospi gain on softer US jobs data",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-08-10T02:09:00.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/news/asian-stocks-edge-higher-as-nikkei-kospi-gain-on-softer-us-jobs-data-126081000033_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian stocks edge higher as Nikkei, Kospi gain on softer US jobs data source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Buy or sell: Gift Nifty up despite elusive Iran-Oman deal, Vaishali Parekh recommends three stocks to buy today",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-08-10T01:38:23.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/buy-or-sell-gift-nifty-up-despite-elusive-iran-oman-deal-vaishali-parekh-recommends-three-stocks-to-buy-today-11786324215228.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBuy%20Gift%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Buy or sell: Gift Nifty up despite elusive Iran-Oman deal, Vaishali Parekh recommends three stocks to buy today source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Gold, silver likely to extend gains as inflation, West Asia risks loom",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-08-09T10:14:53.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/commodities/gold-silver-likely-to-extend-gains-as-inflation-west-asia-risks-loom-126080900348_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold, silver likely to extend gains as inflation, West Asia risks loom source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 61 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 61 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "VOLATILE",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-08-10.webp"
+  }
+}
