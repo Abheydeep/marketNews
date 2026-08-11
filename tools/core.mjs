@@ -308,7 +308,7 @@ export function sanitizeEditorialHeadline(raw, allowedPrices = new Set(), storyC
   // Reject sensational / clickbait language we explicitly forbid.
   if (/\b(spree|shocking|panic|rattl(?:e|es|ed|ing)|roil(?:s|ed|ing)?|jaw-dropping|unbelievable)\b/i.test(h)) return null;
   if (/you won'?t believe|will shock/i.test(h)) return null;
-  if (h.length < 18 || h.length > 90) return null;
+  if (h.length < 28 || h.length > 90) return null;
   if (storyContext && !headlineMatchesStory(h, storyContext)) return null;
   return h;
 }
@@ -1179,7 +1179,7 @@ function uniqueTitleForDigest(date, sentimentLabel, articles, themes, previousDi
     .map(compactTitle)
     .filter(Boolean);
   return candidates.find((candidate) => normalizeEditorial(candidate) !== previousTitle)
-    || compactTitle(`${force} ${verb} ${date} Open`);
+    || compactTitle(`${force} ${verb} Nifty Open For ${date}`);
 }
 
 // Neutral, non-pre-open read-through used only for closed-market titles.
@@ -1224,12 +1224,12 @@ function titleConsequence(article, sentimentLabel) {
   if (/\b(jobs day|payroll|employment|jobless|labor market)\b/.test(headline)) return "Nifty Open";
   if (entity.includes("bank")) return "Bank Nifty Open";
   if (entity.includes("it") || entity.includes("tech")) {
-    return /\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline) ? "IT Breadth" : "Risk Appetite";
+    return /\b(indian it|nifty it|infosys|tcs|wipro|hcltech|tech mahindra)\b/.test(headline) ? "IT Sector Momentum" : "Market Sentiment";
   }
   if (entity.includes("brent") || entity.includes("crude")) return "India Inflation Watch";
   if (sentimentLabel === "BULLISH") return "Nifty Upside Watch";
   if (sentimentLabel === "BEARISH") return "Nifty Open";
-  return "Opening Range";
+  return "Initial Hour Levels";
 }
 
 export function publicSourceSelectionForDigest(date, articles = [], options = {}) {

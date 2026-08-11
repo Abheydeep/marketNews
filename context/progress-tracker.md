@@ -466,4 +466,9 @@ These must remain true after changes:
   Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
   Architecture diagrams changed: `context/architecture-diagrams/01-production-surfaces.mmd`.
   Debt found but not fixed: none.
+- 2026-08-11: Hardened automated daily publishing reliability. ROOT CAUSE: `sanitizeEditorialHeadline()` in `tools/core.mjs` permitted titles < 28 characters (`< 18` check), while `uniqueTitleForDigest()`, `titleConsequence()`, and `titleForDailyLead()` generated fallback titles with banned jargon ("Breadth", "Opening Range", "Risk Appetite") or short candidate strings < 28 chars, causing `validateHistoricalHeadline()` contract tests to fail when LLM generation fell back. Updated minimum length check to 28 characters and replaced all banned jargon terms with compliant phrasing ("Momentum", "Initial Hour Levels", "Market Sentiment").
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
+
 

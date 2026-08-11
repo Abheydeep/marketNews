@@ -8,19 +8,19 @@ export function titleForDailyLead(dailyLead, marketUpdate = false) {
       crude: "Brent Move Drives India's Market Mood",
       rates: "Rates Steer The Market Mood",
       currency: "Currency Pressure In Focus For Indian Markets",
-      tech: "Tech Breadth Drives The Market Mood",
+      tech: "Tech Sector Momentum Drives The Market Mood",
       banks: "Bank Nifty In Focus For Indian Markets",
-      asia: "Asia Risk Appetite Frames The Market Mood",
-      market: "Market Breadth In Focus For Indian Markets"
-    }[dailyLead?.driverType] || `${dailyLead?.label || "Market Breadth"} In Focus For Indian Markets`;
+      asia: "Asia Market Sentiment Frames The Market Mood",
+      market: "Market Momentum In Focus For Indian Markets"
+    }[dailyLead?.driverType] || `${dailyLead?.label || "Market Momentum"} In Focus For Indian Markets`;
   }
   return {
     crude: "Brent Move Sets The Morning Risk",
-    rates: "Rates Shape Opening Range",
+    rates: "Rates Shape Initial Hour Levels",
     currency: "Currency Pressure Tests Nifty Open",
-    tech: "Tech Breadth Tests Nifty Follow-Through",
-    banks: "Bank Nifty Breadth Sets The Open",
-    asia: "Asia Risk Appetite Frames Nifty Open",
-    market: "Market Breadth Shapes Nifty Open"
-  }[dailyLead?.driverType] || `${dailyLead?.label || "Market Breadth"} Shapes Nifty Open`;
+    tech: "Tech Sector Momentum Tests Nifty Follow-Through",
+    banks: "Bank Nifty Momentum Sets The Open",
+    asia: "Asia Market Sentiment Frames Nifty Open",
+    market: "Market Momentum Shapes Nifty Open"
+  }[dailyLead?.driverType] || `${dailyLead?.label || "Market Momentum"} Shapes Nifty Open`;
 }
