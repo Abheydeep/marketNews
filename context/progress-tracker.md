@@ -470,5 +470,9 @@ These must remain true after changes:
   Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
+- 2026-08-14: Resolved publishing outage for August 12-14 daily briefings and updated NVIDIA LLM provider config. ROOT CAUSE: Historical archive title in `archive/daily/2026-08-11-0800-digest.json` failed contract test guard (20 chars < 28 min limit + contained banned jargon "first hour"), which caused GitHub Actions contract tests (`npm test`) to fail and abort publishing site deployments. Additionally, default model `meta/llama-4-maverick-17b-128e-instruct` returned HTTP 410 (decommissioned by NVIDIA NIM API on 2026-07-27). Fixed historical archive title, generated missing digests for August 12, 13, and 14, sanitized private fields from archived JSONs, and upgraded model defaults to `meta/llama-3.3-70b-instruct`.
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
 
 

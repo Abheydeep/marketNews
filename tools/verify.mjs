@@ -175,7 +175,7 @@ await test("move article pipeline detects live snapshot moves and requires valid
   assert.deepEqual(moves.map((move) => move.symbol), ["BRENT", "NIFTY"]);
   const article = await generateMoveArticle(moves[0], {
     rawArticle: {
-      model: "meta/llama-4-maverick-17b-128e-instruct",
+      model: "meta/llama-3.3-70b-instruct",
       content: JSON.stringify({
         headline: "Brent drop cools India import-cost pressure",
         summary: "Brent moved sharply lower in the live snapshot, easing the first read for OMCs, aviation and inflation-sensitive pockets. Nifty still needs Bank Nifty breadth and USD/INR confirmation before the move becomes a broad index input."
@@ -183,7 +183,7 @@ await test("move article pipeline detects live snapshot moves and requires valid
     }
   });
   assert.equal(article.llmProvider, "nvidia");
-  assert.equal(article.llmModel, "meta/llama-4-maverick-17b-128e-instruct");
+  assert.equal(article.llmModel, "meta/llama-3.3-70b-instruct");
   assert.match(article.summary, /OMCs|aviation|USD\/INR/);
   await assert.rejects(() => generateMoveArticle(moves[0], { rawArticle: { content: "not json" } }), /valid article JSON/);
 });

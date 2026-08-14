@@ -40,7 +40,7 @@ async function callPulseArticleModel(move, options = {}) {
 }
 
 function pulseModel() {
-  return process.env.NVIDIA_PULSE_MODEL || "meta/llama-4-maverick-17b-128e-instruct";
+  return process.env.NVIDIA_PULSE_MODEL || "meta/llama-3.3-70b-instruct";
 }
 
 function pulseArticleSystemPrompt() {

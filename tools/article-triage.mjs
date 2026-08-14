@@ -2,7 +2,7 @@ import { log } from "./logger.mjs";
 import { fetchWithRetry } from "./http.mjs";
 
 const NIM_URL = String(process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "") + "/chat/completions";
-const NIM_MODEL = process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
+const NIM_MODEL = process.env.NVIDIA_MODEL ?? "meta/llama-3.3-70b-instruct";
 const TRIAGE_CALLS = 5;
 const MIN_VALID_CALLS = 3;
 const INCLUDE_THRESHOLD = 2.0;

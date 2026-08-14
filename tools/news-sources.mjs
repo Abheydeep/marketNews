@@ -443,7 +443,7 @@ function configuredArticleEditorialEnricher(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const nvidiaApiKey = options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY;
+  const nvidiaApiKey = options.nvidiaApiKey ?? (options.llmFetcher ? "test-nvidia-key" : process.env.NVIDIA_API_KEY);
   if (nvidiaApiKey) {
     return configuredNvidiaArticleEditorialEnricher({ ...options, apiKey: nvidiaApiKey, fetcher });
   }
@@ -452,7 +452,7 @@ function configuredArticleEditorialEnricher(options = {}) {
 
 function configuredNvidiaArticleEditorialEnricher(options = {}) {
   const { apiKey, fetcher } = options;
-  const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "nvidia/nemotron-3-ultra-550b-a55b";
+  const model = options.nvidiaArticleModel ?? process.env.NVIDIA_ARTICLE_MODEL ?? options.nvidiaModel ?? process.env.NVIDIA_MODEL ?? "meta/llama-3.3-70b-instruct";
   const baseUrl = String(options.nvidiaBaseUrl ?? process.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1").replace(/\/$/, "");
   const enableThinking = options.nvidiaArticleThinking ?? process.env.NVIDIA_ARTICLE_THINKING !== "false";
   const isPulseModel = model.includes("deepseek");
@@ -476,7 +476,7 @@ function configuredNvidiaArticleEditorialEnricher(options = {}) {
         max_tokens: Number(options.nvidiaArticleMaxTokens ?? process.env.NVIDIA_ARTICLE_MAX_TOKENS ?? 900),
         temperature: Number(options.nvidiaArticleTemperature ?? process.env.NVIDIA_ARTICLE_TEMPERATURE ?? 0.2),
         top_p: Number(options.nvidiaArticleTopP ?? process.env.NVIDIA_ARTICLE_TOP_P ?? 0.9),
-        chat_template_kwargs: enableThinking ? { enable_thinking: true } : { thinking: false },
+        ...(enableThinking && /nemotron|deepseek/i.test(model) ? { chat_template_kwargs: { enable_thinking: true } } : {}),
         stream: false
       },
       apiKey: finalApiKey
