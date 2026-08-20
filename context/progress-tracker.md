@@ -474,8 +474,8 @@ These must remain true after changes:
   Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
-- 2026-08-20: Generated today's (August 20) pre-market briefing and backfilled daily digests for August 15, 16, 17, 18, and 19. All private fields sanitized.
-  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed).
+- 2026-08-20: Generated today's (August 20) pre-market briefing and backfilled verified daily digests for August 15, 16, 17, 18, 19, and 20, 2026. All private fields sanitized and published to static site archive. Committed and pushed to origin/main (c9fa6d8).
+  Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed), live URLs verified.
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
 
