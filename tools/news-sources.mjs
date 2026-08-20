@@ -415,13 +415,10 @@ async function enrichArticlesWithEditorialLLM(articles, options = {}) {
 }
 
 function shouldUseAgentArticleEnrichment(options = {}) {
-  if (options.agentArticleEnrichment === true || process.env.PUBLIC_BRIEFING_AGENT_MODE === "true") {
-    return true;
-  }
   if (options.agentArticleEnrichment === false || process.env.PUBLIC_BRIEFING_AGENT_MODE === "false") {
     return false;
   }
-  return Boolean(options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY);
+  return Boolean(options.nvidiaApiKey !== undefined ? options.nvidiaApiKey : process.env.NVIDIA_API_KEY);
 }
 
 function rememberArticleEditorialAngles(article, usedEditorialAngles) {
@@ -443,7 +440,7 @@ function configuredArticleEditorialEnricher(options = {}) {
     return null;
   }
   const fetcher = options.llmFetcher ?? fetch;
-  const nvidiaApiKey = options.nvidiaApiKey ?? (options.llmFetcher ? "test-nvidia-key" : process.env.NVIDIA_API_KEY);
+  const nvidiaApiKey = options.nvidiaApiKey !== undefined ? options.nvidiaApiKey : process.env.NVIDIA_API_KEY;
   if (nvidiaApiKey) {
     return configuredNvidiaArticleEditorialEnricher({ ...options, apiKey: nvidiaApiKey, fetcher });
   }

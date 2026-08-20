@@ -698,6 +698,7 @@ await test("live news pipeline ignores non-NVIDIA polishing keys for now", async
   const articles = await fetchLiveNewsArticles("2026-05-04", {
     fetcher,
     llmFetcher,
+    nvidiaApiKey: null,
     anthropicApiKey: "test-anthropic-key",
     openaiApiKey: "test-openai-key",
     geminiApiKey: "test-gemini-key"
@@ -762,6 +763,7 @@ await test("live news pipeline can run NVIDIA desk-agent polishing", async () =>
     anthropicApiKey: "",
     openaiApiKey: "",
     nvidiaApiKey: "test-nvidia-key",
+    nvidiaArticleModel: "nvidia/nemotron-3-ultra-550b-a55b",
     geminiApiKey: "test-gemini-key"
   });
 
@@ -1384,9 +1386,7 @@ await test("daily lead NVIDIA reranker uses JSON chat-completions prompt", async
   };
 
   const lead = await dailyLeadForDigestWithAgent("2026-05-11", [niftyPrediction, crudeShock], {
-    marketSnapshots: [],
-    llmFetcher,
-    nvidiaApiKey: "test-nvidia-key"
+    marketSnapshots: [], newsDataMode: "fixture", llmFetcher, nvidiaApiKey: "test-nvidia-key", nvidiaLeadModel: "nvidia/nemotron-3-ultra-550b-a55b"
   });
 
   assert.equal(nvidiaCalls, 1);

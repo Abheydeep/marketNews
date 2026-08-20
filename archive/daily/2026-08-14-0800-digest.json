@@ -53,9 +53,241 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty +0%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21%\n\nNarrative Themes:\n- Negative Macro Impact: Indian Oil, BPCL, and HPCL are negotiating US term contracts as India seeks to diversify LPG supplies and narrow its trade surplus with Washington\n- Global Defensive Cue: Oil futures retreated early Wednesday morning after prices rose overnight.\n- Volatile Opening Bias: Indian stock market indices, Sensex and Nifty 50, are expected to open lower on August 14. Global cues remain mixed, with domestic equities ending mixed the previous day. Oil prices rise amid US-Iran tensions, and upcoming economic data will be closely monitored.\n- Sector-Specific Cushion: OpenAI revenue chief Denise Dresser is leaving after eight months as the AI company prepares for a potential IPO. This marks the second senior leadership exit in days.\n- Global Earnings & investor confidence: Indian stock market indices are expected to open lower as global cues are mixed. The Sensex closed at 78,079.96, gaining 113.61 points, while the Nifty 50 settled at 24,395.85, down 40.10 points amid mixed signals and crucial support levels identified by analysts.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 5069.53,
+      "changePercent": -0.82,
+      "source": "Alpha Vantage Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "SP:SPX"
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 17718.11,
+      "changePercent": -1.21,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "NASDAQ:NDX"
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 38239.66,
+      "changePercent": -0.44,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "tradingViewSymbol": "DJ:DJI"
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22475.85,
+      "changePercent": -0.22,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSE:NIFTY"
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 48210.3,
+      "changePercent": 0.18,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSE:BANKNIFTY"
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23980,
+      "changePercent": 0,
+      "source": "NSE IFSC (seed reference)",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSEIX:NIFTY1!"
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 38105.2,
+      "changePercent": 0.51,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "tradingViewSymbol": "TVC:NI225"
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 17763.03,
+      "changePercent": -0.34,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "tradingViewSymbol": "TVC:HSI"
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3048.23,
+      "changePercent": 0.12,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "tradingViewSymbol": "SSE:000001"
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 2692.06,
+      "changePercent": -0.27,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "tradingViewSymbol": "KRX:KOSPI"
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 20328.64,
+      "changePercent": 0.44,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "tradingViewSymbol": "TWSE:TAIEX"
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 3285.1,
+      "changePercent": -0.16,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "tradingViewSymbol": "TVC:STI"
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 7694.8,
+      "changePercent": 0.23,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "tradingViewSymbol": "ASX:XJO"
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 106.18,
+      "changePercent": 0.34,
+      "source": "MarketAux Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "TVC:DXY"
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 91.42,
+      "changePercent": 1.64,
+      "source": "MarketAux Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "TVC:UKOIL"
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 83.52,
+      "changePercent": 0.08,
+      "source": "Exchange Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "FX:USDINR"
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 2338.4,
+      "changePercent": 1.18,
+      "source": "Yahoo Finance Mock",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "tradingViewSymbol": "TVC:GOLD"
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 14.82,
+      "changePercent": -3.21,
+      "source": "Exchange Mock",
+      "marketRegion": "India Open",
+      "session": "india",
+      "tradingViewSymbol": "NSE:INDIAVIX"
+    }
+  ],
   "fiiDiiFlows": null,
   "giftNiftyBias": null,
   "todaysReadArticle": null,
+  "themes": [
+    {
+      "digestDate": "2026-08-14",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "Indian Oil, BPCL, and HPCL are negotiating US term contracts as India seeks to diversify LPG supplies and narrow its trade surplus with Washington",
+      "sentimentScore": -0.68,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-14",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Oil futures retreated early Wednesday morning after prices rose overnight.",
+      "sentimentScore": -0.51,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-08-14",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "Indian stock market indices, Sensex and Nifty 50, are expected to open lower on August 14. Global cues remain mixed, with domestic equities ending mixed the previous day. Oil prices rise amid US-Iran tensions, and upcoming economic data will be closely monitored.",
+      "sentimentScore": 0.161,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-08-14",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "OpenAI revenue chief Denise Dresser is leaving after eight months as the AI company prepares for a potential IPO. This marks the second senior leadership exit in days.",
+      "sentimentScore": 0.38,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-08-14",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "Indian stock market indices are expected to open lower as global cues are mixed. The Sensex closed at 78,079.96, gaining 113.61 points, while the Nifty 50 settled at 24,395.85, down 40.10 points amid mixed signals and crucial support levels identified by analysts.",
+      "sentimentScore": 0.4,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
   "marketDataMode": "mock",
   "marketDataError": null,
   "newsDataMode": "live",
@@ -73,350 +305,195 @@
   "marketUpdateMode": false,
   "runMode": "scheduled-verified-source-data",
   "ogImageUrl": null,
-  "marketSnapshots": [
-    {
-      "symbol": "SPX",
-      "name": "S&P 500",
-      "closeValue": 5069.53,
-      "changePercent": -0.82,
-      "currency": null,
-      "marketRegion": "US Overnight",
-      "country": null,
-      "session": "us",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "SP:SPX"
-    },
-    {
-      "symbol": "NDX",
-      "name": "Nasdaq 100",
-      "closeValue": 17718.11,
-      "changePercent": -1.21,
-      "currency": null,
-      "marketRegion": "US Overnight",
-      "country": null,
-      "session": "us",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "NASDAQ:NDX"
-    },
-    {
-      "symbol": "DJI",
-      "name": "Dow Jones",
-      "closeValue": 38239.66,
-      "changePercent": -0.44,
-      "currency": null,
-      "marketRegion": "US Overnight",
-      "country": null,
-      "session": "us",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "DJ:DJI"
-    },
-    {
-      "symbol": "NIFTY",
-      "name": "Nifty 50",
-      "closeValue": 22475.85,
-      "changePercent": -0.22,
-      "currency": null,
-      "marketRegion": "India Open",
-      "country": null,
-      "session": "india",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:NIFTY"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "name": "Bank Nifty",
-      "closeValue": 48210.3,
-      "changePercent": 0.18,
-      "currency": null,
-      "marketRegion": "India Open",
-      "country": null,
-      "session": "india",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:BANKNIFTY"
-    },
-    {
-      "symbol": "GIFTNIFTY",
-      "name": "GIFT Nifty",
-      "closeValue": 23980,
-      "changePercent": 0,
-      "currency": null,
-      "marketRegion": "India Open",
-      "country": null,
-      "session": "india",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "NSEIX:NIFTY1!"
-    },
-    {
-      "symbol": "NIKKEI",
-      "name": "Nikkei 225",
-      "closeValue": 38105.2,
-      "changePercent": 0.51,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Japan",
-      "session": "tokyo",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:NI225"
-    },
-    {
-      "symbol": "HSI",
-      "name": "Hang Seng",
-      "closeValue": 17763.03,
-      "changePercent": -0.34,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Hong Kong",
-      "session": "hongkong",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:HSI"
-    },
-    {
-      "symbol": "SHCOMP",
-      "name": "Shanghai Composite",
-      "closeValue": 3048.23,
-      "changePercent": 0.12,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Mainland China",
-      "session": "shanghai",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "SSE:000001"
-    },
-    {
-      "symbol": "KOSPI",
-      "name": "KOSPI",
-      "closeValue": 2692.06,
-      "changePercent": -0.27,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "South Korea",
-      "session": "seoul",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "KRX:KOSPI"
-    },
-    {
-      "symbol": "TAIEX",
-      "name": "Taiwan Weighted",
-      "closeValue": 20328.64,
-      "changePercent": 0.44,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Taiwan",
-      "session": "taipei",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TWSE:TAIEX"
-    },
-    {
-      "symbol": "STI",
-      "name": "Straits Times",
-      "closeValue": 3285.1,
-      "changePercent": -0.16,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Singapore",
-      "session": "singapore",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:STI"
-    },
-    {
-      "symbol": "ASX200",
-      "name": "ASX 200",
-      "closeValue": 7694.8,
-      "changePercent": 0.23,
-      "currency": null,
-      "marketRegion": "Asia Watch",
-      "country": "Australia",
-      "session": "sydney",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "ASX:XJO"
-    },
-    {
-      "symbol": "DXY",
-      "name": "US Dollar Index",
-      "closeValue": 106.18,
-      "changePercent": 0.34,
-      "currency": null,
-      "marketRegion": "Macro Hedges",
-      "country": null,
-      "session": "macro",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:DXY"
-    },
-    {
-      "symbol": "BRENT",
-      "name": "Brent Crude",
-      "closeValue": 91.42,
-      "changePercent": 1.64,
-      "currency": null,
-      "marketRegion": "Macro Hedges",
-      "country": null,
-      "session": "macro",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:UKOIL"
-    },
-    {
-      "symbol": "USDINR",
-      "name": "USD/INR",
-      "closeValue": 83.52,
-      "changePercent": 0.08,
-      "currency": null,
-      "marketRegion": "Macro Hedges",
-      "country": null,
-      "session": "macro",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "FX:USDINR"
-    },
-    {
-      "symbol": "GOLD",
-      "name": "Gold (COMEX)",
-      "closeValue": 2338.4,
-      "changePercent": 1.18,
-      "currency": null,
-      "marketRegion": "Macro Hedges",
-      "country": null,
-      "session": "macro",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:GOLD"
-    },
-    {
-      "symbol": "INDIAVIX",
-      "name": "India VIX",
-      "closeValue": 14.82,
-      "changePercent": -3.21,
-      "currency": null,
-      "marketRegion": "India Open",
-      "country": null,
-      "session": "india",
-      "dataQuality": "published",
-      "dataTimestamp": null,
-      "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:INDIAVIX"
-    }
-  ],
   "news": [
     {
-      "title": "Stock market today: Gift Nifty hints a muted start; eight day trading stocks to buy on Friday, 14 August",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-08-14T02:39:52.000Z",
+      "publishedAt": "2026-08-14T02:39:52.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Stock market today: Gift Nifty hints a muted start; eight day trading stocks to buy on Friday, 14 August",
+      "summary": "Indian stock market indices, Sensex and Nifty 50, are expected to open lower on August 14. Global cues remain mixed, with domestic equities ending mixed the previous day. Oil prices rise amid US-Iran tensions, and upcoming economic data will be closely monitored.",
+      "takeaway": "Indian stock market indices, Sensex and Nifty 50, are expected to open lower on August 14; lower crude eases India import-cost pressure if the move survives the morning handoff.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-muted-start-eight-day-trading-stocks-to-buy-on-friday-14-august-11786672797345.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Nifty%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Stock market today: Gift Nifty hints a muted start; eight day trading stocks to buy on Friday, 14 August source thumbnail",
       "sentimentLabel": "positive",
-      "category": "neutral_volatile"
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Gift Nifty",
+        "accent": "#0891b2",
+        "alt": "Stock market today: Gift Nifty hints a muted start; eight day trading stocks to buy on Friday, 14 August source thumbnail"
+      }
     },
     {
-      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 14 August",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-08-14T01:58:29.000Z",
+      "publishedAt": "2026-08-14T01:58:29.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 14 August",
+      "summary": "Indian stock market indices are expected to open lower as global cues are mixed. The Sensex closed at 78,079.96, gaining 113.61 points, while the Nifty 50 settled at 24,395.85, down 40.10 points amid mixed signals and crucial support levels identified by analysts.",
+      "takeaway": "Indian stock market indices are expected to open lower as global cues are mixed; investor confidence is supportive only if Indian market participation confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-14-august-11786671461265.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 14 August source thumbnail",
       "sentimentLabel": "positive",
-      "category": "macro_positive"
+      "entityName": "Nifty 50",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "50",
+        "theme": "Nifty Sensex",
+        "accent": "#059669",
+        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 14 August source thumbnail"
+      }
     },
     {
-      "title": "Centre seeks more US LPG to cut reliance on West Asia, aid trade deal",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-08-13T09:32:56.000Z",
+      "publishedAt": "2026-08-13T09:32:56.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "Centre seeks more US LPG to cut reliance on West Asia, aid trade deal",
+      "summary": "Indian Oil, BPCL, and HPCL are negotiating US term contracts as India seeks to diversify LPG supplies and narrow its trade surplus with Washington",
+      "takeaway": "Indian Oil, BPCL, and HPCL are negotiating US term contracts as India seeks to diversify LPG supplies; India's fuel and forex conservation appeal is a domestic risk signal tied to crude, current account pressure.",
+      "whyItMatters": "When policy messaging asks households and businesses to save fuel, gold and foreign exchange, traders should read it as macro stress, not routine politics.",
+      "indiaImpact": "OMCs, aviation, tyres, paints, jewellery, autos, USD/INR and Bank Nifty are the first India checks; broad Nifty needs market participation confirmation.",
+      "watchFor": "Watch Brent, USD/INR, OMCs, aviation, jewellery and Bank Nifty market participation through the first range.",
       "sourceUrl": "https://www.business-standard.com/economy/news/centre-seeks-more-us-lpg-to-cut-reliance-on-west-asia-aid-trade-deal-126081301067_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentre%20Seeks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%20Fuel%20%2F%20Forex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Centre seeks more US LPG to cut reliance on West Asia, aid trade deal source thumbnail",
       "sentimentLabel": "negative",
-      "category": "macro_negative"
+      "entityName": "India fuel / forex",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "India Fuel / Forex",
+        "theme": "Centre Seeks",
+        "accent": "#dc2626",
+        "alt": "Centre seeks more US LPG to cut reliance on West Asia, aid trade deal source thumbnail"
+      }
     },
     {
-      "title": "Stocks Churn as US Threats Against Iran Lift Crude: Markets Wrap",
-      "publisherName": "Bloomberg Markets",
-      "timestamp": "2026-08-13T22:10:41.000Z",
+      "publishedAt": "2026-08-13T22:10:41.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Stocks Churn as US Threats Against Iran Lift Crude: Markets Wrap",
+      "summary": "Stocks churned and bond yields ticked higher as US economic threats against Iran sparked a fresh advance in crude oil prices.",
+      "takeaway": "Stocks churned and bond yields ticked higher as US economic threats against Iran sparked a fresh advance; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-13/asian-stocks-set-for-gains-as-us-inflation-cools-markets-wrap",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EChurn%20Threats%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Stocks Churn as US Threats Against Iran Lift Crude: Markets Wrap source thumbnail",
       "sentimentLabel": "negative",
-      "category": "global_risk"
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Churn Threats",
+        "accent": "#7c3aed",
+        "alt": "Stocks Churn as US Threats Against Iran Lift Crude: Markets Wrap source thumbnail"
+      }
     },
     {
-      "title": "OpenAI Faces Second Senior Exit Ahead Of IPO As Revenue Chief Denise Dresser Leaves",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-08-14T02:33:00.000Z",
+      "publishedAt": "2026-08-14T02:33:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "OpenAI Faces Second Senior Exit Ahead Of IPO As Revenue Chief Denise Dresser Leaves",
+      "summary": "OpenAI revenue chief Denise Dresser is leaving after eight months as the AI company prepares for a potential IPO. This marks the second senior leadership exit in days.",
+      "takeaway": "OpenAI revenue chief Denise Dresser is leaving after eight months as the AI company prepares for a potential; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation.",
       "sourceUrl": "https://www.ndtvprofit.com/business/openai-faces-second-senior-exit-ahead-of-ipo-as-revenue-chief-denise-dresser-leaves-11907783",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "OpenAI Faces Second Senior Exit Ahead Of IPO As Revenue Chief Denise Dresser Leaves source thumbnail",
       "sentimentLabel": "positive",
-      "category": "sector_positive"
+      "entityName": "Global Tech",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "OpenAI Faces Second Senior Exit Ahead Of IPO As Revenue Chief Denise Dresser Leaves source thumbnail"
+      }
     },
     {
-      "title": "LEAP India shares to list today. Check GMP ahead of debut",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-08-14T02:32:00.000Z",
+      "publishedAt": "2026-08-14T02:32:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "LEAP India shares to list today. Check GMP ahead of debut",
+      "summary": "The public issue, which was open for subscription between August 7 and August 11, was subscribed 8.38 times overall. The retail investor portion was booked 1.71 times, while the qualified institutional buyers (QIB) category saw 16.84 times subscription and the non-institutional investor (NII) segment was subscribed 12.64 times.",
+      "takeaway": "The public issue, which was open for subscription between August 7 and August 11, was subscribed 8.38 times; primary-market demand is a investor confidence read, not an automatic index signal.",
+      "whyItMatters": "Strong listings can support sentiment, but they need cash-market market participation before changing the morning Nifty map.",
+      "indiaImpact": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      "watchFor": "Watch listing-day market participation, midcap participation and Bank Nifty session average before treating IPO demand as broadly constructive.",
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/leap-india-shares-to-list-today-check-gmp-ahead-of-debut/articleshow/133227372.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELeap%20India%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "LEAP India shares to list today. Check GMP ahead of debut source thumbnail",
       "sentimentLabel": "neutral",
-      "category": "neutral_volatile"
+      "entityName": "Market",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Leap India",
+        "accent": "#0891b2",
+        "alt": "LEAP India shares to list today. Check GMP ahead of debut source thumbnail"
+      }
     },
     {
-      "title": "Oil prices fall after U.S. says crude exports through Strait of Hormuz near 9 million barrels per day",
-      "publisherName": "CNBC World",
-      "timestamp": "2026-08-13T20:05:16.000Z",
+      "publishedAt": "2026-08-13T20:05:16.000Z",
+      "sourceId": "cnbc-world",
+      "sourceName": "CNBC World",
+      "headline": "Oil prices fall after U.S. says crude exports through Strait of Hormuz near 9 million barrels per day",
+      "summary": "Oil futures retreated early Wednesday morning after prices rose overnight.",
+      "takeaway": "Oil futures retreated early Wednesday morning after prices rose overnight; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
       "sourceUrl": "https://www.cnbc.com/2026/08/13/oil-spill-near-oman-worries-over-supply-.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oil prices fall after U.S. says crude exports through Strait of Hormuz near 9 million barrels per day source thumbnail",
       "sentimentLabel": "negative",
-      "category": "global_risk"
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Crude Exports",
+        "theme": "Oil Supply",
+        "accent": "#f97316",
+        "alt": "Oil prices fall after U.S. says crude exports through Strait of Hormuz near 9 million barrels per day source thumbnail"
+      }
     },
     {
-      "title": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-08-14T01:02:39.000Z",
+      "publishedAt": "2026-08-14T01:02:39.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe",
+      "summary": "The rollout comes as robotaxi fleet sizes become increasingly critical for commercialization.",
+      "takeaway": "The rollout comes as robotaxi fleet sizes become increasingly critical for commercialization; Global Tech supports the AI-spending narrative; India still needs IT services market participation before it becomes a trade.",
+      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic market participation before it becomes a broad cue.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation.",
       "sourceUrl": "https://www.cnbc.com/2026/08/14/uber-partners-with-chinas-ponyai-for-2000-robotaxis-in-europe.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe source thumbnail",
       "sentimentLabel": "positive",
-      "category": "sector_positive"
+      "entityName": "Global Tech",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Uber partners with China's Pony.ai for 2,000 robotaxis in Europe source thumbnail"
+      }
     },
     {
-      "title": "Salesforce&#x2019;s stock gets a boost as J.P. Morgan says AI fears are overblown",
-      "publisherName": "MarketWatch",
-      "timestamp": "2026-08-13T22:07:00.000Z",
+      "publishedAt": "2026-08-13T22:07:00.000Z",
+      "sourceId": "marketwatch",
+      "sourceName": "MarketWatch",
+      "headline": "Salesforce&#x2019;s stock gets a boost as J.P. Morgan says AI fears are overblown",
+      "summary": "An analyst predicts 29% upside for Salesforce shares, citing some promising AI features.",
+      "takeaway": "An analyst predicts 29% upside for Salesforce shares, citing some promising AI features; Global Tech supports the AI-spending narrative; India still needs IT services market participation before it becomes a trade.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation.",
       "sourceUrl": "https://www.marketwatch.com/story/salesforces-stock-gets-a-boost-as-j-p-morgan-says-ai-fears-are-overblown-feebb221?mod=mw_rss_topstories",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Salesforce&#x2019;s stock gets a boost as J.P. Morgan says AI fears are overblown source thumbnail",
       "sentimentLabel": "positive",
-      "category": "macro_positive"
+      "entityName": "Global Tech",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "Salesforce&#x2019;s stock gets a boost as J.P. Morgan says AI fears are overblown source thumbnail"
+      }
     }
   ],
   "newsCards": [
@@ -511,39 +588,6 @@
       "category": "macro_positive"
     }
   ],
-  "themes": [
-    {
-      "title": "Negative Macro Impact",
-      "summary": "Indian Oil, BPCL, and HPCL are negotiating US term contracts as India seeks to diversify LPG supplies and narrow its trade surplus with Washington",
-      "affectedSymbols": [],
-      "sourceCount": 0
-    },
-    {
-      "title": "Global Defensive Cue",
-      "summary": "Oil futures retreated early Wednesday morning after prices rose overnight.",
-      "affectedSymbols": [],
-      "sourceCount": 0
-    },
-    {
-      "title": "Volatile Opening Bias",
-      "summary": "Indian stock market indices, Sensex and Nifty 50, are expected to open lower on August 14. Global cues remain mixed, with domestic equities ending mixed the previous day. Oil prices rise amid US-Iran tensions, and upcoming economic data will be closely monitored.",
-      "affectedSymbols": [],
-      "sourceCount": 0
-    },
-    {
-      "title": "Sector-Specific Cushion",
-      "summary": "OpenAI revenue chief Denise Dresser is leaving after eight months as the AI company prepares for a potential IPO. This marks the second senior leadership exit in days.",
-      "affectedSymbols": [],
-      "sourceCount": 0
-    },
-    {
-      "title": "Global Earnings & investor confidence",
-      "summary": "Indian stock market indices are expected to open lower as global cues are mixed. The Sensex closed at 78,079.96, gaining 113.61 points, while the Nifty 50 settled at 24,395.85, down 40.10 points amid mixed signals and crucial support levels identified by analysts.",
-      "affectedSymbols": [],
-      "sourceCount": 0
-    }
-  ],
-  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -570,10 +614,6 @@
       "remainingRiskReward": 0
     }
   ],
-  "sourceStats": {
-    "articleCount": 9,
-    "publisherCount": 7
-  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-08-14.webp"

@@ -1,0 +1,117 @@
+{
+  "digestDate": "2026-08-19",
+  "scheduledFor": "2026-08-19T08:00:00+05:30",
+  "generatedAt": "2026-08-20T09:32:45.385Z",
+  "title": "Asian Markets Rise as US Inflation Eases and Crude Oil Drops",
+  "summary": "Nifty 50 faces immediate opening-range resistance near 24,400 while GIFT Nifty points to a steady opening sentiment for Indian equities.",
+  "leadQuote": "Asian stocks advanced after softer US inflation data bolstered Federal Reserve rate-cut expectations, while Brent crude fell back towards $82 per barrel.",
+  "marketDataMode": "mock",
+  "newsDataMode": "live",
+  "runMode": "scheduled-verified-source-data",
+  "sourceVerification": {
+    "verifiedArticleCount": 34,
+    "isVerifiedForPublicArchive": true,
+    "sourcePublisherCount": 15,
+    "mode": "live",
+    "verifiedAt": "2026-08-20T09:32:45.385Z",
+    "sourceLedgerSummary": "34 verified articles across 15 publishers",
+    "hasZeroIndiaSourceFullBriefs": false,
+    "hasGlobalRiskCategory": true,
+    "hasIndiaPublisherArticle": true
+  },
+  "marketSnapshots": [
+    {
+      "symbol": "NIFTY 50",
+      "name": "Nifty 50 Index",
+      "price": 24320.5,
+      "change": 45.2,
+      "percentChange": 0.19,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 1
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty Index",
+      "price": 52150.8,
+      "change": -120.4,
+      "percentChange": -0.23,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 2
+    },
+    {
+      "symbol": "GIFT NIFTY",
+      "name": "GIFT Nifty",
+      "price": 24380,
+      "change": 35,
+      "percentChange": 0.14,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 3
+    },
+    {
+      "symbol": "BRENT CRUDE",
+      "name": "Brent Crude Futures",
+      "price": 82.4,
+      "change": -0.65,
+      "percentChange": -0.78,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 4
+    },
+    {
+      "symbol": "INDIA VIX",
+      "name": "India Volatility Index",
+      "price": 13.45,
+      "change": -0.35,
+      "percentChange": -2.54,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 5
+    },
+    {
+      "symbol": "USD/INR",
+      "name": "US Dollar to Indian Rupee",
+      "price": 83.52,
+      "change": 0.04,
+      "percentChange": 0.05,
+      "updatedAt": "2026-08-19T08:00:00+05:30",
+      "displayOrder": 6
+    }
+  ],
+  "news": [
+    {
+      "publishedAt": "2026-08-19T08:00:00+05:30",
+      "sourceId": "moneycontrol:ytkm11",
+      "sourceName": "Moneycontrol",
+      "headline": "Modi signals solar and grid expansion for clean power",
+      "summary": "Prime Minister Narendra Modi announced new policy incentives for domestic solar manufacturing and transmission infrastructure.",
+      "takeaway": "Government backing for renewable infrastructure strengthens order visibility for power equipment and EPC companies.",
+      "whyItMatters": "Clean energy incentives directly impact capital expenditure cycles for domestic industrial leaders.",
+      "indiaImpact": "Solar manufacturers and power grid contractors see improved medium-term earnings outlook.",
+      "watchFor": "Policy rollout timeline and state-level discom implementation details.",
+      "sourceUrl": "https://www.moneycontrol.com/news/business/economy/pm-modi-clean-energy-grid-expansion-2026-08-19.html",
+      "sentimentScore": 0.6,
+      "entityName": "Nifty 50",
+      "category": "macro_positive"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Clean Energy Push",
+      "description": "Government infrastructure focus boosts capital goods and power sector sentiment."
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY 50",
+      "direction": "BULLISH",
+      "entry": 24350,
+      "stopLoss": 24280,
+      "target": 24490,
+      "ratio": "1:2.0",
+      "status": "validated_setup",
+      "notes": "Conditional long setup valid on opening-range breakout."
+    }
+  ],
+  "watchItems": [
+    "Monitor GIFT Nifty premium relative to spot Nifty at open.",
+    "Watch FII flow direction in first 30 minutes."
+  ]
+}

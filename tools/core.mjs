@@ -1577,7 +1577,7 @@ function configuredDailyLeadReranker(options = {}) {
   if (!shouldUseAgentLeadRerank(options)) {
     return null;
   }
-  const apiKey = options.nvidiaApiKey ?? (options.llmFetcher ? "test-nvidia-key" : process.env.NVIDIA_API_KEY);
+  const apiKey = options.nvidiaApiKey !== undefined ? options.nvidiaApiKey : process.env.NVIDIA_API_KEY;
   if (!apiKey) {
     return null;
   }
@@ -1625,7 +1625,7 @@ function shouldUseAgentLeadRerank(options = {}) {
   if (options.agentLeadRerank === false || process.env.PUBLIC_BRIEFING_AGENT_RERANK === "false") {
     return false;
   }
-  return Boolean(options.nvidiaApiKey ?? process.env.NVIDIA_API_KEY);
+  return Boolean(options.nvidiaApiKey !== undefined ? options.nvidiaApiKey : process.env.NVIDIA_API_KEY);
 }
 
 function nvidiaChatResponseText(data) {

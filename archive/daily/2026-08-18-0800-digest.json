@@ -1,0 +1,117 @@
+{
+  "digestDate": "2026-08-18",
+  "scheduledFor": "2026-08-18T08:00:00+05:30",
+  "generatedAt": "2026-08-20T09:32:36.426Z",
+  "title": "Asia Market Sentiment Shapes Indian Market Open",
+  "summary": "Asian indices show mixed direction while GIFT Nifty signals a steady opening range for Indian benchmarks.",
+  "leadQuote": "Indian benchmarks prepare for an opening-range test as mixed Asian cues and sector rotation guide early positioning.",
+  "marketDataMode": "mock",
+  "newsDataMode": "fixture",
+  "runMode": "manual-fixture-schedule",
+  "sourceVerification": {
+    "verifiedArticleCount": 34,
+    "isVerifiedForPublicArchive": true,
+    "sourcePublisherCount": 15,
+    "mode": "fixture",
+    "verifiedAt": "2026-08-20T09:32:36.426Z",
+    "sourceLedgerSummary": "34 verified articles across 15 publishers",
+    "hasZeroIndiaSourceFullBriefs": false,
+    "hasGlobalRiskCategory": true,
+    "hasIndiaPublisherArticle": true
+  },
+  "marketSnapshots": [
+    {
+      "symbol": "NIFTY 50",
+      "name": "Nifty 50 Index",
+      "price": 24320.5,
+      "change": 45.2,
+      "percentChange": 0.19,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 1
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty Index",
+      "price": 52150.8,
+      "change": -120.4,
+      "percentChange": -0.23,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 2
+    },
+    {
+      "symbol": "GIFT NIFTY",
+      "name": "GIFT Nifty",
+      "price": 24380,
+      "change": 35,
+      "percentChange": 0.14,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 3
+    },
+    {
+      "symbol": "BRENT CRUDE",
+      "name": "Brent Crude Futures",
+      "price": 82.4,
+      "change": -0.65,
+      "percentChange": -0.78,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 4
+    },
+    {
+      "symbol": "INDIA VIX",
+      "name": "India Volatility Index",
+      "price": 13.45,
+      "change": -0.35,
+      "percentChange": -2.54,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 5
+    },
+    {
+      "symbol": "USD/INR",
+      "name": "US Dollar to Indian Rupee",
+      "price": 83.52,
+      "change": 0.04,
+      "percentChange": 0.05,
+      "updatedAt": "2026-08-18T08:00:00+05:30",
+      "displayOrder": 6
+    }
+  ],
+  "news": [
+    {
+      "publishedAt": "2026-08-18T06:30:00+05:30",
+      "sourceId": "moneycontrol-1",
+      "sourceName": "Moneycontrol",
+      "headline": "Nifty 50 eyes opening-range resistance near 24,400 as GIFT Nifty signals flat start",
+      "summary": "Indian benchmark indices are expected to open on a flat to positive note following steady GIFT Nifty trends and moderate gains across Asian peers.",
+      "takeaway": "Nifty 50 faces immediate opening-range resistance at 24,400 with support at 24,200.",
+      "whyItMatters": "Establishes early directional bias for domestic index options and intraday setups.",
+      "indiaImpact": "Domestic equities position for opening-range price action with selective stock moves.",
+      "watchFor": "Opening 15-minute range breakout above 24,400 or breakdown below 24,200.",
+      "sourceUrl": "https://www.moneycontrol.com/news/business/markets/nifty-50-pre-market-setup-2026-08-18.html",
+      "sentimentScore": 0.2,
+      "entityName": "Nifty 50",
+      "category": "neutral_volatile"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Opening Range Focus",
+      "description": "Traders monitor initial 15-minute range confirmation before taking aggressive directional trades."
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY 50",
+      "direction": "BULLISH",
+      "entry": 24350,
+      "stopLoss": 24280,
+      "target": 24490,
+      "ratio": "1:2.0",
+      "status": "validated_setup",
+      "notes": "Conditional long setup valid on opening-range breakout."
+    }
+  ],
+  "watchItems": [
+    "Monitor GIFT Nifty premium relative to spot Nifty at open.",
+    "Watch FII flow direction in first 30 minutes."
+  ]
+}
