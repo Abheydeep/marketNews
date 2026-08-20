@@ -52,6 +52,124 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.436%, Nasdaq 100 -3.295%, Dow Jones -0.089%, Nifty 50 +0.607%, Bank Nifty +1.41%, Nikkei 225 -0.879%, Hang Seng +0.456%, Shanghai Composite -1.338%, KOSPI +3.257%, Taiwan Weighted -2.244%, Straits Times +0.203%, ASX 200 +0.244%, US Dollar Index +0.099%, Brent Crude -0.999%, USD/INR -0.016%, Gold (COMEX) -1.012%, India VIX -2.421%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Recent policy measures likely to push up sovereign debt demand\n- Global Risk-Off Cue: Chubb CEO flags threat disrupting global oil supply.\n- Global Earnings & Risk Appetite: Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "23-Jun-2026",
+    "fiiNet": 17.86,
+    "fiiBuy": 15396.07,
+    "fiiSell": 15378.21,
+    "diiNet": 680.21,
+    "diiBuy": 16863.04,
+    "diiSell": 16182.83
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 5,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 16972,
+  "scheduledFor": "2026-06-23T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T15:03:54.000Z",
+      "sourceUrl": "https://www.business-standard.com/finance/news/adverse-monsoon-may-weigh-on-growth-inflation-dynamics-rbi-report-126062201186_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWeak%20Monsoon%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "India-EU trade pact likely by year-end, operational in early 2027: Delphin",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T14:55:49.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-eu-trade-pact-likely-by-year-end-operational-in-early-2027-delphin-126062201168_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-Eu%20Trade%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India-EU trade pact likely by year-end, operational in early 2027: Delphin source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "High oil prices drive surge in Chinese EV sales, charging networks lag",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T16:17:26.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/high-oil-prices-drive-surge-in-chinese-ev-sales-charging-networks-lag-126062200656_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "High oil prices drive surge in Chinese EV sales, charging networks lag source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Chubb CEO flags threat disrupting global oil supply",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T20:07:00.000Z",
+      "sourceUrl": "https://finance.yahoo.com/energy/articles/chubb-ceo-flags-threat-disrupting-200700323.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EChubb%20Ceo%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Chubb CEO flags threat disrupting global oil supply source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Fabian socialism held India back after 1991 reforms: A Greenspan view",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T18:24:59.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/fabian-socialism-held-india-back-after-1991-reforms-a-greenspan-view-126062201410_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFabian%20Socialism%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Fabian socialism held India back after 1991 reforms: A Greenspan view source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:55:09.000Z",
+      "sourceUrl": "https://finance.yahoo.com/technology/ai/articles/why-jefferies-betting-iren-stock-195509480.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWhy%20Jefferies%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:42:57.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/qqq-vs-qqqm-same-nasdaq-194257267.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Dollar Gains on Euro Weakness and Higher T-note Yields",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:36:33.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/currencies/articles/dollar-gains-euro-weakness-higher-193633375.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDollar%20Gains%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dollar Gains on Euro Weakness and Higher T-note Yields source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.61% — gap-up bias Weighs On Opening..",
+    "correctedTitle": "RBI's June Bulletin flags weak monsoon risks for Indian stock market today",
+    "correctedAt": "2026-07-01T15:43:15.196Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -60,14 +178,13 @@
       "previousClose": 7472.79,
       "changePercent": -1.436,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:33:33.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:33:33.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -798,14 +915,13 @@
       "previousClose": 30347.08,
       "changePercent": -3.295,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -1536,14 +1652,13 @@
       "previousClose": 51712.71,
       "changePercent": -0.089,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:33:31.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:33:31.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -2274,14 +2389,13 @@
       "previousClose": 23824.1,
       "changePercent": 0.607,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T07:02:49.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T07:02:49.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -3012,14 +3126,13 @@
       "previousClose": 57183.75,
       "changePercent": 1.41,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T07:02:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T07:02:50.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -3750,15 +3863,13 @@
       "previousClose": 69788.38,
       "changePercent": -0.879,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-24T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -4489,15 +4600,13 @@
       "previousClose": 23336.28,
       "changePercent": 0.456,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-24T06:47:48.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:47:48.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-24T01:30:00.000Z",
@@ -5228,15 +5337,13 @@
       "previousClose": 4163.1,
       "changePercent": -1.338,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-24T06:47:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:47:40.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-24T01:30:00.000Z",
@@ -5967,15 +6074,13 @@
       "previousClose": 8203.84,
       "changePercent": 3.257,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-24T06:32:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:32:50.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -6706,15 +6811,13 @@
       "previousClose": 47100.65,
       "changePercent": -2.244,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-24T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-24T01:00:00.000Z",
@@ -7445,15 +7548,13 @@
       "previousClose": 5205.74,
       "changePercent": 0.203,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-24T06:47:49.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:47:49.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-24T01:00:00.000Z",
@@ -8184,15 +8285,13 @@
       "previousClose": 8787,
       "changePercent": 0.244,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-24T06:25:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:25:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -8923,14 +9022,13 @@
       "previousClose": 101.41,
       "changePercent": 0.099,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T06:52:47.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:52:47.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-24T04:00:00.000Z",
@@ -9633,14 +9731,13 @@
       "previousClose": 77.08,
       "changePercent": -0.999,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T06:52:28.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:52:28.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-24T04:02:00.000Z",
@@ -9959,14 +10056,13 @@
       "previousClose": 94.73,
       "changePercent": -0.016,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-24T07:02:46.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T07:02:46.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-23T23:31:00.000Z",
@@ -10697,14 +10793,13 @@
       "previousClose": 4149.4,
       "changePercent": -1.012,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T06:52:46.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:52:46.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-24T04:00:00.000Z",
@@ -11411,14 +11506,13 @@
       "previousClose": 13.94,
       "changePercent": -2.421,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T07:02:49.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T07:02:49.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -12147,48 +12241,214 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.266Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.266Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.266Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.266Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.266Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.266Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.266Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.266Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.266Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.266Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.266Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.266Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.266Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.266Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.266Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.266Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.266Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.266Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.266Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.266Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.266Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.266Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.266Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.266Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "23-Jun-2026",
-    "fiiNet": 17.86,
-    "fiiBuy": 15396.07,
-    "fiiSell": 15378.21,
-    "diiNet": 680.21,
-    "diiBuy": 16863.04,
-    "diiSell": 16182.83
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": null,
+  "news": [
+    {
+      "title": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T15:03:54.000Z",
+      "sourceUrl": "https://www.business-standard.com/finance/news/adverse-monsoon-may-weigh-on-growth-inflation-dynamics-rbi-report-126062201186_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWeak%20Monsoon%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "India-EU trade pact likely by year-end, operational in early 2027: Delphin",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T14:55:49.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-eu-trade-pact-likely-by-year-end-operational-in-early-2027-delphin-126062201168_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-Eu%20Trade%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India-EU trade pact likely by year-end, operational in early 2027: Delphin source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "High oil prices drive surge in Chinese EV sales, charging networks lag",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T16:17:26.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/high-oil-prices-drive-surge-in-chinese-ev-sales-charging-networks-lag-126062200656_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "High oil prices drive surge in Chinese EV sales, charging networks lag source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Chubb CEO flags threat disrupting global oil supply",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T20:07:00.000Z",
+      "sourceUrl": "https://finance.yahoo.com/energy/articles/chubb-ceo-flags-threat-disrupting-200700323.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EChubb%20Ceo%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Chubb CEO flags threat disrupting global oil supply source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Fabian socialism held India back after 1991 reforms: A Greenspan view",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-22T18:24:59.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/fabian-socialism-held-india-back-after-1991-reforms-a-greenspan-view-126062201410_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFabian%20Socialism%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Fabian socialism held India back after 1991 reforms: A Greenspan view source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:55:09.000Z",
+      "sourceUrl": "https://finance.yahoo.com/technology/ai/articles/why-jefferies-betting-iren-stock-195509480.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWhy%20Jefferies%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:42:57.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/qqq-vs-qqqm-same-nasdaq-194257267.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Dollar Gains on Euro Weakness and Higher T-note Yields",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-22T19:36:33.000Z",
+      "sourceUrl": "https://finance.yahoo.com/markets/currencies/articles/dollar-gains-euro-weakness-higher-193633375.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDollar%20Gains%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dollar Gains on Euro Weakness and Higher T-note Yields source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
   "themes": [
     {
-      "digestDate": "2026-06-23",
-      "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "Recent policy measures likely to push up sovereign debt demand",
-      "sentimentScore": -0.618,
-      "evidenceCount": 3
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-23",
-      "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "Chubb CEO flags threat disrupting global oil supply.",
-      "sentimentScore": -0.36,
-      "evidenceCount": 3
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-23",
-      "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
       "summary": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here.",
-      "sentimentScore": 0.46,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     }
   ],
   "tradeSetups": [
@@ -12201,276 +12461,7 @@
       "riskReward": 2.2,
       "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
       "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-23",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 5,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 16972,
-  "scheduledFor": "2026-06-23T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
-  "news": [
-    {
-      "publishedAt": "2026-06-22T15:03:54.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin",
-      "summary": "Recent policy measures likely to push up sovereign debt demand",
-      "takeaway": "Recent policy measures likely to push up sovereign debt demand; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.business-standard.com/finance/news/adverse-monsoon-may-weigh-on-growth-inflation-dynamics-rbi-report-126062201186_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Weak Monsoon",
-        "accent": "#dc2626",
-        "alt": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T14:55:49.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India-EU trade pact likely by year-end, operational in early 2027: Delphin",
-      "summary": "EU Ambassador Herve Delphin says legal vetting of the India-EU trade pact is nearing completion, with signing expected by year-end and implementation likely in early 2027",
-      "takeaway": "EU Ambassador Herve Delphin says legal vetting of the India-EU trade pact is nearing completion, with signing expected; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-eu-trade-pact-likely-by-year-end-operational-in-early-2027-delphin-126062201168_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "India-Eu Trade",
-        "accent": "#dc2626",
-        "alt": "India-EU trade pact likely by year-end, operational in early 2027: Delphin source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T16:17:26.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "High oil prices drive surge in Chinese EV sales, charging networks lag",
-      "summary": "Iran war-driven fuel price surge accelerates EV adoption across Asia and Africa, boosting Chinese automakers while exposing major gaps in charging infrastructure",
-      "takeaway": "Iran war-driven fuel price surge accelerates EV adoption across Asia and Africa, boosting Chinese automakers while exposing major; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
-      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/high-oil-prices-drive-surge-in-chinese-ev-sales-charging-networks-lag-126062200656_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "High oil prices drive surge in Chinese EV sales, charging networks lag source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T20:07:00.000Z",
-      "sourceId": "yahoo-finance",
-      "sourceName": "Yahoo Finance",
-      "headline": "Chubb CEO flags threat disrupting global oil supply",
-      "summary": "Chubb CEO flags threat disrupting global oil supply.",
-      "takeaway": "Chubb CEO flags threat disrupting global oil supply; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://finance.yahoo.com/energy/articles/chubb-ceo-flags-threat-disrupting-200700323.html",
-      "sentimentLabel": "negative",
-      "entityName": "Brent Crude",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Brent Crude",
-        "theme": "Chubb Ceo",
-        "accent": "#7c3aed",
-        "alt": "Chubb CEO flags threat disrupting global oil supply source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T18:24:59.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Fabian socialism held India back after 1991 reforms: A Greenspan view",
-      "summary": "In his 2007 memoir, Alan Greenspan praised India's reforms but argued that lingering socialist policies and bureaucracy were holding back its economic potential",
-      "takeaway": "In his 2007 memoir, Alan Greenspan praised India's reforms but argued that lingering socialist policies and bureaucracy were; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/fabian-socialism-held-india-back-after-1991-reforms-a-greenspan-view-126062201410_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Fabian Socialism",
-        "accent": "#dc2626",
-        "alt": "Fabian socialism held India back after 1991 reforms: A Greenspan view source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T19:55:09.000Z",
-      "sourceId": "yahoo-finance",
-      "sourceName": "Yahoo Finance",
-      "headline": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here",
-      "summary": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here.",
-      "takeaway": "Jefferies Is Betting That IREN Stock Will Gain 30% from Here; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://finance.yahoo.com/technology/ai/articles/why-jefferies-betting-iren-stock-195509480.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Why Jefferies",
-        "accent": "#059669",
-        "alt": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T19:42:57.000Z",
-      "sourceId": "yahoo-finance",
-      "sourceName": "Yahoo Finance",
-      "headline": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
-      "summary": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors.",
-      "takeaway": "Same Nasdaq-100 Index, One Clear Winner for Long; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/qqq-vs-qqqm-same-nasdaq-194257267.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T19:36:33.000Z",
-      "sourceId": "yahoo-finance",
-      "sourceName": "Yahoo Finance",
-      "headline": "Dollar Gains on Euro Weakness and Higher T-note Yields",
-      "summary": "Dollar Gains on Euro Weakness and Higher T-note Yields.",
-      "takeaway": "Euro Weakness and Higher T; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://finance.yahoo.com/markets/currencies/articles/dollar-gains-euro-weakness-higher-193633375.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Dollar Gains",
-        "accent": "#7c3aed",
-        "alt": "Dollar Gains on Euro Weakness and Higher T-note Yields source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-22T15:03:54.000Z",
-      "sourceUrl": "https://www.business-standard.com/finance/news/adverse-monsoon-may-weigh-on-growth-inflation-dynamics-rbi-report-126062201186_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWeak%20Monsoon%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Weak monsoon may cloud growth-inflation dynamics: RBI's June Bulletin source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "India-EU trade pact likely by year-end, operational in early 2027: Delphin",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-22T14:55:49.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-eu-trade-pact-likely-by-year-end-operational-in-early-2027-delphin-126062201168_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-Eu%20Trade%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India-EU trade pact likely by year-end, operational in early 2027: Delphin source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "High oil prices drive surge in Chinese EV sales, charging networks lag",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-22T16:17:26.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/high-oil-prices-drive-surge-in-chinese-ev-sales-charging-networks-lag-126062200656_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "High oil prices drive surge in Chinese EV sales, charging networks lag source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Chubb CEO flags threat disrupting global oil supply",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-06-22T20:07:00.000Z",
-      "sourceUrl": "https://finance.yahoo.com/energy/articles/chubb-ceo-flags-threat-disrupting-200700323.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EChubb%20Ceo%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Chubb CEO flags threat disrupting global oil supply source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Fabian socialism held India back after 1991 reforms: A Greenspan view",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-22T18:24:59.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/fabian-socialism-held-india-back-after-1991-reforms-a-greenspan-view-126062201410_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFabian%20Socialism%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Fabian socialism held India back after 1991 reforms: A Greenspan view source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-06-22T19:55:09.000Z",
-      "sourceUrl": "https://finance.yahoo.com/technology/ai/articles/why-jefferies-betting-iren-stock-195509480.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWhy%20Jefferies%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Why Jefferies Is Betting That IREN Stock Will Gain 30% from Here source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-06-22T19:42:57.000Z",
-      "sourceUrl": "https://finance.yahoo.com/markets/stocks/articles/qqq-vs-qqqm-same-nasdaq-194257267.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Dollar Gains on Euro Weakness and Higher T-note Yields",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-06-22T19:36:33.000Z",
-      "sourceUrl": "https://finance.yahoo.com/markets/currencies/articles/dollar-gains-euro-weakness-higher-193633375.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDollar%20Gains%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Dollar Gains on Euro Weakness and Higher T-note Yields source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12499,17 +12490,12 @@
       "remainingRiskReward": 1.049
     }
   ],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 2
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-23.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.61% — gap-up bias Weighs On Opening..",
-    "correctedTitle": "RBI's June Bulletin flags weak monsoon risks for Indian stock market today",
-    "correctedAt": "2026-07-01T15:43:15.196Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

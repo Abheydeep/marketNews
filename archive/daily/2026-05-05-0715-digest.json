@@ -43,223 +43,6 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty -0.38%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%\n\nNarrative Themes:\n- Negative Macro Impact: Treasury yields gained Monday as traders looked out for more U.S. factory data, while monitoring developments in the Middle East.\n- Global Risk-Off Cue: Fed chair nominee Kevin Warsh is putting his own spin on the independence of monetary policy. Many former Fed officials aren't sold.\n- Global Earnings & Risk Appetite: Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.\n- Sector-Specific Cushion: Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 22705, stop 22180.26, target 23859.42 (RR 2.2)\n- BANKNIFTY BULLISH entry 50960, stop 49292.6, target 54628.28 (RR 2.2)\n\nEducational note: This summary is for market research and content preparation only, not financial advice.",
   "publishedAt": null,
-  "marketSnapshots": [
-    {
-      "symbol": "SPX",
-      "name": "S&P 500",
-      "closeValue": 5069.53,
-      "changePercent": -0.82,
-      "source": "Alpha Vantage Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "SP:SPX"
-    },
-    {
-      "symbol": "NDX",
-      "name": "Nasdaq 100",
-      "closeValue": 17718.11,
-      "changePercent": -1.21,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "NASDAQ:NDX"
-    },
-    {
-      "symbol": "DJI",
-      "name": "Dow Jones",
-      "closeValue": 38239.66,
-      "changePercent": -0.44,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "DJ:DJI"
-    },
-    {
-      "symbol": "NIFTY",
-      "name": "Nifty 50",
-      "closeValue": 22475.85,
-      "changePercent": -0.22,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSE:NIFTY"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "name": "Bank Nifty",
-      "closeValue": 48210.3,
-      "changePercent": 0.18,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSE:BANKNIFTY"
-    },
-    {
-      "symbol": "GIFTNIFTY",
-      "name": "GIFT Nifty",
-      "closeValue": 22480.5,
-      "changePercent": -0.38,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSEIX:NIFTY1!"
-    },
-    {
-      "symbol": "NIKKEI",
-      "name": "Nikkei 225",
-      "closeValue": 38105.2,
-      "changePercent": 0.51,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Japan",
-      "session": "tokyo",
-      "tradingViewSymbol": "TVC:NI225"
-    },
-    {
-      "symbol": "HSI",
-      "name": "Hang Seng",
-      "closeValue": 17763.03,
-      "changePercent": -0.34,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Hong Kong",
-      "session": "hongkong",
-      "tradingViewSymbol": "TVC:HSI"
-    },
-    {
-      "symbol": "SHCOMP",
-      "name": "Shanghai Composite",
-      "closeValue": 3048.23,
-      "changePercent": 0.12,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Mainland China",
-      "session": "shanghai",
-      "tradingViewSymbol": "SSE:000001"
-    },
-    {
-      "symbol": "KOSPI",
-      "name": "KOSPI",
-      "closeValue": 2692.06,
-      "changePercent": -0.27,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "South Korea",
-      "session": "seoul",
-      "tradingViewSymbol": "KRX:KOSPI"
-    },
-    {
-      "symbol": "TAIEX",
-      "name": "Taiwan Weighted",
-      "closeValue": 20328.64,
-      "changePercent": 0.44,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Taiwan",
-      "session": "taipei",
-      "tradingViewSymbol": "TWSE:TAIEX"
-    },
-    {
-      "symbol": "STI",
-      "name": "Straits Times",
-      "closeValue": 3285.1,
-      "changePercent": -0.16,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Singapore",
-      "session": "singapore",
-      "tradingViewSymbol": "TVC:STI"
-    },
-    {
-      "symbol": "ASX200",
-      "name": "ASX 200",
-      "closeValue": 7694.8,
-      "changePercent": 0.23,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Australia",
-      "session": "sydney",
-      "tradingViewSymbol": "ASX:XJO"
-    },
-    {
-      "symbol": "DXY",
-      "name": "US Dollar Index",
-      "closeValue": 106.18,
-      "changePercent": 0.34,
-      "source": "MarketAux Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "TVC:DXY"
-    },
-    {
-      "symbol": "BRENT",
-      "name": "Brent Crude",
-      "closeValue": 91.42,
-      "changePercent": 1.64,
-      "source": "MarketAux Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "TVC:UKOIL"
-    }
-  ],
-  "themes": [
-    {
-      "digestDate": "2026-05-05",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Treasury yields gained Monday as traders looked out for more U.S. factory data, while monitoring developments in the Middle East.",
-      "sentimentScore": -0.65,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-05",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Fed chair nominee Kevin Warsh is putting his own spin on the independence of monetary policy. Many former Fed officials aren't sold.",
-      "sentimentScore": -0.422,
-      "evidenceCount": 4
-    },
-    {
-      "digestDate": "2026-05-05",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.",
-      "sentimentScore": 0.51,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-05",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.",
-      "sentimentScore": 0.53,
-      "evidenceCount": 1
-    }
-  ],
-  "tradeSetups": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 22705,
-      "stopLoss": 22180.26,
-      "target": 23859.42,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
-      "digestDate": "2026-05-05"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "direction": "BULLISH",
-      "entry": 50960,
-      "stopLoss": 49292.6,
-      "target": 54628.28,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
-      "digestDate": "2026-05-05"
-    }
-  ],
   "marketDataMode": "",
   "marketDataError": null,
   "newsDataMode": "live",
@@ -275,176 +58,6 @@
   "durationMillis": 4346,
   "scheduledFor": "2026-05-05T07:15:00+05:30",
   "runMode": "scheduled-verified-source-data",
-  "news": [
-    {
-      "publishedAt": "2026-05-04T09:23:53.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Treasury yields edge higher as traders monitor factory data and Middle East developments",
-      "summary": "Treasury yields gained Monday as traders looked out for more U.S. factory data, while monitoring developments in the Middle East.",
-      "takeaway": "Treasury yields gained Monday as traders looked out for more US factory data, while monitoring developments; the yield move changes the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/04/treasury-yields-rise-as-traders-monitor-factory-data-and-mideast-moves.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Treasury yields edge higher as traders monitor factory data and Middle East developments source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-04T14:21:20.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Warsh's take on Fed independence is met with confusion and some concern",
-      "summary": "Fed chair nominee Kevin Warsh is putting his own spin on the independence of monetary policy. Many former Fed officials aren't sold.",
-      "takeaway": "Fed chair nominee Kevin Warsh is putting his own spin on the independence of monetary policy; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/04/fed-kevin-warsh-interest-rates.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Warshs Take",
-        "accent": "#7c3aed",
-        "alt": "Warsh's take on Fed independence is met with confusion and some concern source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-05T00:20:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019;",
-      "summary": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.",
-      "takeaway": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core US market; Palantir's software rebound is a Nifty IT sentiment cue only if Indian exporters participate.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Palantir must translate into exporter participation.",
-      "sourceUrl": "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Palantir",
-        "theme": "Software",
-        "accent": "#2563eb",
-        "alt": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019; source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-04T22:51:10.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020",
-      "summary": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.",
-      "takeaway": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to US government agencies; Palantir's software rebound is a Nifty IT sentiment cue only if Indian exporters participate.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.",
-      "watchFor": "Watch Market during the first-hour range; trade it only if it broadens into sector leadership.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Palantir",
-        "theme": "Software",
-        "accent": "#2563eb",
-        "alt": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-05T00:38:58.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Andy Jassy says Amazon investors will be rewarded by all its AI spending",
-      "summary": "CEO Andy Jassy said Amazon’s massive AI spending reflects a once-in-a-generation opportunity and will ultimately reward investors.",
-      "takeaway": "CEO Andy Jassy said Amazon’s massive AI spending reflects a once-in-a-generation opportunity and will ultimately reward investors; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "Global Tech matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
-      "sentimentLabel": "negative",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Andy Jassy says Amazon investors will be rewarded by all its AI spending source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-04T23:05:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Amazon is taking on FedEx and UPS. That may not be so simple.",
-      "summary": "FedEx and UPS shares are falling, but one analyst isn&#x2019;t sure that Amazon&#x2019;s new service will have a significantly disruptive effect.",
-      "takeaway": "FedEx and UPS shares are falling, but one analyst isn&#x2019;t sure that Amazon&#x2019;s new service will have; keep the read-through to risk appetite until Indian breadth confirms after the opening range.",
-      "whyItMatters": "Market matters because it can shift the first-hour balance between macro pressure and domestic breadth.",
-      "indiaImpact": "Global earnings support risk appetite only if Indian breadth confirms after the first 30 minutes.",
-      "watchFor": "Watch Market during the first-hour range; trade it only if it broadens into sector leadership.",
-      "sourceUrl": "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Amazon Taking",
-        "accent": "#059669",
-        "alt": "Amazon is taking on FedEx and UPS. That may not be so simple. source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-05T00:37:11.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Oil slides as traders assess Middle East developments with Iran attacks keeping markets jittery",
-      "summary": "Oil prices declined on Tuesday, retreating from sharp gains in the previous session.",
-      "takeaway": "Oil prices declined on Tuesday, retreating from sharp gains in the previous session; lower crude eases India import-cost pressure if the move survives the morning handoff.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/05/oil-prices-today-wti-brent-iran-war-trump-hormuz.html",
-      "sentimentLabel": "negative",
-      "entityName": "Brent Crude",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil slides as traders assess Middle East developments with Iran attacks keeping markets jittery source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-04T21:42:35.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz",
-      "summary": "Stock market indices fell, and oil prices rose after the reported attack on the United Arab Emirates by Iran, which came nearly a month into a ceasefire.",
-      "takeaway": "Stock market indices fell, and oil prices rose after the reported attack on the United Arab Emirates; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
-      "sentimentLabel": "negative",
-      "entityName": "Brent Crude",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz source thumbnail"
-      }
-    }
-  ],
   "newsCards": [
     {
       "title": "Treasury yields edge higher as traders monitor factory data and Middle East developments",
@@ -453,7 +66,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/04/treasury-yields-rise-as-traders-monitor-factory-data-and-mideast-moves.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Treasury yields edge higher as traders monitor factory data and Middle East developments source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -463,7 +76,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/04/fed-kevin-warsh-interest-rates.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWarshs%20Take%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Warsh's take on Fed independence is met with confusion and some concern source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -473,7 +86,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019; source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -483,7 +96,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020 source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -493,7 +106,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Andy Jassy says Amazon investors will be rewarded by all its AI spending source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -503,7 +116,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAmazon%20Taking%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Amazon is taking on FedEx and UPS. That may not be so simple. source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -513,7 +126,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/05/oil-prices-today-wti-brent-iran-war-trump-hormuz.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil slides as traders assess Middle East developments with Iran attacks keeping markets jittery source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -523,8 +136,1831 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Rates / Fed path Weighs On Opening Range",
+    "correctedTitle": "Rising Treasury yields weigh on rate-sensitive Indian stocks ahead open",
+    "correctedAt": "2026-07-01T15:41:58.724Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 5069.53,
+      "changePercent": -0.82,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SP:SPX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.204Z",
+          "close": 5111.44
+        },
+        {
+          "time": "2026-08-20T06:38:22.204Z",
+          "close": 5115.4
+        },
+        {
+          "time": "2026-08-20T06:53:22.204Z",
+          "close": 5108.99
+        },
+        {
+          "time": "2026-08-20T07:08:22.204Z",
+          "close": 5102.59
+        },
+        {
+          "time": "2026-08-20T07:23:22.204Z",
+          "close": 5096.7
+        },
+        {
+          "time": "2026-08-20T07:38:22.204Z",
+          "close": 5091.72
+        },
+        {
+          "time": "2026-08-20T07:53:22.204Z",
+          "close": 5087.96
+        },
+        {
+          "time": "2026-08-20T08:08:22.204Z",
+          "close": 5085.58
+        },
+        {
+          "time": "2026-08-20T08:23:22.204Z",
+          "close": 5084.61
+        },
+        {
+          "time": "2026-08-20T08:38:22.204Z",
+          "close": 5084.89
+        },
+        {
+          "time": "2026-08-20T08:53:22.204Z",
+          "close": 5086.17
+        },
+        {
+          "time": "2026-08-20T09:08:22.204Z",
+          "close": 5088.08
+        },
+        {
+          "time": "2026-08-20T09:23:22.204Z",
+          "close": 5090.21
+        },
+        {
+          "time": "2026-08-20T09:38:22.204Z",
+          "close": 5092.13
+        },
+        {
+          "time": "2026-08-20T09:53:22.204Z",
+          "close": 5093.44
+        },
+        {
+          "time": "2026-08-20T10:08:22.204Z",
+          "close": 5093.85
+        },
+        {
+          "time": "2026-08-20T10:23:22.204Z",
+          "close": 5093.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.204Z",
+          "close": 5091.26
+        },
+        {
+          "time": "2026-08-20T10:53:22.204Z",
+          "close": 5088.24
+        },
+        {
+          "time": "2026-08-20T11:08:22.204Z",
+          "close": 5084.26
+        },
+        {
+          "time": "2026-08-20T11:23:22.204Z",
+          "close": 5079.58
+        },
+        {
+          "time": "2026-08-20T11:38:22.204Z",
+          "close": 5074.55
+        },
+        {
+          "time": "2026-08-20T11:53:22.204Z",
+          "close": 5069.51
+        },
+        {
+          "time": "2026-08-20T12:08:22.204Z",
+          "close": 5069.53
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 17718.11,
+      "changePercent": -1.21,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 17935.13
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 17895.78
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 17910.11
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 17924.35
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 17936
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 17942.91
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 17943.51
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 17936.93
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 17923.12
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 17902.77
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 17877.27
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 17848.5
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 17818.61
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 17789.82
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 17764.13
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 17743.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 17727.92
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 17718.83
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 17715.61
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 17717.35
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 17722.67
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 17729.86
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 17737.07
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 17718.11
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 38239.66,
+      "changePercent": -0.44,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "DJ:DJI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 38408.66
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 38442.32
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 38419.07
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 38393.67
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 38368.1
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 38344.28
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 38323.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 38308.24
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 38298.01
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 38293.34
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 38293.75
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 38298.25
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 38305.43
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 38313.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 38321.27
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 38326.68
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 38328.62
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 38326.25
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 38319.21
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 38307.66
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 38292.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 38273.93
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 38254.05
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 38239.66
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22475.85,
+      "changePercent": -0.22,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:NIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 22525.41
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 22509.58
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 22504.79
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 22501.79
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 22500.63
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 22501.14
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 22502.98
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 22505.69
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 22508.73
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 22511.53
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 22513.58
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 22514.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 22513.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 22511.74
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 22508.09
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 22503.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 22497.26
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 22490.85
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 22484.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 22478.34
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 22473.1
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 22468.97
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 22466.09
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 22475.85
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 48210.3,
+      "changePercent": 0.18,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 48123.68
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 48125.86
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 48141.76
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 48156.18
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 48168.03
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 48176.54
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 48181.31
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 48182.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 48180.1
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 48175.28
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 48168.89
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 48162.07
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 48155.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 48151.54
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 48149.66
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 48150.81
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 48155.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 48162.49
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 48172.34
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 48183.95
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 48196.42
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 48208.79
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 48220.15
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 48210.3
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 22480.5,
+      "changePercent": -0.38,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSEIX:NIFTY1!",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 22480.5
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 38105.2,
+      "changePercent": 0.51,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:NI225",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 37911.85
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 37952.94
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 37977.54
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 37996.49
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 38008.85
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 38014.41
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 38013.7
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 38007.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 37998.6
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 37987.88
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 37977.79
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 37970.26
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 37966.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 37968.76
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 37976.39
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 37989.64
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 38007.78
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 38029.6
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 38053.52
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 38077.82
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 38100.79
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 38120.96
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 38137.19
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 38105.2
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 17763.03,
+      "changePercent": -0.34,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:HSI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 17823.63
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 17800.13
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 17799.25
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 17800.33
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 17802.91
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 17806.39
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 17810.11
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 17813.37
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 17815.58
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 17816.25
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 17815.09
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 17812
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 17807.1
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 17800.7
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 17793.25
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 17785.29
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 17777.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 17770.18
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 17764.03
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 17759.31
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 17756.18
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 17754.62
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 17754.45
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 17763.03
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3048.23,
+      "changePercent": 0.12,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SSE:000001",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 3044.58
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 3044.39
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 3043.39
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 3043.14
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 3043.13
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 3043.36
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 3044.46
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 3045.23
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 3046.07
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 3046.88
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 3047.62
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 3048.22
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 3048.63
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 3048.84
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 3048.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 3048.69
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 3048.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 3048.01
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 3047.6
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 3047.24
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 3046.97
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 3048.23
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 2692.06,
+      "changePercent": -0.27,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "KRX:KOSPI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 2699.35
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 2698.67
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 2697.59
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 2696.65
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 2695.92
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 2695.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 2695.18
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 2695.17
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 2695.36
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 2695.69
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 2696.08
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 2696.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 2696.74
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 2696.88
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 2696.83
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 2696.56
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 2696.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 2695.44
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 2694.64
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 2693.76
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 2692.85
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 2691.99
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 2691.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 2692.06
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 20328.64,
+      "changePercent": 0.44,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 20239.59
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 20272.6
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 20277.55
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 20279.28
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 20278.12
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 20274.69
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 20269.84
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 20264.54
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 20259.78
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 20256.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 20255.24
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 20256.66
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 20260.84
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 20267.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 20276.72
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 20287.38
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 20298.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 20310.31
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 20320.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 20330.08
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 20337.21
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 20342.08
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 20344.68
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 20328.64
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 3285.1,
+      "changePercent": -0.16,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:STI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 3290.36
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 3291.8
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 3292.08
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 3292.13
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 3291.9
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 3291.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 3290.71
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 3289.84
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 3288.88
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 3287.9
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 3287
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 3286.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 3285.65
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 3285.29
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 3285.15
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 3285.23
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 3285.47
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 3285.82
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 3286.22
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 3286.59
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 3286.88
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 3287.03
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 3287.01
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 3285.1
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 7694.8,
+      "changePercent": 0.23,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "ASX:XJO",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 7677.14
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 7683.83
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 7683.74
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 7683.15
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 7682.21
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 7681.12
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 7680.07
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 7679.26
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 7678.84
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 7678.93
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 7679.59
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 7680.79
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 7682.49
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 7684.56
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 7686.85
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 7689.19
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 7691.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 7693.38
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 7694.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 7696.07
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 7696.73
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 7696.94
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 7696.79
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 7694.8
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 106.18,
+      "changePercent": 0.34,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:DXY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 105.82
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 105.94
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 105.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 105.88
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 105.86
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 105.89
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 106
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 106.05
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 106.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 106.14
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 106.17
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 106.2
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 106.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 106.18
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 91.42,
+      "changePercent": 1.64,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:UKOIL",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.205Z",
+          "close": 89.94
+        },
+        {
+          "time": "2026-08-20T06:38:22.205Z",
+          "close": 90.49
+        },
+        {
+          "time": "2026-08-20T06:53:22.205Z",
+          "close": 90.57
+        },
+        {
+          "time": "2026-08-20T07:08:22.205Z",
+          "close": 90.6
+        },
+        {
+          "time": "2026-08-20T07:23:22.205Z",
+          "close": 90.58
+        },
+        {
+          "time": "2026-08-20T07:38:22.205Z",
+          "close": 90.53
+        },
+        {
+          "time": "2026-08-20T07:53:22.205Z",
+          "close": 90.45
+        },
+        {
+          "time": "2026-08-20T08:08:22.205Z",
+          "close": 90.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.205Z",
+          "close": 90.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.205Z",
+          "close": 90.22
+        },
+        {
+          "time": "2026-08-20T08:53:22.205Z",
+          "close": 90.2
+        },
+        {
+          "time": "2026-08-20T09:08:22.205Z",
+          "close": 90.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.205Z",
+          "close": 90.3
+        },
+        {
+          "time": "2026-08-20T09:38:22.205Z",
+          "close": 90.41
+        },
+        {
+          "time": "2026-08-20T09:53:22.205Z",
+          "close": 90.56
+        },
+        {
+          "time": "2026-08-20T10:08:22.205Z",
+          "close": 90.74
+        },
+        {
+          "time": "2026-08-20T10:23:22.205Z",
+          "close": 90.93
+        },
+        {
+          "time": "2026-08-20T10:38:22.205Z",
+          "close": 91.12
+        },
+        {
+          "time": "2026-08-20T10:53:22.205Z",
+          "close": 91.29
+        },
+        {
+          "time": "2026-08-20T11:08:22.205Z",
+          "close": 91.44
+        },
+        {
+          "time": "2026-08-20T11:23:22.205Z",
+          "close": 91.56
+        },
+        {
+          "time": "2026-08-20T11:38:22.205Z",
+          "close": 91.64
+        },
+        {
+          "time": "2026-08-20T11:53:22.205Z",
+          "close": 91.69
+        },
+        {
+          "time": "2026-08-20T12:08:22.205Z",
+          "close": 91.42
+        }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Treasury yields edge higher as traders monitor factory data and Middle East developments",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-04T09:23:53.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/treasury-yields-rise-as-traders-monitor-factory-data-and-mideast-moves.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Treasury yields edge higher as traders monitor factory data and Middle East developments source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Warsh's take on Fed independence is met with confusion and some concern",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-04T14:21:20.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/fed-kevin-warsh-interest-rates.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EWarshs%20Take%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Warsh's take on Fed independence is met with confusion and some concern source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019;",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-05T00:20:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/palantir-posts-its-fastest-revenue-growth-ever-while-calling-out-ai-slop-03108298?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Palantir posts its fastest revenue growth ever while calling out &#x2018;AI slop&#x2019; source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T22:51:10.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/palantir-pltr-q1-earnings-report-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESoftware%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPalantir%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Palantir tops estimates on 85% revenue growth, fastest expansion since market debut in 2020 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Andy Jassy says Amazon investors will be rewarded by all its AI spending",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-05T00:38:58.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/andy-jassy-amazon-investors-rewarded-ai-spending.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Andy Jassy says Amazon investors will be rewarded by all its AI spending source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Amazon is taking on FedEx and UPS. That may not be so simple.",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-04T23:05:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/amazon-is-taking-on-fedex-and-ups-that-may-not-be-so-simple-101f1bcf?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAmazon%20Taking%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Amazon is taking on FedEx and UPS. That may not be so simple. source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Oil slides as traders assess Middle East developments with Iran attacks keeping markets jittery",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-05T00:37:11.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/05/oil-prices-today-wti-brent-iran-war-trump-hormuz.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil slides as traders assess Middle East developments with Iran attacks keeping markets jittery source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-04T21:42:35.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/04/iran-war-uae-trump-ceasefire-missiles.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Iran attacks UAE; U.S. says it sank boats in Strait of Hormuz source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Treasury yields gained Monday as traders looked out for more U.S. factory data, while monitoring developments in the Middle East.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Fed chair nominee Kevin Warsh is putting his own spin on the independence of monetary policy. Many former Fed officials aren't sold.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Palantir reported better-than-expected revenue and profit, driven by growth in sales to U.S. government agencies.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Palantir earnings beat expectations on the heels of explosive demand in the company&#x2019;s core U.S. market.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 22705,
+      "stopLoss": 22180.26,
+      "target": 23859.42,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
+      "outcome": null
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "entry": 50960,
+      "stopLoss": 49292.6,
+      "target": 54628.28,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -553,17 +1989,12 @@
       "remainingRiskReward": 2.2
     }
   ],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 3
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-05.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Rates / Fed path Weighs On Opening Range",
-    "correctedTitle": "Rising Treasury yields weigh on rate-sensitive Indian stocks ahead open",
-    "correctedAt": "2026-07-01T15:41:58.724Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

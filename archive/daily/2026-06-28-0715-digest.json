@@ -50,6 +50,110 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -0.047%, Nasdaq 100 -1.094%, Dow Jones -0.086%, Nikkei 225 -4.153%, Hang Seng -1.755%, Shanghai Composite -2.258%, KOSPI -5.813%, Taiwan Weighted -3.64%, Straits Times -0.522%, ASX 200 +0.177%, US Dollar Index +0.009%, Brent Crude -3.841%, USD/INR -0.09%, Gold (COMEX) +1.203%, India VIX -2.503%, GIFT Nifty +0%\n\nNarrative Themes:\n- Global Risk-Off Cue: AI trade cools as tech stocks sell off despite strong earnings.\n- Global Earnings & Risk Appetite: Dow Jones outperforms, S&P 500 and Nasdaq decline amid tech weakness.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "25-Jun-2026",
+    "fiiNet": 383.76,
+    "fiiBuy": 18988.03,
+    "fiiSell": 18604.27,
+    "diiNet": 5747.75,
+    "diiBuy": 24844.03,
+    "diiSell": 19096.28
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The AI trade cooled and oil sank, encapsulating the essence of Wall Street's volatile week, where divergent performances across indices and sectors underscored the complexity of current market dynamics. The Nasdaq's 4.6% weekly decline starkly contrasted with the Dow Jones Industrial Average's record high, as investors recalibrated their expectations amidst a mixed bag of earnings reports and macroeconomic indicators. The tech-heavy Nasdaq was particularly affected by the cooling of the AI trade, with investor concerns rising as tech companies aggressively sold stock, echoing patterns reminiscent of the dot-com boom and potentially impacting bondholders. This development has significant implications for the global tech narrative, which has been a crucial driver of market sentiment in recent times.\n\nThe global tech context is likely to continue influencing Indian markets, particularly the Nifty IT index, which has been closely tied to the performance of global tech giants. However, for this narrative to translate into a meaningful India trade, local breadth and USD/INR support are essential. The upcoming IPO of AI cybersecurity firm Kratikal Tech may provide some impetus to the AI-driven cybersecurity narrative, but its impact on the broader IT sector will depend on the reaction of exporter-led stocks. Meanwhile, the FII flow reversal, which has highlighted stock picks that have outperformed, underscores the importance of FII/DII flow alignment and index breadth in determining the broader market direction.\n\nDomestically, the Nifty Pharma and healthcare indices have been exhibiting independent movements, with a bullish trend emerging only if defensives lead beyond individual stock performances. The Brent crude price, currently at $72.6, has been another critical factor, with firm prices pressuring Oil Marketing Companies (OMCs) and aviation stocks, while softer prices could support margin relief. As such, the India read-through on oil is conditional on Brent direction, making it essential to monitor crude price movements closely. The Nifty 50 and Bank Nifty, having ended the week with modest gains, now face a crucial test at the 24,500 level, with a breakout potentially defining the next trend.\n\nAs Indian markets open, traders will be closely watching the Nifty futures, USD/INR, and Brent crude prices to gauge the morning bias. A sustained move beyond the 24,500 level on Nifty could pave the way for further gains, provided it is accompanied by internal breadth and FII/DII flow confirmation. Conversely, a failure to break through this resistance zone may lead to a retest of lower support levels. With the global tech narrative continuing to evolve and domestic indices facing crucial resistance levels, traders will need to remain vigilant and responsive to emerging market dynamics.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 15,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 64559,
+  "scheduledFor": "2026-06-28T07:15:00+05:30",
+  "marketUpdateMode": true,
+  "runMode": "scheduled-market-update",
+  "nonTradingSession": {
+    "state": "weekend_closed",
+    "reason": "Sunday",
+    "source": "weekend"
+  },
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-27T09:02:09.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/dala-street-week-ahead-nifty-to-test-crucial-24500-level-breakout-may-define-next-trend/articleshow/132031360.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDalal%20Street%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "US stock markets: Dow Jones hits record high, Nasdaq sinks 4.6% - What shook Wall Street this week?",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-27T04:59:59.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/us-stock-markets-dow-jones-hits-record-high-nasdaq-sinks-4-6-what-shook-wall-street-this-week-11782534509448.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "US stock markets: Dow Jones hits record high, Nasdaq sinks 4.6% - What shook Wall Street this week? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "AI cybersecurity firm Kratikal Tech to launch ₹39.7 crore IPO on June 30",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-06-27T14:26:48.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/ipo/ai-cybersecurity-firm-kratikal-tech-to-launch-39-7-crore-ipo-on-june-30-126062700747_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "AI cybersecurity firm Kratikal Tech to launch ₹39.7 crore IPO on June 30 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "The FII U-turn nobody noticed: These 6 stocks became multibaggers",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-27T13:14:44.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/the-fii-u-turn-nobody-noticed-these-6-stocks-became-multibaggers/videoshow/132035639.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Fii%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFii%2FDii%20Flow%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "The FII U-turn nobody noticed: These 6 stocks became multibaggers source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-27T16:39:52.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Tech Equity Sales Renew AI Debt-Binge Worries",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-27T19:00:00.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-27/tech-equity-sales-renew-ai-debt-binge-worries-credit-weekly",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tech Equity Sales Renew AI Debt-Binge Worries source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Brent crude drop cools India stock market's oil-linked sector pressure",
+    "correctedAt": "2026-07-01T15:43:13.670Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -58,14 +162,13 @@
       "previousClose": 7357.49,
       "changePercent": -0.047,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T21:07:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T21:07:00.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-26T13:30:00.000Z",
@@ -796,14 +899,13 @@
       "previousClose": 29440.32,
       "changePercent": -1.094,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-26T13:30:00.000Z",
@@ -1534,14 +1636,13 @@
       "previousClose": 51920.62,
       "changePercent": -0.086,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T21:11:58.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T21:11:58.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-26T13:30:00.000Z",
@@ -2272,14 +2373,13 @@
       "previousClose": 24021.65,
       "changePercent": 0.143,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:01:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:01:20.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T04:16:20.000Z",
@@ -2386,14 +2486,13 @@
       "previousClose": 58150.35,
       "changePercent": 0.046,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:01:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:01:20.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T04:16:20.000Z",
@@ -2500,15 +2599,13 @@
       "previousClose": 72366.34,
       "changePercent": -4.153,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-26T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -3239,15 +3336,13 @@
       "previousClose": 23076.91,
       "changePercent": -1.755,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-26T08:08:32.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T08:08:32.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-26T01:30:00.000Z",
@@ -3978,15 +4073,13 @@
       "previousClose": 4120.28,
       "changePercent": -2.258,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-26T07:00:24.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T07:00:24.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-26T01:30:00.000Z",
@@ -4717,15 +4810,13 @@
       "previousClose": 8930.3,
       "changePercent": -5.813,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-26T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -5456,15 +5547,13 @@
       "previousClose": 46255.26,
       "changePercent": -3.64,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-26T05:33:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T05:33:25.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-26T01:00:00.000Z",
@@ -6195,15 +6284,13 @@
       "previousClose": 5218.96,
       "changePercent": -0.522,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-26T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-26T01:00:00.000Z",
@@ -6934,15 +7021,13 @@
       "previousClose": 8748.7,
       "changePercent": 0.177,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-26T07:21:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T07:21:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -7673,14 +7758,13 @@
       "previousClose": 101.36,
       "changePercent": 0.009,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T20:59:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T20:59:59.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-26T15:14:59.000Z",
@@ -7787,14 +7871,13 @@
       "previousClose": 75.5,
       "changePercent": -3.841,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T20:59:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T20:59:59.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-26T15:14:59.000Z",
@@ -7901,14 +7984,13 @@
       "previousClose": 94.39,
       "changePercent": -0.09,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-26T21:16:54.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T21:16:54.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-26T01:20:00.000Z",
@@ -8003,14 +8085,13 @@
       "previousClose": 4047.6,
       "changePercent": 1.203,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T20:59:57.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T20:59:57.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-26T15:14:57.000Z",
@@ -8117,14 +8198,13 @@
       "previousClose": 13.39,
       "changePercent": -2.503,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:04:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:04:29.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-25T04:19:29.000Z",
@@ -8229,194 +8309,115 @@
       "name": "GIFT Nifty",
       "closeValue": 23980,
       "changePercent": 0,
-      "source": "NSE IFSC (seed reference)",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.274Z",
+          "close": 23980
+        },
+        {
+          "time": "2026-08-20T06:38:22.274Z",
+          "close": 23990.61
+        },
+        {
+          "time": "2026-08-20T06:53:22.274Z",
+          "close": 23984.93
+        },
+        {
+          "time": "2026-08-20T07:08:22.274Z",
+          "close": 23978.91
+        },
+        {
+          "time": "2026-08-20T07:23:22.274Z",
+          "close": 23973.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.274Z",
+          "close": 23968.38
+        },
+        {
+          "time": "2026-08-20T07:53:22.274Z",
+          "close": 23964.94
+        },
+        {
+          "time": "2026-08-20T08:08:22.274Z",
+          "close": 23963.2
+        },
+        {
+          "time": "2026-08-20T08:23:22.274Z",
+          "close": 23963.29
+        },
+        {
+          "time": "2026-08-20T08:38:22.274Z",
+          "close": 23965.13
+        },
+        {
+          "time": "2026-08-20T08:53:22.274Z",
+          "close": 23968.48
+        },
+        {
+          "time": "2026-08-20T09:08:22.274Z",
+          "close": 23972.91
+        },
+        {
+          "time": "2026-08-20T09:23:22.274Z",
+          "close": 23977.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.274Z",
+          "close": 23983
+        },
+        {
+          "time": "2026-08-20T09:53:22.274Z",
+          "close": 23987.55
+        },
+        {
+          "time": "2026-08-20T10:08:22.274Z",
+          "close": 23991.14
+        },
+        {
+          "time": "2026-08-20T10:23:22.274Z",
+          "close": 23993.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.274Z",
+          "close": 23994.19
+        },
+        {
+          "time": "2026-08-20T10:53:22.274Z",
+          "close": 23993.45
+        },
+        {
+          "time": "2026-08-20T11:08:22.274Z",
+          "close": 23991.32
+        },
+        {
+          "time": "2026-08-20T11:23:22.274Z",
+          "close": 23988.09
+        },
+        {
+          "time": "2026-08-20T11:38:22.274Z",
+          "close": 23984.14
+        },
+        {
+          "time": "2026-08-20T11:53:22.274Z",
+          "close": 23979.94
+        },
+        {
+          "time": "2026-08-20T12:08:22.274Z",
+          "close": 23980
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "25-Jun-2026",
-    "fiiNet": 383.76,
-    "fiiBuy": 18988.03,
-    "fiiSell": 18604.27,
-    "diiNet": 5747.75,
-    "diiBuy": 24844.03,
-    "diiSell": 19096.28
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The AI trade cooled and oil sank, encapsulating the essence of Wall Street's volatile week, where divergent performances across indices and sectors underscored the complexity of current market dynamics. The Nasdaq's 4.6% weekly decline starkly contrasted with the Dow Jones Industrial Average's record high, as investors recalibrated their expectations amidst a mixed bag of earnings reports and macroeconomic indicators. The tech-heavy Nasdaq was particularly affected by the cooling of the AI trade, with investor concerns rising as tech companies aggressively sold stock, echoing patterns reminiscent of the dot-com boom and potentially impacting bondholders. This development has significant implications for the global tech narrative, which has been a crucial driver of market sentiment in recent times.\n\nThe global tech context is likely to continue influencing Indian markets, particularly the Nifty IT index, which has been closely tied to the performance of global tech giants. However, for this narrative to translate into a meaningful India trade, local breadth and USD/INR support are essential. The upcoming IPO of AI cybersecurity firm Kratikal Tech may provide some impetus to the AI-driven cybersecurity narrative, but its impact on the broader IT sector will depend on the reaction of exporter-led stocks. Meanwhile, the FII flow reversal, which has highlighted stock picks that have outperformed, underscores the importance of FII/DII flow alignment and index breadth in determining the broader market direction.\n\nDomestically, the Nifty Pharma and healthcare indices have been exhibiting independent movements, with a bullish trend emerging only if defensives lead beyond individual stock performances. The Brent crude price, currently at $72.6, has been another critical factor, with firm prices pressuring Oil Marketing Companies (OMCs) and aviation stocks, while softer prices could support margin relief. As such, the India read-through on oil is conditional on Brent direction, making it essential to monitor crude price movements closely. The Nifty 50 and Bank Nifty, having ended the week with modest gains, now face a crucial test at the 24,500 level, with a breakout potentially defining the next trend.\n\nAs Indian markets open, traders will be closely watching the Nifty futures, USD/INR, and Brent crude prices to gauge the morning bias. A sustained move beyond the 24,500 level on Nifty could pave the way for further gains, provided it is accompanied by internal breadth and FII/DII flow confirmation. Conversely, a failure to break through this resistance zone may lead to a retest of lower support levels. With the global tech narrative continuing to evolve and domestic indices facing crucial resistance levels, traders will need to remain vigilant and responsive to emerging market dynamics.",
-  "themes": [
-    {
-      "digestDate": "2026-06-28",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Micron finished the week in the red despite a blockbuster earnings report. But falling oil prices was good news for the fight against inflation.",
-      "sentimentScore": -0.161,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-06-28",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "For the week ended June 26, the Dow Jones Industrial Average outperformed its peers, gaining about 0.6% to close at a record high. The broader S&P 500, however, declined 2.0%, while the tech-heavy Nasdaq Composite tumbled 4.6%.",
-      "sentimentScore": 0.478,
-      "evidenceCount": 3
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 15,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 64559,
-  "scheduledFor": "2026-06-28T07:15:00+05:30",
-  "marketUpdateMode": true,
-  "runMode": "scheduled-market-update",
-  "nonTradingSession": {
-    "state": "weekend_closed",
-    "reason": "Sunday",
-    "source": "weekend"
-  },
-  "ogImageUrl": null,
   "news": [
-    {
-      "publishedAt": "2026-06-27T09:02:09.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend",
-      "summary": "Indian markets navigated a subdued week, ending with modest gains as Nifty hovered near a crucial resistance zone between 24,160 and 24,500. Technical indicators suggest caution, with a decisive move above this hurdle needed to fuel further upside. Investors are advised to maintain a selective approach, focusing on stock-specific opportunities while managing risk diligently. Pharma and Media sectors show relative strength, while Energy and IT lag.",
-      "takeaway": "Indian markets navigated a subdued week, ending with modest gains as Nifty hovered near a crucial resistance zone; healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
-      "whyItMatters": "Pharma can cushion weak markets, but a defensive bid is different from broad risk appetite.",
-      "indiaImpact": "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.",
-      "watchFor": "Watch Nifty Pharma breadth and defensive rotation; broad index bias still needs Bank Nifty confirmation.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/dala-street-week-ahead-nifty-to-test-crucial-24500-level-breakout-may-define-next-trend/articleshow/132031360.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Dalal Street",
-        "accent": "#7c3aed",
-        "alt": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-27T04:59:59.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "US stock markets: Dow Jones hits record high, Nasdaq sinks 4.6% - What shook Wall Street this week?",
-      "summary": "For the week ended June 26, the Dow Jones Industrial Average outperformed its peers, gaining about 0.6% to close at a record high. The broader S&P 500, however, declined 2.0%, while the tech-heavy Nasdaq Composite tumbled 4.6%.",
-      "takeaway": "For the week ended June 26, the Dow Jones Industrial Average outperformed its peers, gaining about 0.6%; Global Tech is global technology context; Indian exporters need local breadth before it matters.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
-      "watchFor": "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/us-stock-markets-dow-jones-hits-record-high-nasdaq-sinks-4-6-what-shook-wall-street-this-week-11782534509448.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "US stock markets: Dow Jones hits record high, Nasdaq sinks 4.6% - What shook Wall Street this week? source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-27T14:26:48.000Z",
-      "sourceId": "business-standard-markets",
-      "sourceName": "Business Standard Markets",
-      "headline": "AI cybersecurity firm Kratikal Tech to launch ₹39.7 crore IPO on June 30",
-      "summary": "AI-driven cybersecurity firm Kratikal Tech Ltd will launch the Rs 39.7-crore initial public offering (IPO) for public subscription on June 30. The three-day issue, which will close on July 2, is entirely a fresh issue of up to 29.4 lakh equity shares. The anchor portion will open for a day on June 29, the company said in a statement. The company has fixed a price band at Rs 128-135 per share. Its shares will be listed on the BSE SME with a tentative listing date fixed as July 7, it added. The IPO proceeds will be used for investments in its subsidiaries - Threatcop FZ LLC, UAE, and Threatcop AI Inc, USA - towards sales and marketing activities and workforce expansion, besides funding product development and meeting general corporate requirements. \"The proceeds from the issue will enable us to accelerate our global expansion, strengthen our product portfolio, invest in innovation, and further enhance our sales, marketing, and talent capabilities across key markets,\" Pavan Kumar, ...",
-      "takeaway": "Kratikal Tech's ₹39.7 crore IPO launch may boost AI-driven cybersecurity narrative; India impact hinges on broader IT sector reaction.",
-      "whyItMatters": "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
-      "indiaImpact": "Nifty IT may react positively if exporter-led breadth confirms; otherwise, it's global tech context.",
-      "watchFor": "Watch Nifty IT stocks' VWAP and relative performance vs Nifty after 9:45 AM.",
-      "sourceUrl": "https://www.business-standard.com/markets/ipo/ai-cybersecurity-firm-kratikal-tech-to-launch-39-7-crore-ipo-on-june-30-126062700747_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "AI cybersecurity firm Kratikal Tech to launch ₹39.7 crore IPO on June 30 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-27T13:14:44.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "The FII U-turn nobody noticed: These 6 stocks became multibaggers",
-      "summary": "The FII U-turn nobody noticed: These 6 stocks became multibaggers.",
-      "takeaway": "FII flow reversal highlights stock picks that outperformed; broader market reaction depends on FII/DII flow alignment and index breadth.",
-      "whyItMatters": "FII/DII direction can explain whether global cues are being absorbed or rejected by local cash-market demand.",
-      "indiaImpact": "Nifty and Bank Nifty need FII/DII flow confirmation and internal breadth to establish a morning bias.",
-      "watchFor": "Watch FII/DII provisional flow and Nifty VWAP through 9:45 AM.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/the-fii-u-turn-nobody-noticed-these-6-stocks-became-multibaggers/videoshow/132035639.cms",
-      "sentimentLabel": "positive",
-      "entityName": "FII/DII flow",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Fii/Dii Flow",
-        "theme": "The Fii",
-        "accent": "#059669",
-        "alt": "The FII U-turn nobody noticed: These 6 stocks became multibaggers source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-27T16:39:52.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week",
-      "summary": "Micron finished the week in the red despite a blockbuster earnings report. But falling oil prices was good news for the fight against inflation.",
-      "takeaway": "Micron finished the week in the red despite a blockbuster earnings report; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html",
-      "sentimentLabel": "negative",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-27T19:00:00.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "Tech Equity Sales Renew AI Debt-Binge Worries",
-      "summary": "Tech companies are selling stock like it’s the dot-com boom, and some investors fear that’s a bad sign for bondholders.",
-      "takeaway": "Investor concerns rise as tech companies sell stock aggressively, echoing dot-com boom patterns and potentially impacting bondholders.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty IT may react if Nasdaq futures and exporter breadth confirm; otherwise, it's global tech context with weak India transmission.",
-      "watchFor": "Watch Nifty IT advance-decline ratio and Nasdaq futures for sector confirmation.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-27/tech-equity-sales-renew-ai-debt-binge-worries-credit-weekly",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Tech Equity Sales Renew AI Debt-Binge Worries source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend",
       "publisherName": "Economic Times Markets",
@@ -8424,7 +8425,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/dala-street-week-ahead-nifty-to-test-crucial-24500-level-breakout-may-define-next-trend/articleshow/132031360.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDalal%20Street%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Dalal Street Week Ahead: Nifty to test crucial 24,500 level; breakout may define next trend source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -8434,7 +8435,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/us-stock-markets-dow-jones-hits-record-high-nasdaq-sinks-4-6-what-shook-wall-street-this-week-11782534509448.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "US stock markets: Dow Jones hits record high, Nasdaq sinks 4.6% - What shook Wall Street this week? source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -8444,7 +8445,7 @@
       "sourceUrl": "https://www.business-standard.com/markets/ipo/ai-cybersecurity-firm-kratikal-tech-to-launch-39-7-crore-ipo-on-june-30-126062700747_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "AI cybersecurity firm Kratikal Tech to launch ₹39.7 crore IPO on June 30 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -8454,7 +8455,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/the-fii-u-turn-nobody-noticed-these-6-stocks-became-multibaggers/videoshow/132035639.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Fii%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFii%2FDii%20Flow%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "The FII U-turn nobody noticed: These 6 stocks became multibaggers source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -8464,7 +8465,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "The AI trade cooled and oil sank. A closer look at Wall Street's volatile week source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -8474,10 +8475,25 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-27/tech-equity-sales-renew-ai-debt-binge-worries-credit-weekly",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Tech Equity Sales Renew AI Debt-Binge Worries source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     }
   ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Micron finished the week in the red despite a blockbuster earnings report. But falling oil prices was good news for the fight against inflation.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "For the week ended June 26, the Dow Jones Industrial Average outperformed its peers, gaining about 0.6% to close at a record high. The broader S&P 500, however, declined 2.0%, while the tech-heavy Nasdaq Composite tumbled 4.6%.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -8504,17 +8520,12 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 6,
+    "publisherCount": 5
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-28.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Crude / energy risk Tests Risk Appetite",
-    "correctedTitle": "Brent crude drop cools India stock market's oil-linked sector pressure",
-    "correctedAt": "2026-07-01T15:43:13.670Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

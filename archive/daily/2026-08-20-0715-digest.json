@@ -1,0 +1,485 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-08-20",
+  "title": "Crude Prices Shape Initial Hour Levels",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-08-20T06:56:41.567Z",
+  "dailyLead": {
+    "label": "Crude / energy risk",
+    "sourceArticleId": "mint-markets:w6p5e7",
+    "driverType": "crude",
+    "headline": "Stock market today: Gift Nifty hints a positive start; eight day trading stocks to buy on Thursday, 20 August",
+    "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
+    "riskSide": "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.",
+    "supportSide": "Softer Brent and stronger Indian market participation are the confirmation checks.",
+    "giftNiftyBias": null
+  },
+  "publicSourceSelection": {
+    "visibleCount": 8,
+    "shortlistCount": 25,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 1,
+    "indiaPublisherCount": 3,
+    "shortlistIndiaPublisherCount": 11,
+    "directIndiaSourceCount": 3,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 3,
+    "globalContextCount": 5,
+    "globalOnlySourceRatio": 63,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 3 direct India sources, 0 official sources, 3 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-positive-start-eight-day-trading-stocks-to-buy-on-thursday-20-august-11787191132574.html",
+      "https://www.livemint.com/market/commodities/crude-oil-prices-rise-for-fifth-session-straight-after-us-president-trump-targets-irans-economy-brent-above-92bbl-11787190791752.html",
+      "https://www.cnbc.com/2026/08/20/china-defies-global-bond-yield-surge-safe-haven.html",
+      "https://www.cnbc.com/2026/08/20/japan-exports-imports-july-chip-ai.html",
+      "https://www.bloomberg.com/news/articles/2026-08-20/india-bars-jpmorgan-unit-over-alleged-stock-market-manipulation",
+      "https://www.marketwatch.com/story/servicenows-stock-leads-a-software-rally-heres-whats-energizing-investors-0ad74dd1?mod=mw_rss_topstories",
+      "https://www.bloomberg.com/news/articles/2026-08-19/latest-oil-market-news-and-analysis-for-aug-19",
+      "https://www.business-standard.com/economy/news/after-a-gap-of-almost-10-years-india-may-have-to-resort-to-sugar-imports-126081901573_1.html"
+    ]
+  },
+  "archiveSummary": "Crude / energy risk: Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the...",
+  "twoMinuteSummary": "Stock market today: Gift Nifty hints a positive start; eight day trading stocks to buy on Thursday, 20 August The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty +0%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Negative Macro Impact: Chinese government bond yields have remained low amid a global surge.\n\n- Volatile Opening Bias: The Indian stock market is set to open higher on 20 August, supported by global cues, despite recent declines. Brent crude prices remain steady as geopolitical risks persist. Analysts expect cautious trading with key support and resistance levels impacting Nifty 50 and Bank Nifty movements.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
+    "Watch Brent around $92; OMC risk stays live only if supply headlines keep prices firm.",
+    "Watch the US 10Y trend; pair it with Bank Nifty's morning average before assigning direction."
+  ],
+  "overallSentiment": -0.047,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty +0%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21%\n\nNarrative Themes:\n- Negative Macro Impact: Chinese government bond yields have remained low amid a global surge.\n- Volatile Opening Bias: The Indian stock market is set to open higher on 20 August, supported by global cues, despite recent declines. Brent crude prices remain steady as geopolitical risks persist. Analysts expect cautious trading with key support and resistance levels impacting Nifty 50 and Bank Nifty movements.\n- Global Defensive Cue: US-Iran war: Brent, the global oil benchmark, climbed above $92 a barrel after rising more than 5% over the previous four sessions.\n- Global Earnings & investor confidence: India may import 1 mt of raw sugar at nil duty after a decade as low stocks and higher consumption push domestic prices to a record high ahead of the festival season\n- Sector-Specific Cushion: Shipments of semiconductor equipment posted a massive 49.1% jump in value, reflecting continued demand, boosted by the artificial intelligence boom.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "fiiDiiFlows": null,
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "marketDataMode": "mock",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 43,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 2532608,
+  "scheduledFor": "2026-08-20T08:00:00+05:30",
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 5069.53,
+      "changePercent": -0.82,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SP:SPX"
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 17718.11,
+      "changePercent": -1.21,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NASDAQ:NDX"
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 38239.66,
+      "changePercent": -0.44,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "DJ:DJI"
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22475.85,
+      "changePercent": -0.22,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:NIFTY"
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 48210.3,
+      "changePercent": 0.18,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:BANKNIFTY"
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23980,
+      "changePercent": 0,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSEIX:NIFTY1!"
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 38105.2,
+      "changePercent": 0.51,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:NI225"
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 17763.03,
+      "changePercent": -0.34,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:HSI"
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3048.23,
+      "changePercent": 0.12,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SSE:000001"
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 2692.06,
+      "changePercent": -0.27,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "KRX:KOSPI"
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 20328.64,
+      "changePercent": 0.44,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TWSE:TAIEX"
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 3285.1,
+      "changePercent": -0.16,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:STI"
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 7694.8,
+      "changePercent": 0.23,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "ASX:XJO"
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 106.18,
+      "changePercent": 0.34,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:DXY"
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 91.42,
+      "changePercent": 1.64,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:UKOIL"
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 83.52,
+      "changePercent": 0.08,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "FX:USDINR"
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 2338.4,
+      "changePercent": 1.18,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:GOLD"
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 14.82,
+      "changePercent": -3.21,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:INDIAVIX"
+    }
+  ],
+  "newsCards": [
+    {
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-positive-start-eight-day-trading-stocks-to-buy-on-thursday-20-august-11787191132574.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Nifty%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERange%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-rise-for-fifth-session-straight-after-us-president-trump-targets-irans-economy-brent-above-92bbl-11787190791752.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECrude%20Oil%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.cnbc.com/2026/08/20/china-defies-global-bond-yield-surge-safe-haven.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EChina%20Defying%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "sourceUrl": "https://www.cnbc.com/2026/08/20/japan-exports-imports-july-chip-ai.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-20/india-bars-jpmorgan-unit-over-alleged-stock-market-manipulation",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Bars%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EEarnings%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "sourceUrl": "https://www.marketwatch.com/story/servicenows-stock-leads-a-software-rally-heres-whats-energizing-investors-0ad74dd1?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELeads%20Software%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-19/latest-oil-market-news-and-analysis-for-aug-19",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELatest%20Oil%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERisk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.business-standard.com/economy/news/after-a-gap-of-almost-10-years-india-may-have-to-resort-to-sugar-imports-126081901573_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGap%20Almost%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EEarnings%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Chinese government bond yields have remained low amid a global surge.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "The Indian stock market is set to open higher on 20 August, supported by global cues, despite recent declines. Brent crude prices remain steady as geopolitical risks persist. Analysts expect cautious trading with key support and resistance levels impacting Nifty 50 and Bank Nifty movements.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Defensive Cue",
+      "summary": "US-Iran war: Brent, the global oil benchmark, climbed above $92 a barrel after rising more than 5% over the previous four sessions.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & investor confidence",
+      "summary": "India may import 1 mt of raw sugar at nil duty after a decade as low stocks and higher consumption push domestic prices to a record high ahead of the festival season",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Shipments of semiconductor equipment posted a massive 49.1% jump in value, reflecting continued demand, boosted by the artificial intelligence boom.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 5
+  },
+  "news": [
+    {
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-today-gift-nifty-hints-a-positive-start-eight-day-trading-stocks-to-buy-on-thursday-20-august-11787191132574.html",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-rise-for-fifth-session-straight-after-us-president-trump-targets-irans-economy-brent-above-92bbl-11787190791752.html",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.cnbc.com/2026/08/20/china-defies-global-bond-yield-surge-safe-haven.html",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "sourceUrl": "https://www.cnbc.com/2026/08/20/japan-exports-imports-july-chip-ai.html",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-20/india-bars-jpmorgan-unit-over-alleged-stock-market-manipulation",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "sourceUrl": "https://www.marketwatch.com/story/servicenows-stock-leads-a-software-rally-heres-whats-energizing-investors-0ad74dd1?mod=mw_rss_topstories",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-19/latest-oil-market-news-and-analysis-for-aug-19",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "sourceUrl": "https://www.business-standard.com/economy/news/after-a-gap-of-almost-10-years-india-may-have-to-resort-to-sugar-imports-126081901573_1.html",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 71 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 71 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-08-20.webp"
+  }
+}

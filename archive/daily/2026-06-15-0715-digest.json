@@ -52,6 +52,123 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.503%, Nasdaq 100 +0.644%, Dow Jones +0.695%, Nikkei 225 +4.995%, Hang Seng +0.394%, Shanghai Composite +2.537%, KOSPI +5.199%, Taiwan Weighted +2.78%, Straits Times +1.109%, ASX 200 +1.249%, US Dollar Index -0.231%, Brent Crude -4.328%, USD/INR -0.418%, Gold (COMEX) +2.085%, India VIX -3.567%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Global Risk-Off Cue: Trump's warning of potential military action against Iran if no nuclear deal is reached.\n- Diplomatic Boost: India-France partnership in AI, climate change, and civil nuclear energy.\n- Volatile Opening Bias: GIFT Nifty indicates a gap-up start due to a 296-point premium.\n- Sector-Specific Cushion: Meta's AI spending spree yields underwhelming results.\n\nValidated Trading Setups:\n- NIFTY BULLISH — entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "12-Jun-2026",
+    "fiiNet": -1082.18,
+    "fiiBuy": 12064.61,
+    "fiiSell": 13146.79,
+    "diiNet": 5341.29,
+    "diiBuy": 18877.03,
+    "diiSell": 13535.74
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The overnight geopolitical de-escalation between the US and Iran has sent ripples through global markets, with the potential to significantly impact Indian equities. The news of a potential peace deal has led to a sharp decline in Brent crude prices, easing the import-cost pressure on India, a major oil importer. This development is likely to relieve pressure on sectors such as OMCs, aviation, paints, and tyres, which have been battered by high crude prices. Conversely, upstream energy companies may lag as the relative winner scenario gets unwound. The USD/INR is also expected to come under pressure as the risk-off sentiment eases, potentially leading to a more stable currency market.\n\nThe easing of geopolitical tensions has also led to a shift in market sentiment, with the Gift Nifty trading at a premium of nearly 296 points from the Nifty futures' previous close. This indicates a positive opening for Indian equities, with the Nifty 50 and Bank Nifty potentially gaining traction. However, the sustainability of this move will depend on the broader market breadth and the reaction of key sectors such as OMCs and aviation. The comments by French President Emmanuel Macron on India's innovation capabilities may also have a positive impact on the market, potentially boosting sentiment in sectors such as IT and technology. Nevertheless, the warning by Trump on potential military attacks on Iran if Tehran fails to reach a final nuclear accord with the US remains a risk-off trigger that could reverse the gains.\n\nAs the market opens, traders will be closely watching the reaction of key stocks such as Vedanta, Hindustan Petroleum, and ONGC, which are likely to be in focus given their exposure to the energy sector. The HDFC Life share price movement will also be closely watched, with sector support needing Indian peer breadth before it earns index weight. The interplay between global macro shifts, corporate earnings, and Indian market implications will be critical in determining the market's direction. The key battlegrounds for traders will be the energy sector, currency markets, and IT stocks, with the Brent crude price direction being a critical indicator to watch. The morning handoff will be crucial in determining whether the overnight gains are sustained or reversed.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 65678,
+  "scheduledFor": "2026-06-15T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-15T02:20:38.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-hindustan-petroleum-ongc-among-shares-in-focus-today-after-us-iran-peace-deal-11781488683781.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindustan%20Ongc%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "From Gift Nifty, US-Iran peace deal to crude oil prices: 10 key things that changed for Indian stock market over weekend",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-15T01:43:59.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-deal-to-crude-oil-prices-10-key-things-that-changed-for-indian-stock-market-over-weekend-11781487335631.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Us-Iran%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "From Gift Nifty, US-Iran peace deal to crude oil prices: 10 key things that changed for Indian stock market over weekend source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "India is country of innovation, says Macron at Bharat Innovates event",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-14T10:40:50.000Z",
+      "sourceUrl": "https://www.business-standard.com/world-news/india-is-country-of-innovation-says-macron-at-bharat-innovates-event-126061400430_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India is country of innovation, says Macron at Bharat Innovates event source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-15T02:44:53.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-life-stock-price-today-live-15-jun-2026/liveblog/131731657.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHdfc%20Life%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Asia’s Oil-Thirsty Economies Cautiously Welcome US-Iran Deal",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-15T01:31:20.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/asia-welcomes-us-iran-deal-s-pledge-to-open-hormuz-oil-lifeline",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asia’s Oil-Thirsty Economies Cautiously Welcome US-Iran Deal source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Trump Warns Of Military Attacks On Iran If Tehran Fails To Reach Final Nuclear Accord With US",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-15T02:31:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/trump-warns-of-restarting-military-attacks-on-iran-if-tehran-fails-to-reach-final-nuclear-accord-with-us-11636789",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump Warns Of Military Attacks On Iran If Tehran Fails To Reach Final Nuclear Accord With US source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "A year after Meta tapped Alexandr Wang to build a new AI model, Zuckerberg has to sell it",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-14T15:02:35.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/14/meta-hired-alexandr-wang-to-build-ai-its-zuckerbergs-job-to-sell-it.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "A year after Meta tapped Alexandr Wang to build a new AI model, Zuckerberg has to sell it source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Crop Prices Drop as Hormuz Reopening to Ease Farm Input Shock",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-06-15T01:00:25.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/crop-prices-drop-as-hormuz-reopening-would-ease-farm-input-shock",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crop Prices Drop as Hormuz Reopening to Ease Farm Input Shock source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +1.16% — gap-up bias Shape Risk Appetite",
+    "correctedTitle": "Easing US-Iran tensions to boost Indian stocks, oil counters lead gain",
+    "correctedAt": "2026-07-01T15:43:11.286Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -60,14 +177,13 @@
       "previousClose": 7394.3,
       "changePercent": 0.503,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T20:54:28.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T20:54:28.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-12T13:30:00.000Z",
@@ -798,14 +914,13 @@
       "previousClose": 29446.2,
       "changePercent": 0.644,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-12T13:30:00.000Z",
@@ -1536,14 +1651,13 @@
       "previousClose": 50848.8,
       "changePercent": 0.695,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T20:54:27.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T20:54:27.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-12T13:30:00.000Z",
@@ -2274,14 +2388,13 @@
       "previousClose": 23622.9,
       "changePercent": 1.163,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-15T07:01:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T07:01:03.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-15T03:45:00.000Z",
@@ -3012,14 +3125,13 @@
       "previousClose": 56814.8,
       "changePercent": 0.769,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-15T07:01:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T07:01:02.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-15T03:45:00.000Z",
@@ -3750,15 +3862,13 @@
       "previousClose": 66020.04,
       "changePercent": 4.995,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-15T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-15T00:00:00.000Z",
@@ -4489,15 +4599,13 @@
       "previousClose": 24718.1,
       "changePercent": 0.394,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-15T06:46:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:46:02.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-15T01:30:00.000Z",
@@ -5228,15 +5336,13 @@
       "previousClose": 3987.01,
       "changePercent": 2.537,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-15T06:46:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:46:00.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-15T01:30:00.000Z",
@@ -5967,15 +6073,13 @@
       "previousClose": 8123.62,
       "changePercent": 5.199,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-15T06:32:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:32:50.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-15T00:00:00.000Z",
@@ -6706,15 +6810,13 @@
       "previousClose": 44169.04,
       "changePercent": 2.78,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-15T05:33:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T05:33:25.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-15T01:00:00.000Z",
@@ -7445,15 +7547,13 @@
       "previousClose": 5025.8,
       "changePercent": 1.109,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-15T06:46:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:46:02.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-15T01:00:00.000Z",
@@ -8184,15 +8284,13 @@
       "previousClose": 8804,
       "changePercent": 1.249,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-15T06:25:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:25:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-15T00:00:00.000Z",
@@ -8923,14 +9021,13 @@
       "previousClose": 99.75,
       "changePercent": -0.231,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T06:51:01.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:51:01.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-15T04:00:00.000Z",
@@ -9629,14 +9726,13 @@
       "previousClose": 87.33,
       "changePercent": -4.328,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T06:50:58.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:50:58.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-15T04:01:00.000Z",
@@ -10151,14 +10247,13 @@
       "previousClose": 95.1,
       "changePercent": -0.418,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-15T07:01:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T07:01:02.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-14T23:24:00.000Z",
@@ -10889,14 +10984,13 @@
       "previousClose": 4238.8,
       "changePercent": 2.085,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T06:51:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T06:51:00.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-15T04:00:00.000Z",
@@ -11595,14 +11689,13 @@
       "previousClose": 14.72,
       "changePercent": -3.567,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-15T07:01:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T07:01:02.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-15T03:45:00.000Z",
@@ -12331,258 +12424,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.253Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.253Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.253Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.253Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.253Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.253Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.253Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.253Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.253Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.253Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.253Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.253Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.253Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.253Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.253Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.253Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.253Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.253Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.253Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.253Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.253Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.253Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.253Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.253Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "12-Jun-2026",
-    "fiiNet": -1082.18,
-    "fiiBuy": 12064.61,
-    "fiiSell": 13146.79,
-    "diiNet": 5341.29,
-    "diiBuy": 18877.03,
-    "diiSell": 13535.74
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The overnight geopolitical de-escalation between the US and Iran has sent ripples through global markets, with the potential to significantly impact Indian equities. The news of a potential peace deal has led to a sharp decline in Brent crude prices, easing the import-cost pressure on India, a major oil importer. This development is likely to relieve pressure on sectors such as OMCs, aviation, paints, and tyres, which have been battered by high crude prices. Conversely, upstream energy companies may lag as the relative winner scenario gets unwound. The USD/INR is also expected to come under pressure as the risk-off sentiment eases, potentially leading to a more stable currency market.\n\nThe easing of geopolitical tensions has also led to a shift in market sentiment, with the Gift Nifty trading at a premium of nearly 296 points from the Nifty futures' previous close. This indicates a positive opening for Indian equities, with the Nifty 50 and Bank Nifty potentially gaining traction. However, the sustainability of this move will depend on the broader market breadth and the reaction of key sectors such as OMCs and aviation. The comments by French President Emmanuel Macron on India's innovation capabilities may also have a positive impact on the market, potentially boosting sentiment in sectors such as IT and technology. Nevertheless, the warning by Trump on potential military attacks on Iran if Tehran fails to reach a final nuclear accord with the US remains a risk-off trigger that could reverse the gains.\n\nAs the market opens, traders will be closely watching the reaction of key stocks such as Vedanta, Hindustan Petroleum, and ONGC, which are likely to be in focus given their exposure to the energy sector. The HDFC Life share price movement will also be closely watched, with sector support needing Indian peer breadth before it earns index weight. The interplay between global macro shifts, corporate earnings, and Indian market implications will be critical in determining the market's direction. The key battlegrounds for traders will be the energy sector, currency markets, and IT stocks, with the Brent crude price direction being a critical indicator to watch. The morning handoff will be crucial in determining whether the overnight gains are sustained or reversed.",
-  "themes": [
-    {
-      "digestDate": "2026-06-15",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "If Iran failed to reach a final nuclear accord, Trump said he would either restart military attacks on Tehran or make the United States \"the guardian of the Middle East\" in return for 20% of the region's revenues.",
-      "sentimentScore": -0.507,
-      "evidenceCount": 4
-    },
-    {
-      "digestDate": "2026-06-15",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "French President Emmanuel Macron on Sunday said India is a nation of innovation, adding that both countries have a true partnership in critical sectors like AI and climate change. Macron was addressing the Bharat Innovates event which he inaugurated with Prime Minister Narendra Modi in Nice. \"We respect the Make-in-India initiative. France has been part of it in diverse sectors,\" Macron said. \"India is a country of innovation. India and France have a true partnership in critical sectors like AI and climate change,\" he said. \"There is scope to expand bilateral cooperation in civil nuclear energy sector, including in the area of Small Modular Reactors,\" Macron said. Bharat Innovates 2026 is a flagship initiative by the Indian government designed to accelerate the country's deep-tech startups and research ventures on a global stage. The event brings together top innovation startups and Venture Capital funds from India, France, and other countries. Modi is currently in France, where",
-      "sentimentScore": -0.43,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-15",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Gift Nifty was trading around 23,982 level, a premium of nearly 296 points from the Nifty futures’ previous close, indicating a gap-up start for the Indian stock market indices.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-15",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Mark Zuckerberg's mega spending spree began a year ago, when he lured Alexandr Wang to oversee a new AI strategy. The results so far are underwhelming.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 24200,
-      "stopLoss": 22321.51,
-      "target": 28332.69,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-15",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 65678,
-  "scheduledFor": "2026-06-15T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-06-15T02:20:38.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal",
-      "summary": "Stock market today: On Friday, Sensex surged 1,695.40 points, or 2.30%, to finish at 75,527.95, while the Nifty 50 advanced 461.30 points, or 1.99%, ending the session at 23,622.90.",
-      "takeaway": "Geopolitical de-escalation between US and Iran may ease risk-off sentiment, potentially reversing crude and currency moves that impacted Indian markets.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, and OMCs are key India checks as easing geopolitical risk may relieve pressure on these sectors.",
-      "watchFor": "Watch Brent crude price move below 2% at the Asia open for risk-off reversal confirmation.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-hindustan-petroleum-ongc-among-shares-in-focus-today-after-us-iran-peace-deal-11781488683781.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Hindustan Ongc",
-        "accent": "#7c3aed",
-        "alt": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T01:43:59.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, US-Iran peace deal to crude oil prices: 10 key things that changed for Indian stock market over weekend",
-      "summary": "Gift Nifty was trading around 23,982 level, a premium of nearly 296 points from the Nifty futures’ previous close, indicating a gap-up start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,982 level, a premium of nearly 296 points from the Nifty futures’ previous; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
-      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-deal-to-crude-oil-prices-10-key-things-that-changed-for-indian-stock-market-over-weekend-11781487335631.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Gift Us-Iran",
-        "accent": "#0891b2",
-        "alt": "From Gift Nifty, US-Iran peace deal to crude oil prices: 10 key things that changed for Indian stock market over weekend source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-14T10:40:50.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India is country of innovation, says Macron at Bharat Innovates event",
-      "summary": "French President Emmanuel Macron on Sunday said India is a nation of innovation, adding that both countries have a true partnership in critical sectors like AI and climate change. Macron was addressing the Bharat Innovates event which he inaugurated with Prime Minister Narendra Modi in Nice. \"We respect the Make-in-India initiative. France has been part of it in diverse sectors,\" Macron said. \"India is a country of innovation. India and France have a true partnership in critical sectors like AI and climate change,\" he said. \"There is scope to expand bilateral cooperation in civil nuclear energy sector, including in the area of Small Modular Reactors,\" Macron said. Bharat Innovates 2026 is a flagship initiative by the Indian government designed to accelerate the country's deep-tech startups and research ventures on a global stage. The event brings together top innovation startups and Venture Capital funds from India, France, and other countries. Modi is currently in France, where",
-      "takeaway": "French President Emmanuel Macron on Sunday said India is a nation of innovation, adding that both countries have; India's fuel and forex conservation appeal is a domestic risk signal tied to crude, current account pressure.",
-      "whyItMatters": "When policy messaging asks households and businesses to save fuel, gold and foreign exchange, traders should read it as macro stress, not routine politics.",
-      "indiaImpact": "OMCs, aviation, tyres, paints, jewellery, autos, USD/INR and Bank Nifty are the first India checks; broad Nifty needs breadth confirmation.",
-      "watchFor": "Watch Brent, USD/INR, OMCs, aviation, jewellery and Bank Nifty breadth through the first range.",
-      "sourceUrl": "https://www.business-standard.com/world-news/india-is-country-of-innovation-says-macron-at-bharat-innovates-event-126061400430_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "India fuel / forex",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "India is country of innovation, says Macron at Bharat Innovates event source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T02:44:53.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today",
-      "summary": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today.",
-      "takeaway": "HDFC Life's Price Movement Today; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Sector Breadth needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Sector Breadth peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-life-stock-price-today-live-15-jun-2026/liveblog/131731657.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Sector Breadth",
-        "theme": "Hdfc Life",
-        "accent": "#2563eb",
-        "alt": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T01:31:20.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "Asia’s Oil-Thirsty Economies Cautiously Welcome US-Iran Deal",
-      "summary": "Asia was quick to welcome the US-Iran deal to reopen the Strait of Hormuz, through which most of the region’s energy supplies flow. But many warned it’s too early to say if that will offer long-term relief to the world’s most populous and fastest-growing region.",
-      "takeaway": "Asia was quick to welcome the US-Iran deal to reopen the Strait of Hormuz, through which most; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/asia-welcomes-us-iran-deal-s-pledge-to-open-hormuz-oil-lifeline",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Asia’s Oil-Thirsty Economies Cautiously Welcome US-Iran Deal source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T02:31:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Trump Warns Of Military Attacks On Iran If Tehran Fails To Reach Final Nuclear Accord With US",
-      "summary": "If Iran failed to reach a final nuclear accord, Trump said he would either restart military attacks on Tehran or make the United States \"the guardian of the Middle East\" in return for 20% of the region's revenues.",
-      "takeaway": "Trump's warning on Iran escalates geopolitical risk; risk-off signal may travel through crude, gold, and currencies before impacting Indian equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, and FII flows are the direct India checks; OMCs and aviation may also be impacted.",
-      "watchFor": "Watch Brent crude move above 2% at the Asia open for risk-off confirmation.",
-      "sourceUrl": "https://www.ndtvprofit.com/world/trump-warns-of-restarting-military-attacks-on-iran-if-tehran-fails-to-reach-final-nuclear-accord-with-us-11636789",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Trump Warns Of Military Attacks On Iran If Tehran Fails To Reach Final Nuclear Accord With US source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-14T15:02:35.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "A year after Meta tapped Alexandr Wang to build a new AI model, Zuckerberg has to sell it",
-      "summary": "Mark Zuckerberg's mega spending spree began a year ago, when he lured Alexandr Wang to oversee a new AI strategy. The results so far are underwhelming.",
-      "takeaway": "Meta's underwhelming AI results may dampen global tech sentiment; India impact depends on listed peer reaction and exporter breadth.",
-      "whyItMatters": "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
-      "indiaImpact": "Nifty IT may react if global tech sentiment shifts; otherwise, it's global-only context without direct India trade read.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures for confirmation.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/14/meta-hired-alexandr-wang-to-build-ai-its-zuckerbergs-job-to-sell-it.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "A year after Meta tapped Alexandr Wang to build a new AI model, Zuckerberg has to sell it source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T01:00:25.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "Crop Prices Drop as Hormuz Reopening to Ease Farm Input Shock",
-      "summary": "Grain and vegetable oil futures declined on expectations a potential reopening of the Strait of Hormuz would improve access to vital crop inputs, helping to ease the threat of food inflation brought on by the months-long war in the Middle East.",
-      "takeaway": "Grain and vegetable oil futures declined on expectations a potential reopening of the Strait of Hormuz would improve; lower crude eases India import-cost pressure if the move survives the morning handoff.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/crop-prices-drop-as-hormuz-reopening-would-ease-farm-input-shock",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Crop Prices Drop as Hormuz Reopening to Ease Farm Input Shock source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal",
       "publisherName": "Mint Markets",
@@ -12590,7 +12540,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-hindustan-petroleum-ongc-among-shares-in-focus-today-after-us-iran-peace-deal-11781488683781.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindustan%20Ongc%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Stocks to watch: Vedanta, Hindustan Petroleum, ONGC among shares in focus today after US-Iran peace deal source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12610,7 +12560,7 @@
       "sourceUrl": "https://www.business-standard.com/world-news/india-is-country-of-innovation-says-macron-at-bharat-innovates-event-126061400430_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India is country of innovation, says Macron at Bharat Innovates event source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -12620,7 +12570,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-life-stock-price-today-live-15-jun-2026/liveblog/131731657.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHdfc%20Life%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "HDFC Life Share Price Live Updates: HDFC Life's Price Movement Today source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -12630,7 +12580,7 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/asia-welcomes-us-iran-deal-s-pledge-to-open-hormuz-oil-lifeline",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Asia’s Oil-Thirsty Economies Cautiously Welcome US-Iran Deal source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12640,7 +12590,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/world/trump-warns-of-restarting-military-attacks-on-iran-if-tehran-fails-to-reach-final-nuclear-accord-with-us-11636789",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Trump Warns Of Military Attacks On Iran If Tehran Fails To Reach Final Nuclear Accord With US source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12650,7 +12600,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/14/meta-hired-alexandr-wang-to-build-ai-its-zuckerbergs-job-to-sell-it.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "A year after Meta tapped Alexandr Wang to build a new AI model, Zuckerberg has to sell it source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -12660,8 +12610,47 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-06-15/crop-prices-drop-as-hormuz-reopening-would-ease-farm-input-shock",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Crop Prices Drop as Hormuz Reopening to Ease Farm Input Shock source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "If Iran failed to reach a final nuclear accord, Trump said he would either restart military attacks on Tehran or make the United States \"the guardian of the Middle East\" in return for 20% of the region's revenues.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Negative Macro Impact",
+      "summary": "French President Emmanuel Macron on Sunday said India is a nation of innovation, adding that both countries have a true partnership in critical sectors like AI and climate change. Macron was addressing the Bharat Innovates event which he inaugurated with Prime Minister Narendra Modi in Nice. \"We respect the Make-in-India initiative. France has been part of it in diverse sectors,\" Macron said. \"India is a country of innovation. India and France have a true partnership in critical sectors like AI and climate change,\" he said. \"There is scope to expand bilateral cooperation in civil nuclear energy sector, including in the area of Small Modular Reactors,\" Macron said. Bharat Innovates 2026 is a flagship initiative by the Indian government designed to accelerate the country's deep-tech startups and research ventures on a global stage. The event brings together top innovation startups and Venture Capital funds from India, France, and other countries. Modi is currently in France, where",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Gift Nifty was trading around 23,982 level, a premium of nearly 296 points from the Nifty futures’ previous close, indicating a gap-up start for the Indian stock market indices.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Mark Zuckerberg's mega spending spree began a year ago, when he lured Alexandr Wang to oversee a new AI strategy. The results so far are underwhelming.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12690,17 +12679,12 @@
       "remainingRiskReward": 1.249
     }
   ],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-15.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +1.16% — gap-up bias Shape Risk Appetite",
-    "correctedTitle": "Easing US-Iran tensions to boost Indian stocks, oil counters lead gain",
-    "correctedAt": "2026-07-01T15:43:11.286Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

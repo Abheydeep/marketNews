@@ -53,6 +53,134 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.436%, Nasdaq 100 -3.295%, Dow Jones -0.089%, Nikkei 225 -0.879%, Hang Seng +0.325%, Shanghai Composite -1.256%, KOSPI +3.257%, Taiwan Weighted -2.244%, Straits Times +0.197%, ASX 200 +0.244%, US Dollar Index +0.218%, Brent Crude -1.661%, USD/INR -0.077%, Gold (COMEX) -1.53%, India VIX +4.112%, GIFT Nifty +0%\n\nNarrative Themes:\n- US-India Trade Revival: High-level trade talks between India and the US aimed at salvaging a proposed bilateral trade agreement.\n- Global Risk-Off Sentiment: Crude oil prices fell as flows through Strait of Hormuz smoothed, impacting global risk appetite.\n- Sector-Specific Movements: Tech Mahindra and Infosys share price updates indicate sector-specific activity.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "23-Jun-2026",
+    "fiiNet": 17.86,
+    "fiiBuy": 15396.07,
+    "fiiSell": 15378.21,
+    "diiNet": 680.21,
+    "diiBuy": 16863.04,
+    "diiSell": 16182.83
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "Crude oil prices have extended their fall on optimism that flows through the Strait of Hormuz are smoothing out, with global benchmark Brent crude futures for August delivery declining 0.45% to $76.73 per barrel. This development is significant for India, a major oil importer, as softer Brent crude prices can ease import costs and benefit sectors such as aviation, paints, and tyres, while potentially weighing on upstream energy stocks. The current trend in crude oil prices is a key indicator of the market's risk appetite, with a sustained decline potentially signalling a more favourable environment for risk assets.\n\nThe decline in crude oil prices is also reflective of a broader market narrative, with the US-Iran peace talks and the easing of tensions in the Middle East contributing to a more optimistic outlook. This has implications not just for crude oil, but also for other commodities such as gold, and currencies like the USD/INR. A softer Brent crude price can also influence India's energy security concerns, with S&P Global Energy recently highlighting the need for India to diversify not just its energy suppliers, but also its transport routes. This underscores the importance of monitoring geopolitical developments and their impact on crude oil prices.\n\nThe Indian market's reaction to the decline in crude oil prices will be influenced by a range of domestic factors, including the performance of key sectors such as IT and banking. The Nifty IT index, in particular, may be influenced by global tech trends, with the inclusion of Alphabet in the Dow Jones index signalling a pivot towards tech. However, the impact of this development on Indian IT stocks will depend on broader market trends, including the performance of exporter stocks and the direction of Nasdaq futures. Meanwhile, the banking sector is likely to be in focus, with Yes Bank featuring on the stock watchlist and Bank Nifty being a key indicator of the trend's sustainability.\n\nAs the Indian market opens, traders will be watching the Nifty gap direction and Bank Nifty confirmation to gauge the initial trend. The Gift Nifty indicates a muted start, with a premium of 15 points suggesting a slight positive gap, but lacking conviction for a clear direction. Stock-specific moves in Vedanta, IRFC, and Yes Bank will also be in focus, with the performance of these stocks potentially influencing broader market trends. The USD/INR and crude oil prices will also be key indicators to watch, as they can influence the market's risk appetite and sectoral performance.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 67467,
+  "scheduledFor": "2026-06-24T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-24T01:58:42.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-24-june-11782265374822.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-24T02:20:09.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EYes%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-24T01:57:35.000Z",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-fall-on-smoother-flows-through-strait-of-hormuz-brent-below-77-per-barrel-11782265079363.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-24T02:35:23.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETech%20Mahindra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Infosys Share Price Live Updates: Infosys Stock Performance Today",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-24T02:35:04.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EInfosys%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Infosys Share Price Live Updates: Infosys Stock Performance Today source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-06-24T00:25:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-23T19:13:19.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India must diversify energy routes, not just suppliers: S&P Global Energy",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-23T13:09:44.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/diversity-of-routes-to-be-key-for-india-s-energy-security-s-p-global-126062301079_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India must diversify energy routes, not just suppliers: S&P Global Energy source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India, US begin trade talks as two nations rework deal amid tariff changes",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-23T17:33:40.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBegin%20Trade%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India, US begin trade talks as two nations rework deal amid tariff changes source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.8% — gap-up bias Tests Risk Appetite",
+    "correctedTitle": "Nifty stays positive as crude oil prices continue to fall",
+    "correctedAt": "2026-07-01T15:43:13.588Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +189,13 @@
       "previousClose": 7472.79,
       "changePercent": -1.436,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:33:33.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:33:33.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -799,14 +926,13 @@
       "previousClose": 30347.08,
       "changePercent": -3.295,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -1537,14 +1663,13 @@
       "previousClose": 51712.71,
       "changePercent": -0.089,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-23T21:33:31.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-23T21:33:31.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-23T13:30:00.000Z",
@@ -2275,14 +2400,13 @@
       "previousClose": 23824.1,
       "changePercent": 0.799,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:58:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:58:44.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -3013,14 +3137,13 @@
       "previousClose": 57183.75,
       "changePercent": 1.721,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:58:38.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:58:38.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -3751,15 +3874,13 @@
       "previousClose": 69788.38,
       "changePercent": -0.879,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-24T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -4490,15 +4611,13 @@
       "previousClose": 23336.28,
       "changePercent": 0.325,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-24T08:08:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T08:08:26.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-24T01:30:00.000Z",
@@ -5229,15 +5348,13 @@
       "previousClose": 4163.1,
       "changePercent": -1.256,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-24T07:00:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T07:00:30.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-24T01:30:00.000Z",
@@ -5968,15 +6085,13 @@
       "previousClose": 8203.84,
       "changePercent": 3.257,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-24T09:05:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:05:30.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -6707,15 +6822,13 @@
       "previousClose": 47100.65,
       "changePercent": -2.244,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-24T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-24T01:00:00.000Z",
@@ -7446,15 +7559,13 @@
       "previousClose": 5205.74,
       "changePercent": 0.197,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-24T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-24T01:00:00.000Z",
@@ -8185,15 +8296,13 @@
       "previousClose": 8787,
       "changePercent": 0.244,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-24T06:43:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T06:43:45.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-24T00:00:00.000Z",
@@ -8924,14 +9033,13 @@
       "previousClose": 101.41,
       "changePercent": 0.218,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:48:43.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:48:43.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-24T04:00:00.000Z",
@@ -9662,14 +9770,13 @@
       "previousClose": 77.08,
       "changePercent": -1.661,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:48:34.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:48:34.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-24T04:02:00.000Z",
@@ -10400,14 +10507,13 @@
       "previousClose": 94.73,
       "changePercent": -0.077,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-24T09:58:33.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:58:33.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-23T23:31:00.000Z",
@@ -11138,14 +11244,13 @@
       "previousClose": 4149.4,
       "changePercent": -1.53,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T09:48:32.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:48:32.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-24T04:00:00.000Z",
@@ -11876,14 +11981,13 @@
       "previousClose": 12.84,
       "changePercent": 4.112,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-24T09:58:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T09:58:44.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-24T03:45:00.000Z",
@@ -12612,267 +12716,115 @@
       "name": "GIFT Nifty",
       "closeValue": 23980,
       "changePercent": 0,
-      "source": "NSE IFSC (seed reference)",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.268Z",
+          "close": 23980
+        },
+        {
+          "time": "2026-08-20T06:38:22.268Z",
+          "close": 23990.61
+        },
+        {
+          "time": "2026-08-20T06:53:22.268Z",
+          "close": 23984.93
+        },
+        {
+          "time": "2026-08-20T07:08:22.268Z",
+          "close": 23978.91
+        },
+        {
+          "time": "2026-08-20T07:23:22.268Z",
+          "close": 23973.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.268Z",
+          "close": 23968.38
+        },
+        {
+          "time": "2026-08-20T07:53:22.268Z",
+          "close": 23964.94
+        },
+        {
+          "time": "2026-08-20T08:08:22.268Z",
+          "close": 23963.2
+        },
+        {
+          "time": "2026-08-20T08:23:22.268Z",
+          "close": 23963.29
+        },
+        {
+          "time": "2026-08-20T08:38:22.268Z",
+          "close": 23965.13
+        },
+        {
+          "time": "2026-08-20T08:53:22.268Z",
+          "close": 23968.48
+        },
+        {
+          "time": "2026-08-20T09:08:22.268Z",
+          "close": 23972.91
+        },
+        {
+          "time": "2026-08-20T09:23:22.268Z",
+          "close": 23977.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.268Z",
+          "close": 23983
+        },
+        {
+          "time": "2026-08-20T09:53:22.268Z",
+          "close": 23987.55
+        },
+        {
+          "time": "2026-08-20T10:08:22.268Z",
+          "close": 23991.14
+        },
+        {
+          "time": "2026-08-20T10:23:22.268Z",
+          "close": 23993.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.268Z",
+          "close": 23994.19
+        },
+        {
+          "time": "2026-08-20T10:53:22.268Z",
+          "close": 23993.45
+        },
+        {
+          "time": "2026-08-20T11:08:22.268Z",
+          "close": 23991.32
+        },
+        {
+          "time": "2026-08-20T11:23:22.268Z",
+          "close": 23988.09
+        },
+        {
+          "time": "2026-08-20T11:38:22.268Z",
+          "close": 23984.14
+        },
+        {
+          "time": "2026-08-20T11:53:22.268Z",
+          "close": 23979.94
+        },
+        {
+          "time": "2026-08-20T12:08:22.268Z",
+          "close": 23980
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "23-Jun-2026",
-    "fiiNet": 17.86,
-    "fiiBuy": 15396.07,
-    "fiiSell": 15378.21,
-    "diiNet": 680.21,
-    "diiBuy": 16863.04,
-    "diiSell": 16182.83
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "Crude oil prices have extended their fall on optimism that flows through the Strait of Hormuz are smoothing out, with global benchmark Brent crude futures for August delivery declining 0.45% to $76.73 per barrel. This development is significant for India, a major oil importer, as softer Brent crude prices can ease import costs and benefit sectors such as aviation, paints, and tyres, while potentially weighing on upstream energy stocks. The current trend in crude oil prices is a key indicator of the market's risk appetite, with a sustained decline potentially signalling a more favourable environment for risk assets.\n\nThe decline in crude oil prices is also reflective of a broader market narrative, with the US-Iran peace talks and the easing of tensions in the Middle East contributing to a more optimistic outlook. This has implications not just for crude oil, but also for other commodities such as gold, and currencies like the USD/INR. A softer Brent crude price can also influence India's energy security concerns, with S&P Global Energy recently highlighting the need for India to diversify not just its energy suppliers, but also its transport routes. This underscores the importance of monitoring geopolitical developments and their impact on crude oil prices.\n\nThe Indian market's reaction to the decline in crude oil prices will be influenced by a range of domestic factors, including the performance of key sectors such as IT and banking. The Nifty IT index, in particular, may be influenced by global tech trends, with the inclusion of Alphabet in the Dow Jones index signalling a pivot towards tech. However, the impact of this development on Indian IT stocks will depend on broader market trends, including the performance of exporter stocks and the direction of Nasdaq futures. Meanwhile, the banking sector is likely to be in focus, with Yes Bank featuring on the stock watchlist and Bank Nifty being a key indicator of the trend's sustainability.\n\nAs the Indian market opens, traders will be watching the Nifty gap direction and Bank Nifty confirmation to gauge the initial trend. The Gift Nifty indicates a muted start, with a premium of 15 points suggesting a slight positive gap, but lacking conviction for a clear direction. Stock-specific moves in Vedanta, IRFC, and Yes Bank will also be in focus, with the performance of these stocks potentially influencing broader market trends. The USD/INR and crude oil prices will also be key indicators to watch, as they can influence the market's risk appetite and sectoral performance.",
-  "themes": [
-    {
-      "digestDate": "2026-06-24",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "India and the United States opened high-level trade talks on Tuesday aimed at salvaging and recalibrating a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer here as both sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10 per cent tariff on imports from trading partners is due to expire. \"Warm welcome to @USTradeRep Amb Jamieson Greer, @USAmbIndia Amb Sergio Gor and their delegation to @DoC_GoI. Looking forward to productive discussions on the bilateral trade agreement between (India & US),\" Commerce and Industry Minister Piyush Goyal said in a post on X. Greer's two-day visit comes days after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in more than a year on the sidelines of the G7 summit in France on June 17, injecting fresh momentum into trade",
-      "sentimentScore": -0.556,
-      "evidenceCount": 5
-    },
-    {
-      "digestDate": "2026-06-24",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 23,868 level, a premium of nearly 15 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-24",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-24",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
-      "sentimentScore": 0.4,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 67467,
-  "scheduledFor": "2026-06-24T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
   "news": [
-    {
-      "publishedAt": "2026-06-24T01:58:42.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 23,868 level, a premium of nearly 15 points from the Nifty futures’ previous close.",
-      "takeaway": "Gift Nifty indicates a muted start; premium of 15 points suggests a slight positive gap, but lacks conviction for a clear direction.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Nifty gap direction is the initial check; Bank Nifty confirmation will decide if the trend sustains.",
-      "watchFor": "Watch Nifty VWAP and Bank Nifty breadth in the first 15 minutes.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-24-june-11782265374822.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T02:20:09.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here",
-      "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
-      "takeaway": "Yesterday's sharp decline in Sensex and Nifty; today's focus is on stock-specific moves in Vedanta, IRFC, and Yes Bank.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty and private banks are in focus due to Yes Bank's presence in the stock watchlist.",
-      "watchFor": "Watch Bank Nifty and private-bank breadth in the first 30 minutes for direction.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Yes Bank",
-        "accent": "#059669",
-        "alt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T01:57:35.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel",
-      "summary": "US-Iran peace talks: Global benchmark Brent crude futures for August delivery declined 0.45% to $76.73 per barrel on Wednesday after falling 1.1% in the previous session.",
-      "takeaway": "US-Iran peace talks: Global benchmark Brent crude futures for August delivery declined 0.45% to $76.73 per barrel; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $77; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-fall-on-smoother-flows-through-strait-of-hormuz-brent-below-77-per-barrel-11782265079363.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T02:35:23.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update",
-      "summary": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update.",
-      "takeaway": "Tech Mahindra's market update may influence Nifty IT; local breadth and USD/INR support are needed to confirm the trade.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty IT is the relevant sector; local breadth and USD/INR will determine if global tech news translates into an India trade.",
-      "watchFor": "Watch Nifty IT stocks' relative performance and USD/INR in the first 30 minutes.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty IT",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "It",
-        "theme": "Tech Mahindra",
-        "accent": "#2563eb",
-        "alt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T02:35:04.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Infosys Share Price Live Updates: Infosys Stock Performance Today",
-      "summary": "Infosys Share Price Live Updates: Infosys Stock Performance Today.",
-      "takeaway": "Infosys stock update; needs broader Nifty IT and exporter breadth to confirm a trading signal.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty IT may react if Infosys leads; otherwise, it's a stock-specific move without broader market impact.",
-      "watchFor": "Watch Nifty IT breadth and exporter stocks at the open for a directional cue.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty IT",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "It",
-        "theme": "Infosys Share",
-        "accent": "#059669",
-        "alt": "Infosys Share Price Live Updates: Infosys Stock Performance Today source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T00:25:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech",
-      "summary": "As Alphabet rolls out more data centers &#x2014; and borrowing money to do it &#x2014; it can be argued that it is becoming more of an industrial company, says strategist",
-      "takeaway": "Alphabet's inclusion in Dow Jones signals tech pivot; India's IT sector may react if exporter stocks lead and Nasdaq futures confirm.",
-      "whyItMatters": "Global Tech stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
-      "indiaImpact": "Nifty IT may gain if exporter breadth improves; otherwise, it's global tech context without direct India impact.",
-      "watchFor": "Watch Nifty IT and exporter stocks against Nasdaq futures at the open for a directional cue.",
-      "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
-      "sentimentLabel": "negative",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-23T19:13:19.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz",
-      "summary": "Oil falls Tuesday as investors continue to assess the latest developments in the Middle East, while showing optimism the conflict may end soon.",
-      "takeaway": "Crude oil prices ease on optimism over Middle East conflict resolution; softer Brent may ease India's import costs if the trend holds.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, paints, and tyres may benefit if Brent stays soft; upstream energy could lag on lower crude prices.",
-      "watchFor": "Watch Brent prices holding below Asia handoff levels for sustained softness.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Crude Exports",
-        "theme": "Oil Supply",
-        "accent": "#f97316",
-        "alt": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-23T13:09:44.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India must diversify energy routes, not just suppliers: S&P Global Energy",
-      "summary": "India's energy security depends on diversifying both suppliers and transport routes as West Asia tensions expose risks linked to the Strait of Hormuz",
-      "takeaway": "India's energy security depends on diversifying both suppliers and transport routes as West Asia tensions expose risks linked; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/diversity-of-routes-to-be-key-for-india-s-energy-security-s-p-global-126062301079_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "India must diversify energy routes, not just suppliers: S&P Global Energy source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-23T17:33:40.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India, US begin trade talks as two nations rework deal amid tariff changes",
-      "summary": "India and the United States opened high-level trade talks on Tuesday aimed at salvaging and recalibrating a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer here as both sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10 per cent tariff on imports from trading partners is due to expire. \"Warm welcome to @USTradeRep Amb Jamieson Greer, @USAmbIndia Amb Sergio Gor and their delegation to @DoC_GoI. Looking forward to productive discussions on the bilateral trade agreement between (India & US),\" Commerce and Industry Minister Piyush Goyal said in a post on X. Greer's two-day visit comes days after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in more than a year on the sidelines of the G7 summit in France on June 17, injecting fresh momentum into trade",
-      "takeaway": "Tariff changes and trade talks may impact India's export-oriented sectors; outcome will determine the extent of the effect on Indian markets.",
-      "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
-      "indiaImpact": "Nifty Auto and exporters are key sectors to watch as tariff changes and trade talks may influence their performance.",
-      "watchFor": "Watch exporter and Nifty Auto sector breadth in the first 30 minutes for a directional cue.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Autos",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Autos",
-        "theme": "Begin Trade",
-        "accent": "#7c3aed",
-        "alt": "India, US begin trade talks as two nations rework deal amid tariff changes source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 24 June",
       "publisherName": "Mint Markets",
@@ -12890,7 +12842,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-vedanta-irfc-yes-bank-among-shares-in-focus-today-check-list-here-11782266318458.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EYes%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Stocks to watch: Vedanta, IRFC, Yes Bank among shares in focus today; check list here source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -12900,7 +12852,7 @@
       "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-fall-on-smoother-flows-through-strait-of-hormuz-brent-below-77-per-barrel-11782265079363.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Crude oil prices extend fall on smoother flows through Strait of Hormuz; Brent below $77 per barrel source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12910,7 +12862,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tech-mahindra-stock-price-livestock-price-today-live-updates-24-jun-2026/liveblog/131953116.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETech%20Mahindra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -12920,7 +12872,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-live-updates-24-jun-2026/liveblog/131953109.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EInfosys%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIt%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Infosys Share Price Live Updates: Infosys Stock Performance Today source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -12930,7 +12882,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/alphabets-stock-is-set-to-join-the-dow-heres-which-company-is-getting-the-boot-73453ca7?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Alphabet&#x2019;s stock is set to join the Dow, pivoting index&#x2019;s industrial roots toward tech source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12940,7 +12892,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/23/oil-prices-rise-as-investors-mull-middle-east-developments-.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil prices edge lower as market monitors tanker traffic through Strait of Hormuz source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12950,7 +12902,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/diversity-of-routes-to-be-key-for-india-s-energy-security-s-p-global-126062301079_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India must diversify energy routes, not just suppliers: S&P Global Energy source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12960,10 +12912,37 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/india-us-begin-trade-talks-as-two-nations-rework-deal-amid-tariff-changes-126062300478_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBegin%20Trade%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India, US begin trade talks as two nations rework deal amid tariff changes source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     }
   ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "India and the United States opened high-level trade talks on Tuesday aimed at salvaging and recalibrating a proposed bilateral trade agreement after changes in US tariff policy upended a framework negotiated earlier this year. Commerce and Industry Minister Piyush Goyal met US Trade Representative Jamieson Greer here as both sides sought to conclude an interim trade pact before July 24, when Washington's temporary 10 per cent tariff on imports from trading partners is due to expire. \"Warm welcome to @USTradeRep Amb Jamieson Greer, @USAmbIndia Amb Sergio Gor and their delegation to @DoC_GoI. Looking forward to productive discussions on the bilateral trade agreement between (India & US),\" Commerce and Industry Minister Piyush Goyal said in a post on X. Greer's two-day visit comes days after Prime Minister Narendra Modi and US President Donald Trump held their first meeting in more than a year on the sidelines of the G7 summit in France on June 17, injecting fresh momentum into trade",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 23,868 level, a premium of nearly 15 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Tech Mahindra Share Price Live Updates: Tech Mahindra's Market Update.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Stock market today: On Tuesday, Sensex tumbled 893.39 points, or 1.16%, to end the session at 76,200.68, while the NSE Nifty 50 declined 278.80 points, or 1.16%, to close at 23,824.10.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -12990,17 +12969,12 @@
       "remainingRiskReward": 1.006
     }
   ],
+  "sourceStats": {
+    "articleCount": 9,
+    "publisherCount": 5
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-24.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.8% — gap-up bias Tests Risk Appetite",
-    "correctedTitle": "Nifty stays positive as crude oil prices continue to fall",
-    "correctedAt": "2026-07-01T15:43:13.588Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

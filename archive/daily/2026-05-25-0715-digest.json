@@ -53,6 +53,134 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.373%, Nasdaq 100 +0.424%, Dow Jones +0.585%, Nifty 50 +1.128%, Bank Nifty +1.938%, Nikkei 225 +2.885%, Hang Seng +0.865%, Shanghai Composite +0.468%, KOSPI +0.411%, Taiwan Weighted +3.256%, Straits Times +0.155%, ASX 200 +0.403%, US Dollar Index -0.216%, Brent Crude last close 100.21, USD/INR -0.491%, Gold (COMEX) +0%, India VIX -4.503%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: The Indian rupee may now be undervalued following its recent depreciation, Reserve Bank of India Governor Sanjay Malhotra said in an interview with the Mint newspaper.\n- Global Risk-Off Cue: Indian equity benchmarks closed modestly higher on Friday, with financial stocks leading the gains. The Nifty and Sensex edged up, though pharma and healthcare weakness capped the rise. Analysts noted the market's indecisive range-bound movement, awaiting a decisive breakout above 23,800 for further upward momentum or a fall towards 23,600.\n- Volatile Opening Bias: Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-up start for the Indian benchmark index. The Gift Nifty was trading around 23,961 level, a premium of nearly 217 points from the Nifty futures’ previous close.\n- Global Earnings & Risk Appetite: Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners.\n- Sector-Specific Cushion: Last week, LIC reported a 23 per cent jump in net profit to record Rs 23,420 crore in the just concluded March quarter as compared to Rs 19,013 crore in the corresponding period of the previous year..\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": null,
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 13813,
+  "scheduledFor": "2026-05-25T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Ahead of Market: 10 things that will decide stock market action on Monday",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-24T11:09:13.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-monday/articleshow/131291875.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAhead%20Things%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ahead of Market: 10 things that will decide stock market action on Monday source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "From Gift Nifty, US-Iran peace talks to Dow, Nikkei rally: 10 things that changed for Indian stock market over weekend",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-25T01:20:59.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-talks-to-dow-nikkei-rally-10-things-that-changed-for-indian-stock-market-over-weekend-11779670929050.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Us-Iran%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "From Gift Nifty, US-Iran peace talks to Dow, Nikkei rally: 10 things that changed for Indian stock market over weekend source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "India Rupee May Be Undervalued, RBI Governor Tells Mint",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-05-25T01:57:30.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-25/india-rupee-may-be-undervalued-rbi-governor-tells-mint",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Rupee%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India Rupee May Be Undervalued, RBI Governor Tells Mint source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "LIC emerges as highest profit-making financial company in Jan-Mar quarter",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-24T07:49:48.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-emerges-as-highest-profit-making-financial-company-in-jan-mar-quarter/articleshow/131290082.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELic%20Emerges%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "LIC emerges as highest profit-making financial company in Jan-Mar quarter source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-25T01:53:52.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-suzlon-energy-wipro-share-price-25-may-2026/liveblog/131299330.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Stock market holiday: Hong Kong, South Korean markets to remain closed today. Japan’s Nikkei at record high",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-25T01:59:13.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-holiday-hong-kong-south-korean-markets-to-remain-closed-today-japan-s-nikkei-at-record-high-11779673993009.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock market holiday: Hong Kong, South Korean markets to remain closed today. Japan’s Nikkei at record high source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-25T01:54:03.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-25-may-11779673675288.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Is the stock market closed on Memorial Day? Does the post office deliver mail?",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-24T23:09:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/is-the-stock-market-closed-on-memorial-day-does-the-post-office-deliver-mail-bba7ef11?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Closed%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Is the stock market closed on Memorial Day? Does the post office deliver mail? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India-US ties have not lost momentum: US Secretary of State Marco Rubio",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-24T12:14:09.000Z",
+      "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/jaishankar-rubio-discuss-energy-ties-trade-and-indo-pacific-security-126052400505_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-Us%20Ties%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India-US ties have not lost momentum: US Secretary of State Marco Rubio source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Oil Price Today (May 25): Crude oil hits 2-week low as US-Iran peace deal moves closer. Is the worst behind?",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-25T02:04:56.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-may-25-crude-oil-hits-2-week-low-as-us-iran-peace-deal-moves-closer-is-the-worst-behind/articleshow/131299418.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (May 25): Crude oil hits 2-week low as US-Iran peace deal moves closer. Is the worst behind? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +1.13% — gap-up bias Shape Risk Appetite",
+    "correctedTitle": "Nifty likely to open firm as pharma leads the charge today",
+    "correctedAt": "2026-07-01T15:42:54.882Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +189,13 @@
       "previousClose": 7445.72,
       "changePercent": 0.373,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T20:45:08.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T20:45:08.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -799,14 +926,13 @@
       "previousClose": 29357.3,
       "changePercent": 0.424,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -1537,14 +1663,13 @@
       "previousClose": 50285.7,
       "changePercent": 0.585,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T20:45:06.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T20:45:06.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -2275,14 +2400,13 @@
       "previousClose": 23719.3,
       "changePercent": 1.128,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-25T06:11:36.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:11:36.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-25T03:45:00.000Z",
@@ -2881,14 +3005,13 @@
       "previousClose": 54055.35,
       "changePercent": 1.938,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-25T06:11:36.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:11:36.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-25T03:45:00.000Z",
@@ -3487,15 +3610,13 @@
       "previousClose": 63339.07,
       "changePercent": 2.885,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-25T05:56:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:56:35.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-25T00:00:00.000Z",
@@ -4226,15 +4347,13 @@
       "previousClose": 25386.5,
       "changePercent": 0.865,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-22T08:08:42.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T08:08:42.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-22T01:30:00.000Z",
@@ -4965,15 +5084,13 @@
       "previousClose": 4112.9,
       "changePercent": 0.468,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-25T05:56:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:56:35.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-25T01:30:00.000Z",
@@ -5696,15 +5813,13 @@
       "previousClose": 7815.59,
       "changePercent": 0.411,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-22T09:05:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T09:05:50.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-22T00:00:00.000Z",
@@ -6435,15 +6550,13 @@
       "previousClose": 42267.97,
       "changePercent": 3.256,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-25T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-25T01:00:00.000Z",
@@ -7174,15 +7287,13 @@
       "previousClose": 5068.15,
       "changePercent": 0.155,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-25T05:56:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:56:35.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-25T01:00:00.000Z",
@@ -7913,15 +8024,13 @@
       "previousClose": 8657,
       "changePercent": 0.403,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-25T05:51:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:51:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-25T00:00:00.000Z",
@@ -8652,14 +8761,13 @@
       "previousClose": 99.24,
       "changePercent": -0.216,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-25T06:01:36.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:01:36.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-24T22:00:00.000Z",
@@ -9390,14 +9498,13 @@
       "previousClose": 100.21,
       "changePercent": 0,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-25T05:57:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T05:57:44.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-25T00:12:44.000Z",
@@ -9504,14 +9611,13 @@
       "previousClose": 95.68,
       "changePercent": -0.491,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-25T06:11:31.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:11:31.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-25T03:30:00.000Z",
@@ -10170,14 +10276,13 @@
       "previousClose": 4523.2,
       "changePercent": 0,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-25T06:01:27.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:01:27.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-25T00:16:27.000Z",
@@ -10284,14 +10389,13 @@
       "previousClose": 17.82,
       "changePercent": -4.503,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-25T06:11:36.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-25T06:11:36.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-25T03:45:00.000Z",
@@ -10888,286 +10992,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.221Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.221Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.221Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.221Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.221Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.221Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.221Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.221Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.221Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.221Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.221Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.221Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.221Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.221Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.221Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.221Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.221Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.221Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.221Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.221Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.221Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.221Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.221Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.221Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": null,
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-25",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "The Indian rupee may now be undervalued following its recent depreciation, Reserve Bank of India Governor Sanjay Malhotra said in an interview with the Mint newspaper.",
-      "sentimentScore": -0.55,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-25",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Indian equity benchmarks closed modestly higher on Friday, with financial stocks leading the gains. The Nifty and Sensex edged up, though pharma and healthcare weakness capped the rise. Analysts noted the market's indecisive range-bound movement, awaiting a decisive breakout above 23,800 for further upward momentum or a fall towards 23,600.",
-      "sentimentScore": -0.308,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-05-25",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-up start for the Indian benchmark index. The Gift Nifty was trading around 23,961 level, a premium of nearly 217 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.022,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-25",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners.",
-      "sentimentScore": 0.462,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-25",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Last week, LIC reported a 23 per cent jump in net profit to record Rs 23,420 crore in the just concluded March quarter as compared to Rs 19,013 crore in the corresponding period of the previous year..",
-      "sentimentScore": 0.65,
-      "evidenceCount": 1
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 13813,
-  "scheduledFor": "2026-05-25T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-24T11:09:13.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Ahead of Market: 10 things that will decide stock market action on Monday",
-      "summary": "Indian equity benchmarks closed modestly higher on Friday, with financial stocks leading the gains. The Nifty and Sensex edged up, though pharma and healthcare weakness capped the rise. Analysts noted the market's indecisive range-bound movement, awaiting a decisive breakout above 23,800 for further upward momentum or a fall towards 23,600.",
-      "takeaway": "Indian equity benchmarks closed modestly higher on Friday, with financial stocks leading the gains; healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
-      "whyItMatters": "Pharma can cushion weak markets, but a defensive bid is different from broad risk appetite.",
-      "indiaImpact": "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.",
-      "watchFor": "Watch Nifty Pharma breadth and defensive rotation; broad index bias still needs Bank Nifty confirmation.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-monday/articleshow/131291875.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Bank Nifty",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Ahead Things",
-        "accent": "#7c3aed",
-        "alt": "Ahead of Market: 10 things that will decide stock market action on Monday source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T01:20:59.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, US-Iran peace talks to Dow, Nikkei rally: 10 things that changed for Indian stock market over weekend",
-      "summary": "Gift Nifty was trading around 23,995 level, a premium of nearly 251 points from the Nifty futures’ previous close, indicating a gap-up start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,995 level, a premium of nearly 251 points from the Nifty futures’ previous; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-talks-to-dow-nikkei-rally-10-things-that-changed-for-indian-stock-market-over-weekend-11779670929050.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Gift Us-Iran",
-        "accent": "#0891b2",
-        "alt": "From Gift Nifty, US-Iran peace talks to Dow, Nikkei rally: 10 things that changed for Indian stock market over weekend source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T01:57:30.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "India Rupee May Be Undervalued, RBI Governor Tells Mint",
-      "summary": "The Indian rupee may now be undervalued following its recent depreciation, Reserve Bank of India Governor Sanjay Malhotra said in an interview with the Mint newspaper.",
-      "takeaway": "The Indian rupee may now be undervalued following its recent depreciation, Reserve Bank of India Governor Sanjay Malhotra; RBI and liquidity cues travel first through banks, rates and rate-sensitive sectors.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-25/india-rupee-may-be-undervalued-rbi-governor-tells-mint",
-      "sentimentLabel": "negative",
-      "entityName": "Bank Nifty",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "India Rupee",
-        "accent": "#dc2626",
-        "alt": "India Rupee May Be Undervalued, RBI Governor Tells Mint source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-24T07:49:48.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "LIC emerges as highest profit-making financial company in Jan-Mar quarter",
-      "summary": "Last week, LIC reported a 23 per cent jump in net profit to record Rs 23,420 crore in the just concluded March quarter as compared to Rs 19,013 crore in the corresponding period of the previous year..",
-      "takeaway": "Last week, LIC reported a 23 per cent jump in net profit to record Rs 23,420 crore; Bank Nifty matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Bank Nifty needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Bank Nifty peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-emerges-as-highest-profit-making-financial-company-in-jan-mar-quarter/articleshow/131290082.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Lic Emerges",
-        "accent": "#2563eb",
-        "alt": "LIC emerges as highest profit-making financial company in Jan-Mar quarter source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T01:53:52.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners.",
-      "takeaway": "Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners; auto news separates domestic demand from export and input-cost exposure.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-suzlon-energy-wipro-share-price-25-may-2026/liveblog/131299330.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Sensex Today",
-        "accent": "#059669",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T01:59:13.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stock market holiday: Hong Kong, South Korean markets to remain closed today. Japan’s Nikkei at record high",
-      "summary": "Stock market holiday: Asian markets were partially closed on 25 May due to holidays. Japan's Nikkei 225 hit a record high with a 2.75% increase, driven by positive news on the Strait of Hormuz. Meanwhile, Australia's S&P/ASX 200 saw minimal movement amid quiet trading.",
-      "takeaway": "Hong Kong, South Korean markets to remain closed today. Japan’s Nikkei at record high; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-holiday-hong-kong-south-korean-markets-to-remain-closed-today-japan-s-nikkei-at-record-high-11779673993009.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "Stock market holiday: Hong Kong, South Korean markets to remain closed today. Japan’s Nikkei at record high source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T01:54:03.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 May",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-up start for the Indian benchmark index. The Gift Nifty was trading around 23,961 level, a premium of nearly 217 points from the Nifty futures’ previous close.",
-      "takeaway": "The source flags nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-25-may-11779673675288.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-24T23:09:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Is the stock market closed on Memorial Day? Does the post office deliver mail?",
-      "summary": "The holiday weekend will affect the stock and bond market. Here&#x2019;s what you need to know.",
-      "takeaway": "The holiday weekend will affect the stock and bond market; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.marketwatch.com/story/is-the-stock-market-closed-on-memorial-day-does-the-post-office-deliver-mail-bba7ef11?mod=mw_rss_topstories",
-      "sentimentLabel": "positive",
-      "entityName": "Rates",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "The Closed",
-        "accent": "#059669",
-        "alt": "Is the stock market closed on Memorial Day? Does the post office deliver mail? source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-24T12:14:09.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India-US ties have not lost momentum: US Secretary of State Marco Rubio",
-      "summary": "India and the US discussed energy security, trade, immigration and Indo-Pacific maritime safety as Marco Rubio sought to reassure New Delhi on bilateral ties",
-      "takeaway": "India and the US discussed energy security, trade, immigration and Indo-Pacific maritime safety as Marco Rubio sought; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/jaishankar-rubio-discuss-energy-ties-trade-and-indo-pacific-security-126052400505_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "India-Us Ties",
-        "accent": "#dc2626",
-        "alt": "India-US ties have not lost momentum: US Secretary of State Marco Rubio source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T02:04:56.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Oil Price Today (May 25): Crude oil hits 2-week low as US-Iran peace deal moves closer. Is the worst behind?",
-      "summary": "Oil prices dipped to two-week lows as U.S.-Iran peace talks showed progress, potentially reopening the vital Strait of Hormuz. Despite optimism, significant hurdles remain, with disruptions continuing to impact global oil supplies. Analysts caution that even with a deal, full normalization could take months, with potential impacts extending for years.",
-      "takeaway": "Oil prices dipped to two-week lows as US-Iran peace talks showed progress, potentially reopening the vital Strait; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-may-25-crude-oil-hits-2-week-low-as-us-iran-peace-deal-moves-closer-is-the-worst-behind/articleshow/131299418.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil Price Today (May 25): Crude oil hits 2-week low as US-Iran peace deal moves closer. Is the worst behind? source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Ahead of Market: 10 things that will decide stock market action on Monday",
       "publisherName": "Economic Times Stocks",
@@ -11175,7 +11108,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-monday/articleshow/131291875.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAhead%20Things%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Ahead of Market: 10 things that will decide stock market action on Monday source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -11195,7 +11128,7 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-25/india-rupee-may-be-undervalued-rbi-governor-tells-mint",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Rupee%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India Rupee May Be Undervalued, RBI Governor Tells Mint source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11205,7 +11138,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-emerges-as-highest-profit-making-financial-company-in-jan-mar-quarter/articleshow/131290082.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELic%20Emerges%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "LIC emerges as highest profit-making financial company in Jan-Mar quarter source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11215,7 +11148,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-suzlon-energy-wipro-share-price-25-may-2026/liveblog/131299330.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11245,7 +11178,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/is-the-stock-market-closed-on-memorial-day-does-the-post-office-deliver-mail-bba7ef11?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Closed%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Is the stock market closed on Memorial Day? Does the post office deliver mail? source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11255,7 +11188,7 @@
       "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/jaishankar-rubio-discuss-energy-ties-trade-and-indo-pacific-security-126052400505_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-Us%20Ties%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India-US ties have not lost momentum: US Secretary of State Marco Rubio source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11265,10 +11198,43 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-may-25-crude-oil-hits-2-week-low-as-us-iran-peace-deal-moves-closer-is-the-worst-behind/articleshow/131299418.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil Price Today (May 25): Crude oil hits 2-week low as US-Iran peace deal moves closer. Is the worst behind? source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "The Indian rupee may now be undervalued following its recent depreciation, Reserve Bank of India Governor Sanjay Malhotra said in an interview with the Mint newspaper.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Indian equity benchmarks closed modestly higher on Friday, with financial stocks leading the gains. The Nifty and Sensex edged up, though pharma and healthcare weakness capped the rise. Analysts noted the market's indecisive range-bound movement, awaiting a decisive breakout above 23,800 for further upward momentum or a fall towards 23,600.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-up start for the Indian benchmark index. The Gift Nifty was trading around 23,961 level, a premium of nearly 217 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex surges over 900 pts, Nifty above 23,950; auto, bank stocks top winners.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Last week, LIC reported a 23 per cent jump in net profit to record Rs 23,420 crore in the just concluded March quarter as compared to Rs 19,013 crore in the corresponding period of the previous year..",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -11295,17 +11261,12 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-25.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +1.13% — gap-up bias Shape Risk Appetite",
-    "correctedTitle": "Nifty likely to open firm as pharma leads the charge today",
-    "correctedAt": "2026-07-01T15:42:54.882Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

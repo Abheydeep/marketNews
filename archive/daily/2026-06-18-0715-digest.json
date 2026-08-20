@@ -47,6 +47,74 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +1.085%, Nasdaq 100 +2.478%, Dow Jones +0.14%, Nifty 50 +0.374%, Bank Nifty +0.433%, Nikkei 225 +1.549%, Hang Seng -0.653%, Shanghai Composite +1.775%, KOSPI +0.686%, Taiwan Weighted +2.747%, Straits Times +0.218%, ASX 200 -0.143%, US Dollar Index +0.001%, Brent Crude -0.789%, USD/INR +0.392%, Gold (COMEX) -0.382%, India VIX -0.987%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: The Bank of England is due to update its monetary policy on Thursday.\n- Global Risk-Off Cue: At least three Iranian tankers carrying nearly five million barrels of crude oil have exited the U.S. Navy blockade.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "19-Jun-2026",
+    "fiiNet": 4859.07,
+    "fiiBuy": 31442.87,
+    "fiiSell": 26583.8,
+    "diiNet": -1159.64,
+    "diiBuy": 18020.49,
+    "diiSell": 19180.13
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 47,
+    "publisherCount": 7,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 11305,
+  "scheduledFor": "2026-06-18T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "UK inflation holds steady at 2.8% in May",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-06-17T06:41:39.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/inflation-uk-cpi-interest-rates-bank-of-england.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "UK inflation holds steady at 2.8% in May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief'",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-06-17T07:23:05.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/iranian-tankers-oil-shipment-us-iran-deal-strait-of-hormuz-.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief' source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-06-18T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Weighs On Opening..",
+    "correctedTitle": "UK inflation steadies, keeping rate-sensitive Indian stocks on cautious watch",
+    "correctedAt": "2026-07-01T15:43:13.559Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -55,14 +123,13 @@
       "previousClose": 7420.1,
       "changePercent": 1.085,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:42:06.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:42:06.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -793,14 +860,13 @@
       "previousClose": 29670.9,
       "changePercent": 2.478,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -1531,14 +1597,13 @@
       "previousClose": 51492.6,
       "changePercent": 0.14,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:45:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:45:00.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -2269,14 +2334,13 @@
       "previousClose": 24013.1,
       "changePercent": 0.374,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3007,14 +3071,13 @@
       "previousClose": 57685.75,
       "changePercent": 0.433,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3745,15 +3808,13 @@
       "previousClose": 71250.06,
       "changePercent": 1.549,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-22T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -4484,15 +4545,13 @@
       "previousClose": 23924.81,
       "changePercent": -0.653,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-22T08:08:34.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T08:08:34.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5223,15 +5282,13 @@
       "previousClose": 4090.48,
       "changePercent": 1.775,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-22T07:00:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:00:29.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5962,15 +6019,13 @@
       "previousClose": 9052.42,
       "changePercent": 0.686,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-22T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -6701,15 +6756,13 @@
       "previousClose": 46465.2,
       "changePercent": 2.747,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-22T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -7440,15 +7493,13 @@
       "previousClose": 5192.7,
       "changePercent": 0.218,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-22T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -8179,15 +8230,13 @@
       "previousClose": 8828.7,
       "changePercent": -0.143,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-22T07:10:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:10:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -8918,14 +8967,13 @@
       "previousClose": 100.85,
       "changePercent": 0.001,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:17:13.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:17:13.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -9656,14 +9704,13 @@
       "previousClose": 79.85,
       "changePercent": -0.789,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:15:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:15:20.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -10394,14 +10441,13 @@
       "previousClose": 94.31,
       "changePercent": 0.392,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-22T10:03:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:03:02.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-22T03:13:00.000Z",
@@ -11132,14 +11178,13 @@
       "previousClose": 4245.9,
       "changePercent": -0.382,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:16:56.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:16:56.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -11870,14 +11915,13 @@
       "previousClose": 12.97,
       "changePercent": -0.987,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:04:09.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:04:09.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -12606,40 +12650,158 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.259Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.259Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.259Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.259Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.259Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.259Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.259Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.259Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.259Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.259Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.259Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.259Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.259Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.259Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.259Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.259Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.259Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.259Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.259Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.259Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.259Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.259Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.259Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.259Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "19-Jun-2026",
-    "fiiNet": 4859.07,
-    "fiiBuy": 31442.87,
-    "fiiSell": 26583.8,
-    "diiNet": -1159.64,
-    "diiBuy": 18020.49,
-    "diiSell": 19180.13
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": null,
-  "themes": [
+  "news": [
     {
-      "digestDate": "2026-06-18",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "The Bank of England is due to update its monetary policy on Thursday.",
-      "sentimentScore": -0.548,
-      "evidenceCount": 2
+      "title": "UK inflation holds steady at 2.8% in May",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-06-17T06:41:39.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/inflation-uk-cpi-interest-rates-bank-of-england.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "UK inflation holds steady at 2.8% in May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
     },
     {
-      "digestDate": "2026-06-18",
-      "themeType": "global_risk",
+      "title": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief'",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-06-17T07:23:05.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/17/iranian-tankers-oil-shipment-us-iran-deal-strait-of-hormuz-.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief' source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-06-18T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "The Bank of England is due to update its monetary policy on Thursday.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
       "title": "Global Risk-Off Cue",
       "summary": "At least three Iranian tankers carrying nearly five million barrels of crude oil have exited the U.S. Navy blockade.",
-      "sentimentScore": -0.42,
-      "evidenceCount": 1
+      "affectedSymbols": [],
+      "sourceCount": 0
     }
   ],
   "tradeSetups": [
@@ -12652,121 +12814,7 @@
       "riskReward": 2.2,
       "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
       "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-18",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 47,
-    "publisherCount": 7,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 11305,
-  "scheduledFor": "2026-06-18T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
-  "news": [
-    {
-      "publishedAt": "2026-06-17T06:41:39.000Z",
-      "sourceId": "cnbc-economy",
-      "sourceName": "CNBC Economy",
-      "headline": "UK inflation holds steady at 2.8% in May",
-      "summary": "The Bank of England is due to update its monetary policy on Thursday.",
-      "takeaway": "The Bank of England is due to update its monetary policy on Thursday; use it as global rate-sensitivity evidence; India needs bond-market confirmation before banks inherit the signal.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bank Nifty and rate-sensitive sectors care only if global yields follow through and local breadth weakens.",
-      "watchFor": "Watch 2.8% and Indian bank breadth; no rate trade if yields fade.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/17/inflation-uk-cpi-interest-rates-bank-of-england.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "BoE Rates",
-        "theme": "Central Banks",
-        "accent": "#dc2626",
-        "alt": "UK inflation holds steady at 2.8% in May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-17T07:23:05.000Z",
-      "sourceId": "cnbc-economy",
-      "sourceName": "CNBC Economy",
-      "headline": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief'",
-      "summary": "At least three Iranian tankers carrying nearly five million barrels of crude oil have exited the U.S. Navy blockade.",
-      "takeaway": "At least three Iranian tankers carrying nearly five million barrels of crude oil have exited the US Navy; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/17/iranian-tankers-oil-shipment-us-iran-deal-strait-of-hormuz-.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Crude Exports",
-        "theme": "Oil Supply",
-        "accent": "#f97316",
-        "alt": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief' source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-18T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "takeaway": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Ashok Leyland",
-        "accent": "#dc2626",
-        "alt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "UK inflation holds steady at 2.8% in May",
-      "publisherName": "CNBC Economy",
-      "timestamp": "2026-06-17T06:41:39.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/17/inflation-uk-cpi-interest-rates-bank-of-england.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "UK inflation holds steady at 2.8% in May source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief'",
-      "publisherName": "CNBC Economy",
-      "timestamp": "2026-06-17T07:23:05.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/17/iranian-tankers-oil-shipment-us-iran-deal-strait-of-hormuz-.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Three Iranian tankers exit U.S. blockade for first time in months as shipowners eye Hormuz in 'wary disbelief' source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "publisherName": "The Week Business",
-      "timestamp": "2026-06-18T06:30:00+05:30",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12795,17 +12843,12 @@
       "remainingRiskReward": 1.063
     }
   ],
+  "sourceStats": {
+    "articleCount": 3,
+    "publisherCount": 2
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-18.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Weighs On Opening..",
-    "correctedTitle": "UK inflation steadies, keeping rate-sensitive Indian stocks on cautious watch",
-    "correctedAt": "2026-07-01T15:43:13.559Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

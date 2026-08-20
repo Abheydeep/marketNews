@@ -53,6 +53,143 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.62%, Nasdaq 100 -1.982%, Dow Jones -1.874%, Nikkei 225 -0.107%, Hang Seng -1.096%, Shanghai Composite +0.183%, KOSPI -0.358%, Taiwan Weighted -0.176%, Straits Times +0.057%, ASX 200 -0.126%, US Dollar Index +0.012%, Brent Crude +0.634%, USD/INR +0.467%, Gold (COMEX) -0.612%, India VIX -0.576%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Global Risk-Off: Asian markets weak on inflation concerns and JGB yield rise.\n- RBI Support Measures: Forex swap facility may attract $60-70 billion foreign capital.\n- Volatile Opening Bias: GIFT Nifty indicates weak start for Nifty 50.\n- Sector Cushion: HDFC Bank's market activity provides sector-specific support.\n\nValidated Trading Setups:\n- NIFTY BULLISH — entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "10-Jun-2026",
+    "fiiNet": -2124.98,
+    "fiiBuy": 14047.79,
+    "fiiSell": 16172.77,
+    "diiNet": 3123.95,
+    "diiBuy": 17396.4,
+    "diiSell": 14272.45
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The Indian market's pre-open is poised on the cusp of a critical juncture, with global macro shifts and corporate earnings converging to dictate the day's trading narrative. The overnight escalation in US-Iran tensions has injected a risk-off sentiment into the Asia handoff, with Nikkei and Kospi crashing up to 4% and Brent crude prices surging to $93.69. This development has significant implications for Indian stocks, particularly those in the OMC, aviation, paints, and tyres sectors, which face margin compression due to the crude-driven spike. Conversely, upstream energy and gold are likely to gain defensive bids, while the USD/INR and FII flows will set the broad tone for the market.\n\nThe RBI's forex swap measures, expected to attract $60-70 billion in inflows, will be a crucial counterbalance to the risk-off sentiment. However, the success of this move hinges on yield stability, which is critical for rate-sensitive Indian sectors. Banks, realty, and growth stocks are likely to experience fragile gap-ups if yields remain volatile. The Nifty's direction will be influenced by the Bank Nifty's confirmation, with a futures premium or discount serving as a key opening-gap input. HDFC Bank's recent market activity and the broader private banking and NBFC space will be closely watched, as weak financial breadth can cap the Nifty's upside even if global cues are firm.\n\nAs the market opens, the interplay between global tech cues, corporate earnings, and local macro factors will come to the fore. Oracle's earnings, though beating expectations, have raised concerns about the steep price of AI, potentially impacting Nifty IT stocks. However, the impact will be limited unless margins, guidance, or demand trends travel to listed Indian peers. The Nifty's gap direction will be the initial determinant, with the USD/INR and advance-decline ratios providing crucial confirmation. Traders will need to navigate this complex landscape, weighing the competing influences of global risk sentiment, local macro developments, and corporate earnings to identify key battlegrounds and trading opportunities.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 4580854,
+  "scheduledFor": "2026-06-11T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-11T02:35:56.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-live-updates-11-jun-2026/liveblog/131647384.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUltratech%20Cem%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-11T02:39:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/india/petrol-diesel-prices-today-on-june-11-check-new-rates-in-mumbai-delhi-hyderabad-kolkata-bengaluru-and-chennai-11620373",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-10T13:46:38.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-forex-swap-measures-may-attract-60-70-bn-inflows-says-ind-ra-126061000950_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-06-10T23:17:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/oracles-stock-slides-after-earnings-as-the-steep-price-of-ai-spooks-investors-0653b309?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Infra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPipeline%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:03:21.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-11-june-11781142969420.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:38:31.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-kospi-crash-up-to-4-as-us-iran-war-escalates-crude-oil-prices-rise-11781145089076.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-11T02:36:37.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-share-price-live-11-jun-2026/liveblog/131647390.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHdfc%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-11T00:19:00.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/10/oracle-orcl-q4-earnings-report-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India pushes labour mobility, skill-recognition pacts at Geneva conference",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-10T13:21:00.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-pushes-labour-mobility-skill-recognition-pacts-at-geneva-conference-126061001091_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India pushes labour mobility, skill-recognition pacts at Geneva conference source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:06:06.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/gold-silver-rates-today-comex-gold-silver-prices-crash-amid-straining-us-iran-ceasefire-hopes-11781143187784.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESilver%20Rates%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Nifty, stock market watch US-Iran tensions, crude oil surge",
+    "correctedAt": "2026-07-01T15:43:10.753Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +198,13 @@
       "previousClose": 7386.65,
       "changePercent": -1.62,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-10T20:42:12.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-10T20:42:12.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-10T13:30:00.000Z",
@@ -799,14 +935,13 @@
       "previousClose": 29084.5,
       "changePercent": -1.982,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-10T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-10T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-10T13:30:00.000Z",
@@ -1537,14 +1672,13 @@
       "previousClose": 50872.11,
       "changePercent": -1.874,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-10T20:51:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-10T20:51:35.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-10T13:30:00.000Z",
@@ -2275,14 +2409,13 @@
       "previousClose": 23214.95,
       "changePercent": 0.286,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T06:27:49.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:27:49.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -2945,14 +3078,13 @@
       "previousClose": 55100.3,
       "changePercent": 0.589,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T06:27:49.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:27:49.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -3615,15 +3747,13 @@
       "previousClose": 64179.27,
       "changePercent": -0.107,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-11T06:12:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:12:45.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-11T00:00:00.000Z",
@@ -4354,15 +4484,13 @@
       "previousClose": 24407.96,
       "changePercent": -1.096,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-11T06:12:48.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:12:48.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-11T01:30:00.000Z",
@@ -5093,15 +5221,13 @@
       "previousClose": 3959.34,
       "changePercent": 0.183,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-11T06:12:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:12:45.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-11T01:30:00.000Z",
@@ -5832,15 +5958,13 @@
       "previousClose": 7730.82,
       "changePercent": -0.358,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-11T06:07:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:07:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-11T00:00:00.000Z",
@@ -6571,15 +6695,13 @@
       "previousClose": 43225.54,
       "changePercent": -0.176,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-11T05:33:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T05:33:25.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-11T01:00:00.000Z",
@@ -7310,15 +7432,13 @@
       "previousClose": 4958.85,
       "changePercent": 0.057,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-11T06:12:46.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:12:46.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-11T01:00:00.000Z",
@@ -8049,15 +8169,13 @@
       "previousClose": 8653.3,
       "changePercent": -0.126,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-11T06:07:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:07:44.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-11T00:00:00.000Z",
@@ -8788,14 +8906,13 @@
       "previousClose": 99.95,
       "changePercent": 0.012,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T06:17:47.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:17:47.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -9358,14 +9475,13 @@
       "previousClose": 93.1,
       "changePercent": 0.634,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T06:17:36.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:17:36.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -9764,14 +9880,13 @@
       "previousClose": 95.26,
       "changePercent": 0.467,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-11T06:27:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:27:45.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-11T02:14:00.000Z",
@@ -10498,14 +10613,13 @@
       "previousClose": 4133.3,
       "changePercent": -0.612,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T06:17:46.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:17:46.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -11072,14 +11186,13 @@
       "previousClose": 15.63,
       "changePercent": -0.576,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T06:27:48.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T06:27:48.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -11740,64 +11853,246 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.248Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.248Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.248Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.248Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.248Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.248Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.248Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.248Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.248Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.248Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.248Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.248Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.248Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.248Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.248Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.248Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.248Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.248Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.248Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.248Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.248Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.248Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.248Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.248Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "10-Jun-2026",
-    "fiiNet": -2124.98,
-    "fiiBuy": 14047.79,
-    "fiiSell": 16172.77,
-    "diiNet": 3123.95,
-    "diiBuy": 17396.4,
-    "diiSell": 14272.45
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The Indian market's pre-open is poised on the cusp of a critical juncture, with global macro shifts and corporate earnings converging to dictate the day's trading narrative. The overnight escalation in US-Iran tensions has injected a risk-off sentiment into the Asia handoff, with Nikkei and Kospi crashing up to 4% and Brent crude prices surging to $93.69. This development has significant implications for Indian stocks, particularly those in the OMC, aviation, paints, and tyres sectors, which face margin compression due to the crude-driven spike. Conversely, upstream energy and gold are likely to gain defensive bids, while the USD/INR and FII flows will set the broad tone for the market.\n\nThe RBI's forex swap measures, expected to attract $60-70 billion in inflows, will be a crucial counterbalance to the risk-off sentiment. However, the success of this move hinges on yield stability, which is critical for rate-sensitive Indian sectors. Banks, realty, and growth stocks are likely to experience fragile gap-ups if yields remain volatile. The Nifty's direction will be influenced by the Bank Nifty's confirmation, with a futures premium or discount serving as a key opening-gap input. HDFC Bank's recent market activity and the broader private banking and NBFC space will be closely watched, as weak financial breadth can cap the Nifty's upside even if global cues are firm.\n\nAs the market opens, the interplay between global tech cues, corporate earnings, and local macro factors will come to the fore. Oracle's earnings, though beating expectations, have raised concerns about the steep price of AI, potentially impacting Nifty IT stocks. However, the impact will be limited unless margins, guidance, or demand trends travel to listed Indian peers. The Nifty's gap direction will be the initial determinant, with the USD/INR and advance-decline ratios providing crucial confirmation. Traders will need to navigate this complex landscape, weighing the competing influences of global risk sentiment, local macro developments, and corporate earnings to identify key battlegrounds and trading opportunities.",
+  "news": [
+    {
+      "title": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-11T02:35:56.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-live-updates-11-jun-2026/liveblog/131647384.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUltratech%20Cem%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-11T02:39:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/india/petrol-diesel-prices-today-on-june-11-check-new-rates-in-mumbai-delhi-hyderabad-kolkata-bengaluru-and-chennai-11620373",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-10T13:46:38.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-forex-swap-measures-may-attract-60-70-bn-inflows-says-ind-ra-126061000950_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-06-10T23:17:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/oracles-stock-slides-after-earnings-as-the-steep-price-of-ai-spooks-investors-0653b309?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Infra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPipeline%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:03:21.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-11-june-11781142969420.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:38:31.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-kospi-crash-up-to-4-as-us-iran-war-escalates-crude-oil-prices-rise-11781145089076.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-11T02:36:37.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-share-price-live-11-jun-2026/liveblog/131647390.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHdfc%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-11T00:19:00.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/10/oracle-orcl-q4-earnings-report-2026.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India pushes labour mobility, skill-recognition pacts at Geneva conference",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-10T13:21:00.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-pushes-labour-mobility-skill-recognition-pacts-at-geneva-conference-126061001091_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India pushes labour mobility, skill-recognition pacts at Geneva conference source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-11T02:06:06.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/gold-silver-rates-today-comex-gold-silver-prices-crash-amid-straining-us-iran-ceasefire-hopes-11781143187784.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESilver%20Rates%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
   "themes": [
     {
-      "digestDate": "2026-06-11",
-      "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "Asian markets today: Japanese government bond (JGB) yields also climbed on inflation concerns. The benchmark 10-year JGB yield rose 1 bp to 2.690%. The 30-year yield added 2 bps to 3.870%.",
-      "sentimentScore": -0.627,
-      "evidenceCount": 3
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-11",
-      "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "The RBI's forex swap measures on FCNR (B) deposits and ECBs by state-owned companies could attract USD 60-70 billion in foreign capital and support the rupee, India Ratings and Research (Ind-Ra) said on Wednesday. The central bank, on June 8, announced that authorised dealer banks can access the RBI's swap facility for Foreign Currency Non-Resident (Bank) (FCNR (B) deposits with maturities ranging from 3-5 years till September 30. The facility would allow banks to swap US dollar deposits with the regulator and manage currency risks. The slew of measures announced by the RBI to shore up foreign capital inflows includes a concessional forex swap facility to encourage PSUs to raise ECBs until September 30. Ind-Ra said FCNR (B) is likely to play a key role in mobilising foreign capital, with the RBI bearing hedging costs, and banks can offer better returns to overseas depositors. \"Ind-Ra expects the arrangement to generate sizeable inflows, potentially in the range of USD 60-70 billion",
-      "sentimentScore": -0.556,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-11",
-      "themeType": "neutral_volatile",
       "title": "Volatile Opening Bias",
       "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a weak start for the Indian benchmark index. The Gift Nifty was trading around 23,122 level, a discount of nearly 117 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.21,
-      "evidenceCount": 1
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-11",
-      "themeType": "sector_positive",
       "title": "Sector-Specific Cushion",
       "summary": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-11",
-      "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
       "summary": "Oracle topped quarterly expectations, but free cash flow is negative, and the company plans to raise more capital for data center projects.",
-      "sentimentScore": 0.505,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     }
   ],
   "tradeSetups": [
@@ -11810,337 +12105,7 @@
       "riskReward": 2.2,
       "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
       "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-11",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 4580854,
-  "scheduledFor": "2026-06-11T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "news": [
-    {
-      "publishedAt": "2026-06-11T02:35:56.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis",
-      "summary": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis.",
-      "takeaway": "UltraTech Cement's Price and Returns Analysis; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Sector Breadth needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Sector Breadth peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-live-updates-11-jun-2026/liveblog/131647384.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Sector Breadth",
-        "theme": "Ultratech Cem",
-        "accent": "#2563eb",
-        "alt": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T02:39:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai",
-      "summary": "So far, prices have increased by Rs 7.5-8 since the start of the US-Iran war as global oil prices have soared due to ongoing conflict in the Middle East that has impacted oil marketing companies significantly.",
-      "takeaway": "Fuel price pass-through accelerates on war-driven crude spike; OMC margins and inflation expectations are now the live trading variables.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "OMCs, aviation, paints and tyres see margin compression; upstream energy benefits; USD/INR and CPI prints will frame RBI rate path.",
-      "watchFor": "Watch Brent at Asia open for OMC margin direction.",
-      "sourceUrl": "https://www.ndtvprofit.com/india/petrol-diesel-prices-today-on-june-11-check-new-rates-in-mumbai-delhi-hyderabad-kolkata-bengaluru-and-chennai-11620373",
-      "sentimentLabel": "negative",
-      "entityName": "Fuel inflation",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-10T13:46:38.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra",
-      "summary": "The RBI's forex swap measures on FCNR (B) deposits and ECBs by state-owned companies could attract USD 60-70 billion in foreign capital and support the rupee, India Ratings and Research (Ind-Ra) said on Wednesday. The central bank, on June 8, announced that authorised dealer banks can access the RBI's swap facility for Foreign Currency Non-Resident (Bank) (FCNR (B) deposits with maturities ranging from 3-5 years till September 30. The facility would allow banks to swap US dollar deposits with the regulator and manage currency risks. The slew of measures announced by the RBI to shore up foreign capital inflows includes a concessional forex swap facility to encourage PSUs to raise ECBs until September 30. Ind-Ra said FCNR (B) is likely to play a key role in mobilising foreign capital, with the RBI bearing hedging costs, and banks can offer better returns to overseas depositors. \"Ind-Ra expects the arrangement to generate sizeable inflows, potentially in the range of USD 60-70 billion",
-      "takeaway": "The RBI's forex swap measures on FCNR (B) deposits and ECBs by state-owned companies could attract USD 60-70; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-forex-swap-measures-may-attract-60-70-bn-inflows-says-ind-ra-126061000950_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "BoE Rates",
-        "theme": "Central Banks",
-        "accent": "#dc2626",
-        "alt": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-10T23:17:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors",
-      "summary": "Oracle blew past earnings expectations and grew its contract pipeline to $638 billion, but Wall Street is concerned about its rising AI costs.",
-      "takeaway": "Oracle blew past earnings expectations and grew its contract pipeline to $638 billion, but Wall Street is concerned; Oracle matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Oracle must translate into exporter participation.",
-      "sourceUrl": "https://www.marketwatch.com/story/oracles-stock-slides-after-earnings-as-the-steep-price-of-ai-spooks-investors-0653b309?mod=mw_rss_topstories",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Pipeline",
-        "theme": "Oil Infra",
-        "accent": "#ea580c",
-        "alt": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T02:03:21.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a weak start for the Indian benchmark index. The Gift Nifty was trading around 23,122 level, a discount of nearly 117 points from the Nifty futures’ previous close.",
-      "takeaway": "Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-11-june-11781142969420.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T02:38:31.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise",
-      "summary": "Asian markets today: Japanese government bond (JGB) yields also climbed on inflation concerns. The benchmark 10-year JGB yield rose 1 bp to 2.690%. The 30-year yield added 2 bps to 3.870%.",
-      "takeaway": "US-Iran escalation injects a crude-driven risk-off into the Asia handoff; India's open will price the import-bill hit before local earnings matter.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, paints and tyres face margin pressure if Brent holds gains; upstream energy and gold gain defensive bids while USD/INR and FII flows set the broad tone.",
-      "watchFor": "Watch Brent at the Asia close and GIFT Nifty gap for the opening bias.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-kospi-crash-up-to-4-as-us-iran-war-escalates-crude-oil-prices-rise-11781145089076.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T02:36:37.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity",
-      "summary": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity.",
-      "takeaway": "HDFC Bank's Recent Market Activity; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-share-price-live-11-jun-2026/liveblog/131647390.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Hdfc Bank",
-        "accent": "#2563eb",
-        "alt": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T00:19:00.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion",
-      "summary": "Oracle topped quarterly expectations, but free cash flow is negative, and the company plans to raise more capital for data center projects.",
-      "takeaway": "Oracle topped quarterly expectations, but free cash flow is negative, and the company plans to raise more capital; Oracle matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/10/oracle-orcl-q4-earnings-report-2026.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-10T13:21:00.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India pushes labour mobility, skill-recognition pacts at Geneva conference",
-      "summary": "Talks with advanced economies focused on skilled-worker mobility, mutual recognition of qualifications, social protection and employment generation",
-      "takeaway": "Talks with advanced economies focused on skilled-worker mobility, mutual recognition of qualifications, social protection and employment generation; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-pushes-labour-mobility-skill-recognition-pacts-at-geneva-conference-126061001091_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Exxon",
-        "theme": "Oil Majors",
-        "accent": "#ea580c",
-        "alt": "India pushes labour mobility, skill-recognition pacts at Geneva conference source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T02:06:06.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes",
-      "summary": "Gold prices hit a six-month low amid inflation concerns and rising interest rates, with the spot price dropping 0.2% to $4,063.87 per ounce. US gold futures for August fell by 1.1% to $4,086.50, while silver prices decreased by 0.9% to $63.15.",
-      "takeaway": "Gold prices hit a six-month low amid inflation concerns and rising interest rates, with the spot price dropping; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch 0.2%; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/gold-silver-rates-today-comex-gold-silver-prices-crash-amid-straining-us-iran-ceasefire-hopes-11781143187784.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Silver Rates",
-        "accent": "#7c3aed",
-        "alt": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-11T02:35:56.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-live-updates-11-jun-2026/liveblog/131647384.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUltratech%20Cem%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price and Returns Analysis source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-06-11T02:39:00.000Z",
-      "sourceUrl": "https://www.ndtvprofit.com/india/petrol-diesel-prices-today-on-june-11-check-new-rates-in-mumbai-delhi-hyderabad-kolkata-bengaluru-and-chennai-11620373",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Petrol, Diesel Prices Today On June 11: Check New Rates In Mumbai, Delhi, Hyderabad, Kolkata, Bengaluru, And Chennai source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-10T13:46:38.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-forex-swap-measures-may-attract-60-70-bn-inflows-says-ind-ra-126061000950_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "RBI forex swap measures may attract $60-70 bn inflows, says Ind-Ra source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors",
-      "publisherName": "MarketWatch",
-      "timestamp": "2026-06-10T23:17:00.000Z",
-      "sourceUrl": "https://www.marketwatch.com/story/oracles-stock-slides-after-earnings-as-the-steep-price-of-ai-spooks-investors-0653b309?mod=mw_rss_topstories",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Infra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPipeline%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oracle&#x2019;s stock slides after earnings, as the steep price of AI spooks investors source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-11T02:03:21.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-11-june-11781142969420.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 11 June source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "neutral_volatile"
-    },
-    {
-      "title": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-11T02:38:31.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-kospi-crash-up-to-4-as-us-iran-war-escalates-crude-oil-prices-rise-11781145089076.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Asian markets today: Nikkei, Kospi crash up to 4% as US-Iran war escalates, crude oil prices rise source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-11T02:36:37.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-share-price-live-11-jun-2026/liveblog/131647390.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHdfc%20Bank%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "HDFC Bank Share Price Live Updates: HDFC Bank's Recent Market Activity source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-06-11T00:19:00.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/10/oracle-orcl-q4-earnings-report-2026.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "India pushes labour mobility, skill-recognition pacts at Geneva conference",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-10T13:21:00.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-pushes-labour-mobility-skill-recognition-pacts-at-geneva-conference-126061001091_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India pushes labour mobility, skill-recognition pacts at Geneva conference source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-11T02:06:06.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/gold-silver-rates-today-comex-gold-silver-prices-crash-amid-straining-us-iran-ceasefire-hopes-11781143187784.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESilver%20Rates%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Gold, silver rates today: COMEX gold, silver prices crash amid straining US-Iran ceasefire hopes source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12169,17 +12134,12 @@
       "remainingRiskReward": 1.964
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-11.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Crude / energy risk Tests Risk Appetite",
-    "correctedTitle": "Nifty, stock market watch US-Iran tensions, crude oil surge",
-    "correctedAt": "2026-07-01T15:43:10.753Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

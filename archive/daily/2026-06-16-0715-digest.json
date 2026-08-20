@@ -53,6 +53,133 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +1.653%, Nasdaq 100 +3.064%, Dow Jones +0.916%, Nikkei 225 +0.126%, Hang Seng -1.783%, Shanghai Composite +2.602%, KOSPI +2.114%, Taiwan Weighted +0.908%, Straits Times +0.652%, ASX 200 +0.042%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Producer Price Index Release: India's first PPI under new series tracks wholesale inflation closely\n- Global Risk Reversal: Oil rebounds after 5% plunge on US-Iran peace deal uncertainty\n- Sector Rotation: Gautam Shah suggests shift beyond benchmark indices to smallcaps, renewable energy, and healthcare\n- China Economic Mixed Signals: AI-related industries lift economy, while real estate and domestic demand remain weak\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "15-Jun-2026",
+    "fiiNet": 200.05,
+    "fiiBuy": 15650.2,
+    "fiiSell": 15450.15,
+    "diiNet": 3189.26,
+    "diiBuy": 21080.9,
+    "diiSell": 17891.64
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The Indian market's pre-open today is poised on the cusp of a potentially decisive shift, driven by a complex interplay of global macroeconomic trends and domestic sectoral dynamics. Overnight, crude oil prices rebounded from a sharp 5% plunge on Monday, as traders awaited details on the US-Iran peace deal, underscoring the fragile balance between geopolitical risk and commodity markets. This development has significant implications for Indian equities, particularly in sectors such as oil marketing companies and aviation, where firm crude prices could pressure margins, while softer prices could offer relief. The direction of Brent crude will be a critical indicator, influencing not just these sectors but also broader market sentiment.\n\nThe reverberations from global markets are being felt across various segments of the Indian economy. The Nikkei 225 and Kospi extended their rally following the US-Iran peace deal, highlighting the interconnectedness of Asian markets and the potential for a risk-on or risk-off signal to travel through crude, gold, currencies, and foreign institutional investor flows before impacting equities. In India, the USD/INR exchange rate, gold prices, and provisional FII flow data will be key indicators to watch. Moreover, the upcoming visit of US Trade Representative Jamieson Greer to India for bilateral trade agreement talks could add another layer of complexity, potentially influencing the macro pressure on the market and necessitating a confirmation from yields, currency movements, and Indian market breadth before becoming a tradable risk-off cue. The Nifty's bias will remain defensive unless Bank Nifty stabilizes, USD/INR pressures ease, and market breadth recovers.\n\nAs the market navigates these global and domestic headwinds, sectoral support and individual stock performances will be crucial. The recent surge in wholesale inflation to a 3-year high of 9.7% in May raises concerns about yield stability and the implications for rate-sensitive sectors such as banking, real estate, and high-multiple growth stocks. Any gap-ups in these sectors should be treated with caution. On the other hand, defensive sectors like pharma and healthcare could lead the market if they demonstrate independent strength beyond individual stocks. The upcoming Turtlemint Fintech IPO will also be a significant event, potentially gauging midcap sentiment and risk appetite, and influencing the broader market mood. The interplay between these factors will determine the key battlegrounds for traders today, with the Nifty's ability to sustain its current levels hanging in the balance.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 74958,
+  "scheduledFor": "2026-06-16T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed?",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-16T02:21:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-16-crude-oil-rebounds-after-5-plunge-as-traders-await-us-iran-peace-deal-details-where-are-prices-headed/articleshow/131757472.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ef4444%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Macro%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInflation%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-16T01:44:44.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-kospi-nikkei-225-extend-rally-after-us-iran-peace-deal-boj-policy-in-focus-11781572823270.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Nikkei%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "USTR Greer to visit India next week for bilateral trade agreement talks",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-15T13:55:47.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/ustr-greer-to-visit-new-delhi-on-june-23-24-for-india-us-bta-talks-126061501056_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUstr%20Greer%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "USTR Greer to visit India next week for bilateral trade agreement talks source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Hindalco Share Price Live Updates: Hindalco's Current Market Price",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-16T02:44:33.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hindalco-share-price-live-updates-16-jun-2026/liveblog/131757758.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindalco%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Hindalco Share Price Live Updates: Hindalco's Current Market Price source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-16T02:31:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/expert-view/light-at-the-end-of-the-tunnel-gautam-shah-sees-nifty-eyeing-25500-bets-on-smallcaps-pharma-and-adani-stocks/articleshow/131745957.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELight%20The%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "New series: Wholesale inflation surged to 3-year high of 9.7% in May",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-15T16:05:55.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/wholesale-inflation-surges-to-9-68-in-may-on-soaring-energy-prices-126061501270_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENew%20Wholesale%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "New series: Wholesale inflation surged to 3-year high of 9.7% in May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-16T02:40:22.000Z",
+      "sourceUrl": "https://www.livemint.com/market/ipo/turtlemint-fintech-ipo-to-open-on-june-19-price-band-issue-size-and-other-details-revealed-check-ipo-gmp-11781577275574.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETurtlemint%20Fintech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-15T23:00:01.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/15/cnbcs-the-china-connection-newsletter-hoping-ai-lifts-all-boats.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-16T01:34:11.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/16/cnbc-daily-open-relief-rally-rolls-on-as-mideast-deal-boosts-sentiment.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECnbc%20Daily%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.32% — gap-up bias Tests Risk Appetite",
+    "correctedTitle": "Indian stock market watches Brent crude rebound for OMC impact",
+    "correctedAt": "2026-07-01T15:43:11.319Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +188,13 @@
       "previousClose": 7431.46,
       "changePercent": 1.653,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T20:40:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T20:40:14.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-15T13:30:00.000Z",
@@ -799,14 +925,13 @@
       "previousClose": 29635.95,
       "changePercent": 3.064,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-15T13:30:00.000Z",
@@ -1537,14 +1662,13 @@
       "previousClose": 51202.26,
       "changePercent": 0.916,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-15T20:46:10.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-15T20:46:10.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-15T13:30:00.000Z",
@@ -2275,14 +2399,13 @@
       "previousClose": 23853.9,
       "changePercent": 0.32,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-16T07:07:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T07:07:30.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-16T03:45:00.000Z",
@@ -3013,14 +3136,13 @@
       "previousClose": 57198.8,
       "changePercent": -0.093,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-16T07:07:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T07:07:30.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-16T03:45:00.000Z",
@@ -3751,15 +3873,13 @@
       "previousClose": 69317.5,
       "changePercent": 0.126,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-16T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-16T00:00:00.000Z",
@@ -4490,15 +4610,13 @@
       "previousClose": 24842.67,
       "changePercent": -1.783,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-16T06:52:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:52:30.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-16T01:30:00.000Z",
@@ -5229,15 +5347,13 @@
       "previousClose": 3987.01,
       "changePercent": 2.602,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-16T06:52:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:52:30.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-16T01:30:00.000Z",
@@ -5968,15 +6084,13 @@
       "previousClose": 8545.98,
       "changePercent": 2.114,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-16T06:30:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:30:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-16T00:00:00.000Z",
@@ -6707,15 +6821,13 @@
       "previousClose": 45396.99,
       "changePercent": 0.908,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-16T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-16T01:00:00.000Z",
@@ -7446,15 +7558,13 @@
       "previousClose": 5077.29,
       "changePercent": 0.652,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-16T06:52:28.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:52:28.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-16T01:00:00.000Z",
@@ -8185,15 +8295,13 @@
       "previousClose": 8914,
       "changePercent": 0.042,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-16T06:25:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:25:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-16T00:00:00.000Z",
@@ -8924,14 +9032,13 @@
       "previousClose": 99.63,
       "changePercent": 0.068,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-16T06:57:28.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:57:28.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-16T04:00:00.000Z",
@@ -9654,14 +9761,13 @@
       "previousClose": 83.17,
       "changePercent": -0.277,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-16T06:57:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:57:03.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-16T04:00:00.000Z",
@@ -10068,14 +10174,13 @@
       "previousClose": 94.7,
       "changePercent": -0.061,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-16T07:07:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T07:07:26.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-16T00:09:00.000Z",
@@ -10806,14 +10911,13 @@
       "previousClose": 4351.6,
       "changePercent": -0.175,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-16T06:57:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T06:57:30.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-16T04:00:00.000Z",
@@ -11540,14 +11644,13 @@
       "previousClose": 14.35,
       "changePercent": -5.922,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-16T07:07:31.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-16T07:07:31.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-16T03:45:00.000Z",
@@ -12276,56 +12379,230 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.256Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.256Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.256Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.256Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.256Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.256Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.256Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.256Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.256Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.256Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.256Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.256Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.256Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.256Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.256Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.256Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.256Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.256Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.256Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.256Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.256Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.256Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.256Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.256Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "15-Jun-2026",
-    "fiiNet": 200.05,
-    "fiiBuy": 15650.2,
-    "fiiSell": 15450.15,
-    "diiNet": 3189.26,
-    "diiBuy": 21080.9,
-    "diiSell": 17891.64
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The Indian market's pre-open today is poised on the cusp of a potentially decisive shift, driven by a complex interplay of global macroeconomic trends and domestic sectoral dynamics. Overnight, crude oil prices rebounded from a sharp 5% plunge on Monday, as traders awaited details on the US-Iran peace deal, underscoring the fragile balance between geopolitical risk and commodity markets. This development has significant implications for Indian equities, particularly in sectors such as oil marketing companies and aviation, where firm crude prices could pressure margins, while softer prices could offer relief. The direction of Brent crude will be a critical indicator, influencing not just these sectors but also broader market sentiment.\n\nThe reverberations from global markets are being felt across various segments of the Indian economy. The Nikkei 225 and Kospi extended their rally following the US-Iran peace deal, highlighting the interconnectedness of Asian markets and the potential for a risk-on or risk-off signal to travel through crude, gold, currencies, and foreign institutional investor flows before impacting equities. In India, the USD/INR exchange rate, gold prices, and provisional FII flow data will be key indicators to watch. Moreover, the upcoming visit of US Trade Representative Jamieson Greer to India for bilateral trade agreement talks could add another layer of complexity, potentially influencing the macro pressure on the market and necessitating a confirmation from yields, currency movements, and Indian market breadth before becoming a tradable risk-off cue. The Nifty's bias will remain defensive unless Bank Nifty stabilizes, USD/INR pressures ease, and market breadth recovers.\n\nAs the market navigates these global and domestic headwinds, sectoral support and individual stock performances will be crucial. The recent surge in wholesale inflation to a 3-year high of 9.7% in May raises concerns about yield stability and the implications for rate-sensitive sectors such as banking, real estate, and high-multiple growth stocks. Any gap-ups in these sectors should be treated with caution. On the other hand, defensive sectors like pharma and healthcare could lead the market if they demonstrate independent strength beyond individual stocks. The upcoming Turtlemint Fintech IPO will also be a significant event, potentially gauging midcap sentiment and risk appetite, and influencing the broader market mood. The interplay between these factors will determine the key battlegrounds for traders today, with the Nifty's ability to sustain its current levels hanging in the balance.",
+  "news": [
+    {
+      "title": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed?",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-16T02:21:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-16-crude-oil-rebounds-after-5-plunge-as-traders-await-us-iran-peace-deal-details-where-are-prices-headed/articleshow/131757472.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ef4444%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Macro%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInflation%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-16T01:44:44.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-kospi-nikkei-225-extend-rally-after-us-iran-peace-deal-boj-policy-in-focus-11781572823270.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Nikkei%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "USTR Greer to visit India next week for bilateral trade agreement talks",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-15T13:55:47.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/ustr-greer-to-visit-new-delhi-on-june-23-24-for-india-us-bta-talks-126061501056_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUstr%20Greer%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "USTR Greer to visit India next week for bilateral trade agreement talks source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Hindalco Share Price Live Updates: Hindalco's Current Market Price",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-16T02:44:33.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hindalco-share-price-live-updates-16-jun-2026/liveblog/131757758.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindalco%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Hindalco Share Price Live Updates: Hindalco's Current Market Price source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-16T02:31:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/expert-view/light-at-the-end-of-the-tunnel-gautam-shah-sees-nifty-eyeing-25500-bets-on-smallcaps-pharma-and-adani-stocks/articleshow/131745957.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELight%20The%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "New series: Wholesale inflation surged to 3-year high of 9.7% in May",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-15T16:05:55.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/wholesale-inflation-surges-to-9-68-in-may-on-soaring-energy-prices-126061501270_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENew%20Wholesale%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "New series: Wholesale inflation surged to 3-year high of 9.7% in May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-16T02:40:22.000Z",
+      "sourceUrl": "https://www.livemint.com/market/ipo/turtlemint-fintech-ipo-to-open-on-june-19-price-band-issue-size-and-other-details-revealed-check-ipo-gmp-11781577275574.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETurtlemint%20Fintech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-15T23:00:01.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/15/cnbcs-the-china-connection-newsletter-hoping-ai-lifts-all-boats.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-16T01:34:11.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/16/cnbc-daily-open-relief-rally-rolls-on-as-mideast-deal-boosts-sentiment.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECnbc%20Daily%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
   "themes": [
     {
-      "digestDate": "2026-06-16",
-      "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "The government also released India's first Producer Price Index under the new series, with producer inflation tracking wholesale prices closely",
-      "sentimentScore": -0.601,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-16",
-      "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "The rebound followed a sharp selloff on Monday, when oil prices tumbled nearly 5% to their lowest closing level since March 4. The decline came after U.S. President Donald Trump announced that a memorandum of understanding had been agreed to end the U.S.-Israeli war with Iran.",
-      "sentimentScore": -0.224,
-      "evidenceCount": 3
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-16",
-      "themeType": "sector_positive",
       "title": "Sector-Specific Cushion",
       "summary": "China's economy sees a lift from artificial intelligence-related industries, while real estate and domestic demand remain lackluster.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-16",
-      "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
       "summary": "Indian equities are nearing a crucial turning point, with market veteran Gautam Shah suggesting a shift in focus beyond benchmark indices. He highlights opportunities in smallcaps, microcaps, renewable energy, and healthcare, while also expressing optimism for the Adani Group and the broader global bull market.",
-      "sentimentScore": 0.467,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     }
   ],
   "tradeSetups": [
@@ -12338,306 +12615,7 @@
       "riskReward": 2.2,
       "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
       "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-16",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 74958,
-  "scheduledFor": "2026-06-16T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "news": [
-    {
-      "publishedAt": "2026-06-16T02:21:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed?",
-      "summary": "The rebound followed a sharp selloff on Monday, when oil prices tumbled nearly 5% to their lowest closing level since March 4. The decline came after U.S. President Donald Trump announced that a memorandum of understanding had been agreed to end the U.S.-Israeli war with Iran.",
-      "takeaway": "The rebound followed a sharp selloff on Monday, when oil prices tumbled nearly 5% to their lowest closing; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-16-crude-oil-rebounds-after-5-plunge-as-traders-await-us-iran-peace-deal-details-where-are-prices-headed/articleshow/131757472.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Inflation",
-        "theme": "US Macro",
-        "accent": "#ef4444",
-        "alt": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed? source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-16T01:44:44.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus",
-      "summary": "Asian markets today: South Korea's Kospi climbed 2.01% at the open, while the small-cap Kosdaq slipped 0.56%, on Tuesday.&nbsp;",
-      "takeaway": "Nikkei 225 extend rally after US; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-kospi-nikkei-225-extend-rally-after-us-iran-peace-deal-boj-policy-in-focus-11781572823270.html",
-      "sentimentLabel": "positive",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Asian Nikkei",
-        "accent": "#7c3aed",
-        "alt": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T13:55:47.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "USTR Greer to visit India next week for bilateral trade agreement talks",
-      "summary": "US Trade Representative Jamieson Greer will meet Commerce Minister Piyush Goyal to advance talks on the proposed India-US trade agreement",
-      "takeaway": "US Trade Representative Jamieson Greer will meet Commerce Minister Piyush Goyal to advance talks on the proposed India-US; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/ustr-greer-to-visit-new-delhi-on-june-23-24-for-india-us-bta-talks-126061501056_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Ustr Greer",
-        "accent": "#dc2626",
-        "alt": "USTR Greer to visit India next week for bilateral trade agreement talks source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-16T02:44:33.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Hindalco Share Price Live Updates: Hindalco's Current Market Price",
-      "summary": "Hindalco Share Price Live Updates: Hindalco's Current Market Price.",
-      "takeaway": "Hindalco's Current Market Price; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Sector Breadth needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Sector Breadth peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hindalco-share-price-live-updates-16-jun-2026/liveblog/131757758.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Sector Breadth",
-        "theme": "Hindalco Share",
-        "accent": "#2563eb",
-        "alt": "Hindalco Share Price Live Updates: Hindalco's Current Market Price source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-16T02:31:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks",
-      "summary": "Indian equities are nearing a crucial turning point, with market veteran Gautam Shah suggesting a shift in focus beyond benchmark indices. He highlights opportunities in smallcaps, microcaps, renewable energy, and healthcare, while also expressing optimism for the Adani Group and the broader global bull market.",
-      "takeaway": "Indian equities are nearing a crucial turning point, with market veteran Gautam Shah suggesting a shift in focus; healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
-      "whyItMatters": "Pharma can cushion weak markets, but a defensive bid is different from broad risk appetite.",
-      "indiaImpact": "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.",
-      "watchFor": "Watch Nifty Pharma breadth and defensive rotation; broad index bias still needs Bank Nifty confirmation.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/expert-view/light-at-the-end-of-the-tunnel-gautam-shah-sees-nifty-eyeing-25500-bets-on-smallcaps-pharma-and-adani-stocks/articleshow/131745957.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Light The",
-        "accent": "#059669",
-        "alt": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T16:05:55.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "New series: Wholesale inflation surged to 3-year high of 9.7% in May",
-      "summary": "The government also released India's first Producer Price Index under the new series, with producer inflation tracking wholesale prices closely",
-      "takeaway": "Wholesale inflation surged to 3-year high; producer inflation tracks wholesale prices closely, raising concerns on yield stability and rate-sensitive sectors.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors like banks, realty, and high-multiple growth need yield stability; otherwise, treat gap-ups as fragile.",
-      "watchFor": "Watch Bank Nifty VWAP and G-sec yields for yield-sensitive sector response.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/wholesale-inflation-surges-to-9-68-in-may-on-soaring-energy-prices-126061501270_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "New Wholesale",
-        "accent": "#dc2626",
-        "alt": "New series: Wholesale inflation surged to 3-year high of 9.7% in May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-16T02:40:22.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP",
-      "summary": "Turtlemint Fintech Solutions Limited plans to launch its IPO from June 19 to June 23, 2026, with anchor investor bidding on June 18. The IPO includes a fresh issue of ₹660.72 crore and an OFS, with an estimated size of ₹871 to ₹883 crore.",
-      "takeaway": "Turtlemint Fintech IPO launch details revealed; IPO demand may gauge midcap sentiment and risk appetite.",
-      "whyItMatters": "Strong listings can support sentiment, but they need cash-market breadth before changing the morning Nifty map.",
-      "indiaImpact": "IPO demand can be a liquidity and midcap sentiment check, influencing broader market mood.",
-      "watchFor": "Watch listing-day breadth and midcap participation for risk-on confirmation.",
-      "sourceUrl": "https://www.livemint.com/market/ipo/turtlemint-fintech-ipo-to-open-on-june-19-price-band-issue-size-and-other-details-revealed-check-ipo-gmp-11781577275574.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Turtlemint Fintech",
-        "accent": "#059669",
-        "alt": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-15T23:00:01.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market",
-      "summary": "China's economy sees a lift from artificial intelligence-related industries, while real estate and domestic demand remain lackluster.",
-      "takeaway": "China's AI-related industries show growth, but real estate and domestic demand remain weak; Global Tech supports AI spending narrative.",
-      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
-      "indiaImpact": "Potentially positive for Nifty IT if exporters lead; otherwise, it's global tech context without direct India impact.",
-      "watchFor": "Watch Nifty IT breadth vs Nasdaq futures for confirmation.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/15/cnbcs-the-china-connection-newsletter-hoping-ai-lifts-all-boats.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-16T01:34:11.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment",
-      "summary": "As investors look to the formal signing of the Iran deal on Friday, equities are hitting fresh highs, oil is down and yields are pulling back.",
-      "takeaway": "Geopolitical easing boosts global sentiment; crude and yields soften ahead of Iran deal formal signing on Friday.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, paints, and tyres may benefit if Brent stays soft; upstream energy could lag on easing crude prices.",
-      "watchFor": "Watch Brent holding below $75/bbl at Asia open to confirm India impact.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/16/cnbc-daily-open-relief-rally-rolls-on-as-mideast-deal-boosts-sentiment.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Cnbc Daily",
-        "accent": "#7c3aed",
-        "alt": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed?",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-06-16T02:21:00.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-16-crude-oil-rebounds-after-5-plunge-as-traders-await-us-iran-peace-deal-details-where-are-prices-headed/articleshow/131757472.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ef4444%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Macro%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInflation%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oil Price Today (June 16): Crude oil rebounds after 5% plunge as traders await US-Iran peace deal details. Where are prices headed? source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-16T01:44:44.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-kospi-nikkei-225-extend-rally-after-us-iran-peace-deal-boj-policy-in-focus-11781572823270.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Nikkei%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Asian markets today: Kospi, Nikkei 225 extend rally after US-Iran peace deal; BOJ policy in focus source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "global_risk"
-    },
-    {
-      "title": "USTR Greer to visit India next week for bilateral trade agreement talks",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-15T13:55:47.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/ustr-greer-to-visit-new-delhi-on-june-23-24-for-india-us-bta-talks-126061501056_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUstr%20Greer%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "USTR Greer to visit India next week for bilateral trade agreement talks source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Hindalco Share Price Live Updates: Hindalco's Current Market Price",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-16T02:44:33.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hindalco-share-price-live-updates-16-jun-2026/liveblog/131757758.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindalco%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Hindalco Share Price Live Updates: Hindalco's Current Market Price source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-06-16T02:31:00.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/expert-view/light-at-the-end-of-the-tunnel-gautam-shah-sees-nifty-eyeing-25500-bets-on-smallcaps-pharma-and-adani-stocks/articleshow/131745957.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELight%20The%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Light at the end of the tunnel? Gautam Shah sees Nifty eyeing 25,500, bets on smallcaps, pharma and Adani stocks source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "New series: Wholesale inflation surged to 3-year high of 9.7% in May",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-15T16:05:55.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/wholesale-inflation-surges-to-9-68-in-may-on-soaring-energy-prices-126061501270_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENew%20Wholesale%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "New series: Wholesale inflation surged to 3-year high of 9.7% in May source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-16T02:40:22.000Z",
-      "sourceUrl": "https://www.livemint.com/market/ipo/turtlemint-fintech-ipo-to-open-on-june-19-price-band-issue-size-and-other-details-revealed-check-ipo-gmp-11781577275574.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETurtlemint%20Fintech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Turtlemint Fintech IPO to open on June 19: Price band, issue size, and other details revealed; check IPO GMP source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market",
-      "publisherName": "CNBC Markets",
-      "timestamp": "2026-06-15T23:00:01.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/15/cnbcs-the-china-connection-newsletter-hoping-ai-lifts-all-boats.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "CNBC's The China Connection newsletter: Waiting for AI to lift the whole market source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment",
-      "publisherName": "CNBC World",
-      "timestamp": "2026-06-16T01:34:11.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/06/16/cnbc-daily-open-relief-rally-rolls-on-as-mideast-deal-boosts-sentiment.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECnbc%20Daily%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "CNBC Daily Open: Relief rally rolls on as Mideast deal boosts sentiment source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12666,17 +12644,12 @@
       "remainingRiskReward": 1.281
     }
   ],
+  "sourceStats": {
+    "articleCount": 9,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-16.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.32% — gap-up bias Tests Risk Appetite",
-    "correctedTitle": "Indian stock market watches Brent crude rebound for OMC impact",
-    "correctedAt": "2026-07-01T15:43:11.319Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

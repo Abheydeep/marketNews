@@ -54,6 +54,150 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.01%, Nasdaq 100 +0.754%, Dow Jones +0.138%, Nikkei 225 -4.153%, Hang Seng -1.755%, Shanghai Composite -2.032%, KOSPI -5.813%, Taiwan Weighted -3.64%, Straits Times -0.522%, ASX 200 +0.177%, US Dollar Index -0.213%, Brent Crude -3.391%, USD/INR +0%, Gold (COMEX) +0.383%, India VIX -2.539%, GIFT Nifty +0%\n\nNarrative Themes:\n- Crude Oil Price Relief: Brent oil falls below $75 as Strait of Hormuz shipments resume\n- Tokyo Inflation Surge: Core inflation accelerates, prompting potential BoJ rate hike considerations\n- Global Tech Selloff: Asian equities decline sharply amid semiconductor stock weakness\n- Banking Sector Strength: Axis Bank plans Rs 55,000 crore capital raise to bolster balance sheet\n\nValidated Trading Setups:\n- No active setups today\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "25-Jun-2026",
+    "fiiNet": 383.76,
+    "fiiBuy": 18988.03,
+    "fiiSell": 18604.27,
+    "diiNet": 5747.75,
+    "diiBuy": 24844.03,
+    "diiSell": 19096.28
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "Crude oil prices have fallen sharply as shipments through the strategic Strait of Hormuz have resumed, easing concerns over potential supply disruptions. Brent crude, the global benchmark, has dipped below $75 a barrel, a development that is likely to ease pressure on inflation-sensitive sectors in India. The resumption of shipments is a significant development, given the heightened tensions in the Middle East and the threat of potential disruptions to global oil supplies. The decline in crude oil prices is also likely to benefit Indian sectors such as aviation and tyres, which have been under pressure due to high fuel costs.\n\nThe decline in crude oil prices is taking place against a backdrop of mixed global cues. Asian equities have fallen sharply overnight, led by a selloff in tech stocks, with the Nikkei and Kospi indices falling by up to 8%. US equity futures are pointing to weaker openings, reflecting global concerns over the tech sector. However, the US labor market remains strong, with weekly jobless claims dropping more than expected. This mixed global context is likely to influence Indian markets, with the Nifty IT index potentially reacting to global tech cues and the direction of Nasdaq futures.\n\nDomestically, Indian markets are likely to be influenced by the resumption of crude oil shipments and the subsequent decline in prices. The Indian rupee is likely to be a key transmission line, with a weaker rupee potentially benefiting IT exporters but hurting sectors that rely on imported costs. Bank Nifty and private banks may also be in focus, given the bank holiday in some regions for Muharram, which may impact trading liquidity. The broader financials breadth will be crucial in determining the direction of Nifty, even if global cues are firm.\n\nAs Indian markets open, traders will be watching the USD/INR pair closely, as well as the direction of global tech stocks and crude oil prices. A sustained decline in Brent crude below $75 is likely to ease pressure on OMCs, aviation, and tyres, while upstream energy stocks may be the offsetting play. Nifty IT stocks may react to global tech cues, and a firm Nasdaq futures direction is likely to be a key driver. Bank Nifty and private banks will need to be watched closely, given the potential impact of bank holiday-related liquidity concerns on trading.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 64572,
+  "scheduledFor": "2026-06-26T07:15:00+05:30",
+  "marketUpdateMode": true,
+  "runMode": "scheduled-market-update",
+  "nonTradingSession": {
+    "state": "exchange_holiday",
+    "reason": "Muharram",
+    "source": "nse_holidays"
+  },
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-26T01:29:02.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-holiday-bse-nse-closed-for-trading-today-for-muharram-commodities-market-to-open-for-half-day-11782437027494.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENse%20Closed%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EUsdinr%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian stocks today: Nikkei, Kospi fall up to 8% amid tech stocks selloff",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-26T02:30:15.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-nikkei-kospi-fall-over-1-amid-tech-stocks-selloff-11782440544840.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian stocks today: Nikkei, Kospi fall up to 8% amid tech stocks selloff source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Global Market: Core inflation in Tokyo accelerates as energy-driven price pressures begin to broaden",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-26T02:03:19.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/core-inflation-in-tokyo-accelerates-as-energy-driven-price-pressures-begin-to-broaden/articleshow/132005724.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Global Market: Core inflation in Tokyo accelerates as energy-driven price pressures begin to broaden source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Bank Holiday Today: Are Banks Open Or Closed For Muharram 2026 On June 26? Check Region-Wise List",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-26T02:11:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/business/bank-holiday-today-are-banks-open-or-closed-for-muharram-2026-on-june-26-check-region-wise-list-11689040",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBank%20Holiday%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Bank Holiday Today: Are Banks Open Or Closed For Muharram 2026 On June 26? Check Region-Wise List source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Global Market: US weekly jobless claims drop more than expected",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-26T02:21:19.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-weekly-jobless-claims-drop-more-than-expected/articleshow/132005843.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Global Market: US weekly jobless claims drop more than expected source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25",
+      "publisherName": "Yahoo Finance",
+      "timestamp": "2026-06-25T11:51:27.000Z",
+      "sourceUrl": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-thursday-june-25-2026-prices-fall-below-4000-for-the-first-time-since-nov-25-115127713.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Prices%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Crude oil prices fall as shipments through Strait of Hormuz resume; Brent oil below $75 a barrel",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-26T01:54:39.000Z",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-fall-as-shipments-through-strait-of-hormuz-resume-brent-oil-below-75-a-barrel-11782438618960.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude oil prices fall as shipments through Strait of Hormuz resume; Brent oil below $75 a barrel source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Oil edges lower as Hormuz shipments resume despite ship attack near Oman",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-06-26T02:29:53.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/commodities/oil-edges-lower-as-hormuz-shipments-resume-despite-ship-attack-near-oman-126062600090_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil edges lower as Hormuz shipments resume despite ship attack near Oman source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Axis Bank seeks shareholder nod to raise Rs 55,000 crore in FY27",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-25T14:14:08.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/axis-bank-seeks-shareholder-nod-to-raise-rs-55000-crore-in-fy27/articleshow/132005345.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Axis Bank seeks shareholder nod to raise Rs 55,000 crore in FY27 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Apple stock price slips 6%, posts worst day in over a year after MacBook, iPad price hikes",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-26T02:38:48.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/apple-stock-price-slips-6-posts-worst-day-in-over-a-year-after-macbook-ipad-price-hikes-11782440998731.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBig%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EApple%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Apple stock price slips 6%, posts worst day in over a year after MacBook, iPad price hikes source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Tests Risk Appetite",
+    "correctedTitle": "Indian stock market stays cautious as Brent crude oil prices ease",
+    "correctedAt": "2026-07-01T15:43:13.642Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -62,14 +206,13 @@
       "previousClose": 7358.22,
       "changePercent": -0.01,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T20:46:21.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T20:46:21.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-25T13:30:00.000Z",
@@ -800,14 +943,13 @@
       "previousClose": 29220.06,
       "changePercent": 0.754,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-25T13:30:00.000Z",
@@ -1538,14 +1680,13 @@
       "previousClose": 51848.9,
       "changePercent": 0.138,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T20:46:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T20:46:35.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-25T13:30:00.000Z",
@@ -2276,14 +2417,13 @@
       "previousClose": 24021.65,
       "changePercent": 0.143,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:01:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:01:20.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T04:16:20.000Z",
@@ -2390,14 +2530,13 @@
       "previousClose": 58150.35,
       "changePercent": 0.046,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:01:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:01:20.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T04:16:20.000Z",
@@ -2504,15 +2643,13 @@
       "previousClose": 72366.34,
       "changePercent": -4.153,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-26T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -3243,15 +3380,13 @@
       "previousClose": 23076.91,
       "changePercent": -1.755,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-26T08:08:32.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T08:08:32.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-26T01:30:00.000Z",
@@ -3982,15 +4117,13 @@
       "previousClose": 4110.81,
       "changePercent": -2.032,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-26T07:00:24.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T07:00:24.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-26T01:30:00.000Z",
@@ -4721,15 +4854,13 @@
       "previousClose": 8930.3,
       "changePercent": -5.813,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-26T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -5460,15 +5591,13 @@
       "previousClose": 46255.26,
       "changePercent": -3.64,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-26T05:33:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T05:33:25.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-26T01:00:00.000Z",
@@ -6199,15 +6328,13 @@
       "previousClose": 5218.96,
       "changePercent": -0.522,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-26T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-26T01:00:00.000Z",
@@ -6938,15 +7065,13 @@
       "previousClose": 8748.7,
       "changePercent": 0.177,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-26T07:21:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T07:21:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-26T00:00:00.000Z",
@@ -7677,14 +7802,13 @@
       "previousClose": 101.43,
       "changePercent": -0.213,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T09:33:10.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:33:10.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-26T04:00:00.000Z",
@@ -8415,14 +8539,13 @@
       "previousClose": 75.5,
       "changePercent": -3.391,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T09:32:47.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:32:47.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-26T04:01:00.000Z",
@@ -9153,14 +9276,13 @@
       "previousClose": 94.39,
       "changePercent": 0,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-26T02:07:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T02:07:55.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-26T01:20:00.000Z",
@@ -9183,14 +9305,13 @@
       "previousClose": 4047.6,
       "changePercent": 0.383,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-26T09:33:09.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-26T09:33:09.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-26T04:00:00.000Z",
@@ -9921,14 +10042,13 @@
       "previousClose": 13.39,
       "changePercent": -2.539,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T10:04:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T10:04:29.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-25T04:19:29.000Z",
@@ -10033,294 +10153,115 @@
       "name": "GIFT Nifty",
       "closeValue": 23980,
       "changePercent": 0,
-      "source": "NSE IFSC (seed reference)",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.273Z",
+          "close": 23980
+        },
+        {
+          "time": "2026-08-20T06:38:22.273Z",
+          "close": 23990.61
+        },
+        {
+          "time": "2026-08-20T06:53:22.273Z",
+          "close": 23984.93
+        },
+        {
+          "time": "2026-08-20T07:08:22.273Z",
+          "close": 23978.91
+        },
+        {
+          "time": "2026-08-20T07:23:22.273Z",
+          "close": 23973.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.273Z",
+          "close": 23968.38
+        },
+        {
+          "time": "2026-08-20T07:53:22.273Z",
+          "close": 23964.94
+        },
+        {
+          "time": "2026-08-20T08:08:22.273Z",
+          "close": 23963.2
+        },
+        {
+          "time": "2026-08-20T08:23:22.273Z",
+          "close": 23963.29
+        },
+        {
+          "time": "2026-08-20T08:38:22.273Z",
+          "close": 23965.13
+        },
+        {
+          "time": "2026-08-20T08:53:22.273Z",
+          "close": 23968.48
+        },
+        {
+          "time": "2026-08-20T09:08:22.273Z",
+          "close": 23972.91
+        },
+        {
+          "time": "2026-08-20T09:23:22.273Z",
+          "close": 23977.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.273Z",
+          "close": 23983
+        },
+        {
+          "time": "2026-08-20T09:53:22.273Z",
+          "close": 23987.55
+        },
+        {
+          "time": "2026-08-20T10:08:22.273Z",
+          "close": 23991.14
+        },
+        {
+          "time": "2026-08-20T10:23:22.273Z",
+          "close": 23993.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.273Z",
+          "close": 23994.19
+        },
+        {
+          "time": "2026-08-20T10:53:22.273Z",
+          "close": 23993.45
+        },
+        {
+          "time": "2026-08-20T11:08:22.273Z",
+          "close": 23991.32
+        },
+        {
+          "time": "2026-08-20T11:23:22.273Z",
+          "close": 23988.09
+        },
+        {
+          "time": "2026-08-20T11:38:22.273Z",
+          "close": 23984.14
+        },
+        {
+          "time": "2026-08-20T11:53:22.273Z",
+          "close": 23979.94
+        },
+        {
+          "time": "2026-08-20T12:08:22.273Z",
+          "close": 23980
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "25-Jun-2026",
-    "fiiNet": 383.76,
-    "fiiBuy": 18988.03,
-    "fiiSell": 18604.27,
-    "diiNet": 5747.75,
-    "diiBuy": 24844.03,
-    "diiSell": 19096.28
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "Crude oil prices have fallen sharply as shipments through the strategic Strait of Hormuz have resumed, easing concerns over potential supply disruptions. Brent crude, the global benchmark, has dipped below $75 a barrel, a development that is likely to ease pressure on inflation-sensitive sectors in India. The resumption of shipments is a significant development, given the heightened tensions in the Middle East and the threat of potential disruptions to global oil supplies. The decline in crude oil prices is also likely to benefit Indian sectors such as aviation and tyres, which have been under pressure due to high fuel costs.\n\nThe decline in crude oil prices is taking place against a backdrop of mixed global cues. Asian equities have fallen sharply overnight, led by a selloff in tech stocks, with the Nikkei and Kospi indices falling by up to 8%. US equity futures are pointing to weaker openings, reflecting global concerns over the tech sector. However, the US labor market remains strong, with weekly jobless claims dropping more than expected. This mixed global context is likely to influence Indian markets, with the Nifty IT index potentially reacting to global tech cues and the direction of Nasdaq futures.\n\nDomestically, Indian markets are likely to be influenced by the resumption of crude oil shipments and the subsequent decline in prices. The Indian rupee is likely to be a key transmission line, with a weaker rupee potentially benefiting IT exporters but hurting sectors that rely on imported costs. Bank Nifty and private banks may also be in focus, given the bank holiday in some regions for Muharram, which may impact trading liquidity. The broader financials breadth will be crucial in determining the direction of Nifty, even if global cues are firm.\n\nAs Indian markets open, traders will be watching the USD/INR pair closely, as well as the direction of global tech stocks and crude oil prices. A sustained decline in Brent crude below $75 is likely to ease pressure on OMCs, aviation, and tyres, while upstream energy stocks may be the offsetting play. Nifty IT stocks may react to global tech cues, and a firm Nasdaq futures direction is likely to be a key driver. Bank Nifty and private banks will need to be watched closely, given the potential impact of bank holiday-related liquidity concerns on trading.",
-  "themes": [
-    {
-      "digestDate": "2026-06-26",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Tokyo's core inflation surged in June, driven by rising energy costs stemming from the Middle East conflict. This acceleration signals broadening price pressures, prompting the Bank of Japan to consider further interest rate hikes. While some economists express caution about the extent of these pressures, the central bank is closely monitoring the situation as it navigates policy normalization amidst global economic uncertainties.",
-      "sentimentScore": -0.7,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-26",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Crude shipments through the Strait of Hormuz increased this week to their highest level since the US-Iran war began in February after a ceasefire deal reopened the waterway, data showed.",
-      "sentimentScore": -0.275,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-06-26",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Asian equities experienced a sharp decline on June 26, with semiconductor stocks weighing heavily. The MSCI Asia Pacific Index fell 1.7%, while South Korea's Kospi dropped over 3%. Meanwhile, US equity futures pointed to weaker openings, reflecting concerns in global technology markets.",
-      "sentimentScore": 0.27,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-06-26",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Axis Bank is seeking shareholder approval to raise a substantial Rs 55,000 crore in FY27, comprising Rs 20,000 crore via equity and Rs 35,000 crore through debt. This move supports the bank's ongoing strategy to bolster its balance sheet by aggressively mobilizing deposits. The bank is focusing on acquiring new premium customers and deepening relationships with existing ones to drive growth and enhance customer value.",
-      "sentimentScore": 0.343,
-      "evidenceCount": 3
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 64572,
-  "scheduledFor": "2026-06-26T07:15:00+05:30",
-  "marketUpdateMode": true,
-  "runMode": "scheduled-market-update",
-  "nonTradingSession": {
-    "state": "exchange_holiday",
-    "reason": "Muharram",
-    "source": "nse_holidays"
-  },
-  "ogImageUrl": null,
   "news": [
-    {
-      "publishedAt": "2026-06-26T01:29:02.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day",
-      "summary": "Stock market holiday: According to the NSE and BSE holiday calendars, the Equity Segment, Equity Derivatives Segment, Currency Derivatives Segment, NDS-RST and Tri-Party Repo segments will remain closed for trading on Friday.",
-      "takeaway": "BSE, NSE closed for trading today for Muharram; Commodities market to open for half day; treat USDINR as a watchlist cue only after related Indian sector breadth confirms.",
-      "whyItMatters": "USDINR stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
-      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-holiday-bse-nse-closed-for-trading-today-for-muharram-commodities-market-to-open-for-half-day-11782437027494.html",
-      "sentimentLabel": "positive",
-      "entityName": "USDINR",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Usdinr",
-        "theme": "Nse Closed",
-        "accent": "#7c3aed",
-        "alt": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:30:15.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Asian stocks today: Nikkei, Kospi fall up to 8% amid tech stocks selloff",
-      "summary": "Asian equities experienced a sharp decline on June 26, with semiconductor stocks weighing heavily. The MSCI Asia Pacific Index fell 1.7%, while South Korea's Kospi dropped over 3%. Meanwhile, US equity futures pointed to weaker openings, reflecting concerns in global technology markets.",
-      "takeaway": "Asian equities fell sharply, led by semiconductor stocks; US equity futures point to weaker openings, reflecting global tech concerns.",
-      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
-      "indiaImpact": "Nifty IT may react if global tech cues impact local exporter stocks and Nasdaq futures direction.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures direction at the open.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-nikkei-kospi-fall-over-1-amid-tech-stocks-selloff-11782440544840.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market infrastructure",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "Asian stocks today: Nikkei, Kospi fall up to 8% amid tech stocks selloff source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:03:19.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Global Market: Core inflation in Tokyo accelerates as energy-driven price pressures begin to broaden",
-      "summary": "Tokyo's core inflation surged in June, driven by rising energy costs stemming from the Middle East conflict. This acceleration signals broadening price pressures, prompting the Bank of Japan to consider further interest rate hikes. While some economists express caution about the extent of these pressures, the central bank is closely monitoring the situation as it navigates policy normalization amidst global economic uncertainties.",
-      "takeaway": "Tokyo's core inflation surged in June, driven by rising energy costs stemming from the Middle East conflict; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/core-inflation-in-tokyo-accelerates-as-energy-driven-price-pressures-begin-to-broaden/articleshow/132005724.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "BoE Rates",
-        "theme": "Central Banks",
-        "accent": "#dc2626",
-        "alt": "Global Market: Core inflation in Tokyo accelerates as energy-driven price pressures begin to broaden source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:11:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Bank Holiday Today: Are Banks Open Or Closed For Muharram 2026 On June 26? Check Region-Wise List",
-      "summary": "Banks in some parts of India will remain closed today, June 26, 2026 for Muharram.",
-      "takeaway": "Bank closures in some regions for Muharram may impact trading liquidity; sector reaction depends on broader financials breadth.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty and private banks are directly affected; weak financial breadth can cap Nifty even with firm global cues.",
-      "watchFor": "Watch private-bank breadth and Bank Nifty VWAP through 9:45 AM for liquidity and sector momentum.",
-      "sourceUrl": "https://www.ndtvprofit.com/business/bank-holiday-today-are-banks-open-or-closed-for-muharram-2026-on-june-26-check-region-wise-list-11689040",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Bank Holiday",
-        "accent": "#2563eb",
-        "alt": "Bank Holiday Today: Are Banks Open Or Closed For Muharram 2026 On June 26? Check Region-Wise List source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:21:19.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Global Market: US weekly jobless claims drop more than expected",
-      "summary": "US unemployment claims saw a sharper-than-expected drop last week, signaling continued labor market strength. Despite this positive sign, a rise in continuing claims suggests employers are cautious about hiring, potentially impacting job seekers, especially recent graduates facing competition from AI. The median unemployment duration has also lengthened, indicating a tougher job search for many.",
-      "takeaway": "US labor market remains strong, but cautious hiring signals mixed outlook; India IT services need local breadth to confirm global tech narrative.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty IT may react if exporter stocks lead and Nasdaq futures stay firm; otherwise, it's global tech context without direct India impact.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures direction at the open.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-weekly-jobless-claims-drop-more-than-expected/articleshow/132005843.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Global Market: US weekly jobless claims drop more than expected source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T11:51:27.000Z",
-      "sourceId": "yahoo-finance",
-      "sourceName": "Yahoo Finance",
-      "headline": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25",
-      "summary": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25.",
-      "takeaway": "Gold price drop below $4,000 may boost risk appetite; India needs local breadth to confirm.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "USD/INR and FII flows are key transmission lines; OMCs, aviation, and exporters may react if risk-off sentiment changes.",
-      "watchFor": "Watch USD/INR and India VIX through 9:45 AM for risk appetite confirmation.",
-      "sourceUrl": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-thursday-june-25-2026-prices-fall-below-4000-for-the-first-time-since-nov-25-115127713.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Gold Prices",
-        "accent": "#059669",
-        "alt": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T01:54:39.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Crude oil prices fall as shipments through Strait of Hormuz resume; Brent oil below $75 a barrel",
-      "summary": "Crude shipments through the Strait of Hormuz increased this week to their highest level since the US-Iran war began in February after a ceasefire deal reopened the waterway, data showed.",
-      "takeaway": "Crude shipments through the Strait of Hormuz increased this week to their highest level since the US-Iran war; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $75; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-fall-as-shipments-through-strait-of-hormuz-resume-brent-oil-below-75-a-barrel-11782438618960.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Crude oil prices fall as shipments through Strait of Hormuz resume; Brent oil below $75 a barrel source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:29:53.000Z",
-      "sourceId": "business-standard-markets",
-      "sourceName": "Business Standard Markets",
-      "headline": "Oil edges lower as Hormuz shipments resume despite ship attack near Oman",
-      "summary": "Brent crude ‌futures fell 19 cents, or 0.25%, to $75.07 a barrel as of 0055 GMT, while US West Texas Intermediate fell 13 cents, or 0.18%, to $71.79 a barrel",
-      "takeaway": "Brent crude futures fell 0.25% to $75.07/barrel as Hormuz shipments resumed; modest decline may ease pressure on inflation-sensitive sectors.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $75; upstream energy is the offsetting play.",
-      "watchFor": "Watch Brent crude price action near $75 and OMC stock behaviour at the open.",
-      "sourceUrl": "https://www.business-standard.com/markets/commodities/oil-edges-lower-as-hormuz-shipments-resume-despite-ship-attack-near-oman-126062600090_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil edges lower as Hormuz shipments resume despite ship attack near Oman source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T14:14:08.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Axis Bank seeks shareholder nod to raise Rs 55,000 crore in FY27",
-      "summary": "Axis Bank is seeking shareholder approval to raise a substantial Rs 55,000 crore in FY27, comprising Rs 20,000 crore via equity and Rs 35,000 crore through debt. This move supports the bank's ongoing strategy to bolster its balance sheet by aggressively mobilizing deposits. The bank is focusing on acquiring new premium customers and deepening relationships with existing ones to drive growth and enhance customer value.",
-      "takeaway": "Axis Bank is seeking shareholder approval to raise a substantial Rs 55,000 crore in FY27, comprising Rs 20,000; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/axis-bank-seeks-shareholder-nod-to-raise-rs-55000-crore-in-fy27/articleshow/132005345.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Exxon",
-        "theme": "Oil Majors",
-        "accent": "#ea580c",
-        "alt": "Axis Bank seeks shareholder nod to raise Rs 55,000 crore in FY27 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-26T02:38:48.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Apple stock price slips 6%, posts worst day in over a year after MacBook, iPad price hikes",
-      "summary": "Apple share price ended 6.15% lower at $275.15 apiece on the Nasdaq. During the session, the stock dropped as much as 6.59% to an intraday low of $273.75 per share, posting its biggest intraday drop since April 10, 2025.",
-      "takeaway": "Apple's sharp decline may test global risk appetite, with potential spillover to Indian IT stocks if broader Nasdaq weakness persists.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty IT may come under pressure if Nasdaq futures remain weak and exporter stocks lead the decline.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures direction.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/apple-stock-price-slips-6-posts-worst-day-in-over-a-year-after-macbook-ipad-price-hikes-11782440998731.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Apple",
-        "theme": "Big Tech",
-        "accent": "#2563eb",
-        "alt": "Apple stock price slips 6%, posts worst day in over a year after MacBook, iPad price hikes source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day",
       "publisherName": "Mint Markets",
@@ -10328,7 +10269,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/stock-market-holiday-bse-nse-closed-for-trading-today-for-muharram-commodities-market-to-open-for-half-day-11782437027494.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENse%20Closed%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EUsdinr%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Stock market holiday: BSE, NSE closed for trading today for Muharram; Commodities market to open for half day source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10338,7 +10279,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-nikkei-kospi-fall-over-1-amid-tech-stocks-selloff-11782440544840.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Asian stocks today: Nikkei, Kospi fall up to 8% amid tech stocks selloff source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -10348,7 +10289,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/core-inflation-in-tokyo-accelerates-as-energy-driven-price-pressures-begin-to-broaden/articleshow/132005724.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Global Market: Core inflation in Tokyo accelerates as energy-driven price pressures begin to broaden source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -10358,7 +10299,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/business/bank-holiday-today-are-banks-open-or-closed-for-muharram-2026-on-june-26-check-region-wise-list-11689040",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBank%20Holiday%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Bank Holiday Today: Are Banks Open Or Closed For Muharram 2026 On June 26? Check Region-Wise List source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -10378,7 +10319,7 @@
       "sourceUrl": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-thursday-june-25-2026-prices-fall-below-4000-for-the-first-time-since-nov-25-115127713.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Prices%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Gold prices today, Thursday, June 25, 2026: Prices fall below $4,000 for the first time since Nov. '25 source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -10388,7 +10329,7 @@
       "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-fall-as-shipments-through-strait-of-hormuz-resume-brent-oil-below-75-a-barrel-11782438618960.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Crude oil prices fall as shipments through Strait of Hormuz resume; Brent oil below $75 a barrel source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10398,7 +10339,7 @@
       "sourceUrl": "https://www.business-standard.com/markets/commodities/oil-edges-lower-as-hormuz-shipments-resume-despite-ship-attack-near-oman-126062600090_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil edges lower as Hormuz shipments resume despite ship attack near Oman source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10408,7 +10349,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/axis-bank-seeks-shareholder-nod-to-raise-rs-55000-crore-in-fy27/articleshow/132005345.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Axis Bank seeks shareholder nod to raise Rs 55,000 crore in FY27 source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -10418,10 +10359,37 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/apple-stock-price-slips-6-posts-worst-day-in-over-a-year-after-macbook-ipad-price-hikes-11782440998731.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBig%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EApple%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Apple stock price slips 6%, posts worst day in over a year after MacBook, iPad price hikes source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Tokyo's core inflation surged in June, driven by rising energy costs stemming from the Middle East conflict. This acceleration signals broadening price pressures, prompting the Bank of Japan to consider further interest rate hikes. While some economists express caution about the extent of these pressures, the central bank is closely monitoring the situation as it navigates policy normalization amidst global economic uncertainties.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Crude shipments through the Strait of Hormuz increased this week to their highest level since the US-Iran war began in February after a ceasefire deal reopened the waterway, data showed.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Asian equities experienced a sharp decline on June 26, with semiconductor stocks weighing heavily. The MSCI Asia Pacific Index fell 1.7%, while South Korea's Kospi dropped over 3%. Meanwhile, US equity futures pointed to weaker openings, reflecting concerns in global technology markets.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Axis Bank is seeking shareholder approval to raise a substantial Rs 55,000 crore in FY27, comprising Rs 20,000 crore via equity and Rs 35,000 crore through debt. This move supports the bank's ongoing strategy to bolster its balance sheet by aggressively mobilizing deposits. The bank is focusing on acquiring new premium customers and deepening relationships with existing ones to drive growth and enhance customer value.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -10448,17 +10416,12 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-26.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Crude / energy risk Tests Risk Appetite",
-    "correctedTitle": "Indian stock market stays cautious as Brent crude oil prices ease",
-    "correctedAt": "2026-07-01T15:43:13.642Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

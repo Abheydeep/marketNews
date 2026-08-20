@@ -52,6 +52,115 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.098%, Nasdaq 100 -0.433%, Dow Jones +0.352%, Nikkei 225 +4.613%, Hang Seng -1.432%, Shanghai Composite +0.342%, KOSPI +5.422%\n\nNarrative Themes:\n- Resuming India-China Border Trade: Trade via Lipulekh Pass to resume after 6 years.\n- Global Risk-Off Cue: US-Iran peace deal eases crude oil prices.\n- Emerging AI Opportunity: Indian companies provide video training data for US and Chinese robots.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "24-Jun-2026",
+    "fiiNet": -1843.4,
+    "fiiBuy": 16744.73,
+    "fiiSell": 18588.13,
+    "diiNet": 3637.26,
+    "diiBuy": 17274.01,
+    "diiSell": 13636.75
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The resumption of India-China border trade via the Lipulekh Pass after a six-year hiatus is set to boost local demand and sentiment for specific sectors, particularly metals, chemicals, and capital goods, as improved China demand cues and regional risk appetite gain traction. This development holds significant potential for Nifty Metal, chemicals, and capital-goods suppliers, who may gain from the renewed trade activity. The move is expected to have a positive impact on regional trade and commerce, and the consequent demand uptick could be a tailwind for companies operating in these sectors.\n\nThe global context is also supportive, with Asian stocks rallying overnight on the back of Micron's strong earnings, which saw Kospi jump 5% and Nikkei 225 rise 1%. This positive global cue can travel to Indian listed peers if margins, guidance, or demand improvements are evident. Additionally, crude oil prices have extended their decline, reaching pre-US-Iran war levels, with Brent crude slipping to $73 per barrel. This downward trend in crude prices can be treated as evidence of supply discipline, and its sustained direction will be crucial in determining the impact on Indian oil marketing companies, aviation, and tyre manufacturers.\n\nDomestically, the 10-year government bond yield has fallen to a three-month low as RBI Governor Sanjay Malhotra eased rate worries, with the benchmark yield dropping 6 basis points to 6.80%. Rate-sensitive Indian sectors will need yield stability to sustain any potential gains; otherwise, gap-ups in banks, realty, and growth stocks should be treated as fragile. The GIFT Nifty indicates a positive start, but the premium should be treated as opening-gap input rather than a finished trade view. The direction of the Nifty gap and Bank Nifty confirmation will be crucial in determining if the trend gains traction.\n\nAs the Indian market opens, traders must watch the Nifty gap direction and Bank Nifty confirmation to gauge if the positive trend sustains. The advance-decline ratio and USD/INR movements will also be crucial in determining the market's bias. Additionally, the reaction of Nifty Auto to Ashok Leyland's Q4 results beat and the potential for a sectoral re-rate will be worth monitoring. With the global and domestic context in place, traders will need to be vigilant and responsive to the unfolding market dynamics to capitalize on the emerging opportunities.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 15,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 59365,
+  "scheduledFor": "2026-06-25T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 June",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-25T02:00:48.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-25-june-11782352210725.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 June source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Asian stocks today: Kospi jumps 5%, Nikkei 225 up 1% after Micron's strong earnings",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-25T01:40:45.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-kospi-jumps-5-nikkei-225-up-1-after-microns-strong-earnings-11782350340517.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Kospi%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian stocks today: Kospi jumps 5%, Nikkei 225 up 1% after Micron's strong earnings source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "10-year govt bond yield at three-month low as RBI eases rate worries",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-24T14:21:33.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/govt-bond-yields-fall-to-three-month-low-after-rbi-governor-s-comments-126062401156_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3E10-Year%20Govt%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "10-year govt bond yield at three-month low as RBI eases rate worries source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "India-China border trade via Lipulekh Pass to resume after 6 years",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-24T17:34:54.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-china-border-trade-via-lipulekh-pass-to-resume-after-6-years-126062401049_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-China%20Border%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India-China border trade via Lipulekh Pass to resume after 6 years source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Inside India newsletter: Meet the humans teaching robots to perform routine tasks, as India finds a way to enter the AI race",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-25T00:09:37.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/25/inside-india-newsletter-humans-are-teaching-robots-to-do-ai.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Inside India newsletter: Meet the humans teaching robots to perform routine tasks, as India finds a way to enter the AI race source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Crude oil prices extend decline, reach pre-US-Iran war level; Brent slips to $73 per barrel",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-25T02:00:01.000Z",
+      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-decline-reach-pre-us-iran-war-level-brent-slips-to-73-per-barrel-11782351774082.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude oil prices extend decline, reach pre-US-Iran war level; Brent slips to $73 per barrel source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Trump meets defense CEOs as Iran operations strain U.S. missile stockpiles",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-06-24T22:12:00.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/24/trump-defense-contractors-boeing-lockheed-honeywell-weapons-production-iran.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Meets%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump meets defense CEOs as Iran operations strain U.S. missile stockpiles source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-06-25T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -60,14 +169,13 @@
       "previousClose": 7365.46,
       "changePercent": -0.098,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T20:41:33.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T20:41:33.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-24T13:30:00.000Z",
@@ -798,14 +906,13 @@
       "previousClose": 29347.27,
       "changePercent": -0.433,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-24T13:30:00.000Z",
@@ -1536,14 +1643,13 @@
       "previousClose": 51666.84,
       "changePercent": 0.352,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-24T20:41:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-24T20:41:35.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-24T13:30:00.000Z",
@@ -2274,14 +2380,13 @@
       "previousClose": 24021.65,
       "changePercent": 0.33,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T08:57:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:57:55.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T03:45:00.000Z",
@@ -3012,14 +3117,13 @@
       "previousClose": 58150.35,
       "changePercent": 0.132,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T08:57:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:57:50.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-25T03:45:00.000Z",
@@ -3750,15 +3854,13 @@
       "previousClose": 69174.97,
       "changePercent": 4.613,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-25T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-25T00:00:00.000Z",
@@ -4489,15 +4591,13 @@
       "previousClose": 23412.18,
       "changePercent": -1.432,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-25T08:08:34.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:08:34.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-25T01:30:00.000Z",
@@ -5228,15 +5328,13 @@
       "previousClose": 4106.25,
       "changePercent": 0.342,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-25T07:00:24.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T07:00:24.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-25T01:30:00.000Z",
@@ -5967,15 +6065,13 @@
       "previousClose": 8471.02,
       "changePercent": 5.422,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-25T06:32:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T06:32:50.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-25T00:00:00.000Z",
@@ -6706,15 +6802,13 @@
       "previousClose": 46043.6,
       "changePercent": 0.46,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-25T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-25T01:00:00.000Z",
@@ -7445,15 +7539,13 @@
       "previousClose": 5215.99,
       "changePercent": 0.05,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-25T08:42:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:42:55.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-25T01:00:00.000Z",
@@ -8184,15 +8276,13 @@
       "previousClose": 8808.4,
       "changePercent": -0.678,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-25T07:05:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T07:05:44.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-25T00:00:00.000Z",
@@ -8923,14 +9013,13 @@
       "previousClose": 101.61,
       "changePercent": -0.141,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T08:47:54.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:47:54.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-25T04:00:00.000Z",
@@ -9661,14 +9750,13 @@
       "previousClose": 73.87,
       "changePercent": -1.327,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T08:47:41.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:47:41.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-25T04:00:00.000Z",
@@ -10399,14 +10487,13 @@
       "previousClose": 94.66,
       "changePercent": -0.219,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-25T08:57:53.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:57:53.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-25T02:56:00.000Z",
@@ -11137,14 +11224,13 @@
       "previousClose": 4008.8,
       "changePercent": 0.025,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-25T08:47:52.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:47:52.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-25T04:00:00.000Z",
@@ -11875,14 +11961,13 @@
       "previousClose": 13.94,
       "changePercent": -6.169,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-25T08:57:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-25T08:57:55.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-25T03:45:00.000Z",
@@ -12611,254 +12696,115 @@
       "name": "GIFT Nifty",
       "closeValue": 23980,
       "changePercent": 0,
-      "source": "NSE IFSC (seed reference)",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.271Z",
+          "close": 23980
+        },
+        {
+          "time": "2026-08-20T06:38:22.271Z",
+          "close": 23990.61
+        },
+        {
+          "time": "2026-08-20T06:53:22.271Z",
+          "close": 23984.93
+        },
+        {
+          "time": "2026-08-20T07:08:22.271Z",
+          "close": 23978.91
+        },
+        {
+          "time": "2026-08-20T07:23:22.271Z",
+          "close": 23973.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.271Z",
+          "close": 23968.38
+        },
+        {
+          "time": "2026-08-20T07:53:22.271Z",
+          "close": 23964.94
+        },
+        {
+          "time": "2026-08-20T08:08:22.271Z",
+          "close": 23963.2
+        },
+        {
+          "time": "2026-08-20T08:23:22.271Z",
+          "close": 23963.29
+        },
+        {
+          "time": "2026-08-20T08:38:22.271Z",
+          "close": 23965.13
+        },
+        {
+          "time": "2026-08-20T08:53:22.271Z",
+          "close": 23968.48
+        },
+        {
+          "time": "2026-08-20T09:08:22.271Z",
+          "close": 23972.91
+        },
+        {
+          "time": "2026-08-20T09:23:22.271Z",
+          "close": 23977.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.271Z",
+          "close": 23983
+        },
+        {
+          "time": "2026-08-20T09:53:22.271Z",
+          "close": 23987.55
+        },
+        {
+          "time": "2026-08-20T10:08:22.271Z",
+          "close": 23991.14
+        },
+        {
+          "time": "2026-08-20T10:23:22.271Z",
+          "close": 23993.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.271Z",
+          "close": 23994.19
+        },
+        {
+          "time": "2026-08-20T10:53:22.271Z",
+          "close": 23993.45
+        },
+        {
+          "time": "2026-08-20T11:08:22.271Z",
+          "close": 23991.32
+        },
+        {
+          "time": "2026-08-20T11:23:22.271Z",
+          "close": 23988.09
+        },
+        {
+          "time": "2026-08-20T11:38:22.271Z",
+          "close": 23984.14
+        },
+        {
+          "time": "2026-08-20T11:53:22.271Z",
+          "close": 23979.94
+        },
+        {
+          "time": "2026-08-20T12:08:22.271Z",
+          "close": 23980
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "24-Jun-2026",
-    "fiiNet": -1843.4,
-    "fiiBuy": 16744.73,
-    "fiiSell": 18588.13,
-    "diiNet": 3637.26,
-    "diiBuy": 17274.01,
-    "diiSell": 13636.75
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The resumption of India-China border trade via the Lipulekh Pass after a six-year hiatus is set to boost local demand and sentiment for specific sectors, particularly metals, chemicals, and capital goods, as improved China demand cues and regional risk appetite gain traction. This development holds significant potential for Nifty Metal, chemicals, and capital-goods suppliers, who may gain from the renewed trade activity. The move is expected to have a positive impact on regional trade and commerce, and the consequent demand uptick could be a tailwind for companies operating in these sectors.\n\nThe global context is also supportive, with Asian stocks rallying overnight on the back of Micron's strong earnings, which saw Kospi jump 5% and Nikkei 225 rise 1%. This positive global cue can travel to Indian listed peers if margins, guidance, or demand improvements are evident. Additionally, crude oil prices have extended their decline, reaching pre-US-Iran war levels, with Brent crude slipping to $73 per barrel. This downward trend in crude prices can be treated as evidence of supply discipline, and its sustained direction will be crucial in determining the impact on Indian oil marketing companies, aviation, and tyre manufacturers.\n\nDomestically, the 10-year government bond yield has fallen to a three-month low as RBI Governor Sanjay Malhotra eased rate worries, with the benchmark yield dropping 6 basis points to 6.80%. Rate-sensitive Indian sectors will need yield stability to sustain any potential gains; otherwise, gap-ups in banks, realty, and growth stocks should be treated as fragile. The GIFT Nifty indicates a positive start, but the premium should be treated as opening-gap input rather than a finished trade view. The direction of the Nifty gap and Bank Nifty confirmation will be crucial in determining if the trend gains traction.\n\nAs the Indian market opens, traders must watch the Nifty gap direction and Bank Nifty confirmation to gauge if the positive trend sustains. The advance-decline ratio and USD/INR movements will also be crucial in determining the market's bias. Additionally, the reaction of Nifty Auto to Ashok Leyland's Q4 results beat and the potential for a sectoral re-rate will be worth monitoring. With the global and domestic context in place, traders will need to be vigilant and responsive to the unfolding market dynamics to capitalize on the emerging opportunities.",
-  "themes": [
-    {
-      "digestDate": "2026-06-25",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "US-Iran peace deal: Brent crude futures for August delivery were down 40 cents, or 0.54%, at $73.34 per barrel, while US West Texas Intermediate (WTI) crude slipped 27 cents, or 0.38%, to $70.07 per barrel.",
-      "sentimentScore": -0.509,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-06-25",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a positive start for the Indian benchmark index. The Gift Nifty was trading around 24,130 level, a premium of nearly 78 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-25",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "sentimentScore": -0.038,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-06-25",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Several companies have cropped up in India providing video training data made by humans that is being used to teach robots in the U.S. and China.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-25",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Asian stocks today: South Korea's Kospi surged over 5% at the open, while the small-cap Kosdaq advanced 1.32%.",
-      "sentimentScore": 0.67,
-      "evidenceCount": 1
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 15,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 59365,
-  "scheduledFor": "2026-06-25T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
   "news": [
-    {
-      "publishedAt": "2026-06-25T02:00:48.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 June",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a positive start for the Indian benchmark index. The Gift Nifty was trading around 24,130 level, a premium of nearly 78 points from the Nifty futures’ previous close.",
-      "takeaway": "GIFT Nifty indicates a positive start; treat the premium as opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Nifty gap direction matters; Bank Nifty confirmation decides if it becomes a trend.",
-      "watchFor": "Watch Nifty VWAP and Bank Nifty breadth into 9:30 AM.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-25-june-11782352210725.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 June source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T01:40:45.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Asian stocks today: Kospi jumps 5%, Nikkei 225 up 1% after Micron's strong earnings",
-      "summary": "Asian stocks today: South Korea's Kospi surged over 5% at the open, while the small-cap Kosdaq advanced 1.32%.",
-      "takeaway": "Micron's strong earnings; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-kospi-jumps-5-nikkei-225-up-1-after-microns-strong-earnings-11782350340517.html",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Asian Kospi",
-        "accent": "#059669",
-        "alt": "Asian stocks today: Kospi jumps 5%, Nikkei 225 up 1% after Micron's strong earnings source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T14:21:33.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "10-year govt bond yield at three-month low as RBI eases rate worries",
-      "summary": "The benchmark 10-year bond yield fell 6 basis points to 6.80 per cent as RBI Governor Sanjay Malhotra's remarks eased rate-hike concerns",
-      "takeaway": "The benchmark 10-year bond yield fell 6 basis points to 6.80 per cent as RBI Governor Sanjay Malhotra's; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/govt-bond-yields-fall-to-three-month-low-after-rbi-governor-s-comments-126062401156_1.html",
-      "sentimentLabel": "positive",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "10-Year Govt",
-        "accent": "#dc2626",
-        "alt": "10-year govt bond yield at three-month low as RBI eases rate worries source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T17:34:54.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India-China border trade via Lipulekh Pass to resume after 6 years",
-      "summary": "The first batch of 26 Indian traders is expected to enter the Chinese territory of Tibet through the Lipulekh pass on June 26, marking the resumption of border trade after a six-year hiatus, according to administrative sources in Dharchula. Ashish Joshi, Trade Officer and Dharchula Sub-Divisional Magistrate (SDM), said that 26 trade passes have been issued, which include 17 traders and nine helpers. A customs office has also been opened at Gunji to facilitate the process. \"We expect the first batch of Indian traders to reach Tibet on June 26, as they have already stored their goods in warehouses at villages near the Lipulekh pass,\" Joshi said. The administration has received applications from more than 103 traders and is currently planning to issue trade passes for a second batch of 25 traders shortly. To assist the traders, the administration has designated a spot near Nabhidhang for mules and horses to transport goods to the Lipulekh pass, which is located nearly 600 metres from",
-      "takeaway": "Resumption of India-China border trade via Lipulekh Pass may boost local demand and sentiment for metals, chemicals, and capital goods.",
-      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
-      "indiaImpact": "Nifty Metal, chemicals, and capital-goods suppliers may gain on improved China demand cues and regional risk appetite.",
-      "watchFor": "Watch Nifty Metal breadth and Bank Nifty VWAP for confirmation through 9:45 AM.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-china-border-trade-via-lipulekh-pass-to-resume-after-6-years-126062401049_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "India-China Border",
-        "accent": "#7c3aed",
-        "alt": "India-China border trade via Lipulekh Pass to resume after 6 years source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T00:09:37.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Inside India newsletter: Meet the humans teaching robots to perform routine tasks, as India finds a way to enter the AI race",
-      "summary": "Several companies have cropped up in India providing video training data made by humans that is being used to teach robots in the U.S. and China.",
-      "takeaway": "India's AI-data services sector is gaining traction, supporting the AI-spending narrative; local IT services breadth is needed to confirm the trade.",
-      "whyItMatters": "China strength can lift cyclicals, but India needs Nifty Metal and domestic breadth before it becomes a broad cue.",
-      "indiaImpact": "Potentially positive for Nifty IT if exporter breadth confirms; otherwise, it's global tech context.",
-      "watchFor": "Watch Nifty IT price and Nasdaq futures correlation through 9:45 AM.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/25/inside-india-newsletter-humans-are-teaching-robots-to-do-ai.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Inside India newsletter: Meet the humans teaching robots to perform routine tasks, as India finds a way to enter the AI race source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T02:00:01.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Crude oil prices extend decline, reach pre-US-Iran war level; Brent slips to $73 per barrel",
-      "summary": "US-Iran peace deal: Brent crude futures for August delivery were down 40 cents, or 0.54%, at $73.34 per barrel, while US West Texas Intermediate (WTI) crude slipped 27 cents, or 0.38%, to $70.07 per barrel.",
-      "takeaway": "US-Iran peace deal: Brent crude futures for August delivery were down 40 cents, or 0.54%, at $73.34 per; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $73; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-decline-reach-pre-us-iran-war-level-brent-slips-to-73-per-barrel-11782351774082.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Crude oil prices extend decline, reach pre-US-Iran war level; Brent slips to $73 per barrel source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-24T22:12:00.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Trump meets defense CEOs as Iran operations strain U.S. missile stockpiles",
-      "summary": "The White House is pressing major defense firms to expand missile and munitions output as Iran talks and weapons stockpile concerns put new pressure on the Pentagon’s industrial base.",
-      "takeaway": "The White House is pressing major defense firms to expand missile and munitions output as Iran talks; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/24/trump-defense-contractors-boeing-lockheed-honeywell-weapons-production-iran.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Trump Meets",
-        "accent": "#7c3aed",
-        "alt": "Trump meets defense CEOs as Iran operations strain U.S. missile stockpiles source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-25T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "takeaway": "Ashok Leyland's Q4 results beat; margins and guidance will decide if the gain travels to peers like TVS or remains stock-specific.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty Auto may react if results trigger a sectoral re-rate or if peers like TVS Motor follow suit.",
-      "watchFor": "Watch Nifty Auto breadth and TVS Motor price action through 9:45 AM for sectoral confirmation.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Ashok Leyland",
-        "accent": "#dc2626",
-        "alt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 25 June",
       "publisherName": "Mint Markets",
@@ -12876,7 +12822,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-stocks-today-kospi-jumps-5-nikkei-225-up-1-after-microns-strong-earnings-11782350340517.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAsian%20Kospi%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Asian stocks today: Kospi jumps 5%, Nikkei 225 up 1% after Micron's strong earnings source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -12886,7 +12832,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/govt-bond-yields-fall-to-three-month-low-after-rbi-governor-s-comments-126062401156_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3E10-Year%20Govt%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "10-year govt bond yield at three-month low as RBI eases rate worries source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -12896,7 +12842,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/india-china-border-trade-via-lipulekh-pass-to-resume-after-6-years-126062401049_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia-China%20Border%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India-China border trade via Lipulekh Pass to resume after 6 years source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12906,7 +12852,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/25/inside-india-newsletter-humans-are-teaching-robots-to-do-ai.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Inside India newsletter: Meet the humans teaching robots to perform routine tasks, as India finds a way to enter the AI race source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -12916,7 +12862,7 @@
       "sourceUrl": "https://www.livemint.com/market/commodities/crude-oil-prices-extend-decline-reach-pre-us-iran-war-level-brent-slips-to-73-per-barrel-11782351774082.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Crude oil prices extend decline, reach pre-US-Iran war level; Brent slips to $73 per barrel source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12926,7 +12872,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/24/trump-defense-contractors-boeing-lockheed-honeywell-weapons-production-iran.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Meets%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Trump meets defense CEOs as Iran operations strain U.S. missile stockpiles source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12936,10 +12882,43 @@
       "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     }
   ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "US-Iran peace deal: Brent crude futures for August delivery were down 40 cents, or 0.54%, at $73.34 per barrel, while US West Texas Intermediate (WTI) crude slipped 27 cents, or 0.38%, to $70.07 per barrel.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a positive start for the Indian benchmark index. The Gift Nifty was trading around 24,130 level, a premium of nearly 78 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Several companies have cropped up in India providing video training data made by humans that is being used to teach robots in the U.S. and China.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Asian stocks today: South Korea's Kospi surged over 5% at the open, while the small-cap Kosdaq advanced 1.32%.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -12966,6 +12945,10 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 4
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-25.webp"

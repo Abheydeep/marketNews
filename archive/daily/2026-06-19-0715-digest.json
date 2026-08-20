@@ -50,6 +50,104 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +1.085%, Nasdaq 100 +2.478%, Dow Jones +0.14%, Nifty 50 +0.374%, Bank Nifty +0.433%, Nikkei 225 +1.549%, Hang Seng -0.653%, Shanghai Composite +1.775%, KOSPI +0.686%, Taiwan Weighted +2.747%, Straits Times +0.218%, ASX 200 -0.143%, US Dollar Index +0.005%, Brent Crude -0.789%, USD/INR +0.392%, Gold (COMEX) -0.391%, India VIX -0.987%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr\n- Global Risk-Off Cue: Think tank GTRI says India's tariff structure encourages exports of primary aluminium while raising input costs for domestic manufacturers and MSMEs\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "19-Jun-2026",
+    "fiiNet": 4859.07,
+    "fiiBuy": 31442.87,
+    "fiiSell": 26583.8,
+    "diiNet": -1159.64,
+    "diiBuy": 18020.49,
+    "diiSell": 19180.13
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 54,
+    "publisherCount": 9,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 10480,
+  "scheduledFor": "2026-06-19T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Global energy transition readiness dips, India among top gainers: WEF",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-18T09:20:38.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/global-energy-transition-readiness-dips-india-among-top-gainers-wef-126061800573_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Energy%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Global energy transition readiness dips, India among top gainers: WEF source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India may ease emergency fuel curbs once global tensions ease: Official",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-18T14:13:05.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-may-ease-emergency-fuel-curbs-once-global-tensions-ease-official-126061801162_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India may ease emergency fuel curbs once global tensions ease: Official source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-06-19T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "India exports raw aluminium as tariff structure hits manufacturing: GTRI",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-18T14:24:57.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-exports-raw-aluminium-as-tariff-structure-hits-manufacturing-gtri-126061801180_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Exports%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMetal%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India exports raw aluminium as tariff structure hits manufacturing: GTRI source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "OPEC chief dismisses IEA supply glut forecast as 'critical' Strait of Hormuz reopens",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-18T15:19:47.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/18/opec-iea-supply-glut-forecast-critical-strait-hormuz-reopens-oil.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOPEC%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "OPEC chief dismisses IEA supply glut forecast as 'critical' Strait of Hormuz reopens source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Why Japan's $70 billion-plus intervention and a rate hike didn't prop up the yen more",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-06-19T02:04:53.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/06/19/japan-yen-intervention-boj-rate-hike.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Why Japan's $70 billion-plus intervention and a rate hike didn't prop up the yen more source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Shape Bank Nifty..",
+    "correctedTitle": "India Gains Ground in Energy Transition Readiness, Boosts Market Sentiment",
+    "correctedAt": "2026-07-01T15:43:13.378Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -58,14 +156,13 @@
       "previousClose": 7420.1,
       "changePercent": 1.085,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:42:06.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:42:06.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -796,14 +893,13 @@
       "previousClose": 29670.9,
       "changePercent": 2.478,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -1534,14 +1630,13 @@
       "previousClose": 51492.6,
       "changePercent": 0.14,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:45:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:45:00.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -2272,14 +2367,13 @@
       "previousClose": 24013.1,
       "changePercent": 0.374,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3010,14 +3104,13 @@
       "previousClose": 57685.75,
       "changePercent": 0.433,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3748,15 +3841,13 @@
       "previousClose": 71250.06,
       "changePercent": 1.549,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-22T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -4487,15 +4578,13 @@
       "previousClose": 23924.81,
       "changePercent": -0.653,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-22T08:08:34.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T08:08:34.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5226,15 +5315,13 @@
       "previousClose": 4090.48,
       "changePercent": 1.775,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-22T07:00:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:00:29.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5965,15 +6052,13 @@
       "previousClose": 9052.42,
       "changePercent": 0.686,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-22T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -6704,15 +6789,13 @@
       "previousClose": 46465.2,
       "changePercent": 2.747,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-22T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -7443,15 +7526,13 @@
       "previousClose": 5192.7,
       "changePercent": 0.218,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-22T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -8182,15 +8263,13 @@
       "previousClose": 8828.7,
       "changePercent": -0.143,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-22T07:10:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:10:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -8921,14 +9000,13 @@
       "previousClose": 100.85,
       "changePercent": 0.005,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:18:17.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:18:17.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -9659,14 +9737,13 @@
       "previousClose": 79.85,
       "changePercent": -0.789,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:15:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:15:20.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -10397,14 +10474,13 @@
       "previousClose": 94.31,
       "changePercent": 0.392,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-22T10:03:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:03:02.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-22T03:13:00.000Z",
@@ -11135,14 +11211,13 @@
       "previousClose": 4245.9,
       "changePercent": -0.391,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:18:08.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:18:08.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -11873,14 +11948,13 @@
       "previousClose": 12.97,
       "changePercent": -0.987,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:04:09.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:04:09.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -12609,201 +12683,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.261Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.261Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.261Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.261Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.261Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.261Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.261Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.261Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.261Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.261Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.261Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.261Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.261Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.261Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.261Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.261Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.261Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.261Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.261Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.261Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.261Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.261Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.261Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.261Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "19-Jun-2026",
-    "fiiNet": 4859.07,
-    "fiiBuy": 31442.87,
-    "fiiSell": 26583.8,
-    "diiNet": -1159.64,
-    "diiBuy": 18020.49,
-    "diiSell": 19180.13
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": null,
-  "themes": [
-    {
-      "digestDate": "2026-06-19",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "sentimentScore": -0.49,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-06-19",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Think tank GTRI says India's tariff structure encourages exports of primary aluminium while raising input costs for domestic manufacturers and MSMEs",
-      "sentimentScore": -0.389,
-      "evidenceCount": 5
-    }
-  ],
-  "tradeSetups": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 24200,
-      "stopLoss": 22321.51,
-      "target": 28332.69,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-19",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 54,
-    "publisherCount": 9,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 10480,
-  "scheduledFor": "2026-06-19T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
   "news": [
-    {
-      "publishedAt": "2026-06-18T09:20:38.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Global energy transition readiness dips, India among top gainers: WEF",
-      "summary": "Global energy transition readiness has declined for the first time in more than a decade amid a surge in geopolitical risks, but India has registered one of the strongest improvements, a new report showed on Thursday. Sweden, Finland and Denmark retained their top three positions globally on the World Economic Forum's Energy Transition Index 2026, while India advanced two places to rank 70th. \"India was one of the strongest improvers globally in the Energy Transition Index 2026, recording one of the largest gains in transition readiness and strengthening its position as a key player in the next phase of the global energy transition,\" the WEF said. It attributed India's improvement to stronger energy transition readiness and broad-based system gains, driven by a sharp rise in infrastructure, alongside improvements in equity, sustainability and financial investment. The proportion of low-carbon jobs increased by 24 per cent in India in 2024, as renewable energy jobs reached 1.3 milli",
-      "takeaway": "Global energy transition readiness has declined for the first time in more than a decade amid a surge; treat Bank Nifty as a watchlist cue only after related Indian sector breadth confirms.",
-      "whyItMatters": "Bank Nifty stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
-      "indiaImpact": "Bank Nifty needs related Indian peer breadth before it becomes more than a watchlist cue.",
-      "watchFor": "Watch Bank Nifty peer breadth after 9:45 AM; no index bias unless banks and Nifty hold VWAP.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/global-energy-transition-readiness-dips-india-among-top-gainers-wef-126061800573_1.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Bank Nifty",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Global Energy",
-        "accent": "#7c3aed",
-        "alt": "Global energy transition readiness dips, India among top gainers: WEF source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-18T14:13:05.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India may ease emergency fuel curbs once global tensions ease: Official",
-      "summary": "Measures on LPG monitoring, gas allocation and fuel hoarding were imposed to protect domestic supply after disruptions around the Strait of Hormuz",
-      "takeaway": "Measures on LPG monitoring, gas allocation and fuel hoarding were imposed to protect domestic supply after disruptions around; geopolitical escalation is a risk-off signal that travels through crude, gold, currencies and FII flows before equities.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-may-ease-emergency-fuel-curbs-once-global-tensions-ease-official-126061801162_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "India may ease emergency fuel curbs once global tensions ease: Official source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-19T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
-      "takeaway": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Ashok Leyland",
-        "accent": "#dc2626",
-        "alt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-18T14:24:57.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India exports raw aluminium as tariff structure hits manufacturing: GTRI",
-      "summary": "Think tank GTRI says India's tariff structure encourages exports of primary aluminium while raising input costs for domestic manufacturers and MSMEs",
-      "takeaway": "Think tank GTRI says India's tariff structure encourages exports of primary aluminium while raising input costs for domestic; tariff risk can split exporters, autos and metals instead of moving the whole index together.",
-      "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
-      "indiaImpact": "Exporters, metals, autos and pharma need separate breadth checks; Bank Nifty decides whether the index absorbs the policy shock.",
-      "watchFor": "Watch metals, autos, pharma and IT breadth separately; tariff headlines are sector splitters, not automatic Nifty signals.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-exports-raw-aluminium-as-tariff-structure-hits-manufacturing-gtri-126061801180_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty Metal",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Metal",
-        "theme": "India Exports",
-        "accent": "#7c3aed",
-        "alt": "India exports raw aluminium as tariff structure hits manufacturing: GTRI source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-18T15:19:47.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "OPEC chief dismisses IEA supply glut forecast as 'critical' Strait of Hormuz reopens",
-      "summary": "The IEA said on Wednesday that a lasting resolution to the conflict could drive a surge in supply volumes and trigger a major oil overhang next year.",
-      "takeaway": "The IEA said on Wednesday that a lasting resolution to the conflict could drive a surge in supply; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/18/opec-iea-supply-glut-forecast-critical-strait-hormuz-reopens-oil.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "OPEC",
-        "theme": "Oil Supply",
-        "accent": "#f97316",
-        "alt": "OPEC chief dismisses IEA supply glut forecast as 'critical' Strait of Hormuz reopens source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-19T02:04:53.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "Why Japan's $70 billion-plus intervention and a rate hike didn't prop up the yen more",
-      "summary": "Japan was willing to step in to defend the yen around the 160 level before, and it's at that point again.",
-      "takeaway": "Japan was willing to step in to defend the yen around the 160 level before, and it's; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.cnbc.com/2026/06/19/japan-yen-intervention-boj-rate-hike.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "Why Japan's $70 billion-plus intervention and a rate hike didn't prop up the yen more source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Global energy transition readiness dips, India among top gainers: WEF",
       "publisherName": "Business Standard Economy",
@@ -12821,7 +12809,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/india-may-ease-emergency-fuel-curbs-once-global-tensions-ease-official-126061801162_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India may ease emergency fuel curbs once global tensions ease: Official source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12831,7 +12819,7 @@
       "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/28/ashok-leyland-q4-net-profit-up-11-pc-at-rs-1-381.32-cr.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAshok%20Leyland%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -12841,7 +12829,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/india-exports-raw-aluminium-as-tariff-structure-hits-manufacturing-gtri-126061801180_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndia%20Exports%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMetal%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India exports raw aluminium as tariff structure hits manufacturing: GTRI source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12851,7 +12839,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/18/opec-iea-supply-glut-forecast-critical-strait-hormuz-reopens-oil.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOPEC%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "OPEC chief dismisses IEA supply glut forecast as 'critical' Strait of Hormuz reopens source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12861,8 +12849,35 @@
       "sourceUrl": "https://www.cnbc.com/2026/06/19/japan-yen-intervention-boj-rate-hike.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Why Japan's $70 billion-plus intervention and a rate hike didn't prop up the yen more source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Ashok Leyland Q4 net profit up 11 pc at Rs 1 381.32 cr",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Think tank GTRI says India's tariff structure encourages exports of primary aluminium while raising input costs for domestic manufacturers and MSMEs",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12891,17 +12906,12 @@
       "remainingRiskReward": 1.063
     }
   ],
+  "sourceStats": {
+    "articleCount": 6,
+    "publisherCount": 3
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-19.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Shape Bank Nifty..",
-    "correctedTitle": "India Gains Ground in Energy Transition Readiness, Boosts Market Sentiment",
-    "correctedAt": "2026-07-01T15:43:13.378Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

@@ -53,263 +53,8 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -0.82%, Nasdaq 100 -1.21%, Dow Jones -0.44%, Nifty 50 -0.22%, Bank Nifty +0.18%, GIFT Nifty -0.38%, Nikkei 225 +0.51%, Hang Seng -0.34%, Shanghai Composite +0.12%, KOSPI -0.27%, Taiwan Weighted +0.44%, Straits Times -0.16%, ASX 200 +0.23%, US Dollar Index +0.34%, Brent Crude +1.64%, USD/INR +0.08%, Gold (COMEX) +1.18%, India VIX -3.21%\n\nNarrative Themes:\n- Global Risk-Off Cue: India Ratings projects GDP growth at 6.7% and inflation at 4.4%, warning that higher crude prices and West Asia tensions may pressure growth and trade deficit\n- Negative Macro Impact: The market is concerned about the Fed&#x2019;s readiness to react to high inflation.\n- Volatile Opening Bias: Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,450 level, a discount of nearly 162 points from the Nifty futures’ previous close.\n- Sector-Specific Cushion: India and the Nordic countries on Tuesday decided to elevate their relationship to a Green Technology and Innovation Strategic Partnership to bolster cooperation in areas such as clean and green transition, trade and investments and blue economy, as Prime Minister Narendra Modi held talks with his Nordic counterparts here. In a joint press statement after the 3rd India-Nordic Summit, Prime Minister Modi said that they will continue to work together to strengthen the rules-based global order. \"Our shared commitment to democracy, rule of law, and multilateralism makes us natural partners,\" said Modi, who was joined by his counterparts from Norway, Denmark, Finland, Iceland and Sweden. \"Today, we decided to elevate India-Nordic relations to a Green Technology and Innovation Strategic Partnership. With this green technology partnership, we will ensure a better future for the entire world,\" the prime minister said after the meeting. During the meeting, the leaders also shared views on .\n- Global Earnings & Risk Appetite: A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 22705, stop 22180.26, target 23859.42 (RR 2.2)\n- BANKNIFTY BULLISH entry 50960, stop 49292.6, target 54628.28 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
-  "marketSnapshots": [
-    {
-      "symbol": "SPX",
-      "name": "S&P 500",
-      "closeValue": 5069.53,
-      "changePercent": -0.82,
-      "source": "Alpha Vantage Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "SP:SPX"
-    },
-    {
-      "symbol": "NDX",
-      "name": "Nasdaq 100",
-      "closeValue": 17718.11,
-      "changePercent": -1.21,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "NASDAQ:NDX"
-    },
-    {
-      "symbol": "DJI",
-      "name": "Dow Jones",
-      "closeValue": 38239.66,
-      "changePercent": -0.44,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "US Overnight",
-      "session": "us",
-      "tradingViewSymbol": "DJ:DJI"
-    },
-    {
-      "symbol": "NIFTY",
-      "name": "Nifty 50",
-      "closeValue": 22475.85,
-      "changePercent": -0.22,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSE:NIFTY"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "name": "Bank Nifty",
-      "closeValue": 48210.3,
-      "changePercent": 0.18,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSE:BANKNIFTY"
-    },
-    {
-      "symbol": "GIFTNIFTY",
-      "name": "GIFT Nifty",
-      "closeValue": 22480.5,
-      "changePercent": -0.38,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSEIX:NIFTY1!"
-    },
-    {
-      "symbol": "NIKKEI",
-      "name": "Nikkei 225",
-      "closeValue": 38105.2,
-      "changePercent": 0.51,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Japan",
-      "session": "tokyo",
-      "tradingViewSymbol": "TVC:NI225"
-    },
-    {
-      "symbol": "HSI",
-      "name": "Hang Seng",
-      "closeValue": 17763.03,
-      "changePercent": -0.34,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Hong Kong",
-      "session": "hongkong",
-      "tradingViewSymbol": "TVC:HSI"
-    },
-    {
-      "symbol": "SHCOMP",
-      "name": "Shanghai Composite",
-      "closeValue": 3048.23,
-      "changePercent": 0.12,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Mainland China",
-      "session": "shanghai",
-      "tradingViewSymbol": "SSE:000001"
-    },
-    {
-      "symbol": "KOSPI",
-      "name": "KOSPI",
-      "closeValue": 2692.06,
-      "changePercent": -0.27,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "South Korea",
-      "session": "seoul",
-      "tradingViewSymbol": "KRX:KOSPI"
-    },
-    {
-      "symbol": "TAIEX",
-      "name": "Taiwan Weighted",
-      "closeValue": 20328.64,
-      "changePercent": 0.44,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Taiwan",
-      "session": "taipei",
-      "tradingViewSymbol": "TWSE:TAIEX"
-    },
-    {
-      "symbol": "STI",
-      "name": "Straits Times",
-      "closeValue": 3285.1,
-      "changePercent": -0.16,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Singapore",
-      "session": "singapore",
-      "tradingViewSymbol": "TVC:STI"
-    },
-    {
-      "symbol": "ASX200",
-      "name": "ASX 200",
-      "closeValue": 7694.8,
-      "changePercent": 0.23,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Asia Watch",
-      "country": "Australia",
-      "session": "sydney",
-      "tradingViewSymbol": "ASX:XJO"
-    },
-    {
-      "symbol": "DXY",
-      "name": "US Dollar Index",
-      "closeValue": 106.18,
-      "changePercent": 0.34,
-      "source": "MarketAux Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "TVC:DXY"
-    },
-    {
-      "symbol": "BRENT",
-      "name": "Brent Crude",
-      "closeValue": 91.42,
-      "changePercent": 1.64,
-      "source": "MarketAux Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "TVC:UKOIL"
-    },
-    {
-      "symbol": "USDINR",
-      "name": "USD/INR",
-      "closeValue": 83.52,
-      "changePercent": 0.08,
-      "source": "Exchange Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "FX:USDINR"
-    },
-    {
-      "symbol": "GOLD",
-      "name": "Gold (COMEX)",
-      "closeValue": 2338.4,
-      "changePercent": 1.18,
-      "source": "Yahoo Finance Mock",
-      "marketRegion": "Macro Hedges",
-      "session": "macro",
-      "tradingViewSymbol": "TVC:GOLD"
-    },
-    {
-      "symbol": "INDIAVIX",
-      "name": "India VIX",
-      "closeValue": 14.82,
-      "changePercent": -3.21,
-      "source": "Exchange Mock",
-      "marketRegion": "India Open",
-      "session": "india",
-      "tradingViewSymbol": "NSE:INDIAVIX"
-    }
-  ],
   "fiiDiiFlows": null,
   "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-20",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "India Ratings projects GDP growth at 6.7% and inflation at 4.4%, warning that higher crude prices and West Asia tensions may pressure growth and trade deficit",
-      "sentimentScore": -0.619,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-05-20",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "The market is concerned about the Fed&#x2019;s readiness to react to high inflation.",
-      "sentimentScore": -0.578,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-20",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,450 level, a discount of nearly 162 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-20",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "India and the Nordic countries on Tuesday decided to elevate their relationship to a Green Technology and Innovation Strategic Partnership to bolster cooperation in areas such as clean and green transition, trade and investments and blue economy, as Prime Minister Narendra Modi held talks with his Nordic counterparts here. In a joint press statement after the 3rd India-Nordic Summit, Prime Minister Modi said that they will continue to work together to strengthen the rules-based global order. \"Our shared commitment to democracy, rule of law, and multilateralism makes us natural partners,\" said Modi, who was joined by his counterparts from Norway, Denmark, Finland, Iceland and Sweden. \"Today, we decided to elevate India-Nordic relations to a Green Technology and Innovation Strategic Partnership. With this green technology partnership, we will ensure a better future for the entire world,\" the prime minister said after the meeting. During the meeting, the leaders also shared views on .",
-      "sentimentScore": 0.35,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-20",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
-      "sentimentScore": 0.392,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 22705,
-      "stopLoss": 22180.26,
-      "target": 23859.42,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
-      "digestDate": "2026-05-20"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "direction": "BULLISH",
-      "entry": 50960,
-      "stopLoss": 49292.6,
-      "target": 54628.28,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
-      "digestDate": "2026-05-20"
-    }
-  ],
   "marketDataMode": "mock",
   "marketDataError": null,
   "newsDataMode": "live",
@@ -325,218 +70,6 @@
   "durationMillis": 14114,
   "scheduledFor": "2026-05-20T07:15:00+05:30",
   "runMode": "scheduled-verified-source-data",
-  "news": [
-    {
-      "publishedAt": "2026-05-20T01:53:58.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble.",
-      "takeaway": "Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble; metals news is a China-demand and commodity-margin cue, not a full-index signal by itself.",
-      "whyItMatters": "Metal stocks can lead or lag independently; traders need China, commodity prices and domestic sector breadth aligned.",
-      "indiaImpact": "Nifty Metal and capital-goods suppliers are the direct checks; broad Nifty conviction needs banks to confirm.",
-      "watchFor": "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-lenskart-zee-share-price-20-may-2026/liveblog/131214226.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Sensex Today",
-        "accent": "#059669",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T01:55:18.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 20 May",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,450 level, a discount of nearly 162 points from the Nifty futures’ previous close.",
-      "takeaway": "The source flags nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-20-may-11779241567212.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 20 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T23:56:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Are businesses passing on higher energy costs to their customers? Fed minutes may have the answer.",
-      "summary": "The market is concerned about the Fed&#x2019;s readiness to react to high inflation.",
-      "takeaway": "The market is concerned about the Fed&#x2019;s readiness to react to high inflation; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
-      "sourceUrl": "https://www.marketwatch.com/story/are-businesses-passing-on-higher-energy-costs-to-their-customers-these-fed-minutes-have-the-answer-44df2ee4?mod=mw_rss_topstories",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Are Businesses",
-        "accent": "#dc2626",
-        "alt": "Are businesses passing on higher energy costs to their customers? Fed minutes may have the answer. source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T12:46:35.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "RBI likely to hold repo rate at 5.25% through FY27: India Ratings",
-      "summary": "India Ratings projects GDP growth at 6.7% and inflation at 4.4%, warning that higher crude prices and West Asia tensions may pressure growth and trade deficit",
-      "takeaway": "India Ratings projects GDP growth at 6.7% and inflation at 4.4%, warning that higher crude prices and West; higher crude raises the import-cost check for India and can split upstream energy from OMCs.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bearish for OMCs, aviation, paints and tyres if Brent stays bid; upstream energy can be the relative winner.",
-      "watchFor": "Watch Brent acceptance above the Asia handoff; a firm tape keeps import-cost sectors on the defensive.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-likely-to-hold-repo-rate-at-5-25-through-fy27-says-india-ratings-126051901443_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Rbi Likely",
-        "accent": "#7c3aed",
-        "alt": "RBI likely to hold repo rate at 5.25% through FY27: India Ratings source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T17:55:15.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India, Nordic nations agree to elevate ties to Green Tech and Innovation",
-      "summary": "India and the Nordic countries on Tuesday decided to elevate their relationship to a Green Technology and Innovation Strategic Partnership to bolster cooperation in areas such as clean and green transition, trade and investments and blue economy, as Prime Minister Narendra Modi held talks with his Nordic counterparts here. In a joint press statement after the 3rd India-Nordic Summit, Prime Minister Modi said that they will continue to work together to strengthen the rules-based global order. \"Our shared commitment to democracy, rule of law, and multilateralism makes us natural partners,\" said Modi, who was joined by his counterparts from Norway, Denmark, Finland, Iceland and Sweden. \"Today, we decided to elevate India-Nordic relations to a Green Technology and Innovation Strategic Partnership. With this green technology partnership, we will ensure a better future for the entire world,\" the prime minister said after the meeting. During the meeting, the leaders also shared views on .",
-      "takeaway": "India and the Nordic countries on Tuesday decided to elevate their relationship to a Green Technology and Innovation; Global Tech is global technology context; Indian exporters need local breadth before it matters.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
-      "watchFor": "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines.",
-      "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/india-nordic-nations-agree-to-elevate-ties-to-green-tech-and-innovation-126051901542_1.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "India, Nordic nations agree to elevate ties to Green Tech and Innovation source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T02:38:40.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge",
-      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
-      "takeaway": "A global reshuffling in stock-market hierarchy is underway; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T02:05:07.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Asian markets today: Nikkei 225, Kospi fall on rising bond yields, renewed US-Iran war fears",
-      "summary": "Asian markets today: Japan’s Nikkei 225 slipped 0.88%, while the TOPIX fell 0.75%. South Korea’s KOSPI declined 0.52%, and the small-cap KOSDAQ dropped 2.15%.",
-      "takeaway": "rising bond yields, renewed US; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch 0.88%; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-225-kospi-fall-on-rising-bond-yields-renewed-us-iran-war-fears-11779240614827.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "Asian markets today: Nikkei 225, Kospi fall on rising bond yields, renewed US-Iran war fears source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T02:27:53.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: Lenskart, BPCL, Hindalco among 10 shares in focus today; check list here",
-      "summary": "Stock market today: The Indian stock market is likely to continue its losing streak as trends in the Gift Nifty index signalled a negative opening on Wednesday. Amid this backdrop, these stocks will remain in focus on 20 May.",
-      "takeaway": "Stock market today: The Indian stock market is likely to continue its losing streak as trends; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-lenskart-bpcl-hindalco-among-10-shares-in-focus-today-check-list-here-11779240127717.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Hindalco Among",
-        "accent": "#0891b2",
-        "alt": "Stocks to watch: Lenskart, BPCL, Hindalco among 10 shares in focus today; check list here source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T09:36:34.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "PM Modi in Rome: Why India, Italy need to build a strategic future together",
-      "summary": "Rome increasingly understands that the future of European competitiveness, economic resilience and strategic diversification will depend upon trusted industrial partnerships beyond the Continent",
-      "takeaway": "Rome increasingly understands that the future of European competitiveness, economic resilience and strategic diversification will depend upon trusted; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/analysis/pm-modi-in-rome-why-india-italy-need-to-build-a-strategic-future-together-126051900922_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Modi Why",
-        "accent": "#dc2626",
-        "alt": "PM Modi in Rome: Why India, Italy need to build a strategic future together source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T02:42:16.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "A look at India's measures to cushion oil shock amid soaring prices",
-      "summary": "From curbing gold imports and raising fuel prices to tightening currency-market rules, authorities have stepped up efforts to conserve dollars, with the rupee hitting a new low Tuesday",
-      "takeaway": "From curbing gold imports and raising fuel prices to tightening currency-market rules, authorities have stepped up efforts; fuel inflation is a margin and consumption pressure cue, not a standalone index signal.",
-      "whyItMatters": "Higher petrol, diesel or gasoline pressure travels to India through inflation expectations, OMCs, aviation, tyres and consumer demand.",
-      "indiaImpact": "Watch OMCs, aviation, tyres, paints and consumer breadth; broad Nifty pressure needs USD/INR and Bank Nifty confirmation.",
-      "watchFor": "Watch Brent, USD/INR and fuel-sensitive sector breadth after the open.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/a-look-at-india-s-measures-to-cushion-oil-shock-amid-soaring-prices-126052000107_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Fuel inflation",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Fuel Inflation",
-        "theme": "Look Indias",
-        "accent": "#7c3aed",
-        "alt": "A look at India's measures to cushion oil shock amid soaring prices source thumbnail"
-      }
-    }
-  ],
   "newsCards": [
     {
       "title": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble",
@@ -545,7 +78,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-lenskart-zee-share-price-20-may-2026/liveblog/131214226.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -565,7 +98,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/are-businesses-passing-on-higher-energy-costs-to-their-customers-these-fed-minutes-have-the-answer-44df2ee4?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAre%20Businesses%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Are businesses passing on higher energy costs to their customers? Fed minutes may have the answer. source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -575,7 +108,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/rbi-likely-to-hold-repo-rate-at-5-25-through-fy27-says-india-ratings-126051901443_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERbi%20Likely%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "RBI likely to hold repo rate at 5.25% through FY27: India Ratings source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -585,7 +118,7 @@
       "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/india-nordic-nations-agree-to-elevate-ties-to-green-tech-and-innovation-126051901542_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India, Nordic nations agree to elevate ties to Green Tech and Innovation source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -595,7 +128,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -605,7 +138,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-225-kospi-fall-on-rising-bond-yields-renewed-us-iran-war-fears-11779240614827.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Asian markets today: Nikkei 225, Kospi fall on rising bond yields, renewed US-Iran war fears source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -625,7 +158,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/analysis/pm-modi-in-rome-why-india-italy-need-to-build-a-strategic-future-together-126051900922_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EModi%20Why%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "PM Modi in Rome: Why India, Italy need to build a strategic future together source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -635,8 +168,2193 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/a-look-at-india-s-measures-to-cushion-oil-shock-amid-soaring-prices-126052000107_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELook%20Indias%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFuel%20Inflation%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "A look at India's measures to cushion oil shock amid soaring prices source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Support Opening Range",
+    "correctedTitle": "Nifty, Sensex Tumble as Auto, Metal Stocks Suffer Heavy Losses",
+    "correctedAt": "2026-07-01T15:42:10.721Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 5069.53,
+      "changePercent": -0.82,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SP:SPX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 5111.44
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 5115.4
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 5108.99
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 5102.59
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 5096.7
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 5091.72
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 5087.96
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 5085.58
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 5084.61
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 5084.89
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 5086.17
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 5088.08
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 5090.21
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 5092.13
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 5093.44
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 5093.85
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 5093.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 5091.26
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 5088.24
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 5084.26
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 5079.58
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 5074.55
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 5069.51
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 5069.53
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 17718.11,
+      "changePercent": -1.21,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 17935.13
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 17895.78
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 17910.11
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 17924.35
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 17936
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 17942.91
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 17943.51
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 17936.93
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 17923.12
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 17902.77
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 17877.27
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 17848.5
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 17818.61
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 17789.82
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 17764.13
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 17743.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 17727.92
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 17718.83
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 17715.61
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 17717.35
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 17722.67
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 17729.86
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 17737.07
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 17718.11
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 38239.66,
+      "changePercent": -0.44,
+      "currency": null,
+      "marketRegion": "US Overnight",
+      "country": null,
+      "session": "us",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "DJ:DJI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 38408.66
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 38442.32
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 38419.07
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 38393.67
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 38368.1
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 38344.28
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 38323.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 38308.24
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 38298.01
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 38293.34
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 38293.75
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 38298.25
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 38305.43
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 38313.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 38321.27
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 38326.68
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 38328.62
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 38326.25
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 38319.21
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 38307.66
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 38292.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 38273.93
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 38254.05
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 38239.66
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22475.85,
+      "changePercent": -0.22,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:NIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 22525.41
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 22509.58
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 22504.79
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 22501.79
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 22500.63
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 22501.14
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 22502.98
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 22505.69
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 22508.73
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 22511.53
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 22513.58
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 22514.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 22513.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 22511.74
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 22508.09
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 22503.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 22497.26
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 22490.85
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 22484.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 22478.34
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 22473.1
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 22468.97
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 22466.09
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 22475.85
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 48210.3,
+      "changePercent": 0.18,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 48123.68
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 48125.86
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 48141.76
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 48156.18
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 48168.03
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 48176.54
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 48181.31
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 48182.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 48180.1
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 48175.28
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 48168.89
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 48162.07
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 48155.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 48151.54
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 48149.66
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 48150.81
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 48155.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 48162.49
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 48172.34
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 48183.95
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 48196.42
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 48208.79
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 48220.15
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 48210.3
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 22480.5,
+      "changePercent": -0.38,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSEIX:NIFTY1!",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 22480.5
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 38105.2,
+      "changePercent": 0.51,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:NI225",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 37911.85
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 37952.94
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 37977.54
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 37996.49
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 38008.85
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 38014.41
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 38013.7
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 38007.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 37998.6
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 37987.88
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 37977.79
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 37970.26
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 37966.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 37968.76
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 37976.39
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 37989.64
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 38007.78
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 38029.6
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 38053.52
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 38077.82
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 38100.79
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 38120.96
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 38137.19
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 38105.2
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 17763.03,
+      "changePercent": -0.34,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:HSI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 17823.63
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 17800.13
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 17799.25
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 17800.33
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 17802.91
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 17806.39
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 17810.11
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 17813.37
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 17815.58
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 17816.25
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 17815.09
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 17812
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 17807.1
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 17800.7
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 17793.25
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 17785.29
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 17777.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 17770.18
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 17764.03
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 17759.31
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 17756.18
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 17754.62
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 17754.45
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 17763.03
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3048.23,
+      "changePercent": 0.12,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "SSE:000001",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 3044.58
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 3044.39
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 3043.39
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 3043.14
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 3043.13
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 3043.36
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 3044.46
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 3045.23
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 3046.07
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 3046.88
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 3047.62
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 3048.22
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 3048.63
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 3048.84
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 3048.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 3048.69
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 3048.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 3048.01
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 3047.6
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 3047.24
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 3046.97
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 3048.23
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 2692.06,
+      "changePercent": -0.27,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "KRX:KOSPI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 2699.35
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 2698.67
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 2697.59
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 2696.65
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 2695.92
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 2695.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 2695.18
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 2695.17
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 2695.36
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 2695.69
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 2696.08
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 2696.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 2696.74
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 2696.88
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 2696.83
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 2696.56
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 2696.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 2695.44
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 2694.64
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 2693.76
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 2692.85
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 2691.99
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 2691.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 2692.06
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 20328.64,
+      "changePercent": 0.44,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 20239.59
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 20272.6
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 20277.55
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 20279.28
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 20278.12
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 20274.69
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 20269.84
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 20264.54
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 20259.78
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 20256.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 20255.24
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 20256.66
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 20260.84
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 20267.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 20276.72
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 20287.38
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 20298.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 20310.31
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 20320.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 20330.08
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 20337.21
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 20342.08
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 20344.68
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 20328.64
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 3285.1,
+      "changePercent": -0.16,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:STI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 3290.36
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 3291.8
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 3292.08
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 3292.13
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 3291.9
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 3291.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 3290.71
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 3289.84
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 3288.88
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 3287.9
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 3287
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 3286.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 3285.65
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 3285.29
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 3285.15
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 3285.23
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 3285.47
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 3285.82
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 3286.22
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 3286.59
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 3286.88
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 3287.03
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 3287.01
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 3285.1
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 7694.8,
+      "changePercent": 0.23,
+      "currency": null,
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "ASX:XJO",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 7677.14
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 7683.83
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 7683.74
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 7683.15
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 7682.21
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 7681.12
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 7680.07
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 7679.26
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 7678.84
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 7678.93
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 7679.59
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 7680.79
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 7682.49
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 7684.56
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 7686.85
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 7689.19
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 7691.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 7693.38
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 7694.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 7696.07
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 7696.73
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 7696.94
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 7696.79
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 7694.8
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 106.18,
+      "changePercent": 0.34,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:DXY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 105.82
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 105.94
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 105.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 105.88
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 105.86
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 105.89
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 106
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 106.05
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 106.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 106.14
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 106.17
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 106.2
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 106.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 106.18
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 91.42,
+      "changePercent": 1.64,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:UKOIL",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 89.94
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 90.49
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 90.57
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 90.6
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 90.58
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 90.53
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 90.45
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 90.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 90.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 90.22
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 90.2
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 90.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 90.3
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 90.41
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 90.56
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 90.74
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 90.93
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 91.12
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 91.29
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 91.44
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 91.56
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 91.64
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 91.69
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 91.42
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 83.52,
+      "changePercent": 0.08,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "FX:USDINR",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 83.45
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 83.4
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 83.42
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 83.44
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 83.51
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 83.52
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 83.54
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 83.51
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 83.5
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 83.5
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 83.52
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 2338.4,
+      "changePercent": 1.18,
+      "currency": null,
+      "marketRegion": "Macro Hedges",
+      "country": null,
+      "session": "macro",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "TVC:GOLD",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 2311.13
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 2303.39
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 2304.25
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 2306.09
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 2308.81
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 2312.24
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 2316.09
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 2320.09
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 2323.92
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 2327.31
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 2330.05
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 2331.99
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 2333.08
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 2333.36
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 2332.96
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 2332.06
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 2330.92
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 2329.78
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 2328.9
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 2328.47
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 2328.66
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 2329.54
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 2331.12
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 2338.4
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 14.82,
+      "changePercent": -3.21,
+      "currency": null,
+      "marketRegion": "India Open",
+      "country": null,
+      "session": "india",
+      "dataQuality": "published",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.215Z",
+          "close": 15.31
+        },
+        {
+          "time": "2026-08-20T06:38:22.215Z",
+          "close": 15.14
+        },
+        {
+          "time": "2026-08-20T06:53:22.215Z",
+          "close": 15.15
+        },
+        {
+          "time": "2026-08-20T07:08:22.215Z",
+          "close": 15.17
+        },
+        {
+          "time": "2026-08-20T07:23:22.215Z",
+          "close": 15.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.215Z",
+          "close": 15.23
+        },
+        {
+          "time": "2026-08-20T07:53:22.215Z",
+          "close": 15.26
+        },
+        {
+          "time": "2026-08-20T08:08:22.215Z",
+          "close": 15.27
+        },
+        {
+          "time": "2026-08-20T08:23:22.215Z",
+          "close": 15.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.215Z",
+          "close": 15.27
+        },
+        {
+          "time": "2026-08-20T08:53:22.215Z",
+          "close": 15.24
+        },
+        {
+          "time": "2026-08-20T09:08:22.215Z",
+          "close": 15.2
+        },
+        {
+          "time": "2026-08-20T09:23:22.215Z",
+          "close": 15.14
+        },
+        {
+          "time": "2026-08-20T09:38:22.215Z",
+          "close": 15.08
+        },
+        {
+          "time": "2026-08-20T09:53:22.215Z",
+          "close": 15.02
+        },
+        {
+          "time": "2026-08-20T10:08:22.215Z",
+          "close": 14.95
+        },
+        {
+          "time": "2026-08-20T10:23:22.215Z",
+          "close": 14.89
+        },
+        {
+          "time": "2026-08-20T10:38:22.215Z",
+          "close": 14.84
+        },
+        {
+          "time": "2026-08-20T10:53:22.215Z",
+          "close": 14.81
+        },
+        {
+          "time": "2026-08-20T11:08:22.215Z",
+          "close": 14.78
+        },
+        {
+          "time": "2026-08-20T11:23:22.215Z",
+          "close": 14.77
+        },
+        {
+          "time": "2026-08-20T11:38:22.215Z",
+          "close": 14.77
+        },
+        {
+          "time": "2026-08-20T11:53:22.215Z",
+          "close": 14.78
+        },
+        {
+          "time": "2026-08-20T12:08:22.215Z",
+          "close": 14.82
+        }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-20T01:53:58.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-lenskart-zee-share-price-20-may-2026/liveblog/131214226.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates | Opening Bell: Sensex slumps over 600 pts, Nifty below 23,450; auto, metal stocks tumble source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 20 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-20T01:55:18.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-20-may-11779241567212.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 20 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Are businesses passing on higher energy costs to their customers? Fed minutes may have the answer.",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-19T23:56:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/are-businesses-passing-on-higher-energy-costs-to-their-customers-these-fed-minutes-have-the-answer-44df2ee4?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAre%20Businesses%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Are businesses passing on higher energy costs to their customers? Fed minutes may have the answer. source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "RBI likely to hold repo rate at 5.25% through FY27: India Ratings",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-19T12:46:35.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-likely-to-hold-repo-rate-at-5-25-through-fy27-says-india-ratings-126051901443_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERbi%20Likely%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI likely to hold repo rate at 5.25% through FY27: India Ratings source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India, Nordic nations agree to elevate ties to Green Tech and Innovation",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-19T17:55:15.000Z",
+      "sourceUrl": "https://www.business-standard.com/external-affairs-defence-security/news/india-nordic-nations-agree-to-elevate-ties-to-green-tech-and-innovation-126051901542_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India, Nordic nations agree to elevate ties to Green Tech and Innovation source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-20T02:38:40.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Asian markets today: Nikkei 225, Kospi fall on rising bond yields, renewed US-Iran war fears",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-20T02:05:07.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/asian-markets-today-nikkei-225-kospi-fall-on-rising-bond-yields-renewed-us-iran-war-fears-11779240614827.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian markets today: Nikkei 225, Kospi fall on rising bond yields, renewed US-Iran war fears source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Stocks to watch: Lenskart, BPCL, Hindalco among 10 shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-20T02:27:53.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-lenskart-bpcl-hindalco-among-10-shares-in-focus-today-check-list-here-11779240127717.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHindalco%20Among%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Lenskart, BPCL, Hindalco among 10 shares in focus today; check list here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "PM Modi in Rome: Why India, Italy need to build a strategic future together",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-19T09:36:34.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/analysis/pm-modi-in-rome-why-india-italy-need-to-build-a-strategic-future-together-126051900922_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EModi%20Why%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "PM Modi in Rome: Why India, Italy need to build a strategic future together source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "A look at India's measures to cushion oil shock amid soaring prices",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-20T02:42:16.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/a-look-at-india-s-measures-to-cushion-oil-shock-amid-soaring-prices-126052000107_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ELook%20Indias%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFuel%20Inflation%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "A look at India's measures to cushion oil shock amid soaring prices source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "India Ratings projects GDP growth at 6.7% and inflation at 4.4%, warning that higher crude prices and West Asia tensions may pressure growth and trade deficit",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Negative Macro Impact",
+      "summary": "The market is concerned about the Fed&#x2019;s readiness to react to high inflation.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,450 level, a discount of nearly 162 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "India and the Nordic countries on Tuesday decided to elevate their relationship to a Green Technology and Innovation Strategic Partnership to bolster cooperation in areas such as clean and green transition, trade and investments and blue economy, as Prime Minister Narendra Modi held talks with his Nordic counterparts here. In a joint press statement after the 3rd India-Nordic Summit, Prime Minister Modi said that they will continue to work together to strengthen the rules-based global order. \"Our shared commitment to democracy, rule of law, and multilateralism makes us natural partners,\" said Modi, who was joined by his counterparts from Norway, Denmark, Finland, Iceland and Sweden. \"Today, we decided to elevate India-Nordic relations to a Green Technology and Innovation Strategic Partnership. With this green technology partnership, we will ensure a better future for the entire world,\" the prime minister said after the meeting. During the meeting, the leaders also shared views on .",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 22705,
+      "stopLoss": 22180.26,
+      "target": 23859.42,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22180.26.",
+      "outcome": null
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "entry": 50960,
+      "stopLoss": 49292.6,
+      "target": 54628.28,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 49292.6.",
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -665,17 +2383,12 @@
       "remainingRiskReward": 2.2
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 5
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-20.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Bank Nifty breadth Support Opening Range",
-    "correctedTitle": "Nifty, Sensex Tumble as Auto, Metal Stocks Suffer Heavy Losses",
-    "correctedAt": "2026-07-01T15:42:10.721Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

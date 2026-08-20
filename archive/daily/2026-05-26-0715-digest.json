@@ -53,6 +53,142 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.373%, Nasdaq 100 +0.424%, Dow Jones +0.585%, Nifty 50 +0.15%, Bank Nifty +0.124%, Nikkei 225 -0.244%, Hang Seng +0.29%, Shanghai Composite +0.343%, KOSPI +2.801%, Taiwan Weighted -0.168%, Straits Times -0.409%, ASX 200 -0.3%, US Dollar Index -0.144%, Brent Crude -4.81%, USD/INR +0.208%, Gold (COMEX) +0.159%, India VIX -6.137%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Global Risk-Off Cue: Even if the Middle East war ends soon, corporate profits would stay under pressure, BofA says.\n- Negative Macro Impact: Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments\n- Volatile Opening Bias: Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 24,057 level, a discount of nearly 6 points from the Nifty futures’ previous close.\n- Sector-Specific Cushion: India’s fertiliser subsidy bill could surge past a record ₹3 lakh crore this fiscal if the West Asia crisis continues, sharply exceeding the budget estimate of ₹1.71 lakh crore, a government official said.\n- Global Earnings & Risk Appetite: Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "25-May-2026",
+    "fiiNet": 821.75,
+    "fiiBuy": 12083.12,
+    "fiiSell": 11261.37,
+    "diiNet": 3856.88,
+    "diiBuy": 16434.96,
+    "diiSell": 12578.08
+  },
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 7977,
+  "scheduledFor": "2026-05-26T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Taiwan overtakes India as world's 5th largest stock market",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-26T02:27:27.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/taiwan-overtakes-india-as-worlds-fifth-largest-stock-market/articleshow/131320332.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Taiwan overtakes India as world's 5th largest stock market source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-26T02:13:55.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-premier-energies-suzlon-energy-share-price-26-may-2026/liveblog/131320235.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-05-26T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/fairdeal.market-raises-usd-15-mn-in-funding-round-led-by-bertelsmann-india-investments.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERaises%20Usd%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "LIC 1:1 bonus bonanza: Is today the last day to buy shares for free rewards?",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-26T02:36:52.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-11-bonus-bonanza-is-today-the-last-day-to-buy-shares-for-free-rewards/articleshow/131320421.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Autos%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "LIC 1:1 bonus bonanza: Is today the last day to buy shares for free rewards? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India's fertilizer subsidy may cross ₹3 lakh crore if West Asia crisis prolongs",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-25T19:11:34.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/indias-fertilizer-subsidy-may-cross-3-lakh-crore-if-crisis-prolongs/articleshow/131319662.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Fertilizer%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERural%20Demand%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India's fertilizer subsidy may cross ₹3 lakh crore if West Asia crisis prolongs source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-26T01:58:40.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-26-may-11779759670334.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Stocks to watch: RVNL, ONGC, BEL among 10 shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-26T02:29:08.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-rvnl-ongc-bel-among-10-shares-in-focus-today-check-list-here-11779760906233.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBel%20Among%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: RVNL, ONGC, BEL among 10 shares in focus today; check list here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-05-26T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/string-metaverse-posts-record-fy26-results-revenue-surges-to-rs-1-069-crore-pat-crosses-rs-102-crore.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EString%20Metaverse%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "India Earnings Revival Under Threat as Commodity Prices Surge",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-05-26T02:39:41.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/newsletters/2026-05-26/india-corporate-earnings-come-under-threat-from-iran-war",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India Earnings Revival Under Threat as Commodity Prices Surge source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "ASX Drops Most Since 2012 After Revising Up Costs on Tech Revamp",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-05-26T00:35:00.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-26/asx-ramps-up-capital-spending-to-support-technology-upgrade",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "ASX Drops Most Since 2012 After Revising Up Costs on Tech Revamp source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Bank Nifty breadth Support Opening Range",
+    "correctedTitle": "Taiwan Overtakes India as World's 5th Largest Market; Nifty IT Weighs",
+    "correctedAt": "2026-07-01T15:43:10.601Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +197,13 @@
       "previousClose": 7445.72,
       "changePercent": 0.373,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T20:45:08.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T20:45:08.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -799,14 +934,13 @@
       "previousClose": 29357.3,
       "changePercent": 0.424,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -1537,14 +1671,13 @@
       "previousClose": 50285.7,
       "changePercent": 0.585,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-22T20:45:06.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-22T20:45:06.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-22T13:30:00.000Z",
@@ -2275,14 +2408,13 @@
       "previousClose": 24031.7,
       "changePercent": 0.15,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-26T05:51:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:51:15.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-26T03:45:00.000Z",
@@ -2801,14 +2933,13 @@
       "previousClose": 55293.65,
       "changePercent": 0.124,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-26T05:51:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:51:15.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-26T03:45:00.000Z",
@@ -3327,15 +3458,13 @@
       "previousClose": 65158.19,
       "changePercent": -0.244,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-26T05:36:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:36:15.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-26T00:00:00.000Z",
@@ -4066,15 +4195,13 @@
       "previousClose": 25606.03,
       "changePercent": 0.29,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-26T05:36:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:36:14.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-26T01:30:00.000Z",
@@ -4805,15 +4932,13 @@
       "previousClose": 4112.9,
       "changePercent": 0.343,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-26T05:36:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:36:15.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-26T01:30:00.000Z",
@@ -5456,15 +5581,13 @@
       "previousClose": 7847.71,
       "changePercent": 2.801,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-26T05:31:10.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:31:10.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-26T00:00:00.000Z",
@@ -6195,15 +6318,13 @@
       "previousClose": 43644.4,
       "changePercent": -0.168,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-26T05:30:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:30:00.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-26T01:00:00.000Z",
@@ -6934,15 +7055,13 @@
       "previousClose": 5070.55,
       "changePercent": -0.409,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-26T05:36:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:36:15.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-26T01:00:00.000Z",
@@ -7673,15 +7792,13 @@
       "previousClose": 8692,
       "changePercent": -0.3,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-26T05:31:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:31:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-26T00:00:00.000Z",
@@ -8412,14 +8529,13 @@
       "previousClose": 99.24,
       "changePercent": -0.144,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-26T05:41:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:41:15.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-26T04:00:00.000Z",
@@ -8838,14 +8954,13 @@
       "previousClose": 100.21,
       "changePercent": -4.81,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-26T05:40:18.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:40:18.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-26T04:00:00.000Z",
@@ -9148,14 +9263,13 @@
       "previousClose": 95.22,
       "changePercent": 0.208,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-26T05:51:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:51:02.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-25T23:23:00.000Z",
@@ -9754,14 +9868,13 @@
       "previousClose": 4523.2,
       "changePercent": 0.159,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-26T05:41:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:41:14.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-26T04:00:00.000Z",
@@ -10184,14 +10297,13 @@
       "previousClose": 16.7,
       "changePercent": -6.137,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-26T05:51:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-26T05:51:15.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-26T03:45:00.000Z",
@@ -10708,294 +10820,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.224Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.224Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.224Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.224Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.224Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.224Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.224Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.224Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.224Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.224Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.224Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.224Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.224Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.224Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.224Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.224Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.224Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.224Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.224Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.224Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.224Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.224Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.224Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.224Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "25-May-2026",
-    "fiiNet": 821.75,
-    "fiiBuy": 12083.12,
-    "fiiSell": 11261.37,
-    "diiNet": 3856.88,
-    "diiBuy": 16434.96,
-    "diiSell": 12578.08
-  },
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-26",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Even if the Middle East war ends soon, corporate profits would stay under pressure, BofA says.",
-      "sentimentScore": -0.419,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-26",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments",
-      "sentimentScore": -0.279,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-26",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 24,057 level, a discount of nearly 6 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-26",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "India’s fertiliser subsidy bill could surge past a record ₹3 lakh crore this fiscal if the West Asia crisis continues, sharply exceeding the budget estimate of ₹1.71 lakh crore, a government official said.",
-      "sentimentScore": 0.476,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-26",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine.",
-      "sentimentScore": 0.52,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 7977,
-  "scheduledFor": "2026-05-26T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-26T02:27:27.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Taiwan overtakes India as world's 5th largest stock market",
-      "summary": "Taiwan's stock market has now surpassed India's in value. This shift is largely due to a strong performance by Taiwan Semiconductor Manufacturing Co. The island's market capitalization reached $4.95 trillion. India's market value stands at $4.92 trillion. This development highlights the significant impact of artificial intelligence on global markets and manufacturing hubs.",
-      "takeaway": "Taiwan's stock market has now surpassed India's in value; Global Tech is semiconductor-cycle evidence; Indian IT needs Nasdaq breadth and USD/INR support to inherit it.",
-      "whyItMatters": "Factory and capex data can move metals, capital goods and exporters differently, so the index read needs sector confirmation.",
-      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip breadth and USD/INR support exporters together.",
-      "watchFor": "Watch Nasdaq futures plus Nifty IT advance-decline; chip strength alone is not enough.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/taiwan-overtakes-india-as-worlds-fifth-largest-stock-market/articleshow/131320332.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "Taiwan overtakes India as world's 5th largest stock market source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T02:13:55.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine.",
-      "takeaway": "Sensex gains marginally higher, Nifty above 24,050; metal stocks shine; metals news is a China-demand and commodity-margin cue, not a full-index signal by itself.",
-      "whyItMatters": "Metal stocks can lead or lag independently; traders need China, commodity prices and domestic sector breadth aligned.",
-      "indiaImpact": "Nifty Metal and capital-goods suppliers are the direct checks; broad Nifty conviction needs banks to confirm.",
-      "watchFor": "Watch Nifty Metal breadth, China futures and Bank Nifty VWAP together after the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-premier-energies-suzlon-energy-share-price-26-may-2026/liveblog/131320235.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Sensex Today",
-        "accent": "#059669",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments",
-      "summary": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments",
-      "takeaway": "The source flags fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/fairdeal.market-raises-usd-15-mn-in-funding-round-led-by-bertelsmann-india-investments.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Raises Usd",
-        "accent": "#dc2626",
-        "alt": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T02:36:52.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "LIC 1:1 bonus bonanza: Is today the last day to buy shares for free rewards?",
-      "summary": "LIC has set May 29 as the record date for its maiden 1:1 bonus issue, making May 27 the last day for investors to buy shares for eligibility. This corporate action will see the insurer issue one free share for every share held, capitalizing reserves. The move aims to enhance share liquidity and affordability for its over 21 lakh shareholders.",
-      "takeaway": "LIC has set May 29 as the record date for its maiden 1:1 bonus issue, making May 27; RBI and liquidity cues travel first through banks, rates and rate-sensitive sectors.",
-      "whyItMatters": "Policy liquidity can support or cap risk appetite, but the market needs Bank Nifty and local yields to confirm it.",
-      "indiaImpact": "Bank Nifty, realty, autos and NBFCs are the direct checks; broad Nifty weight needs domestic breadth.",
-      "watchFor": "Watch G-sec yields, Bank Nifty VWAP and rate-sensitive breadth after the open.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-11-bonus-bonanza-is-today-the-last-day-to-buy-shares-for-free-rewards/articleshow/131320421.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Corporate actions",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Autos",
-        "theme": "US Autos",
-        "accent": "#b45309",
-        "alt": "LIC 1:1 bonus bonanza: Is today the last day to buy shares for free rewards? source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-25T19:11:34.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "India's fertilizer subsidy may cross ₹3 lakh crore if West Asia crisis prolongs",
-      "summary": "India’s fertiliser subsidy bill could surge past a record ₹3 lakh crore this fiscal if the West Asia crisis continues, sharply exceeding the budget estimate of ₹1.71 lakh crore, a government official said.",
-      "takeaway": "India’s fertiliser subsidy bill could surge past a record ₹3 lakh crore this fiscal if the West Asia; monsoon and rural cues matter through consumption, agri inputs and inflation expectations.",
-      "whyItMatters": "Weather-linked demand can support FMCG, tractors, fertilisers and rural lenders, but it needs domestic sector breadth.",
-      "indiaImpact": "FMCG, autos, fertilisers and rural-finance names are the India checks; Nifty bias still needs banks to confirm.",
-      "watchFor": "Watch FMCG, tractor, fertiliser and rural-lender breadth; broad bias needs Bank Nifty support.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/indias-fertilizer-subsidy-may-cross-3-lakh-crore-if-crisis-prolongs/articleshow/131319662.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Rural demand",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Rural Demand",
-        "theme": "Indias Fertilizer",
-        "accent": "#2563eb",
-        "alt": "India's fertilizer subsidy may cross ₹3 lakh crore if West Asia crisis prolongs source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T01:58:40.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 May",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 24,057 level, a discount of nearly 6 points from the Nifty futures’ previous close.",
-      "takeaway": "The source flags nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-26-may-11779759670334.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T02:29:08.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: RVNL, ONGC, BEL among 10 shares in focus today; check list here",
-      "summary": "Stock market today: The Indian stock market is likely to snap its gaining streak as trends in the Gift Nifty index signalled a negative opening on Tuesday. Amid this backdrop, these stocks will remain in focus on 26 May.",
-      "takeaway": "Stock market today: The Indian stock market is likely to snap its gaining streak as trends; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-rvnl-ongc-bel-among-10-shares-in-focus-today-check-list-here-11779760906233.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Bel Among",
-        "accent": "#0891b2",
-        "alt": "Stocks to watch: RVNL, ONGC, BEL among 10 shares in focus today; check list here source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore",
-      "summary": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore",
-      "takeaway": "The source flags string Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT; global cue matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/string-metaverse-posts-record-fy26-results-revenue-surges-to-rs-1-069-crore-pat-crosses-rs-102-crore.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "String Metaverse",
-        "accent": "#dc2626",
-        "alt": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T02:39:41.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "India Earnings Revival Under Threat as Commodity Prices Surge",
-      "summary": "Even if the Middle East war ends soon, corporate profits would stay under pressure, BofA says.",
-      "takeaway": "Even if the Middle East war ends soon, corporate profits would stay under pressure, BofA says; Geopolitical risk matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs breadth.",
-      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning risk-off weight to the India open.",
-      "sourceUrl": "https://www.bloomberg.com/news/newsletters/2026-05-26/india-corporate-earnings-come-under-threat-from-iran-war",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "India Earnings Revival Under Threat as Commodity Prices Surge source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-26T00:35:00.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "ASX Drops Most Since 2012 After Revising Up Costs on Tech Revamp",
-      "summary": "ASX Ltd. shares tumbled the most in more than a decade after the embattled exchange operator increased its capital spending guidance as it upgrades critical market infrastructure.",
-      "takeaway": "shares tumbled the most in more than a decade after the embattled exchange operator increased its capital spending; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty IT needs local breadth and USD/INR support before global tech news becomes an India trade input.",
-      "watchFor": "Watch Nifty IT breadth after the first range; avoid trading isolated global tech headlines.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-26/asx-ramps-up-capital-spending-to-support-technology-upgrade",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "ASX Drops Most Since 2012 After Revising Up Costs on Tech Revamp source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Taiwan overtakes India as world's 5th largest stock market",
       "publisherName": "Economic Times Markets",
@@ -11003,7 +10936,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/taiwan-overtakes-india-as-worlds-fifth-largest-stock-market/articleshow/131320332.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Taiwan overtakes India as world's 5th largest stock market source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11013,7 +10946,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-premier-energies-suzlon-energy-share-price-26-may-2026/liveblog/131320235.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11023,7 +10956,7 @@
       "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/fairdeal.market-raises-usd-15-mn-in-funding-round-led-by-bertelsmann-india-investments.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERaises%20Usd%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11033,7 +10966,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/lic-11-bonus-bonanza-is-today-the-last-day-to-buy-shares-for-free-rewards/articleshow/131320421.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Autos%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "LIC 1:1 bonus bonanza: Is today the last day to buy shares for free rewards? source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -11043,7 +10976,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/indias-fertilizer-subsidy-may-cross-3-lakh-crore-if-crisis-prolongs/articleshow/131319662.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Fertilizer%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERural%20Demand%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India's fertilizer subsidy may cross ₹3 lakh crore if West Asia crisis prolongs source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11073,7 +11006,7 @@
       "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/26/string-metaverse-posts-record-fy26-results-revenue-surges-to-rs-1-069-crore-pat-crosses-rs-102-crore.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EString%20Metaverse%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "String Metaverse Posts Record FY26 Results Revenue Surges to Rs 1 069 Crore PAT Crosses Rs 102 Crore source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11083,7 +11016,7 @@
       "sourceUrl": "https://www.bloomberg.com/news/newsletters/2026-05-26/india-corporate-earnings-come-under-threat-from-iran-war",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India Earnings Revival Under Threat as Commodity Prices Surge source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -11093,10 +11026,43 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-26/asx-ramps-up-capital-spending-to-support-technology-upgrade",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "ASX Drops Most Since 2012 After Revising Up Costs on Tech Revamp source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     }
   ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Even if the Middle East war ends soon, corporate profits would stay under pressure, BofA says.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Fairdeal.Market raises USD 15 mn in funding round led by Bertelsmann India Investments",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a muted start for the Indian benchmark index. The Gift Nifty was trading around 24,057 level, a discount of nearly 6 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "India’s fertiliser subsidy bill could surge past a record ₹3 lakh crore this fiscal if the West Asia crisis continues, sharply exceeding the budget estimate of ₹1.71 lakh crore, a government official said.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Sensex gains marginally higher, Nifty above 24,050; metal stocks shine.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -11123,17 +11089,12 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 5
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-26.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Bank Nifty breadth Support Opening Range",
-    "correctedTitle": "Taiwan Overtakes India as World's 5th Largest Market; Nifty IT Weighs",
-    "correctedAt": "2026-07-01T15:43:10.601Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

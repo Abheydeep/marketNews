@@ -53,6 +53,142 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.575%, Nasdaq 100 +0.835%, Dow Jones +0.049%, Nifty 50 -0.045%, Bank Nifty +0.241%, Nikkei 225 +2.668%, Hang Seng +0.984%, Shanghai Composite -0.157%, KOSPI +3.254%, Taiwan Weighted +2.513%, Straits Times +0.915%, ASX 200 +1.344%, US Dollar Index +0.044%, Brent Crude -0.982%, USD/INR -0.252%, Gold (COMEX) +0.108%, India VIX -1.068%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Former RBI Governor Duvvuri Subbarao has said the central bank must allow some more depreciation in the rupee to help absorb external pressures, and choose liquidity measures, rather than going for rate hikes, if inflation risks intensify. In comments that come days ahead of the second meeting of the rate setting panel for FY27, Subbarao said the monetary policy should be used as a \"last resort\" to defend the exchange rate. \"RBI may of course tighten monetary policy if it believes that to be justified by inflation concerns,\" Subbarao, who served as the RBI governor between 2008 and 2013, said. \"The rupee should be allowed to adjust rather than be rigidly defended because the current pressures reflect a deterioration in India's external balance. A weaker rupee acts as a natural shock absorber,\" former RBI chief told PTI in an interview. The local currency has been depreciating due to geopolitical uncertainty and the West Asia crisis and touched a lifetime low of 97.15 against the US\n- Sector-Specific Pressure: Indian markets faced a second day of losses on 27 May, with the BSE Sensex down 141.90 points amid cautious investor sentiment and foreign fund outflows. The NSE Nifty 50 also fell slightly, while broader market performance presented mixed results as markets prepared to close for Bakri Id.\n- Volatile Opening Bias: Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,887 level, a discount of nearly 109 points from the Nifty futures’ previous close.\n- Global Risk-Off Cue: The company&#x2019;s AI-server revenue was up 757% in the first quarter, while profit beat expectations by the widest margin in at least five years.\n- Global Earnings & Risk Appetite: Coal India Share Price Live Updates: Coal India Price Movement Analysis.\n- Sector-Specific Cushion: Shares of Samsung Electronics surged after the company began shipping HBM4E chip samples to its customers globally.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "27-May-2026",
+    "fiiNet": -1042.7,
+    "fiiBuy": 11418.65,
+    "fiiSell": 12461.35,
+    "diiNet": 3821,
+    "diiBuy": 16893.1,
+    "diiSell": 13072.1
+  },
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 13,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 54964,
+  "scheduledFor": "2026-05-29T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Coal India Share Price Live Updates: Coal India Price Movement Analysis",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-29T02:44:46.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/coal-india-ltd-stock-price-livestock-price-today-live-updates-29-may-2026/liveblog/131380508.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECoal%20India%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%20Energy%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Coal India Share Price Live Updates: Coal India Price Movement Analysis source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Power Grid Share Price Live Updates: Power Grid's Market Update",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-29T02:44:52.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/power-grid-share-price-live-updates-29-may-2026/liveblog/131380512.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EPower%20Grid%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Power Grid Share Price Live Updates: Power Grid's Market Update source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India, Canada to avoid sensitive sectors in trade pact talks: Piyush Goyal",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-28T13:05:05.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-canada-to-avoid-sensitive-sectors-in-trade-pact-talks-piyush-goyal-126052801334_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECanada%20Avoid%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India, Canada to avoid sensitive sectors in trade pact talks: Piyush Goyal source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Dell stock soars toward another record high as the AI boom drives a big earnings beat",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-29T00:47:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/dell-stock-soars-toward-another-record-high-as-the-ai-boom-drives-a-big-earnings-beat-b7c0c203?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dell stock soars toward another record high as the AI boom drives a big earnings beat source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Samsung's shares surge as much as 6% after company ships next-generation AI memory chip samples",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-29T02:28:20.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/29/samsung-hbm4e-chip-samples-ai-memory.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Samsung's shares surge as much as 6% after company ships next-generation AI memory chip samples source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Raja Venkatraman, MarketSmith recommend five stocks for 29 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-29T02:22:52.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-29-may-11780018527817.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERaja%20Marketsmith%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Raja Venkatraman, MarketSmith recommend five stocks for 29 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_negative"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 29 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-29T01:59:20.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-29-may-11780019466489.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 29 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "From Gift Nifty, US-Iran peace deal, oil prices to Wipro ADR: 10 things that changed for Indian stock market overnight",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-29T01:46:02.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-deal-oil-prices-to-wipro-adr-10-things-that-changed-for-indian-stock-market-overnight-11780018690763.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Us-Iran%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "From Gift Nifty, US-Iran peace deal, oil prices to Wipro ADR: 10 things that changed for Indian stock market overnight source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "ONGC Share Price Live Updates: ONGC's Current Trading Status",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-29T02:44:08.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ongc-share-price-live-updates-29-may-2026/liveblog/131380490.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOngc%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "ONGC Share Price Live Updates: ONGC's Current Trading Status source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "RBI must let rupee depreciate, avoid rate hikes to tame inflation: Subbarao",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-28T13:16:13.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/let-rupee-depreciate-use-liquidity-tools-ex-rbi-chief-subbarao-126052801144_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI must let rupee depreciate, avoid rate hikes to tame inflation: Subbarao source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Support Opening Range",
+    "correctedTitle": "Coal India Price Movement Impacts Nifty, Indian Stock Market Sentiment",
+    "correctedAt": "2026-07-01T15:42:56.173Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +197,13 @@
       "previousClose": 7520.36,
       "changePercent": 0.575,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-28T21:33:32.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-28T21:33:32.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-28T13:30:00.000Z",
@@ -799,14 +934,13 @@
       "previousClose": 29973.57,
       "changePercent": 0.835,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-28T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-28T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-28T13:30:00.000Z",
@@ -1537,14 +1671,13 @@
       "previousClose": 50644.28,
       "changePercent": 0.049,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-28T20:47:05.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-28T20:47:05.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-28T13:30:00.000Z",
@@ -2275,14 +2408,13 @@
       "previousClose": 23907.15,
       "changePercent": -0.045,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T05:58:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:58:03.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -2829,14 +2961,13 @@
       "previousClose": 54853.85,
       "changePercent": 0.241,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T05:58:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:58:03.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -3383,15 +3514,13 @@
       "previousClose": 64693.12,
       "changePercent": 2.668,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-29T05:43:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:43:00.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -4122,15 +4251,13 @@
       "previousClose": 25006.16,
       "changePercent": 0.984,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-29T05:43:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:43:02.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-29T01:30:00.000Z",
@@ -4861,15 +4988,13 @@
       "previousClose": 4093.73,
       "changePercent": -0.157,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-29T05:42:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:42:55.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-29T01:30:00.000Z",
@@ -5536,15 +5661,13 @@
       "previousClose": 8185.29,
       "changePercent": 3.254,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-29T05:38:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:38:00.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -6275,15 +6398,13 @@
       "previousClose": 43636.44,
       "changePercent": 2.513,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-29T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-29T01:00:00.000Z",
@@ -7014,15 +7135,13 @@
       "previousClose": 4989.19,
       "changePercent": 0.915,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-29T05:43:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:43:03.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-29T01:00:00.000Z",
@@ -7753,15 +7872,13 @@
       "previousClose": 8592.9,
       "changePercent": 1.344,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-29T05:37:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:37:45.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -8492,14 +8609,13 @@
       "previousClose": 99.02,
       "changePercent": 0.044,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T05:48:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:48:03.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -8946,14 +9062,13 @@
       "previousClose": 92.7,
       "changePercent": -0.982,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T05:47:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:47:25.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -9272,14 +9387,13 @@
       "previousClose": 95.68,
       "changePercent": -0.252,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-29T05:58:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:58:00.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-29T00:39:00.000Z",
@@ -9898,14 +10012,13 @@
       "previousClose": 4532.4,
       "changePercent": 0.108,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T05:48:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:48:02.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -10356,14 +10469,13 @@
       "previousClose": 14.98,
       "changePercent": -1.068,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T05:58:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:58:03.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -10908,302 +11020,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.228Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.228Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.228Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.228Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.228Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.228Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.228Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.228Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.228Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.228Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.228Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.228Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.228Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.228Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.228Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.228Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.228Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.228Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.228Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.228Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.228Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.228Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.228Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.228Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "27-May-2026",
-    "fiiNet": -1042.7,
-    "fiiBuy": 11418.65,
-    "fiiSell": 12461.35,
-    "diiNet": 3821,
-    "diiBuy": 16893.1,
-    "diiSell": 13072.1
-  },
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Former RBI Governor Duvvuri Subbarao has said the central bank must allow some more depreciation in the rupee to help absorb external pressures, and choose liquidity measures, rather than going for rate hikes, if inflation risks intensify. In comments that come days ahead of the second meeting of the rate setting panel for FY27, Subbarao said the monetary policy should be used as a \"last resort\" to defend the exchange rate. \"RBI may of course tighten monetary policy if it believes that to be justified by inflation concerns,\" Subbarao, who served as the RBI governor between 2008 and 2013, said. \"The rupee should be allowed to adjust rather than be rigidly defended because the current pressures reflect a deterioration in India's external balance. A weaker rupee acts as a natural shock absorber,\" former RBI chief told PTI in an interview. The local currency has been depreciating due to geopolitical uncertainty and the West Asia crisis and touched a lifetime low of 97.15 against the US",
-      "sentimentScore": -0.706,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "sector_negative",
-      "title": "Sector-Specific Pressure",
-      "summary": "Indian markets faced a second day of losses on 27 May, with the BSE Sensex down 141.90 points amid cautious investor sentiment and foreign fund outflows. The NSE Nifty 50 also fell slightly, while broader market performance presented mixed results as markets prepared to close for Bakri Id.",
-      "sentimentScore": -0.48,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,887 level, a discount of nearly 109 points from the Nifty futures’ previous close.",
-      "sentimentScore": -0.08,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "The company&#x2019;s AI-server revenue was up 757% in the first quarter, while profit beat expectations by the widest margin in at least five years.",
-      "sentimentScore": 0.03,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Coal India Share Price Live Updates: Coal India Price Movement Analysis.",
-      "sentimentScore": 0.4,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-29",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Shares of Samsung Electronics surged after the company began shipping HBM4E chip samples to its customers globally.",
-      "sentimentScore": 0.412,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 13,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 54964,
-  "scheduledFor": "2026-05-29T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-29T02:44:46.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Coal India Share Price Live Updates: Coal India Price Movement Analysis",
-      "summary": "Coal India Share Price Live Updates: Coal India Price Movement Analysis.",
-      "takeaway": "Coal India Price Movement Analysis; India power demand, coal use and fuel supply make energy breadth and inflation the local checks.",
-      "whyItMatters": "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.",
-      "indiaImpact": "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial breadth.",
-      "watchFor": "Watch power, energy and industrial breadth after the open; broad-index bias needs confirmation outside the headline.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/coal-india-ltd-stock-price-livestock-price-today-live-updates-29-may-2026/liveblog/131380508.cms",
-      "sentimentLabel": "positive",
-      "entityName": "India Energy",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "India Energy",
-        "theme": "Coal India",
-        "accent": "#059669",
-        "alt": "Coal India Share Price Live Updates: Coal India Price Movement Analysis source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T02:44:52.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Power Grid Share Price Live Updates: Power Grid's Market Update",
-      "summary": "Power Grid Share Price Live Updates: Power Grid's Market Update.",
-      "takeaway": "Power Grid's Market Update; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/power-grid-share-price-live-updates-29-may-2026/liveblog/131380512.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Market",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Power Grid",
-        "accent": "#059669",
-        "alt": "Power Grid Share Price Live Updates: Power Grid's Market Update source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-28T13:05:05.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India, Canada to avoid sensitive sectors in trade pact talks: Piyush Goyal",
-      "summary": "India and Canada have decided to focus on low-hanging fruit, work on areas of convergence and avoid seeking concessions in sensitive sectors in the negotiations for the proposed free trade agreement, Commerce and Industry Minister Piyush Goyal has said. The two countries are negotiating a Comprehensive Economic Partnership Agreement (CEPA). The third round of negotiations is underway in Ottawa. The minister was in Canada for a three-day official visit. \"I remember when I was talking to Mr Maninder Sidhu (Canada's trade minister) about speeding up CEPA negotiations, one of the first elementary decisions we both took was that 'we won't make perfect the enemy of the good'. \"Let's capture the low-hanging fruit. Let's look at areas of convergence. Let's leave the sensitive things out of the agreement. If something is sensitive for Canada, no sense in trying to egg on and trying to get that into the CEPA. Likewise, if something is sensitive for India or the Indian public or Indian ...",
-      "takeaway": "India and Canada have decided to focus on low-hanging fruit, work on areas of convergence and avoid seeking; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-canada-to-avoid-sensitive-sectors-in-trade-pact-talks-piyush-goyal-126052801334_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Canada Avoid",
-        "accent": "#dc2626",
-        "alt": "India, Canada to avoid sensitive sectors in trade pact talks: Piyush Goyal source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T00:47:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "Dell stock soars toward another record high as the AI boom drives a big earnings beat",
-      "summary": "The company&#x2019;s AI-server revenue was up 757% in the first quarter, while profit beat expectations by the widest margin in at least five years.",
-      "takeaway": "The company&#x2019;s AI-server revenue was up 757% in the first quarter, while profit beat expectations by the widest; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.marketwatch.com/story/dell-stock-soars-toward-another-record-high-as-the-ai-boom-drives-a-big-earnings-beat-b7c0c203?mod=mw_rss_topstories",
-      "sentimentLabel": "neutral",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Dell stock soars toward another record high as the AI boom drives a big earnings beat source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T02:28:20.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Samsung's shares surge as much as 6% after company ships next-generation AI memory chip samples",
-      "summary": "Shares of Samsung Electronics surged after the company began shipping HBM4E chip samples to its customers globally.",
-      "takeaway": "Shares of Samsung Electronics surged after the company began shipping HBM4E chip samples to its customers globally; Global Tech is semiconductor-cycle evidence; Indian IT needs Nasdaq breadth and USD/INR support to inherit it.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip breadth and USD/INR support exporters together.",
-      "watchFor": "Watch Nasdaq futures plus Nifty IT advance-decline; chip strength alone is not enough.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/29/samsung-hbm4e-chip-samples-ai-memory.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "Samsung's shares surge as much as 6% after company ships next-generation AI memory chip samples source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T02:22:52.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Raja Venkatraman, MarketSmith recommend five stocks for 29 May",
-      "summary": "Indian markets faced a second day of losses on 27 May, with the BSE Sensex down 141.90 points amid cautious investor sentiment and foreign fund outflows. The NSE Nifty 50 also fell slightly, while broader market performance presented mixed results as markets prepared to close for Bakri Id.",
-      "takeaway": "Indian markets faced a second day of losses on 27 May, with the BSE Sensex down 141.90 points; Nifty 50 matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
-      "indiaImpact": "FMCG, autos, retail lenders and discretionary names are the India checks; Nifty bias needs breadth outside defensives.",
-      "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-29-may-11780018527817.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty 50",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Raja Marketsmith",
-        "accent": "#b45309",
-        "alt": "Raja Venkatraman, MarketSmith recommend five stocks for 29 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T01:59:20.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 29 May",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,887 level, a discount of nearly 109 points from the Nifty futures’ previous close.",
-      "takeaway": "The source flags nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-29-may-11780019466489.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 29 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T01:46:02.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, US-Iran peace deal, oil prices to Wipro ADR: 10 things that changed for Indian stock market overnight",
-      "summary": "Gift Nifty was trading around 23,881 level, a discount of nearly 116 points from the Nifty futures’ previous close, indicating a gap-down start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,881 level, a discount of nearly 116 points from the Nifty futures’ previous; lower crude eases India import-cost pressure if the move survives the morning handoff.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-peace-deal-oil-prices-to-wipro-adr-10-things-that-changed-for-indian-stock-market-overnight-11780018690763.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Gift Us-Iran",
-        "accent": "#0891b2",
-        "alt": "From Gift Nifty, US-Iran peace deal, oil prices to Wipro ADR: 10 things that changed for Indian stock market overnight source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T02:44:08.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "ONGC Share Price Live Updates: ONGC's Current Trading Status",
-      "summary": "ONGC Share Price Live Updates: ONGC's Current Trading Status.",
-      "takeaway": "ONGC's Current Trading Status; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Sector Breadth needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Sector Breadth peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ongc-share-price-live-updates-29-may-2026/liveblog/131380490.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Sector Breadth",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Sector Breadth",
-        "theme": "Ongc Share",
-        "accent": "#2563eb",
-        "alt": "ONGC Share Price Live Updates: ONGC's Current Trading Status source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-28T13:16:13.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "RBI must let rupee depreciate, avoid rate hikes to tame inflation: Subbarao",
-      "summary": "Former RBI Governor Duvvuri Subbarao has said the central bank must allow some more depreciation in the rupee to help absorb external pressures, and choose liquidity measures, rather than going for rate hikes, if inflation risks intensify. In comments that come days ahead of the second meeting of the rate setting panel for FY27, Subbarao said the monetary policy should be used as a \"last resort\" to defend the exchange rate. \"RBI may of course tighten monetary policy if it believes that to be justified by inflation concerns,\" Subbarao, who served as the RBI governor between 2008 and 2013, said. \"The rupee should be allowed to adjust rather than be rigidly defended because the current pressures reflect a deterioration in India's external balance. A weaker rupee acts as a natural shock absorber,\" former RBI chief told PTI in an interview. The local currency has been depreciating due to geopolitical uncertainty and the West Asia crisis and touched a lifetime low of 97.15 against the US",
-      "takeaway": "Former RBI Governor Duvvuri Subbarao has said the central bank must allow some more depreciation in the rupee; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/let-rupee-depreciate-use-liquidity-tools-ex-rbi-chief-subbarao-126052801144_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "BoE Rates",
-        "theme": "Central Banks",
-        "accent": "#dc2626",
-        "alt": "RBI must let rupee depreciate, avoid rate hikes to tame inflation: Subbarao source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Coal India Share Price Live Updates: Coal India Price Movement Analysis",
       "publisherName": "Economic Times Markets",
@@ -11211,7 +11136,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/coal-india-ltd-stock-price-livestock-price-today-live-updates-29-may-2026/liveblog/131380508.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECoal%20India%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%20Energy%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Coal India Share Price Live Updates: Coal India Price Movement Analysis source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11221,7 +11146,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/power-grid-share-price-live-updates-29-may-2026/liveblog/131380512.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EPower%20Grid%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Power Grid Share Price Live Updates: Power Grid's Market Update source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11231,7 +11156,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/india-canada-to-avoid-sensitive-sectors-in-trade-pact-talks-piyush-goyal-126052801334_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECanada%20Avoid%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India, Canada to avoid sensitive sectors in trade pact talks: Piyush Goyal source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11251,7 +11176,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/29/samsung-hbm4e-chip-samples-ai-memory.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Samsung's shares surge as much as 6% after company ships next-generation AI memory chip samples source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11261,7 +11186,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/raja-venkatraman-marketsmith-recommend-five-stocks-for-29-may-11780018527817.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERaja%20Marketsmith%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Raja Venkatraman, MarketSmith recommend five stocks for 29 May source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "sector_negative"
     },
     {
@@ -11291,7 +11216,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ongc-share-price-live-updates-29-may-2026/liveblog/131380490.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOngc%20Share%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Breadth%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "ONGC Share Price Live Updates: ONGC's Current Trading Status source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11301,10 +11226,49 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/let-rupee-depreciate-use-liquidity-tools-ex-rbi-chief-subbarao-126052801144_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "RBI must let rupee depreciate, avoid rate hikes to tame inflation: Subbarao source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Former RBI Governor Duvvuri Subbarao has said the central bank must allow some more depreciation in the rupee to help absorb external pressures, and choose liquidity measures, rather than going for rate hikes, if inflation risks intensify. In comments that come days ahead of the second meeting of the rate setting panel for FY27, Subbarao said the monetary policy should be used as a \"last resort\" to defend the exchange rate. \"RBI may of course tighten monetary policy if it believes that to be justified by inflation concerns,\" Subbarao, who served as the RBI governor between 2008 and 2013, said. \"The rupee should be allowed to adjust rather than be rigidly defended because the current pressures reflect a deterioration in India's external balance. A weaker rupee acts as a natural shock absorber,\" former RBI chief told PTI in an interview. The local currency has been depreciating due to geopolitical uncertainty and the West Asia crisis and touched a lifetime low of 97.15 against the US",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Pressure",
+      "summary": "Indian markets faced a second day of losses on 27 May, with the BSE Sensex down 141.90 points amid cautious investor sentiment and foreign fund outflows. The NSE Nifty 50 also fell slightly, while broader market performance presented mixed results as markets prepared to close for Bakri Id.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 23,887 level, a discount of nearly 109 points from the Nifty futures’ previous close.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "The company&#x2019;s AI-server revenue was up 757% in the first quarter, while profit beat expectations by the widest margin in at least five years.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Coal India Share Price Live Updates: Coal India Price Movement Analysis.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Shares of Samsung Electronics surged after the company began shipping HBM4E chip samples to its customers globally.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -11331,17 +11295,12 @@
       "remainingRiskReward": 0
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 6
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-29.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Crude / energy risk Support Opening Range",
-    "correctedTitle": "Coal India Price Movement Impacts Nifty, Indian Stock Market Sentiment",
-    "correctedAt": "2026-07-01T15:42:56.173Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

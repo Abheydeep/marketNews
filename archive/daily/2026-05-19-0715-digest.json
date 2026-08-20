@@ -53,6 +53,142 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Market Mood: VOLATILE\n\nGlobal Cues: S&P 500 -0.074%, Nasdaq 100 -0.449%, Dow Jones +0.323%, Nifty 50 +0.027%, Bank Nifty -0.323%, Nikkei 225 -0.272%, Hang Seng +0.253%, Shanghai Composite -0.41%, KOSPI -4.392%, Taiwan Weighted -0.85%, Straits Times +0.556%, ASX 200 +0.827%, US Dollar Index -0.089%, Brent Crude -2.221%, USD/INR +0%, Gold (COMEX) +0.018%, India VIX +4.47%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Global bond yields rose on Monday as fears of resurgent inflation grip financial markets.\n- Global Risk-Off Cue: Tough talk from the Federal Reserve about rate hikes may be needed to ease the Treasury market&#x2019;s rout.\n- Volatile Opening Bias: Gift Nifty was trading around 23,674 level, a premium of nearly 16 points from the Nifty futures’ previous close, indicating a flat start for the Indian stock market indices.\n- Global Earnings & Risk Appetite: Mangalam Worldwide has approved a 1:10 stock split, under which each equity share with a face value of Rs 10 will be subdivided into 10 shares of Re 1 each, subject to shareholder and regulatory approvals. The decision was cleared by the board on May 15, 2026.\n- Sector-Specific Cushion: Sensex rose 1,100 points from its day’s low to close at 75,315, and Nifty 50 gained 333 points from its day’s low to end the session at 23,650. At close, Sensex was up 77 points and Nifty was up 6 points from Friday’s closing levels.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "18-May-2026",
+    "fiiNet": 2813.69,
+    "fiiBuy": 17222.18,
+    "fiiSell": 14408.49,
+    "diiNet": 2682.12,
+    "diiBuy": 16844.94,
+    "diiSell": 14162.82
+  },
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 11,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 20543,
+  "scheduledFor": "2026-05-19T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Stock Market News Today Live Updates: GIFT Nifty Points To Positive Open For Nifty, Sensex; Brent Crude Below $109 After Trump Delays Iran Strike",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-05-19T01:25:53.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/stock-market-crash-news-today-live-updates-share-market-sensex-nifty-gift-nifty-iran-war-us-attack-oil-market-impact-q4-results-fno-expiry-futures-11514823",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENews%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock Market News Today Live Updates: GIFT Nifty Points To Positive Open For Nifty, Sensex; Brent Crude Below $109 After Trump Delays Iran Strike source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "From Gift Nifty, US-Iran war, oil prices to bond yields: 10 key things that changed for Indian stock market overnight",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-19T01:40:54.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-war-oil-prices-to-bond-yields-10-key-things-that-changed-for-indian-stock-market-overnight-11779154402869.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "From Gift Nifty, US-Iran war, oil prices to bond yields: 10 key things that changed for Indian stock market overnight source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "10-year Treasury yield touches highest in a year, Japan's 30-year yield rises to a record",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-18T20:03:47.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/18/treasury-yields-inflation-bond-rout-oil.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "10-year Treasury yield touches highest in a year, Japan's 30-year yield rises to a record source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "The bond market has a warning for the Fed: Get serious about inflation and potential rate hikes ASAP",
+      "publisherName": "MarketWatch",
+      "timestamp": "2026-05-19T02:04:00.000Z",
+      "sourceUrl": "https://www.marketwatch.com/story/the-bond-market-has-a-warning-for-the-fed-get-serious-about-inflation-and-potential-rate-hikes-asap-f38bbdcf?mod=mw_rss_topstories",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Bond%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "The bond market has a warning for the Fed: Get serious about inflation and potential rate hikes ASAP source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Markets rebound sharply: Sensex recovers 1,100 points from day’s low, Nifty closes near 23,650",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-18T10:12:58.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/markets-rebound-sharply-sensex-recovers-1100-points-from-days-low-nifty-closes-near-23650/articleshow/131173298.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERebound%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Markets rebound sharply: Sensex recovers 1,100 points from day’s low, Nifty closes near 23,650 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "FIIs trim holdings in 10 midcap stocks over two quarters; shares drop up to 50%",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-18T09:39:13.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/fiis-trim-holdings-in-10-midcap-stocks-over-two-quarters-shares-drop-up-to-50/slideshow/131172909.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFiis%20Trim%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFii%2FDii%20Flow%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "FIIs trim holdings in 10 midcap stocks over two quarters; shares drop up to 50% source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "ET Alpha Wealth Summit 2026: Decoding the future of Indian stock market in uncertain times",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-18T09:25:19.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/et-alpha-wealth-summit-2026-decoding-the-future-of-indian-stock-market-in-uncertain-times/articleshow/131172285.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "ET Alpha Wealth Summit 2026: Decoding the future of Indian stock market in uncertain times source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Mangalam Worldwide’s board approves 1:10 stock split as smallcap rises 120% in a year",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-18T10:05:43.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/mangalam-worldwides-board-approves-110-stock-split-as-smallcap-rises-120-in-a-year/articleshow/131173181.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMangalam%20Worldwides%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECorporate%20Actions%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Mangalam Worldwide’s board approves 1:10 stock split as smallcap rises 120% in a year source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Inflation rate projected to hit 6% in the second quarter, top economic forecasters say",
+      "publisherName": "CNBC Economy",
+      "timestamp": "2026-05-18T16:11:13.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/15/inflation-rate-projected-to-hit-6percent-in-the-second-quarter-top-economic-forecasters-say.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ef4444%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Macro%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInflation%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Inflation rate projected to hit 6% in the second quarter, top economic forecasters say source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-19T01:56:45.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-jsw-steel-zee-share-price-19-may-2026/liveblog/131188649.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Crude / energy risk Shape Opening Range",
+    "correctedTitle": "Indian stock market watch: Brent crude prices drive overnight shifts",
+    "correctedAt": "2026-07-01T15:42:10.685Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +197,13 @@
       "previousClose": 7408.5,
       "changePercent": -0.074,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-18T20:39:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T20:39:29.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-18T13:30:00.000Z",
@@ -799,14 +934,13 @@
       "previousClose": 29125.2,
       "changePercent": -0.449,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-18T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-18T13:30:00.000Z",
@@ -1537,14 +1671,13 @@
       "previousClose": 49526.17,
       "changePercent": 0.323,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-18T20:39:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T20:39:35.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-18T13:30:00.000Z",
@@ -2275,14 +2408,13 @@
       "previousClose": 23643.5,
       "changePercent": 0.027,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-18T10:01:01.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T10:01:01.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-18T03:45:00.000Z",
@@ -3013,14 +3145,13 @@
       "previousClose": 53710.35,
       "changePercent": -0.323,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-18T10:01:01.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T10:01:01.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-18T03:45:00.000Z",
@@ -3751,15 +3882,13 @@
       "previousClose": 60815.95,
       "changePercent": -0.272,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-19T02:06:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:06:55.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-19T00:00:00.000Z",
@@ -4278,15 +4407,13 @@
       "previousClose": 25675.18,
       "changePercent": 0.253,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-19T02:06:54.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:06:54.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-19T01:30:00.000Z",
@@ -4445,15 +4572,13 @@
       "previousClose": 4131.53,
       "changePercent": -0.41,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-19T02:06:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:06:55.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-19T01:30:00.000Z",
@@ -4612,15 +4737,13 @@
       "previousClose": 7516.04,
       "changePercent": -4.392,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-19T02:01:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:01:50.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-19T00:00:00.000Z",
@@ -5119,15 +5242,13 @@
       "previousClose": 40891.82,
       "changePercent": -0.85,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-19T02:01:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:01:45.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-19T01:00:00.000Z",
@@ -5386,15 +5507,13 @@
       "previousClose": 4996.75,
       "changePercent": 0.556,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-19T02:06:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:06:55.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-19T01:00:00.000Z",
@@ -5673,15 +5792,13 @@
       "previousClose": 8505.3,
       "changePercent": 0.827,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-19T02:01:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:01:45.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-19T00:00:00.000Z",
@@ -6180,14 +6297,13 @@
       "previousClose": 99.19,
       "changePercent": -0.089,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-19T02:11:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:11:55.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-18T04:00:00.000Z",
@@ -6918,14 +7034,13 @@
       "previousClose": 112.1,
       "changePercent": -2.221,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-19T02:08:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:08:25.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-18T04:00:00.000Z",
@@ -7656,14 +7771,13 @@
       "previousClose": 96.34,
       "changePercent": 0,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-19T02:01:58.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:01:58.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-18T23:42:00.000Z",
@@ -7714,14 +7828,13 @@
       "previousClose": 4558,
       "changePercent": 0.018,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-19T02:11:55.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-19T02:11:55.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-18T04:00:00.000Z",
@@ -8452,14 +8565,13 @@
       "previousClose": 18.79,
       "changePercent": 4.47,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-18T10:03:33.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-18T10:03:33.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-18T03:45:00.000Z",
@@ -9188,294 +9300,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.213Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.213Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.213Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.213Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.213Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.213Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.213Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.213Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.213Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.213Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.213Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.213Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.213Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.213Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.213Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.213Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.213Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.213Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.213Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.213Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.213Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.213Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.213Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.213Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "18-May-2026",
-    "fiiNet": 2813.69,
-    "fiiBuy": 17222.18,
-    "fiiSell": 14408.49,
-    "diiNet": 2682.12,
-    "diiBuy": 16844.94,
-    "diiSell": 14162.82
-  },
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-19",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Global bond yields rose on Monday as fears of resurgent inflation grip financial markets.",
-      "sentimentScore": -0.524,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-19",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Tough talk from the Federal Reserve about rate hikes may be needed to ease the Treasury market&#x2019;s rout.",
-      "sentimentScore": -0.344,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-19",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Gift Nifty was trading around 23,674 level, a premium of nearly 16 points from the Nifty futures’ previous close, indicating a flat start for the Indian stock market indices.",
-      "sentimentScore": -0.139,
-      "evidenceCount": 3
-    },
-    {
-      "digestDate": "2026-05-19",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Mangalam Worldwide has approved a 1:10 stock split, under which each equity share with a face value of Rs 10 will be subdivided into 10 shares of Re 1 each, subject to shareholder and regulatory approvals. The decision was cleared by the board on May 15, 2026.",
-      "sentimentScore": 0.332,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-19",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Sensex rose 1,100 points from its day’s low to close at 75,315, and Nifty 50 gained 333 points from its day’s low to end the session at 23,650. At close, Sensex was up 77 points and Nifty was up 6 points from Friday’s closing levels.",
-      "sentimentScore": 0.35,
-      "evidenceCount": 1
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 11,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 20543,
-  "scheduledFor": "2026-05-19T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-19T01:25:53.000Z",
-      "sourceId": "ndtv-profit-markets",
-      "sourceName": "NDTV Profit Markets",
-      "headline": "Stock Market News Today Live Updates: GIFT Nifty Points To Positive Open For Nifty, Sensex; Brent Crude Below $109 After Trump Delays Iran Strike",
-      "summary": "The GIFT Nifty, an early indicator of Nifty 50's performance, traded at 23,700.50, compared to Monday's Nifty's close of 23,649.95.",
-      "takeaway": "The GIFT Nifty, an early indicator of Nifty 50's performance, traded at 23,700.50, compared to Monday's Nifty's close; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at $109; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.ndtvprofit.com/markets/stock-market-crash-news-today-live-updates-share-market-sensex-nifty-gift-nifty-iran-war-us-attack-oil-market-impact-q4-results-fno-expiry-futures-11514823",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "News Today",
-        "accent": "#0891b2",
-        "alt": "Stock Market News Today Live Updates: GIFT Nifty Points To Positive Open For Nifty, Sensex; Brent Crude Below $109 After Trump Delays Iran Strike source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T01:40:54.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "From Gift Nifty, US-Iran war, oil prices to bond yields: 10 key things that changed for Indian stock market overnight",
-      "summary": "Gift Nifty was trading around 23,674 level, a premium of nearly 16 points from the Nifty futures’ previous close, indicating a flat start for the Indian stock market indices.",
-      "takeaway": "Gift Nifty was trading around 23,674 level, a premium of nearly 16 points from the Nifty futures’ previous; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-war-oil-prices-to-bond-yields-10-key-things-that-changed-for-indian-stock-market-overnight-11779154402869.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "From Gift Nifty, US-Iran war, oil prices to bond yields: 10 key things that changed for Indian stock market overnight source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T20:03:47.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "10-year Treasury yield touches highest in a year, Japan's 30-year yield rises to a record",
-      "summary": "Global bond yields rose on Monday as fears of resurgent inflation grip financial markets.",
-      "takeaway": "Global bond yields rose on Monday as fears of resurgent inflation grip financial markets; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/18/treasury-yields-inflation-bond-rout-oil.html",
-      "sentimentLabel": "negative",
-      "entityName": "Bank Nifty",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "10-year Treasury yield touches highest in a year, Japan's 30-year yield rises to a record source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T02:04:00.000Z",
-      "sourceId": "marketwatch",
-      "sourceName": "MarketWatch",
-      "headline": "The bond market has a warning for the Fed: Get serious about inflation and potential rate hikes ASAP",
-      "summary": "Tough talk from the Federal Reserve about rate hikes may be needed to ease the Treasury market&#x2019;s rout.",
-      "takeaway": "Tough talk from the Federal Reserve about rate hikes may be needed to ease the Treasury market&#x2019;s rout; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if breadth absorbs it.",
-      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold VWAP.",
-      "sourceUrl": "https://www.marketwatch.com/story/the-bond-market-has-a-warning-for-the-fed-get-serious-about-inflation-and-potential-rate-hikes-asap-f38bbdcf?mod=mw_rss_topstories",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "The Bond",
-        "accent": "#7c3aed",
-        "alt": "The bond market has a warning for the Fed: Get serious about inflation and potential rate hikes ASAP source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T10:12:58.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Markets rebound sharply: Sensex recovers 1,100 points from day’s low, Nifty closes near 23,650",
-      "summary": "Sensex rose 1,100 points from its day’s low to close at 75,315, and Nifty 50 gained 333 points from its day’s low to end the session at 23,650. At close, Sensex was up 77 points and Nifty was up 6 points from Friday’s closing levels.",
-      "takeaway": "Sensex rose 1,100 points from its day’s low to close at 75,315, and Nifty 50 gained 333 points; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
-      "indiaImpact": "Nifty 50 needs related Indian peer breadth and Nifty VWAP acceptance before it becomes broad support.",
-      "watchFor": "Watch Nifty 50 peer breadth and Bank Nifty VWAP through the first range.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/markets-rebound-sharply-sensex-recovers-1100-points-from-days-low-nifty-closes-near-23650/articleshow/131173298.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Rebound Sensex",
-        "accent": "#2563eb",
-        "alt": "Markets rebound sharply: Sensex recovers 1,100 points from day’s low, Nifty closes near 23,650 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T09:39:13.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "FIIs trim holdings in 10 midcap stocks over two quarters; shares drop up to 50%",
-      "summary": "FII selling, midcap stocks, falling FII stake, foreign investor exit, stock market trends, Kaynes Technology, KPIT Technologies, Thermax shares, Bandhan Bank, midcap selloff",
-      "takeaway": "FII selling, midcap stocks, falling FII stake, foreign investor exit, stock market trends, Kaynes Technology, KPIT Technologies, Thermax; institutional flow is the domestic risk check; price still has to confirm it after the opening range.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/fiis-trim-holdings-in-10-midcap-stocks-over-two-quarters-shares-drop-up-to-50/slideshow/131172909.cms",
-      "sentimentLabel": "positive",
-      "entityName": "FII/DII flow",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Fii/Dii Flow",
-        "theme": "Fiis Trim",
-        "accent": "#059669",
-        "alt": "FIIs trim holdings in 10 midcap stocks over two quarters; shares drop up to 50% source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T09:25:19.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "ET Alpha Wealth Summit 2026: Decoding the future of Indian stock market in uncertain times",
-      "summary": "Indian investors navigate a complex wealth creation landscape. Geopolitical shifts and rapid AI adoption demand new strategies. The ET Alpha Wealth Summit 2026 on June 4 in Mumbai will gather top minds. Discussions will focus on AI, private markets, and global capital flows. Learn how to build resilient portfolios and identify future opportunities.",
-      "takeaway": "Indian investors navigate a complex wealth creation landscape; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "Global Tech stays on the watchlist until Nifty breadth and Bank Nifty confirm.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/et-alpha-wealth-summit-2026-decoding-the-future-of-indian-stock-market-in-uncertain-times/articleshow/131172285.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "ET Alpha Wealth Summit 2026: Decoding the future of Indian stock market in uncertain times source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T10:05:43.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Mangalam Worldwide’s board approves 1:10 stock split as smallcap rises 120% in a year",
-      "summary": "Mangalam Worldwide has approved a 1:10 stock split, under which each equity share with a face value of Rs 10 will be subdivided into 10 shares of Re 1 each, subject to shareholder and regulatory approvals. The decision was cleared by the board on May 15, 2026.",
-      "takeaway": "Mangalam Worldwide has approved a 1:10 stock split, under which each equity share with a face value; corporate actions are stock-specific flow triggers; they do not become an index signal without sector breadth.",
-      "whyItMatters": "Bonus issues, splits, dividends and ex-dates can move individual counters, but the morning index read still needs breadth.",
-      "indiaImpact": "Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate confirmation.",
-      "watchFor": "Watch ex-date names, delivery volume and sector peer breadth after the open; avoid turning one corporate action into an index trade.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/mangalam-worldwides-board-approves-110-stock-split-as-smallcap-rises-120-in-a-year/articleshow/131173181.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Corporate actions",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "Corporate Actions",
-        "theme": "Mangalam Worldwides",
-        "accent": "#059669",
-        "alt": "Mangalam Worldwide’s board approves 1:10 stock split as smallcap rises 120% in a year source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-18T16:11:13.000Z",
-      "sourceId": "cnbc-economy",
-      "sourceName": "CNBC Economy",
-      "headline": "Inflation rate projected to hit 6% in the second quarter, top economic forecasters say",
-      "summary": "The recent surge in inflation is likely to get worse over the next several months, according to a survey Friday.",
-      "takeaway": "The recent surge in inflation is likely to get worse over the next several months, according; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch 6%; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/15/inflation-rate-projected-to-hit-6percent-in-the-second-quarter-top-economic-forecasters-say.html",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Inflation",
-        "theme": "US Macro",
-        "accent": "#ef4444",
-        "alt": "Inflation rate projected to hit 6% in the second quarter, top economic forecasters say source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-19T01:56:45.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher.",
-      "takeaway": "GIFT Nifty signals a positive start; Asian shares trade higher; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-jsw-steel-zee-share-price-19-may-2026/liveblog/131188649.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Sensex Today",
-        "accent": "#0891b2",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Stock Market News Today Live Updates: GIFT Nifty Points To Positive Open For Nifty, Sensex; Brent Crude Below $109 After Trump Delays Iran Strike",
       "publisherName": "NDTV Profit Markets",
@@ -9493,7 +9426,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-us-iran-war-oil-prices-to-bond-yields-10-key-things-that-changed-for-indian-stock-market-overnight-11779154402869.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "From Gift Nifty, US-Iran war, oil prices to bond yields: 10 key things that changed for Indian stock market overnight source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "neutral_volatile"
     },
     {
@@ -9503,7 +9436,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/18/treasury-yields-inflation-bond-rout-oil.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "10-year Treasury yield touches highest in a year, Japan's 30-year yield rises to a record source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -9513,7 +9446,7 @@
       "sourceUrl": "https://www.marketwatch.com/story/the-bond-market-has-a-warning-for-the-fed-get-serious-about-inflation-and-potential-rate-hikes-asap-f38bbdcf?mod=mw_rss_topstories",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EThe%20Bond%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "The bond market has a warning for the Fed: Get serious about inflation and potential rate hikes ASAP source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -9523,7 +9456,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/markets-rebound-sharply-sensex-recovers-1100-points-from-days-low-nifty-closes-near-23650/articleshow/131173298.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERebound%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Markets rebound sharply: Sensex recovers 1,100 points from day’s low, Nifty closes near 23,650 source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -9533,7 +9466,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/fiis-trim-holdings-in-10-midcap-stocks-over-two-quarters-shares-drop-up-to-50/slideshow/131172909.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFiis%20Trim%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EFii%2FDii%20Flow%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "FIIs trim holdings in 10 midcap stocks over two quarters; shares drop up to 50% source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -9553,7 +9486,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/mangalam-worldwides-board-approves-110-stock-split-as-smallcap-rises-120-in-a-year/articleshow/131173181.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMangalam%20Worldwides%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECorporate%20Actions%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Mangalam Worldwide’s board approves 1:10 stock split as smallcap rises 120% in a year source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -9563,7 +9496,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/15/inflation-rate-projected-to-hit-6percent-in-the-second-quarter-top-economic-forecasters-say.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ef4444%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Macro%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInflation%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Inflation rate projected to hit 6% in the second quarter, top economic forecasters say source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -9577,6 +9510,39 @@
       "category": "neutral_volatile"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Global bond yields rose on Monday as fears of resurgent inflation grip financial markets.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Tough talk from the Federal Reserve about rate hikes may be needed to ease the Treasury market&#x2019;s rout.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Gift Nifty was trading around 23,674 level, a premium of nearly 16 points from the Nifty futures’ previous close, indicating a flat start for the Indian stock market indices.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Mangalam Worldwide has approved a 1:10 stock split, under which each equity share with a face value of Rs 10 will be subdivided into 10 shares of Re 1 each, subject to shareholder and regulatory approvals. The decision was cleared by the board on May 15, 2026.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Sensex rose 1,100 points from its day’s low to close at 75,315, and Nifty 50 gained 333 points from its day’s low to end the session at 23,650. At close, Sensex was up 77 points and Nifty was up 6 points from Friday’s closing levels.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -9603,17 +9569,12 @@
       "remainingRiskReward": 0.257
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 7
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-19.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Crude / energy risk Shape Opening Range",
-    "correctedTitle": "Indian stock market watch: Brent crude prices drive overnight shifts",
-    "correctedAt": "2026-07-01T15:42:10.685Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

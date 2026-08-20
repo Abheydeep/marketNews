@@ -53,6 +53,142 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +1.079%, Nasdaq 100 +1.662%, Dow Jones +1.308%, Nifty 50 +0.225%, Bank Nifty +0.273%, Nikkei 225 +3.438%, Hang Seng -0.371%, Shanghai Composite -0.341%, KOSPI +8.22%, Taiwan Weighted +3.367%, Straits Times -0.079%, ASX 200 +1.542%, US Dollar Index +0.097%, Brent Crude +1.019%, USD/INR -0.28%, Gold (COMEX) -0.214%, India VIX -2.82%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Australia’s unemployment rate climbed to the highest level since November 2021, suggesting the labor market is cooling faster than anticipated and prompting traders to dial back expectations for further interest-rate increases.\n- Sector-Specific Pressure: India's core sector growth rose to 1.7% in April FY27, aided by steel, electricity and fertilizer recovery despite pressure from the West Asia crisis and energy supply disruptions\n- Global Risk-Off Cue: Stock markets rally in early trade tracking positive trend in global peers easing oil prices\n- Volatile Opening Bias: Benchmark indices closed marginally higher on Wednesday, led by gains in banking and auto shares, while IT and FMCG stocks capped advances. Analysts said Nifty remains range-bound with weak sentiment persisting below key resistance levels, despite easing volatility and selective buying interest across sectors.\n- Global Earnings & Risk Appetite: A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.\n- Sector-Specific Cushion: Nvidia Q1 Earnings: Net profit jumped to $58.3 billion, or $2.39 per share, during the first quarter of fiscal 2027, ending April 26, more than tripling from $18.8 billion in the year-earlier period. Excluding one-time items, Nvidia earned $1.76 per share.\n\nValidated Trading Setups:\n- No clean 1:2 RR setup is active yet; wait for fresh opening-range confirmation.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "20-May-2026",
+    "fiiNet": -1597.35,
+    "fiiBuy": 14139.56,
+    "fiiSell": 15736.91,
+    "diiNet": 1968.35,
+    "diiBuy": 16000.79,
+    "diiSell": 14032.44
+  },
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 8010,
+  "scheduledFor": "2026-05-21T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Ahead of Market: 10 things that will decide stock market action on Thursday",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-20T16:08:52.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-thursday/articleshow/131230699.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAhead%20Things%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOptions%20Tape%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Ahead of Market: 10 things that will decide stock market action on Thursday source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Nvidia Q1 Earnings: Profit jumps to $58.3 billion on record revenue amid AI boom; announces $80 billion share buyback",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-21T01:20:08.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nvidia-q1-earnings-profit-jumps-to-58-3-billion-on-record-revenue-amid-ai-boom-announces-80-billion-share-buyback-11779326129208.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nvidia Q1 Earnings: Profit jumps to $58.3 billion on record revenue amid AI boom; announces $80 billion share buyback source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Australia Jobless Rate Jumps to 4-1/2 Year High as RBA Bets Fade",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-05-21T01:33:30.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-21/australian-unemployment-rate-surprisingly-jumps-to-4-5-in-april",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAustralia%20Jobless%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Australia Jobless Rate Jumps to 4-1/2 Year High as RBA Bets Fade source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices",
+      "publisherName": "The Week Business",
+      "timestamp": "2026-05-21T06:30:00+05:30",
+      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/21/stock-markets-rally-in-early-trade-tracking-positive-trend-in-global-peers-easing-oil-prices.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERally%20Early%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge",
+      "publisherName": "CNBC World",
+      "timestamp": "2026-05-20T09:13:52.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Fertiliser slump eases, nudges core sector growth up at 1.7% in April",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-20T16:37:02.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/fertiliser-slump-eases-nudges-core-sector-growth-up-at-1-7-in-april-126052001630_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFertiliser%20Slump%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMetal%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Fertiliser slump eases, nudges core sector growth up at 1.7% in April source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_negative"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 21 May",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-05-21T02:05:06.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-21-may-11779328713955.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 21 May source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-21T02:03:23.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Nvidia posts record $81.6 billion quarterly revenue on AI spending boom",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-20T20:37:11.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/nvidia-posts-record-81-6-billion-quarterly-revenue-on-ai-spending-boom/articleshow/131235368.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nvidia posts record $81.6 billion quarterly revenue on AI spending boom source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India and Italy to increase bilateral trade to €20 billion by 2029",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-20T15:41:44.000Z",
+      "sourceUrl": "https://www.business-standard.com/world-news/india-and-italy-elevate-ties-aim-for-euro-20-billion-trade-target-126052001744_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India and Italy to increase bilateral trade to €20 billion by 2029 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Market breadth Shape Opening Range",
+    "correctedTitle": "Nifty, stock market direction on Thursday hinges on key factors",
+    "correctedAt": "2026-07-01T15:42:10.751Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +197,13 @@
       "previousClose": 7353.61,
       "changePercent": 1.079,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-20T21:33:45.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-20T21:33:45.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-20T13:30:00.000Z",
@@ -799,14 +934,13 @@
       "previousClose": 28818.84,
       "changePercent": 1.662,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-20T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-20T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-20T13:30:00.000Z",
@@ -1537,14 +1671,13 @@
       "previousClose": 49363.88,
       "changePercent": 1.308,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-20T20:44:05.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-20T20:44:05.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-20T13:30:00.000Z",
@@ -2275,14 +2408,13 @@
       "previousClose": 23659,
       "changePercent": 0.225,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-21T05:55:42.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:55:42.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-21T03:45:00.000Z",
@@ -2817,14 +2949,13 @@
       "previousClose": 53562.2,
       "changePercent": 0.273,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-21T05:55:41.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:55:41.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-21T03:45:00.000Z",
@@ -3359,15 +3490,13 @@
       "previousClose": 59804.41,
       "changePercent": 3.438,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-21T05:40:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:40:40.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-21T00:00:00.000Z",
@@ -4098,15 +4227,13 @@
       "previousClose": 25651.12,
       "changePercent": -0.371,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-21T05:40:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:40:40.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-21T01:30:00.000Z",
@@ -4837,15 +4964,13 @@
       "previousClose": 4169.54,
       "changePercent": -0.341,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-21T05:40:35.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:40:35.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-21T01:30:00.000Z",
@@ -5504,15 +5629,13 @@
       "previousClose": 7208.95,
       "changePercent": 8.22,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-21T05:35:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:35:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-21T00:00:00.000Z",
@@ -6243,15 +6366,13 @@
       "previousClose": 40020.82,
       "changePercent": 3.367,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-21T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-21T01:00:00.000Z",
@@ -6982,15 +7103,13 @@
       "previousClose": 5044.91,
       "changePercent": -0.079,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-21T05:40:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:40:40.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-21T01:00:00.000Z",
@@ -7721,15 +7840,13 @@
       "previousClose": 8496.6,
       "changePercent": 1.542,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-21T05:35:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:35:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-21T00:00:00.000Z",
@@ -8460,14 +8577,13 @@
       "previousClose": 99.09,
       "changePercent": 0.097,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-21T05:45:38.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:45:38.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-21T04:00:00.000Z",
@@ -8902,14 +9018,13 @@
       "previousClose": 105.02,
       "changePercent": 1.019,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-21T05:44:46.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:44:46.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-21T04:04:00.000Z",
@@ -9104,14 +9219,13 @@
       "previousClose": 96.58,
       "changePercent": -0.28,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-21T05:55:41.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:55:41.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-21T01:49:00.000Z",
@@ -9718,14 +9832,13 @@
       "previousClose": 4535.3,
       "changePercent": -0.214,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-21T05:45:30.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:45:30.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-21T04:00:00.000Z",
@@ -10160,14 +10273,13 @@
       "previousClose": 18.44,
       "changePercent": -2.82,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-21T05:55:41.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-21T05:55:41.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-21T03:45:00.000Z",
@@ -10700,302 +10812,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.217Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.217Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.217Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.217Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.217Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.217Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.217Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.217Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.217Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.217Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.217Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.217Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.217Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.217Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.217Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.217Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.217Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.217Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.217Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.217Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.217Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.217Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.217Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.217Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "20-May-2026",
-    "fiiNet": -1597.35,
-    "fiiBuy": 14139.56,
-    "fiiSell": 15736.91,
-    "diiNet": 1968.35,
-    "diiBuy": 16000.79,
-    "diiSell": 14032.44
-  },
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "Australia’s unemployment rate climbed to the highest level since November 2021, suggesting the labor market is cooling faster than anticipated and prompting traders to dial back expectations for further interest-rate increases.",
-      "sentimentScore": -0.565,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "sector_negative",
-      "title": "Sector-Specific Pressure",
-      "summary": "India's core sector growth rose to 1.7% in April FY27, aided by steel, electricity and fertilizer recovery despite pressure from the West Asia crisis and energy supply disruptions",
-      "sentimentScore": -0.54,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices",
-      "sentimentScore": -0.09,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Benchmark indices closed marginally higher on Wednesday, led by gains in banking and auto shares, while IT and FMCG stocks capped advances. Analysts said Nifty remains range-bound with weak sentiment persisting below key resistance levels, despite easing volatility and selective buying interest across sectors.",
-      "sentimentScore": -0.047,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
-      "sentimentScore": 0.52,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-21",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Nvidia Q1 Earnings: Net profit jumped to $58.3 billion, or $2.39 per share, during the first quarter of fiscal 2027, ending April 26, more than tripling from $18.8 billion in the year-earlier period. Excluding one-time items, Nvidia earned $1.76 per share.",
-      "sentimentScore": 0.59,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 8010,
-  "scheduledFor": "2026-05-21T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-20T16:08:52.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Ahead of Market: 10 things that will decide stock market action on Thursday",
-      "summary": "Benchmark indices closed marginally higher on Wednesday, led by gains in banking and auto shares, while IT and FMCG stocks capped advances. Analysts said Nifty remains range-bound with weak sentiment persisting below key resistance levels, despite easing volatility and selective buying interest across sectors.",
-      "takeaway": "Benchmark indices closed marginally higher on Wednesday, led by gains in banking and auto shares, while IT; consumer demand is a selective risk cue; India needs FMCG, auto and retail breadth before it matters.",
-      "whyItMatters": "Consumption stories can support defensives or autos, but they do not become broad-index evidence without domestic participation.",
-      "indiaImpact": "Nifty Auto and ancillaries need a separate read; tariff or demand news can hit exporters differently from domestic OEMs.",
-      "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/ahead-of-market-10-things-that-will-decide-stock-market-action-on-thursday/articleshow/131230699.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Options tape",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Options Tape",
-        "theme": "Ahead Things",
-        "accent": "#0891b2",
-        "alt": "Ahead of Market: 10 things that will decide stock market action on Thursday source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-21T01:20:08.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nvidia Q1 Earnings: Profit jumps to $58.3 billion on record revenue amid AI boom; announces $80 billion share buyback",
-      "summary": "Nvidia Q1 Earnings: Net profit jumped to $58.3 billion, or $2.39 per share, during the first quarter of fiscal 2027, ending April 26, more than tripling from $18.8 billion in the year-earlier period. Excluding one-time items, Nvidia earned $1.76 per share.",
-      "takeaway": "record revenue amid AI boom; announces $80 billion share buyback; Nvidia matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Bonus issues, splits, dividends and ex-dates can move individual counters, but the morning index read still needs breadth.",
-      "indiaImpact": "Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate confirmation.",
-      "watchFor": "Watch ex-date names, delivery volume and sector peer breadth after the open; avoid turning one corporate action into an index trade.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nvidia-q1-earnings-profit-jumps-to-58-3-billion-on-record-revenue-amid-ai-boom-announces-80-billion-share-buyback-11779326129208.html",
-      "sentimentLabel": "positive",
-      "entityName": "Corporate actions",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Nvidia Q1 Earnings: Profit jumps to $58.3 billion on record revenue amid AI boom; announces $80 billion share buyback source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-21T01:33:30.000Z",
-      "sourceId": "bloomberg-markets",
-      "sourceName": "Bloomberg Markets",
-      "headline": "Australia Jobless Rate Jumps to 4-1/2 Year High as RBA Bets Fade",
-      "summary": "Australia’s unemployment rate climbed to the highest level since November 2021, suggesting the labor market is cooling faster than anticipated and prompting traders to dial back expectations for further interest-rate increases.",
-      "takeaway": "Australia’s unemployment rate climbed to the highest level since November 2021, suggesting the labor market is cooling faster; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
-      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
-      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
-      "watchFor": "Watch the US 10Y trend; pair it with Bank Nifty VWAP before assigning direction.",
-      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-21/australian-unemployment-rate-surprisingly-jumps-to-4-5-in-april",
-      "sentimentLabel": "negative",
-      "entityName": "Rates",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Rates",
-        "theme": "Australia Jobless",
-        "accent": "#dc2626",
-        "alt": "Australia Jobless Rate Jumps to 4-1/2 Year High as RBA Bets Fade source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-21T06:30:00+05:30",
-      "sourceId": "the-week-business",
-      "sourceName": "The Week Business",
-      "headline": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices",
-      "summary": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices",
-      "takeaway": "The source flags stock markets rally in early trade tracking positive trend in global peers easing oil; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.theweek.in/wire-updates/business/2026/05/21/stock-markets-rally-in-early-trade-tracking-positive-trend-in-global-peers-easing-oil-prices.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Brent Crude",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Brent Crude",
-        "theme": "Rally Early",
-        "accent": "#7c3aed",
-        "alt": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T09:13:52.000Z",
-      "sourceId": "cnbc-world",
-      "sourceName": "CNBC World",
-      "headline": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge",
-      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
-      "takeaway": "A global reshuffling in stock-market hierarchy is underway; Global Tech supports the AI-spending narrative; India still needs IT services breadth before it becomes a trade.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T16:37:02.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Fertiliser slump eases, nudges core sector growth up at 1.7% in April",
-      "summary": "India's core sector growth rose to 1.7% in April FY27, aided by steel, electricity and fertilizer recovery despite pressure from the West Asia crisis and energy supply disruptions",
-      "takeaway": "India's core sector growth rose to 1.7% in April FY27, aided by steel, electricity and fertilizer recovery despite; monsoon and rural cues matter through consumption, agri inputs and inflation expectations.",
-      "whyItMatters": "Weather-linked demand can support FMCG, tractors, fertilisers and rural lenders, but it needs domestic sector breadth.",
-      "indiaImpact": "FMCG, autos, fertilisers and rural-finance names are the India checks; Nifty bias still needs banks to confirm.",
-      "watchFor": "Watch FMCG, tractor, fertiliser and rural-lender breadth; broad bias needs Bank Nifty support.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/fertiliser-slump-eases-nudges-core-sector-growth-up-at-1-7-in-april-126052001630_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Nifty Metal",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "Metal",
-        "theme": "Fertiliser Slump",
-        "accent": "#b45309",
-        "alt": "Fertiliser slump eases, nudges core sector growth up at 1.7% in April source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-21T02:05:06.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 21 May",
-      "summary": "Nifty 50, Sensex prediction today: The trends on Gift Nifty also indicate a strong start for the Indian benchmark index. The Gift Nifty was trading around 23,804 level, a premium of nearly 136 points from the Nifty futures’ previous close.",
-      "takeaway": "The source flags nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade; treat futures premium or discount as the opening-gap input, not a finished trade view.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Direct index read-through: Nifty gap direction matters first; Bank Nifty confirmation decides whether it becomes a trend.",
-      "watchFor": "Watch Gift Nifty premium/discount into 9:15 AM, then Nifty VWAP and Bank Nifty breadth.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-21-may-11779328713955.html",
-      "sentimentLabel": "neutral",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Nifty Sensex",
-        "accent": "#0891b2",
-        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 21 May source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-21T02:03:23.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum",
-      "summary": "SoftBank Group is closely tied to the AI boom through its stake in Arm Holdings, whose chip designs are used in AI servers and data centers powered by Nvidia systems.",
-      "takeaway": "SoftBank Group is closely tied to the AI boom through its stake in Arm Holdings, whose chip designs; Nvidia matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip breadth and USD/INR support exporters together.",
-      "watchFor": "Watch Nasdaq futures plus Nifty IT advance-decline; chip strength alone is not enough.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T20:37:11.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Nvidia posts record $81.6 billion quarterly revenue on AI spending boom",
-      "summary": "Chip giant Nvidia on Wednesday posted record quarterly revenue of $81.6 billion, blowing past Wall Street forecasts as insatiable demand for its artificial intelligence hardware powered another blockbuster quarter. The results for the first quarter of fiscal 2027, ending April 26, marked an 85 percent jump from the same period a year ago and a 20 percent rise from the prior quarter, underscoring Nvidia's status as the primary beneficiary of a global AI infrastructure buildout. arp/sms",
-      "takeaway": "Chip giant Nvidia on Wednesday posted record quarterly revenue of $81.6 billion, blowing past Wall Street forecasts; Nvidia matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip breadth and USD/INR support exporters together.",
-      "watchFor": "Watch Nasdaq futures plus Nifty IT advance-decline; chip strength alone is not enough.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/nvidia-posts-record-81-6-billion-quarterly-revenue-on-ai-spending-boom/articleshow/131235368.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Global Tech",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Jobs + Chips",
-        "theme": "US Calendar",
-        "accent": "#059669",
-        "alt": "Nvidia posts record $81.6 billion quarterly revenue on AI spending boom source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-20T15:41:44.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India and Italy to increase bilateral trade to €20 billion by 2029",
-      "summary": "The two countries elevated ties to a special strategic partnership and signed agreements spanning defence, critical minerals, mobility and trade cooperation",
-      "takeaway": "The two countries elevated ties to a special strategic partnership and signed agreements spanning defence, critical minerals, mobility; macro pressure needs confirmation from yields, currency and Indian breadth before it becomes a tradeable risk-off cue.",
-      "whyItMatters": "Negative macro headlines can fade quickly unless USD/INR, Bank Nifty and advance-decline confirm stress after the open.",
-      "indiaImpact": "Nifty bias stays defensive only if Bank Nifty weakens, USD/INR pressures importers and breadth fails to recover.",
-      "watchFor": "Watch Bank Nifty VWAP, USD/INR and advance-decline through 9:45 AM before pressing risk-off.",
-      "sourceUrl": "https://www.business-standard.com/world-news/india-and-italy-elevate-ties-aim-for-euro-20-billion-trade-target-126052001744_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Exxon",
-        "theme": "Oil Majors",
-        "accent": "#ea580c",
-        "alt": "India and Italy to increase bilateral trade to €20 billion by 2029 source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Ahead of Market: 10 things that will decide stock market action on Thursday",
       "publisherName": "Economic Times Stocks",
@@ -11013,7 +10938,7 @@
       "sourceUrl": "https://www.livemint.com/market/stock-market-news/nvidia-q1-earnings-profit-jumps-to-58-3-billion-on-record-revenue-amid-ai-boom-announces-80-billion-share-buyback-11779326129208.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Nvidia Q1 Earnings: Profit jumps to $58.3 billion on record revenue amid AI boom; announces $80 billion share buyback source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11023,7 +10948,7 @@
       "sourceUrl": "https://www.bloomberg.com/news/articles/2026-05-21/australian-unemployment-rate-surprisingly-jumps-to-4-5-in-april",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAustralia%20Jobless%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Australia Jobless Rate Jumps to 4-1/2 Year High as RBA Bets Fade source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -11043,7 +10968,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/20/global-market-reordering-is-accelerating-as-the-ai-rally-gains-pace.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "AI boom reshuffles global stock market pecking order as South Korea and Taiwan surge source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -11053,7 +10978,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/fertiliser-slump-eases-nudges-core-sector-growth-up-at-1-7-in-april-126052001630_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFertiliser%20Slump%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMetal%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Fertiliser slump eases, nudges core sector growth up at 1.7% in April source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "sector_negative"
     },
     {
@@ -11073,7 +10998,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "sector_positive"
     },
     {
@@ -11093,10 +11018,49 @@
       "sourceUrl": "https://www.business-standard.com/world-news/india-and-italy-elevate-ties-aim-for-euro-20-billion-trade-target-126052001744_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "India and Italy to increase bilateral trade to €20 billion by 2029 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "Australia’s unemployment rate climbed to the highest level since November 2021, suggesting the labor market is cooling faster than anticipated and prompting traders to dial back expectations for further interest-rate increases.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Pressure",
+      "summary": "India's core sector growth rose to 1.7% in April FY27, aided by steel, electricity and fertilizer recovery despite pressure from the West Asia crisis and energy supply disruptions",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Stock markets rally in early trade tracking positive trend in global peers easing oil prices",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Benchmark indices closed marginally higher on Wednesday, led by gains in banking and auto shares, while IT and FMCG stocks capped advances. Analysts said Nifty remains range-bound with weak sentiment persisting below key resistance levels, despite easing volatility and selective buying interest across sectors.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "A global reshuffling in stock-market hierarchy is underway. AI is propelling Taiwan and South Korea past a couple long-established Western countries.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Nvidia Q1 Earnings: Net profit jumped to $58.3 billion, or $2.39 per share, during the first quarter of fiscal 2027, ending April 26, more than tripling from $18.8 billion in the year-earlier period. Excluding one-time items, Nvidia earned $1.76 per share.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -11123,17 +11087,12 @@
       "remainingRiskReward": 0.208
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 7
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-21.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Market breadth Shape Opening Range",
-    "correctedTitle": "Nifty, stock market direction on Thursday hinges on key factors",
-    "correctedAt": "2026-07-01T15:42:10.751Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

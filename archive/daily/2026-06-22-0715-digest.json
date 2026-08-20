@@ -51,6 +51,114 @@
   "sentimentLabel": "NEUTRAL",
   "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +1.085%, Nasdaq 100 +2.478%, Dow Jones +0.14%, Nifty 50 +0.374%, Bank Nifty +0.433%, Nikkei 225 +1.549%, Hang Seng -0.653%, Shanghai Composite +1.775%, KOSPI +0.686%, Taiwan Weighted +2.747%, Straits Times +0.218%, ASX 200 -0.143%, US Dollar Index +0.004%, Brent Crude -0.839%, USD/INR +0.392%, Gold (COMEX) -0.4%, India VIX -0.987%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Merely getting a licence from the Department of Telecom(DoT) to provide satellite communication services will no longer be enough, companies will need security clearance even after assignment of spectrum to roll out their services, according to draft rules issued by the government. Satellite companies will get radiowaves without auction through an administrative process against a fixed annual fee in range of Rs 30,000 to Rs 50 lakh based on the service type per terminal basis and a non-refundable application fees of Rs 1000. Though the companies will be assigned spectrum through administrative process, charges of radiowaves will be determined on the basis of market price. The draft Telecommunications (Spectrum Assignment by Administrative Process) Rules, 2026 published by the the Department of Telecom also makes it conditional for satellite companies like Elon Musk-led Startlink, Bharti group-backed Eutelsat OneWeb, and Jio Satcom to roll out satcom services for end consumers. Satc\n- Global Risk-Off Cue: US Trade Representative Jamieson Greer and Commerce and Industry Minister Piyush Goyal will hold two-day talks this week on the first phase of the bilateral trade agreement. \"For the US trade deal talks, tomorrow my counterpart is coming to Delhi,\" Goyal told reporters in Mumbai. The meeting followed chief negotiator-level discussions on the pact held earlier this month (June 2-4) here in the national capital. Commerce Secretary Rajesh Agrawal has recently stated that the discussions between the two ministers are expected to be centred around giving final touches to the framework deal. On June 5, Goyal said India and the US are moving towards closing all the open ends of the interim trade agreement, and both sides are likely to execute the \"very, very vibrant\" first phase of the BTA by the middle of next month. IMPORTANCE OF THE MIDDLE OF NEXT MONTH -------------------------------------------------- The 10 per cent temporary tariff imposed by the US on all its trading partners o\n- Sector-Specific Cushion: India continues to be the largest market for the Asian Development Bank's private sector operations, with the multilateral lender expecting to provide about USD 1 billion in direct financing this year to support projects aligned with the country's development objectives. \"Last year, we did more than USD 4 billion for sovereign and more than USD 1 billion for the private sector from our own capital,\" Asian Development Bank (ADB) Vice-President (Market Solutions) Bhargav Dasgupta told PTI in an interaction. Besides, he said, \"We mobilised an equal amount for them from other sources. In effect, the flow was USD 2 billion to private sectors through the ADB in 2025\". Asked about the plan for this year, Dasgupta said, \"We will maintain the tempo on the private sector side\". Talking about the focus area, as far as private sector finances are concerned, he said renewal and clean energy, green hydrogen, e-mobility and green data centres are some of the segments that ADB would continue to ..\n- Global Earnings & Risk Appetite: Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%.\n\nValidated Trading Setups:\n- NIFTY BULLISH entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "19-Jun-2026",
+    "fiiNet": 4859.07,
+    "fiiBuy": 31442.87,
+    "fiiSell": 26583.8,
+    "diiNet": -1159.64,
+    "diiBuy": 18020.49,
+    "diiSell": 19180.13
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 14,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 9411,
+  "scheduledFor": "2026-06-22T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "newsCards": [
+    {
+      "title": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-22T02:28:01.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-sun-pharma-nestle-india-bharat-forge-among-shares-in-focus-today-check-list-here-11782093830752.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESun%20Nestle%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-22T02:01:44.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-sun-pharma-tech-mahindra-share-price-22-june-2026/liveblog/131899859.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2% source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Draft satcom spectrum rules call for layers of security approvals",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T17:41:34.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/draft-satcom-spectrum-rules-call-for-layers-of-security-approvals-126062100711_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDraft%20Satcom%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ETelecom%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Draft satcom spectrum rules call for layers of security approvals source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying?",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-22T02:12:16.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-22-crude-oil-rises-above-80-as-iran-shuts-strait-of-hormuz-again-what-are-experts-saying/articleshow/131899953.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T11:14:26.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-remains-adb-s-largest-pvt-sector-market-eyes-1-bn-in-direct-support-126062100397_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "India, US to hold two-day ministerial-level trade pact talks this week",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T10:31:04.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-to-hold-two-day-ministerial-level-trade-pact-talks-this-week-126062100436_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHold%20Two-Day%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India, US to hold two-day ministerial-level trade pact talks this week source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-22T02:26:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-on-june-22-brent-crude-at-82-as-fresh-trump-threat-revives-hormuz-supply-concerns-11668764",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Support Opening Range",
+    "correctedTitle": "Sensex, Nifty End Higher as Cipla, TechM Lead Gains in Stock Market",
+    "correctedAt": "2026-07-01T15:43:13.411Z",
+    "method": "existing_proposal",
+    "model": null,
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -59,14 +167,13 @@
       "previousClose": 7420.1,
       "changePercent": 1.085,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:42:06.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:42:06.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -797,14 +904,13 @@
       "previousClose": 29670.9,
       "changePercent": 2.478,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -1535,14 +1641,13 @@
       "previousClose": 51492.6,
       "changePercent": 0.14,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-18T20:45:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-18T20:45:00.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-18T13:30:00.000Z",
@@ -2273,14 +2378,13 @@
       "previousClose": 24013.1,
       "changePercent": 0.374,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3011,14 +3115,13 @@
       "previousClose": 57685.75,
       "changePercent": 0.433,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:01:26.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:01:26.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -3749,15 +3852,13 @@
       "previousClose": 71250.06,
       "changePercent": 1.549,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-22T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -4488,15 +4589,13 @@
       "previousClose": 23924.81,
       "changePercent": -0.653,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-22T08:08:34.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T08:08:34.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5227,15 +5326,13 @@
       "previousClose": 4090.48,
       "changePercent": 1.775,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-22T07:00:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:00:29.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-22T01:30:00.000Z",
@@ -5966,15 +6063,13 @@
       "previousClose": 9052.42,
       "changePercent": 0.686,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-22T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -6705,15 +6800,13 @@
       "previousClose": 46465.2,
       "changePercent": 2.747,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-22T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -7444,15 +7537,13 @@
       "previousClose": 5192.7,
       "changePercent": 0.218,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-22T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-22T01:00:00.000Z",
@@ -8183,15 +8274,13 @@
       "previousClose": 8828.7,
       "changePercent": -0.143,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-22T07:10:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T07:10:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-22T00:00:00.000Z",
@@ -8922,14 +9011,13 @@
       "previousClose": 100.85,
       "changePercent": 0.004,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:19:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:19:20.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -9660,14 +9748,13 @@
       "previousClose": 79.85,
       "changePercent": -0.839,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:19:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:19:14.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -10398,14 +10485,13 @@
       "previousClose": 94.31,
       "changePercent": 0.392,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-22T10:03:02.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:03:02.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-22T03:13:00.000Z",
@@ -11136,14 +11222,13 @@
       "previousClose": 4245.9,
       "changePercent": -0.4,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-22T10:18:58.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:18:58.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-22T04:00:00.000Z",
@@ -11874,14 +11959,13 @@
       "previousClose": 12.97,
       "changePercent": -0.987,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-22T10:04:09.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-22T10:04:09.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-22T03:45:00.000Z",
@@ -12610,56 +12694,210 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.264Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.264Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.264Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.264Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.264Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.264Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.264Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.264Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.264Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.264Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.264Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.264Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.264Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.264Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.264Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.264Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.264Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.264Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.264Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.264Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.264Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.264Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.264Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.264Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "19-Jun-2026",
-    "fiiNet": 4859.07,
-    "fiiBuy": 31442.87,
-    "fiiSell": 26583.8,
-    "diiNet": -1159.64,
-    "diiBuy": 18020.49,
-    "diiSell": 19180.13
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": null,
+  "news": [
+    {
+      "title": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-06-22T02:28:01.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-sun-pharma-nestle-india-bharat-forge-among-shares-in-focus-today-check-list-here-11782093830752.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESun%20Nestle%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-06-22T02:01:44.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-sun-pharma-tech-mahindra-share-price-22-june-2026/liveblog/131899859.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2% source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Draft satcom spectrum rules call for layers of security approvals",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T17:41:34.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/draft-satcom-spectrum-rules-call-for-layers-of-security-approvals-126062100711_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDraft%20Satcom%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ETelecom%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Draft satcom spectrum rules call for layers of security approvals source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying?",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-06-22T02:12:16.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-22-crude-oil-rises-above-80-as-iran-shuts-strait-of-hormuz-again-what-are-experts-saying/articleshow/131899953.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying? source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T11:14:26.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-remains-adb-s-largest-pvt-sector-market-eyes-1-bn-in-direct-support-126062100397_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "India, US to hold two-day ministerial-level trade pact talks this week",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-06-21T10:31:04.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-to-hold-two-day-ministerial-level-trade-pact-talks-this-week-126062100436_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHold%20Two-Day%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India, US to hold two-day ministerial-level trade pact talks this week source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-22T02:26:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-on-june-22-brent-crude-at-82-as-fresh-trump-threat-revives-hormuz-supply-concerns-11668764",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
   "themes": [
     {
-      "digestDate": "2026-06-22",
-      "themeType": "macro_negative",
       "title": "Negative Macro Impact",
       "summary": "Merely getting a licence from the Department of Telecom(DoT) to provide satellite communication services will no longer be enough, companies will need security clearance even after assignment of spectrum to roll out their services, according to draft rules issued by the government. Satellite companies will get radiowaves without auction through an administrative process against a fixed annual fee in range of Rs 30,000 to Rs 50 lakh based on the service type per terminal basis and a non-refundable application fees of Rs 1000. Though the companies will be assigned spectrum through administrative process, charges of radiowaves will be determined on the basis of market price. The draft Telecommunications (Spectrum Assignment by Administrative Process) Rules, 2026 published by the the Department of Telecom also makes it conditional for satellite companies like Elon Musk-led Startlink, Bharti group-backed Eutelsat OneWeb, and Jio Satcom to roll out satcom services for end consumers. Satc",
-      "sentimentScore": -0.55,
-      "evidenceCount": 1
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-22",
-      "themeType": "global_risk",
       "title": "Global Risk-Off Cue",
       "summary": "US Trade Representative Jamieson Greer and Commerce and Industry Minister Piyush Goyal will hold two-day talks this week on the first phase of the bilateral trade agreement. \"For the US trade deal talks, tomorrow my counterpart is coming to Delhi,\" Goyal told reporters in Mumbai. The meeting followed chief negotiator-level discussions on the pact held earlier this month (June 2-4) here in the national capital. Commerce Secretary Rajesh Agrawal has recently stated that the discussions between the two ministers are expected to be centred around giving final touches to the framework deal. On June 5, Goyal said India and the US are moving towards closing all the open ends of the interim trade agreement, and both sides are likely to execute the \"very, very vibrant\" first phase of the BTA by the middle of next month. IMPORTANCE OF THE MIDDLE OF NEXT MONTH -------------------------------------------------- The 10 per cent temporary tariff imposed by the US on all its trading partners o",
-      "sentimentScore": -0.438,
-      "evidenceCount": 3
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-22",
-      "themeType": "sector_positive",
       "title": "Sector-Specific Cushion",
       "summary": "India continues to be the largest market for the Asian Development Bank's private sector operations, with the multilateral lender expecting to provide about USD 1 billion in direct financing this year to support projects aligned with the country's development objectives. \"Last year, we did more than USD 4 billion for sovereign and more than USD 1 billion for the private sector from our own capital,\" Asian Development Bank (ADB) Vice-President (Market Solutions) Bhargav Dasgupta told PTI in an interaction. Besides, he said, \"We mobilised an equal amount for them from other sources. In effect, the flow was USD 2 billion to private sectors through the ADB in 2025\". Asked about the plan for this year, Dasgupta said, \"We will maintain the tempo on the private sector side\". Talking about the focus area, as far as private sector finances are concerned, he said renewal and clean energy, green hydrogen, e-mobility and green data centres are some of the segments that ADB would continue to ..",
-      "sentimentScore": 0.35,
-      "evidenceCount": 1
+      "affectedSymbols": [],
+      "sourceCount": 0
     },
     {
-      "digestDate": "2026-06-22",
-      "themeType": "macro_positive",
       "title": "Global Earnings & Risk Appetite",
       "summary": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%.",
-      "sentimentScore": 0.46,
-      "evidenceCount": 2
+      "affectedSymbols": [],
+      "sourceCount": 0
     }
   ],
   "tradeSetups": [
@@ -12672,245 +12910,7 @@
       "riskReward": 2.2,
       "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
       "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-22",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 14,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 9411,
-  "scheduledFor": "2026-06-22T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
-  "ogImageUrl": null,
-  "news": [
-    {
-      "publishedAt": "2026-06-22T02:28:01.000Z",
-      "sourceId": "mint-markets",
-      "sourceName": "Mint Markets",
-      "headline": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here",
-      "summary": "Stock market today: On Friday, the Sensex fell 607.08 points, or 0.78%, to finish at 76,802.90, while the Nifty 50 slipped 154.90 points, or 0.64%, to settle at 24,013.10.",
-      "takeaway": "Stock market today: On Friday, the Sensex fell 607.08 points, or 0.78%, to finish at 76,802.90, while; healthcare news belongs in defensives and stock-specific read-through before it becomes an index input.",
-      "whyItMatters": "Pharma can cushion weak markets, but a defensive bid is different from broad risk appetite.",
-      "indiaImpact": "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.",
-      "watchFor": "Watch Nifty Pharma breadth and defensive rotation; broad index bias still needs Bank Nifty confirmation.",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-sun-pharma-nestle-india-bharat-forge-among-shares-in-focus-today-check-list-here-11782093830752.html",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Sun Nestle",
-        "accent": "#059669",
-        "alt": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T02:01:44.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%.",
-      "takeaway": "Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%; risk appetite is supportive only if Indian breadth confirms beyond the first range.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and advance-decline must confirm before the read gets trading weight.",
-      "watchFor": "Watch Nifty VWAP, Bank Nifty breadth and USD/INR through 9:45 AM before trusting the risk-on read.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-sun-pharma-tech-mahindra-share-price-22-june-2026/liveblog/131899859.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Sensex Today",
-        "accent": "#059669",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2% source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-21T17:41:34.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Draft satcom spectrum rules call for layers of security approvals",
-      "summary": "Merely getting a licence from the Department of Telecom(DoT) to provide satellite communication services will no longer be enough, companies will need security clearance even after assignment of spectrum to roll out their services, according to draft rules issued by the government. Satellite companies will get radiowaves without auction through an administrative process against a fixed annual fee in range of Rs 30,000 to Rs 50 lakh based on the service type per terminal basis and a non-refundable application fees of Rs 1000. Though the companies will be assigned spectrum through administrative process, charges of radiowaves will be determined on the basis of market price. The draft Telecommunications (Spectrum Assignment by Administrative Process) Rules, 2026 published by the the Department of Telecom also makes it conditional for satellite companies like Elon Musk-led Startlink, Bharti group-backed Eutelsat OneWeb, and Jio Satcom to roll out satcom services for end consumers. Satc",
-      "takeaway": "Merely getting a licence from the Department of Telecom(DoT) to provide satellite communication services will no longer be; telecom capital and stake stories are sector-specific India catalysts, not broad-index signals by themselves.",
-      "whyItMatters": "Telecom funding, ARPU and balance-sheet changes can move Vodafone Idea, Bharti Airtel and related lenders without deciding Nifty direction.",
-      "indiaImpact": "Watch Vodafone Idea, Bharti Airtel, telecom peers and lender exposure; broad Nifty bias still needs Bank Nifty and breadth confirmation.",
-      "watchFor": "Watch telecom peer breadth, Vodafone Idea volume and Bank Nifty VWAP after the open.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/draft-satcom-spectrum-rules-call-for-layers-of-security-approvals-126062100711_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Telecom",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Telecom",
-        "theme": "Draft Satcom",
-        "accent": "#dc2626",
-        "alt": "Draft satcom spectrum rules call for layers of security approvals source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T02:12:16.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying?",
-      "summary": "Brent crude futures rose 54 cents, or 0.67%, to $81.11 a barrel, after briefly touching $82.30 at the start of trading. U.S. West Texas Intermediate (WTI) crude futures gained $2.02, or 2.64%, to $78.62 a barrel ahead of the contract's expiry later on Monday.",
-      "takeaway": "Brent crude futures rose 54 cents, or 0.67%, to $81.11 a barrel, after briefly touching $82.30; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
-      "watchFor": "Watch Brent around $80; OMC risk stays live only if supply headlines keep prices firm.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-22-crude-oil-rises-above-80-as-iran-shuts-strait-of-hormuz-again-what-are-experts-saying/articleshow/131899953.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying? source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-21T11:14:26.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support",
-      "summary": "India continues to be the largest market for the Asian Development Bank's private sector operations, with the multilateral lender expecting to provide about USD 1 billion in direct financing this year to support projects aligned with the country's development objectives. \"Last year, we did more than USD 4 billion for sovereign and more than USD 1 billion for the private sector from our own capital,\" Asian Development Bank (ADB) Vice-President (Market Solutions) Bhargav Dasgupta told PTI in an interaction. Besides, he said, \"We mobilised an equal amount for them from other sources. In effect, the flow was USD 2 billion to private sectors through the ADB in 2025\". Asked about the plan for this year, Dasgupta said, \"We will maintain the tempo on the private sector side\". Talking about the focus area, as far as private sector finances are concerned, he said renewal and clean energy, green hydrogen, e-mobility and green data centres are some of the segments that ADB would continue to ..",
-      "takeaway": "India continues to be the largest market for the Asian Development Bank's private sector operations, with the multilateral; sector support needs Indian peer breadth before it earns index weight.",
-      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
-      "indiaImpact": "Bank Nifty, private banks and NBFCs are the direct check; weak financial breadth can cap Nifty even if global cues are firm.",
-      "watchFor": "Watch private-bank breadth through 9:45-10:00 AM IST; no long bias if financials lag Nifty.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-remains-adb-s-largest-pvt-sector-market-eyes-1-bn-in-direct-support-126062100397_1.html",
-      "sentimentLabel": "positive",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Exxon",
-        "theme": "Oil Majors",
-        "accent": "#ea580c",
-        "alt": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-21T10:31:04.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "India, US to hold two-day ministerial-level trade pact talks this week",
-      "summary": "US Trade Representative Jamieson Greer and Commerce and Industry Minister Piyush Goyal will hold two-day talks this week on the first phase of the bilateral trade agreement. \"For the US trade deal talks, tomorrow my counterpart is coming to Delhi,\" Goyal told reporters in Mumbai. The meeting followed chief negotiator-level discussions on the pact held earlier this month (June 2-4) here in the national capital. Commerce Secretary Rajesh Agrawal has recently stated that the discussions between the two ministers are expected to be centred around giving final touches to the framework deal. On June 5, Goyal said India and the US are moving towards closing all the open ends of the interim trade agreement, and both sides are likely to execute the \"very, very vibrant\" first phase of the BTA by the middle of next month. IMPORTANCE OF THE MIDDLE OF NEXT MONTH -------------------------------------------------- The 10 per cent temporary tariff imposed by the US on all its trading partners o",
-      "takeaway": "US Trade Representative Jamieson Greer and Commerce and Industry Minister Piyush Goyal will hold two-day talks this week; tariff risk can split exporters, autos and metals instead of moving the whole index together.",
-      "whyItMatters": "Trade headlines can split sectors; exporters, importers, and domestic cyclicals need separate confirmation.",
-      "indiaImpact": "Nifty Auto and ancillaries need a separate read; tariff or demand news can hit exporters differently from domestic OEMs.",
-      "watchFor": "Watch exporter and auto-ancillary breadth after the first range; avoid trading the tariff headline alone.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-to-hold-two-day-ministerial-level-trade-pact-talks-this-week-126062100436_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Autos",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Autos",
-        "theme": "Hold Two-Day",
-        "accent": "#7c3aed",
-        "alt": "India, US to hold two-day ministerial-level trade pact talks this week source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-22T02:26:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns",
-      "summary": "Brent crude is currently trading at $79 again, while WTI is trading around $75 after the first session of high level talks under the framework of the Islamabad Memorandum of Understanding concluded in Switzerland.",
-      "takeaway": "Brent crude is currently trading at $79 again, while WTI is trading around $75 after the first session; lower crude eases India import-cost pressure if the move survives the morning handoff.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
-      "watchFor": "Watch Brent holding below $79; sustained softness removes part of the OMC and aviation overhang.",
-      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-on-june-22-brent-crude-at-82-as-fresh-trump-threat-revives-hormuz-supply-concerns-11668764",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here",
-      "publisherName": "Mint Markets",
-      "timestamp": "2026-06-22T02:28:01.000Z",
-      "sourceUrl": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-sun-pharma-nestle-india-bharat-forge-among-shares-in-focus-today-check-list-here-11782093830752.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESun%20Nestle%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Stocks to watch: Sun Pharma, Nestle India, Bharat Forge among shares in focus today; check list here source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2%",
-      "publisherName": "Economic Times Stocks",
-      "timestamp": "2026-06-22T02:01:44.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-sun-pharma-tech-mahindra-share-price-22-june-2026/liveblog/131899859.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Highlights: Sensex settles 291 pts higher, Nifty above 24,100; Cipla jumps 5%, TechM 2% source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Draft satcom spectrum rules call for layers of security approvals",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-21T17:41:34.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/draft-satcom-spectrum-rules-call-for-layers-of-security-approvals-126062100711_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDraft%20Satcom%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ETelecom%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Draft satcom spectrum rules call for layers of security approvals source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying?",
-      "publisherName": "Economic Times Markets",
-      "timestamp": "2026-06-22T02:12:16.000Z",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-june-22-crude-oil-rises-above-80-as-iran-shuts-strait-of-hormuz-again-what-are-experts-saying/articleshow/131899953.cms",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oil Price Today (June 22): Crude oil rises above $80 as Iran shuts Strait of Hormuz again. What are experts saying? source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-21T11:14:26.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-remains-adb-s-largest-pvt-sector-market-eyes-1-bn-in-direct-support-126062100397_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India remains ADB's largest pvt sector market; eyes ₹1 bn in direct support source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "sector_positive"
-    },
-    {
-      "title": "India, US to hold two-day ministerial-level trade pact talks this week",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-06-21T10:31:04.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-us-to-hold-two-day-ministerial-level-trade-pact-talks-this-week-126062100436_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHold%20Two-Day%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAutos%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India, US to hold two-day ministerial-level trade pact talks this week source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
-    },
-    {
-      "title": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns",
-      "publisherName": "Zerodha Pulse",
-      "timestamp": "2026-06-22T02:26:00.000Z",
-      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-on-june-22-brent-crude-at-82-as-fresh-trump-threat-revives-hormuz-supply-concerns-11668764",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Oil Prices On June 22: Brent Crude Slips To $79 As US-Iran Talks Ease Hormuz Concerns source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "global_risk"
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -12939,17 +12939,12 @@
       "remainingRiskReward": 1.063
     }
   ],
+  "sourceStats": {
+    "articleCount": 7,
+    "publisherCount": 5
+  },
   "asset": {
     "sentimentLabel": "NEUTRAL",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-22.webp"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: +0.37% — gap-up bias Support Opening Range",
-    "correctedTitle": "Sensex, Nifty End Higher as Cipla, TechM Lead Gains in Stock Market",
-    "correctedAt": "2026-07-01T15:43:13.411Z",
-    "method": "existing_proposal",
-    "model": null,
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }

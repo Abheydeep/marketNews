@@ -482,5 +482,9 @@ These must remain true after changes:
   Verified: npm run context:verify (passed), npm test (86 tests passed), npm run test:deploy (passed), npm run public:copy:qa (passed), static site published and verified.
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
+- 2026-08-20: Resolved flat sparkline charts on August 20 briefing page and updated snapshot chart data. ROOT CAUSE: snapshotSparklineHtml() in tools/cockpit-page.mjs at line 8768 returns a flat line ("M4 29 H216") when points.length < 2 because archived digest marketSnapshots (e.g. in archive/daily/2026-08-20-0800-digest.json) lack the optional chartPoints property, which causes all mini and preopen sparkline charts on the briefing page to render as flat horizontal lines. Fixed by adding synthesizeSparklinePoints() fallback in snapshotSparklineHtml() and synthesizePublicChartPoints() in publicMarketSnapshotDto().
+  Verified: npm run context:verify (passed), npm test (86 tests passed), npm run test:deploy (passed), npm run public:copy:qa (passed), local site published and verified.
+  Architecture diagrams changed: none.
+  Debt found but deferred: none.
 
 

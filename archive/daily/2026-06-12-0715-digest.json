@@ -52,6 +52,114 @@
   "sentimentLabel": "BEARISH",
   "onePageSummary": "Market Mood: BEARISH\n\nGlobal Cues: S&P 500 +1.752%, Nasdaq 100 +3.291%, Dow Jones +1.863%, Nikkei 225 +3.466%, Hang Seng +1.72%, Shanghai Composite +1.576%, KOSPI +7.862%, Taiwan Weighted +2.641%, Straits Times +0.674%, ASX 200 +1.938%, US Dollar Index -0.046%, Brent Crude -1.261%, Gold (COMEX) +2.331%, India VIX +0.212%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Geopolitical De-escalation: Trump announces near-complete Iran peace deal expected to be signed this weekend.\n- Volatile Opening Bias: Indian markets saw profit-taking and sharp intraday fluctuations amid weekly Sensex expiry.\n\nValidated Trading Setups:\n- NIFTY BULLISH — entry 24200, stop 22321.51, target 28332.69 (RR 2.2)\n- BANKNIFTY BULLISH — entry 55000, stop 49674.28, target 66716.58 (RR 2.2)\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "11-Jun-2026",
+    "fiiNet": -1987.09,
+    "fiiBuy": 14000.58,
+    "fiiSell": 15987.67,
+    "diiNet": 4224.51,
+    "diiBuy": 16822.57,
+    "diiSell": 12598.06
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": "The overnight market story is no longer “crude panic”; it is whether the Iran risk premium can unwind cleanly. Trump’s decision to cancel planned strikes and talk up a near-complete deal pushed Brent below $90, which immediately changes the India read-through. If crude stays soft, OMCs and aviation get relief from the fuel-cost scare, while tyres and paints also get a cleaner margin backdrop.\n\nThe catch is that India still needs confirmation from its own tape. Nifty has been consolidating inside 23,000-23,550, and the last session showed how quickly traders trim risk when geopolitical headlines move. A supportive Asia handoff helps, but the first 30 minutes matter more than the headline: Bank Nifty breadth, VWAP acceptance and advance-decline should decide whether the gap can hold.\n\nThe watchlist is therefore tighter than the old crude template made it sound. Start with Brent under $90, then USD/INR and India VIX, then OMCs, aviation and upstream energy. If those groups confirm while Bank Nifty stays firm, the open has follow-through potential. If crude rebounds or banks fade the gap, treat the move as news relief rather than a tradeable trend.",
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 8,
+    "publisherCount": 1,
+    "categoryCount": 2,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 94064,
+  "scheduledFor": "2026-06-12T07:15:00+05:30",
+  "runMode": "scheduled-verified-source-data",
+  "newsCards": [
+    {
+      "title": "Oil extends losses as Trump calls off planned strikes on Iran",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T01:13:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-extends-losses-as-trump-calls-off-planned-strikes-on-iran/articleshow/131671381.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil extends losses as Trump calls off planned strikes on Iran source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Sensex Today | Nifty 50 | Stock Market Live Updates: Gift Nifty jumps nearly 200 pts; Asian stock markets rally",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T02:20:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-ril-tcs-share-price-12-june-2026/liveblog/131671860.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Gift Nifty jumps nearly 200 pts; Asian stock markets rally source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Asian stocks rally on Gulf breakthrough hopes, oil hits two-month lows",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T00:40:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/asian-stocks-rally-on-gulf-breakthrough-hopes-oil-hits-two-month-lows/articleshow/131671270.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian stocks rally on Gulf breakthrough hopes, oil hits two-month lows source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Oil Prices Fall 2%: Brent Crude Below $90 As Trump Says Iran Deal Could Come This Weekend",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T01:26:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-fall-2-on-june-12-brent-crude-below-89-as-trump-says-iran-deal-could-come-this-weekend-11625399",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Prices Fall 2%: Brent Crude Below $90 As Trump Says Iran Deal Could Come This Weekend source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Trump Cancels Iran Bombing, Pivots From Oil Seizure Threats To High-Level Talks; Brent Slips To $90",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-11T18:02:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/trump-cancels-iran-bombings-cites-sweeping-regional-agreement-with-arab-states-israel-11624603",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Cancels%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump Cancels Iran Bombing, Pivots From Oil Seizure Threats To High-Level Talks; Brent Slips To $90 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "US-Iran War News Live Updates: Ended War With Iran, Peace Deal By Weekend, Says Trump",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T01:51:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/us-iran-war-news-live-updates-trump-tehran-ceasefire-strait-of-hormuz-negotiations-enriched-uranium-israel-lebanon-latest-news-11625451",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "US-Iran War News Live Updates: Ended War With Iran, Peace Deal By Weekend, Says Trump source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "&#039;Hormuz To Reopen Immediately&#039;: Iran Deal Signing Likely In Europe Over Weekend, Says Trump",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T01:24:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/hormuz-to-reopen-immediately-trump-says-iran-deal-signing-may-happen-in-europe-over-weekend-11625376",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "&#039;Hormuz To Reopen Immediately&#039;: Iran Deal Signing Likely In Europe Over Weekend, Says Trump source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Asian Markets Today: South Korea&#039;s Kospi Soars 7%, Japan&#039;s Nikkei Climbs 3% As Trump Calls Off Strikes On Iran",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-06-12T01:32:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/asian-markets-today-south-koreas-kospi-soars-7-japans-nikkei-climbs-3-as-trump-calls-off-planned-strikes-on-iran-11625414",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Asian Markets Today: South Korea&#039;s Kospi Soars 7%, Japan&#039;s Nikkei Climbs 3% As Trump Calls Off Strikes On Iran source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    }
+  ],
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -60,14 +168,13 @@
       "previousClose": 7266.99,
       "changePercent": 1.752,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T20:56:18.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T20:56:18.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-06-11T13:30:00.000Z",
@@ -798,14 +905,13 @@
       "previousClose": 28508.03,
       "changePercent": 3.291,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-06-11T13:30:00.000Z",
@@ -1536,14 +1642,13 @@
       "previousClose": 49918.78,
       "changePercent": 1.863,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-11T20:56:16.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T20:56:16.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-06-11T13:30:00.000Z",
@@ -2274,14 +2379,13 @@
       "previousClose": 23214.95,
       "changePercent": -0.23,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T10:01:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T10:01:25.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -3012,14 +3116,13 @@
       "previousClose": 55100.3,
       "changePercent": 0.139,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T10:01:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T10:01:25.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -3750,15 +3853,13 @@
       "previousClose": 64217.27,
       "changePercent": 3.466,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-06-12T02:35:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:35:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-06-12T00:00:00.000Z",
@@ -4381,15 +4482,13 @@
       "previousClose": 24249.29,
       "changePercent": 1.72,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-06-12T02:49:22.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:49:22.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-06-12T01:30:00.000Z",
@@ -4720,15 +4819,13 @@
       "previousClose": 3987.01,
       "changePercent": 1.576,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-06-12T02:49:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:49:25.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-06-12T01:30:00.000Z",
@@ -5059,15 +5156,13 @@
       "previousClose": 7763.95,
       "changePercent": 7.862,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-06-12T02:44:20.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:44:20.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-06-12T00:00:00.000Z",
@@ -5738,15 +5833,13 @@
       "previousClose": 43149.46,
       "changePercent": 2.641,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-06-12T02:44:25.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:44:25.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-06-12T01:00:00.000Z",
@@ -6177,15 +6270,13 @@
       "previousClose": 4988.1,
       "changePercent": 0.674,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-06-12T02:49:24.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:49:24.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-06-12T01:00:00.000Z",
@@ -6636,15 +6727,13 @@
       "previousClose": 8633.2,
       "changePercent": 1.938,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-06-12T02:44:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:44:15.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-06-12T00:00:00.000Z",
@@ -7315,14 +7404,13 @@
       "previousClose": 99.86,
       "changePercent": -0.046,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T02:54:24.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:54:24.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -8053,14 +8141,13 @@
       "previousClose": 90.38,
       "changePercent": -1.261,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T02:54:23.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:54:23.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -8791,14 +8878,13 @@
       "previousClose": 95.75,
       "changePercent": 0,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-06-11T19:47:27.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T19:47:27.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-06-11T14:02:27.000Z",
@@ -8905,14 +8991,13 @@
       "previousClose": 4114,
       "changePercent": 2.331,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-06-12T02:54:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-12T02:54:15.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-06-11T04:00:00.000Z",
@@ -9643,14 +9728,13 @@
       "previousClose": 15.58,
       "changePercent": 0.212,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-06-11T10:03:52.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-06-11T10:03:52.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-06-11T03:45:00.000Z",
@@ -10379,254 +10463,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.250Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.250Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.250Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.250Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.250Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.250Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.250Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.250Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.250Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.250Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.250Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.250Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.250Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.250Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.250Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.250Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.250Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.250Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.250Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.250Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.250Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.250Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.250Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.250Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "11-Jun-2026",
-    "fiiNet": -1987.09,
-    "fiiBuy": 14000.58,
-    "fiiSell": 15987.67,
-    "diiNet": 4224.51,
-    "diiBuy": 16822.57,
-    "diiSell": 12598.06
-  },
-  "giftNiftyBias": null,
-  "todaysReadArticle": "The overnight market story is no longer “crude panic”; it is whether the Iran risk premium can unwind cleanly. Trump’s decision to cancel planned strikes and talk up a near-complete deal pushed Brent below $90, which immediately changes the India read-through. If crude stays soft, OMCs and aviation get relief from the fuel-cost scare, while tyres and paints also get a cleaner margin backdrop.\n\nThe catch is that India still needs confirmation from its own tape. Nifty has been consolidating inside 23,000-23,550, and the last session showed how quickly traders trim risk when geopolitical headlines move. A supportive Asia handoff helps, but the first 30 minutes matter more than the headline: Bank Nifty breadth, VWAP acceptance and advance-decline should decide whether the gap can hold.\n\nThe watchlist is therefore tighter than the old crude template made it sound. Start with Brent under $90, then USD/INR and India VIX, then OMCs, aviation and upstream energy. If those groups confirm while Bank Nifty stays firm, the open has follow-through potential. If crude rebounds or banks fade the gap, treat the move as news relief rather than a tradeable trend.",
-  "themes": [
-    {
-      "digestDate": "2026-06-12",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "US President Trump announced a near-complete deal to end the war with Iran, expected to be signed in Europe this weekend, after canceling planned military strikes.",
-      "sentimentScore": -0.531,
-      "evidenceCount": 6
-    },
-    {
-      "digestDate": "2026-06-12",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Indian benchmark indices saw profit-taking in the latter half of the session as rising geopolitical tensions led investors to trim overnight positions. Markets remained volatile, with sharp intraday fluctuations amplified by the weekly Sensex expiry. Analysts noted that the Nifty is still moving within the 23,000–23,550 range and expect this phase of consolidation to continue until a clear breakout sets the market's next direction.\n\nComments are moderated and will be allowed if they are about the topic and not abusive.\n\nYen hits key 160 level for third session, dollar buoyed by Gulf woes",
-      "sentimentScore": 0.238,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [
-    {
-      "symbol": "NIFTY",
-      "direction": "BULLISH",
-      "entry": 24200,
-      "stopLoss": 22321.51,
-      "target": 28332.69,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
-      "digestDate": "2026-06-12",
-      "lastBarDate": "2026-06-10"
-    },
-    {
-      "symbol": "BANKNIFTY",
-      "direction": "BULLISH",
-      "entry": 55000,
-      "stopLoss": 49674.28,
-      "target": 66716.58,
-      "riskReward": 2.2,
-      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
-      "invalidationReason": "Invalidate the setup if price closes below 49674.28.",
-      "digestDate": "2026-06-12",
-      "lastBarDate": "2026-06-10"
-    }
-  ],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 8,
-    "publisherCount": 1,
-    "categoryCount": 2,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": true
-  },
-  "durationMillis": 94064,
-  "scheduledFor": "2026-06-12T07:15:00+05:30",
-  "runMode": "scheduled-verified-source-data",
   "news": [
-    {
-      "publishedAt": "2026-06-12T01:13:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Oil extends losses as Trump calls off planned strikes on Iran",
-      "summary": "Oil prices dropped to a two-month low as President Trump called off planned military strikes on Iran, easing geopolitical tensions. Brent crude futures fell to $89.17 a barrel, and WTI crude dropped to $86.48. Despite Iran's earlier threats to close the Strait of Hormuz, commercial vessels continued to transit the waterway.\n\n(What's moving Sensex and Nifty Track latest market news, stock tips, Budget 2025, Share Market on Budget 2025 and expert advice, on ETMarkets. Also, ETMarkets.com is now on Telegram. For fastest news alerts on financial markets, investment strategies and stocks alerts, subscribe to our Telegram feeds .)\n\nSubscribe to ET Prime and read the Economic Times ePaper Online.and Sensex Today.",
-      "takeaway": "Geopolitical risk eases as Trump calls off Iran strikes, Brent crude drops to $89.17; India's OMCs and aviation stocks may react to sustained direction.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs and aviation are likely to ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action at Asia handoff to gauge India's OMC response.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-extends-losses-as-trump-calls-off-planned-strikes-on-iran/articleshow/131671381.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Oil extends losses as Trump calls off planned strikes on Iran source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T02:20:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Sensex Today | Nifty 50 | Stock Market Live Updates: Gift Nifty jumps nearly 200 pts; Asian stock markets rally",
-      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Indian benchmark indices saw profit-taking in the latter half of the session as rising geopolitical tensions led investors to trim overnight positions. Markets remained volatile, with sharp intraday fluctuations amplified by the weekly Sensex expiry. Analysts noted that the Nifty is still moving within the 23,000–23,550 range and expect this phase of consolidation to continue until a clear breakout sets the market's next direction.\n\nComments are moderated and will be allowed if they are about the topic and not abusive.\n\nYen hits key 160 level for third session, dollar buoyed by Gulf woes",
-      "takeaway": "Geopolitical tensions led to profit-taking and volatility in Indian markets; Nifty remains within 23,000-23,550 range with no clear breakout.",
-      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market breadth and Bank Nifty decide whether the gap holds.",
-      "indiaImpact": "Nifty and Bank Nifty are key; watch for gap direction and breadth confirmation to gauge trend.",
-      "watchFor": "Watch Nifty VWAP and Bank Nifty breadth into the open.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-ril-tcs-share-price-12-june-2026/liveblog/131671860.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty Open",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Open",
-        "theme": "Sensex Today",
-        "accent": "#0891b2",
-        "alt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Gift Nifty jumps nearly 200 pts; Asian stock markets rally source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T00:40:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Asian stocks rally on Gulf breakthrough hopes, oil hits two-month lows",
-      "summary": "Asian stocks rallied on hopes of a Middle East peace deal, tempering inflation fears as oil prices fell to two-month lows. The market also anticipated Elon Musk's SpaceX IPO, which set a record $75 billion. President Trump indicated a potential peace deal signing soon, boosting market sentiment.",
-      "takeaway": "Brent crude's 2-month low on Middle East peace hopes may ease inflation fears; India's OMCs and aviation could react if the trend sustains.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action and OMC stock behaviour into the open.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/asian-stocks-rally-on-gulf-breakthrough-hopes-oil-hits-two-month-lows/articleshow/131671270.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Private markets",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "Asian stocks rally on Gulf breakthrough hopes, oil hits two-month lows source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T01:26:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Oil Prices Fall 2%: Brent Crude Below $90 As Trump Says Iran Deal Could Come This Weekend",
-      "summary": "Oil prices extended their decline on Friday after US President Donald Trump said a peace agreement with Iran could be signed as soon as this weekend, raising hopes that disruptions to Middle Eastern energy supplies may eventually ease. Brent crude fell nearly 2% at the open to $88.79 a barrel after ending the previous session at a two-month low. US benchmark West Texas Intermediate traded near $86 a barrel.\n\nThe latest drop comes after a volatile week in which Trump alternated between threatening fresh military action against Iran and suggesting that a diplomatic breakthrough was imminent. Speaking at the White House, Trump said a deal could be signed in Europe as early as this weekend and claimed Iran's leadership had agreed to its broad contours, though he acknowledged that negotiations were not yet complete.\n\nTehran has not publicly confirmed any agreement. Iran's semi-official Fars news agency reported that no final text has been approved by the country.",
-      "takeaway": "Trump's statement on Iran deal eases geopolitical risk premium, Brent crude falls nearly 2%; sustained direction will dictate India impact.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action and OMC stock behaviour into the open.",
-      "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-fall-2-on-june-12-brent-crude-below-89-as-trump-says-iran-deal-could-come-this-weekend-11625399",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Oil Prices",
-        "accent": "#7c3aed",
-        "alt": "Oil Prices Fall 2%: Brent Crude Below $90 As Trump Says Iran Deal Could Come This Weekend source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-11T18:02:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Trump Cancels Iran Bombing, Pivots From Oil Seizure Threats To High-Level Talks; Brent Slips To $90",
-      "summary": "Trump's announcement had an immediate impact on the oil market, with Brent futures sliding 3.3% to $90.2 a barrel.",
-      "takeaway": "Brent crude drops 3.3% to $90.2 on Trump's Iran pivot; sustained direction will dictate India impact through commodity channels.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action at Asia handoff to gauge OMC response.",
-      "sourceUrl": "https://www.ndtvprofit.com/world/trump-cancels-iran-bombings-cites-sweeping-regional-agreement-with-arab-states-israel-11624603",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Trump Cancels",
-        "accent": "#7c3aed",
-        "alt": "Trump Cancels Iran Bombing, Pivots From Oil Seizure Threats To High-Level Talks; Brent Slips To $90 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T01:51:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "US-Iran War News Live Updates: Ended War With Iran, Peace Deal By Weekend, Says Trump",
-      "summary": "US President Trump announced a near-complete deal to end the war with Iran, expected to be signed in Europe this weekend, after canceling planned military strikes.",
-      "takeaway": "Trump's Iran deal announcement eases geopolitical risk premium, potentially reversing risk-off flows; sustained direction will dictate India impact.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action at Asia handoff to gauge India's OMC response.",
-      "sourceUrl": "https://www.ndtvprofit.com/world/us-iran-war-news-live-updates-trump-tehran-ceasefire-strait-of-hormuz-negotiations-enriched-uranium-israel-lebanon-latest-news-11625451",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "US-Iran War News Live Updates: Ended War With Iran, Peace Deal By Weekend, Says Trump source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T01:24:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "&#039;Hormuz To Reopen Immediately&#039;: Iran Deal Signing Likely In Europe Over Weekend, Says Trump",
-      "summary": "Trump said that he would not personally attend the signing ceremony in Europe, as a UFC fight is scheduled at the White House on Sunday.",
-      "takeaway": "Trump's statement eases geopolitical risk premium, potentially reversing risk-off flows; sustained direction will dictate India impact through commodity and currency channels.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action at Asia handoff to gauge India's OMC response.",
-      "sourceUrl": "https://www.ndtvprofit.com/world/hormuz-to-reopen-immediately-trump-says-iran-deal-signing-may-happen-in-europe-over-weekend-11625376",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Hormuz",
-        "theme": "Oil Shock",
-        "accent": "#7c3aed",
-        "alt": "&#039;Hormuz To Reopen Immediately&#039;: Iran Deal Signing Likely In Europe Over Weekend, Says Trump source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-06-12T01:32:00.000Z",
-      "sourceId": "zerodha-pulse",
-      "sourceName": "Zerodha Pulse",
-      "headline": "Asian Markets Today: South Korea&#039;s Kospi Soars 7%, Japan&#039;s Nikkei Climbs 3% As Trump Calls Off Strikes On Iran",
-      "summary": "South Korea's Kospi lead the gains as Asia-Pacific markets traded higher on June 12. The Kospiadvanced 7.01% at open, while the small-cap Kosdaq added 3.25%.",
-      "takeaway": "Geopolitical risk eases as Trump calls off Iran strikes; sustained Brent direction will dictate India impact through commodity and currency channels.",
-      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII risk appetite, not directly.",
-      "indiaImpact": "OMCs, aviation, and tyres may ease if Brent stays below $90; upstream energy stocks could gain as an offset.",
-      "watchFor": "Watch Brent crude price action at Asia handoff to gauge India's OMC response.",
-      "sourceUrl": "https://www.ndtvprofit.com/markets/asian-markets-today-south-koreas-kospi-soars-7-japans-nikkei-climbs-3-as-trump-calls-off-planned-strikes-on-iran-11625414",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Yen Watch",
-        "theme": "FX Intervention",
-        "accent": "#0ea5e9",
-        "alt": "Asian Markets Today: South Korea&#039;s Kospi Soars 7%, Japan&#039;s Nikkei Climbs 3% As Trump Calls Off Strikes On Iran source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Oil extends losses as Trump calls off planned strikes on Iran",
       "publisherName": "Zerodha Pulse",
@@ -10634,7 +10579,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-extends-losses-as-trump-calls-off-planned-strikes-on-iran/articleshow/131671381.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil extends losses as Trump calls off planned strikes on Iran source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10644,7 +10589,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-ril-tcs-share-price-12-june-2026/liveblog/131671860.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Sensex Today | Nifty 50 | Stock Market Live Updates: Gift Nifty jumps nearly 200 pts; Asian stock markets rally source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "neutral_volatile"
     },
     {
@@ -10664,7 +10609,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/markets/oil-prices-fall-2-on-june-12-brent-crude-below-89-as-trump-says-iran-deal-could-come-this-weekend-11625399",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Oil Prices Fall 2%: Brent Crude Below $90 As Trump Says Iran Deal Could Come This Weekend source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10674,7 +10619,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/world/trump-cancels-iran-bombings-cites-sweeping-regional-agreement-with-arab-states-israel-11624603",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Cancels%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Trump Cancels Iran Bombing, Pivots From Oil Seizure Threats To High-Level Talks; Brent Slips To $90 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10684,7 +10629,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/world/us-iran-war-news-live-updates-trump-tehran-ceasefire-strait-of-hormuz-negotiations-enriched-uranium-israel-lebanon-latest-news-11625451",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "US-Iran War News Live Updates: Ended War With Iran, Peace Deal By Weekend, Says Trump source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10694,7 +10639,7 @@
       "sourceUrl": "https://www.ndtvprofit.com/world/hormuz-to-reopen-immediately-trump-says-iran-deal-signing-may-happen-in-europe-over-weekend-11625376",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "&#039;Hormuz To Reopen Immediately&#039;: Iran Deal Signing Likely In Europe Over Weekend, Says Trump source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -10704,8 +10649,46 @@
       "sourceUrl": "https://www.ndtvprofit.com/markets/asian-markets-today-south-koreas-kospi-soars-7-japans-nikkei-climbs-3-as-trump-calls-off-planned-strikes-on-iran-11625414",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230ea5e9%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EFX%20Intervention%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EYen%20Watch%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Asian Markets Today: South Korea&#039;s Kospi Soars 7%, Japan&#039;s Nikkei Climbs 3% As Trump Calls Off Strikes On Iran source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
+    }
+  ],
+  "themes": [
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "US President Trump announced a near-complete deal to end the war with Iran, expected to be signed in Europe this weekend, after canceling planned military strikes.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "Sensex Today | Nifty 50 | Stock Market Live Updates: Indian benchmark indices saw profit-taking in the latter half of the session as rising geopolitical tensions led investors to trim overnight positions. Markets remained volatile, with sharp intraday fluctuations amplified by the weekly Sensex expiry. Analysts noted that the Nifty is still moving within the 23,000–23,550 range and expect this phase of consolidation to continue until a clear breakout sets the market's next direction.\n\nComments are moderated and will be allowed if they are about the topic and not abusive.\n\nYen hits key 160 level for third session, dollar buoyed by Gulf woes",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 22321.51.",
+      "outcome": null
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "confidenceReason": "Price is above the 20-period EMA, RSI-14 is above 50 and rising, and latest volume is at least 1.5x the prior average.",
+      "invalidationReason": "Invalidate the setup if price closes below 49674.28.",
+      "outcome": null
     }
   ],
   "setupAudit": [
@@ -10734,6 +10717,10 @@
       "remainingRiskReward": 2.097
     }
   ],
+  "sourceStats": {
+    "articleCount": 8,
+    "publisherCount": 1
+  },
   "asset": {
     "sentimentLabel": "BEARISH",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-06-12.webp"

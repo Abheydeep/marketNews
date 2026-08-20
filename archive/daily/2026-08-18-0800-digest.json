@@ -66,6 +66,42 @@
   },
   "durationMillis": 2797976,
   "scheduledFor": "2026-08-18T08:00:00+05:30",
+  "newsCards": [
+    {
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-eases-to-four-month-low-of-5-1-in-july-126081701451_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-fell-to-5-1-in-july-from-5-5-in-june-govt-data-126081700874_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "sourceUrl": "https://www.cnbc.com/2026/08/18/korean-stock-investors-flee-bruising-home-market-pile-into-us.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAbsolutely%20Heres%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EEarnings%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "sourceUrl": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-wednesday-august-19-2026-earn-up-to-415-apy-100000771.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBest%20High-Yield%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "sourceUrl": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-wednesday-august-19-2026-why-locking-in-a-low-rate-matters-100000113.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHeloc%20And%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "sourceStats": {
+    "articleCount": 5,
+    "publisherCount": 0
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -79,7 +115,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "SP:SPX"
+      "tradingViewSymbol": "SP:SPX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 5111.44
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 5115.4
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 5108.99
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 5102.59
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 5096.7
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 5091.72
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 5087.96
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 5085.58
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 5084.61
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 5084.89
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 5086.17
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 5088.08
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 5090.21
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 5092.13
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 5093.44
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 5093.85
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 5093.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 5091.26
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 5088.24
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 5084.26
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 5079.58
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 5074.55
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 5069.51
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 5069.53
+        }
+      ]
     },
     {
       "symbol": "NDX",
@@ -93,7 +227,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "NASDAQ:NDX"
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 17935.13
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 17895.78
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 17910.11
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 17924.35
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 17936
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 17942.91
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 17943.51
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 17936.93
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 17923.12
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 17902.77
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 17877.27
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 17848.5
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 17818.61
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 17789.82
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 17764.13
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 17743.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 17727.92
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 17718.83
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 17715.61
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 17717.35
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 17722.67
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 17729.86
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 17737.07
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 17718.11
+        }
+      ]
     },
     {
       "symbol": "DJI",
@@ -107,7 +339,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "DJ:DJI"
+      "tradingViewSymbol": "DJ:DJI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 38408.66
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 38442.32
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 38419.07
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 38393.67
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 38368.1
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 38344.28
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 38323.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 38308.24
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 38298.01
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 38293.34
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 38293.75
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 38298.25
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 38305.43
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 38313.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 38321.27
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 38326.68
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 38328.62
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 38326.25
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 38319.21
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 38307.66
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 38292.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 38273.93
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 38254.05
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 38239.66
+        }
+      ]
     },
     {
       "symbol": "NIFTY",
@@ -121,7 +451,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:NIFTY"
+      "tradingViewSymbol": "NSE:NIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 22525.41
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 22509.58
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 22504.79
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 22501.79
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 22500.63
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 22501.14
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 22502.98
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 22505.69
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 22508.73
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 22511.53
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 22513.58
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 22514.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 22513.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 22511.74
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 22508.09
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 22503.15
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 22497.26
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 22490.85
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 22484.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 22478.34
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 22473.1
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 22468.97
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 22466.09
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 22475.85
+        }
+      ]
     },
     {
       "symbol": "BANKNIFTY",
@@ -135,7 +563,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:BANKNIFTY"
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 48123.68
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 48125.86
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 48141.76
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 48156.18
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 48168.03
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 48176.54
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 48181.31
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 48182.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 48180.1
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 48175.28
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 48168.89
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 48162.07
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 48155.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 48151.54
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 48149.66
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 48150.81
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 48155.15
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 48162.49
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 48172.34
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 48183.95
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 48196.42
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 48208.79
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 48220.15
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 48210.3
+        }
+      ]
     },
     {
       "symbol": "GIFTNIFTY",
@@ -149,7 +675,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "NSEIX:NIFTY1!"
+      "tradingViewSymbol": "NSEIX:NIFTY1!",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 23980
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 23990.61
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 23984.93
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 23978.91
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 23973.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 23968.38
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 23964.94
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 23963.2
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 23963.29
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 23965.13
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 23968.48
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 23972.91
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 23977.94
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 23983
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 23987.55
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 23991.14
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 23993.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 23994.19
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 23993.45
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 23991.32
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 23988.09
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 23984.14
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 23979.94
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 23980
+        }
+      ]
     },
     {
       "symbol": "NIKKEI",
@@ -163,7 +787,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:NI225"
+      "tradingViewSymbol": "TVC:NI225",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 37911.85
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 37952.94
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 37977.54
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 37996.49
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 38008.85
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 38014.41
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 38013.7
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 38007.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 37998.6
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 37987.88
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 37977.79
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 37970.26
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 37966.88
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 37968.76
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 37976.39
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 37989.64
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 38007.78
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 38029.6
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 38053.52
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 38077.82
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 38100.79
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 38120.96
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 38137.19
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 38105.2
+        }
+      ]
     },
     {
       "symbol": "HSI",
@@ -177,7 +899,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:HSI"
+      "tradingViewSymbol": "TVC:HSI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 17823.63
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 17800.13
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 17799.25
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 17800.33
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 17802.91
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 17806.39
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 17810.11
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 17813.37
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 17815.58
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 17816.25
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 17815.09
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 17812
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 17807.1
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 17800.7
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 17793.25
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 17785.29
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 17777.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 17770.18
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 17764.03
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 17759.31
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 17756.18
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 17754.62
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 17754.45
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 17763.03
+        }
+      ]
     },
     {
       "symbol": "SHCOMP",
@@ -191,7 +1011,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "SSE:000001"
+      "tradingViewSymbol": "SSE:000001",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 3044.58
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 3044.39
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 3043.39
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 3043.14
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 3043.13
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 3043.36
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 3043.82
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 3044.46
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 3045.23
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 3046.07
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 3046.88
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 3047.62
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 3048.22
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 3048.63
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 3048.84
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 3048.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 3048.69
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 3048.39
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 3048.01
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 3047.6
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 3047.24
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 3046.97
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 3048.23
+        }
+      ]
     },
     {
       "symbol": "KOSPI",
@@ -205,7 +1123,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "KRX:KOSPI"
+      "tradingViewSymbol": "KRX:KOSPI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 2699.35
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 2698.67
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 2697.59
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 2696.65
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 2695.92
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 2695.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 2695.18
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 2695.17
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 2695.36
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 2695.69
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 2696.08
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 2696.45
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 2696.74
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 2696.88
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 2696.83
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 2696.56
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 2696.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 2695.44
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 2694.64
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 2693.76
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 2692.85
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 2691.99
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 2691.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 2692.06
+        }
+      ]
     },
     {
       "symbol": "TAIEX",
@@ -219,7 +1235,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TWSE:TAIEX"
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 20239.59
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 20272.6
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 20277.55
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 20279.28
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 20278.12
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 20274.69
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 20269.84
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 20264.54
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 20259.78
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 20256.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 20255.24
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 20256.66
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 20260.84
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 20267.67
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 20276.72
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 20287.38
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 20298.85
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 20310.31
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 20320.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 20330.08
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 20337.21
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 20342.08
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 20344.68
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 20328.64
+        }
+      ]
     },
     {
       "symbol": "STI",
@@ -233,7 +1347,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:STI"
+      "tradingViewSymbol": "TVC:STI",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 3290.36
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 3291.8
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 3292.08
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 3292.13
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 3291.9
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 3291.42
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 3290.71
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 3289.84
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 3288.88
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 3287.9
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 3287
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 3286.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 3285.65
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 3285.29
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 3285.15
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 3285.23
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 3285.47
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 3285.82
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 3286.22
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 3286.59
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 3286.88
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 3287.03
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 3287.01
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 3285.1
+        }
+      ]
     },
     {
       "symbol": "ASX200",
@@ -247,7 +1459,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "ASX:XJO"
+      "tradingViewSymbol": "ASX:XJO",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 7677.14
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 7683.83
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 7683.74
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 7683.15
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 7682.21
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 7681.12
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 7680.07
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 7679.26
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 7678.84
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 7678.93
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 7679.59
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 7680.79
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 7682.49
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 7684.56
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 7686.85
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 7689.19
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 7691.42
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 7693.38
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 7694.95
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 7696.07
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 7696.73
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 7696.94
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 7696.79
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 7694.8
+        }
+      ]
     },
     {
       "symbol": "DXY",
@@ -261,7 +1571,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:DXY"
+      "tradingViewSymbol": "TVC:DXY",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.285Z",
+          "close": 105.82
+        },
+        {
+          "time": "2026-08-20T06:38:22.285Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T06:53:22.285Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:08:22.285Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T07:23:22.285Z",
+          "close": 105.94
+        },
+        {
+          "time": "2026-08-20T07:38:22.285Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T07:53:22.285Z",
+          "close": 105.9
+        },
+        {
+          "time": "2026-08-20T08:08:22.285Z",
+          "close": 105.88
+        },
+        {
+          "time": "2026-08-20T08:23:22.285Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T08:38:22.285Z",
+          "close": 105.86
+        },
+        {
+          "time": "2026-08-20T08:53:22.285Z",
+          "close": 105.87
+        },
+        {
+          "time": "2026-08-20T09:08:22.285Z",
+          "close": 105.89
+        },
+        {
+          "time": "2026-08-20T09:23:22.285Z",
+          "close": 105.92
+        },
+        {
+          "time": "2026-08-20T09:38:22.285Z",
+          "close": 105.96
+        },
+        {
+          "time": "2026-08-20T09:53:22.285Z",
+          "close": 106
+        },
+        {
+          "time": "2026-08-20T10:08:22.285Z",
+          "close": 106.05
+        },
+        {
+          "time": "2026-08-20T10:23:22.285Z",
+          "close": 106.09
+        },
+        {
+          "time": "2026-08-20T10:38:22.285Z",
+          "close": 106.14
+        },
+        {
+          "time": "2026-08-20T10:53:22.285Z",
+          "close": 106.17
+        },
+        {
+          "time": "2026-08-20T11:08:22.285Z",
+          "close": 106.2
+        },
+        {
+          "time": "2026-08-20T11:23:22.285Z",
+          "close": 106.22
+        },
+        {
+          "time": "2026-08-20T11:38:22.285Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T11:53:22.285Z",
+          "close": 106.23
+        },
+        {
+          "time": "2026-08-20T12:08:22.285Z",
+          "close": 106.18
+        }
+      ]
     },
     {
       "symbol": "BRENT",
@@ -275,7 +1683,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:UKOIL"
+      "tradingViewSymbol": "TVC:UKOIL",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.286Z",
+          "close": 89.94
+        },
+        {
+          "time": "2026-08-20T06:38:22.286Z",
+          "close": 90.49
+        },
+        {
+          "time": "2026-08-20T06:53:22.286Z",
+          "close": 90.57
+        },
+        {
+          "time": "2026-08-20T07:08:22.286Z",
+          "close": 90.6
+        },
+        {
+          "time": "2026-08-20T07:23:22.286Z",
+          "close": 90.58
+        },
+        {
+          "time": "2026-08-20T07:38:22.286Z",
+          "close": 90.53
+        },
+        {
+          "time": "2026-08-20T07:53:22.286Z",
+          "close": 90.45
+        },
+        {
+          "time": "2026-08-20T08:08:22.286Z",
+          "close": 90.36
+        },
+        {
+          "time": "2026-08-20T08:23:22.286Z",
+          "close": 90.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.286Z",
+          "close": 90.22
+        },
+        {
+          "time": "2026-08-20T08:53:22.286Z",
+          "close": 90.2
+        },
+        {
+          "time": "2026-08-20T09:08:22.286Z",
+          "close": 90.23
+        },
+        {
+          "time": "2026-08-20T09:23:22.286Z",
+          "close": 90.3
+        },
+        {
+          "time": "2026-08-20T09:38:22.286Z",
+          "close": 90.41
+        },
+        {
+          "time": "2026-08-20T09:53:22.286Z",
+          "close": 90.56
+        },
+        {
+          "time": "2026-08-20T10:08:22.286Z",
+          "close": 90.74
+        },
+        {
+          "time": "2026-08-20T10:23:22.286Z",
+          "close": 90.93
+        },
+        {
+          "time": "2026-08-20T10:38:22.286Z",
+          "close": 91.12
+        },
+        {
+          "time": "2026-08-20T10:53:22.286Z",
+          "close": 91.29
+        },
+        {
+          "time": "2026-08-20T11:08:22.286Z",
+          "close": 91.44
+        },
+        {
+          "time": "2026-08-20T11:23:22.286Z",
+          "close": 91.56
+        },
+        {
+          "time": "2026-08-20T11:38:22.286Z",
+          "close": 91.64
+        },
+        {
+          "time": "2026-08-20T11:53:22.286Z",
+          "close": 91.69
+        },
+        {
+          "time": "2026-08-20T12:08:22.286Z",
+          "close": 91.42
+        }
+      ]
     },
     {
       "symbol": "USDINR",
@@ -289,7 +1795,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "FX:USDINR"
+      "tradingViewSymbol": "FX:USDINR",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.286Z",
+          "close": 83.45
+        },
+        {
+          "time": "2026-08-20T06:38:22.286Z",
+          "close": 83.4
+        },
+        {
+          "time": "2026-08-20T06:53:22.286Z",
+          "close": 83.42
+        },
+        {
+          "time": "2026-08-20T07:08:22.286Z",
+          "close": 83.44
+        },
+        {
+          "time": "2026-08-20T07:23:22.286Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T07:38:22.286Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T07:53:22.286Z",
+          "close": 83.51
+        },
+        {
+          "time": "2026-08-20T08:08:22.286Z",
+          "close": 83.52
+        },
+        {
+          "time": "2026-08-20T08:23:22.286Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T08:38:22.286Z",
+          "close": 83.54
+        },
+        {
+          "time": "2026-08-20T08:53:22.286Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T09:08:22.286Z",
+          "close": 83.53
+        },
+        {
+          "time": "2026-08-20T09:23:22.286Z",
+          "close": 83.51
+        },
+        {
+          "time": "2026-08-20T09:38:22.286Z",
+          "close": 83.5
+        },
+        {
+          "time": "2026-08-20T09:53:22.286Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T10:08:22.286Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T10:23:22.286Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T10:38:22.286Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T10:53:22.286Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T11:08:22.286Z",
+          "close": 83.46
+        },
+        {
+          "time": "2026-08-20T11:23:22.286Z",
+          "close": 83.47
+        },
+        {
+          "time": "2026-08-20T11:38:22.286Z",
+          "close": 83.49
+        },
+        {
+          "time": "2026-08-20T11:53:22.286Z",
+          "close": 83.5
+        },
+        {
+          "time": "2026-08-20T12:08:22.286Z",
+          "close": 83.52
+        }
+      ]
     },
     {
       "symbol": "GOLD",
@@ -303,7 +1907,105 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "TVC:GOLD"
+      "tradingViewSymbol": "TVC:GOLD",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.286Z",
+          "close": 2311.13
+        },
+        {
+          "time": "2026-08-20T06:38:22.286Z",
+          "close": 2303.39
+        },
+        {
+          "time": "2026-08-20T06:53:22.286Z",
+          "close": 2304.25
+        },
+        {
+          "time": "2026-08-20T07:08:22.286Z",
+          "close": 2306.09
+        },
+        {
+          "time": "2026-08-20T07:23:22.286Z",
+          "close": 2308.81
+        },
+        {
+          "time": "2026-08-20T07:38:22.286Z",
+          "close": 2312.24
+        },
+        {
+          "time": "2026-08-20T07:53:22.286Z",
+          "close": 2316.09
+        },
+        {
+          "time": "2026-08-20T08:08:22.286Z",
+          "close": 2320.09
+        },
+        {
+          "time": "2026-08-20T08:23:22.286Z",
+          "close": 2323.92
+        },
+        {
+          "time": "2026-08-20T08:38:22.286Z",
+          "close": 2327.31
+        },
+        {
+          "time": "2026-08-20T08:53:22.286Z",
+          "close": 2330.05
+        },
+        {
+          "time": "2026-08-20T09:08:22.286Z",
+          "close": 2331.99
+        },
+        {
+          "time": "2026-08-20T09:23:22.286Z",
+          "close": 2333.08
+        },
+        {
+          "time": "2026-08-20T09:38:22.286Z",
+          "close": 2333.36
+        },
+        {
+          "time": "2026-08-20T09:53:22.286Z",
+          "close": 2332.96
+        },
+        {
+          "time": "2026-08-20T10:08:22.286Z",
+          "close": 2332.06
+        },
+        {
+          "time": "2026-08-20T10:23:22.286Z",
+          "close": 2330.92
+        },
+        {
+          "time": "2026-08-20T10:38:22.286Z",
+          "close": 2329.78
+        },
+        {
+          "time": "2026-08-20T10:53:22.286Z",
+          "close": 2328.9
+        },
+        {
+          "time": "2026-08-20T11:08:22.286Z",
+          "close": 2328.47
+        },
+        {
+          "time": "2026-08-20T11:23:22.286Z",
+          "close": 2328.66
+        },
+        {
+          "time": "2026-08-20T11:38:22.286Z",
+          "close": 2329.54
+        },
+        {
+          "time": "2026-08-20T11:53:22.286Z",
+          "close": 2331.12
+        },
+        {
+          "time": "2026-08-20T12:08:22.286Z",
+          "close": 2338.4
+        }
+      ]
     },
     {
       "symbol": "INDIAVIX",
@@ -317,110 +2019,136 @@
       "dataQuality": "published",
       "dataTimestamp": null,
       "yahooSymbol": null,
-      "tradingViewSymbol": "NSE:INDIAVIX"
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.286Z",
+          "close": 15.31
+        },
+        {
+          "time": "2026-08-20T06:38:22.286Z",
+          "close": 15.14
+        },
+        {
+          "time": "2026-08-20T06:53:22.286Z",
+          "close": 15.15
+        },
+        {
+          "time": "2026-08-20T07:08:22.286Z",
+          "close": 15.17
+        },
+        {
+          "time": "2026-08-20T07:23:22.286Z",
+          "close": 15.2
+        },
+        {
+          "time": "2026-08-20T07:38:22.286Z",
+          "close": 15.23
+        },
+        {
+          "time": "2026-08-20T07:53:22.286Z",
+          "close": 15.26
+        },
+        {
+          "time": "2026-08-20T08:08:22.286Z",
+          "close": 15.27
+        },
+        {
+          "time": "2026-08-20T08:23:22.286Z",
+          "close": 15.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.286Z",
+          "close": 15.27
+        },
+        {
+          "time": "2026-08-20T08:53:22.286Z",
+          "close": 15.24
+        },
+        {
+          "time": "2026-08-20T09:08:22.286Z",
+          "close": 15.2
+        },
+        {
+          "time": "2026-08-20T09:23:22.286Z",
+          "close": 15.14
+        },
+        {
+          "time": "2026-08-20T09:38:22.286Z",
+          "close": 15.08
+        },
+        {
+          "time": "2026-08-20T09:53:22.286Z",
+          "close": 15.02
+        },
+        {
+          "time": "2026-08-20T10:08:22.286Z",
+          "close": 14.95
+        },
+        {
+          "time": "2026-08-20T10:23:22.286Z",
+          "close": 14.89
+        },
+        {
+          "time": "2026-08-20T10:38:22.286Z",
+          "close": 14.84
+        },
+        {
+          "time": "2026-08-20T10:53:22.286Z",
+          "close": 14.81
+        },
+        {
+          "time": "2026-08-20T11:08:22.286Z",
+          "close": 14.78
+        },
+        {
+          "time": "2026-08-20T11:23:22.286Z",
+          "close": 14.77
+        },
+        {
+          "time": "2026-08-20T11:38:22.286Z",
+          "close": 14.77
+        },
+        {
+          "time": "2026-08-20T11:53:22.286Z",
+          "close": 14.78
+        },
+        {
+          "time": "2026-08-20T12:08:22.286Z",
+          "close": 14.82
+        }
+      ]
     }
   ],
   "news": [
     {
-      "title": "India's unemployment rate eases to four-month low of 5.1% in July",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-08-17T15:53:18.000Z",
       "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-eases-to-four-month-low-of-5-1-in-july-126081701451_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India's unemployment rate eases to four-month low of 5.1% in July source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
-      "title": "India's unemployment rate fell to 5.1% in July from 5.5% in June: Govt data",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-08-17T10:57:32.000Z",
       "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-fell-to-5-1-in-july-from-5-5-in-june-govt-data-126081700874_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India's unemployment rate fell to 5.1% in July from 5.5% in June: Govt data source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
-      "title": "'Absolutely crazy': Here's what South Korean stock investors are doing in U.S. markets",
-      "publisherName": "CNBC World",
-      "timestamp": "2026-08-17T23:39:54.000Z",
       "sourceUrl": "https://www.cnbc.com/2026/08/18/korean-stock-investors-flee-bruising-home-market-pile-into-us.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAbsolutely%20Heres%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "'Absolutely crazy': Here's what South Korean stock investors are doing in U.S. markets source thumbnail",
-      "sentimentLabel": "positive",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAbsolutely%20Heres%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EEarnings%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
-      "title": "Best high-yield savings interest rates today, Wednesday, August 19, 2026: Earn up to 4.15% APY",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-08-17T10:00:00.000Z",
       "sourceUrl": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-wednesday-august-19-2026-earn-up-to-415-apy-100000771.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBest%20High-Yield%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Best high-yield savings interest rates today, Wednesday, August 19, 2026: Earn up to 4.15% APY source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
-      "title": "HELOC and home equity loan rates today, Wednesday, August 19, 2026: Why locking in a low rate matters",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-08-17T10:00:00.000Z",
       "sourceUrl": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-wednesday-august-19-2026-why-locking-in-a-low-rate-matters-100000113.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHeloc%20And%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "HELOC and home equity loan rates today, Wednesday, August 19, 2026: Why locking in a low rate matters source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    }
-  ],
-  "newsCards": [
-    {
-      "title": "India's unemployment rate eases to four-month low of 5.1% in July",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-08-17T15:53:18.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-eases-to-four-month-low-of-5-1-in-july-126081701451_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India's unemployment rate eases to four-month low of 5.1% in July source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "India's unemployment rate fell to 5.1% in July from 5.5% in June: Govt data",
-      "publisherName": "Business Standard Economy",
-      "timestamp": "2026-08-17T10:57:32.000Z",
-      "sourceUrl": "https://www.business-standard.com/economy/news/india-s-unemployment-rate-fell-to-5-1-in-july-from-5-5-in-june-govt-data-126081700874_1.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIndias%20Unemployment%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "India's unemployment rate fell to 5.1% in July from 5.5% in June: Govt data source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "'Absolutely crazy': Here's what South Korean stock investors are doing in U.S. markets",
-      "publisherName": "CNBC World",
-      "timestamp": "2026-08-17T23:39:54.000Z",
-      "sourceUrl": "https://www.cnbc.com/2026/08/18/korean-stock-investors-flee-bruising-home-market-pile-into-us.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAbsolutely%20Heres%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "'Absolutely crazy': Here's what South Korean stock investors are doing in U.S. markets source thumbnail",
-      "sentimentLabel": "positive",
-      "category": "macro_positive"
-    },
-    {
-      "title": "Best high-yield savings interest rates today, Wednesday, August 19, 2026: Earn up to 4.15% APY",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-08-17T10:00:00.000Z",
-      "sourceUrl": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-wednesday-august-19-2026-earn-up-to-415-apy-100000771.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBest%20High-Yield%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "Best high-yield savings interest rates today, Wednesday, August 19, 2026: Earn up to 4.15% APY source thumbnail",
-      "sentimentLabel": "negative",
-      "category": "macro_negative"
-    },
-    {
-      "title": "HELOC and home equity loan rates today, Wednesday, August 19, 2026: Why locking in a low rate matters",
-      "publisherName": "Yahoo Finance",
-      "timestamp": "2026-08-17T10:00:00.000Z",
-      "sourceUrl": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-wednesday-august-19-2026-why-locking-in-a-low-rate-matters-100000113.html",
-      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHeloc%20And%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
-      "thumbnailAlt": "HELOC and home equity loan rates today, Wednesday, August 19, 2026: Why locking in a low rate matters source thumbnail",
-      "sentimentLabel": "negative",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHeloc%20And%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     }
   ],
@@ -465,10 +2193,6 @@
       "remainingRiskReward": 0
     }
   ],
-  "sourceStats": {
-    "articleCount": 5,
-    "publisherCount": 3
-  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-08-18.webp"

@@ -53,6 +53,147 @@
   "sentimentLabel": "VOLATILE",
   "onePageSummary": "Here is the One-Page Summary for today's pre-market briefing:\n\nMarket Mood: VOLATILE\n\nGlobal Cues: S&P 500 +0.217%, Nasdaq 100 +0.362%, Dow Jones +0.717%, Nikkei 225 +2.529%, Hang Seng +0.705%, Shanghai Composite -0.734%, KOSPI +3.553%, Taiwan Weighted +2.513%, Straits Times +0.976%, ASX 200 +1.615%, GIFT Nifty -0.38%\n\nNarrative Themes:\n- Negative Macro Impact: Rupee strengthened significantly on central bank intervention and easing oil prices.\n- Sector-Specific Pressure: Logistics cost reduction may benefit specific sectors.\n- Global Risk-Off Cue: Oil prices fell on reported Iran-US peace deal.\n\nValidated Trading Setups:\n- No active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
   "publishedAt": null,
+  "fiiDiiFlows": {
+    "date": "29-May-2026",
+    "fiiNet": -21105.86,
+    "fiiBuy": 89733.64,
+    "fiiSell": 110839.5,
+    "diiNet": 16764.14,
+    "diiBuy": 36999.7,
+    "diiSell": 20235.56
+  },
+  "giftNiftyBias": null,
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 60,
+    "publisherCount": 13,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": false
+  },
+  "durationMillis": 236775,
+  "scheduledFor": "2026-05-30T07:15:00+05:30",
+  "runMode": "manual-non-trading-source-data",
+  "newsCards": [
+    {
+      "title": "Net household financial savings rise to 7% of GNDI in FY25: RBI report",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-29T15:13:06.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/net-household-financial-savings-rise-to-7-of-gndi-in-fy25-rbi-report-126052901658_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENet%20Household%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Net household financial savings rise to 7% of GNDI in FY25: RBI report source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    },
+    {
+      "title": "RBI's forex transaction gains rise 52% to ₹1.69 trillion in FY26",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-29T14:08:53.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-s-forex-transaction-gains-rise-52-to-1-69-trillion-in-fy26-126052901548_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERbis%20Forex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EUsdinr%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "RBI's forex transaction gains rise 52% to ₹1.69 trillion in FY26 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "Natco Pharma shares crash 15% after weak Q4 results; net profit tanks 34% YoY",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-29T10:33:02.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/natco-pharma-shares-crash-15-after-weak-q4-results-net-profit-tanks-34-yoy/articleshow/131388521.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENatco%20Pharma%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Natco Pharma shares crash 15% after weak Q4 results; net profit tanks 34% YoY source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Solar Industries & 8 large caps hit fresh 52-week high;stocksrally up to 20% in a month",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-29T12:46:54.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/solar-industries-amp-8-largecaps-hit-fresh-52-week-highstocksrally-up-to-20-in-a-month/slideshow/131391248.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESolar%20Industries%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Solar Industries & 8 large caps hit fresh 52-week high;stocksrally up to 20% in a month source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "$360 bn infra push cuts India's logistics cost to 10% of GDP: Report",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-05-29T10:12:57.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/360-bn-infra-push-cuts-india-s-logistics-cost-to-10-of-gdp-report-126052900982_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EInfra%20Push%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "$360 bn infra push cuts India's logistics cost to 10% of GDP: Report source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "sector_negative"
+    },
+    {
+      "title": "IndiGo Q4 Results: Co reports loss of Rs 2,536 crore vs profit a year ago",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-05-29T11:06:17.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/indigo-q4-results-co-reports-loss-of-rs-2536-crore-vs-profit-year-ago/articleshow/131389129.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f59e0b%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAviation%20Cost%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJet%20Fuel%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "IndiGo Q4 Results: Co reports loss of Rs 2,536 crore vs profit a year ago source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Brent oil price posts biggest monthly loss in six years as market counts on a U.S.-Iran deal",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-29T20:13:49.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/29/oil-price-iran-deal-war-ceasefire-trump.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBrent%20Oil%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Brent oil price posts biggest monthly loss in six years as market counts on a U.S.-Iran deal source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "global_risk"
+    },
+    {
+      "title": "IIFCL PAT falls 13% on forex volatility in FY26",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-30T02:05:58.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/iifcl-pat-falls-13-on-forex-volatility-in-fy26/articleshow/131402660.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIifcl%20Pat%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOptions%20Tape%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "IIFCL PAT falls 13% on forex volatility in FY26 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Dell stock skyrockets 32% for its best day ever as AI server revenue soars",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-05-29T20:10:26.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/05/29/dell-stock-earnings-ai-servers.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dell stock skyrockets 32% for its best day ever as AI server revenue soars source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Rupee closes at 95 against dollar on its best day since April 2",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-05-30T02:27:34.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-closes-at-95-against-dollar-on-its-best-day-since-april-2/articleshow/131402826.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Rupee closes at 95 against dollar on its best day since April 2 source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "macro_negative"
+    }
+  ],
+  "nonTradingSession": {
+    "state": "weekend_closed",
+    "reason": "Saturday",
+    "source": "weekend"
+  },
+  "titleCorrection": {
+    "previousTitle": "Nifty overnight: -1.5% — gap-down bias Lift Bank Nifty..",
+    "correctedTitle": "RBI report on household savings sparks rate-sensitive sector concerns ahead Nifty open",
+    "correctedAt": "2026-07-01T15:42:59.874Z",
+    "method": "nvidia",
+    "model": "meta/llama-4-maverick-17b-128e-instruct",
+    "sourceArticleId": null,
+    "validation": "passed"
+  },
   "marketSnapshots": [
     {
       "symbol": "SPX",
@@ -61,14 +202,13 @@
       "previousClose": 7563.63,
       "changePercent": 0.217,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T21:03:37.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^GSPC",
-      "tradingViewSymbol": "SP:SPX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T21:03:37.000Z",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
       "chartPoints": [
         {
           "time": "2026-05-29T13:30:00.000Z",
@@ -799,14 +939,13 @@
       "previousClose": 30223.89,
       "changePercent": 0.362,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T21:15:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NDX",
-      "tradingViewSymbol": "NASDAQ:NDX",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T21:15:59.000Z",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
       "chartPoints": [
         {
           "time": "2026-05-29T13:30:00.000Z",
@@ -1537,14 +1676,13 @@
       "previousClose": 50668.97,
       "changePercent": 0.717,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T21:03:44.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^DJI",
-      "tradingViewSymbol": "DJ:DJI",
       "marketRegion": "US Overnight",
+      "country": null,
       "session": "us",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T21:03:44.000Z",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
       "chartPoints": [
         {
           "time": "2026-05-29T13:30:00.000Z",
@@ -2275,14 +2413,13 @@
       "previousClose": 23907.15,
       "changePercent": -1.503,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T10:01:01.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEI",
-      "tradingViewSymbol": "NSE:NIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T10:01:01.000Z",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -3013,14 +3150,13 @@
       "previousClose": 54853.85,
       "changePercent": -1.121,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T10:01:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^NSEBANK",
-      "tradingViewSymbol": "NSE:BANKNIFTY",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T10:01:03.000Z",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -3751,15 +3887,13 @@
       "previousClose": 64693.12,
       "changePercent": 2.529,
       "currency": "JPY",
-      "exchangeTimezoneName": "Asia/Tokyo",
-      "dataTimestamp": "2026-05-29T06:45:03.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^N225",
-      "tradingViewSymbol": "TVC:NI225",
       "marketRegion": "Asia Watch",
       "country": "Japan",
       "session": "tokyo",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T06:45:03.000Z",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -4490,15 +4624,13 @@
       "previousClose": 25006.16,
       "changePercent": 0.705,
       "currency": "HKD",
-      "exchangeTimezoneName": "Asia/Hong_Kong",
-      "dataTimestamp": "2026-05-29T08:08:50.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^HSI",
-      "tradingViewSymbol": "TVC:HSI",
       "marketRegion": "Asia Watch",
       "country": "Hong Kong",
       "session": "hongkong",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T08:08:50.000Z",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
       "chartPoints": [
         {
           "time": "2026-05-29T01:30:00.000Z",
@@ -5229,15 +5361,13 @@
       "previousClose": 4098.64,
       "changePercent": -0.734,
       "currency": "CNY",
-      "exchangeTimezoneName": "Asia/Shanghai",
-      "dataTimestamp": "2026-05-29T07:00:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "000001.SS",
-      "tradingViewSymbol": "SSE:000001",
       "marketRegion": "Asia Watch",
       "country": "Mainland China",
       "session": "shanghai",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T07:00:29.000Z",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
       "chartPoints": [
         {
           "time": "2026-05-29T01:30:00.000Z",
@@ -5968,15 +6098,13 @@
       "previousClose": 8185.29,
       "changePercent": 3.553,
       "currency": "KRW",
-      "exchangeTimezoneName": "Asia/Seoul",
-      "dataTimestamp": "2026-05-29T09:05:40.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^KS11",
-      "tradingViewSymbol": "KRX:KOSPI",
       "marketRegion": "Asia Watch",
       "country": "South Korea",
       "session": "seoul",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T09:05:40.000Z",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -6707,15 +6835,13 @@
       "previousClose": 43636.44,
       "changePercent": 2.513,
       "currency": "TWD",
-      "exchangeTimezoneName": "Asia/Taipei",
-      "dataTimestamp": "2026-05-29T05:33:15.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^TWII",
-      "tradingViewSymbol": "TWSE:TAIEX",
       "marketRegion": "Asia Watch",
       "country": "Taiwan",
       "session": "taipei",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T05:33:15.000Z",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
       "chartPoints": [
         {
           "time": "2026-05-29T01:00:00.000Z",
@@ -7446,15 +7572,13 @@
       "previousClose": 4989.19,
       "changePercent": 0.976,
       "currency": "SGD",
-      "exchangeTimezoneName": "Asia/Singapore",
-      "dataTimestamp": "2026-05-29T09:20:00.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^STI",
-      "tradingViewSymbol": "TVC:STI",
       "marketRegion": "Asia Watch",
       "country": "Singapore",
       "session": "singapore",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T09:20:00.000Z",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
       "chartPoints": [
         {
           "time": "2026-05-29T01:00:00.000Z",
@@ -8185,15 +8309,13 @@
       "previousClose": 8592.9,
       "changePercent": 1.615,
       "currency": "AUD",
-      "exchangeTimezoneName": "Australia/Sydney",
-      "dataTimestamp": "2026-05-29T07:01:14.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^AXJO",
-      "tradingViewSymbol": "ASX:XJO",
       "marketRegion": "Asia Watch",
       "country": "Australia",
       "session": "sydney",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T07:01:14.000Z",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
       "chartPoints": [
         {
           "time": "2026-05-29T00:00:00.000Z",
@@ -8924,14 +9046,13 @@
       "previousClose": 98.91,
       "changePercent": 0.034,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T20:59:59.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "DX-Y.NYB",
-      "tradingViewSymbol": "TVC:DXY",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T20:59:59.000Z",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -9662,14 +9783,13 @@
       "previousClose": 92.7,
       "changePercent": -1.704,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T20:59:56.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "BZ=F",
-      "tradingViewSymbol": "TVC:UKOIL",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T20:59:56.000Z",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -10400,14 +10520,13 @@
       "previousClose": 95.68,
       "changePercent": -0.717,
       "currency": "INR",
-      "exchangeTimezoneName": "Europe/London",
-      "dataTimestamp": "2026-05-29T21:32:29.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "USDINR=X",
-      "tradingViewSymbol": "FX:USDINR",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T21:32:29.000Z",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
       "chartPoints": [
         {
           "time": "2026-05-29T00:39:00.000Z",
@@ -11138,14 +11257,13 @@
       "previousClose": 4532.4,
       "changePercent": 1.337,
       "currency": "USD",
-      "exchangeTimezoneName": "America/New_York",
-      "dataTimestamp": "2026-05-29T20:59:58.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "GC=F",
-      "tradingViewSymbol": "TVC:GOLD",
       "marketRegion": "Macro Hedges",
+      "country": null,
       "session": "macro",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T20:59:58.000Z",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
       "chartPoints": [
         {
           "time": "2026-05-29T04:00:00.000Z",
@@ -11876,14 +11994,13 @@
       "previousClose": 14.98,
       "changePercent": 8.026,
       "currency": "INR",
-      "exchangeTimezoneName": "Asia/Kolkata",
-      "dataTimestamp": "2026-05-29T10:09:16.000Z",
-      "source": "Yahoo Finance chart API",
-      "yahooSymbol": "^INDIAVIX",
-      "tradingViewSymbol": "NSE:INDIAVIX",
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
       "dataQuality": "live",
+      "dataTimestamp": "2026-05-29T10:09:16.000Z",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
       "chartPoints": [
         {
           "time": "2026-05-29T03:45:00.000Z",
@@ -12612,302 +12729,115 @@
       "name": "GIFT Nifty",
       "closeValue": 22480.5,
       "changePercent": -0.38,
-      "source": "Exchange Mock",
+      "currency": null,
       "marketRegion": "India Open",
+      "country": null,
       "session": "india",
+      "dataQuality": "seed-merged",
+      "dataTimestamp": null,
+      "yahooSymbol": null,
       "tradingViewSymbol": "NSEIX:NIFTY1!",
-      "dataQuality": "seed-merged"
+      "chartPoints": [
+        {
+          "time": "2026-08-20T06:23:22.230Z",
+          "close": 22566.25
+        },
+        {
+          "time": "2026-08-20T06:38:22.230Z",
+          "close": 22579.12
+        },
+        {
+          "time": "2026-08-20T06:53:22.230Z",
+          "close": 22566.51
+        },
+        {
+          "time": "2026-08-20T07:08:22.230Z",
+          "close": 22553.36
+        },
+        {
+          "time": "2026-08-20T07:23:22.230Z",
+          "close": 22540.69
+        },
+        {
+          "time": "2026-08-20T07:38:22.230Z",
+          "close": 22529.43
+        },
+        {
+          "time": "2026-08-20T07:53:22.230Z",
+          "close": 22520.32
+        },
+        {
+          "time": "2026-08-20T08:08:22.230Z",
+          "close": 22513.87
+        },
+        {
+          "time": "2026-08-20T08:23:22.230Z",
+          "close": 22510.28
+        },
+        {
+          "time": "2026-08-20T08:38:22.230Z",
+          "close": 22509.44
+        },
+        {
+          "time": "2026-08-20T08:53:22.230Z",
+          "close": 22510.94
+        },
+        {
+          "time": "2026-08-20T09:08:22.230Z",
+          "close": 22514.16
+        },
+        {
+          "time": "2026-08-20T09:23:22.230Z",
+          "close": 22518.29
+        },
+        {
+          "time": "2026-08-20T09:38:22.230Z",
+          "close": 22522.47
+        },
+        {
+          "time": "2026-08-20T09:53:22.230Z",
+          "close": 22525.87
+        },
+        {
+          "time": "2026-08-20T10:08:22.230Z",
+          "close": 22527.75
+        },
+        {
+          "time": "2026-08-20T10:23:22.230Z",
+          "close": 22527.59
+        },
+        {
+          "time": "2026-08-20T10:38:22.230Z",
+          "close": 22525.07
+        },
+        {
+          "time": "2026-08-20T10:53:22.230Z",
+          "close": 22520.18
+        },
+        {
+          "time": "2026-08-20T11:08:22.230Z",
+          "close": 22513.12
+        },
+        {
+          "time": "2026-08-20T11:23:22.230Z",
+          "close": 22504.33
+        },
+        {
+          "time": "2026-08-20T11:38:22.230Z",
+          "close": 22494.44
+        },
+        {
+          "time": "2026-08-20T11:53:22.230Z",
+          "close": 22484.13
+        },
+        {
+          "time": "2026-08-20T12:08:22.230Z",
+          "close": 22480.5
+        }
+      ]
     }
   ],
-  "fiiDiiFlows": {
-    "date": "29-May-2026",
-    "fiiNet": -21105.86,
-    "fiiBuy": 89733.64,
-    "fiiSell": 110839.5,
-    "diiNet": 16764.14,
-    "diiBuy": 36999.7,
-    "diiSell": 20235.56
-  },
-  "giftNiftyBias": null,
-  "themes": [
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "macro_negative",
-      "title": "Negative Macro Impact",
-      "summary": "The rupee strengthened significantly on Friday, closing at 95.00 to the dollar, its best performance since April 2. This rise was attributed to central bank intervention, a reported peace deal between Iran and the US, and easing oil prices. Dealers anticipate further strengthening if the ceasefire holds.",
-      "sentimentScore": -0.55,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "sector_negative",
-      "title": "Sector-Specific Pressure",
-      "summary": "India's logistics cost has fallen to 10-10.7 per cent of GDP in FY26 from 13-14 per cent a decade ago, generating annual savings of up to $133 billion, says report",
-      "sentimentScore": -0.48,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "global_risk",
-      "title": "Global Risk-Off Cue",
-      "summary": "Oil prices fell Friday after President Trump said he would meet in the White House Situation Room to make a final decision about a deal with Iran.",
-      "sentimentScore": -0.36,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "neutral_volatile",
-      "title": "Volatile Opening Bias",
-      "summary": "India Infrastructure Finance Company Limited (IIFCL) witnessed a 13.3% decline in its profit after tax, falling to ₹1,379 crore in FY26 from ₹1,590 crore in FY25. This downturn was attributed to significant foreign exchange fluctuations impacting the company's financial performance.",
-      "sentimentScore": -0.09,
-      "evidenceCount": 2
-    },
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "sector_positive",
-      "title": "Sector-Specific Cushion",
-      "summary": "Natco Pharma shares plunged after the company reported a steep fall in fourth-quarter profit, revenue and EBITDA. Weak operating margins and lower annual earnings weighed on investor sentiment despite a one-time tax-related benefit recorded during the quarter and full financial year.",
-      "sentimentScore": 0.05,
-      "evidenceCount": 1
-    },
-    {
-      "digestDate": "2026-05-30",
-      "themeType": "macro_positive",
-      "title": "Global Earnings & Risk Appetite",
-      "summary": "Dell reported its fastest pace of revenue growth since returning to the public market in 2018, with AI server revenue soaring 757% over last year.",
-      "sentimentScore": 0.444,
-      "evidenceCount": 2
-    }
-  ],
-  "tradeSetups": [],
-  "marketDataMode": "live",
-  "marketDataError": null,
-  "newsDataMode": "live",
-  "sourceVerification": {
-    "mode": "live",
-    "verifiedArticleCount": 60,
-    "publisherCount": 13,
-    "categoryCount": 6,
-    "duplicateWithPreviousPercent": 0,
-    "blockedReason": null,
-    "isVerifiedForPublicArchive": false
-  },
-  "durationMillis": 236775,
-  "scheduledFor": "2026-05-30T07:15:00+05:30",
-  "runMode": "manual-non-trading-source-data",
   "news": [
-    {
-      "publishedAt": "2026-05-29T15:13:06.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "Net household financial savings rise to 7% of GNDI in FY25: RBI report",
-      "summary": "Net household financial savings increased to 7 per cent of GNDI in FY25 as a sharp decline in financial liabilities outweighed a moderation in gross financial savings",
-      "takeaway": "RBI data shows household financial savings rose to 7% of GNDI in FY25, driven by a decline in financial liabilities.",
-      "whyItMatters": "Policy liquidity can support or cap risk appetite, but the market needs Bank Nifty and local yields to confirm it.",
-      "indiaImpact": "Bank Nifty and rate-sensitive sectors like realty and autos may react if yields adjust in response to changing household financial savings and liabilities.",
-      "watchFor": "Watch G-sec yields and Bank Nifty VWAP for yield spillover cues.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/net-household-financial-savings-rise-to-7-of-gndi-in-fy25-rbi-report-126052901658_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Bank Nifty",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Net Household",
-        "accent": "#dc2626",
-        "alt": "Net household financial savings rise to 7% of GNDI in FY25: RBI report source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T14:08:53.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "RBI's forex transaction gains rise 52% to ₹1.69 trillion in FY26",
-      "summary": "Reports first mark-to-market loss on forward contracts in at least five years",
-      "takeaway": "Reports first mark-to-market loss on forward contracts in at least five years; RBI and liquidity cues travel first through banks, rates and rate-sensitive sectors.",
-      "whyItMatters": "Policy liquidity can support or cap risk appetite, but the market needs Bank Nifty and local yields to confirm it.",
-      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/rbi-s-forex-transaction-gains-rise-52-to-1-69-trillion-in-fy26-126052901548_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "USDINR",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Usdinr",
-        "theme": "Rbis Forex",
-        "accent": "#7c3aed",
-        "alt": "RBI's forex transaction gains rise 52% to ₹1.69 trillion in FY26 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T10:33:02.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Natco Pharma shares crash 15% after weak Q4 results; net profit tanks 34% YoY",
-      "summary": "Natco Pharma shares plunged after the company reported a steep fall in fourth-quarter profit, revenue and EBITDA. Weak operating margins and lower annual earnings weighed on investor sentiment despite a one-time tax-related benefit recorded during the quarter and full financial year.",
-      "takeaway": "Natco Pharma shares plunged after the company reported a steep fall in fourth-quarter profit, revenue and EBITDA; Bank Nifty matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Nifty Pharma and healthcare can move independently of Nifty; bullish only if defensives lead beyond one stock.",
-      "watchFor": "Watch FMCG, auto and retail-lender breadth after the first range; avoid a broad Nifty read if banks lag.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/natco-pharma-shares-crash-15-after-weak-q4-results-net-profit-tanks-34-yoy/articleshow/131388521.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Bank Nifty",
-      "category": "sector_positive",
-      "thumbnail": {
-        "label": "Bank",
-        "theme": "Natco Pharma",
-        "accent": "#2563eb",
-        "alt": "Natco Pharma shares crash 15% after weak Q4 results; net profit tanks 34% YoY source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T12:46:54.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "Solar Industries & 8 large caps hit fresh 52-week high;stocksrally up to 20% in a month",
-      "summary": "​Nine large-cap stocks, including Solar Industries and Adani group companies, hit fresh 52-week highs even as the Sensex slipped over 1,000 points.​",
-      "takeaway": "Large-cap stocks hitting 52-week highs despite Sensex slippage indicates selective risk appetite; Indian breadth is needed to confirm the positive sentiment.",
-      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and breadth to turn into trend evidence.",
-      "indiaImpact": "Nifty and sectoral breadth are key; Adani group companies' performance may influence related stocks and potentially the broader market.",
-      "watchFor": "Watch Nifty advance-decline and Bank Nifty VWAP through 9:45 AM for confirmation.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/solar-industries-amp-8-largecaps-hit-fresh-52-week-highstocksrally-up-to-20-in-a-month/slideshow/131391248.cms",
-      "sentimentLabel": "positive",
-      "entityName": "Nifty 50",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "50",
-        "theme": "Solar Industries",
-        "accent": "#059669",
-        "alt": "Solar Industries & 8 large caps hit fresh 52-week high;stocksrally up to 20% in a month source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T10:12:57.000Z",
-      "sourceId": "business-standard-economy",
-      "sourceName": "Business Standard Economy",
-      "headline": "$360 bn infra push cuts India's logistics cost to 10% of GDP: Report",
-      "summary": "India's logistics cost has fallen to 10-10.7 per cent of GDP in FY26 from 13-14 per cent a decade ago, generating annual savings of up to $133 billion, says report",
-      "takeaway": "India's logistics cost has fallen to 10-10.7 per cent of GDP in FY26 from 13-14 per cent; sector pressure matters only if Indian peers and breadth validate it after the open.",
-      "whyItMatters": "Negative sector stories are useful as watchlist filters, not automatic index direction.",
-      "indiaImpact": "Market needs related Indian peers to weaken before it becomes more than a caution flag.",
-      "watchFor": "Watch Market peer breadth after 9:45 AM; no index bias if banks and Nifty hold VWAP.",
-      "sourceUrl": "https://www.business-standard.com/economy/news/360-bn-infra-push-cuts-india-s-logistics-cost-to-10-of-gdp-report-126052900982_1.html",
-      "sentimentLabel": "negative",
-      "entityName": "Market",
-      "category": "sector_negative",
-      "thumbnail": {
-        "label": "Market",
-        "theme": "Infra Push",
-        "accent": "#b45309",
-        "alt": "$360 bn infra push cuts India's logistics cost to 10% of GDP: Report source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T11:06:17.000Z",
-      "sourceId": "economic-times-stocks",
-      "sourceName": "Economic Times Stocks",
-      "headline": "IndiGo Q4 Results: Co reports loss of Rs 2,536 crore vs profit a year ago",
-      "summary": "IndiGo Q4 Results: Budget carrier IndiGo faced a tough fourth quarter in FY26, reporting a net loss of Rs 2,536 crore. Revenue saw a slight rise to Rs 22,438 crore. The airline navigated disruptions from the Middle East conflict and foreign exchange volatility. Despite these challenges, IndiGo maintained a strong balance sheet and liquidity.",
-      "takeaway": "Co reports loss of Rs 2,536 crore vs profit a year ago; Options tape matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Aviation is the direct read-through through IndiGo, SpiceJet and fuel-cost sensitivity; do not convert it into Nifty IT or broad-index conviction.",
-      "watchFor": "Watch aviation and fuel-cost names separately; avoid using the headline as a Nifty setup.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/indigo-q4-results-co-reports-loss-of-rs-2536-crore-vs-profit-year-ago/articleshow/131389129.cms",
-      "sentimentLabel": "neutral",
-      "entityName": "Options tape",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Jet Fuel",
-        "theme": "Aviation Cost",
-        "accent": "#f59e0b",
-        "alt": "IndiGo Q4 Results: Co reports loss of Rs 2,536 crore vs profit a year ago source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T20:13:49.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Brent oil price posts biggest monthly loss in six years as market counts on a U.S.-Iran deal",
-      "summary": "Oil prices fell Friday after President Trump said he would meet in the White House Situation Room to make a final decision about a deal with Iran.",
-      "takeaway": "Oil prices fell Friday after President Trump said he would meet in the White House Situation Room; keep the oil story tied to Brent direction before turning it into an India equity signal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
-      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/29/oil-price-iran-deal-war-ceasefire-trump.html",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "global_risk",
-      "thumbnail": {
-        "label": "Geopolitical Risk",
-        "theme": "Brent Oil",
-        "accent": "#7c3aed",
-        "alt": "Brent oil price posts biggest monthly loss in six years as market counts on a U.S.-Iran deal source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-30T02:05:58.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "IIFCL PAT falls 13% on forex volatility in FY26",
-      "summary": "India Infrastructure Finance Company Limited (IIFCL) witnessed a 13.3% decline in its profit after tax, falling to ₹1,379 crore in FY26 from ₹1,590 crore in FY25. This downturn was attributed to significant foreign exchange fluctuations impacting the company's financial performance.",
-      "takeaway": "India Infrastructure Finance Company Limited (IIFCL) witnessed a 13.3% decline in its profit after tax, falling to ₹1,379; Options tape matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Bullish for IT exporters if rupee weakness is orderly, bearish for imported-cost sectors. Confirm with USD/INR and Nifty IT breadth.",
-      "watchFor": "Watch spot USD/INR against its morning range and DXY in the first hour; pressure splits exporters from importers.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/iifcl-pat-falls-13-on-forex-volatility-in-fy26/articleshow/131402660.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Options tape",
-      "category": "neutral_volatile",
-      "thumbnail": {
-        "label": "Options Tape",
-        "theme": "Iifcl Pat",
-        "accent": "#0891b2",
-        "alt": "IIFCL PAT falls 13% on forex volatility in FY26 source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-29T20:10:26.000Z",
-      "sourceId": "cnbc-markets",
-      "sourceName": "CNBC Markets",
-      "headline": "Dell stock skyrockets 32% for its best day ever as AI server revenue soars",
-      "summary": "Dell reported its fastest pace of revenue growth since returning to the public market in 2018, with AI server revenue soaring 757% over last year.",
-      "takeaway": "Dell reported its fastest pace of revenue growth since returning to the public market in 2018, with AI; Global Tech matters for India only if margins, guidance, or demand can travel to listed peers.",
-      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
-      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
-      "watchFor": "Watch Nifty IT breadth against Nasdaq futures; Global Tech must translate into exporter participation.",
-      "sourceUrl": "https://www.cnbc.com/2026/05/29/dell-stock-earnings-ai-servers.html",
-      "sentimentLabel": "positive",
-      "entityName": "Global Tech",
-      "category": "macro_positive",
-      "thumbnail": {
-        "label": "AI Capex",
-        "theme": "Global Tech",
-        "accent": "#7c3aed",
-        "alt": "Dell stock skyrockets 32% for its best day ever as AI server revenue soars source thumbnail"
-      }
-    },
-    {
-      "publishedAt": "2026-05-30T02:27:34.000Z",
-      "sourceId": "economic-times-markets",
-      "sourceName": "Economic Times Markets",
-      "headline": "Rupee closes at 95 against dollar on its best day since April 2",
-      "summary": "The rupee strengthened significantly on Friday, closing at 95.00 to the dollar, its best performance since April 2. This rise was attributed to central bank intervention, a reported peace deal between Iran and the US, and easing oil prices. Dealers anticipate further strengthening if the ceasefire holds.",
-      "takeaway": "Rupee's sharp rise on Friday was driven by central bank intervention and easing oil prices amid a reported Iran-US peace deal.",
-      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
-      "indiaImpact": "USD/INR is the direct check; Brent crude and OMCs may react if the ceasefire holds and oil prices ease further.",
-      "watchFor": "Watch USD/INR and Brent crude price movement at the open for further cues.",
-      "sourceUrl": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-closes-at-95-against-dollar-on-its-best-day-since-april-2/articleshow/131402826.cms",
-      "sentimentLabel": "negative",
-      "entityName": "Geopolitical risk",
-      "category": "macro_negative",
-      "thumbnail": {
-        "label": "BoE Rates",
-        "theme": "Central Banks",
-        "accent": "#dc2626",
-        "alt": "Rupee closes at 95 against dollar on its best day since April 2 source thumbnail"
-      }
-    }
-  ],
-  "newsCards": [
     {
       "title": "Net household financial savings rise to 7% of GNDI in FY25: RBI report",
       "publisherName": "Business Standard Economy",
@@ -12915,7 +12845,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/net-household-financial-savings-rise-to-7-of-gndi-in-fy25-rbi-report-126052901658_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENet%20Household%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Net household financial savings rise to 7% of GNDI in FY25: RBI report source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     },
     {
@@ -12925,7 +12855,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/rbi-s-forex-transaction-gains-rise-52-to-1-69-trillion-in-fy26-126052901548_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ERbis%20Forex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EUsdinr%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "RBI's forex transaction gains rise 52% to ₹1.69 trillion in FY26 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12945,7 +12875,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/solar-industries-amp-8-largecaps-hit-fresh-52-week-highstocksrally-up-to-20-in-a-month/slideshow/131391248.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESolar%20Industries%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Solar Industries & 8 large caps hit fresh 52-week high;stocksrally up to 20% in a month source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -12955,7 +12885,7 @@
       "sourceUrl": "https://www.business-standard.com/economy/news/360-bn-infra-push-cuts-india-s-logistics-cost-to-10-of-gdp-report-126052900982_1.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EInfra%20Push%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "$360 bn infra push cuts India's logistics cost to 10% of GDP: Report source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "sector_negative"
     },
     {
@@ -12975,7 +12905,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/29/oil-price-iran-deal-war-ceasefire-trump.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBrent%20Oil%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Brent oil price posts biggest monthly loss in six years as market counts on a U.S.-Iran deal source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "global_risk"
     },
     {
@@ -12985,7 +12915,7 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/iifcl-pat-falls-13-on-forex-volatility-in-fy26/articleshow/131402660.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIifcl%20Pat%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOptions%20Tape%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "IIFCL PAT falls 13% on forex volatility in FY26 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "neutral_volatile"
     },
     {
@@ -12995,7 +12925,7 @@
       "sourceUrl": "https://www.cnbc.com/2026/05/29/dell-stock-earnings-ai-servers.html",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Dell stock skyrockets 32% for its best day ever as AI server revenue soars source thumbnail",
-      "sentimentLabel": "positive",
+      "sentimentLabel": "neutral",
       "category": "macro_positive"
     },
     {
@@ -13005,10 +12935,49 @@
       "sourceUrl": "https://economictimes.indiatimes.com/markets/forex/forex-news/rupee-closes-at-95-against-dollar-on-its-best-day-since-april-2/articleshow/131402826.cms",
       "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
       "thumbnailAlt": "Rupee closes at 95 against dollar on its best day since April 2 source thumbnail",
-      "sentimentLabel": "negative",
+      "sentimentLabel": "neutral",
       "category": "macro_negative"
     }
   ],
+  "themes": [
+    {
+      "title": "Negative Macro Impact",
+      "summary": "The rupee strengthened significantly on Friday, closing at 95.00 to the dollar, its best performance since April 2. This rise was attributed to central bank intervention, a reported peace deal between Iran and the US, and easing oil prices. Dealers anticipate further strengthening if the ceasefire holds.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Pressure",
+      "summary": "India's logistics cost has fallen to 10-10.7 per cent of GDP in FY26 from 13-14 per cent a decade ago, generating annual savings of up to $133 billion, says report",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Risk-Off Cue",
+      "summary": "Oil prices fell Friday after President Trump said he would meet in the White House Situation Room to make a final decision about a deal with Iran.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Volatile Opening Bias",
+      "summary": "India Infrastructure Finance Company Limited (IIFCL) witnessed a 13.3% decline in its profit after tax, falling to ₹1,379 crore in FY26 from ₹1,590 crore in FY25. This downturn was attributed to significant foreign exchange fluctuations impacting the company's financial performance.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Sector-Specific Cushion",
+      "summary": "Natco Pharma shares plunged after the company reported a steep fall in fourth-quarter profit, revenue and EBITDA. Weak operating margins and lower annual earnings weighed on investor sentiment despite a one-time tax-related benefit recorded during the quarter and full financial year.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    },
+    {
+      "title": "Global Earnings & Risk Appetite",
+      "summary": "Dell reported its fastest pace of revenue growth since returning to the public market in 2018, with AI server revenue soaring 757% over last year.",
+      "affectedSymbols": [],
+      "sourceCount": 0
+    }
+  ],
+  "tradeSetups": [],
   "setupAudit": [
     {
       "symbol": "NIFTY",
@@ -13035,22 +13004,12 @@
       "remainingRiskReward": 0.079
     }
   ],
+  "sourceStats": {
+    "articleCount": 10,
+    "publisherCount": 4
+  },
   "asset": {
     "sentimentLabel": "VOLATILE",
     "assetUrl": "/assets/generated/daily-thumbnail-2026-05-30.webp"
-  },
-  "nonTradingSession": {
-    "state": "weekend_closed",
-    "reason": "Saturday",
-    "source": "weekend"
-  },
-  "titleCorrection": {
-    "previousTitle": "Nifty overnight: -1.5% — gap-down bias Lift Bank Nifty..",
-    "correctedTitle": "RBI report on household savings sparks rate-sensitive sector concerns ahead Nifty open",
-    "correctedAt": "2026-07-01T15:42:59.874Z",
-    "method": "nvidia",
-    "model": "meta/llama-4-maverick-17b-128e-instruct",
-    "sourceArticleId": null,
-    "validation": "passed"
   }
 }
