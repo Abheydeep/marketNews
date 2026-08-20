@@ -478,5 +478,9 @@ These must remain true after changes:
   Verified: `npm run context:verify` (passed), `npm test` (all 86 tests passed), `npm run test:deploy` (all 5 checks passed), `npm run public:copy:qa` (passed), live URLs verified.
   Architecture diagrams changed: none.
   Debt found but not fixed: none.
+- 2026-08-20: Resolved empty page rendering and NaN% issue on August 20 briefing page. ROOT CAUSE: resolvePublishDate() in tools/publish-site.mjs at line 589 did not match scheduled-time suffixes other than labelKey (e.g. 2026-08-20-0800-digest.json), causing standard publish runs to fall back to an old archived date (2026-07-21) and generate incomplete pages; formatChange() in tools/cockpit-page.mjs at line 10227 formatted changePercent without checking Number.isFinite(), rendering NaN% when changePercent was undefined.
+  Verified: npm run context:verify (passed), npm test (86 tests passed), npm run test:deploy (passed), npm run public:copy:qa (passed), static site published and verified.
+  Architecture diagrams changed: none.
+  Debt found but not fixed: none.
 
 

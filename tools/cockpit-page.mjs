@@ -10227,6 +10227,7 @@ function niftySetup(digest) {
 
 function formatChange(changePercent) {
   const value = Number(changePercent);
+  if (!Number.isFinite(value)) return "+0.00%";
   return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
 }
 

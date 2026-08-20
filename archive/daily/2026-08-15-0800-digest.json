@@ -3,7 +3,7 @@
   "digestDate": "2026-08-15",
   "title": "Fed Policy Path Weighs On Initial Hour Levels",
   "status": "PUBLISHED",
-  "generatedAt": "2026-08-20T04:07:55.168Z",
+  "generatedAt": "2026-08-20T04:30:26.077Z",
   "dailyLead": {
     "label": "Rates / Fed path",
     "sourceArticleId": "cnbc-economy:bveolf",
@@ -62,16 +62,8 @@
     "blockedReason": null,
     "isVerifiedForPublicArchive": false
   },
-  "durationMillis": 1005882,
+  "durationMillis": 1789113,
   "scheduledFor": "2026-08-15T08:00:00+05:30",
-  "marketUpdateMode": false,
-  "runMode": "manual-non-trading-source-data",
-  "nonTradingSession": {
-    "state": "weekend_closed",
-    "reason": "Independence Day",
-    "source": "nse_weekend_holidays"
-  },
-  "ogImageUrl": null,
   "marketSnapshots": [
     {
       "symbol": "SPX",

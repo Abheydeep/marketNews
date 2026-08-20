@@ -569,17 +569,32 @@ function compareArchiveEntries(left, right) {
 }
 
 async function loadSourceDigest() {
+  const findDigestPath = async (dir, defaultPath) => {
+    try {
+      const files = await readdir(dir);
+      const exact = `${date}-${label}-digest.json`;
+      if (files.includes(exact)) return join(dir, exact);
+      const match = files.find((f) => new RegExp(`^${date}-\\d{4}-digest\\.json$`).test(f));
+      return match ? join(dir, match) : defaultPath;
+    } catch {
+      return defaultPath;
+    }
+  };
+
+  const actualSourceJson = await findDigestPath(dailyDir, sourceJson);
+  const actualArchivedJson = await findDigestPath(archiveDir, archivedJson);
+
   try {
-    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(sourceJson, "utf8")))));
+    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(actualSourceJson, "utf8")))));
   } catch (error) {
     if (error?.code !== "ENOENT" && !skipArchiveWrite) {
       throw error;
     }
     if (error?.code === "ENOENT") {
-      log.warn("Source digest missing, falling back to archived digest", { sourceJson, archivedJson });
+      log.warn("Source digest missing, falling back to archived digest", { sourceJson: actualSourceJson, archivedJson: actualArchivedJson });
     }
     sourceDigestLoadedFromArchive = true;
-    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(archivedJson, "utf8")))));
+    return reconcilePublicDirection(sanitizeLegacyPublicBriefingCopy(reconcileGeneratedInstrumentPrices(JSON.parse(await readFile(actualArchivedJson, "utf8")))));
   }
 }
 
@@ -593,7 +608,11 @@ async function resolvePublishDate(requested, labelKey, dailyDirPath, archiveDirP
   if (archiveFiles.includes(wanted) || dailyFiles.includes(wanted)) {
     return requested;
   }
-  const pattern = new RegExp(`^(\\d{4}-\\d{2}-\\d{2})-${labelKey}-digest\\.json$`);
+  const requestedPattern = new RegExp(`^${requested}-\\d{4}-digest\\.json$`);
+  if (archiveFiles.some((f) => requestedPattern.test(f)) || dailyFiles.some((f) => requestedPattern.test(f))) {
+    return requested;
+  }
+  const pattern = new RegExp(`^(\\d{4}-\\d{2}-\\d{2})-\\d{4}-digest\\.json$`);
   let latest = null;
   for (const file of archiveFiles) {
     const match = file.match(pattern);

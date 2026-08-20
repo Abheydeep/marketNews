@@ -56,19 +56,13 @@ export function formatIndexValue(snapshot) {
 }
 
 export function formatChange(changePercent) {
-  return `${changePercent >= 0 ? "+" : ""}${Number(changePercent).toFixed(2)}%`;
+  const value = Number(changePercent);
+  if (!Number.isFinite(value)) return "+0.00%";
+  return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%`;
 }
 
 export function formatSnapshotChange(snapshot) {
-  const changePercent = Number(snapshot?.changePercent || 0);
-  if (snapshot?.symbol === "BRENT" && Math.abs(changePercent) < 0.005) {
-    const value = Number(snapshot?.closeValue);
-    const label = Number.isFinite(value)
-      ? value.toLocaleString("en-IN", { maximumFractionDigits: 2 })
-      : "shown";
-    return `last close ${label}`;
-  }
-  return formatChange(changePercent);
+  return formatChange(snapshot?.changePercent);
 }
 
 export function formatCrore(value) {
