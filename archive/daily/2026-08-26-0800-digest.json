@@ -1,0 +1,2851 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-08-26",
+  "title": "Brent Crude Slump to Boost Nifty, Lift OMCs, Aviation Stocks Today",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-08-26T03:25:22.639Z",
+  "dailyLead": {
+    "label": "GIFT Nifty: +310 pt gap-up",
+    "sourceArticleId": "business-standard-markets:wu6aig",
+    "driverType": "crude",
+    "headline": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss",
+    "indiaImpact": "GIFT Nifty at 24561.5 (+310 pts, +1.28%) signals gap-up open. Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+    "riskSide": "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.",
+    "supportSide": "Softer Brent and stronger Indian market participation are the confirmation checks.",
+    "giftNiftyBias": {
+      "giftPrice": 24561.5,
+      "niftyClose": 24252,
+      "gapPts": 310,
+      "gapPct": 1.28,
+      "bias": "gap_up",
+      "biasLabel": "+310 pt gap-up"
+    }
+  },
+  "publicSourceSelection": {
+    "visibleCount": 9,
+    "shortlistCount": 25,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 2,
+    "indiaPublisherCount": 9,
+    "shortlistIndiaPublisherCount": 22,
+    "directIndiaSourceCount": 9,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 6,
+    "globalContextCount": 0,
+    "globalOnlySourceRatio": 0,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 9 direct India sources, 0 official sources, 6 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.business-standard.com/markets/news/stock-market-live-updates-august-26-nse-bse-sensex-today-nifty-gift-nifty-us-iran-tension-crude-annu-projects-ipo-126082600098_1.html",
+      "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-groww-tata-motors-pv-share-price-26-august-2026/liveblog/133527446.cms",
+      "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-august-26-crude-oil-tanks-6-in-two-days-to-hover-near-85-whats-behind-the-decline/articleshow/133527538.cms",
+      "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-26-august-11787708075189.html",
+      "https://economictimes.indiatimes.com/markets/stocks/news/multibagger-stocks-ather-energy-hind-copper-mcx-among-stocks-which-surged-up-to-250-in-one-year/slideshow/133506231.cms",
+      "https://www.business-standard.com/markets/commodities/oil-prices-fall-2-after-iran-oman-resume-talks-to-reopen-strait-of-hormuz-126082600092_1.html",
+      "https://economictimes.indiatimes.com/markets/stocks/news/pre-market-action-heres-the-trade-setup-for-todays-session/articleshow/133520659.cms",
+      "https://www.ndtvprofit.com/markets/gold-trading-strategy-rs-1-66-lakh-in-sight-mcx-traders-eye-key-price-levels-amid-bullish-outlook-11958618",
+      "https://www.ndtvprofit.com/trending/stock-market-holidays-are-bse-nse-closed-on-august-26-for-eid-e-milad-check-full-list-11959262"
+    ]
+  },
+  "archiveSummary": "GIFT Nifty: +310 pt gap-up: GIFT Nifty at 24561.5 (+310 pts, +1.28%) signals gap-up open. Bullish for OMCs, aviation, paints...",
+  "twoMinuteSummary": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 +0.319%, Nasdaq 100 +0.641%, Dow Jones +0.3%, Nifty 50 +0.34%, Bank Nifty -0.429%, Nikkei 225 +0.564%, Hang Seng +0.948%, Shanghai Composite +0.56%, KOSPI +1.013%, Taiwan Weighted +0.827%, Straits Times -0.3%, ASX 200 +0.013%, US Dollar Index +0.016%, Brent Crude -2.223%, USD/INR +0%, Gold (COMEX) +0.592%, India VIX -1.116%, GIFT Nifty +0.17% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Global Defensive Cue: Brent crude futures fell $85, or 2.0%, to $85 a barrel by 0027 GMT, while US West ‌Texas Intermediate crude futures were down $85, or 1.8%, at $85\n\n- Sector-Specific Pressure: Despite Nifty 50 losses, several Nifty 500 stocks delivered multibagger returns over the past year. Ather Energy led with 248%, followed by HFCL, Welspun Corp, Aditya Infotech, Hindustan Copper, RR Kabel and others.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
+    "Nifty opening gap at 9:15 AM.",
+    "Brent around $85."
+  ],
+  "overallSentiment": -0.053,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.319%, Nasdaq 100 +0.641%, Dow Jones +0.3%, Nifty 50 +0.34%, Bank Nifty -0.429%, Nikkei 225 +0.564%, Hang Seng +0.948%, Shanghai Composite +0.56%, KOSPI +1.013%, Taiwan Weighted +0.827%, Straits Times -0.3%, ASX 200 +0.013%, US Dollar Index +0.016%, Brent Crude -2.223%, USD/INR +0%, Gold (COMEX) +0.592%, India VIX -1.116%, GIFT Nifty +0.17%\n\nNarrative Themes:\n- Global Defensive Cue: Oil price decline extends\n- Sector-Specific Pressure: Multibagger stocks in Nifty 500 despite Nifty 50 losses\n- Volatile Opening Bias: GIFT Nifty signals positive open amidst Asian market decline\n- Global Earnings & investor confidence: Indian stock market expected to open higher on positive global cues\n\nValidated Trading Setups: \nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7677.28,
+      "previousClose": 7652.86,
+      "changePercent": 0.319,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-25T21:43:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 7681.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7676.47
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7670.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7664.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7661.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7664.73
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7664.22
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7671.75
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7669.64
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7672.87
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7673.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7675.53
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7673.83
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7675.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7670.37
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7665.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7666.83
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7668.25
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7666.18
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7667.84
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7673.73
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7674.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7668.87
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7670.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7672.03
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7675.73
+        },
+        {
+          "time": "2026-08-25",
+          "close": 7677.28
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29209.23,
+      "previousClose": 29023.18,
+      "changePercent": 0.641,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-25T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 29280.25
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29238.48
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29174.47
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29145.54
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29147.38
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29165.44
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29157.14
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29210.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29197.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29194.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29208.44
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29221.99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29194.53
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29203.44
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29171.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29151.52
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29152.56
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29157.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29137.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29147.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29187.69
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29187.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29163.59
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29156.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29167.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29204.37
+        },
+        {
+          "time": "2026-08-25",
+          "close": 29209.23
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 53577.4,
+      "previousClose": 53417.16,
+      "changePercent": 0.3,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-25T21:43:49.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 53473.69
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53439.54
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53478.59
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53480.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53432.03
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53450.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53461.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53465.87
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53473.78
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53526.23
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53491.62
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53490.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53509.11
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53526.32
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53484.71
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53478.53
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53498.62
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53513.67
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53525.75
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53524.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53558.14
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53573.45
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53532.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53564.29
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53581.83
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53572.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 53577.4
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 24334.55,
+      "previousClose": 24252,
+      "changePercent": 0.34,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-25T10:01:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 24181.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24155.15
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24138.85
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24141.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24126.35
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24135.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24142.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24147.55
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24149.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24152.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24178.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24171.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24169.85
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24156.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24157.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24129.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24126.45
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24140.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24156.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24154.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24181.85
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24209.15
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24254.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24260.15
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24334.55
+        },
+        {
+          "time": "2026-08-25",
+          "close": 24334.55
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57514.2,
+      "previousClose": 57761.9,
+      "changePercent": -0.429,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-25T10:01:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 57550.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57517.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57493.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57478.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57417.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57463.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57515.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57478.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57450.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57408.55
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57446.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57463.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57404.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57432.65
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57411.55
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57300.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57284.55
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57316
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57370
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57322.45
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57381.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57415.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57468.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57455.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57514.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 57514.2
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 66227.55,
+      "previousClose": 65856.43,
+      "changePercent": 0.564,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-08-26T02:30:01.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 65568.02
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65581.82
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65567.1
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65404.55
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65599.98
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65618.81
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65707.36
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65824.3
+        },
+        {
+          "time": "2026-08-26",
+          "close": 65926.01
+        },
+        {
+          "time": "2026-08-26",
+          "close": 66214.07
+        },
+        {
+          "time": "2026-08-26",
+          "close": 66227.55
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 25753.07,
+      "previousClose": 25511.1,
+      "changePercent": 0.948,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-08-26T02:31:04.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 25754.32
+        },
+        {
+          "time": "2026-08-26",
+          "close": 25772.61
+        },
+        {
+          "time": "2026-08-26",
+          "close": 25729.4
+        },
+        {
+          "time": "2026-08-26",
+          "close": 25741.69
+        },
+        {
+          "time": "2026-08-26",
+          "close": 25753.01
+        },
+        {
+          "time": "2026-08-26",
+          "close": 25753.07
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3911.24,
+      "previousClose": 3889.44,
+      "changePercent": 0.56,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-08-26T02:31:05.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 3898.36
+        },
+        {
+          "time": "2026-08-26",
+          "close": 3900.18
+        },
+        {
+          "time": "2026-08-26",
+          "close": 3903.34
+        },
+        {
+          "time": "2026-08-26",
+          "close": 3908.38
+        },
+        {
+          "time": "2026-08-26",
+          "close": 3910.21
+        },
+        {
+          "time": "2026-08-26",
+          "close": 3911.24
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 6811.04,
+      "previousClose": 6742.74,
+      "changePercent": 1.013,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-08-26T02:26:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 6772.22
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6768.45
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6748.51
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6714.67
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6760.98
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6743.96
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6733.81
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6759.33
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6777.21
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6805.33
+        },
+        {
+          "time": "2026-08-26",
+          "close": 6811.04
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 45542.98,
+      "previousClose": 45169.46,
+      "changePercent": 0.827,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-08-26T02:26:05.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 45113.13
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45160.4
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45305.25
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45439.23
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45399.2
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45539.33
+        },
+        {
+          "time": "2026-08-26",
+          "close": 45542.98
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5718.47,
+      "previousClose": 5735.68,
+      "changePercent": -0.3,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-08-26T02:31:05.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 5739.79
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5731.57
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5730.33
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5724.79
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5714.76
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5718.83
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5718.47
+        },
+        {
+          "time": "2026-08-26",
+          "close": 5718.47
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 9165.8,
+      "previousClose": 9164.6,
+      "changePercent": 0.013,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-08-26T02:25:44.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-26",
+          "close": 9194
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9183.6
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9191.1
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9207
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9215
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9207.4
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9193.1
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9182.8
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9171.8
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9164.8
+        },
+        {
+          "time": "2026-08-26",
+          "close": 9165.8
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 98.93,
+      "previousClose": 98.92,
+      "changePercent": 0.016,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-26T02:36:04.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 99.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.08
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.08
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.11
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.03
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.98
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.02
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.03
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 99.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.94
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.97
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.96
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.94
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.89
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.88
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.88
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.89
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.94
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.94
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.91
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 98.93
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 85.33,
+      "previousClose": 87.27,
+      "changePercent": -2.223,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-26T02:36:02.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 92.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 92.29
+        },
+        {
+          "time": "2026-08-25",
+          "close": 92.11
+        },
+        {
+          "time": "2026-08-25",
+          "close": 92.14
+        },
+        {
+          "time": "2026-08-25",
+          "close": 92.12
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.99
+        },
+        {
+          "time": "2026-08-25",
+          "close": 92.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.47
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.35
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.49
+        },
+        {
+          "time": "2026-08-25",
+          "close": 91.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 89.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 90.12
+        },
+        {
+          "time": "2026-08-25",
+          "close": 90.17
+        },
+        {
+          "time": "2026-08-25",
+          "close": 89.64
+        },
+        {
+          "time": "2026-08-25",
+          "close": 89.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.63
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.49
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.04
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.66
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.07
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.19
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.87
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.63
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.98
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.93
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.82
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.92
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.83
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.05
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.95
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 88
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.86
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.84
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.78
+        },
+        {
+          "time": "2026-08-25",
+          "close": 86.94
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.26
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.42
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.09
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.06
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.18
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.01
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.23
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.29
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.17
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.26
+        },
+        {
+          "time": "2026-08-25",
+          "close": 87.19
+        },
+        {
+          "time": "2026-08-25",
+          "close": 86.98
+        },
+        {
+          "time": "2026-08-25",
+          "close": 86.12
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.35
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.53
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.67
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.86
+        },
+        {
+          "time": "2026-08-25",
+          "close": 86.15
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.86
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.88
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.89
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.87
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.77
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.78
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.61
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.54
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.17
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.34
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.36
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.58
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.25
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.26
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.38
+        },
+        {
+          "time": "2026-08-25",
+          "close": 85.33
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 95.4,
+      "previousClose": 95.4,
+      "changePercent": 0,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-08-26T02:34:19.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 95.74
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.74
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.74
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.73
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.71
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.68
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.73
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.72
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.71
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.71
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.68
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.69
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.62
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.51
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.52
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.43
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.41
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.41
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.41
+        },
+        {
+          "time": "2026-08-25",
+          "close": 95.4
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4722.3,
+      "previousClose": 4694.5,
+      "changePercent": 0.592,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-26T02:36:02.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 4693.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4686.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4681.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4681.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4693.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4702.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4698.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4705.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4706.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4704
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4696.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4695.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4695.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4686.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4683.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4689.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4687.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4685.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4686
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4681.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4692.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4691.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4690.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4689.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4693.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4695
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4696.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4697.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4696.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4698.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4692.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4693.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4695.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4678.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4665
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4667.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4671.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4678.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4679.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4693.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4691.6
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4689.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4695.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4713.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4709.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4701.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4698
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4701.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4700.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4700.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4705.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4704.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4707.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4706
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4711.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4719.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4717.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4719
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4723.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4722.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4719.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4718.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4715.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4721.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4723.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4727.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4729.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4725.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4718.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4713.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4711.9
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4708.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4703.7
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4694.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4700.8
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4700.3
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4701.1
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4711.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4717
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4715.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4719.5
+        },
+        {
+          "time": "2026-08-25",
+          "close": 4722.3
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 11.08,
+      "previousClose": 11.2,
+      "changePercent": -1.116,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-25T10:13:53.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-25",
+          "close": 11.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.4
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.31
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.35
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.43
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.49
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.43
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.39
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.28
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.11
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.18
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.29
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.22
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.24
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.29
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.33
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.26
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.27
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.2
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.18
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.12
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.02
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.15
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.03
+        },
+        {
+          "time": "2026-08-25",
+          "close": 11.07
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 24561.5,
+      "previousClose": 24519.5,
+      "changePercent": 0.17,
+      "dataTimestamp": "2026-08-26T02:45:27.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-08-25T18:45:27.000Z",
+          "close": 24519.5
+        },
+        {
+          "time": "2026-08-26T02:45:27.000Z",
+          "close": 24561.5
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "25-Aug-2026",
+    "fiiNet": 1593.53,
+    "fiiBuy": 13259.03,
+    "fiiSell": 11665.5,
+    "diiNet": 230.26,
+    "diiBuy": 14280.18,
+    "diiSell": 14049.92
+  },
+  "giftNiftyBias": {
+    "giftPrice": 24561.5,
+    "niftyClose": 24252,
+    "gapPts": 310,
+    "gapPct": 1.28,
+    "bias": "gap_up",
+    "biasLabel": "+310 pt gap-up"
+  },
+  "todaysReadArticle": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss, setting the tone for a potentially volatile trading session in India. The GIFT Nifty, a key indicator of the Nifty50's opening direction, has signaled a positive start, which could be a significant development given the recent fluctuations in global markets. This positive open is particularly noteworthy as it comes on the back of a decline in Asian shares, which had initially raised concerns about the broader market sentiment. However, the extension of losses in Brent crude prices to near $85 per barrel is likely to ease import-cost pressure for India, potentially benefiting sectors such as oil marketing companies (OMCs), aviation, paints, and tyres, provided the crude price movement sustains through the morning.\n\nThe decline in crude oil prices, which has seen a sharp 6% drop over two days, is a critical factor influencing the Indian market's expectations. This significant decline in crude prices could have a dual impact on the Indian economy and stock market. On one hand, it could lead to margin relief for companies in the OMC, aviation, and tyre sectors, potentially boosting their stock prices. On the other hand, the upstream energy sector might lag due to lower crude prices, affecting the profitability of companies involved in oil exploration and production. The interplay between these factors will be crucial in determining the overall market direction, especially considering the Nifty 50's expected positive open.\n\nThe broader market context, both domestically and globally, also plays a significant role in shaping the trading session. Asian shares had initially traded higher, boosting expectations for the Nifty's opening, but their subsequent fall underscores the volatility and unpredictability of current market conditions. The performance of the Bank Nifty, which ended slightly lower, and the USD/INR exchange rate will be closely watched, as they are key indicators of market market participation and investor confidence. Furthermore, the outperformance of Nifty 500 stocks, such as Ather Energy and Hind Copper, which have surged up to 250% in one year, highlights the potential for significant gains in specific sectors, adding another layer of complexity to the market dynamics.\n\nAs traders prepare for the Indian market open, several key factors will be under scrutiny. The confirmation of the Nifty's gap direction and the performance of the Bank Nifty will be crucial in deciding the trend for the day. Additionally, the market participation ratio and the movement of the USD/INR exchange rate will provide insights into market market participation and investor confidence. The oil price story, particularly the direction of Brent crude, will continue to influence sectors such as OMCs, aviation, and tyres, making it essential to monitor crude price movements closely. With the Nifty 50 expected to open higher, supported by a positive GIFT Nifty signal and a bullish outlook for certain stocks, traders will be watching these indicators closely to gauge the sustainability of the positive start and the potential for further gains in the session.",
+  "themes": [
+    {
+      "digestDate": "2026-08-26",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Brent crude futures fell $85, or 2.0%, to $85 a barrel by 0027 GMT, while US West ‌Texas Intermediate crude futures were down $85, or 1.8%, at $85",
+      "sentimentScore": -0.485,
+      "evidenceCount": 2
+    },
+    {
+      "digestDate": "2026-08-26",
+      "themeType": "sector_negative",
+      "title": "Sector-Specific Pressure",
+      "summary": "Despite Nifty 50 losses, several Nifty 500 stocks delivered multibagger returns over the past year. Ather Energy led with 248%, followed by HFCL, Welspun Corp, Aditya Infotech, Hindustan Copper, RR Kabel and others.",
+      "sentimentScore": -0.48,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-26",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "Sensex Today | Stock Market LIVE Updates Wednesday: The GIFT Nifty indicated a positive open for the Nifty50 index. Asian markets declined ahead of Nvidia Corp's earnings",
+      "sentimentScore": -0.004,
+      "evidenceCount": 4
+    },
+    {
+      "digestDate": "2026-08-26",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "Indian stock market indices Sensex and Nifty 50 are expected to open higher on 26 August, supported by positive global cues. The previous session saw Sensex close at 77,656.09 and Nifty 50 at 24,334.55, with analysts indicating potential for further gains if resistance levels are surpassed.",
+      "sentimentScore": 0.469,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 50,
+    "publisherCount": 13,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 2269494,
+  "scheduledFor": "2026-08-26T08:00:00+05:30",
+  "marketUpdateMode": false,
+  "runMode": "scheduled-verified-source-data",
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-08-26T02:25:01.000Z",
+      "sourceId": "business-standard-markets",
+      "sourceName": "Business Standard Markets",
+      "headline": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss",
+      "summary": "Sensex Today | Stock Market LIVE Updates Wednesday: The GIFT Nifty indicated a positive open for the Nifty50 index. Asian markets declined ahead of Nvidia Corp's earnings",
+      "takeaway": "Sensex Today | Stock Market LIVE Updates Wednesday: The GIFT Nifty indicated a positive open for the Nifty50; lower crude eases India import-cost pressure if the move survives the morning handoff.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Bullish for OMCs, aviation, paints and tyres if Brent stays soft; upstream energy may lag.",
+      "watchFor": "Watch Brent holding below the Asia handoff; sustained softness removes part of the OMC and aviation overhang.",
+      "sourceUrl": "https://www.business-standard.com/markets/news/stock-market-live-updates-august-26-nse-bse-sensex-today-nifty-gift-nifty-us-iran-tension-crude-annu-projects-ipo-126082600098_1.html",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Gift Nifty",
+        "accent": "#0891b2",
+        "alt": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T02:04:19.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Sensex Today | Stock Market LIVE Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
+      "summary": "Sensex Today | Stock Market LIVE Updates: GIFT Nifty signals a positive start; Asian shares trade higher.",
+      "takeaway": "Asian shares boost Nifty opening expectations.",
+      "whyItMatters": "Gift Nifty is the cleanest pre-9:15 cue, but cash-market market participation and Bank Nifty decide whether the gap holds.",
+      "indiaImpact": "Nifty gap direction matters, Bank Nifty confirmation decides trend.",
+      "watchFor": "Nifty opening gap at 9:15 AM.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-groww-tata-motors-pv-share-price-26-august-2026/liveblog/133527446.cms",
+      "sentimentLabel": "neutral",
+      "entityName": "Nifty Open",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Open",
+        "theme": "Sensex Today",
+        "accent": "#0891b2",
+        "alt": "Sensex Today | Stock Market LIVE Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T02:14:27.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Oil Price Today (August 26): Crude oil tanks 6% in two days to hover near $85. What’s behind the decline?",
+      "summary": "Brent crude futures were down $2.35, or 2.65%, at $86 a barrel, while U.S. West Texas Intermediate crude futures fell $1.94, or 2.36%, to $80.42. Both benchmarks had declined more than 3% on Tuesday.",
+      "takeaway": "Sharp decline in crude oil prices.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation, and tyres under pressure.",
+      "watchFor": "Brent around $85.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-august-26-crude-oil-tanks-6-in-two-days-to-hover-near-85-whats-behind-the-decline/articleshow/133527538.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Brent Crude",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Brent Crude",
+        "theme": "Oil Price",
+        "accent": "#7c3aed",
+        "alt": "Oil Price Today (August 26): Crude oil tanks 6% in two days to hover near $85. What’s behind the decline? source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T02:05:15.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 August",
+      "summary": "Indian stock market indices Sensex and Nifty 50 are expected to open higher on 26 August, supported by positive global cues. The previous session saw Sensex close at 77,656.09 and Nifty 50 at 24,334.55, with analysts indicating potential for further gains if resistance levels are surpassed.",
+      "takeaway": "Indian stock market indices Sensex and Nifty 50 are expected to open higher on 26 August, supported; investor confidence is supportive only if Indian market participation confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-26-august-11787708075189.html",
+      "sentimentLabel": "positive",
+      "entityName": "Nifty 50",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "50",
+        "theme": "Nifty Sensex",
+        "accent": "#059669",
+        "alt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 August source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-25T10:34:07.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Multibagger stocks: Ather Energy, Hind Copper, MCX among stocks which surged up to 250% in one year",
+      "summary": "Despite Nifty 50 losses, several Nifty 500 stocks delivered multibagger returns over the past year. Ather Energy led with 248%, followed by HFCL, Welspun Corp, Aditya Infotech, Hindustan Copper, RR Kabel and others.",
+      "takeaway": "Nifty 500 stocks outperform Nifty 50.",
+      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
+      "indiaImpact": "Nifty 500, Ather Energy, Hind Copper stocks gain.",
+      "watchFor": "Nifty 500 market participation after open.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/multibagger-stocks-ather-energy-hind-copper-mcx-among-stocks-which-surged-up-to-250-in-one-year/slideshow/133506231.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Market infrastructure",
+      "category": "sector_negative",
+      "thumbnail": {
+        "label": "Infrastructure",
+        "theme": "Multibagger Ather",
+        "accent": "#b45309",
+        "alt": "Multibagger stocks: Ather Energy, Hind Copper, MCX among stocks which surged up to 250% in one year source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T02:30:03.000Z",
+      "sourceId": "business-standard-markets",
+      "sourceName": "Business Standard Markets",
+      "headline": "Oil prices fall 2% after Iran-Oman resume talks to reopen Strait of Hormuz",
+      "summary": "Brent crude futures fell $1.78, or 2.0%, to $86.80 a barrel by 0027 GMT, while US West ‌Texas Intermediate crude futures were down $1.49, or 1.8%, at $80.87",
+      "takeaway": "Brent's 2% drop may ease inflation concerns.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation, and tyres may gain if Brent stays low.",
+      "watchFor": "Brent holding below $87.",
+      "sourceUrl": "https://www.business-standard.com/markets/commodities/oil-prices-fall-2-after-iran-oman-resume-talks-to-reopen-strait-of-hormuz-126082600092_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Oil prices fall 2% after Iran-Oman resume talks to reopen Strait of Hormuz source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T00:30:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Pre-market action: Here&#039;s the trade setup for today&#039;s session",
+      "summary": "The Nifty index recovered 0.5 percent, closing at 24,334 after touching a low. Positive global cues and FII buying supported this recovery ahead of expiry. Brent crude oil prices fell 3.2 percent, easing concerns about oil markets. The Indian rupee also strengthened by 24 paise against the US dollar. India VIX, a fear gauge, declined by 3.9 percent to 11.08 levels.",
+      "takeaway": "The Nifty index recovered 0.5 percent, closing at 24,334 after touching a low; keep the oil story tied to Brent direction before turning it into an India equity signal.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "India read-through is conditional on Brent: firm prices pressure OMCs and aviation, softer prices support margin relief.",
+      "watchFor": "Watch Brent at the Asia handoff; direction after Asia opens decides whether the story matters for OMCs.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/pre-market-action-heres-the-trade-setup-for-todays-session/articleshow/133520659.cms",
+      "sentimentLabel": "neutral",
+      "entityName": "Options tape",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Options Tape",
+        "theme": "Pre-Market The",
+        "accent": "#0891b2",
+        "alt": "Pre-market action: Here&#039;s the trade setup for today&#039;s session source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T01:31:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Gold Trading Strategy: Rs 1.66 Lakh In Sight? MCX Traders Eye Key Price Levels Amid &#039;Bullish&#039; Outlook",
+      "summary": "Fundamental outlook for the bullion remains bullish over the medium term, but near-term volatility and profit-taking risks remain high, according to Kotak.",
+      "takeaway": "Bullish outlook for gold despite near-term volatility risks.",
+      "whyItMatters": "Exchange and clearing businesses respond to trading volume, product mix and volatility; the read-through is financial-market infrastructure first.",
+      "indiaImpact": "MCX gold, importers and jewellers may be impacted.",
+      "watchFor": "MCX gold price reaction.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gold-trading-strategy-rs-1-66-lakh-in-sight-mcx-traders-eye-key-price-levels-amid-bullish-outlook-11958618",
+      "sentimentLabel": "negative",
+      "entityName": "Market infrastructure",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Infrastructure",
+        "theme": "Gold Trading",
+        "accent": "#0891b2",
+        "alt": "Gold Trading Strategy: Rs 1.66 Lakh In Sight? MCX Traders Eye Key Price Levels Amid &#039;Bullish&#039; Outlook source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-26T01:39:58.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Stock Market Holidays: Are BSE, NSE Closed On August 26 For Eid-e-Milad? Check Full List",
+      "summary": "Indian stock markets will operate normally on August 26 despite Eid-e-Milad, with BSE and NSE trading but settlement activities deferred to the next business day.",
+      "takeaway": "Normal trading hours confirmed despite Eid-e-Milad.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty, BSE, and NSE to operate normally.",
+      "watchFor": "Market open reaction.",
+      "sourceUrl": "https://www.ndtvprofit.com/trending/stock-market-holidays-are-bse-nse-closed-on-august-26-for-eid-e-milad-check-full-list-11959262",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Are Nse",
+        "accent": "#059669",
+        "alt": "Stock Market Holidays: Are BSE, NSE Closed On August 26 For Eid-e-Milad? Check Full List source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-08-26T02:25:01.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/news/stock-market-live-updates-august-26-nse-bse-sensex-today-nifty-gift-nifty-us-iran-tension-crude-annu-projects-ipo-126082600098_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGift%20Nifty%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock Market LIVE: GIFT Nifty signals positive open; Asia markets fall; Brent crude extends loss source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Sensex Today | Stock Market LIVE Updates: GIFT Nifty signals a positive start; Asian shares trade higher",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-08-26T02:04:19.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-groww-tata-motors-pv-share-price-26-august-2026/liveblog/133527446.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ESensex%20Today%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOpen%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Sensex Today | Stock Market LIVE Updates: GIFT Nifty signals a positive start; Asian shares trade higher source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Oil Price Today (August 26): Crude oil tanks 6% in two days to hover near $85. What’s behind the decline?",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-08-26T02:14:27.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-august-26-crude-oil-tanks-6-in-two-days-to-hover-near-85-whats-behind-the-decline/articleshow/133527538.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Price%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBrent%20Crude%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil Price Today (August 26): Crude oil tanks 6% in two days to hover near $85. What’s behind the decline? source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 August",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-08-26T02:05:15.000Z",
+      "sourceUrl": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-prediction-today-check-how-indian-stock-market-is-expected-to-trade-on-26-august-11787708075189.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ENifty%20Sensex%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3E50%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Nifty 50, Sensex prediction today: Check how Indian stock market is expected to trade on 26 August source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Multibagger stocks: Ather Energy, Hind Copper, MCX among stocks which surged up to 250% in one year",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-08-25T10:34:07.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/multibagger-stocks-ather-energy-hind-copper-mcx-among-stocks-which-surged-up-to-250-in-one-year/slideshow/133506231.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b45309%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EMultibagger%20Ather%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInfrastructure%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Multibagger stocks: Ather Energy, Hind Copper, MCX among stocks which surged up to 250% in one year source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "sector_negative"
+    },
+    {
+      "title": "Oil prices fall 2% after Iran-Oman resume talks to reopen Strait of Hormuz",
+      "publisherName": "Business Standard Markets",
+      "timestamp": "2026-08-26T02:30:03.000Z",
+      "sourceUrl": "https://www.business-standard.com/markets/commodities/oil-prices-fall-2-after-iran-oman-resume-talks-to-reopen-strait-of-hormuz-126082600092_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Oil prices fall 2% after Iran-Oman resume talks to reopen Strait of Hormuz source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Pre-market action: Here&#039;s the trade setup for today&#039;s session",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-08-26T00:30:00.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/pre-market-action-heres-the-trade-setup-for-todays-session/articleshow/133520659.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EPre-Market%20The%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EOptions%20Tape%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Pre-market action: Here&#039;s the trade setup for today&#039;s session source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Gold Trading Strategy: Rs 1.66 Lakh In Sight? MCX Traders Eye Key Price Levels Amid &#039;Bullish&#039; Outlook",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-08-26T01:31:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/gold-trading-strategy-rs-1-66-lakh-in-sight-mcx-traders-eye-key-price-levels-amid-bullish-outlook-11958618",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891b2%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Trading%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EInfrastructure%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold Trading Strategy: Rs 1.66 Lakh In Sight? MCX Traders Eye Key Price Levels Amid &#039;Bullish&#039; Outlook source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "neutral_volatile"
+    },
+    {
+      "title": "Stock Market Holidays: Are BSE, NSE Closed On August 26 For Eid-e-Milad? Check Full List",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-08-26T01:39:58.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/trending/stock-market-holidays-are-bse-nse-closed-on-august-26-for-eid-e-milad-check-full-list-11959262",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EAre%20Nse%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock Market Holidays: Are BSE, NSE Closed On August 26 For Eid-e-Milad? Check Full List source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 77 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 77 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-08-26.webp"
+  }
+}
