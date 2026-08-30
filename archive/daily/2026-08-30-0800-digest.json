@@ -1,0 +1,2954 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-08-30",
+  "title": "Fed Policy Path Shape Indian Market Mood",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-08-30T07:01:53.271Z",
+  "dailyLead": {
+    "label": "Rates / Fed path",
+    "sourceArticleId": "zerodha-pulse:ffw9rh",
+    "driverType": "rates",
+    "headline": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke",
+    "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if participation absorbs it.",
+    "riskSide": "Higher yields would pressure banks, realty, autos, and long-duration growth shares.",
+    "supportSide": "Stable yields plus bank participation is the offset.",
+    "giftNiftyBias": null
+  },
+  "publicSourceSelection": {
+    "visibleCount": 5,
+    "shortlistCount": 18,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 3,
+    "indiaPublisherCount": 4,
+    "shortlistIndiaPublisherCount": 14,
+    "directIndiaSourceCount": 4,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 4,
+    "globalContextCount": 1,
+    "globalOnlySourceRatio": 20,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 4 direct India sources, 0 official sources, 4 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.ndtvprofit.com/markets/corporate-actions-this-week-coal-india-ongc-glenmark-pharma-gail-nirlon-check-full-list-here-11973725",
+      "https://www.ndtvprofit.com/markets/ipos-this-week-purple-style-labs-deepa-jewellers-rays-of-belief-to-hit-primary-market-11975985",
+      "https://www.bloomberg.com/news/articles/2026-08-29/guggenheim-stain-piles-onto-biggest-junk-laggard-credit-weekly",
+      "https://www.ndtvprofit.com/world/jackson-hole-kevin-warsh-vs-jerome-powell-janet-yellen-and-ben-bernanke-on-fed-guidance-11973280",
+      "https://www.ndtvprofit.com/technology/apple-maps-gets-transit-feature-in-india-public-transport-support-explained-11975715"
+    ]
+  },
+  "archiveSummary": "Rates / Fed path: Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if participation absorbs...",
+  "twoMinuteSummary": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 -0.249%, Nasdaq 100 -0.702%, Dow Jones -0.018%, Nifty 50 +0.352%, Bank Nifty -0.024%, Nikkei 225 +0.414%, Hang Seng +0.075%, Shanghai Composite -0.111%, KOSPI -1.787%, Taiwan Weighted +0.775%, Straits Times +0.278%, ASX 200 +0.599%, US Dollar Index -0.025%, Brent Crude -0.474%, USD/INR -0.157%, Gold (COMEX) -2.875%, India VIX -3.501%, GIFT Nifty -0.12% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Negative Macro Impact: It had already been a tough 2026 for Acrisure. Part fintech, part insurance broker, the firm said in late May it would cut 11% of its workforce, or some 2,250 people, as part of a sweeping overhaul to modernize operations. Some of its bonds and loans had fallen, but still remained above levels typically deemed distressed.\n\n- Global Defensive Cue: Kevin Warsh tells Jackson Hole he is done with forward guidance even as inflation stays above target, breaking with a practice he helped build under Bernanke.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch power, energy and industrial market participation after the open; broad-index bias needs confirmation outside the headline.",
+    "Watch listing-day market participation, midcap participation and Bank Nifty session average before treating IPO demand as broadly constructive.",
+    "Watch 11%; pair it with Bank Nifty's morning average before assigning direction."
+  ],
+  "overallSentiment": -0.061,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -0.249%, Nasdaq 100 -0.702%, Dow Jones -0.018%, Nifty 50 +0.352%, Bank Nifty -0.024%, Nikkei 225 +0.414%, Hang Seng +0.075%, Shanghai Composite -0.111%, KOSPI -1.787%, Taiwan Weighted +0.775%, Straits Times +0.278%, ASX 200 +0.599%, US Dollar Index -0.025%, Brent Crude -0.474%, USD/INR -0.157%, Gold (COMEX) -2.875%, India VIX -3.501%, GIFT Nifty -0.12%\n\nNarrative Themes:\n- Negative Macro Impact: It had already been a tough 2026 for Acrisure. Part fintech, part insurance broker, the firm said in late May it would cut 11% of its workforce, or some 2,250 people, as part of a sweeping overhaul to modernize operations. Some of its bonds and loans had fallen, but still remained above levels typically deemed distressed.\n- Global Defensive Cue: Kevin Warsh tells Jackson Hole he is done with forward guidance even as inflation stays above target, breaking with a practice he helped build under Bernanke.\n- Volatile Opening Bias: Apple Maps Transit is working in India, offering public transport directions, arrival times, connecting routes and fares where supported.\n- Global Earnings & investor confidence: Three mainboard IPOs—Purple Style Labs, Deepa Jewellers, and Rays of Belief—are opening next week, aiming to raise up to Rs 1265 crore through fresh equity offerings.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7711.76,
+      "previousClose": 7730.99,
+      "changePercent": -0.249,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T20:37:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 7744.42
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7736.93
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7719.25
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7730.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7752.73
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7767.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7759.83
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7767.92
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7745.58
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7728.82
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7728.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7714.12
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7714.56
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7715.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7710.91
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7707.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7708.46
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7713.32
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7710.26
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7708.36
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7710.48
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7704.32
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7709.84
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7712.56
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7713.74
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7709.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 7711.76
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29433.43,
+      "previousClose": 29641.56,
+      "changePercent": -0.702,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 29633.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29602.95
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29479.49
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29587.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29686.61
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29737.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29692.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29723.64
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29612.35
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29501.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29503.14
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29431.61
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29426.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29451.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29427.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29418.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29426.78
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29460.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29436.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29427.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29433.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29401.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29420.59
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29441.52
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29446.89
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29430.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 29433.43
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 53559.99,
+      "previousClose": 53569.4,
+      "changePercent": -0.018,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T20:37:09.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 53638.11
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53656.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53577.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53532.46
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53679.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53758.43
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53756.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53798.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53650.81
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53633.87
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53621.08
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53533.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53556.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53555.03
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53532.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53522.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53538.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53550.41
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53527.29
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53518.28
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53546.83
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53539.42
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53586.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53579.28
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53571.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53546.79
+        },
+        {
+          "time": "2026-08-28",
+          "close": 53559.99
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 24175.65,
+      "previousClose": 24090.85,
+      "changePercent": 0.352,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-28T10:01:24.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 24149.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24160.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24156.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24167.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24169.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24156.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24155.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24160.95
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24117.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24105.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24083.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24086.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24094.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24105.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24096.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24103.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24096.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24113.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24110.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24110.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24120.35
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24118.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24129.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24142.95
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24175.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 24175.65
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 57496.3,
+      "previousClose": 57509.95,
+      "changePercent": -0.024,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-28T10:01:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 57441
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57437.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57449
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57489.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57525.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57532.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57544.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57522.35
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57427.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57435.05
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57362.25
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57356.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57368.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57400.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57352.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57323.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57316.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57392.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57376.95
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57416.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57429.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57410.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57454.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57434.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57496.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 57496.3
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 66405.56,
+      "previousClose": 66131.98,
+      "changePercent": 0.414,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-08-28T06:45:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 66503.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66583.42
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66396.35
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66493.27
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66531.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66462.02
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66682.87
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66641.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66631.08
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66669.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66682.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66490.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66685.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66625.05
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66610.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66565.49
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66580.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66485.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66477.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66384.82
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66301.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66422.23
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66398.44
+        },
+        {
+          "time": "2026-08-28",
+          "close": 66405.56
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 25584.79,
+      "previousClose": 25565.74,
+      "changePercent": 0.075,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-08-28T08:08:54.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 25496.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25553.78
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25586.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25595.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25594.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25625.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25635.57
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25673.93
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25678.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25671.04
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25684.89
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25657.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25654.28
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25647.77
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25642.96
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25607.29
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25648.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25596.83
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25610.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25595.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25582.46
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25581.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25586.64
+        },
+        {
+          "time": "2026-08-28",
+          "close": 25584.79
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3952.18,
+      "previousClose": 3956.57,
+      "changePercent": -0.111,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-08-28T07:00:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 3961.59
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3964.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3964.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3966.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3961.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3961.76
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3954.96
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3959.27
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3959.64
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3960.08
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3960.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3958.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3959.12
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3962.58
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3961.64
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3955.79
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3952.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 3952.18
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 6788.88,
+      "previousClose": 6912.37,
+      "changePercent": -1.787,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-08-28T09:05:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 6853.27
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6862.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6878.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6847.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6833.82
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6824.99
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6829.08
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6836.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6840.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6844.62
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6830.14
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6842.23
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6842.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6840.47
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6814.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6849.04
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6843.23
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6833.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6828.52
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6822
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6804.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6809.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6792.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6790.42
+        },
+        {
+          "time": "2026-08-28",
+          "close": 6788.88
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 46331.45,
+      "previousClose": 45975.22,
+      "changePercent": 0.775,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-08-28T05:33:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 46507.28
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46406.99
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46343.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46248.49
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46335.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46385.32
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46332.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46495.02
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46441.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46476.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46402.47
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46482.84
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46433.12
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46429.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46337.47
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46272.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46360.28
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46307.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 46331.45
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5699.93,
+      "previousClose": 5684.12,
+      "changePercent": 0.278,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-08-28T09:20:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 5690.92
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5686.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5692.98
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5696.85
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5694.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5694.64
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5685.33
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5695.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5695.91
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5696.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5696.91
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5698.74
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5698.76
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5698.78
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5698.78
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5699.73
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5688.97
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5695.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5693.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5696.77
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5692.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5688.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5687.34
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5686.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5687.59
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5692.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5692.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5689.78
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5689.73
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5683.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5680.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5680.04
+        },
+        {
+          "time": "2026-08-28",
+          "close": 5699.93
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 9092.3,
+      "previousClose": 9038.2,
+      "changePercent": 0.599,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-08-28T06:52:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 9053.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9054.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9072.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9067.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9067.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9064.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9063
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9068.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9066.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9060.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9063.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9065.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9073.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9076.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9064.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9067
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9075.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9081.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9074.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9079.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9086.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9086.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9085.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9088.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9092.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 9092.3
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 99.68,
+      "previousClose": 99.7,
+      "changePercent": -0.025,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T20:59:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.21
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.46
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.48
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.41
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.52
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.56
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.67
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.71
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.71
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.69
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.71
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.69
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.68
+        },
+        {
+          "time": "2026-08-28",
+          "close": 99.68
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 88.1,
+      "previousClose": 88.52,
+      "changePercent": -0.474,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T20:59:45.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 88.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.35
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.38
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.29
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.26
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.05
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.91
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.94
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.97
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.02
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.23
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.11
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.39
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.66
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.34
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.16
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.22
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.97
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.86
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.81
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.74
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.61
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.41
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.65
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.84
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.04
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.17
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.19
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.03
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.96
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.25
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.13
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.09
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.15
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.14
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.07
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.94
+        },
+        {
+          "time": "2026-08-28",
+          "close": 87.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.04
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.06
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.26
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.18
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.23
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.24
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 88.1
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 95.38,
+      "previousClose": 95.53,
+      "changePercent": -0.157,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-08-30T03:30:05.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.56
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.56
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.54
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.55
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.53
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.38
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.41
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.44
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.39
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.45
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.47
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.44
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.37
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.36
+        },
+        {
+          "time": "2026-08-28",
+          "close": 95.36
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4529.9,
+      "previousClose": 4664,
+      "changePercent": -2.875,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-08-28T20:59:57.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 4631.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4636.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4632
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4636.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4632.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4636.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4625
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4625.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4634.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4637.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4640.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4665.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4653.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4659.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4662.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4665
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4665.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4662.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4657.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4656.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4655.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4655.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4657.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4658.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4662.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4658.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4656
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4653.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4651.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4651.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4647.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4645.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4646.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4654.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4644.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4654.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4651.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4656.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4657
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4657.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4597.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4603.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4613.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4629
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4611.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4618.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4590.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4575.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4549.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4531.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4519.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4529.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4531.3
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4528.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4517.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4519.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4511.1
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4506.2
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4501
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4506.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4506.7
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4512
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4514.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4507.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4507.5
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4507.4
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4506.6
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4529.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 4529.9
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 10.68,
+      "previousClose": 11.07,
+      "changePercent": -3.501,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-08-28T10:13:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-08-28",
+          "close": 10.98
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.93
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.94
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.72
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.81
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.75
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.79
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.76
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.86
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.83
+        },
+        {
+          "time": "2026-08-28",
+          "close": 11.01
+        },
+        {
+          "time": "2026-08-28",
+          "close": 11.11
+        },
+        {
+          "time": "2026-08-28",
+          "close": 11.02
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.98
+        },
+        {
+          "time": "2026-08-28",
+          "close": 11
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.77
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.82
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.74
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.94
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.8
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.88
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.9
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.77
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.63
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.59
+        },
+        {
+          "time": "2026-08-28",
+          "close": 10.68
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 24282.5,
+      "previousClose": 24312,
+      "changePercent": -0.12,
+      "dataTimestamp": "2026-08-28T20:59:54.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-08-28T12:59:54.000Z",
+          "close": 24312
+        },
+        {
+          "time": "2026-08-28T20:59:54.000Z",
+          "close": 24282.5
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "28-Aug-2026",
+    "fiiNet": -5039.8,
+    "fiiBuy": 13263.62,
+    "fiiSell": 18303.42,
+    "diiNet": 5183.93,
+    "diiBuy": 16539.38,
+    "diiSell": 11355.45
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "themes": [
+    {
+      "digestDate": "2026-08-30",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "It had already been a tough 2026 for Acrisure. Part fintech, part insurance broker, the firm said in late May it would cut 11% of its workforce, or some 2,250 people, as part of a sweeping overhaul to modernize operations. Some of its bonds and loans had fallen, but still remained above levels typically deemed distressed.",
+      "sentimentScore": -0.73,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-30",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Kevin Warsh tells Jackson Hole he is done with forward guidance even as inflation stays above target, breaking with a practice he helped build under Bernanke.",
+      "sentimentScore": -0.41,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-30",
+      "themeType": "neutral_volatile",
+      "title": "Volatile Opening Bias",
+      "summary": "Apple Maps Transit is working in India, offering public transport directions, arrival times, connecting routes and fares where supported.",
+      "sentimentScore": -0.08,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-08-30",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "Three mainboard IPOs—Purple Style Labs, Deepa Jewellers, and Rays of Belief—are opening next week, aiming to raise up to Rs 1265 crore through fresh equity offerings.",
+      "sentimentScore": 0.457,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 41,
+    "publisherCount": 13,
+    "categoryCount": 5,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 24582,
+  "scheduledFor": "2026-08-30T08:00:00+05:30",
+  "marketUpdateMode": true,
+  "runMode": "scheduled-market-update",
+  "nonTradingSession": {
+    "state": "weekend_closed",
+    "reason": "Sunday",
+    "source": "weekend"
+  },
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-08-30T00:30:55.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Corporate Actions This Week: Coal India, ONGC, Glenmark Pharma, GAIL, Nirlon — Check Full List Here",
+      "summary": "Several companies including Coal India, ONGC, and Procter & Gamble Hygiene & Health Care have announced corporate actions this week, covering stock splits, bonus issues, and various dividends.",
+      "takeaway": "Several companies including Coal India, ONGC, and Procter & Gamble Hygiene & Health Care have announced corporate actions; India power demand, coal use and fuel supply make energy market participation and inflation the local checks.",
+      "whyItMatters": "This is directly India-linked: power demand, fuel mix and import costs can affect utilities, industrial margins, and inflation expectations.",
+      "indiaImpact": "Direct India read-through: power, utilities, cement/metals costs and inflation expectations are the checks; confirm with energy and industrial market participation.",
+      "watchFor": "Watch power, energy and industrial market participation after the open; broad-index bias needs confirmation outside the headline.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/corporate-actions-this-week-coal-india-ongc-glenmark-pharma-gail-nirlon-check-full-list-here-11973725",
+      "sentimentLabel": "positive",
+      "entityName": "India Energy",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "India Energy",
+        "theme": "Corporate Actions",
+        "accent": "#059669",
+        "alt": "Corporate Actions This Week: Coal India, ONGC, Glenmark Pharma, GAIL, Nirlon — Check Full List Here source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-30T01:00:01.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "IPOs This Week: Purple Style Labs, Deepa Jewellers, Rays of Belief To Hit Primary Market",
+      "summary": "Three mainboard IPOs—Purple Style Labs, Deepa Jewellers, and Rays of Belief—are opening next week, aiming to raise up to Rs 1265 crore through fresh equity offerings.",
+      "takeaway": "Three mainboard IPOs—Purple Style Labs, Deepa Jewellers, and Rays of Belief—are opening next week, aiming to raise up; primary-market demand is a investor confidence read, not an automatic index signal.",
+      "whyItMatters": "Strong listings can support sentiment, but they need cash-market market participation before changing the morning Nifty map.",
+      "indiaImpact": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      "watchFor": "Watch listing-day market participation, midcap participation and Bank Nifty session average before treating IPO demand as broadly constructive.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/ipos-this-week-purple-style-labs-deepa-jewellers-rays-of-belief-to-hit-primary-market-11975985",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Ipos Purple",
+        "accent": "#059669",
+        "alt": "IPOs This Week: Purple Style Labs, Deepa Jewellers, Rays of Belief To Hit Primary Market source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-29T19:00:00.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "Guggenheim Ties Weigh on Acrisure Debt, Dragging High-Yield Credit Markets",
+      "summary": "It had already been a tough 2026 for Acrisure. Part fintech, part insurance broker, the firm said in late May it would cut 11% of its workforce, or some 2,250 people, as part of a sweeping overhaul to modernize operations. Some of its bonds and loans had fallen, but still remained above levels typically deemed distressed.",
+      "takeaway": "It had already been a tough 2026 for Acrisure; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch 11%; pair it with Bank Nifty's morning average before assigning direction.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-29/guggenheim-stain-piles-onto-biggest-junk-laggard-credit-weekly",
+      "sentimentLabel": "negative",
+      "entityName": "Bank Nifty",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Bank",
+        "theme": "Guggenheim Ties",
+        "accent": "#dc2626",
+        "alt": "Guggenheim Ties Weigh on Acrisure Debt, Dragging High-Yield Credit Markets source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-29T16:46:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke",
+      "summary": "Kevin Warsh tells Jackson Hole he is done with forward guidance even as inflation stays above target, breaking with a practice he helped build under Bernanke.",
+      "takeaway": "Kevin Warsh tells Jackson Hole he is done with forward guidance even as inflation stays above target, breaking; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if participation absorbs it.",
+      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold morning averages.",
+      "sourceUrl": "https://www.ndtvprofit.com/world/jackson-hole-kevin-warsh-vs-jerome-powell-janet-yellen-and-ben-bernanke-on-fed-guidance-11973280",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Jackson New",
+        "accent": "#7c3aed",
+        "alt": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-08-29T16:38:00.000Z",
+      "sourceId": "zerodha-pulse",
+      "sourceName": "Zerodha Pulse",
+      "headline": "Apple Maps Gets Transit Feature In India; Public Transport Support Explained",
+      "summary": "Apple Maps Transit is working in India, offering public transport directions, arrival times, connecting routes and fares where supported.",
+      "takeaway": "Apple Maps Transit is working in India, offering public transport directions, arrival times, connecting routes and fares where; mixed global cues keep the India open in confirmation mode.",
+      "whyItMatters": "Neutral stories matter through the first range: price acceptance, participation and Bank Nifty decide whether noise becomes signal.",
+      "indiaImpact": "Nifty IT gets a conditional read-through only if Nasdaq futures, USD/INR and exporter market participation support the open.",
+      "watchFor": "Watch Nasdaq futures, USD/INR and Nifty IT participation together; Apple alone is not a local trade trigger.",
+      "sourceUrl": "https://www.ndtvprofit.com/technology/apple-maps-gets-transit-feature-in-india-public-transport-support-explained-11975715",
+      "sentimentLabel": "neutral",
+      "entityName": "Global Tech",
+      "category": "neutral_volatile",
+      "thumbnail": {
+        "label": "Apple",
+        "theme": "Big Tech",
+        "accent": "#2563eb",
+        "alt": "Apple Maps Gets Transit Feature In India; Public Transport Support Explained source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Corporate Actions This Week: Coal India, ONGC, Glenmark Pharma, GAIL, Nirlon — Check Full List Here",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-08-30T00:30:55.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/corporate-actions-this-week-coal-india-ongc-glenmark-pharma-gail-nirlon-check-full-list-here-11973725",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECorporate%20Actions%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EIndia%20Energy%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Corporate Actions This Week: Coal India, ONGC, Glenmark Pharma, GAIL, Nirlon — Check Full List Here source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "IPOs This Week: Purple Style Labs, Deepa Jewellers, Rays of Belief To Hit Primary Market",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-08-30T01:00:01.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/ipos-this-week-purple-style-labs-deepa-jewellers-rays-of-belief-to-hit-primary-market-11975985",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EIpos%20Purple%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "IPOs This Week: Purple Style Labs, Deepa Jewellers, Rays of Belief To Hit Primary Market source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Guggenheim Ties Weigh on Acrisure Debt, Dragging High-Yield Credit Markets",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-08-29T19:00:00.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-08-29/guggenheim-stain-piles-onto-biggest-junk-laggard-credit-weekly",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGuggenheim%20Ties%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Guggenheim Ties Weigh on Acrisure Debt, Dragging High-Yield Credit Markets source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-08-29T16:46:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/jackson-hole-kevin-warsh-vs-jerome-powell-janet-yellen-and-ben-bernanke-on-fed-guidance-11973280",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EJackson%20New%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Jackson Hole: New Fed Chair Signals An Era Of No Guidance — Where He Stands Versus Powell, Yellen & Bernanke source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Apple Maps Gets Transit Feature In India; Public Transport Support Explained",
+      "publisherName": "Zerodha Pulse",
+      "timestamp": "2026-08-29T16:38:00.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/technology/apple-maps-gets-transit-feature-in-india-public-transport-support-explained-11975715",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBig%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EApple%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Apple Maps Gets Transit Feature In India; Public Transport Support Explained source thumbnail",
+      "sentimentLabel": "neutral",
+      "category": "neutral_volatile"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 81 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 81 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-08-30.webp"
+  }
+}
