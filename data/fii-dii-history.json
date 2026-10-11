@@ -115031,5 +115031,84 @@
         "totalShort": 150665
       }
     }
+  },
+  "2026-10-09": {
+    "date": "09-Oct-2026",
+    "cash": {
+      "fiiNet": -3568.9,
+      "fiiBuy": 10373.99,
+      "fiiSell": 13942.89,
+      "diiNet": 4743.26,
+      "diiBuy": 15626.53,
+      "diiSell": 10883.27
+    },
+    "fnoOi": {
+      "fii": {
+        "idxFutLong": 34943,
+        "idxFutShort": 328931,
+        "stkFutLong": 3542863,
+        "stkFutShort": 2867395,
+        "idxCeLong": 600034,
+        "idxPeLong": 1245164,
+        "idxCeShort": 946852,
+        "idxPeShort": 704672,
+        "stkCeLong": 197429,
+        "stkPeLong": 316370,
+        "stkCeShort": 347630,
+        "stkPeShort": 186717,
+        "totalLong": 5936804,
+        "totalShort": 5382197
+      },
+      "dii": {
+        "idxFutLong": 48096,
+        "idxFutShort": 16166,
+        "stkFutLong": 289466,
+        "stkFutShort": 4646105,
+        "idxCeLong": 90783,
+        "idxPeLong": 62924,
+        "idxCeShort": 3788,
+        "idxPeShort": 1452,
+        "stkCeLong": 12110,
+        "stkPeLong": 43691,
+        "stkCeShort": 349667,
+        "stkPeShort": 34218,
+        "totalLong": 547070,
+        "totalShort": 5051396
+      }
+    },
+    "fnoVol": {
+      "fii": {
+        "idxFutLong": 24886,
+        "idxFutShort": 11765,
+        "stkFutLong": 285524,
+        "stkFutShort": 219902,
+        "idxCeLong": 3577629,
+        "idxPeLong": 3611116,
+        "idxCeShort": 3520169,
+        "idxPeShort": 3736707,
+        "stkCeLong": 260758,
+        "stkPeLong": 151972,
+        "stkCeShort": 250481,
+        "stkPeShort": 173140,
+        "totalLong": 7911885,
+        "totalShort": 7912164
+      },
+      "dii": {
+        "idxFutLong": 896,
+        "idxFutShort": 5216,
+        "stkFutLong": 54800,
+        "stkFutShort": 88722,
+        "idxCeLong": 4035,
+        "idxPeLong": 6990,
+        "idxCeShort": 1939,
+        "idxPeShort": 1902,
+        "stkCeLong": 6856,
+        "stkPeLong": 528,
+        "stkCeShort": 19234,
+        "stkPeShort": 1821,
+        "totalLong": 74105,
+        "totalShort": 118834
+      }
+    }
   }
 }
