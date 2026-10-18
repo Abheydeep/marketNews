@@ -1,0 +1,3030 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-10-18",
+  "title": "Tech Momentum Support Indian Market Mood",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-10-18T06:19:24.636Z",
+  "dailyLead": {
+    "label": "Global tech market participation",
+    "sourceArticleId": "ndtv-profit-markets:xplf2n",
+    "driverType": "tech",
+    "headline": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus",
+    "indiaImpact": "Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate confirmation.",
+    "riskSide": "Weak Nasdaq futures or poor IT participation would turn the global tech cue into risk, not support.",
+    "supportSide": "Nasdaq futures, USD/INR, and Nifty IT participation must confirm the offset.",
+    "giftNiftyBias": null
+  },
+  "publicSourceSelection": {
+    "visibleCount": 7,
+    "shortlistCount": 24,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 4,
+    "indiaPublisherCount": 5,
+    "shortlistIndiaPublisherCount": 14,
+    "directIndiaSourceCount": 5,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 5,
+    "globalContextCount": 2,
+    "globalOnlySourceRatio": 29,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 5 direct India sources, 0 official sources, 5 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://www.ndtvprofit.com/markets/dividend-stocks-this-week-icici-prudential-amc-ltm-tech-mahindra-angel-one-among-15-companies-in-focus-12200487",
+      "https://www.business-standard.com/economy/news/trump-s-sanctions-waiver-offers-india-temporary-relief-no-certainty-gtri-126101700282_1.html",
+      "https://economictimes.indiatimes.com/markets/stocks/earnings/central-bank-of-india-q2-profit-rises-21-as-loans-grow-30/articleshow/135014014.cms",
+      "https://www.cnbc.com/2026/10/17/south-korea-semiconductor-outlook-lee-hyoung-il.html",
+      "https://www.livemint.com/market/ai-trade-reversal-pierces-asia-s-star-picks-and-shovels-stocks-11792284261229.html",
+      "https://www.business-standard.com/economy/news/india-to-keep-russian-oil-imports-near-current-levels-after-trump-waiver-126101700454_1.html",
+      "https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html"
+    ]
+  },
+  "archiveSummary": "Global tech market participation: Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate...",
+  "twoMinuteSummary": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 -1.093%, Nasdaq 100 -2.499%, Dow Jones -0.336%, Nifty 50 +0.647%, Bank Nifty +0.06%, Nikkei 225 +1.394%, Hang Seng +0.516%, Shanghai Composite +0.238%, KOSPI +2.049%, Taiwan Weighted +0.301%, Straits Times +0.223%, ASX 200 +0.998%, US Dollar Index -0.057%, Brent Crude +3.72%, USD/INR -0.089%, Gold (COMEX) +0.264%, India VIX +0%, GIFT Nifty -0.04% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Negative Macro Impact: Central Bank of India reported a 21% rise in September 2026 quarterly net profit to Rs 1,469 crore, supported by 26% net interest income growth and 30% loan expansion. Asset quality improved, with net NPA declining to 0.31%, while operating efficiency strengthened.\n\n- Global Defensive Cue: Trump signed the Graham Bill, which targeted Russia over its invasion of Ukraine, into law in September.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch ex-date names, delivery volume and sector peer market participation after the open; avoid turning one corporate action into an index trade.",
+    "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
+    "Watch 21%; pair it with Bank Nifty's morning average before assigning direction."
+  ],
+  "overallSentiment": -0.098,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 -1.093%, Nasdaq 100 -2.499%, Dow Jones -0.336%, Nifty 50 +0.647%, Bank Nifty +0.06%, Nikkei 225 +1.394%, Hang Seng +0.516%, Shanghai Composite +0.238%, KOSPI +2.049%, Taiwan Weighted +0.301%, Straits Times +0.223%, ASX 200 +0.998%, US Dollar Index -0.057%, Brent Crude +3.72%, USD/INR -0.089%, Gold (COMEX) +0.264%, India VIX +0%, GIFT Nifty -0.04%\n\nNarrative Themes:\n- Negative Macro Impact: Central Bank of India reported a 21% rise in September 2026 quarterly net profit to Rs 1,469 crore, supported by 26% net interest income growth and 30% loan expansion. Asset quality improved, with net NPA declining to 0.31%, while operating efficiency strengthened.\n- Global Defensive Cue: Trump signed the Graham Bill, which targeted Russia over its invasion of Ukraine, into law in September.\n- Sector-Specific Cushion: South Korea's finance minister said semiconductor growth can last at least through 2027 as supply remains tight despite a global chip sell-off.\n- Global Earnings & investor confidence: A deepening selloff in US technology stocks is exposing a new vulnerability in Asia’s artificial intelligence trade: mounting financing costs could choke off the spending needed to sustain the boom, threatening earnings across a supply chain that has powered the region’s stock-market rally.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7659.44,
+      "previousClose": 7744.06,
+      "changePercent": -1.093,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T20:42:08.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 7748.56
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7740.26
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7735.97
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7734.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7743.87
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7739.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7724.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7713.16
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7713.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7701.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7704.43
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7700.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7692.98
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7687.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7664.56
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7666.45
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7677.24
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7659.56
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7656.39
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7647.42
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7648.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7644.17
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7654.65
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7656.82
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7646.16
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7658.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 7659.44
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29187.55,
+      "previousClose": 29935.59,
+      "changePercent": -2.499,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 29734.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29641.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29671.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29612.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29711.75
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29656.86
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29523.41
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29481.73
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29521.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29460.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29488.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29474.19
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29443.54
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29412.23
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29306.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29291.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29335.94
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29258.21
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29242.62
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29218.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29193.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29160.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29200.13
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29214.83
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29119.33
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29188.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 29187.55
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 52002.41,
+      "previousClose": 52177.69,
+      "changePercent": -0.336,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T20:42:09.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 52474.75
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52542.53
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52369.81
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52395.91
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52337.04
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52403.98
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52387.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52300.82
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52294.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52205.17
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52205.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52141.01
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52099.47
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52075.17
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51924.11
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51959.02
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52067.06
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51947.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51933.23
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51876.38
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51901.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51889.77
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51943.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51935.34
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51898.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 51990.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 52002.41
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 23146.15,
+      "previousClose": 22997.35,
+      "changePercent": 0.647,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-16T10:01:07.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 22952.45
+        },
+        {
+          "time": "2026-10-16",
+          "close": 22974.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23027.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23094.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23138.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23100.65
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23109.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23088.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23117.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23121.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23122.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23117.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23120
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23123.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23096.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23116.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23124.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23129.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23127.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23111.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23085.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23094.75
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23080.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23121.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23146.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 23146.15
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 55844,
+      "previousClose": 55810.5,
+      "changePercent": 0.06,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-16T10:01:07.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 55617.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55629.65
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55613.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55756.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55830.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55686.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55662.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55634.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55752.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55709.75
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55720.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55719
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55730.45
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55766.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55681.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55705.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55812.45
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55863.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55805.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55791.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55710.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55745.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55687
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55763.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55844
+        },
+        {
+          "time": "2026-10-16",
+          "close": 55844
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 65324.29,
+      "previousClose": 64425.95,
+      "changePercent": 1.394,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-10-16T06:45:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 65077.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65262.25
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65449.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65525.84
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65634.29
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65559.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65486.42
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65399.34
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65340.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65539.42
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65550.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65315.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65604.39
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65554.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65567.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65602.04
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65670.43
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65670.73
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65551.18
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65627.02
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65559.03
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65401.91
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65349.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 65324.29
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 24186.83,
+      "previousClose": 24062.72,
+      "changePercent": 0.516,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-10-16T08:08:38.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 24352.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24257.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24282.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24298.99
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24382.28
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24378.54
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24375.61
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24307.39
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24310.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24352.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24353.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24306.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24283.45
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24292.71
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24268.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24171.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24155.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24132.46
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24147.09
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24166.14
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24168.67
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24154.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24182.09
+        },
+        {
+          "time": "2026-10-16",
+          "close": 24186.83
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3716.28,
+      "previousClose": 3707.48,
+      "changePercent": 0.238,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-10-16T07:00:29.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 3728.41
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3727.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3721.19
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3735.24
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3738.14
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3735.48
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3748.48
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3742.43
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3742.66
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3726.12
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3716.46
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3715.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3712.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3700.03
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3692.67
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3690.87
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3713.15
+        },
+        {
+          "time": "2026-10-16",
+          "close": 3716.28
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 5668.05,
+      "previousClose": 5554.22,
+      "changePercent": 2.049,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-10-16T11:05:40.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 5640.38
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5624.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5680.13
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5689.75
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5730.53
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5685.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5720.86
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5686.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5692.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5720.57
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5727.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5721.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5736.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5726.26
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5697.54
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5766.83
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5745.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5752.08
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5775.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5791.23
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5780.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5739.27
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5720.01
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5718.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5668.05
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 47111.26,
+      "previousClose": 46969.87,
+      "changePercent": 0.301,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-10-16T05:33:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 47383.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47389.18
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47381.82
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47395.48
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47418.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47509.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47507.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47307.13
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47298.16
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47165.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47094.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47263.25
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47236.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47254.25
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47213.29
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47286.43
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47208.31
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47182.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 47111.26
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5415.53,
+      "previousClose": 5403.5,
+      "changePercent": 0.223,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-10-16T09:20:00.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 5406.37
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5417.59
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5436.99
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5427.18
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5445.82
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5446.18
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5444.29
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5439.54
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5438.17
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5443.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5444.31
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5442.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5442.73
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5442.71
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5442.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5446.57
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5438.97
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5430.48
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5432.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5434.24
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5426.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5429.09
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5434.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5430.63
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5429.92
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5429.13
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5427.42
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5423.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5418.49
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5419.41
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5417.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5417.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 5415.53
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8806.7,
+      "previousClose": 8719.7,
+      "changePercent": 0.998,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-10-16T05:56:44.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 8817.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8805.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8776.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8788.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8802.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8811.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8808.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8804.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8797.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8784.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8791.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8790.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8796.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8796.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8797.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8794.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8798.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8811.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8810.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8820
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8815.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8817.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8810.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8817
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8806.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 8806.7
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 101.78,
+      "previousClose": 101.84,
+      "changePercent": -0.057,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T20:59:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.92
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.92
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.86
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.83
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.83
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.77
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.82
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.81
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.81
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.71
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.73
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.62
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.59
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.66
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.72
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.72
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.62
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.61
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.66
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.69
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.71
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.74
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.84
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.91
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.87
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.84
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.81
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 101.78
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 109.86,
+      "previousClose": 105.92,
+      "changePercent": 3.72,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T20:59:31.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 105.36
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.34
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.37
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.21
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.05
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.43
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.21
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.36
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.77
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.65
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.33
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.51
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.52
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.56
+        },
+        {
+          "time": "2026-10-16",
+          "close": 102.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.55
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.62
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.91
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.06
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.28
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.13
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.03
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.66
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.35
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.47
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.64
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.87
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 105.79
+        },
+        {
+          "time": "2026-10-16",
+          "close": 106.26
+        },
+        {
+          "time": "2026-10-16",
+          "close": 107.27
+        },
+        {
+          "time": "2026-10-16",
+          "close": 107.49
+        },
+        {
+          "time": "2026-10-16",
+          "close": 108.47
+        },
+        {
+          "time": "2026-10-16",
+          "close": 108.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.32
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.44
+        },
+        {
+          "time": "2026-10-16",
+          "close": 108.98
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.27
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.48
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.87
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.59
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.57
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.58
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.54
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.68
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.72
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.83
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.86
+        },
+        {
+          "time": "2026-10-16",
+          "close": 109.86
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 94.96,
+      "previousClose": 95.05,
+      "changePercent": -0.089,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-10-18T03:30:05.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 95.04
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.04
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.04
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.76
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.71
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.78
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.81
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.84
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.85
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.89
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.94
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.03
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.06
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.03
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 95.02
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.98
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.98
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.91
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.94
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.96
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        },
+        {
+          "time": "2026-10-16",
+          "close": 94.95
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4181.1,
+      "previousClose": 4170.1,
+      "changePercent": 0.264,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-16T20:59:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 4198.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4200.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4196.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4195.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4193.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4193
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4194.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4195.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4190.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4196.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4200.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4198.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4206.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4208.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4205.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4208.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4202.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4205.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4206.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4210.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4212.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4203.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4201.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4198.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4203
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4205.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4202.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4195.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4196.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4200
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4199
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4192.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4195.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4197.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4196.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4187.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4188.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4180.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4198
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4206
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4207.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4218.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4209.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4206.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4200.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4196.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4193.8
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4188.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4185.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4186.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4182.2
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4178.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4181
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4185.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4184.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4184.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4180
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4179.5
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4180.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4186.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.7
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.9
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4188.4
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.6
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4189.3
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4181.1
+        },
+        {
+          "time": "2026-10-16",
+          "close": 4181.1
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 14.03,
+      "previousClose": 14.03,
+      "changePercent": 0,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-16T10:00:06.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-16",
+          "close": 14.37
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.33
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.22
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.06
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.09
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.02
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.02
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.99
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.99
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.92
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.94
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.93
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.94
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.97
+        },
+        {
+          "time": "2026-10-16",
+          "close": 13.88
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.11
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.07
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.01
+        },
+        {
+          "time": "2026-10-16",
+          "close": 14.02
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 23085,
+      "previousClose": 23094.5,
+      "changePercent": -0.04,
+      "dataTimestamp": "2026-10-16T21:14:57.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-10-16T13:14:57.000Z",
+          "close": 23094.5
+        },
+        {
+          "time": "2026-10-16T21:14:57.000Z",
+          "close": 23085
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "16-Oct-2026",
+    "fiiNet": 1165.92,
+    "fiiBuy": 19951.59,
+    "fiiSell": 18785.67,
+    "diiNet": -3661.28,
+    "diiBuy": 17201.8,
+    "diiSell": 20863.08
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "themes": [
+    {
+      "digestDate": "2026-10-18",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "Central Bank of India reported a 21% rise in September 2026 quarterly net profit to Rs 1,469 crore, supported by 26% net interest income growth and 30% loan expansion. Asset quality improved, with net NPA declining to 0.31%, while operating efficiency strengthened.",
+      "sentimentScore": -0.49,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-10-18",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Trump signed the Graham Bill, which targeted Russia over its invasion of Ukraine, into law in September.",
+      "sentimentScore": -0.351,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-10-18",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "South Korea's finance minister said semiconductor growth can last at least through 2027 as supply remains tight despite a global chip sell-off.",
+      "sentimentScore": 0.35,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-10-18",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "A deepening selloff in US technology stocks is exposing a new vulnerability in Asia’s artificial intelligence trade: mounting financing costs could choke off the spending needed to sustain the boom, threatening earnings across a supply chain that has powered the region’s stock-market rally.",
+      "sentimentScore": 0.478,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 40,
+    "publisherCount": 13,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 18875,
+  "scheduledFor": "2026-10-18T08:00:00+05:30",
+  "marketUpdateMode": true,
+  "runMode": "scheduled-market-update",
+  "nonTradingSession": {
+    "state": "weekend_closed",
+    "reason": "Sunday",
+    "source": "weekend"
+  },
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-10-17T23:48:11.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus",
+      "summary": "Fifteen companies will determine shareholder eligibility for interim dividends between October 21 and 23, 2026, with the highest payout by ICICI Prudential AMC at Rs 30 per share.",
+      "takeaway": "Fifteen companies will determine shareholder eligibility for interim dividends between October 21 and 23, 2026, with the highest; Corporate actions is global technology context; Indian exporters need local market participation before it matters.",
+      "whyItMatters": "Bonus issues, splits, dividends and ex-dates can move individual counters, but the morning index read still needs market participation.",
+      "indiaImpact": "Track the named stocks, sector peers and cash-market volume; broad Nifty or Bank Nifty bias needs separate confirmation.",
+      "watchFor": "Watch ex-date names, delivery volume and sector peer market participation after the open; avoid turning one corporate action into an index trade.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/dividend-stocks-this-week-icici-prudential-amc-ltm-tech-mahindra-angel-one-among-15-companies-in-focus-12200487",
+      "sentimentLabel": "positive",
+      "entityName": "Corporate actions",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Corporate Actions",
+        "theme": "Dividend Icici",
+        "accent": "#059669",
+        "alt": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-17T06:01:59.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "Trump's sanctions waiver offers India temporary relief, no certainty: GTRI",
+      "summary": "US President Donald Trump's waiver from sanctions, restrictions and tariffs under the Sanctioning Russia and Iran Act (SRIA) gives India temporary relief but offers no lasting certainty, and New Delhi should safeguard its energy security and buy oil on commercial terms, think tank GTRI said on Saturday. It said that the move gives India relief from threatened additional duties of up to 100 per cent linked to Russian oil purchases. \"But the relief is reversible. Washington can restore the tariffs anytime, leaving India and other buyers uncertain about future US action,\" the Global Trade Research Initiative (GTRI) said. It also said SRIA remains a law, leaving Washington free to revive the tariff threat to extract concessions in bilateral trade talks. The think tank added that Russia's share of Indian oil imports fell from 51 per cent in July to 44 per cent in August as India bought more from the US, despite higher prices, and from the UAE. \"For India, the waiver buys time but offer",
+      "takeaway": "US President Donald Trump's waiver from sanctions, restrictions and tariffs under the Sanctioning Russia and Iran Act (SRIA); treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/trump-s-sanctions-waiver-offers-india-temporary-relief-no-certainty-gtri-126101700282_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Trumps Sanctions",
+        "accent": "#7c3aed",
+        "alt": "Trump's sanctions waiver offers India temporary relief, no certainty: GTRI source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-17T12:14:25.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Central Bank of India Q2 profit rises 21% as loans grow 30%",
+      "summary": "Central Bank of India reported a 21% rise in September 2026 quarterly net profit to Rs 1,469 crore, supported by 26% net interest income growth and 30% loan expansion. Asset quality improved, with net NPA declining to 0.31%, while operating efficiency strengthened.",
+      "takeaway": "Central Bank of India reported a 21% rise in September 2026 quarterly net profit to Rs 1,469 crore; A higher-yield tape raises the discount-rate check for banks and high-multiple growth.",
+      "whyItMatters": "Financial cues matter because Bank Nifty often decides whether a Nifty move becomes a trend or just a gap reaction.",
+      "indiaImpact": "Rate-sensitive Indian sectors need yield stability; otherwise treat gap-ups in banks, realty and growth as fragile.",
+      "watchFor": "Watch 21%; pair it with Bank Nifty's morning average before assigning direction.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/central-bank-of-india-q2-profit-rises-21-as-loans-grow-30/articleshow/135014014.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "BoE Rates",
+        "theme": "Central Banks",
+        "accent": "#dc2626",
+        "alt": "Central Bank of India Q2 profit rises 21% as loans grow 30% source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-17T16:45:15.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Semiconductor market to remain solid ‘at least through next year,’ South Korea finance minister says",
+      "summary": "South Korea's finance minister said semiconductor growth can last at least through 2027 as supply remains tight despite a global chip sell-off.",
+      "takeaway": "South Korea's finance minister said semiconductor growth can last at least through 2027 as supply remains tight despite; Global Tech is semiconductor-cycle evidence; Indian IT needs Nasdaq market participation and USD/INR support to inherit it.",
+      "whyItMatters": "Positive sector headlines can help watchlists, but the index read needs domestic participation and Bank Nifty confirmation.",
+      "indiaImpact": "Nifty IT gets a read-through only if Nasdaq futures, chip market participation and USD/INR support exporters together.",
+      "watchFor": "Watch Nasdaq futures plus Nifty IT market participation; chip strength alone is not enough.",
+      "sourceUrl": "https://www.cnbc.com/2026/10/17/south-korea-semiconductor-outlook-lee-hyoung-il.html",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "Jobs + Chips",
+        "theme": "US Calendar",
+        "accent": "#059669",
+        "alt": "Semiconductor market to remain solid ‘at least through next year,’ South Korea finance minister says source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-18T00:44:20.000Z",
+      "sourceId": "mint-markets",
+      "sourceName": "Mint Markets",
+      "headline": "AI Trade Reversal Pierces Asia’s Star Picks-and-Shovels Stocks",
+      "summary": "A deepening selloff in US technology stocks is exposing a new vulnerability in Asia’s artificial intelligence trade: mounting financing costs could choke off the spending needed to sustain the boom, threatening earnings across a supply chain that has powered the region’s stock-market rally.",
+      "takeaway": "A deepening selloff in US technology stocks is exposing a new vulnerability in Asia’s artificial intelligence trade: mounting; AI-led earnings momentum supports investor confidence; the India read is Nifty IT market participation, not a broad-index signal.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "Potentially bullish for Nifty IT only if exporters lead after the open; otherwise keep it as global tech context.",
+      "watchFor": "Watch Nifty IT market participation against Nasdaq futures; Global Tech must translate into exporter participation.",
+      "sourceUrl": "https://www.livemint.com/market/ai-trade-reversal-pierces-asia-s-star-picks-and-shovels-stocks-11792284261229.html",
+      "sentimentLabel": "positive",
+      "entityName": "Global Tech",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "AI Capex",
+        "theme": "Global Tech",
+        "accent": "#7c3aed",
+        "alt": "AI Trade Reversal Pierces Asia’s Star Picks-and-Shovels Stocks source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-17T09:12:18.000Z",
+      "sourceId": "business-standard-economy",
+      "sourceName": "Business Standard Economy",
+      "headline": "India to keep Russian oil imports near current levels after Trump waiver",
+      "summary": "India is expected to keep importing Russian crude at close to current levels after US President Donald Trump waived sanctions and tariffs mandated by a new law on major buyers of Russian oil, analysts said. Trump issued an executive order late on Friday waiving the \"sanctions, restrictions, and duties\" under the Lindsey O. Graham Sanctioning Russia and Iran Act, a day before a 30-day deadline for enforcement expired. He signed the law on September 18. The law authorised tariffs of up to 100 per cent on goods from the five largest importers of Russian crude and gas, and sanctions on Russia's shadow fleet of tankers. The waiver is not specific to India and could also benefit China. The order lets the administration reconsider it later. India is the largest importer of Russian seaborne crude, averaging 1.8 million barrels per day this year, ahead of China at 1.2 million, ship tracking data showed. Italy, Turkey and the Netherlands completed the top five. India took about 1.82 million",
+      "takeaway": "India is expected to keep importing Russian crude at close to current levels after US President Donald Trump; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around the Asia handoff; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-to-keep-russian-oil-imports-near-current-levels-after-trump-waiver-126101700454_1.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Crude Exports",
+        "theme": "Oil Supply",
+        "accent": "#f97316",
+        "alt": "India to keep Russian oil imports near current levels after Trump waiver source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-17T19:35:18.000Z",
+      "sourceId": "cnbc-markets",
+      "sourceName": "CNBC Markets",
+      "headline": "Trump waives broad new Russia sanctions, Zelenskyy condemns it as 'wrong'",
+      "summary": "Trump signed the Graham Bill, which targeted Russia over its invasion of Ukraine, into law in September.",
+      "takeaway": "Trump signed the Graham Bill, which targeted Russia over its invasion of Ukraine, into law in September; geopolitical escalation is a defensive signal that travels through crude, gold, currencies and FII flows before equities.",
+      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII investor confidence, not directly.",
+      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs market participation.",
+      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning defensive weight to the India open.",
+      "sourceUrl": "https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Trump Waives",
+        "accent": "#7c3aed",
+        "alt": "Trump waives broad new Russia sanctions, Zelenskyy condemns it as 'wrong' source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-10-17T23:48:11.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/dividend-stocks-this-week-icici-prudential-amc-ltm-tech-mahindra-angel-one-among-15-companies-in-focus-12200487",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EDividend%20Icici%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECorporate%20Actions%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Dividend Stocks This Week: ICICI Prudential AMC, LTM, Tech Mahindra, Angel One Among 15 Companies in Focus source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Trump's sanctions waiver offers India temporary relief, no certainty: GTRI",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-10-17T06:01:59.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/trump-s-sanctions-waiver-offers-india-temporary-relief-no-certainty-gtri-126101700282_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrumps%20Sanctions%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump's sanctions waiver offers India temporary relief, no certainty: GTRI source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Central Bank of India Q2 profit rises 21% as loans grow 30%",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-10-17T12:14:25.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/central-bank-of-india-q2-profit-rises-21-as-loans-grow-30/articleshow/135014014.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ECentral%20Banks%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EBoE%20Rates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Central Bank of India Q2 profit rises 21% as loans grow 30% source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "Semiconductor market to remain solid ‘at least through next year,’ South Korea finance minister says",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-10-17T16:45:15.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/10/17/south-korea-semiconductor-outlook-lee-hyoung-il.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Semiconductor market to remain solid ‘at least through next year,’ South Korea finance minister says source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "AI Trade Reversal Pierces Asia’s Star Picks-and-Shovels Stocks",
+      "publisherName": "Mint Markets",
+      "timestamp": "2026-10-18T00:44:20.000Z",
+      "sourceUrl": "https://www.livemint.com/market/ai-trade-reversal-pierces-asia-s-star-picks-and-shovels-stocks-11792284261229.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGlobal%20Tech%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EAI%20Capex%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "AI Trade Reversal Pierces Asia’s Star Picks-and-Shovels Stocks source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "India to keep Russian oil imports near current levels after Trump waiver",
+      "publisherName": "Business Standard Economy",
+      "timestamp": "2026-10-17T09:12:18.000Z",
+      "sourceUrl": "https://www.business-standard.com/economy/news/india-to-keep-russian-oil-imports-near-current-levels-after-trump-waiver-126101700454_1.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f97316%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Supply%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ECrude%20Exports%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "India to keep Russian oil imports near current levels after Trump waiver source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Trump waives broad new Russia sanctions, Zelenskyy condemns it as 'wrong'",
+      "publisherName": "CNBC Markets",
+      "timestamp": "2026-10-17T19:35:18.000Z",
+      "sourceUrl": "https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Waives%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump waives broad new Russia sanctions, Zelenskyy condemns it as 'wrong' source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 130 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 130 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-10-18.webp"
+  }
+}
