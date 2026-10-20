@@ -1,0 +1,2122 @@
+{
+  "scriptId": 1,
+  "digestDate": "2026-10-20",
+  "title": "Crude Prices Tests IT Sector Read",
+  "status": "PUBLISHED",
+  "generatedAt": "2026-10-20T06:19:49.441Z",
+  "dailyLead": {
+    "label": "Crude / energy risk",
+    "sourceArticleId": "ndtv-profit-markets:5fxl6o",
+    "driverType": "crude",
+    "headline": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel",
+    "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+    "riskSide": "Brent staying bid would pressure OMCs, aviation, paints, tyres, and inflation expectations.",
+    "supportSide": "Softer Brent and stronger Indian market participation are the confirmation checks.",
+    "giftNiftyBias": null
+  },
+  "publicSourceSelection": {
+    "visibleCount": 8,
+    "shortlistCount": 25,
+    "windowHours": 24,
+    "excludedNoDirectIndiaCount": 0,
+    "indiaPublisherCount": 7,
+    "shortlistIndiaPublisherCount": 19,
+    "directIndiaSourceCount": 7,
+    "officialIndiaSourceCount": 0,
+    "domesticCatalystCount": 6,
+    "globalContextCount": 1,
+    "globalOnlySourceRatio": 13,
+    "evidenceGrade": "limited",
+    "publishMode": "limited_brief",
+    "indiaPublisherCoverage": "Full India-source gate: Limited; 7 direct India sources, 0 official sources, 6 domestic catalysts.",
+    "visibleSourceUrls": [
+      "https://economictimes.indiatimes.com/markets/stocks/news/stock-market-holiday-2026-is-stock-market-closed-today-for-dussehra-check-remaining-holidays-for-the-year/articleshow/135059981.cms",
+      "https://www.ndtvprofit.com/markets/crude-oil-prices-at-five-month-high-on-supply-concerns-brent-oil-near-110-a-barrel-12208886",
+      "https://economictimes.indiatimes.com/markets/commodities/news/gold-slips-as-investors-weigh-fed-rate-outlook/articleshow/135059635.cms",
+      "https://www.bloomberg.com/news/articles/2026-10-19/mynt-s-record-ipo-brings-a-new-heavyweight-to-philippine-stocks",
+      "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-decline-in-break-from-us-chip-rally/articleshow/135059346.cms",
+      "https://economictimes.indiatimes.com/markets/stocks/news/cupid-sterlite-tech-among-stocks-top-10-equity-pms-portfolios-hold-as-nifty-sensex-plunge-up-to-13-in-2026/articleshow/135045427.cms",
+      "https://economictimes.indiatimes.com/markets/stocks/earnings/bajaj-finance-q2-results-net-profit-jumps-29-yoy-to-rs-6367-crore-nii-up-24/articleshow/135048431.cms",
+      "https://www.ndtvprofit.com/world/trump-open-to-meeting-putin-xi-without-zelenskyy-to-discuss-ukraine-war-12208930"
+    ]
+  },
+  "archiveSummary": "Crude / energy risk: OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream...",
+  "twoMinuteSummary": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel The briefing uses live sources, index context, flows, crude, currency and Bank Nifty participation to separate signal from noise. Treat the opening move as provisional until cash-market participation confirms it.\n\nS&P 500 +0.409%, Nasdaq 100 +1.171%, Dow Jones -0.07%, Nifty 50 -1.111%, Bank Nifty -0.637%, Nikkei 225 -1.641%, Hang Seng -1.339%, Shanghai Composite -0.341%, KOSPI -4.088%, Taiwan Weighted -1.737%, Straits Times -0.201%, ASX 200 +0.116%, US Dollar Index -0.186%, Brent Crude +0.904%, USD/INR +0.005%, Gold (COMEX) -0.43%, India VIX +5.333%, GIFT Nifty +0.48% India traders should track GIFT Nifty, Bank Nifty, India VIX, USD/INR and crude together instead of reacting...\n\n- Negative Macro Impact: Gold slipped in early Asian trade on Tuesday as investors awaited the US Federal Reserve policy decision next week for signals on interest rates and the broader outlook for monetary policy.\n\n- Global Defensive Cue: Brent oil prices have jumped almost 80% this year as widening US-Iran war in the Middle East and the escalating Russia-Ukraine war disrupt energy supplies.",
+  "deskNote": "Today's desk note is deliberately cautious because the source stack is mixed. Use verified sources and live market confirmation rather than treating one headline as the whole story.",
+  "watchItems": [
+    "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+    "Watch Brent around $110; OMC risk stays live only if supply headlines keep prices firm.",
+    "Watch the US 10Y trend; rising yields require Bank Nifty to hold morning averages."
+  ],
+  "overallSentiment": -0.083,
+  "sentimentLabel": "NEUTRAL",
+  "onePageSummary": "Market Mood: NEUTRAL\n\nGlobal Cues: S&P 500 +0.409%, Nasdaq 100 +1.171%, Dow Jones -0.07%, Nifty 50 -1.111%, Bank Nifty -0.637%, Nikkei 225 -1.641%, Hang Seng -1.339%, Shanghai Composite -0.341%, KOSPI -4.088%, Taiwan Weighted -1.737%, Straits Times -0.201%, ASX 200 +0.116%, US Dollar Index -0.186%, Brent Crude +0.904%, USD/INR +0.005%, Gold (COMEX) -0.43%, India VIX +5.333%, GIFT Nifty +0.48%\n\nNarrative Themes:\n- Negative Macro Impact: Gold slipped in early Asian trade on Tuesday as investors awaited the US Federal Reserve policy decision next week for signals on interest rates and the broader outlook for monetary policy.\n- Global Defensive Cue: Brent oil prices have jumped almost 80% this year as widening US-Iran war in the Middle East and the escalating Russia-Ukraine war disrupt energy supplies.\n- Sector-Specific Pressure: Losses were led by a more than 2% drop in South Korea’s Kospi Index — a bellwether for artificial intelligence investments — as chip heavyweight SK Hynix Inc. headed for its lowest close since April. Data-center infrastructure company Elice Inc. plunged as much as 32% in its trading debut in Seoul.\n- Global Earnings & investor confidence: A total of 16 stock market holidays have been scheduled for 2026, out of which twelve have already passed. After the Dussehra holiday, trading will remain suspended on three more occasions over the remaining two months of the year.\n- Sector-Specific Cushion: Mynt Inc., the operator of the mobile-payments app GCash, gained in its debut Tuesday after the biggest-ever initial public offering in the Philippines that the company said it sees as setting it up for potential acquisitions and to expand lending as well as its financial services offerings.\n\nValidated Trading Setups:\nNo active setups today.\n\nEducational note: Educational market research only. This is not SEBI-registered investment advice, a research recommendation, or a solicitation to buy or sell securities or derivatives. No returns are assured; use your own risk plan.",
+  "publishedAt": null,
+  "marketSnapshots": [
+    {
+      "symbol": "SPX",
+      "name": "S&P 500",
+      "closeValue": 7690.73,
+      "previousClose": 7659.44,
+      "changePercent": 0.409,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-19T20:44:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^GSPC",
+      "tradingViewSymbol": "SP:SPX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 7696.93
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7691.71
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7709.08
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7709.72
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7700.61
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7708.04
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7712.99
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7726.18
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7726.63
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7721.1
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7712.82
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7709.08
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7709.09
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7701.57
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7700.98
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7700.39
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7700.04
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7702.38
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7703.72
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7698.93
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7701.38
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7702.17
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7703.85
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7707.41
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7707.31
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7691.92
+        },
+        {
+          "time": "2026-10-19",
+          "close": 7690.73
+        }
+      ]
+    },
+    {
+      "symbol": "NDX",
+      "name": "Nasdaq 100",
+      "closeValue": 29529.34,
+      "previousClose": 29187.55,
+      "changePercent": 1.171,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-19T21:15:59.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NDX",
+      "tradingViewSymbol": "NASDAQ:NDX",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 29565.41
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29501.69
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29607.33
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29642.88
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29617.43
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29646.82
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29678.98
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29759.4
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29773.65
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29738.32
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29703.48
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29663.9
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29664.48
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29598.97
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29594.41
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29587.83
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29575.66
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29584.72
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29572.95
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29536.94
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29568.99
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29577.7
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29580.88
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29615.94
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29626.84
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29536.02
+        },
+        {
+          "time": "2026-10-19",
+          "close": 29529.34
+        }
+      ]
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "closeValue": 51966.03,
+      "previousClose": 52002.4,
+      "changePercent": -0.07,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-19T20:44:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^DJI",
+      "tradingViewSymbol": "DJ:DJI",
+      "marketRegion": "US Overnight",
+      "session": "us",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 51917.63
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51938.5
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52040.14
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52007.3
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51945.22
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51983.64
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52028.47
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52113.41
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52091.14
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52064.36
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52010.7
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52010.63
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52017.12
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52014.23
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51988.65
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51998.93
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52009.16
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52020.64
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52054.96
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52048.23
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52040.51
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52040.45
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52049.83
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52045.95
+        },
+        {
+          "time": "2026-10-19",
+          "close": 52030.4
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51975.87
+        },
+        {
+          "time": "2026-10-19",
+          "close": 51966.03
+        }
+      ]
+    },
+    {
+      "symbol": "NIFTY",
+      "name": "Nifty 50",
+      "closeValue": 22888.95,
+      "previousClose": 23146.15,
+      "changePercent": -1.111,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-19T10:01:28.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEI",
+      "tradingViewSymbol": "NSE:NIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 22981.9
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23145.7
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23040.9
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23061.15
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23103.6
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23050.4
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23067.25
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23070.1
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23054.25
+        },
+        {
+          "time": "2026-10-19",
+          "close": 23003.95
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22985.05
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22946.45
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22945.55
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22929.15
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22920.5
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22922
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22864.15
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22864.05
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22870.5
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22871.65
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22856.05
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22882.3
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22888.3
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22873.55
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22888.95
+        },
+        {
+          "time": "2026-10-19",
+          "close": 22888.95
+        }
+      ]
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "name": "Bank Nifty",
+      "closeValue": 55488.1,
+      "previousClose": 55844,
+      "changePercent": -0.637,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-19T10:01:28.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^NSEBANK",
+      "tradingViewSymbol": "NSE:BANKNIFTY",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 55397.2
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55647.9
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55414.6
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55477.75
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55660.6
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55587.45
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55628.7
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55663.3
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55614.85
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55592.25
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55525.75
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55515.6
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55577.35
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55543.4
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55565.85
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55553.65
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55415.15
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55404.5
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55454.05
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55464.95
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55458.9
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55519.5
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55521.85
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55479.6
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55488.1
+        },
+        {
+          "time": "2026-10-19",
+          "close": 55488.1
+        }
+      ]
+    },
+    {
+      "symbol": "NIKKEI",
+      "name": "Nikkei 225",
+      "closeValue": 63851.32,
+      "previousClose": 64916.7,
+      "changePercent": -1.641,
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "dataTimestamp": "2026-10-20T06:04:25.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^N225",
+      "tradingViewSymbol": "TVC:NI225",
+      "marketRegion": "Asia Watch",
+      "country": "Japan",
+      "session": "tokyo",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 64564.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64302.09
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64236.23
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64182.74
+        },
+        {
+          "time": "2026-10-20",
+          "close": 63991.45
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64288.27
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64322.1
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64448.94
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64388.88
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64511.94
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64512.35
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64385.17
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64285.73
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64251.37
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64183.47
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64132.42
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64052.6
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64012.91
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64026.45
+        },
+        {
+          "time": "2026-10-20",
+          "close": 64032.66
+        },
+        {
+          "time": "2026-10-20",
+          "close": 63876
+        },
+        {
+          "time": "2026-10-20",
+          "close": 63841.91
+        },
+        {
+          "time": "2026-10-20",
+          "close": 63851.32
+        }
+      ]
+    },
+    {
+      "symbol": "HSI",
+      "name": "Hang Seng",
+      "closeValue": 23862.86,
+      "previousClose": 24186.83,
+      "changePercent": -1.339,
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "dataTimestamp": "2026-10-20T06:04:28.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^HSI",
+      "tradingViewSymbol": "TVC:HSI",
+      "marketRegion": "Asia Watch",
+      "country": "Hong Kong",
+      "session": "hongkong",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 23928.46
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23917.88
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23920.67
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23974.09
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23975.78
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23945.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23969
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23954.36
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23969.63
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23957.13
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23956.93
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23894.37
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23893.49
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23911.85
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23876.73
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23860.06
+        },
+        {
+          "time": "2026-10-20",
+          "close": 23862.86
+        }
+      ]
+    },
+    {
+      "symbol": "SHCOMP",
+      "name": "Shanghai Composite",
+      "closeValue": 3703.61,
+      "previousClose": 3716.28,
+      "changePercent": -0.341,
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "dataTimestamp": "2026-10-20T06:04:30.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "000001.SS",
+      "tradingViewSymbol": "SSE:000001",
+      "marketRegion": "Asia Watch",
+      "country": "Mainland China",
+      "session": "shanghai",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 3717.36
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3718.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3724.37
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3727.77
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3733.85
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3729.34
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3730.03
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3727.71
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3727.75
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3717.06
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3713.89
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3711.91
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3707.96
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3703.04
+        },
+        {
+          "time": "2026-10-20",
+          "close": 3703.61
+        }
+      ]
+    },
+    {
+      "symbol": "KOSPI",
+      "name": "KOSPI",
+      "closeValue": 5532.2,
+      "previousClose": 5768.01,
+      "changePercent": -4.088,
+      "currency": "KRW",
+      "exchangeTimezoneName": "Asia/Seoul",
+      "dataTimestamp": "2026-10-20T05:59:20.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^KS11",
+      "tradingViewSymbol": "KRX:KOSPI",
+      "marketRegion": "Asia Watch",
+      "country": "South Korea",
+      "session": "seoul",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 5648.04
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5647.43
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5588.05
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5570.39
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5506.19
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5586.45
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5606.29
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5612.02
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5598.23
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5611.45
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5602.47
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5630.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5603.57
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5577.2
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5563.38
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5556.01
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5534.43
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5520.43
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5520.15
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5520.68
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5536.13
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5518.82
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5534.93
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5533.74
+        }
+      ]
+    },
+    {
+      "symbol": "TAIEX",
+      "name": "Taiwan Weighted",
+      "closeValue": 46292.93,
+      "previousClose": 47111.3,
+      "changePercent": -1.737,
+      "currency": "TWD",
+      "exchangeTimezoneName": "Asia/Taipei",
+      "dataTimestamp": "2026-10-20T05:33:15.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^TWII",
+      "tradingViewSymbol": "TWSE:TAIEX",
+      "marketRegion": "Asia Watch",
+      "country": "Taiwan",
+      "session": "taipei",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 46503.85
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46786.67
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46957.32
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46744.85
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46767.89
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46819.63
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46780.72
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46835.01
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46758.25
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46704.62
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46668.85
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46578.29
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46476.37
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46408.1
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46388.57
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46290.29
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46296.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46234.29
+        },
+        {
+          "time": "2026-10-20",
+          "close": 46292.93
+        }
+      ]
+    },
+    {
+      "symbol": "STI",
+      "name": "Straits Times",
+      "closeValue": 5401.13,
+      "previousClose": 5412,
+      "changePercent": -0.201,
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "dataTimestamp": "2026-10-20T06:04:30.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^STI",
+      "tradingViewSymbol": "TVC:STI",
+      "marketRegion": "Asia Watch",
+      "country": "Singapore",
+      "session": "singapore",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 5394.7
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5412.08
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5404.48
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5398
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5394.39
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5381.1
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5392.63
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5391.82
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5395.38
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5396.4
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5395.51
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5397.86
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5397.86
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5397.84
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5397.88
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5397.57
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5401.24
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5404.4
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5408.8
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5399.22
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5402.49
+        },
+        {
+          "time": "2026-10-20",
+          "close": 5401.13
+        }
+      ]
+    },
+    {
+      "symbol": "ASX200",
+      "name": "ASX 200",
+      "closeValue": 8816.9,
+      "previousClose": 8806.7,
+      "changePercent": 0.116,
+      "currency": "AUD",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "dataTimestamp": "2026-10-20T05:52:14.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^AXJO",
+      "tradingViewSymbol": "ASX:XJO",
+      "marketRegion": "Asia Watch",
+      "country": "Australia",
+      "session": "sydney",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 8772.4
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8748.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8758.7
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8764.6
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8764
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8767.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8785.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8784.2
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8785.7
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8799.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8790.3
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8786.2
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8784.2
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8767.3
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8766.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8777.2
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8782.3
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8788.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8795.6
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8806.6
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8816.1
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8817.8
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8810.8
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8815.4
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8816.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 8816.9
+        }
+      ]
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "closeValue": 101.79,
+      "previousClose": 101.98,
+      "changePercent": -0.186,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-20T06:09:28.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "DX-Y.NYB",
+      "tradingViewSymbol": "TVC:DXY",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 101.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.77
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.78
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.79
+        },
+        {
+          "time": "2026-10-20",
+          "close": 101.79
+        }
+      ]
+    },
+    {
+      "symbol": "BRENT",
+      "name": "Brent Crude",
+      "closeValue": 110.54,
+      "previousClose": 109.55,
+      "changePercent": 0.904,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-20T06:09:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "BZ=F",
+      "tradingViewSymbol": "TVC:UKOIL",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 109.67
+        },
+        {
+          "time": "2026-10-20",
+          "close": 109.83
+        },
+        {
+          "time": "2026-10-20",
+          "close": 109.81
+        },
+        {
+          "time": "2026-10-20",
+          "close": 109.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 110
+        },
+        {
+          "time": "2026-10-20",
+          "close": 109.95
+        },
+        {
+          "time": "2026-10-20",
+          "close": 109.96
+        },
+        {
+          "time": "2026-10-20",
+          "close": 110.74
+        },
+        {
+          "time": "2026-10-20",
+          "close": 110.64
+        },
+        {
+          "time": "2026-10-20",
+          "close": 110.54
+        }
+      ]
+    },
+    {
+      "symbol": "USDINR",
+      "name": "USD/INR",
+      "closeValue": 94.92,
+      "previousClose": 94.92,
+      "changePercent": 0.005,
+      "currency": "INR",
+      "exchangeTimezoneName": "Europe/London",
+      "dataTimestamp": "2026-10-20T03:30:06.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "USDINR=X",
+      "tradingViewSymbol": "FX:USDINR",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        },
+        {
+          "time": "2026-10-20",
+          "close": 94.92
+        }
+      ]
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold (COMEX)",
+      "closeValue": 4142.2,
+      "previousClose": 4160.1,
+      "changePercent": -0.43,
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "dataTimestamp": "2026-10-20T06:09:27.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "GC=F",
+      "tradingViewSymbol": "TVC:GOLD",
+      "marketRegion": "Macro Hedges",
+      "session": "macro",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-20",
+          "close": 4163.1
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4163.3
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4161.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4162.8
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4156.8
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4151.7
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4149.9
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4138.7
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4142.5
+        },
+        {
+          "time": "2026-10-20",
+          "close": 4142.2
+        }
+      ]
+    },
+    {
+      "symbol": "INDIAVIX",
+      "name": "India VIX",
+      "closeValue": 14.77,
+      "previousClose": 14.03,
+      "changePercent": 5.333,
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "dataTimestamp": "2026-10-19T10:14:03.000Z",
+      "source": "Yahoo Finance chart API",
+      "yahooSymbol": "^INDIAVIX",
+      "tradingViewSymbol": "NSE:INDIAVIX",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live",
+      "chartPoints": [
+        {
+          "time": "2026-10-19",
+          "close": 14.8
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.52
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.7
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.56
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.4
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.51
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.45
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.39
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.44
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.54
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.62
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.74
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.74
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.82
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.77
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.74
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.91
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.87
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.83
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.88
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.96
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.85
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.8
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.8
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.76
+        },
+        {
+          "time": "2026-10-19",
+          "close": 14.77
+        }
+      ]
+    },
+    {
+      "symbol": "GIFTNIFTY",
+      "name": "GIFT Nifty",
+      "closeValue": 22974,
+      "previousClose": 22864,
+      "changePercent": 0.48,
+      "dataTimestamp": "2026-10-20T06:19:28.000Z",
+      "chartPoints": [
+        {
+          "time": "2026-10-19T22:19:28.000Z",
+          "close": 22864
+        },
+        {
+          "time": "2026-10-20T06:19:28.000Z",
+          "close": 22974
+        }
+      ],
+      "source": "NSE IFSC",
+      "marketRegion": "India Open",
+      "session": "india",
+      "dataQuality": "live"
+    }
+  ],
+  "fiiDiiFlows": {
+    "date": "19-Oct-2026",
+    "fiiNet": -1148.64,
+    "fiiBuy": 11240.64,
+    "fiiSell": 12389.28,
+    "diiNet": 3201.19,
+    "diiBuy": 14781.31,
+    "diiSell": 11580.12
+  },
+  "giftNiftyBias": null,
+  "todaysReadArticle": null,
+  "themes": [
+    {
+      "digestDate": "2026-10-20",
+      "themeType": "macro_negative",
+      "title": "Negative Macro Impact",
+      "summary": "Gold slipped in early Asian trade on Tuesday as investors awaited the US Federal Reserve policy decision next week for signals on interest rates and the broader outlook for monetary policy.",
+      "sentimentScore": -0.65,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-10-20",
+      "themeType": "global_risk",
+      "title": "Global Defensive Cue",
+      "summary": "Brent oil prices have jumped almost 80% this year as widening US-Iran war in the Middle East and the escalating Russia-Ukraine war disrupt energy supplies.",
+      "sentimentScore": -0.552,
+      "evidenceCount": 3
+    },
+    {
+      "digestDate": "2026-10-20",
+      "themeType": "sector_negative",
+      "title": "Sector-Specific Pressure",
+      "summary": "Losses were led by a more than 2% drop in South Korea’s Kospi Index — a bellwether for artificial intelligence investments — as chip heavyweight SK Hynix Inc. headed for its lowest close since April. Data-center infrastructure company Elice Inc. plunged as much as 32% in its trading debut in Seoul.",
+      "sentimentScore": -0.49,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-10-20",
+      "themeType": "macro_positive",
+      "title": "Global Earnings & investor confidence",
+      "summary": "A total of 16 stock market holidays have been scheduled for 2026, out of which twelve have already passed. After the Dussehra holiday, trading will remain suspended on three more occasions over the remaining two months of the year.",
+      "sentimentScore": 0.4,
+      "evidenceCount": 1
+    },
+    {
+      "digestDate": "2026-10-20",
+      "themeType": "sector_positive",
+      "title": "Sector-Specific Cushion",
+      "summary": "Mynt Inc., the operator of the mobile-payments app GCash, gained in its debut Tuesday after the biggest-ever initial public offering in the Philippines that the company said it sees as setting it up for potential acquisitions and to expand lending as well as its financial services offerings.",
+      "sentimentScore": 0.559,
+      "evidenceCount": 2
+    }
+  ],
+  "tradeSetups": [],
+  "marketDataMode": "live",
+  "marketDataError": null,
+  "newsDataMode": "live",
+  "sourceVerification": {
+    "mode": "live",
+    "verifiedArticleCount": 51,
+    "publisherCount": 13,
+    "categoryCount": 6,
+    "duplicateWithPreviousPercent": 0,
+    "blockedReason": null,
+    "isVerifiedForPublicArchive": true
+  },
+  "durationMillis": 19166,
+  "scheduledFor": "2026-10-20T08:00:00+05:30",
+  "marketUpdateMode": true,
+  "runMode": "scheduled-market-update",
+  "nonTradingSession": {
+    "state": "exchange_holiday",
+    "reason": "Dussehra",
+    "source": "nse_holidays"
+  },
+  "ogImageUrl": null,
+  "news": [
+    {
+      "publishedAt": "2026-10-20T02:29:59.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Stock Market Holiday 2026: Is stock market closed today for Dussehra? Check remaining holidays for the year",
+      "summary": "A total of 16 stock market holidays have been scheduled for 2026, out of which twelve have already passed. After the Dussehra holiday, trading will remain suspended on three more occasions over the remaining two months of the year.",
+      "takeaway": "A total of 16 stock market holidays have been scheduled for 2026, out of which twelve have already; investor confidence is supportive only if Indian market participation confirms beyond the first range.",
+      "whyItMatters": "Macro-positive headlines can lift the open, but they need currency, Bank Nifty and market participation to turn into trend evidence.",
+      "indiaImpact": "Nifty can open firmer, but Bank Nifty, USD/INR and market participation must confirm before the read gets trading weight.",
+      "watchFor": "Watch Nifty session average, Bank Nifty market participation and USD/INR through 9:45 AM before trusting the constructive read.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/stock-market-holiday-2026-is-stock-market-closed-today-for-dussehra-check-remaining-holidays-for-the-year/articleshow/135059981.cms",
+      "sentimentLabel": "positive",
+      "entityName": "Market",
+      "category": "macro_positive",
+      "thumbnail": {
+        "label": "Market",
+        "theme": "Holiday Closed",
+        "accent": "#059669",
+        "alt": "Stock Market Holiday 2026: Is stock market closed today for Dussehra? Check remaining holidays for the year source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-20T02:13:39.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel",
+      "summary": "Brent oil prices have jumped almost 80% this year as widening US-Iran war in the Middle East and the escalating Russia-Ukraine war disrupt energy supplies.",
+      "takeaway": "Brent oil prices have jumped almost 80% this year as widening US-Iran war in the Middle East; treat it as supply-discipline evidence; India impact travels through sustained Brent direction, not the meeting headline alone.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "OMCs, aviation and tyres stay under pressure only if the OPEC+ signal keeps Brent bid; upstream energy is the offset.",
+      "watchFor": "Watch Brent around $110; OMC risk stays live only if supply headlines keep prices firm.",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/crude-oil-prices-at-five-month-high-on-supply-concerns-brent-oil-near-110-a-barrel-12208886",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Hormuz",
+        "theme": "Oil Shock",
+        "accent": "#7c3aed",
+        "alt": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-20T02:00:02.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Gold slips as investors weigh Fed rate outlook",
+      "summary": "Gold slipped in early Asian trade on Tuesday as investors awaited the US Federal Reserve policy decision next week for signals on interest rates and the broader outlook for monetary policy.",
+      "takeaway": "Gold slipped in early Asian trade on Tuesday as investors awaited the US Federal Reserve policy decision next; Fed policy uncertainty shifts the hurdle rate, so India needs cleaner bank and growth-stock confirmation.",
+      "whyItMatters": "Rate-sensitive sectors need yield stability; without that, gap-up moves in high-duration names deserve skepticism.",
+      "indiaImpact": "Bearish for Bank Nifty, realty, autos and high-PE growth if yields rise; neutral if participation absorbs it.",
+      "watchFor": "Watch the US 10Y trend; rising yields require Bank Nifty to hold morning averages.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/gold-slips-as-investors-weigh-fed-rate-outlook/articleshow/135059635.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Rates",
+      "category": "macro_negative",
+      "thumbnail": {
+        "label": "Rates",
+        "theme": "Gold Slips",
+        "accent": "#dc2626",
+        "alt": "Gold slips as investors weigh Fed rate outlook source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-19T23:00:00.000Z",
+      "sourceId": "bloomberg-markets",
+      "sourceName": "Bloomberg Markets",
+      "headline": "GCash Owner Gains in Debut After Record Philippines IPO",
+      "summary": "Mynt Inc., the operator of the mobile-payments app GCash, gained in its debut Tuesday after the biggest-ever initial public offering in the Philippines that the company said it sees as setting it up for potential acquisitions and to expand lending as well as its financial services offerings.",
+      "takeaway": "Mynt Inc., the operator of the mobile-payments app GCash, gained in its debut Tuesday after the biggest-ever initial; primary-market demand is a investor confidence read, not an automatic index signal.",
+      "whyItMatters": "Strong listings can support sentiment, but they need cash-market market participation before changing the morning Nifty map.",
+      "indiaImpact": "Use IPO demand as a liquidity and midcap sentiment check; Nifty direction still needs Bank Nifty confirmation.",
+      "watchFor": "Watch listing-day market participation, midcap participation and Bank Nifty session average before treating IPO demand as broadly constructive.",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-10-19/mynt-s-record-ipo-brings-a-new-heavyweight-to-philippine-stocks",
+      "sentimentLabel": "positive",
+      "entityName": "Bank Nifty",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "Exxon",
+        "theme": "Oil Majors",
+        "accent": "#ea580c",
+        "alt": "GCash Owner Gains in Debut After Record Philippines IPO source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-20T01:31:55.000Z",
+      "sourceId": "economic-times-markets",
+      "sourceName": "Economic Times Markets",
+      "headline": "Global Market Today: Asian stocks decline in break from US chip rally",
+      "summary": "Losses were led by a more than 2% drop in South Korea’s Kospi Index — a bellwether for artificial intelligence investments — as chip heavyweight SK Hynix Inc. headed for its lowest close since April. Data-center infrastructure company Elice Inc. plunged as much as 32% in its trading debut in Seoul.",
+      "takeaway": "Losses were led by a more than 2% drop in South Korea’s Kospi Index — a bellwether; index rebalancing is a pre-scheduled, mechanical event — passive funds must buy or sell on a fixed date.",
+      "whyItMatters": "MSCI conducts 4 reviews a year — 2 quarterly (February, August) and 2 major semi-annual (May, November). The May and November reviews are the large ones where index weights change significantly. Global ETFs tracking MSCI must execute trades by the close on the effective date, regardless of fundamentals. This can move Nifty 1–2% in the final 30–60 minutes. Once the date passes, the mechanical selling stops and markets typically stabilize or recover.",
+      "indiaImpact": "An MSCI-driven drop is NOT a signal of deteriorating fundamentals — it is a flow event with a known end date. Once the rebalancing is complete, the artificial selling pressure disappears. Stocks added to the index often recover quickly as the same passive funds that sold other names must now hold the new additions.",
+      "watchFor": "The trading day after the effective rebalancing date is often calmer or even a relief bounce. Watch for block deals and late-session divergence between futures and cash as the live tell that rebalancing flows are active.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-decline-in-break-from-us-chip-rally/articleshow/135059346.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Market",
+      "category": "sector_negative",
+      "thumbnail": {
+        "label": "Jobs + Chips",
+        "theme": "US Calendar",
+        "accent": "#059669",
+        "alt": "Global Market Today: Asian stocks decline in break from US chip rally source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-19T10:05:36.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Cupid, Sterlite Tech among stocks top 10 equity PMS portfolios hold as Nifty, Sensex plunge up to 13% in 2026",
+      "summary": "Despite a sharp market downturn in 2026, all 10 top-performing equity PMS strategies delivered positive returns in September, ranging from 3.55% to 5.67%. Amaltas Asset Management’s Keystone Fund led the rankings, while Cupid and Sterlite Technologies featured among the prominent holdings across multiple portfolio management strategies.",
+      "takeaway": "Despite a sharp market downturn in 2026, all 10 top-performing equity PMS strategies delivered positive returns in September; treat it as crude-flow infrastructure evidence; India needs a Brent reaction before it becomes an opening trade.",
+      "whyItMatters": "India imports most of its crude, so the same story can pressure inflation expectations while helping upstream energy.",
+      "indiaImpact": "Pipeline flow news matters through Brent; use prices to decide whether OMCs, aviation and paints face import-cost pressure.",
+      "watchFor": "Watch whether Brent reacts to the flow story near the Asia handoff; no India trade if prices ignore it.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/cupid-sterlite-tech-among-stocks-top-10-equity-pms-portfolios-hold-as-nifty-sensex-plunge-up-to-13-in-2026/articleshow/135045427.cms",
+      "sentimentLabel": "negative",
+      "entityName": "Nifty 50",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Pipeline",
+        "theme": "Oil Infra",
+        "accent": "#ea580c",
+        "alt": "Cupid, Sterlite Tech among stocks top 10 equity PMS portfolios hold as Nifty, Sensex plunge up to 13% in 2026 source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-19T12:10:07.000Z",
+      "sourceId": "economic-times-stocks",
+      "sourceName": "Economic Times Stocks",
+      "headline": "Bajaj Finance Q2 Results: Net profit jumps 29% YoY to Rs 6,367 crore, NII up 24%",
+      "summary": "Bajaj Finance Q2 Results: Bajaj Finance reported a 29% year-on-year increase in net profit to Rs 6,367 crore in the September quarter, compared with Rs 4,948 crore a year earlier. Net interest income rose 24% to Rs 13,335 crore from Rs 10,785 crore in the year-ago quarter. Net total income increased 23% to Rs 15,974 crore from Rs 12,982 crore.",
+      "takeaway": "Net profit jumps 29% YoY to Rs 6,367 crore, NII up 24%; sector participation matters for India only if margins, guidance, or demand can travel to listed peers.",
+      "whyItMatters": "Earnings stories are useful only when they reveal margin, demand, or guidance that can travel to Indian peers.",
+      "indiaImpact": "sector participation needs related Indian peer participation and Nifty morning average acceptance before it becomes broad support.",
+      "watchFor": "Watch sector participation peer participation and Bank Nifty morning average through the first range.",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/bajaj-finance-q2-results-net-profit-jumps-29-yoy-to-rs-6367-crore-nii-up-24/articleshow/135048431.cms",
+      "sentimentLabel": "positive",
+      "entityName": "sector participation",
+      "category": "sector_positive",
+      "thumbnail": {
+        "label": "sector participation",
+        "theme": "Bajaj Finance",
+        "accent": "#2563eb",
+        "alt": "Bajaj Finance Q2 Results: Net profit jumps 29% YoY to Rs 6,367 crore, NII up 24% source thumbnail"
+      }
+    },
+    {
+      "publishedAt": "2026-10-20T02:38:44.000Z",
+      "sourceId": "ndtv-profit-markets",
+      "sourceName": "NDTV Profit Markets",
+      "headline": "Trump Open To Meeting Putin, Xi Without Zelenskyy To Discuss Ukraine War",
+      "summary": "Zelenskyy said he had urged the US president to engage Xi directly on the Ukraine war, arguing that the Chinese leader has influence over Putin.",
+      "takeaway": "Zelenskyy said he had urged the US president to engage Xi directly on the Ukraine war, arguing that; geopolitical escalation is a defensive signal that travels through crude, gold, currencies and FII flows before equities.",
+      "whyItMatters": "Military and conflict headlines move India through Brent crude, safe-haven dollar demand and FII investor confidence, not directly.",
+      "indiaImpact": "Brent crude, USD/INR, gold and FII provisional flow data are the direct India checks; broad index bias needs market participation.",
+      "watchFor": "Watch Brent at the Asia open, USD/INR and gold before assigning defensive weight to the India open.",
+      "sourceUrl": "https://www.ndtvprofit.com/world/trump-open-to-meeting-putin-xi-without-zelenskyy-to-discuss-ukraine-war-12208930",
+      "sentimentLabel": "negative",
+      "entityName": "Geopolitical risk",
+      "category": "global_risk",
+      "thumbnail": {
+        "label": "Geopolitical Risk",
+        "theme": "Trump Open",
+        "accent": "#7c3aed",
+        "alt": "Trump Open To Meeting Putin, Xi Without Zelenskyy To Discuss Ukraine War source thumbnail"
+      }
+    }
+  ],
+  "newsCards": [
+    {
+      "title": "Stock Market Holiday 2026: Is stock market closed today for Dussehra? Check remaining holidays for the year",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-10-20T02:29:59.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/stock-market-holiday-2026-is-stock-market-closed-today-for-dussehra-check-remaining-holidays-for-the-year/articleshow/135059981.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EHoliday%20Closed%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EMarket%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Stock Market Holiday 2026: Is stock market closed today for Dussehra? Check remaining holidays for the year source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "macro_positive"
+    },
+    {
+      "title": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-10-20T02:13:39.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/markets/crude-oil-prices-at-five-month-high-on-supply-concerns-brent-oil-near-110-a-barrel-12208886",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Shock%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EHormuz%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Crude Oil Prices At Five-Month High On Supply Concerns; Brent Oil Near $110 A Barrel source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Gold slips as investors weigh Fed rate outlook",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-10-20T02:00:02.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/commodities/news/gold-slips-as-investors-weigh-fed-rate-outlook/articleshow/135059635.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EGold%20Slips%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ERates%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Gold slips as investors weigh Fed rate outlook source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "macro_negative"
+    },
+    {
+      "title": "GCash Owner Gains in Debut After Record Philippines IPO",
+      "publisherName": "Bloomberg Markets",
+      "timestamp": "2026-10-19T23:00:00.000Z",
+      "sourceUrl": "https://www.bloomberg.com/news/articles/2026-10-19/mynt-s-record-ipo-brings-a-new-heavyweight-to-philippine-stocks",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Majors%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EExxon%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "GCash Owner Gains in Debut After Record Philippines IPO source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Global Market Today: Asian stocks decline in break from US chip rally",
+      "publisherName": "Economic Times Markets",
+      "timestamp": "2026-10-20T01:31:55.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-asian-stocks-decline-in-break-from-us-chip-rally/articleshow/135059346.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23059669%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EUS%20Calendar%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EJobs%20%2B%20Chips%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Global Market Today: Asian stocks decline in break from US chip rally source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "sector_negative"
+    },
+    {
+      "title": "Cupid, Sterlite Tech among stocks top 10 equity PMS portfolios hold as Nifty, Sensex plunge up to 13% in 2026",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-10-19T10:05:36.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/news/cupid-sterlite-tech-among-stocks-top-10-equity-pms-portfolios-hold-as-nifty-sensex-plunge-up-to-13-in-2026/articleshow/135045427.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ea580c%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EOil%20Infra%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EPipeline%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Cupid, Sterlite Tech among stocks top 10 equity PMS portfolios hold as Nifty, Sensex plunge up to 13% in 2026 source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    },
+    {
+      "title": "Bajaj Finance Q2 Results: Net profit jumps 29% YoY to Rs 6,367 crore, NII up 24%",
+      "publisherName": "Economic Times Stocks",
+      "timestamp": "2026-10-19T12:10:07.000Z",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/stocks/earnings/bajaj-finance-q2-results-net-profit-jumps-29-yoy-to-rs-6367-crore-nii-up-24/articleshow/135048431.cms",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3EBajaj%20Finance%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3ESector%20Participati%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Bajaj Finance Q2 Results: Net profit jumps 29% YoY to Rs 6,367 crore, NII up 24% source thumbnail",
+      "sentimentLabel": "positive",
+      "category": "sector_positive"
+    },
+    {
+      "title": "Trump Open To Meeting Putin, Xi Without Zelenskyy To Discuss Ukraine War",
+      "publisherName": "NDTV Profit Markets",
+      "timestamp": "2026-10-20T02:38:44.000Z",
+      "sourceUrl": "https://www.ndtvprofit.com/world/trump-open-to-meeting-putin-xi-without-zelenskyy-to-discuss-ukraine-war-12208930",
+      "thumbnailUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%237c3aed%22%20stop-opacity%3D%220.92%22%2F%3E%3Cstop%20offset%3D%220.58%22%20stop-color%3D%22%230f172a%22%20stop-opacity%3D%220.96%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23020617%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url(%23g)%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%2278%22%20r%3D%22118%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.08%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23f8fafc%22%20stroke-width%3D%2218%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.24%22%2F%3E%3Cpath%20d%3D%22M40%20286%20C150%20224%20214%20252%20306%20184%20S470%2094%20600%20132%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.82%22%2F%3E%3Ctext%20x%3D%2242%22%20y%3D%2272%22%20fill%3D%22%23e5e7eb%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22800%22%20letter-spacing%3D%223%22%3ETrump%20Open%3C%2Ftext%3E%3Ctext%20x%3D%2242%22%20y%3D%22156%22%20fill%3D%22%23ffffff%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2254%22%20font-weight%3D%22900%22%3EGeopolitical%20Risk%3C%2Ftext%3E%3C%2Fsvg%3E",
+      "thumbnailAlt": "Trump Open To Meeting Putin, Xi Without Zelenskyy To Discuss Ukraine War source thumbnail",
+      "sentimentLabel": "negative",
+      "category": "global_risk"
+    }
+  ],
+  "setupAudit": [
+    {
+      "symbol": "NIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "NIFTY setup is 132 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 24200,
+      "stopLoss": 22321.51,
+      "target": 28332.69,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    },
+    {
+      "symbol": "BANKNIFTY",
+      "direction": "BULLISH",
+      "status": "STALE",
+      "reason": "BANKNIFTY setup is 132 days old. Price-bars seed needs updating.",
+      "currentPrice": null,
+      "entry": 55000,
+      "stopLoss": 49674.28,
+      "target": 66716.58,
+      "riskReward": 2.2,
+      "remainingRiskReward": 0
+    }
+  ],
+  "asset": {
+    "sentimentLabel": "NEUTRAL",
+    "assetUrl": "/assets/generated/daily-thumbnail-2026-10-20.webp"
+  }
+}
